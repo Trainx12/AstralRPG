@@ -16,6 +16,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
+# Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
+ITEM_VERSION = 2
 
 # ID del encantamiento de mineria 3x3 de ExcellentEnchants (None = no se usa)
 TUNNEL_ENCHANT = os.environ.get("ASTRAL_TUNNEL", "excellentenchants:tunnel")
@@ -86,7 +88,7 @@ def aura_pdc(kind, skill=None, level=None, traits=None):
 
 def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None, model=None,
              glint=None, kind="item"):
-    custom = {NS: dict({"id": item_id}, **astral_data)}
+    custom = {NS: dict({"id": item_id, "v": ITEM_VERSION}, **astral_data)}
     if pdc:
         custom["PublicBukkitValues"] = pdc
     comps = {
@@ -452,6 +454,37 @@ for iid, it in ITEMS.items():
         "type": "minecraft:command",
         "pools": [{"rolls": 1, "entries": [{"type": "minecraft:item", "name": it["base"], "functions": [
             {"function": "minecraft:set_components", "components": it["components"]}]}]}]})
+
+# ---------------------------------------------------------------------------
+# Actualizacion automatica de items viejos (version distinta a ITEM_VERSION)
+# ---------------------------------------------------------------------------
+def comp_arg(k, v):
+    if k == "minecraft:custom_data":
+        return f"{k}={v}"
+    return f"{k}={snbt(v)}"
+
+
+OLD = f"*[minecraft:custom_data~{{{NS}:{{}}}},!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSION}}}}}]"
+upd = []
+for iid, it in ITEMS.items():
+    sel = (f"*[minecraft:custom_data~{{{NS}:{{id:\"{iid}\"}}}},"
+           f"!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSION}}}}}]")
+    fn(f"upgrade/i/{iid}", [
+        f"execute store result score #c astral.tmp run clear @s {sel}",
+        "execute if score #c astral.tmp matches ..0 run return 0",
+        f"execute store result storage {NS}:tmp up.n int 1 run scoreboard players get #c astral.tmp",
+        f"function {NS}:upgrade/g/{iid} with storage {NS}:tmp up",
+    ])
+    args = ",".join(comp_arg(k, v) for k, v in it["components"].items())
+    fn(f"upgrade/g/{iid}", [f"$give @s {it['base']}[{args}] $(n)"])
+    upd.append(f"function {NS}:upgrade/i/{iid}")
+fn("upgrade/check", [
+    f"execute unless items entity @s container.* {OLD} unless items entity @s armor.* {OLD} "
+    f"unless items entity @s weapon.offhand {OLD} run return 0",
+] + upd + [
+    "# la guia vieja en libro ya no se usa (ahora es un menu) y cualquier item que ya no existe",
+    f"clear @s {OLD}",
+    "tellraw @s " + json.dumps(txt("Tus items de AstralRPG se actualizaron a la version nueva.", "light_purple"))])
 
 # Netherita Fundida: horno y alto horno (entrada vanilla, salida custom)
 nf = ITEMS["netherita_fundida"]
@@ -1236,11 +1269,12 @@ def item_stack(iid, count=1):
 RID = {}
 for idx, (out, n, ings, group) in enumerate(RECIPES, start=1):
     RID[idx] = (out, n, ings)
-    lines = []
+    lines = [f"data modify storage {NS}:tmp forge.missing set value []"]
     for (kind, ident, count) in ings:
         lines.append(f"execute store result score #h astral.tmp run clear @s {ing_pred(kind, ident)} 0")
-        lines.append(f"execute if score #h astral.tmp matches ..{count - 1} run return run function {NS}:forge/missing "
-                     + "{need:\"" + f"{count}x {ing_name(kind, ident)}" + "\"}")
+        lines.append(f"execute if score #h astral.tmp matches ..{count - 1} run data modify storage {NS}:tmp forge.missing "
+                     f"append value \"{count}x {ing_name(kind, ident)}\"")
+    lines.append(f"execute if data storage {NS}:tmp forge.missing[0] run return run function {NS}:forge/missing")
     for (kind, ident, count) in ings:
         lines.append(f"clear @s {ing_pred(kind, ident)} {count}")
         if ident == "minecraft:lava_bucket":
@@ -1258,7 +1292,9 @@ for idx, (out, n, ings, group) in enumerate(RECIPES, start=1):
     fn(f"forge/r/{idx}", lines)
 
 fn("forge/missing", [
-    "$tellraw @s " + json.dumps([txt("Te falta: ", "red"), txt("$(need)", "gold")]),
+    "tellraw @s " + json.dumps([txt("Te falta: ", "red"),
+                                {"nbt": "forge.missing[]", "storage": f"{NS}:tmp", "separator": txt(", ", "red"),
+                                 "color": "gold", "italic": False}]),
     "playsound minecraft:entity.villager.no player @s ~ ~ ~ 0.7 1",
     "return 0",
 ])
@@ -1314,20 +1350,35 @@ def msg(text, color="gray", width=300):
 
 
 def recipe_leaf(path, title, rids, back):
-    body = [msg("Para forjar, estate al lado de una Mesa de Herreria y apreta el boton. "
-                "Los materiales se sacan de tu inventario.", "dark_gray")]
+    """Lista de items; cada uno abre su propia pantalla con el boton Forjar."""
     actions = []
     for rid in rids:
         out, n, ings = RID[rid]
         it = ITEMS[out]
-        desc = [txt(it["name"] + (f" x{n}" if n > 1 else "") + "\n", it["color"], bold=True)]
-        desc += [txt("  " + f"{c}x {ing_name(k, i)}" + "\n", "gray") for (k, i, c) in ings]
-        body.append({"type": "minecraft:item", "item": item_stack(out, n),
-                     "description": {"contents": desc, "width": 250},
-                     "show_decorations": True, "show_tooltip": True, "width": 16, "height": 16})
-        actions.append(btn(txt("Forjar " + it["name"], it["color"]), command=f"/trigger astral.forja set {rid}",
+        recipe_detail(rid, path)
+        actions.append(btn(txt(it["name"] + (f" x{n}" if n > 1 else ""), it["color"]), dialog=f"receta/{rid}",
                            tooltip=txt(", ".join(f"{c}x {ing_name(k, i)}" for (k, i, c) in ings), "gray"), width=300))
-    dlg(path, txt(title, "light_purple", bold=True), body, actions, back=back)
+    dlg(path, txt(title, "light_purple", bold=True),
+        [msg("Elegi que queres forjar.", "gray")], actions, back=back)
+
+
+def recipe_detail(rid, back):
+    out, n, ings = RID[rid]
+    it = ITEMS[out]
+    desc = [txt(it["name"] + (f" x{n}" if n > 1 else "") + "\n", it["color"], bold=True),
+            txt("Necesitas:\n", "gray")]
+    desc += [txt(f"  {c}x {ing_name(k, i)}\n", "white") for (k, i, c) in ings]
+    body = [{"type": "minecraft:item", "item": item_stack(out, n),
+             "description": {"contents": desc, "width": 220},
+             "show_decorations": True, "show_tooltip": True, "width": 16, "height": 16},
+            msg("Pasa el mouse sobre el item para ver sus stats. Tenes que estar al lado de una Mesa de Herreria.",
+                "dark_gray")]
+    d = {"type": "minecraft:multi_action", "title": txt(it["name"], it["color"], bold=True), "body": body,
+         "actions": [btn(txt("Forjar", "green", bold=True), command=f"/trigger astral.forja set {rid}", width=200)],
+         "columns": 1, "after_action": "close", "can_close_with_escape": True, "pause": False,
+         "exit_action": {"label": txt("Volver", "gray"), "width": 200,
+                         "action": {"type": "show_dialog", "dialog": f"{NS}:{back}"}}}
+    put(f"data/{NS}/dialog/receta/{rid}.json", d)
 
 
 def rids_where(pred):
@@ -1534,6 +1585,7 @@ t10 += [
 fn("loop/t10", t10)
 fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",
+    f"execute as @a run function {NS}:upgrade/check",
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
     f"execute as @a run function {NS}:player/lvl",
     f"execute as @e[type=#{NS}:hostile,tag=!astral.seen] at @s run function {NS}:elite/roll",
