@@ -1148,7 +1148,37 @@ fn("guide/join", [
 # Admin
 # ---------------------------------------------------------------------------
 fn("admin/materiales", [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS] + [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS])
-fn("admin/todo", [f"loot give @s loot {NS}:item/{i}" for i in ITEMS])
+# Kits de prueba: cajas de shulker por categoria (el inventario no alcanza para todo)
+KITS = [
+    ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
+     [i for i in ITEMS if ITEMS[i]["kind"] == "material"]),
+    ("berserker", "Armaduras Berserker", "red", "minecraft:red_shulker_box",
+     [i for i in ITEMS if i.startswith("berserker_")]),
+    ("mago", "Armaduras Mago", "dark_purple", "minecraft:magenta_shulker_box",
+     [i for i in ITEMS if i.startswith("mago_")]),
+    ("arquero", "Armaduras Arquero", "green", "minecraft:lime_shulker_box",
+     [i for i in ITEMS if i.startswith("arquero_")]),
+    ("armas", "Armas de clase", "gold", "minecraft:orange_shulker_box",
+     [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and i[-1].isdigit()]),
+    ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
+     [i for i in ITEMS if i.startswith(("lanza_", "talisman_")) or i in
+      ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")]),
+]
+_kitted = set()
+for kid, kname, kcolor, box, ids in KITS:
+    assert len(ids) <= 27, (kid, len(ids))
+    _kitted.update(ids)
+    put(f"data/{NS}/loot_table/kit/{kid}.json", {"type": "minecraft:command", "pools": [{"rolls": 1, "entries": [
+        {"type": "minecraft:item", "name": box, "functions": [
+            {"function": "minecraft:set_contents", "component": "minecraft:container",
+             "entries": [{"type": "minecraft:loot_table", "value": f"{NS}:item/{i}"} for i in ids]},
+            {"function": "minecraft:set_components", "components": {
+                "minecraft:item_name": txt(f"Kit: {kname}", kcolor)}}]}]}]})
+    fn(f"admin/kit_{kid}", [f"loot give @s loot {NS}:kit/{kid}"])
+_missing = [i for i in ITEMS if i not in _kitted]
+assert not _missing, _missing
+fn("admin/todo", [f"loot give @s loot {NS}:kit/{k[0]}" for k in KITS] + [
+    "tellraw @s " + json.dumps(txt("Te dimos 6 cajas de shulker con todos los items de AstralRPG.", "gray"))])
 
 # ---------------------------------------------------------------------------
 # load / loops
