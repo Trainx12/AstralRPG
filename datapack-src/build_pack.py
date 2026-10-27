@@ -9,7 +9,7 @@ import os
 import sys
 import zipfile
 
-from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX
+from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX, GEN_WEAPON, GEN_ITEM, ARMOR_SETS_TEX, ARMOR_ITEMS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = sys.argv[1]
@@ -70,6 +70,22 @@ for iid, tex in BOW_TEX.items():
                                 {"threshold": 0.9, "model": model_ref(f"astral:item/{iid}_pulling_2")}],
                     "fallback": model_ref(f"astral:item/{iid}_pulling_0")}}})
 
+# Texturas generadas (gen_textures.py)
+for iid in GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
+    copy(f"assets/astral/textures/item/gen/{iid}.png")
+    parent = "minecraft:item/handheld" if iid in GEN_WEAPON else "minecraft:item/generated"
+    put_json(f"assets/astral/models/item/{iid}.json", {"parent": parent, "textures": {"layer0": f"astral:item/gen/{iid}"}})
+    put_json(f"assets/astral/items/{iid}.json", {"model": model_ref(f"astral:item/{iid}")})
+# Como se ven puestas las armaduras
+for s_id in ARMOR_SETS_TEX:
+    for t in range(1, 6):
+        name = f"{s_id}_{t}"
+        for layer in ("humanoid", "humanoid_leggings"):
+            copy(f"assets/astral/textures/entity/equipment/{layer}/{name}.png")
+        put_json(f"assets/astral/equipment/{name}.json", {"layers": {
+            "humanoid": [{"texture": f"astral:{name}"}],
+            "humanoid_leggings": [{"texture": f"astral:{name}"}]}})
+
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
     "description": [{"text": "AstralRPG", "color": "light_purple"}, {"text": " - texturas del servidor", "color": "gray"}],
@@ -95,6 +111,6 @@ print(f"{len(files)} archivos -> {OUT}")
 def models_for_datapack():
     """Devuelve {id_item: item_model} para el datapack."""
     m = {}
-    for iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX):
+    for iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
         m[iid] = f"astral:{iid}"
     return m

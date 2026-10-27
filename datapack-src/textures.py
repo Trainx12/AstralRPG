@@ -66,3 +66,13 @@ WEAPON_TEX.update({
     "lanza_4": "lanza_6",
     "lanza_5": "lanza_3",
 })
+
+# Texturas generadas por gen_textures.py (carpeta textures/item/gen)
+GEN_WEAPON = ["hacha_4", "hacha_5", "guadana_1", "guadana_4", "guadana_umbria", "taladro_infernal", "gancho"]
+GEN_ITEM = ["guantes_meteoro", "fragmento_cristal", "cristal_refinado", "corazon_shulker",
+            "esencia_elite", "alma_corrupta", "chispa_astral"] + \
+           [f"talisman_{t}_{l}" for t in ("vida", "furia", "viento", "roca") for l in (1, 2, 3)]
+# Armaduras: todas las piezas tienen icono y textura puesta (equipment astral:<set>_<tier>)
+ARMOR_SETS_TEX = ["berserker", "mago", "arquero"]
+ARMOR_ITEMS = [f"{s}_{t}_{p}" for s in ARMOR_SETS_TEX for t in range(1, 6)
+               for p in ("helmet", "chestplate", "leggings", "boots")]

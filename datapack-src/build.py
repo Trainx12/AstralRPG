@@ -348,7 +348,7 @@ ARQ = ARMOR_SETS["arquero"]["color"]
 for i, s in enumerate(BOWS):
     t = i + 1
     iid = f"arco_{t}"
-    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"-{min(s['draw'], 95)}% tiempo de carga"] + s["desc"]
+    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
     mods = None
     if s.get("spd"):
         mods = [{"type": "minecraft:movement_speed", "id": f"{NS}:{iid}.spd", "amount": s["spd"] / 100,
@@ -392,10 +392,6 @@ RECIPES.append(("taladro_infernal", 1, [("c", "shadowsteel", 4), ("c", "netherit
 # Enfriamiento de los arcos (evita disparar sin parar con carga casi instantanea)
 # ---------------------------------------------------------------------------
 from items import TALISMANS, TALISMAN_COST, SPEARS, ELITE_TIERS, ELITE_DROPS, HOSTILE
-for i, b in enumerate(BOWS):
-    if b.get("cooldown"):
-        ITEMS[f"arco_{i + 1}"]["components"]["minecraft:use_cooldown"] = {
-            "seconds": b["cooldown"], "cooldown_group": f"{NS}:arco"}
 
 # ---------------------------------------------------------------------------
 # Talismanes (mano secundaria)
@@ -434,9 +430,19 @@ for i, s in enumerate(SPEARS):
 # ---------------------------------------------------------------------------
 # Texturas del resource pack (si el item tiene una, usa su modelo)
 # ---------------------------------------------------------------------------
-from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX
-for _iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX):
+from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX, GEN_WEAPON, GEN_ITEM, ARMOR_ITEMS
+for _iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
     ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
+# Armaduras: textura propia al tenerlas puestas
+_SOUND = {"leather": "leather", "chainmail": "chain", "iron": "iron", "diamond": "diamond", "netherite": "netherite"}
+for _iid in ARMOR_ITEMS:
+    _set, _t, _piece = _iid.split("_")
+    _c = ITEMS[_iid]["components"]
+    _c.pop("minecraft:dyed_color", None)
+    _c.pop("minecraft:tooltip_display", None)
+    _mat = ITEMS[_iid]["base"].split(":")[1].split("_")[0]
+    _c["minecraft:equippable"] = {"slot": PIECE_SLOT[_piece], "asset_id": f"{NS}:{_set}_{_t}",
+                                  "equip_sound": f"minecraft:item.armor.equip_{_SOUND[_mat]}"}
 
 # ---------------------------------------------------------------------------
 # Loot tables de items (sirven para /loot y para el altar)
@@ -923,6 +929,69 @@ fn("bow/apply", [
 ])
 
 # ---------------------------------------------------------------------------
+# Arcos: disparo automatico al mantener click derecho.
+# Cada tier dispara una flecha a maxima potencia cada N ticks (vanilla = 20).
+# ---------------------------------------------------------------------------
+BOW_TICKS = [18, 15, 12, 10, 8]
+put(f"data/{NS}/advancement/bow/hold.json", {
+    "criteria": {"hold": {"trigger": "minecraft:using_item", "conditions": {"item": {
+        "items": "minecraft:bow", "predicates": {"minecraft:custom_data": f"{{{NS}:{{w:\"bow\"}}}}"}}}}},
+    "rewards": {"function": f"{NS}:bow/hold"}})
+hold = [f"advancement revoke @s only {NS}:bow/hold",
+        "tag @s add astral.drew",
+        "scoreboard players add @s astral.draw 1",
+        "scoreboard players set #need astral.tmp 20"]
+for i, n in enumerate(BOW_TICKS):
+    hold.append(f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"arco_{i + 1}"}}}}] '
+                f'run scoreboard players set #need astral.tmp {n}')
+for ti, tier in enumerate(ARMOR_SETS["arquero"]["tiers"]):
+    d = tier["stats"].get("draw")
+    if d:
+        hold.append(f'execute if items entity @s armor.chest *[minecraft:custom_data~{{{NS}:{{id:"arquero_{ti + 1}_chestplate"}}}}] '
+                    f'run scoreboard players remove #need astral.tmp {d // 20}')
+hold += ["execute if score #need astral.tmp matches ..2 run scoreboard players set #need astral.tmp 3",
+         "execute if score @s astral.draw < #need astral.tmp run return 0",
+         "scoreboard players set @s astral.draw 0",
+         f"function {NS}:bow/fire"]
+fn("bow/hold", hold)
+fn("bow/fire", [
+    "# necesita flechas (salvo creativo o Arco Astral)",
+    "scoreboard players set #free astral.tmp 0",
+    "execute if entity @s[gamemode=creative] run scoreboard players set #free astral.tmp 1",
+    f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"arco_5"}}}}] run scoreboard players set #free astral.tmp 1',
+    "execute if score #free astral.tmp matches 0 unless items entity @s container.* minecraft:arrow unless items entity @s weapon.offhand minecraft:arrow run return 0",
+    "execute if score #free astral.tmp matches 0 run clear @s minecraft:arrow 1",
+    "tag @s add astral.archer",
+    f"execute anchored eyes positioned ^ ^ ^0.6 summon minecraft:arrow run function {NS}:bow/setup",
+    "tag @s remove astral.archer",
+    "playsound minecraft:entity.arrow.shoot player @a[distance=..16] ~ ~ ~ 1 1.2",
+])
+fn("bow/setup", [
+    "tag @s add astral.newarrow",
+    "data modify entity @s Owner set from entity @a[tag=astral.archer,limit=1] UUID",
+    "data modify entity @s crit set value 1b",
+    "data modify entity @s damage set value 2.0d",
+    "execute if score #free astral.tmp matches 1 run data modify entity @s pickup set value 2b",
+    "execute if score #free astral.tmp matches 0 run data modify entity @s pickup set value 1b",
+    f"execute summon minecraft:marker run function {NS}:bow/vec2",
+    "tag @s remove astral.newarrow",
+])
+fn("bow/vec2", [
+    "execute store result score #ox astral.tmp run data get entity @s Pos[0] 1000",
+    "execute store result score #oy astral.tmp run data get entity @s Pos[1] 1000",
+    "execute store result score #oz astral.tmp run data get entity @s Pos[2] 1000",
+    "tp @s ^ ^ ^3",
+    "execute store result score #nx astral.tmp run data get entity @s Pos[0] 1000",
+    "execute store result score #ny astral.tmp run data get entity @s Pos[1] 1000",
+    "execute store result score #nz astral.tmp run data get entity @s Pos[2] 1000",
+    "scoreboard players operation #nx astral.tmp -= #ox astral.tmp",
+    "scoreboard players operation #ny astral.tmp -= #oy astral.tmp",
+    "scoreboard players operation #nz astral.tmp -= #oz astral.tmp",
+    "kill @s",
+    f"execute as @e[type=minecraft:arrow,tag=astral.newarrow,limit=1] run function {NS}:bow/apply",
+])
+
+# ---------------------------------------------------------------------------
 # Uso de items con click derecho (zanahoria con palo como base)
 # ---------------------------------------------------------------------------
 fn("use/main", [
@@ -1192,6 +1261,7 @@ load = [
     "scoreboard objectives add astral.bleed dummy",
     "scoreboard objectives add astral.rem dummy",
     "scoreboard objectives add astral.lvl dummy",
+    "scoreboard objectives add astral.draw dummy",
     "scoreboard objectives add astral.use minecraft.used:minecraft.carrot_on_a_stick",
     "scoreboard objectives add astral.m_es minecraft.mined:minecraft.end_stone",
     "scoreboard objectives add astral.m_ch minecraft.mined:minecraft.chorus_plant",
@@ -1213,6 +1283,9 @@ fn("tick", [
     "scoreboard players remove @a[scores={astral.cd=1..}] astral.cd 1",
     f"execute as @a[scores={{astral.grap=1..}}] run function {NS}:grapple/tick",
     f"execute as @e[type=#minecraft:arrows,tag=astral.bowshot] at @s run function {NS}:bow/norm",
+    "# si soltaste el arco, se reinicia la carga",
+    "scoreboard players set @a[tag=!astral.drew,scores={astral.draw=1..}] astral.draw 0",
+    "tag @a remove astral.drew",
 ])
 fn("loop/t5", [
     f"execute as @a run function {NS}:player/hp",

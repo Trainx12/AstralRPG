@@ -6,14 +6,14 @@ Valores de referencia (daño por segundo aproximado contra un mob sin armadura).
 |---|---|---|---|
 | Berserker (espada + set) | ~10 | ~17 | ~27 (hasta ~38 con poca vida) |
 | Mago (bastón + set) | ~4,4 a distancia | ~10 | ~20 a distancia |
-| Arquero (arco + set) | ~7 | ~14 | ~25 (con 0,4 s de enfriamiento) |
+| Arquero (arco + set) | ~8 | ~15 | ~30 (disparo automático cada 0,4 s) |
 | Lanza (Combate) | ~9 | ~13 | ~19 + área + ejecución |
 
 Cambios hechos al revisar:
 
 - **Mago**: los hechizos pegaban demasiado (el bastón V hacía ~37 de daño por segundo). Ahora: daño 5/6/7/8,5/10 y recarga 1,25 s → 1 s.
 - **Berserker V**: la armadura y la espada V multiplicaban la Furia entre sí (hasta x2,1). La armadura ahora tiene Furia I (+15% máx.) y la espada mantiene Furia II.
-- **Arquero**: con carga casi instantánea se podía disparar sin parar. Los arcos III/IV/V tienen 0,2/0,3/0,4 s de enfriamiento, y bajaron los multiplicadores (arco V x1,30, set V x1,25).
+- **Arquero**: manteniendo click derecho el arco dispara solo, a máxima potencia, cada 0,9 / 0,75 / 0,6 / 0,5 / 0,4 s según el tier (vanilla: 1 s). El set de Arquero V lo baja un tick más. Multiplicadores: arco V x1,30, set V x1,25.
 
 ## Dificultad progresiva
 
