@@ -98,27 +98,28 @@ def render_faces(path, parts):
     return f
 
 
-# Nivel 3 (render 538x437, frente a la izquierda y espalda a la derecha)
+# Nivel 3 (render 538x437). La foto esta girada: se ve el frente y un costado.
+# Solo se toma la cara de frente de cada parte (los ojos naranjas quedan en la fila 4).
 L3 = {
-    "head_front": (box(58, 8, 196, 96), 8, 8),
-    "body_front": (box(76, 100, 178, 248), 8, 12),
-    "arm_front": (((30, 102), (76, 102), (76, 246), (24, 236)), 4, 12),
-    "leg_front": (box(80, 254, 128, 398), 4, 12),
-    "head_back": (box(322, 8, 460, 96), 8, 8),
-    "body_back": (box(340, 100, 440, 248), 8, 12),
-    "arm_back": (((440, 102), (486, 102), (496, 236), (440, 246)), 4, 12),
-    "leg_back": (box(344, 254, 392, 398), 4, 12),
+    "head_front": (box(63, 10, 150, 96), 8, 8),
+    "body_front": (box(63, 100, 168, 248), 8, 12),
+    "arm_front": (((8, 102), (63, 102), (63, 246), (2, 236)), 4, 12),
+    "leg_front": (box(82, 256, 128, 396), 4, 12),
+    "head_back": (box(323, 10, 410, 96), 8, 8),
+    "body_back": (box(332, 100, 440, 248), 8, 12),
+    "arm_back": (((440, 102), (480, 102), (500, 236), (448, 246)), 4, 12),
+    "leg_back": (box(346, 256, 394, 396), 4, 12),
 }
-# Nivel 2 (render 402x288, brazos abiertos)
+# Nivel 2 (render 402x288, brazos abiertos y cabeza girada: la cara es la parte izquierda)
 L2 = {
-    "head_front": (box(50, 6, 140, 64), 8, 8),
-    "body_front": (box(60, 64, 130, 168), 8, 12),
-    "arm_front": (((40, 64), (62, 64), (42, 156), (12, 146)), 4, 12),
-    "leg_front": (box(64, 172, 96, 262), 4, 12),
-    "head_back": (box(250, 6, 342, 64), 8, 8),
-    "body_back": (box(258, 64, 328, 168), 8, 12),
-    "arm_back": (((326, 64), (348, 64), (390, 146), (360, 156)), 4, 12),
-    "leg_back": (box(264, 172, 296, 262), 4, 12),
+    "head_front": (box(48, 8, 112, 72), 8, 8),
+    "body_front": (box(60, 66, 130, 170), 8, 12),
+    "arm_front": (((38, 66), (60, 66), (45, 156), (10, 146)), 4, 12),
+    "leg_front": (box(64, 176, 96, 262), 4, 12),
+    "head_back": (box(262, 8, 330, 72), 8, 8),
+    "body_back": (box(258, 66, 328, 170), 8, 12),
+    "arm_back": (((326, 66), (348, 66), (388, 146), (358, 156)), 4, 12),
+    "leg_back": (box(264, 176, 296, 262), 4, 12),
 }
 
 
