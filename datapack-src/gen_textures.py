@@ -159,3 +159,6 @@ if __name__ == "__main__":
     # los iconos de las armaduras se arman con la textura que se ve puesta
     import armor_icons
     armor_icons.main()
+    # texturas nuevas (CC0) para los items que eran recolores
+    import cc0_textures
+    cc0_textures.main()

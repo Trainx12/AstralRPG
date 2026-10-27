@@ -1,0 +1,15 @@
+Texturas de dominio publico (CC0 1.0) usadas en AstralRPG
+https://creativecommons.org/publicdomain/zero/1.0/
+
+- jetrel_items.png: "16x16 RPG items" por Jetrel
+  https://opengameart.org/content/16x16-rpg-items
+- steel/gold/iron-weapons.png: "16x16 Weapon RPG Icons" por Shade
+  https://opengameart.org/content/16x16-weapon-rpg-icons
+- gem/: "CC0 Gem Icons" (version 16x16 de ETTiNGRiNDER), recopilado por AntumDeluge
+  https://opengameart.org/content/cc0-gem-icons  -  https://opengameart.org/node/10653
+- amulet/: "CC0 Jewelry Icons" (amuletos de Dungeon Crawl Stone Soup), recopilado por AntumDeluge
+  https://opengameart.org/node/120756  -  https://opengameart.org/node/12210
+- ring/: "CC0 Jewelry Icons" (anillos de 7Soul1), recopilado por AntumDeluge
+  https://opengameart.org/node/120756
+
+CC0 no exige dar credito, pero lo dejamos anotado.
