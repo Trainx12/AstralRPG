@@ -2,6 +2,8 @@
 
 Servidor de Minecraft 26.1.2 (Paper) con progresión RPG, sin mods: se puede entrar desde vanilla.
 
+**Administración del servidor (plugins, cómo subir cambios, comandos, problemas conocidos): [docs/SERVIDOR.md](docs/SERVIDOR.md).**
+
 - `build/AstralRPG-Items.zip`: datapack (va en `world/datapacks`).
 - `build/AstralRPG-Textures.zip`: resource pack que el servidor manda al entrar.
 - `datapack-src/`: generadores. Para cambiar stats, recetas o drops se edita `items.py` (o `textures.py` para las texturas) y se corre:
