@@ -1,0 +1,592 @@
+# Criaturas de AstralRPG (generado por datapack-src/mobs/mythic.py)
+
+astral_mapache:
+  Type: FOX
+  Display: '&6Mapache'
+  Health: 14
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+  Drops:
+  - leather 1-2 0.8
+  - sweet_berries 1-3 0.5
+  - exp 3
+  Skills:
+  - skill{s=AST_MODEL_astral_mapache} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_mapache} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cuero_tratado"} @self ~onDeath 0.15
+
+astral_pinguino:
+  Type: CHICKEN
+  Display: '&bPinguino de Cristal'
+  Health: 12
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.22
+  Drops:
+  - cod 1-2 0.7
+  - feather 1-2 0.6
+  - exp 3
+  Skills:
+  - skill{s=AST_MODEL_astral_pinguino} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_pinguino} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.12
+
+astral_espantapajaros:
+  Type: ZOMBIE
+  Display: '&6Espantapajaros Maldito'
+  Health: 34
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.25
+  Drops:
+  - pumpkin 1 0.5
+  - wheat 1-4 0.8
+  - string 1-2 0.5
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
+
+astral_abejorro:
+  Type: VEX
+  Display: '&8Abejorro Sombrio'
+  Health: 20
+  Damage: 5
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+  Drops:
+  - honeycomb 1-2 0.4
+  - string 1 0.4
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_abejorro} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_abejorro} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
+
+astral_arana:
+  Type: SPIDER
+  Display: '&5Arana Amatista'
+  Health: 26
+  Damage: 5
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+  Drops:
+  - string 1-3 0.9
+  - spider_eye 1 0.5
+  - amethyst_shard 1-2 0.5
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_arana} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_arana} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
+
+astral_cara:
+  Type: PHANTOM
+  Display: '&cCara Voladora'
+  Health: 22
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+  Drops:
+  - phantom_membrane 1 0.6
+  - rotten_flesh 1-2 0.6
+  - exp 10
+  Skills:
+  - skill{s=AST_MODEL_astral_cara} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cara} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
+
+astral_grillo:
+  Type: HORSE
+  Display: '&aGrillo Saltarin'
+  Health: 26
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.24
+  Drops:
+  - leather 1 0.5
+  - slime_ball 1 0.3
+  - exp 5
+  Skills:
+  - skill{s=AST_MODEL_astral_grillo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_grillo} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_grillo} @self ~onSpawn
+
+astral_chocobo:
+  Type: HORSE
+  Display: '&eAve Corredora'
+  Health: 30
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.38
+  Drops:
+  - feather 2-4 0.9
+  - exp 5
+  Skills:
+  - skill{s=AST_MODEL_astral_chocobo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_chocobo} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_chocobo} @self ~onSpawn
+
+astral_escarabajo:
+  Type: HORSE
+  Display: '&9Escarabajo Acorazado'
+  Health: 60
+  Armor: 10
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.14
+  Drops:
+  - turtle_scute 1 0.3
+  - exp 5
+  Skills:
+  - skill{s=AST_MODEL_astral_escarabajo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_escarabajo} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_escarabajo} @self ~onSpawn
+
+astral_lagarto:
+  Type: SKELETON_HORSE
+  Display: '&aLagarto de Pantano'
+  Health: 34
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.22
+  Drops:
+  - leather 1-2 0.8
+  - exp 5
+  Skills:
+  - skill{s=AST_MODEL_astral_lagarto} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_lagarto} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_lagarto} @self ~onSpawn
+
+astral_ave:
+  Type: HAPPY_GHAST
+  Display: '&6Gran Ave'
+  Health: 40
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+  Drops:
+  - feather 3-6 1
+  - exp 6
+  Skills:
+  - skill{s=AST_MODEL_astral_ave} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_ave} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_ave} @self ~onSpawn
+
+astral_pterodactilo:
+  Type: HAPPY_GHAST
+  Display: '&9Pterodactilo'
+  Health: 50
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+  Drops:
+  - bone 2-4 0.9
+  - exp 6
+  Skills:
+  - skill{s=AST_MODEL_astral_pterodactilo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_pterodactilo} @self ~onLoad
+  - skill{s=AST_MOUNT_astral_pterodactilo} @self ~onSpawn
+
+astral_momia:
+  Type: HUSK
+  Display: '&e&lMomia Ancestral'
+  Health: 320
+  Damage: 10
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.24
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  BossBar:
+    Enabled: true
+    Title: '&e&lMomia Ancestral'
+    Range: 48
+    Color: YELLOW
+    Style: SEGMENTED_10
+  Drops:
+  - gold_ingot 3-8 1
+  - bone 4-8 1
+  - exp 120
+  Skills:
+  - skill{s=AST_MODEL_astral_momia} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_momia} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_luminica"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
+  - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
+  - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+
+astral_yeti:
+  Type: RAVAGER
+  Display: '&f&lYeti de las Cumbres'
+  Health: 450
+  Damage: 14
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.28
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  BossBar:
+    Enabled: true
+    Title: '&f&lYeti de las Cumbres'
+    Range: 48
+    Color: WHITE
+    Style: SEGMENTED_10
+  Drops:
+  - snow_block 4-10 1
+  - leather 4-8 1
+  - exp 150
+  Skills:
+  - skill{s=AST_MODEL_astral_yeti} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_yeti} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.45
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_refinado"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
+  - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
+  - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
+
+astral_golem_forja:
+  Type: IRON_GOLEM
+  Display: '&c&lGolem de la Forja'
+  Health: 500
+  Damage: 16
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.22
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&c&lGolem de la Forja'
+    Range: 48
+    Color: RED
+    Style: SEGMENTED_10
+  Drops:
+  - netherite_scrap 1-2 0.5
+  - iron_ingot 6-12 1
+  - blaze_rod 2-4 1
+  - exp 180
+  Skills:
+  - skill{s=AST_MODEL_astral_golem_forja} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_golem_forja} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/netherita_fundida"} @self ~onDeath 0.6
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
+  - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
+  - message{m="&cEl suelo arde: el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+
+astral_cangrejo:
+  Type: SPIDER
+  Display: '&6&lCangrejo Ermitano Gigante'
+  Health: 260
+  Damage: 9
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.26
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  BossBar:
+    Enabled: true
+    Title: '&6&lCangrejo Ermitano Gigante'
+    Range: 48
+    Color: PINK
+    Style: SEGMENTED_10
+  Drops:
+  - nautilus_shell 1 0.6
+  - prismarine_shard 2-5 1
+  - exp 100
+  Skills:
+  - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.3
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
+  - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+
+astral_chaman:
+  Type: EVOKER
+  Display: '&2&lChaman del Pantano'
+  Health: 340
+  Damage: 8
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.25
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  BossBar:
+    Enabled: true
+    Title: '&2&lChaman del Pantano'
+    Range: 48
+    Color: GREEN
+    Style: SEGMENTED_10
+  Drops:
+  - totem_of_undying 1 0.3
+  - emerald 3-8 1
+  - slime_ball 2-6 1
+  - exp 160
+  Skills:
+  - skill{s=AST_MODEL_astral_chaman} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_chaman} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.4
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
+  - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
+  - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+
+astral_espantapajaros_elite:
+  Type: ZOMBIE
+  Display: '&4Espantapajaros Infernal'
+  Health: 85
+  Damage: 9.6
+  Armor: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.25
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  Drops:
+  - pumpkin 1 0.5
+  - wheat 1-4 0.8
+  - string 1-2 0.5
+  - exp 8
+  - exp 30
+  - diamond 1 0.15
+  Skills:
+  - skill{s=AST_MODEL_astral_espantapajaros_elite} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_espantapajaros_elite} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.25
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.25
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+
+astral_abejorro_elite:
+  Type: VEX
+  Display: '&6Abejorro Reina'
+  Health: 50
+  Damage: 8.0
+  Armor: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  Drops:
+  - honeycomb 1-2 0.4
+  - string 1 0.4
+  - exp 8
+  - exp 30
+  - diamond 1 0.15
+  Skills:
+  - skill{s=AST_MODEL_astral_abejorro_elite} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_abejorro_elite} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.15
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.15
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+
+astral_arana_elite:
+  Type: SPIDER
+  Display: '&3Arana de Cristal Vivo'
+  Health: 65
+  Damage: 8.0
+  Armor: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  Drops:
+  - string 1-3 0.9
+  - spider_eye 1 0.5
+  - amethyst_shard 1-2 0.5
+  - exp 8
+  - exp 30
+  - diamond 1 0.15
+  Skills:
+  - skill{s=AST_MODEL_astral_arana_elite} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_arana_elite} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.375
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.375
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.075
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.075
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+
+astral_cara_elite:
+  Type: PHANTOM
+  Display: '&5Cara del Abismo'
+  Health: 55
+  Damage: 9.6
+  Armor: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  Drops:
+  - phantom_membrane 1 0.6
+  - rotten_flesh 1-2 0.6
+  - exp 10
+  - exp 30
+  - diamond 1 0.15
+  Skills:
+  - skill{s=AST_MODEL_astral_cara_elite} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cara_elite} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.075
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.075
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.125
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.125
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+
+astral_cangrejo_elite:
+  Type: SPIDER
+  Display: '&9Cangrejo Abisal'
+  Health: 650
+  Damage: 14.4
+  Armor: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.26
+    KnockbackResistance: 0.8
+    FollowRange: 40
+  BossBar:
+    Enabled: true
+    Title: '&6&lCangrejo Ermitano Gigante'
+    Range: 48
+    Color: PINK
+    Style: SEGMENTED_10
+  Drops:
+  - nautilus_shell 1 0.6
+  - prismarine_shard 2-5 1
+  - exp 100
+  - exp 30
+  - diamond 1 0.15
+  Skills:
+  - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onLoad
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.75
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.75
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
+  - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn

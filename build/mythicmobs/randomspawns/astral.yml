@@ -1,0 +1,267 @@
+spawn_astral_mapache:
+  Action: ADD
+  Type: astral_mapache
+  Worlds: world
+  Chance: 0.06
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:forest
+  - minecraft:birch_forest
+  - minecraft:dark_forest
+  - minecraft:old_growth_pine_taiga
+  - minecraft:taiga
+spawn_astral_pinguino:
+  Action: ADD
+  Type: astral_pinguino
+  Worlds: world
+  Chance: 0.08
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:snowy_plains
+  - minecraft:ice_spikes
+  - minecraft:frozen_ocean
+  - minecraft:snowy_beach
+  - minecraft:frozen_peaks
+spawn_astral_espantapajaros:
+  Action: ADD
+  Type: astral_espantapajaros
+  Worlds: world
+  Chance: 0.05
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:plains
+  - minecraft:sunflower_plains
+  - minecraft:savanna
+  - minecraft:meadow
+  Conditions:
+  - night true
+spawn_astral_espantapajaros_elite:
+  Action: ADD
+  Type: astral_espantapajaros_elite
+  Worlds: world
+  Chance: 0.0075
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:plains
+  - minecraft:sunflower_plains
+  - minecraft:savanna
+  - minecraft:meadow
+  Conditions:
+  - night true
+spawn_astral_abejorro:
+  Action: ADD
+  Type: astral_abejorro
+  Worlds: world
+  Chance: 0.04
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:flower_forest
+  - minecraft:dark_forest
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+spawn_astral_abejorro_elite:
+  Action: ADD
+  Type: astral_abejorro_elite
+  Worlds: world
+  Chance: 0.006
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:flower_forest
+  - minecraft:dark_forest
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+spawn_astral_arana:
+  Action: ADD
+  Type: astral_arana
+  Worlds: world
+  Chance: 0.05
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:dripstone_caves
+  - minecraft:lush_caves
+  - minecraft:deep_dark
+  - minecraft:dark_forest
+  Conditions:
+  - outside false
+spawn_astral_arana_elite:
+  Action: ADD
+  Type: astral_arana_elite
+  Worlds: world
+  Chance: 0.0075
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:dripstone_caves
+  - minecraft:lush_caves
+  - minecraft:deep_dark
+  - minecraft:dark_forest
+  Conditions:
+  - outside false
+spawn_astral_cara:
+  Action: ADD
+  Type: astral_cara
+  Worlds: world
+  Chance: 0.03
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+  - minecraft:dark_forest
+  - minecraft:badlands
+  Conditions:
+  - night true
+spawn_astral_cara_elite:
+  Action: ADD
+  Type: astral_cara_elite
+  Worlds: world
+  Chance: 0.0045
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+  - minecraft:dark_forest
+  - minecraft:badlands
+  Conditions:
+  - night true
+spawn_astral_grillo:
+  Action: ADD
+  Type: astral_grillo
+  Worlds: world
+  Chance: 0.025
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:plains
+  - minecraft:meadow
+  - minecraft:sunflower_plains
+spawn_astral_chocobo:
+  Action: ADD
+  Type: astral_chocobo
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:savanna
+  - minecraft:savanna_plateau
+  - minecraft:plains
+spawn_astral_escarabajo:
+  Action: ADD
+  Type: astral_escarabajo
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:jungle
+  - minecraft:sparse_jungle
+  - minecraft:bamboo_jungle
+spawn_astral_lagarto:
+  Action: ADD
+  Type: astral_lagarto
+  Worlds: world
+  Chance: 0.025
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+  - minecraft:river
+spawn_astral_ave:
+  Action: ADD
+  Type: astral_ave
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:windswept_hills
+  - minecraft:stony_peaks
+  - minecraft:jagged_peaks
+  - minecraft:meadow
+spawn_astral_pterodactilo:
+  Action: ADD
+  Type: astral_pterodactilo
+  Worlds: world
+  Chance: 0.008
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:badlands
+  - minecraft:eroded_badlands
+  - minecraft:wooded_badlands
+  - minecraft:jungle
+spawn_astral_momia:
+  Action: ADD
+  Type: astral_momia
+  Worlds: world
+  Chance: 0.0015
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:desert
+spawn_astral_yeti:
+  Action: ADD
+  Type: astral_yeti
+  Worlds: world
+  Chance: 0.0012
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:frozen_peaks
+  - minecraft:snowy_slopes
+  - minecraft:ice_spikes
+spawn_astral_golem_forja:
+  Action: ADD
+  Type: astral_golem_forja
+  Worlds: world_nether
+  Chance: 0.002
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:basalt_deltas
+  - minecraft:nether_wastes
+  - minecraft:crimson_forest
+spawn_astral_cangrejo:
+  Action: ADD
+  Type: astral_cangrejo
+  Worlds: world
+  Chance: 0.002
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:beach
+  - minecraft:stony_shore
+  - minecraft:warm_ocean
+spawn_astral_cangrejo_elite:
+  Action: ADD
+  Type: astral_cangrejo_elite
+  Worlds: world
+  Chance: 0.0003
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:beach
+  - minecraft:stony_shore
+  - minecraft:warm_ocean
+spawn_astral_chaman:
+  Action: ADD
+  Type: astral_chaman
+  Worlds: world
+  Chance: 0.0015
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+  Conditions:
+  - night true

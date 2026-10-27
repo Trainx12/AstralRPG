@@ -86,6 +86,16 @@ for s_id in ARMOR_SETS_TEX:
             "humanoid": [{"texture": f"astral:{name}"}],
             "humanoid_leggings": [{"texture": f"astral:{name}"}]}})
 
+# Modelos de criaturas (generados por BetterModel en el servidor de prueba, misma config que en Aternos)
+BM = os.path.join(SRC, "bettermodel")
+if os.path.isdir(BM):
+    for root, _, fs in os.walk(BM):
+        for fname in fs:
+            full = os.path.join(root, fname)
+            rel = os.path.relpath(full, BM).replace(os.sep, "/")
+            with open(full, "rb") as f:
+                files[rel] = f.read()
+
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
     "description": [{"text": "AstralRPG", "color": "light_purple"}, {"text": " - texturas del servidor", "color": "gray"}],

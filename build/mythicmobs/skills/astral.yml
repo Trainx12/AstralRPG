@@ -1,0 +1,136 @@
+AST_MODEL_astral_mapache:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_mapache} @self
+AST_MODEL_astral_pinguino:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pinguino} @self
+AST_MODEL_astral_espantapajaros:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_espantapajaros} @self
+AST_MODEL_astral_abejorro:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_abejorro} @self
+AST_MODEL_astral_arana:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_arana} @self
+AST_MODEL_astral_cara:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cara} @self
+AST_MODEL_astral_grillo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_grillo} @self
+AST_MOUNT_astral_grillo:
+  Skills:
+  - delay 2
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 1.25"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.24"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 26"} @self
+AST_MODEL_astral_chocobo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_chocobo} @self
+AST_MOUNT_astral_chocobo:
+  Skills:
+  - delay 2
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.7"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.38"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 30"} @self
+AST_MODEL_astral_escarabajo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_escarabajo} @self
+AST_MOUNT_astral_escarabajo:
+  Skills:
+  - delay 2
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.45"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.14"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 60"} @self
+AST_MODEL_astral_lagarto:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_lagarto} @self
+AST_MOUNT_astral_lagarto:
+  Skills:
+  - delay 2
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.6"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.22"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 34"} @self
+AST_MODEL_astral_ave:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_ave} @self
+AST_MOUNT_astral_ave:
+  Skills:
+  - delay 2
+  - command{c="attribute <caster.uuid> minecraft:flying_speed base set 0.06"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 40"} @self
+AST_MODEL_astral_pterodactilo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pterodactilo} @self
+AST_MOUNT_astral_pterodactilo:
+  Skills:
+  - delay 2
+  - command{c="attribute <caster.uuid> minecraft:flying_speed base set 0.075"} @self
+  - command{c="attribute <caster.uuid> minecraft:max_health base set 50"} @self
+AST_MODEL_astral_momia:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_momia} @self
+AST_MODEL_astral_yeti:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_yeti} @self
+AST_MODEL_astral_golem_forja:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_golem_forja} @self
+AST_MODEL_astral_cangrejo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cangrejo} @self
+AST_MODEL_astral_chaman:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_chaman} @self
+AST_MODEL_astral_espantapajaros_elite:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_espantapajaros;s=1.35} @self
+  - delay 2
+  - tint{c=FF3A3A} @self
+AST_MODEL_astral_abejorro_elite:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_abejorro;s=1.35} @self
+  - delay 2
+  - tint{c=FFC020} @self
+AST_MODEL_astral_arana_elite:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_arana;s=1.35} @self
+  - delay 2
+  - tint{c=40FFD0} @self
+AST_MODEL_astral_cara_elite:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cara;s=1.35} @self
+  - delay 2
+  - tint{c=A040FF} @self
+AST_MODEL_astral_cangrejo_elite:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cangrejo;s=1.35} @self
+  - delay 2
+  - tint{c=60A0FF} @self
