@@ -33,7 +33,7 @@ MOBS = {
                             spawn=dict(chance=0.08, biomes=["minecraft:snowy_plains", "minecraft:ice_spikes", "minecraft:frozen_ocean",
                                                             "minecraft:snowy_beach", "minecraft:frozen_peaks"])),
     # ---------------- hostiles
-    "astral_espantapajaros": dict(kind="hostil", type="ZOMBIE", name="&6Espantapajaros Maldito", hp=34, damage=6, speed=0.25,
+    "astral_espantapajaros": dict(kind="hostil", type="VEX", name="&6Espantapajaros Maldito", hp=34, damage=6, speed=0.25,
                                   drops=["pumpkin 1 0.5", "wheat 1-4 0.8", "string 1-2 0.5", "exp 8"],
                                   astral=[("esencia_elite", 0.08), ("fragmento_umbrio", 0.10)],
                                   spawn=dict(chance=0.05, night=True, biomes=["minecraft:plains", "minecraft:sunflower_plains",
@@ -66,11 +66,11 @@ MOBS = {
     "astral_lagarto": dict(kind="montura", type="SKELETON_HORSE", name="&aLagarto de Pantano", hp=34, speed=0.22, jump=0.6,
                            drops=["leather 1-2 0.8", "exp 5"],
                            spawn=dict(chance=0.025, biomes=["minecraft:swamp", "minecraft:mangrove_swamp", "minecraft:river"])),
-    "astral_ave": dict(kind="montura", type="HAPPY_GHAST", name="&6Gran Ave", hp=40, fly=0.06,
+    "astral_ave": dict(kind="montura", type="PARROT", name="&6Gran Ave", hp=40, speed=0.32, fly=True,
                        drops=["feather 3-6 1", "exp 6"],
                        spawn=dict(chance=0.01, biomes=["minecraft:windswept_hills", "minecraft:stony_peaks", "minecraft:jagged_peaks",
                                                        "minecraft:meadow"])),
-    "astral_pterodactilo": dict(kind="montura", type="HAPPY_GHAST", name="&9Pterodactilo", hp=50, fly=0.075,
+    "astral_pterodactilo": dict(kind="montura", type="PHANTOM", name="&9Pterodactilo", hp=50, speed=0.36, fly=True,
                                 drops=["bone 2-4 0.9", "exp 6"],
                                 spawn=dict(chance=0.008, biomes=["minecraft:badlands", "minecraft:eroded_badlands",
                                                                  "minecraft:wooded_badlands", "minecraft:jungle"])),
@@ -140,8 +140,12 @@ def mob_block(mid, d, model=None, elite=None):
     if d["kind"] == "jefe" or elite:
         opts.append("    KnockbackResistance: 0.8")
         opts.append("    FollowRange: 40")
+    opts.append("    PreventRandomEquipment: true")   # el vex no saca su espada encima del modelo
     lines.append("  Options:")
     lines += opts
+    if d["kind"] == "montura" and d["type"] == "PHANTOM":
+        # pterodactilo: vuela en circulos como un phantom pero no ataca
+        lines += ["  AITargetSelectors:", "  - clear"]
     if d.get("hostile_ai"):
         lines += ["  AIGoalSelectors:", "  - clear", "  - meleeattack", "  - randomstroll", "  - lookatplayers",
                   "  AITargetSelectors:", "  - clear", "  - attacker", "  - players"]
@@ -157,7 +161,19 @@ def mob_block(mid, d, model=None, elite=None):
     # habilidades
     sk = [f"- skill{{s=AST_MODEL_{(elite and mid) or model}}} @self ~onSpawn", f"- skill{{s=AST_MODEL_{(elite and mid) or model}}} @self ~onLoad"]
     if d["kind"] == "montura":
-        sk.append(f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn")
+        mode = "flying" if d.get("fly") else "walking"
+        sk += [f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
+               "- skill{s=AST_SILLA_VER} @self ~onLoad",
+               # nada de comportamiento vanilla al hacer clic (domar, subirse al caballo invisible, semillas al loro)
+               "- cancelevent @self ~onInteract",
+               "- skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}",
+               # subirse con el asiento de BetterModel: el jugador la maneja con WASD (salto/volar con espacio, bajarse con shift)
+               f"- mountmodel{{driver=true;mode={mode}}} @trigger ~onInteract ?hastag{{tag=astral.ensillado}} ?~!holding{{m=SADDLE}}",
+               "- setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger",
+               "- setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger",
+               "- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}"]
+    elif d["kind"] in ("hostil", "jefe") or elite:
+        sk.append("- state{s=attack} @self ~onAttack")
     for a in d.get("astral", []):
         item, ch = a[0], a[1]
         amount = a[2] if len(a) > 2 else 1
@@ -178,14 +194,22 @@ def metaskills():
     for mid, d in MOBS.items():
         out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}}} @self"]
         if d["kind"] == "montura":
-            out += [f"AST_MOUNT_{mid}:", "  Skills:", "  - delay 2"]
-            if d["type"] in ("HORSE", "SKELETON_HORSE"):
-                out += ["  - command{c=\"data merge entity <caster.uuid> {Tame:1b}\"} @self",
-                        f"  - command{{c=\"attribute <caster.uuid> minecraft:jump_strength base set {d['jump']}\"}} @self",
-                        f"  - command{{c=\"attribute <caster.uuid> minecraft:movement_speed base set {d['speed']}\"}} @self"]
-            if d.get("fly"):
-                out += [f"  - command{{c=\"attribute <caster.uuid> minecraft:flying_speed base set {d['fly']}\"}} @self"]
-            out += [f"  - command{{c=\"attribute <caster.uuid> minecraft:max_health base set {d['hp']}\"}} @self"]
+            # BetterModel mueve la montura con la velocidad de movimiento y salta con jump_strength
+            out += [f"AST_MOUNT_{mid}:", "  Skills:", "  - delay 2",
+                    f"  - command{{c=\"attribute <caster.uuid> minecraft:movement_speed base set {d['speed']}\"}} @self",
+                    f"  - command{{c=\"attribute <caster.uuid> minecraft:max_health base set {d['hp']}\"}} @self",
+                    "  - skill{s=AST_SILLA_VER} @self"]
+            if d.get("jump"):
+                out += [f"  - command{{c=\"attribute <caster.uuid> minecraft:jump_strength base set {d['jump']}\"}} @self"]
+    # la silla se ve solo si el jugador le puso una montura
+    out += ["AST_SILLA_VER:", "  Skills:", "  - delay 3",
+            "  - partvisibility{p=silla;v=false} @self ?!hastag{tag=astral.ensillado}",
+            "  - partvisibility{p=silla;v=true} @self ?hastag{tag=astral.ensillado}",
+            "AST_ENSILLAR:", "  Skills:",
+            "  - command{c=\"clear <trigger.name> minecraft:saddle 1\"} @self",
+            "  - addtag{tag=astral.ensillado} @self",
+            "  - partvisibility{p=silla;v=true} @self",
+            "  - sound{s=entity.horse.saddle} @self"]
     for mid, (color, _) in ELITES.items():
         out += [f"AST_MODEL_{mid}_elite:", "  Skills:", "  - addtag{tag=astral.seen} @self",
                 f"  - model{{m={mid};s=1.35}} @self", "  - delay 2",

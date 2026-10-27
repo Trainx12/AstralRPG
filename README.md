@@ -16,3 +16,4 @@ python build_pack.py pack-source
 - **Forja Astral**: poné una mesa de herrería, abrí la guía al lado (Esc → "Guía AstralRPG" o `/trigger astral.guia`) y apretá **Forjar**. Los materiales se sacan de tu inventario.
 - La guía es un menú con todas las recetas, ítems y dónde conseguir cada material.
 - Las armas y armaduras piden nivel de AuraSkills para usarse.
+- **Monturas** (Ave Corredora, Grillo, Escarabajo, Lagarto, Gran Ave, Pterodáctilo): clic derecho con una montura en la mano para ensillarla (se ve la silla puesta). Después, clic derecho para subirte: se maneja con WASD, espacio salta (o sube, en las voladoras) y shift para bajarte. Si muere, suelta la montura.

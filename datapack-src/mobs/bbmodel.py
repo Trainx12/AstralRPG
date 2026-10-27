@@ -38,9 +38,11 @@ class Model:
         self.order.append(name)
         return name
 
-    def cube(self, bone, frm, to, color, decals=None, shade=0.0, rotation=None, origin=None, glow=False):
+    def cube(self, bone, frm, to, color, decals=None, shade=0.0, rotation=None, origin=None, glow=False, pat=None):
+        """pat: patron de textura (fur, feather, straw, brick, scale, chitin, wrap, stone, cloth, shell, wood, membrane)."""
         self.cubes.append({"bone": bone, "from": list(frm), "to": list(to), "color": color,
-                           "decals": decals or {}, "shade": shade, "rotation": rotation, "origin": origin})
+                           "decals": decals or {}, "shade": shade, "rotation": rotation, "origin": origin,
+                           "pat": pat})
 
     def anim(self, name, length, channels, loop="loop"):
         self.anims[name] = (length, loop, channels)
@@ -89,13 +91,20 @@ class Model:
             c = self.cubes[i]
             base = hexc(c["color"])
             mult = {"up": 1.08, "down": 0.75, "north": 1.0, "south": 0.92, "east": 0.88, "west": 0.88}[f]
+            pat = c.get("pat")
+            side = f not in ("up", "down")
+            cols = [rnd.uniform(-1, 1) for _ in range(w)]   # vetas por columna (pelaje, paja, madera)
             for yy in range(h):
                 for xx in range(w):
-                    n = rnd.uniform(-0.06, 0.06)
+                    n = rnd.uniform(-0.05, 0.05)
                     edge = 0.85 if (xx == 0 or yy == 0 or xx == w - 1 or yy == h - 1) and w > 2 and h > 2 else 1.0
-                    k = (mult + n) * edge
+                    grad = (1.06 - 0.14 * (yy / max(1, h - 1))) if side and h > 3 else 1.0
+                    k = (mult + n) * edge * grad * pattern(pat, xx, yy, w, h, f, rnd, cols)
                     px[x0 + xx, y0 + yy] = tuple(max(0, min(255, int(v * k))) for v in base) + (255,)
             for (dx, dy, dw, dh, col) in c["decals"].get(f, []):
+                if f in ("west", "south"):
+                    # se espeja para que el mismo dibujo quede simetrico con la cara este / norte
+                    dx = w - dx - dw
                 cc = hexc(col)
                 for yy in range(int(dy), int(dy + dh)):
                     for xx in range(int(dx), int(dx + dw)):
@@ -172,6 +181,81 @@ def save(model, path):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f)
     return img
+
+
+# ---------------------------------------------------------------- patrones de textura
+def pattern(pat, x, y, w, h, face, rnd, cols):
+    """Multiplicador de brillo por pixel segun el material."""
+    if not pat:
+        return 1.0
+    if pat == "fur":        # mechones verticales, mas oscuros en la punta
+        k = 1.0 + 0.10 * cols[x]
+        if (x * 7 + y * 3) % 5 == 0:
+            k *= 0.86
+        return k
+    if pat == "shag":       # pelo largo que cuelga (yeti)
+        k = 1.0 + 0.12 * cols[x]
+        if y >= h - 2 and (x % 2):
+            k *= 0.8
+        if (x + y * 2) % 4 == 0:
+            k *= 0.9
+        return k
+    if pat == "feather":    # plumas en escamas
+        row = y // 2
+        if y % 2 == 1 and (x + row) % 3 != 0:
+            return 0.82
+        if y % 2 == 0 and (x + row) % 3 == 1:
+            return 1.1
+        return 1.0
+    if pat == "straw":      # paja: tiras verticales claras y oscuras
+        k = 1.0 + 0.16 * cols[x]
+        if (x * 5 + y) % 7 == 0:
+            k *= 1.15
+        return k
+    if pat == "brick":      # ladrillos con junta
+        if y % 4 == 3:
+            return 0.62
+        off = 0 if (y // 4) % 2 == 0 else 3
+        if (x + off) % 6 == 5:
+            return 0.66
+        return 1.0 + 0.05 * ((x // 6 + y // 4) % 2)
+    if pat == "scale":      # escamas en rombo
+        if (x + y) % 4 == 0 or (x - y) % 4 == 0:
+            return 0.86
+        return 1.04
+    if pat == "chitin":     # caparazon por placas con brillo arriba
+        if y % 4 == 0:
+            return 1.18
+        if y % 4 == 3:
+            return 0.78
+        return 1.0
+    if pat == "wrap":       # vendas en diagonal
+        if (x + 2 * y) % 6 == 0:
+            return 0.72
+        if (x + 2 * y) % 6 == 1:
+            return 1.12
+        return 1.0
+    if pat == "stone":
+        return 1.0 + 0.12 * ((x * 13 + y * 7) % 5 - 2) / 2
+    if pat == "cloth":      # tela con trama y algun remiendo
+        k = 0.94 if (x + y) % 2 else 1.0
+        if (x * 11 + y * 5) % 23 == 0:
+            k *= 0.8
+        return k
+    if pat == "shell":      # caracol: anillos concentricos
+        cx, cy = (w - 1) / 2, (h - 1) / 2
+        r = int(((x - cx) ** 2 + (y - cy) ** 2) ** 0.5)
+        return 0.8 if r % 3 == 0 else 1.05
+    if pat == "wood":
+        k = 1.0 + 0.1 * cols[x]
+        if y % 5 == 0 and x % 3 == 0:
+            k *= 0.8
+        return k
+    if pat == "membrane":   # ala de piel con nervaduras
+        if x % 4 == 0:
+            return 0.78
+        return 1.0 + 0.04 * (y % 2)
+    return 1.0
 
 
 # ---------------------------------------------------------------- ayudas de animacion

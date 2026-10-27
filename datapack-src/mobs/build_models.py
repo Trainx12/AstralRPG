@@ -16,7 +16,8 @@ OUT = os.path.join(HERE, "..", "..", "build", "models")
 def preview(model, img, scale=4):
     data = model.export()[0]
     views = []
-    for face, axis_u, axis_depth, flip in (("north", 0, 2, True), ("east", 2, 0, False)):
+    # norte visto de frente (+X a la izquierda); este visto desde el costado (+Z a la izquierda)
+    for face, axis_u, axis_depth, flip in (("north", 0, 2, True), ("east", 2, 0, True)):
         els = data["elements"]
         xs = [v for e in els for v in (e["from"][axis_u], e["to"][axis_u])]
         ys = [v for e in els for v in (e["from"][1], e["to"][1])]
@@ -30,8 +31,6 @@ def preview(model, img, scale=4):
             y0, y1 = sorted((e["from"][1], e["to"][1]))
             uv = e["faces"][face]["uv"]
             tex = img.crop(tuple(uv))
-            if flip:
-                tex = tex.transpose(Image.FLIP_LEFT_RIGHT)
             x0 = (u0 - min(xs) + 2) * scale if not flip else (max(xs) - u1 + 2) * scale
             ww, hh = max(1, int((u1 - u0) * scale)), max(1, int((y1 - y0) * scale))
             tex = tex.resize((ww, hh), Image.NEAREST)

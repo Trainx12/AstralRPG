@@ -29,10 +29,10 @@ AST_MODEL_astral_grillo:
 AST_MOUNT_astral_grillo:
   Skills:
   - delay 2
-  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
-  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 1.25"} @self
   - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.24"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 26"} @self
+  - skill{s=AST_SILLA_VER} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 1.25"} @self
 AST_MODEL_astral_chocobo:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -40,10 +40,10 @@ AST_MODEL_astral_chocobo:
 AST_MOUNT_astral_chocobo:
   Skills:
   - delay 2
-  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
-  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.7"} @self
   - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.38"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 30"} @self
+  - skill{s=AST_SILLA_VER} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.7"} @self
 AST_MODEL_astral_escarabajo:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -51,10 +51,10 @@ AST_MODEL_astral_escarabajo:
 AST_MOUNT_astral_escarabajo:
   Skills:
   - delay 2
-  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
-  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.45"} @self
   - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.14"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 60"} @self
+  - skill{s=AST_SILLA_VER} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.45"} @self
 AST_MODEL_astral_lagarto:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -62,10 +62,10 @@ AST_MODEL_astral_lagarto:
 AST_MOUNT_astral_lagarto:
   Skills:
   - delay 2
-  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self
-  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.6"} @self
   - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.22"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 34"} @self
+  - skill{s=AST_SILLA_VER} @self
+  - command{c="attribute <caster.uuid> minecraft:jump_strength base set 0.6"} @self
 AST_MODEL_astral_ave:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -73,8 +73,9 @@ AST_MODEL_astral_ave:
 AST_MOUNT_astral_ave:
   Skills:
   - delay 2
-  - command{c="attribute <caster.uuid> minecraft:flying_speed base set 0.06"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.32"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 40"} @self
+  - skill{s=AST_SILLA_VER} @self
 AST_MODEL_astral_pterodactilo:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -82,8 +83,9 @@ AST_MODEL_astral_pterodactilo:
 AST_MOUNT_astral_pterodactilo:
   Skills:
   - delay 2
-  - command{c="attribute <caster.uuid> minecraft:flying_speed base set 0.075"} @self
+  - command{c="attribute <caster.uuid> minecraft:movement_speed base set 0.36"} @self
   - command{c="attribute <caster.uuid> minecraft:max_health base set 50"} @self
+  - skill{s=AST_SILLA_VER} @self
 AST_MODEL_astral_momia:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -104,6 +106,17 @@ AST_MODEL_astral_chaman:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_chaman} @self
+AST_SILLA_VER:
+  Skills:
+  - delay 3
+  - partvisibility{p=silla;v=false} @self ?!hastag{tag=astral.ensillado}
+  - partvisibility{p=silla;v=true} @self ?hastag{tag=astral.ensillado}
+AST_ENSILLAR:
+  Skills:
+  - command{c="clear <trigger.name> minecraft:saddle 1"} @self
+  - addtag{tag=astral.ensillado} @self
+  - partvisibility{p=silla;v=true} @self
+  - sound{s=entity.horse.saddle} @self
 AST_MODEL_astral_espantapajaros_elite:
   Skills:
   - addtag{tag=astral.seen} @self
