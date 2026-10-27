@@ -82,9 +82,10 @@ PALETTES = {
     "berserker": [("#2a0c0c", "#7a2a1e", "#c46e50"), ("#231e23", "#7a3c3c", "#cbb4aa"),
                   ("#32050a", "#961420", "#e65050"), ("#14141e", "#552030", "#d04848"),
                   ("#321405", "#aa2814", "#ffc850")],
-    "mago": [("#1e0f32", "#5a3296", "#aa82e6"), ("#280a46", "#8232c8", "#dcaaff"),
-             ("#0f0a3c", "#3c32aa", "#968cff"), ("#190a2d", "#6e1e8c", "#f0c85a"),
-             ("#0a1e3c", "#288cd2", "#c8faff")],
+    # colores sacados de las skins de referencia de cada nivel de Mago
+    "mago": [("#14161e", "#2a2f45", "#dca532"), ("#1e3c32", "#508c78", "#e1d7a0"),
+             ("#2a0f46", "#9632d2", "#f0dc64"), ("#0f0d12", "#3c3c46", "#e61e1e"),
+             ("#141628", "#1e4182", "#14d2e6")],
     "arquero": [("#281e0f", "#64552d", "#aaa064"), ("#0f280f", "#326e2d", "#8cc86e"),
                 ("#0a2828", "#28786e", "#8cdcc8"), ("#1e3c37", "#6ec8aa", "#e6fff5"),
                 ("#283250", "#78b4f0", "#ffe68c")],
@@ -148,3 +149,6 @@ def main():
 if __name__ == "__main__":
     m = main()
     print(len(m), "texturas generadas")
+    # las armaduras de Mago puestas se copian de las skins de referencia
+    import mage_skins
+    mage_skins.main()
