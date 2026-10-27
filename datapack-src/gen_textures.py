@@ -154,6 +154,8 @@ if __name__ == "__main__":
     mage_skins.main()
     import berserker_skins
     berserker_skins.main()
+    import archer_skins
+    archer_skins.main()
     # los iconos de las armaduras se arman con la textura que se ve puesta
     import armor_icons
     armor_icons.main()
