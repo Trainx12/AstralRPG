@@ -152,3 +152,6 @@ if __name__ == "__main__":
     # las armaduras de Mago puestas se copian de las skins de referencia
     import mage_skins
     mage_skins.main()
+    # los iconos de las armaduras se arman con la textura que se ve puesta
+    import armor_icons
+    armor_icons.main()
