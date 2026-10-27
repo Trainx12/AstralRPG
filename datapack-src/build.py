@@ -1201,16 +1201,235 @@ book = {"minecraft:written_book_content": {"title": "Guia AstralRPG", "author": 
 put(f"data/{NS}/loot_table/guia.json", {"type": "minecraft:command", "pools": [{"rolls": 1, "entries": [
     {"type": "minecraft:item", "name": "minecraft:written_book",
      "functions": [{"function": "minecraft:set_components", "components": book}]}]}]})
+# ---------------------------------------------------------------------------
+# GUIA CON MENUS (dialogos) + FORJA DESDE EL MENU
+# Se abre con Esc -> "Guia AstralRPG", con la tecla de acciones rapidas o /trigger astral.guia.
+# Para forjar hay que estar a 3 bloques o menos de una Mesa de Herreria.
+# ---------------------------------------------------------------------------
+VANILLA_NAMES = {"water_bottle": "Botella de agua", "minecraft:blaze_powder": "Polvo de blaze",
+                 "minecraft:iron_ingot": "Lingote de hierro", "minecraft:leather": "Cuero",
+                 "minecraft:stick": "Palo", "minecraft:coal": "Carbon", "minecraft:lava_bucket": "Cubo de lava",
+                 "minecraft:feather": "Pluma", "minecraft:string": "Hilo", "minecraft:fishing_rod": "Cana de pescar",
+                 "minecraft:redstone_block": "Bloque de redstone", "minecraft:blaze_rod": "Vara de blaze",
+                 "minecraft:golden_apple": "Manzana dorada", "minecraft:iron_block": "Bloque de hierro",
+                 "minecraft:iron_spear": "Lanza de hierro",
+                 "minecraft:leather_helmet": "Casco de cuero", "minecraft:leather_chestplate": "Pechera de cuero",
+                 "minecraft:leather_leggings": "Pantalones de cuero", "minecraft:leather_boots": "Botas de cuero"}
+
+
+def ing_name(kind, ident):
+    return ITEMS[ident]["name"] if kind == "c" else VANILLA_NAMES.get(ident, ident.split(":")[-1].replace("_", " "))
+
+
+def ing_pred(kind, ident):
+    if kind == "c":
+        return f'*[minecraft:custom_data~{{{NS}:{{id:"{ident}"}}}}]'
+    if ident == "water_bottle":
+        return 'minecraft:potion[minecraft:potion_contents={potion:"minecraft:water"}]'
+    return f"{ident}[!minecraft:custom_data]"
+
+
+def item_stack(iid, count=1):
+    return {"id": ITEMS[iid]["base"], "count": count, "components": ITEMS[iid]["components"]}
+
+
+RID = {}
+for idx, (out, n, ings, group) in enumerate(RECIPES, start=1):
+    RID[idx] = (out, n, ings)
+    lines = []
+    for (kind, ident, count) in ings:
+        lines.append(f"execute store result score #h astral.tmp run clear @s {ing_pred(kind, ident)} 0")
+        lines.append(f"execute if score #h astral.tmp matches ..{count - 1} run return run function {NS}:forge/missing "
+                     + "{need:\"" + f"{count}x {ing_name(kind, ident)}" + "\"}")
+    for (kind, ident, count) in ings:
+        lines.append(f"clear @s {ing_pred(kind, ident)} {count}")
+        if ident == "minecraft:lava_bucket":
+            lines.append("give @s minecraft:bucket 1")
+    for _ in range(n):
+        lines.append(f"loot give @s loot {NS}:item/{out}")
+    it = ITEMS[out]
+    lines += [
+        "playsound minecraft:block.smithing_table.use player @s ~ ~ ~ 1 1",
+        "playsound minecraft:block.enchantment_table.use player @s ~ ~ ~ 0.8 1.4",
+        "particle minecraft:enchant ~ ~1 ~ 0.5 0.5 0.5 1 40",
+        "tellraw @s " + json.dumps([txt("Forjaste: ", "gray"), txt(it["name"] + (f" x{n}" if n > 1 else ""), it["color"])]),
+        "return 1",
+    ]
+    fn(f"forge/r/{idx}", lines)
+
+fn("forge/missing", [
+    "$tellraw @s " + json.dumps([txt("Te falta: ", "red"), txt("$(need)", "gold")]),
+    "playsound minecraft:entity.villager.no player @s ~ ~ ~ 0.7 1",
+    "return 0",
+])
+near = []
+for dy in (0, -1, 1, -2, 2, -3, 3):
+    for dx in range(-3, 4):
+        for dz in range(-3, 4):
+            near.append(f"execute if block ~{dx} ~{dy} ~{dz} minecraft:smithing_table run return 1")
+fn("forge/near", near + ["return 0"])
+fn("forge/craft", [
+    f"execute store result storage {NS}:tmp forge.id int 1 run scoreboard players get @s astral.forja",
+    "scoreboard players reset @s astral.forja",
+    f"execute unless function {NS}:forge/near run return run tellraw @s " + json.dumps(
+        [txt("Tenes que estar al lado de una ", "red"), txt("Mesa de Herreria", "gold"), txt(" para forjar.", "red")]),
+    f"function {NS}:forge/dispatch with storage {NS}:tmp forge",
+])
+fn("forge/dispatch", [f"$function {NS}:forge/r/$(id)"])
+
+
+def dlg(path, title, body, actions, back=None, columns=1, width=310):
+    if not actions:
+        # pantalla solo de lectura: un unico boton para volver
+        d = {"type": "minecraft:notice", "title": title, "body": body, "after_action": "none",
+             "can_close_with_escape": True, "pause": False,
+             "action": {"label": txt("Volver", "gray"), "width": 200,
+                        "action": {"type": "show_dialog", "dialog": f"{NS}:{back or 'guia'}"}}}
+        put(f"data/{NS}/dialog/{path}.json", d)
+        return
+    d = {"type": "minecraft:multi_action", "title": title, "body": body, "actions": actions,
+         "columns": columns, "after_action": "none", "can_close_with_escape": True, "pause": False}
+    if back:
+        d["exit_action"] = {"label": txt("Volver", "gray"), "width": 200,
+                            "action": {"type": "show_dialog", "dialog": f"{NS}:{back}"}}
+    else:
+        d["exit_action"] = {"label": txt("Cerrar", "gray"), "width": 200}
+    put(f"data/{NS}/dialog/{path}.json", d)
+
+
+def btn(label, dialog=None, command=None, tooltip=None, width=150):
+    b = {"label": label if isinstance(label, dict) else txt(label, "white"), "width": width}
+    if tooltip:
+        b["tooltip"] = tooltip
+    if dialog:
+        b["action"] = {"type": "show_dialog", "dialog": f"{NS}:{dialog}"}
+    if command:
+        b["action"] = {"type": "run_command", "command": command}
+    return b
+
+
+def msg(text, color="gray", width=300):
+    return {"type": "minecraft:plain_message", "contents": txt(text, color) if isinstance(text, str) else text,
+            "width": width}
+
+
+def recipe_leaf(path, title, rids, back):
+    body = [msg("Para forjar, estate al lado de una Mesa de Herreria y apreta el boton. "
+                "Los materiales se sacan de tu inventario.", "dark_gray")]
+    actions = []
+    for rid in rids:
+        out, n, ings = RID[rid]
+        it = ITEMS[out]
+        desc = [txt(it["name"] + (f" x{n}" if n > 1 else "") + "\n", it["color"], bold=True)]
+        desc += [txt("  " + f"{c}x {ing_name(k, i)}" + "\n", "gray") for (k, i, c) in ings]
+        body.append({"type": "minecraft:item", "item": item_stack(out, n),
+                     "description": {"contents": desc, "width": 250},
+                     "show_decorations": True, "show_tooltip": True, "width": 16, "height": 16})
+        actions.append(btn(txt("Forjar " + it["name"], it["color"]), command=f"/trigger astral.forja set {rid}",
+                           tooltip=txt(", ".join(f"{c}x {ing_name(k, i)}" for (k, i, c) in ings), "gray"), width=300))
+    dlg(path, txt(title, "light_purple", bold=True), body, actions, back=back)
+
+
+def rids_where(pred):
+    return [rid for rid, (out, n, ings) in RID.items() if pred(out)]
+
+
+# Hojas de recetas
+leaves = {}
+mats = rids_where(lambda o: ITEMS[o]["kind"] == "material")
+recipe_leaf("guia/materiales_1", "Forja: Materiales (1/2)", mats[:7], "guia/materiales")
+recipe_leaf("guia/materiales_2", "Forja: Materiales (2/2)", mats[7:], "guia/materiales")
+CLASSES = [("berserker", "Berserker", "#ff4d4d", [("espada_", "Espadas"), ("hacha_", "Hachas")]),
+           ("mago", "Mago", "#b26bff", [("baston_", "Bastones"), ("guadana_", "Guadanas")]),
+           ("arquero", "Arquero", "#5ee08a", [("arco_", "Arcos")])]
+for cid, cname, ccol, weps in CLASSES:
+    sub = []
+    for t in range(1, 6):
+        r = rids_where(lambda o, t=t: o.startswith(f"{cid}_{t}_"))
+        recipe_leaf(f"guia/{cid}_{t}", f"{cname}: armadura {ROMAN[t - 1]}", r, f"guia/{cid}")
+        sub.append(btn(txt(f"Armadura {ROMAN[t - 1]} - {ARMOR_SETS[cid]['tiers'][t - 1]['name']}", ccol),
+                       dialog=f"guia/{cid}_{t}", width=300))
+    for pre, wname in weps:
+        r = rids_where(lambda o, pre=pre: o.startswith(pre) and o[-1].isdigit())
+        recipe_leaf(f"guia/{cid}_{pre[:-1]}", f"{cname}: {wname}", r, f"guia/{cid}")
+        sub.append(btn(txt(wname, "gold"), dialog=f"guia/{cid}_{pre[:-1]}", width=300))
+    dlg(f"guia/{cid}", txt(cname, ccol, bold=True),
+        [msg(f"Equipo de {cname}. Cada tier se forja con la pieza del tier anterior.")], sub, back="guia")
+recipe_leaf("guia/lanzas", "Lanzas (Combate)", rids_where(lambda o: o.startswith("lanza_")), "guia")
+tal_btns = []
+for tid, t in TALISMANS.items():
+    recipe_leaf(f"guia/talisman_{tid}", t["name"], rids_where(lambda o, tid=tid: o.startswith(f"talisman_{tid}_")), "guia/talismanes")
+    tal_btns.append(btn(txt(t["name"], t["color"]), dialog=f"guia/talisman_{tid}"))
+dlg("guia/talismanes", txt("Talismanes", "aqua", bold=True),
+    [msg("Se llevan en la mano secundaria. Se hacen con lo que sueltan los mobs elite.")], tal_btns, back="guia", columns=2)
+recipe_leaf("guia/especiales", "Especiales", rids_where(
+    lambda o: o in ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")), "guia")
+dlg("guia/materiales", txt("Materiales", "light_purple", bold=True),
+    [msg("Materiales que se forjan a partir de otros.")],
+    [btn("Pagina 1", dialog="guia/materiales_1"), btn("Pagina 2", dialog="guia/materiales_2"),
+     btn(txt("Donde se consiguen", "gold"), dialog="guia/drops")], back="guia", columns=2)
+
+# Donde se consigue cada material
+WHERE = {}
+for group, (mobs, drops) in MOB_DROPS.items():
+    for (m, p, cond) in drops:
+        who = ", ".join(x.split(":")[1].replace("_", " ").title() for x in mobs) if len(mobs) <= 2 else "mobs del Nether"
+        WHERE.setdefault(m, []).append(f"{who} ({int(p * 100)}%" + (", en el End)" if cond == "end" else ")"))
+WHERE.setdefault("gema_luminica", []).append("cofres de estructuras del Overworld (25%)")
+WHERE.setdefault("fragmento_cristal", []).append("picando end stone en el End (4%)")
+WHERE.setdefault("madera_estelar", []).append("talando arboles o chorus en el End")
+WHERE.setdefault("netherita_fundida", []).append("lingote de netherita en el horno")
+WHERE.setdefault("esencia_elite", []).append("mobs elite (todos los tiers)")
+WHERE.setdefault("alma_corrupta", []).append("mobs elite Campeon, Pesadilla y Astral")
+WHERE.setdefault("chispa_astral", []).append("mobs elite Astral (60%)")
+drop_body = [msg("Materiales que se consiguen en el mundo:", "gray")]
+for m, ways in WHERE.items():
+    drop_body.append({"type": "minecraft:item", "item": item_stack(m),
+                      "description": {"contents": [txt(ITEMS[m]["name"] + "\n", ITEMS[m]["color"], bold=True),
+                                                   txt("  " + "; ".join(ways), "gray")], "width": 250},
+                      "show_decorations": True, "show_tooltip": True, "width": 16, "height": 16})
+dlg("guia/drops", txt("Donde se consiguen", "gold", bold=True), drop_body, [], back="guia/materiales")
+
+dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
+    msg("FORJA ASTRAL", "gold"),
+    msg("Pone una Mesa de Herreria, abri esta guia al lado y apreta Forjar en lo que quieras hacer. "
+        "Los materiales se sacan solos de tu inventario.", "gray"),
+    msg("CLASES", "gold"),
+    msg("Berserker (Forja), Mago (Hechiceria) y Arquero (Arqueria) tienen 5 tiers de armadura y armas. "
+        "Cada objeto pide un nivel de AuraSkills para usarlo: /skills para ver tus niveles.", "gray"),
+    msg("ARMAS ESPECIALES", "gold"),
+    msg("Bastones: click derecho lanza un proyectil arcano. Arcos: mantene click derecho y disparan solos. "
+        "Gancho: click derecho apuntando a un bloque.", "gray"),
+    msg("MOBS ELITE", "gold"),
+    msg("Cuanto mejor es tu equipo y mas dias pasan, aparecen mas mobs elite (Veterano, Elite, Campeon, "
+        "Pesadilla y Astral). Son mas fuertes y sueltan materiales para Talismanes y Lanzas.", "gray"),
+], [], back="guia")
+
+dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
+    msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
+    btn(txt("Como se juega", "gold"), dialog="guia/como"),
+    btn(txt("Materiales", "light_purple"), dialog="guia/materiales"),
+    btn(txt("Berserker", "#ff4d4d"), dialog="guia/berserker"),
+    btn(txt("Mago", "#b26bff"), dialog="guia/mago"),
+    btn(txt("Arquero", "#5ee08a"), dialog="guia/arquero"),
+    btn(txt("Lanzas", "#ffb347"), dialog="guia/lanzas"),
+    btn(txt("Talismanes", "aqua"), dialog="guia/talismanes"),
+    btn(txt("Especiales", "#d0d0d0"), dialog="guia/especiales"),
+], columns=2)
+# Boton en el menu de pausa y en acciones rapidas
+put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})
+put("data/minecraft/tags/dialog/quick_actions.json", {"values": [f"{NS}:guia"]})
+
 fn("guide/give", [
     "scoreboard players reset @s astral.guia",
-    f"loot give @s loot {NS}:guia",
+    f"dialog show @s {NS}:guia",
 ])
 put(f"data/{NS}/advancement/join.json", {
     "criteria": {"join": {"trigger": "minecraft:tick"}}, "rewards": {"function": f"{NS}:guide/join"}})
 fn("guide/join", [
-    f"loot give @s loot {NS}:guia",
     "tellraw @s " + json.dumps([txt("Bienvenido a AstralRPG. ", "light_purple"),
-                                txt("Te dimos la guia de la Forja Astral. Si la perdes: /trigger astral.guia", "gray")]),
+                                txt("Abri la guia con Esc -> Guia AstralRPG, o con /trigger astral.guia", "gray")]),
+    f"dialog show @s {NS}:guia",
 ])
 
 # ---------------------------------------------------------------------------
@@ -1266,6 +1485,7 @@ load = [
     "scoreboard objectives add astral.m_es minecraft.mined:minecraft.end_stone",
     "scoreboard objectives add astral.m_ch minecraft.mined:minecraft.chorus_plant",
     "scoreboard objectives add astral.guia trigger",
+    "scoreboard objectives add astral.forja trigger",
 ] + [f"scoreboard objectives add {o} {c}" for (o, c) in log_objs] + [
     "scoreboard players set #2 astral.const 2",
     "scoreboard players set #3 astral.const 3",
@@ -1280,6 +1500,7 @@ load = [
 fn("load", load)
 fn("tick", [
     f"execute as @a[scores={{astral.use=1..}}] at @s run function {NS}:use/main",
+    f"execute as @a[scores={{astral.forja=1..}}] at @s run function {NS}:forge/craft",
     "scoreboard players remove @a[scores={astral.cd=1..}] astral.cd 1",
     f"execute as @a[scores={{astral.grap=1..}}] run function {NS}:grapple/tick",
     f"execute as @e[type=#minecraft:arrows,tag=astral.bowshot] at @s run function {NS}:bow/norm",
@@ -1299,7 +1520,6 @@ fn("player/hp", [
 ])
 log_cond = " ".join([])
 t10 = [
-    f"function {NS}:altar/scan",
     f"execute as @a[scores={{astral.m_es=1..}}] at @s run function {NS}:mine/endstone",
     f"execute as @a[scores={{astral.m_ch=1..}}] at @s run function {NS}:mine/chorus",
 ]
@@ -1307,6 +1527,7 @@ for (o, _) in log_objs:
     t10.append(f"execute as @a[scores={{{o}=1..}}] at @s run function {NS}:mine/log")
 t10 += [
     "scoreboard players enable @a astral.guia",
+    "scoreboard players enable @a astral.forja",
     f"execute as @a[scores={{astral.guia=1..}}] run function {NS}:guide/give",
     f"schedule function {NS}:loop/t10 10t replace",
 ]
