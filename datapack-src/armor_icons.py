@@ -12,7 +12,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 EQ = os.path.join(HERE, "pack-source", "assets", "astral", "textures", "entity", "equipment")
 OUT = os.path.join(HERE, "pack-source", "assets", "astral", "textures", "item", "gen")
 # Sets que ya tienen textura propia copiada de una skin (agregar aca cuando haya mas)
-SETS = ["mago"]
+SETS = ["mago", "berserker"]
 
 
 def outline(img):
