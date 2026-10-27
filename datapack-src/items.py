@@ -128,7 +128,7 @@ ARMOR_SETS = {
              "stats": {"hp": 35, "dmg": 25, "def": -12, "fire": 30, "kb": 100}, "lifesteal": 1,
              "cost": [("c", "netherita_reforzada", 2), ("c", "cristal_refinado", 1), ("c", "nucleo_furia", 1)]},
             {"name": "del Dios de la Guerra", "mat": "netherite", "lvl": 30,
-             "stats": {"hp": 50, "dmg": 40, "def": -15, "fire": 30, "kb": 100}, "lifesteal": 3, "furia": 2,
+             "stats": {"hp": 50, "dmg": 40, "def": -15, "fire": 30, "kb": 100}, "lifesteal": 3, "furia": 1,
              "cost": [("c", "netherita_reforzada", 3), ("c", "nucleo_furia_pura", 1), ("c", "gema_umbria_perfecta", 1)]},
         ],
         "piece_names": {"helmet": "Yelmo", "chestplate": "Coraza", "leggings": "Grebas", "boots": "Botas"},
@@ -218,15 +218,15 @@ AXES = [
 ]
 # Bastones: mana (AuraSkills), dano magico %, enfriamiento (ticks)
 STAFFS = [
-    {"name": "Baston del Aprendiz", "model": "minecraft:stick", "mana": 20, "mdmg": 5, "spell": 5.0, "cd": 30, "lvl": 8,
+    {"name": "Baston del Aprendiz", "model": "minecraft:stick", "mana": 20, "mdmg": 5, "spell": 5.0, "cd": 25, "lvl": 8,
      "cost": [("c", "fragmento_cristal", 1), ("c", "madera_estelar", 2)], "desc": []},
-    {"name": "Baston del Hechicero", "model": "minecraft:blaze_rod", "mana": 40, "mdmg": 10, "mregen": 5, "spell": 6.5, "cd": 26, "lvl": 14,
+    {"name": "Baston del Hechicero", "model": "minecraft:blaze_rod", "mana": 40, "mdmg": 10, "mregen": 5, "spell": 6.0, "cd": 24, "lvl": 14,
      "cost": [("c", "gema_luminica", 1)], "desc": []},
-    {"name": "Baston del Invocador", "model": "minecraft:end_rod", "mana": 70, "mdmg": 18, "spell": 8.0, "cd": 22, "lvl": 20,
+    {"name": "Baston del Invocador", "model": "minecraft:end_rod", "mana": 70, "mdmg": 18, "spell": 7.0, "cd": 22, "lvl": 20,
      "cost": [("c", "cristal_refinado", 2)], "desc": ["Hechizos cuestan menos"]},
-    {"name": "Baston del Archimago", "model": "minecraft:lightning_rod", "mana": 110, "mdmg": 25, "cdr": 10, "spell": 10.0, "cd": 18, "lvl": 26,
+    {"name": "Baston del Archimago", "model": "minecraft:lightning_rod", "mana": 110, "mdmg": 25, "cdr": 10, "spell": 8.5, "cd": 21, "lvl": 26,
      "cost": [("c", "corazon_shulker", 1), ("c", "cristal_refinado", 1)], "desc": ["-10% de enfriamiento"]},
-    {"name": "Baston Astral", "model": "minecraft:trident", "mana": 180, "mdmg": 40, "pierce": 20, "spell": 13.0, "cd": 14, "lvl": 32,
+    {"name": "Baston Astral", "model": "minecraft:trident", "mana": 180, "mdmg": 40, "pierce": 20, "spell": 10.0, "cd": 20, "lvl": 32,
      "cost": [("c", "gema_luminica_perfecta", 1), ("c", "nucleo_astral", 1)], "desc": ["Ignora 20% de resistencia magica"]},
 ]
 SCYTHES = [
@@ -252,11 +252,86 @@ BOWS = [
      "cost": [("c", "madera_estelar", 3), ("v", "minecraft:string", 3)], "desc": []},
     {"name": "Arco del Explorador", "bonus": 10, "draw": 25, "lvl": 14,
      "cost": [("c", "gema_luminica", 3)], "desc": []},
-    {"name": "Arco del Francotirador", "bonus": 18, "draw": 45, "lvl": 20,
+    {"name": "Arco del Francotirador", "bonus": 18, "draw": 45, "lvl": 20, "cooldown": 0.2,
      "cost": [("c", "cristal_refinado", 3)], "desc": ["Mayor precision"]},
-    {"name": "Arco del Viento", "bonus": 25, "draw": 65, "lvl": 25, "spd": 10,
+    {"name": "Arco del Viento", "bonus": 25, "draw": 65, "lvl": 25, "spd": 10, "cooldown": 0.3,
      "cost": [("c", "nucleo_eolico", 3)], "desc": ["Mas velocidad mientras lo empunas"]},
-    {"name": "Arco Astral", "bonus": 40, "draw": 95, "lvl": 30, "infinite": True,
+    {"name": "Arco Astral", "bonus": 40, "draw": 95, "lvl": 30, "infinite": True, "cooldown": 0.4,
      "cost": [("c", "gema_luminica_perfecta", 2), ("c", "nucleo_astral", 1)],
      "desc": ["Disparo casi instantaneo", "No gasta flechas normales"]},
+]
+
+# ---------------------------------------------------------------------------
+# DIFICULTAD PROGRESIVA: mobs elite
+# El nivel de amenaza cerca de cada jugador = mejor tier de equipo Astral que
+# lleva puesto (0-5) + 1 cada 7 dias de mundo (maximo +3).
+# Con amenaza A: probabilidad de elite = 6% + 5% x A ; tier = 1 + azar(0..A)/2.
+# ---------------------------------------------------------------------------
+ELITE_TIERS = [
+    # nombre, color, vida%, dano%, velocidad%, armadura, empuje
+    ("Veterano", "#9fe870", 40, 15, 5, 2, 0.1),
+    ("Elite", "#4fb0ff", 90, 30, 8, 4, 0.2),
+    ("Campeon", "#c070ff", 160, 50, 12, 6, 0.3),
+    ("Pesadilla", "#ff4d4d", 260, 75, 15, 9, 0.5),
+    ("Astral", "#ffd84d", 400, 110, 18, 12, 0.7),
+]
+HOSTILE = ["minecraft:zombie", "minecraft:husk", "minecraft:drowned", "minecraft:zombie_villager",
+           "minecraft:skeleton", "minecraft:stray", "minecraft:bogged", "minecraft:parched",
+           "minecraft:spider", "minecraft:cave_spider", "minecraft:creeper", "minecraft:witch",
+           "minecraft:pillager", "minecraft:vindicator", "minecraft:evoker", "minecraft:ravager",
+           "minecraft:blaze", "minecraft:wither_skeleton", "minecraft:piglin_brute", "minecraft:hoglin",
+           "minecraft:zoglin", "minecraft:magma_cube", "minecraft:ghast", "minecraft:phantom",
+           "minecraft:guardian", "minecraft:breeze", "minecraft:enderman", "minecraft:endermite",
+           "minecraft:shulker", "minecraft:silverfish"]
+# Drops de elites por tier: (material, probabilidad, cantidad)
+ELITE_DROPS = [
+    [("esencia_elite", 0.5, 1)],
+    [("esencia_elite", 1.0, 1), ("esencia_elite", 0.3, 1)],
+    [("esencia_elite", 1.0, 2), ("alma_corrupta", 0.35, 1)],
+    [("alma_corrupta", 1.0, 1), ("alma_corrupta", 0.4, 1), ("esencia_elite", 1.0, 2)],
+    [("chispa_astral", 0.6, 1), ("alma_corrupta", 1.0, 2), ("esencia_elite", 1.0, 3)],
+]
+MATERIALS.update({
+    "esencia_elite": ("Esencia de Elite", "#7fe0a0", "minecraft:experience_bottle", True, "Cae de mobs elite."),
+    "alma_corrupta": ("Alma Corrupta", "#c04fff", "minecraft:ghast_tear", True, "Cae de Campeones y Pesadillas."),
+    "chispa_astral": ("Chispa Astral", "#ffe24d", "minecraft:nether_star", True, "Cae de los mobs Astrales."),
+})
+
+# ---------------------------------------------------------------------------
+# TALISMANES (se llevan en la mano secundaria)
+# ---------------------------------------------------------------------------
+TALISMANS = {
+    "vida": {"name": "Talisman de Vida", "color": "#ff6b6b", "model": "minecraft:heart_of_the_sea",
+             "attr": "max_health", "op": "add_value", "vals": [2, 4, 6], "fmt": "+{v} de vida maxima (corazones x2)"},
+    "furia": {"name": "Talisman de Furia", "color": "#ff9a3d", "model": "minecraft:blaze_powder",
+              "attr": "attack_damage", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.15], "fmt": "+{p}% de dano"},
+    "viento": {"name": "Talisman del Viento", "color": "#bff5e6", "model": "minecraft:feather",
+               "attr": "movement_speed", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.15], "fmt": "+{p}% de velocidad"},
+    "roca": {"name": "Talisman de Roca", "color": "#a0a0b0", "model": "minecraft:flint",
+             "attr": "armor", "op": "add_value", "vals": [2, 3, 5], "fmt": "+{v} de armadura"},
+}
+TALISMAN_COST = [
+    [("c", "esencia_elite", 3), ("c", "gema_umbria_fragmentada", 1)],
+    [("c", "alma_corrupta", 2), ("c", "gema_luminica", 1)],
+    [("c", "chispa_astral", 1), ("c", "nucleo_astral", 1)],
+]
+
+# ---------------------------------------------------------------------------
+# LANZAS (linea nueva de Combate, usa tus texturas lanza_*)
+# Mantienen el ataque de lanza vanilla y suman dano con encantamientos.
+# ---------------------------------------------------------------------------
+SPEARS = [
+    {"name": "Lanza del Recluta", "base": "minecraft:iron_spear", "lvl": 10, "bonus": 1,
+     "fx": {}, "cost": [("v", "minecraft:iron_spear", 1), ("c", "esencia_elite", 2), ("c", "palo_reforzado", 1)], "desc": []},
+    {"name": "Lanza del Centinela", "base": "minecraft:iron_spear", "lvl": 15, "bonus": 2,
+     "fx": {"lifesteal": 1}, "cost": [("c", "esencia_elite", 3), ("c", "shadowsteel", 2)], "desc": ["Robo de vida"]},
+    {"name": "Lanza Carmesi", "base": "minecraft:diamond_spear", "lvl": 20, "bonus": 3,
+     "fx": {"lifesteal": 1, "sangrado": 1}, "cost": [("c", "alma_corrupta", 1), ("c", "netherita_reforzada", 1)],
+     "desc": ["10% de probabilidad de causar sangrado"]},
+    {"name": "Lanza del Vendaval", "base": "minecraft:diamond_spear", "lvl": 25, "bonus": 4,
+     "fx": {"lifesteal": 2, "sangrado": 1, "hendidura": 1}, "cost": [("c", "alma_corrupta", 2), ("c", "nucleo_eolico", 1)],
+     "desc": ["Golpes en area pequena"]},
+    {"name": "Lanza Astral", "base": "minecraft:netherite_spear", "lvl": 30, "bonus": 6,
+     "fx": {"lifesteal": 3, "sangrado": 1, "hendidura": 1, "ejecucion": 1},
+     "cost": [("c", "chispa_astral", 1), ("c", "nucleo_astral", 1)], "desc": ["Ejecuta enemigos con menos del 15% de vida"]},
 ]

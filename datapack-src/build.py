@@ -389,6 +389,49 @@ RECIPES.append(("taladro_infernal", 1, [("c", "shadowsteel", 4), ("c", "netherit
 
 
 # ---------------------------------------------------------------------------
+# Enfriamiento de los arcos (evita disparar sin parar con carga casi instantanea)
+# ---------------------------------------------------------------------------
+from items import TALISMANS, TALISMAN_COST, SPEARS, ELITE_TIERS, ELITE_DROPS, HOSTILE
+for i, b in enumerate(BOWS):
+    if b.get("cooldown"):
+        ITEMS[f"arco_{i + 1}"]["components"]["minecraft:use_cooldown"] = {
+            "seconds": b["cooldown"], "cooldown_group": f"{NS}:arco"}
+
+# ---------------------------------------------------------------------------
+# Talismanes (mano secundaria)
+# ---------------------------------------------------------------------------
+for tid, t in TALISMANS.items():
+    for lv in range(3):
+        iid = f"talisman_{tid}_{lv + 1}"
+        v = t["vals"][lv]
+        line = t["fmt"].format(v=v, p=int(round(v * 100)))
+        add_item(iid, "minecraft:paper", f"{t['name']} {ROMAN[lv]}", t["color"],
+                 [txt("Llevalo en la mano secundaria", "dark_gray"), txt(line, "green")],
+                 {"type": "talisman", "tier": lv + 1}, model=t["model"], glint=True, kind="weapon",
+                 extra={"minecraft:max_stack_size": 1, "minecraft:attribute_modifiers": [
+                     {"type": f"minecraft:{t['attr']}", "id": f"{NS}:{iid}", "amount": v,
+                      "operation": t["op"], "slot": "offhand"}]})
+        ings = list(TALISMAN_COST[lv]) if lv == 0 else [("c", f"talisman_{tid}_{lv}", 1)] + TALISMAN_COST[lv]
+        if lv == 0:
+            extra_ing = {"vida": ("v", "minecraft:golden_apple", 1), "furia": ("v", "minecraft:blaze_rod", 2),
+                         "viento": ("v", "minecraft:feather", 4), "roca": ("v", "minecraft:iron_block", 1)}[tid]
+            ings.append(extra_ing)
+        RECIPES.append((iid, 1, ings, "Talismanes"))
+
+# ---------------------------------------------------------------------------
+# Lanzas (Combate)
+# ---------------------------------------------------------------------------
+for i, s in enumerate(SPEARS):
+    t = i + 1
+    iid = f"lanza_{t}"
+    ench = fx_to_ench(s["fx"])
+    ench[f"{NS}:empalar"] = t
+    weapon_item(iid, s["base"], s["name"], "#ffb347", "Lanza de Combate", t,
+                [f"+{s['bonus']} de dano por golpe"] + s["desc"], "fighting", s["lvl"], None, ench, {"w": "spear"})
+    ings = list(s["cost"]) if t == 1 else [("c", f"lanza_{t - 1}", 1)] + s["cost"]
+    RECIPES.append((iid, 1, ings, "Lanzas"))
+
+# ---------------------------------------------------------------------------
 # Texturas del resource pack (si el item tiene una, usa su modelo)
 # ---------------------------------------------------------------------------
 from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX
@@ -592,7 +635,7 @@ ARROW_REQ = {"condition": "minecraft:entity_properties", "entity": "direct_attac
              "predicate": {"type": "#minecraft:arrows"}}
 enchant("punteria", "Punteria", "green", 5, ["mainhand", "offhand"], {
     "minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
-        "type": "minecraft:lookup", "values": [1.0, 1.10, 1.18, 1.25, 1.40], "fallback": 1.4}},
+        "type": "minecraft:lookup", "values": [1.0, 1.08, 1.15, 1.22, 1.30], "fallback": 1.3}},
         "requirements": ARROW_REQ}],
     "minecraft:projectile_spawned": [{"effect": {"type": "minecraft:run_function", "function": f"{NS}:bow/tag"}}],
     "minecraft:ammo_use": [{"effect": {"type": "minecraft:set", "value": {
@@ -601,12 +644,17 @@ enchant("punteria", "Punteria", "green", 5, ["mainhand", "offhand"], {
 })
 enchant("punteria_set", "Punteria del Set", "green", 5, ["chest"], {
     "minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
-        "type": "minecraft:lookup", "values": [1.05, 1.10, 1.18, 1.25, 1.40], "fallback": 1.4}},
+        "type": "minecraft:lookup", "values": [1.04, 1.08, 1.12, 1.18, 1.25], "fallback": 1.25}},
         "requirements": ARROW_REQ}]})
 enchant("gancho", "Gancho", "gray", 1, ["mainhand"], {"minecraft:tick": [{
     "effect": {"type": "minecraft:apply_impulse", "direction": [0.0, 0.0, 1.0],
                "coordinate_scale": [1.0, 1.0, 1.0], "magnitude": 0.16},
     "requirements": {"condition": "minecraft:entity_scores", "entity": "this", "scores": {"astral.grap": {"min": 1}}}}]})
+
+enchant("empalar", "Empalar", "gold", 5, ["mainhand"], {"minecraft:damage": [{
+    "effect": {"type": "minecraft:add",
+               "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0], "fallback": 6.0}},
+    "requirements": DIRECT}]})
 
 ench_items = sorted({it["base"] for it in ITEMS.values() if it["kind"] in ("armor", "weapon")} | {"minecraft:carrot_on_a_stick"})
 put(f"data/{NS}/tags/item/enchantable.json", {"values": ench_items})
@@ -954,6 +1002,89 @@ fn("mine/log", [f"scoreboard players reset @s {o}" for (o, _) in log_objs] + [
 ])
 
 # ---------------------------------------------------------------------------
+# DIFICULTAD PROGRESIVA: mobs elite
+# ---------------------------------------------------------------------------
+put(f"data/{NS}/tags/entity_type/hostile.json", {"values": HOSTILE})
+
+# Nivel de equipo del jugador (0-5): el mejor tier Astral que lleva puesto o en la mano
+lvl = ["scoreboard players set @s astral.lvl 0"]
+for t in range(1, 6):
+    for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet", "weapon.mainhand", "weapon.offhand"):
+        lvl.append(f"execute if score @s astral.lvl matches ..{t - 1} if items entity @s {slot} "
+                   f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}}] run scoreboard players set @s astral.lvl {t}")
+fn("player/lvl", lvl)
+
+fn("elite/roll", [
+    "tag @s add astral.seen",
+    "execute unless entity @a[distance=..64,gamemode=!spectator] run return 0",
+    "scoreboard players operation #a astral.tmp = @p[distance=..64,gamemode=!spectator] astral.lvl",
+    "execute store result score #day astral.tmp run time query day",
+    "scoreboard players operation #day astral.tmp /= #7 astral.const",
+    "execute if score #day astral.tmp matches 4.. run scoreboard players set #day astral.tmp 3",
+    "scoreboard players operation #a astral.tmp += #day astral.tmp",
+    "# probabilidad = 6% + 5% por nivel de amenaza",
+    "scoreboard players operation #c astral.tmp = #a astral.tmp",
+    "scoreboard players operation #c astral.tmp *= #5 astral.const",
+    "scoreboard players add #c astral.tmp 6",
+    "execute store result score #r astral.tmp run random value 1..100",
+    "execute if score #r astral.tmp > #c astral.tmp run return 0",
+    "# tier = 1 + azar(0..amenaza)/2, maximo 5",
+    f"execute store result storage {NS}:tmp elite.max int 1 run scoreboard players get #a astral.tmp",
+    f"function {NS}:elite/rand with storage {NS}:tmp elite",
+    "scoreboard players operation #t astral.tmp /= #2 astral.const",
+    "scoreboard players add #t astral.tmp 1",
+    "execute if score #t astral.tmp matches 6.. run scoreboard players set #t astral.tmp 5",
+] + [f"execute if score #t astral.tmp matches {i + 1} run return run function {NS}:elite/t{i + 1}" for i in range(5)])
+fn("elite/rand", ["$execute store result score #t astral.tmp run random value 0..$(max)"])
+
+for i, (name, color, hp, dmg, spd, armor, kb) in enumerate(ELITE_TIERS):
+    t = i + 1
+    stars = "[" + ROMAN[i] + "]"
+    lines = [
+        f"tag @s add astral.elite",
+        f"tag @s add astral.elite{t}",
+        f"attribute @s minecraft:max_health modifier add {NS}:elite {hp / 100} add_multiplied_base",
+        f"attribute @s minecraft:attack_damage modifier add {NS}:elite {dmg / 100} add_multiplied_base",
+        f"attribute @s minecraft:movement_speed modifier add {NS}:elite {spd / 100} add_multiplied_base",
+        f"attribute @s minecraft:armor modifier add {NS}:elite {armor} add_value",
+        f"attribute @s minecraft:knockback_resistance modifier add {NS}:elite {kb} add_value",
+        f"attribute @s minecraft:follow_range modifier add {NS}:elite 0.5 add_multiplied_base",
+        "data modify entity @s Health set value 1024.0f",
+        "data modify entity @s PersistenceRequired set value 1b",
+        f"data modify entity @s CustomName set value {{text:\"{stars} {name}\",color:\"{color}\",bold:{'true' if t >= 4 else 'false'}}}",
+    ]
+    if t >= 3:
+        lines.append("effect give @s minecraft:fire_resistance infinite 0 true")
+    if t >= 4:
+        lines.append("effect give @s minecraft:resistance infinite 0 true")
+    if t >= 5:
+        lines.append("effect give @s minecraft:regeneration infinite 0 true")
+    lines.append(f"particle minecraft:totem_of_undying ~ ~1 ~ 0.4 0.6 0.4 0.2 {10 * t}")
+    fn(f"elite/t{t}", lines)
+
+    # Drops y experiencia al matarlo
+    put(f"data/{NS}/advancement/kill/elite{t}.json", {
+        "criteria": {"kill": {"trigger": "minecraft:player_killed_entity", "conditions": {"entity": [
+            {"condition": "minecraft:entity_properties", "entity": "this",
+             "predicate": {"nbt": f"{{Tags:[\"astral.elite{t}\"]}}"}}]}}},
+        "rewards": {"function": f"{NS}:drop/elite{t}", "experience": 10 * t * t}})
+    dl = [f"advancement revoke @s only {NS}:kill/elite{t}"]
+    for (mat, p, n) in ELITE_DROPS[i]:
+        call = f"function {NS}:drop/give {{id:\"{mat}\",name:\"{MATERIALS[mat][0]}\"}}"
+        for _ in range(n):
+            dl.append(call if p >= 1 else f"execute if predicate {chance(p)} run {call}")
+    # los elites tambien pueden soltar materiales base de su zona
+    dl.append(f"execute if predicate {chance(0.15 * t)} if dimension minecraft:the_nether run function {NS}:drop/give {{id:\"fragmento_umbrio\",name:\"Fragmento Umbrio\"}}")
+    dl.append(f"execute if predicate {chance(0.15 * t)} if dimension minecraft:the_end run function {NS}:drop/give {{id:\"fragmento_astral\",name:\"Fragmento Astral\"}}")
+    dl.append(f"execute if predicate {chance(0.08 * t)} if dimension minecraft:overworld run function {NS}:drop/give {{id:\"gema_luminica\",name:\"Gema Luminica\"}}")
+    fn(f"drop/elite{t}", dl)
+
+fn("elite/fx", [
+    "execute as @e[tag=astral.elite4] at @s run particle minecraft:flame ~ ~1 ~ 0.3 0.5 0.3 0.01 3",
+    "execute as @e[tag=astral.elite5] at @s run particle minecraft:end_rod ~ ~1 ~ 0.3 0.5 0.3 0.02 4",
+])
+
+# ---------------------------------------------------------------------------
 # Guia
 # ---------------------------------------------------------------------------
 def page(*parts):
@@ -1030,12 +1161,16 @@ load = [
     "scoreboard objectives add astral.grap dummy",
     "scoreboard objectives add astral.bleed dummy",
     "scoreboard objectives add astral.rem dummy",
+    "scoreboard objectives add astral.lvl dummy",
     "scoreboard objectives add astral.use minecraft.used:minecraft.carrot_on_a_stick",
     "scoreboard objectives add astral.m_es minecraft.mined:minecraft.end_stone",
     "scoreboard objectives add astral.m_ch minecraft.mined:minecraft.chorus_plant",
     "scoreboard objectives add astral.guia trigger",
 ] + [f"scoreboard objectives add {o} {c}" for (o, c) in log_objs] + [
+    "scoreboard players set #2 astral.const 2",
     "scoreboard players set #3 astral.const 3",
+    "scoreboard players set #5 astral.const 5",
+    "scoreboard players set #7 astral.const 7",
     "scoreboard players set #100 astral.const 100",
     "scoreboard players set #10000 astral.const 10000",
     f"schedule function {NS}:loop/t5 5t replace",
@@ -1076,6 +1211,9 @@ fn("loop/t10", t10)
 fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
+    f"execute as @a run function {NS}:player/lvl",
+    f"execute as @e[type=#{NS}:hostile,tag=!astral.seen] at @s run function {NS}:elite/roll",
+    f"function {NS}:elite/fx",
     f"schedule function {NS}:loop/t20 20t replace",
 ])
 put("data/minecraft/tags/function/load.json", {"values": [f"{NS}:load"]})

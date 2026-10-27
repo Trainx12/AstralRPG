@@ -57,3 +57,12 @@ BOW_TEX = {
     "arco_4": "arco_9",
     "arco_5": "arco_4",
 }
+
+# Lanzas
+WEAPON_TEX.update({
+    "lanza_1": "lanza_2",
+    "lanza_2": "lanza_1",
+    "lanza_3": "lanza_5",
+    "lanza_4": "lanza_6",
+    "lanza_5": "lanza_3",
+})
