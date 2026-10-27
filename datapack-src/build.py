@@ -389,6 +389,63 @@ add_item("taladro_infernal", "minecraft:netherite_pickaxe", "Taladro Infernal", 
 RECIPES.append(("taladro_infernal", 1, [("c", "shadowsteel", 4), ("c", "netherita_reforzada", 1),
                                          ("v", "minecraft:redstone_block", 2), ("v", "minecraft:blaze_rod", 1)], "Especiales"))
 
+# ---------------------------------------------------------------------------
+# TALADROS (Mineria) y MOTOSIERRAS (Deforestacion)
+# ---------------------------------------------------------------------------
+from tools import DRILLS, CHAINSAWS, AREA_NAMES, ROMAN_EXT
+
+for i, d in enumerate(DRILLS):
+    t = i + 1
+    iid = d["id"]
+    rules = [{"blocks": "#minecraft:incorrect_for_netherite_tool", "correct_for_drops": False},
+             {"blocks": "#minecraft:mineable/pickaxe", "speed": d["speed"], "correct_for_drops": True},
+             {"blocks": "#minecraft:mineable/shovel", "speed": d["speed"], "correct_for_drops": True}]
+    extra = {"minecraft:tool": {"rules": rules, "default_mining_speed": 1.0, "damage_per_block": 1}}
+    lore = [txt(f"Taladro {ROMAN_EXT[i]}", d["color"]),
+            txt("Mas rapido que un pico de netherita" if d["area"] == 1 else f"Rompe en area {AREA_NAMES[d['area']]}", "gold"),
+            txt(f"Velocidad: {d['speed']} (pico de netherita: 9)", "gray"),
+            txt("Pica piedra, menas y tierra", "dark_gray")]
+    if t >= 3:
+        extra["minecraft:unbreakable"] = {}
+        lore.append(txt("Indestructible", "aqua"))
+    else:
+        extra["minecraft:max_damage"] = d["dur"]
+    if d.get("ench"):
+        extra["minecraft:enchantments"] = d["ench"]
+    lore.append(req_line("mining", d["lvl"]))
+    add_item(iid, "minecraft:netherite_pickaxe", d["name"], d["color"], lore,
+             {"type": "tool", "tool": "drill", "tier": t, "area": d["area"]}, extra=extra,
+             pdc=aura_pdc("item", "mining", d["lvl"]), glint=False, kind="weapon")
+    ings = list(d["cost"]) if t == 1 else [("c", DRILLS[i - 1]["id"], 1)] + d["cost"]
+    RECIPES.append((iid, 1, ings, "Taladros"))
+
+for i, c in enumerate(CHAINSAWS):
+    t = i + 1
+    iid = c["id"]
+    rules = [{"blocks": "#minecraft:mineable/axe", "speed": c["speed"], "correct_for_drops": True}]
+    extra = {"minecraft:tool": {"rules": rules, "default_mining_speed": 1.0, "damage_per_block": 1}}
+    if c["chain"] == 0:
+        what = "Mas rapida que un hacha de netherita"
+    elif c["chain"] >= 100:
+        what = "Tala el arbol entero de un corte"
+    else:
+        what = f"Corta {c['chain'] + 1} troncos de un corte"
+    lore = [txt(f"Motosierra {ROMAN_EXT[i]}", c["color"]), txt(what, "gold"),
+            txt(f"Velocidad: {c['speed']} (hacha de netherita: 9)", "gray")]
+    if c["chain"]:
+        lore.append(txt("Solo en arboles naturales (con hojas)", "dark_gray"))
+    if t >= 3:
+        extra["minecraft:unbreakable"] = {}
+        lore.append(txt("Indestructible", "aqua"))
+    else:
+        extra["minecraft:max_damage"] = c["dur"]
+    lore.append(req_line("foraging", c["lvl"]))
+    add_item(iid, "minecraft:netherite_axe", c["name"], c["color"], lore,
+             {"type": "tool", "tool": "saw", "tier": t, "chain": c["chain"]}, extra=extra,
+             pdc=aura_pdc("item", "foraging", c["lvl"]), glint=False, kind="weapon")
+    ings = list(c["cost"]) if t == 1 else [("c", CHAINSAWS[i - 1]["id"], 1)] + c["cost"]
+    RECIPES.append((iid, 1, ings, "Motosierras"))
+
 
 # ---------------------------------------------------------------------------
 # Enfriamiento de los arcos (evita disparar sin parar con carga casi instantanea)
@@ -435,6 +492,8 @@ for i, s in enumerate(SPEARS):
 from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX, GEN_WEAPON, GEN_ITEM, ARMOR_ITEMS
 for _iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
     ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
+for _t in DRILLS + CHAINSAWS:
+    ITEMS[_t["id"]]["components"]["minecraft:item_model"] = f"{NS}:{_t['id']}"
 # Armaduras: textura propia al tenerlas puestas
 _SOUND = {"leather": "leather", "chainmail": "chain", "iron": "iron", "diamond": "diamond", "netherite": "netherite"}
 for _iid in ARMOR_ITEMS:
@@ -1246,6 +1305,10 @@ VANILLA_NAMES = {"water_bottle": "Botella de agua", "minecraft:blaze_powder": "P
                  "minecraft:redstone_block": "Bloque de redstone", "minecraft:blaze_rod": "Vara de blaze",
                  "minecraft:golden_apple": "Manzana dorada", "minecraft:iron_block": "Bloque de hierro",
                  "minecraft:iron_spear": "Lanza de hierro",
+                 "minecraft:diamond_block": "Bloque de diamante", "minecraft:diamond": "Diamante",
+                 "minecraft:prismarine_crystals": "Cristales de prismarina", "minecraft:amethyst_block": "Bloque de amatista",
+                 "minecraft:gold_block": "Bloque de oro", "minecraft:netherite_ingot": "Lingote de netherita",
+                 "minecraft:netherite_block": "Bloque de netherita", "minecraft:emerald_block": "Bloque de esmeralda",
                  "minecraft:leather_helmet": "Casco de cuero", "minecraft:leather_chestplate": "Pechera de cuero",
                  "minecraft:leather_leggings": "Pantalones de cuero", "minecraft:leather_boots": "Botas de cuero"}
 
@@ -1415,6 +1478,8 @@ dlg("guia/talismanes", txt("Talismanes", "aqua", bold=True),
     [msg("Se llevan en la mano secundaria. Se hacen con lo que sueltan los mobs elite.")], tal_btns, back="guia", columns=2)
 recipe_leaf("guia/especiales", "Especiales", rids_where(
     lambda o: o in ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")), "guia")
+recipe_leaf("guia/taladros", "Taladros (Mineria)", rids_where(lambda o: o.startswith("taladro_") and o != "taladro_infernal"), "guia")
+recipe_leaf("guia/motosierras", "Motosierras (Tala)", rids_where(lambda o: o.startswith("motosierra_")), "guia")
 dlg("guia/materiales", txt("Materiales", "light_purple", bold=True),
     [msg("Materiales que se forjan a partir de otros.")],
     [btn("Pagina 1", dialog="guia/materiales_1"), btn("Pagina 2", dialog="guia/materiales_2"),
@@ -1466,6 +1531,8 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Lanzas", "#ffb347"), dialog="guia/lanzas"),
     btn(txt("Talismanes", "aqua"), dialog="guia/talismanes"),
     btn(txt("Especiales", "#d0d0d0"), dialog="guia/especiales"),
+    btn(txt("Taladros", "#7fe6ff"), dialog="guia/taladros"),
+    btn(txt("Motosierras", "#6fe8d8"), dialog="guia/motosierras"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
 put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})
@@ -1502,6 +1569,8 @@ KITS = [
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
      [i for i in ITEMS if i.startswith(("lanza_", "talisman_")) or i in
       ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")]),
+    ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
+     [i for i in ITEMS if (i.startswith("taladro_") and i != "taladro_infernal") or i.startswith("motosierra_")]),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:
@@ -1517,7 +1586,147 @@ for kid, kname, kcolor, box, ids in KITS:
 _missing = [i for i in ITEMS if i not in _kitted]
 assert not _missing, _missing
 fn("admin/todo", [f"loot give @s loot {NS}:kit/{k[0]}" for k in KITS] + [
-    "tellraw @s " + json.dumps(txt("Te dimos 6 cajas de shulker con todos los items de AstralRPG.", "gray"))])
+    "tellraw @s " + json.dumps(txt("Te dimos 7 cajas de shulker con todos los items de AstralRPG.", "gray"))])
+
+# ---------------------------------------------------------------------------
+# Taladros y motosierras: area y tala de arboles
+# Cada tick se guarda el bloque al que apuntas. Cuando la estadistica "usado" del pico/hacha
+# sube y ese bloque ya es aire, lo rompiste vos: se pica el area o se sigue el tronco.
+# ---------------------------------------------------------------------------
+from tools import TREE_LOGS, DRILLABLE
+put(f"data/{NS}/tags/block/drillable.json", {"values": DRILLABLE})
+put(f"data/{NS}/tags/block/tree_logs.json", {"values": [f"minecraft:{b}" for b in TREE_LOGS]})
+put(f"data/{NS}/tags/block/ray_pass.json", {"values": ["minecraft:air", "minecraft:cave_air", "minecraft:void_air",
+                                                       "minecraft:water", "minecraft:lava", "minecraft:light"]})
+DRILL_SEL = f"minecraft:netherite_pickaxe[minecraft:custom_data~{{{NS}:{{tool:\"drill\"}}}}]"
+SAW_SEL = f"minecraft:netherite_axe[minecraft:custom_data~{{{NS}:{{tool:\"saw\"}}}}]"
+fn("tool/aim", [
+    "scoreboard players set @s astral.tok 0",
+    "scoreboard players set #r astral.tmp 52",
+    f"execute anchored eyes positioned ^ ^ ^ run function {NS}:tool/ray",
+])
+fn("tool/ray", [
+    f"execute unless block ~ ~ ~ #{NS}:ray_pass run return run function {NS}:tool/hit",
+    "scoreboard players remove #r astral.tmp 1",
+    f"execute if score #r astral.tmp matches 1.. positioned ^ ^ ^0.1 run function {NS}:tool/ray",
+])
+fn("tool/hit", [
+    "scoreboard players set @s astral.tok 1",
+    f"execute if block ~ ~ ~ #{NS}:tree_logs run scoreboard players set @s astral.tok 2",
+    "tag @s add astral.me",
+    f"execute align xyz summon minecraft:marker run function {NS}:tool/store",
+    "tag @s remove astral.me",
+])
+fn("tool/store", [
+    "execute store result score @a[tag=astral.me,limit=1] astral.tx run data get entity @s Pos[0]",
+    "execute store result score @a[tag=astral.me,limit=1] astral.ty run data get entity @s Pos[1]",
+    "execute store result score @a[tag=astral.me,limit=1] astral.tz run data get entity @s Pos[2]",
+    "kill @s",
+])
+fn("tool/broke", [
+    "scoreboard players reset @s astral.dr",
+    "scoreboard players reset @s astral.cs",
+    "execute if score @s astral.tok matches ..0 run return 0",
+    f"execute store result storage {NS}:tmp tool.x int 1 run scoreboard players get @s astral.tx",
+    f"execute store result storage {NS}:tmp tool.y int 1 run scoreboard players get @s astral.ty",
+    f"execute store result storage {NS}:tmp tool.z int 1 run scoreboard players get @s astral.tz",
+    f"function {NS}:tool/at with storage {NS}:tmp tool",
+])
+fn("tool/at", [
+    f"$execute positioned $(x) $(y) $(z) if block ~ ~ ~ #{NS}:ray_pass run function {NS}:tool/do",
+])
+fn("tool/do", [
+    f"execute if items entity @s weapon.mainhand {DRILL_SEL} run return run function {NS}:tool/drill",
+    f"execute if score @s astral.tok matches 2 if items entity @s weapon.mainhand {SAW_SEL} run function {NS}:tool/saw",
+])
+# --- taladro: el plano depende de hacia donde miras
+fn("tool/drill", [
+    f"execute store result score #a astral.tmp run data get entity @s SelectedItem.components.\"minecraft:custom_data\".{NS}.area",
+    "execute if score #a astral.tmp matches ..1 run return 0",
+    "# si el bloque esta a la altura de tus pies, el area crece hacia arriba",
+    "execute store result score #py astral.tmp run data get entity @s Pos[1]",
+    "scoreboard players set #up astral.tmp 0",
+    "execute if score @s astral.ty <= #py astral.tmp run scoreboard players set #up astral.tmp 1",
+    "scoreboard players set #v astral.tmp 0",
+    "execute if entity @s[x_rotation=50..90] run scoreboard players set #v astral.tmp 1",
+    "execute if entity @s[x_rotation=-90..-50] run scoreboard players set #v astral.tmp 1",
+    f"execute if entity @s[y_rotation=-45..45] run function {NS}:tool/d/s",
+    f"execute if entity @s[y_rotation=45..135] run function {NS}:tool/d/w",
+    f"execute if entity @s[y_rotation=-135..-45] run function {NS}:tool/d/e",
+    f"execute unless entity @s[y_rotation=-135..135] run function {NS}:tool/d/n",
+    "playsound minecraft:block.stone.break block @a ~ ~ ~ 0.8 0.8",
+])
+FACING = {"n": ((0, 0, -1), (1, 0, 0)), "s": ((0, 0, 1), (-1, 0, 0)),
+          "e": ((1, 0, 0), (0, 0, 1)), "w": ((-1, 0, 0), (0, 0, -1))}
+
+
+def area_ranges(a, up, vertical):
+    u = {2: [0], 3: [0, 1], 4: [-1, 0, 1], 5: [-1, 0, 1, 2]}[a]
+    if a == 4:
+        v = [-1, 0, 1]
+    elif vertical or up:
+        v = {2: [0, 1], 3: [0, 1], 5: [-1, 0, 1, 2]}[a]
+    else:
+        v = {2: [-1, 0], 3: [-1, 0], 5: [-2, -1, 0, 1]}[a]
+    return u, v
+
+
+fn("tool/mine", [
+    "loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand",
+    "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
+    "setblock ~ ~ ~ minecraft:air",
+])
+for f, (F, R) in FACING.items():
+    disp = []
+    for a in range(2, 6):
+        for vert in (0, 1):
+            for up in ((0, 1) if not vert else (0,)):
+                us, vs = area_ranges(a, up, vert)
+                lines = []
+                for u in us:
+                    for v in vs:
+                        if (u, v) == (0, 0):
+                            continue
+                        if vert:
+                            d = [u * R[k] + v * F[k] for k in range(3)]
+                        else:
+                            d = [u * R[k] + (v if k == 1 else 0) for k in range(3)]
+                        lines.append(f"execute positioned ~{d[0]} ~{d[1]} ~{d[2]} if block ~ ~ ~ #{NS}:drillable "
+                                     f"run function {NS}:tool/mine")
+                name = f"tool/d/{f}{a}{'v' if vert else 'h'}{up}"
+                fn(name, lines)
+                cond = f"if score #a astral.tmp matches {a} if score #v astral.tmp matches {vert}"
+                if not vert:
+                    cond += f" if score #up astral.tmp matches {up}"
+                disp.append(f"execute {cond} run function {NS}:{name}")
+    fn(f"tool/d/{f}", disp)
+
+# --- motosierra: sigue el tronco hacia arriba y a los costados
+LEAF_CHECK = {"condition": "minecraft:any_of", "terms": [
+    {"condition": "minecraft:location_check", "offsetX": dx, "offsetY": dy, "offsetZ": dz,
+     "predicate": {"block": {"blocks": "#minecraft:leaves", "state": {"persistent": "false"}}}}
+    for dy in range(0, 31) for dx in range(-2, 3) for dz in range(-2, 3) if not (dy == 0 and abs(dx) < 2 and abs(dz) < 2)]}
+put(f"data/{NS}/predicate/natural_tree.json", LEAF_CHECK)
+fn("tool/saw", [
+    f"execute store result score #b astral.tmp run data get entity @s SelectedItem.components.\"minecraft:custom_data\".{NS}.chain",
+    "execute if score #b astral.tmp matches ..0 run return 0",
+    "# solo arboles naturales: tiene que haber hojas que no puso un jugador",
+    f"execute unless predicate {NS}:natural_tree run return 0",
+    "execute if score #b astral.tmp matches 300.. run scoreboard players set #b astral.tmp 300",
+    f"function {NS}:tool/chain",
+    "playsound minecraft:block.wood.break block @a ~ ~ ~ 1 0.7",
+])
+NEIGH = [(0, 1, 0)] + [(dx, 1, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx, dz) != (0, 0)] + \
+        [(dx, 0, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1) if (dx, dz) != (0, 0)] + \
+        [(dx, -1, dz) for dx in (-1, 0, 1) for dz in (-1, 0, 1)]
+fn("tool/chain", [
+    f"execute if score #b astral.tmp matches 1.. positioned ~{dx} ~{dy} ~{dz} if block ~ ~ ~ #{NS}:tree_logs "
+    f"run function {NS}:tool/cut" for (dx, dy, dz) in NEIGH])
+fn("tool/cut", [
+    "scoreboard players remove #b astral.tmp 1",
+    f"function {NS}:tool/mine",
+    f"function {NS}:tool/chain",
+])
 
 # ---------------------------------------------------------------------------
 # load / loops
@@ -1537,6 +1746,12 @@ load = [
     "scoreboard objectives add astral.m_ch minecraft.mined:minecraft.chorus_plant",
     "scoreboard objectives add astral.guia trigger",
     "scoreboard objectives add astral.forja trigger",
+    "scoreboard objectives add astral.dr minecraft.used:minecraft.netherite_pickaxe",
+    "scoreboard objectives add astral.cs minecraft.used:minecraft.netherite_axe",
+    "scoreboard objectives add astral.tok dummy",
+    "scoreboard objectives add astral.tx dummy",
+    "scoreboard objectives add astral.ty dummy",
+    "scoreboard objectives add astral.tz dummy",
 ] + [f"scoreboard objectives add {o} {c}" for (o, c) in log_objs] + [
     "scoreboard players set #2 astral.const 2",
     "scoreboard players set #3 astral.const 3",
@@ -1550,6 +1765,11 @@ load = [
 ]
 fn("load", load)
 fn("tick", [
+    "# taladros y motosierras: primero ver si rompiste el bloque apuntado, despues apuntar de nuevo",
+    f"execute as @a[scores={{astral.dr=1..}}] at @s run function {NS}:tool/broke",
+    f"execute as @a[scores={{astral.cs=1..}}] at @s run function {NS}:tool/broke",
+    f"execute as @a[gamemode=!spectator] if items entity @s weapon.mainhand {DRILL_SEL} at @s run function {NS}:tool/aim",
+    f"execute as @a[gamemode=!spectator] if items entity @s weapon.mainhand {SAW_SEL} at @s run function {NS}:tool/aim",
     f"execute as @a[scores={{astral.use=1..}}] at @s run function {NS}:use/main",
     f"execute as @a[scores={{astral.forja=1..}}] at @s run function {NS}:forge/craft",
     "scoreboard players remove @a[scores={astral.cd=1..}] astral.cd 1",

@@ -76,6 +76,70 @@ for iid in GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
     parent = "minecraft:item/handheld" if iid in GEN_WEAPON else "minecraft:item/generated"
     put_json(f"assets/astral/models/item/{iid}.json", {"parent": parent, "textures": {"layer0": f"astral:item/gen/{iid}"}})
     put_json(f"assets/astral/items/{iid}.json", {"model": model_ref(f"astral:item/{iid}")})
+# Taladros y motosierras (texturas de pack-source/drills, las animadas con .mcmeta)
+import colorsys
+import io as _io
+from PIL import Image as _Img
+from tools import DRILLS, CHAINSAWS
+
+
+def _png(im):
+    b = _io.BytesIO()
+    im.save(b, "PNG")
+    return b.getvalue()
+
+
+def _recolor(im, hue, sat=None, gain=1.0):
+    im = im.copy()
+    px = im.load()
+    for y in range(im.size[1]):
+        for x in range(im.size[0]):
+            r, g, b, a = px[x, y]
+            if not a:
+                continue
+            h, s, v = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+            if s > 0.15:
+                h = hue
+                s = sat if sat is not None else max(s, 0.6)
+                v = min(1.0, v * gain)
+            r, g, b = colorsys.hsv_to_rgb(h, s, v)
+            px[x, y] = (int(r * 255), int(g * 255), int(b * 255), a)
+    return im
+
+
+def _tool_tex(tex):
+    """Devuelve (imagen 16xN, cantidad de cuadros)."""
+    if tex.startswith("gen:"):
+        base = _Img.open(os.path.join(SRC, "drills", "industrial_chainsaw.png")).convert("RGBA")
+        if tex == "gen:infernal":
+            return _recolor(base, 0.05, 0.85), 1
+        frames = [_recolor(base, 0.78, 0.55, g) for g in (0.9, 1.1, 1.3, 1.1)]
+        strip = _Img.new("RGBA", (16, 16 * len(frames)))
+        for i, f in enumerate(frames):
+            strip.paste(f, (0, 16 * i))
+        return strip, len(frames)
+    im = _Img.open(os.path.join(SRC, "drills", tex)).convert("RGBA")
+    if im.size[0] > 16:
+        im = im.resize((16, 16 * im.size[1] // im.size[0]), _Img.BOX)
+        _px = im.load()
+        for _y in range(im.size[1]):
+            for _x in range(16):
+                _r, _g, _b, _a = _px[_x, _y]
+                _px[_x, _y] = (_r, _g, _b, 255) if _a >= 110 else (0, 0, 0, 0)
+    return im, im.size[1] // 16
+
+
+for _t in DRILLS + CHAINSAWS:
+    _iid = _t["id"]
+    _im, _n = _tool_tex(_t["tex"])
+    files[f"assets/astral/textures/item/tools/{_iid}.png"] = _png(_im)
+    if _n > 1:
+        put_json(f"assets/astral/textures/item/tools/{_iid}.png.mcmeta",
+                 {"animation": {"frametime": 2 if _n > 4 else 3, "interpolate": False}})
+    put_json(f"assets/astral/models/item/{_iid}.json",
+             {"parent": "minecraft:item/handheld", "textures": {"layer0": f"astral:item/tools/{_iid}"}})
+    put_json(f"assets/astral/items/{_iid}.json", {"model": model_ref(f"astral:item/{_iid}")})
+
 # Como se ven puestas las armaduras
 for s_id in ARMOR_SETS_TEX:
     for t in range(1, 6):
