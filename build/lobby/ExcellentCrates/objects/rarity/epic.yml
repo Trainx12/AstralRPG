@@ -1,0 +1,8 @@
+base:
+  name: '<light_purple>Epico</light_purple>'
+  weight: 3.5
+  color:
+    red: 255
+    green: 85
+    blue: 255
+    alpha: 255

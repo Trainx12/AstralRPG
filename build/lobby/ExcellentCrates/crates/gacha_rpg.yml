@@ -1,0 +1,621 @@
+Name: '<gradient:#B07CFF:#4FD1FF><b>Gacha RPG</b></gradient>'
+Description:
+- '<gray>Materiales de forja, armas,'
+- '<gray>talismanes y premios legendarios.'
+ItemStackable: true
+Permission_Required: false
+Preview:
+  Enabled: true
+  Id: default
+Animation:
+  Enabled: true
+  Id: default
+OpeningCooldown:
+  Enabled: false
+  Value: 0
+Opening:
+  Cost:
+    vault: 1000
+Key:
+  Required: false
+Block:
+  Positions:
+  - 195,100,175,lobby
+  Pushback:
+    Enabled: true
+  Hologram:
+    Enabled: true
+    Template: default
+    Y_Offset: 0.0
+  Effect:
+    Enabled: false
+    Model: none
+Rewards:
+  List:
+    r00:
+      Type: COMMAND
+      Name: 'Cuero Tratado x4'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/cuero_tratado'
+      - 'loot give %player% loot astral:item/cuero_tratado'
+      - 'loot give %player% loot astral:item/cuero_tratado'
+      - 'loot give %player% loot astral:item/cuero_tratado'
+    r01:
+      Type: COMMAND
+      Name: 'Palo Reforzado x2'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/palo_reforzado'
+      - 'loot give %player% loot astral:item/palo_reforzado'
+    r02:
+      Type: COMMAND
+      Name: 'Fragmento Cristal x4'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/fragmento_cristal'
+      - 'loot give %player% loot astral:item/fragmento_cristal'
+      - 'loot give %player% loot astral:item/fragmento_cristal'
+      - 'loot give %player% loot astral:item/fragmento_cristal'
+    r03:
+      Type: COMMAND
+      Name: 'Gema Umbria Fragmentada x2'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/gema_umbria_fragmentada'
+      - 'loot give %player% loot astral:item/gema_umbria_fragmentada'
+    r04:
+      Type: COMMAND
+      Name: 'Polvo Astral x2'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/polvo_astral'
+      - 'loot give %player% loot astral:item/polvo_astral'
+    r05:
+      Type: COMMAND
+      Name: 'Fragmento Umbrio x3'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/fragmento_umbrio'
+      - 'loot give %player% loot astral:item/fragmento_umbrio'
+      - 'loot give %player% loot astral:item/fragmento_umbrio'
+    r06:
+      Type: COMMAND
+      Name: 'Netherita Fundida x1'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/netherita_fundida'
+    r07:
+      Type: COMMAND
+      Name: 'Esencia Nether x2'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/esencia_nether'
+      - 'loot give %player% loot astral:item/esencia_nether'
+    r08:
+      Type: COMMAND
+      Name: 'Cristal Arcano x1'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/cristal_arcano'
+    r09:
+      Type: COMMAND
+      Name: 'Gema Umbria x1'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/gema_umbria'
+    r10:
+      Type: COMMAND
+      Name: 'Esencia Elite x2'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/esencia_elite'
+      - 'loot give %player% loot astral:item/esencia_elite'
+    r11:
+      Type: COMMAND
+      Name: 'Nucleo Furia x1'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/nucleo_furia'
+    r12:
+      Type: COMMAND
+      Name: 'Fragmento Astral x3'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/fragmento_astral'
+      - 'loot give %player% loot astral:item/fragmento_astral'
+      - 'loot give %player% loot astral:item/fragmento_astral'
+    r13:
+      Type: COMMAND
+      Name: 'Nucleo Eolico x1'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/nucleo_eolico'
+    r14:
+      Type: COMMAND
+      Name: 'Madera Estelar x4'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/madera_estelar'
+      - 'loot give %player% loot astral:item/madera_estelar'
+      - 'loot give %player% loot astral:item/madera_estelar'
+      - 'loot give %player% loot astral:item/madera_estelar'
+    r15:
+      Type: COMMAND
+      Name: 'Shadowsteel x2'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/shadowsteel'
+      - 'loot give %player% loot astral:item/shadowsteel'
+    r16:
+      Type: COMMAND
+      Name: 'Talisman de Vida I'
+      Description: []
+      Weight: 6
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_vida_1'
+    r17:
+      Type: COMMAND
+      Name: 'Talisman de Furia I'
+      Description: []
+      Weight: 6
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_furia_1'
+    r18:
+      Type: COMMAND
+      Name: 'Talisman de Roca I'
+      Description: []
+      Weight: 6
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_roca_1'
+    r19:
+      Type: COMMAND
+      Name: 'Talisman de Viento I'
+      Description: []
+      Weight: 6
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_viento_1'
+    r20:
+      Type: COMMAND
+      Name: 'Cristal Refinado x1'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/cristal_refinado'
+    r21:
+      Type: COMMAND
+      Name: 'Gema Luminica x1'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/gema_luminica'
+    r22:
+      Type: COMMAND
+      Name: 'Corazon Shulker x1'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/corazon_shulker'
+    r23:
+      Type: COMMAND
+      Name: 'Alma Corrupta x1'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/alma_corrupta'
+    r24:
+      Type: COMMAND
+      Name: 'Netherita Reforzada x1'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/netherita_reforzada'
+    r25:
+      Type: COMMAND
+      Name: 'Espada II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/espada_2'
+    r26:
+      Type: COMMAND
+      Name: 'Espada III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/espada_3'
+    r27:
+      Type: COMMAND
+      Name: 'Baston II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/baston_2'
+    r28:
+      Type: COMMAND
+      Name: 'Baston III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/baston_3'
+    r29:
+      Type: COMMAND
+      Name: 'Arco II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/arco_2'
+    r30:
+      Type: COMMAND
+      Name: 'Arco III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/arco_3'
+    r31:
+      Type: COMMAND
+      Name: 'Hacha II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/hacha_2'
+    r32:
+      Type: COMMAND
+      Name: 'Hacha III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/hacha_3'
+    r33:
+      Type: COMMAND
+      Name: 'Lanza II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/lanza_2'
+    r34:
+      Type: COMMAND
+      Name: 'Lanza III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/lanza_3'
+    r35:
+      Type: COMMAND
+      Name: 'Guadana II'
+      Description: []
+      Weight: 6
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/guadana_2'
+    r36:
+      Type: COMMAND
+      Name: 'Guadana III'
+      Description: []
+      Weight: 3
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/guadana_3'
+    r37:
+      Type: COMMAND
+      Name: 'Talisman de Vida II'
+      Description: []
+      Weight: 5
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_vida_2'
+    r38:
+      Type: COMMAND
+      Name: 'Talisman de Furia II'
+      Description: []
+      Weight: 5
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_furia_2'
+    r39:
+      Type: COMMAND
+      Name: 'Talisman de Roca II'
+      Description: []
+      Weight: 5
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_roca_2'
+    r40:
+      Type: COMMAND
+      Name: 'Talisman de Viento II'
+      Description: []
+      Weight: 5
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_viento_2'
+    r41:
+      Type: COMMAND
+      Name: 'Nucleo Astral'
+      Description: []
+      Weight: 10
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/nucleo_astral'
+    r42:
+      Type: COMMAND
+      Name: 'Gema Umbria Perfecta'
+      Description: []
+      Weight: 10
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/gema_umbria_perfecta'
+    r43:
+      Type: COMMAND
+      Name: 'Gema Luminica Perfecta'
+      Description: []
+      Weight: 10
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/gema_luminica_perfecta'
+    r44:
+      Type: COMMAND
+      Name: 'Espada IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/espada_4'
+    r45:
+      Type: COMMAND
+      Name: 'Baston IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/baston_4'
+    r46:
+      Type: COMMAND
+      Name: 'Arco IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/arco_4'
+    r47:
+      Type: COMMAND
+      Name: 'Hacha IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/hacha_4'
+    r48:
+      Type: COMMAND
+      Name: 'Lanza IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/lanza_4'
+    r49:
+      Type: COMMAND
+      Name: 'Guadana IV'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/guadana_4'
+    r50:
+      Type: COMMAND
+      Name: 'Talisman de Vida III'
+      Description: []
+      Weight: 5
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_vida_3'
+    r51:
+      Type: COMMAND
+      Name: 'Talisman de Furia III'
+      Description: []
+      Weight: 5
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_furia_3'
+    r52:
+      Type: COMMAND
+      Name: 'Talisman de Roca III'
+      Description: []
+      Weight: 5
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_roca_3'
+    r53:
+      Type: COMMAND
+      Name: 'Talisman de Viento III'
+      Description: []
+      Weight: 5
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/talisman_viento_3'
+    r54:
+      Type: COMMAND
+      Name: 'Espada V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/espada_5'
+    r55:
+      Type: COMMAND
+      Name: 'Baston V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/baston_5'
+    r56:
+      Type: COMMAND
+      Name: 'Arco V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/arco_5'
+    r57:
+      Type: COMMAND
+      Name: 'Hacha V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/hacha_5'
+    r58:
+      Type: COMMAND
+      Name: 'Lanza V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/lanza_5'
+    r59:
+      Type: COMMAND
+      Name: 'Guadana V'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/guadana_5'
+    r60:
+      Type: COMMAND
+      Name: 'Chispa Astral x2'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/chispa_astral'
+      - 'loot give %player% loot astral:item/chispa_astral'
+    r61:
+      Type: COMMAND
+      Name: 'Nucleo de Furia Pura'
+      Description: []
+      Weight: 8
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/nucleo_furia_pura'
+    r62:
+      Type: COMMAND
+      Name: 'Guadana Umbria'
+      Description: []
+      Weight: 6
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'loot give %player% loot astral:item/guadana_umbria'

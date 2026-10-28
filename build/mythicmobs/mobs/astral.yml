@@ -63,6 +63,7 @@ astral_espantapajaros:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_abejorro:
   Type: VEX
@@ -86,6 +87,7 @@ astral_abejorro:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_arana:
   Type: SPIDER
@@ -110,6 +112,7 @@ astral_arana:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_cara:
   Type: PHANTOM
@@ -133,6 +136,7 @@ astral_cara:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_grillo:
   Type: HORSE
@@ -331,6 +335,7 @@ astral_momia:
   - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_yeti:
   Type: RAVAGER
@@ -370,6 +375,7 @@ astral_yeti:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_golem_forja:
   Type: IRON_GOLEM
@@ -419,6 +425,7 @@ astral_golem_forja:
   - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde: el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_cangrejo:
   Type: SPIDER
@@ -454,6 +461,7 @@ astral_cangrejo:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_chaman:
   Type: EVOKER
@@ -494,6 +502,7 @@ astral_chaman:
   - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
   - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_espantapajaros_elite:
   Type: VEX
@@ -528,6 +537,7 @@ astral_espantapajaros_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - command{c="eco give <trigger.name> 150"} @trigger ~onDeath ?isplayer
 
 astral_abejorro_elite:
   Type: VEX
@@ -561,6 +571,7 @@ astral_abejorro_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - command{c="eco give <trigger.name> 150"} @trigger ~onDeath ?isplayer
 
 astral_arana_elite:
   Type: SPIDER
@@ -595,6 +606,7 @@ astral_arana_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - command{c="eco give <trigger.name> 150"} @trigger ~onDeath ?isplayer
 
 astral_cara_elite:
   Type: PHANTOM
@@ -628,6 +640,7 @@ astral_cara_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - command{c="eco give <trigger.name> 150"} @trigger ~onDeath ?isplayer
 
 astral_cangrejo_elite:
   Type: SPIDER
@@ -672,3 +685,125 @@ astral_cangrejo_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="eco give <trigger.name> 150"} @trigger ~onDeath ?isplayer
+
+astral_npc_tienda:
+  Type: VILLAGER
+  Display: '&6&lTienda'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: TOOLSMITH
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - command{c="shop";asTarget=true} @trigger ~onInteract
+
+astral_npc_venta:
+  Type: VILLAGER
+  Display: '&a&lVenta rapida'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: FARMER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - command{c="sellgui";asTarget=true} @trigger ~onInteract
+
+astral_npc_gacha_rpg:
+  Type: VILLAGER
+  Display: '&d&lGacha RPG &7(1000$)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: LIBRARIAN
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - command{c="crate preview gacha_rpg <trigger.name>"} @self ~onInteract
+
+astral_npc_gacha_monturas:
+  Type: VILLAGER
+  Display: '&e&lGacha de Monturas &7(2500$)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: SHEPHERD
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - command{c="crate preview gacha_monturas <trigger.name>"} @self ~onInteract
+
+astral_npc_gacha_cosmeticos:
+  Type: VILLAGER
+  Display: '&b&lGacha de Cosmeticos &7(500$)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - command{c="crate preview gacha_cosmeticos <trigger.name>"} @self ~onInteract
+
+astral_npc_viajero:
+  Type: VILLAGER
+  Display: '&f&lViajero &7- ir al mundo'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: NITWIT
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - message{m="&7El Viajero te lleva al mundo... &8(para volver: &f/spawn&8)"} @trigger ~onInteract
+  - command{c="mvtp <trigger.name> w:world"} @self ~onInteract

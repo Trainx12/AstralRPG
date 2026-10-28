@@ -1,0 +1,8 @@
+base:
+  name: '<green>Poco comun</green>'
+  weight: 25
+  color:
+    red: 85
+    green: 255
+    blue: 85
+    alpha: 255

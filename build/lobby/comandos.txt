@@ -1,0 +1,43 @@
+# Comandos de consola (sin /) para dejar armado el lobby. Se pueden repetir sin problema.
+# --- mundo lobby: sin mobs, sin hambre, siempre de dia, protegido
+mv modify lobby set spawn-location 180.5,98,190.5:0:180
+mv modify lobby set difficulty peaceful
+mv modify lobby set pvp false
+mv modify lobby set hunger false
+mv modify lobby set gamemode adventure
+mv modify lobby set allow-weather false
+mv gamerule set minecraft:advance_time false lobby
+mv gamerule set minecraft:spawn_mobs false lobby
+execute in minecraft:lobby run time set noon
+execute in minecraft:lobby run worldborder center 178 192
+execute in minecraft:lobby run worldborder set 190
+rg flag -w lobby __global__ build deny
+rg flag -w lobby __global__ pvp deny
+rg flag -w lobby __global__ mob-spawning deny
+rg flag -w lobby __global__ fall-damage deny
+rg flag -w lobby __global__ invincible allow
+rg flag -w lobby __global__ item-drop deny
+rg flag -w lobby __global__ interact allow
+rg flag -w lobby __global__ chest-access deny
+# --- primera vez que entra alguien: aparece en el lobby
+mv config set spawn.first-spawn-override true
+mv config set spawn.first-spawn-location lobby
+mv config set spawn.enforce-respawn-at-world-spawn false
+# --- permisos de jugador
+lp group default permission set essentials.spawn true
+lp group default permission set essentials.balance true
+lp group default permission set essentials.balancetop true
+lp group default permission set essentials.pay true
+lp group default permission set essentials.worth true
+lp group default permission set essentials.help true
+# --- cofres de las gachas
+execute in minecraft:lobby run setblock 195 100 175 minecraft:ender_chest
+execute in minecraft:lobby run setblock 158 100 203 minecraft:ender_chest
+execute in minecraft:lobby run setblock 196 100 204 minecraft:ender_chest
+# --- vendedores (MythicMobs)
+mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
+mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0
+mm mobs spawn astral_npc_gacha_rpg 1 lobby,195.5,100,177.5,90,0
+mm mobs spawn astral_npc_gacha_monturas 1 lobby,158.5,100,205.5,-90,0
+mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,196.5,100,206.5,90,0
+mm mobs spawn astral_npc_viajero 1 lobby,180.5,100,212.5,180,0

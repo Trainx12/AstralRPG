@@ -124,6 +124,39 @@ ELITES = {
 }
 
 
+# Monedas (EssentialsX) para quien mata: asi se gana plata para la tienda y las gachas del lobby
+MONEY = {"hostil": 15, "jefe": 750}
+ELITE_MONEY = 150
+
+# Vendedores del lobby: aldeanos quietos e invulnerables. Al hacerles clic abren su tienda o gacha.
+# (ubicacion de cada uno: datapack-src/lobby.py)
+NPCS = {
+    "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
+                          ["- command{c=\"shop\";asTarget=true} @trigger ~onInteract"]),
+    "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
+                         ["- command{c=\"sellgui\";asTarget=true} @trigger ~onInteract"]),
+    "astral_npc_gacha_rpg": ("&d&lGacha RPG &7(1000$)", "LIBRARIAN",
+                             ["- command{c=\"crate preview gacha_rpg <trigger.name>\"} @self ~onInteract"]),
+    "astral_npc_gacha_monturas": ("&e&lGacha de Monturas &7(2500$)", "SHEPHERD",
+                                  ["- command{c=\"crate preview gacha_monturas <trigger.name>\"} @self ~onInteract"]),
+    "astral_npc_gacha_cosmeticos": ("&b&lGacha de Cosmeticos &7(500$)", "CARTOGRAPHER",
+                                    ["- command{c=\"crate preview gacha_cosmeticos <trigger.name>\"} @self ~onInteract"]),
+    "astral_npc_viajero": ("&f&lViajero &7- ir al mundo", "NITWIT",
+                           ["- message{m=\"&7El Viajero te lleva al mundo... &8(para volver: &f/spawn&8)\"} @trigger ~onInteract",
+                            "- command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract"]),
+}
+
+
+def npc_block(mid, name, prof, skills):
+    lines = [f"{mid}:", "  Type: VILLAGER", f"  Display: '{name}'", "  Health: 100", "  Options:",
+             "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
+             "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true",
+             "    AlwaysShowName: true", f"    Profession: {prof}", "    VillagerType: PLAINS",
+             "  Skills:", "  - cancelevent @self ~onInteract"]
+    lines += ["  " + s for s in skills]
+    return "\n".join(lines) + "\n"
+
+
 def mob_block(mid, d, model=None, elite=None):
     model = model or mid
     lines = [f"{mid}:", f"  Type: {d['type']}", f"  Display: '{elite[1] if elite else d['name']}'"]
@@ -184,6 +217,9 @@ def mob_block(mid, d, model=None, elite=None):
     if elite:
         sk += astral_drop("esencia_elite", 1.0, 2) + astral_drop("alma_corrupta", 0.3)
     sk += d.get("skills", [])
+    money = ELITE_MONEY if elite else MONEY.get(d["kind"])
+    if money:
+        sk.append(f"- command{{c=\"eco give <trigger.name> {money}\"}} @trigger ~onDeath ?isplayer")
     lines.append("  Skills:")
     lines += ["  " + s for s in sk]
     return "\n".join(lines) + "\n"
@@ -248,6 +284,7 @@ def main():
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
     mobs = [mob_block(mid, d) for mid, d in MOBS.items()]
     mobs += [mob_block(f"{mid}_elite", MOBS[mid], model=mid, elite=e) for mid, e in ELITES.items()]
+    mobs += [npc_block(mid, *v) for mid, v in NPCS.items()]
     with open(os.path.join(OUT, "mobs", "astral.yml"), "w", encoding="utf-8") as f:
         f.write("# Criaturas de AstralRPG (generado por datapack-src/mobs/mythic.py)\n\n" + "\n".join(mobs))
     with open(os.path.join(OUT, "skills", "astral.yml"), "w", encoding="utf-8") as f:

@@ -1,0 +1,268 @@
+Name: '<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>'
+Description:
+- '<gray>Titulos para el chat y'
+- '<gray>adornos para tu armadura.'
+ItemStackable: true
+Permission_Required: false
+Preview:
+  Enabled: true
+  Id: default
+Animation:
+  Enabled: true
+  Id: default
+OpeningCooldown:
+  Enabled: false
+  Value: 0
+Opening:
+  Cost:
+    vault: 500
+Key:
+  Required: false
+Block:
+  Positions:
+  - 196,100,204,lobby
+  Pushback:
+    Enabled: true
+  Hologram:
+    Enabled: true
+    Template: default
+    Y_Offset: 0.0
+  Effect:
+    Enabled: false
+    Model: none
+Rewards:
+  List:
+    r00:
+      Type: COMMAND
+      Name: 'Titulo [Aventurero]'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&7[Aventurero]&r "'
+    r01:
+      Type: COMMAND
+      Name: 'Titulo [Explorador]'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&a[Explorador]&r "'
+    r02:
+      Type: COMMAND
+      Name: 'Titulo [Lenador]'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&6[Lenador]&r "'
+    r03:
+      Type: COMMAND
+      Name: 'Titulo [Minero]'
+      Description: []
+      Weight: 10
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&8[Minero]&r "'
+    r04:
+      Type: COMMAND
+      Name: 'Titulo [Cazador]'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&2[Cazador]&r "'
+    r05:
+      Type: COMMAND
+      Name: 'Titulo [Herrero]'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&c[Herrero]&r "'
+    r06:
+      Type: COMMAND
+      Name: 'Titulo [Alquimista]'
+      Description: []
+      Weight: 10
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&d[Alquimista]&r "'
+    r07:
+      Type: COMMAND
+      Name: 'Titulo [Domador]'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&e[Domador]&r "'
+    r08:
+      Type: COMMAND
+      Name: 'Titulo [Arcano]'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&5[Arcano]&r "'
+    r09:
+      Type: COMMAND
+      Name: 'Titulo [Berserker]'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&4[Berserker]&r "'
+    r10:
+      Type: COMMAND
+      Name: 'Titulo [Arquero]'
+      Description: []
+      Weight: 10
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&a[Arquero]&r "'
+    r11:
+      Type: COMMAND
+      Name: 'Titulo [Campeon]'
+      Description: []
+      Weight: 10
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&6&l[Campeon]&r "'
+    r12:
+      Type: COMMAND
+      Name: 'Titulo [Senor del Abismo]'
+      Description: []
+      Weight: 10
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&5&l[Senor del Abismo]&r "'
+    r13:
+      Type: COMMAND
+      Name: 'Titulo [ASTRAL]'
+      Description: []
+      Weight: 10
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'lp user %player% meta setprefix 100 "&b&l[ASTRAL]&r "'
+    r14:
+      Type: COMMAND
+      Name: 'Cohetes x16'
+      Description: []
+      Weight: 8
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:firework_rocket 16'
+    r15:
+      Type: COMMAND
+      Name: 'Etiquetas x3'
+      Description: []
+      Weight: 6
+      Rarity: common
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:name_tag 3'
+    r16:
+      Type: COMMAND
+      Name: 'Molde de adorno: coast'
+      Description: []
+      Weight: 4
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:coast_armor_trim_smithing_template 1'
+    r17:
+      Type: COMMAND
+      Name: 'Molde de adorno: dune'
+      Description: []
+      Weight: 4
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:dune_armor_trim_smithing_template 1'
+    r18:
+      Type: COMMAND
+      Name: 'Molde de adorno: wild'
+      Description: []
+      Weight: 4
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:wild_armor_trim_smithing_template 1'
+    r19:
+      Type: COMMAND
+      Name: 'Molde de adorno: sentry'
+      Description: []
+      Weight: 4
+      Rarity: uncommon
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:sentry_armor_trim_smithing_template 1'
+    r20:
+      Type: COMMAND
+      Name: 'Molde de adorno: vex'
+      Description: []
+      Weight: 4
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:vex_armor_trim_smithing_template 1'
+    r21:
+      Type: COMMAND
+      Name: 'Molde de adorno: tide'
+      Description: []
+      Weight: 4
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:tide_armor_trim_smithing_template 1'
+    r22:
+      Type: COMMAND
+      Name: 'Molde de adorno: ward'
+      Description: []
+      Weight: 4
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:ward_armor_trim_smithing_template 1'
+    r23:
+      Type: COMMAND
+      Name: 'Molde de adorno: eye'
+      Description: []
+      Weight: 4
+      Rarity: rare
+      Broadcast: false
+      Commands:
+      - 'give %player% minecraft:eye_armor_trim_smithing_template 1'
+    r24:
+      Type: COMMAND
+      Name: 'Molde de adorno: silence'
+      Description: []
+      Weight: 6
+      Rarity: epic
+      Broadcast: true
+      Commands:
+      - 'give %player% minecraft:silence_armor_trim_smithing_template 1'
+    r25:
+      Type: COMMAND
+      Name: 'Cabeza de Dragon'
+      Description: []
+      Weight: 6
+      Rarity: legendary
+      Broadcast: true
+      Commands:
+      - 'give %player% minecraft:dragon_head 1'

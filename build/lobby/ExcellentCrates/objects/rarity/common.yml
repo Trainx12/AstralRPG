@@ -1,0 +1,8 @@
+base:
+  name: '<white>Comun</white>'
+  weight: 60
+  color:
+    red: 255
+    green: 255
+    blue: 255
+    alpha: 255

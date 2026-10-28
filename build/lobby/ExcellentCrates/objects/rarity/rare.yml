@@ -1,0 +1,8 @@
+base:
+  name: '<aqua>Raro</aqua>'
+  weight: 11
+  color:
+    red: 85
+    green: 255
+    blue: 255
+    alpha: 255
