@@ -6,16 +6,16 @@ AST_GACHA_RPG:
   - 'currencytake{a=1000} @trigger'
   - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
   - 'command{c="scoreboard players add <trigger.name> pity_rpg 1"} @self'
-  - 'command{c="execute if score <trigger.name> pity_rpg matches 30.. run crates forceopen gacha_rpg_garantia <trigger.name>"} @self'
-  - 'command{c="execute unless score <trigger.name> pity_rpg matches 30.. run crates forceopen gacha_rpg <trigger.name>"} @self'
-  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_rpg;v=>29}'
+  - 'command{c="execute if score <trigger.name> pity_rpg matches 50.. run crates forceopen gacha_rpg_garantia <trigger.name>"} @self'
+  - 'command{c="execute unless score <trigger.name> pity_rpg matches 50.. run crates forceopen gacha_rpg <trigger.name>"} @self'
+  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_rpg;v=>49}'
   - delay 1
-  - 'message{m="&7Garantia: &e<trigger.score.pity_rpg>&7/30 &8(a las 30 tiradas sin Epico te toca uno seguro)"} @trigger'
+  - 'message{m="&7Garantia: &e<trigger.score.pity_rpg>&7/50 &8(a las 50 tiradas sin Epico te toca uno seguro)"} @trigger'
 
 AST_GACHA_RPG_INFO:
   Skills:
   - 'command{c="sudo <trigger.name> crates preview gacha_rpg"} @self'
-  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_rpg>&7/30"} @trigger'
+  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_rpg>&7/50"} @trigger'
 
 AST_GACHA_MONTURAS:
   Cooldown: 2
@@ -23,16 +23,16 @@ AST_GACHA_MONTURAS:
   - 'currencytake{a=2500} @trigger'
   - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
   - 'command{c="scoreboard players add <trigger.name> pity_monturas 1"} @self'
-  - 'command{c="execute if score <trigger.name> pity_monturas matches 20.. run crates forceopen gacha_monturas_garantia <trigger.name>"} @self'
-  - 'command{c="execute unless score <trigger.name> pity_monturas matches 20.. run crates forceopen gacha_monturas <trigger.name>"} @self'
-  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_monturas;v=>19}'
+  - 'command{c="execute if score <trigger.name> pity_monturas matches 40.. run crates forceopen gacha_monturas_garantia <trigger.name>"} @self'
+  - 'command{c="execute unless score <trigger.name> pity_monturas matches 40.. run crates forceopen gacha_monturas <trigger.name>"} @self'
+  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_monturas;v=>39}'
   - delay 1
-  - 'message{m="&7Garantia: &e<trigger.score.pity_monturas>&7/20 &8(a las 20 tiradas sin Epico te toca uno seguro)"} @trigger'
+  - 'message{m="&7Garantia: &e<trigger.score.pity_monturas>&7/40 &8(a las 40 tiradas sin Epico te toca uno seguro)"} @trigger'
 
 AST_GACHA_MONTURAS_INFO:
   Skills:
   - 'command{c="sudo <trigger.name> crates preview gacha_monturas"} @self'
-  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_monturas>&7/20"} @trigger'
+  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_monturas>&7/40"} @trigger'
 
 AST_GACHA_COSMETICOS:
   Cooldown: 2
@@ -40,14 +40,14 @@ AST_GACHA_COSMETICOS:
   - 'currencytake{a=500} @trigger'
   - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
   - 'command{c="scoreboard players add <trigger.name> pity_cosmeticos 1"} @self'
-  - 'command{c="execute if score <trigger.name> pity_cosmeticos matches 30.. run crates forceopen gacha_cosmeticos_garantia <trigger.name>"} @self'
-  - 'command{c="execute unless score <trigger.name> pity_cosmeticos matches 30.. run crates forceopen gacha_cosmeticos <trigger.name>"} @self'
-  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_cosmeticos;v=>29}'
+  - 'command{c="execute if score <trigger.name> pity_cosmeticos matches 20.. run crates forceopen gacha_cosmeticos_garantia <trigger.name>"} @self'
+  - 'command{c="execute unless score <trigger.name> pity_cosmeticos matches 20.. run crates forceopen gacha_cosmeticos <trigger.name>"} @self'
+  - 'message{m="&d&lTirada garantizada! &7(Epico o Legendario seguro)"} @trigger ?~score{o=pity_cosmeticos;v=>19}'
   - delay 1
-  - 'message{m="&7Garantia: &e<trigger.score.pity_cosmeticos>&7/30 &8(a las 30 tiradas sin Epico te toca uno seguro)"} @trigger'
+  - 'message{m="&7Garantia: &e<trigger.score.pity_cosmeticos>&7/20 &8(a las 20 tiradas sin Epico te toca uno seguro)"} @trigger'
 
 AST_GACHA_COSMETICOS_INFO:
   Skills:
   - 'command{c="sudo <trigger.name> crates preview gacha_cosmeticos"} @self'
-  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_cosmeticos>&7/30"} @trigger'
+  - 'message{m="&7Tu garantia en esta gacha: &e<trigger.score.pity_cosmeticos>&7/20"} @trigger'
 

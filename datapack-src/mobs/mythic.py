@@ -282,10 +282,10 @@ NPCS = {
                           ["command{c=\"sudo <trigger.name> shop\"} @self ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
                          ["command{c=\"sudo <trigger.name> sellgui\"} @self ~onInteract"]),
-    "astral_npc_gacha_rpg": ("&d&lGacha RPG &7(1000$ - shift+clic ver premios)", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
-    "astral_npc_gacha_monturas": ("&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)", "SHEPHERD",
+    "astral_npc_gacha_rpg": ("&5&lGacha de Armas", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
+    "astral_npc_gacha_monturas": ("&a&lGacha de Monturas", "SHEPHERD",
                                   _gacha("gacha_monturas", 2500)),
-    "astral_npc_gacha_cosmeticos": ("&b&lGacha de Cosmeticos &7(500$ - shift+clic ver premios)", "CARTOGRAPHER",
+    "astral_npc_gacha_cosmeticos": ("&d&lGacha de Cosmeticos", "CARTOGRAPHER",
                                     _gacha("gacha_cosmeticos", 500)),
     "astral_npc_viajero": ("&f&lViajero &7- ir al mundo", "NITWIT",
                            ["message{m=\"&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)\"} @trigger ~onInteract",
@@ -302,7 +302,8 @@ def npc_block(mid, name, prof, skills):
     cofre = NPC_COFRE.get(mid)
     lines = [f"{mid}:", f"  Type: {'SHEEP' if cofre else 'VILLAGER'}", f"  Display: '{name}'", "  Health: 100", "  Options:",
              "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
-             "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true"]
+             "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true",
+             f"    AlwaysShowName: {'false' if cofre else 'true'}"]
     lines += [] if cofre else [f"    Profession: {prof}", "    VillagerType: PLAINS"]
     lines += ["  Skills:", "  - cancelevent @self ~onInteract"]
     if cofre:

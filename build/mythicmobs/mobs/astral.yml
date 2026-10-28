@@ -1244,7 +1244,7 @@ astral_npc_venta:
 
 astral_npc_gacha_rpg:
   Type: SHEEP
-  Display: '&d&lGacha RPG &7(1000$ - shift+clic ver premios)'
+  Display: '&5&lGacha de Armas'
   Health: 100
   Options:
     NoAI: true
@@ -1255,7 +1255,7 @@ astral_npc_gacha_rpg:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
   Skills:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_rpg} @self ~onSpawn
@@ -1267,7 +1267,7 @@ astral_npc_gacha_rpg:
 
 astral_npc_gacha_monturas:
   Type: SHEEP
-  Display: '&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)'
+  Display: '&a&lGacha de Monturas'
   Health: 100
   Options:
     NoAI: true
@@ -1278,7 +1278,7 @@ astral_npc_gacha_monturas:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
   Skills:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_monturas} @self ~onSpawn
@@ -1290,7 +1290,7 @@ astral_npc_gacha_monturas:
 
 astral_npc_gacha_cosmeticos:
   Type: SHEEP
-  Display: '&b&lGacha de Cosmeticos &7(500$ - shift+clic ver premios)'
+  Display: '&d&lGacha de Cosmeticos'
   Health: 100
   Options:
     NoAI: true
@@ -1301,7 +1301,7 @@ astral_npc_gacha_cosmeticos:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
   Skills:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_cosmeticos} @self ~onSpawn

@@ -66,7 +66,7 @@ AstralRPG/
 | Plata que da cada mob | `mobs/mythic.py` (`MONEY`, `ELITE_MONEY`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
 | Un vendedor del lobby | `mobs/mythic.py` (`NPCS`) + posición en `lobby.py` (`NPC_POS`) | `python mobs/mythic.py` y `python lobby.py` | MythicMobs + spawnearlo (ver 5) |
 | Premios, precio o probabilidades de una gacha | `lobby.py` (`rpg_rewards`, `mount_rewards`, `cosmetic_rewards`, `GACHAS`, `RARITY_WEIGHT`) | `python lobby.py` | `plugins/CrazyCrates/crates/` + `crates reload`; si cambia el precio también `gachas.yml` + `mm reload` |
-| Garantía (pity) de una gacha | `lobby.py` (`PITY`) | `python lobby.py` | `gachas.yml` + `mm reload`, cajas `*_garantia.yml` + `crates reload` |
+| Garantía (pity) de una gacha | `lobby.py` (`PITY`) | `python lobby.py` | `gachas.yml` + `mm reload`, cajas + `crates reload`, y rehacer los carteles flotantes (final de `comandos.txt`) |
 | Fases de un jefe | `mobs/mythic.py` (`FASES`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
 | Afijos de élites | `mobs/mythic.py` (`AFIJOS`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
 | Jefes ancestrales (eventos) | `mobs/mythic.py` (`ANCESTRALES`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |

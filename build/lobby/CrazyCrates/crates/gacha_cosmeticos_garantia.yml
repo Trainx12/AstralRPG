@@ -28,7 +28,7 @@ Crate:
       volume: 1.0
       pitch: 1.0
   Prize-Message:
-    - "<gray>Ganaste <white>%reward% <gray>en la <aqua><bold>Gacha de Cosmeticos<gray>!"
+    - "<gray>Ganaste <white>%reward% <gray>en la <#FF7BD5><bold>Gacha de Cosmeticos<gray>!"
   Prize-Commands: []
   Settings:
     Tracking-Crate-Opening: false
@@ -59,11 +59,11 @@ Crate:
     Namespace: ""
     Id: ""
   Glowing: "add_glow"
-  Name: "<aqua><bold>Gacha de Cosmeticos"
+  Name: "<#FF7BD5><bold>Gacha de Cosmeticos"
   Lore:
     - "<gray>Tirada: <yellow>500$"
   Preview:
-    Name: "<aqua><bold>Gacha de Cosmeticos<reset><gray> - premios"
+    Name: "<#FF7BD5><bold>Gacha de Cosmeticos<reset><gray> - premios"
     Toggle: true
     Rows: 6
     Glass:
@@ -75,7 +75,7 @@ Crate:
         Namespace: ""
         Id: ""
   Animation:
-    Name: "<aqua><bold>Gacha de Cosmeticos<reset><gray> - girando..."
+    Name: "<#FF7BD5><bold>Gacha de Cosmeticos<reset><gray> - girando..."
     Glass-Frame:
       Toggle: true
       Items:
@@ -88,7 +88,7 @@ Crate:
         Toggle: true
         Items: {}
   PhysicalKey:
-    Name: "<aqua><bold>Gacha de Cosmeticos - llave"
+    Name: "<#FF7BD5><bold>Gacha de Cosmeticos - llave"
     Lore: []
     Item: "tripwire_hook"
     Custom-Model-Data: -1
@@ -128,12 +128,12 @@ Crate:
         - "<gold>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 7.8125
       Commands:
         - "lp user %player% meta setprefix 100 &b&l«ASTRAL»"
         - "scoreboard players set %player% pity_cosmeticos 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fTitulo «ASTRAL»"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha de Cosmeticos&7: &fTitulo «ASTRAL»"
     "2":
       DisplayName: "<gold><bold>Cabeza de Dragon"
       DisplayItem: "dragon_head"
@@ -154,12 +154,12 @@ Crate:
         - "<gold>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.6875
       Commands:
         - "give %player% minecraft:dragon_head 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fCabeza de Dragon"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha de Cosmeticos&7: &fCabeza de Dragon"
     "3":
       DisplayName: "<light_purple><bold>Titulo «Campeon»"
       DisplayItem: "name_tag"
@@ -180,12 +180,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮▮▮<dark_gray>▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 33.6538
       Commands:
         - "lp user %player% meta setprefix 100 &6&l«Campeon»"
         - "scoreboard players set %player% pity_cosmeticos 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Campeon»"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha de Cosmeticos&7: &fTitulo «Campeon»"
     "4":
       DisplayName: "<light_purple><bold>Titulo «Senor del Abismo»"
       DisplayItem: "name_tag"
@@ -206,12 +206,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮▮▮<dark_gray>▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 33.6538
       Commands:
         - "lp user %player% meta setprefix 100 &5&l«Senor del Abismo»"
         - "scoreboard players set %player% pity_cosmeticos 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Senor del Abismo»"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha de Cosmeticos&7: &fTitulo «Senor del Abismo»"
     "5":
       DisplayName: "<light_purple><bold>Molde de adorno: silence"
       DisplayItem: "silence_armor_trim_smithing_template"
@@ -232,9 +232,9 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 20.1923
       Commands:
         - "give %player% minecraft:silence_armor_trim_smithing_template 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fMolde de adorno: silence"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha de Cosmeticos&7: &fMolde de adorno: silence"

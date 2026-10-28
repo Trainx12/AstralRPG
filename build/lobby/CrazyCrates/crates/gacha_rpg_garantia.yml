@@ -28,7 +28,7 @@ Crate:
       volume: 1.0
       pitch: 1.0
   Prize-Message:
-    - "<gray>Ganaste <white>%reward% <gray>en la <light_purple><bold>Gacha RPG<gray>!"
+    - "<gray>Ganaste <white>%reward% <gray>en la <#B07CFF><bold>Gacha de Armas<gray>!"
   Prize-Commands: []
   Settings:
     Tracking-Crate-Opening: false
@@ -59,11 +59,11 @@ Crate:
     Namespace: ""
     Id: ""
   Glowing: "add_glow"
-  Name: "<light_purple><bold>Gacha RPG"
+  Name: "<#B07CFF><bold>Gacha de Armas"
   Lore:
     - "<gray>Tirada: <yellow>1000$"
   Preview:
-    Name: "<light_purple><bold>Gacha RPG<reset><gray> - premios"
+    Name: "<#B07CFF><bold>Gacha de Armas<reset><gray> - premios"
     Toggle: true
     Rows: 6
     Glass:
@@ -75,7 +75,7 @@ Crate:
         Namespace: ""
         Id: ""
   Animation:
-    Name: "<light_purple><bold>Gacha RPG<reset><gray> - girando..."
+    Name: "<#B07CFF><bold>Gacha de Armas<reset><gray> - girando..."
     Glass-Frame:
       Toggle: true
       Items:
@@ -88,7 +88,7 @@ Crate:
         Toggle: true
         Items: {}
   PhysicalKey:
-    Name: "<light_purple><bold>Gacha RPG - llave"
+    Name: "<#B07CFF><bold>Gacha de Armas - llave"
     Lore: []
     Item: "tripwire_hook"
     Custom-Model-Data: -1
@@ -128,12 +128,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/espada_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fEspada V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fEspada V"
     "2":
       DisplayName: "<gold><bold>Baston V"
       DisplayItem: "paper"
@@ -154,12 +154,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/baston_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fBaston V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fBaston V"
     "3":
       DisplayName: "<gold><bold>Arco V"
       DisplayItem: "paper"
@@ -180,12 +180,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/arco_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fArco V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fArco V"
     "4":
       DisplayName: "<gold><bold>Hacha V"
       DisplayItem: "paper"
@@ -206,12 +206,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/hacha_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fHacha V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fHacha V"
     "5":
       DisplayName: "<gold><bold>Lanza V"
       DisplayItem: "paper"
@@ -232,12 +232,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/lanza_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fLanza V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fLanza V"
     "6":
       DisplayName: "<gold><bold>Guadana V"
       DisplayItem: "paper"
@@ -258,12 +258,12 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/guadana_5"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana V"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fGuadana V"
     "7":
       DisplayName: "<gold><bold>Chispa Astral x2"
       DisplayItem: "paper"
@@ -284,13 +284,13 @@ Crate:
         - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.4881
       Commands:
         - "loot give %player% loot astral:item/chispa_astral"
         - "loot give %player% loot astral:item/chispa_astral"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fChispa Astral x2"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fChispa Astral x2"
     "8":
       DisplayName: "<gold><bold>Nucleo de Furia Pura"
       DisplayItem: "paper"
@@ -311,12 +311,12 @@ Crate:
         - "<gold>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 1.1905
       Commands:
         - "loot give %player% loot astral:item/nucleo_furia_pura"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fNucleo de Furia Pura"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fNucleo de Furia Pura"
     "9":
       DisplayName: "<gold><bold>Guadana Umbria"
       DisplayItem: "paper"
@@ -337,12 +337,12 @@ Crate:
         - "<gold>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 0.8929
       Commands:
         - "loot give %player% loot astral:item/guadana_umbria"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana Umbria"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &5Gacha de Armas&7: &fGuadana Umbria"
     "10":
       DisplayName: "<light_purple><bold>Nucleo Astral"
       DisplayItem: "paper"
@@ -363,12 +363,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 10.1744
       Commands:
         - "loot give %player% loot astral:item/nucleo_astral"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fNucleo Astral"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fNucleo Astral"
     "11":
       DisplayName: "<light_purple><bold>Gema Umbria Perfecta"
       DisplayItem: "paper"
@@ -389,12 +389,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 10.1744
       Commands:
         - "loot give %player% loot astral:item/gema_umbria_perfecta"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Umbria Perfecta"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fGema Umbria Perfecta"
     "12":
       DisplayName: "<light_purple><bold>Gema Luminica Perfecta"
       DisplayItem: "paper"
@@ -415,12 +415,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 10.1744
       Commands:
         - "loot give %player% loot astral:item/gema_luminica_perfecta"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Luminica Perfecta"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fGema Luminica Perfecta"
     "13":
       DisplayName: "<light_purple><bold>Espada IV"
       DisplayItem: "paper"
@@ -441,12 +441,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/espada_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fEspada IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fEspada IV"
     "14":
       DisplayName: "<light_purple><bold>Baston IV"
       DisplayItem: "paper"
@@ -467,12 +467,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/baston_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fBaston IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fBaston IV"
     "15":
       DisplayName: "<light_purple><bold>Arco IV"
       DisplayItem: "paper"
@@ -493,12 +493,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/arco_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fArco IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fArco IV"
     "16":
       DisplayName: "<light_purple><bold>Hacha IV"
       DisplayItem: "paper"
@@ -519,12 +519,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/hacha_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fHacha IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fHacha IV"
     "17":
       DisplayName: "<light_purple><bold>Lanza IV"
       DisplayItem: "paper"
@@ -545,12 +545,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/lanza_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fLanza IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fLanza IV"
     "18":
       DisplayName: "<light_purple><bold>Guadana IV"
       DisplayItem: "paper"
@@ -571,12 +571,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 6.1047
       Commands:
         - "loot give %player% loot astral:item/guadana_4"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGuadana IV"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fGuadana IV"
     "19":
       DisplayName: "<light_purple><bold>Talisman de Vida III"
       DisplayItem: "paper"
@@ -597,12 +597,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 5.0872
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_3"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Vida III"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fTalisman de Vida III"
     "20":
       DisplayName: "<light_purple><bold>Talisman de Furia III"
       DisplayItem: "paper"
@@ -623,12 +623,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 5.0872
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_3"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Furia III"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fTalisman de Furia III"
     "21":
       DisplayName: "<light_purple><bold>Talisman de Roca III"
       DisplayItem: "paper"
@@ -649,12 +649,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 5.0872
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_3"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Roca III"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fTalisman de Roca III"
     "22":
       DisplayName: "<light_purple><bold>Talisman de Viento III"
       DisplayItem: "paper"
@@ -675,9 +675,9 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 50 tiradas"
       Weight: 5.0872
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_3"
         - "scoreboard players set %player% pity_rpg 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Viento III"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &5Gacha de Armas&7: &fTalisman de Viento III"

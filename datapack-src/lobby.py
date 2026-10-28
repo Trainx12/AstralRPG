@@ -34,7 +34,8 @@ RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legenda
 # Pity (garantia): cada tirada suma 1 al contador del jugador (scoreboard 'pity_<gacha>').
 # Al llegar al numero, esa tirada sale de la caja "<gacha>_garantia" (solo Epico o Legendario).
 # Sacar Epico o Legendario (con o sin garantia) vuelve el contador a 0.
-PITY = {"gacha_rpg": 30, "gacha_monturas": 20, "gacha_cosmeticos": 30}
+# Mas tiradas para la garantia cuanto mas fuerte es lo que da la gacha (armas > monturas > cosmeticos)
+PITY = {"gacha_rpg": 50, "gacha_monturas": 40, "gacha_cosmeticos": 20}
 PITY_RARITIES = ("epic", "legendary")
 
 
@@ -130,7 +131,7 @@ def cosmetic_rewards():
 
 
 GACHAS = {
-    "gacha_rpg": dict(name="<gradient:#B07CFF:#4FD1FF><b>Gacha RPG</b></gradient>", cost=1000,
+    "gacha_rpg": dict(name="<gradient:#B07CFF:#4FD1FF><b>Gacha de Armas</b></gradient>", cost=1000,
                       desc=["<gray>Materiales de forja, armas,", "<gray>talismanes y premios legendarios."],
                       rewards=rpg_rewards),
     "gacha_monturas": dict(name="<gradient:#F4D24A:#E07A2A><b>Gacha de Monturas</b></gradient>", cost=2500,
@@ -151,9 +152,9 @@ RARITY_MINI = {"common": "<white>Comun", "uncommon": "<green>Poco comun", "rare"
                "epic": "<light_purple>Epico", "legendary": "<gold><bold>Legendario"}
 RARITY_AMP = {"common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
               "legendary": "&6&lLegendario"}
-GACHA_MINI = {"gacha_rpg": "<light_purple><bold>Gacha RPG", "gacha_monturas": "<yellow><bold>Gacha de Monturas",
-              "gacha_cosmeticos": "<aqua><bold>Gacha de Cosmeticos"}
-GACHA_AMP = {"gacha_rpg": "&dGacha RPG", "gacha_monturas": "&eGacha de Monturas", "gacha_cosmeticos": "&bGacha de Cosmeticos"}
+GACHA_MINI = {"gacha_rpg": "<#B07CFF><bold>Gacha de Armas", "gacha_monturas": "<#7ED957><bold>Gacha de Monturas",
+              "gacha_cosmeticos": "<#FF7BD5><bold>Gacha de Cosmeticos"}
+GACHA_AMP = {"gacha_rpg": "&5Gacha de Armas", "gacha_monturas": "&aGacha de Monturas", "gacha_cosmeticos": "&dGacha de Cosmeticos"}
 GACHA_FRAME = {"gacha_rpg": ("purple_stained_glass_pane", "amethyst_shard"),
                "gacha_monturas": ("yellow_stained_glass_pane", "saddle"),
                "gacha_cosmeticos": ("light_blue_stained_glass_pane", "name_tag")}
@@ -406,6 +407,34 @@ def spawn_yml():
                       f"    x: {x}", f"    y: {float(y)}", f"    z: {z}", f"    yaw: {float(yaw)}", "    pitch: 0.0"]) + "\n"
 
 
+# Carteles flotantes (text_display de Minecraft) arriba de cada cofre, con el color del cofre.
+HOLO_COLOR = {"gacha_rpg": "#B07CFF", "gacha_monturas": "#7ED957", "gacha_cosmeticos": "#FF7BD5"}
+HOLO_NAME = {"gacha_rpg": "Gacha de Armas", "gacha_monturas": "Gacha de Monturas", "gacha_cosmeticos": "Gacha de Cosmeticos"}
+HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "Monturas con silla y mascotas",
+             "gacha_cosmeticos": "Titulos para el chat y adornos"}
+
+
+def holo_cmds():
+    import json
+    out = ["# --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)",
+           f"execute in minecraft:{WORLD} run kill @e[type=minecraft:text_display,tag=astral_holo]"]
+    for gid, g in GACHAS.items():
+        x, y, z, _ = NPC_POS["astral_npc_" + gid]
+        col = HOLO_COLOR[gid]
+        NL = chr(10)
+        text = [{"text": "✦ " + HOLO_NAME[gid] + " ✦", "color": col, "bold": True},
+                {"text": NL + HOLO_DESC[gid], "color": "gray"},
+                {"text": NL + str(g["cost"]) + "$ por tirada", "color": "gold"},
+                {"text": NL + "Epico garantizado cada ", "color": "white"},
+                {"text": str(PITY[gid]) + " tiradas", "color": col, "bold": True},
+                {"text": NL + "Clic: tirar  -  Shift+clic: premios", "color": "dark_gray"}]
+        comp = json.dumps({"text": "", "extra": text})   # XXXX: la estrella llega bien por cualquier consola
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + 1.55} {z} "
+                   f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
+                   f"line_width:220,text:{comp}}}")
+    return out
+
+
 def commands():
     x, y, z, yaw = SPAWN
     C = ["# Comandos de consola (sin /) para dejar armado el lobby. Se pueden repetir sin problema.",
@@ -464,6 +493,7 @@ def commands():
     C.append("# Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):")
     C.append("#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)")
     C.append(f"rg flag -w {WORLD} __global__ mob-spawning deny")
+    C += holo_cmds()
     return "\n".join(C) + "\n"
 
 
