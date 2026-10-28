@@ -33,3 +33,4 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 - CrazyCrates: `crates preview` solo funciona como jugador (usar `sudo`); `crates forceopen <caja> <jugador>` abre gratis.
 - Lobby: WorldGuard bloquea mobs; para spawnear vendedores, `mob-spawning allow` un momento (ver `build/lobby/comandos.txt`).
 - `cookie_request` al entrar = el server está apagado.
+- Spam en el chat de los OP ("Se ha cambiado la puntuación..."): en Aternos `broadcast-console-to-ops=false` y gamerule `log_admin_commands false`; en skills que corren seguido, filtrar a quién se aplica (`@a[scores={x=1..}]`).
