@@ -1,6 +1,7 @@
 # AstralRPG: cómo está armado el servidor
 
-Documento de referencia para administrar y cambiar el servidor. Actualizado el 27/10/2026.
+Documento de referencia para administrar el servidor. Actualizado el 28/10/2026.
+Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [GUIA.md](GUIA.md).
 
 > **Contraseñas:** este repositorio es público, así que acá no va ninguna contraseña.
 > El usuario y la contraseña de Aternos están en `docs/CREDENCIALES.local.md`. Ese archivo existe solo
@@ -42,7 +43,7 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | SkinsRestorer | Skins para cuentas no premium |
 | AxGraves | Tumba con tus cosas al morir |
 | ClearLag++ | Limpia ítems tirados para que no haya lag |
-| TAB | Lista de jugadores |
+| TAB | Tabulador y panel lateral de stats (ver Lobby) |
 | nonchat | Filtro y formato de chat |
 | RHLeafDecay | Las hojas se caen rápido al talar |
 | LuckPerms | Permisos |
@@ -175,4 +176,16 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 
 ## Servidor de prueba local
 
-Para probar sin tocar Aternos hay una copia del servidor (mismos plugins) en la carpeta temporal de Claude. Se puede rearmar bajando Paper 26.1.2 y los mismos plugins. El mundo de prueba es plano.
+Para probar sin tocar Aternos hubo una copia del servidor (mismos plugins, sin economía) en la carpeta temporal de Claude. Esas carpetas se pueden borrar; se rearma bajando Paper 26.1.2 y los mismos plugins. El mundo de prueba es plano. Detalles en [GUIA.md](GUIA.md#6-servidor-de-prueba-local).
+
+## Comandos de admin del lobby y la economía
+
+| Comando | Qué hace |
+|---|---|
+| `eco give <jugador> <monto>` | Dar plata (`eco take` / `eco set` para sacar o fijar) |
+| `lp user <jugador> meta setprefix 100 &b&l«ASTRAL»` | Dar un título (`meta removeprefix 100` lo saca) |
+| `loot give <jugador> loot astral:item/<id>` | Dar cualquier ítem de AstralRPG |
+| `mm egg give <jugador> astral_<montura> 1` | Huevo de montura o mascota (usar en el mundo, no en el lobby) |
+| `crates forceopen <gacha_rpg\|gacha_monturas\|gacha_cosmeticos> <jugador>` | Tirada gratis |
+| `mvtp <jugador> w:world` / `spawn` | Ir al mundo / al lobby |
+| `mm mobs kill astral_npc_<nombre>` | Borrar un vendedor (se vuelve a poner con `build/lobby/comandos.txt`) |
