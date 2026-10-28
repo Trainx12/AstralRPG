@@ -417,7 +417,7 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
 def holo_cmds():
     import json
     out = ["# --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)",
-           f"execute in minecraft:{WORLD} run kill @e[type=minecraft:text_display,tag=astral_holo]"]
+           f"execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral_holo]"]
     for gid, g in GACHAS.items():
         x, y, z, _ = NPC_POS["astral_npc_" + gid]
         col = HOLO_COLOR[gid]
