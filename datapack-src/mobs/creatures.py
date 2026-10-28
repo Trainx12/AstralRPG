@@ -35,6 +35,31 @@ def border(w, h, col):
     return [(0, 0, w, 1, col), (0, h - 1, w, 1, col), (0, 0, 1, h, col), (w - 1, 0, 1, h, col)]
 
 
+def rbox(m, bone, a, b, col, dec=None, pat=None, r=None):
+    """Caja con bordes redondeados (mismo tamano total)."""
+    m.rcube(bone, a, b, col, dec, r=r, pat=pat)
+
+
+def rmirror(m, bone, a, b, col, dec=None, pat=None, r=None):
+    m.rcube(bone, a, b, col, dec, r=r, pat=pat)
+    m.rcube(bone, (-b[0], a[1], a[2]), (-a[0], b[1], b[2]), col, dec, r=r, pat=pat)
+
+
+def taper(m, bone, pts, col, pat=None, cols=None, axis=2):
+    """Pieza que se afina (cola, cuello, pata): pts = [(centro, radio_x, radio_y, largo_eje)], una caja redondeada por tramo."""
+    for i, (c, rx, ry, ln) in enumerate(pts):
+        r = [rx, ry, ry]
+        if axis == 2:
+            r = [rx, ry, ln / 2]
+        elif axis == 1:
+            r = [rx, ln / 2, ry]
+        else:
+            r = [ln / 2, rx, ry]
+        a = [c[k] - r[k] for k in range(3)]
+        b = [c[k] + r[k] for k in range(3)]
+        m.rcube(bone, a, b, (cols[i % len(cols)] if cols else col), pat=pat)
+
+
 def box(m, bone, a, b, col, dec=None, pat=None):
     m.cube(bone, a, b, col, dec, pat=pat)
 
@@ -111,9 +136,10 @@ def reins(m, bone, x, y, z0, z1, col="#7a3a1a", ring="#e8c24a"):
 def mapache():
     m = Model("astral_mapache")
     m.bone("body", (0, 8, 0))
-    m.cube("body", (-4, 4, -6), (4, 11, 7), "#8a6e5a",
-           {"down": [(1, 1, 6, 11, "#cdb89e")], "east": [(0, 5, 13, 2, "#a88c74")]}, pat="fur")
-    m.cube("body", (-3.5, 4.5, -7), (3.5, 10, -6), "#9a7e68", pat="fur")                                   # pecho
+    m.blob("body", (0, 7.6, 0.6), (4.2, 3.6, 6.8), "#8a6e5a", pat="fur", axis=2)                          # cuerpo ovalado
+    m.blob("body", (0, 8.4, 4), (4.5, 3.3, 3.4), "#8a6e5a", pat="fur", levels=2)                            # caderas mas anchas
+    m.blob("body", (0, 5.6, 0.4), (3.2, 1.9, 5.6), "#cdb89e", pat="fur", axis=2, levels=2)                   # panza clara
+    m.blob("body", (0, 7.4, -6), (3.3, 2.8, 1.6), "#9a7e68", pat="fur", levels=2)                           # pecho
     for x0, y0, y1 in ((-2.5, 4.2, 6.5), (-0.8, 4.5, 7.5), (0.9, 4.2, 6.8)):                                # mechones del pecho
         box(m, "body", (x0, y0, -7.5), (x0 + 1.6, y1, -7), "#d8c6aa", pat="fur")
     for z in (-4, 0, 4):                                                                                    # lomo rayado
@@ -121,30 +147,31 @@ def mapache():
     for z in (-5, -1, 3):                                                                                   # mechones del lomo a los lados
         mirror(m, "body", (4, 8, z), (4.4, 10.5, z + 1.5), "#7a604e", pat="fur")
     m.bone("head", (0, 9, -7), "body")
-    m.cube("head", (-4.5, 6, -13), (4.5, 13, -7), "#9a7e68",
-           {"north": [(0, 5, 9, 2, "#e8dccb"), (4, 0, 1, 4, "#e8dccb")], "up": [(3, 0, 3, 6, "#6e5444")]}, pat="fur")
+    m.rcube("head", (-4.5, 6, -13), (4.5, 13, -7), "#9a7e68",
+            {"north": [(0, 5, 9, 2, "#e8dccb"), (4, 0, 1, 4, "#e8dccb")], "up": [(3, 0, 3, 6, "#6e5444")]}, r=1.5, pat="fur")
+    m.blob("head", (0, 9.6, -7.6), (4, 3.4, 1.4), "#8a6e5a", pat="fur", levels=2)                            # nuca redonda
     box(m, "head", (-4.5, 9, -13.3), (4.5, 11, -13), "#3a2e28")                                             # antifaz
     eye_front(m, "head", 0.8, 2.6, 9.3, 10.8, -13.3, "#1a1414", pupil=None)
     mirror(m, "head", (0.6, 11, -13.5), (3.0, 11.8, -13), "#e8dccb")                                         # cejas blancas
-    m.cube("head", (-2, 6, -15), (2, 9, -13), "#e2d4c0", {"north": [(1, 2, 2, 1, "#8a6a5a")]})               # hocico
+    m.rcube("head", (-2, 6, -15), (2, 9, -12.5), "#e2d4c0", {"north": [(1, 2, 2, 1, "#8a6a5a")]}, r=0.8)       # hocico
     box(m, "head", (-1, 8.4, -15.5), (1, 9.4, -14.6), "#1d1d1d", {"north": [(0, 0, 1, 1, "#5a5a5a")]})        # nariz
-    mirror(m, "head", (4.5, 6.5, -11), (5.6, 9.5, -8), "#e2d4c0", pat="fur")                                # cachetes
+    rmirror(m, "head", (4, 6.3, -11.5), (5.8, 9.7, -7.5), "#e2d4c0", pat="fur", r=0.7)                      # cachetes
     mirror(m, "head", (5.6, 7, -10.5), (6.1, 8.5, -9), "#e2d4c0")                                           # punta del cachete
     mirror(m, "head", (2.2, 13, -10), (4.6, 15.5, -8.5), "#6b5040")                                         # orejas
     mirror(m, "head", (2.7, 13.2, -10.4), (4.1, 15, -10), "#e0a0a0")                                         # adentro rosa
     mirror(m, "head", (2.6, 15.5, -10), (4.2, 16.1, -9), "#3a2e28")                                         # punta
     box(m, "head", (-1.5, 13, -10), (1.5, 14, -8), "#6e5444", pat="fur")                                     # copete
     m.bone("tail", (0, 9.5, 7), "body", rotation=(-20, 0, 0))
-    m.cube("tail", (-2, 7.5, 7), (2, 11.5, 19), "#8a6e5a", pat="fur")
-    for z in (8, 12, 16):                                                                                   # anillos en relieve
-        box(m, "tail", (-2.3, 7.2, z), (2.3, 11.8, z + 2), "#3a2e28", pat="fur")
-    m.cube("tail", (-1.6, 8, 19), (1.6, 11, 21.5), "#2e241e", pat="fur")
-    box(m, "tail", (-0.8, 8.6, 21.5), (0.8, 10.4, 22.5), "#2e241e")
+    taper(m, "tail", [((0, 9.5, 8.2), 1.8, 1.8, 2.6), ((0, 9.5, 10.6), 2.3, 2.3, 2.4), ((0, 9.5, 13), 2.6, 2.6, 2.6),
+                      ((0, 9.5, 15.5), 2.5, 2.5, 2.4), ((0, 9.5, 17.9), 2.2, 2.2, 2.4), ((0, 9.5, 20.2), 1.7, 1.7, 2.4),
+                      ((0, 9.5, 22.1), 1.1, 1.1, 1.6)], "#8a6e5a", pat="fur",
+          cols=["#8a6e5a", "#3a2e28"])                                                                      # cola esponjosa con anillos
     legs = []
     for n, x, z in (("leg_fl", -2.5, -3.5), ("leg_fr", 2.5, -3.5), ("leg_bl", -2.5, 4.5), ("leg_br", 2.5, 4.5)):
         m.bone(n, (x, 5, z), "body")
-        m.cube(n, (x - 1.3, 1, z - 1.3), (x + 1.3, 5, z + 1.3), "#5a463a", pat="fur")
-        m.cube(n, (x - 1.5, 0, z - 1.8), (x + 1.5, 1, z + 1.3), "#2e241e")
+        m.rcube(n, (x - 1.5, 3, z - 1.6), (x + 1.5, 6, z + 1.6), "#6a5444", r=0.6, pat="fur")                # muslo
+        m.rcube(n, (x - 1.2, 1, z - 1.2), (x + 1.2, 4, z + 1.2), "#5a463a", r=0.5, pat="fur")
+        m.rcube(n, (x - 1.5, 0, z - 1.9), (x + 1.5, 1.2, z + 1.3), "#2e241e", r=0.4)                         # mano
         for dx in (-1.1, -0.25, 0.6):                                                                       # garritas
             box(m, n, (x + dx, 0, z - 2.3), (x + dx + 0.5, 0.6, z - 1.8), "#d8d0c0")
         legs.append(n)
@@ -158,8 +185,8 @@ def mapache():
 def pinguino():
     m = Model("astral_pinguino")
     m.bone("body", (0, 2, 0))
-    m.cube("body", (-4, 2, -3.5), (4, 12, 3.5), "#78b6e6", {"south": [(3, 6, 2, 3, "#5a9fd6")]}, pat="feather")
-    box(m, "body", (-3, 3, -3.9), (3, 11, -3.5), "#e4f4ff", pat="feather")                                   # panza
+    m.blob("body", (0, 7, 0), (4.4, 5.2, 3.9), "#78b6e6", pat="feather", levels=4)                         # cuerpo de huevo
+    m.blob("body", (0, 6.6, -1.2), (3.2, 4.4, 3), "#e4f4ff", pat="feather", levels=3)                       # panza blanca que asoma
     for y in (4.5, 6.5, 8.5):                                                                               # plumas en V de la panza
         box(m, "body", (-2.5, y, -4.2), (-0.5, y + 0.6, -3.9), "#b8dcf4")
         box(m, "body", (0.5, y, -4.2), (2.5, y + 0.6, -3.9), "#b8dcf4")
@@ -172,7 +199,8 @@ def pinguino():
             box(m, "body", (x0 + k * 1.1, 0, -4.4), (x0 + k * 1.1 + 0.8, 0.8, -3.5), "#e8752a")
             box(m, "body", (x0 + k * 1.1 + 0.15, 0, -4.8), (x0 + k * 1.1 + 0.65, 0.5, -4.4), "#5a2a10")
     m.bone("head", (0, 12, 0), "body")
-    m.cube("head", (-4.5, 12, -4), (4.5, 19, 4), "#6aaee0", {"up": [(2, 2, 5, 4, "#4a88c0")]}, pat="feather")
+    m.blob("head", (0, 15.4, 0), (4.6, 3.8, 4.1), "#6aaee0", pat="feather", levels=3)                      # cabeza redonda
+    m.rcube("head", (-4.5, 12.4, -4), (4.5, 18.6, 4), "#6aaee0", {"up": [(2, 2, 5, 4, "#4a88c0")]}, r=1.5, pat="feather")
     box(m, "head", (-4.5, 18, -4.3), (4.5, 19, -4), "#3f7cc0")                                               # frente oscura
     box(m, "head", (-1.5, 17.4, -4.6), (1.5, 18.6, -4.3), "#3f7cc0")                                         # pico de la frente (ceno)
     eye_front(m, "head", 1.4, 3.6, 14.2, 16.8, -4, "#111111", pupil="#2a2a40", white="#ffffff")
@@ -188,7 +216,9 @@ def pinguino():
     for n, s in (("flip_l", 1), ("flip_r", -1)):
         m.bone(n, (4 * s, 11, 0), "body")
         a, b = sorted((4 * s, 5.2 * s))
-        m.cube(n, (a, 4, -2), (b, 11, 2), "#3f7cc0", pat="feather")
+        m.rcube(n, (a, 4, -2.2), (b, 11, 2.2), "#3f7cc0", r=0.5, pat="feather")
+        a2, b2 = sorted((4.4 * s, 5.4 * s))
+        m.rcube(n, (a2, 2.6, -1.4), (b2, 4.4, 1.4), "#3f7cc0", r=0.4, pat="feather")                       # punta de la aleta
         a, b = sorted((5.2 * s, 5.6 * s))
         for y in (4, 6.5, 9):                                                                                # plumas del borde
             m.cube(n, (a, y, -1.6), (b, y + 1.8, 1.6), "#8ac8f0")
@@ -211,7 +241,8 @@ def pinguino():
 def espantapajaros():
     m = Model("astral_espantapajaros")
     m.bone("body", (0, 12, 0))
-    m.cube("body", (-3.5, 9, -2), (3.5, 17, 2), "#c9a23c", pat="straw")
+    m.blob("body", (0, 13, 0), (3.8, 4.2, 2.4), "#c9a23c", pat="straw", levels=3)                          # bolsa de paja rellena
+    m.rcube("body", (-3.5, 9, -2), (3.5, 17, 2), "#c9a23c", r=1, pat="straw")
     box(m, "body", (-0.5, 12, -2.4), (2.5, 15, -2), "#7a3fb0", {"north": [(0, 0, 3, 1, "#9a5fd0"), (1, 1, 1, 1, "#e8c24a")]}, pat="cloth")  # parche
     for y in (12.2, 14.6):                                                                                 # puntadas del parche
         box(m, "body", (2.5, y, -2.3), (3.0, y + 0.3, -2), "#e8c24a")
@@ -239,9 +270,10 @@ def espantapajaros():
     carve = [(1, 2, 3, 2, "#5a1f8a"), (6, 2, 3, 2, "#5a1f8a"), (2, 2, 1, 1, "#e8a0ff"), (7, 2, 1, 1, "#e8a0ff"),
              (1, 3, 1, 1, "#b04af0"), (3, 3, 1, 1, "#b04af0"), (6, 3, 1, 1, "#b04af0"), (8, 3, 1, 1, "#b04af0"),
              (4, 4, 2, 1, "#5a1f8a"), (1, 6, 8, 2, "#5a1f8a"), (3, 6, 1, 1, "#d070f0"), (5, 7, 1, 1, "#d070f0")]
-    m.cube("head", (-5, 18, -5), (5, 27, 5), "#f0a01c", {"north": carve})
+    m.blob("head", (0, 22.5, 0.2), (5.5, 4.8, 4.9), "#e8901a", pat=None, levels=3)                          # calabaza redonda
+    m.rcube("head", (-5, 18, -5), (5, 27, 5), "#f0a01c", {"north": carve}, r=1)
     for z in (-3.5, -1.5, 1.5, 3.5):                                                                        # gajos en relieve
-        mirror(m, "head", (5, 18.4, z - 0.5), (5.5, 26.6, z + 0.5), "#d8761a")
+        mirror(m, "head", (5.2, 18.6, z - 0.5), (5.9, 26.4, z + 0.5), "#d8761a")
         box(m, "head", (z - 0.5, 18.4, 5), (z + 0.5, 26.6, 5.5), "#d8761a")
     mirror(m, "head", (4.3, 18.4, -5.5), (5.2, 26.6, -5), "#d8761a")                                         # gajos del frente (bordes)
     mirror(m, "head", (0.8, 25, -5.6), (4.2, 25.8, -5), "#f6b030")                                           # ceno sobre los ojos
@@ -307,17 +339,18 @@ def espantapajaros():
 def abejorro():
     m = Model("astral_abejorro")
     m.bone("body", (0, 10, 0))
-    m.cube("body", (-4, 7, -3), (4, 13, 4), "#23283a", pat="fur")                                         # torax
+    m.blob("body", (0, 10, 0.5), (4.3, 3.4, 3.8), "#23283a", pat="fur", levels=3)                          # torax peludo
     for x, z in ((-3, -2), (1, -1.5), (-1, 1.5), (2, 2)):                                                  # pelusa del torax
         box(m, "body", (x, 13, z), (x + 1.5, 13.8, z + 1.5), "#2e3550", pat="fur")
     mirror(m, "body", (4, 9, -2), (4.5, 12, 3), "#2e3550", pat="fur")
-    m.cube("body", (-5, 5, 4), (5, 13, 14), "#1e2232", {"south": [(2, 2, 6, 4, "#151821")]}, pat="chitin")  # abdomen
-    for z in (5.5, 8.5, 11.5):                                                                             # anillos naranjas en relieve
-        box(m, "body", (-5.3, 4.7, z), (5.3, 13.3, z + 1.2), "#e0a83a", pat="chitin")
-    box(m, "body", (-4.2, 5.8, 14), (4.2, 12.2, 14.6), "#1a1e2c")                                          # punta del abdomen
-    m.cube("body", (-1, 7.5, 14.6), (1, 9.5, 17), "#151821")                                              # aguijon
-    box(m, "body", (-0.4, 8.1, 17), (0.4, 8.9, 18.5), "#e0a83a")
-    m.cube("body", (-3.5, 7, -8), (3.5, 13, -3), "#1b1f2d", pat="fur")                                     # cabeza
+    taper(m, "body", [((0, 9, 5), 4.2, 3.6, 2), ((0, 9, 6.5), 5.2, 4.4, 1.2), ((0, 9, 8.2), 5.4, 4.6, 2.2),
+                      ((0, 9, 9.9), 5.5, 4.7, 1.2), ((0, 9, 11.5), 5.0, 4.3, 2), ((0, 9, 13), 4.4, 3.8, 1.2),
+                      ((0, 9, 14.3), 3.2, 2.8, 1.6), ((0, 9, 15.4), 2.0, 1.8, 1)], "#1e2232", pat="chitin",
+          cols=["#1e2232", "#e0a83a"])                                                                      # abdomen ovalado con anillos
+    m.cube("body", (-0.8, 8.2, 15.8), (0.8, 9.8, 17.6), "#151821")                                        # aguijon
+    box(m, "body", (-0.4, 8.6, 17.6), (0.4, 9.4, 19), "#e0a83a")
+    m.rcube("body", (-3.5, 7, -8), (3.5, 13, -3), "#1b1f2d", r=1.5, pat="fur")                             # cabeza
+    m.blob("body", (0, 10, -5.5), (3.9, 3.2, 2.6), "#1b1f2d", pat="fur", levels=2)
     box(m, "body", (-3.8, 7.5, -3.6), (3.8, 12.5, -2.6), "#2e3550", pat="fur")                              # cuello peludo
     eye_front(m, "body", 0.5, 3.4, 9, 12.2, -8, "#ffd34d", pupil="#c07a10", glow="#fff6c0")
     mirror(m, "body", (0.3, 12.2, -8.6), (3.6, 12.8, -7.8), "#151821")                                      # ceno
@@ -358,20 +391,21 @@ def abejorro():
 def arana():
     m = Model("astral_arana")
     m.bone("body", (0, 6, 0))
-    m.cube("body", (-6, 4, -4), (6, 10, 8), "#5e4e8c", pat="chitin")
+    m.blob("body", (0, 8.5, 2.5), (6.6, 4.4, 6.8), "#5e4e8c", pat="chitin", levels=4)                    # abdomen redondo
     for s in (1, -1):                                                                                      # dos placas del caparazon
         a, b = sorted((0.3 * s, 6.6 * s))
-        m.cube("body", (a, 9.5, -4.6), (b, 12, 8.6), "#8a7ab8", pat="chitin")
+        m.rcube("body", (a, 9.6, -3.8), (b, 12.2, 8.6), "#8a7ab8", r=1.2, pat="chitin")
         for z in (-1.5, 2.5, 6.5):                                                                         # bordes de cada segmento
             a, b = sorted((0.5 * s, 6.4 * s))
             m.cube("body", (a, 12, z), (b, 12.5, z + 0.6), "#a898d8")
-        a, b = sorted((6.6 * s, 7.0 * s))
-        m.cube("body", (a, 9.8, -4.3), (b, 11.6, 8.3), "#6a5a98")                                         # labio de la placa
+        a, b = sorted((6.6 * s, 7.1 * s))
+        m.rcube("body", (a, 9.2, -2.5), (b, 11.2, 7.5), "#6a5a98", r=0.5)                                # labio de la placa
     box(m, "body", (-0.3, 11.5, -4.6), (0.3, 12.8, 8.6), "#3e2e6c")                                        # costura del medio
     for x, z, h in ((-2.5, 2, 3), (1.5, 4, 2), (-1, 6, 2.5), (3.5, 0, 1.8)):                              # cristales de amatista
         box(m, "body", (x, 12, z), (x + 1.2, 12 + h, z + 1.2), "#c890ff", {"north": [(0, 0, 1, 1, "#f0e0ff")]})
         box(m, "body", (x + 0.3, 12 + h, z + 0.3), (x + 0.9, 12.6 + h, z + 0.9), "#f0e0ff")
-    m.cube("body", (-4, 3, -10), (4, 8, -4), "#6a5a98", {"up": [(2, 1, 4, 3, "#7a6aa8")]}, pat="chitin")
+    m.rcube("body", (-4, 3, -10), (4, 8, -4), "#6a5a98", {"up": [(2, 1, 4, 3, "#7a6aa8")]}, r=1.2, pat="chitin")
+    m.blob("body", (0, 6, -6), (4.3, 2.8, 2.6), "#6a5a98", pat="chitin", levels=2)                          # cefalotorax redondo
     box(m, "body", (-1, 5.2, -10.6), (1, 7.2, -10), "#e8c0ff", {"north": [(0, 0, 1, 1, "#ffffff")]})       # ojos grandes del medio
     eye_front(m, "body", 2, 3, 6, 7, -10, "#d8a0ff", pupil=None)                                           # ojos chicos
     eye_front(m, "body", 1.1, 2, 4.4, 5.3, -10, "#2a1e40", pupil=None, glow="#8a6ab8")
@@ -412,7 +446,8 @@ def arana():
 def cara():
     m = Model("astral_cara")
     m.bone("body", (0, 12, 0))
-    m.cube("body", (-6, 10, -6), (6, 20, 6), "#b8405a", {"up": [(2, 2, 3, 3, "#d06078"), (7, 6, 3, 2, "#8c2e48")]}, pat="stone")
+    m.rcube("body", (-6, 10, -6), (6, 20, 6), "#b8405a", {"up": [(2, 2, 3, 3, "#d06078"), (7, 6, 3, 2, "#8c2e48")]}, r=2, pat="stone")
+    m.blob("body", (0, 16, 0.5), (6.3, 4.4, 5.8), "#b8405a", pat="stone", levels=2)                         # craneo abultado
     box(m, "body", (-4, 14, -6.6), (4, 19, -6), "#e8f0d8", {"north": [(0, 0, 1, 1, "#c8c8b0"), (7, 4, 1, 1, "#c8c8b0")]})   # ojo
     box(m, "body", (-2.2, 14.3, -7.2), (2.2, 18.7, -6.6), "#3fb84a", {"north": [(0, 0, 1, 1, "#c8ffd0"), (3, 3, 1, 1, "#2a8a30")]})
     box(m, "body", (-1, 15.2, -7.6), (1, 17.8, -7.2), "#0d200f", {"north": [(0, 0, 1, 1, "#5aff6a")]})
@@ -429,7 +464,7 @@ def cara():
         m.cube("body", (x, 8, -6.2), (x + 1, 10, -5.5), "#f2e6c8")
         mirror(m, "body", (5.5, 8, x), (6.2, 10, x + 1), "#f2e6c8")
     m.bone("jaw", (0, 8, 5), "body")
-    m.cube("jaw", (-6, 3, -6), (6, 7.5, 6), "#a83c5a", pat="stone")
+    m.rcube("jaw", (-6, 3, -6), (6, 7.5, 6), "#a83c5a", r=1.5, pat="stone")
     box(m, "jaw", (-6.3, 7, -6.6), (6.3, 7.6, 6.3), "#9a3048")                                              # labio de abajo
     for k in range(6):                                                                                      # dientes de abajo
         x = -4.5 + k * 2
@@ -459,38 +494,40 @@ def cara():
 def lagarto():
     m = Model("astral_lagarto")
     m.bone("body", (0, 9, 0))
-    m.cube("body", (-6, 5, -8), (6, 12, 12), "#b7c24a", {"down": [(2, 0, 8, 20, "#e2e6a8")], "east": [(0, 5, 20, 2, "#e2e6a8")]}, pat="scale")
+    m.blob("body", (0, 8.6, 2), (6.4, 3.6, 10.6), "#b7c24a", pat="scale", axis=2, levels=4)                # cuerpo largo y bajo
+    m.blob("body", (0, 6.4, 2), (5.4, 1.8, 9.2), "#e2e6a8", pat="scale", axis=2, levels=3)                  # panza clara
     for z in range(-6, 12, 3):                                                                             # escamas del lomo
         mirror(m, "body", (1.5, 12, z), (3, 13, z + 1.5), "#8a9a30")
         mirror(m, "body", (4, 11.6, z + 1), (5.2, 12.4, z + 2.2), "#9aaa38")
     for x, z in ((2, -5), (-4, 1), (3, 6), (-2, 9)):                                                      # manchas en relieve
         box(m, "body", (x, 12, z), (x + 1.8, 12.3, z + 1.8), "#8a9a30")
     m.bone("head", (0, 9, -8), "body")
-    m.cube("head", (-5, 5, -17), (5, 11, -8), "#c8d15a", {"down": [(1, 1, 8, 7, "#e2e6a8")]}, pat="scale")
+    m.rcube("head", (-5, 5, -17), (5, 11, -7.5), "#c8d15a", {"down": [(1, 1, 8, 7, "#e2e6a8")]}, r=1.8, pat="scale")
     mirror(m, "head", (2, 11, -15), (5, 13.5, -12), "#c8d15a", pat="scale")                                  # ojos saltones
     mirror(m, "head", (2.5, 11.5, -15.4), (4.5, 13.3, -15), "#ffffff", {"north": [(0, 0, 1, 1, "#e8e8e8")]})
     mirror(m, "head", (3.2, 11.8, -15.7), (4.0, 13, -15.4), "#111111")
     mirror(m, "head", (1.8, 13.5, -15.2), (5.2, 14.1, -12), "#9aaa38")                                       # parpado
-    m.cube("head", (-4, 6, -25), (4, 9.5, -17), "#bfc95a", {"east": [(0, 2, 8, 1, "#6a7a2a")]}, pat="scale")
-    m.cube("head", (-3.5, 5, -24), (3.5, 6, -17), "#e2e6a8")                                               # mandibula
+    m.rcube("head", (-4, 6, -25), (4, 9.5, -16), "#bfc95a", {"east": [(0, 2, 8, 1, "#6a7a2a")]}, r=1.2, pat="scale")
+    m.rcube("head", (-3.5, 4.6, -24), (3.5, 6.2, -16), "#e2e6a8", r=0.6)                                   # mandibula
     for z in range(-24, -17, 2):                                                                           # dientes salidos
         mirror(m, "head", (3.6, 5, z), (4.2, 6.4, z + 0.8), "#ffffff")
     for z in (-25.6,):
         mirror(m, "head", (2.5, 5.2, z), (3.3, 6.5, z + 0.8), "#ffffff")                                    # colmillos de adelante
     mirror(m, "head", (0.8, 9.5, -24.6), (2.0, 10.2, -23.4), "#9aaa38", {"up": [(0, 0, 1, 1, "#3a4a1a")]})   # fosas nasales
     m.bone("tail", (0, 9, 12), "body")
-    m.cube("tail", (-3.5, 6, 12), (3.5, 11, 24), "#a8b340", pat="scale")
-    m.cube("tail", (-2.5, 7, 24), (2.5, 10, 30), "#a8b340", pat="scale")
-    m.cube("tail", (-1.5, 7.5, 30), (1.5, 9.5, 36), "#ecece4", {"up": [(0, 0, 3, 1, "#c8c8b8")]})
-    for z in range(13, 23, 3):                                                                             # pinches de la cola
-        mirror(m, "tail", (0.6, 11, z), (1.6, 12.2, z + 1.4), "#8a9a30")
+    taper(m, "tail", [((0, 8.6, 13.5), 4.2, 2.9, 4), ((0, 8.6, 17.5), 3.5, 2.5, 4.2), ((0, 8.6, 21.5), 2.9, 2.1, 4.2),
+                      ((0, 8.6, 25.5), 2.3, 1.7, 4.2), ((0, 8.6, 29.5), 1.7, 1.3, 4.2)], "#a8b340", pat="scale")
+    taper(m, "tail", [((0, 8.6, 33), 1.3, 1.0, 3.4), ((0, 8.6, 35.7), 0.8, 0.7, 2.2)], "#ecece4")           # punta clara
+    for z, y in ((13, 11.3), (16, 10.9), (19, 10.5), (22, 10.1)):                                           # pinches de la cola
+        mirror(m, "tail", (0.6, y - 0.2, z), (1.6, y + 1, z + 1.4), "#8a9a30")
     for z in (25, 27.5):
-        box(m, "tail", (-0.5, 10, z), (0.5, 11, z + 1.4), "#8a9a30")
+        box(m, "tail", (-0.5, 10.1, z), (0.5, 11.1, z + 1.4), "#8a9a30")
     legs = []
     for n, x, z in (("leg_fl", -7, -5), ("leg_fr", 7, -5), ("leg_bl", -7, 8), ("leg_br", 7, 8)):
         m.bone(n, (x, 7, z), "body")
-        m.cube(n, (x - 1.5, 1, z - 1.5), (x + 1.5, 7, z + 1.5), "#7aa03a", pat="scale")
-        m.cube(n, (x - 2, 0, z - 3), (x + 2, 1, z + 1.5), "#6a8a2a")
+        m.rcube(n, (x - 1.9, 4, z - 1.9), (x + 1.9, 8, z + 1.9), "#8ab03a", r=0.9, pat="scale")              # hombro
+        m.rcube(n, (x - 1.5, 1, z - 1.5), (x + 1.5, 5, z + 1.5), "#7aa03a", r=0.6, pat="scale")
+        m.rcube(n, (x - 2, 0, z - 3), (x + 2, 1.2, z + 1.5), "#6a8a2a", r=0.4)
         for dx in (-1.8, -0.4, 1.0):                                                                      # garras
             m.cube(n, (x + dx, 0, z - 3.8), (x + dx + 0.8, 0.7, z - 3), "#ecece4")
         legs.append(n)
@@ -506,19 +543,21 @@ def lagarto():
 def escarabajo():
     m = Model("astral_escarabajo")
     m.bone("body", (0, 9, 0))
-    m.cube("body", (-8, 4, -10), (8, 13, 12), "#5b67b8", pat="chitin")
-    m.cube("body", (-7, 13, -9), (7, 15, 11), "#6a76c8", pat="chitin")
-    for z in range(-8, 12, 4):                                                                             # segmentos en relieve
-        box(m, "body", (-7.3, 13, z), (7.3, 15.4, z + 0.8), "#4a56a8")
-        box(m, "body", (-8.3, 5, z), (8.3, 13, z + 0.8), "#4a56a8")
+    shell = []
+    for z0, z1, rx, ry in ((-10, -7, 6.4, 4.4), (-7, -6.4, 7.0, 4.6), (-6.4, -2.6, 7.9, 5.4), (-2.6, -2, 7.6, 5.1),
+                           (-2, 2, 8.2, 5.7), (2, 2.6, 7.9, 5.4), (2.6, 6.4, 8.1, 5.6), (6.4, 7, 7.6, 5.1),
+                           (7, 10.4, 7.3, 5.1), (10.4, 11, 6.4, 4.4), (11, 13, 5.2, 3.6)):
+        shell.append(((0, 9.4, (z0 + z1) / 2), rx, ry, z1 - z0))
+    taper(m, "body", shell, "#5b67b8", pat="chitin",
+          cols=["#5b67b8", "#3e4a98", "#6a76c8", "#3e4a98", "#6a76c8", "#3e4a98", "#6a76c8", "#3e4a98", "#5b67b8",
+                "#3e4a98", "#4a55a0"])                                                                     # cupula con surcos
     for z in (-6, -2, 2, 6):                                                                               # brillos de cada placa
         mirror(m, "body", (2, 15, z), (5, 15.3, z + 1.5), "#8a96e0")
-    m.cube("body", (-6, 4, 12), (6, 11, 14), "#4a55a0", pat="chitin")                                     # cola redondeada
-    box(m, "body", (-4, 5, 14), (4, 9, 14.8), "#3e4a98")
+    m.rcube("body", (-4, 5.5, 12.5), (4, 9.5, 14.2), "#3e4a98", r=0.8)                                    # punta trasera
     m.cube("body", (-5, 3, -10), (5, 4, 12), "#8a94d0")                                                   # panza
     m.bone("head", (0, 8, -10), "body")
-    m.cube("head", (-5, 4, -15), (5, 11, -10), "#4a55a0", {"north": [(3, 5, 4, 1, "#30366a")]}, pat="chitin")
-    box(m, "head", (-5.3, 10, -15.4), (5.3, 11.4, -9.8), "#5b67b8")                                      # casco
+    m.rcube("head", (-5, 4, -15), (5, 11, -9), "#4a55a0", {"north": [(3, 5, 4, 1, "#30366a")]}, r=1.6, pat="chitin")
+    m.rcube("head", (-5.3, 9.6, -15.5), (5.3, 11.6, -9.6), "#5b67b8", r=0.8)                              # casco
     eye_front(m, "head", 2, 4, 7, 9, -15, "#e8e8f0", pupil="#30366a")
     mirror(m, "head", (1.5, 3.5, -17), (3.5, 5.5, -15), "#cfd6ef")                                        # pinzas
     mirror(m, "head", (1.2, 3.5, -18), (2.2, 4.8, -17), "#b8c0e0")
@@ -553,8 +592,8 @@ def escarabajo():
 def chocobo():
     m = Model("astral_chocobo")
     m.bone("body", (0, 18, 0))
-    m.cube("body", (-6, 13, -7), (6, 25, 9), "#f4d24a", {"down": [(2, 2, 8, 12, "#fff0a0")]}, pat="feather")
-    m.cube("body", (-5, 14, -9), (5, 23, -7), "#fae070", pat="feather")                                     # pechuga
+    m.blob("body", (0, 19.2, 1), (6.3, 6, 8.4), "#f4d24a", pat="feather", axis=2, levels=4)                # cuerpo de huevo
+    m.blob("body", (0, 18.6, -5.6), (5.2, 5, 3.6), "#fae070", pat="feather", levels=3)                      # pechuga inflada
     for row, (y, z) in enumerate(((21, -9.6), (18, -9.4), (15, -9.2))):                                     # plumas del pecho en capas
         box(m, "body", (-4.5 + row * 0.5, y, z), (4.5 - row * 0.5, y + 2, z + 0.6), "#fff0a0", pat="feather")
         for k in range(4 - row % 2):
@@ -575,15 +614,17 @@ def chocobo():
         a, b = sorted((7.5 * s, 8 * s))
         m.cube(n, (a, 18, -3), (b, 23, 6), "#f4d24a", pat="feather")                                      # capa de arriba
     m.bone("head", (0, 24, -6), "body")
-    m.cube("head", (-3, 23, -9.5), (3, 31, -4.5), "#f4d24a", pat="feather")                                # cuello
-    for y in (24, 27):                                                                                     # plumas del cuello
-        box(m, "head", (-3.4, y, -10), (3.4, y + 1.5, -5), "#fae070", pat="feather")
-    m.cube("head", (-4, 30, -14), (4, 37, -5), "#f8dc5c", pat="feather")
+    taper(m, "head", [((0, 24.5, -6.4), 3.4, 2.9, 3), ((0, 27, -7.2), 3.0, 2.6, 3), ((0, 29.5, -7.8), 2.8, 2.5, 3),
+                      ((0, 31.5, -8.6), 2.9, 2.6, 2.4)], "#f4d24a", pat="feather", axis=1)                    # cuello curvo
+    for y, z in ((24, -9.6), (27, -10.2)):                                                                 # plumas del cuello
+        rbox(m, "head", (-2.8, y, z), (2.8, y + 1.6, z + 1.4), "#fae070", pat="feather", r=0.5)
+    m.rcube("head", (-4, 30, -14), (4, 37, -5), "#f8dc5c", r=2, pat="feather")
+    m.blob("head", (0, 33.6, -9.4), (4.3, 3.4, 4.2), "#f8dc5c", pat="feather", levels=2)                    # cabeza redonda
     eye_side(m, "head", 4, 33.3, 35.7, -10.2, -7.6, "#3a7ad8", white="#ffffff")
     mirror(m, "head", (3.8, 36, -11), (4.6, 36.8, -7), "#d8a830")                                           # ceja
     box(m, "head", (-2, 34, -5), (2, 37, -3.5), "#f0c83a", pat="feather")                                  # plumas de la nuca
-    m.cube("head", (-2, 31.5, -18), (2, 34, -14), "#9a6a3a")
-    m.cube("head", (-1.5, 30.5, -17), (1.5, 31.5, -14), "#7a4a22")                                          # pico abajo
+    m.rcube("head", (-2, 31.5, -18), (2, 34.2, -13.5), "#9a6a3a", r=0.7)
+    m.rcube("head", (-1.5, 30.4, -17), (1.5, 31.7, -13.5), "#7a4a22", r=0.4)                                # pico abajo
     m.cube("head", (-1, 30.5, -19), (1, 33.5, -18), "#5a3418")                                              # gancho
     mirror(m, "head", (0.6, 33.2, -17.2), (1.2, 33.8, -16.4), "#3a2010")                                    # fosas
     for k, (z, h) in enumerate(((-11, 4), (-9, 5), (-7, 3.5), (-5.5, 2.5))):                               # cresta
@@ -592,10 +633,10 @@ def chocobo():
     reins(m, "head", 2.2, 32.5, -16, -5)
     for n, x in (("leg_l", 3), ("leg_r", -3)):
         m.bone(n, (x, 14, 1), "body")
-        m.cube(n, (x - 2.2, 7, -1.5), (x + 2.2, 15, 3.5), "#8a6b4a", pat="fur")                             # muslo
+        m.rcube(n, (x - 2.2, 7, -1.5), (x + 2.2, 15, 3.5), "#8a6b4a", r=1.4, pat="fur")                     # muslo
         for dx in (-2.2, -0.7, 0.8):                                                                       # flecos del muslo
             m.cube(n, (x + dx, 6, -1.8), (x + dx + 1.4, 7.2, 3.8), "#7a5b3a", pat="fur")
-        m.cube(n, (x - 1, 1, 0), (x + 1, 7, 2), "#e8e0d0", pat="scale")                                    # canilla
+        m.rcube(n, (x - 1, 1, 0), (x + 1, 7, 2), "#e8e0d0", r=0.5, pat="scale")                            # canilla
         for y in (2, 4):
             m.cube(n, (x - 1.2, y, -0.2), (x + 1.2, y + 0.6, 2.2), "#c8c0b0")                             # escamas
         for dx, ln in ((-1.6, 3), (-0.4, 3.5), (0.8, 3)):                                                  # dedos con garras
@@ -614,21 +655,24 @@ def chocobo():
 def grillo():
     m = Model("astral_grillo")
     m.bone("body", (0, 12, 0))
-    m.cube("body", (-5.5, 8, -8), (5.5, 15, 2), "#c9c832", {"down": [(1, 1, 9, 8, "#e8e870")]}, pat="chitin")  # torax
-    box(m, "body", (-5.8, 13.5, -8.3), (5.8, 15.3, 2.3), "#b8b82a", pat="chitin")                           # escudo del torax
-    m.cube("body", (-5, 7, 2), (5, 14, 16), "#b8b82a", pat="chitin")
-    for z in range(3, 16, 3):                                                                              # anillos del abdomen
-        box(m, "body", (-5.3, 6.7, z), (5.3, 13.6, z + 0.7), "#8a9a22")
+    m.rcube("body", (-5.5, 8, -8), (5.5, 15, 2), "#c9c832", {"down": [(1, 1, 9, 8, "#e8e870")]}, r=1.8, pat="chitin")  # torax
+    rbox(m, "body", (-5.8, 13.2, -8.3), (5.8, 15.3, 2.3), "#b8b82a", pat="chitin", r=0.9)                   # escudo del torax
+    seg = []
+    for z0, z1, rx, ry in ((2, 3, 4.6, 3.3), (3, 5.6, 5.2, 3.6), (5.6, 6.2, 4.9, 3.4), (6.2, 8.8, 5.3, 3.7),
+                           (8.8, 9.4, 5.0, 3.5), (9.4, 12, 5.0, 3.5), (12, 12.6, 4.5, 3.2), (12.6, 15, 4.0, 2.9),
+                           (15, 15.6, 3.3, 2.4), (15.6, 17, 2.4, 1.8)):
+        seg.append(((0, 10.6, (z0 + z1) / 2), rx, ry, z1 - z0))
+    taper(m, "body", seg, "#b8b82a", pat="chitin", cols=["#8a9a22", "#b8b82a"])                            # abdomen con anillos
     for s in (1, -1):                                                                                      # alas plegadas
         a, b = sorted((0.2 * s, 5.4 * s))
-        m.cube("body", (a, 14, -2), (b, 15.2, 17), "#9fb02a", pat="membrane")
+        m.rcube("body", (a, 14, -2), (b, 15.2, 17), "#9fb02a", r=0.5, pat="membrane")
         a, b = sorted((2.4 * s, 3.0 * s))
         m.cube("body", (a, 15.2, -2), (b, 15.6, 17), "#d8e070")                                           # nervadura
         for z in (2, 7, 12):
             a, b = sorted((0.6 * s, 5 * s))
             m.cube("body", (a, 15.2, z), (b, 15.5, z + 0.5), "#7a8a1a")
     m.bone("head", (0, 12, -8), "body")
-    m.cube("head", (-5, 7, -15), (5, 16, -8), "#d4d23a", pat="chitin")
+    m.rcube("head", (-5, 7, -15), (5, 16, -7.5), "#d4d23a", r=2, pat="chitin")
     box(m, "head", (-3, 8.5, -15.5), (3, 10.5, -15), "#8a9a22")                                            # boca
     mirror(m, "head", (0.8, 7, -16.3), (2.5, 9, -15), "#6a7a12")                                           # mandibulas
     mirror(m, "head", (2.6, 6, -15.6), (3.4, 9, -14.8), "#8a9a22")                                         # palpos
@@ -649,8 +693,8 @@ def grillo():
     for n, s in (("hleg_l", 1), ("hleg_r", -1)):                                                           # patas de salto
         m.bone(n, (5.5 * s, 12, 5), "body")
         a, b = sorted((5.5 * s, 8.5 * s))
-        m.cube(n, (a, 10, 1), (b, 19, 12), "#9fb02a", pat="chitin")
-        a, b = sorted((8.5 * s, 9 * s))
+        m.rcube(n, (a, 10, 1), (b, 19, 12), "#9fb02a", r=1.2, pat="chitin")
+        a, b = sorted((8.4 * s, 9 * s))
         for y in (12, 15):                                                                                 # dibujo en espina de pescado
             m.cube(n, (a, y, 2), (b, y + 1, 11), "#c9c832")
         a, b = sorted((6 * s, 8 * s))
@@ -685,8 +729,9 @@ def grillo():
 def ave():
     m = Model("astral_ave")
     m.bone("body", (0, 22, 0))
-    m.cube("body", (-6, 17, -9), (6, 28, 11), "#7a4a2a", {"down": [(1, 1, 10, 18, "#f0ece4")]}, pat="feather")
-    m.cube("body", (-5, 17.5, -11), (5, 26, -9), "#f0ece4", pat="feather")                                  # pecho blanco
+    m.blob("body", (0, 22.6, 1), (6.3, 5.6, 10.2), "#7a4a2a", pat="feather", axis=2, levels=4)            # cuerpo
+    m.blob("body", (0, 20.6, 0), (5, 3.8, 8.6), "#f0ece4", pat="feather", axis=2, levels=3)                 # panza blanca
+    m.blob("body", (0, 21.8, -8.4), (5, 4.4, 3), "#f0ece4", pat="feather", levels=3)                        # pecho blanco
     for y in (19, 22):                                                                                    # plumas del pecho
         for k in range(4):
             x = -4 + k * 2.2 + (y == 22) * 1
@@ -697,16 +742,17 @@ def ave():
         box(m, "body", (x - 1.1, 21 + (k % 2), 11), (x + 1.1, 23 + (k % 2), 21 + (k % 2) * 2), "#6a4a2a", pat="feather")
         box(m, "body", (x - 1.1, 21.2 + (k % 2), 21 + (k % 2) * 2), (x + 1.1, 22.6 + (k % 2), 23 + (k % 2) * 2), "#f0ece4")
     m.bone("head", (0, 27, -10), "body")
-    m.cube("head", (-4.5, 25, -13), (4.5, 30, -8), "#f0ece4", pat="fur")                                     # collar de plumas
+    m.blob("head", (0, 27.5, -10.5), (5, 2.9, 3), "#f0ece4", pat="fur", levels=2)                         # collar de plumas
     for x in (-4.5, -2, 0.5, 3):                                                                           # flecos del collar
         box(m, "head", (x, 24, -13.5), (x + 1.5, 25.5, -12.5), "#e0dcd2")
         box(m, "head", (x, 24, -8.5), (x + 1.5, 25.5, -7.5), "#e0dcd2")
     mirror(m, "head", (4.5, 25.5, -12.5), (5.2, 29.5, -8.5), "#e0dcd2", pat="fur")
-    m.cube("head", (-4, 28, -17), (4, 35, -10), "#e8a890", {"north": [(0, 1, 8, 1, "#c88a7a")]})
+    m.rcube("head", (-4, 28, -17), (4, 35, -10), "#e8a890", {"north": [(0, 1, 8, 1, "#c88a7a")]}, r=1.8)
+    m.blob("head", (0, 31.6, -13.2), (4.3, 3.6, 3.4), "#e8a890", levels=2)                                  # cabeza pelada redonda
     eye_front(m, "head", 1, 2.8, 31, 32.8, -17, "#111111", pupil=None)
     mirror(m, "head", (0.6, 32.8, -17.6), (3.6, 33.6, -16.8), "#c88a7a")                                   # ceja pelada
     mirror(m, "head", (4, 30, -14), (4.4, 32, -12), "#c88a7a")                                            # oido
-    box(m, "head", (-1.5, 29.5, -21), (1.5, 33.5, -17), "#5a5a5a", {"up": [(0, 0, 3, 1, "#8a8a8a")]})
+    rbox(m, "head", (-1.5, 29.5, -21), (1.5, 33.5, -16.5), "#5a5a5a", {"up": [(0, 0, 3, 1, "#8a8a8a")]}, r=0.6)
     box(m, "head", (-1, 28, -21.8), (1, 30, -20.4), "#3a3a3a")                                             # gancho del pico
     box(m, "head", (-1.8, 32, -18), (1.8, 34, -17), "#8a8a8a")                                             # cera del pico
     for n, s in (("wing_l", 1), ("wing_r", -1)):
@@ -752,28 +798,34 @@ def ave():
 def pterodactilo():
     m = Model("astral_pterodactilo")
     m.bone("body", (0, 22, 0))
-    m.cube("body", (-5, 16, -8), (5, 27, 9), "#3a5aa8", {"down": [(1, 1, 8, 15, "#c89a4a")]}, pat="scale")
+    m.blob("body", (0, 21.6, 0.5), (5.3, 5.6, 8.7), "#3a5aa8", pat="scale", axis=2, levels=4)             # cuerpo
+    m.blob("body", (0, 18.4, 0.5), (4, 2.6, 7.4), "#c89a4a", pat="scale", axis=2, levels=2)                 # panza
     for z in range(-7, 8, 3):                                                                              # placas de la panza
         box(m, "body", (-3.5, 15.6, z), (3.5, 16, z + 2.4), "#d8aa5a")
     mirror(m, "body", (5, 20, -7), (5.3, 23, 8), "#c89a4a")                                                 # franja clara del costado
-    m.cube("body", (-2, 19, 9), (2, 23, 22), "#3a5aa8", pat="scale")                                        # cola
+    taper(m, "body", [((0, 21, 10.5), 2.6, 2.4, 3), ((0, 21, 14), 2, 1.9, 4), ((0, 21, 18), 1.5, 1.4, 4),
+                      ((0, 21, 21), 1.1, 1.0, 2)], "#3a5aa8", pat="scale")                                  # cola que se afina
     m.cube("body", (-3, 20, 21), (3, 21, 25), "#e07a2a")                                                    # punta de la cola
     box(m, "body", (-2, 20.2, 25), (2, 20.8, 26.5), "#b8561a")
     for z in range(-6, 21, 3):
-        box(m, "body", (-0.5, 27 if z < 9 else 23, z), (0.5, 28.5 if z < 9 else 24.2, z + 1.5), "#2a4a90")   # cresta del lomo
+        y0 = 27 if z < 6 else (25.6 if z < 9 else 22.8 - (z - 9) * 0.12)
+        box(m, "body", (-0.5, y0, z), (0.5, y0 + 1.4, z + 1.5), "#2a4a90")                                     # cresta del lomo
     m.bone("head", (0, 27, -8), "body")
-    m.cube("head", (-3, 25, -11), (3, 32, -6), "#3a5aa8", pat="scale")                                     # cuello
-    for y in (26, 28.5):
-        box(m, "head", (-2.2, y, -11.5), (2.2, y + 1.6, -11), "#c89a4a")                                   # placas de la garganta
-    m.cube("head", (-4, 30, -16), (4, 37, -8), "#4a6ab8", pat="scale")
+    taper(m, "head", [((0, 26.5, -7.6), 3.1, 2.8, 3), ((0, 29, -8.4), 2.7, 2.5, 3), ((0, 31, -9.4), 2.6, 2.4, 2.4)],
+          "#3a5aa8", pat="scale", axis=1)                                                                    # cuello curvo
+    for y, z in ((26, -10.9), (28.5, -11.2)):
+        box(m, "head", (-2, y, z), (2, y + 1.6, z + 0.6), "#c89a4a")                                       # placas de la garganta
+    m.rcube("head", (-4, 30, -16), (4, 37, -8), "#4a6ab8", r=1.8, pat="scale")
     eye_side(m, "head", 4, 33, 35.5, -12.5, -10, "#f2d24a", pupil="#111111")
     mirror(m, "head", (3.6, 35.5, -13.2), (4.6, 36.5, -9.4), "#2a4a90")                                   # ceja
-    m.cube("head", (-2, 31, -29), (2, 35, -16), "#c89a4a", {"up": [(1, 0, 2, 13, "#d8aa5a")]})
+    taper(m, "head", [((0, 33, -18), 2.2, 2.1, 4), ((0, 32.8, -21.5), 1.9, 1.8, 3.4), ((0, 32.5, -24.6), 1.6, 1.5, 3),
+                      ((0, 32.2, -27.3), 1.2, 1.2, 2.6)], "#c89a4a", cols=["#c89a4a", "#d0a254"])               # pico largo que se afina
     box(m, "head", (-2.4, 33, -16.5), (2.4, 34, -15.5), "#8a6a2a")                                          # comisura
     for z in range(-28, -17, 2):                                                                           # dientes salidos
-        mirror(m, "head", (1.5, 30.2, z), (2.1, 31.2, z + 0.7), "#ffffff")
-    box(m, "head", (-0.6, 30, -29.6), (0.6, 31.5, -28.6), "#ffffff")                                        # diente de la punta
-    mirror(m, "head", (0.6, 35, -27), (1.4, 35.5, -25.8), "#8a6a2a")                                        # fosas
+        w = 1.2 + (z + 28) * 0.08
+        mirror(m, "head", (w - 0.6, 30.4 + (z + 28) * 0.03, z), (w, 31.4 + (z + 28) * 0.03, z + 0.7), "#ffffff")
+    box(m, "head", (-0.5, 30.3, -29.2), (0.5, 31.6, -28.4), "#ffffff")                                        # diente de la punta
+    mirror(m, "head", (0.4, 33.8, -26.6), (1.1, 34.2, -25.6), "#8a6a2a")                                    # fosas
     for k, (z, h) in enumerate(((-12, 7), (-9, 9), (-6, 6))):                                                 # cresta verde
         box(m, "head", (-0.8, 36, z), (0.8, 36 + h, z + 2.2), "#a8c86a", {"north": [(0, 0, 2, 1, "#d8f0a0")]})
         box(m, "head", (-0.5, 36 + h, z + 0.6), (0.5, 37 + h, z + 1.6), "#d8f0a0")
@@ -814,10 +866,10 @@ def biped(m, leg_col, arm_col, size=1.0, pat=None):
     m.bone("body", (0, 12 * s, 0))
     for n, x in (("leg_l", 2 * s), ("leg_r", -2 * s)):
         m.bone(n, (x, 12 * s, 0), "body")
-        m.cube(n, (x - 2 * s, 0, -2 * s), (x + 2 * s, 12 * s, 2 * s), leg_col, pat=pat)
+        m.rcube(n, (x - 2 * s, 0, -2 * s), (x + 2 * s, 12 * s, 2 * s), leg_col, r=0.8 * s, pat=pat)
     for n, x0, x1, ox in (("arm_l", 4 * s, 8 * s, 6 * s), ("arm_r", -8 * s, -4 * s, -6 * s)):
         m.bone(n, (ox, 22 * s, 0), "body")
-        m.cube(n, (x0, 10 * s, -2 * s), (x1, 24 * s, 2 * s), arm_col, pat=pat)
+        m.rcube(n, (x0, 10 * s, -2 * s), (x1, 24 * s, 2 * s), arm_col, r=0.8 * s, pat=pat)
     m.bone("head", (0, 24 * s, 0), "body")
     m.anim("walk", 1.2, {"leg_l": {"rotation": (swing(30, 1.4), 0, 0)}, "leg_r": {"rotation": (swing(-30, 1.4), 0, 0)},
                          "arm_l": {"rotation": (swing(-30, 1.4), 0, 0)}, "arm_r": {"rotation": (swing(30, 1.4), 0, 0)}})
@@ -840,7 +892,8 @@ def strips(m, bone, pts, col="#c8b890", dark="#9a8a68"):
 def momia():
     m = Model("astral_momia")
     biped(m, "#c8b890", "#d8c8a0", pat="wrap")
-    m.cube("body", (-4, 12, -2), (4, 24, 2), "#d8c8a0", pat="wrap")
+    m.rcube("body", (-4, 12, -2), (4, 24, 2), "#d8c8a0", r=0.8, pat="wrap")
+    m.rcube("body", (-4.4, 19, -2.4), (4.4, 23.6, 2.4), "#d8c8a0", r=1, pat="wrap")                         # pecho y hombros
     for y, col in ((13.5, "#c8b890"), (16.8, "#e0d0a8"), (20.5, "#c8b890")):                                # vendas del torso
         ring(m, "body", -4, 4, -2, 2, y, 1.2, col)
     box(m, "body", (-1.2, 18, -2.8), (1.2, 20, -2.2), "#3aff6a", {"north": [(0, 0, 1, 1, "#c8ffd0")]})     # gema del pecho
@@ -852,8 +905,8 @@ def momia():
     for n, x in (("leg_l", 2), ("leg_r", -2)):
         for y in (2, 6, 9.5):
             ring(m, n, x - 2, x + 2, -2, 2, y, 1, "#c8b890")
-    m.cube("head", (-4, 24, -4), (4, 32, 4), "#e0d0a8", {"north": [(5, 3, 2, 2, "#1a1a1a"), (3, 6, 3, 1, "#5a4a30")],
-                                                       "up": [(2, 2, 4, 4, "#c8b890")]}, pat="wrap")
+    m.rcube("head", (-4, 24, -4), (4, 32, 4), "#e0d0a8", {"north": [(5, 3, 2, 2, "#1a1a1a"), (3, 6, 3, 1, "#5a4a30")],
+                                                        "up": [(2, 2, 4, 4, "#c8b890")]}, r=1.2, pat="wrap")
     for y in (25, 28.6, 30.6):
         ring(m, "head", -4, 4, -4, 4, y, 0.9, "#c8b890")
     box(m, "head", (1, 27.4, -4.6), (3, 28.6, -4), "#1a1a1a")                                               # cuenca
@@ -876,7 +929,8 @@ def yeti():
     m = Model("astral_yeti")
     s = 1.6
     biped(m, "#e0e8f0", "#e8eef4", s, pat="shag")
-    m.cube("body", (-7 * s, 9 * s, -3.5 * s), (7 * s, 25 * s, 3.5 * s), "#f0f4f8", pat="shag")
+    m.rcube("body", (-7 * s, 9 * s, -3.5 * s), (7 * s, 25 * s, 3.5 * s), "#f0f4f8", r=2.5, pat="shag")
+    m.blob("body", (0, 19 * s, 0.6 * s), (7.4 * s, 6.4 * s, 4.4 * s), "#f0f4f8", pat="shag", levels=3)        # pecho y lomo abultados
     for k in range(7):                                                                                     # pelo largo que cuelga
         x = -7 * s + k * 2 * s
         ln = 5 + (k % 3)
@@ -884,8 +938,9 @@ def yeti():
         m.cube("body", (x, (10 - ln) * s, 3.4 * s), (x + 1.8 * s, 10 * s, 3.9 * s), "#e8eef4", pat="shag")
     for x0, y0, z0 in ((-6, 18, -4.1), (-2, 21, -4.1), (2.5, 17, -4.1), (-4, 13, -4.1), (3, 12, -4.1)):    # mechones del pecho
         m.cube("body", (x0 * s, y0 * s, z0 * s), ((x0 + 2.5) * s, (y0 + 3) * s, (z0 + 0.6) * s), "#ffffff", pat="shag")
-    mirror(m, "body", (6.5 * s, 22 * s, -3 * s), (8.8 * s, 26 * s, 3 * s), "#f0f4f8", pat="shag")           # hombros peludos
-    m.cube("head", (-5 * s, 24 * s, -5 * s), (5 * s, 33 * s, 4 * s), "#e8eef4", pat="shag")
+    rmirror(m, "body", (6.5 * s, 21.5 * s, -3.2 * s), (9 * s, 26 * s, 3.2 * s), "#f0f4f8", pat="shag", r=2)  # hombros peludos
+    m.rcube("head", (-5 * s, 24 * s, -5 * s), (5 * s, 33 * s, 4 * s), "#e8eef4", r=2.5, pat="shag")
+    m.blob("head", (0, 29.5 * s, -0.2 * s), (5.3 * s, 4.2 * s, 4.4 * s), "#e8eef4", pat="shag", levels=2)
     m.cube("head", (-3.8 * s, 24.8 * s, -5.3 * s), (3.8 * s, 30.5 * s, -5 * s), "#3a4a6a")                  # cara oscura
     eye_front(m, "head", 1.0 * s, 3.0 * s, 28 * s, 29.2 * s, -5.3 * s, "#6af0ff", pupil=None, glow="#ffffff")
     m.cube("head", (-4.5 * s, 29.5 * s, -6 * s), (4.5 * s, 31 * s, -5 * s), "#ffffff", pat="shag")           # cejas peludas
@@ -918,8 +973,8 @@ def yeti():
 def golem_forja():
     m = Model("astral_golem_forja")
     m.bone("body", (0, 10, 0))
-    m.cube("body", (-8, 10, -8), (8, 28, 8), "#8a2a2a",
-           {"north": [(3, 6, 10, 9, "#1e1210")] + [(3 + k, 7, 1, 7, "#ffb030" if k % 2 else "#ff7a10") for k in range(10)]}, pat="brick")
+    m.rcube("body", (-8, 10, -8), (8, 28, 8), "#8a2a2a",
+            {"north": [(3, 6, 10, 9, "#1e1210")] + [(3 + k, 7, 1, 7, "#ffb030" if k % 2 else "#ff7a10") for k in range(10)]}, r=1, pat="brick")
     for x in (-4, -2, 0, 2, 4):                                                                             # rejas de la rejilla
         box(m, "body", (x - 0.4, 13, -8.8), (x + 0.4, 22, -8), "#3a3a40", {"north": [(0, 0, 1, 1, "#6a6a70")]})
     box(m, "body", (-5.6, 21.5, -9), (5.6, 22.6, -8), "#3a3a40")                                           # marco
@@ -934,7 +989,7 @@ def golem_forja():
                    ((-6, 17, 8), (-3, 19, 8.6)), ((6, 15, -8.6), (7.8, 17, -8)), ((-7.8, 18, -8.6), (-6, 20, -8))):
         box(m, "body", a, b, "#9a3434", pat="brick")
     m.bone("head", (0, 28, 0), "body")
-    m.cube("head", (-5, 28, -5), (5, 46, 5), "#8a2e2e", pat="brick")
+    m.rcube("head", (-5, 28, -5), (5, 46, 5), "#8a2e2e", r=1, pat="brick")
     box(m, "head", (-3, 42, -5.8), (3, 43, -5), "#ff9a20")                                                  # aro de la ventana de fuego
     box(m, "head", (-3, 37, -5.8), (3, 38, -5), "#ff9a20")
     mirror(m, "head", (3, 38, -5.8), (4, 42, -5), "#ff9a20")
@@ -950,9 +1005,9 @@ def golem_forja():
     legs = []
     for n, x, z in (("leg_fl", -8, -8), ("leg_fr", 8, -8), ("leg_bl", -8, 8), ("leg_br", 8, 8)):
         m.bone(n, (x, 10, z), "body")
-        m.cube(n, (x - 4, 2, z - 4), (x + 4, 11, z + 4), "#2e2a30", pat="brick")
+        m.rcube(n, (x - 4, 2, z - 4), (x + 4, 11, z + 4), "#2e2a30", r=1.2, pat="brick")
         m.cube(n, (x - 4.3, 8, z - 4.3), (x + 4.3, 9, z + 4.3), "#4a4450")                                 # junta
-        m.cube(n, (x - 4.5, 0, z - 4.5), (x + 4.5, 2.5, z + 4.5), "#a83a3a", pat="stone")
+        m.rcube(n, (x - 4.5, 0, z - 4.5), (x + 4.5, 2.5, z + 4.5), "#a83a3a", r=1, pat="stone")
         for dx, dz in ((-4.8, -2), (3.2, -4.9), (-2, 3.4), (3.4, 2)):                                       # bultos carmesi
             m.cube(n, (x + dx, 0, z + dz), (x + dx + 1.6, 1.8, z + dz + 1.5), "#c84a3a", {"up": [(0, 0, 1, 1, "#ff6a3a")]})
         legs.append(n)
@@ -965,16 +1020,16 @@ def golem_forja():
 def cangrejo():
     m = Model("astral_cangrejo")
     m.bone("body", (0, 6, 0))
-    m.cube("body", (-6.5, 6, -4), (6.5, 19, 9), "#d8b8a0", {"north": [(0, 0, 13, 2, "#b89880")]}, pat="shell")
-    for (y0, y1, z0, z1) in ((16, 17, -2, 7), (8, 9, -2, 7), (9, 16, -2, -1), (9, 16, 6, 7),              # espiral en relieve
-                             (14, 15, 0, 5), (10, 11, 0, 5), (11, 14, 0, 1), (11, 14, 4, 5)):
-        mirror(m, "body", (6.5, y0, z0), (7, y1, z1), "#b89880")
-    mirror(m, "body", (6.5, 12, 2), (7.5, 13.5, 3.5), "#8a6a5a")                                           # centro de la espiral
+    m.rcube("body", (-6.5, 6, -4), (6.5, 19, 9), "#d8b8a0", {"north": [(0, 0, 13, 2, "#b89880")]}, r=3, pat="shell")
+    m.blob("body", (0, 12.5, 2.5), (6.2, 6.9, 6.9), "#d8b8a0", pat="shell", axis=0, levels=2)               # caracol redondo
+    for k, (rr, x0, x1, col) in enumerate(((5.2, 6.5, 7.1, "#c8a890"), (3.6, 7.1, 7.7, "#b89880"),
+                                          (2.2, 7.7, 8.3, "#a88870"), (1.0, 8.3, 8.9, "#8a6a5a"))):       # espiral en cono
+        rmirror(m, "body", (x0, 12.5 - rr, 2.5 - rr + k * 0.4), (x1, 12.5 + rr, 2.5 + rr + k * 0.4), col, r=min(1.2, rr / 2))
     box(m, "body", (-5.5, 19, -3), (5.5, 19.6, 8), "#c8a890", pat="shell")                                   # tope del caracol
     for (x, z, h, w) in ((-5, 2, 2, 2), (-3.5, 5, 3, 2), (2, 6, 2, 2.5), (0, -1, 1.5, 3), (3.5, 1, 1, 2)):   # musgo y hojitas
         box(m, "body", (x, 19.6, z), (x + w, 19.6 + h, z + 1.4), "#5a9a3a", {"north": [(0, 0, 1, 1, "#9ad86a")]})
     mirror(m, "body", (6.5, 16, -3), (7, 19, 0), "#5a9a3a")                                                 # musgo que cae
-    m.cube("body", (-5, 1.5, -7), (5, 7, 2), "#d0502a", pat="chitin")
+    m.rcube("body", (-5, 1.5, -7.5), (5, 7, 2), "#d0502a", r=1.5, pat="chitin")
     for x, z in ((-3, -5), (2, -3), (0, 0)):
         box(m, "body", (x, 7, z), (x + 1.5, 7.5, z + 1.5), "#5a9a3a")                                      # algas en el cuerpo
     for x in (-3, 3):                                                                                       # ojos en tallos
@@ -987,7 +1042,7 @@ def cangrejo():
         a, b = sorted((4 * s, (4 + 3 * sz) * s))
         m.cube(n, (a, 3, -9), (b, 6, -6), "#b8401a", pat="chitin")                                          # brazo
         a, b = sorted(((4 + 1 * sz) * s, (4 + 6 * sz) * s))
-        m.cube(n, (a, 2, -9 - 5 * sz), (b, 3 + 5 * sz, -9), "#d0502a", pat="chitin")                       # pinza
+        m.rcube(n, (a, 2, -9 - 5 * sz), (b, 3 + 5 * sz, -9), "#d0502a", r=1.2 * sz, pat="chitin")          # pinza
         a, b = sorted(((4 + 1 * sz) * s, (4 + 3 * sz) * s))
         m.cube(n, (a, 2, -11 - 5 * sz), (b, 3.5, -9 - 5 * sz), "#f2e6c8")                                   # punta de abajo
         a, b = sorted(((4 + 3.5 * sz) * s, (4 + 6 * sz) * s))
@@ -1019,7 +1074,8 @@ def cangrejo():
 def chaman():
     m = Model("astral_chaman")
     biped(m, "#4a6a2a", "#6a8a3a", pat="cloth")
-    m.cube("body", (-6, 2, -4), (6, 24, 5), "#6a8a3a", {"south": [(3, 4, 3, 3, "#4a6a2a")]}, pat="cloth")
+    m.rcube("body", (-6, 2, -4), (6, 24, 5), "#6a8a3a", {"south": [(3, 4, 3, 3, "#4a6a2a")]}, r=1.5, pat="cloth")
+    m.rcube("body", (-6.6, 0, -4.4), (6.6, 9, 5.6), "#6a8a3a", r=1.5, pat="cloth")                          # falda que se abre
     box(m, "body", (-6.3, 15, -4.3), (6.3, 16.2, 5.3), "#5a3a1a", pat="wood")                               # cinturon
     box(m, "body", (-3.5, 12.5, -4.9), (-1, 15.4, -4), "#8a6a3a", {"north": [(0, 0, 3, 1, "#6a4a2a")]})     # bolsita
     box(m, "body", (-1, 16.6, -4.7), (1, 18.8, -4), "#8a5aa8", {"north": [(0, 0, 1, 1, "#d8a0ff")]})        # amuleto
@@ -1027,14 +1083,15 @@ def chaman():
         x = -3.3 + k * 1.1
         y = 20.5 - abs(k - 3) * 0.4
         box(m, "body", (x, y, -4.6), (x + 0.8, y + 0.8, -4), "#e8e8e0")
-    for x, y0 in ((-5, 9), (-2, 6), (1.5, 8), (4, 5)):                                                     # remiendos y jirones
-        box(m, "body", (x, y0, -4.4), (x + 1.8, y0 + 2.2, -4), "#4a6a2a", pat="cloth")
-    for k in range(6):                                                                                     # flecos rotos abajo
-        x = -6 + k * 2
-        m.cube("body", (x, 0, -4.4), (x + 1, 2 + (k % 2), -3.6), "#4a6a2a")
-        m.cube("body", (x + 1, 0.5, 4.4), (x + 2, 2, 5.2), "#4a6a2a")
+    for x, y0, z in ((-5, 10, -4.4), (-2, 6, -4.8), (1.5, 8, -4.8), (4, 5, -4.8)):                       # remiendos y jirones
+        box(m, "body", (x, y0, z), (x + 1.8, y0 + 2.2, z + 0.4), "#4a6a2a", pat="cloth")
+    for k in range(7):                                                                                     # flecos rotos abajo
+        x = -6.5 + k * 1.9
+        m.cube("body", (x, 0, -4.9), (x + 1, 1.8 + (k % 2), -4.2), "#4a6a2a")
+        m.cube("body", (x + 0.5, 0, 5.4), (x + 1.5, 1.5, 6.1), "#4a6a2a")
     mirror(m, "body", (6, 21, -3), (6.6, 24, 4), "#4a6a2a", pat="cloth")                                    # hombreras de trapo
-    m.cube("head", (-5, 22, -6), (5, 33, 4), "#5a7a30", {"north": [(2, 3, 6, 6, "#1e2a12")], "up": [(4, 2, 2, 6, "#4a6a2a")]}, pat="cloth")
+    m.rcube("head", (-5, 22, -6), (5, 33, 4), "#5a7a30", {"north": [(2, 3, 6, 6, "#1e2a12")], "up": [(4, 2, 2, 6, "#4a6a2a")]}, r=2, pat="cloth")
+    m.blob("head", (0, 29, 0.5), (5.3, 4.4, 3.8), "#5a7a30", pat="cloth", levels=2)                          # capucha abultada atras
     box(m, "head", (-4.6, 31, -6.6), (4.6, 32.6, -6), "#4a6a2a", pat="cloth")                               # borde de la capucha
     mirror(m, "head", (3.2, 23, -6.6), (4.6, 31, -6), "#4a6a2a", pat="cloth")
     m.cube("head", (-3, 25, -6.4), (3, 31, -5.8), "#e8e8e0", {"north": [(2, 3, 2, 1, "#3a3a3a")]})          # mascara calavera

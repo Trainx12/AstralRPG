@@ -44,6 +44,58 @@ class Model:
                            "decals": decals or {}, "shade": shade, "rotation": rotation, "origin": origin,
                            "pat": pat})
 
+    def rcube(self, bone, frm, to, color, decals=None, r=None, pat=None):
+        """Caja con bordes redondeados: 4 cajas encimadas (3 achaflanadas + 1 que redondea la esquina).
+        Mantiene el tamano total, asi los detalles pegados a la superficie siguen en su lugar."""
+        a = [min(frm[k], to[k]) for k in range(3)]
+        b = [max(frm[k], to[k]) for k in range(3)]
+        d = [b[k] - a[k] for k in range(3)]
+        if r is None:
+            r = round(min(min(d) / 4, 2.5) * 2) / 2
+        r = min(r, min(d) / 2 - 0.05)
+        if r < 0.45:
+            self.cube(bone, a, b, color, decals, pat=pat)
+            return
+        decals = decals or {}
+        sh = int(round(r))
+
+        def shifted(faces):
+            out = {}
+            for f in faces:
+                out[f] = [(dx - sh, dy - sh, dw, dh, c) for (dx, dy, dw, dh, c) in decals.get(f, [])]
+            return out
+
+        for axis, faces in ((0, ("east", "west")), (1, ("up", "down")), (2, ("north", "south"))):
+            lo = [a[k] + (0 if k == axis else r) for k in range(3)]
+            hi = [b[k] - (0 if k == axis else r) for k in range(3)]
+            self.cube(bone, lo, hi, color, shifted(faces), pat=pat)
+        q = r * 0.3
+        self.cube(bone, [v + q for v in a], [v - q for v in b], color, pat=pat)
+
+    def blob(self, bone, center, radius, color, pat=None, axis=1, levels=3, decals=None, flat=None):
+        """Elipsoide escalonado: varias cajas redondeadas encajadas, largas y finas adentro, cortas y anchas afuera.
+        axis: eje largo de las capas (0=x, 1=y, 2=z). flat: (lado, 0..1) recorta media forma (ej. ('down', 0.3))."""
+        prof = {2: [(1.0, 0.62), (0.62, 1.0)],
+                3: [(1.0, 0.5), (0.8, 0.86), (0.45, 1.0)],
+                4: [(1.0, 0.42), (0.88, 0.72), (0.66, 0.92), (0.36, 1.0)]}[levels]
+        for i, (fa, fc) in enumerate(prof):
+            lo, hi = [], []
+            for k in range(3):
+                f = fa if k == axis else fc
+                lo.append(center[k] - radius[k] * f)
+                hi.append(center[k] + radius[k] * f)
+            if flat:
+                side, keep = flat
+                k = {"down": 1, "up": 1, "north": 2, "south": 2, "west": 0, "east": 0}[side]
+                cut = center[k] + (-1 if side in ("down", "north", "west") else 1) * radius[k] * keep
+                if side in ("down", "north", "west"):
+                    lo[k] = max(lo[k], cut)
+                else:
+                    hi[k] = min(hi[k], cut)
+                if hi[k] - lo[k] < 0.3:
+                    continue
+            self.rcube(bone, lo, hi, color, decals if i == len(prof) - 1 else None, pat=pat)
+
     def anim(self, name, length, channels, loop="loop"):
         self.anims[name] = (length, loop, channels)
 
@@ -63,7 +115,7 @@ class Model:
                 w, h = self._face_size(c, f)
                 rects.append((h, w, i, f))
         rects.sort(key=lambda r: (-r[0], -r[1]))
-        for size in (64, 128, 256, 512):
+        for size in (64, 128, 256, 512, 1024):
             x = y = shelf = 0
             pos = {}
             ok = True
