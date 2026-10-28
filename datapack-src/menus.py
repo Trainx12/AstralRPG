@@ -5,7 +5,7 @@ Menus de cofre (DeluxeMenus) para que los jugadores no tengan que escribir coman
   /menu          menu principal (mascotas, mercado, subastas, guia, volver al lobby)
   /mascotas      tus mascotas: invocar o guardar (las que no tenes aparecen bloqueadas)
   gacha_*        lo abre el cofre de cada gacha: tirar x1 / x10 / x25 / x50 y ver premios
-  bazar          lo abre el Administrador del Bazar: mercado (RoyalBazaar), subastas y ordenes (EzAuction)
+  bazar          lo abre el aldeano Bazar: mercado y venta rapida (EconomyShopGUI), subastas (CrazyAuctions), ordenes (DonutOrders)
 
 Los menus que abren los vendedores se abren desde la consola con 'dm open <menu> <jugador>'.
 Salida: ../build/menus/DeluxeMenus/  (gui_menus/*.yml + config-gui_menus.yml con la lista para config.yml)
@@ -138,17 +138,21 @@ def mascotas_menu():
 
 
 def bazar_menu():
-    items = item("info", "OAK_SIGN", 4, "&6&l✦ Bazar ✦", ["&7Compra y vende con otros jugadores", "&7o con el mercado del servidor."])
-    items += item("mercado", "EMERALD", 11, "&a&lMercado",
-                  ["&7Materiales comunes: vendes y compras al toque.", "&7Los precios suben si todos compran", "&7y bajan si todos venden.",
-                   "", "&eClic para abrir"], extra={"click_commands": ["[close]", "[player] bazaar"]})
-    items += item("subastas", "GOLD_INGOT", 13, "&e&lSubastas",
-                  ["&7Items unicos entre jugadores (armas, armaduras...).", "&7Para publicar: agarra el item y usa", "&f/ah sell <precio>",
-                   "", "&eClic para abrir"], extra={"click_commands": ["[close]", "[player] ah"]})
-    items += item("ordenes", "PAPER", 15, "&b&lOrdenes de compra",
-                  ["&7Pedi algo que buscas y paga por adelantado:", "&7cuando alguien te lo vende, te llega solo.", "",
-                   "&eClic para ver tus ordenes"], extra={"click_commands": ["[close]", "[player] orders"]})
-    items += relleno("YELLOW_STAINED_GLASS_PANE", 27, [4, 11, 13, 15])
+    items = item("info", "OAK_SIGN", 4, "&6&l✦ Bazar ✦", ["&7Compra y vende con el servidor", "&7o con otros jugadores."])
+    items += item("mercado", "EMERALD", 10, "&a&lMercado",
+                  ["&7Compra y vende materiales al servidor.", "", "&eClic para abrir"],
+                  extra={"click_commands": ["[close]", "[player] shop"]})
+    items += item("venta", "HOPPER", 12, "&2&lVenta rapida",
+                  ["&7Pone lo que quieras vender y listo.", "", "&eClic para abrir"],
+                  extra={"click_commands": ["[close]", "[player] sellgui"]})
+    items += item("subastas", "GOLD_INGOT", 14, "&e&lSubastas",
+                  ["&7Items unicos entre jugadores (armas, armaduras...).", "&7Para publicar: agarra el item y usa",
+                   "&f/ah sell <precio>", "", "&eClic para abrir"], extra={"click_commands": ["[close]", "[player] ah"]})
+    items += item("ordenes", "PAPER", 16, "&b&lOrdenes de compra",
+                  ["&7Pedi algo que buscas y paga por adelantado:", "&7cuando alguien te lo entrega, te llega solo.",
+                   "&7Tambien podes entregar lo que otros piden.", "", "&eClic para abrir"],
+                  extra={"click_commands": ["[close]", "[player] orders"]})
+    items += relleno("YELLOW_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16])
     return menu("&8Bazar", "astralmenu_bazar", 27, items)
 
 
@@ -167,58 +171,7 @@ def principal_menu():
     return menu("&8Menu de AstralRPG", "menu", 27, items, update=True)
 
 
-# ------------------------------------------------------------------ mercado del servidor (RoyalBazaar)
-# Precio base de compra de cada material (el de venta es 5% menos). Suben si todos compran y bajan si todos venden
-# (entre 40% y 300% del base) y despues vuelven solos hacia el base. Referencia: un mob hostil de AstralRPG da 15$.
-MERCADO = {
-    "mineria": ("&bMineria", "minecraft:iron_pickaxe", 2, 3, {
-        "cobblestone": 1, "coal": 4, "copper_ingot": 3, "iron_ingot": 12, "gold_ingot": 18, "redstone": 3, "lapis_lazuli": 5,
-        "quartz": 6, "amethyst_shard": 6, "obsidian": 15, "diamond": 120, "emerald": 80, "netherite_scrap": 400}),
-    "cultivos": ("&aCultivos", "minecraft:wheat", 2, 5, {
-        "wheat": 3, "carrot": 3, "potato": 3, "beetroot": 2, "sugar_cane": 4, "pumpkin": 6, "melon_slice": 1, "cocoa_beans": 3,
-        "nether_wart": 4, "sweet_berries": 2, "cactus": 3, "bamboo": 1}),
-    "mobs": ("&cDrops de mobs", "minecraft:bone", 2, 7, {
-        "rotten_flesh": 1, "bone": 3, "string": 3, "spider_eye": 4, "gunpowder": 6, "leather": 6, "feather": 2,
-        "slime_ball": 8, "ender_pearl": 25, "blaze_rod": 20, "phantom_membrane": 15, "ghast_tear": 40}),
-    "madera": ("&6Madera", "minecraft:oak_log", 4, 5, {
-        "oak_log": 3, "spruce_log": 3, "birch_log": 3, "jungle_log": 3, "acacia_log": 3, "dark_oak_log": 3,
-        "mangrove_log": 3, "cherry_log": 4, "pale_oak_log": 4}),
-}
-MERCADO_LORE = {"mineria": "Minerales, lingotes y gemas.", "cultivos": "Cosechas y plantas.",
-                "mobs": "Lo que sueltan los monstruos.", "madera": "Troncos de todos los arboles."}
-
-
-def mercado_categoria(cid):
-    name, icon, row, col, items = MERCADO[cid]
-    L = [f"# Categoria del mercado (generado por datapack-src/menus.py, MERCADO)", f'name: "{name}"', f'icon: "{icon}"',
-         f"slot: {(row - 1) * 9 + col - 1}", "", "defaults:", "  spread: 0.05", "  elasticity: 40000", "  reversion_rate: 0.02",
-         "  floor_pct: 0.4", "  ceiling_pct: 3.0", "", "items:"]
-    for it, price in items.items():
-        L += [f"  {it}:", f'    item: "minecraft:{it}"', f"    base_price: {float(price)}"]
-    return "\n".join(L) + "\n"
-
-
-def mercado_menu():
-    L = ["# Mercado: menu principal (generado por datapack-src/menus.py)", 'title: "&8Mercado"', "command: []", "rows: 4", "",
-         "pages:", "  - page: 1", "    mask:", "      items:", "        - yellow_stained_glass_pane", "      pattern:",
-         '        - "111111111"', '        - "100000001"', '        - "100000001"', '        - "111111111"', "", "slots:"]
-    for cid, (name, icon, row, col, _) in MERCADO.items():
-        L += [f'  - item: {icon.split(":")[1]} hide_attributes name:"{name}"', "    lore:", f'      - "&7{MERCADO_LORE[cid]}"',
-              '      - ""', '      - "&eClic para ver"', "    location:", f"      row: {row}", f"      column: {col}", "      page: 1",
-              "    left-click:", "      - id: open_menu", "        args:", "          menu: bazaar_category", f"          category: {cid}",
-              "      - id: play_sound", "        args:", "          sound: ui_button_click", "          pitch: 1", "          volume: 1"]
-    L += ['  - item: barrier name:"&cCerrar"', "    lore: []", "    location:", "      row: 4", "      column: 5", "      page: 1",
-          "    left-click:", "      - id: close_inventory"]
-    return "\n".join(L) + "\n"
-
-
 def main():
-    rb = os.path.join(OUT, "..", "RoyalBazaar")
-    os.makedirs(os.path.join(rb, "categories"), exist_ok=True)
-    os.makedirs(os.path.join(rb, "menus"), exist_ok=True)
-    for cid in MERCADO:
-        open(os.path.join(rb, "categories", f"{cid}.yml"), "w", encoding="utf-8").write(mercado_categoria(cid))
-    open(os.path.join(rb, "menus", "bazaar_main.yml"), "w", encoding="utf-8").write(mercado_menu())
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "principal": principal_menu()})

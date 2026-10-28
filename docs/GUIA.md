@@ -30,7 +30,7 @@ AstralRPG/
 │   ├── *_skins.py            Skins de armaduras de cada clase (Mago, Berserker, Arquero)
 │   ├── cc0_textures.py       Texturas libres (créditos en pack-source/cc0/CREDITOS.txt)
 │   ├── lobby.py              Lobby: gachas (CrazyCrates), cobro, panel TAB, spawn, comandos de consola
-│   ├── menus.py              Menús de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar; mercado (RoyalBazaar)
+│   ├── menus.py              Menús de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar
 │   ├── pack-source/          Texturas originales, referencias y modelos de BetterModel ya generados
 │   └── mobs/
 │       ├── creatures.py      Modelos 3D de las 17 criaturas y los 3 cofres de las gachas
@@ -78,7 +78,7 @@ AstralRPG/
 | Cantidades de tiradas del menú (x1, x10...) | `lobby.py` (`TIRADAS`) y `mobs/mythic.py` (`_gacha`) | `python lobby.py` y `python mobs/mythic.py` | `gachas.yml` + `mobs/astral.yml` + `mm reload` |
 | Mazmorra: salas, oleadas, mobs, premio | `mobs/mazmorra.py` (`SALAS`, `MOBS`, `PREMIO`) | `python mobs/mazmorra.py` | `plugins/MythicMobs/{mobs,skills}/mazmorra.yml` + `mm reload` (armado inicial: `build/mazmorra/comandos.txt`) |
 | Mascotas: bonus, niveles, cómo se consiguen | `mobs/mascotas.py` (`MASCOTAS`); modelos en `mobs/creatures.py` | `python mobs/mascotas.py` (+ `build_models.py` y resource pack si cambia un modelo) | `plugins/MythicMobs/{mobs,skills}/mascotas.yml` + `mm reload` |
-| Un menú de cofre o el mercado (precios, categorías) | `menus.py` (`MERCADO`, funciones `*_menu`) | `python menus.py` | `plugins/DeluxeMenus/gui_menus/` + `dm reload`; `plugins/RoyalBazaar/{categories,menus}/` + `bazaar reload` |
+| Un menú de cofre (/menu, /mascotas, gachas, bazar) | `menus.py` (funciones `*_menu`) | `python menus.py` | `plugins/DeluxeMenus/gui_menus/` (y la lista en `config.yml`) + `dm reload` |
 | Un título nuevo para la gacha | `lobby.py` (`TITLES`) | `python lobby.py` | igual que arriba |
 | Una línea del panel lateral o del tabulador | `lobby.py` (`TAB_SECTIONS`) | `python lobby.py` | `plugins/TAB/config.yml` (reemplazar esa sección) + `tab reload` |
 | Rangos (Novato...Leyenda) | `lobby.py` (`RANKS`) | `python lobby.py` | igual que arriba |

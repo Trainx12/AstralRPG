@@ -53,8 +53,9 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | EconomyShopGUI 7.3.3 | Tienda (`/shop`) y venta rápida (`/sellgui`) de ítems vanilla |
 | CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
 | DeluxeMenus 1.14.1 | Menús de cofre: `/menu`, `/mascotas`, gachas y bazar (los genera `datapack-src/menus.py`) |
-| EzAuction 2.3.1 | Subastas, órdenes de compra y subastas en vivo entre jugadores (`/ah`, `/orders`) |
-| RoyalBazaar 2026.28.0 | Mercado del servidor con precios que se mueven (`/bazaar`) |
+| CrazyAuctions (26.1.2) | Subastas entre jugadores (`/ah`), 5% de impuesto por venta |
+| DonutOrders 2.0.0 | Órdenes de compra entre jugadores (`/orders`) |
+| QuickShop-Hikari 6.3.0.3 | Instalado pero sin permisos para jugadores (se usó en los puestos que se sacaron) |
 
 ## Lobby (mundo `lobby`)
 
@@ -108,9 +109,11 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 
 ## Menús, bazar y subastas
 
-- **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
-- **Mercado (RoyalBazaar, `/bazaar`):** materiales comunes (minería, cultivos, drops de mobs, madera) que se compran y venden al instante contra el servidor; los precios suben si todos compran y bajan si todos venden. Precios en `MERCADO` de `datapack-src/menus.py`.
-- **Subastas (EzAuction, `/ah`):** ítems únicos entre jugadores: publicar (`/ah sell <precio>` con el ítem en la mano), órdenes de compra (`/orders`) y subastas en vivo. Aldeano *Subastas* (`astral_npc_subastas`).
+- **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`: mercado, venta rápida, subastas y órdenes). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
+- **Mercado y venta rápida:** EconomyShopGUI (`/shop`, `/sellgui`), con precios fijos.
+- **Subastas (CrazyAuctions, `/ah`):** ítems únicos entre jugadores; publicar con `/ah sell <precio>` y el ítem en la mano. Aldeano *Subastas* (`astral_npc_subastas`).
+- **Órdenes de compra (DonutOrders, `/orders`):** pedís algo y pagás por adelantado; quien te lo entrega cobra al toque.
+- EzAuction y RoyalBazaar (los que se habían elegido) no están en el catálogo de plugins de Aternos.
 - Los 4 puestos con cofres y alquiler que hubo antes se sacaron (regiones `puesto1-4`, grupos y cofres borrados).
 
 ## Mazmorra: Minas Olvidadas (mundo `mina`)

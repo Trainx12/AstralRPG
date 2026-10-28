@@ -8,29 +8,41 @@ items:
     amount: 1
     display_name: '&6&l✦ Bazar ✦'
     lore:
-    - '&7Compra y vende con otros jugadores'
-    - '&7o con el mercado del servidor.'
+    - '&7Compra y vende con el servidor'
+    - '&7o con otros jugadores.'
     item_flags:
     - HIDE_ATTRIBUTES
   'mercado':
     material: EMERALD
-    slot: 11
+    slot: 10
     amount: 1
     display_name: '&a&lMercado'
     lore:
-    - '&7Materiales comunes: vendes y compras al toque.'
-    - '&7Los precios suben si todos compran'
-    - '&7y bajan si todos venden.'
+    - '&7Compra y vende materiales al servidor.'
     - ''
     - '&eClic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[close]'
-    - '[player] bazaar'
+    - '[player] shop'
+  'venta':
+    material: HOPPER
+    slot: 12
+    amount: 1
+    display_name: '&2&lVenta rapida'
+    lore:
+    - '&7Pone lo que quieras vender y listo.'
+    - ''
+    - '&eClic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] sellgui'
   'subastas':
     material: GOLD_INGOT
-    slot: 13
+    slot: 14
     amount: 1
     display_name: '&e&lSubastas'
     lore:
@@ -46,14 +58,15 @@ items:
     - '[player] ah'
   'ordenes':
     material: PAPER
-    slot: 15
+    slot: 16
     amount: 1
     display_name: '&b&lOrdenes de compra'
     lore:
     - '&7Pedi algo que buscas y paga por adelantado:'
-    - '&7cuando alguien te lo vende, te llega solo.'
+    - '&7cuando alguien te lo entrega, te llega solo.'
+    - '&7Tambien podes entregar lo que otros piden.'
     - ''
-    - '&eClic para ver tus ordenes'
+    - '&eClic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
@@ -122,30 +135,23 @@ items:
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_10':
+  'vidrio_11':
     material: YELLOW_STAINED_GLASS_PANE
-    slot: 10
+    slot: 11
     amount: 1
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_12':
+  'vidrio_13':
     material: YELLOW_STAINED_GLASS_PANE
-    slot: 12
+    slot: 13
     amount: 1
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_14':
+  'vidrio_15':
     material: YELLOW_STAINED_GLASS_PANE
-    slot: 14
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_16':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 16
+    slot: 15
     amount: 1
     display_name: ' '
     item_flags:
