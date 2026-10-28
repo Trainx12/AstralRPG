@@ -235,7 +235,13 @@ def crate_yml(gid, g, garantia=False):
         if rar in PITY_RARITIES:
             cm.append(f"scoreboard players set %player% {pity_obj(gid)} 0")
         if rar in ("epic", "legendary"):
-            cm.append("broadcast &6&l(!) &e%player% &7saco " + RARITY_AMP[rar] + " &7en la " + GACHA_AMP[gid] + "&7: &f" + name)
+            # anuncio con tellraw de Minecraft (el /broadcast de Essentials le pone un prefijo con un color que no se ve)
+            def t(txt_, col, bold=False):
+                return "{text:'%s',color:'%s'%s}" % (txt_.replace("\\", "\\\\").replace("'", "\\'"), col, ",bold:true" if bold else "")
+            rcol, rname = {"epic": ("light_purple", "Epico"), "legendary": ("gold", "Legendario")}[rar]
+            cm.append("minecraft:tellraw @a ['',%s]" % ",".join([
+                t("(!) ", "gold", True), t("%player%", "yellow"), t(" saco ", "gray"), t(rname, rcol, rar == "legendary"),
+                t(" en la ", "gray"), t(HOLO_NAME[gid], HOLO_COLOR[gid]), t(": ", "gray"), t(name, "white")]))
         c = color[rar]
         st = c + "★" * stars[rar] + "<dark_gray>" + "★" * (5 - stars[rar])
         # barra de probabilidad (escala logaritmica: 0,1% = 1 cuadradito, 10% o mas = 10)

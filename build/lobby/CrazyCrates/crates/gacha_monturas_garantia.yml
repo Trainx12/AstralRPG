@@ -134,7 +134,7 @@ Crate:
         - "mm egg give %player% astral_pterodactilo 1"
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &aGacha de Monturas&7: &fMontura voladora: Pterodactilo"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
     "2":
       DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
       DisplayItem: "parrot_spawn_egg"
@@ -161,4 +161,4 @@ Crate:
         - "mm egg give %player% astral_ave 1"
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &aGacha de Monturas&7: &fMontura voladora: Gran Ave"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
