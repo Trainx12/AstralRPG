@@ -58,15 +58,15 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo vacío aparte, en modo aventura, sin mobs, sin PvP ni daño, y protegido con WorldGuard (`__global__`).
 
 - **Spawn:** centro de la plaza (180.5, 98, 190.5). Los jugadores nuevos aparecen ahí la primera vez; después entran donde salieron. `/spawn` vuelve al lobby, y si morís sin cama reaparecés en el lobby.
-- **Vendedores** (aldeanos de MythicMobs, quietos e invulnerables):
+- **Vendedores** (de MythicMobs, quietos e invulnerables). Tienda, Venta y Viajero son aldeanos; las 3 gachas son cofres 3D (BetterModel, modelos `astral_cofre_*`) que abren la tapa cuando cobran la tirada:
 
 | Edificio | Vendedor | Qué hace |
 |---|---|---|
 | Norte (grande) | Tienda | Abre `/shop` |
 | Noroeste | Venta rápida | Abre `/sellgui` |
-| Noreste | Gacha RPG (1000$) | Materiales, armas, talismanes |
-| Suroeste | Gacha de Monturas (2500$) | Monturas con silla y mascotas |
-| Sureste | Gacha de Cosméticos (500$) | Títulos para el chat y moldes de adorno |
+| Cofre violeta (sobre el cristal del medio, lado este) | Gacha RPG (1000$) | Materiales, armas, talismanes |
+| Cofre verde (cristal del norte, lado este) | Gacha de Monturas (2500$) | Monturas con silla y mascotas |
+| Cofre rosa (cristal del sur, lado este) | Gacha de Cosméticos (500$) | Títulos para el chat y moldes de adorno |
 | Junto al banco del sur | Viajero | Te lleva al mundo normal |
 
   En las gachas: clic para tirar (el vendedor cobra y abre la ruleta de CrazyCrates con `crates forceopen`), shift + clic para ver la vitrina de premios (común 60%, poco común 25%, raro 11%, épico 3,5%, legendario 0,5%).
@@ -149,7 +149,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 | `trigger astral.guia` | Abre la guía (también Esc → Guía AstralRPG) |
 | `mm mobs spawn astral_<id>` | Spawnear una criatura (ej. `astral_chocobo`, `astral_yeti`) |
 | `mm mobs list` | Lista de criaturas cargadas (tienen que ser 34: 27 criaturas + 7 vendedores) |
-| `bettermodel reload` | Recargar modelos (tienen que ser 17) |
+| `bettermodel reload` | Recargar modelos (tienen que ser 20: 17 criaturas + 3 cofres) |
 | `bolt edit add <amigo>` y clic en la caja | Compartir un cofre o shulker protegido |
 | `bolt trust` | Confiar todas tus protecciones a un amigo |
 | `bolt info` y clic | Ver de quién es una protección |

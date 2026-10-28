@@ -23,9 +23,10 @@ SPAWN = (180.5, 98, 190.5, 180)          # x, y, z, yaw (mirando al edificio gra
 NPC_POS = {
     "astral_npc_tienda": (178.5, 100, 166.5, 0),        # edificio grande del norte
     "astral_npc_venta": (158.5, 100, 177.5, -90),       # noroeste
-    "astral_npc_gacha_rpg": (195.5, 100, 177.5, 90),    # noreste
-    "astral_npc_gacha_monturas": (158.5, 100, 205.5, -90),   # suroeste
-    "astral_npc_gacha_cosmeticos": (196.5, 100, 206.5, 90),  # sureste
+    # gachas: cofres sobre los 3 cristales celestes del lado este (los cristales se sacan, ver commands())
+    "astral_npc_gacha_rpg": (211.5, 101, 191.5, 90),          # el del medio
+    "astral_npc_gacha_monturas": (208.5, 101, 185.5, 90),     # el del norte
+    "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
     "astral_npc_viajero": (180.5, 100, 212.5, 180),     # junto al banco del sur
 }
 
@@ -453,6 +454,10 @@ def commands():
          "lp group default permission set essentials.worth true",
          "lp group default permission set essentials.help true",
          "# --- vendedores (MythicMobs). WorldGuard no deja aparecer mobs en el lobby: se habilita un momento",
+         "# --- los cofres de las gachas van donde estaban los 3 cristales celestes",
+         f"execute in minecraft:{WORLD} run setblock 208 101 185 minecraft:air",
+         f"execute in minecraft:{WORLD} run setblock 211 101 191 minecraft:air",
+         f"execute in minecraft:{WORLD} run setblock 208 101 197 minecraft:air",
          f"rg flag -w {WORLD} __global__ mob-spawning allow"]
     for mid, (nx, ny, nz, nyaw) in NPC_POS.items():
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")

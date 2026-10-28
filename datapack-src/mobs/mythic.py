@@ -256,7 +256,8 @@ ELITE_MONEY = 150
 # (ubicacion de cada uno: datapack-src/lobby.py)
 def _gacha(gid, cost):
     G = gid.upper()
-    return [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
+    return [f"state{{s=open}} @self ~onInteract ?~!crouching ?~hascurrency{{a={cost}}}",     # la tapa se abre al pagar
+            f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
             f"skill{{s=AST_{G}}} @trigger ~onInteract ?~!crouching ?~hascurrency{{a={cost}}}",
             f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~!crouching ?~!hascurrency{{a={cost}}}"]
 
@@ -292,12 +293,20 @@ NPCS = {
 }
 
 
+# Las gachas son cofres (modelo de BetterModel sobre una oveja quieta: su caja de golpe es como la de un cofre)
+NPC_COFRE = {"astral_npc_gacha_rpg": "astral_cofre_rpg", "astral_npc_gacha_monturas": "astral_cofre_monturas",
+             "astral_npc_gacha_cosmeticos": "astral_cofre_cosmeticos"}
+
+
 def npc_block(mid, name, prof, skills):
-    lines = [f"{mid}:", "  Type: VILLAGER", f"  Display: '{name}'", "  Health: 100", "  Options:",
+    cofre = NPC_COFRE.get(mid)
+    lines = [f"{mid}:", f"  Type: {'SHEEP' if cofre else 'VILLAGER'}", f"  Display: '{name}'", "  Health: 100", "  Options:",
              "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
-             "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true",
-             "    AlwaysShowName: true", f"    Profession: {prof}", "    VillagerType: PLAINS",
-             "  Skills:", "  - cancelevent @self ~onInteract"]
+             "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true"]
+    lines += [] if cofre else [f"    Profession: {prof}", "    VillagerType: PLAINS"]
+    lines += ["  Skills:", "  - cancelevent @self ~onInteract"]
+    if cofre:
+        lines += [f"  - model{{m={cofre}}} @self ~onSpawn", f"  - model{{m={cofre}}} @self ~onLoad"]
     lines += ["  - '" + s.replace("'", "''") + "'" for s in skills]
     return "\n".join(lines) + "\n"
 

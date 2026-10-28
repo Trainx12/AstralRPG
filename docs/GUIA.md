@@ -32,7 +32,7 @@ AstralRPG/
 │   ├── lobby.py              Lobby: gachas (CrazyCrates), cobro, panel TAB, spawn, comandos de consola
 │   ├── pack-source/          Texturas originales, referencias y modelos de BetterModel ya generados
 │   └── mobs/
-│       ├── creatures.py      Modelos 3D de las 17 criaturas (cajas, colores, animaciones)
+│       ├── creatures.py      Modelos 3D de las 17 criaturas y los 3 cofres de las gachas
 │       ├── bbmodel.py        Motor que arma los .bbmodel (cubos, cajas redondeadas, elipsoides, texturas)
 │       ├── build_models.py   Exporta los modelos y hace vistas previas 3D
 │       ├── mythic.py         MythicMobs: vida, daño, drops, spawn, monturas, élites, jefes, vendedores (NPCS)

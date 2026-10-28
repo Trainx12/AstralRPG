@@ -1243,7 +1243,7 @@ astral_npc_venta:
   - 'command{c="sudo <trigger.name> sellgui"} @self ~onInteract'
 
 astral_npc_gacha_rpg:
-  Type: VILLAGER
+  Type: SHEEP
   Display: '&d&lGacha RPG &7(1000$ - shift+clic ver premios)'
   Health: 100
   Options:
@@ -1256,16 +1256,17 @@ astral_npc_gacha_rpg:
     PreventItemPickup: true
     PreventOtherDrops: true
     AlwaysShowName: true
-    Profession: LIBRARIAN
-    VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=1000}'
   - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?~crouching'
   - 'skill{s=AST_GACHA_RPG} @trigger ~onInteract ?~!crouching ?~hascurrency{a=1000}'
   - 'message{m="&cLa tirada cuesta &e1000$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=1000}'
 
 astral_npc_gacha_monturas:
-  Type: VILLAGER
+  Type: SHEEP
   Display: '&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)'
   Health: 100
   Options:
@@ -1278,16 +1279,17 @@ astral_npc_gacha_monturas:
     PreventItemPickup: true
     PreventOtherDrops: true
     AlwaysShowName: true
-    Profession: SHEPHERD
-    VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - model{m=astral_cofre_monturas} @self ~onSpawn
+  - model{m=astral_cofre_monturas} @self ~onLoad
+  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=2500}'
   - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?~crouching'
   - 'skill{s=AST_GACHA_MONTURAS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=2500}'
   - 'message{m="&cLa tirada cuesta &e2500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=2500}'
 
 astral_npc_gacha_cosmeticos:
-  Type: VILLAGER
+  Type: SHEEP
   Display: '&b&lGacha de Cosmeticos &7(500$ - shift+clic ver premios)'
   Health: 100
   Options:
@@ -1300,10 +1302,11 @@ astral_npc_gacha_cosmeticos:
     PreventItemPickup: true
     PreventOtherDrops: true
     AlwaysShowName: true
-    Profession: CARTOGRAPHER
-    VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - model{m=astral_cofre_cosmeticos} @self ~onSpawn
+  - model{m=astral_cofre_cosmeticos} @self ~onLoad
+  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=500}'
   - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?~crouching'
   - 'skill{s=AST_GACHA_COSMETICOS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=500}'
   - 'message{m="&cLa tirada cuesta &e500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=500}'

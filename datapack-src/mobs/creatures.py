@@ -1126,8 +1126,73 @@ def chaman():
     return m
 
 
+# ------------------------------------------------------------------ cofres de las gachas del lobby
+# Un cofre por gacha, con colores segun lo que da. La tapa (hueso 'tapa', bisagra atras) se abre con la
+# animacion 'open' cuando el jugador paga la tirada; en 'idle' la gema de arriba flota y la tapa respira.
+def _cofre(name, wood, band, gem, inner, emblem):
+    m = Model(name)
+    m.bone("cuerpo", (0, 0, 0))
+    m.rcube("cuerpo", (-7, 0, -7), (7, 10, 7), wood, r=1, pat="wood")
+    box(m, "cuerpo", (-7.3, 0, -7.3), (7.3, 1.2, 7.3), band)                                   # zocalo
+    box(m, "cuerpo", (-6.2, 9.6, -6.2), (6.2, 10, 6.2), inner)                                 # brillo de adentro
+    for x0 in (-5, 3):                                                                         # flejes del cuerpo
+        box(m, "cuerpo", (x0, 0, -7.35), (x0 + 2, 10, 7.35), band)
+    for sx in (-1, 1):                                                                         # esquineros
+        for sz in (-1, 1):
+            a = (min(7 * sx, 5.6 * sx) - 0.3 * (sx < 0), 0, min(7 * sz, 5.6 * sz) - 0.3 * (sz < 0))
+            b = (max(7 * sx, 5.6 * sx) + 0.3 * (sx > 0), 2.4, max(7 * sz, 5.6 * sz) + 0.3 * (sz > 0))
+            box(m, "cuerpo", a, b, band)
+    emblem(m)                                                                                  # dibujo del frente
+    m.bone("tapa", (0, 10, 7), "cuerpo")
+    m.rcube("tapa", (-7, 10, -7), (7, 15, 7), wood, r=1, pat="wood")
+    box(m, "tapa", (-7.3, 10, -7.3), (7.3, 11, 7.3), band)                                     # borde de la tapa
+    for x0 in (-5, 3):                                                                         # flejes de la tapa
+        box(m, "tapa", (x0, 10, -7.35), (x0 + 2, 15.3, 7.35), band)
+    box(m, "tapa", (-1.6, 7.6, -7.9), (1.6, 12, -7), band, {"north": [(1, 1, 1, 2, "#1a1a1a")]})  # cerradura
+    m.bone("gema", (0, 16.5, 0), "tapa")
+    box(m, "gema", (-2, 15, -2), (2, 15.6, 2), band)                                           # engarce
+    m.rcube("gema", (-1.5, 15.6, -1.5), (1.5, 18.6, 1.5), gem, r=0.6)
+    box(m, "gema", (-0.6, 18.6, -0.6), (0.6, 19.4, 0.6), gem)
+    m.anim("idle", 2, {"gema": {"position": (0, swing(0.6, 0.5), 0), "rotation": (0, "q.anim_time * 90", 0)},
+                       "tapa": {"rotation": (swing(-1.5, 0.5), 0, 0)}})
+    m.anim("open", 1.6, {"tapa": {"rotation": ("-math.sin(math.min(q.anim_time, 1.6) * 112.5) * 75", 0, 0)},
+                         "gema": {"position": (0, "math.sin(math.min(q.anim_time, 1.6) * 112.5) * 3", 0),
+                                  "rotation": (0, "q.anim_time * 540", 0)}}, loop="once")
+    return m
+
+
+def _espada(m):        # Gacha RPG: espada al frente
+    box(m, "cuerpo", (-0.5, 2, -7.6), (0.5, 7.5, -7), "#dfe6f0")
+    box(m, "cuerpo", (-2, 2.8, -7.7), (2, 3.6, -7), "#e8c24a")
+    box(m, "cuerpo", (-0.5, 1, -7.6), (0.5, 2.8, -7), "#6a3216")
+
+
+def _herradura(m):     # Gacha de Monturas: herradura al frente
+    box(m, "cuerpo", (-2.5, 2, -7.6), (-1.5, 6.5, -7), "#c8c8d0")
+    box(m, "cuerpo", (1.5, 2, -7.6), (2.5, 6.5, -7), "#c8c8d0")
+    box(m, "cuerpo", (-2.5, 6.5, -7.6), (2.5, 7.5, -7), "#c8c8d0")
+
+
+def _estrella(m):      # Gacha de Cosmeticos: estrella al frente
+    box(m, "cuerpo", (-0.5, 1.5, -7.6), (0.5, 7.5, -7), "#fff2a0")
+    box(m, "cuerpo", (-2.5, 4, -7.6), (2.5, 5, -7), "#fff2a0")
+    box(m, "cuerpo", (-1.5, 3, -7.7), (1.5, 6, -7), "#ffe066")
+
+
+def cofre_rpg():
+    return _cofre("astral_cofre_rpg", "#6a3aa8", "#e8c24a", "#4fd1ff", "#c8a0ff", _espada)
+
+
+def cofre_monturas():
+    return _cofre("astral_cofre_monturas", "#4f8a3a", "#7a4a22", "#f4a73a", "#d8f0a0", _herradura)
+
+
+def cofre_cosmeticos():
+    return _cofre("astral_cofre_cosmeticos", "#e86bb8", "#e8ecf8", "#9fe8ff", "#ffd0f0", _estrella)
+
+
 ALL = [mapache, pinguino, espantapajaros, abejorro, arana, cara, lagarto, escarabajo, chocobo, grillo, ave,
-       pterodactilo, momia, yeti, golem_forja, cangrejo, chaman]
+       pterodactilo, momia, yeti, golem_forja, cangrejo, chaman, cofre_rpg, cofre_monturas, cofre_cosmeticos]
 
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

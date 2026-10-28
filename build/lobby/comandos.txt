@@ -45,12 +45,16 @@ lp group default permission set essentials.pay true
 lp group default permission set essentials.worth true
 lp group default permission set essentials.help true
 # --- vendedores (MythicMobs). WorldGuard no deja aparecer mobs en el lobby: se habilita un momento
+# --- los cofres de las gachas van donde estaban los 3 cristales celestes
+execute in minecraft:lobby run setblock 208 101 185 minecraft:air
+execute in minecraft:lobby run setblock 211 101 191 minecraft:air
+execute in minecraft:lobby run setblock 208 101 197 minecraft:air
 rg flag -w lobby __global__ mob-spawning allow
 mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
 mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0
-mm mobs spawn astral_npc_gacha_rpg 1 lobby,195.5,100,177.5,90,0
-mm mobs spawn astral_npc_gacha_monturas 1 lobby,158.5,100,205.5,-90,0
-mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,196.5,100,206.5,90,0
+mm mobs spawn astral_npc_gacha_rpg 1 lobby,211.5,101,191.5,90,0
+mm mobs spawn astral_npc_gacha_monturas 1 lobby,208.5,101,185.5,90,0
+mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,208.5,101,197.5,90,0
 mm mobs spawn astral_npc_viajero 1 lobby,180.5,100,212.5,180,0
 # Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):
 #   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)
