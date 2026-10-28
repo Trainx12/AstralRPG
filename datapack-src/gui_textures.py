@@ -34,8 +34,11 @@ JUNTA = (63, 57, 47)
 
 # que archivos se tocan (carpetas y archivos sueltos relativos a textures/gui)
 CARPETAS = ["container", "sprites/container", "sprites/widget", "sprites/recipe_book"]
-SUELTOS = ["sprites/hud/hotbar.png", "sprites/hud/hotbar_selection.png", "sprites/hud/hotbar_offhand_left.png",
-           "sprites/hud/hotbar_offhand_right.png", "sprites/tooltip/background.png", "sprites/tooltip/frame.png"]
+SUELTOS = ["sprites/tooltip/background.png", "sprites/tooltip/frame.png"]
+
+# HUD RPG (hud_rpg.py): APAGADO por ahora. En el juego la barra de items salio rosa/negra (textura faltante) y
+# todavia no sabemos por que; mientras tanto el HUD queda el de Minecraft. Para probarlo de nuevo: True.
+HUD_RPG = False
 
 
 def ladrillo(x, y):
@@ -165,7 +168,7 @@ def main():
             with open(mc, "rb") as fi, open(dst + ".mcmeta", "wb") as fo:
                 fo.write(fi.read())
         hechos += 1
-    for rel, im in hud().items():
+    for rel, im in (hud().items() if HUD_RPG else ()):
         dst = os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         im.save(dst)
