@@ -6,8 +6,9 @@ Genera en ../build/lobby/:
   Essentials/spawn.yml                    /spawn y reaparicion sin cama -> plaza del lobby
   comandos.txt                            comandos de consola para dejar todo armado
 
-y en ../build/mythicmobs/skills/gachas.yml las 3 gachas, hechas con MythicMobs (cobran con Vault,
-sortean rareza y premio, y entregan por comando). Los vendedores son mobs de MythicMobs: NPCS en mobs/mythic.py.
+  CrazyCrates/crates/<gacha>.yml         las 3 gachas: ruleta tipo CS:GO con los premios girando
+y en ../build/mythicmobs/skills/gachas.yml lo que hace el vendedor: cobra con Vault y abre la ruleta
+('crates forceopen'). Shift + clic abre la vitrina de premios. Vendedores: NPCS en mobs/mythic.py.
 """
 import os
 
@@ -136,54 +137,105 @@ def q(s):
     return "'" + str(s).replace("'", "''") + "'"
 
 
-RARITY_LABEL = {"common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
-                "legendary": "&6&lLegendario"}
-GACHA_LABEL = {"gacha_rpg": "&dGacha RPG", "gacha_monturas": "&eGacha de Monturas", "gacha_cosmeticos": "&bGacha de Cosmeticos"}
+RARITY_MINI = {"common": "<white>Comun", "uncommon": "<green>Poco comun", "rare": "<aqua>Raro",
+               "epic": "<light_purple>Epico", "legendary": "<gold><bold>Legendario"}
+RARITY_AMP = {"common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
+              "legendary": "&6&lLegendario"}
+GACHA_MINI = {"gacha_rpg": "<light_purple><bold>Gacha RPG", "gacha_monturas": "<yellow><bold>Gacha de Monturas",
+              "gacha_cosmeticos": "<aqua><bold>Gacha de Cosmeticos"}
+GACHA_AMP = {"gacha_rpg": "&dGacha RPG", "gacha_monturas": "&eGacha de Monturas", "gacha_cosmeticos": "&bGacha de Cosmeticos"}
+GACHA_FRAME = {"gacha_rpg": ("purple_stained_glass_pane", "amethyst_shard"),
+               "gacha_monturas": ("yellow_stained_glass_pane", "saddle"),
+               "gacha_cosmeticos": ("light_blue_stained_glass_pane", "name_tag")}
+EGG_ICON = {"astral_mapache": "fox_spawn_egg", "astral_pinguino": "chicken_spawn_egg", "astral_lagarto": "frog_spawn_egg",
+            "astral_escarabajo": "endermite_spawn_egg", "astral_grillo": "silverfish_spawn_egg",
+            "astral_chocobo": "camel_spawn_egg", "astral_ave": "parrot_spawn_egg", "astral_pterodactilo": "phantom_spawn_egg"}
 
 
-def mm_cmd(c):
-    """Comando de consola dentro de un skill de MythicMobs."""
-    return "command{c=\"" + c.replace("%player%", "<trigger.name>") + "\"} @self"
+def icon(cmds):
+    """(material, modelo astral o None, cantidad) que se muestra en la ruleta."""
+    c0 = cmds[0]
+    if "loot astral:item/" in c0:
+        return "paper", c0.split("astral:item/")[1], len(cmds)
+    if c0.startswith("mm egg give"):
+        return EGG_ICON.get(c0.split()[4], "egg"), None, 1
+    if c0.startswith("give "):
+        p = c0.split()
+        return p[2].replace("minecraft:", ""), None, int(p[3]) if len(p) > 3 else 1
+    return "name_tag", None, 1
+
+
+def dq(s):
+    return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def crate_yml(gid, g):
+    """Caja de CrazyCrates tipo CSGO: la ruleta gira en un inventario y frena en el premio."""
+    rewards = g["rewards"]()
+    tot = {}
+    for rar, w, _, _ in rewards:
+        tot[rar] = tot.get(rar, 0) + w
+    glass, frame = GACHA_FRAME[gid]
+    L = ["# " + gid + " (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.",
+         "Crate:", "  CrateType: CSGO", "  StartingKeys: 0", "  RequiredKeys: 0", "  Max-Mass-Open: 1",
+         "  InGUI: false", "  Slot: 0", "  OpeningBroadCast: false", "  BroadCast: " + dq(""),
+         "  opening-command:", "    toggle: false", "    commands: []",
+         "  sound:",
+         "    cycle-sound:", "      toggle: true", "      value: " + dq("block.note_block.pling"), "      volume: 0.6", "      pitch: 1.4",
+         "    click-sound:", "      toggle: true", "      value: " + dq("ui.button.click"), "      volume: 1.0", "      pitch: 1.0",
+         "    stop-sound:", "      toggle: true", "      value: " + dq("ui.toast.challenge_complete"), "      volume: 1.0", "      pitch: 1.0",
+         "  Prize-Message:", "    - " + dq("<gray>Ganaste <white>%reward% <gray>en la " + GACHA_MINI[gid] + "<gray>!"),
+         "  Prize-Commands: []",
+         "  Settings:", "    Tracking-Crate-Opening: false", "    Knock-Back: false", "    Disabled-Worlds: []",
+         "    Border:", "      Glass-Border:", "        Toggle: true", "        Air: true",
+         "    CSGO:", "      Finished-Material: " + dq(frame), "      Cycle-Material: " + dq(frame),
+         "    Broadcast:", "      Toggle: false", "      Messages: []", "      Permission: " + dq(""),
+         "    Rewards:", "      Re-Roll-Spin: false", "      Permission:", "        Toggle: false", "        Persist: false",
+         "        Max-Cap: 20",
+         "  Item: " + dq(frame), "  Hide-Flags: false", "  Components: []", "  Custom-Model-Data: -1",
+         "  Model:", "    Namespace: " + dq(""), "    Id: " + dq(""), "  Glowing: " + dq("add_glow"),
+         "  Name: " + dq(GACHA_MINI[gid]), "  Lore:", "    - " + dq("<gray>Tirada: <yellow>" + str(g["cost"]) + "$"),
+         "  Preview:", "    Name: " + dq(GACHA_MINI[gid] + "<reset><gray> - premios"), "    Toggle: true", "    Rows: 6",
+         "    Glass:", "      Toggle: true", "      Name: " + dq(" "), "      Item: " + dq(glass), "      Custom-Model-Data: -1",
+         "      Model:", "        Namespace: " + dq(""), "        Id: " + dq(""),
+         "  Animation:", "    Name: " + dq(GACHA_MINI[gid] + "<reset><gray> - girando..."),
+         "    Glass-Frame:", "      Toggle: true", "      Items:",
+         "        \"1\":", "          name: " + dq(" "), "          lore: []", "          material: " + dq(glass), "          amount: 1",
+         "      Random:", "        Toggle: true", "        Items: {}",
+         "  PhysicalKey:", "    Name: " + dq(GACHA_MINI[gid] + " - llave"), "    Lore: []", "    Item: " + dq("tripwire_hook"),
+         "    Custom-Model-Data: -1", "    Model:", "      Namespace: " + dq(""), "      Id: " + dq(""),
+         "    Glowing: " + dq("add_glow"), "    flags:", "      components: []",
+         "  Hologram:", "    Toggle: false", "    Height: 1.5", "    Range: 8", "    Update-Interval: -1",
+         "    Color: " + dq("transparent"), "    TextShadow: false", "    Message: []",
+         "  buttons: {}",
+         "  Prizes:"]
+    for i, (rar, w, name, cmds) in enumerate(rewards):
+        mat, model, amount = icon(cmds)
+        weight = round(RARITY_WEIGHT[rar] * w / tot[rar], 4)
+        cm = list(cmds)
+        if rar in ("epic", "legendary"):
+            cm.append("broadcast &6&l(!) &e%player% &7saco " + RARITY_AMP[rar] + " &7en la " + GACHA_AMP[gid] + "&7: &f" + name)
+        L += ["    \"%d\":" % (i + 1), "      DisplayName: " + dq(RARITY_MINI[rar] + "<reset> <white>" + name),
+              "      DisplayItem: " + dq(mat), "      Settings:", "        Custom-Model-Data: -1", "        Model:",
+              "          Namespace: " + dq("astral" if model else ""), "          Id: " + dq(model or ""),
+              "      DisplayAmount: %d" % max(1, min(64, amount)),
+              "      DisplayLore:", "        - " + dq(RARITY_MINI[rar]),
+              "        - " + dq("<gray>Probabilidad: <yellow>%g%%" % weight),
+              "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c) for c in cm]
+    return "\n".join(L) + "\n"
 
 
 def gacha_skills():
-    """Gachas hechas con MythicMobs: cobra con Vault, sortea la rareza, despues el premio, y lo entrega por comando."""
+    """MythicMobs cobra la tirada y le pide a CrazyCrates que abra la ruleta (o la vitrina de premios)."""
     L = ["# Gachas del lobby (generado por datapack-src/lobby.py)", ""]
     for gid, g in GACHAS.items():
         G = gid.upper()
-        cost = g["cost"]
-        rewards = g["rewards"]()
-        by_rar = {}
-        for i, r in enumerate(rewards):
-            by_rar.setdefault(r[0], []).append((i, r))
-        # tirada
-        L += [f"AST_{G}:", "  Cooldown: 1", "  Skills:",
-              f"  - {q(f'currencytake{{a={cost}}} @trigger')}",
-              f"  - {q('sound{s=block.amethyst_block.chime;p=1.2} @trigger')}",
-              f"  - {q('particles{p=end_rod;a=25;hs=0.4;vs=0.6;s=0.05;y=1} @self')}",
-              "  - " + q("randomskill{skills=" + ",".join(f"AST_{G}_{rar.upper()} {RARITY_WEIGHT[rar]}" for rar in by_rar) + "} @trigger"),
-              ""]
-        # info (shift + clic)
-        odds = ", ".join(f"{RARITY_LABEL[r]} &7{RARITY_WEIGHT[r]}%" for r in by_rar)
-        L += [f"AST_{G}_INFO:", "  Skills:",
-              f"  - {q('message{m="' + GACHA_LABEL[gid] + ' &7- cada tirada cuesta &e' + str(cost) + '$"} @trigger')}",
-              f"  - {q('message{m="&7Probabilidades &8- ' + odds + '"} @trigger')}"]
-        for rar, lst in by_rar.items():
-            names = ", ".join(r[2] for _, r in lst[:6]) + (" ..." if len(lst) > 6 else "")
-            L.append(f"  - {q('message{m="' + RARITY_LABEL[rar] + ' &8- &7' + names + '"} @trigger')}")
-        L.append("")
-        # rareza -> premio
-        for rar, lst in by_rar.items():
-            L += [f"AST_{G}_{rar.upper()}:", "  Skills:",
-                  "  - " + q("randomskill{skills=" + ",".join(f"AST_{G}_R{i:02d} {r[1]}" for i, r in lst) + "} @trigger"), ""]
-        for i, (rar, w, name, cmds) in enumerate(rewards):
-            L += [f"AST_{G}_R{i:02d}:", "  Skills:"]
-            L += [f"  - {q(mm_cmd(c))}" for c in cmds]
-            L.append(f"  - {q('message{m="' + GACHA_LABEL[gid] + ' &8- ' + RARITY_LABEL[rar] + '&8: &f' + name + '"} @trigger')}")
-            if rar in ("epic", "legendary"):
-                L.append(f"  - {q('message{m="&6&l(!) &e<trigger.name> &7saco ' + RARITY_LABEL[rar] + ' &7en la ' + GACHA_LABEL[gid] + '&7: &f' + name + '"} @Server')}")
-                L.append(f"  - {q('sound{s=ui.toast.challenge_complete} @trigger')}")
-            L.append("")
+        L += ["AST_%s:" % G, "  Cooldown: 2", "  Skills:",
+              "  - 'currencytake{a=%d} @trigger'" % g["cost"],
+              "  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'",
+              "  - 'command{c=\"crates forceopen %s <trigger.name>\"} @self'" % gid, "",
+              "AST_%s_INFO:" % G, "  Skills:",
+              "  - 'command{c=\"crates preview %s <trigger.name>\"} @self'" % gid, ""]
     return "\n".join(L) + "\n"
 
 
@@ -248,6 +300,11 @@ def main():
     os.makedirs(mm, exist_ok=True)
     with open(os.path.join(mm, "gachas.yml"), "w", encoding="utf-8") as f:
         f.write(gacha_skills())
+    cc = os.path.join(OUT, "CrazyCrates", "crates")
+    os.makedirs(cc, exist_ok=True)
+    for gid, g in GACHAS.items():
+        with open(os.path.join(cc, f"{gid}.yml"), "w", encoding="utf-8") as f:
+            f.write(crate_yml(gid, g))
     with open(os.path.join(OUT, "Essentials", "spawn.yml"), "w", encoding="utf-8") as f:
         f.write(spawn_yml())
     with open(os.path.join(OUT, "comandos.txt"), "w", encoding="utf-8") as f:

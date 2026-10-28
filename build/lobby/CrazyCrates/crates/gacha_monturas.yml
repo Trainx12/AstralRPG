@@ -1,0 +1,253 @@
+# gacha_monturas (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.
+Crate:
+  CrateType: CSGO
+  StartingKeys: 0
+  RequiredKeys: 0
+  Max-Mass-Open: 1
+  InGUI: false
+  Slot: 0
+  OpeningBroadCast: false
+  BroadCast: ""
+  opening-command:
+    toggle: false
+    commands: []
+  sound:
+    cycle-sound:
+      toggle: true
+      value: "block.note_block.pling"
+      volume: 0.6
+      pitch: 1.4
+    click-sound:
+      toggle: true
+      value: "ui.button.click"
+      volume: 1.0
+      pitch: 1.0
+    stop-sound:
+      toggle: true
+      value: "ui.toast.challenge_complete"
+      volume: 1.0
+      pitch: 1.0
+  Prize-Message:
+    - "<gray>Ganaste <white>%reward% <gray>en la <yellow><bold>Gacha de Monturas<gray>!"
+  Prize-Commands: []
+  Settings:
+    Tracking-Crate-Opening: false
+    Knock-Back: false
+    Disabled-Worlds: []
+    Border:
+      Glass-Border:
+        Toggle: true
+        Air: true
+    CSGO:
+      Finished-Material: "saddle"
+      Cycle-Material: "saddle"
+    Broadcast:
+      Toggle: false
+      Messages: []
+      Permission: ""
+    Rewards:
+      Re-Roll-Spin: false
+      Permission:
+        Toggle: false
+        Persist: false
+        Max-Cap: 20
+  Item: "saddle"
+  Hide-Flags: false
+  Components: []
+  Custom-Model-Data: -1
+  Model:
+    Namespace: ""
+    Id: ""
+  Glowing: "add_glow"
+  Name: "<yellow><bold>Gacha de Monturas"
+  Lore:
+    - "<gray>Tirada: <yellow>2500$"
+  Preview:
+    Name: "<yellow><bold>Gacha de Monturas<reset><gray> - premios"
+    Toggle: true
+    Rows: 6
+    Glass:
+      Toggle: true
+      Name: " "
+      Item: "yellow_stained_glass_pane"
+      Custom-Model-Data: -1
+      Model:
+        Namespace: ""
+        Id: ""
+  Animation:
+    Name: "<yellow><bold>Gacha de Monturas<reset><gray> - girando..."
+    Glass-Frame:
+      Toggle: true
+      Items:
+        "1":
+          name: " "
+          lore: []
+          material: "yellow_stained_glass_pane"
+          amount: 1
+      Random:
+        Toggle: true
+        Items: {}
+  PhysicalKey:
+    Name: "<yellow><bold>Gacha de Monturas - llave"
+    Lore: []
+    Item: "tripwire_hook"
+    Custom-Model-Data: -1
+    Model:
+      Namespace: ""
+      Id: ""
+    Glowing: "add_glow"
+    flags:
+      components: []
+  Hologram:
+    Toggle: false
+    Height: 1.5
+    Range: 8
+    Update-Interval: -1
+    Color: "transparent"
+    TextShadow: false
+    Message: []
+  buttons: {}
+  Prizes:
+    "1":
+      DisplayName: "<white>Comun<reset> <white>Mascota: Mapache"
+      DisplayItem: "fox_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>24%"
+      Weight: 24.0
+      Commands:
+        - "mm egg give %player% astral_mapache 1"
+    "2":
+      DisplayName: "<white>Comun<reset> <white>Mascota: Pinguino de Cristal"
+      DisplayItem: "chicken_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>24%"
+      Weight: 24.0
+      Commands:
+        - "mm egg give %player% astral_pinguino 1"
+    "3":
+      DisplayName: "<white>Comun<reset> <white>Montura extra (silla)"
+      DisplayItem: "saddle"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 2
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>12%"
+      Weight: 12.0
+      Commands:
+        - "give %player% minecraft:saddle 2"
+    "4":
+      DisplayName: "<green>Poco comun<reset> <white>Montura: Lagarto (nada)"
+      DisplayItem: "frog_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>12.5%"
+      Weight: 12.5
+      Commands:
+        - "mm egg give %player% astral_lagarto 1"
+        - "give %player% minecraft:saddle 1"
+    "5":
+      DisplayName: "<green>Poco comun<reset> <white>Montura: Escarabajo Azul"
+      DisplayItem: "endermite_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>12.5%"
+      Weight: 12.5
+      Commands:
+        - "mm egg give %player% astral_escarabajo 1"
+        - "give %player% minecraft:saddle 1"
+    "6":
+      DisplayName: "<aqua>Raro<reset> <white>Montura: Grillo Saltarin"
+      DisplayItem: "silverfish_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>6.1111%"
+      Weight: 6.1111
+      Commands:
+        - "mm egg give %player% astral_grillo 1"
+        - "give %player% minecraft:saddle 1"
+    "7":
+      DisplayName: "<aqua>Raro<reset> <white>Montura: Chocobo"
+      DisplayItem: "camel_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>4.8889%"
+      Weight: 4.8889
+      Commands:
+        - "mm egg give %player% astral_chocobo 1"
+        - "give %player% minecraft:saddle 1"
+    "8":
+      DisplayName: "<light_purple>Epico<reset> <white>Montura voladora: Gran Ave"
+      DisplayItem: "parrot_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>3.5%"
+      Weight: 3.5
+      Commands:
+        - "mm egg give %player% astral_ave 1"
+        - "give %player% minecraft:saddle 1"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"
+    "9":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Montura voladora: Pterodactilo"
+      DisplayItem: "phantom_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.5%"
+      Weight: 0.5
+      Commands:
+        - "mm egg give %player% astral_pterodactilo 1"
+        - "give %player% minecraft:saddle 1"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"

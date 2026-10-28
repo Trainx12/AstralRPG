@@ -1,0 +1,1097 @@
+# gacha_rpg (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.
+Crate:
+  CrateType: CSGO
+  StartingKeys: 0
+  RequiredKeys: 0
+  Max-Mass-Open: 1
+  InGUI: false
+  Slot: 0
+  OpeningBroadCast: false
+  BroadCast: ""
+  opening-command:
+    toggle: false
+    commands: []
+  sound:
+    cycle-sound:
+      toggle: true
+      value: "block.note_block.pling"
+      volume: 0.6
+      pitch: 1.4
+    click-sound:
+      toggle: true
+      value: "ui.button.click"
+      volume: 1.0
+      pitch: 1.0
+    stop-sound:
+      toggle: true
+      value: "ui.toast.challenge_complete"
+      volume: 1.0
+      pitch: 1.0
+  Prize-Message:
+    - "<gray>Ganaste <white>%reward% <gray>en la <light_purple><bold>Gacha RPG<gray>!"
+  Prize-Commands: []
+  Settings:
+    Tracking-Crate-Opening: false
+    Knock-Back: false
+    Disabled-Worlds: []
+    Border:
+      Glass-Border:
+        Toggle: true
+        Air: true
+    CSGO:
+      Finished-Material: "amethyst_shard"
+      Cycle-Material: "amethyst_shard"
+    Broadcast:
+      Toggle: false
+      Messages: []
+      Permission: ""
+    Rewards:
+      Re-Roll-Spin: false
+      Permission:
+        Toggle: false
+        Persist: false
+        Max-Cap: 20
+  Item: "amethyst_shard"
+  Hide-Flags: false
+  Components: []
+  Custom-Model-Data: -1
+  Model:
+    Namespace: ""
+    Id: ""
+  Glowing: "add_glow"
+  Name: "<light_purple><bold>Gacha RPG"
+  Lore:
+    - "<gray>Tirada: <yellow>1000$"
+  Preview:
+    Name: "<light_purple><bold>Gacha RPG<reset><gray> - premios"
+    Toggle: true
+    Rows: 6
+    Glass:
+      Toggle: true
+      Name: " "
+      Item: "purple_stained_glass_pane"
+      Custom-Model-Data: -1
+      Model:
+        Namespace: ""
+        Id: ""
+  Animation:
+    Name: "<light_purple><bold>Gacha RPG<reset><gray> - girando..."
+    Glass-Frame:
+      Toggle: true
+      Items:
+        "1":
+          name: " "
+          lore: []
+          material: "purple_stained_glass_pane"
+          amount: 1
+      Random:
+        Toggle: true
+        Items: {}
+  PhysicalKey:
+    Name: "<light_purple><bold>Gacha RPG - llave"
+    Lore: []
+    Item: "tripwire_hook"
+    Custom-Model-Data: -1
+    Model:
+      Namespace: ""
+      Id: ""
+    Glowing: "add_glow"
+    flags:
+      components: []
+  Hologram:
+    Toggle: false
+    Height: 1.5
+    Range: 8
+    Update-Interval: -1
+    Color: "transparent"
+    TextShadow: false
+    Message: []
+  buttons: {}
+  Prizes:
+    "1":
+      DisplayName: "<white>Comun<reset> <white>Cuero Tratado x4"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cuero_tratado"
+      DisplayAmount: 4
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/cuero_tratado"
+        - "loot give %player% loot astral:item/cuero_tratado"
+        - "loot give %player% loot astral:item/cuero_tratado"
+        - "loot give %player% loot astral:item/cuero_tratado"
+    "2":
+      DisplayName: "<white>Comun<reset> <white>Palo Reforzado x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "palo_reforzado"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/palo_reforzado"
+        - "loot give %player% loot astral:item/palo_reforzado"
+    "3":
+      DisplayName: "<white>Comun<reset> <white>Fragmento Cristal x4"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "fragmento_cristal"
+      DisplayAmount: 4
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/fragmento_cristal"
+        - "loot give %player% loot astral:item/fragmento_cristal"
+        - "loot give %player% loot astral:item/fragmento_cristal"
+        - "loot give %player% loot astral:item/fragmento_cristal"
+    "4":
+      DisplayName: "<white>Comun<reset> <white>Gema Umbria Fragmentada x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_umbria_fragmentada"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/gema_umbria_fragmentada"
+        - "loot give %player% loot astral:item/gema_umbria_fragmentada"
+    "5":
+      DisplayName: "<white>Comun<reset> <white>Polvo Astral x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "polvo_astral"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/polvo_astral"
+        - "loot give %player% loot astral:item/polvo_astral"
+    "6":
+      DisplayName: "<white>Comun<reset> <white>Fragmento Umbrio x3"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "fragmento_umbrio"
+      DisplayAmount: 3
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/fragmento_umbrio"
+        - "loot give %player% loot astral:item/fragmento_umbrio"
+        - "loot give %player% loot astral:item/fragmento_umbrio"
+    "7":
+      DisplayName: "<white>Comun<reset> <white>Netherita Fundida x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "netherita_fundida"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/netherita_fundida"
+    "8":
+      DisplayName: "<white>Comun<reset> <white>Esencia Nether x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "esencia_nether"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<white>Comun"
+        - "<gray>Probabilidad: <yellow>7.5%"
+      Weight: 7.5
+      Commands:
+        - "loot give %player% loot astral:item/esencia_nether"
+        - "loot give %player% loot astral:item/esencia_nether"
+    "9":
+      DisplayName: "<green>Poco comun<reset> <white>Cristal Arcano x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cristal_arcano"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/cristal_arcano"
+    "10":
+      DisplayName: "<green>Poco comun<reset> <white>Gema Umbria x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_umbria"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/gema_umbria"
+    "11":
+      DisplayName: "<green>Poco comun<reset> <white>Esencia Elite x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "esencia_elite"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/esencia_elite"
+        - "loot give %player% loot astral:item/esencia_elite"
+    "12":
+      DisplayName: "<green>Poco comun<reset> <white>Nucleo Furia x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_furia"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_furia"
+    "13":
+      DisplayName: "<green>Poco comun<reset> <white>Fragmento Astral x3"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "fragmento_astral"
+      DisplayAmount: 3
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/fragmento_astral"
+        - "loot give %player% loot astral:item/fragmento_astral"
+        - "loot give %player% loot astral:item/fragmento_astral"
+    "14":
+      DisplayName: "<green>Poco comun<reset> <white>Nucleo Eolico x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_eolico"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_eolico"
+    "15":
+      DisplayName: "<green>Poco comun<reset> <white>Madera Estelar x4"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "madera_estelar"
+      DisplayAmount: 4
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/madera_estelar"
+        - "loot give %player% loot astral:item/madera_estelar"
+        - "loot give %player% loot astral:item/madera_estelar"
+        - "loot give %player% loot astral:item/madera_estelar"
+    "16":
+      DisplayName: "<green>Poco comun<reset> <white>Shadowsteel x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "shadowsteel"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>2.4038%"
+      Weight: 2.4038
+      Commands:
+        - "loot give %player% loot astral:item/shadowsteel"
+        - "loot give %player% loot astral:item/shadowsteel"
+    "17":
+      DisplayName: "<green>Poco comun<reset> <white>Talisman de Vida I"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_vida_1"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>1.4423%"
+      Weight: 1.4423
+      Commands:
+        - "loot give %player% loot astral:item/talisman_vida_1"
+    "18":
+      DisplayName: "<green>Poco comun<reset> <white>Talisman de Furia I"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_furia_1"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>1.4423%"
+      Weight: 1.4423
+      Commands:
+        - "loot give %player% loot astral:item/talisman_furia_1"
+    "19":
+      DisplayName: "<green>Poco comun<reset> <white>Talisman de Roca I"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_roca_1"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>1.4423%"
+      Weight: 1.4423
+      Commands:
+        - "loot give %player% loot astral:item/talisman_roca_1"
+    "20":
+      DisplayName: "<green>Poco comun<reset> <white>Talisman de Viento I"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_viento_1"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<green>Poco comun"
+        - "<gray>Probabilidad: <yellow>1.4423%"
+      Weight: 1.4423
+      Commands:
+        - "loot give %player% loot astral:item/talisman_viento_1"
+    "21":
+      DisplayName: "<aqua>Raro<reset> <white>Cristal Refinado x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cristal_refinado"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.8871%"
+      Weight: 0.8871
+      Commands:
+        - "loot give %player% loot astral:item/cristal_refinado"
+    "22":
+      DisplayName: "<aqua>Raro<reset> <white>Gema Luminica x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_luminica"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.8871%"
+      Weight: 0.8871
+      Commands:
+        - "loot give %player% loot astral:item/gema_luminica"
+    "23":
+      DisplayName: "<aqua>Raro<reset> <white>Corazon Shulker x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "corazon_shulker"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.8871%"
+      Weight: 0.8871
+      Commands:
+        - "loot give %player% loot astral:item/corazon_shulker"
+    "24":
+      DisplayName: "<aqua>Raro<reset> <white>Alma Corrupta x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "alma_corrupta"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.8871%"
+      Weight: 0.8871
+      Commands:
+        - "loot give %player% loot astral:item/alma_corrupta"
+    "25":
+      DisplayName: "<aqua>Raro<reset> <white>Netherita Reforzada x1"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "netherita_reforzada"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.8871%"
+      Weight: 0.8871
+      Commands:
+        - "loot give %player% loot astral:item/netherita_reforzada"
+    "26":
+      DisplayName: "<aqua>Raro<reset> <white>Espada II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/espada_2"
+    "27":
+      DisplayName: "<aqua>Raro<reset> <white>Espada III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/espada_3"
+    "28":
+      DisplayName: "<aqua>Raro<reset> <white>Baston II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/baston_2"
+    "29":
+      DisplayName: "<aqua>Raro<reset> <white>Baston III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/baston_3"
+    "30":
+      DisplayName: "<aqua>Raro<reset> <white>Arco II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/arco_2"
+    "31":
+      DisplayName: "<aqua>Raro<reset> <white>Arco III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/arco_3"
+    "32":
+      DisplayName: "<aqua>Raro<reset> <white>Hacha II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/hacha_2"
+    "33":
+      DisplayName: "<aqua>Raro<reset> <white>Hacha III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/hacha_3"
+    "34":
+      DisplayName: "<aqua>Raro<reset> <white>Lanza II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/lanza_2"
+    "35":
+      DisplayName: "<aqua>Raro<reset> <white>Lanza III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/lanza_3"
+    "36":
+      DisplayName: "<aqua>Raro<reset> <white>Guadana II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.5323%"
+      Weight: 0.5323
+      Commands:
+        - "loot give %player% loot astral:item/guadana_2"
+    "37":
+      DisplayName: "<aqua>Raro<reset> <white>Guadana III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.2661%"
+      Weight: 0.2661
+      Commands:
+        - "loot give %player% loot astral:item/guadana_3"
+    "38":
+      DisplayName: "<aqua>Raro<reset> <white>Talisman de Vida II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_vida_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.4435%"
+      Weight: 0.4435
+      Commands:
+        - "loot give %player% loot astral:item/talisman_vida_2"
+    "39":
+      DisplayName: "<aqua>Raro<reset> <white>Talisman de Furia II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_furia_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.4435%"
+      Weight: 0.4435
+      Commands:
+        - "loot give %player% loot astral:item/talisman_furia_2"
+    "40":
+      DisplayName: "<aqua>Raro<reset> <white>Talisman de Roca II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_roca_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.4435%"
+      Weight: 0.4435
+      Commands:
+        - "loot give %player% loot astral:item/talisman_roca_2"
+    "41":
+      DisplayName: "<aqua>Raro<reset> <white>Talisman de Viento II"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_viento_2"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<aqua>Raro"
+        - "<gray>Probabilidad: <yellow>0.4435%"
+      Weight: 0.4435
+      Commands:
+        - "loot give %player% loot astral:item/talisman_viento_2"
+    "42":
+      DisplayName: "<light_purple>Epico<reset> <white>Nucleo Astral"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_astral"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.407%"
+      Weight: 0.407
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_astral"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fNucleo Astral"
+    "43":
+      DisplayName: "<light_purple>Epico<reset> <white>Gema Umbria Perfecta"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_umbria_perfecta"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.407%"
+      Weight: 0.407
+      Commands:
+        - "loot give %player% loot astral:item/gema_umbria_perfecta"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Umbria Perfecta"
+    "44":
+      DisplayName: "<light_purple>Epico<reset> <white>Gema Luminica Perfecta"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_luminica_perfecta"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.407%"
+      Weight: 0.407
+      Commands:
+        - "loot give %player% loot astral:item/gema_luminica_perfecta"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Luminica Perfecta"
+    "45":
+      DisplayName: "<light_purple>Epico<reset> <white>Espada IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/espada_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fEspada IV"
+    "46":
+      DisplayName: "<light_purple>Epico<reset> <white>Baston IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/baston_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fBaston IV"
+    "47":
+      DisplayName: "<light_purple>Epico<reset> <white>Arco IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/arco_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fArco IV"
+    "48":
+      DisplayName: "<light_purple>Epico<reset> <white>Hacha IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/hacha_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fHacha IV"
+    "49":
+      DisplayName: "<light_purple>Epico<reset> <white>Lanza IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/lanza_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fLanza IV"
+    "50":
+      DisplayName: "<light_purple>Epico<reset> <white>Guadana IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_4"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2442%"
+      Weight: 0.2442
+      Commands:
+        - "loot give %player% loot astral:item/guadana_4"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGuadana IV"
+    "51":
+      DisplayName: "<light_purple>Epico<reset> <white>Talisman de Vida III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_vida_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2035%"
+      Weight: 0.2035
+      Commands:
+        - "loot give %player% loot astral:item/talisman_vida_3"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Vida III"
+    "52":
+      DisplayName: "<light_purple>Epico<reset> <white>Talisman de Furia III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_furia_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2035%"
+      Weight: 0.2035
+      Commands:
+        - "loot give %player% loot astral:item/talisman_furia_3"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Furia III"
+    "53":
+      DisplayName: "<light_purple>Epico<reset> <white>Talisman de Roca III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_roca_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2035%"
+      Weight: 0.2035
+      Commands:
+        - "loot give %player% loot astral:item/talisman_roca_3"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Roca III"
+    "54":
+      DisplayName: "<light_purple>Epico<reset> <white>Talisman de Viento III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_viento_3"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<light_purple>Epico"
+        - "<gray>Probabilidad: <yellow>0.2035%"
+      Weight: 0.2035
+      Commands:
+        - "loot give %player% loot astral:item/talisman_viento_3"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Viento III"
+    "55":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Espada V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/espada_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fEspada V"
+    "56":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Baston V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/baston_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fBaston V"
+    "57":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Arco V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/arco_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fArco V"
+    "58":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Hacha V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/hacha_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fHacha V"
+    "59":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Lanza V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/lanza_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fLanza V"
+    "60":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Guadana V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_5"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/guadana_5"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana V"
+    "61":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Chispa Astral x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "chispa_astral"
+      DisplayAmount: 2
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0595%"
+      Weight: 0.0595
+      Commands:
+        - "loot give %player% loot astral:item/chispa_astral"
+        - "loot give %player% loot astral:item/chispa_astral"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fChispa Astral x2"
+    "62":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Nucleo de Furia Pura"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_furia_pura"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0476%"
+      Weight: 0.0476
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_furia_pura"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fNucleo de Furia Pura"
+    "63":
+      DisplayName: "<gold><bold>Legendario<reset> <white>Guadana Umbria"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_umbria"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<gold><bold>Legendario"
+        - "<gray>Probabilidad: <yellow>0.0357%"
+      Weight: 0.0357
+      Commands:
+        - "loot give %player% loot astral:item/guadana_umbria"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana Umbria"
