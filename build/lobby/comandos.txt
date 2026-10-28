@@ -30,10 +30,6 @@ lp group default permission set essentials.balancetop true
 lp group default permission set essentials.pay true
 lp group default permission set essentials.worth true
 lp group default permission set essentials.help true
-# --- cofres de las gachas
-execute in minecraft:lobby run setblock 195 100 175 minecraft:ender_chest
-execute in minecraft:lobby run setblock 158 100 203 minecraft:ender_chest
-execute in minecraft:lobby run setblock 196 100 204 minecraft:ender_chest
 # --- vendedores (MythicMobs)
 mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
 mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0

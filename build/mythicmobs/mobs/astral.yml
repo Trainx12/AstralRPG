@@ -705,7 +705,7 @@ astral_npc_tienda:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - command{c="shop";asTarget=true} @trigger ~onInteract
+  - 'command{c="shop";asTarget=true} @trigger ~onInteract'
 
 astral_npc_venta:
   Type: VILLAGER
@@ -725,11 +725,11 @@ astral_npc_venta:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - command{c="sellgui";asTarget=true} @trigger ~onInteract
+  - 'command{c="sellgui";asTarget=true} @trigger ~onInteract'
 
 astral_npc_gacha_rpg:
   Type: VILLAGER
-  Display: '&d&lGacha RPG &7(1000$)'
+  Display: '&d&lGacha RPG &7(1000$ - shift+clic ver premios)'
   Health: 100
   Options:
     NoAI: true
@@ -745,11 +745,13 @@ astral_npc_gacha_rpg:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - command{c="crate preview gacha_rpg <trigger.name>"} @self ~onInteract
+  - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?crouching'
+  - 'skill{s=AST_GACHA_RPG} @trigger ~onInteract ?!crouching ?hascurrency{a=1000}'
+  - 'message{m="&cLa tirada cuesta &e1000$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=1000}'
 
 astral_npc_gacha_monturas:
   Type: VILLAGER
-  Display: '&e&lGacha de Monturas &7(2500$)'
+  Display: '&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)'
   Health: 100
   Options:
     NoAI: true
@@ -765,11 +767,13 @@ astral_npc_gacha_monturas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - command{c="crate preview gacha_monturas <trigger.name>"} @self ~onInteract
+  - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?crouching'
+  - 'skill{s=AST_GACHA_MONTURAS} @trigger ~onInteract ?!crouching ?hascurrency{a=2500}'
+  - 'message{m="&cLa tirada cuesta &e2500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=2500}'
 
 astral_npc_gacha_cosmeticos:
   Type: VILLAGER
-  Display: '&b&lGacha de Cosmeticos &7(500$)'
+  Display: '&b&lGacha de Cosmeticos &7(500$ - shift+clic ver premios)'
   Health: 100
   Options:
     NoAI: true
@@ -785,7 +789,9 @@ astral_npc_gacha_cosmeticos:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - command{c="crate preview gacha_cosmeticos <trigger.name>"} @self ~onInteract
+  - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?crouching'
+  - 'skill{s=AST_GACHA_COSMETICOS} @trigger ~onInteract ?!crouching ?hascurrency{a=500}'
+  - 'message{m="&cLa tirada cuesta &e500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=500}'
 
 astral_npc_viajero:
   Type: VILLAGER
@@ -805,5 +811,5 @@ astral_npc_viajero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - message{m="&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)"} @trigger ~onInteract
-  - command{c="mvtp <trigger.name> w:world"} @self ~onInteract
+  - 'message{m="&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)"} @trigger ~onInteract'
+  - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract'

@@ -3,12 +3,11 @@
 Lobby de AstralRPG (isla de Parrot Spawn, mundo 'lobby' de Multiverse).
 
 Genera en ../build/lobby/:
-  ExcellentCrates/crates/<gacha>.yml      las 3 gachas (se pagan con monedas, premios por comando)
-  ExcellentCrates/objects/rarity/*.yml    pesos de cada rareza
   Essentials/spawn.yml                    /spawn y reaparicion sin cama -> plaza del lobby
   comandos.txt                            comandos de consola para dejar todo armado
 
-Los vendedores (aldeanos quietos) son mobs de MythicMobs: ver NPCS en mobs/mythic.py.
+y en ../build/mythicmobs/skills/gachas.yml las 3 gachas, hechas con MythicMobs (cobran con Vault,
+sortean rareza y premio, y entregan por comando). Los vendedores son mobs de MythicMobs: NPCS en mobs/mythic.py.
 """
 import os
 
@@ -29,20 +28,7 @@ NPC_POS = {
     "astral_npc_viajero": (180.5, 100, 212.5, 180),     # junto al banco del sur
 }
 
-# Cofre de cada gacha, al lado de su vendedor (hacia la plaza)
-CRATE_POS = {
-    "gacha_rpg": (195, 100, 175),
-    "gacha_monturas": (158, 100, 203),
-    "gacha_cosmeticos": (196, 100, 204),
-}
-
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}
-RARITY_NAME = {"common": "<white>Comun</white>", "uncommon": "<green>Poco comun</green>", "rare": "<aqua>Raro</aqua>",
-               "epic": "<light_purple>Epico</light_purple>", "legendary": "<gold>Legendario</gold>"}
-RARITY_COLOR = {"common": (255, 255, 255), "uncommon": (85, 255, 85), "rare": (85, 255, 255),
-                "epic": (255, 85, 255), "legendary": (255, 170, 0)}
-
-
 def loot(item, n=1):
     return [f"loot give %player% loot astral:item/{item}"] * n
 
@@ -120,7 +106,7 @@ TITLES = [
 def cosmetic_rewards():
     R = []
     for rar, name, col in TITLES:
-        R.append((rar, 10, f"Titulo [{name}]", [f'lp user %player% meta setprefix 100 "{col}[{name}]&r "']))
+        R.append((rar, 10, f"Titulo «{name}»", [f'lp user %player% meta setprefix 100 {col}«{name}»']))
     R.append(("common", 8, "Cohetes x16", ["give %player% minecraft:firework_rocket 16"]))
     R.append(("common", 6, "Etiquetas x3", ["give %player% minecraft:name_tag 3"]))
     for t in ("coast", "dune", "wild", "sentry"):
@@ -150,32 +136,55 @@ def q(s):
     return "'" + str(s).replace("'", "''") + "'"
 
 
-def crate_yml(cid, g):
-    x, y, z = CRATE_POS[cid]
-    L = [f"Name: {q(g['name'])}", "Description:"] + [f"- {q(d)}" for d in g["desc"]]
-    L += ["ItemStackable: true", "Permission_Required: false",
-          "Preview:", "  Enabled: true", "  Id: default",
-          "Animation:", "  Enabled: true", "  Id: default",
-          "OpeningCooldown:", "  Enabled: false", "  Value: 0",
-          # formato viejo que el plugin convierte solo a CostOptions (costo en monedas de Vault, sin llave)
-          "Opening:", "  Cost:", f"    vault: {g['cost']}",
-          "Key:", "  Required: false",
-          "Block:", "  Positions:", f"  - {x},{y},{z},{WORLD}",
-          "  Pushback:", "    Enabled: true",
-          "  Hologram:", "    Enabled: true", "    Template: default", "    Y_Offset: 0.0",
-          "  Effect:", "    Enabled: false", "    Model: none",
-          "Rewards:", "  List:"]
-    for i, (rar, w, name, cmds) in enumerate(g["rewards"]()):
-        L += [f"    r{i:02d}:", "      Type: COMMAND", f"      Name: {q(name)}", "      Description: []",
-              f"      Weight: {w}", f"      Rarity: {rar}", f"      Broadcast: {'true' if rar in ('epic', 'legendary') else 'false'}",
-              "      Commands:"] + [f"      - {q(c)}" for c in cmds]
+RARITY_LABEL = {"common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
+                "legendary": "&6&lLegendario"}
+GACHA_LABEL = {"gacha_rpg": "&dGacha RPG", "gacha_monturas": "&eGacha de Monturas", "gacha_cosmeticos": "&bGacha de Cosmeticos"}
+
+
+def mm_cmd(c):
+    """Comando de consola dentro de un skill de MythicMobs."""
+    return "command{c=\"" + c.replace("%player%", "<trigger.name>") + "\"} @self"
+
+
+def gacha_skills():
+    """Gachas hechas con MythicMobs: cobra con Vault, sortea la rareza, despues el premio, y lo entrega por comando."""
+    L = ["# Gachas del lobby (generado por datapack-src/lobby.py)", ""]
+    for gid, g in GACHAS.items():
+        G = gid.upper()
+        cost = g["cost"]
+        rewards = g["rewards"]()
+        by_rar = {}
+        for i, r in enumerate(rewards):
+            by_rar.setdefault(r[0], []).append((i, r))
+        # tirada
+        L += [f"AST_{G}:", "  Cooldown: 1", "  Skills:",
+              f"  - {q(f'currencytake{{a={cost}}} @trigger')}",
+              f"  - {q('sound{s=block.amethyst_block.chime;p=1.2} @trigger')}",
+              f"  - {q('particles{p=end_rod;a=25;hs=0.4;vs=0.6;s=0.05;y=1} @self')}",
+              "  - " + q("randomskill{skills=" + ",".join(f"AST_{G}_{rar.upper()} {RARITY_WEIGHT[rar]}" for rar in by_rar) + "} @trigger"),
+              ""]
+        # info (shift + clic)
+        odds = ", ".join(f"{RARITY_LABEL[r]} &7{RARITY_WEIGHT[r]}%" for r in by_rar)
+        L += [f"AST_{G}_INFO:", "  Skills:",
+              f"  - {q('message{m="' + GACHA_LABEL[gid] + ' &7- cada tirada cuesta &e' + str(cost) + '$"} @trigger')}",
+              f"  - {q('message{m="&7Probabilidades &8- ' + odds + '"} @trigger')}"]
+        for rar, lst in by_rar.items():
+            names = ", ".join(r[2] for _, r in lst[:6]) + (" ..." if len(lst) > 6 else "")
+            L.append(f"  - {q('message{m="' + RARITY_LABEL[rar] + ' &8- &7' + names + '"} @trigger')}")
+        L.append("")
+        # rareza -> premio
+        for rar, lst in by_rar.items():
+            L += [f"AST_{G}_{rar.upper()}:", "  Skills:",
+                  "  - " + q("randomskill{skills=" + ",".join(f"AST_{G}_R{i:02d} {r[1]}" for i, r in lst) + "} @trigger"), ""]
+        for i, (rar, w, name, cmds) in enumerate(rewards):
+            L += [f"AST_{G}_R{i:02d}:", "  Skills:"]
+            L += [f"  - {q(mm_cmd(c))}" for c in cmds]
+            L.append(f"  - {q('message{m="' + GACHA_LABEL[gid] + ' &8- ' + RARITY_LABEL[rar] + '&8: &f' + name + '"} @trigger')}")
+            if rar in ("epic", "legendary"):
+                L.append(f"  - {q('message{m="&6&l(!) &e<trigger.name> &7saco ' + RARITY_LABEL[rar] + ' &7en la ' + GACHA_LABEL[gid] + '&7: &f' + name + '"} @Server')}")
+                L.append(f"  - {q('sound{s=ui.toast.challenge_complete} @trigger')}")
+            L.append("")
     return "\n".join(L) + "\n"
-
-
-def rarity_yml(rid):
-    r, gr, b = RARITY_COLOR[rid]
-    return "\n".join(["base:", f"  name: {q(RARITY_NAME[rid])}", f"  weight: {RARITY_WEIGHT[rid]}", "  color:",
-                      f"    red: {r}", f"    green: {gr}", f"    blue: {b}", "    alpha: 255"]) + "\n"
 
 
 def spawn_yml():
@@ -218,31 +227,23 @@ def commands():
          "lp group default permission set essentials.pay true",
          "lp group default permission set essentials.worth true",
          "lp group default permission set essentials.help true",
-         "# --- cofres de las gachas"]
-    for cid, (cx, cy, cz) in CRATE_POS.items():
-        C.append(f"execute in minecraft:{WORLD} run setblock {cx} {cy} {cz} minecraft:ender_chest")
-    C.append("# --- vendedores (MythicMobs)")
+         "# --- vendedores (MythicMobs)"]
     for mid, (nx, ny, nz, nyaw) in NPC_POS.items():
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")
     return "\n".join(C) + "\n"
 
 
 def main():
-    os.makedirs(os.path.join(OUT, "ExcellentCrates", "crates"), exist_ok=True)
-    os.makedirs(os.path.join(OUT, "ExcellentCrates", "objects", "rarity"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "Essentials"), exist_ok=True)
-    n = 0
-    for cid, g in GACHAS.items():
-        with open(os.path.join(OUT, "ExcellentCrates", "crates", f"{cid}.yml"), "w", encoding="utf-8") as f:
-            f.write(crate_yml(cid, g))
-        n += len(g["rewards"]())
-    for rid in RARITY_WEIGHT:
-        with open(os.path.join(OUT, "ExcellentCrates", "objects", "rarity", f"{rid}.yml"), "w", encoding="utf-8") as f:
-            f.write(rarity_yml(rid))
+    mm = os.path.join(HERE, "..", "build", "mythicmobs", "skills")
+    os.makedirs(mm, exist_ok=True)
+    with open(os.path.join(mm, "gachas.yml"), "w", encoding="utf-8") as f:
+        f.write(gacha_skills())
     with open(os.path.join(OUT, "Essentials", "spawn.yml"), "w", encoding="utf-8") as f:
         f.write(spawn_yml())
     with open(os.path.join(OUT, "comandos.txt"), "w", encoding="utf-8") as f:
         f.write(commands())
+    n = sum(len(g["rewards"]()) for g in GACHAS.values())
     print(f"lobby: {len(GACHAS)} gachas ({n} premios), {len(NPC_POS)} vendedores -> {os.path.abspath(OUT)}")
 
 

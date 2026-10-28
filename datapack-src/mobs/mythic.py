@@ -130,20 +130,26 @@ ELITE_MONEY = 150
 
 # Vendedores del lobby: aldeanos quietos e invulnerables. Al hacerles clic abren su tienda o gacha.
 # (ubicacion de cada uno: datapack-src/lobby.py)
+def _gacha(gid, cost):
+    G = gid.upper()
+    return [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?crouching",
+            f"skill{{s=AST_{G}}} @trigger ~onInteract ?!crouching ?hascurrency{{a={cost}}}",
+            f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?!crouching ?!hascurrency{{a={cost}}}"]
+
+
 NPCS = {
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
-                          ["- command{c=\"shop\";asTarget=true} @trigger ~onInteract"]),
+                          ["command{c=\"shop\";asTarget=true} @trigger ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
-                         ["- command{c=\"sellgui\";asTarget=true} @trigger ~onInteract"]),
-    "astral_npc_gacha_rpg": ("&d&lGacha RPG &7(1000$)", "LIBRARIAN",
-                             ["- command{c=\"crate preview gacha_rpg <trigger.name>\"} @self ~onInteract"]),
-    "astral_npc_gacha_monturas": ("&e&lGacha de Monturas &7(2500$)", "SHEPHERD",
-                                  ["- command{c=\"crate preview gacha_monturas <trigger.name>\"} @self ~onInteract"]),
-    "astral_npc_gacha_cosmeticos": ("&b&lGacha de Cosmeticos &7(500$)", "CARTOGRAPHER",
-                                    ["- command{c=\"crate preview gacha_cosmeticos <trigger.name>\"} @self ~onInteract"]),
+                         ["command{c=\"sellgui\";asTarget=true} @trigger ~onInteract"]),
+    "astral_npc_gacha_rpg": ("&d&lGacha RPG &7(1000$ - shift+clic ver premios)", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
+    "astral_npc_gacha_monturas": ("&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)", "SHEPHERD",
+                                  _gacha("gacha_monturas", 2500)),
+    "astral_npc_gacha_cosmeticos": ("&b&lGacha de Cosmeticos &7(500$ - shift+clic ver premios)", "CARTOGRAPHER",
+                                    _gacha("gacha_cosmeticos", 500)),
     "astral_npc_viajero": ("&f&lViajero &7- ir al mundo", "NITWIT",
-                           ["- message{m=\"&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)\"} @trigger ~onInteract",
-                            "- command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract"]),
+                           ["message{m=\"&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)\"} @trigger ~onInteract",
+                            "command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract"]),
 }
 
 
@@ -153,7 +159,7 @@ def npc_block(mid, name, prof, skills):
              "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true",
              "    AlwaysShowName: true", f"    Profession: {prof}", "    VillagerType: PLAINS",
              "  Skills:", "  - cancelevent @self ~onInteract"]
-    lines += ["  " + s for s in skills]
+    lines += ["  - '" + s.replace("'", "''") + "'" for s in skills]
     return "\n".join(lines) + "\n"
 
 

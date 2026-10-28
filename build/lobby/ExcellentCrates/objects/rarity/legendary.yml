@@ -1,8 +1,0 @@
-base:
-  name: '<gold>Legendario</gold>'
-  weight: 0.5
-  color:
-    red: 255
-    green: 170
-    blue: 0
-    alpha: 255

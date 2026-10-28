@@ -1,0 +1,690 @@
+# Gachas del lobby (generado por datapack-src/lobby.py)
+
+AST_GACHA_RPG:
+  Cooldown: 1
+  Skills:
+  - 'currencytake{a=1000} @trigger'
+  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
+  - 'particles{p=end_rod;a=25;hs=0.4;vs=0.6;s=0.05;y=1} @self'
+  - 'randomskill{skills=AST_GACHA_RPG_COMMON 60,AST_GACHA_RPG_UNCOMMON 25,AST_GACHA_RPG_RARE 11,AST_GACHA_RPG_EPIC 3.5,AST_GACHA_RPG_LEGENDARY 0.5} @trigger'
+
+AST_GACHA_RPG_INFO:
+  Skills:
+  - 'message{m="&dGacha RPG &7- cada tirada cuesta &e1000$"} @trigger'
+  - 'message{m="&7Probabilidades &8- &fComun &760%, &aPoco comun &725%, &bRaro &711%, &dEpico &73.5%, &6&lLegendario &70.5%"} @trigger'
+  - 'message{m="&fComun &8- &7Cuero Tratado x4, Palo Reforzado x2, Fragmento Cristal x4, Gema Umbria Fragmentada x2, Polvo Astral x2, Fragmento Umbrio x3 ..."} @trigger'
+  - 'message{m="&aPoco comun &8- &7Cristal Arcano x1, Gema Umbria x1, Esencia Elite x2, Nucleo Furia x1, Fragmento Astral x3, Nucleo Eolico x1 ..."} @trigger'
+  - 'message{m="&bRaro &8- &7Cristal Refinado x1, Gema Luminica x1, Corazon Shulker x1, Alma Corrupta x1, Netherita Reforzada x1, Espada II ..."} @trigger'
+  - 'message{m="&dEpico &8- &7Nucleo Astral, Gema Umbria Perfecta, Gema Luminica Perfecta, Espada IV, Baston IV, Arco IV ..."} @trigger'
+  - 'message{m="&6&lLegendario &8- &7Espada V, Baston V, Arco V, Hacha V, Lanza V, Guadana V ..."} @trigger'
+
+AST_GACHA_RPG_COMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_RPG_R00 10,AST_GACHA_RPG_R01 10,AST_GACHA_RPG_R02 10,AST_GACHA_RPG_R03 10,AST_GACHA_RPG_R04 10,AST_GACHA_RPG_R05 10,AST_GACHA_RPG_R06 10,AST_GACHA_RPG_R07 10} @trigger'
+
+AST_GACHA_RPG_UNCOMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_RPG_R08 10,AST_GACHA_RPG_R09 10,AST_GACHA_RPG_R10 10,AST_GACHA_RPG_R11 10,AST_GACHA_RPG_R12 10,AST_GACHA_RPG_R13 10,AST_GACHA_RPG_R14 10,AST_GACHA_RPG_R15 10,AST_GACHA_RPG_R16 6,AST_GACHA_RPG_R17 6,AST_GACHA_RPG_R18 6,AST_GACHA_RPG_R19 6} @trigger'
+
+AST_GACHA_RPG_RARE:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_RPG_R20 10,AST_GACHA_RPG_R21 10,AST_GACHA_RPG_R22 10,AST_GACHA_RPG_R23 10,AST_GACHA_RPG_R24 10,AST_GACHA_RPG_R25 6,AST_GACHA_RPG_R26 3,AST_GACHA_RPG_R27 6,AST_GACHA_RPG_R28 3,AST_GACHA_RPG_R29 6,AST_GACHA_RPG_R30 3,AST_GACHA_RPG_R31 6,AST_GACHA_RPG_R32 3,AST_GACHA_RPG_R33 6,AST_GACHA_RPG_R34 3,AST_GACHA_RPG_R35 6,AST_GACHA_RPG_R36 3,AST_GACHA_RPG_R37 5,AST_GACHA_RPG_R38 5,AST_GACHA_RPG_R39 5,AST_GACHA_RPG_R40 5} @trigger'
+
+AST_GACHA_RPG_EPIC:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_RPG_R41 10,AST_GACHA_RPG_R42 10,AST_GACHA_RPG_R43 10,AST_GACHA_RPG_R44 6,AST_GACHA_RPG_R45 6,AST_GACHA_RPG_R46 6,AST_GACHA_RPG_R47 6,AST_GACHA_RPG_R48 6,AST_GACHA_RPG_R49 6,AST_GACHA_RPG_R50 5,AST_GACHA_RPG_R51 5,AST_GACHA_RPG_R52 5,AST_GACHA_RPG_R53 5} @trigger'
+
+AST_GACHA_RPG_LEGENDARY:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_RPG_R54 10,AST_GACHA_RPG_R55 10,AST_GACHA_RPG_R56 10,AST_GACHA_RPG_R57 10,AST_GACHA_RPG_R58 10,AST_GACHA_RPG_R59 10,AST_GACHA_RPG_R60 10,AST_GACHA_RPG_R61 8,AST_GACHA_RPG_R62 6} @trigger'
+
+AST_GACHA_RPG_R00:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/cuero_tratado"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/cuero_tratado"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/cuero_tratado"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/cuero_tratado"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fCuero Tratado x4"} @trigger'
+
+AST_GACHA_RPG_R01:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/palo_reforzado"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/palo_reforzado"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fPalo Reforzado x2"} @trigger'
+
+AST_GACHA_RPG_R02:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_cristal"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_cristal"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_cristal"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_cristal"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fFragmento Cristal x4"} @trigger'
+
+AST_GACHA_RPG_R03:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_umbria_fragmentada"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_umbria_fragmentada"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fGema Umbria Fragmentada x2"} @trigger'
+
+AST_GACHA_RPG_R04:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/polvo_astral"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/polvo_astral"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fPolvo Astral x2"} @trigger'
+
+AST_GACHA_RPG_R05:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_umbrio"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_umbrio"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_umbrio"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fFragmento Umbrio x3"} @trigger'
+
+AST_GACHA_RPG_R06:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/netherita_fundida"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fNetherita Fundida x1"} @trigger'
+
+AST_GACHA_RPG_R07:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/esencia_nether"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/esencia_nether"} @self'
+  - 'message{m="&dGacha RPG &8- &fComun&8: &fEsencia Nether x2"} @trigger'
+
+AST_GACHA_RPG_R08:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/cristal_arcano"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fCristal Arcano x1"} @trigger'
+
+AST_GACHA_RPG_R09:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_umbria"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fGema Umbria x1"} @trigger'
+
+AST_GACHA_RPG_R10:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/esencia_elite"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/esencia_elite"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fEsencia Elite x2"} @trigger'
+
+AST_GACHA_RPG_R11:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/nucleo_furia"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fNucleo Furia x1"} @trigger'
+
+AST_GACHA_RPG_R12:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_astral"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_astral"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/fragmento_astral"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fFragmento Astral x3"} @trigger'
+
+AST_GACHA_RPG_R13:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/nucleo_eolico"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fNucleo Eolico x1"} @trigger'
+
+AST_GACHA_RPG_R14:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/madera_estelar"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/madera_estelar"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/madera_estelar"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/madera_estelar"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fMadera Estelar x4"} @trigger'
+
+AST_GACHA_RPG_R15:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/shadowsteel"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/shadowsteel"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fShadowsteel x2"} @trigger'
+
+AST_GACHA_RPG_R16:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_vida_1"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fTalisman de Vida I"} @trigger'
+
+AST_GACHA_RPG_R17:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_furia_1"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fTalisman de Furia I"} @trigger'
+
+AST_GACHA_RPG_R18:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_roca_1"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fTalisman de Roca I"} @trigger'
+
+AST_GACHA_RPG_R19:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_viento_1"} @self'
+  - 'message{m="&dGacha RPG &8- &aPoco comun&8: &fTalisman de Viento I"} @trigger'
+
+AST_GACHA_RPG_R20:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/cristal_refinado"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fCristal Refinado x1"} @trigger'
+
+AST_GACHA_RPG_R21:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_luminica"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fGema Luminica x1"} @trigger'
+
+AST_GACHA_RPG_R22:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/corazon_shulker"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fCorazon Shulker x1"} @trigger'
+
+AST_GACHA_RPG_R23:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/alma_corrupta"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fAlma Corrupta x1"} @trigger'
+
+AST_GACHA_RPG_R24:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/netherita_reforzada"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fNetherita Reforzada x1"} @trigger'
+
+AST_GACHA_RPG_R25:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/espada_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fEspada II"} @trigger'
+
+AST_GACHA_RPG_R26:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/espada_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fEspada III"} @trigger'
+
+AST_GACHA_RPG_R27:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/baston_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fBaston II"} @trigger'
+
+AST_GACHA_RPG_R28:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/baston_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fBaston III"} @trigger'
+
+AST_GACHA_RPG_R29:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/arco_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fArco II"} @trigger'
+
+AST_GACHA_RPG_R30:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/arco_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fArco III"} @trigger'
+
+AST_GACHA_RPG_R31:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/hacha_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fHacha II"} @trigger'
+
+AST_GACHA_RPG_R32:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/hacha_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fHacha III"} @trigger'
+
+AST_GACHA_RPG_R33:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/lanza_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fLanza II"} @trigger'
+
+AST_GACHA_RPG_R34:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/lanza_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fLanza III"} @trigger'
+
+AST_GACHA_RPG_R35:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/guadana_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fGuadana II"} @trigger'
+
+AST_GACHA_RPG_R36:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/guadana_3"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fGuadana III"} @trigger'
+
+AST_GACHA_RPG_R37:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_vida_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fTalisman de Vida II"} @trigger'
+
+AST_GACHA_RPG_R38:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_furia_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fTalisman de Furia II"} @trigger'
+
+AST_GACHA_RPG_R39:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_roca_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fTalisman de Roca II"} @trigger'
+
+AST_GACHA_RPG_R40:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_viento_2"} @self'
+  - 'message{m="&dGacha RPG &8- &bRaro&8: &fTalisman de Viento II"} @trigger'
+
+AST_GACHA_RPG_R41:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/nucleo_astral"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fNucleo Astral"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fNucleo Astral"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R42:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_umbria_perfecta"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fGema Umbria Perfecta"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fGema Umbria Perfecta"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R43:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/gema_luminica_perfecta"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fGema Luminica Perfecta"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fGema Luminica Perfecta"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R44:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/espada_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fEspada IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fEspada IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R45:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/baston_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fBaston IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fBaston IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R46:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/arco_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fArco IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fArco IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R47:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/hacha_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fHacha IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fHacha IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R48:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/lanza_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fLanza IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fLanza IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R49:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/guadana_4"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fGuadana IV"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fGuadana IV"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R50:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_vida_3"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fTalisman de Vida III"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Vida III"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R51:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_furia_3"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fTalisman de Furia III"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Furia III"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R52:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_roca_3"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fTalisman de Roca III"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Roca III"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R53:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/talisman_viento_3"} @self'
+  - 'message{m="&dGacha RPG &8- &dEpico&8: &fTalisman de Viento III"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Viento III"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R54:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/espada_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fEspada V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fEspada V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R55:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/baston_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fBaston V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fBaston V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R56:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/arco_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fArco V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fArco V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R57:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/hacha_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fHacha V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fHacha V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R58:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/lanza_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fLanza V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fLanza V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R59:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/guadana_5"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fGuadana V"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana V"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R60:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/chispa_astral"} @self'
+  - 'command{c="loot give <trigger.name> loot astral:item/chispa_astral"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fChispa Astral x2"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fChispa Astral x2"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R61:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/nucleo_furia_pura"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fNucleo de Furia Pura"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fNucleo de Furia Pura"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_RPG_R62:
+  Skills:
+  - 'command{c="loot give <trigger.name> loot astral:item/guadana_umbria"} @self'
+  - 'message{m="&dGacha RPG &8- &6&lLegendario&8: &fGuadana Umbria"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana Umbria"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_MONTURAS:
+  Cooldown: 1
+  Skills:
+  - 'currencytake{a=2500} @trigger'
+  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
+  - 'particles{p=end_rod;a=25;hs=0.4;vs=0.6;s=0.05;y=1} @self'
+  - 'randomskill{skills=AST_GACHA_MONTURAS_COMMON 60,AST_GACHA_MONTURAS_UNCOMMON 25,AST_GACHA_MONTURAS_RARE 11,AST_GACHA_MONTURAS_EPIC 3.5,AST_GACHA_MONTURAS_LEGENDARY 0.5} @trigger'
+
+AST_GACHA_MONTURAS_INFO:
+  Skills:
+  - 'message{m="&eGacha de Monturas &7- cada tirada cuesta &e2500$"} @trigger'
+  - 'message{m="&7Probabilidades &8- &fComun &760%, &aPoco comun &725%, &bRaro &711%, &dEpico &73.5%, &6&lLegendario &70.5%"} @trigger'
+  - 'message{m="&fComun &8- &7Mascota: Mapache, Mascota: Pinguino de Cristal, Montura extra (silla)"} @trigger'
+  - 'message{m="&aPoco comun &8- &7Montura: Lagarto (nada), Montura: Escarabajo Azul"} @trigger'
+  - 'message{m="&bRaro &8- &7Montura: Grillo Saltarin, Montura: Chocobo"} @trigger'
+  - 'message{m="&dEpico &8- &7Montura voladora: Gran Ave"} @trigger'
+  - 'message{m="&6&lLegendario &8- &7Montura voladora: Pterodactilo"} @trigger'
+
+AST_GACHA_MONTURAS_COMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_MONTURAS_R00 20,AST_GACHA_MONTURAS_R01 20,AST_GACHA_MONTURAS_R02 10} @trigger'
+
+AST_GACHA_MONTURAS_UNCOMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_MONTURAS_R03 10,AST_GACHA_MONTURAS_R04 10} @trigger'
+
+AST_GACHA_MONTURAS_RARE:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_MONTURAS_R05 10,AST_GACHA_MONTURAS_R06 8} @trigger'
+
+AST_GACHA_MONTURAS_EPIC:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_MONTURAS_R07 10} @trigger'
+
+AST_GACHA_MONTURAS_LEGENDARY:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_MONTURAS_R08 10} @trigger'
+
+AST_GACHA_MONTURAS_R00:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_mapache 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &fComun&8: &fMascota: Mapache"} @trigger'
+
+AST_GACHA_MONTURAS_R01:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_pinguino 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &fComun&8: &fMascota: Pinguino de Cristal"} @trigger'
+
+AST_GACHA_MONTURAS_R02:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:saddle 2"} @self'
+  - 'message{m="&eGacha de Monturas &8- &fComun&8: &fMontura extra (silla)"} @trigger'
+
+AST_GACHA_MONTURAS_R03:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_lagarto 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &aPoco comun&8: &fMontura: Lagarto (nada)"} @trigger'
+
+AST_GACHA_MONTURAS_R04:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_escarabajo 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &aPoco comun&8: &fMontura: Escarabajo Azul"} @trigger'
+
+AST_GACHA_MONTURAS_R05:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_grillo 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &bRaro&8: &fMontura: Grillo Saltarin"} @trigger'
+
+AST_GACHA_MONTURAS_R06:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_chocobo 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &bRaro&8: &fMontura: Chocobo"} @trigger'
+
+AST_GACHA_MONTURAS_R07:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_ave 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &dEpico&8: &fMontura voladora: Gran Ave"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_MONTURAS_R08:
+  Skills:
+  - 'command{c="mm egg give <trigger.name> astral_pterodactilo 1"} @self'
+  - 'command{c="give <trigger.name> minecraft:saddle 1"} @self'
+  - 'message{m="&eGacha de Monturas &8- &6&lLegendario&8: &fMontura voladora: Pterodactilo"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_COSMETICOS:
+  Cooldown: 1
+  Skills:
+  - 'currencytake{a=500} @trigger'
+  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'
+  - 'particles{p=end_rod;a=25;hs=0.4;vs=0.6;s=0.05;y=1} @self'
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_COMMON 60,AST_GACHA_COSMETICOS_UNCOMMON 25,AST_GACHA_COSMETICOS_RARE 11,AST_GACHA_COSMETICOS_EPIC 3.5,AST_GACHA_COSMETICOS_LEGENDARY 0.5} @trigger'
+
+AST_GACHA_COSMETICOS_INFO:
+  Skills:
+  - 'message{m="&bGacha de Cosmeticos &7- cada tirada cuesta &e500$"} @trigger'
+  - 'message{m="&7Probabilidades &8- &fComun &760%, &aPoco comun &725%, &bRaro &711%, &dEpico &73.5%, &6&lLegendario &70.5%"} @trigger'
+  - 'message{m="&fComun &8- &7Titulo «Aventurero», Titulo «Explorador», Titulo «Lenador», Titulo «Minero», Cohetes x16, Etiquetas x3"} @trigger'
+  - 'message{m="&aPoco comun &8- &7Titulo «Cazador», Titulo «Herrero», Titulo «Alquimista», Molde de adorno: coast, Molde de adorno: dune, Molde de adorno: wild ..."} @trigger'
+  - 'message{m="&bRaro &8- &7Titulo «Domador», Titulo «Arcano», Titulo «Berserker», Titulo «Arquero», Molde de adorno: vex, Molde de adorno: tide ..."} @trigger'
+  - 'message{m="&dEpico &8- &7Titulo «Campeon», Titulo «Senor del Abismo», Molde de adorno: silence"} @trigger'
+  - 'message{m="&6&lLegendario &8- &7Titulo «ASTRAL», Cabeza de Dragon"} @trigger'
+
+AST_GACHA_COSMETICOS_COMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_R00 10,AST_GACHA_COSMETICOS_R01 10,AST_GACHA_COSMETICOS_R02 10,AST_GACHA_COSMETICOS_R03 10,AST_GACHA_COSMETICOS_R14 8,AST_GACHA_COSMETICOS_R15 6} @trigger'
+
+AST_GACHA_COSMETICOS_UNCOMMON:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_R04 10,AST_GACHA_COSMETICOS_R05 10,AST_GACHA_COSMETICOS_R06 10,AST_GACHA_COSMETICOS_R16 4,AST_GACHA_COSMETICOS_R17 4,AST_GACHA_COSMETICOS_R18 4,AST_GACHA_COSMETICOS_R19 4} @trigger'
+
+AST_GACHA_COSMETICOS_RARE:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_R07 10,AST_GACHA_COSMETICOS_R08 10,AST_GACHA_COSMETICOS_R09 10,AST_GACHA_COSMETICOS_R10 10,AST_GACHA_COSMETICOS_R20 4,AST_GACHA_COSMETICOS_R21 4,AST_GACHA_COSMETICOS_R22 4,AST_GACHA_COSMETICOS_R23 4} @trigger'
+
+AST_GACHA_COSMETICOS_EPIC:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_R11 10,AST_GACHA_COSMETICOS_R12 10,AST_GACHA_COSMETICOS_R24 6} @trigger'
+
+AST_GACHA_COSMETICOS_LEGENDARY:
+  Skills:
+  - 'randomskill{skills=AST_GACHA_COSMETICOS_R13 10,AST_GACHA_COSMETICOS_R25 6} @trigger'
+
+AST_GACHA_COSMETICOS_R00:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &7«Aventurero»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fTitulo «Aventurero»"} @trigger'
+
+AST_GACHA_COSMETICOS_R01:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &a«Explorador»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fTitulo «Explorador»"} @trigger'
+
+AST_GACHA_COSMETICOS_R02:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &6«Lenador»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fTitulo «Lenador»"} @trigger'
+
+AST_GACHA_COSMETICOS_R03:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &8«Minero»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fTitulo «Minero»"} @trigger'
+
+AST_GACHA_COSMETICOS_R04:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &2«Cazador»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fTitulo «Cazador»"} @trigger'
+
+AST_GACHA_COSMETICOS_R05:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &c«Herrero»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fTitulo «Herrero»"} @trigger'
+
+AST_GACHA_COSMETICOS_R06:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &d«Alquimista»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fTitulo «Alquimista»"} @trigger'
+
+AST_GACHA_COSMETICOS_R07:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &e«Domador»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fTitulo «Domador»"} @trigger'
+
+AST_GACHA_COSMETICOS_R08:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &5«Arcano»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fTitulo «Arcano»"} @trigger'
+
+AST_GACHA_COSMETICOS_R09:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &4«Berserker»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fTitulo «Berserker»"} @trigger'
+
+AST_GACHA_COSMETICOS_R10:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &a«Arquero»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fTitulo «Arquero»"} @trigger'
+
+AST_GACHA_COSMETICOS_R11:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &6&l«Campeon»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &dEpico&8: &fTitulo «Campeon»"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Campeon»"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_COSMETICOS_R12:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &5&l«Senor del Abismo»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &dEpico&8: &fTitulo «Senor del Abismo»"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Senor del Abismo»"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_COSMETICOS_R13:
+  Skills:
+  - 'command{c="lp user <trigger.name> meta setprefix 100 &b&l«ASTRAL»"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &6&lLegendario&8: &fTitulo «ASTRAL»"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fTitulo «ASTRAL»"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_COSMETICOS_R14:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:firework_rocket 16"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fCohetes x16"} @trigger'
+
+AST_GACHA_COSMETICOS_R15:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:name_tag 3"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &fComun&8: &fEtiquetas x3"} @trigger'
+
+AST_GACHA_COSMETICOS_R16:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:coast_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fMolde de adorno: coast"} @trigger'
+
+AST_GACHA_COSMETICOS_R17:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:dune_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fMolde de adorno: dune"} @trigger'
+
+AST_GACHA_COSMETICOS_R18:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:wild_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fMolde de adorno: wild"} @trigger'
+
+AST_GACHA_COSMETICOS_R19:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:sentry_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &aPoco comun&8: &fMolde de adorno: sentry"} @trigger'
+
+AST_GACHA_COSMETICOS_R20:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:vex_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fMolde de adorno: vex"} @trigger'
+
+AST_GACHA_COSMETICOS_R21:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:tide_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fMolde de adorno: tide"} @trigger'
+
+AST_GACHA_COSMETICOS_R22:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:ward_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fMolde de adorno: ward"} @trigger'
+
+AST_GACHA_COSMETICOS_R23:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:eye_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &bRaro&8: &fMolde de adorno: eye"} @trigger'
+
+AST_GACHA_COSMETICOS_R24:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:silence_armor_trim_smithing_template 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &dEpico&8: &fMolde de adorno: silence"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fMolde de adorno: silence"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
+AST_GACHA_COSMETICOS_R25:
+  Skills:
+  - 'command{c="give <trigger.name> minecraft:dragon_head 1"} @self'
+  - 'message{m="&bGacha de Cosmeticos &8- &6&lLegendario&8: &fCabeza de Dragon"} @trigger'
+  - 'message{m="&6&l(!) &e<trigger.name> &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fCabeza de Dragon"} @Server'
+  - 'sound{s=ui.toast.challenge_complete} @trigger'
+
