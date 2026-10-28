@@ -192,7 +192,7 @@ def crate_yml(gid, g, garantia=False):
         tot[rar] = tot.get(rar, 0) + w
     glass, frame = GACHA_FRAME[gid]
     L = ["# " + gid + " (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.",
-         "Crate:", "  CrateType: CSGO", "  StartingKeys: 0", "  RequiredKeys: 0", "  Max-Mass-Open: 1",
+         "Crate:", "  CrateType: CSGO", "  StartingKeys: 0", "  RequiredKeys: 0", "  Max-Mass-Open: 50",
          "  InGUI: false", "  Slot: 0", "  OpeningBroadCast: false", "  BroadCast: " + dq(""),
          "  opening-command:", "    toggle: false", "    commands: []",
          "  sound:",
@@ -262,26 +262,78 @@ def crate_yml(gid, g, garantia=False):
     return "\n".join(L) + "\n"
 
 
+# Tiradas: clic al cofre -> menu en el chat con botones x1/x10/x25/x50. Cada boton hace /trigger gachatirar set <codigo>
+# (codigo = numero de gacha * 100 + tiradas) y el cofre, cada 1/4 de segundo, mira a los jugadores cercanos con ese codigo.
+# Varias tiradas: gira la ruleta UNA vez (con animacion) y cuando termina llegan los demas premios juntos (mass-open).
+TIRADAS = [1, 10, 25, 50]
+GACHA_NUM = {"gacha_rpg": 1, "gacha_monturas": 2, "gacha_cosmeticos": 3}
+RULETA_TICKS = 140          # cuanto se espera a que termine la ruleta antes de dar el resto
+
+
+def tirada_code(gid, n):
+    return GACHA_NUM[gid] * 100 + n
+
+
+def money(n):
+    return f"{n:,}".replace(",", ".") + "$"
+
+
+def sk(s):
+    """Linea de skill de MythicMobs entre comillas simples (las comillas de adentro se duplican)."""
+    return "  - " + q(s)
+
+
 def gacha_skills():
-    """MythicMobs cobra la tirada y le pide a CrazyCrates que abra la ruleta (o la vitrina de premios)."""
+    """MythicMobs cobra las tiradas y le pide a CrazyCrates que abra la ruleta (o la vitrina de premios)."""
     L = ["# Gachas del lobby (generado por datapack-src/lobby.py)", ""]
     for gid, g in GACHAS.items():
         G = gid.upper()
-        o, n = pity_obj(gid), PITY[gid]
-        sc = f"score <trigger.name> {o} matches {n}.."
-        L += ["AST_%s:" % G, "  Cooldown: 2", "  Skills:",
-              "  - 'currencytake{a=%d} @trigger'" % g["cost"],
-              "  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'",
-              f"  - 'command{{c=\"scoreboard players add <trigger.name> {o} 1\"}} @self'",
-              f"  - 'command{{c=\"execute if {sc} run crates forceopen {gid}_garantia <trigger.name>\"}} @self'",
-              f"  - 'command{{c=\"execute unless {sc} run crates forceopen {gid} <trigger.name>\"}} @self'",
-              f"  - 'message{{m=\"&d&lTirada garantizada! &7(Epico o Legendario seguro)\"}} @trigger ?~score{{o={o};v=>{n - 1}}}'",
-              "  - delay 1",
-              f"  - 'message{{m=\"&7Garantia: &e<trigger.score.{o}>&7/{n} &8(a las {n} tiradas sin Epico te toca uno seguro)\"}} @trigger'",
-              "",
-              "AST_%s_INFO:" % G, "  Skills:",
-              "  - 'command{c=\"sudo <trigger.name> crates preview %s\"} @self'" % gid,
-              f"  - 'message{{m=\"&7Tu garantia en esta gacha: &e<trigger.score.{o}>&7/{n}\"}} @trigger'", ""]
+        o, n, col, name = pity_obj(gid), PITY[gid], HOLO_COLOR[gid], HOLO_NAME[gid]
+        # ---- menu del chat (lo abre el clic al cofre)
+        btns = []
+        for t in TIRADAS:
+            costo = money(g["cost"] * t)
+            btns.append("{text:'[x%d - %s]',color:'%s',bold:true,click_event:{action:'run_command',command:'/trigger gachatirar set %d'},"
+                        "hover_event:{action:'show_text',value:'Tirar %d %s por %s'}}"
+                        % (t, costo, col, tirada_code(gid, t), t, "vez" if t == 1 else "veces", costo))
+        L += [f"AST_{G}_MENU:", "  Skills:",
+              sk('command{c="scoreboard players set <trigger.name> gachatirar 0"} @self'),
+              sk('command{c="scoreboard players enable <trigger.name> gachatirar"} @self'),
+              sk("command{c=\"tellraw <trigger.name> ['',{text:'✦ %s ✦ ',color:'%s',bold:true},"
+                 "{text:'Elegi cuantas tiradas (clic en el boton):',color:'gray'}]\"} @self" % (name, col)),
+              sk("command{c=\"tellraw <trigger.name> ['',%s]\"} @self" % ",' ',".join(btns)),
+              sk(f'message{{m="&7Tu garantia: &e<trigger.score.{o}>&7/{n} &8(Epico seguro a las {n} sin Epico) &7- shift+clic: premios"}} @trigger'),
+              ""]
+        L += [f"AST_{G}_INFO:", "  Skills:",
+              sk(f'command{{c="sudo <trigger.name> crates preview {gid}"}} @self'),
+              sk(f'message{{m="&7Tu garantia en esta gacha: &e<trigger.score.{o}>&7/{n}"}} @trigger'), ""]
+        # ---- tiradas (el objetivo es el jugador: <target.name>)
+        for t in TIRADAS:
+            costo, code = g["cost"] * t, tirada_code(gid, t)
+            cond = ["  TargetConditions:", f"  - score{{o=gachatirar;v={code}}} true"]
+            reset = sk(f'command{{c="scoreboard players set <target.name> gachatirar 0"}}')
+            p = "<target.name>"
+            L += [f"AST_T_{G}_{t}:"] + cond + [f"  - hascurrency{{a={costo}}} true", "  Skills:", reset,
+                  sk(f"currencytake{{a={costo}}}"),
+                  sk("state{s=open} @self"),
+                  sk("sound{s=block.amethyst_block.chime;p=1.2}"),
+                  sk(f'command{{c="scoreboard players add {p} {o} {t}"}}'),
+                  sk(f'command{{c="scoreboard players set {p} gachaflag 0"}}'),
+                  sk(f'command{{c="execute if score {p} {o} matches {n}.. run scoreboard players set {p} gachaflag 1"}}'),
+                  sk(f"command{{c=\"execute if score {p} gachaflag matches 1 run tellraw {p} {{text:'Tirada garantizada! (Epico o Legendario seguro)',color:'light_purple',bold:true}}\"}}"),
+                  sk(f'command{{c="execute if score {p} gachaflag matches 1 run crates forceopen {gid}_garantia {p}"}}'),
+                  sk(f'command{{c="execute unless score {p} gachaflag matches 1 run crates forceopen {gid} {p}"}}')]
+            if t > 1:
+                L += [sk(f'message{{m="&7Gira la ruleta... cuando termine te llegan los otros &e{t - 1}&7 premios."}}'),
+                      sk(f"delay {RULETA_TICKS}"),
+                      sk(f'command{{c="crates give virtual {gid} {t - 1} {p} -s"}}'),
+                      sk(f'command{{c="sudo {p} crates mass-open {gid} virtual {t - 1}"}}'),
+                      sk(f'message{{m="&aListo: &f{t} tiradas&a en la {name}."}}')]
+            L += [sk("delay 1"),
+                  sk(f'message{{m="&7Garantia: &e<target.score.{o}>&7/{n} &8(a las {n} tiradas sin Epico te toca uno seguro)"}}'), ""]
+            L += [f"AST_T_{G}_{t}_NO:"] + cond + [f"  - hascurrency{{a={costo}}} false", "  Skills:", reset,
+                  sk(f'message{{m="&c{t} {"tirada cuesta" if t == 1 else "tiradas cuestan"} &e{money(costo)}&c y no te alcanza &7(mira tu plata con /balance)"}}'),
+                  ""]
     return "\n".join(L) + "\n"
 
 
@@ -475,6 +527,10 @@ def commands():
          "papi reload",
          "# --- contadores de garantia (pity) de las gachas",
          ] + [f"scoreboard objectives add {pity_obj(gid)} dummy" for gid in GACHAS] + [
+         "# --- tiradas x1/x10/x25/x50: botones del chat (/trigger) y apertura en masa de CrazyCrates",
+         "scoreboard objectives add gachatirar trigger",
+         "scoreboard objectives add gachaflag dummy",
+         "lp group default permission set crazycrates.massopen true",
          "# --- permisos de jugador",
          "lp group default permission set essentials.spawn true",
          "lp group default permission set essentials.balance true",

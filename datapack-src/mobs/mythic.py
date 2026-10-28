@@ -255,11 +255,15 @@ ELITE_MONEY = 150
 # Vendedores del lobby: aldeanos quietos e invulnerables. Al hacerles clic abren su tienda o gacha.
 # (ubicacion de cada uno: datapack-src/lobby.py)
 def _gacha(gid, cost):
+    """Clic: menu de tiradas en el chat. Shift + clic: vitrina de premios.
+    Cada 1/4 de segundo el cofre mira si algun jugador cerca apreto un boton del menu (ver lobby.py, TIRADAS)."""
     G = gid.upper()
-    return [f"state{{s=open}} @self ~onInteract ?~!crouching ?~hascurrency{{a={cost}}}",     # la tapa se abre al pagar
-            f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
-            f"skill{{s=AST_{G}}} @trigger ~onInteract ?~!crouching ?~hascurrency{{a={cost}}}",
-            f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~!crouching ?~!hascurrency{{a={cost}}}"]
+    sk = [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
+          f"skill{{s=AST_{G}_MENU}} @trigger ~onInteract ?~!crouching"]
+    for t in (1, 10, 25, 50):
+        sk += [f"skill{{s=AST_T_{G}_{t}}} @PlayersInRadius{{r=12}} ~onTimer:5",
+               f"skill{{s=AST_T_{G}_{t}_NO}} @PlayersInRadius{{r=12}} ~onTimer:5"]
+    return sk
 
 
 def _herrero():

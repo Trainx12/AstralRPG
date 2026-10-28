@@ -3,7 +3,7 @@ Crate:
   CrateType: CSGO
   StartingKeys: 0
   RequiredKeys: 0
-  Max-Mass-Open: 1
+  Max-Mass-Open: 50
   InGUI: false
   Slot: 0
   OpeningBroadCast: false

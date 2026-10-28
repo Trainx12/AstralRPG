@@ -72,6 +72,7 @@ AstralRPG/
 | Jefes ancestrales (eventos) | `mobs/mythic.py` (`ANCESTRALES`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
 | Bonus de set por piezas | `items.py` (`SET_BONUS`) | `python build.py` | datapack (subir `ITEM_VERSION` si cambia la lore) |
 | Costos de la mejora +1..+10 | `items.py` (`MEJORAS`, `MEJORA_DANO`, `MEJORA_VIDA`) | `python build.py` y `python mobs/mythic.py` | datapack + MythicMobs (el Herrero cobra la plata) |
+| Cantidades de tiradas del menú (x1, x10...) | `lobby.py` (`TIRADAS`) y `mobs/mythic.py` (`_gacha`) | `python lobby.py` y `python mobs/mythic.py` | `gachas.yml` + `mobs/astral.yml` + `mm reload` |
 | Un título nuevo para la gacha | `lobby.py` (`TITLES`) | `python lobby.py` | igual que arriba |
 | Una línea del panel lateral o del tabulador | `lobby.py` (`TAB_SECTIONS`) | `python lobby.py` | `plugins/TAB/config.yml` (reemplazar esa sección) + `tab reload` |
 | Rangos (Novato...Leyenda) | `lobby.py` (`RANKS`) | `python lobby.py` | igual que arriba |

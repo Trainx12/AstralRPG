@@ -37,6 +37,10 @@ papi reload
 scoreboard objectives add pity_rpg dummy
 scoreboard objectives add pity_monturas dummy
 scoreboard objectives add pity_cosmeticos dummy
+# --- tiradas x1/x10/x25/x50: botones del chat (/trigger) y apertura en masa de CrazyCrates
+scoreboard objectives add gachatirar trigger
+scoreboard objectives add gachaflag dummy
+lp group default permission set crazycrates.massopen true
 # --- permisos de jugador
 lp group default permission set essentials.spawn true
 lp group default permission set essentials.balance true

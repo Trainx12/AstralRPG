@@ -1260,10 +1260,16 @@ astral_npc_gacha_rpg:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_rpg} @self ~onSpawn
   - model{m=astral_cofre_rpg} @self ~onLoad
-  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=1000}'
   - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_RPG} @trigger ~onInteract ?~!crouching ?~hascurrency{a=1000}'
-  - 'message{m="&cLa tirada cuesta &e1000$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=1000}'
+  - 'skill{s=AST_GACHA_RPG_MENU} @trigger ~onInteract ?~!crouching'
+  - 'skill{s=AST_T_GACHA_RPG_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_10} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_25} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_50} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_RPG_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
 
 astral_npc_gacha_monturas:
   Type: SHEEP
@@ -1283,10 +1289,16 @@ astral_npc_gacha_monturas:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_monturas} @self ~onSpawn
   - model{m=astral_cofre_monturas} @self ~onLoad
-  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=2500}'
   - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_MONTURAS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=2500}'
-  - 'message{m="&cLa tirada cuesta &e2500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=2500}'
+  - 'skill{s=AST_GACHA_MONTURAS_MENU} @trigger ~onInteract ?~!crouching'
+  - 'skill{s=AST_T_GACHA_MONTURAS_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_10} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_25} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_50} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_MONTURAS_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
 
 astral_npc_gacha_cosmeticos:
   Type: SHEEP
@@ -1306,10 +1318,16 @@ astral_npc_gacha_cosmeticos:
   - cancelevent @self ~onInteract
   - model{m=astral_cofre_cosmeticos} @self ~onSpawn
   - model{m=astral_cofre_cosmeticos} @self ~onLoad
-  - 'state{s=open} @self ~onInteract ?~!crouching ?~hascurrency{a=500}'
   - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_COSMETICOS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=500}'
-  - 'message{m="&cLa tirada cuesta &e500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=500}'
+  - 'skill{s=AST_GACHA_COSMETICOS_MENU} @trigger ~onInteract ?~!crouching'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_10} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_25} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_50} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_T_GACHA_COSMETICOS_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
 
 astral_npc_viajero:
   Type: VILLAGER
