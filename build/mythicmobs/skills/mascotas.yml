@@ -561,6 +561,6 @@ MASC_NIVELES:
   - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players operation @s plv_fenix /= #nivel petkills"} @self'
   - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players add @s plv_fenix 1"} @self'
   - 'command{c="execute as @a[scores={plv_fenix=31..}] run scoreboard players set @s plv_fenix 30"} @self'
-  - 'command{c="execute if entity @a run scoreboard players set @a petkills 0"} @self'
+  - 'command{c="execute as @a[scores={petkills=1..}] run scoreboard players set @s petkills 0"} @self'
   - 'command{c="execute if entity @a run scoreboard players enable @a mascota"} @self'
 

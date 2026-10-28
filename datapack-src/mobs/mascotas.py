@@ -181,7 +181,8 @@ def skill_yml():
                 f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players add @s plv_{pid} 1"}} @self',
                 f'command{{c="execute as @a[scores={{plv_{pid}={NIVEL_MAX + 1}..}}] run scoreboard players set @s plv_{pid} {NIVEL_MAX}"}} @self']
     # 'execute if entity @a' evita el aviso 'No entity was found' en la consola cuando no hay nadie conectado
-    niv += ['command{c="execute if entity @a run scoreboard players set @a petkills 0"} @self',
+    # solo se resetea a quien mato algo, y con 'execute as' (si no, a los OP les llega "Se ha cambiado la puntuacion" cada vez)
+    niv += ['command{c="execute as @a[scores={petkills=1..}] run scoreboard players set @s petkills 0"} @self',
             'command{c="execute if entity @a run scoreboard players enable @a mascota"} @self']
     L += ["MASC_NIVELES:", "  Skills:"] + [sk(x) for x in niv] + [""]
     return "\n".join(L) + "\n"
