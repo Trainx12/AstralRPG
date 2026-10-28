@@ -30,6 +30,15 @@ NPC_POS = {
 }
 
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}
+# Pity (garantia): cada tirada suma 1 al contador del jugador (scoreboard 'pity_<gacha>').
+# Al llegar al numero, esa tirada sale de la caja "<gacha>_garantia" (solo Epico o Legendario).
+# Sacar Epico o Legendario (con o sin garantia) vuelve el contador a 0.
+PITY = {"gacha_rpg": 30, "gacha_monturas": 20, "gacha_cosmeticos": 30}
+PITY_RARITIES = ("epic", "legendary")
+
+
+def pity_obj(gid):
+    return "pity_" + gid.replace("gacha_", "")
 def loot(item, n=1):
     return [f"loot give %player% loot astral:item/{item}"] * n
 
@@ -169,9 +178,13 @@ def dq(s):
     return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def crate_yml(gid, g):
-    """Caja de CrazyCrates tipo CSGO: la ruleta gira en un inventario y frena en el premio."""
+def crate_yml(gid, g, garantia=False):
+    """Caja de CrazyCrates tipo CSGO: la ruleta gira en un inventario y frena en el premio.
+    garantia=True: misma caja pero solo con Epicos y Legendarios (la tirada garantizada del pity)."""
     rewards = g["rewards"]()
+    if garantia:
+        rewards = [r for r in rewards if r[0] in PITY_RARITIES]
+    scale = 100 / sum(RARITY_WEIGHT[r] for r in PITY_RARITIES) if garantia else 1
     tot = {}
     for rar, w, _, _ in rewards:
         tot[rar] = tot.get(rar, 0) + w
@@ -215,8 +228,10 @@ def crate_yml(gid, g):
     ranked = sorted(rewards, key=lambda r: order.index(r[0]))
     for i, (rar, w, name, cmds) in enumerate(ranked):
         mat, model, amount = icon(cmds)
-        weight = round(RARITY_WEIGHT[rar] * w / tot[rar], 4)
+        weight = round(RARITY_WEIGHT[rar] * w / tot[rar] * scale, 4)
         cm = list(cmds)
+        if rar in PITY_RARITIES:
+            cm.append(f"scoreboard players set %player% {pity_obj(gid)} 0")
         if rar in ("epic", "legendary"):
             cm.append("broadcast &6&l(!) &e%player% &7saco " + RARITY_AMP[rar] + " &7en la " + GACHA_AMP[gid] + "&7: &f" + name)
         c = color[rar]
@@ -240,6 +255,7 @@ def crate_yml(gid, g):
               "        - " + dq(bar),
               "        - " + dq("<dark_gray>━━━━━━━━━━━━━━━━━━"),
               "        - " + dq("<dark_gray>Clic al vendedor para tirar (" + str(g["cost"]) + "$)"),
+              "        - " + dq("<dark_purple>Garantia: <light_purple>Epico seguro cada " + str(PITY[gid]) + " tiradas"),
               "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c2) for c2 in cm]
     return "\n".join(L) + "\n"
 
@@ -249,12 +265,21 @@ def gacha_skills():
     L = ["# Gachas del lobby (generado por datapack-src/lobby.py)", ""]
     for gid, g in GACHAS.items():
         G = gid.upper()
+        o, n = pity_obj(gid), PITY[gid]
+        sc = f"score <trigger.name> {o} matches {n}.."
         L += ["AST_%s:" % G, "  Cooldown: 2", "  Skills:",
               "  - 'currencytake{a=%d} @trigger'" % g["cost"],
               "  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'",
-              "  - 'command{c=\"crates forceopen %s <trigger.name>\"} @self'" % gid, "",
+              f"  - 'command{{c=\"scoreboard players add <trigger.name> {o} 1\"}} @self'",
+              f"  - 'command{{c=\"execute if {sc} run crates forceopen {gid}_garantia <trigger.name>\"}} @self'",
+              f"  - 'command{{c=\"execute unless {sc} run crates forceopen {gid} <trigger.name>\"}} @self'",
+              f"  - 'message{{m=\"&d&lTirada garantizada! &7(Epico o Legendario seguro)\"}} @trigger ?~score{{o={o};v=>{n - 1}}}'",
+              "  - delay 1",
+              f"  - 'message{{m=\"&7Garantia: &e<trigger.score.{o}>&7/{n} &8(a las {n} tiradas sin Epico te toca uno seguro)\"}} @trigger'",
+              "",
               "AST_%s_INFO:" % G, "  Skills:",
-              "  - 'command{c=\"sudo <trigger.name> crates preview %s\"} @self'" % gid, ""]
+              "  - 'command{c=\"sudo <trigger.name> crates preview %s\"} @self'" % gid,
+              f"  - 'message{{m=\"&7Tu garantia en esta gacha: &e<trigger.score.{o}>&7/{n}\"}} @trigger'", ""]
     return "\n".join(L) + "\n"
 
 
@@ -418,6 +443,8 @@ def commands():
          "papi ecloud download Server",
          "papi ecloud download Statistic",
          "papi reload",
+         "# --- contadores de garantia (pity) de las gachas",
+         ] + [f"scoreboard objectives add {pity_obj(gid)} dummy" for gid in GACHAS] + [
          "# --- permisos de jugador",
          "lp group default permission set essentials.spawn true",
          "lp group default permission set essentials.balance true",
@@ -429,6 +456,8 @@ def commands():
          f"rg flag -w {WORLD} __global__ mob-spawning allow"]
     for mid, (nx, ny, nz, nyaw) in NPC_POS.items():
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")
+    C.append("# Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):")
+    C.append("#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)")
     C.append(f"rg flag -w {WORLD} __global__ mob-spawning deny")
     return "\n".join(C) + "\n"
 
@@ -449,6 +478,8 @@ def main():
     for gid, g in GACHAS.items():
         with open(os.path.join(cc, f"{gid}.yml"), "w", encoding="utf-8") as f:
             f.write(crate_yml(gid, g))
+        with open(os.path.join(cc, f"{gid}_garantia.yml"), "w", encoding="utf-8") as f:
+            f.write(crate_yml(gid, g, garantia=True))
     with open(os.path.join(OUT, "Essentials", "spawn.yml"), "w", encoding="utf-8") as f:
         f.write(spawn_yml())
     with open(os.path.join(OUT, "comandos.txt"), "w", encoding="utf-8") as f:

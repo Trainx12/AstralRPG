@@ -33,6 +33,10 @@ papi ecloud download Player
 papi ecloud download Server
 papi ecloud download Statistic
 papi reload
+# --- contadores de garantia (pity) de las gachas
+scoreboard objectives add pity_rpg dummy
+scoreboard objectives add pity_monturas dummy
+scoreboard objectives add pity_cosmeticos dummy
 # --- permisos de jugador
 lp group default permission set essentials.spawn true
 lp group default permission set essentials.balance true
@@ -48,4 +52,6 @@ mm mobs spawn astral_npc_gacha_rpg 1 lobby,195.5,100,177.5,90,0
 mm mobs spawn astral_npc_gacha_monturas 1 lobby,158.5,100,205.5,-90,0
 mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,196.5,100,206.5,90,0
 mm mobs spawn astral_npc_viajero 1 lobby,180.5,100,212.5,180,0
+# Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):
+#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)
 rg flag -w lobby __global__ mob-spawning deny

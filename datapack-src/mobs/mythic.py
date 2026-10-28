@@ -5,8 +5,11 @@ mobs (vida, dano, modelo), monturas, elites, jefes, drops y probabilidad de apar
 Salida: ../../build/mythicmobs/{mobs,skills,randomspawns}/astral.yml
 """
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, ".."))
+from items import MEJORAS  # noqa: E402  (costos de la mejora +1..+10, los comparte con el datapack)
 OUT = os.path.join(HERE, "..", "..", "build", "mythicmobs")
 
 
@@ -124,6 +127,127 @@ ELITES = {
 }
 
 
+# Eventos mundiales: version "ancestral" de cada jefe. Muy rara, se anuncia a todo el servidor con coordenadas,
+# tiene 5 veces la vida del jefe, fases y un afijo, y si nadie la mata en 10 minutos se va.
+ANCESTRALES = {
+    "astral_momia": ("FFD24A", "&6&lFarao Ancestral"),
+    "astral_yeti": ("9FE8FF", "&b&lYeti Ancestral"),
+    "astral_golem_forja": ("FF6A2A", "&4&lColoso de la Forja Ancestral"),
+    "astral_cangrejo": ("FF9AD0", "&d&lCangrejo Ancestral"),
+    "astral_chaman": ("7CFF6A", "&2&lGran Chaman Ancestral"),
+}
+ANCESTRAL_MONEY = 3000
+ANCESTRAL_MINUTOS = 10
+
+
+def ancestral_def(mid):
+    d = dict(MOBS[mid])
+    color, name = ANCESTRALES[mid]
+    d["name"] = name
+    # el elite ya multiplica x2.5. Minecraft corta la vida maxima en 1024, asi que se queda en 1000
+    # y se compensa con Resistencia I permanente (20% menos dano)
+    d["hp"] = min(d["hp"] * 2, 400)
+    d["damage"] = d["damage"]     # el elite ya lo sube x1.6
+    d["ancestral"] = True
+    d["money"] = ANCESTRAL_MONEY
+    d["astral"] = list(d.get("astral", [])) + [("chispa_astral", 1.0, 2), ("alma_corrupta", 1.0, 2)]
+    d["skills"] = list(d.get("skills", [])) + [
+        f"- 'message{{m=\"&6&l(!) &e{name} &7desperto en &f<caster.l.x> <caster.l.y> <caster.l.z> &7(&f<caster.l.w>&7). Tienen {ANCESTRAL_MINUTOS} minutos!\"}} @PlayersOnServer ~onSpawn'",
+        "- sound{s=entity.ender_dragon.growl;v=0.5} @PlayersOnServer ~onSpawn",
+        "- potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn",
+        "- potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200",
+        f"- skill{{s=AST_ANCESTRAL_SEVA_{mid}}} @self ~onTimer:{ANCESTRAL_MINUTOS * 1200}",
+        f"- 'message{{m=\"&6&l(!) &e<trigger.name> &7derroto a {name}&7!\"}} @PlayersOnServer ~onDeath ?isplayer'",
+    ]
+    d["spawn"] = dict(d["spawn"], chance=round(d["spawn"]["chance"] * 0.25, 6))
+    return d
+
+
+# Fases de los jefes: al bajar de cierta vida cambian de comportamiento (se marca con un tag para que pase una sola vez).
+# Cada fase: (porcentaje de vida, mensaje, skills que corren una vez al entrar, skills que se repiten mientras dure)
+# Las repetidas llevan su propio trigger (~onTimer:N); el generador les agrega la condicion de la fase.
+def _onda(dano, radio, part, sonido):
+    """Ataque en area con aviso: particulas en el piso, 1 segundo para alejarse, despues pega."""
+    return [f"particles{{p={part};amount=60;hS={radio};vS=0.2;speed=0}} @self",
+            f"sound{{s={sonido};v=1.5}} @self", "delay 20",
+            f"particles{{p={part};amount=120;hS={radio};vS=0.6;speed=0.1}} @self",
+            f"damage{{a={dano}}} @PlayersInRadius{{r={radio}}}"]
+
+
+FASES = {
+    "astral_momia": [
+        (60, "&eLa Momia Ancestral levanta una tormenta de arena!",
+         ["summon{type=HUSK;amount=3;radius=4} @self", "potion{type=BLINDNESS;duration=60;level=0} @PlayersInRadius{r=12}"],
+         {"onda": (_onda(5, 5, "cloud", "entity.husk.converted_to_zombie"), 120)}),
+        (25, "&6&lLa Momia Ancestral entra en furia: matala antes de que se cure!",
+         ["potion{type=RESISTANCE;duration=160;level=2} @self"],
+         {"cura": (["heal{a=8} @self", "particles{p=happy_villager;amount=20;hS=1;vS=1.5} @self"], 100)}),
+    ],
+    "astral_yeti": [
+        (60, "&fEl Yeti golpea el piso: la montana tiembla!",
+         ["summon{type=STRAY;amount=2;radius=4} @self"],
+         {"onda": (_onda(6, 6, "snowflake", "entity.ravager.roar"), 100)}),
+        (25, "&b&lEl Yeti se cubre de hielo y se vuelve mas rapido!",
+         ["potion{type=RESISTANCE;duration=160;level=2} @self", "potion{type=SPEED;duration=999999;level=1} @self"],
+         {"frio": (["potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=10}",
+                    "particles{p=snowflake;amount=80;hS=8;vS=1} @self"], 80)}),
+    ],
+    "astral_golem_forja": [
+        (60, "&cEl Golem de la Forja se pone al rojo vivo!",
+         ["potion{type=SPEED;duration=999999;level=0} @self"],
+         {"onda": (_onda(6, 5, "lava", "entity.blaze.shoot") + ["ignite{ticks=60} @PlayersInRadius{r=5}"], 120)}),
+        (25, "&4&lEl Golem de la Forja va a explotar de calor: alejate de el!",
+         ["potion{type=STRENGTH;duration=999999;level=0} @self"],
+         {"empuje": (["throw{velocity=6;velocityY=3} @PlayersInRadius{r=4}",
+                      "particles{p=flame;amount=60;hS=2;vS=1} @self"], 140)}),
+    ],
+    "astral_cangrejo": [
+        (60, "&6El Cangrejo llama a sus crias!",
+         ["summon{type=CAVE_SPIDER;amount=3;radius=3} @self"], {}),
+        (25, "&e&lEl Cangrejo se mete en su caparazon!",
+         ["potion{type=RESISTANCE;duration=120;level=3} @self", "potion{type=SPEED;duration=999999;level=1} @self"],
+         {"pinza": (_onda(5, 4, "bubble_pop", "entity.turtle.egg_crack"), 100)}),
+    ],
+    "astral_chaman": [
+        (60, "&2El Chaman invoca espiritus del pantano!",
+         ["summon{type=VEX;amount=2;radius=2} @self"],
+         {"veneno": (["potion{type=POISON;duration=60;level=1} @PlayersInRadius{r=6}",
+                      "particles{p=witch;amount=60;hS=5;vS=0.5} @self"], 120)}),
+        (25, "&a&lEl Chaman bebe una pocion y se cura!",
+         ["heal{a=60} @self", "summon{type=WITCH;amount=2;radius=3} @self"], {}),
+    ],
+}
+
+# Afijos de los elites: al aparecer cada elite saca uno al azar (se ve en el nombre).
+#  id: (nombre, skills que corren al aparecer, skills que se repiten con su trigger)
+AFIJOS = {
+    "vamp": ("&4Vampirico", [], ["heal{a=4} @self ~onAttack", "particles{p=heart;amount=4;vS=1} @self ~onAttack"]),
+    "expl": ("&cExplosivo", [], ["particles{p=explosion;amount=6;hS=2} @self ~onDeath",
+                                 "sound{s=entity.generic.explode} @self ~onDeath",
+                                 "damage{a=6} @PlayersInRadius{r=4} ~onDeath"]),
+    "blind": ("&7Blindado", ["potion{type=RESISTANCE;duration=240;level=0} @self"],
+              ["potion{type=RESISTANCE;duration=240;level=0} @self ~onTimer:200"]),
+    "veloz": ("&bVeloz", ["potion{type=SPEED;duration=240;level=1} @self"],
+              ["potion{type=SPEED;duration=240;level=1} @self ~onTimer:200"]),
+    "invoc": ("&5Invocador", [], ["summon{type=<base>;amount=1;radius=3} @self ~onTimer:300 ?playerwithin{d=12} 0.5"]),
+    "mald": ("&8Maldito", [], ["potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60",
+                               "particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60"]),
+}
+
+
+def afijos_de(mid):
+    """El Invocador llama a la version normal del mob; los jefes no invocan copias de si mismos."""
+    return [a for a in AFIJOS if not (a == "invoc" and MOBS[mid]["kind"] == "jefe")]
+
+
+def con_condicion(skill, cond):
+    """Agrega una condicion inline a un skill que ya trae trigger (va antes de la probabilidad final, si hay)."""
+    parts = skill.rsplit(" ", 1)
+    if len(parts) == 2 and parts[1].replace(".", "", 1).isdigit():
+        return f"{parts[0]} {cond} {parts[1]}"
+    return f"{skill} {cond}"
+
+
 # Monedas (EssentialsX) para quien mata: asi se gana plata para la tienda y las gachas del lobby
 MONEY = {"hostil": 15, "jefe": 750}
 ELITE_MONEY = 150
@@ -137,7 +261,22 @@ def _gacha(gid, cost):
             f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~!crouching ?~!hascurrency{{a={cost}}}"]
 
 
+def _herrero():
+    """Clic: ver cuanto cuesta la siguiente mejora del item en la mano. Shift + clic: mejorar.
+    El datapack (astral:mejora/...) revisa el item y los materiales; aca solo se cobra la plata si salio bien."""
+    run = "execute as <trigger.name> at <trigger.name> run function astral:mejora/"
+    sk = [f"command{{c=\"{run}ver\"}} @self ~onInteract"]
+    for L, (plata, _, _) in MEJORAS.items():
+        n = f"?~score{{o=astralmejn;v={L}}}"
+        sk += [f"message{{m=\"&7Shift + clic para mejorar a &e+{L}&7.\"}} @trigger ~onInteract ?~!crouching {n}",
+               f"message{{m=\"&cTe faltan &e{plata}$&c para la mejora a +{L} &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~crouching {n} ?~!hascurrency{{a={plata}}}",
+               f"command{{c=\"{run}hacer\"}} @self ~onInteract ?~crouching {n} ?~hascurrency{{a={plata}}}",
+               f"currencytake{{a={plata}}} @trigger ~onInteract ?~score{{o=astralmejok;v={L}}}"]
+    return sk
+
+
 NPCS = {
+    "astral_npc_herrero": ("&6&lHerrero &7(clic: costo - shift+clic: mejorar)", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
                           ["command{c=\"sudo <trigger.name> shop\"} @self ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
@@ -223,7 +362,19 @@ def mob_block(mid, d, model=None, elite=None):
     if elite:
         sk += astral_drop("esencia_elite", 1.0, 2) + astral_drop("alma_corrupta", 0.3)
     sk += d.get("skills", [])
-    money = ELITE_MONEY if elite else MONEY.get(d["kind"])
+    real = f"{mid}" if not elite else mid          # id del mob que se esta generando
+    base = model                                   # id de la criatura normal
+    if d["kind"] == "jefe" and (not elite or d.get("ancestral")):
+        for n, (pct, _, _, timers) in enumerate(FASES.get(base, []), start=2):
+            sk.append(f"- skill{{s=AST_FASE_{base}_{n}}} @self ~onDamaged ?healthpercent{{p=<{pct / 100}}} ?!hastag{{tag=astral.fase{n}}}")
+            for tname, (_, every) in timers.items():
+                sk.append(f"- skill{{s=AST_FASE_{base}_{n}_{tname}}} @self ~onTimer:{every} ?hastag{{tag=astral.fase{n}}} ?playerwithin{{d=24}}")
+    if elite:
+        sk.append("- randomskill{skills=" + ",".join(f"AST_AFIJO_{real}_{a}" for a in afijos_de(base)) + "} @self ~onSpawn")
+        for a in afijos_de(base):
+            for x in AFIJOS[a][2]:
+                sk.append("- " + con_condicion(x.replace("<base>", base), f"?hastag{{tag=astral.af_{a}}}"))
+    money = d.get("money") or (ELITE_MONEY if elite else MONEY.get(d["kind"]))
     if money:
         sk.append(f"- command{{c=\"eco give <trigger.name> {money}\"}} @trigger ~onDeath ?isplayer")
     lines.append("  Skills:")
@@ -252,6 +403,30 @@ def metaskills():
             "  - addtag{tag=astral.ensillado} @self",
             "  - partvisibility{p=silla;v=true} @self",
             "  - sound{s=entity.horse.saddle} @self"]
+    # fases de los jefes
+    for mid, fases in FASES.items():
+        for n, (pct, msg, once, timers) in enumerate(fases, start=2):
+            out += [f"AST_FASE_{mid}_{n}:", "  Skills:", f"  - addtag{{tag=astral.fase{n}}} @self",
+                    f"  - 'message{{m=\"{msg}\"}} @PlayersInRadius{{r=40}}'",
+                    "  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}"]
+            out += ["  - " + x for x in once]
+            for tname, (lst, _) in timers.items():
+                out += [f"AST_FASE_{mid}_{n}_{tname}:", "  Skills:"] + ["  - " + x for x in lst]
+    # afijos de los elites (cada uno le cambia el nombre para que se vea cual le toco)
+    variantes = [(mid, "elite", ename) for mid, (_, ename) in ELITES.items()]
+    variantes += [(mid, "ancestral", ename) for mid, (_, ename) in ANCESTRALES.items()]
+    for mid, suf, ename in variantes:
+        for a in afijos_de(mid):
+            label, once, _ = AFIJOS[a]
+            out += [f"AST_AFIJO_{mid}_{suf}_{a}:", "  Skills:", f"  - addtag{{tag=astral.af_{a}}} @self",
+                    f"  - 'setname{{name=\"{ename} {label}\"}} @self'"]
+            out += ["  - " + x for x in once]
+    for mid, (color, name) in ANCESTRALES.items():
+        out += [f"AST_MODEL_{mid}_ancestral:", "  Skills:", "  - addtag{tag=astral.seen} @self",
+                f"  - model{{m={mid};s=1.7}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
+                f"AST_ANCESTRAL_SEVA_{mid}:", "  Skills:",
+                f"  - 'message{{m=\"&7{name} &7se desvanecio... nadie pudo con el.\"}} @PlayersOnServer'",
+                "  - remove @self"]
     for mid, (color, _) in ELITES.items():
         out += [f"AST_MODEL_{mid}_elite:", "  Skills:", "  - addtag{tag=astral.seen} @self",
                 f"  - model{{m={mid};s=1.35}} @self", "  - delay 2",
@@ -268,6 +443,9 @@ def spawns():
         out += spawn_entry(mid, mid, s, s["chance"])
         if mid in ELITES:
             out += spawn_entry(f"{mid}_elite", f"{mid}_elite", s, round(s["chance"] * 0.15, 5))
+        if mid in ANCESTRALES:
+            a = ancestral_def(mid)["spawn"]
+            out += spawn_entry(f"{mid}_ancestral", f"{mid}_ancestral", a, a["chance"])
     return "\n".join(out) + "\n"
 
 
@@ -290,6 +468,7 @@ def main():
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
     mobs = [mob_block(mid, d) for mid, d in MOBS.items()]
     mobs += [mob_block(f"{mid}_elite", MOBS[mid], model=mid, elite=e) for mid, e in ELITES.items()]
+    mobs += [mob_block(f"{mid}_ancestral", ancestral_def(mid), model=mid, elite=e) for mid, e in ANCESTRALES.items()]
     mobs += [npc_block(mid, *v) for mid, v in NPCS.items()]
     with open(os.path.join(OUT, "mobs", "astral.yml"), "w", encoding="utf-8") as f:
         f.write("# Criaturas de AstralRPG (generado por datapack-src/mobs/mythic.py)\n\n" + "\n".join(mobs))

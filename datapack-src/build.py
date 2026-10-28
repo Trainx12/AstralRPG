@@ -10,14 +10,15 @@ import shutil
 import zipfile
 
 from items import (SKILLS, MATERIALS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
-                   TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS)
+                   TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
+                   SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 2
+ITEM_VERSION = 3   # la mejora +N (encantamiento) se conserva al actualizar
 
 # ID del encantamiento de mineria 3x3 de ExcellentEnchants (None = no se usa)
 TUNNEL_ENCHANT = os.environ.get("ASTRAL_TUNNEL", "excellentenchants:tunnel")
@@ -204,6 +205,9 @@ for set_id, sdef in ARMOR_SETS.items():
             if tier.get("furia"):
                 lore.append(txt("Mas dano cuanto menos vida tenes (pechera)", "dark_red"))
             lore.append(txt("Cada pieza da 1/4 del bonus", "dark_gray"))
+            lore.append(txt(f"Piezas {sdef['clase']} (cualquier tier):", "gray"))
+            for npz, (desc, _) in SET_BONUS[set_id].items():
+                lore.append(txt(f" ({npz}) {desc}", sdef["color"]))
             lore.append(req_line(sdef["skill"], tier["lvl"]))
             extra = {"minecraft:attribute_modifiers":
                      armor_attrs(iid, piece, mat, {k: v for k, v in stats.items() if k not in chest_only},
@@ -528,7 +532,22 @@ upd = []
 for iid, it in ITEMS.items():
     sel = (f"*[minecraft:custom_data~{{{NS}:{{id:\"{iid}\"}}}},"
            f"!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSION}}}}}]")
-    fn(f"upgrade/i/{iid}", [
+    keep = []
+    if it["kind"] in ("armor", "weapon"):
+        mej = "mejora_armadura" if it["kind"] == "armor" else "mejora_arma"
+        for L in range(1, 11):
+            selL = sel[:-1] + f',minecraft:enchantments~[{{enchantments:"{NS}:{mej}",levels:{L}}}]]'
+            keep += [f"execute store result score #c astral.tmp run clear @s {selL}",
+                     f"execute if score #c astral.tmp matches 1.. store result storage {NS}:tmp up.n int 1 "
+                     f"run scoreboard players get #c astral.tmp",
+                     f"execute if score #c astral.tmp matches 1.. run function {NS}:upgrade/gm{L}/{iid} with storage {NS}:tmp up"]
+            ench = dict(it["components"].get("minecraft:enchantments", {}))
+            ench[f"{NS}:{mej}"] = L
+            comps = dict(it["components"], **{"minecraft:enchantments": ench})
+            comps.pop("minecraft:enchantment_glint_override", None)
+            argsL = ",".join(comp_arg(k, v) for k, v in comps.items())
+            fn(f"upgrade/gm{L}/{iid}", [f"$give @s {it['base']}[{argsL}] $(n)"])
+    fn(f"upgrade/i/{iid}", keep + [
         f"execute store result score #c astral.tmp run clear @s {sel}",
         "execute if score #c astral.tmp matches ..0 run return 0",
         f"execute store result storage {NS}:tmp up.n int 1 run scoreboard players get #c astral.tmp",
@@ -753,6 +772,21 @@ enchant("empalar", "Empalar", "gold", 5, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:add",
                "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0], "fallback": 6.0}},
     "requirements": DIRECT}]})
+
+# Mejora +1..+10 del Herrero (el nivel del encantamiento es el +N)
+put(f"data/{NS}/enchantment/mejora_arma.json", {
+    "description": {"text": "Mejora", "color": "gold"}, "supported_items": ENCH_ITEMS,
+    "weight": 1, "max_level": 10, "min_cost": {"base": 999, "per_level_above_first": 0},
+    "max_cost": {"base": 999, "per_level_above_first": 0}, "anvil_cost": 40, "slots": ["mainhand"],
+    "effects": {"minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
+        "type": "minecraft:lookup", "values": MEJORA_DANO, "fallback": MEJORA_DANO[-1]}}}]}})
+put(f"data/{NS}/enchantment/mejora_armadura.json", {
+    "description": {"text": "Mejora", "color": "gold"}, "supported_items": ENCH_ITEMS,
+    "weight": 1, "max_level": 10, "min_cost": {"base": 999, "per_level_above_first": 0},
+    "max_cost": {"base": 999, "per_level_above_first": 0}, "anvil_cost": 40, "slots": ["armor"],
+    "effects": {"minecraft:attributes": [{"id": f"{NS}:mejora_armadura", "attribute": "minecraft:max_health",
+                                          "operation": "add_value", "amount": {
+        "type": "minecraft:lookup", "values": MEJORA_VIDA, "fallback": MEJORA_VIDA[-1]}}]}})
 
 ench_items = sorted({it["base"] for it in ITEMS.values() if it["kind"] in ("armor", "weapon")} | {"minecraft:carrot_on_a_stick"})
 put(f"data/{NS}/tags/item/enchantable.json", {"values": ench_items})
@@ -1763,6 +1797,100 @@ load = [
     f"schedule function {NS}:loop/t10 10t replace",
     f"schedule function {NS}:loop/t20 20t replace",
 ]
+
+# ---------------------------------------------------------------------------
+# Bonus de set por piezas (SET_BONUS en items.py): se revisa cada segundo
+# ---------------------------------------------------------------------------
+SLOTS4 = ["armor.head", "armor.chest", "armor.legs", "armor.feet"]
+set_check, set_kill = [], []
+for set_id, bonus in SET_BONUS.items():
+    obj = f"astral.set_{set_id[:3]}"
+    load.append(f"scoreboard objectives add {obj} dummy")
+    set_check.append(f"scoreboard players set @s {obj} 0")
+    for sl in SLOTS4:
+        set_check.append(f'execute if items entity @s {sl} *[minecraft:custom_data~{{{NS}:{{set:"{set_id}"}}}}] '
+                         f"run scoreboard players add @s {obj} 1")
+    for npz, (desc, fx) in bonus.items():
+        if "attr" in fx:
+            at, amount, op = fx["attr"]
+            mid = f"{NS}:set_{set_id}_{npz}"
+            set_check += [f"attribute @s {at} modifier remove {mid}",
+                          f"execute if score @s {obj} matches {npz}.. run attribute @s {at} modifier add {mid} {amount} {op}"]
+        for (eff, secs, lvl) in fx.get("kill", []):
+            set_kill.append(f"execute if score @s {obj} matches {npz}.. run effect give @s minecraft:{eff} {secs} {lvl}")
+fn("set/check", set_check)
+fn("set/kill", set_kill + ["scoreboard players set @s astral.kills 0"])
+load.append("scoreboard objectives add astral.kills minecraft.custom:minecraft.mob_kills")
+
+# ---------------------------------------------------------------------------
+# Mejora +1..+10 (MEJORAS en items.py). La llama el Herrero del lobby (MythicMobs) como el jugador:
+#   mejora/ver   -> dice cuanto cuesta y deja astralmejn = nivel siguiente (0 si no se puede)
+#   mejora/hacer -> gasta los materiales, tira la probabilidad y si sale bien deja astralmejok = nivel
+# La plata la cobra MythicMobs solo si astralmejok quedo en ese nivel.
+# ---------------------------------------------------------------------------
+load += ["scoreboard objectives add astralmejn dummy", "scoreboard objectives add astralmejok dummy"]
+HAND = "weapon.mainhand"
+KIND = ["scoreboard players set #k astral.tmp 0",
+        f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"weapon"}}}}] '
+        f"unless items entity @s {HAND} minecraft:carrot_on_a_stick run scoreboard players set #k astral.tmp 1",
+        f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"armor"}}}}] run scoreboard players set #k astral.tmp 2']
+ver = ["scoreboard players set @s astralmejn 0", "scoreboard players set @s astralmejok 0"] + KIND + [
+       "execute if score #k astral.tmp matches 0 run return run tellraw @s " + json.dumps(
+           [txt("Herrero: ", "gold"), txt("agarra en la mano un arma o una pieza de armadura de AstralRPG. "
+                                          "(Los bastones de Mago no se mejoran aca.)", "gray")]),
+       "scoreboard players set #l astral.tmp 0"]
+for L in range(1, 11):
+    for mej in ("mejora_arma", "mejora_armadura"):
+        ver.append(f'execute if items entity @s {HAND} *[minecraft:enchantments~[{{enchantments:"{NS}:{mej}",levels:{L}}}]] '
+                   f"run scoreboard players set #l astral.tmp {L}")
+ver += ["execute if score #l astral.tmp matches 10.. run return run tellraw @s " + json.dumps(
+            [txt("Herrero: ", "gold"), txt("este item ya esta en +10, no se puede mejorar mas.", "gray")]),
+        "scoreboard players operation #n astral.tmp = #l astral.tmp",
+        "scoreboard players add #n astral.tmp 1"]
+for L in range(1, 11):
+    ver.append(f"execute if score #n astral.tmp matches {L} run function {NS}:mejora/ver/{L}")
+fn("mejora/ver", ver)
+hacer = []
+for L, (plata, prob, mats) in MEJORAS.items():
+    pct = int(round(prob * 100))
+    costo = ", ".join(f"{n}x {ITEMS[m]['name']}" for m, n in mats)
+    bonus = (f"+{round((MEJORA_DANO[L - 1] - 1) * 100)}% de dano (arma) o +{MEJORA_VIDA[L - 1]} de vida por pieza (armadura)")
+    lines = ["scoreboard players set #falta astral.tmp 0",
+             "tellraw @s " + json.dumps([txt("Herrero: ", "gold"), txt(f"mejora a +{L}", "yellow", bold=True),
+                                         txt(f" cuesta {plata}$ y {costo}. Exito: {pct}%. ", "gray"),
+                                         txt(f"Da {bonus}.", "dark_gray")])]
+    for m, n in mats:
+        lines += [f'execute store result score #c astral.tmp run clear @s *[minecraft:custom_data~{{{NS}:{{id:"{m}"}}}}] 0',
+                  f"execute if score #c astral.tmp matches ..{n - 1} run scoreboard players set #falta astral.tmp 1"]
+    lines += ["execute if score #falta astral.tmp matches 1 run return run tellraw @s " + json.dumps(
+                  txt("Te faltan materiales para esta mejora.", "red")),
+              f"scoreboard players set @s astralmejn {L}"]
+    fn(f"mejora/ver/{L}", lines)
+    h = [f'clear @s *[minecraft:custom_data~{{{NS}:{{id:"{m}"}}}}] {n}' for m, n in mats]
+    if prob >= 1:
+        h.append(f"function {NS}:mejora/ok/{L}")
+    else:
+        h += [f"execute store success score #ok astral.tmp if predicate {chance(prob)}",
+              f"execute if score #ok astral.tmp matches 1 run return run function {NS}:mejora/ok/{L}",
+              "playsound minecraft:block.anvil.destroy player @s ~ ~ ~ 1 1",
+              "tellraw @s " + json.dumps([txt("Herrero: ", "gold"), txt(f"la mejora a +{L} fallo. ", "red"),
+                                          txt("Perdiste los materiales, pero tu item quedo igual y no se cobro la plata.", "gray")])]
+    fn(f"mejora/n/{L}", h)
+    ok = [f"execute if score #k astral.tmp matches 1 run item modify entity @s {HAND} "
+          f'{{function:"minecraft:set_enchantments",enchantments:{{"{NS}:mejora_arma":{L}}},add:false}}',
+          f"execute if score #k astral.tmp matches 2 run item modify entity @s {HAND} "
+          f'{{function:"minecraft:set_enchantments",enchantments:{{"{NS}:mejora_armadura":{L}}},add:false}}',
+          f"scoreboard players set @s astralmejok {L}",
+          "playsound minecraft:block.anvil.use player @s ~ ~ ~ 1 1.2",
+          "particle minecraft:totem_of_undying ~ ~1 ~ 0.4 0.6 0.4 0.3 40",
+          "tellraw @s " + json.dumps([txt("Herrero: ", "gold"), txt(f"listo, tu item ahora es +{L}!", "green", bold=True)])]
+    if L >= 7:
+        ok.append('tellraw @a ["",{"text":"(!) ","color":"gold","bold":true},{"selector":"@s","color":"yellow"},'
+                  + json.dumps({"text": f" mejoro un item a +{L} con el Herrero!", "color": "gray"}) + "]")
+    fn(f"mejora/ok/{L}", ok)
+    hacer.append(f"execute if score @s astralmejn matches {L} run function {NS}:mejora/n/{L}")
+# hacer vuelve a mirar que item tenes en la mano (#k) antes de tocarlo
+fn("mejora/hacer", KIND + ["execute if score #k astral.tmp matches 0 run return 0"] + hacer)
 fn("load", load)
 fn("tick", [
     "# taladros y motosierras: primero ver si rompiste el bloque apuntado, despues apuntar de nuevo",
@@ -1781,6 +1909,7 @@ fn("tick", [
 ])
 fn("loop/t5", [
     f"execute as @a run function {NS}:player/hp",
+    f"execute as @a[scores={{astral.kills=1..}}] run function {NS}:set/kill",
     f"schedule function {NS}:loop/t5 5t replace",
 ])
 fn("player/hp", [
@@ -1806,6 +1935,7 @@ fn("loop/t10", t10)
 fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",
     f"execute as @a run function {NS}:upgrade/check",
+    f"execute as @a run function {NS}:set/check",
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
     f"execute as @a run function {NS}:player/lvl",
     f"execute as @e[type=#{NS}:hostile,tag=!astral.seen] at @s run function {NS}:elite/roll",

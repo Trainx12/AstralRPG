@@ -117,6 +117,401 @@ AST_ENSILLAR:
   - addtag{tag=astral.ensillado} @self
   - partvisibility{p=silla;v=true} @self
   - sound{s=entity.horse.saddle} @self
+AST_FASE_astral_momia_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - 'message{m="&eLa Momia Ancestral levanta una tormenta de arena!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - summon{type=HUSK;amount=3;radius=4} @self
+  - potion{type=BLINDNESS;duration=60;level=0} @PlayersInRadius{r=12}
+AST_FASE_astral_momia_2_onda:
+  Skills:
+  - particles{p=cloud;amount=60;hS=5;vS=0.2;speed=0} @self
+  - sound{s=entity.husk.converted_to_zombie;v=1.5} @self
+  - delay 20
+  - particles{p=cloud;amount=120;hS=5;vS=0.6;speed=0.1} @self
+  - damage{a=5} @PlayersInRadius{r=5}
+AST_FASE_astral_momia_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - 'message{m="&6&lLa Momia Ancestral entra en furia: matala antes de que se cure!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - potion{type=RESISTANCE;duration=160;level=2} @self
+AST_FASE_astral_momia_3_cura:
+  Skills:
+  - heal{a=8} @self
+  - particles{p=happy_villager;amount=20;hS=1;vS=1.5} @self
+AST_FASE_astral_yeti_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - 'message{m="&fEl Yeti golpea el piso: la montana tiembla!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - summon{type=STRAY;amount=2;radius=4} @self
+AST_FASE_astral_yeti_2_onda:
+  Skills:
+  - particles{p=snowflake;amount=60;hS=6;vS=0.2;speed=0} @self
+  - sound{s=entity.ravager.roar;v=1.5} @self
+  - delay 20
+  - particles{p=snowflake;amount=120;hS=6;vS=0.6;speed=0.1} @self
+  - damage{a=6} @PlayersInRadius{r=6}
+AST_FASE_astral_yeti_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - 'message{m="&b&lEl Yeti se cubre de hielo y se vuelve mas rapido!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - potion{type=RESISTANCE;duration=160;level=2} @self
+  - potion{type=SPEED;duration=999999;level=1} @self
+AST_FASE_astral_yeti_3_frio:
+  Skills:
+  - potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=10}
+  - particles{p=snowflake;amount=80;hS=8;vS=1} @self
+AST_FASE_astral_golem_forja_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - 'message{m="&cEl Golem de la Forja se pone al rojo vivo!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - potion{type=SPEED;duration=999999;level=0} @self
+AST_FASE_astral_golem_forja_2_onda:
+  Skills:
+  - particles{p=lava;amount=60;hS=5;vS=0.2;speed=0} @self
+  - sound{s=entity.blaze.shoot;v=1.5} @self
+  - delay 20
+  - particles{p=lava;amount=120;hS=5;vS=0.6;speed=0.1} @self
+  - damage{a=6} @PlayersInRadius{r=5}
+  - ignite{ticks=60} @PlayersInRadius{r=5}
+AST_FASE_astral_golem_forja_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - 'message{m="&4&lEl Golem de la Forja va a explotar de calor: alejate de el!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - potion{type=STRENGTH;duration=999999;level=0} @self
+AST_FASE_astral_golem_forja_3_empuje:
+  Skills:
+  - throw{velocity=6;velocityY=3} @PlayersInRadius{r=4}
+  - particles{p=flame;amount=60;hS=2;vS=1} @self
+AST_FASE_astral_cangrejo_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - 'message{m="&6El Cangrejo llama a sus crias!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - summon{type=CAVE_SPIDER;amount=3;radius=3} @self
+AST_FASE_astral_cangrejo_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - 'message{m="&e&lEl Cangrejo se mete en su caparazon!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - potion{type=RESISTANCE;duration=120;level=3} @self
+  - potion{type=SPEED;duration=999999;level=1} @self
+AST_FASE_astral_cangrejo_3_pinza:
+  Skills:
+  - particles{p=bubble_pop;amount=60;hS=4;vS=0.2;speed=0} @self
+  - sound{s=entity.turtle.egg_crack;v=1.5} @self
+  - delay 20
+  - particles{p=bubble_pop;amount=120;hS=4;vS=0.6;speed=0.1} @self
+  - damage{a=5} @PlayersInRadius{r=4}
+AST_FASE_astral_chaman_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - 'message{m="&2El Chaman invoca espiritus del pantano!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - summon{type=VEX;amount=2;radius=2} @self
+AST_FASE_astral_chaman_2_veneno:
+  Skills:
+  - potion{type=POISON;duration=60;level=1} @PlayersInRadius{r=6}
+  - particles{p=witch;amount=60;hS=5;vS=0.5} @self
+AST_FASE_astral_chaman_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - 'message{m="&a&lEl Chaman bebe una pocion y se cura!"} @PlayersInRadius{r=40}'
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - heal{a=60} @self
+  - summon{type=WITCH;amount=2;radius=3} @self
+AST_AFIJO_astral_espantapajaros_elite_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&4Espantapajaros Infernal &4Vampirico"} @self'
+AST_AFIJO_astral_espantapajaros_elite_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&4Espantapajaros Infernal &cExplosivo"} @self'
+AST_AFIJO_astral_espantapajaros_elite_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&4Espantapajaros Infernal &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_espantapajaros_elite_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&4Espantapajaros Infernal &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_espantapajaros_elite_invoc:
+  Skills:
+  - addtag{tag=astral.af_invoc} @self
+  - 'setname{name="&4Espantapajaros Infernal &5Invocador"} @self'
+AST_AFIJO_astral_espantapajaros_elite_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&4Espantapajaros Infernal &8Maldito"} @self'
+AST_AFIJO_astral_abejorro_elite_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&6Abejorro Reina &4Vampirico"} @self'
+AST_AFIJO_astral_abejorro_elite_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&6Abejorro Reina &cExplosivo"} @self'
+AST_AFIJO_astral_abejorro_elite_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&6Abejorro Reina &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_abejorro_elite_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&6Abejorro Reina &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_abejorro_elite_invoc:
+  Skills:
+  - addtag{tag=astral.af_invoc} @self
+  - 'setname{name="&6Abejorro Reina &5Invocador"} @self'
+AST_AFIJO_astral_abejorro_elite_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&6Abejorro Reina &8Maldito"} @self'
+AST_AFIJO_astral_arana_elite_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&3Arana de Cristal Vivo &4Vampirico"} @self'
+AST_AFIJO_astral_arana_elite_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&3Arana de Cristal Vivo &cExplosivo"} @self'
+AST_AFIJO_astral_arana_elite_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&3Arana de Cristal Vivo &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_arana_elite_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&3Arana de Cristal Vivo &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_arana_elite_invoc:
+  Skills:
+  - addtag{tag=astral.af_invoc} @self
+  - 'setname{name="&3Arana de Cristal Vivo &5Invocador"} @self'
+AST_AFIJO_astral_arana_elite_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&3Arana de Cristal Vivo &8Maldito"} @self'
+AST_AFIJO_astral_cara_elite_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&5Cara del Abismo &4Vampirico"} @self'
+AST_AFIJO_astral_cara_elite_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&5Cara del Abismo &cExplosivo"} @self'
+AST_AFIJO_astral_cara_elite_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&5Cara del Abismo &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_cara_elite_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&5Cara del Abismo &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_cara_elite_invoc:
+  Skills:
+  - addtag{tag=astral.af_invoc} @self
+  - 'setname{name="&5Cara del Abismo &5Invocador"} @self'
+AST_AFIJO_astral_cara_elite_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&5Cara del Abismo &8Maldito"} @self'
+AST_AFIJO_astral_cangrejo_elite_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&9Cangrejo Abisal &4Vampirico"} @self'
+AST_AFIJO_astral_cangrejo_elite_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&9Cangrejo Abisal &cExplosivo"} @self'
+AST_AFIJO_astral_cangrejo_elite_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&9Cangrejo Abisal &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_cangrejo_elite_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&9Cangrejo Abisal &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_cangrejo_elite_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&9Cangrejo Abisal &8Maldito"} @self'
+AST_AFIJO_astral_momia_ancestral_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&6&lFarao Ancestral &4Vampirico"} @self'
+AST_AFIJO_astral_momia_ancestral_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&6&lFarao Ancestral &cExplosivo"} @self'
+AST_AFIJO_astral_momia_ancestral_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&6&lFarao Ancestral &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_momia_ancestral_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&6&lFarao Ancestral &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_momia_ancestral_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&6&lFarao Ancestral &8Maldito"} @self'
+AST_AFIJO_astral_yeti_ancestral_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&b&lYeti Ancestral &4Vampirico"} @self'
+AST_AFIJO_astral_yeti_ancestral_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&b&lYeti Ancestral &cExplosivo"} @self'
+AST_AFIJO_astral_yeti_ancestral_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&b&lYeti Ancestral &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_yeti_ancestral_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&b&lYeti Ancestral &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_yeti_ancestral_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&b&lYeti Ancestral &8Maldito"} @self'
+AST_AFIJO_astral_golem_forja_ancestral_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&4&lColoso de la Forja Ancestral &4Vampirico"} @self'
+AST_AFIJO_astral_golem_forja_ancestral_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&4&lColoso de la Forja Ancestral &cExplosivo"} @self'
+AST_AFIJO_astral_golem_forja_ancestral_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&4&lColoso de la Forja Ancestral &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_golem_forja_ancestral_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&4&lColoso de la Forja Ancestral &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_golem_forja_ancestral_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&4&lColoso de la Forja Ancestral &8Maldito"} @self'
+AST_AFIJO_astral_cangrejo_ancestral_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&d&lCangrejo Ancestral &4Vampirico"} @self'
+AST_AFIJO_astral_cangrejo_ancestral_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&d&lCangrejo Ancestral &cExplosivo"} @self'
+AST_AFIJO_astral_cangrejo_ancestral_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&d&lCangrejo Ancestral &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_cangrejo_ancestral_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&d&lCangrejo Ancestral &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_cangrejo_ancestral_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&d&lCangrejo Ancestral &8Maldito"} @self'
+AST_AFIJO_astral_chaman_ancestral_vamp:
+  Skills:
+  - addtag{tag=astral.af_vamp} @self
+  - 'setname{name="&2&lGran Chaman Ancestral &4Vampirico"} @self'
+AST_AFIJO_astral_chaman_ancestral_expl:
+  Skills:
+  - addtag{tag=astral.af_expl} @self
+  - 'setname{name="&2&lGran Chaman Ancestral &cExplosivo"} @self'
+AST_AFIJO_astral_chaman_ancestral_blind:
+  Skills:
+  - addtag{tag=astral.af_blind} @self
+  - 'setname{name="&2&lGran Chaman Ancestral &7Blindado"} @self'
+  - potion{type=RESISTANCE;duration=240;level=0} @self
+AST_AFIJO_astral_chaman_ancestral_veloz:
+  Skills:
+  - addtag{tag=astral.af_veloz} @self
+  - 'setname{name="&2&lGran Chaman Ancestral &bVeloz"} @self'
+  - potion{type=SPEED;duration=240;level=1} @self
+AST_AFIJO_astral_chaman_ancestral_mald:
+  Skills:
+  - addtag{tag=astral.af_mald} @self
+  - 'setname{name="&2&lGran Chaman Ancestral &8Maldito"} @self'
+AST_MODEL_astral_momia_ancestral:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_momia;s=1.7} @self
+  - delay 2
+  - tint{c=FFD24A} @self
+AST_ANCESTRAL_SEVA_astral_momia:
+  Skills:
+  - 'message{m="&7&6&lFarao Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_MODEL_astral_yeti_ancestral:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_yeti;s=1.7} @self
+  - delay 2
+  - tint{c=9FE8FF} @self
+AST_ANCESTRAL_SEVA_astral_yeti:
+  Skills:
+  - 'message{m="&7&b&lYeti Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_MODEL_astral_golem_forja_ancestral:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_golem_forja;s=1.7} @self
+  - delay 2
+  - tint{c=FF6A2A} @self
+AST_ANCESTRAL_SEVA_astral_golem_forja:
+  Skills:
+  - 'message{m="&7&4&lColoso de la Forja Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_MODEL_astral_cangrejo_ancestral:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cangrejo;s=1.7} @self
+  - delay 2
+  - tint{c=FF9AD0} @self
+AST_ANCESTRAL_SEVA_astral_cangrejo:
+  Skills:
+  - 'message{m="&7&d&lCangrejo Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_MODEL_astral_chaman_ancestral:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_chaman;s=1.7} @self
+  - delay 2
+  - tint{c=7CFF6A} @self
+AST_ANCESTRAL_SEVA_astral_chaman:
+  Skills:
+  - 'message{m="&7&2&lGran Chaman Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
 AST_MODEL_astral_espantapajaros_elite:
   Skills:
   - addtag{tag=astral.seen} @self

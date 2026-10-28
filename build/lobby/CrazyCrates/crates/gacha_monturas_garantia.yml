@@ -1,0 +1,164 @@
+# gacha_monturas (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.
+Crate:
+  CrateType: CSGO
+  StartingKeys: 0
+  RequiredKeys: 0
+  Max-Mass-Open: 1
+  InGUI: false
+  Slot: 0
+  OpeningBroadCast: false
+  BroadCast: ""
+  opening-command:
+    toggle: false
+    commands: []
+  sound:
+    cycle-sound:
+      toggle: true
+      value: "block.note_block.pling"
+      volume: 0.6
+      pitch: 1.4
+    click-sound:
+      toggle: true
+      value: "ui.button.click"
+      volume: 1.0
+      pitch: 1.0
+    stop-sound:
+      toggle: true
+      value: "ui.toast.challenge_complete"
+      volume: 1.0
+      pitch: 1.0
+  Prize-Message:
+    - "<gray>Ganaste <white>%reward% <gray>en la <yellow><bold>Gacha de Monturas<gray>!"
+  Prize-Commands: []
+  Settings:
+    Tracking-Crate-Opening: false
+    Knock-Back: false
+    Disabled-Worlds: []
+    Border:
+      Glass-Border:
+        Toggle: true
+        Air: true
+    CSGO:
+      Finished-Material: "saddle"
+      Cycle-Material: "saddle"
+    Broadcast:
+      Toggle: false
+      Messages: []
+      Permission: ""
+    Rewards:
+      Re-Roll-Spin: false
+      Permission:
+        Toggle: false
+        Persist: false
+        Max-Cap: 20
+  Item: "saddle"
+  Hide-Flags: false
+  Components: []
+  Custom-Model-Data: -1
+  Model:
+    Namespace: ""
+    Id: ""
+  Glowing: "add_glow"
+  Name: "<yellow><bold>Gacha de Monturas"
+  Lore:
+    - "<gray>Tirada: <yellow>2500$"
+  Preview:
+    Name: "<yellow><bold>Gacha de Monturas<reset><gray> - premios"
+    Toggle: true
+    Rows: 6
+    Glass:
+      Toggle: true
+      Name: " "
+      Item: "yellow_stained_glass_pane"
+      Custom-Model-Data: -1
+      Model:
+        Namespace: ""
+        Id: ""
+  Animation:
+    Name: "<yellow><bold>Gacha de Monturas<reset><gray> - girando..."
+    Glass-Frame:
+      Toggle: true
+      Items:
+        "1":
+          name: " "
+          lore: []
+          material: "yellow_stained_glass_pane"
+          amount: 1
+      Random:
+        Toggle: true
+        Items: {}
+  PhysicalKey:
+    Name: "<yellow><bold>Gacha de Monturas - llave"
+    Lore: []
+    Item: "tripwire_hook"
+    Custom-Model-Data: -1
+    Model:
+      Namespace: ""
+      Id: ""
+    Glowing: "add_glow"
+    flags:
+      components: []
+  Hologram:
+    Toggle: false
+    Height: 1.5
+    Range: 8
+    Update-Interval: -1
+    Color: "transparent"
+    TextShadow: false
+    Message: []
+  buttons: {}
+  Prizes:
+    "1":
+      DisplayName: "<gold><bold>Montura voladora: Pterodactilo"
+      DisplayItem: "phantom_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>12.5%"
+        - "<gold>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 12.5
+      Commands:
+        - "mm egg give %player% astral_pterodactilo 1"
+        - "give %player% minecraft:saddle 1"
+        - "scoreboard players set %player% pity_monturas 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"
+    "2":
+      DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
+      DisplayItem: "parrot_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>87.5%"
+        - "<light_purple>▮▮▮▮▮▮▮▮▮▮<dark_gray>"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 87.5
+      Commands:
+        - "mm egg give %player% astral_ave 1"
+        - "give %player% minecraft:saddle 1"
+        - "scoreboard players set %player% pity_monturas 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"

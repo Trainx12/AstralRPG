@@ -335,3 +335,38 @@ SPEARS = [
      "fx": {"lifesteal": 3, "sangrado": 1, "hendidura": 1, "ejecucion": 1},
      "cost": [("c", "chispa_astral", 1), ("c", "nucleo_astral", 1)], "desc": ["Ejecuta enemigos con menos del 15% de vida"]},
 ]
+
+# ---------------------------------------------------------------------------
+# BONUS DE SET POR PIEZAS: cuenta las piezas de la misma clase (de cualquier tier).
+#   attr: (atributo, cantidad, operacion) mientras tengas esas piezas puestas
+#   kill: efectos al matar un mob [(efecto, segundos, nivel 0 = I)]
+# ---------------------------------------------------------------------------
+SET_BONUS = {
+    "berserker": {2: ("+5% de dano cuerpo a cuerpo", {"attr": ("minecraft:attack_damage", 0.05, "add_multiplied_total")}),
+                  4: ("Sed de sangre: al matar, Fuerza I por 5 s", {"kill": [("strength", 5, 0)]})},
+    "mago": {2: ("Escudo arcano: +2 de armadura", {"attr": ("minecraft:armor", 2, "add_value")}),
+             4: ("Canalizacion: al matar, Regeneracion I y Velocidad I por 4 s",
+                 {"kill": [("regeneration", 4, 0), ("speed", 4, 0)]})},
+    "arquero": {2: ("+5% de velocidad", {"attr": ("minecraft:movement_speed", 0.05, "add_multiplied_base")}),
+                4: ("Paso de sombra: al matar, Velocidad II y Salto I por 4 s",
+                    {"kill": [("speed", 4, 1), ("jump_boost", 4, 0)]})},
+}
+
+# ---------------------------------------------------------------------------
+# MEJORA DE EQUIPO +1 a +10 (Herrero del lobby). Armas: mas dano. Armaduras: mas vida por pieza.
+# nivel: (plata, probabilidad de exito, materiales). Si falla se pierden los materiales, no la plata ni el item.
+# ---------------------------------------------------------------------------
+MEJORAS = {
+    1: (300, 1.0, [("esencia_elite", 1)]),
+    2: (600, 1.0, [("esencia_elite", 2)]),
+    3: (1000, 1.0, [("esencia_elite", 3), ("fragmento_astral", 1)]),
+    4: (1500, 1.0, [("esencia_elite", 3), ("alma_corrupta", 1)]),
+    5: (2000, 0.9, [("alma_corrupta", 2), ("esencia_elite", 3)]),
+    6: (3000, 0.8, [("chispa_astral", 1), ("alma_corrupta", 2)]),
+    7: (4000, 0.7, [("chispa_astral", 2), ("alma_corrupta", 2)]),
+    8: (5000, 0.6, [("chispa_astral", 3), ("alma_corrupta", 3)]),
+    9: (7500, 0.5, [("chispa_astral", 3), ("nucleo_astral", 1)]),
+    10: (10000, 0.4, [("chispa_astral", 5), ("nucleo_astral", 1)]),
+}
+MEJORA_DANO = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.32, 1.40]   # x dano del arma
+MEJORA_VIDA = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0]          # + vida por pieza (4 piezas +10 = 6 corazones)

@@ -128,9 +128,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/espada_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fEspada V"
     "2":
       DisplayName: "<gold><bold>Baston V"
@@ -152,9 +154,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/baston_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fBaston V"
     "3":
       DisplayName: "<gold><bold>Arco V"
@@ -176,9 +180,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/arco_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fArco V"
     "4":
       DisplayName: "<gold><bold>Hacha V"
@@ -200,9 +206,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/hacha_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fHacha V"
     "5":
       DisplayName: "<gold><bold>Lanza V"
@@ -224,9 +232,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/lanza_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fLanza V"
     "6":
       DisplayName: "<gold><bold>Guadana V"
@@ -248,9 +258,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/guadana_5"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana V"
     "7":
       DisplayName: "<gold><bold>Chispa Astral x2"
@@ -272,10 +284,12 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0595
       Commands:
         - "loot give %player% loot astral:item/chispa_astral"
         - "loot give %player% loot astral:item/chispa_astral"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fChispa Astral x2"
     "8":
       DisplayName: "<gold><bold>Nucleo de Furia Pura"
@@ -297,9 +311,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0476
       Commands:
         - "loot give %player% loot astral:item/nucleo_furia_pura"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fNucleo de Furia Pura"
     "9":
       DisplayName: "<gold><bold>Guadana Umbria"
@@ -321,9 +337,11 @@ Crate:
         - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.0357
       Commands:
         - "loot give %player% loot astral:item/guadana_umbria"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana Umbria"
     "10":
       DisplayName: "<light_purple><bold>Nucleo Astral"
@@ -345,9 +363,11 @@ Crate:
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.407
       Commands:
         - "loot give %player% loot astral:item/nucleo_astral"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fNucleo Astral"
     "11":
       DisplayName: "<light_purple><bold>Gema Umbria Perfecta"
@@ -369,9 +389,11 @@ Crate:
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.407
       Commands:
         - "loot give %player% loot astral:item/gema_umbria_perfecta"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Umbria Perfecta"
     "12":
       DisplayName: "<light_purple><bold>Gema Luminica Perfecta"
@@ -393,9 +415,11 @@ Crate:
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.407
       Commands:
         - "loot give %player% loot astral:item/gema_luminica_perfecta"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Luminica Perfecta"
     "13":
       DisplayName: "<light_purple><bold>Espada IV"
@@ -417,9 +441,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/espada_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fEspada IV"
     "14":
       DisplayName: "<light_purple><bold>Baston IV"
@@ -441,9 +467,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/baston_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fBaston IV"
     "15":
       DisplayName: "<light_purple><bold>Arco IV"
@@ -465,9 +493,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/arco_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fArco IV"
     "16":
       DisplayName: "<light_purple><bold>Hacha IV"
@@ -489,9 +519,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/hacha_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fHacha IV"
     "17":
       DisplayName: "<light_purple><bold>Lanza IV"
@@ -513,9 +545,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/lanza_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fLanza IV"
     "18":
       DisplayName: "<light_purple><bold>Guadana IV"
@@ -537,9 +571,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2442
       Commands:
         - "loot give %player% loot astral:item/guadana_4"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGuadana IV"
     "19":
       DisplayName: "<light_purple><bold>Talisman de Vida III"
@@ -561,9 +597,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2035
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_3"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Vida III"
     "20":
       DisplayName: "<light_purple><bold>Talisman de Furia III"
@@ -585,9 +623,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2035
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_3"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Furia III"
     "21":
       DisplayName: "<light_purple><bold>Talisman de Roca III"
@@ -609,9 +649,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2035
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_3"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Roca III"
     "22":
       DisplayName: "<light_purple><bold>Talisman de Viento III"
@@ -633,9 +675,11 @@ Crate:
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2035
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_3"
+        - "scoreboard players set %player% pity_rpg 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Viento III"
     "23":
       DisplayName: "<aqua><bold>Cristal Refinado x1"
@@ -655,6 +699,7 @@ Crate:
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/cristal_refinado"
@@ -676,6 +721,7 @@ Crate:
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/gema_luminica"
@@ -697,6 +743,7 @@ Crate:
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/corazon_shulker"
@@ -718,6 +765,7 @@ Crate:
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/alma_corrupta"
@@ -739,6 +787,7 @@ Crate:
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/netherita_reforzada"
@@ -760,6 +809,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/espada_2"
@@ -781,6 +831,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/espada_3"
@@ -802,6 +853,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/baston_2"
@@ -823,6 +875,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/baston_3"
@@ -844,6 +897,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/arco_2"
@@ -865,6 +919,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/arco_3"
@@ -886,6 +941,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/hacha_2"
@@ -907,6 +963,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/hacha_3"
@@ -928,6 +985,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/lanza_2"
@@ -949,6 +1007,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/lanza_3"
@@ -970,6 +1029,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/guadana_2"
@@ -991,6 +1051,7 @@ Crate:
         - "<aqua>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/guadana_3"
@@ -1012,6 +1073,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_2"
@@ -1033,6 +1095,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_2"
@@ -1054,6 +1117,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_2"
@@ -1075,6 +1139,7 @@ Crate:
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_2"
@@ -1096,6 +1161,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/cristal_arcano"
@@ -1117,6 +1183,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/gema_umbria"
@@ -1138,6 +1205,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/esencia_elite"
@@ -1160,6 +1228,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/nucleo_furia"
@@ -1181,6 +1250,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/fragmento_astral"
@@ -1204,6 +1274,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/nucleo_eolico"
@@ -1225,6 +1296,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/madera_estelar"
@@ -1249,6 +1321,7 @@ Crate:
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 2.4038
       Commands:
         - "loot give %player% loot astral:item/shadowsteel"
@@ -1271,6 +1344,7 @@ Crate:
         - "<green>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 1.4423
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_1"
@@ -1292,6 +1366,7 @@ Crate:
         - "<green>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 1.4423
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_1"
@@ -1313,6 +1388,7 @@ Crate:
         - "<green>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 1.4423
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_1"
@@ -1334,6 +1410,7 @@ Crate:
         - "<green>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 1.4423
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_1"
@@ -1355,6 +1432,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/cuero_tratado"
@@ -1379,6 +1457,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/palo_reforzado"
@@ -1401,6 +1480,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/fragmento_cristal"
@@ -1425,6 +1505,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/gema_umbria_fragmentada"
@@ -1447,6 +1528,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/polvo_astral"
@@ -1469,6 +1551,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/fragmento_umbrio"
@@ -1492,6 +1575,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/netherita_fundida"
@@ -1513,6 +1597,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
       Weight: 7.5
       Commands:
         - "loot give %player% loot astral:item/esencia_nether"

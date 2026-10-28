@@ -1,0 +1,683 @@
+# gacha_rpg (generado por datapack-src/lobby.py). Lo abre el vendedor del lobby con 'crates forceopen'.
+Crate:
+  CrateType: CSGO
+  StartingKeys: 0
+  RequiredKeys: 0
+  Max-Mass-Open: 1
+  InGUI: false
+  Slot: 0
+  OpeningBroadCast: false
+  BroadCast: ""
+  opening-command:
+    toggle: false
+    commands: []
+  sound:
+    cycle-sound:
+      toggle: true
+      value: "block.note_block.pling"
+      volume: 0.6
+      pitch: 1.4
+    click-sound:
+      toggle: true
+      value: "ui.button.click"
+      volume: 1.0
+      pitch: 1.0
+    stop-sound:
+      toggle: true
+      value: "ui.toast.challenge_complete"
+      volume: 1.0
+      pitch: 1.0
+  Prize-Message:
+    - "<gray>Ganaste <white>%reward% <gray>en la <light_purple><bold>Gacha RPG<gray>!"
+  Prize-Commands: []
+  Settings:
+    Tracking-Crate-Opening: false
+    Knock-Back: false
+    Disabled-Worlds: []
+    Border:
+      Glass-Border:
+        Toggle: true
+        Air: true
+    CSGO:
+      Finished-Material: "amethyst_shard"
+      Cycle-Material: "amethyst_shard"
+    Broadcast:
+      Toggle: false
+      Messages: []
+      Permission: ""
+    Rewards:
+      Re-Roll-Spin: false
+      Permission:
+        Toggle: false
+        Persist: false
+        Max-Cap: 20
+  Item: "amethyst_shard"
+  Hide-Flags: false
+  Components: []
+  Custom-Model-Data: -1
+  Model:
+    Namespace: ""
+    Id: ""
+  Glowing: "add_glow"
+  Name: "<light_purple><bold>Gacha RPG"
+  Lore:
+    - "<gray>Tirada: <yellow>1000$"
+  Preview:
+    Name: "<light_purple><bold>Gacha RPG<reset><gray> - premios"
+    Toggle: true
+    Rows: 6
+    Glass:
+      Toggle: true
+      Name: " "
+      Item: "purple_stained_glass_pane"
+      Custom-Model-Data: -1
+      Model:
+        Namespace: ""
+        Id: ""
+  Animation:
+    Name: "<light_purple><bold>Gacha RPG<reset><gray> - girando..."
+    Glass-Frame:
+      Toggle: true
+      Items:
+        "1":
+          name: " "
+          lore: []
+          material: "purple_stained_glass_pane"
+          amount: 1
+      Random:
+        Toggle: true
+        Items: {}
+  PhysicalKey:
+    Name: "<light_purple><bold>Gacha RPG - llave"
+    Lore: []
+    Item: "tripwire_hook"
+    Custom-Model-Data: -1
+    Model:
+      Namespace: ""
+      Id: ""
+    Glowing: "add_glow"
+    flags:
+      components: []
+  Hologram:
+    Toggle: false
+    Height: 1.5
+    Range: 8
+    Update-Interval: -1
+    Color: "transparent"
+    TextShadow: false
+    Message: []
+  buttons: {}
+  Prizes:
+    "1":
+      DisplayName: "<gold><bold>Espada V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/espada_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fEspada V"
+    "2":
+      DisplayName: "<gold><bold>Baston V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/baston_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fBaston V"
+    "3":
+      DisplayName: "<gold><bold>Arco V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/arco_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fArco V"
+    "4":
+      DisplayName: "<gold><bold>Hacha V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/hacha_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fHacha V"
+    "5":
+      DisplayName: "<gold><bold>Lanza V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/lanza_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fLanza V"
+    "6":
+      DisplayName: "<gold><bold>Guadana V"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_5"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/guadana_5"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana V"
+    "7":
+      DisplayName: "<gold><bold>Chispa Astral x2"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "chispa_astral"
+      DisplayAmount: 2
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.49%"
+        - "<gold>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.4881
+      Commands:
+        - "loot give %player% loot astral:item/chispa_astral"
+        - "loot give %player% loot astral:item/chispa_astral"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fChispa Astral x2"
+    "8":
+      DisplayName: "<gold><bold>Nucleo de Furia Pura"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_furia_pura"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.19%"
+        - "<gold>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 1.1905
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_furia_pura"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fNucleo de Furia Pura"
+    "9":
+      DisplayName: "<gold><bold>Guadana Umbria"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_umbria"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.89%"
+        - "<gold>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 0.8929
+      Commands:
+        - "loot give %player% loot astral:item/guadana_umbria"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &dGacha RPG&7: &fGuadana Umbria"
+    "10":
+      DisplayName: "<light_purple><bold>Nucleo Astral"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "nucleo_astral"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>10.17%"
+        - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 10.1744
+      Commands:
+        - "loot give %player% loot astral:item/nucleo_astral"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fNucleo Astral"
+    "11":
+      DisplayName: "<light_purple><bold>Gema Umbria Perfecta"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_umbria_perfecta"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>10.17%"
+        - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 10.1744
+      Commands:
+        - "loot give %player% loot astral:item/gema_umbria_perfecta"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Umbria Perfecta"
+    "12":
+      DisplayName: "<light_purple><bold>Gema Luminica Perfecta"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "gema_luminica_perfecta"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>10.17%"
+        - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 10.1744
+      Commands:
+        - "loot give %player% loot astral:item/gema_luminica_perfecta"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGema Luminica Perfecta"
+    "13":
+      DisplayName: "<light_purple><bold>Espada IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "espada_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/espada_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fEspada IV"
+    "14":
+      DisplayName: "<light_purple><bold>Baston IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "baston_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/baston_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fBaston IV"
+    "15":
+      DisplayName: "<light_purple><bold>Arco IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "arco_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/arco_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fArco IV"
+    "16":
+      DisplayName: "<light_purple><bold>Hacha IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "hacha_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/hacha_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fHacha IV"
+    "17":
+      DisplayName: "<light_purple><bold>Lanza IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "lanza_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/lanza_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fLanza IV"
+    "18":
+      DisplayName: "<light_purple><bold>Guadana IV"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "guadana_4"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/guadana_4"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fGuadana IV"
+    "19":
+      DisplayName: "<light_purple><bold>Talisman de Vida III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_vida_3"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.09%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 5.0872
+      Commands:
+        - "loot give %player% loot astral:item/talisman_vida_3"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Vida III"
+    "20":
+      DisplayName: "<light_purple><bold>Talisman de Furia III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_furia_3"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.09%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 5.0872
+      Commands:
+        - "loot give %player% loot astral:item/talisman_furia_3"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Furia III"
+    "21":
+      DisplayName: "<light_purple><bold>Talisman de Roca III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_roca_3"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.09%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 5.0872
+      Commands:
+        - "loot give %player% loot astral:item/talisman_roca_3"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Roca III"
+    "22":
+      DisplayName: "<light_purple><bold>Talisman de Viento III"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "talisman_viento_3"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.09%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (1000$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 30 tiradas"
+      Weight: 5.0872
+      Commands:
+        - "loot give %player% loot astral:item/talisman_viento_3"
+        - "scoreboard players set %player% pity_rpg 0"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &dGacha RPG&7: &fTalisman de Viento III"

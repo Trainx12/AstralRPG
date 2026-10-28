@@ -66,6 +66,12 @@ AstralRPG/
 | Plata que da cada mob | `mobs/mythic.py` (`MONEY`, `ELITE_MONEY`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
 | Un vendedor del lobby | `mobs/mythic.py` (`NPCS`) + posición en `lobby.py` (`NPC_POS`) | `python mobs/mythic.py` y `python lobby.py` | MythicMobs + spawnearlo (ver 5) |
 | Premios, precio o probabilidades de una gacha | `lobby.py` (`rpg_rewards`, `mount_rewards`, `cosmetic_rewards`, `GACHAS`, `RARITY_WEIGHT`) | `python lobby.py` | `plugins/CrazyCrates/crates/` + `crates reload`; si cambia el precio también `gachas.yml` + `mm reload` |
+| Garantía (pity) de una gacha | `lobby.py` (`PITY`) | `python lobby.py` | `gachas.yml` + `mm reload`, cajas `*_garantia.yml` + `crates reload` |
+| Fases de un jefe | `mobs/mythic.py` (`FASES`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
+| Afijos de élites | `mobs/mythic.py` (`AFIJOS`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
+| Jefes ancestrales (eventos) | `mobs/mythic.py` (`ANCESTRALES`) | `python mobs/mythic.py` | MythicMobs + `mm reload` |
+| Bonus de set por piezas | `items.py` (`SET_BONUS`) | `python build.py` | datapack (subir `ITEM_VERSION` si cambia la lore) |
+| Costos de la mejora +1..+10 | `items.py` (`MEJORAS`, `MEJORA_DANO`, `MEJORA_VIDA`) | `python build.py` y `python mobs/mythic.py` | datapack + MythicMobs (el Herrero cobra la plata) |
 | Un título nuevo para la gacha | `lobby.py` (`TITLES`) | `python lobby.py` | igual que arriba |
 | Una línea del panel lateral o del tabulador | `lobby.py` (`TAB_SECTIONS`) | `python lobby.py` | `plugins/TAB/config.yml` (reemplazar esa sección) + `tab reload` |
 | Rangos (Novato...Leyenda) | `lobby.py` (`RANKS`) | `python lobby.py` | igual que arriba |
@@ -91,6 +97,9 @@ AstralRPG/
 - Condiciones al hacer clic (`~onInteract`): usar `?~condicion` (del jugador que hace clic), no `?condicion`. Ejemplo: `?~hascurrency{a=1000}`, `?~crouching`.
 - Para que un vendedor ejecute un comando *como el jugador* (abrir `/shop`, `/sellgui`, la vitrina de CrazyCrates), usar `command{c="sudo <trigger.name> <comando>"} @self`. `asTarget=true` no funcionó.
 - Cobrar: `currencytake{a=N} @trigger`. Ver si alcanza: `?~hascurrency{a=N}`.
+- Vida en porcentaje: `?healthpercent{p=<0.6}` (escala 0 a 1). `percenthealth` no existe. En `~onDamaged` se mira la vida de *antes* del golpe.
+- Vida máxima de un mob: Minecraft la corta en 1024. Para jefes más duros usar Resistencia, no más vida.
+- Comandos de plugins con condición: `execute if score <jugador> obj matches 30.. run crates ...` funciona desde MythicMobs. Leer un puntaje en un mensaje: `<trigger.score.obj>`. Condición: `?~score{o=obj;v=>29}`.
 
 **Gachas**
 - El vendedor (MythicMobs) cobra y corre `crates forceopen <gacha> <jugador>` → CrazyCrates gira la ruleta y ejecuta los `Commands` del premio.

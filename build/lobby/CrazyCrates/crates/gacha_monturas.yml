@@ -128,10 +128,12 @@ Crate:
         - "<gold>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.5
       Commands:
         - "mm egg give %player% astral_pterodactilo 1"
         - "give %player% minecraft:saddle 1"
+        - "scoreboard players set %player% pity_monturas 0"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"
     "2":
       DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
@@ -153,10 +155,12 @@ Crate:
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.5
       Commands:
         - "mm egg give %player% astral_ave 1"
         - "give %player% minecraft:saddle 1"
+        - "scoreboard players set %player% pity_monturas 0"
         - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"
     "3":
       DisplayName: "<aqua><bold>Montura: Grillo Saltarin"
@@ -176,6 +180,7 @@ Crate:
         - "<aqua>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 6.1111
       Commands:
         - "mm egg give %player% astral_grillo 1"
@@ -198,6 +203,7 @@ Crate:
         - "<aqua>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.8889
       Commands:
         - "mm egg give %player% astral_chocobo 1"
@@ -220,6 +226,7 @@ Crate:
         - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 12.5
       Commands:
         - "mm egg give %player% astral_lagarto 1"
@@ -242,6 +249,7 @@ Crate:
         - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 12.5
       Commands:
         - "mm egg give %player% astral_escarabajo 1"
@@ -264,6 +272,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 24.0
       Commands:
         - "mm egg give %player% astral_mapache 1"
@@ -285,6 +294,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 24.0
       Commands:
         - "mm egg give %player% astral_pinguino 1"
@@ -306,6 +316,7 @@ Crate:
         - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 12.0
       Commands:
         - "give %player% minecraft:saddle 2"

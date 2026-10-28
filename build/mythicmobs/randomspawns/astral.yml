@@ -209,6 +209,15 @@ spawn_astral_momia:
   Reason: NATURAL
   Biomes:
   - minecraft:desert
+spawn_astral_momia_ancestral:
+  Action: ADD
+  Type: astral_momia_ancestral
+  Worlds: world
+  Chance: 0.000375
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:desert
 spawn_astral_yeti:
   Action: ADD
   Type: astral_yeti
@@ -220,11 +229,33 @@ spawn_astral_yeti:
   - minecraft:frozen_peaks
   - minecraft:snowy_slopes
   - minecraft:ice_spikes
+spawn_astral_yeti_ancestral:
+  Action: ADD
+  Type: astral_yeti_ancestral
+  Worlds: world
+  Chance: 0.0003
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:frozen_peaks
+  - minecraft:snowy_slopes
+  - minecraft:ice_spikes
 spawn_astral_golem_forja:
   Action: ADD
   Type: astral_golem_forja
   Worlds: world_nether
   Chance: 0.002
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:basalt_deltas
+  - minecraft:nether_wastes
+  - minecraft:crimson_forest
+spawn_astral_golem_forja_ancestral:
+  Action: ADD
+  Type: astral_golem_forja_ancestral
+  Worlds: world_nether
+  Chance: 0.0005
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -253,11 +284,34 @@ spawn_astral_cangrejo_elite:
   - minecraft:beach
   - minecraft:stony_shore
   - minecraft:warm_ocean
+spawn_astral_cangrejo_ancestral:
+  Action: ADD
+  Type: astral_cangrejo_ancestral
+  Worlds: world
+  Chance: 0.0005
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:beach
+  - minecraft:stony_shore
+  - minecraft:warm_ocean
 spawn_astral_chaman:
   Action: ADD
   Type: astral_chaman
   Worlds: world
   Chance: 0.0015
+  Priority: 1
+  Reason: NATURAL
+  Biomes:
+  - minecraft:swamp
+  - minecraft:mangrove_swamp
+  Conditions:
+  - night true
+spawn_astral_chaman_ancestral:
+  Action: ADD
+  Type: astral_chaman_ancestral
+  Worlds: world
+  Chance: 0.000375
   Priority: 1
   Reason: NATURAL
   Biomes:
