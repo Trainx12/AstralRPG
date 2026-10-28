@@ -488,6 +488,8 @@ def commands():
          f"rg flag -w {WORLD} __global__ interact allow",
          f"rg flag -w {WORLD} __global__ chest-access deny",
          "# --- primera vez que entra alguien: aparece en el lobby",
+         "# --- que a los OP no les llegue al chat cada comando que corre el server (mascotas, gachas...)",
+         ] + [f"mv gamerule set minecraft:log_admin_commands false {w}" for w in ("lobby", "mina", "world", "world_nether", "world_the_end")] + [
          "mv config first-spawn-override true",
          f"mv config first-spawn-location {WORLD}",
          "mv config enforce-respawn-at-world-spawn false",
