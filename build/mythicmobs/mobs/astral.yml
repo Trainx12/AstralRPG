@@ -745,9 +745,9 @@ astral_npc_gacha_rpg:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?crouching'
-  - 'skill{s=AST_GACHA_RPG} @trigger ~onInteract ?!crouching ?hascurrency{a=1000}'
-  - 'message{m="&cLa tirada cuesta &e1000$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=1000}'
+  - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?~crouching'
+  - 'skill{s=AST_GACHA_RPG} @trigger ~onInteract ?~!crouching ?~hascurrency{a=1000}'
+  - 'message{m="&cLa tirada cuesta &e1000$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=1000}'
 
 astral_npc_gacha_monturas:
   Type: VILLAGER
@@ -767,9 +767,9 @@ astral_npc_gacha_monturas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?crouching'
-  - 'skill{s=AST_GACHA_MONTURAS} @trigger ~onInteract ?!crouching ?hascurrency{a=2500}'
-  - 'message{m="&cLa tirada cuesta &e2500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=2500}'
+  - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?~crouching'
+  - 'skill{s=AST_GACHA_MONTURAS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=2500}'
+  - 'message{m="&cLa tirada cuesta &e2500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=2500}'
 
 astral_npc_gacha_cosmeticos:
   Type: VILLAGER
@@ -789,9 +789,9 @@ astral_npc_gacha_cosmeticos:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?crouching'
-  - 'skill{s=AST_GACHA_COSMETICOS} @trigger ~onInteract ?!crouching ?hascurrency{a=500}'
-  - 'message{m="&cLa tirada cuesta &e500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?!crouching ?!hascurrency{a=500}'
+  - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?~crouching'
+  - 'skill{s=AST_GACHA_COSMETICOS} @trigger ~onInteract ?~!crouching ?~hascurrency{a=500}'
+  - 'message{m="&cLa tirada cuesta &e500$&c y no te alcanza &7(mira tu plata con /balance)"} @trigger ~onInteract ?~!crouching ?~!hascurrency{a=500}'
 
 astral_npc_viajero:
   Type: VILLAGER

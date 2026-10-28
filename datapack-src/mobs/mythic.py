@@ -132,9 +132,9 @@ ELITE_MONEY = 150
 # (ubicacion de cada uno: datapack-src/lobby.py)
 def _gacha(gid, cost):
     G = gid.upper()
-    return [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?crouching",
-            f"skill{{s=AST_{G}}} @trigger ~onInteract ?!crouching ?hascurrency{{a={cost}}}",
-            f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?!crouching ?!hascurrency{{a={cost}}}"]
+    return [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
+            f"skill{{s=AST_{G}}} @trigger ~onInteract ?~!crouching ?~hascurrency{{a={cost}}}",
+            f"message{{m=\"&cLa tirada cuesta &e{cost}$&c y no te alcanza &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~!crouching ?~!hascurrency{{a={cost}}}"]
 
 
 NPCS = {
