@@ -69,40 +69,5 @@ execute in minecraft:lobby run summon minecraft:text_display 211.5 102.55 191.5 
 execute in minecraft:lobby run summon minecraft:text_display 208.5 102.55 185.5 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:220,text:{"text": "", "extra": [{"text": "\u2726 Gacha de Monturas \u2726", "color": "#7ED957", "bold": true}, {"text": "\nMonturas con silla y mascotas", "color": "gray"}, {"text": "\n2500$ por tirada", "color": "gold"}, {"text": "\nEpico garantizado cada ", "color": "white"}, {"text": "40 tiradas", "color": "#7ED957", "bold": true}, {"text": "\nClic: tirar  -  Shift+clic: premios", "color": "dark_gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 208.5 102.55 197.5 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:220,text:{"text": "", "extra": [{"text": "\u2726 Gacha de Cosmeticos \u2726", "color": "#FF7BD5", "bold": true}, {"text": "\nTitulos para el chat y adornos", "color": "gray"}, {"text": "\n500$ por tirada", "color": "gold"}, {"text": "\nEpico garantizado cada ", "color": "white"}, {"text": "20 tiradas", "color": "#FF7BD5", "bold": true}, {"text": "\nClic: tirar  -  Shift+clic: premios", "color": "dark_gray"}]}}
 # ============================== BAZAR Y SUBASTAS ==============================
-# --- 1) en el juego, con OP, marcar las 4 regiones de los puestos (WorldGuard no deja hacerlo desde consola):
-#   //pos1 171,101,149   //pos2 173,104,150   /rg define puesto1
-#   //pos1 175,101,149   //pos2 177,104,150   /rg define puesto2
-#   //pos1 179,101,149   //pos2 181,104,150   /rg define puesto3
-#   //pos1 183,101,149   //pos2 185,104,150   /rg define puesto4
-# --- 2) consola: grupos, permisos, regiones, cofres y carteles
-scoreboard objectives add bazar trigger
-lp group default permission set quickshop.create.sell true
-lp group default permission set quickshop.create.buy true
-lp group default permission set crazyauctions.player.* true
-lp creategroup puesto1
-rg addmember -w lobby puesto1 g:puesto1
-rg flag -w lobby puesto1 chest-access allow
-execute in minecraft:lobby run setblock 171 101 149 minecraft:chest[facing=south]
-execute in minecraft:lobby run setblock 173 101 149 minecraft:chest[facing=south]
-lp creategroup puesto2
-rg addmember -w lobby puesto2 g:puesto2
-rg flag -w lobby puesto2 chest-access allow
-execute in minecraft:lobby run setblock 175 101 149 minecraft:chest[facing=south]
-execute in minecraft:lobby run setblock 177 101 149 minecraft:chest[facing=south]
-lp creategroup puesto3
-rg addmember -w lobby puesto3 g:puesto3
-rg flag -w lobby puesto3 chest-access allow
-execute in minecraft:lobby run setblock 179 101 149 minecraft:chest[facing=south]
-execute in minecraft:lobby run setblock 181 101 149 minecraft:chest[facing=south]
-lp creategroup puesto4
-rg addmember -w lobby puesto4 g:puesto4
-rg flag -w lobby puesto4 chest-access allow
-execute in minecraft:lobby run setblock 183 101 149 minecraft:chest[facing=south]
-execute in minecraft:lobby run setblock 185 101 149 minecraft:chest[facing=south]
-execute in minecraft:lobby run minecraft:kill @e[type=minecraft:text_display,tag=astral_bazar]
-execute in minecraft:lobby run summon minecraft:text_display 172.5 103.3 150.5 {Tags:["astral_bazar"],billboard:"center",shadow:1b,background:1073741824,text:{"text": "", "extra": [{"text": "Puesto 1", "color": "#E8A33A", "bold": true}, {"text": "\nAlquiler: Administrador del Bazar", "color": "gray"}]}}
-execute in minecraft:lobby run summon minecraft:text_display 176.5 103.3 150.5 {Tags:["astral_bazar"],billboard:"center",shadow:1b,background:1073741824,text:{"text": "", "extra": [{"text": "Puesto 2", "color": "#E8A33A", "bold": true}, {"text": "\nAlquiler: Administrador del Bazar", "color": "gray"}]}}
-execute in minecraft:lobby run summon minecraft:text_display 180.5 103.3 150.5 {Tags:["astral_bazar"],billboard:"center",shadow:1b,background:1073741824,text:{"text": "", "extra": [{"text": "Puesto 3", "color": "#E8A33A", "bold": true}, {"text": "\nAlquiler: Administrador del Bazar", "color": "gray"}]}}
-execute in minecraft:lobby run summon minecraft:text_display 184.5 103.3 150.5 {Tags:["astral_bazar"],billboard:"center",shadow:1b,background:1073741824,text:{"text": "", "extra": [{"text": "Puesto 4", "color": "#E8A33A", "bold": true}, {"text": "\nAlquiler: Administrador del Bazar", "color": "gray"}]}}
-# --- 3) vendedores: parate donde los quieras (con mob-spawning allow en el lobby, ver arriba):
-#   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas
+# menus de DeluxeMenus (build/menus/): los abre el aldeano 'astral_npc_bazar' con 'dm open bazar <jugador>'
+#   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas   (con mob-spawning allow en el lobby)

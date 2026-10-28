@@ -1,0 +1,101 @@
+# Mercado: menu principal (generado por datapack-src/menus.py)
+title: "&8Mercado"
+command: []
+rows: 4
+
+pages:
+  - page: 1
+    mask:
+      items:
+        - yellow_stained_glass_pane
+      pattern:
+        - "111111111"
+        - "100000001"
+        - "100000001"
+        - "111111111"
+
+slots:
+  - item: iron_pickaxe hide_attributes name:"&bMineria"
+    lore:
+      - "&7Minerales, lingotes y gemas."
+      - ""
+      - "&eClic para ver"
+    location:
+      row: 2
+      column: 3
+      page: 1
+    left-click:
+      - id: open_menu
+        args:
+          menu: bazaar_category
+          category: mineria
+      - id: play_sound
+        args:
+          sound: ui_button_click
+          pitch: 1
+          volume: 1
+  - item: wheat hide_attributes name:"&aCultivos"
+    lore:
+      - "&7Cosechas y plantas."
+      - ""
+      - "&eClic para ver"
+    location:
+      row: 2
+      column: 5
+      page: 1
+    left-click:
+      - id: open_menu
+        args:
+          menu: bazaar_category
+          category: cultivos
+      - id: play_sound
+        args:
+          sound: ui_button_click
+          pitch: 1
+          volume: 1
+  - item: bone hide_attributes name:"&cDrops de mobs"
+    lore:
+      - "&7Lo que sueltan los monstruos."
+      - ""
+      - "&eClic para ver"
+    location:
+      row: 2
+      column: 7
+      page: 1
+    left-click:
+      - id: open_menu
+        args:
+          menu: bazaar_category
+          category: mobs
+      - id: play_sound
+        args:
+          sound: ui_button_click
+          pitch: 1
+          volume: 1
+  - item: oak_log hide_attributes name:"&6Madera"
+    lore:
+      - "&7Troncos de todos los arboles."
+      - ""
+      - "&eClic para ver"
+    location:
+      row: 4
+      column: 5
+      page: 1
+    left-click:
+      - id: open_menu
+        args:
+          menu: bazaar_category
+          category: madera
+      - id: play_sound
+        args:
+          sound: ui_button_click
+          pitch: 1
+          volume: 1
+  - item: barrier name:"&cCerrar"
+    lore: []
+    location:
+      row: 4
+      column: 5
+      page: 1
+    left-click:
+      - id: close_inventory

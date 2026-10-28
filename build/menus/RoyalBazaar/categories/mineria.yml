@@ -1,0 +1,52 @@
+# Categoria del mercado (generado por datapack-src/menus.py, MERCADO)
+name: "&bMineria"
+icon: "minecraft:iron_pickaxe"
+slot: 11
+
+defaults:
+  spread: 0.05
+  elasticity: 40000
+  reversion_rate: 0.02
+  floor_pct: 0.4
+  ceiling_pct: 3.0
+
+items:
+  cobblestone:
+    item: "minecraft:cobblestone"
+    base_price: 1.0
+  coal:
+    item: "minecraft:coal"
+    base_price: 4.0
+  copper_ingot:
+    item: "minecraft:copper_ingot"
+    base_price: 3.0
+  iron_ingot:
+    item: "minecraft:iron_ingot"
+    base_price: 12.0
+  gold_ingot:
+    item: "minecraft:gold_ingot"
+    base_price: 18.0
+  redstone:
+    item: "minecraft:redstone"
+    base_price: 3.0
+  lapis_lazuli:
+    item: "minecraft:lapis_lazuli"
+    base_price: 5.0
+  quartz:
+    item: "minecraft:quartz"
+    base_price: 6.0
+  amethyst_shard:
+    item: "minecraft:amethyst_shard"
+    base_price: 6.0
+  obsidian:
+    item: "minecraft:obsidian"
+    base_price: 15.0
+  diamond:
+    item: "minecraft:diamond"
+    base_price: 120.0
+  emerald:
+    item: "minecraft:emerald"
+    base_price: 80.0
+  netherite_scrap:
+    item: "minecraft:netherite_scrap"
+    base_price: 400.0

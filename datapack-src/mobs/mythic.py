@@ -259,15 +259,11 @@ ELITE_MONEY = 150
 # Vendedores del lobby: aldeanos quietos e invulnerables. Al hacerles clic abren su tienda o gacha.
 # (ubicacion de cada uno: datapack-src/lobby.py)
 def _gacha(gid, cost):
-    """Clic: menu de tiradas en el chat. Shift + clic: vitrina de premios.
-    Cada 1/4 de segundo el cofre mira si algun jugador cerca apreto un boton del menu (ver lobby.py, TIRADAS)."""
+    """Clic: menu de la gacha (DeluxeMenus, datapack-src/menus.py). Shift + clic: vitrina de premios."""
     G = gid.upper()
-    sk = [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
-          f"skill{{s=AST_{G}_MENU}} @trigger ~onInteract ?~!crouching"]
-    for t in (1, 10, 25, 50):
-        sk += [f"skill{{s=AST_T_{G}_{t}}} @PlayersInRadius{{r=12}} ~onTimer:5",
-               f"skill{{s=AST_T_{G}_{t}_NO}} @PlayersInRadius{{r=12}} ~onTimer:5"]
-    return sk
+    return [f"skill{{s=AST_{G}_INFO}} @trigger ~onInteract ?~crouching",
+            f"command{{c=\"dm open {gid} <trigger.name>\"}} @self ~onInteract ?~!crouching",
+            "state{s=open} @self ~onInteract ?~!crouching"]
 
 
 def _herrero():
@@ -285,16 +281,12 @@ def _herrero():
 
 
 def _bazar():
-    """Clic: menu del bazar en el chat. Cada 1/4 de segundo mira si alguien cerca apreto un boton (ver lobby.py, bazar)."""
-    sk = ["skill{s=AST_BAZAR_MENU} @trigger ~onInteract"]
-    for n in (1, 2, 3, 4):
-        for k in ("ALQ", "REN", "NO", "YATIENE", "PLATA", "RENPLATA"):
-            sk.append(f"skill{{s=AST_BAZAR_{k}_{n}}} @PlayersInRadius{{r=12}} ~onTimer:5")
-    return sk
+    """Clic: menu del bazar (DeluxeMenus): mercado (RoyalBazaar), subastas y ordenes (EzAuction)."""
+    return ["command{c=\"dm open bazar <trigger.name>\"} @self ~onInteract"]
 
 
 NPCS = {
-    "astral_npc_bazar": ("&6&lAdministrador del Bazar &7(alquilar puestos)", "CARTOGRAPHER", _bazar()),
+    "astral_npc_bazar": ("&6&lBazar &7(mercado y subastas)", "CARTOGRAPHER", _bazar()),
     "astral_npc_subastas": ("&e&lSubastas &7(/ah)", "ARMORER", ["command{c=\"sudo <trigger.name> ah\"} @self ~onInteract"]),
     "astral_npc_herrero": ("&6&lHerrero &7(clic: costo - shift+clic: mejorar)", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",

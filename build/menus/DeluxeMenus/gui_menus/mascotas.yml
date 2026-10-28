@@ -1,0 +1,390 @@
+menu_title: '&8Mascotas'
+open_command: mascotas
+size: 27
+items:
+  'info':
+    material: BONE
+    slot: 4
+    amount: 1
+    display_name: '&6&l✦ Mascotas ✦'
+    lore:
+    - '&7Una a la vez. Te siguen y te dan efectos.'
+    - '&7Suben de nivel con los mobs que matas:'
+    - '&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.'
+    - ''
+    - '&8En el lobby no pueden salir.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'm_lobo':
+    material: WOLF_SPAWN_EGG
+    slot: 10
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&fNivel 1: &7Fuerza I'
+    - '&fNivel 10: &7+ Velocidad I'
+    - '&fNivel 20: &7+ Resistencia I'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_no':
+    material: GRAY_DYE
+    slot: 10
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&8Nivel 1: Fuerza I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'm_cuervo':
+    material: PARROT_SPAWN_EGG
+    slot: 11
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&fNivel 1: &7Vision nocturna y marca a los mobs cercanos'
+    - '&fNivel 10: &7+ Suerte'
+    - '&fNivel 20: &7+ Velocidad I'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_no':
+    material: GRAY_DYE
+    slot: 11
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&8Nivel 1: Vision nocturna y marca a los mobs cercanos'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'm_golem':
+    material: IRON_GOLEM_SPAWN_EGG
+    slot: 12
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&fNivel 1: &7Resistencia I'
+    - '&fNivel 10: &7+ Regeneracion I'
+    - '&fNivel 20: &7+ 2 corazones de absorcion'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_no':
+    material: GRAY_DYE
+    slot: 12
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&8Nivel 1: Resistencia I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'm_zorro':
+    material: FOX_SPAWN_EGG
+    slot: 14
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&fNivel 1: &7Velocidad I'
+    - '&fNivel 10: &7+ Salto I'
+    - '&fNivel 20: &7Velocidad II'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_no':
+    material: GRAY_DYE
+    slot: 14
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&8Nivel 1: Velocidad I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'm_dragon':
+    material: BLAZE_SPAWN_EGG
+    slot: 15
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&fNivel 1: &7Resistencia al fuego'
+    - '&fNivel 10: &7+ Fuerza I'
+    - '&fNivel 20: &7+ Prisa I'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_no':
+    material: GRAY_DYE
+    slot: 15
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&8Nivel 1: Resistencia al fuego'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'm_fenix':
+    material: CHICKEN_SPAWN_EGG
+    slot: 16
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&fNivel 1: &7Te salva con poca vida (cada 10 min)'
+    - '&fNivel 10: &7cada 7 min'
+    - '&fNivel 20: &7cada 5 min'
+    - ''
+    - '&eClic para invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_no':
+    material: GRAY_DYE
+    slot: 16
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&8Nivel 1: Te salva con poca vida (cada 10 min)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'guardar':
+    material: BARRIER
+    slot: 22
+    amount: 1
+    display_name: '&c&lGuardar mascota'
+    lore:
+    - '&7La mascota que tengas afuera vuelve a descansar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'vidrio_0':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_13':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 13
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: ORANGE_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

@@ -24,6 +24,7 @@ python mobs/mythic.py              # MythicMobs: criaturas, monturas, jefes, ven
 python mobs/mazmorra.py           # Mazmorra Minas Olvidadas (salas, mobs, jefe, cofre)
 python mobs/mascotas.py           # Mascotas 3D (/mascotas, bonus, niveles)
 python lobby.py                    # gachas (CrazyCrates), cobro, panel TAB, comandos del lobby
+python menus.py                    # menus de cofre (DeluxeMenus) y mercado (RoyalBazaar)
 ```
 
 ## Trampas conocidas

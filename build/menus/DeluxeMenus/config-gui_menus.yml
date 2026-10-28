@@ -1,0 +1,14 @@
+# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)
+gui_menus:
+  gacha_rpg:
+    file: gacha_rpg.yml
+  gacha_monturas:
+    file: gacha_monturas.yml
+  gacha_cosmeticos:
+    file: gacha_cosmeticos.yml
+  mascotas:
+    file: mascotas.yml
+  bazar:
+    file: bazar.yml
+  principal:
+    file: principal.yml

@@ -1,0 +1,40 @@
+# Categoria del mercado (generado por datapack-src/menus.py, MERCADO)
+name: "&6Madera"
+icon: "minecraft:oak_log"
+slot: 31
+
+defaults:
+  spread: 0.05
+  elasticity: 40000
+  reversion_rate: 0.02
+  floor_pct: 0.4
+  ceiling_pct: 3.0
+
+items:
+  oak_log:
+    item: "minecraft:oak_log"
+    base_price: 3.0
+  spruce_log:
+    item: "minecraft:spruce_log"
+    base_price: 3.0
+  birch_log:
+    item: "minecraft:birch_log"
+    base_price: 3.0
+  jungle_log:
+    item: "minecraft:jungle_log"
+    base_price: 3.0
+  acacia_log:
+    item: "minecraft:acacia_log"
+    base_price: 3.0
+  dark_oak_log:
+    item: "minecraft:dark_oak_log"
+    base_price: 3.0
+  mangrove_log:
+    item: "minecraft:mangrove_log"
+    base_price: 3.0
+  cherry_log:
+    item: "minecraft:cherry_log"
+    base_price: 4.0
+  pale_oak_log:
+    item: "minecraft:pale_oak_log"
+    base_price: 4.0

@@ -1,0 +1,220 @@
+menu_title: '&8Menu de AstralRPG'
+open_command: menu
+size: 27
+update_interval: 1
+items:
+  'info':
+    material: NETHER_STAR
+    slot: 4
+    amount: 1
+    display_name: '&b&l✦ AstralRPG ✦'
+    lore:
+    - '&7Todo lo del servidor, sin comandos.'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+  'mascotas':
+    material: BONE
+    slot: 10
+    amount: 1
+    display_name: '&6&lMascotas'
+    lore:
+    - '&7Invoca o guarda tu mascota'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas'
+  'bazar':
+    material: EMERALD
+    slot: 12
+    amount: 1
+    display_name: '&a&lBazar'
+    lore:
+    - '&7Mercado, subastas y ordenes'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] bazar'
+  'guia':
+    material: WRITABLE_BOOK
+    slot: 14
+    amount: 1
+    display_name: '&d&lGuia de AstralRPG'
+    lore:
+    - '&7Clases, items, recetas y la Forja'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] trigger astral.guia set 1'
+  'plata':
+    material: GOLD_NUGGET
+    slot: 16
+    amount: 1
+    display_name: '&e&lTu plata'
+    lore:
+    - '&7Tenes: &e%vault_eco_balance_formatted%$'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
+  'spawn':
+    material: COMPASS
+    slot: 22
+    amount: 1
+    display_name: '&f&lVolver al lobby'
+    lore:
+    - '&7Te lleva a la plaza'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] spawn'
+  'vidrio_0':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_11':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 11
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_13':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 13
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_15':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 15
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

@@ -1,0 +1,222 @@
+menu_title: '&8Bazar'
+open_command: astralmenu_bazar
+size: 27
+items:
+  'info':
+    material: OAK_SIGN
+    slot: 4
+    amount: 1
+    display_name: '&6&l✦ Bazar ✦'
+    lore:
+    - '&7Compra y vende con otros jugadores'
+    - '&7o con el mercado del servidor.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'mercado':
+    material: EMERALD
+    slot: 11
+    amount: 1
+    display_name: '&a&lMercado'
+    lore:
+    - '&7Materiales comunes: vendes y compras al toque.'
+    - '&7Los precios suben si todos compran'
+    - '&7y bajan si todos venden.'
+    - ''
+    - '&eClic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] bazaar'
+  'subastas':
+    material: GOLD_INGOT
+    slot: 13
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Items unicos entre jugadores (armas, armaduras...).'
+    - '&7Para publicar: agarra el item y usa'
+    - '&f/ah sell <precio>'
+    - ''
+    - '&eClic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'ordenes':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Pedi algo que buscas y paga por adelantado:'
+    - '&7cuando alguien te lo vende, te llega solo.'
+    - ''
+    - '&eClic para ver tus ordenes'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'vidrio_0':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_10':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 10
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_12':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 12
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_14':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 14
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_16':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 16
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_22':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 22
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

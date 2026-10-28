@@ -1,0 +1,49 @@
+# Categoria del mercado (generado por datapack-src/menus.py, MERCADO)
+name: "&cDrops de mobs"
+icon: "minecraft:bone"
+slot: 15
+
+defaults:
+  spread: 0.05
+  elasticity: 40000
+  reversion_rate: 0.02
+  floor_pct: 0.4
+  ceiling_pct: 3.0
+
+items:
+  rotten_flesh:
+    item: "minecraft:rotten_flesh"
+    base_price: 1.0
+  bone:
+    item: "minecraft:bone"
+    base_price: 3.0
+  string:
+    item: "minecraft:string"
+    base_price: 3.0
+  spider_eye:
+    item: "minecraft:spider_eye"
+    base_price: 4.0
+  gunpowder:
+    item: "minecraft:gunpowder"
+    base_price: 6.0
+  leather:
+    item: "minecraft:leather"
+    base_price: 6.0
+  feather:
+    item: "minecraft:feather"
+    base_price: 2.0
+  slime_ball:
+    item: "minecraft:slime_ball"
+    base_price: 8.0
+  ender_pearl:
+    item: "minecraft:ender_pearl"
+    base_price: 25.0
+  blaze_rod:
+    item: "minecraft:blaze_rod"
+    base_price: 20.0
+  phantom_membrane:
+    item: "minecraft:phantom_membrane"
+    base_price: 15.0
+  ghast_tear:
+    item: "minecraft:ghast_tear"
+    base_price: 40.0

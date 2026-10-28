@@ -1,0 +1,324 @@
+menu_title: '&8Gacha de Armas'
+open_command: astralmenu_gacha_rpg
+size: 27
+update_interval: 1
+items:
+  'info':
+    material: AMETHYST_SHARD
+    slot: 4
+    amount: 1
+    display_name: '&#B07CFF&l✦ Gacha de Armas ✦'
+    lore:
+    - '&7Armas, materiales y talismanes'
+    - ''
+    - '&7Precio: &e1.000$ &7por tirada'
+    - '&7Epico garantizado cada &f50 &7tiradas'
+    - '&7Tu garantia: &e%objective_score_{pity_rpg}%&7/50'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    update: true
+  'x1':
+    material: AMETHYST_SHARD
+    slot: 10
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+  'x10':
+    material: AMETHYST_SHARD
+    slot: 12
+    amount: 10
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25':
+    material: AMETHYST_SHARD
+    slot: 14
+    amount: 25
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50':
+    material: NETHER_STAR
+    slot: 16
+    amount: 50
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'premios':
+    material: CHEST
+    slot: 22
+    amount: 1
+    display_name: '&6&lVer premios'
+    lore:
+    - '&7Todos los premios y su probabilidad'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[console] sudo %player_name% crates preview gacha_rpg'
+  'vidrio_0':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_11':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 11
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_13':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 13
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_15':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 15
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: PURPLE_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

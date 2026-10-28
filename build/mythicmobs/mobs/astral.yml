@@ -1152,7 +1152,7 @@ astral_chaman_ancestral:
 
 astral_npc_bazar:
   Type: VILLAGER
-  Display: '&6&lAdministrador del Bazar &7(alquilar puestos)'
+  Display: '&6&lBazar &7(mercado y subastas)'
   Health: 100
   Options:
     NoAI: true
@@ -1168,31 +1168,7 @@ astral_npc_bazar:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=AST_BAZAR_MENU} @trigger ~onInteract'
-  - 'skill{s=AST_BAZAR_ALQ_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_REN_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_NO_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_YATIENE_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_PLATA_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_RENPLATA_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_ALQ_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_REN_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_NO_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_YATIENE_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_PLATA_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_RENPLATA_2} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_ALQ_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_REN_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_NO_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_YATIENE_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_PLATA_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_RENPLATA_3} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_ALQ_4} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_REN_4} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_NO_4} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_YATIENE_4} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_PLATA_4} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_BAZAR_RENPLATA_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'command{c="dm open bazar <trigger.name>"} @self ~onInteract'
 
 astral_npc_subastas:
   Type: VILLAGER
@@ -1333,15 +1309,8 @@ astral_npc_gacha_rpg:
   - model{m=astral_cofre_rpg} @self ~onSpawn
   - model{m=astral_cofre_rpg} @self ~onLoad
   - 'skill{s=AST_GACHA_RPG_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_RPG_MENU} @trigger ~onInteract ?~!crouching'
-  - 'skill{s=AST_T_GACHA_RPG_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_10} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_25} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_50} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_RPG_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'command{c="dm open gacha_rpg <trigger.name>"} @self ~onInteract ?~!crouching'
+  - 'state{s=open} @self ~onInteract ?~!crouching'
 
 astral_npc_gacha_monturas:
   Type: SHEEP
@@ -1362,15 +1331,8 @@ astral_npc_gacha_monturas:
   - model{m=astral_cofre_monturas} @self ~onSpawn
   - model{m=astral_cofre_monturas} @self ~onLoad
   - 'skill{s=AST_GACHA_MONTURAS_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_MONTURAS_MENU} @trigger ~onInteract ?~!crouching'
-  - 'skill{s=AST_T_GACHA_MONTURAS_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_10} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_25} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_50} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_MONTURAS_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'command{c="dm open gacha_monturas <trigger.name>"} @self ~onInteract ?~!crouching'
+  - 'state{s=open} @self ~onInteract ?~!crouching'
 
 astral_npc_gacha_cosmeticos:
   Type: SHEEP
@@ -1391,15 +1353,8 @@ astral_npc_gacha_cosmeticos:
   - model{m=astral_cofre_cosmeticos} @self ~onSpawn
   - model{m=astral_cofre_cosmeticos} @self ~onLoad
   - 'skill{s=AST_GACHA_COSMETICOS_INFO} @trigger ~onInteract ?~crouching'
-  - 'skill{s=AST_GACHA_COSMETICOS_MENU} @trigger ~onInteract ?~!crouching'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_1} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_1_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_10} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_10_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_25} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_25_NO} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_50} @PlayersInRadius{r=12} ~onTimer:5'
-  - 'skill{s=AST_T_GACHA_COSMETICOS_50_NO} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'command{c="dm open gacha_cosmeticos <trigger.name>"} @self ~onInteract ?~!crouching'
+  - 'state{s=open} @self ~onInteract ?~!crouching'
 
 astral_npc_viajero:
   Type: VILLAGER

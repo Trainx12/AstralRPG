@@ -52,8 +52,9 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | EssentialsX 2.22.0 + EssentialsX Spawn + Vault | Monedas (`/balance`, `/pay`), `/spawn` al lobby |
 | EconomyShopGUI 7.3.3 | Tienda (`/shop`) y venta rápida (`/sellgui`) de ítems vanilla |
 | CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
-| CrazyAuctions (26.1.2) | Subastas entre jugadores (`/ah`), 5% de impuesto por venta |
-| QuickShop-Hikari 6.3.0.3 | Cofres-tienda de los puestos del bazar (5% de impuesto por venta) |
+| DeluxeMenus 1.14.1 | Menús de cofre: `/menu`, `/mascotas`, gachas y bazar (los genera `datapack-src/menus.py`) |
+| EzAuction 2.3.1 | Subastas, órdenes de compra y subastas en vivo entre jugadores (`/ah`, `/orders`) |
+| RoyalBazaar 2026.28.0 | Mercado del servidor con precios que se mueven (`/bazaar`) |
 
 ## Lobby (mundo `lobby`)
 
@@ -105,14 +106,12 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - **Por dentro:** tener la mascota = permiso `astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix>`; la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
 - Dar una mascota a mano: `lp user <jugador> permission set astral.mascota.<id> true`. Armado: `build/mascotas/comandos.txt`.
 
-## Bazar y subastas (lobby)
+## Menús, bazar y subastas
 
-- **Bazar:** sala de piedra adentro del edificio grande del norte, detrás del vendedor de la tienda. 4 puestos contra la pared del fondo (x 171-185, z 149-150, pies en y 101), con 2 cofres cada uno y un cartel flotante (tag `astral_bazar`).
-- **Alquiler:** con el aldeano *Administrador del Bazar* (`astral_npc_bazar`): clic → menú en el chat con el estado de cada puesto (libre / tuyo / ocupado) y botones (`/trigger bazar`). Cuesta 5.000$ por 7 días, se puede renovar y hay un puesto por jugador. Por dentro: grupo temporal de LuckPerms `puestoN` (miembro de la región `puestoN` de WorldGuard) y permiso temporal `astral.puesto.N` en el grupo `default` (marca que está ocupado). Todo vence solo.
-- Cuando otro alquila un puesto vencido, se borran las tiendas del inquilino anterior (`qs removeall`) y se vacían los cofres.
-- **Tiendas:** QuickShop. Con el ítem en la mano, clic izquierdo a un cofre del puesto y escribir el precio en el chat. 5% de impuesto por venta.
-- **Subastas:** `/ah` (CrazyAuctions) o el aldeano *Subastas* (`astral_npc_subastas`). 5% de impuesto por venta.
-- Valores en `datapack-src/lobby.py` (`PUESTOS`, `RENTA`, `RENTA_DIAS`); armado en `build/lobby/comandos.txt` (sección BAZAR Y SUBASTAS).
+- **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
+- **Mercado (RoyalBazaar, `/bazaar`):** materiales comunes (minería, cultivos, drops de mobs, madera) que se compran y venden al instante contra el servidor; los precios suben si todos compran y bajan si todos venden. Precios en `MERCADO` de `datapack-src/menus.py`.
+- **Subastas (EzAuction, `/ah`):** ítems únicos entre jugadores: publicar (`/ah sell <precio>` con el ítem en la mano), órdenes de compra (`/orders`) y subastas en vivo. Aldeano *Subastas* (`astral_npc_subastas`).
+- Los 4 puestos con cofres y alquiler que hubo antes se sacaron (regiones `puesto1-4`, grupos y cofres borrados).
 
 ## Mazmorra: Minas Olvidadas (mundo `mina`)
 
