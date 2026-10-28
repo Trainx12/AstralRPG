@@ -1,0 +1,7 @@
+# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)
+_DEFAULT_:
+  tabprefix: "%luckperms-prefix% "
+  tagprefix: "%luckperms-prefix% "
+  customtabname: "<white>%player%"
+  tabsuffix: " <dark_gray>[<aqua>⚡%auraskills_power%<dark_gray>]"
+  tagsuffix: ""

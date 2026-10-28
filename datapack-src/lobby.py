@@ -209,19 +209,38 @@ def crate_yml(gid, g):
          "    Color: " + dq("transparent"), "    TextShadow: false", "    Message: []",
          "  buttons: {}",
          "  Prizes:"]
-    for i, (rar, w, name, cmds) in enumerate(rewards):
+    order = ["legendary", "epic", "rare", "uncommon", "common"]      # la vitrina arranca por lo mas raro
+    stars = {"legendary": 5, "epic": 4, "rare": 3, "uncommon": 2, "common": 1}
+    color = {"legendary": "<gold>", "epic": "<light_purple>", "rare": "<aqua>", "uncommon": "<green>", "common": "<white>"}
+    ranked = sorted(rewards, key=lambda r: order.index(r[0]))
+    for i, (rar, w, name, cmds) in enumerate(ranked):
         mat, model, amount = icon(cmds)
         weight = round(RARITY_WEIGHT[rar] * w / tot[rar], 4)
         cm = list(cmds)
         if rar in ("epic", "legendary"):
             cm.append("broadcast &6&l(!) &e%player% &7saco " + RARITY_AMP[rar] + " &7en la " + GACHA_AMP[gid] + "&7: &f" + name)
-        L += ["    \"%d\":" % (i + 1), "      DisplayName: " + dq(RARITY_MINI[rar] + "<reset> <white>" + name),
+        c = color[rar]
+        st = c + "★" * stars[rar] + "<dark_gray>" + "★" * (5 - stars[rar])
+        # barra de probabilidad (escala logaritmica: 0,1% = 1 cuadradito, 10% o mas = 10)
+        import math
+        n = max(1, min(10, round(4 + 2 * math.log10(max(weight, 0.01)) * 1.5)))
+        bar = c + "▮" * n + "<dark_gray>" + "▮" * (10 - n)
+        L += ["    \"%d\":" % (i + 1), "      DisplayName: " + dq(c + "<bold>" + name),
               "      DisplayItem: " + dq(mat), "      Settings:", "        Custom-Model-Data: -1", "        Model:",
               "          Namespace: " + dq("astral" if model else ""), "          Id: " + dq(model or ""),
-              "      DisplayAmount: %d" % max(1, min(64, amount)),
-              "      DisplayLore:", "        - " + dq(RARITY_MINI[rar]),
-              "        - " + dq("<gray>Probabilidad: <yellow>%g%%" % weight),
-              "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c) for c in cm]
+              "      DisplayAmount: %d" % max(1, min(64, amount))]
+        if rar in ("epic", "legendary"):
+            L += ["      DisplayEnchantments:", "        - " + dq("unbreaking:1")]   # brillo
+        L += ["      DisplayLore:",
+              "        - " + dq("<dark_gray>━━━━━━━━━━━━━━━━━━"),
+              "        - " + dq("<gray>Rareza: " + RARITY_MINI[rar]),
+              "        - " + dq(st),
+              "        - " + dq(""),
+              "        - " + dq("<gray>Probabilidad: <yellow><bold>" + ("%.2f" % weight).rstrip("0").rstrip(".") + "%"),
+              "        - " + dq(bar),
+              "        - " + dq("<dark_gray>━━━━━━━━━━━━━━━━━━"),
+              "        - " + dq("<dark_gray>Clic al vendedor para tirar (" + str(g["cost"]) + "$)"),
+              "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c2) for c2 in cm]
     return "\n".join(L) + "\n"
 
 
@@ -235,8 +254,124 @@ def gacha_skills():
               "  - 'sound{s=block.amethyst_block.chime;p=1.2} @trigger'",
               "  - 'command{c=\"crates forceopen %s <trigger.name>\"} @self'" % gid, "",
               "AST_%s_INFO:" % G, "  Skills:",
-              "  - 'command{c=\"crates preview %s <trigger.name>\"} @self'" % gid, ""]
+              "  - 'command{c=\"sudo <trigger.name> crates preview %s\"} @self'" % gid, ""]
     return "\n".join(L) + "\n"
+
+
+# ------------------------------------------------------------------ TAB: panel lateral, tabulador y nombres
+# Rango segun el poder total de AuraSkills (suma de niveles de skills)
+RANKS = [(1500, "<gradient:#FFD24A:#FF7A2A><bold>Leyenda</bold></gradient>"), (800, "<light_purple><bold>Heroe</bold>"),
+         (400, "<aqua>Veterano"), (150, "<green>Aventurero"), (0, "<gray>Novato")]
+
+TAB_SECTIONS = r'''header-footer:
+  enabled: true
+  designs:
+    default:
+      header:
+        - "<dark_gray><strikethrough>                                                  </strikethrough>"
+        - ""
+        - "%animation:astral_titulo%"
+        - "<gray>Bienvenido, <white><bold>%player%</bold> <dark_gray>| %condition:rango%"
+        - ""
+      footer:
+        - ""
+        - "<red>❤ <white>%player_health_rounded%<gray>/%player_max_health_rounded%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
+        - "<gray>Jugadores <white>%online%<dark_gray>/<gray>20   <dark_gray>✦   <gray>Ping <white>%ping%ms   <dark_gray>✦   <gray>TPS %server_tps_1_colored%"
+        - "<gray>Estas en <white>%condition:mundo%   <dark_gray>✦   <gray>/spawn <dark_gray>vuelve al lobby"
+        - ""
+        - "%animation:astral_ip%"
+        - "<dark_gray><strikethrough>                                                  </strikethrough>"
+playerlist-objective:
+  enabled: true
+  value: "%player_health_rounded%"
+  fancy-value: ""
+  title: "Vida"
+  render-type: HEARTS
+  disable-condition: ''
+belowname-objective:
+  enabled: true
+  value: "%player_health_rounded%"
+  fancy-value: "<red>❤ <white>%player_health_rounded% <dark_gray>| <aqua>⚡%auraskills_power%"
+  fancy-value-default: ""
+  title: "<red>❤"
+  disable-condition: '%world%=lobby'
+  view-distance: 10
+scoreboard:
+  enabled: true
+  toggle-command: /sb
+  remember-toggle-choice: true
+  hidden-by-default: false
+  delay-on-join-milliseconds: 1500
+  scoreboards:
+    astral:
+      title: "%animation:astral_titulo%"
+      lines:
+        - "<dark_gray><strikethrough>                    </strikethrough>"
+        - "<gray>⚔ <white><bold>%player%</bold>"
+        - "<gray>Rango||%condition:rango%"
+        - "<gray>Titulo||%condition:titulo%"
+        - ""
+        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
+        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
+        - "<aqua>⚡ Poder||<white>%auraskills_power%"
+        - "<green>✦ Nivel||<white>%player_level%"
+        - ""
+        - "<red>⚒ Forja||<white>%auraskills_forging%"
+        - "<light_purple>✧ Hechiceria||<white>%auraskills_sorcery%"
+        - "<yellow>➶ Arqueria||<white>%auraskills_archery%"
+        - "<gray>☠ Bajas||<white>%statistic_mob_kills%   <gray>⌂ <white>%condition:mundo%"
+        - "%animation:astral_ip%"
+conditions:
+''' + "".join(
+    "  rango%d:\n    conditions:\n      - \"%%auraskills_power%%>=%d\"\n    true: \"%s\"\n    false: \"%s\"\n" % (
+        i, th, txt, ("%%condition:rango%d%%" % (i + 1)) if i + 1 < len(RANKS) - 1 else RANKS[-1][1])
+    for i, (th, txt) in enumerate(RANKS[:-1])).replace("rango0", "rango") + r'''  titulo:
+    conditions:
+      - "%luckperms_prefix%="
+    true: "<dark_gray>ninguno"
+    false: "%luckperms_prefix%"
+  mundo:
+    conditions:
+      - "%world%=lobby"
+    true: "Lobby"
+    false: "%condition:mundo2%"
+  mundo2:
+    conditions:
+      - "%world%=world_nether"
+    true: "<red>Nether"
+    false: "%condition:mundo3%"
+  mundo3:
+    conditions:
+      - "%world%=world_the_end"
+    true: "<light_purple>End"
+    false: "<green>Mundo"
+'''
+
+TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)
+_DEFAULT_:
+  tabprefix: "%luckperms-prefix% "
+  tagprefix: "%luckperms-prefix% "
+  customtabname: "<white>%player%"
+  tabsuffix: " <dark_gray>[<aqua>⚡%auraskills_power%<dark_gray>]"
+  tagsuffix: ""
+'''
+
+TAB_ANIMATIONS = r'''# Animaciones del tabulador y del panel (generado por datapack-src/lobby.py)
+astral_titulo:
+  change-interval: 150
+  texts:
+''' + "".join("    - \"%s\"\n" % t for t in [
+    "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
+    "<gradient:#9A6CFF:#5FD8FF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
+    "<gradient:#7EC8FF:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>",
+    "<gradient:#4FD1FF:#B07CFF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
+    "<gradient:#FFD24A:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>",
+    "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>"]) + r'''astral_ip:
+  change-interval: 200
+  texts:
+''' + "".join("    - \"%s\"\n" % t for t in [
+    "<dark_gray>AstralRPG2.aternos.me", "<gray>AstralRPG2.aternos.me", "<white>AstralRPG2.aternos.me",
+    "<aqua>AstralRPG2.aternos.me", "<white>AstralRPG2.aternos.me", "<gray>AstralRPG2.aternos.me"])
 
 
 def spawn_yml():
@@ -300,6 +435,11 @@ def main():
     os.makedirs(mm, exist_ok=True)
     with open(os.path.join(mm, "gachas.yml"), "w", encoding="utf-8") as f:
         f.write(gacha_skills())
+    tab = os.path.join(OUT, "TAB")
+    os.makedirs(tab, exist_ok=True)
+    for name, txt in (("secciones-config.yml", TAB_SECTIONS), ("groups.yml", TAB_GROUPS), ("animations.yml", TAB_ANIMATIONS)):
+        with open(os.path.join(tab, name), "w", encoding="utf-8") as f:
+            f.write(txt)
     cc = os.path.join(OUT, "CrazyCrates", "crates")
     os.makedirs(cc, exist_ok=True)
     for gid, g in GACHAS.items():

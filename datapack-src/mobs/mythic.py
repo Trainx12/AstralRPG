@@ -139,9 +139,9 @@ def _gacha(gid, cost):
 
 NPCS = {
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
-                          ["command{c=\"shop\";asTarget=true} @trigger ~onInteract"]),
+                          ["command{c=\"sudo <trigger.name> shop\"} @self ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
-                         ["command{c=\"sellgui\";asTarget=true} @trigger ~onInteract"]),
+                         ["command{c=\"sudo <trigger.name> sellgui\"} @self ~onInteract"]),
     "astral_npc_gacha_rpg": ("&d&lGacha RPG &7(1000$ - shift+clic ver premios)", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
     "astral_npc_gacha_monturas": ("&e&lGacha de Monturas &7(2500$ - shift+clic ver premios)", "SHEPHERD",
                                   _gacha("gacha_monturas", 2500)),

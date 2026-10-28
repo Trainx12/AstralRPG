@@ -9,7 +9,7 @@ AST_GACHA_RPG:
 
 AST_GACHA_RPG_INFO:
   Skills:
-  - 'command{c="crates preview gacha_rpg <trigger.name>"} @self'
+  - 'command{c="sudo <trigger.name> crates preview gacha_rpg"} @self'
 
 AST_GACHA_MONTURAS:
   Cooldown: 2
@@ -20,7 +20,7 @@ AST_GACHA_MONTURAS:
 
 AST_GACHA_MONTURAS_INFO:
   Skills:
-  - 'command{c="crates preview gacha_monturas <trigger.name>"} @self'
+  - 'command{c="sudo <trigger.name> crates preview gacha_monturas"} @self'
 
 AST_GACHA_COSMETICOS:
   Cooldown: 2
@@ -31,5 +31,5 @@ AST_GACHA_COSMETICOS:
 
 AST_GACHA_COSMETICOS_INFO:
   Skills:
-  - 'command{c="crates preview gacha_cosmeticos <trigger.name>"} @self'
+  - 'command{c="sudo <trigger.name> crates preview gacha_cosmeticos"} @self'
 

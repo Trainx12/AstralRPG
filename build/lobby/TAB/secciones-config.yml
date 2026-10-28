@@ -1,0 +1,99 @@
+header-footer:
+  enabled: true
+  designs:
+    default:
+      header:
+        - "<dark_gray><strikethrough>                                                  </strikethrough>"
+        - ""
+        - "%animation:astral_titulo%"
+        - "<gray>Bienvenido, <white><bold>%player%</bold> <dark_gray>| %condition:rango%"
+        - ""
+      footer:
+        - ""
+        - "<red>❤ <white>%player_health_rounded%<gray>/%player_max_health_rounded%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
+        - "<gray>Jugadores <white>%online%<dark_gray>/<gray>20   <dark_gray>✦   <gray>Ping <white>%ping%ms   <dark_gray>✦   <gray>TPS %server_tps_1_colored%"
+        - "<gray>Estas en <white>%condition:mundo%   <dark_gray>✦   <gray>/spawn <dark_gray>vuelve al lobby"
+        - ""
+        - "%animation:astral_ip%"
+        - "<dark_gray><strikethrough>                                                  </strikethrough>"
+playerlist-objective:
+  enabled: true
+  value: "%player_health_rounded%"
+  fancy-value: ""
+  title: "Vida"
+  render-type: HEARTS
+  disable-condition: ''
+belowname-objective:
+  enabled: true
+  value: "%player_health_rounded%"
+  fancy-value: "<red>❤ <white>%player_health_rounded% <dark_gray>| <aqua>⚡%auraskills_power%"
+  fancy-value-default: ""
+  title: "<red>❤"
+  disable-condition: '%world%=lobby'
+  view-distance: 10
+scoreboard:
+  enabled: true
+  toggle-command: /sb
+  remember-toggle-choice: true
+  hidden-by-default: false
+  delay-on-join-milliseconds: 1500
+  scoreboards:
+    astral:
+      title: "%animation:astral_titulo%"
+      lines:
+        - "<dark_gray><strikethrough>                    </strikethrough>"
+        - "<gray>⚔ <white><bold>%player%</bold>"
+        - "<gray>Rango||%condition:rango%"
+        - "<gray>Titulo||%condition:titulo%"
+        - ""
+        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
+        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
+        - "<aqua>⚡ Poder||<white>%auraskills_power%"
+        - "<green>✦ Nivel||<white>%player_level%"
+        - ""
+        - "<red>⚒ Forja||<white>%auraskills_forging%"
+        - "<light_purple>✧ Hechiceria||<white>%auraskills_sorcery%"
+        - "<yellow>➶ Arqueria||<white>%auraskills_archery%"
+        - "<gray>☠ Bajas||<white>%statistic_mob_kills%   <gray>⌂ <white>%condition:mundo%"
+        - "%animation:astral_ip%"
+conditions:
+  rango:
+    conditions:
+      - "%auraskills_power%>=1500"
+    true: "<gradient:#FFD24A:#FF7A2A><bold>Leyenda</bold></gradient>"
+    false: "%condition:rango1%"
+  rango1:
+    conditions:
+      - "%auraskills_power%>=800"
+    true: "<light_purple><bold>Heroe</bold>"
+    false: "%condition:rango2%"
+  rango2:
+    conditions:
+      - "%auraskills_power%>=400"
+    true: "<aqua>Veterano"
+    false: "%condition:rango3%"
+  rango3:
+    conditions:
+      - "%auraskills_power%>=150"
+    true: "<green>Aventurero"
+    false: "<gray>Novato"
+  titulo:
+    conditions:
+      - "%luckperms_prefix%="
+    true: "<dark_gray>ninguno"
+    false: "%luckperms_prefix%"
+  mundo:
+    conditions:
+      - "%world%=lobby"
+    true: "Lobby"
+    false: "%condition:mundo2%"
+  mundo2:
+    conditions:
+      - "%world%=world_nether"
+    true: "<red>Nether"
+    false: "%condition:mundo3%"
+  mundo3:
+    conditions:
+      - "%world%=world_the_end"
+    true: "<light_purple>End"
+    false: "<green>Mundo"

@@ -109,84 +109,57 @@ Crate:
   buttons: {}
   Prizes:
     "1":
-      DisplayName: "<white>Comun<reset> <white>Mascota: Mapache"
-      DisplayItem: "fox_spawn_egg"
+      DisplayName: "<gold><bold>Montura voladora: Pterodactilo"
+      DisplayItem: "phantom_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
       DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
       DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>24%"
-      Weight: 24.0
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.5%"
+        - "<gold>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 0.5
       Commands:
-        - "mm egg give %player% astral_mapache 1"
+        - "mm egg give %player% astral_pterodactilo 1"
+        - "give %player% minecraft:saddle 1"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"
     "2":
-      DisplayName: "<white>Comun<reset> <white>Mascota: Pinguino de Cristal"
-      DisplayItem: "chicken_spawn_egg"
+      DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
+      DisplayItem: "parrot_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
       DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
       DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>24%"
-      Weight: 24.0
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.5%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 3.5
       Commands:
-        - "mm egg give %player% astral_pinguino 1"
+        - "mm egg give %player% astral_ave 1"
+        - "give %player% minecraft:saddle 1"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"
     "3":
-      DisplayName: "<white>Comun<reset> <white>Montura extra (silla)"
-      DisplayItem: "saddle"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 2
-      DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>12%"
-      Weight: 12.0
-      Commands:
-        - "give %player% minecraft:saddle 2"
-    "4":
-      DisplayName: "<green>Poco comun<reset> <white>Montura: Lagarto (nada)"
-      DisplayItem: "frog_spawn_egg"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>12.5%"
-      Weight: 12.5
-      Commands:
-        - "mm egg give %player% astral_lagarto 1"
-        - "give %player% minecraft:saddle 1"
-    "5":
-      DisplayName: "<green>Poco comun<reset> <white>Montura: Escarabajo Azul"
-      DisplayItem: "endermite_spawn_egg"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>12.5%"
-      Weight: 12.5
-      Commands:
-        - "mm egg give %player% astral_escarabajo 1"
-        - "give %player% minecraft:saddle 1"
-    "6":
-      DisplayName: "<aqua>Raro<reset> <white>Montura: Grillo Saltarin"
+      DisplayName: "<aqua><bold>Montura: Grillo Saltarin"
       DisplayItem: "silverfish_spawn_egg"
       Settings:
         Custom-Model-Data: -1
@@ -195,14 +168,20 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>6.1111%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.11%"
+        - "<aqua>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
       Weight: 6.1111
       Commands:
         - "mm egg give %player% astral_grillo 1"
         - "give %player% minecraft:saddle 1"
-    "7":
-      DisplayName: "<aqua>Raro<reset> <white>Montura: Chocobo"
+    "4":
+      DisplayName: "<aqua><bold>Montura: Chocobo"
       DisplayItem: "camel_spawn_egg"
       Settings:
         Custom-Model-Data: -1
@@ -211,15 +190,86 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>4.8889%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>4.89%"
+        - "<aqua>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
       Weight: 4.8889
       Commands:
         - "mm egg give %player% astral_chocobo 1"
         - "give %player% minecraft:saddle 1"
+    "5":
+      DisplayName: "<green><bold>Montura: Lagarto (nada)"
+      DisplayItem: "frog_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>12.5%"
+        - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 12.5
+      Commands:
+        - "mm egg give %player% astral_lagarto 1"
+        - "give %player% minecraft:saddle 1"
+    "6":
+      DisplayName: "<green><bold>Montura: Escarabajo Azul"
+      DisplayItem: "endermite_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>12.5%"
+        - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 12.5
+      Commands:
+        - "mm egg give %player% astral_escarabajo 1"
+        - "give %player% minecraft:saddle 1"
+    "7":
+      DisplayName: "<white><bold>Mascota: Mapache"
+      DisplayItem: "fox_spawn_egg"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>24%"
+        - "<white>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 24.0
+      Commands:
+        - "mm egg give %player% astral_mapache 1"
     "8":
-      DisplayName: "<light_purple>Epico<reset> <white>Montura voladora: Gran Ave"
-      DisplayItem: "parrot_spawn_egg"
+      DisplayName: "<white><bold>Mascota: Pinguino de Cristal"
+      DisplayItem: "chicken_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
@@ -227,27 +277,35 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<light_purple>Epico"
-        - "<gray>Probabilidad: <yellow>3.5%"
-      Weight: 3.5
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>24%"
+        - "<white>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 24.0
       Commands:
-        - "mm egg give %player% astral_ave 1"
-        - "give %player% minecraft:saddle 1"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &eGacha de Monturas&7: &fMontura voladora: Gran Ave"
+        - "mm egg give %player% astral_pinguino 1"
     "9":
-      DisplayName: "<gold><bold>Legendario<reset> <white>Montura voladora: Pterodactilo"
-      DisplayItem: "phantom_spawn_egg"
+      DisplayName: "<white><bold>Montura extra (silla)"
+      DisplayItem: "saddle"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
-      DisplayAmount: 1
+      DisplayAmount: 2
       DisplayLore:
-        - "<gold><bold>Legendario"
-        - "<gray>Probabilidad: <yellow>0.5%"
-      Weight: 0.5
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>12%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+      Weight: 12.0
       Commands:
-        - "mm egg give %player% astral_pterodactilo 1"
-        - "give %player% minecraft:saddle 1"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &eGacha de Monturas&7: &fMontura voladora: Pterodactilo"
+        - "give %player% minecraft:saddle 2"

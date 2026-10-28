@@ -1,0 +1,19 @@
+# Animaciones del tabulador y del panel (generado por datapack-src/lobby.py)
+astral_titulo:
+  change-interval: 150
+  texts:
+    - "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+    - "<gradient:#9A6CFF:#5FD8FF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+    - "<gradient:#7EC8FF:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>"
+    - "<gradient:#4FD1FF:#B07CFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+    - "<gradient:#FFD24A:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>"
+    - "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+astral_ip:
+  change-interval: 200
+  texts:
+    - "<dark_gray>AstralRPG2.aternos.me"
+    - "<gray>AstralRPG2.aternos.me"
+    - "<white>AstralRPG2.aternos.me"
+    - "<aqua>AstralRPG2.aternos.me"
+    - "<white>AstralRPG2.aternos.me"
+    - "<gray>AstralRPG2.aternos.me"

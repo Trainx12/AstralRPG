@@ -109,7 +109,7 @@ Crate:
   buttons: {}
   Prizes:
     "1":
-      DisplayName: "<white>Comun<reset> <white>Titulo «Aventurero»"
+      DisplayName: "<gold><bold>Titulo «ASTRAL»"
       DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
@@ -117,243 +117,120 @@ Crate:
           Namespace: ""
           Id: ""
       DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
       DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>11.1111%"
-      Weight: 11.1111
-      Commands:
-        - "lp user %player% meta setprefix 100 &7«Aventurero»"
-    "2":
-      DisplayName: "<white>Comun<reset> <white>Titulo «Explorador»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>11.1111%"
-      Weight: 11.1111
-      Commands:
-        - "lp user %player% meta setprefix 100 &a«Explorador»"
-    "3":
-      DisplayName: "<white>Comun<reset> <white>Titulo «Lenador»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>11.1111%"
-      Weight: 11.1111
-      Commands:
-        - "lp user %player% meta setprefix 100 &6«Lenador»"
-    "4":
-      DisplayName: "<white>Comun<reset> <white>Titulo «Minero»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>11.1111%"
-      Weight: 11.1111
-      Commands:
-        - "lp user %player% meta setprefix 100 &8«Minero»"
-    "5":
-      DisplayName: "<green>Poco comun<reset> <white>Titulo «Cazador»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>5.4348%"
-      Weight: 5.4348
-      Commands:
-        - "lp user %player% meta setprefix 100 &2«Cazador»"
-    "6":
-      DisplayName: "<green>Poco comun<reset> <white>Titulo «Herrero»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>5.4348%"
-      Weight: 5.4348
-      Commands:
-        - "lp user %player% meta setprefix 100 &c«Herrero»"
-    "7":
-      DisplayName: "<green>Poco comun<reset> <white>Titulo «Alquimista»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>5.4348%"
-      Weight: 5.4348
-      Commands:
-        - "lp user %player% meta setprefix 100 &d«Alquimista»"
-    "8":
-      DisplayName: "<aqua>Raro<reset> <white>Titulo «Domador»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>1.9643%"
-      Weight: 1.9643
-      Commands:
-        - "lp user %player% meta setprefix 100 &e«Domador»"
-    "9":
-      DisplayName: "<aqua>Raro<reset> <white>Titulo «Arcano»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>1.9643%"
-      Weight: 1.9643
-      Commands:
-        - "lp user %player% meta setprefix 100 &5«Arcano»"
-    "10":
-      DisplayName: "<aqua>Raro<reset> <white>Titulo «Berserker»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>1.9643%"
-      Weight: 1.9643
-      Commands:
-        - "lp user %player% meta setprefix 100 &4«Berserker»"
-    "11":
-      DisplayName: "<aqua>Raro<reset> <white>Titulo «Arquero»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>1.9643%"
-      Weight: 1.9643
-      Commands:
-        - "lp user %player% meta setprefix 100 &a«Arquero»"
-    "12":
-      DisplayName: "<light_purple>Epico<reset> <white>Titulo «Campeon»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<light_purple>Epico"
-        - "<gray>Probabilidad: <yellow>1.3462%"
-      Weight: 1.3462
-      Commands:
-        - "lp user %player% meta setprefix 100 &6&l«Campeon»"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Campeon»"
-    "13":
-      DisplayName: "<light_purple>Epico<reset> <white>Titulo «Senor del Abismo»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<light_purple>Epico"
-        - "<gray>Probabilidad: <yellow>1.3462%"
-      Weight: 1.3462
-      Commands:
-        - "lp user %player% meta setprefix 100 &5&l«Senor del Abismo»"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Senor del Abismo»"
-    "14":
-      DisplayName: "<gold><bold>Legendario<reset> <white>Titulo «ASTRAL»"
-      DisplayItem: "name_tag"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: ""
-          Id: ""
-      DisplayAmount: 1
-      DisplayLore:
-        - "<gold><bold>Legendario"
-        - "<gray>Probabilidad: <yellow>0.3125%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<gold>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
       Weight: 0.3125
       Commands:
         - "lp user %player% meta setprefix 100 &b&l«ASTRAL»"
         - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fTitulo «ASTRAL»"
-    "15":
-      DisplayName: "<white>Comun<reset> <white>Cohetes x16"
-      DisplayItem: "firework_rocket"
+    "2":
+      DisplayName: "<gold><bold>Cabeza de Dragon"
+      DisplayItem: "dragon_head"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
-      DisplayAmount: 16
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
       DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>8.8889%"
-      Weight: 8.8889
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.19%"
+        - "<gold>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 0.1875
       Commands:
-        - "give %player% minecraft:firework_rocket 16"
-    "16":
-      DisplayName: "<white>Comun<reset> <white>Etiquetas x3"
+        - "give %player% minecraft:dragon_head 1"
+        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fCabeza de Dragon"
+    "3":
+      DisplayName: "<light_purple><bold>Titulo «Campeon»"
       DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
-      DisplayAmount: 3
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
       DisplayLore:
-        - "<white>Comun"
-        - "<gray>Probabilidad: <yellow>6.6667%"
-      Weight: 6.6667
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.35%"
+        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.3462
       Commands:
-        - "give %player% minecraft:name_tag 3"
-    "17":
-      DisplayName: "<green>Poco comun<reset> <white>Molde de adorno: coast"
-      DisplayItem: "coast_armor_trim_smithing_template"
+        - "lp user %player% meta setprefix 100 &6&l«Campeon»"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Campeon»"
+    "4":
+      DisplayName: "<light_purple><bold>Titulo «Senor del Abismo»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.35%"
+        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.3462
+      Commands:
+        - "lp user %player% meta setprefix 100 &5&l«Senor del Abismo»"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fTitulo «Senor del Abismo»"
+    "5":
+      DisplayName: "<light_purple><bold>Molde de adorno: silence"
+      DisplayItem: "silence_armor_trim_smithing_template"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.81%"
+        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 0.8077
+      Commands:
+        - "give %player% minecraft:silence_armor_trim_smithing_template 1"
+        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fMolde de adorno: silence"
+    "6":
+      DisplayName: "<aqua><bold>Titulo «Domador»"
+      DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
@@ -361,14 +238,20 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>2.1739%"
-      Weight: 2.1739
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.96%"
+        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.9643
       Commands:
-        - "give %player% minecraft:coast_armor_trim_smithing_template 1"
-    "18":
-      DisplayName: "<green>Poco comun<reset> <white>Molde de adorno: dune"
-      DisplayItem: "dune_armor_trim_smithing_template"
+        - "lp user %player% meta setprefix 100 &e«Domador»"
+    "7":
+      DisplayName: "<aqua><bold>Titulo «Arcano»"
+      DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
@@ -376,14 +259,20 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>2.1739%"
-      Weight: 2.1739
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.96%"
+        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.9643
       Commands:
-        - "give %player% minecraft:dune_armor_trim_smithing_template 1"
-    "19":
-      DisplayName: "<green>Poco comun<reset> <white>Molde de adorno: wild"
-      DisplayItem: "wild_armor_trim_smithing_template"
+        - "lp user %player% meta setprefix 100 &5«Arcano»"
+    "8":
+      DisplayName: "<aqua><bold>Titulo «Berserker»"
+      DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
@@ -391,14 +280,20 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>2.1739%"
-      Weight: 2.1739
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.96%"
+        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.9643
       Commands:
-        - "give %player% minecraft:wild_armor_trim_smithing_template 1"
-    "20":
-      DisplayName: "<green>Poco comun<reset> <white>Molde de adorno: sentry"
-      DisplayItem: "sentry_armor_trim_smithing_template"
+        - "lp user %player% meta setprefix 100 &4«Berserker»"
+    "9":
+      DisplayName: "<aqua><bold>Titulo «Arquero»"
+      DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
@@ -406,13 +301,19 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<green>Poco comun"
-        - "<gray>Probabilidad: <yellow>2.1739%"
-      Weight: 2.1739
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>1.96%"
+        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 1.9643
       Commands:
-        - "give %player% minecraft:sentry_armor_trim_smithing_template 1"
-    "21":
-      DisplayName: "<aqua>Raro<reset> <white>Molde de adorno: vex"
+        - "lp user %player% meta setprefix 100 &a«Arquero»"
+    "10":
+      DisplayName: "<aqua><bold>Molde de adorno: vex"
       DisplayItem: "vex_armor_trim_smithing_template"
       Settings:
         Custom-Model-Data: -1
@@ -421,13 +322,19 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>0.7857%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.79%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
       Weight: 0.7857
       Commands:
         - "give %player% minecraft:vex_armor_trim_smithing_template 1"
-    "22":
-      DisplayName: "<aqua>Raro<reset> <white>Molde de adorno: tide"
+    "11":
+      DisplayName: "<aqua><bold>Molde de adorno: tide"
       DisplayItem: "tide_armor_trim_smithing_template"
       Settings:
         Custom-Model-Data: -1
@@ -436,13 +343,19 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>0.7857%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.79%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
       Weight: 0.7857
       Commands:
         - "give %player% minecraft:tide_armor_trim_smithing_template 1"
-    "23":
-      DisplayName: "<aqua>Raro<reset> <white>Molde de adorno: ward"
+    "12":
+      DisplayName: "<aqua><bold>Molde de adorno: ward"
       DisplayItem: "ward_armor_trim_smithing_template"
       Settings:
         Custom-Model-Data: -1
@@ -451,13 +364,19 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>0.7857%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.79%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
       Weight: 0.7857
       Commands:
         - "give %player% minecraft:ward_armor_trim_smithing_template 1"
-    "24":
-      DisplayName: "<aqua>Raro<reset> <white>Molde de adorno: eye"
+    "13":
+      DisplayName: "<aqua><bold>Molde de adorno: eye"
       DisplayItem: "eye_armor_trim_smithing_template"
       Settings:
         Custom-Model-Data: -1
@@ -466,40 +385,287 @@ Crate:
           Id: ""
       DisplayAmount: 1
       DisplayLore:
-        - "<aqua>Raro"
-        - "<gray>Probabilidad: <yellow>0.7857%"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.79%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
       Weight: 0.7857
       Commands:
         - "give %player% minecraft:eye_armor_trim_smithing_template 1"
+    "14":
+      DisplayName: "<green><bold>Titulo «Cazador»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.43%"
+        - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 5.4348
+      Commands:
+        - "lp user %player% meta setprefix 100 &2«Cazador»"
+    "15":
+      DisplayName: "<green><bold>Titulo «Herrero»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.43%"
+        - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 5.4348
+      Commands:
+        - "lp user %player% meta setprefix 100 &c«Herrero»"
+    "16":
+      DisplayName: "<green><bold>Titulo «Alquimista»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.43%"
+        - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 5.4348
+      Commands:
+        - "lp user %player% meta setprefix 100 &d«Alquimista»"
+    "17":
+      DisplayName: "<green><bold>Molde de adorno: coast"
+      DisplayItem: "coast_armor_trim_smithing_template"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>2.17%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 2.1739
+      Commands:
+        - "give %player% minecraft:coast_armor_trim_smithing_template 1"
+    "18":
+      DisplayName: "<green><bold>Molde de adorno: dune"
+      DisplayItem: "dune_armor_trim_smithing_template"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>2.17%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 2.1739
+      Commands:
+        - "give %player% minecraft:dune_armor_trim_smithing_template 1"
+    "19":
+      DisplayName: "<green><bold>Molde de adorno: wild"
+      DisplayItem: "wild_armor_trim_smithing_template"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>2.17%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 2.1739
+      Commands:
+        - "give %player% minecraft:wild_armor_trim_smithing_template 1"
+    "20":
+      DisplayName: "<green><bold>Molde de adorno: sentry"
+      DisplayItem: "sentry_armor_trim_smithing_template"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <green>Poco comun"
+        - "<green>★★<dark_gray>★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>2.17%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 2.1739
+      Commands:
+        - "give %player% minecraft:sentry_armor_trim_smithing_template 1"
+    "21":
+      DisplayName: "<white><bold>Titulo «Aventurero»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>11.11%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 11.1111
+      Commands:
+        - "lp user %player% meta setprefix 100 &7«Aventurero»"
+    "22":
+      DisplayName: "<white><bold>Titulo «Explorador»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>11.11%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 11.1111
+      Commands:
+        - "lp user %player% meta setprefix 100 &a«Explorador»"
+    "23":
+      DisplayName: "<white><bold>Titulo «Lenador»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>11.11%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 11.1111
+      Commands:
+        - "lp user %player% meta setprefix 100 &6«Lenador»"
+    "24":
+      DisplayName: "<white><bold>Titulo «Minero»"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>11.11%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 11.1111
+      Commands:
+        - "lp user %player% meta setprefix 100 &8«Minero»"
     "25":
-      DisplayName: "<light_purple>Epico<reset> <white>Molde de adorno: silence"
-      DisplayItem: "silence_armor_trim_smithing_template"
+      DisplayName: "<white><bold>Cohetes x16"
+      DisplayItem: "firework_rocket"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
-      DisplayAmount: 1
+      DisplayAmount: 16
       DisplayLore:
-        - "<light_purple>Epico"
-        - "<gray>Probabilidad: <yellow>0.8077%"
-      Weight: 0.8077
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>8.89%"
+        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 8.8889
       Commands:
-        - "give %player% minecraft:silence_armor_trim_smithing_template 1"
-        - "broadcast &6&l(!) &e%player% &7saco &dEpico &7en la &bGacha de Cosmeticos&7: &fMolde de adorno: silence"
+        - "give %player% minecraft:firework_rocket 16"
     "26":
-      DisplayName: "<gold><bold>Legendario<reset> <white>Cabeza de Dragon"
-      DisplayItem: "dragon_head"
+      DisplayName: "<white><bold>Etiquetas x3"
+      DisplayItem: "name_tag"
       Settings:
         Custom-Model-Data: -1
         Model:
           Namespace: ""
           Id: ""
-      DisplayAmount: 1
+      DisplayAmount: 3
       DisplayLore:
-        - "<gold><bold>Legendario"
-        - "<gray>Probabilidad: <yellow>0.1875%"
-      Weight: 0.1875
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.67%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+      Weight: 6.6667
       Commands:
-        - "give %player% minecraft:dragon_head 1"
-        - "broadcast &6&l(!) &e%player% &7saco &6&lLegendario &7en la &bGacha de Cosmeticos&7: &fCabeza de Dragon"
+        - "give %player% minecraft:name_tag 3"

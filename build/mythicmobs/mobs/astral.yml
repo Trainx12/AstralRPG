@@ -705,7 +705,7 @@ astral_npc_tienda:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="shop";asTarget=true} @trigger ~onInteract'
+  - 'command{c="sudo <trigger.name> shop"} @self ~onInteract'
 
 astral_npc_venta:
   Type: VILLAGER
@@ -725,7 +725,7 @@ astral_npc_venta:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="sellgui";asTarget=true} @trigger ~onInteract'
+  - 'command{c="sudo <trigger.name> sellgui"} @self ~onInteract'
 
 astral_npc_gacha_rpg:
   Type: VILLAGER
