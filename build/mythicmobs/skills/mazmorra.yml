@@ -229,6 +229,7 @@ MINA_PREMIO:
   - 'command{c="loot give <target.name> loot astral:item/cristal_refinado"}'
   - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
   - 'command{c="eco give <target.name> 2500"}'
+  - 'skill{s=PET_GANAR_GOLEM} 0.05'
   - 'command{c="lp user <target.name> permission settemp astral.mina.cd true 30m"}'
   - 'message{m="&6Cofre de la Mina: &fmateriales de elite y &e2500$&f. &7(el proximo cofre en 30 minutos)"}'
 

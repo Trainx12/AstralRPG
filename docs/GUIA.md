@@ -37,6 +37,7 @@ AstralRPG/
 │       ├── build_models.py   Exporta los modelos y hace vistas previas 3D
 │       ├── mythic.py         MythicMobs: vida, daño, drops, spawn, monturas, élites, jefes, vendedores (NPCS)
 │       ├── mazmorra.py       Mazmorra Minas Olvidadas: salas, oleadas, mini jefes, Guardián, cofre final
+│       ├── mascotas.py       Mascotas 3D: /mascotas, seguir al dueño, bonus por nivel, cómo se consiguen
 │       └── bettermodel_config.yml  Config de BetterModel usada en el server
 └── build/                    SALIDA (se sube al servidor; no se edita a mano)
     ├── AstralRPG-Items.zip         datapack → world/datapacks
@@ -76,6 +77,7 @@ AstralRPG/
 | Cantidades de tiradas del menú (x1, x10...) | `lobby.py` (`TIRADAS`) y `mobs/mythic.py` (`_gacha`) | `python lobby.py` y `python mobs/mythic.py` | `gachas.yml` + `mobs/astral.yml` + `mm reload` |
 | Mazmorra: salas, oleadas, mobs, premio | `mobs/mazmorra.py` (`SALAS`, `MOBS`, `PREMIO`) | `python mobs/mazmorra.py` | `plugins/MythicMobs/{mobs,skills}/mazmorra.yml` + `mm reload` (armado inicial: `build/mazmorra/comandos.txt`) |
 | Bazar: puestos, precio y duración del alquiler | `lobby.py` (`PUESTOS`, `RENTA`, `RENTA_DIAS`) | `python lobby.py` y `python mobs/mythic.py` | `plugins/MythicMobs/skills/bazar.yml` + `mobs/astral.yml` + `mm reload` |
+| Mascotas: bonus, niveles, cómo se consiguen | `mobs/mascotas.py` (`MASCOTAS`); modelos en `mobs/creatures.py` | `python mobs/mascotas.py` (+ `build_models.py` y resource pack si cambia un modelo) | `plugins/MythicMobs/{mobs,skills}/mascotas.yml` + `mm reload` |
 | Un título nuevo para la gacha | `lobby.py` (`TITLES`) | `python lobby.py` | igual que arriba |
 | Una línea del panel lateral o del tabulador | `lobby.py` (`TAB_SECTIONS`) | `python lobby.py` | `plugins/TAB/config.yml` (reemplazar esa sección) + `tab reload` |
 | Rangos (Novato...Leyenda) | `lobby.py` (`RANKS`) | `python lobby.py` | igual que arriba |

@@ -1,0 +1,27 @@
+# Mascotas: comandos de consola (sin /). Generado por datapack-src/mobs/mascotas.py
+scoreboard objectives add mascota trigger
+scoreboard objectives add petsel dummy
+scoreboard objectives add petkills minecraft.custom:minecraft.mob_kills
+scoreboard players set #nivel petkills 25
+scoreboard objectives add pxp_lobo dummy
+scoreboard objectives add plv_lobo dummy
+scoreboard objectives add pxp_cuervo dummy
+scoreboard objectives add plv_cuervo dummy
+scoreboard objectives add pxp_golem dummy
+scoreboard objectives add plv_golem dummy
+scoreboard objectives add pxp_zorro dummy
+scoreboard objectives add plv_zorro dummy
+scoreboard objectives add pxp_dragon dummy
+scoreboard objectives add plv_dragon dummy
+scoreboard objectives add pxp_fenix dummy
+scoreboard objectives add plv_fenix dummy
+# controlador (en un chunk del lobby que queda siempre cargado)
+execute in minecraft:lobby run forceload add 180 190
+rg flag -w lobby __global__ mob-spawning allow
+mm mobs spawn astral_mascotas_control 1 lobby,180.5,92,190.5
+rg flag -w lobby __global__ mob-spawning deny
+# /mascotas: agregar en commands.yml (raiz de Files), dentro de 'aliases:'
+#   mascotas:
+#   - trigger mascota set 99
+# despues: reiniciar (los alias se cargan al arrancar)
+# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix> true

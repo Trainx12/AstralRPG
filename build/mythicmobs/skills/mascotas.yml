@@ -1,0 +1,566 @@
+# Mascotas (generado por datapack-src/mobs/mascotas.py)
+
+PET_MODELO_lobo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_lobo_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=1} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_lobo_BONUS1:
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_lobo_BONUS2:
+  TargetConditions:
+  - score{o=plv_lobo;v=10to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_lobo_BONUS3:
+  TargetConditions:
+  - score{o=plv_lobo;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_lobo_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_lobo;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_lobo:
+  TargetConditions:
+  - score{o=mascota;v=1} true
+  - haspermission{p=astral.mascota.lobo} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 1"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_lobo;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fLobo del Bosque&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_lobo:
+  TargetConditions:
+  - score{o=mascota;v=1} true
+  - haspermission{p=astral.mascota.lobo} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Lobo del Bosque. &7Se consigue en: Espantapajaros y Abejorros (raro)."}'
+
+PET_GANAR_LOBO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.lobo} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.lobo true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Lobo del Bosque'',color:''#9AA0A8'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_cuervo:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_cuervo} @self
+
+PET_cuervo_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=2} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_cuervo_BONUS1:
+  Skills:
+  - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
+
+PET_cuervo_BONUS2:
+  TargetConditions:
+  - score{o=plv_cuervo;v=10to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_cuervo_BONUS3:
+  TargetConditions:
+  - score{o=plv_cuervo;v=20to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_cuervo_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_cuervo;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_cuervo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+PET_cuervo_MARCA:
+  Skills:
+  - 'skill{s=PET_cuervo_MARCA_UNO} @LivingInRadius{r=14}'
+
+PET_cuervo_MARCA_UNO:
+  TargetConditions:
+  - isplayer false
+  Skills:
+  - 'potion{type=GLOWING;duration=60;level=0;hasParticles=false}'
+
+MASC_INVOCAR_cuervo:
+  TargetConditions:
+  - score{o=mascota;v=2} true
+  - haspermission{p=astral.mascota.cuervo} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 2"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_cuervo;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCuervo Arcano&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_cuervo:
+  TargetConditions:
+  - score{o=mascota;v=2} true
+  - haspermission{p=astral.mascota.cuervo} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cuervo Arcano. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_CUERVO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.cuervo} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.cuervo true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cuervo Arcano'',color:''#B07CFF'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_golem:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_golem} @self
+
+PET_golem_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=3} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_golem_BONUS1:
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_golem_BONUS2:
+  TargetConditions:
+  - score{o=plv_golem;v=10to30} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_golem_BONUS3:
+  TargetConditions:
+  - score{o=plv_golem;v=20to30} true
+  Skills:
+  - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
+
+PET_golem_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_golem;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_golem;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_golem:
+  TargetConditions:
+  - score{o=mascota;v=3} true
+  - haspermission{p=astral.mascota.golem} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 3"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_golem;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fGolem de Piedra&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_golem:
+  TargetConditions:
+  - score{o=mascota;v=3} true
+  - haspermission{p=astral.mascota.golem} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Golem de Piedra. &7Se consigue en: Mazmorra Minas Olvidadas (raro)."}'
+
+PET_GANAR_GOLEM:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.golem} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.golem true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Golem de Piedra'',color:''#8A8A8A'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_zorro:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_zorro} @self
+
+PET_zorro_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=4} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_zorro_BONUS1:
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_zorro_BONUS2:
+  TargetConditions:
+  - score{o=plv_zorro;v=10to30} true
+  Skills:
+  - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
+
+PET_zorro_BONUS3:
+  TargetConditions:
+  - score{o=plv_zorro;v=20to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=1;hasParticles=false}'
+
+PET_zorro_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_zorro;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_zorro;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_zorro:
+  TargetConditions:
+  - score{o=mascota;v=4} true
+  - haspermission{p=astral.mascota.zorro} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 4"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_zorro;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fZorro Espectral&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_zorro:
+  TargetConditions:
+  - score{o=mascota;v=4} true
+  - haspermission{p=astral.mascota.zorro} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Zorro Espectral. &7Se consigue en: Yeti de las Cumbres y Caras Voladoras (raro)."}'
+
+PET_GANAR_ZORRO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.zorro} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.zorro true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Zorro Espectral'',color:''#BFE8FF'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_dragon:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_dragon} @self
+
+PET_dragon_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=5} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_dragon_BONUS1:
+  Skills:
+  - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
+
+PET_dragon_BONUS2:
+  TargetConditions:
+  - score{o=plv_dragon;v=10to30} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_dragon_BONUS3:
+  TargetConditions:
+  - score{o=plv_dragon;v=20to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_dragon_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_dragon;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_dragon;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_dragon:
+  TargetConditions:
+  - score{o=mascota;v=5} true
+  - haspermission{p=astral.mascota.dragon} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 5"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_dragon;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fDragoncito de Fuego&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_dragon:
+  TargetConditions:
+  - score{o=mascota;v=5} true
+  - haspermission{p=astral.mascota.dragon} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Dragoncito de Fuego. &7Se consigue en: Gacha de Monturas (epico)."}'
+
+PET_GANAR_DRAGON:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.dragon} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.dragon true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Dragoncito de Fuego'',color:''#E04A3A'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_fenix:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_pet_fenix} @self
+
+PET_fenix_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=6} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_fenix_BONUS1:
+  Skills:
+  - 'delay 1'
+
+PET_fenix_BONUS2:
+  TargetConditions:
+  - score{o=plv_fenix;v=10to30} true
+  Skills:
+  - 'delay 1'
+
+PET_fenix_BONUS3:
+  TargetConditions:
+  - score{o=plv_fenix;v=20to30} true
+  Skills:
+  - 'delay 1'
+
+PET_fenix_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_fenix;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_fenix;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+PET_fenix_RESCATE1:
+  TargetConditions:
+  - healthpercent{p=<0.3} true
+  - score{o=plv_fenix;v=1to9} true
+  Skills:
+  - 'addtag{tag=pet.rescate} @self'
+  - 'potion{type=REGENERATION;duration=100;level=2}'
+  - 'potion{type=ABSORPTION;duration=400;level=1}'
+  - 'potion{type=RESISTANCE;duration=60;level=2}'
+  - 'particles{p=totem_of_undying;amount=60;hS=0.6;vS=1;speed=0.4}'
+  - 'sound{s=item.totem.use;v=0.8}'
+  - 'message{m="&6&lEl Fenix te salvo! &7(otra vez en 10 minutos)"}'
+  - 'delay 12000'
+  - 'removetag{tag=pet.rescate} @self'
+
+PET_fenix_RESCATE2:
+  TargetConditions:
+  - healthpercent{p=<0.3} true
+  - score{o=plv_fenix;v=10to19} true
+  Skills:
+  - 'addtag{tag=pet.rescate} @self'
+  - 'potion{type=REGENERATION;duration=100;level=2}'
+  - 'potion{type=ABSORPTION;duration=400;level=1}'
+  - 'potion{type=RESISTANCE;duration=60;level=2}'
+  - 'particles{p=totem_of_undying;amount=60;hS=0.6;vS=1;speed=0.4}'
+  - 'sound{s=item.totem.use;v=0.8}'
+  - 'message{m="&6&lEl Fenix te salvo! &7(otra vez en 7 minutos)"}'
+  - 'delay 8400'
+  - 'removetag{tag=pet.rescate} @self'
+
+PET_fenix_RESCATE3:
+  TargetConditions:
+  - healthpercent{p=<0.3} true
+  - score{o=plv_fenix;v=20to30} true
+  Skills:
+  - 'addtag{tag=pet.rescate} @self'
+  - 'potion{type=REGENERATION;duration=100;level=2}'
+  - 'potion{type=ABSORPTION;duration=400;level=1}'
+  - 'potion{type=RESISTANCE;duration=60;level=2}'
+  - 'particles{p=totem_of_undying;amount=60;hS=0.6;vS=1;speed=0.4}'
+  - 'sound{s=item.totem.use;v=0.8}'
+  - 'message{m="&6&lEl Fenix te salvo! &7(otra vez en 5 minutos)"}'
+  - 'delay 6000'
+  - 'removetag{tag=pet.rescate} @self'
+
+MASC_INVOCAR_fenix:
+  TargetConditions:
+  - score{o=mascota;v=6} true
+  - haspermission{p=astral.mascota.fenix} true
+  - world{w=lobby} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 6"}'
+  - 'delay 25'
+  - 'summon{type=astral_pet_fenix;amount=1}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fFenix&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_fenix:
+  TargetConditions:
+  - score{o=mascota;v=6} true
+  - haspermission{p=astral.mascota.fenix} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Fenix. &7Se consigue en: Gacha de Monturas (legendario)."}'
+
+PET_GANAR_FENIX:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.fenix} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.fenix true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Fenix'',color:''#FF7A2A'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+MASC_MENU:
+  TargetConditions:
+  - score{o=mascota;v=99} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="tellraw <target.name> ['''',{text:''✦ Mascotas ✦ '',color:''#FFB347'',bold:true},{text:''(una a la vez - suben de nivel con los mobs que matas)'',color:''gray''}]"}'
+  - 'skill{s=MASC_MENU_NINGUNA}'
+  - 'skill{s=MASC_MENU_lobo}'
+  - 'skill{s=MASC_MENU_cuervo}'
+  - 'skill{s=MASC_MENU_golem}'
+  - 'skill{s=MASC_MENU_zorro}'
+  - 'skill{s=MASC_MENU_dragon}'
+  - 'skill{s=MASC_MENU_fenix}'
+  - 'command{c="tellraw <target.name> {text:''[Guardar mascota]'',color:''gray'',click_event:{action:''run_command'',command:''/trigger mascota set 98''}}"}'
+
+MASC_MENU_NINGUNA:
+  TargetConditions:
+  - haspermission{p=astral.mascota.lobo} false
+  - haspermission{p=astral.mascota.cuervo} false
+  - haspermission{p=astral.mascota.golem} false
+  - haspermission{p=astral.mascota.zorro} false
+  - haspermission{p=astral.mascota.dragon} false
+  - haspermission{p=astral.mascota.fenix} false
+  Skills:
+  - 'message{m="&7Todavia no tenes mascotas. &8Algunas caen de mobs raros, otras de la mazmorra o la Gacha de Monturas."}'
+
+MASC_MENU_lobo:
+  TargetConditions:
+  - haspermission{p=astral.mascota.lobo} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Lobo del Bosque '',color:''#9AA0A8'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_lobo''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 1''},hover_event:{action:''show_text'',value:''Fuerza I / + Velocidad I / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_cuervo:
+  TargetConditions:
+  - haspermission{p=astral.mascota.cuervo} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cuervo Arcano '',color:''#B07CFF'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_cuervo''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 2''},hover_event:{action:''show_text'',value:''Vision nocturna y marca a los mobs cercanos / + Suerte / + Velocidad I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_golem:
+  TargetConditions:
+  - haspermission{p=astral.mascota.golem} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Golem de Piedra '',color:''#8A8A8A'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_golem''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 3''},hover_event:{action:''show_text'',value:''Resistencia I / + Regeneracion I / + 2 corazones de absorcion (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_zorro:
+  TargetConditions:
+  - haspermission{p=astral.mascota.zorro} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Zorro Espectral '',color:''#BFE8FF'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_zorro''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 4''},hover_event:{action:''show_text'',value:''Velocidad I / + Salto I / Velocidad II (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_dragon:
+  TargetConditions:
+  - haspermission{p=astral.mascota.dragon} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Dragoncito de Fuego '',color:''#E04A3A'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_dragon''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 5''},hover_event:{action:''show_text'',value:''Resistencia al fuego / + Fuerza I / + Prisa I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_fenix:
+  TargetConditions:
+  - haspermission{p=astral.mascota.fenix} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Fenix '',color:''#FF7A2A'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_fenix''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 6''},hover_event:{action:''show_text'',value:''Te salva con poca vida (cada 10 min) / cada 7 min / cada 5 min (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_GUARDAR:
+  TargetConditions:
+  - score{o=mascota;v=98} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
+  - 'message{m="&7Guardaste tu mascota."}'
+
+MASC_LOBBY:
+  TargetConditions:
+  - score{o=mascota;v=1to6} true
+  - world{w=lobby} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cEn el lobby no pueden salir mascotas. &7Invocala en el mundo."}'
+
+MASC_NIVELES:
+  Skills:
+  - 'command{c="execute as @a[scores={petsel=1,petkills=1..}] run scoreboard players operation @s pxp_lobo += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=1}] run scoreboard players operation @s plv_lobo = @s pxp_lobo"} @self'
+  - 'command{c="execute as @a[scores={petsel=1}] run scoreboard players operation @s plv_lobo /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=1}] run scoreboard players add @s plv_lobo 1"} @self'
+  - 'command{c="execute as @a[scores={plv_lobo=31..}] run scoreboard players set @s plv_lobo 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=2,petkills=1..}] run scoreboard players operation @s pxp_cuervo += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=2}] run scoreboard players operation @s plv_cuervo = @s pxp_cuervo"} @self'
+  - 'command{c="execute as @a[scores={petsel=2}] run scoreboard players operation @s plv_cuervo /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=2}] run scoreboard players add @s plv_cuervo 1"} @self'
+  - 'command{c="execute as @a[scores={plv_cuervo=31..}] run scoreboard players set @s plv_cuervo 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=3,petkills=1..}] run scoreboard players operation @s pxp_golem += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=3}] run scoreboard players operation @s plv_golem = @s pxp_golem"} @self'
+  - 'command{c="execute as @a[scores={petsel=3}] run scoreboard players operation @s plv_golem /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=3}] run scoreboard players add @s plv_golem 1"} @self'
+  - 'command{c="execute as @a[scores={plv_golem=31..}] run scoreboard players set @s plv_golem 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=4,petkills=1..}] run scoreboard players operation @s pxp_zorro += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=4}] run scoreboard players operation @s plv_zorro = @s pxp_zorro"} @self'
+  - 'command{c="execute as @a[scores={petsel=4}] run scoreboard players operation @s plv_zorro /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=4}] run scoreboard players add @s plv_zorro 1"} @self'
+  - 'command{c="execute as @a[scores={plv_zorro=31..}] run scoreboard players set @s plv_zorro 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=5,petkills=1..}] run scoreboard players operation @s pxp_dragon += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=5}] run scoreboard players operation @s plv_dragon = @s pxp_dragon"} @self'
+  - 'command{c="execute as @a[scores={petsel=5}] run scoreboard players operation @s plv_dragon /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=5}] run scoreboard players add @s plv_dragon 1"} @self'
+  - 'command{c="execute as @a[scores={plv_dragon=31..}] run scoreboard players set @s plv_dragon 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=6,petkills=1..}] run scoreboard players operation @s pxp_fenix += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players operation @s plv_fenix = @s pxp_fenix"} @self'
+  - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players operation @s plv_fenix /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players add @s plv_fenix 1"} @self'
+  - 'command{c="execute as @a[scores={plv_fenix=31..}] run scoreboard players set @s plv_fenix 30"} @self'
+  - 'command{c="scoreboard players set @a petkills 0"} @self'
+  - 'command{c="scoreboard players enable @a mascota"} @self'
+

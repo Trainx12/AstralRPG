@@ -1,0 +1,241 @@
+# Mascotas (generado por datapack-src/mobs/mascotas.py)
+
+astral_pet_lobo:
+  Type: PIG
+  Display: '&fLobo del Bosque'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_lobo} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_lobo} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_lobo_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_lobo_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_lobo_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_lobo_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_lobo_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_cuervo:
+  Type: PIG
+  Display: '&fCuervo Arcano'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_cuervo} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_cuervo} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_cuervo_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_cuervo_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_cuervo_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_cuervo_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_cuervo_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+  - 'skill{s=PET_cuervo_MARCA} @owner ~onTimer:40'
+
+astral_pet_golem:
+  Type: PIG
+  Display: '&fGolem de Piedra'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_golem} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_golem} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_golem_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_golem_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_golem_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_golem_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_golem_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_zorro:
+  Type: PIG
+  Display: '&fZorro Espectral'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_zorro} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_zorro} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_zorro_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_zorro_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_zorro_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_zorro_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_zorro_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_dragon:
+  Type: PIG
+  Display: '&fDragoncito de Fuego'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_dragon} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_dragon} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_dragon_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_dragon_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_dragon_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_dragon_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_dragon_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_fenix:
+  Type: PIG
+  Display: '&fFenix'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_fenix} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_fenix} @self ~onLoad'
+  - 'setowner @NearestPlayer{r=4} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_fenix_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_fenix_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_fenix_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_fenix_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_fenix_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+  - 'skill{s=PET_fenix_RESCATE1} @owner ~onTimer:10 ?!hastag{tag=pet.rescate}'
+  - 'skill{s=PET_fenix_RESCATE2} @owner ~onTimer:10 ?!hastag{tag=pet.rescate}'
+  - 'skill{s=PET_fenix_RESCATE3} @owner ~onTimer:10 ?!hastag{tag=pet.rescate}'
+
+astral_mascotas_control:
+  Type: ARMOR_STAND
+  Display: 'Control de mascotas'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=MASC_MENU} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_GUARDAR} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_LOBBY} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NIVELES} @self ~onTimer:20'
+  - 'skill{s=MASC_INVOCAR_lobo} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_lobo} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_cuervo} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_cuervo} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_golem} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_golem} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_zorro} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_zorro} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_dragon} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_dragon} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_fenix} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_fenix} @PlayersOnServer ~onTimer:5'
+

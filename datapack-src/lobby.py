@@ -86,6 +86,11 @@ def rpg_rewards():
 
 
 # ------------------------------------------------------------------ gacha de monturas y mascotas
+def mascota(pid):
+    return [f"lp user %player% permission set astral.mascota.{pid} true", "eco give %player% 1000",
+            "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"]
+
+
 def mount_rewards():
     def egg(mob, saddle=True):
         c = [f"mm egg give %player% {mob} 1"]
@@ -102,6 +107,10 @@ def mount_rewards():
         ("rare", 8, "Montura: Chocobo", egg("astral_chocobo")),
         ("epic", 10, "Montura voladora: Gran Ave", egg("astral_ave")),
         ("legendary", 10, "Montura voladora: Pterodactilo", egg("astral_pterodactilo")),
+        # mascotas que te siguen (mobs/mascotas.py): se guardan como permiso; si ya la tenias, igual te llevas 1000$
+        ("rare", 6, "Mascota 3D: Cuervo Arcano", mascota("cuervo")),
+        ("epic", 6, "Mascota 3D: Dragoncito de Fuego", mascota("dragon")),
+        ("legendary", 6, "Mascota 3D: Fenix", mascota("fenix")),
     ]
 
 

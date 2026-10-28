@@ -87,6 +87,24 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
 - Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.
 
+## Mascotas
+
+6 mascotas 3D que siguen al jugador (también entre mundos) y le dan efectos mientras están afuera. Una a la vez. En el lobby no salen.
+
+| Mascota | Nivel 1 | Nivel 10 | Nivel 20 | Cómo se consigue |
+|---|---|---|---|---|
+| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | 3% al matar Espantapájaros o Abejorros |
+| Cuervo Arcano | Visión nocturna, marca a los mobs cerca | + Suerte | + Velocidad I | Gacha de Monturas (raro) |
+| Gólem de Piedra | Resistencia I | + Regeneración I | + Absorción | Mazmorra: 15% el Gólem Antiguo, 5% el cofre |
+| Zorro Espectral | Velocidad I | + Salto I | Velocidad II | 20% el Yeti, 2% las Caras Voladoras |
+| Dragoncito de Fuego | Resistencia al fuego | + Fuerza I | + Prisa I | Gacha de Monturas (épico) |
+| Fénix | Te salva con poca vida cada 10 min | cada 7 min | cada 5 min | Gacha de Monturas (legendario) |
+
+- **Uso:** `/mascotas` (alias en `commands.yml` → `/trigger mascota set 99`) abre un menú con botones *Invocar* y *Guardar*.
+- **Niveles:** 1 nivel cada 25 mobs que mata el dueño con la mascota afuera, hasta 30. Nivel 30: más grande y con partículas.
+- **Por dentro:** tener la mascota = permiso `astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix>`; la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
+- Dar una mascota a mano: `lp user <jugador> permission set astral.mascota.<id> true`. Armado: `build/mascotas/comandos.txt`.
+
 ## Bazar y subastas (lobby)
 
 - **Bazar:** sala de piedra adentro del edificio grande del norte, detrás del vendedor de la tienda. 4 puestos contra la pared del fondo (x 171-185, z 149-150, pies en y 101), con 2 cofres cada uno y un cartel flotante (tag `astral_bazar`).
@@ -171,7 +189,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 | `trigger astral.guia` | Abre la guía (también Esc → Guía AstralRPG) |
 | `mm mobs spawn astral_<id>` | Spawnear una criatura (ej. `astral_chocobo`, `astral_yeti`) |
 | `mm mobs list` | Lista de criaturas cargadas (tienen que ser 34: 27 criaturas + 7 vendedores) |
-| `bettermodel reload` | Recargar modelos (tienen que ser 20: 17 criaturas + 3 cofres) |
+| `bettermodel reload` | Recargar modelos (tienen que ser 26: 17 criaturas, 3 cofres y 6 mascotas) |
 | `bolt edit add <amigo>` y clic en la caja | Compartir un cofre o shulker protegido |
 | `bolt trust` | Confiar todas tus protecciones a un amigo |
 | `bolt info` y clic | Ver de quién es una protección |

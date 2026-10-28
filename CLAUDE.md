@@ -22,6 +22,7 @@ python build_pack.py pack-source   # resource pack
 python mobs/build_models.py        # modelos 3D de criaturas (.bbmodel)
 python mobs/mythic.py              # MythicMobs: criaturas, monturas, jefes, vendedores
 python mobs/mazmorra.py           # Mazmorra Minas Olvidadas (salas, mobs, jefe, cofre)
+python mobs/mascotas.py           # Mascotas 3D (/mascotas, bonus, niveles)
 python lobby.py                    # gachas (CrazyCrates), cobro, panel TAB, comandos del lobby
 ```
 

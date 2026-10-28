@@ -1179,6 +1179,155 @@ def _estrella(m):      # Gacha de Cosmeticos: estrella al frente
     box(m, "cuerpo", (-1.5, 3, -7.7), (1.5, 6, -7), "#ffe066")
 
 
+# ------------------------------------------------------------------ mascotas (chiquitas, siguen al jugador)
+def _cuadrupedo(m, col, dark, pat, ancho=2.6, largo=4.5, alto=5, pata=1.0):
+    """Cuerpo y 4 patas de mascota chiquita. Devuelve la lista de patas para animar."""
+    m.bone("body", (0, alto, 0))
+    m.blob("body", (0, alto + 1.2, 0.5), (ancho, 2.4, largo), col, pat=pat, axis=2, levels=3)
+    legs = []
+    for n, x, z in (("leg_fl", -1.4, -2.6), ("leg_fr", 1.4, -2.6), ("leg_bl", -1.4, 3.2), ("leg_br", 1.4, 3.2)):
+        m.bone(n, (x, alto - 0.5, z), "body")
+        m.rcube(n, (x - pata, 0, z - pata), (x + pata, alto, z + pata), dark, r=0.4, pat=pat)
+        legs.append(n)
+    return legs
+
+
+def mascota_lobo():
+    m = Model("astral_pet_lobo")
+    legs = _cuadrupedo(m, "#8a8f98", "#6a6f78", "fur")
+    m.blob("body", (0, 6.6, -2.8), (2.4, 2.2, 1.6), "#e0e0e6", pat="fur", levels=2)                          # pecho claro
+    m.bone("head", (0, 7.5, -4.2), "body")
+    m.rcube("head", (-2.4, 6, -8), (2.4, 10, -4), "#9aa0a8", r=1.2, pat="fur")
+    m.rcube("head", (-1.3, 6, -10), (1.3, 8.2, -7.5), "#d8d8de", r=0.6)                                      # hocico
+    box(m, "head", (-0.6, 7.6, -10.4), (0.6, 8.4, -9.9), "#1a1a1a")                                         # nariz
+    eye_front(m, "head", 0.6, 1.8, 8.4, 9.4, -8, "#f2c94c", pupil="#1a1a1a")
+    mirror(m, "head", (1.1, 10, -6.5), (2.3, 12.2, -5.2), "#6a6f78")                                       # orejas
+    m.bone("tail", (0, 7.5, 4.6), "body", rotation=(-35, 0, 0))
+    taper(m, "tail", [((0, 7.5, 5.6), 0.9, 0.9, 2), ((0, 7.5, 7.4), 1.1, 1.1, 2), ((0, 7.5, 9.2), 0.8, 0.8, 1.8)], "#8a8f98",
+          pat="fur", cols=["#8a8f98", "#8a8f98", "#e0e0e6"])
+    m.anim("walk", 0.6, merge(walk4(legs, 35, 2), {"tail": {"rotation": (-35, swing(20, 3), 0)}}))
+    m.anim("idle", 2, {"tail": {"rotation": (-35, swing(15, 1), 0)}, "head": {"rotation": (swing(4, 0.5), swing(10, 0.25), 0)}})
+    return m
+
+
+def mascota_zorro():
+    m = Model("astral_pet_zorro")
+    legs = _cuadrupedo(m, "#bfe8ff", "#8ab8e0", "fur", ancho=2.2, largo=4, alto=4, pata=0.8)
+    m.bone("head", (0, 6, -3.6), "body")
+    m.rcube("head", (-2.2, 4.8, -7), (2.2, 8.4, -3.4), "#d8f2ff", r=1.0, pat="fur")
+    m.rcube("head", (-1, 4.8, -9), (1, 6.6, -6.6), "#ffffff", r=0.5)
+    box(m, "head", (-0.5, 6, -9.3), (0.5, 6.7, -8.9), "#3a5a8a")
+    eye_front(m, "head", 0.6, 1.6, 6.8, 7.8, -7, "#7ad8ff", pupil="#ffffff")
+    mirror(m, "head", (0.9, 8.4, -5.8), (2.2, 11, -4.6), "#8ab8e0")
+    m.bone("tail", (0, 6, 4), "body", rotation=(-25, 0, 0))
+    taper(m, "tail", [((0, 6, 5.5), 1.4, 1.4, 3), ((0, 6, 8.5), 2, 2, 3), ((0, 6, 11.3), 1.4, 1.4, 2.6)], "#bfe8ff",
+          pat="fur", cols=["#bfe8ff", "#d8f2ff", "#ffffff"])
+    m.anim("walk", 0.5, merge(walk4(legs, 40, 2.5), {"tail": {"rotation": (-25, swing(18, 2.5), 0)}}))
+    m.anim("idle", 2, {"tail": {"rotation": (-25, swing(20, 0.5), 0)}, "body": {"position": (0, swing(0.3, 0.5), 0)}})
+    return m
+
+
+def mascota_golem():
+    m = Model("astral_pet_golem")
+    m.bone("body", (0, 5, 0))
+    m.rcube("body", (-3.5, 4, -2.5), (3.5, 10, 2.5), "#8a8a8a", {"north": [(2, 2, 3, 2, "#5aa0ff")]}, r=1, pat="stone")   # torso con cristal
+    box(m, "body", (-1.2, 6.5, -2.9), (1.2, 8.5, -2.5), "#7ac8ff")
+    m.bone("head", (0, 10, 0), "body")
+    m.rcube("head", (-2.2, 10, -2), (2.2, 13.5, 2), "#9a9a9a", r=0.8, pat="stone")
+    eye_front(m, "head", 0.5, 1.5, 11.5, 12.3, -2, "#7ac8ff", pupil=None)
+    box(m, "head", (-0.8, 13.5, -0.8), (0.8, 14.5, 0.8), "#5a9a3a")                                          # musguito
+    legs = []
+    for n, s in (("arm_l", 1), ("arm_r", -1)):
+        m.bone(n, (3.8 * s, 9, 0), "body")
+        a, b = sorted((3.5 * s, 5.3 * s))
+        m.rcube(n, (a, 3, -1.3), (b, 9.5, 1.3), "#7a7a7a", r=0.6, pat="stone")
+        legs.append(n)
+    for n, x in (("leg_l", -1.6), ("leg_r", 1.6)):
+        m.bone(n, (x, 4, 0), "body")
+        m.rcube(n, (x - 1.2, 0, -1.3), (x + 1.2, 4.2, 1.3), "#6a6a6a", r=0.5, pat="stone")
+    m.anim("walk", 0.8, {"leg_l": {"rotation": (swing(25, 1.25), 0, 0)}, "leg_r": {"rotation": (swing(25, 1.25, 180), 0, 0)},
+                         "arm_l": {"rotation": (swing(20, 1.25, 180), 0, 0)}, "arm_r": {"rotation": (swing(20, 1.25), 0, 0)}})
+    m.anim("idle", 3, {"head": {"rotation": (0, swing(12, 0.33), 0)}, "body": {"position": (0, swing(0.2, 0.33), 0)}})
+    return m
+
+
+def _pajaro(name, col, dark, pecho, pico, ojo, cola, cresta=None, alto=10):
+    """Pajarito que vuela al lado del jugador (el cuerpo flota a 'alto' unidades del piso)."""
+    m = Model(name)
+    m.bone("body", (0, alto, 0))
+    m.blob("body", (0, alto + 1.5, 0), (2.4, 2.4, 3.6), col, pat="feather", axis=2, levels=3)
+    m.blob("body", (0, alto + 1, -1), (1.8, 1.8, 2.4), pecho, pat="feather", levels=2)
+    m.bone("head", (0, alto + 3, -2.5), "body")
+    m.rcube("head", (-1.8, alto + 2.5, -5.5), (1.8, alto + 6, -2), col, r=1.0, pat="feather")
+    box(m, "head", (-0.6, alto + 3.6, -7.2), (0.6, alto + 4.6, -5.5), pico)
+    eye_front(m, "head", 0.5, 1.4, alto + 4.3, alto + 5.2, -5.5, ojo, pupil="#111111")
+    if cresta:
+        for k in range(3):
+            box(m, "head", (-0.4, alto + 6 + k * 0.5, -4.5 + k * 1.2), (0.4, alto + 7.5 + k * 0.6, -3.5 + k * 1.2), cresta)
+    for n, s in (("wing_l", 1), ("wing_r", -1)):
+        m.bone(n, (2.2 * s, alto + 2.5, 0), "body")
+        a, b = sorted((2.2 * s, 7.5 * s))
+        m.cube(n, (a, alto + 2, -2.5), (b, alto + 2.8, 2.5), dark, pat="feather")
+        a, b = sorted((5.5 * s, 8.5 * s))
+        m.cube(n, (a, alto + 2.1, -1.5), (b, alto + 2.7, 3.5), col, pat="feather")
+    m.bone("tail", (0, alto + 1.5, 3.2), "body")
+    for k, x in enumerate((-1.2, 0, 1.2)):
+        box(m, "tail", (x - 0.6, alto + 1, 3), (x + 0.6, alto + 1.6, 7 + (k == 1) * 1.5), cola)
+    for x in (-1, 1):                                                                                       # patitas colgando
+        box(m, "body", (x - 0.3, alto - 1.5, -0.3), (x + 0.3, alto, 0.3), pico)
+    flap = {"wing_l": {"rotation": (0, 0, swing(35, 3))}, "wing_r": {"rotation": (0, 0, swing(-35, 3))},
+            "body": {"position": (0, swing(0.8, 1.5), 0)}}
+    m.anim("walk", 0.5, flap)
+    m.anim("idle", 1, merge(flap, {"head": {"rotation": (0, swing(15, 0.5), 0)}}))
+    return m
+
+
+def mascota_cuervo():
+    return _pajaro("astral_pet_cuervo", "#2a2440", "#1a1628", "#3a3260", "#4a4a5a", "#b07cff", "#5a3a9a", cresta="#b07cff")
+
+
+def mascota_fenix():
+    m = _pajaro("astral_pet_fenix", "#ff7a2a", "#e04a1a", "#ffd24a", "#ffcc33", "#ffffff", "#ffb020", cresta="#ffe066", alto=11)
+    return m
+
+
+def mascota_dragon():
+    m = Model("astral_pet_dragon")
+    alto = 9
+    m.bone("body", (0, alto, 0))
+    m.blob("body", (0, alto + 1.5, 0.5), (2.6, 2.4, 4), "#d8342a", pat="scale", axis=2, levels=3)
+    m.blob("body", (0, alto + 0.8, -0.5), (1.8, 1.6, 3), "#f2c94c", pat="scale", levels=2)                   # panza dorada
+    for z in (-2, 0, 2):                                                                                    # pinches del lomo
+        box(m, "body", (-0.4, alto + 3.8, z), (0.4, alto + 5, z + 0.8), "#f2c94c")
+    m.bone("head", (0, alto + 3, -3.5), "body")
+    m.rcube("head", (-2, alto + 2.5, -7), (2, alto + 6, -3.5), "#e04a3a", r=1.0, pat="scale")
+    m.rcube("head", (-1.2, alto + 2.5, -9), (1.2, alto + 4.3, -6.5), "#e04a3a", r=0.5, pat="scale")
+    eye_front(m, "head", 0.6, 1.6, alto + 4.4, alto + 5.4, -7, "#ffe066", pupil="#1a1a1a")
+    mirror(m, "head", (0.8, alto + 6, -5), (1.4, alto + 8, -3.8), "#f2c94c")                                # cuernitos
+    box(m, "head", (-0.6, alto + 3.3, -9.4), (0.6, alto + 3.8, -9), "#2a1010")
+    for n, s in (("wing_l", 1), ("wing_r", -1)):
+        m.bone(n, (2.4 * s, alto + 3, 0), "body")
+        a, b = sorted((2.4 * s, 9 * s))
+        m.cube(n, (a, alto + 3, -1), (b, alto + 3.6, 3.5), "#a02020", pat="membrane")
+        a, b = sorted((2.4 * s, 9 * s))
+        m.cube(n, (a, alto + 3.6, -1.2), (b, alto + 4.2, -0.6), "#f2c94c")                                  # hueso del ala
+    m.bone("tail", (0, alto + 1.5, 4.4), "body")
+    taper(m, "tail", [((0, alto + 1.5, 5.6), 1.2, 1.1, 2.4), ((0, alto + 1.4, 7.8), 0.9, 0.8, 2.2), ((0, alto + 1.3, 9.7), 0.6, 0.6, 1.8)],
+          "#d8342a", pat="scale")
+    box(m, "tail", (-1, alto + 1, 10.4), (1, alto + 1.8, 11.6), "#f2c94c")                                   # punta de flecha
+    for x in (-1.3, 1.3):
+        box(m, "body", (x - 0.5, alto - 1.5, -1.5), (x + 0.5, alto + 0.5, -0.5), "#a02020")
+        box(m, "body", (x - 0.5, alto - 1.5, 2), (x + 0.5, alto + 0.5, 3), "#a02020")
+    flap = {"wing_l": {"rotation": (0, 0, swing(30, 2.5))}, "wing_r": {"rotation": (0, 0, swing(-30, 2.5))},
+            "body": {"position": (0, swing(0.8, 1.25), 0)}, "tail": {"rotation": (0, swing(15, 1.25), 0)}}
+    m.anim("walk", 0.8, flap)
+    m.anim("idle", 1.6, merge(flap, {"head": {"rotation": (swing(5, 0.6), swing(12, 0.3), 0)}}))
+    return m
+
+
+MASCOTAS = [mascota_lobo, mascota_cuervo, mascota_golem, mascota_zorro, mascota_dragon, mascota_fenix]
+
+
 def cofre_rpg():
     return _cofre("astral_cofre_rpg", "#6a3aa8", "#e8c24a", "#4fd1ff", "#c8a0ff", _espada)
 
@@ -1193,6 +1342,7 @@ def cofre_cosmeticos():
 
 ALL = [mapache, pinguino, espantapajaros, abejorro, arana, cara, lagarto, escarabajo, chocobo, grillo, ave,
        pterodactilo, momia, yeti, golem_forja, cangrejo, chaman, cofre_rpg, cofre_monturas, cofre_cosmeticos]
+ALL += MASCOTAS
 
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

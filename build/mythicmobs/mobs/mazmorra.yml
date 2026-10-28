@@ -147,6 +147,7 @@ astral_mina_golem:
   Drops:
   - exp 15
   Skills:
+  - 'skill{s=PET_GANAR_GOLEM} @trigger ~onDeath 0.15'
   - 'throw{velocity=7;velocityY=3} @target ~onAttack 0.4'
   - 'skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'

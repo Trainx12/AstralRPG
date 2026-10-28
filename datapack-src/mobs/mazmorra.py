@@ -55,7 +55,8 @@ MOBS = {
     "astral_mina_golem": dict(type="IRON_GOLEM", name="&7&lGolem de Piedra Antiguo", hp=480, dmg=14, speed=0.22, boss="WHITE",
                               hostile=True, money=500,
                               drops=drop("alma_corrupta", 1.0) + drop("esencia_elite", 1.0, 2) + drop("netherita_fundida", 0.5),
-                              skills=["throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
+                              skills=["skill{s=PET_GANAR_GOLEM} @trigger ~onDeath 0.15",      # mascota (mascotas.py)
+                                      "throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
                                       "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140"]),
     # jefe final (modelo del Golem de la Forja, mas grande y gris piedra)
     "astral_mina_guardian": dict(type="IRON_GOLEM", name="&8&lGuardian de las Profundidades", hp=1000, dmg=16, speed=0.24,
@@ -223,6 +224,7 @@ def skill_yml():
         L += ["  - " + q(f'command{{c="loot give <target.name> loot astral:item/{it}"}}')] * n
     L += ["  - " + q('command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'),
           "  - " + q(f'command{{c="eco give <target.name> {PREMIO_PLATA}"}}'),
+          "  - " + q("skill{s=PET_GANAR_GOLEM} 0.05"),
           "  - " + q(f'command{{c="lp user <target.name> permission settemp astral.mina.cd true {COOLDOWN}"}}'),
           "  - " + q(f'message{{m="&6Cofre de la Mina: &fmateriales de elite y &e{PREMIO_PLATA}$&f. &7(el proximo cofre en 30 minutos)"}}'),
           "",

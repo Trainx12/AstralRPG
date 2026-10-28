@@ -124,18 +124,46 @@ Crate:
         - "<gray>Rareza: <gold><bold>Legendario"
         - "<gold>★★★★★<dark_gray>"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>12.5%"
+        - "<gray>Probabilidad: <yellow><bold>7.81%"
         - "<gold>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 12.5
+      Weight: 7.8125
       Commands:
         - "mm egg give %player% astral_pterodactilo 1"
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
     "2":
+      DisplayName: "<gold><bold>Mascota 3D: Fenix"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>4.69%"
+        - "<gold>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 4.6875
+      Commands:
+        - "lp user %player% permission set astral.mascota.fenix true"
+        - "eco give %player% 1000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "scoreboard players set %player% pity_monturas 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
+    "3":
       DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
       DisplayItem: "parrot_spawn_egg"
       Settings:
@@ -151,14 +179,42 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>87.5%"
-        - "<light_purple>▮▮▮▮▮▮▮▮▮▮<dark_gray>"
+        - "<gray>Probabilidad: <yellow><bold>54.69%"
+        - "<light_purple>▮▮▮▮▮▮▮▮▮<dark_gray>▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 87.5
+      Weight: 54.6875
       Commands:
         - "mm egg give %player% astral_ave 1"
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
+    "4":
+      DisplayName: "<light_purple><bold>Mascota 3D: Dragoncito de Fuego"
+      DisplayItem: "name_tag"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>32.81%"
+        - "<light_purple>▮▮▮▮▮▮▮▮▮<dark_gray>▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 32.8125
+      Commands:
+        - "lp user %player% permission set astral.mascota.dragon true"
+        - "eco give %player% 1000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "scoreboard players set %player% pity_monturas 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Dragoncito de Fuego',color:'white'}]"
