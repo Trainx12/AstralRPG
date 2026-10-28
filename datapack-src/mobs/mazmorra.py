@@ -143,7 +143,7 @@ def mob_yml():
 
 
 def tp(x, y, z, who="<target.name>"):
-    return f'command{{c="execute in minecraft:{WORLD} run tp {who} {x} {y} {z}"}}'
+    return f'command{{c="execute in minecraft:{WORLD} run minecraft:tp {who} {x} {y} {z}"}}'
 
 
 def skill_yml():

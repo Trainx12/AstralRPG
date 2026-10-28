@@ -75,7 +75,7 @@ MINA_SALA1_LIMPIA:
 
 MINA_IR_SALA2:
   Skills:
-  - 'command{c="execute in minecraft:mina run tp <target.name> 19.5 -39 -158.5"}'
+  - 'command{c="execute in minecraft:mina run minecraft:tp <target.name> 19.5 -39 -158.5"}'
   - 'sound{s=entity.enderman.teleport}'
 
 MINA_SALA1_RESET:
@@ -123,7 +123,7 @@ MINA_SALA2_LIMPIA:
 
 MINA_IR_SALA3:
   Skills:
-  - 'command{c="execute in minecraft:mina run tp <target.name> 43.5 -24 -201.5"}'
+  - 'command{c="execute in minecraft:mina run minecraft:tp <target.name> 43.5 -24 -201.5"}'
   - 'sound{s=entity.enderman.teleport}'
 
 MINA_SALA2_RESET:
@@ -171,7 +171,7 @@ MINA_SALA3_LIMPIA:
 
 MINA_IR_SALA4:
   Skills:
-  - 'command{c="execute in minecraft:mina run tp <target.name> 40.5 24 -225.5"}'
+  - 'command{c="execute in minecraft:mina run minecraft:tp <target.name> 40.5 24 -225.5"}'
   - 'sound{s=entity.enderman.teleport}'
 
 MINA_SALA3_RESET:
@@ -241,5 +241,5 @@ MINA_PREMIO_YA:
 MINA_ENTRAR:
   Skills:
   - 'message{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8(4 salas. Para salir: /spawn)"}'
-  - 'command{c="execute in minecraft:mina run tp <trigger.name> 10.5 -45 -124.5"}'
+  - 'command{c="execute in minecraft:mina run minecraft:tp <trigger.name> 10.5 -45 -124.5"}'
 
