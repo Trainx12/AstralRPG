@@ -201,7 +201,7 @@ def commands():
           "rg flag -w lobby __global__ mob-spawning deny",
           "# /mascotas: agregar en commands.yml (raiz de Files), dentro de 'aliases:'",
           "#   mascotas:",
-          "#   - trigger mascota set 99",
+          "#   - minecraft:trigger mascota set 99",
           "# despues: reiniciar (los alias se cargan al arrancar)",
           "# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix> true"]
     return "\n".join(C) + "\n"
