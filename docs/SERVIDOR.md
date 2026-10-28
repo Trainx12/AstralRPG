@@ -50,6 +50,7 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | Multiverse-Core 5.8.2 | Mundo aparte `lobby` (la isla de spawn) |
 | EssentialsX 2.22.0 + EssentialsX Spawn + Vault | Monedas (`/balance`, `/pay`), `/spawn` al lobby |
 | EconomyShopGUI 7.3.3 | Tienda (`/shop`) y venta rápida (`/sellgui`) de ítems vanilla |
+| CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
 
 ## Lobby (mundo `lobby`)
 
@@ -67,10 +68,11 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 | Sureste | Gacha de Cosméticos (500$) | Títulos para el chat y moldes de adorno |
 | Junto al banco del sur | Viajero | Te lleva al mundo normal |
 
-  En las gachas: clic para tirar, shift + clic para ver premios y probabilidades (común 60%, poco común 25%, raro 11%, épico 3,5%, legendario 0,5%).
+  En las gachas: clic para tirar (el vendedor cobra y abre la ruleta de CrazyCrates con `crates forceopen`), shift + clic para ver la vitrina de premios (común 60%, poco común 25%, raro 11%, épico 3,5%, legendario 0,5%).
 - **Monedas:** se empieza con 250$. Se gana vendiendo en la tienda y matando: 15$ por hostil de AstralRPG, 150$ por élite y 750$ por jefe.
-- **Archivos:** `datapack-src/lobby.py` genera `build/mythicmobs/skills/gachas.yml` (premios), `build/lobby/Essentials/spawn.yml` y `build/lobby/comandos.txt` (todos los comandos de consola para armarlo de nuevo). Los vendedores están en `datapack-src/mobs/mythic.py` (`NPCS`).
+- **Archivos:** `datapack-src/lobby.py` genera `build/lobby/CrazyCrates/crates/*.yml` (premios y probabilidades), `build/mythicmobs/skills/gachas.yml` (cobro), `build/lobby/Essentials/spawn.yml` y `build/lobby/comandos.txt` (todos los comandos de consola para armarlo de nuevo). Los vendedores están en `datapack-src/mobs/mythic.py` (`NPCS`).
 - Si falta un vendedor: correr las líneas `mm mobs spawn astral_npc_...` de `comandos.txt` (con el `mob-spawning allow`/`deny` de alrededor). Para borrar uno: `mm mobs kill astral_npc_<nombre>`.
+- Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
 - Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.
 
 ## Datapacks (`world/datapacks`)
