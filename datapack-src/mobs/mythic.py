@@ -96,7 +96,7 @@ MOBS = {
                                hostile_ai=True,
                                skills=["- ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100",
                                        "- particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40",
-                                       "- message{m=\"&cEl suelo arde: el Golem de la Forja se levanta.\"} @PlayersInRadius{r=40} ~onSpawn"],
+                                       "- message{m=\"&cEl suelo arde, el Golem de la Forja se levanta.\"} @PlayersInRadius{r=40} ~onSpawn"],
                                spawn=dict(chance=0.002, world="world_nether", biomes=["minecraft:basalt_deltas", "minecraft:nether_wastes",
                                                                                        "minecraft:crimson_forest"])),
     "astral_cangrejo": dict(kind="jefe", type="SPIDER", name="&6&lCangrejo Ermitano Gigante", hp=260, damage=9, speed=0.26,
@@ -142,7 +142,7 @@ NPCS = {
     "astral_npc_gacha_cosmeticos": ("&b&lGacha de Cosmeticos &7(500$)", "CARTOGRAPHER",
                                     ["- command{c=\"crate preview gacha_cosmeticos <trigger.name>\"} @self ~onInteract"]),
     "astral_npc_viajero": ("&f&lViajero &7- ir al mundo", "NITWIT",
-                           ["- message{m=\"&7El Viajero te lleva al mundo... &8(para volver: &f/spawn&8)\"} @trigger ~onInteract",
+                           ["- message{m=\"&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)\"} @trigger ~onInteract",
                             "- command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract"]),
 }
 

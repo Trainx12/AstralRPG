@@ -424,7 +424,7 @@ astral_golem_forja:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
-  - message{m="&cEl suelo arde: el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+  - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
 
 astral_cangrejo:
@@ -805,5 +805,5 @@ astral_npc_viajero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - message{m="&7El Viajero te lleva al mundo... &8(para volver: &f/spawn&8)"} @trigger ~onInteract
+  - message{m="&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)"} @trigger ~onInteract
   - command{c="mvtp <trigger.name> w:world"} @self ~onInteract
