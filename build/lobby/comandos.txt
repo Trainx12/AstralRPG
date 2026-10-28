@@ -1,6 +1,9 @@
 # Comandos de consola (sin /) para dejar armado el lobby. Se pueden repetir sin problema.
-# --- mundo lobby: sin mobs, sin hambre, siempre de dia, protegido
-mv modify lobby set spawn-location 180.5,98,190.5:0:180
+# El mundo se crea una sola vez con:
+#   mv create lobby normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+#   y despues se reemplaza world/dimensions/minecraft/lobby/region/r.0.0.mca por el de la isla (con el server apagado).
+# --- mundo lobby: sin mobs, sin hambre, protegido
+mvsetspawn lobby:180.5,98,190.5,180,0
 mv modify lobby set difficulty peaceful
 mv modify lobby set pvp false
 mv modify lobby set hunger false
@@ -8,7 +11,7 @@ mv modify lobby set gamemode adventure
 mv modify lobby set allow-weather false
 mv gamerule set minecraft:advance_time false lobby
 mv gamerule set minecraft:spawn_mobs false lobby
-execute in minecraft:lobby run time set noon
+execute in minecraft:lobby run minecraft:time set noon
 execute in minecraft:lobby run worldborder center 178 192
 execute in minecraft:lobby run worldborder set 190
 rg flag -w lobby __global__ build deny
@@ -20,9 +23,12 @@ rg flag -w lobby __global__ item-drop deny
 rg flag -w lobby __global__ interact allow
 rg flag -w lobby __global__ chest-access deny
 # --- primera vez que entra alguien: aparece en el lobby
-mv config set spawn.first-spawn-override true
-mv config set spawn.first-spawn-location lobby
-mv config set spawn.enforce-respawn-at-world-spawn false
+mv config first-spawn-override true
+mv config first-spawn-location lobby
+mv config enforce-respawn-at-world-spawn false
+# --- titulos de la gacha en el chat (%luckperms_prefix%)
+papi ecloud download LuckPerms
+papi reload
 # --- permisos de jugador
 lp group default permission set essentials.spawn true
 lp group default permission set essentials.balance true
@@ -30,10 +36,12 @@ lp group default permission set essentials.balancetop true
 lp group default permission set essentials.pay true
 lp group default permission set essentials.worth true
 lp group default permission set essentials.help true
-# --- vendedores (MythicMobs)
+# --- vendedores (MythicMobs). WorldGuard no deja aparecer mobs en el lobby: se habilita un momento
+rg flag -w lobby __global__ mob-spawning allow
 mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
 mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0
 mm mobs spawn astral_npc_gacha_rpg 1 lobby,195.5,100,177.5,90,0
 mm mobs spawn astral_npc_gacha_monturas 1 lobby,158.5,100,205.5,-90,0
 mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,196.5,100,206.5,90,0
 mm mobs spawn astral_npc_viajero 1 lobby,180.5,100,212.5,180,0
+rg flag -w lobby __global__ mob-spawning deny

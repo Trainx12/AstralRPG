@@ -24,6 +24,8 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 **Reglas al cambiar archivos:**
 - Aternos no deja reemplazar archivos con el servidor prendido: hay que apagarlo antes de subir el datapack o configs nuevas.
 - Cada vez que cambia `AstralRPG-Textures.zip`, hay que actualizar `resource-pack-sha1` en `server.properties` con el sha1 nuevo. Si no se actualiza, los jugadores no bajan la versión nueva o el pack falla al cargar.
+- **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 (no había backups porque Aternos solo los hace con Google Drive vinculado). Conviene vincular Google Drive en Backups y bajar el mundo de vez en cuando.
+- En Paper 26.1 todos los mundos viven dentro de `world/`: `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/region`.
 
 ## Plugins
 
@@ -44,9 +46,36 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | nonchat | Filtro y formato de chat |
 | RHLeafDecay | Las hojas se caen rápido al talar |
 | LuckPerms | Permisos |
-| PlaceholderAPI | Variables para otros plugins |
+| PlaceholderAPI | Variables para otros plugins (con la expansión LuckPerms para los títulos en el chat) |
+| Multiverse-Core 5.8.2 | Mundo aparte `lobby` (la isla de spawn) |
+| EssentialsX 2.22.0 + EssentialsX Spawn + Vault | Monedas (`/balance`, `/pay`), `/spawn` al lobby |
+| EconomyShopGUI 7.3.3 | Tienda (`/shop`) y venta rápida (`/sellgui`) de ítems vanilla |
+
+## Lobby (mundo `lobby`)
+
+Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo vacío aparte, en modo aventura, sin mobs, sin PvP ni daño, y protegido con WorldGuard (`__global__`).
+
+- **Spawn:** centro de la plaza (180.5, 98, 190.5). Los jugadores nuevos aparecen ahí la primera vez; después entran donde salieron. `/spawn` vuelve al lobby, y si morís sin cama reaparecés en el lobby.
+- **Vendedores** (aldeanos de MythicMobs, quietos e invulnerables):
+
+| Edificio | Vendedor | Qué hace |
+|---|---|---|
+| Norte (grande) | Tienda | Abre `/shop` |
+| Noroeste | Venta rápida | Abre `/sellgui` |
+| Noreste | Gacha RPG (1000$) | Materiales, armas, talismanes |
+| Suroeste | Gacha de Monturas (2500$) | Monturas con silla y mascotas |
+| Sureste | Gacha de Cosméticos (500$) | Títulos para el chat y moldes de adorno |
+| Junto al banco del sur | Viajero | Te lleva al mundo normal |
+
+  En las gachas: clic para tirar, shift + clic para ver premios y probabilidades (común 60%, poco común 25%, raro 11%, épico 3,5%, legendario 0,5%).
+- **Monedas:** se empieza con 250$. Se gana vendiendo en la tienda y matando: 15$ por hostil de AstralRPG, 150$ por élite y 750$ por jefe.
+- **Archivos:** `datapack-src/lobby.py` genera `build/mythicmobs/skills/gachas.yml` (premios), `build/lobby/Essentials/spawn.yml` y `build/lobby/comandos.txt` (todos los comandos de consola para armarlo de nuevo). Los vendedores están en `datapack-src/mobs/mythic.py` (`NPCS`).
+- Si falta un vendedor: correr las líneas `mm mobs spawn astral_npc_...` de `comandos.txt` (con el `mob-spawning allow`/`deny` de alrededor). Para borrar uno: `mm mobs kill astral_npc_<nombre>`.
+- Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.
 
 ## Datapacks (`world/datapacks`)
+
+Tienen que estar antes de generar un mundo nuevo, si no, no aparecen sus estructuras. Se suben con Files → `world/datapacks` → Upload → Files.
 
 - **AstralRPG-Items.zip**: el nuestro. Tiene ítems, recetas, Forja Astral, guía, élites, taladros y motosierras.
 - Dungeons and Taverns 5.2.0 y DnT Stronghold Overhaul 2.4.0: estructuras.
@@ -108,7 +137,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 | `function astral:admin/materiales` | Dos de cada material |
 | `trigger astral.guia` | Abre la guía (también Esc → Guía AstralRPG) |
 | `mm mobs spawn astral_<id>` | Spawnear una criatura (ej. `astral_chocobo`, `astral_yeti`) |
-| `mm mobs list` | Lista de criaturas cargadas (tienen que ser 22) |
+| `mm mobs list` | Lista de criaturas cargadas (tienen que ser 28: 22 criaturas + 6 vendedores) |
 | `bettermodel reload` | Recargar modelos (tienen que ser 17) |
 | `bolt edit add <amigo>` y clic en la caja | Compartir un cofre o shulker protegido |
 | `bolt trust` | Confiar todas tus protecciones a un amigo |

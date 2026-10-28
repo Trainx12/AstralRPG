@@ -196,8 +196,12 @@ def spawn_yml():
 def commands():
     x, y, z, yaw = SPAWN
     C = ["# Comandos de consola (sin /) para dejar armado el lobby. Se pueden repetir sin problema.",
-         "# --- mundo lobby: sin mobs, sin hambre, siempre de dia, protegido",
-         f"mv modify {WORLD} set spawn-location {x},{y},{z}:0:{yaw}",
+         "# El mundo se crea una sola vez con:",
+         f"#   mv create {WORLD} normal --world-type FLAT --no-structures --no-adjust-spawn "
+         "--generator-settings {\"layers\":[{\"block\":\"minecraft:air\",\"height\":1}],\"biome\":\"minecraft:the_void\"}",
+         f"#   y despues se reemplaza world/dimensions/minecraft/{WORLD}/region/r.0.0.mca por el de la isla (con el server apagado).",
+         "# --- mundo lobby: sin mobs, sin hambre, protegido",
+         f"mvsetspawn {WORLD}:{x},{y},{z},{yaw},0",
          f"mv modify {WORLD} set difficulty peaceful",
          f"mv modify {WORLD} set pvp false",
          f"mv modify {WORLD} set hunger false",
@@ -205,7 +209,7 @@ def commands():
          f"mv modify {WORLD} set allow-weather false",
          f"mv gamerule set minecraft:advance_time false {WORLD}",
          f"mv gamerule set minecraft:spawn_mobs false {WORLD}",
-         f"execute in minecraft:{WORLD} run time set noon",
+         f"execute in minecraft:{WORLD} run minecraft:time set noon",
          f"execute in minecraft:{WORLD} run worldborder center 178 192",
          f"execute in minecraft:{WORLD} run worldborder set 190",
          f"rg flag -w {WORLD} __global__ build deny",
@@ -217,9 +221,12 @@ def commands():
          f"rg flag -w {WORLD} __global__ interact allow",
          f"rg flag -w {WORLD} __global__ chest-access deny",
          "# --- primera vez que entra alguien: aparece en el lobby",
-         "mv config set spawn.first-spawn-override true",
-         f"mv config set spawn.first-spawn-location {WORLD}",
-         "mv config set spawn.enforce-respawn-at-world-spawn false",
+         "mv config first-spawn-override true",
+         f"mv config first-spawn-location {WORLD}",
+         "mv config enforce-respawn-at-world-spawn false",
+         "# --- titulos de la gacha en el chat (%luckperms_prefix%)",
+         "papi ecloud download LuckPerms",
+         "papi reload",
          "# --- permisos de jugador",
          "lp group default permission set essentials.spawn true",
          "lp group default permission set essentials.balance true",
@@ -227,9 +234,11 @@ def commands():
          "lp group default permission set essentials.pay true",
          "lp group default permission set essentials.worth true",
          "lp group default permission set essentials.help true",
-         "# --- vendedores (MythicMobs)"]
+         "# --- vendedores (MythicMobs). WorldGuard no deja aparecer mobs en el lobby: se habilita un momento",
+         f"rg flag -w {WORLD} __global__ mob-spawning allow"]
     for mid, (nx, ny, nz, nyaw) in NPC_POS.items():
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")
+    C.append(f"rg flag -w {WORLD} __global__ mob-spawning deny")
     return "\n".join(C) + "\n"
 
 
