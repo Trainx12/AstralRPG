@@ -1587,6 +1587,17 @@ fn("guide/join", [
 # ---------------------------------------------------------------------------
 # Admin
 # ---------------------------------------------------------------------------
+# Kit para probar el Herrero y el bonus de set: materiales para llegar a +10 (con repuesto por si falla),
+# una espada, un arco y el set Berserker II completo
+_kit = {}
+for _L, (_p, _pr, _mats) in MEJORAS.items():
+    for _m, _n in _mats:
+        _kit[_m] = _kit.get(_m, 0) + _n
+fn("admin/kit_pruebas", [f"loot give @s loot {NS}:item/{m}" for m, n in _kit.items() for _ in range(n + n // 2)]
+   + [f"loot give @s loot {NS}:item/{i}" for i in ("espada_2", "arco_2")]
+   + [f"loot give @s loot {NS}:item/berserker_2_{pz}" for pz in PIECES]
+   + ["tellraw @s " + json.dumps(txt("Kit de pruebas: materiales para mejorar hasta +10, espada, arco y set Berserker II.",
+                                     "light_purple"))])
 fn("admin/materiales", [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS] + [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS])
 # Kits de prueba: cajas de shulker por categoria (el inventario no alcanza para todo)
 KITS = [
