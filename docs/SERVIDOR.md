@@ -166,6 +166,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - Avisos de MythicMobs sobre `ExampleQuest...`: son de los ejemplos que trae el plugin, no afectan nada.
 - Aviso de Paper "4 releases behind": se queda en 26.1.2 a propósito, porque los plugins están probados ahí.
 - Errores de GeoIP de AuthMe: no afectan.
+- Error al entrar `Failed to decode packet 'clientbound/minecraft:cookie_request'`: el servidor está apagado y responde la sala de espera de Aternos, que no es compatible con el cliente 26.1. Prender el servidor desde el panel y entrar cuando diga Online.
 - Si alguien no ve texturas: que acepte el resource pack al entrar. Si sigue igual, revisar que el sha1 coincida.
 - Si aparece "Unknown skill": cargar el preset legacy de AuraSkills (ver comandos).
 - El área de los taladros puede romper bloques dentro de una zona de WorldGuard si picás justo en el borde.
