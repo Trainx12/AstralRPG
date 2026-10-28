@@ -1,0 +1,245 @@
+# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)
+
+MINA_MODELO_astral_mina_guardian:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_golem_forja;s=1.5} @self
+  - delay 2
+  - tint{c=8A93A6} @self
+
+MINA_ONDA_GOLEM:
+  Skills:
+  - 'particles{p=cloud;amount=60;hS=5;vS=0.2;speed=0} @self'
+  - 'sound{s=entity.ravager.roar;v=1.5;p=0.7} @self'
+  - delay 20
+  - 'particles{p=explosion;amount=12;hS=5;vS=0.3} @self'
+  - 'damage{a=7} @PlayersInRadius{r=5}'
+  - 'throw{velocity=4;velocityY=2} @PlayersInRadius{r=5}'
+
+MINA_ONDA_GUARDIAN:
+  Skills:
+  - 'particles{p=cloud;amount=60;hS=6;vS=0.2;speed=0} @self'
+  - 'sound{s=entity.ravager.roar;v=1.5;p=0.7} @self'
+  - delay 20
+  - 'particles{p=explosion;amount=12;hS=6;vS=0.3} @self'
+  - 'damage{a=9} @PlayersInRadius{r=6}'
+  - 'throw{velocity=4;velocityY=2} @PlayersInRadius{r=6}'
+
+MINA_GUARDIAN_F2:
+  Skills:
+  - addtag{tag=mina.f2} @self
+  - 'message{m="&8&lEl Guardian golpea la roca: los mineros corruptos despiertan!"} @PlayersInRadius{r=48}'
+  - summon{type=astral_mina_minero;amount=3;radius=5} @self
+
+MINA_GUARDIAN_F3:
+  Skills:
+  - addtag{tag=mina.f3} @self
+  - 'message{m="&4&lEl Guardian se enfurece! Su piel de piedra se agrieta..."} @PlayersInRadius{r=48}'
+  - potion{type=STRENGTH;duration=999999;level=0} @self
+  - potion{type=SPEED;duration=999999;level=0} @self
+
+MINA_SALA1_INICIO:
+  Skills:
+  - addtag{tag=mina.on} @self
+  - addtag{tag=mina.ola1} @self
+  - 'message{m="&8[&7Mina&8] &fCampamento Minero &7- sala 1/4. &cAhi vienen!"} @PlayersInRadius{r=24}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=24}'
+  - 'summon{type=astral_mina_minero;amount=4;radius=4} @self'
+  - 'summon{type=astral_mina_minero;amount=2;radius=4} @self ?playersinradius{r=16;a=>1}'
+
+MINA_SALA1_OLA2:
+  Skills:
+  - addtag{tag=mina.ola2} @self
+  - addtag{tag=mina.espera} @self
+  - 'message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=24}'
+  - delay 40
+  - 'summon{type=astral_mina_minero;amount=3;radius=4} @self'
+  - 'summon{type=astral_mina_minero;amount=1;radius=4} @self ?playersinradius{r=16;a=>1}'
+  - 'summon{type=astral_mina_esqueleto;amount=3;radius=4} @self'
+  - 'summon{type=astral_mina_esqueleto;amount=1;radius=4} @self ?playersinradius{r=16;a=>1}'
+  - delay 10
+  - removetag{tag=mina.espera} @self
+
+MINA_SALA1_LIMPIA:
+  Skills:
+  - addtag{tag=mina.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fLago Subterraneo"} @PlayersInRadius{r=24}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=24}'
+  - delay 100
+  - 'skill{s=MINA_IR_SALA2} @PlayersInRadius{r=24}'
+  - delay 20
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_IR_SALA2:
+  Skills:
+  - 'command{c="execute in minecraft:mina run tp <target.name> 19.5 -39 -158.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+MINA_SALA1_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=24;types=astral_mina_esqueleto,astral_mina_minero}'
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.espera} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_SALA2_INICIO:
+  Skills:
+  - addtag{tag=mina.on} @self
+  - addtag{tag=mina.ola1} @self
+  - 'message{m="&8[&7Mina&8] &fLago Subterraneo &7- sala 2/4. &cAhi vienen!"} @PlayersInRadius{r=30}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=30}'
+  - 'summon{type=astral_mina_ahogado;amount=5;radius=4} @self'
+  - 'summon{type=astral_mina_ahogado;amount=2;radius=4} @self ?playersinradius{r=22;a=>1}'
+
+MINA_SALA2_OLA2:
+  Skills:
+  - addtag{tag=mina.ola2} @self
+  - addtag{tag=mina.espera} @self
+  - 'message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=30}'
+  - delay 40
+  - 'summon{type=astral_mina_capataz;amount=1;radius=4} @self'
+  - 'summon{type=astral_mina_ahogado;amount=2;radius=4} @self'
+  - 'summon{type=astral_mina_ahogado;amount=1;radius=4} @self ?playersinradius{r=22;a=>1}'
+  - delay 10
+  - removetag{tag=mina.espera} @self
+
+MINA_SALA2_LIMPIA:
+  Skills:
+  - addtag{tag=mina.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTuneles de Soporte"} @PlayersInRadius{r=30}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=30}'
+  - delay 100
+  - 'skill{s=MINA_IR_SALA3} @PlayersInRadius{r=30}'
+  - delay 20
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_IR_SALA3:
+  Skills:
+  - 'command{c="execute in minecraft:mina run tp <target.name> 43.5 -24 -201.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+MINA_SALA2_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=30;types=astral_mina_ahogado,astral_mina_capataz}'
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.espera} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_SALA3_INICIO:
+  Skills:
+  - addtag{tag=mina.on} @self
+  - addtag{tag=mina.ola1} @self
+  - 'message{m="&8[&7Mina&8] &fTuneles de Soporte &7- sala 3/4. &cAhi vienen!"} @PlayersInRadius{r=24}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=24}'
+  - 'summon{type=astral_mina_arana;amount=6;radius=4} @self'
+  - 'summon{type=astral_mina_arana;amount=2;radius=4} @self ?playersinradius{r=16;a=>1}'
+  - 'summon{type=astral_mina_esqueleto;amount=2;radius=4} @self'
+  - 'summon{type=astral_mina_esqueleto;amount=1;radius=4} @self ?playersinradius{r=16;a=>1}'
+
+MINA_SALA3_OLA2:
+  Skills:
+  - addtag{tag=mina.ola2} @self
+  - addtag{tag=mina.espera} @self
+  - 'message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=24}'
+  - delay 40
+  - 'summon{type=astral_mina_golem;amount=1;radius=4} @self'
+  - delay 10
+  - removetag{tag=mina.espera} @self
+
+MINA_SALA3_LIMPIA:
+  Skills:
+  - addtag{tag=mina.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fSalon del Guardian"} @PlayersInRadius{r=24}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=24}'
+  - delay 100
+  - 'skill{s=MINA_IR_SALA4} @PlayersInRadius{r=24}'
+  - delay 20
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_IR_SALA4:
+  Skills:
+  - 'command{c="execute in minecraft:mina run tp <target.name> 40.5 24 -225.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+MINA_SALA3_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=24;types=astral_mina_arana,astral_mina_esqueleto,astral_mina_golem}'
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.espera} @self
+  - removetag{tag=mina.ola1} @self
+  - removetag{tag=mina.ola2} @self
+
+MINA_SALA4_INICIO:
+  Skills:
+  - addtag{tag=mina.on} @self
+  - addtag{tag=mina.ola1} @self
+  - 'message{m="&8[&7Mina&8] &fSalon del Guardian &7- sala 4/4. &cAhi vienen!"} @PlayersInRadius{r=43}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=43}'
+  - 'summon{type=astral_mina_guardian;amount=1;radius=4} @self'
+
+MINA_SALA4_LIMPIA:
+  Skills:
+  - addtag{tag=mina.fin} @self
+  - 'message{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."} @PlayersInRadius{r=43}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=43}'
+  - delay 40
+  - 'skill{s=MINA_PREMIO} @PlayersInRadius{r=43}'
+  - 'skill{s=MINA_PREMIO_YA} @PlayersInRadius{r=43}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=43}'
+  - delay 300
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=43}'
+  - delay 20
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.ola1} @self
+
+MINA_SALA4_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=43;types=astral_mina_guardian,astral_mina_minero}'
+  - removetag{tag=mina.on} @self
+  - removetag{tag=mina.fin} @self
+  - removetag{tag=mina.espera} @self
+  - removetag{tag=mina.ola1} @self
+
+MINA_PREMIO:
+  TargetConditions:
+  - haspermission{p=astral.mina.cd} false
+  Skills:
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/gema_luminica"}'
+  - 'command{c="loot give <target.name> loot astral:item/cristal_refinado"}'
+  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
+  - 'command{c="eco give <target.name> 2500"}'
+  - 'command{c="lp user <target.name> permission settemp astral.mina.cd true 30m"}'
+  - 'message{m="&6Cofre de la Mina: &fmateriales de elite y &e2500$&f. &7(el proximo cofre en 30 minutos)"}'
+
+MINA_PREMIO_YA:
+  TargetConditions:
+  - haspermission{p=astral.mina.cd} true
+  Skills:
+  - 'message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+MINA_ENTRAR:
+  Skills:
+  - 'message{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8(4 salas. Para salir: /spawn)"}'
+  - 'command{c="execute in minecraft:mina run tp <trigger.name> 10.5 -45 -124.5"}'
+

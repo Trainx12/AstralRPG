@@ -1,0 +1,299 @@
+# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)
+
+astral_mina_minero:
+  Type: ZOMBIE
+  Display: '&7Minero Corrupto'
+  Health: 45
+  Damage: 7
+  Options:
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Equipment:
+  - iron_pickaxe HAND
+  - leather_helmet HEAD
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.1'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.15'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_mina_esqueleto:
+  Type: SKELETON
+  Display: '&fEsqueleto Minero'
+  Health: 32
+  Damage: 5
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Equipment:
+  - bow HAND
+  - chainmail_helmet HEAD
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.1'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_mina_ahogado:
+  Type: DROWNED
+  Display: '&3Minero Ahogado'
+  Health: 42
+  Damage: 8
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Equipment:
+  - trident HAND
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.12'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.2'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_mina_arana:
+  Type: CAVE_SPIDER
+  Display: '&8Arana de la Mina'
+  Health: 24
+  Damage: 5
+  Options:
+    MovementSpeed: 0.32
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15'
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+
+astral_mina_capataz:
+  Type: DROWNED
+  Display: '&3&lCapataz Ahogado'
+  Health: 380
+  Damage: 11
+  Options:
+    MovementSpeed: 0.27
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+    KnockbackResistance: 0.8
+  BossBar:
+    Enabled: true
+    Title: '&3&lCapataz Ahogado'
+    Range: 48
+    Color: BLUE
+    Style: SEGMENTED_10
+  Equipment:
+  - trident HAND
+  - iron_helmet HEAD
+  Drops:
+  - exp 15
+  Skills:
+  - 'summon{type=astral_mina_ahogado;amount=2;radius=3} @self ~onTimer:300'
+  - 'potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=6} ~onTimer:160'
+  - 'particles{p=bubble_pop;amount=60;hS=5;vS=0.5} @self ~onTimer:160'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_luminica"} @self ~onDeath 0.4'
+  - 'command{c="eco give <trigger.name> 400"} @trigger ~onDeath ?isplayer'
+
+astral_mina_golem:
+  Type: IRON_GOLEM
+  Display: '&7&lGolem de Piedra Antiguo'
+  Health: 480
+  Damage: 14
+  Options:
+    MovementSpeed: 0.22
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+    KnockbackResistance: 0.8
+  BossBar:
+    Enabled: true
+    Title: '&7&lGolem de Piedra Antiguo'
+    Range: 48
+    Color: WHITE
+    Style: SEGMENTED_10
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - exp 15
+  Skills:
+  - 'throw{velocity=7;velocityY=3} @target ~onAttack 0.4'
+  - 'skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/netherita_fundida"} @self ~onDeath 0.5'
+  - 'command{c="eco give <trigger.name> 500"} @trigger ~onDeath ?isplayer'
+
+astral_mina_guardian:
+  Type: IRON_GOLEM
+  Display: '&8&lGuardian de las Profundidades'
+  Health: 1000
+  Damage: 16
+  Options:
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+    KnockbackResistance: 0.8
+  BossBar:
+    Enabled: true
+    Title: '&8&lGuardian de las Profundidades'
+    Range: 48
+    Color: PURPLE
+    Style: SEGMENTED_10
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - exp 15
+  Skills:
+  - 'skill{s=MINA_MODELO_astral_mina_guardian} @self ~onSpawn'
+  - 'skill{s=MINA_MODELO_astral_mina_guardian} @self ~onLoad'
+  - 'state{s=attack} @self ~onAttack'
+  - 'potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200'
+  - 'throw{velocity=8;velocityY=3} @target ~onAttack 0.35'
+  - 'skill{s=MINA_ONDA_GUARDIAN} @self ~onTimer:160'
+  - 'skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}'
+  - 'skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}'
+  - 'summon{type=astral_mina_minero;amount=2;radius=5} @self ~onTimer:400 ?hastag{tag=mina.f2}'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
+  - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 0.5'
+  - 'command{c="eco give <trigger.name> 1500"} @trigger ~onDeath ?isplayer'
+
+astral_mina_control_sala1:
+  Type: ARMOR_STAND
+  Display: 'Control Campamento Minero'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=MINA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=16} ?!hastag{tag=mina.on}'
+  - 'skill{s=MINA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_esqueleto,astral_mina_minero;a=0;r=24}'
+  - 'skill{s=MINA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_esqueleto,astral_mina_minero;a=0;r=24}'
+  - 'skill{s=MINA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=24}'
+
+astral_mina_control_sala2:
+  Type: ARMOR_STAND
+  Display: 'Control Lago Subterraneo'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=MINA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=22} ?!hastag{tag=mina.on}'
+  - 'skill{s=MINA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_ahogado,astral_mina_capataz;a=0;r=30}'
+  - 'skill{s=MINA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_ahogado,astral_mina_capataz;a=0;r=30}'
+  - 'skill{s=MINA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=30}'
+
+astral_mina_control_sala3:
+  Type: ARMOR_STAND
+  Display: 'Control Tuneles de Soporte'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=MINA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=16} ?!hastag{tag=mina.on}'
+  - 'skill{s=MINA_SALA3_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_arana,astral_mina_esqueleto,astral_mina_golem;a=0;r=24}'
+  - 'skill{s=MINA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_arana,astral_mina_esqueleto,astral_mina_golem;a=0;r=24}'
+  - 'skill{s=MINA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=24}'
+
+astral_mina_control_sala4:
+  Type: ARMOR_STAND
+  Display: 'Control Salon del Guardian'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=MINA_SALA4_INICIO} @self ~onTimer:20 ?playerwithin{d=35} ?!hastag{tag=mina.on}'
+  - 'skill{s=MINA_SALA4_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_guardian,astral_mina_minero;a=0;r=43}'
+  - 'skill{s=MINA_SALA4_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=43}'
+
+astral_npc_mina:
+  Type: VILLAGER
+  Display: '&8&lMazmorra: &7Minas Olvidadas'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: MASON
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'skill{s=MINA_ENTRAR} @trigger ~onInteract'
+

@@ -1,0 +1,29 @@
+# Mazmorra Minas Olvidadas: comandos de consola (sin /). Generado por datapack-src/mobs/mazmorra.py
+# --- 1) mundo vacio (una sola vez)
+mv create mina normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify mina set difficulty hard
+mv modify mina set gamemode survival
+mv modify mina set pvp false
+mv modify mina set allow-weather false
+mv gamerule set minecraft:spawn_mobs false mina
+mv gamerule set minecraft:keep_inventory true mina
+mv gamerule set minecraft:advance_time false mina
+execute in minecraft:mina run time set midnight
+rg flag -w mina __global__ build deny
+rg flag -w mina __global__ chest-access deny
+rg flag -w mina __global__ mob-spawning allow
+rg flag -w mina __global__ pvp deny
+# --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):
+#   subir dungeon1-endlessxl.schem a plugins/WorldEdit/schematics/
+#   /mvtp mina    /gamemode creative    //schem load dungeon1-endlessxl    //paste -o
+#   (con -o el mapa cae siempre en el mismo lugar: esquina -73 -55 -290)
+# --- 3) controladores de las salas (una sola vez, despues de pegar el mapa)
+execute in minecraft:mina run forceload add -80 -300 160 -60
+mm mobs spawn astral_mina_control_sala1 1 mina,10.5,-45,-124.5
+mm mobs spawn astral_mina_control_sala2 1 mina,19.5,-39,-158.5
+mm mobs spawn astral_mina_control_sala3 1 mina,43.5,-24,-201.5
+mm mobs spawn astral_mina_control_sala4 1 mina,36.5,24,-248.5
+execute in minecraft:mina run forceload remove -80 -300 160 -60
+# --- 4) vendedor de la entrada: parate en el lobby donde lo quieras y (con mob-spawning allow en el lobby):
+#   /mm mobs spawn astral_npc_mina
+# --- para reiniciar una sala trabada: mm mobs kill astral_mina_control_salaN y volver a spawnearla

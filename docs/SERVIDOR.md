@@ -85,6 +85,16 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
 - Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.
 
+## Mazmorra: Minas Olvidadas (mundo `mina`)
+
+Mundo vacío de Multiverse con el mapa `dungeon1-endlessxl.schem` (de terceros: **no está en el repo**, se sube directo a `plugins/WorldEdit/schematics/`) pegado con `//paste -o` (la esquina queda en -73 -55 -290). Dificultad difícil, sin mobs naturales, `keep_inventory` activado, protegido con WorldGuard.
+
+- **4 salas** que se recorren con teletransporte: 1) Campamento Minero (mineros corruptos y esqueletos), 2) Lago Subterráneo (ahogados + mini jefe Capataz Ahogado), 3) Túneles de Soporte (arañas, esqueletos + mini jefe Gólem de Piedra Antiguo), 4) Salón del Guardián (jefe final con fases).
+- Cada sala tiene un controlador invisible (`astral_mina_control_salaN`): al llegar un jugador larga las oleadas, cuando no quedan mobs pasa a la siguiente, y si la sala se queda vacía se reinicia sola. Con 2 o más jugadores aparecen mobs extra.
+- **Cofre final:** materiales de élite, 2500$ y 25% de Chispa Astral. Se cobra una vez cada 30 minutos por jugador (permiso temporal `astral.mina.cd` de LuckPerms); se puede volver a entrar sin premio. Después de 15 segundos vuelven al lobby.
+- **Entrada:** vendedor `astral_npc_mina` en el lobby. Salir: `/spawn`.
+- Todo sale de `datapack-src/mobs/mazmorra.py`; el armado (crear el mundo, pegar el mapa, poner los controladores) está en `build/mazmorra/comandos.txt`.
+
 ## Datapacks (`world/datapacks`)
 
 Tienen que estar antes de generar un mundo nuevo, si no, no aparecen sus estructuras. Se suben con Files → `world/datapacks` → Upload → Files.
