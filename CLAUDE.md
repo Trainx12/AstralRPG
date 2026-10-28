@@ -18,6 +18,7 @@ Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Aternos, `AstralRPG2.aternos
 ## Comandos de generación (desde `datapack-src/`)
 ```
 python build.py                    # datapack (ítems, recetas, Forja, guía, élites)
+python gui_textures.py <gui>       # ventanas piedra/oro + HUD RPG (hud_rpg.py) -> pack-source/gui
 python build_pack.py pack-source   # resource pack
 python mobs/build_models.py        # modelos 3D de criaturas (.bbmodel)
 python mobs/mythic.py              # MythicMobs: criaturas, monturas, jefes, vendedores

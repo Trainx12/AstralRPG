@@ -151,8 +151,11 @@ for s_id in ARMOR_SETS_TEX:
             "humanoid_leggings": [{"texture": f"astral:{name}"}]}})
 
 # Modelos de criaturas (generados por BetterModel en el servidor de prueba, misma config que en Aternos)
-BM = os.path.join(SRC, "bettermodel")
-if os.path.isdir(BM):
+# y la interfaz estilo RPG (ventanas de piedra y oro, barra de items, vida/comida en barras), de gui_textures.py
+for carpeta in ("bettermodel", "gui"):
+    BM = os.path.join(SRC, carpeta)
+    if not os.path.isdir(BM):
+        continue
     for root, _, fs in os.walk(BM):
         for fname in fs:
             full = os.path.join(root, fname)
