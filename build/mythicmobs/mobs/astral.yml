@@ -1142,6 +1142,70 @@ astral_chaman_ancestral:
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
   - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?isplayer
 
+astral_npc_bazar:
+  Type: VILLAGER
+  Display: '&6&lAdministrador del Bazar &7(alquilar puestos)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'skill{s=AST_BAZAR_MENU} @trigger ~onInteract'
+  - 'skill{s=AST_BAZAR_ALQ_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_REN_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_NO_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_YATIENE_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_PLATA_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_RENPLATA_1} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_ALQ_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_REN_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_NO_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_YATIENE_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_PLATA_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_RENPLATA_2} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_ALQ_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_REN_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_NO_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_YATIENE_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_PLATA_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_RENPLATA_3} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_ALQ_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_REN_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_NO_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_YATIENE_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_PLATA_4} @PlayersInRadius{r=12} ~onTimer:5'
+  - 'skill{s=AST_BAZAR_RENPLATA_4} @PlayersInRadius{r=12} ~onTimer:5'
+
+astral_npc_subastas:
+  Type: VILLAGER
+  Display: '&e&lSubastas &7(/ah)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: ARMORER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="sudo <trigger.name> ah"} @self ~onInteract'
+
 astral_npc_herrero:
   Type: VILLAGER
   Display: '&6&lHerrero &7(clic: costo - shift+clic: mejorar)'

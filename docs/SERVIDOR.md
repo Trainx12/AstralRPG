@@ -52,6 +52,8 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | EssentialsX 2.22.0 + EssentialsX Spawn + Vault | Monedas (`/balance`, `/pay`), `/spawn` al lobby |
 | EconomyShopGUI 7.3.3 | Tienda (`/shop`) y venta rápida (`/sellgui`) de ítems vanilla |
 | CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
+| CrazyAuctions (26.1.2) | Subastas entre jugadores (`/ah`), 5% de impuesto por venta |
+| QuickShop-Hikari 6.3.0.3 | Cofres-tienda de los puestos del bazar (5% de impuesto por venta) |
 
 ## Lobby (mundo `lobby`)
 
@@ -84,6 +86,15 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - Los huevos de mascotas y monturas no funcionan en el lobby (ahí no aparecen mobs): hay que usarlos en el mundo.
 - Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
 - Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.
+
+## Bazar y subastas (lobby)
+
+- **Bazar:** sala de piedra adentro del edificio grande del norte, detrás del vendedor de la tienda. 4 puestos contra la pared del fondo (x 171-185, z 149-150, pies en y 101), con 2 cofres cada uno y un cartel flotante (tag `astral_bazar`).
+- **Alquiler:** con el aldeano *Administrador del Bazar* (`astral_npc_bazar`): clic → menú en el chat con el estado de cada puesto (libre / tuyo / ocupado) y botones (`/trigger bazar`). Cuesta 5.000$ por 7 días, se puede renovar y hay un puesto por jugador. Por dentro: grupo temporal de LuckPerms `puestoN` (miembro de la región `puestoN` de WorldGuard) y permiso temporal `astral.puesto.N` en el grupo `default` (marca que está ocupado). Todo vence solo.
+- Cuando otro alquila un puesto vencido, se borran las tiendas del inquilino anterior (`qs removeall`) y se vacían los cofres.
+- **Tiendas:** QuickShop. Con el ítem en la mano, clic izquierdo a un cofre del puesto y escribir el precio en el chat. 5% de impuesto por venta.
+- **Subastas:** `/ah` (CrazyAuctions) o el aldeano *Subastas* (`astral_npc_subastas`). 5% de impuesto por venta.
+- Valores en `datapack-src/lobby.py` (`PUESTOS`, `RENTA`, `RENTA_DIAS`); armado en `build/lobby/comandos.txt` (sección BAZAR Y SUBASTAS).
 
 ## Mazmorra: Minas Olvidadas (mundo `mina`)
 

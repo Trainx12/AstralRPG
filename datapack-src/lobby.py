@@ -556,7 +556,121 @@ def commands():
     C.append("#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)")
     C.append(f"rg flag -w {WORLD} __global__ mob-spawning deny")
     C += holo_cmds()
+    C += bazar_cmds()
     return "\n".join(C) + "\n"
+
+
+# ------------------------------------------------------------------ bazar y subastas
+# Bazar: sala de piedra adentro del edificio grande del norte, detras del vendedor de la tienda (piso en y=100).
+# 4 puestos contra la pared del fondo. Cada puesto: region de WorldGuard 'puestoN' cuyo miembro es el grupo de
+# LuckPerms 'puestoN'. Alquilar = entrar a ese grupo por 7 dias (lp parent addtemp, se vence solo).
+# Mientras esta alquilado, el grupo 'default' tiene el permiso temporal astral.puesto.N -> asi se sabe que esta ocupado.
+# Las tiendas son de QuickShop: clic izquierdo al cofre con el item en la mano y escribir el precio en el chat.
+BAZAR_Y = 101                      # altura de los pies (el piso esta en 100)
+PUESTOS = {1: (171, 173), 2: (175, 177), 3: (179, 181), 4: (183, 185)}   # x desde-hasta; fondo z=149, frente z=150
+BAZAR_Z = (149, 150)
+RENTA = 5000
+RENTA_DIAS = 7
+BAZAR_COLOR = "#E8A33A"
+
+
+def puesto_cofres(n):
+    x0, x1 = PUESTOS[n]
+    return [(x0, BAZAR_Y, BAZAR_Z[0]), (x1, BAZAR_Y, BAZAR_Z[0])]
+
+
+def bazar_skills():
+    """Administrador del Bazar: menu en el chat con el estado de cada puesto y botones para alquilar o renovar."""
+    L = ["# Bazar del lobby (generado por datapack-src/lobby.py)", ""]
+    renta, dias = money(RENTA), f"{RENTA_DIAS} dias"
+    menu = [sk('command{c="scoreboard players set <trigger.name> bazar 0"} @self'),
+            sk('command{c="scoreboard players enable <trigger.name> bazar"} @self'),
+            sk("command{c=\"tellraw <trigger.name> ['',{text:'✦ Bazar ✦ ',color:'%s',bold:true},"
+               "{text:'Alquila un puesto y arma tu tienda (clic en el boton):',color:'gray'}]\"} @self" % BAZAR_COLOR)]
+    for n in PUESTOS:
+        libre = ("command{c=\"tellraw <trigger.name> ['',{text:' Puesto %d: ',color:'white'},{text:'libre ',color:'green'},"
+                 "{text:'[Alquilar %s / %s]',color:'%s',bold:true,click_event:{action:'run_command',command:'/trigger bazar set %d'},"
+                 "hover_event:{action:'show_text',value:'Alquilar el puesto %d por %s'}}]\"} @self ?~!haspermission{p=astral.puesto.%d}"
+                 % (n, renta, dias, BAZAR_COLOR, n, n, renta, n))
+        mio = ("command{c=\"tellraw <trigger.name> ['',{text:' Puesto %d: ',color:'white'},{text:'es tuyo ',color:'aqua'},"
+               "{text:'[Renovar %s / %s mas]',color:'%s',bold:true,click_event:{action:'run_command',command:'/trigger bazar set %d'},"
+               "hover_event:{action:'show_text',value:'Sumar %s mas al puesto %d'}}]\"} @self ?~haspermission{p=group.puesto%d}"
+               % (n, renta, dias, BAZAR_COLOR, 10 + n, dias, n, n))
+        ocupado = ("command{c=\"tellraw <trigger.name> ['',{text:' Puesto %d: ',color:'white'},{text:'ocupado',color:'red'}]\"} @self "
+                   "?~haspermission{p=astral.puesto.%d} ?~!haspermission{p=group.puesto%d}" % (n, n, n))
+        menu += [sk(libre), sk(mio), sk(ocupado)]
+    menu.append(sk('message{m="&8Tu tienda: agarra el item, clic izquierdo a un cofre de tu puesto y escribi el precio en el chat. '
+                   '&8Cada venta paga 5%% de impuesto. Si no renovas, al vencer el puesto se vacia."} @trigger'))
+    L += ["AST_BAZAR_MENU:", "  Skills:"] + menu + [""]
+    for n in PUESTOS:
+        p = "<target.name>"
+        cofres = []
+        for (x, y, z) in puesto_cofres(n):
+            cofres += [sk(f'command{{c="execute in minecraft:{WORLD} run setblock {x} {y} {z} minecraft:air"}}'),
+                       sk(f'command{{c="execute in minecraft:{WORLD} run setblock {x} {y} {z} minecraft:chest[facing=south]"}}')]
+        reset = sk(f'command{{c="scoreboard players set {p} bazar 0"}}')
+        L += [f"AST_BAZAR_ALQ_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={n}}} true",
+              f"  - haspermission{{p=astral.puesto.{n}}} false", "  - haspermission{p=astral.bazar.inquilino} false",
+              f"  - hascurrency{{a={RENTA}}} true", "  Skills:", reset, sk(f"currencytake{{a={RENTA}}}"),
+              # lo que dejo el inquilino anterior: se borran sus tiendas y se vacian los cofres
+              sk(f'command{{c="qs removeall <caster.var.puesto{n}>"}}')] + cofres + [
+              sk(f'setvariable{{var=caster.puesto{n};value="{p}";type=STRING;save=true}}'),
+              sk(f'command{{c="lp user {p} parent addtemp puesto{n} {RENTA_DIAS}d"}}'),
+              sk(f'command{{c="lp group default permission settemp astral.puesto.{n} true {RENTA_DIAS}d"}}'),
+              sk(f'command{{c="lp user {p} permission settemp astral.bazar.inquilino true {RENTA_DIAS}d"}}'),
+              sk("sound{s=entity.villager.yes}"),
+              sk(f'message{{m="&6Bazar: &falquilaste el &ePuesto {n}&f por {RENTA_DIAS} dias. &7Arma tu tienda en sus cofres."}}'), ""]
+        L += [f"AST_BAZAR_REN_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={10 + n}}} true",
+              f"  - haspermission{{p=group.puesto{n}}} true", f"  - hascurrency{{a={RENTA}}} true", "  Skills:", reset,
+              sk(f"currencytake{{a={RENTA}}}"),
+              sk(f'command{{c="lp user {p} parent addtemp puesto{n} {RENTA_DIAS}d accumulate"}}'),
+              sk(f'command{{c="lp group default permission settemp astral.puesto.{n} true {RENTA_DIAS}d accumulate"}}'),
+              sk(f'command{{c="lp user {p} permission settemp astral.bazar.inquilino true {RENTA_DIAS}d accumulate"}}'),
+              sk("sound{s=entity.villager.yes}"),
+              sk(f'message{{m="&6Bazar: &frenovaste el &ePuesto {n}&f por {RENTA_DIAS} dias mas."}}'), ""]
+        # no se puede: ocupado por otro / ya tenes otro puesto / no te alcanza
+        L += [f"AST_BAZAR_NO_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={n}}} true",
+              f"  - haspermission{{p=astral.puesto.{n}}} true", "  Skills:", reset,
+              sk('message{m="&cEse puesto ya esta alquilado."}'), ""]
+        L += [f"AST_BAZAR_YATIENE_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={n}}} true",
+              f"  - haspermission{{p=astral.puesto.{n}}} false", "  - haspermission{p=astral.bazar.inquilino} true", "  Skills:", reset,
+              sk('message{m="&cYa tenes un puesto alquilado. &7(uno por jugador)"}'), ""]
+        L += [f"AST_BAZAR_PLATA_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={n}}} true",
+              f"  - haspermission{{p=astral.puesto.{n}}} false", "  - haspermission{p=astral.bazar.inquilino} false",
+              f"  - hascurrency{{a={RENTA}}} false", "  Skills:", reset,
+              sk(f'message{{m="&cEl alquiler cuesta &e{renta}&c y no te alcanza."}}'), ""]
+        L += [f"AST_BAZAR_RENPLATA_{n}:", "  TargetConditions:", f"  - score{{o=bazar;v={10 + n}}} true",
+              f"  - hascurrency{{a={RENTA}}} false", "  Skills:", reset,
+              sk(f'message{{m="&cRenovar cuesta &e{renta}&c y no te alcanza."}}'), ""]
+    return "\n".join(L) + "\n"
+
+
+def bazar_cmds():
+    import json
+    C = ["# ============================== BAZAR Y SUBASTAS ==============================",
+         "# --- 1) en el juego, con OP, marcar las 4 regiones de los puestos (WorldGuard no deja hacerlo desde consola):"]
+    for n, (x0, x1) in PUESTOS.items():
+        C.append(f"#   //pos1 {x0},{BAZAR_Y},{BAZAR_Z[0]}   //pos2 {x1},{BAZAR_Y + 3},{BAZAR_Z[1]}   /rg define puesto{n}")
+    C += ["# --- 2) consola: grupos, permisos, regiones, cofres y carteles",
+          "scoreboard objectives add bazar trigger",
+          "lp group default permission set quickshop.create.sell true",
+          "lp group default permission set quickshop.create.buy true",
+          "lp group default permission set crazyauctions.player.* true"]
+    for n in PUESTOS:
+        C += [f"lp creategroup puesto{n}",
+              f"rg addmember -w {WORLD} puesto{n} g:puesto{n}",
+              f"rg flag -w {WORLD} puesto{n} chest-access allow"]
+        for (x, y, z) in puesto_cofres(n):
+            C.append(f"execute in minecraft:{WORLD} run setblock {x} {y} {z} minecraft:chest[facing=south]")
+    C.append(f"execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral_bazar]")
+    for n, (x0, x1) in PUESTOS.items():
+        txt = {"text": "", "extra": [{"text": f"Puesto {n}", "color": BAZAR_COLOR, "bold": True},
+                                     {"text": "\nAlquiler: Administrador del Bazar", "color": "gray"}]}
+        C.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {(x0 + x1) / 2 + 0.5} {BAZAR_Y + 2.3} {BAZAR_Z[1] + 0.5} "
+                 f"{{Tags:[\"astral_bazar\"],billboard:\"center\",shadow:1b,background:1073741824,text:{json.dumps(txt)}}}")
+    C += ["# --- 3) vendedores: parate donde los quieras (con mob-spawning allow en el lobby, ver arriba):",
+          "#   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas"]
+    return C
 
 
 def main():
@@ -565,6 +679,8 @@ def main():
     os.makedirs(mm, exist_ok=True)
     with open(os.path.join(mm, "gachas.yml"), "w", encoding="utf-8") as f:
         f.write(gacha_skills())
+    with open(os.path.join(mm, "bazar.yml"), "w", encoding="utf-8") as f:
+        f.write(bazar_skills())
     tab = os.path.join(OUT, "TAB")
     os.makedirs(tab, exist_ok=True)
     for name, txt in (("secciones-config.yml", TAB_SECTIONS), ("groups.yml", TAB_GROUPS), ("animations.yml", TAB_ANIMATIONS)):
