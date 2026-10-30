@@ -1,0 +1,158 @@
+# Mazmorra Cumbre Helada (generada por mazmorra.py)
+
+CUMBRE_SALA1_INICIO:
+  Skills:
+  - addtag{tag=cumbre.on} @self
+  - addtag{tag=cumbre.ola1} @self
+  - 'message{m="&8[&7Cumbre Helada&8] &fPaso de la escarcha &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_cumbre_arana;amount=4;radius=4} @self'
+  - 'summon{type=astral_cumbre_arana;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+CUMBRE_SALA1_OLA2:
+  Skills:
+  - addtag{tag=cumbre.ola2} @self
+  - addtag{tag=cumbre.espera} @self
+  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_cumbre_arana;amount=2;radius=4} @self'
+  - 'summon{type=astral_cumbre_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_cara;amount=3;radius=4} @self'
+  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=cumbre.espera} @self
+
+CUMBRE_SALA1_LIMPIA:
+  Skills:
+  - addtag{tag=cumbre.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAscenso blanco"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=CUMBRE_IR_SALA2} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.ola1} @self
+  - removetag{tag=cumbre.ola2} @self
+
+CUMBRE_IR_SALA2:
+  Skills:
+  - 'command{c="execute in minecraft:cumbre run minecraft:tp <target.name> 0.5 115 0.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+CUMBRE_SALA1_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_cumbre_arana,astral_cumbre_cara}'
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.espera} @self
+  - removetag{tag=cumbre.ola1} @self
+  - removetag{tag=cumbre.ola2} @self
+
+CUMBRE_SALA2_INICIO:
+  Skills:
+  - addtag{tag=cumbre.on} @self
+  - addtag{tag=cumbre.ola1} @self
+  - 'message{m="&8[&7Cumbre Helada&8] &fAscenso blanco &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_cumbre_cara;amount=5;radius=4} @self'
+  - 'summon{type=astral_cumbre_cara;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+CUMBRE_SALA2_OLA2:
+  Skills:
+  - addtag{tag=cumbre.ola2} @self
+  - addtag{tag=cumbre.espera} @self
+  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_cumbre_cara;amount=2;radius=4} @self'
+  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_espantapajaros;amount=3;radius=4} @self'
+  - 'summon{type=astral_cumbre_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=cumbre.espera} @self
+
+CUMBRE_SALA2_LIMPIA:
+  Skills:
+  - addtag{tag=cumbre.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Yeti"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=CUMBRE_IR_SALA3} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.ola1} @self
+  - removetag{tag=cumbre.ola2} @self
+
+CUMBRE_IR_SALA3:
+  Skills:
+  - 'command{c="execute in minecraft:cumbre run minecraft:tp <target.name> 96.5 97 0.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+CUMBRE_SALA2_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_cumbre_cara,astral_cumbre_espantapajaros}'
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.espera} @self
+  - removetag{tag=cumbre.ola1} @self
+  - removetag{tag=cumbre.ola2} @self
+
+CUMBRE_SALA3_INICIO:
+  Skills:
+  - addtag{tag=cumbre.on} @self
+  - addtag{tag=cumbre.ola1} @self
+  - 'message{m="&8[&7Cumbre Helada&8] &fTrono del Yeti &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
+  - 'summon{type=astral_cumbre_yeti;amount=1;radius=4} @self'
+
+CUMBRE_SALA3_LIMPIA:
+  Skills:
+  - addtag{tag=cumbre.fin} @self
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/yeti"} @PlayersInRadius{r=36}'
+  - delay 40
+  - 'skill{s=CUMBRE_PREMIO} @PlayersInRadius{r=36}'
+  - 'skill{s=CUMBRE_PREMIO_YA} @PlayersInRadius{r=36}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
+  - delay 300
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - delay 20
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.ola1} @self
+
+CUMBRE_SALA3_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=36;types=STRAY,astral_cumbre_yeti}'
+  - removetag{tag=cumbre.on} @self
+  - removetag{tag=cumbre.fin} @self
+  - removetag{tag=cumbre.espera} @self
+  - removetag{tag=cumbre.ola1} @self
+
+CUMBRE_PREMIO:
+  TargetConditions:
+  - haspermission{p=astral.cumbre.cd} false
+  Skills:
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
+  - 'command{c="eco give <target.name> 2500"}'
+  - 'command{c="lp user <target.name> permission settemp astral.cumbre.cd true 30m"}'
+  - 'message{m="&6Cofre de Cumbre Helada: &fmateriales de elite y &e2500$&f. &7(el proximo cofre en 30 minutos)"}'
+
+CUMBRE_PREMIO_YA:
+  TargetConditions:
+  - haspermission{p=astral.cumbre.cd} true
+  Skills:
+  - 'message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+CUMBRE_ENTRAR:
+  Skills:
+  - 'message{m="&8[&7Cumbre Helada&8] &7Bajando a las &fCumbre Helada&7... &8(3 salas. Para salir: /spawn)"}'
+  - 'command{c="execute in minecraft:cumbre run minecraft:tp <trigger.name> -128.5 79 0.5"}'
+

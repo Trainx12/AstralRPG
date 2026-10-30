@@ -71,6 +71,19 @@ items:
     click_commands:
     - '[close]'
     - '[player] spawn'
+  'misiones':
+    material: BOOK
+    slot: 20
+    amount: 1
+    display_name: '&b&lMisiones e historia'
+    lore:
+    - '&7Consulta tu capitulo y las diarias'
+    - '&7El Cronista entrega los premios'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[player] trigger aq.journal set 1'
   'vidrio_0':
     material: LIGHT_BLUE_STAINED_GLASS_PANE
     slot: 0
@@ -172,13 +185,6 @@ items:
   'vidrio_19':
     material: LIGHT_BLUE_STAINED_GLASS_PANE
     slot: 19
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: LIGHT_BLUE_STAINED_GLASS_PANE
-    slot: 20
     amount: 1
     display_name: ' '
     item_flags:

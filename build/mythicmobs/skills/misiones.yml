@@ -1,0 +1,46 @@
+# Generado por misiones.py
+AQ_VIAJERO:
+  Skills:
+  - 'command{c="execute as <target.name> at @s run function astral:quest/viajero"}'
+
+AQ_HERRERO:
+  Skills:
+  - 'command{c="execute as <target.name> at @s run function astral:quest/herrero"}'
+
+AQ_CRONISTA:
+  Skills:
+  - 'command{c="execute as <target.name> at @s run function astral:quest/cronista"}'
+
+AQ_TIENDA:
+  Skills:
+  - 'command{c="execute as <target.name> at @s run function astral:quest/deliver/tienda"}'
+
+AQ_BAZAR:
+  Skills:
+  - 'command{c="execute as <target.name> at @s run function astral:quest/deliver/bazar"}'
+
+AQ_CLOCK:
+  Skills:
+  - 'command{c="scoreboard players set #epoch aq.clock <utils.epoch>"}'
+  - 'command{c="function astral:quest/clock"}'
+
+AQ_PAY:
+  TargetConditions:
+  - score{o=aqmoney;v=>0} true
+  Skills:
+  - 'command{c="eco give <target.name> <target.score.aqmoney>"}'
+  - 'command{c="scoreboard players set <target.name> aqmoney 0"}'
+
+AQ_TITLE:
+  TargetConditions:
+  - hastag{t=aq.title} true
+  Skills:
+  - 'command{c="tag <target.name> remove aq.title"}'
+  - 'command{c="lp user <target.name> meta setprefix 110 <&dq>&b&l«Portador de la Estrella»<&dq>"}'
+
+AQ_GACHA:
+  TargetConditions:
+  - hastag{t=aq.gacha} true
+  Skills:
+  - 'command{c="tag <target.name> remove aq.gacha"}'
+  - 'command{c="crates forceopen gacha_rpg <target.name>"}'

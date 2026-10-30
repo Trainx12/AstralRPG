@@ -1,0 +1,35 @@
+# Cumbre Helada - ubicaciones propuestas, revisar en creativo antes de habilitar.
+# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
+# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
+mv create cumbre normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/cumbre/region.
+# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
+mv modify cumbre set difficulty hard
+mv modify cumbre set gamemode survival
+mv modify cumbre set pvp false
+mv modify cumbre set allow-weather false
+mv gamerule set minecraft:spawn_mobs false cumbre
+mv gamerule set minecraft:keep_inventory true cumbre
+rg flag -w cumbre __global__ build deny
+rg flag -w cumbre __global__ chest-access deny
+rg flag -w cumbre __global__ pvp deny
+rg flag -w cumbre __global__ mob-spawning allow
+# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
+# Paso de la escarcha: execute in minecraft:cumbre run minecraft:tp <jugador> -128.5 79 0.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Ascenso blanco: execute in minecraft:cumbre run minecraft:tp <jugador> 0.5 115 0.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Trono del Yeti: execute in minecraft:cumbre run minecraft:tp <jugador> 96.5 97 0.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# DESPUES de revisar las coordenadas y cambiar enabled=True:
+# execute in minecraft:cumbre run forceload add -128 0
+# mm mobs spawn astral_cumbre_control_sala1 1 cumbre,-128.5,79,0.5
+# execute in minecraft:cumbre run forceload remove -128 0
+# execute in minecraft:cumbre run forceload add 0 0
+# mm mobs spawn astral_cumbre_control_sala2 1 cumbre,0.5,115,0.5
+# execute in minecraft:cumbre run forceload remove 0 0
+# execute in minecraft:cumbre run forceload add 96 0
+# mm mobs spawn astral_cumbre_control_sala3 1 cumbre,96.5,97,0.5
+# execute in minecraft:cumbre run forceload remove 96 0
+# NPC de entrada (en el lobby): mm mobs spawn astral_npc_cumbre
+# Los jefes y mobs del mundo normal conservan sus apariciones.

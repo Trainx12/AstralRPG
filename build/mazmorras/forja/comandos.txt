@@ -1,0 +1,35 @@
+# Corazon de la Forja - ubicaciones propuestas, revisar en creativo antes de habilitar.
+# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
+# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
+mv create forja normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/forja/region.
+# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
+mv modify forja set difficulty hard
+mv modify forja set gamemode survival
+mv modify forja set pvp false
+mv modify forja set allow-weather false
+mv gamerule set minecraft:spawn_mobs false forja
+mv gamerule set minecraft:keep_inventory true forja
+rg flag -w forja __global__ build deny
+rg flag -w forja __global__ chest-access deny
+rg flag -w forja __global__ pvp deny
+rg flag -w forja __global__ mob-spawning allow
+# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
+# Ladera de ceniza: execute in minecraft:forja run minecraft:tp <jugador> 1536.5 224 1900.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Puente de la escoria: execute in minecraft:forja run minecraft:tp <jugador> 1456.5 210 2032.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Nucleo de la Forja: execute in minecraft:forja run minecraft:tp <jugador> 1536.5 200 2304.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# DESPUES de revisar las coordenadas y cambiar enabled=True:
+# execute in minecraft:forja run forceload add 1536 1900
+# mm mobs spawn astral_forja_control_sala1 1 forja,1536.5,224,1900.5
+# execute in minecraft:forja run forceload remove 1536 1900
+# execute in minecraft:forja run forceload add 1456 2032
+# mm mobs spawn astral_forja_control_sala2 1 forja,1456.5,210,2032.5
+# execute in minecraft:forja run forceload remove 1456 2032
+# execute in minecraft:forja run forceload add 1536 2304
+# mm mobs spawn astral_forja_control_sala3 1 forja,1536.5,200,2304.5
+# execute in minecraft:forja run forceload remove 1536 2304
+# NPC de entrada (en el lobby): mm mobs spawn astral_npc_forja
+# Los jefes y mobs del mundo normal conservan sus apariciones.

@@ -1,0 +1,158 @@
+# Mazmorra Corazon de la Forja (generada por mazmorra.py)
+
+FORJA_SALA1_INICIO:
+  Skills:
+  - addtag{tag=forja.on} @self
+  - addtag{tag=forja.ola1} @self
+  - 'message{m="&8[&7Corazon de la Forja&8] &fLadera de ceniza &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_forja_espantapajaros;amount=4;radius=4} @self'
+  - 'summon{type=astral_forja_espantapajaros;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+FORJA_SALA1_OLA2:
+  Skills:
+  - addtag{tag=forja.ola2} @self
+  - addtag{tag=forja.espera} @self
+  - 'message{m="&8[&7Corazon de la Forja&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_forja_espantapajaros;amount=2;radius=4} @self'
+  - 'summon{type=astral_forja_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_forja_arana;amount=3;radius=4} @self'
+  - 'summon{type=astral_forja_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=forja.espera} @self
+
+FORJA_SALA1_LIMPIA:
+  Skills:
+  - addtag{tag=forja.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fPuente de la escoria"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=FORJA_IR_SALA2} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.ola1} @self
+  - removetag{tag=forja.ola2} @self
+
+FORJA_IR_SALA2:
+  Skills:
+  - 'command{c="execute in minecraft:forja run minecraft:tp <target.name> 1456.5 210 2032.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+FORJA_SALA1_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_forja_arana,astral_forja_espantapajaros}'
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.espera} @self
+  - removetag{tag=forja.ola1} @self
+  - removetag{tag=forja.ola2} @self
+
+FORJA_SALA2_INICIO:
+  Skills:
+  - addtag{tag=forja.on} @self
+  - addtag{tag=forja.ola1} @self
+  - 'message{m="&8[&7Corazon de la Forja&8] &fPuente de la escoria &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_forja_arana;amount=5;radius=4} @self'
+  - 'summon{type=astral_forja_arana;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+FORJA_SALA2_OLA2:
+  Skills:
+  - addtag{tag=forja.ola2} @self
+  - addtag{tag=forja.espera} @self
+  - 'message{m="&8[&7Corazon de la Forja&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_forja_arana;amount=2;radius=4} @self'
+  - 'summon{type=astral_forja_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_forja_cara;amount=3;radius=4} @self'
+  - 'summon{type=astral_forja_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=forja.espera} @self
+
+FORJA_SALA2_LIMPIA:
+  Skills:
+  - addtag{tag=forja.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fNucleo de la Forja"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=FORJA_IR_SALA3} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.ola1} @self
+  - removetag{tag=forja.ola2} @self
+
+FORJA_IR_SALA3:
+  Skills:
+  - 'command{c="execute in minecraft:forja run minecraft:tp <target.name> 1536.5 200 2304.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+FORJA_SALA2_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_forja_arana,astral_forja_cara}'
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.espera} @self
+  - removetag{tag=forja.ola1} @self
+  - removetag{tag=forja.ola2} @self
+
+FORJA_SALA3_INICIO:
+  Skills:
+  - addtag{tag=forja.on} @self
+  - addtag{tag=forja.ola1} @self
+  - 'message{m="&8[&7Corazon de la Forja&8] &fNucleo de la Forja &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
+  - 'summon{type=astral_forja_golem_forja;amount=1;radius=4} @self'
+
+FORJA_SALA3_LIMPIA:
+  Skills:
+  - addtag{tag=forja.fin} @self
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/golem_forja"} @PlayersInRadius{r=36}'
+  - delay 40
+  - 'skill{s=FORJA_PREMIO} @PlayersInRadius{r=36}'
+  - 'skill{s=FORJA_PREMIO_YA} @PlayersInRadius{r=36}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
+  - delay 300
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - delay 20
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.ola1} @self
+
+FORJA_SALA3_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=36;types=astral_forja_golem_forja}'
+  - removetag{tag=forja.on} @self
+  - removetag{tag=forja.fin} @self
+  - removetag{tag=forja.espera} @self
+  - removetag{tag=forja.ola1} @self
+
+FORJA_PREMIO:
+  TargetConditions:
+  - haspermission{p=astral.forja.cd} false
+  Skills:
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
+  - 'command{c="eco give <target.name> 3000"}'
+  - 'command{c="lp user <target.name> permission settemp astral.forja.cd true 30m"}'
+  - 'message{m="&6Cofre de Corazon de la Forja: &fmateriales de elite y &e3000$&f. &7(el proximo cofre en 30 minutos)"}'
+
+FORJA_PREMIO_YA:
+  TargetConditions:
+  - haspermission{p=astral.forja.cd} true
+  Skills:
+  - 'message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+FORJA_ENTRAR:
+  Skills:
+  - 'message{m="&8[&7Corazon de la Forja&8] &7Bajando a las &fCorazon de la Forja&7... &8(3 salas. Para salir: /spawn)"}'
+  - 'command{c="execute in minecraft:forja run minecraft:tp <trigger.name> 1536.5 224 1900.5"}'
+

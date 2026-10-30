@@ -1,5 +1,12 @@
 # AstralRPG: todo el contexto en un solo archivo (para ChatGPT u otra IA)
 
+> **Actualizacion local de Codex, 30/10/2026:** leer primero [AVANCE_CODEX.md](AVANCE_CODEX.md)
+> y [MAZMORRAS.md](MAZMORRAS.md). Hay generadores de misiones, HUD a resolucion nativa y varias mazmorras
+> preparados localmente, aun sin subir a Aternos ni commitear. Las entradas nuevas siguen deshabilitadas
+> hasta revisar coordenadas en Minecraft. Los apartados viejos que dicen "no hay sistema de misiones"
+> o "HUD apagado" describen el servidor publicado, no el estado actual de los generadores.
+> Codex Desktop tiene acceso a esta carpeta; las indicaciones para pedir archivos adjuntos eran para ChatGPT web.
+
 > **Para la IA que lee esto:** sos el ayudante de un servidor de Minecraft RPG llamado AstralRPG.
 > El dueño habla español rioplatense y **no es programador**: respondé en español, simple, paso a paso
 > y sin jerga. Este archivo tiene todo lo que se hizo, cómo está armado y **por qué** se decidió cada cosa.
@@ -163,7 +170,18 @@ que haya que cambiar. Devolvé el archivo entero o el cambio exacto, y decile qu
    en `items.py`, sin receta. Caen solo la primera vez que el jugador mata a cada jefe.
 3. NPC nuevo **Cronista** (tablón de misiones diarias) en `mobs/mythic.py` (`NPCS`) y su posición en `lobby.py` (`NPC_POS`).
 4. Título de chat "Portador de la Estrella" (como los de `TITLES` en `lobby.py`).
-5. Otros pendientes:
+5. **Mazmorras nuevas**, una por jefe, con mapas ya descargados (mundos enteros, no van al repo):
+   1. Bosque Sombrío (`bosque.zip`): Chamán.
+   2. Tumba del Rey de Arena (`desierto.zip`): Momia.
+   3. Minas Olvidadas (ya existe): Guardián de las Profundidades.
+   4. Cumbre Helada (`nieve.zip`): Yeti.
+   5. Corazón de la Forja (`volcan gigante.zip`): Gólem de Forja.
+   6. Santuario Celestial (`vacio.zip`): los 5 jefes Ancestrales seguidos.
+
+   El Cangrejo todavía no tiene mapa (`volcan.zip` queda de reserva).
+6. **Arena de jugadores** (`batalla_de_Jugadores.zip`): un mundo aparte con PvP, para que los jugadores peleen
+   entre ellos. Es el único lugar con PvP, nadie pierde sus cosas y no da drops.
+7. Otros pendientes:
    - Arreglar el HUD propio (barra rosa/negra).
    - Vincular Google Drive en Aternos → Backups.
    - Cambiar la contraseña de Aternos (se compartió por chat).
@@ -931,7 +949,27 @@ en la Gacha de Armas).
 
 ---
 
-### 5. Cosas nuevas que haría falta crear
+### 5. Mazmorras (una por jefe) y arena de jugadores
+
+Los jefes aparecen muy rara vez en el mundo, así que cada capítulo con jefe se juega en su mazmorra,
+con el jefe siempre al final. Los mapas ya están descargados. No van al repo porque son de otras personas.
+
+| Orden | Mazmorra | Mapa | Jefe final | Tier | Capítulo |
+|---|---|---|---|---|---|
+| 1 | Bosque Sombrío | `bosque.zip` | Chamán | II | 3 |
+| 2 | Tumba del Rey de Arena | `desierto.zip` | Momia | III | 4 |
+| 3 | Minas Olvidadas (ya existe) | `dungeon1-endlessxl.schem` | Guardián de las Profundidades | III | 5 |
+| 4 | Cumbre Helada | `nieve.zip` | Yeti | IV | 6 |
+| 5 | Corazón de la Forja | `volcan gigante.zip` | Gólem de Forja | V | 7 |
+| 6 | Santuario Celestial | `vacio.zip` | Los 5 jefes Ancestrales seguidos | V+ | Epílogo |
+
+- El **Cangrejo** (capítulo 2) todavía no tiene mazmorra: se pelea en las playas hasta conseguir un mapa de costa.
+  `volcan.zip` queda de reserva (puede servir si es una isla con costa).
+- **Arena de jugadores** (`batalla_de_Jugadores.zip`): **no es una mazmorra**. Es un mundo aparte para que **los
+  jugadores peleen entre ellos (PvP)**, el único lugar del server con PvP. Nadie pierde sus cosas, no da drops
+  y no cuenta para las misiones.
+
+### 6. Cosas nuevas que haría falta crear
 
 - **Ítems:** los 5 fragmentos (Marea, Pantano, Arena, Hielo, Fuego) y la Lámpara del Minero. Van en
   `items.py`, sin receta, y solo caen la primera vez que el jugador mata a cada jefe.

@@ -21,6 +21,10 @@ SPAWN = (180.5, 98, 190.5, 180)          # x, y, z, yaw (mirando al edificio gra
 
 # id: (x, y, z, yaw)  -> yaw 0 = sur, 90 = oeste, -90 = este, 180 = norte
 NPC_POS = {
+    "astral_npc_bazar": (166.5, 100, 187.5, 180),
+    "astral_npc_subastas": (190.5, 100, 187.5, 180),
+    "astral_npc_herrero": (180.5, 100, 202.5, 180),
+    "astral_npc_expediciones": (172.5, 100, 214.5, 180),
     "astral_npc_tienda": (178.5, 100, 166.5, 0),        # edificio grande del norte
     "astral_npc_venta": (158.5, 100, 177.5, -90),       # noroeste
     # gachas: cofres sobre los 3 cristales celestes del lado este (los cristales se sacan, ver commands())
@@ -28,6 +32,7 @@ NPC_POS = {
     "astral_npc_gacha_monturas": (208.5, 101, 185.5, 90),     # el del norte
     "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
     "astral_npc_viajero": (180.5, 100, 212.5, 180),     # junto al banco del sur
+    "astral_npc_cronista": (174.5, 100, 212.5, 180),
 }
 
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}

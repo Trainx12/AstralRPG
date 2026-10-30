@@ -91,12 +91,34 @@ LOBBY_NPC = "astral_npc_mina"
 PREMIO = [("esencia_elite", 4), ("alma_corrupta", 2), ("gema_luminica", 1), ("cristal_refinado", 1)]
 PREMIO_PLATA = 2500
 
+MINA = dict(key="mina", name="Minas Olvidadas", world=WORLD, mobs=MOBS, rooms=SALAS,
+            npc=LOBBY_NPC, reward=PREMIO, money=PREMIO_PLATA, cooldown=COOLDOWN,
+            event="mina", enabled=True)
+
+
+def finish(text, dungeon):
+    """Solo cambia los identificadores propios del motor; las Minas conservan sus IDs."""
+    if dungeon["key"] == "mina":
+        return text
+    key = dungeon["key"]
+    return (text.replace("MINA_", key.upper() + "_")
+            .replace("astral_mina_", f"astral_{key}_")
+            .replace("astral.mina.cd", f"astral.{key}.cd")
+            .replace("tag=mina.", f"tag={key}.")
+            .replace("Minas Olvidadas", dungeon["name"])
+            .replace("El Guardian de las Profundidades cayo!", "La prueba termino!")
+            .replace("Cofre de la Mina", "Cofre de " + dungeon["name"])
+            .replace("cofre de la mina", "cofre de esta mazmorra")
+            .replace("[&7Mina&8]", "[&7" + dungeon["name"] + "&8]"))
+
 
 def tipos_sala(s):
     return ",".join(sorted({m for ol in s["oleadas"] for (m, _, _) in ol} | set(s.get("extra", []))))
 
 
-def mob_yml():
+def mob_yml(dungeon=None):
+    dungeon = dungeon or MINA
+    MOBS, SALAS, LOBBY_NPC = dungeon["mobs"], dungeon["rooms"], dungeon["npc"]
     L = ["# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)", ""]
     for mid, d in MOBS.items():
         L += [f"{mid}:", f"  Type: {d['type']}", f"  Display: {q(d['name'])}", f"  Health: {d['hp']}", f"  Damage: {d['dmg']}",
@@ -140,14 +162,17 @@ def mob_yml():
           "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true",
           "    Profession: MASON", "    VillagerType: PLAINS", "  Skills:", "  - cancelevent @self ~onInteract",
           "  - " + q("skill{s=MINA_ENTRAR} @trigger ~onInteract"), ""]
-    return "\n".join(L) + "\n"
+    return finish("\n".join(L) + "\n", dungeon) + dungeon.get("mob_blocks", "")
 
 
-def tp(x, y, z, who="<target.name>"):
-    return f'command{{c="execute in minecraft:{WORLD} run minecraft:tp {who} {x} {y} {z}"}}'
+def tp(x, y, z, who="<target.name>", world=WORLD):
+    return f'command{{c="execute in minecraft:{world} run minecraft:tp {who} {x} {y} {z}"}}'
 
 
-def skill_yml():
+def skill_yml(dungeon=None):
+    dungeon = dungeon or MINA
+    MOBS, SALAS, WORLD = dungeon["mobs"], dungeon["rooms"], dungeon["world"]
+    PREMIO, PREMIO_PLATA, COOLDOWN = dungeon["reward"], dungeon["money"], dungeon["cooldown"]
     L = ["# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)", ""]
     for mid, d in MOBS.items():
         if d.get("model"):
@@ -169,6 +194,8 @@ def skill_yml():
           "  - " + q('message{m="&4&lEl Guardian se enfurece! Su piel de piedra se agrieta..."} @PlayersInRadius{r=48}'),
           "  - potion{type=STRENGTH;duration=999999;level=0} @self", "  - potion{type=SPEED;duration=999999;level=0} @self", ""]
     # salas
+    if dungeon["key"] != "mina":
+        L = ["# Mazmorra " + dungeon["name"] + " (generada por mazmorra.py)", ""]
     for i, s in enumerate(SALAS):
         S = s["id"].upper()
         r = s["r"]
@@ -198,13 +225,14 @@ def skill_yml():
                   "  - delay 20",
                   "  - removetag{tag=mina.on} @self", "  - removetag{tag=mina.fin} @self"] + \
                  [f"  - removetag{{tag=mina.ola{k}}} @self" for k in range(1, n + 1)] + [""]
-            L += [f"MINA_IR_{sig['id'].upper()}:", "  Skills:", "  - " + q(tp(*sig["llegada"])),
+            L += [f"MINA_IR_{sig['id'].upper()}:", "  Skills:", "  - " + q(tp(*sig["llegada"], world=WORLD)),
                   "  - " + q("sound{s=entity.enderman.teleport}"), ""]
         else:
             # sala final: premio y vuelta al lobby
             L += [f"MINA_{S}_LIMPIA:", "  Skills:", "  - addtag{tag=mina.fin} @self",
                   "  - " + q(f'message{{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - " + q("sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=" + str(r + 8) + "}"),
+                  "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - delay 40",
                   "  - " + q(f"skill{{s=MINA_PREMIO}} @PlayersInRadius{{r={r + 8}}}"),
                   "  - " + q(f"skill{{s=MINA_PREMIO_YA}} @PlayersInRadius{{r={r + 8}}}"),
@@ -224,7 +252,7 @@ def skill_yml():
         L += ["  - " + q(f'command{{c="loot give <target.name> loot astral:item/{it}"}}')] * n
     L += ["  - " + q('command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'),
           "  - " + q(f'command{{c="eco give <target.name> {PREMIO_PLATA}"}}'),
-          "  - " + q("skill{s=PET_GANAR_GOLEM} 0.05"),
+          *( ["  - " + q("skill{s=PET_GANAR_GOLEM} 0.05")] if dungeon["key"] == "mina" else [] ),
           "  - " + q(f'command{{c="lp user <target.name> permission settemp astral.mina.cd true {COOLDOWN}"}}'),
           "  - " + q(f'message{{m="&6Cofre de la Mina: &fmateriales de elite y &e{PREMIO_PLATA}$&f. &7(el proximo cofre en 30 minutos)"}}'),
           "",
@@ -232,13 +260,22 @@ def skill_yml():
           "  - " + q('message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}'), ""]
     # entrada desde el lobby
     s1 = SALAS[0]
-    L += ["MINA_ENTRAR:", "  Skills:",
-          "  - " + q('message{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8(4 salas. Para salir: /spawn)"}'),
-          "  - " + q(tp(*s1["llegada"], who="<trigger.name>")), ""]
-    return "\n".join(L) + "\n"
+    if not dungeon.get("enabled", False):
+        L += ["MINA_ENTRAR:", "  Skills:", "  - " + q('message{m="&eEsta mazmorra esta en preparacion. Falta revisar las salas en Minecraft."}'), ""]
+        return finish("\n".join(L) + "\n", dungeon)
+    L += ["MINA_ENTRAR:"]
+    if dungeon["key"] == "santuario":
+        L += ["  TargetConditions:", "  - score{o=aq.state;v=>9} true"]
+    L += ["  Skills:",
+          "  - " + q(f'message{{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8({len(SALAS)} salas. Para salir: /spawn)"}}'),
+          "  - " + q(tp(*s1["llegada"], who="<trigger.name>", world=WORLD)), ""]
+    return finish("\n".join(L) + "\n", dungeon)
 
 
-def commands():
+def commands(dungeon=None):
+    dungeon = dungeon or MINA
+    if dungeon["key"] != "mina":
+        return new_commands(dungeon)
     C = ["# Mazmorra Minas Olvidadas: comandos de consola (sin /). Generado por datapack-src/mobs/mazmorra.py",
          "# --- 1) mundo vacio (una sola vez)",
          f'mv create {WORLD} normal --world-type FLAT --no-structures --no-adjust-spawn '
@@ -272,13 +309,54 @@ def commands():
 
 
 def main():
+    from arena import generate as generate_arena
+    from mazmorras_data import catalog
+    MAZMORRAS = [MINA] + catalog()
     for sub in ("mobs", "skills"):
         os.makedirs(os.path.join(OUT, "mythicmobs", sub), exist_ok=True)
     os.makedirs(os.path.join(OUT, "mazmorra"), exist_ok=True)
     open(os.path.join(OUT, "mythicmobs", "mobs", "mazmorra.yml"), "w", encoding="utf-8").write(mob_yml())
     open(os.path.join(OUT, "mythicmobs", "skills", "mazmorra.yml"), "w", encoding="utf-8").write(skill_yml())
     open(os.path.join(OUT, "mazmorra", "comandos.txt"), "w", encoding="utf-8").write(commands())
+    for dungeon in MAZMORRAS[1:]:
+        filename = dungeon["key"] + ".yml"
+        for sub, content in (("mobs", mob_yml(dungeon)), ("skills", skill_yml(dungeon))):
+            open(os.path.join(OUT, "mythicmobs", sub, filename), "w", encoding="utf-8").write(content)
+        folder = os.path.join(OUT, "mazmorras", dungeon["key"])
+        os.makedirs(folder, exist_ok=True)
+        open(os.path.join(folder, "comandos.txt"), "w", encoding="utf-8").write(commands(dungeon))
     print(f"mazmorra: {len(MOBS)} mobs, {len(SALAS)} salas")
+    generate_arena()
+
+
+def new_commands(dungeon):
+    w = dungeon["world"]
+    lines = [f'# {dungeon["name"]} - ubicaciones propuestas, revisar en creativo antes de habilitar.',
+             '# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.',
+             '# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.',
+             f'mv create {w} normal --world-type FLAT --no-structures --no-adjust-spawn '
+             '--generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}',
+             f'# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/{w}/region.',
+             '# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.',
+             f'mv modify {w} set difficulty hard', f'mv modify {w} set gamemode survival',
+             f'mv modify {w} set pvp false', f'mv modify {w} set allow-weather false',
+             f'mv gamerule set minecraft:spawn_mobs false {w}', f'mv gamerule set minecraft:keep_inventory true {w}',
+             f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
+             f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
+             '# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):']
+    for room in dungeon["rooms"]:
+        x,y,z = room["llegada"]
+        lines += [f'# {room["name"]}: execute in minecraft:{w} run minecraft:tp <jugador> {x} {y} {z}',
+                  '# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.']
+    lines += ['# DESPUES de revisar las coordenadas y cambiar enabled=True:']
+    for room in dungeon["rooms"]:
+        x,y,z=room["centro"]
+        lines += [f'# execute in minecraft:{w} run forceload add {int(x)} {int(z)}',
+                  f'# mm mobs spawn astral_{dungeon["key"]}_control_{room["id"]} 1 {w},{x},{y},{z}',
+                  f'# execute in minecraft:{w} run forceload remove {int(x)} {int(z)}']
+    lines += [f'# NPC de entrada (en el lobby): mm mobs spawn {dungeon["npc"]}',
+              '# Los jefes y mobs del mundo normal conservan sus apariciones.']
+    return "\n".join(lines) + "\n"
 
 
 if __name__ == "__main__":

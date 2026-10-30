@@ -64,6 +64,7 @@ astral_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_abejorro:
@@ -89,6 +90,7 @@ astral_abejorro:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_arana:
@@ -114,6 +116,7 @@ astral_arana:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_cara:
@@ -139,6 +142,7 @@ astral_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
 
 astral_grillo:
@@ -338,6 +342,7 @@ astral_momia:
   - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -383,6 +388,7 @@ astral_yeti:
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -437,6 +443,7 @@ astral_golem_forja:
   - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_golem_forja_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -477,6 +484,7 @@ astral_cangrejo:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
@@ -521,6 +529,7 @@ astral_chaman:
   - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
   - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -560,6 +569,8 @@ astral_espantapajaros_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_espantapajaros_elite_vamp,AST_AFIJO_astral_espantapajaros_elite_expl,AST_AFIJO_astral_espantapajaros_elite_blind,AST_AFIJO_astral_espantapajaros_elite_veloz,AST_AFIJO_astral_espantapajaros_elite_invoc,AST_AFIJO_astral_espantapajaros_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -606,6 +617,8 @@ astral_abejorro_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_abejorro_elite_vamp,AST_AFIJO_astral_abejorro_elite_expl,AST_AFIJO_astral_abejorro_elite_blind,AST_AFIJO_astral_abejorro_elite_veloz,AST_AFIJO_astral_abejorro_elite_invoc,AST_AFIJO_astral_abejorro_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -652,6 +665,8 @@ astral_arana_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_arana_elite_vamp,AST_AFIJO_astral_arana_elite_expl,AST_AFIJO_astral_arana_elite_blind,AST_AFIJO_astral_arana_elite_veloz,AST_AFIJO_astral_arana_elite_invoc,AST_AFIJO_astral_arana_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -698,6 +713,8 @@ astral_cara_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_cara_elite_vamp,AST_AFIJO_astral_cara_elite_expl,AST_AFIJO_astral_cara_elite_blind,AST_AFIJO_astral_cara_elite_veloz,AST_AFIJO_astral_cara_elite_invoc,AST_AFIJO_astral_cara_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -754,6 +771,7 @@ astral_cangrejo_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_cangrejo_elite_vamp,AST_AFIJO_astral_cangrejo_elite_expl,AST_AFIJO_astral_cangrejo_elite_blind,AST_AFIJO_astral_cangrejo_elite_veloz,AST_AFIJO_astral_cangrejo_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -825,6 +843,7 @@ astral_momia_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_momia} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -902,6 +921,7 @@ astral_yeti_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_yeti} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -988,6 +1008,7 @@ astral_golem_forja_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_golem_forja} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_golem_forja_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -1059,6 +1080,7 @@ astral_cangrejo_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_cangrejo} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
@@ -1135,6 +1157,7 @@ astral_chaman_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_chaman} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -1149,6 +1172,26 @@ astral_chaman_ancestral:
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
   - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?isplayer
+
+astral_npc_expediciones:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- mazmorras y arena'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="execute in minecraft:lobby run minecraft:tp <trigger.name> 180.5 100 288.5"} @self ~onInteract'
 
 astral_npc_bazar:
   Type: VILLAGER
@@ -1168,6 +1211,7 @@ astral_npc_bazar:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'skill{s=AQ_BAZAR} @trigger ~onInteract'
   - 'command{c="dm open bazar <trigger.name>"} @self ~onInteract'
 
 astral_npc_subastas:
@@ -1208,6 +1252,7 @@ astral_npc_herrero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'skill{s=AQ_HERRERO} @trigger ~onInteract'
   - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/ver"} @self ~onInteract'
   - 'message{m="&7Shift + clic para mejorar a &e+1&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=1}'
   - 'message{m="&cTe faltan &e300$&c para la mejora a +1 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=1} ?~!hascurrency{a=300}'
@@ -1268,6 +1313,7 @@ astral_npc_tienda:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'skill{s=AQ_TIENDA} @trigger ~onInteract'
   - 'command{c="sudo <trigger.name> shop"} @self ~onInteract'
 
 astral_npc_venta:
@@ -1374,5 +1420,31 @@ astral_npc_viajero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'message{m="&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)"} @trigger ~onInteract'
-  - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract'
+  - 'skill{s=AQ_VIAJERO} @trigger ~onInteract ?~!crouching'
+  - 'message{m="&7Shift + clic para ir al mundo."} @trigger ~onInteract ?~!crouching'
+  - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract ?~crouching'
+
+astral_npc_cronista:
+  Type: VILLAGER
+  Display: '&b&lCronista &7- misiones diarias'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: LIBRARIAN
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'skill{s=AQ_CRONISTA} @trigger ~onInteract'
+  - 'skill{s=AQ_CLOCK} @self ~onTimer:200'
+  - 'skill{s=AQ_CLOCK} @self ~onSpawn'
+  - 'skill{s=AQ_PAY} @PlayersOnServer ~onTimer:20'
+  - 'skill{s=AQ_TITLE} @PlayersOnServer ~onTimer:20'
+  - 'skill{s=AQ_GACHA} @PlayersOnServer ~onTimer:20'

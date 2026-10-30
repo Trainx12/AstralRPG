@@ -46,6 +46,16 @@ MATERIALS = {
     "nucleo_eolico": ("Nucleo Eolico", "#bff5e6", "minecraft:wind_charge", True, "Movilidad y arqueros."),
 }
 
+# Recuerdos de historia sin receta; no llenan el kit ni el menu de materiales.
+HISTORY_ITEMS = {
+    "fragmento_marea": ("Fragmento de la Marea", "aqua", "minecraft:prismarine_crystals", True, "Recuerdo de historia: el Viajero registra tu victoria."),
+    "fragmento_pantano": ("Fragmento del Pantano", "dark_green", "minecraft:slime_ball", True, "Recuerdo de historia: el Viajero registra tu victoria."),
+    "fragmento_arena": ("Fragmento de la Arena", "gold", "minecraft:raw_gold", True, "Recuerdo de historia: el Viajero registra tu victoria."),
+    "lampara_minero": ("Lampara del Minero", "yellow", "minecraft:lantern", True, "Recuerdo de las Minas Olvidadas."),
+    "fragmento_hielo": ("Fragmento de Hielo", "blue", "minecraft:echo_shard", True, "Recuerdo de historia: el Viajero registra tu victoria."),
+    "fragmento_fuego": ("Fragmento de Fuego", "red", "minecraft:blaze_powder", True, "Recuerdo de historia: el Viajero registra tu victoria."),
+}
+
 # ---------------------------------------------------------------------------
 # DROPS de mobs: (tipo de mob o lista, material, probabilidad, condicion)
 # condicion: None, "end" (solo en el End)

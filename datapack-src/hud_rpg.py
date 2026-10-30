@@ -11,7 +11,7 @@ mas pixeles que la original: aca todo se dibuja a 4x (cada pixel del juego = 4x4
 import math
 import random
 
-from PIL import Image
+from PIL import Image, ImageDraw
 
 E = 4  # escala
 
@@ -376,6 +376,13 @@ def hotbar():
     for cx in range(20 * E, W - 10, 40 * E):                          # remaches arriba y abajo
         remache(im, cx + 2 * E, 2)
         remache(im, cx + 2 * E, H - 3)
+    # Runas en los pilares: el centro de cada hueco queda libre para leer los items.
+    d = ImageDraw.Draw(im)
+    for i in range(1, 9):
+        x = (2 + 20 * i) * E
+        d.line([(x, 5 * E), (x - E, 7 * E), (x, 9 * E),
+                (x + E, 7 * E), (x, 5 * E)], fill=VIOLETA + (255,), width=2)
+        d.line([(x, 12 * E), (x, 16 * E)], fill=ORO + (255,), width=2)
     return im
 
 
@@ -461,7 +468,31 @@ JEFES = {"pink": (236, 110, 190), "blue": (70, 140, 240), "red": (220, 50, 50), 
          "yellow": (240, 210, 60), "purple": (160, 80, 220), "white": (230, 230, 230)}
 
 
-def hud():
+def indicador(progreso=False, cruz=False):
+    """Indicador de recarga real del ataque, sin inventar una barra de mana."""
+    im = lienzo(16 if cruz else 18, 4 if cruz else 18)
+    w, h = im.size
+    if cruz:
+        rect(im, 0, E, w - 1, h - E - 1, VIOLETA_CLARO if progreso else PIEDRA_OSCURA)
+        rect(im, 0, 0, w - 1, 0, ORO)
+    else:
+        marco_oro(im, 4 * E, E, 14 * E - 1, h - E - 1, ancho=E)
+        rect(im, 6 * E, 3 * E, 12 * E - 1, h - 3 * E - 1,
+             VIOLETA_CLARO if progreso else PIEDRA_OSCURA)
+    return im
+
+
+def marco_efecto(ambient=False):
+    """Marco de los efectos activos: conserva el hueco del icono vanilla."""
+    im = lienzo(24, 24)
+    rect(im, 0, 0, im.width-1, im.height-1, PIEDRA_OSCURA, 220)
+    marco_oro(im, 0, 0, im.width-1, im.height-1, ancho=E)
+    for x,y in ((2*E,2*E),(21*E,2*E),(2*E,21*E),(21*E,21*E)):
+        gema(im,x,y,E,apagada=not ambient)
+    return im
+
+
+def hud(alta_resolucion=False):
     """Devuelve {ruta relativa a textures/gui: imagen}."""
     S = "sprites/hud/"
     out = {S + "hotbar.png": hotbar(), S + "hotbar_selection.png": hotbar_seleccion(),
@@ -494,7 +525,71 @@ def hud():
     out[S + "jump_bar_background.png"] = barra_fondo()
     out[S + "jump_bar_cooldown.png"] = barra_progreso((90, 80, 70))
     out[S + "jump_bar_progress.png"] = barra_progreso((90, 180, 240))
+    out[S + "effect_background.png"] = marco_efecto()
+    out[S + "effect_background_ambient.png"] = marco_efecto(True)
+    # La barra de localizacion puede sustituir la de XP en 26.1.2.
+    # El localizador es un tile de 12x5 con metadatos propios del cliente.
+    # Se conserva vanilla hasta tratar tambien su nine-slice, sin romperlo.
+    for parte in ("background", "progress"):
+        out[S + f"hotbar_attack_indicator_{parte}.png"] = indicador(parte == "progress")
+        out[S + f"crosshair_attack_indicator_{parte}.png"] = indicador(parte == "progress", cruz=True)
     for col, rgb in JEFES.items():
         out[f"sprites/boss_bar/{col}_background.png"] = barra_fondo()
         out[f"sprites/boss_bar/{col}_progress.png"] = barra_progreso(rgb)
-    return out
+    # Exportar al tamano nativo. E es solo la resolucion interna del dibujante.
+    # No dependemos del escalado del atlas ni dejamos metadatos de otras texturas.
+    if alta_resolucion:
+        return out
+    native = {ruta: im.resize((im.width // E, im.height // E), Image.Resampling.NEAREST)
+              for ruta, im in out.items()}
+    # Estos detalles se trazan al final para que sean legibles a escala 1x.
+    d = ImageDraw.Draw(native[S + "hotbar.png"])
+    for i in range(1, 9):
+        x = 1 + 20*i
+        d.line((x,3,x,18), fill=BRONCE+(255,))
+        d.line((x-1,4,x-1,17), fill=PIEDRA_CLARA+(255,))
+        d.polygon([(x,7),(x+1,8),(x,9),(x-1,8)],fill=VIOLETA+(255,))
+        d.point((x,7),fill=VIOLETA_CLARO+(255,))
+        d.point((x,14),fill=ORO_CLARO+(255,))
+    d = ImageDraw.Draw(native[S + "hotbar_selection.png"])
+    d.rectangle((1,1,22,21),outline=VIOLETA_CLARO+(255,))
+    for x,y in ((1,1),(22,1),(1,21),(22,21)):
+        d.point((x,y),fill=ORO_CLARO+(255,))
+    return native
+
+
+def preview(path):
+    """Muestra los sprites a escala GUI 4x. No simula datos ni una captura real."""
+    sprites = hud()
+    im = Image.new("RGBA", (1000,420), (24,29,31,255))
+    ImageDraw.Draw(im).text((32,24),"ASTRAL RPG / HUD - vista de texturas, no captura del juego",fill=ORO_CLARO)
+
+    def paste(name,x,y):
+        s=sprites[name]
+        im.alpha_composite(s.resize((s.width*4,s.height*4),Image.Resampling.NEAREST),(x,y))
+
+    h="sprites/hud/"
+    paste("sprites/boss_bar/purple_background.png",136,80)
+    paste("sprites/boss_bar/purple_progress.png",136,80)
+    for i in range(10):
+        paste(h+"armor_full.png",136+i*32,180)
+        paste(h+"heart/container.png",136+i*32,220)
+        if i<7:paste(h+"heart/full.png",136+i*32,220)
+        paste(h+"food_empty.png",540+i*32,220)
+        if i<8:paste(h+"food_full.png",540+i*32,220)
+    paste(h+"experience_bar_background.png",136,264)
+    progress=sprites[h+"experience_bar_progress.png"].crop((0,0,120,5)).resize((480,20),Image.Resampling.NEAREST)
+    im.alpha_composite(progress,(136,264))
+    paste(h+"hotbar.png",136,300)
+    paste(h+"hotbar_selection.png",292,296)
+    paste(h+"hotbar_offhand_left.png",12,296)
+    paste(h+"effect_background.png",880,160)
+    im.convert("RGB").save(path)
+
+
+if __name__=="__main__":
+    from pathlib import Path
+    path=Path(__file__).resolve().parent.parent/"build/HUD-preview.png"
+    path.parent.mkdir(parents=True,exist_ok=True)
+    preview(path)
+    print(path)

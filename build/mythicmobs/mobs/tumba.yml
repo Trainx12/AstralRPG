@@ -1,0 +1,199 @@
+# Mazmorra Tumba del Rey de Arena (generado por datapack-src/mobs/mazmorra.py)
+
+astral_tumba_control_sala1:
+  Type: ARMOR_STAND
+  Display: 'Control Patio de los olvidados'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_espantapajaros;a=0;r=26}'
+  - 'skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_espantapajaros;a=0;r=26}'
+  - 'skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=26}'
+
+astral_tumba_control_sala2:
+  Type: ARMOR_STAND
+  Display: 'Control Pasaje de los sellos'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_cara;a=0;r=26}'
+  - 'skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_cara;a=0;r=26}'
+  - 'skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=26}'
+
+astral_tumba_control_sala3:
+  Type: ARMOR_STAND
+  Display: 'Control Trono del Rey de Arena'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=HUSK,astral_tumba_momia;a=0;r=36}'
+  - 'skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}'
+
+astral_npc_tumba:
+  Type: VILLAGER
+  Display: '&8&lMazmorra: &7Tumba del Rey de Arena'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: MASON
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'skill{s=TUMBA_ENTRAR} @trigger ~onInteract'
+
+astral_tumba_espantapajaros:
+  Type: VEX
+  Display: '&6Espantapajaros Maldito'
+  Health: 34
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.25
+    PreventRandomEquipment: true
+  Drops:
+  - pumpkin 1 0.5
+  - wheat 1-4 0.8
+  - string 1-2 0.5
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
+  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_tumba_arana:
+  Type: SPIDER
+  Display: '&5Arana Amatista'
+  Health: 26
+  Damage: 5
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    PreventRandomEquipment: true
+  Drops:
+  - string 1-3 0.9
+  - spider_eye 1 0.5
+  - amethyst_shard 1-2 0.5
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_arana} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_arana} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_tumba_cara:
+  Type: PHANTOM
+  Display: '&cCara Voladora'
+  Health: 22
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    PreventRandomEquipment: true
+  Drops:
+  - phantom_membrane 1 0.6
+  - rotten_flesh 1-2 0.6
+  - exp 10
+  Skills:
+  - skill{s=AST_MODEL_astral_cara} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cara} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
+  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_tumba_momia:
+  Type: HUSK
+  Display: '&e&lMomia Ancestral'
+  Health: 320
+  Damage: 10
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.24
+    KnockbackResistance: 0.8
+    FollowRange: 40
+    PreventRandomEquipment: true
+  BossBar:
+    Enabled: true
+    Title: '&e&lMomia Ancestral'
+    Range: 48
+    Color: YELLOW
+    Style: SEGMENTED_10
+  Drops:
+  - gold_ingot 3-8 1
+  - bone 4-8 1
+  - exp 120
+  Skills:
+  - skill{s=AST_MODEL_astral_momia} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_momia} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_luminica"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
+  - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
+  - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
+  - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
+  - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
+  - skill{s=AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer

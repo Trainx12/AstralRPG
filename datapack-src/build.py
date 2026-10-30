@@ -9,7 +9,7 @@ import os
 import shutil
 import zipfile
 
-from items import (SKILLS, MATERIALS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
+from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
                    SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA)
 
@@ -119,6 +119,10 @@ for mid, (name, color, model, glint, desc) in MATERIALS.items():
              {"type": "material"}, model=model, glint=glint, kind="material")
 
 # Gancho de escalada
+for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
+    add_item(mid, "minecraft:paper", name, color, [txt(desc), txt("Recuerdo de la Estrella Astral", "dark_gray")],
+             {"type": "quest"}, model=model, glint=glint, kind="quest")
+
 add_item("gancho", "minecraft:carrot_on_a_stick", "Gancho de Escalada", "#d0d0d0",
          [txt("Click derecho apuntando a un bloque"), txt("para impulsarte hacia el (hasta 32 bloques)."),
           txt("Agachate para soltarte.", "dark_gray")],
@@ -638,6 +642,10 @@ for (out, n, ings, group) in RECIPES:
     for _ in range(n):
         lines.append(f"loot spawn ~ ~0.3 ~ loot {NS}:item/{out}")
     it = ITEMS[out]
+    # Las misiones registran la fabricacion real, no la mera posesion de equipo.
+    for _tier in (1, 5):
+        if f'tier:{_tier},' in it['components']['minecraft:custom_data'] or f'tier:{_tier}}}' in it['components']['minecraft:custom_data']:
+            lines.append(f"function {NS}:quest/event/forge{_tier}")
     lines += [
         "particle minecraft:enchant ~ ~0.5 ~ 0.3 0.3 0.3 1 40",
         "particle minecraft:end_rod ~ ~0.5 ~ 0.2 0.2 0.2 0.02 12",
@@ -1558,6 +1566,7 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
     btn(txt("Como se juega", "gold"), dialog="guia/como"),
+    btn(txt("Misiones e historia", "aqua"), command="/trigger aq.journal"),
     btn(txt("Materiales", "light_purple"), dialog="guia/materiales"),
     btn(txt("Berserker", "#ff4d4d"), dialog="guia/berserker"),
     btn(txt("Mago", "#b26bff"), dialog="guia/mago"),
@@ -1601,6 +1610,8 @@ fn("admin/kit_pruebas", [f"loot give @s loot {NS}:item/{m}" for m, n in _kit.ite
 fn("admin/materiales", [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS] + [f"loot give @s loot {NS}:item/{m}" for m in MATERIALS])
 # Kits de prueba: cajas de shulker por categoria (el inventario no alcanza para todo)
 KITS = [
+    ("historia", "Recuerdos de historia", "aqua", "minecraft:light_blue_shulker_box",
+     [i for i in ITEMS if ITEMS[i]["kind"] == "quest"]),
     ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
      [i for i in ITEMS if ITEMS[i]["kind"] == "material"]),
     ("berserker", "Armaduras Berserker", "red", "minecraft:red_shulker_box",
@@ -1631,7 +1642,7 @@ for kid, kname, kcolor, box, ids in KITS:
 _missing = [i for i in ITEMS if i not in _kitted]
 assert not _missing, _missing
 fn("admin/todo", [f"loot give @s loot {NS}:kit/{k[0]}" for k in KITS] + [
-    "tellraw @s " + json.dumps(txt("Te dimos 7 cajas de shulker con todos los items de AstralRPG.", "gray"))])
+    "tellraw @s " + json.dumps(txt(f"Te dimos {len(KITS)} cajas de shulker con todos los items de AstralRPG.", "gray"))])
 
 # ---------------------------------------------------------------------------
 # Taladros y motosierras: area y tala de arboles
@@ -1878,6 +1889,8 @@ for L, (plata, prob, mats) in MEJORAS.items():
               f"scoreboard players set @s astralmejn {L}"]
     fn(f"mejora/ver/{L}", lines)
     h = [f'clear @s *[minecraft:custom_data~{{{NS}:{{id:"{m}"}}}}] {n}' for m, n in mats]
+    if L >= 5:
+        h.append(f"function {NS}:quest/event/upgrade")
     if prob >= 1:
         h.append(f"function {NS}:mejora/ok/{L}")
     else:
@@ -1962,6 +1975,11 @@ for key, p in CHANCES:
 
 put("pack.mcmeta", {"pack": {"description": [txt("AstralRPG", "light_purple"), txt(" - items, clases y Forja Astral", "gray")],
                              "min_format": [DATA_FORMAT, 1], "max_format": [DATA_FORMAT, 1]}})
+
+from misiones import generate as generate_quests
+generate_quests(files, ITEMS)
+from ambiente import generate as generate_ambience
+generate_ambience(files)
 
 # ---------------------------------------------------------------------------
 # Escribir

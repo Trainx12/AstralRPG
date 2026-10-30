@@ -1,0 +1,35 @@
+# Bosque Sombrio - ubicaciones propuestas, revisar en creativo antes de habilitar.
+# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
+# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
+mv create bosque normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/bosque/region.
+# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
+mv modify bosque set difficulty hard
+mv modify bosque set gamemode survival
+mv modify bosque set pvp false
+mv modify bosque set allow-weather false
+mv gamerule set minecraft:spawn_mobs false bosque
+mv gamerule set minecraft:keep_inventory true bosque
+rg flag -w bosque __global__ build deny
+rg flag -w bosque __global__ chest-access deny
+rg flag -w bosque __global__ pvp deny
+rg flag -w bosque __global__ mob-spawning allow
+# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
+# Sendero de las raices: execute in minecraft:bosque run minecraft:tp <jugador> 1440.5 104 1568.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Claro corrompido: execute in minecraft:bosque run minecraft:tp <jugador> 1504.5 107 1504.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# Altar del Chaman: execute in minecraft:bosque run minecraft:tp <jugador> 1600.5 97 1440.5
+# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
+# DESPUES de revisar las coordenadas y cambiar enabled=True:
+# execute in minecraft:bosque run forceload add 1440 1568
+# mm mobs spawn astral_bosque_control_sala1 1 bosque,1440.5,104,1568.5
+# execute in minecraft:bosque run forceload remove 1440 1568
+# execute in minecraft:bosque run forceload add 1504 1504
+# mm mobs spawn astral_bosque_control_sala2 1 bosque,1504.5,107,1504.5
+# execute in minecraft:bosque run forceload remove 1504 1504
+# execute in minecraft:bosque run forceload add 1600 1440
+# mm mobs spawn astral_bosque_control_sala3 1 bosque,1600.5,97,1440.5
+# execute in minecraft:bosque run forceload remove 1600 1440
+# NPC de entrada (en el lobby): mm mobs spawn astral_npc_bosque
+# Los jefes y mobs del mundo normal conservan sus apariciones.

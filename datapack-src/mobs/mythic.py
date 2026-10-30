@@ -286,6 +286,8 @@ def _bazar():
 
 
 NPCS = {
+    "astral_npc_expediciones": ("&b&lExpediciones Astrales &7- mazmorras y arena", "CARTOGRAPHER",
+                                ['command{c="execute in minecraft:lobby run minecraft:tp <trigger.name> 180.5 100 288.5"} @self ~onInteract']),
     "astral_npc_bazar": ("&6&lBazar &7(mercado y subastas)", "CARTOGRAPHER", _bazar()),
     "astral_npc_subastas": ("&e&lSubastas &7(/ah)", "ARMORER", ["command{c=\"sudo <trigger.name> ah\"} @self ~onInteract"]),
     "astral_npc_herrero": ("&6&lHerrero &7(clic: costo - shift+clic: mejorar)", "WEAPONSMITH", _herrero()),
@@ -299,9 +301,20 @@ NPCS = {
     "astral_npc_gacha_cosmeticos": ("&d&lGacha de Cosmeticos", "CARTOGRAPHER",
                                     _gacha("gacha_cosmeticos", 500)),
     "astral_npc_viajero": ("&f&lViajero &7- ir al mundo", "NITWIT",
-                           ["message{m=\"&7El Viajero te lleva al mundo... &8(para volver usa &f/spawn&8)\"} @trigger ~onInteract",
-                            "command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract"]),
+                           ["skill{s=AQ_VIAJERO} @trigger ~onInteract ?~!crouching",
+                            "message{m=\"&7Shift + clic para ir al mundo.\"} @trigger ~onInteract ?~!crouching",
+                            "command{c=\"mvtp <trigger.name> w:world\"} @self ~onInteract ?~crouching"]),
+    "astral_npc_cronista": ("&b&lCronista &7- misiones diarias", "LIBRARIAN",
+                            ["skill{s=AQ_CRONISTA} @trigger ~onInteract",
+                             "skill{s=AQ_CLOCK} @self ~onTimer:200",
+                             "skill{s=AQ_CLOCK} @self ~onSpawn",
+                             "skill{s=AQ_PAY} @PlayersOnServer ~onTimer:20",
+                             "skill{s=AQ_TITLE} @PlayersOnServer ~onTimer:20",
+                             "skill{s=AQ_GACHA} @PlayersOnServer ~onTimer:20"]),
 }
+
+for _npc in ("herrero", "tienda", "bazar"):
+    NPCS[f"astral_npc_{_npc}"][2].insert(0, f"skill{{s=AQ_{_npc.upper()}}} @trigger ~onInteract")
 
 
 # Las gachas son cofres (modelo de BetterModel sobre una oveja quieta: su caja de golpe es como la de un cofre)
@@ -385,6 +398,15 @@ def mob_block(mid, d, model=None, elite=None):
     sk += d.get("skills", [])
     real = f"{mid}" if not elite else mid          # id del mob que se esta generando
     base = model                                   # id de la criatura normal
+    # Un evento personal por baja. Las variantes de mazmorra reutilizan este
+    # mismo bloque y por eso conservan tanto las fases como la historia.
+    if d["kind"] in ("hostil", "jefe") and not d.get("suppress_quest"):
+        _event = base.removeprefix("astral_")
+        if _event not in ("espantapajaros", "abejorro", "arana", "cara", "cangrejo", "chaman", "momia", "yeti", "golem_forja"):
+            _event = "hostil"
+        sk.append(f'- command{{c="execute as <trigger.name> at @s run function astral:quest/event/{_event}"}} @self ~onDeath ?~isplayer')
+    if elite and d["kind"] == "hostil":
+        sk.append('- command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer')
     if d["kind"] == "jefe" and (not elite or d.get("ancestral")):
         for n, (pct, _, _, timers) in enumerate(FASES.get(base, []), start=2):
             sk.append(f"- skill{{s=AST_FASE_{base}_{n}}} @self ~onDamaged ?healthpercent{{p=<{pct / 100}}} ?!hastag{{tag=astral.fase{n}}}")

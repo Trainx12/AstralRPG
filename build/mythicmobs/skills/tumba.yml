@@ -1,0 +1,158 @@
+# Mazmorra Tumba del Rey de Arena (generada por mazmorra.py)
+
+TUMBA_SALA1_INICIO:
+  Skills:
+  - addtag{tag=tumba.on} @self
+  - addtag{tag=tumba.ola1} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPatio de los olvidados &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_tumba_espantapajaros;amount=4;radius=4} @self'
+  - 'summon{type=astral_tumba_espantapajaros;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+TUMBA_SALA1_OLA2:
+  Skills:
+  - addtag{tag=tumba.ola2} @self
+  - addtag{tag=tumba.espera} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_tumba_espantapajaros;amount=2;radius=4} @self'
+  - 'summon{type=astral_tumba_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_tumba_arana;amount=3;radius=4} @self'
+  - 'summon{type=astral_tumba_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=tumba.espera} @self
+
+TUMBA_SALA1_LIMPIA:
+  Skills:
+  - addtag{tag=tumba.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fPasaje de los sellos"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=TUMBA_IR_SALA2} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.ola1} @self
+  - removetag{tag=tumba.ola2} @self
+
+TUMBA_IR_SALA2:
+  Skills:
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> -128.5 72 -64.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+TUMBA_SALA1_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_tumba_arana,astral_tumba_espantapajaros}'
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.espera} @self
+  - removetag{tag=tumba.ola1} @self
+  - removetag{tag=tumba.ola2} @self
+
+TUMBA_SALA2_INICIO:
+  Skills:
+  - addtag{tag=tumba.on} @self
+  - addtag{tag=tumba.ola1} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPasaje de los sellos &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'summon{type=astral_tumba_arana;amount=5;radius=4} @self'
+  - 'summon{type=astral_tumba_arana;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+
+TUMBA_SALA2_OLA2:
+  Skills:
+  - addtag{tag=tumba.ola2} @self
+  - addtag{tag=tumba.espera} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - delay 40
+  - 'summon{type=astral_tumba_arana;amount=2;radius=4} @self'
+  - 'summon{type=astral_tumba_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_tumba_cara;amount=3;radius=4} @self'
+  - 'summon{type=astral_tumba_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - delay 10
+  - removetag{tag=tumba.espera} @self
+
+TUMBA_SALA2_LIMPIA:
+  Skills:
+  - addtag{tag=tumba.fin} @self
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Rey de Arena"} @PlayersInRadius{r=26}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - delay 100
+  - 'skill{s=TUMBA_IR_SALA3} @PlayersInRadius{r=26}'
+  - delay 20
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.ola1} @self
+  - removetag{tag=tumba.ola2} @self
+
+TUMBA_IR_SALA3:
+  Skills:
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> 96.5 73 -192.5"}'
+  - 'sound{s=entity.enderman.teleport}'
+
+TUMBA_SALA2_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=26;types=astral_tumba_arana,astral_tumba_cara}'
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.espera} @self
+  - removetag{tag=tumba.ola1} @self
+  - removetag{tag=tumba.ola2} @self
+
+TUMBA_SALA3_INICIO:
+  Skills:
+  - addtag{tag=tumba.on} @self
+  - addtag{tag=tumba.ola1} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fTrono del Rey de Arena &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
+  - 'summon{type=astral_tumba_momia;amount=1;radius=4} @self'
+
+TUMBA_SALA3_LIMPIA:
+  Skills:
+  - addtag{tag=tumba.fin} @self
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=36}'
+  - delay 40
+  - 'skill{s=TUMBA_PREMIO} @PlayersInRadius{r=36}'
+  - 'skill{s=TUMBA_PREMIO_YA} @PlayersInRadius{r=36}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
+  - delay 300
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - delay 20
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.ola1} @self
+
+TUMBA_SALA3_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=36;types=HUSK,astral_tumba_momia}'
+  - removetag{tag=tumba.on} @self
+  - removetag{tag=tumba.fin} @self
+  - removetag{tag=tumba.espera} @self
+  - removetag{tag=tumba.ola1} @self
+
+TUMBA_PREMIO:
+  TargetConditions:
+  - haspermission{p=astral.tumba.cd} false
+  Skills:
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
+  - 'command{c="eco give <target.name> 2000"}'
+  - 'command{c="lp user <target.name> permission settemp astral.tumba.cd true 30m"}'
+  - 'message{m="&6Cofre de Tumba del Rey de Arena: &fmateriales de elite y &e2000$&f. &7(el proximo cofre en 30 minutos)"}'
+
+TUMBA_PREMIO_YA:
+  TargetConditions:
+  - haspermission{p=astral.tumba.cd} true
+  Skills:
+  - 'message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+TUMBA_ENTRAR:
+  Skills:
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Bajando a las &fTumba del Rey de Arena&7... &8(3 salas. Para salir: /spawn)"}'
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -192.5 83 128.5"}'
+

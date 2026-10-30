@@ -40,6 +40,7 @@ MASC_INVOCAR_lobo:
   - score{o=mascota;v=1} true
   - haspermission{p=astral.mascota.lobo} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 1"}'
@@ -116,6 +117,7 @@ MASC_INVOCAR_cuervo:
   - score{o=mascota;v=2} true
   - haspermission{p=astral.mascota.cuervo} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 2"}'
@@ -182,6 +184,7 @@ MASC_INVOCAR_golem:
   - score{o=mascota;v=3} true
   - haspermission{p=astral.mascota.golem} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 3"}'
@@ -248,6 +251,7 @@ MASC_INVOCAR_zorro:
   - score{o=mascota;v=4} true
   - haspermission{p=astral.mascota.zorro} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 4"}'
@@ -314,6 +318,7 @@ MASC_INVOCAR_dragon:
   - score{o=mascota;v=5} true
   - haspermission{p=astral.mascota.dragon} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 5"}'
@@ -425,6 +430,7 @@ MASC_INVOCAR_fenix:
   - score{o=mascota;v=6} true
   - haspermission{p=astral.mascota.fenix} true
   - world{w=lobby} false
+  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 6"}'
@@ -528,6 +534,13 @@ MASC_LOBBY:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'message{m="&cEn el lobby no pueden salir mascotas. &7Invocala en el mundo."}'
+
+MASC_ARENA:
+  TargetConditions:
+  - world{w=arena} true
+  Skills:
+  - 'command{c="execute as <target.name> if score @s petsel matches 1.. run scoreboard players set @s petsel 0"}'
+  - 'command{c="execute as <target.name> if score @s mascota matches 1..6 run scoreboard players set @s mascota 0"}'
 
 MASC_NIVELES:
   Skills:

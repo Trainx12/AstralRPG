@@ -13,8 +13,11 @@ Uso:  python gui_textures.py <carpeta con assets/minecraft/textures/gui de Minec
 Salida: pack-source/gui/assets/minecraft/textures/gui/... (lo copia build_pack.py)
 """
 import os
+import argparse
+import io
 import random
 import sys
+import zipfile
 
 from PIL import Image
 
@@ -36,9 +39,8 @@ JUNTA = (63, 57, 47)
 CARPETAS = ["container", "sprites/container", "sprites/widget", "sprites/recipe_book"]
 SUELTOS = ["sprites/tooltip/background.png", "sprites/tooltip/frame.png"]
 
-# HUD RPG (hud_rpg.py): APAGADO por ahora. En el juego la barra de items salio rosa/negra (textura faltante) y
-# todavia no sabemos por que; mientras tanto el HUD queda el de Minecraft. Para probarlo de nuevo: True.
-HUD_RPG = False
+# Las ventanas y el HUD se pueden regenerar por separado.
+HUD_RPG = True
 
 
 def ladrillo(x, y):
@@ -138,17 +140,23 @@ from hud_rpg import hud  # noqa: E402
 
 
 def main():
-    src = os.path.join(sys.argv[1]) if len(sys.argv) > 1 else os.environ.get("VANILLA_GUI")
-    if not src or not os.path.isdir(src):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("src", nargs="?", default=os.environ.get("VANILLA_GUI"))
+    parser.add_argument("--hud-only", action="store_true", help="Conservar todas las ventanas existentes")
+    parser.add_argument("--client-jar", help="Validar sprites y dimensiones contra el cliente de la version usada")
+    args = parser.parse_args()
+    src = args.src
+    if not args.hud_only and (not src or not os.path.isdir(src)):
         sys.exit("Falta la carpeta textures/gui de Minecraft (sacala del client.jar)")
     hechos = 0
     lista = []
-    for c in CARPETAS:
+    for c in (CARPETAS if not args.hud_only else []):
         for root, _, fs in os.walk(os.path.join(src, c)):
             for f in fs:
                 if f.endswith(".png"):
                     lista.append(os.path.relpath(os.path.join(root, f), src))
-    lista += SUELTOS
+    if not args.hud_only:
+        lista += SUELTOS
     for rel in lista:
         p = os.path.join(src, rel)
         if not os.path.exists(p):
@@ -168,10 +176,26 @@ def main():
             with open(mc, "rb") as fi, open(dst + ".mcmeta", "wb") as fo:
                 fo.write(fi.read())
         hechos += 1
-    for rel, im in (hud().items() if HUD_RPG else ()):
+    sprites = hud() if HUD_RPG else {}
+    if args.client_jar:
+        # Validar todo antes de escribir: un nombre inexistente o una medida distinta
+        # abortan la generacion en vez de publicar un pack aparentemente correcto.
+        with zipfile.ZipFile(args.client_jar) as client:
+            for rel, im in sprites.items():
+                path = "assets/minecraft/textures/gui/" + rel
+                if path not in client.namelist():
+                    sys.exit(f"Sprite inexistente en el cliente: {rel}")
+                with Image.open(io.BytesIO(client.read(path))) as vanilla:
+                    if im.size != vanilla.size:
+                        sys.exit(f"Dimensiones incorrectas: {rel}: {im.size}, esperadas {vanilla.size}")
+    for rel, im in sprites.items():
         dst = os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         im.save(dst)
+        # Son sprites estaticos con escala stretch por defecto. No heredar un
+        # .mcmeta antiguo (animacion, tile o nine_slice) al sobrescribir su PNG.
+        if os.path.exists(dst + ".mcmeta"):
+            os.remove(dst + ".mcmeta")
         hechos += 1
     print(f"interfaz: {hechos} texturas -> {os.path.abspath(OUT)}")
 

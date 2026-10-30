@@ -196,6 +196,7 @@ MINA_SALA4_LIMPIA:
   - addtag{tag=mina.fin} @self
   - 'message{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."} @PlayersInRadius{r=43}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=43}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/mina"} @PlayersInRadius{r=43}'
   - delay 40
   - 'skill{s=MINA_PREMIO} @PlayersInRadius{r=43}'
   - 'skill{s=MINA_PREMIO_YA} @PlayersInRadius{r=43}'

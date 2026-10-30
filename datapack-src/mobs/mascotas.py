@@ -82,7 +82,8 @@ def mob_yml():
               "  AITargetSelectors:", "  - clear", "  Skills:"] + [sk(x) for x in skills] + [""]
     x, y, z = CONTROL
     tim = [f"skill{{s=MASC_MENU}} @PlayersOnServer ~onTimer:5", "skill{s=MASC_GUARDAR} @PlayersOnServer ~onTimer:5",
-           "skill{s=MASC_LOBBY} @PlayersOnServer ~onTimer:5", "skill{s=MASC_NIVELES} @self ~onTimer:20"]
+           "skill{s=MASC_LOBBY} @PlayersOnServer ~onTimer:5", "skill{s=MASC_ARENA} @PlayersOnServer ~onTimer:5",
+           "skill{s=MASC_NIVELES} @self ~onTimer:20"]
     for pid in MASCOTAS:
         tim += [f"skill{{s=MASC_INVOCAR_{pid}}} @PlayersOnServer ~onTimer:5", f"skill{{s=MASC_NOTIENE_{pid}}} @PlayersOnServer ~onTimer:5"]
     L += ["astral_mascotas_control:", "  Type: ARMOR_STAND", "  Display: 'Control de mascotas'", "  Health: 100", "  Options:",
@@ -129,7 +130,7 @@ def skill_yml():
                       sk(f"delay {cd * 20}"), sk("removetag{tag=pet.rescate} @self"), ""]
         # controlador: invocar / no la tenes
         L += [f"MASC_INVOCAR_{pid}:", "  TargetConditions:", f"  - score{{o=mascota;v={n}}} true",
-              f"  - haspermission{{p=astral.mascota.{pid}}} true", "  - world{w=lobby} false", "  Skills:",
+              f"  - haspermission{{p=astral.mascota.{pid}}} true", "  - world{w=lobby} false", "  - world{w=arena} false", "  Skills:",
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
               sk(f'command{{c="scoreboard players set {p} petsel {n}"}}'),
               sk("delay 25"),                                  # que la anterior alcance a irse
@@ -172,6 +173,9 @@ def skill_yml():
           sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
           sk('message{m="&cEn el lobby no pueden salir mascotas. &7Invocala en el mundo."}'), ""]
     # niveles: mobs que mato el dueno con la mascota afuera -> experiencia -> nivel
+    L += ["MASC_ARENA:", "  TargetConditions:", "  - world{w=arena} true", "  Skills:",
+          sk(f'command{{c="execute as {p} if score @s petsel matches 1.. run scoreboard players set @s petsel 0"}}'),
+          sk(f'command{{c="execute as {p} if score @s mascota matches 1..6 run scoreboard players set @s mascota 0"}}'), ""]
     niv = []
     for pid, d in MASCOTAS.items():
         n = d["n"]

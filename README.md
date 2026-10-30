@@ -1,5 +1,7 @@
 # AstralRPG
 
+**Cambios locales pendientes de probar y publicar:** [docs/AVANCE_CODEX.md](docs/AVANCE_CODEX.md).
+
 Servidor de Minecraft 26.1.2 (Paper) con progresión RPG, sin mods: se puede entrar desde vanilla.
 
 **Administración del servidor (plugins, lobby, comandos, problemas conocidos): [docs/SERVIDOR.md](docs/SERVIDOR.md).**

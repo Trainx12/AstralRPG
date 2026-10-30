@@ -1,0 +1,200 @@
+# Mazmorra Bosque Sombrio (generado por datapack-src/mobs/mazmorra.py)
+
+astral_bosque_control_sala1:
+  Type: ARMOR_STAND
+  Display: 'Control Sendero de las raices'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=bosque.on}'
+  - 'skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?mobsinradius{types=astral_bosque_abejorro,astral_bosque_espantapajaros;a=0;r=26}'
+  - 'skill{s=BOSQUE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?mobsinradius{types=astral_bosque_abejorro,astral_bosque_espantapajaros;a=0;r=26}'
+  - 'skill{s=BOSQUE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=26}'
+
+astral_bosque_control_sala2:
+  Type: ARMOR_STAND
+  Display: 'Control Claro corrompido'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=bosque.on}'
+  - 'skill{s=BOSQUE_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?mobsinradius{types=astral_bosque_abejorro,astral_bosque_cara;a=0;r=26}'
+  - 'skill{s=BOSQUE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?mobsinradius{types=astral_bosque_abejorro,astral_bosque_cara;a=0;r=26}'
+  - 'skill{s=BOSQUE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=26}'
+
+astral_bosque_control_sala3:
+  Type: ARMOR_STAND
+  Display: 'Control Altar del Chaman'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'skill{s=BOSQUE_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=bosque.on}'
+  - 'skill{s=BOSQUE_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?mobsinradius{types=VEX,WITCH,astral_bosque_chaman;a=0;r=36}'
+  - 'skill{s=BOSQUE_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=36}'
+
+astral_npc_bosque:
+  Type: VILLAGER
+  Display: '&8&lMazmorra: &7Bosque Sombrio'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: MASON
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'skill{s=BOSQUE_ENTRAR} @trigger ~onInteract'
+
+astral_bosque_espantapajaros:
+  Type: VEX
+  Display: '&6Espantapajaros Maldito'
+  Health: 34
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.25
+    PreventRandomEquipment: true
+  Drops:
+  - pumpkin 1 0.5
+  - wheat 1-4 0.8
+  - string 1-2 0.5
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
+  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_bosque_abejorro:
+  Type: VEX
+  Display: '&8Abejorro Sombrio'
+  Health: 20
+  Damage: 5
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    PreventRandomEquipment: true
+  Drops:
+  - honeycomb 1-2 0.4
+  - string 1 0.4
+  - exp 8
+  Skills:
+  - skill{s=AST_MODEL_astral_abejorro} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_abejorro} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
+  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_bosque_cara:
+  Type: PHANTOM
+  Display: '&cCara Voladora'
+  Health: 22
+  Damage: 6
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.3
+    PreventRandomEquipment: true
+  Drops:
+  - phantom_membrane 1 0.6
+  - rotten_flesh 1-2 0.6
+  - exp 10
+  Skills:
+  - skill{s=AST_MODEL_astral_cara} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cara} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
+  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+
+astral_bosque_chaman:
+  Type: EVOKER
+  Display: '&2&lChaman del Pantano'
+  Health: 340
+  Damage: 8
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.25
+    KnockbackResistance: 0.8
+    FollowRange: 40
+    PreventRandomEquipment: true
+  BossBar:
+    Enabled: true
+    Title: '&2&lChaman del Pantano'
+    Range: 48
+    Color: GREEN
+    Style: SEGMENTED_10
+  Drops:
+  - totem_of_undying 1 0.3
+  - emerald 3-8 1
+  - slime_ball 2-6 1
+  - exp 160
+  Skills:
+  - skill{s=AST_MODEL_astral_chaman} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_chaman} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.4
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
+  - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
+  - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
+  - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
+  - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer

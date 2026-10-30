@@ -167,7 +167,9 @@ def principal_menu():
     items += item("plata", "GOLD_NUGGET", 16, "&e&lTu plata", ["&7Tenes: &e%vault_eco_balance_formatted%$"], extra={"update": "true"})
     items += item("spawn", "COMPASS", 22, "&f&lVolver al lobby", ["&7Te lleva a la plaza"],
                   extra={"click_commands": ["[close]", "[player] spawn"]})
-    items += relleno("LIGHT_BLUE_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16, 22])
+    items += item("misiones", "BOOK", 20, "&b&lMisiones e historia", ["&7Consulta tu capitulo y las diarias", "&7El Cronista entrega los premios"],
+                  extra={"click_commands": ["[close]", "[player] trigger aq.journal set 1"]})
+    items += relleno("LIGHT_BLUE_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16, 20, 22])
     return menu("&8Menu de AstralRPG", "menu", 27, items, update=True)
 
 

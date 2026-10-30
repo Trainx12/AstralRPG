@@ -1,0 +1,110 @@
+# Mazmorra Santuario Celestial (generada por mazmorra.py)
+
+SANTUARIO_SALA1_INICIO:
+  Skills:
+  - addtag{tag=santuario.on} @self
+  - addtag{tag=santuario.ola1} @self
+  - 'message{m="&8[&7Santuario Celestial&8] &fPrueba de los cinco ecos &7- sala 1/1. &cAhi vienen!"} @PlayersInRadius{r=38}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=38}'
+  - 'summon{type=astral_santuario_cangrejo_eco;amount=1;radius=4} @self'
+
+SANTUARIO_SALA1_OLA2:
+  Skills:
+  - addtag{tag=santuario.ola2} @self
+  - addtag{tag=santuario.espera} @self
+  - 'message{m="&8[&7Santuario Celestial&8] &7Oleada 2/5..."} @PlayersInRadius{r=38}'
+  - delay 40
+  - 'summon{type=astral_santuario_chaman_eco;amount=1;radius=4} @self'
+  - delay 10
+  - removetag{tag=santuario.espera} @self
+
+SANTUARIO_SALA1_OLA3:
+  Skills:
+  - addtag{tag=santuario.ola3} @self
+  - addtag{tag=santuario.espera} @self
+  - 'message{m="&8[&7Santuario Celestial&8] &7Oleada 3/5..."} @PlayersInRadius{r=38}'
+  - delay 40
+  - 'summon{type=astral_santuario_momia_eco;amount=1;radius=4} @self'
+  - delay 10
+  - removetag{tag=santuario.espera} @self
+
+SANTUARIO_SALA1_OLA4:
+  Skills:
+  - addtag{tag=santuario.ola4} @self
+  - addtag{tag=santuario.espera} @self
+  - 'message{m="&8[&7Santuario Celestial&8] &7Oleada 4/5..."} @PlayersInRadius{r=38}'
+  - delay 40
+  - 'summon{type=astral_santuario_yeti_eco;amount=1;radius=4} @self'
+  - delay 10
+  - removetag{tag=santuario.espera} @self
+
+SANTUARIO_SALA1_OLA5:
+  Skills:
+  - addtag{tag=santuario.ola5} @self
+  - addtag{tag=santuario.espera} @self
+  - 'message{m="&8[&7Santuario Celestial&8] &7Oleada 5/5..."} @PlayersInRadius{r=38}'
+  - delay 40
+  - 'summon{type=astral_santuario_golem_forja_eco;amount=1;radius=4} @self'
+  - delay 10
+  - removetag{tag=santuario.espera} @self
+
+SANTUARIO_SALA1_LIMPIA:
+  Skills:
+  - addtag{tag=santuario.fin} @self
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=38}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=38}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/santuario"} @PlayersInRadius{r=38}'
+  - delay 40
+  - 'skill{s=SANTUARIO_PREMIO} @PlayersInRadius{r=38}'
+  - 'skill{s=SANTUARIO_PREMIO_YA} @PlayersInRadius{r=38}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=38}'
+  - delay 300
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=38}'
+  - delay 20
+  - removetag{tag=santuario.on} @self
+  - removetag{tag=santuario.fin} @self
+  - removetag{tag=santuario.ola1} @self
+  - removetag{tag=santuario.ola2} @self
+  - removetag{tag=santuario.ola3} @self
+  - removetag{tag=santuario.ola4} @self
+  - removetag{tag=santuario.ola5} @self
+
+SANTUARIO_SALA1_RESET:
+  Skills:
+  - 'remove @MobsInRadius{r=38;types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti}'
+  - removetag{tag=santuario.on} @self
+  - removetag{tag=santuario.fin} @self
+  - removetag{tag=santuario.espera} @self
+  - removetag{tag=santuario.ola1} @self
+  - removetag{tag=santuario.ola2} @self
+  - removetag{tag=santuario.ola3} @self
+  - removetag{tag=santuario.ola4} @self
+  - removetag{tag=santuario.ola5} @self
+
+SANTUARIO_PREMIO:
+  TargetConditions:
+  - haspermission{p=astral.santuario.cd} false
+  Skills:
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
+  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
+  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
+  - 'command{c="eco give <target.name> 5000"}'
+  - 'command{c="lp user <target.name> permission settemp astral.santuario.cd true 30m"}'
+  - 'message{m="&6Cofre de Santuario Celestial: &fmateriales de elite y &e5000$&f. &7(el proximo cofre en 30 minutos)"}'
+
+SANTUARIO_PREMIO_YA:
+  TargetConditions:
+  - haspermission{p=astral.santuario.cd} true
+  Skills:
+  - 'message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+SANTUARIO_ENTRAR:
+  TargetConditions:
+  - score{o=aq.state;v=>9} true
+  Skills:
+  - 'message{m="&8[&7Santuario Celestial&8] &7Bajando a las &fSantuario Celestial&7... &8(1 salas. Para salir: /spawn)"}'
+  - 'command{c="execute in minecraft:santuario run minecraft:tp <trigger.name> -329.5 51 65.5"}'
+

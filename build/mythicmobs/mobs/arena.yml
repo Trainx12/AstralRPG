@@ -1,0 +1,20 @@
+# Generado por mobs/arena.py
+astral_npc_arena:
+  Type: VILLAGER
+  Display: '&c&lArena de jugadores &7- PvP'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: ARMORER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -171.5 -44 -2282.5"} @self ~onInteract'

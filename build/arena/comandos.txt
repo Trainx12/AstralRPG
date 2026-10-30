@@ -1,0 +1,40 @@
+# Arena PvP. Instalacion en un mundo NUEVO; coordenadas pendientes de revision.
+# No usar Worlds > Upload sobre world. No importar datapacks ni entidades del ZIP original.
+mv create arena normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Con el servidor apagado: regiones limpias a world/dimensions/minecraft/arena/region.
+mv modify arena set pvp true
+mv modify arena set gamemode survival
+mv modify arena set allow-weather false
+mv gamerule set minecraft:keep_inventory true arena
+mv gamerule set minecraft:spawn_mobs false arena
+mv gamerule set minecraft:mob_drops false arena
+mv gamerule set minecraft:entity_drops false arena
+rg flag -w arena __global__ build deny
+rg flag -w arena __global__ chest-access deny
+rg flag -w arena __global__ pvp allow
+rg flag -w arena __global__ mob-spawning deny
+# Apagar PvP en el resto. Ejecutar solo sobre mundos que existan:
+mv modify world set pvp false
+rg flag -w world __global__ pvp deny
+mv modify world_nether set pvp false
+rg flag -w world_nether __global__ pvp deny
+mv modify world_the_end set pvp false
+rg flag -w world_the_end __global__ pvp deny
+mv modify lobby set pvp false
+rg flag -w lobby __global__ pvp deny
+mv modify mina set pvp false
+rg flag -w mina __global__ pvp deny
+mv modify bosque set pvp false
+rg flag -w bosque __global__ pvp deny
+mv modify tumba set pvp false
+rg flag -w tumba __global__ pvp deny
+mv modify cumbre set pvp false
+rg flag -w cumbre __global__ pvp deny
+mv modify forja set pvp false
+rg flag -w forja __global__ pvp deny
+mv modify santuario set pvp false
+rg flag -w santuario __global__ pvp deny
+# Entrada propuesta (OP en creativo): execute in minecraft:arena run minecraft:tp <jugador> -171.5 -44 -2282.5
+# Al verificarla, ajustar arrival y enabled=True en mobs/mazmorras_data.py y regenerar.
+# NPC del lobby: mm mobs spawn astral_npc_arena
+# Salida de jugadores: /spawn. No hay premios ni contadores de bajas PvP.
