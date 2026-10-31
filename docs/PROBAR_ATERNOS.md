@@ -1,5 +1,10 @@
 # Version de pruebas de Aternos - 30/10/2026
 
+**Estado: instalado en Aternos y arranque verificado.** Los seis mapas, las plataformas, los 13 controladores,
+la galeria, los puestos y sus NPC ya estan colocados. No hace falta ejecutar el montaje inicial.
+Verificado por consola: 105 mobs cargados, sin errores de funciones/configuracion de AstralRPG,
+reloj de diarias activo y menus recargados. La apariencia del HUD y el recorrido de combate necesitan prueba en Minecraft.
+
 El despliegue incluye el HUD actual (resolucion nativa, mas pixelado), historia, diarias, nuevos mapas,
 plataformas de combate, arena y ambientacion. Los mapas originales siguen intactos en Downloads.
 Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-ambientacion.zip`.

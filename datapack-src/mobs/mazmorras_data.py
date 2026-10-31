@@ -1,6 +1,6 @@
-"""Catalogo de mazmorras. Coordenadas PROPUESTAS, entradas deshabilitadas.
+"""Catalogo de mazmorras. Entradas habilitadas para las pruebas de Aternos.
 
-Revisar en Minecraft las salas y llegadas, y recien despues enabled=True.
+Coordenadas propuestas con plataformas de combate; revisar el recorrido en Minecraft.
 Las Minas siguen en mazmorra.MINA y conservan todos sus identificadores.
 """
 from copy import deepcopy
