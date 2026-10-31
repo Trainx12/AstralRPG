@@ -164,6 +164,8 @@ VANILLA_GUI_OVERLAYS = {
 
 # Modelos de criaturas (generados por BetterModel en el servidor de prueba, misma config que en Aternos)
 # y la interfaz estilo RPG (ventanas de piedra y oro, barra de items, vida/comida en barras), de gui_textures.py
+from hud_rpg import hud
+allowed_hud = {"assets/minecraft/textures/gui/" + path for path in hud()}
 for carpeta in ("bettermodel", "gui"):
     BM = os.path.join(SRC, carpeta)
     if not os.path.isdir(BM):
@@ -174,8 +176,40 @@ for carpeta in ("bettermodel", "gui"):
             rel = os.path.relpath(full, BM).replace(os.sep, "/")
             if rel.removesuffix(".mcmeta") in VANILLA_GUI_OVERLAYS:
                 continue
+            # Heredar las barras vanilla aunque queden PNG de generaciones viejas.
+            # Solo se personalizan los corazones, escudos, comida y aire elegidos.
+            if carpeta == "gui":
+                if "/sprites/hud/" in rel and rel not in allowed_hud:
+                    continue
+                if "/sprites/boss_bar/" in rel:
+                    continue
             with open(full, "rb") as f:
                 files[rel] = f.read()
+
+# Iconos vanilla de la referencia. No sustituir los bloques ni los tiers RPG.
+from reference_style import item_sprites
+for name, sprite in item_sprites().items():
+    files[f"assets/minecraft/textures/item/{name}.png"] = _png(sprite)
+    if name.startswith('leather_'):
+        # El modelo vanilla aplica tinte marron y otra capa encima. Sin este
+        # modelo, el icono no se veria igual a la referencia aunque el PNG si.
+        plain = f'astral:item/reference/{name}'
+        dyed = f'astral:item/reference/{name}_dyed'
+        put_json(f'assets/astral/models/item/reference/{name}.json', {
+            'parent': 'minecraft:item/generated', 'textures': {'layer0': f'minecraft:item/{name}'}})
+        neutral = sprite.convert('LA').convert('RGBA')
+        files[f'assets/astral/textures/item/reference/{name}_dyed.png'] = _png(neutral)
+        put_json(f'assets/astral/models/item/reference/{name}_dyed.json', {
+            'parent': 'minecraft:item/generated', 'textures': {'layer0': f'astral:item/reference/{name}_dyed'}})
+        put_json(f'assets/minecraft/items/{name}.json', {'model': {
+            'type': 'minecraft:condition', 'property': 'minecraft:has_component', 'component': 'minecraft:dyed_color',
+            'on_true': {'type': 'minecraft:model', 'model': dyed, 'tints': [{'type': 'minecraft:dye', 'default': -6265536}]},
+            'on_false': {'type': 'minecraft:model', 'model': plain}}})
+from vanilla_armor_style import equipment
+for path, sprite in equipment().items():
+    files[path] = _png(sprite)
+from escape_menu import assets as escape_assets
+files.update(escape_assets())
 
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
@@ -193,9 +227,15 @@ except Exception as e:
     print("sin pack.png:", e)
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
-with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
+archive = _io.BytesIO()
+with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
     for p in sorted(files):
         z.writestr(p, files[p])
+from pathlib import Path
+target = Path(OUT).resolve()
+temporary = target.with_suffix('.zip.tmp')
+temporary.write_bytes(archive.getvalue())
+temporary.replace(target)
 print(f"{len(files)} archivos -> {OUT}")
 
 

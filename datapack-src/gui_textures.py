@@ -19,21 +19,34 @@ import random
 import sys
 import zipfile
 
-from PIL import Image
+from PIL import Image, ImageDraw
+from pathlib import Path
+
+
+def save_png(image, path):
+    buffer = io.BytesIO()
+    image.save(buffer, 'PNG')
+    target = Path(path)
+    data = buffer.getvalue()
+    if target.exists() and target.read_bytes() == data:
+        return
+    temporary = target.with_suffix('.png.tmp')
+    temporary.write_bytes(data)
+    temporary.replace(target)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "pack-source", "gui")
 
 # colores
-ORO = (217, 164, 58)
-ORO_CLARO = (240, 200, 96)
-BRONCE = (107, 74, 28)
+ORO = (230, 165, 42)
+ORO_CLARO = (255, 232, 150)
+BRONCE = (125, 66, 23)
 CONTORNO = (28, 21, 13)
-HUECO = (46, 41, 34)
-HUECO_SOMBRA = (23, 19, 14)
-HUECO_LUZ = (122, 106, 80)
-PIEDRA = (94, 87, 76)
-JUNTA = (63, 57, 47)
+HUECO = (189, 143, 83)
+HUECO_SOMBRA = (104, 65, 32)
+HUECO_LUZ = (255, 222, 154)
+PIEDRA = (239, 203, 139)
+JUNTA = (218, 175, 107)
 
 # que archivos se tocan (carpetas y archivos sueltos relativos a textures/gui)
 CARPETAS = ["container", "sprites/container", "sprites/widget", "sprites/recipe_book"]
@@ -44,18 +57,40 @@ HUD_RPG = True
 
 
 def ladrillo(x, y):
-    """Color de la piedra de fondo en (x, y): ladrillos de 8x4 desfasados, con juntas y un poco de ruido."""
-    fila = y // 4
-    dx = (x + (4 if fila % 2 else 0))
-    if y % 4 == 3 or dx % 8 == 7:
-        base = JUNTA
-    else:
-        rnd = random.Random((dx // 8) * 7919 + fila * 104729)
-        v = rnd.randint(-8, 8)
-        base = tuple(max(0, min(255, c + v)) for c in PIEDRA)
+    """Pergamino calido: sin juntas de piedra ni acentos morados."""
+    base = PIEDRA
     r = random.Random(x * 31337 + y * 7331)
     n = r.randint(-4, 4)
     return tuple(max(0, min(255, c + n)) for c in base)
+
+
+def ornate_button(im, highlighted=False, disabled=False):
+    """Boton propio de pergamino y oro con hojas verdes en las esquinas."""
+    out = Image.new('RGBA', im.size)
+    d = ImageDraw.Draw(out)
+    w, h = out.size
+    d.rectangle((0, 0, w - 1, h - 1), fill=CONTORNO)
+    d.rectangle((1, 1, w - 2, h - 2), fill=ORO_CLARO if highlighted else ORO)
+    d.rectangle((2, 2, w - 3, h - 3), outline=BRONCE)
+    for y in range(3, h - 3):
+        t = (y - 3) / max(1, h - 7)
+        col = mezcla((255, 230, 169), (215, 155, 77), t)
+        if disabled:
+            col = mezcla(col, (107, 97, 76), 0.55)
+        d.line((3, y, w - 4, y), fill=col)
+    d.line((4, 3, w - 5, 3), fill=(255, 248, 198))
+    d.line((4, h - 4, w - 5, h - 4), fill=(150, 75, 26))
+    d.line((9, h - 3, w - 10, h - 3), fill=(164, 47, 22))
+    for x, direction in ((4, 1), (w - 5, -1)):
+        d.line((x, 3, x, h - 4), fill=(29, 70, 23))
+        for y in (4, 8, 12, h - 5):
+            center = x + direction * (2 if y % 8 else 0)
+            d.polygon([(center - 2, y), (center, y - 2), (center + 2, y), (center, y + 2)], fill=(35, 89, 26))
+            d.line((center - 1, y, center + 1, y - 1), fill=(111, 184, 42))
+            d.point((center, y - 1), fill=(185, 224, 79))
+        d.rectangle((x - 1, h // 2 - 1, x + 1, h // 2 + 1), fill=ORO_CLARO)
+        d.point((x, h // 2), fill=(199, 66, 26))
+    return out
 
 
 def mezcla(a, b, t):
@@ -154,7 +189,7 @@ def main():
         for root, _, fs in os.walk(os.path.join(src, c)):
             for f in fs:
                 if f.endswith(".png"):
-                    lista.append(os.path.relpath(os.path.join(root, f), src))
+                    lista.append(os.path.relpath(os.path.join(root, f), src).replace(os.sep, '/'))
     if not args.hud_only:
         lista += SUELTOS
     for rel in lista:
@@ -162,19 +197,26 @@ def main():
         if not os.path.exists(p):
             continue
         im = Image.open(p)
-        if rel.endswith("tooltip/background.png"):
+        if rel.startswith('sprites/widget/button') and im.width >= 20:
+            out = ornate_button(im, 'highlighted' in rel, 'disabled' in rel)
+        elif rel.endswith("tooltip/background.png"):
             out = tooltip_fondo(im)
         elif rel.endswith("tooltip/frame.png"):
             out = tooltip_marco(im)
         else:
             out = recolor(im)
-        dst = os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel)
+        dst = os.path.normpath(os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        out.save(dst)
+        save_png(out, dst)
         mc = p + ".mcmeta"                      # sprites que se estiran en 9 partes necesitan su .mcmeta
         if os.path.exists(mc):
             with open(mc, "rb") as fi, open(dst + ".mcmeta", "wb") as fo:
                 fo.write(fi.read())
+        if rel.startswith('sprites/widget/button'):
+            import json
+            Path(dst + '.mcmeta').write_text(json.dumps({'gui': {'scaling': {
+                'type': 'nine_slice', 'width': im.width, 'height': im.height,
+                'border': {'left': 9, 'right': 9, 'top': 3, 'bottom': 3}}}}, indent=2), encoding='utf-8')
         hechos += 1
     sprites = hud() if HUD_RPG else {}
     if args.client_jar:
@@ -189,9 +231,9 @@ def main():
                     if im.size != vanilla.size:
                         sys.exit(f"Dimensiones incorrectas: {rel}: {im.size}, esperadas {vanilla.size}")
     for rel, im in sprites.items():
-        dst = os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel)
+        dst = os.path.normpath(os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        im.save(dst)
+        save_png(im, dst)
         # Son sprites estaticos con escala stretch por defecto. No heredar un
         # .mcmeta antiguo (animacion, tile o nine_slice) al sobrescribir su PNG.
         if os.path.exists(dst + ".mcmeta"):

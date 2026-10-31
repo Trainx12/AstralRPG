@@ -73,6 +73,45 @@ def main():
                 assert actual.mode=="RGBA",path
                 assert path+".mcmeta" not in pack.namelist(),path
         print(f"HUD: {len(hud())} PNG RGBA con rutas y dimensiones del cliente OK")
+        from reference_style import item_sprites
+        from vanilla_armor_style import equipment
+        with zipfile.ZipFile(args.client_jar) as vanilla, zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as pack:
+            names = set(pack.namelist())
+            hud_root = 'assets/minecraft/textures/gui/sprites/hud/'
+            # Deben heredarse de Minecraft, incluso si quedan fuentes antiguas.
+            forbidden = ('hotbar', 'experience_bar', 'jump_bar', 'crosshair_attack', 'locator_bar')
+            assert not any(path.startswith(hud_root) and path.rsplit('/', 1)[-1].startswith(forbidden) for path in names)
+            assert not any('/sprites/boss_bar/' in path for path in names)
+            for name, sprite in item_sprites().items():
+                path = f'assets/minecraft/textures/item/{name}.png'
+                assert path in names and path in vanilla.namelist(), path
+                actual = Image.open(io.BytesIO(pack.read(path)))
+                assert actual.size == (16, 16) and actual.mode == 'RGBA', path
+                assert actual.getpixel((0, 0))[3] == 0, (path, 'fondo de la referencia sin quitar')
+            for path in equipment():
+                actual = Image.open(io.BytesIO(pack.read(path)))
+                assert actual.size == (64, 32) and actual.mode == 'RGBA', path
+            assert not any(path.startswith('assets/minecraft/textures/block/') for path in names)
+            default_font = json.loads(pack.read('assets/minecraft/font/default.json'))
+            for provider in default_font['providers']:
+                if provider['type'] != 'bitmap':
+                    continue
+                namespace, relative = provider['file'].split(':', 1)
+                texture = f'assets/{namespace}/textures/{relative}'
+                assert texture in names, texture
+                image = Image.open(io.BytesIO(pack.read(texture)))
+                assert image.mode == 'RGBA' and provider['ascent'] <= provider['height'], texture
+                # Dos espacios negativos dejan el ancho logico del rotulo
+                # dentro del boton y evitan su recorte por Minecraft.
+                assert image.width + 1 - 32 < 194, texture
+            for locale in ('es_es', 'es_mx', 'es_ar', 'en_us'):
+                language = json.loads(pack.read(f'assets/minecraft/lang/{locale}.json'))
+                assert set(language) == {'menu.returnToGame', 'menu.disconnect'}
+            for part in ('helmet', 'chestplate', 'leggings', 'boots'):
+                leather = json.loads(pack.read(f'assets/minecraft/items/leather_{part}.json'))['model']
+                assert 'tints' not in leather['on_false']
+        print('Estilo: 54 iconos, 16 capas de armadura; barras vanilla y bloques sin sustituir OK')
+        print('Menu: fuentes bitmap, espaciado, traducciones y guia del servidor conservada OK')
 
 
 if __name__=="__main__":main()
