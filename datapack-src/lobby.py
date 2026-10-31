@@ -25,8 +25,8 @@ NPC_POS = {
     "astral_npc_subastas": (205.466, 100, 175.476, 2.7),
     "astral_npc_herrero": (198.657, 100, 181.429, 92.1),
     "astral_npc_expediciones": (172.5, 100, 214.5, 180),
-    "astral_npc_tienda": (178.5, 100, 166.5, 0),        # edificio grande del norte
-    "astral_npc_venta": (158.5, 100, 177.5, -90),       # noroeste
+    "astral_npc_tienda": (182.5, 101, 152.678, 0),        # edificio grande del norte
+    "astral_npc_venta": (174.5, 101, 152.678, 0),       # noroeste
     # gachas: cofres sobre los 3 cristales celestes del lado este (los cristales se sacan, ver commands())
     "astral_npc_gacha_rpg": (211.5, 101, 191.5, 90),          # el del medio
     "astral_npc_gacha_monturas": (208.5, 101, 185.5, 90),     # el del norte

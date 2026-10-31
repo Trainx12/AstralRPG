@@ -36,3 +36,7 @@ Holograma astral.amb.herrero movido a 196.5 104.3 181.5, sobre el frente del nue
 Bazar reubicado a 178.637 101 152.678 (yaw -1.7); holograma a 178.637 105.5 154.8.
 Subastas: holograma adelantado de Z=183.2 a Z=186.5 porque quedaba oculto por la fachada.
 Hologramas Bazar y Subastas con see_through, brillo 15 y view_range 1.5 para legibilidad.
+
+Viendo desde la plaza: Venta rapida izquierda (174.5,101,152.678), Bazar centro, Tienda derecha (182.5,101,152.678).
+Tres hologramas alineados a Y=104.5, Z=161.5: Venta X=174.5, Bazar X=178.637, Tienda X=182.5.
+Subastas atrasado exactamente 2 bloques hacia la casa: posicion final 205.5 104.3 184.5.

@@ -64,8 +64,8 @@ mm mobs spawn astral_npc_bazar 1 lobby,178.637,101,152.678,-1.7,0
 mm mobs spawn astral_npc_subastas 1 lobby,205.466,100,175.476,2.7,0
 mm mobs spawn astral_npc_herrero 1 lobby,198.657,100,181.429,92.1,0
 mm mobs spawn astral_npc_expediciones 1 lobby,172.5,100,214.5,180,0
-mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
-mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0
+mm mobs spawn astral_npc_tienda 1 lobby,182.5,101,152.678,0,0
+mm mobs spawn astral_npc_venta 1 lobby,174.5,101,152.678,0,0
 mm mobs spawn astral_npc_gacha_rpg 1 lobby,211.5,101,191.5,90,0
 mm mobs spawn astral_npc_gacha_monturas 1 lobby,208.5,101,185.5,90,0
 mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,208.5,101,197.5,90,0
