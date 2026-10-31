@@ -16,7 +16,7 @@ Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [
 | Hosting | Aternos (panel en https://aternos.org/server/) |
 | Software | Paper 26.1.2, build 74 (Java 25) |
 | Modo | No premium (`online-mode=false`): entran cuentas cracked y originales |
-| Login | AuthMe: cada jugador hace `/register <clave> <clave>` la primera vez y `/login <clave>` después |
+| Login | AuthMe: los no premium hacen `/register <clave> <clave>` la primera vez y `/login <clave>` después. Los premium entran sin contraseña gracias a FastLogin (los que ya tenían cuenta escriben `/premium` una vez) |
 | Mods | Ninguno. Se entra desde Minecraft vanilla 26.1.2 |
 | Repositorio | https://github.com/Trainx12/AstralRPG (público) |
 
@@ -40,6 +40,7 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | Bolt | Protege cofres, shulkers y puertas |
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
 | AuthMe | Login con contraseña (necesario en modo no premium) |
+| FastLogin Update (1.21.11 - 26.20) + ProtocolLib (dev #766) | Los premium entran sin contraseña: Mojang confirma que la cuenta es original. Un no premium con nombre de premium sigue teniendo que poner la contraseña |
 | SkinsRestorer | Skins para cuentas no premium |
 | AxGraves | Tumba con tus cosas al morir |
 | ClearLag++ | Limpia ítems tirados para que no haya lag |
