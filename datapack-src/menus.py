@@ -178,6 +178,7 @@ def principal_menu():
 def misiones_menu(current_page=0):
     """Una mision por pantalla, con acciones que validan el progreso en el datapack."""
     P = "%player_name%"
+    priorities = {}
 
     def req(page, **scores):
         # Cada seccion es un menu real: navegar no depende de leer aq.page.
@@ -199,7 +200,10 @@ def misiones_menu(current_page=0):
     def button(key, material, slot, name, lore, page, function=None, **scores):
         if page != current_page:
             return []
-        extra = {"priority": 1, "update": "true"}
+        # DeluxeMenus indexa las variantes de un slot por prioridad. Repetirla
+        # descarta variantes anteriores aunque tengan requisitos distintos.
+        priorities[slot] = priorities.get(slot, 0) + 1
+        extra = {"priority": priorities[slot], "update": "true"}
         if scores:
             extra["view_requirement"] = req(page, **scores)
         if function:

@@ -149,7 +149,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -170,7 +170,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -196,7 +196,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 3
     update: true
     view_requirement:
       requirements:
@@ -222,7 +222,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -247,7 +247,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 3
     update: true
     view_requirement:
       requirements:
@@ -284,7 +284,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 3
     update: true
     view_requirement:
       requirements:
@@ -305,7 +305,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 4
     update: true
     view_requirement:
       requirements:
@@ -331,7 +331,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 5
     update: true
     view_requirement:
       requirements:
@@ -357,7 +357,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 4
     update: true
     view_requirement:
       requirements:
@@ -382,7 +382,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 5
     update: true
     view_requirement:
       requirements:
@@ -415,7 +415,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 4
     update: true
     view_requirement:
       requirements:
@@ -436,7 +436,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 6
     update: true
     view_requirement:
       requirements:
@@ -462,7 +462,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 7
     update: true
     view_requirement:
       requirements:
@@ -488,7 +488,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 6
     update: true
     view_requirement:
       requirements:
@@ -513,7 +513,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 7
     update: true
     view_requirement:
       requirements:
@@ -547,7 +547,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 5
     update: true
     view_requirement:
       requirements:
@@ -568,7 +568,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 8
     update: true
     view_requirement:
       requirements:
@@ -594,7 +594,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 9
     update: true
     view_requirement:
       requirements:
@@ -620,7 +620,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 8
     update: true
     view_requirement:
       requirements:
@@ -645,7 +645,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 9
     update: true
     view_requirement:
       requirements:
@@ -678,7 +678,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 6
     update: true
     view_requirement:
       requirements:
@@ -699,7 +699,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 10
     update: true
     view_requirement:
       requirements:
@@ -725,7 +725,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 11
     update: true
     view_requirement:
       requirements:
@@ -751,7 +751,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 10
     update: true
     view_requirement:
       requirements:
@@ -776,7 +776,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 11
     update: true
     view_requirement:
       requirements:
@@ -808,7 +808,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 7
     update: true
     view_requirement:
       requirements:
@@ -829,7 +829,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 12
     update: true
     view_requirement:
       requirements:
@@ -855,7 +855,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 13
     update: true
     view_requirement:
       requirements:
@@ -881,7 +881,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 12
     update: true
     view_requirement:
       requirements:
@@ -906,7 +906,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 13
     update: true
     view_requirement:
       requirements:
@@ -939,7 +939,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 8
     update: true
     view_requirement:
       requirements:
@@ -960,7 +960,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 14
     update: true
     view_requirement:
       requirements:
@@ -986,7 +986,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 15
     update: true
     view_requirement:
       requirements:
@@ -1012,7 +1012,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 14
     update: true
     view_requirement:
       requirements:
@@ -1037,7 +1037,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 15
     update: true
     view_requirement:
       requirements:
@@ -1071,7 +1071,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 9
     update: true
     view_requirement:
       requirements:
@@ -1092,7 +1092,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 16
     update: true
     view_requirement:
       requirements:
@@ -1118,7 +1118,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 17
     update: true
     view_requirement:
       requirements:
@@ -1144,7 +1144,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 16
     update: true
     view_requirement:
       requirements:
@@ -1169,7 +1169,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 17
     update: true
     view_requirement:
       requirements:
@@ -1202,7 +1202,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 10
     update: true
     view_requirement:
       requirements:
@@ -1223,7 +1223,7 @@ items:
     - '&7Los objetivos cuentan desde que aceptas.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 18
     update: true
     view_requirement:
       requirements:
@@ -1249,7 +1249,7 @@ items:
     - '&7Si falta algo, no consume ni paga.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 19
     update: true
     view_requirement:
       requirements:
@@ -1275,7 +1275,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 18
     update: true
     view_requirement:
       requirements:
@@ -1300,7 +1300,7 @@ items:
     - '&7Podes volver a aceptarla mas tarde.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 19
     update: true
     view_requirement:
       requirements:
@@ -1325,7 +1325,7 @@ items:
     - '&7El Santuario Celestial te espera.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 11
     update: true
     view_requirement:
       requirements:

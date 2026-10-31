@@ -40,6 +40,14 @@ def visible(items, scores):
 
 
 class MissionMenus(unittest.TestCase):
+    def test_variants_in_same_slot_have_distinct_priorities(self):
+        for page in range(5):
+            seen = set()
+            for entry in entries(page):
+                pair = (entry["slot"], entry["extra"].get("priority", 1))
+                self.assertNotIn(pair, seen, (page, entry["key"], pair))
+                seen.add(pair)
+
     def test_story_available_active_and_completed(self):
         items = entries(0)
         for state in range(10):

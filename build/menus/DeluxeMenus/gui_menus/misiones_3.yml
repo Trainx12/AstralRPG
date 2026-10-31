@@ -102,7 +102,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -132,7 +132,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 3
     update: true
     view_requirement:
       requirements:
@@ -162,7 +162,7 @@ items:
     - '&cRojo: rechazar o abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 4
     update: true
     view_requirement:
       requirements:
@@ -234,7 +234,7 @@ items:
     - '&eClic para abandonar.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -258,7 +258,7 @@ items:
     - '&7Valida solo esta mision.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 2
     update: true
     view_requirement:
       requirements:
@@ -282,7 +282,7 @@ items:
     - '&7Volve manana para una mision nueva.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 1
+    priority: 3
     update: true
     view_requirement:
       requirements:

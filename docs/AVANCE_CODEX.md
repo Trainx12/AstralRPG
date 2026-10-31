@@ -2,6 +2,11 @@
 
 ## Correccion del Cronista (31/10/2026)
 
+Publicada en GitHub e instalada en Aternos el 31/10. La prueba con jugador detecto ademas
+prioridades repetidas entre variantes del mismo slot: DeluxeMenus descartaba opciones y
+mostraba espacios vacios (o el aviso de espera). Cada variante ahora tiene prioridad unica.
+ScoreboardObjectives ya estaba activa; se comprobo con `papi list` y la lectura de scores.
+
 - Historia, las tres dificultades y el premio de armadura usan pantallas propias. Los clics abren
   el menu correspondiente; ya no dependen de refrescar la condicion oculta `aq.page`.
 - El objeto central muestra objetivo, dinero, premios extra y progreso al pasar el cursor.
@@ -14,7 +19,7 @@
 - Faltaba incluir `ScoreboardObjectives` en los pasos de instalacion. Es necesaria para las
   condiciones y el progreso del menu: https://github.com/PlaceholderAPI/Expansion-ScoreboardObjectives.
 
-Para instalar esta correccion (todavia **no subida a Aternos**):
+Para volver a instalar esta correccion:
 
 1. Con el servidor apagado, reemplazar `world/datapacks/AstralRPG-Items.zip` por el ZIP de `build/`.
 2. Copiar los cinco archivos `build/menus/DeluxeMenus/gui_menus/misiones*.yml` a
