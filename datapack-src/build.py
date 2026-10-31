@@ -1422,10 +1422,10 @@ fn("forge/dispatch", [f"$function {NS}:forge/r/$(id)"])
 def guide_ink(label):
     """Conservar colores por categoria con tinta oscura sobre el pergamino."""
     palette = {'white': '#30241b', 'gray': '#3b3029', 'dark_gray': '#3b3029',
-               'gold': '#704100', 'yellow': '#704100', 'aqua': '#00545b',
-               'dark_aqua': '#00545b', 'light_purple': '#61206d', 'dark_purple': '#61206d',
-               'red': '#8a2020', 'dark_red': '#8a2020', 'green': '#17582b',
-               'dark_green': '#17582b', 'blue': '#253d80', 'dark_blue': '#253d80', 'black': '#161210'}
+               'gold': '#8a4500', 'yellow': '#8a4500', 'aqua': '#00727a',
+               'dark_aqua': '#00727a', 'light_purple': '#8e1f8e', 'dark_purple': '#8e1f8e',
+               'red': '#b01c1c', 'dark_red': '#b01c1c', 'green': '#1d7a2e',
+               'dark_green': '#1d7a2e', 'blue': '#2a4fb5', 'dark_blue': '#2a4fb5', 'black': '#161210'}
     if isinstance(label, list):
         return [guide_ink(part) for part in label]
     if not isinstance(label, dict):
@@ -1433,9 +1433,14 @@ def guide_ink(label):
     result = dict(label)
     color = result.get('color', 'white')
     if color.startswith('#') and len(color) == 7:
-        result['color'] = '#' + ''.join(f'{round(int(color[i:i+2], 16) * .43):02x}' for i in (1, 3, 5))
+        rgb = [int(color[i:i+2], 16) for i in (1, 3, 5)]
+        # Los colores que ya son oscuros se dejan tal cual; los claros se oscurecen.
+        if max(rgb) > 0xd0 or sum(rgb) > 0x180:
+            result['color'] = '#' + ''.join(f'{round(c * .43):02x}' for c in rgb)
     else:
         result['color'] = palette.get(color, '#30241b')
+    # Sin sombra: sobre el pergamino claro la sombra oscura hace borroso el texto.
+    result['shadow_color'] = 0
     if 'extra' in result:
         result['extra'] = guide_ink(result['extra'])
     return result
@@ -1587,17 +1592,18 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
 
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
-    btn(txt("Como se juega", "gold"), dialog="guia/como"),
-    btn(txt("Misiones e historia", "aqua"), command="/trigger aq.journal"),
-    btn(txt("Materiales", "light_purple"), dialog="guia/materiales"),
-    btn(txt("Berserker", "#ff4d4d"), dialog="guia/berserker"),
-    btn(txt("Mago", "#b26bff"), dialog="guia/mago"),
-    btn(txt("Arquero", "#5ee08a"), dialog="guia/arquero"),
-    btn(txt("Lanzas", "#ffb347"), dialog="guia/lanzas"),
-    btn(txt("Talismanes", "aqua"), dialog="guia/talismanes"),
-    btn(txt("Especiales", "#d0d0d0"), dialog="guia/especiales"),
-    btn(txt("Taladros", "#7fe6ff"), dialog="guia/taladros"),
-    btn(txt("Motosierras", "#6fe8d8"), dialog="guia/motosierras"),
+    # Colores fuertes y distintos entre si, pensados para leerse sobre el pergamino.
+    btn(txt("Como se juega", "#7a3a10"), dialog="guia/como"),
+    btn(txt("Misiones e historia", "#006e78"), command="/trigger aq.journal"),
+    btn(txt("Materiales", "#a0177a"), dialog="guia/materiales"),
+    btn(txt("Berserker", "#b8141c"), dialog="guia/berserker"),
+    btn(txt("Mago", "#5a24c8"), dialog="guia/mago"),
+    btn(txt("Arquero", "#1c7d2c"), dialog="guia/arquero"),
+    btn(txt("Lanzas", "#c04800"), dialog="guia/lanzas"),
+    btn(txt("Talismanes", "#1a5cc0"), dialog="guia/talismanes"),
+    btn(txt("Especiales", "#4a3a30"), dialog="guia/especiales"),
+    btn(txt("Taladros", "#8a6a00"), dialog="guia/taladros"),
+    btn(txt("Motosierras", "#4a7410"), dialog="guia/motosierras"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
 put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})
