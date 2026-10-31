@@ -30,3 +30,9 @@ Subastas lobby 205.466 100 175.476 (yaw 2.7). Teletransportados los NPC existent
 
 Borde del lobby ampliado de 190 a 360 bloques (centro existente 178,192) para incluir la galeria.
 Holograma astral.amb.subastas movido a 205.5 104.3 183.2, sobre la entrada de la casa.
+
+Holograma astral.amb.herrero movido a 196.5 104.3 181.5, sobre el frente del nuevo puesto elegido por el dueno.
+
+Bazar reubicado a 178.637 101 152.678 (yaw -1.7); holograma a 178.637 105.5 154.8.
+Subastas: holograma adelantado de Z=183.2 a Z=186.5 porque quedaba oculto por la fachada.
+Hologramas Bazar y Subastas con see_through, brillo 15 y view_range 1.5 para legibilidad.

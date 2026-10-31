@@ -21,7 +21,7 @@ SPAWN = (180.5, 98, 190.5, 180)          # x, y, z, yaw (mirando al edificio gra
 
 # id: (x, y, z, yaw)  -> yaw 0 = sur, 90 = oeste, -90 = este, 180 = norte
 NPC_POS = {
-    "astral_npc_bazar": (166.5, 100, 187.5, 180),
+    "astral_npc_bazar": (178.637, 101, 152.678, -1.7),
     "astral_npc_subastas": (205.466, 100, 175.476, 2.7),
     "astral_npc_herrero": (198.657, 100, 181.429, 92.1),
     "astral_npc_expediciones": (172.5, 100, 214.5, 180),
