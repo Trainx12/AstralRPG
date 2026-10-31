@@ -16,7 +16,7 @@ Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [
 | Hosting | Aternos (panel en https://aternos.org/server/) |
 | Software | Paper 26.1.2, build 74 (Java 25) |
 | Modo | No premium (`online-mode=false`): entran cuentas cracked y originales |
-| Login | AuthMe: los no premium hacen `/register <clave> <clave>` la primera vez y `/login <clave>` después. Los premium entran sin contraseña gracias a FastLogin (los que ya tenían cuenta escriben `/premium` una vez) |
+| Login | AuthMe: los no premium hacen `/register <clave> <clave>` la primera vez y `/login <clave>` después. Los premium escriben `/premium` una vez (estando logueados) y desde ahí entran sin contraseña. Es el modo premium propio de AuthMe (`settings.enablePremium: true` en `plugins/AuthMe/config.yml`), que usa PacketEvents para confirmar la cuenta con Mojang. `/freemium` lo desactiva |
 | Mods | Ninguno. Se entra desde Minecraft vanilla 26.1.2 |
 | Repositorio | https://github.com/Trainx12/AstralRPG (público) |
 
@@ -39,8 +39,7 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal usa Tunnel) |
 | Bolt | Protege cofres, shulkers y puertas |
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
-| AuthMe | Login con contraseña (necesario en modo no premium) |
-| FastLogin Update (1.21.11 - 26.20) + ProtocolLib (dev #766) | Los premium entran sin contraseña: Mojang confirma que la cuenta es original. Un no premium con nombre de premium sigue teniendo que poner la contraseña |
+| AuthMe | Login con contraseña (necesario en modo no premium). Modo premium activado: los premium con `/premium` entran sin contraseña. **No instalar FastLogin**: choca con el `/premium` de AuthMe 6 |
 | SkinsRestorer | Skins para cuentas no premium |
 | AxGraves | Tumba con tus cosas al morir |
 | ClearLag++ | Limpia ítems tirados para que no haya lag |
