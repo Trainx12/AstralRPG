@@ -483,7 +483,7 @@ def commands():
          f"mv gamerule set minecraft:spawn_mobs false {WORLD}",
          f"execute in minecraft:{WORLD} run minecraft:time set noon",
          f"execute in minecraft:{WORLD} run worldborder center 178 192",
-         f"execute in minecraft:{WORLD} run worldborder set 190",
+         f"execute in minecraft:{WORLD} run worldborder set 360",
          f"rg flag -w {WORLD} __global__ build deny",
          f"rg flag -w {WORLD} __global__ pvp deny",
          f"rg flag -w {WORLD} __global__ mob-spawning deny",

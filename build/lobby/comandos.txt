@@ -13,7 +13,7 @@ mv gamerule set minecraft:advance_time false lobby
 mv gamerule set minecraft:spawn_mobs false lobby
 execute in minecraft:lobby run minecraft:time set noon
 execute in minecraft:lobby run worldborder center 178 192
-execute in minecraft:lobby run worldborder set 190
+execute in minecraft:lobby run worldborder set 360
 rg flag -w lobby __global__ build deny
 rg flag -w lobby __global__ pvp deny
 rg flag -w lobby __global__ mob-spawning deny

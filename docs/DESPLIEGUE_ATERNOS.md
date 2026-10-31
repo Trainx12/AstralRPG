@@ -27,3 +27,6 @@ Captura del servidor online: .local/backups/aternos-despliegue.jpg.
 
 Reubicacion solicitada con capturas: Herrero lobby 198.657 100 181.429 (yaw 92.1);
 Subastas lobby 205.466 100 175.476 (yaw 2.7). Teletransportados los NPC existentes y posiciones verificadas.
+
+Borde del lobby ampliado de 190 a 360 bloques (centro existente 178,192) para incluir la galeria.
+Holograma astral.amb.subastas movido a 205.5 104.3 183.2, sobre la entrada de la casa.
