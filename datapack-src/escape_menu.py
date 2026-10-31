@@ -80,6 +80,10 @@ def wide_button(caption, footer=False, english=False):
     # Recorte pedido: solo la punta del bambu que invade Opciones.
     # El personaje y el lado de Denunciar jugador quedan como estaban.
     ImageDraw.Draw(top).rectangle((35, 0, 56, 12), fill=(0, 0, 0, 0))
+    # Resto del boton de arriba pegado sobre el pelo del rubio: tapaba
+    # "Denunciar jugador". Se borra solo ese fondo, el pelo queda igual.
+    for box in ((182, 0, 191, 7), (182, 0, 213, 2), (192, 3, 192, 3), (206, 3, 208, 3)):
+        ImageDraw.Draw(top).rectangle(box, fill=(0, 0, 0, 0))
     panel = source.crop((15, 790, 1250, 1225)).resize((220, 50), Image.Resampling.NEAREST)
     out.alpha_composite(top, (0, 0))
     out.alpha_composite(panel, (0, 40))
