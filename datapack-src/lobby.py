@@ -320,6 +320,30 @@ def gacha_skills():
 RANKS = [(1500, "<gradient:#FFD24A:#FF7A2A><bold>Leyenda</bold></gradient>"), (800, "<light_purple><bold>Heroe</bold>"),
          (400, "<aqua>Veterano"), (150, "<green>Aventurero"), (0, "<gray>Novato")]
 
+def daily_sidebar_conditions():
+    from misiones import DAILIES
+    lines = []
+
+    def condition(name, check, yes, no):
+        lines.extend([f'  {name}:', '    conditions:', f'      - "{check}"',
+                      f'    true: "{yes}"', f'    false: "{no}"'])
+
+    for tier in range(3):
+        missions = [d for d in DAILIES if d[1] == tier]
+        condition(f'diaria{tier}', f'%objective_score_{{aq.done{tier}}}%=1',
+                  '<gray>Cobrada', f'%condition:diaria{tier}_activa%')
+        condition(f'diaria{tier}_activa', f'%objective_score_{{aq.active{tier}}}%=1',
+                  f'%condition:diaria{tier}_id{missions[0][0]}%', '<yellow>Sin aceptar')
+        for index, (did, _, name, counter, goal, desc) in enumerate(missions):
+            following = f'%condition:diaria{tier}_id{missions[index+1][0]}%' if index+1 < len(missions) else '<green>Activa'
+            status = f'%condition:diaria{tier}_lista{did}%' if counter else '<green>Activa: entrega'
+            condition(f'diaria{tier}_id{did}', f'%objective_score_{{aq.d{tier}}}%={did}', status, following)
+            if counter:
+                progress = f'<green>Activa <white>%objective_score_{{aq.{counter}}}%/{goal}' if counter != 'ride' else '<green>Activa: recorrido'
+                condition(f'diaria{tier}_lista{did}', f'%objective_score_{{aq.{counter}}}%>={goal}', '<gold>Por cobrar', progress)
+    return '\n'.join(lines) + '\n'
+
+
 TAB_SECTIONS = r'''header-footer:
   enabled: true
   designs:
@@ -363,20 +387,20 @@ scoreboard:
     astral:
       title: "%animation:astral_titulo%"
       lines:
-        - "<dark_gray><strikethrough>                    </strikethrough>"
         - "<gray>⚔ <white><bold>%player%</bold>"
         - "<gray>Rango||%condition:rango%"
-        - "<gray>Titulo||%condition:titulo%"
-        - ""
         - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
         - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
         - "<aqua>⚡ Poder||<white>%auraskills_power%"
-        - "<green>✦ Nivel||<white>%player_level%"
         - ""
-        - "<red>⚒ Forja||<white>%auraskills_forging%"
-        - "<light_purple>✧ Hechiceria||<white>%auraskills_sorcery%"
-        - "<yellow>➶ Arqueria||<white>%auraskills_archery%"
-        - "<gray>☠ Bajas||<white>%statistic_mob_kills%   <gray>⌂ <white>%condition:mundo%"
+        - "<aqua><bold>Misiones diarias</bold>"
+        - "<gray>Fácil||%condition:diaria0%"
+        - "<gray>Media||%condition:diaria1%"
+        - "<gray>Difícil||%condition:diaria2%"
+        - "<gray>Renuevan||<white>00:00 ARG"
+        - ""
+        - "<white>%date%"
+        - "<gray>Hora argentina||<aqua>%time%"
         - "%animation:astral_ip%"
 conditions:
 ''' + "".join(
@@ -402,6 +426,13 @@ conditions:
       - "%world%=world_the_end"
     true: "<light_purple>End"
     false: "<green>Mundo"
+'''
+
+TAB_SECTIONS += daily_sidebar_conditions() + '''placeholders:
+  date-format: "EEEE dd/MM/yyyy"
+  time-format: "HH:mm"
+  time-offset: -3
+  locale: "es-AR"
 '''
 
 TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)

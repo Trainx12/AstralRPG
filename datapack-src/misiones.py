@@ -102,7 +102,7 @@ def generate(files, items):
         "scoreboard players set @s aq.page 0",
         "scoreboard players set @s aq.accepted 0",
         "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1",
-        *[f"scoreboard players set @s aq.active{i} 1" for i in range(3)],
+        *[f"scoreboard players set @s aq.active{i} 0" for i in range(3)],
         "tag @s add aq.gui",
     ])
     fn("sync", [
@@ -274,14 +274,17 @@ def generate(files, items):
     delivery("bazar", 7, [[(pred, 5)]])
     show = [call("sync"), "execute unless score #today aq.clock matches 1.. run return run " + msg("El reloj de diarias no esta conectado. Avisa al administrador.", "yellow")]
     for did, tier, name, counter, goal, desc in DAILIES:
-        if counter:
-            show.append(f"execute if score @s aq.d{tier} matches {did} if score @s aq.done{tier} matches 0 if score @s aq.{counter} matches {goal}.. run " + call(f"daily/claim/{did}"))
+        # Abrir el diario o conversar nunca cobra automaticamente.
         show.append(f"execute if score @s aq.d{tier} matches {did} run " + msg(f"[{tier + 1}] {name}: {desc}. Premio: {[300,750,1500][tier]}$.", "aqua"))
         show.append(f'execute if score @s aq.d{tier} matches {did} run tellraw @s [{{"text":"Cobrada (0=no, 1=si): "}},{{"score":{{"name":"@s","objective":"aq.done{tier}"}}}}]')
         claim = [f"execute unless score @s aq.d{tier} matches {did} run return 0",
                  f"execute unless score @s aq.active{tier} matches 1 run return 0",
-                 f"execute if score @s aq.done{tier} matches 1 run return 0",
-                 f"scoreboard players set @s aq.done{tier} 1", money([300,750,1500][tier]), msg(f"Diaria completada: {name}.", "green")]
+                 f"execute if score @s aq.done{tier} matches 1 run return 0"]
+        if counter:
+            claim += [f'execute unless score @s aq.{counter} matches {goal}.. run return 0']
+        claim += [f"scoreboard players set @s aq.done{tier} 1",
+                  f"scoreboard players set @s aq.active{tier} 0",
+                  money([300,750,1500][tier]), msg(f"Diaria completada: {name}.", "green")]
         if did in (11,12): claim.append("loot give @s loot astral:item/alma_corrupta")
         if did == 13:
             files["data/astral/predicate/quest/chispa.json"] = json.dumps({"condition":"minecraft:random_chance", "chance":0.25})

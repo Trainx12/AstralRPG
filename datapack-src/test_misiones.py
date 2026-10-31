@@ -121,7 +121,7 @@ class AcceptanceTransitions(unittest.TestCase):
             misiones.generate(cls.files, items)
 
     def run_function(self, name, scores, effects):
-        if name == 'sync':
+        if name in ('sync', 'streak'):
             return
         lines = self.files[f'data/astral/function/quest/{name}.mcfunction'].splitlines()
 
@@ -145,6 +145,8 @@ class AcceptanceTransitions(unittest.TestCase):
             elif line.startswith('scoreboard players operation '):
                 _,_,_,who,obj,op,other,source=line.split()
                 self.assertEqual(op,'='); scores[who,obj]=scores[other,source]
+            elif line.startswith('scoreboard players add '):
+                _,_,_,who,obj,value=line.split(); scores[who,obj]=scores.get((who,obj),0)+int(value)
             elif line and not line.startswith('#'): effects.append(line)
             return False
         for line in lines:
@@ -179,6 +181,72 @@ class AcceptanceTransitions(unittest.TestCase):
             self.run_function('gui/accept',scores,effects)
             self.assertEqual(scores['@s','aq.accepted'],int(state<10))
             self.assertEqual(sum('title @s title ' in e for e in effects),int(state<10))
+
+    def test_hard_claim_rechecks_goal_and_only_pays_once(self):
+        scores={('@s','aq.d2'):12,('@s','aq.active2'):1,('@s','aq.done2'):0,('@s','aq.boss'):0}
+        effects=[]
+        self.run_function('daily/claim/12',scores,effects)
+        self.assertEqual(scores['@s','aq.done2'],0)
+        self.assertEqual(scores.get(('@s','aqmoney'),0),0)
+        scores['@s','aq.boss']=1
+        self.run_function('daily/claim/12',scores,effects)
+        self.assertEqual(scores['@s','aq.done2'],1)
+        self.assertEqual(scores['@s','aq.active2'],0)
+        self.assertEqual(scores['@s','aqmoney'],1500)
+        self.run_function('daily/claim/12',scores,effects)
+        self.assertEqual(scores['@s','aqmoney'],1500)
+
+    def test_legacy_journal_does_not_auto_claim_counters(self):
+        journal = self.files['data/astral/function/quest/cronista.mcfunction']
+        for did, _, _, counter, *_ in DAILIES:
+            if counter:
+                self.assertNotIn(f'quest/daily/claim/{did}\n',journal)
+
+    def test_daily_rollover_uses_real_argentine_midnight(self):
+        from datetime import datetime,timezone,timedelta
+        load=self.files['data/astral/function/quest/load.mcfunction']
+        offset=int(re.search(r'set #offset aq.clock (-?\d+)',load).group(1))
+        seconds=int(re.search(r'set #seconds aq.clock (\d+)',load).group(1))
+        argentina=timezone(timedelta(hours=-3))
+        for hour,minute,second in [(2,59,59),(3,0,0),(23,59,59)]:
+            stamp=datetime(2026,10,31,hour,minute,second,tzinfo=timezone.utc).timestamp()
+            expected=(datetime.fromtimestamp(stamp,argentina).date()-datetime(1970,1,1).date()).days
+            self.assertEqual(int((stamp+offset)//seconds),expected)
+        self.assertNotIn('time query',self.files['data/astral/function/quest/clock.mcfunction'])
+
+
+class DailySidebar(unittest.TestCase):
+    def test_day_format_and_line_budget(self):
+        from lobby import TAB_SECTIONS
+        board=TAB_SECTIONS.split('scoreboards:\n',1)[1].split('\nconditions:',1)[0]
+        self.assertEqual(len(re.findall(r'^        - ',board,re.M)),15)
+        self.assertIn('date-format: "EEEE dd/MM/yyyy"',TAB_SECTIONS)
+        self.assertIn('time-format: "HH:mm"',TAB_SECTIONS)
+        self.assertIn('time-offset: -3',TAB_SECTIONS)
+        self.assertIn('locale: "es-AR"',TAB_SECTIONS)
+
+    def test_paid_active_and_ready_states_for_all_dailies(self):
+        from lobby import daily_sidebar_conditions
+        conditions={name:(check,yes,no) for name,check,yes,no in re.findall(
+            r'  (diaria\w+):\n    conditions:\n      - "([^"]+)"\n    true: "([^"]+)"\n    false: "([^"]+)"',daily_sidebar_conditions())}
+        def resolve(name,scores):
+            check,yes,no=conditions[name]
+            objective,op,target=re.fullmatch(r'%objective_score_\{(aq\.\w+)\}%([>=]+)(\d+)',check).groups()
+            value=scores.get(objective,0)
+            passed=value>=int(target) if op=='>=' else value==int(target)
+            output=yes if passed else no
+            nested=re.fullmatch(r'%condition:(\w+)%',output)
+            return resolve(nested.group(1),scores) if nested else output
+        for did,tier,_,counter,goal,_ in DAILIES:
+            scores={f'aq.d{tier}':did,f'aq.active{tier}':0,f'aq.done{tier}':0}
+            self.assertIn('Sin aceptar',resolve(f'diaria{tier}',scores))
+            scores[f'aq.active{tier}']=1
+            self.assertIn('Activa',resolve(f'diaria{tier}',scores))
+            if counter:
+                scores['aq.'+counter]=goal
+                self.assertIn('Por cobrar',resolve(f'diaria{tier}',scores))
+            scores[f'aq.done{tier}']=1
+            self.assertIn('Cobrada',resolve(f'diaria{tier}',scores))
 
 
 if __name__ == "__main__":

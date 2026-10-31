@@ -41,20 +41,20 @@ scoreboard:
     astral:
       title: "%animation:astral_titulo%"
       lines:
-        - "<dark_gray><strikethrough>                    </strikethrough>"
         - "<gray>⚔ <white><bold>%player%</bold>"
         - "<gray>Rango||%condition:rango%"
-        - "<gray>Titulo||%condition:titulo%"
-        - ""
         - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
         - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
         - "<aqua>⚡ Poder||<white>%auraskills_power%"
-        - "<green>✦ Nivel||<white>%player_level%"
         - ""
-        - "<red>⚒ Forja||<white>%auraskills_forging%"
-        - "<light_purple>✧ Hechiceria||<white>%auraskills_sorcery%"
-        - "<yellow>➶ Arqueria||<white>%auraskills_archery%"
-        - "<gray>☠ Bajas||<white>%statistic_mob_kills%   <gray>⌂ <white>%condition:mundo%"
+        - "<aqua><bold>Misiones diarias</bold>"
+        - "<gray>Fácil||%condition:diaria0%"
+        - "<gray>Media||%condition:diaria1%"
+        - "<gray>Difícil||%condition:diaria2%"
+        - "<gray>Renuevan||<white>00:00 ARG"
+        - ""
+        - "<white>%date%"
+        - "<gray>Hora argentina||<aqua>%time%"
         - "%animation:astral_ip%"
 conditions:
   rango:
@@ -97,3 +97,158 @@ conditions:
       - "%world%=world_the_end"
     true: "<light_purple>End"
     false: "<green>Mundo"
+  diaria0:
+    conditions:
+      - "%objective_score_{aq.done0}%=1"
+    true: "<gray>Cobrada"
+    false: "%condition:diaria0_activa%"
+  diaria0_activa:
+    conditions:
+      - "%objective_score_{aq.active0}%=1"
+    true: "%condition:diaria0_id1%"
+    false: "<yellow>Sin aceptar"
+  diaria0_id1:
+    conditions:
+      - "%objective_score_{aq.d0}%=1"
+    true: "%condition:diaria0_lista1%"
+    false: "%condition:diaria0_id2%"
+  diaria0_lista1:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=15"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.hostil}%/15"
+  diaria0_id2:
+    conditions:
+      - "%objective_score_{aq.d0}%=2"
+    true: "<green>Activa: entrega"
+    false: "%condition:diaria0_id3%"
+  diaria0_id3:
+    conditions:
+      - "%objective_score_{aq.d0}%=3"
+    true: "<green>Activa: entrega"
+    false: "%condition:diaria0_id4%"
+  diaria0_id4:
+    conditions:
+      - "%objective_score_{aq.d0}%=4"
+    true: "<green>Activa: entrega"
+    false: "%condition:diaria0_id5%"
+  diaria0_id5:
+    conditions:
+      - "%objective_score_{aq.d0}%=5"
+    true: "%condition:diaria0_lista5%"
+    false: "<green>Activa"
+  diaria0_lista5:
+    conditions:
+      - "%objective_score_{aq.spider}%>=10"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.spider}%/10"
+  diaria1:
+    conditions:
+      - "%objective_score_{aq.done1}%=1"
+    true: "<gray>Cobrada"
+    false: "%condition:diaria1_activa%"
+  diaria1_activa:
+    conditions:
+      - "%objective_score_{aq.active1}%=1"
+    true: "%condition:diaria1_id6%"
+    false: "<yellow>Sin aceptar"
+  diaria1_id6:
+    conditions:
+      - "%objective_score_{aq.d1}%=6"
+    true: "%condition:diaria1_lista6%"
+    false: "%condition:diaria1_id7%"
+  diaria1_lista6:
+    conditions:
+      - "%objective_score_{aq.elite}%>=3"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.elite}%/3"
+  diaria1_id7:
+    conditions:
+      - "%objective_score_{aq.d1}%=7"
+    true: "<green>Activa: entrega"
+    false: "%condition:diaria1_id8%"
+  diaria1_id8:
+    conditions:
+      - "%objective_score_{aq.d1}%=8"
+    true: "%condition:diaria1_lista8%"
+    false: "%condition:diaria1_id9%"
+  diaria1_lista8:
+    conditions:
+      - "%objective_score_{aq.biomes}%>=3"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.biomes}%/3"
+  diaria1_id9:
+    conditions:
+      - "%objective_score_{aq.d1}%=9"
+    true: "%condition:diaria1_lista9%"
+    false: "%condition:diaria1_id10%"
+  diaria1_lista9:
+    conditions:
+      - "%objective_score_{aq.pet}%>=25"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.pet}%/25"
+  diaria1_id10:
+    conditions:
+      - "%objective_score_{aq.d1}%=10"
+    true: "%condition:diaria1_lista10%"
+    false: "<green>Activa"
+  diaria1_lista10:
+    conditions:
+      - "%objective_score_{aq.ride}%>=100000"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa: recorrido"
+  diaria2:
+    conditions:
+      - "%objective_score_{aq.done2}%=1"
+    true: "<gray>Cobrada"
+    false: "%condition:diaria2_activa%"
+  diaria2_activa:
+    conditions:
+      - "%objective_score_{aq.active2}%=1"
+    true: "%condition:diaria2_id11%"
+    false: "<yellow>Sin aceptar"
+  diaria2_id11:
+    conditions:
+      - "%objective_score_{aq.d2}%=11"
+    true: "%condition:diaria2_lista11%"
+    false: "%condition:diaria2_id12%"
+  diaria2_lista11:
+    conditions:
+      - "%objective_score_{aq.mine}%>=1"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.mine}%/1"
+  diaria2_id12:
+    conditions:
+      - "%objective_score_{aq.d2}%=12"
+    true: "%condition:diaria2_lista12%"
+    false: "%condition:diaria2_id13%"
+  diaria2_lista12:
+    conditions:
+      - "%objective_score_{aq.boss}%>=1"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.boss}%/1"
+  diaria2_id13:
+    conditions:
+      - "%objective_score_{aq.d2}%=13"
+    true: "%condition:diaria2_lista13%"
+    false: "%condition:diaria2_id14%"
+  diaria2_lista13:
+    conditions:
+      - "%objective_score_{aq.nightmare}%>=1"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.nightmare}%/1"
+  diaria2_id14:
+    conditions:
+      - "%objective_score_{aq.d2}%=14"
+    true: "%condition:diaria2_lista14%"
+    false: "<green>Activa"
+  diaria2_lista14:
+    conditions:
+      - "%objective_score_{aq.upgrade}%>=1"
+    true: "<gold>Por cobrar"
+    false: "<green>Activa <white>%objective_score_{aq.upgrade}%/1"
+placeholders:
+  date-format: "EEEE dd/MM/yyyy"
+  time-format: "HH:mm"
+  time-offset: -3
+  locale: "es-AR"
