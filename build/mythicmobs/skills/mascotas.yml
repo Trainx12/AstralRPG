@@ -47,7 +47,7 @@ MASC_INVOCAR_lobo:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 1"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_lobo;amount=1}'
+  - 'summon{type=astral_pet_lobo;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fLobo del Bosque&7. &8(/mascotas para guardarla)"}'
 
@@ -128,7 +128,7 @@ MASC_INVOCAR_cuervo:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 2"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_cuervo;amount=1}'
+  - 'summon{type=astral_pet_cuervo;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCuervo Arcano&7. &8(/mascotas para guardarla)"}'
 
@@ -197,7 +197,7 @@ MASC_INVOCAR_golem:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 3"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_golem;amount=1}'
+  - 'summon{type=astral_pet_golem;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fGolem de Piedra&7. &8(/mascotas para guardarla)"}'
 
@@ -266,7 +266,7 @@ MASC_INVOCAR_zorro:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 4"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_zorro;amount=1}'
+  - 'summon{type=astral_pet_zorro;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fZorro Espectral&7. &8(/mascotas para guardarla)"}'
 
@@ -335,7 +335,7 @@ MASC_INVOCAR_dragon:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 5"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_dragon;amount=1}'
+  - 'summon{type=astral_pet_dragon;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fDragoncito de Fuego&7. &8(/mascotas para guardarla)"}'
 
@@ -452,7 +452,7 @@ MASC_INVOCAR_fenix:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 6"}'
   - 'delay 25'
-  - 'summon{type=astral_pet_fenix;amount=1}'
+  - 'summon{type=astral_pet_fenix;amount=1;summonerIsOwner=false;summonerIsParent=false}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fFenix&7. &8(/mascotas para guardarla)"}'
 

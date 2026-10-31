@@ -150,6 +150,18 @@ for s_id in ARMOR_SETS_TEX:
             "humanoid": [{"texture": f"astral:{name}"}],
             "humanoid_leggings": [{"texture": f"astral:{name}"}]}})
 
+# Mantener vanilla las capas que se dibujan sobre los items del inventario.
+# Version de prueba para aislar desapariciones al arrastrar o mostrar tooltips
+# en 26.1.2. No cambia las ventanas, el HUD ni los modelos de herramientas.
+VANILLA_GUI_OVERLAYS = {
+    f"assets/minecraft/textures/gui/sprites/{sprite}.png"
+    for sprite in (
+        "container/slot_highlight_front", "container/slot_highlight_back",
+        "container/bundle/slot_highlight_front", "container/bundle/slot_highlight_back",
+        "tooltip/background", "tooltip/frame",
+    )
+}
+
 # Modelos de criaturas (generados por BetterModel en el servidor de prueba, misma config que en Aternos)
 # y la interfaz estilo RPG (ventanas de piedra y oro, barra de items, vida/comida en barras), de gui_textures.py
 for carpeta in ("bettermodel", "gui"):
@@ -160,6 +172,8 @@ for carpeta in ("bettermodel", "gui"):
         for fname in fs:
             full = os.path.join(root, fname)
             rel = os.path.relpath(full, BM).replace(os.sep, "/")
+            if rel.removesuffix(".mcmeta") in VANILLA_GUI_OVERLAYS:
+                continue
             with open(full, "rb") as f:
                 files[rel] = f.read()
 

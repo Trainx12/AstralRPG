@@ -1,10 +1,10 @@
 # Misiones: despues de subir el datapack (servidor apagado) y las configs MythicMobs.
 # Cargar/reiniciar el servidor. Para configs solamente: mm reload.
-# El Cronista usa el chunk del lobby x=174 z=212. No duplicar el NPC si ya existe.
-execute in minecraft:lobby run forceload add 174 212
+# El Cronista usa el chunk del lobby x=181 z=225. No duplicar el NPC si ya existe.
+execute in minecraft:lobby run forceload add 181 225
 rg flag -w lobby __global__ mob-spawning allow
-mm mobs spawn astral_npc_cronista 1 lobby,174.5,100,212.5
-rg flag -w lobby __global__ mob-spawning deny
+mm mobs spawn astral_npc_cronista 1 lobby,181.636,100,225.735
+rg flag -w lobby __global__ mob-spawning allow
 # Esperar 1 segundo y comprobar el reloj:
 scoreboard players get #today aq.clock
 # Tiene que ser un numero positivo (dias reales desde 1970, en UTC-3).

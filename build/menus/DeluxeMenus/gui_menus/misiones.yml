@@ -1,0 +1,1843 @@
+menu_title: '&8Misiones de AstralRPG'
+open_command: misiones
+size: 27
+update_interval: 1
+open_commands:
+- '[console] execute as %player_name% at @s run function astral:quest/sync'
+- '[refresh]<delay=2>'
+items:
+  'tab_0':
+    material: BOOK
+    slot: 0
+    amount: 1
+    display_name: '&b&lHistoria'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
+    - '[refresh]<delay=2>'
+  'tab_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&b&lDiaria facil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/1'
+    - '[refresh]<delay=2>'
+  'tab_2':
+    material: MAP
+    slot: 2
+    amount: 1
+    display_name: '&b&lDiaria media'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/2'
+    - '[refresh]<delay=2>'
+  'tab_3':
+    material: ENCHANTED_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&b&lDiaria dificil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/3'
+    - '[refresh]<delay=2>'
+  'historia_0':
+    material: COMPASS
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 1/9'
+    lore:
+    - '&7Llegar al Refugio: habla con el Herrero y'
+    - '&7forja una pieza de tier I.'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Herrero: &f%objective_score_{aq.herrero}%/1'
+    - '&7Forja tier I: &f%objective_score_{aq.forge1}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '0'
+    update: true
+  'empezar':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Empieza tu historia en el Refugio.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'historia_1':
+    material: COMPASS
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 1/9'
+    lore:
+    - '&7Llegar al Refugio: habla con el Herrero y'
+    - '&7forja una pieza de tier I.'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Herrero: &f%objective_score_{aq.herrero}%/1'
+    - '&7Forja tier I: &f%objective_score_{aq.forge1}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '1'
+    update: true
+  'aceptar_1':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '1'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_1':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '1'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_2':
+    material: WHEAT
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 2/9'
+    lore:
+    - '&7Los campos: mata 10 Espantapajaros, 10'
+    - '&7Abejorros y 1 elite; entrega 3 Esencias al'
+    - '&7Viajero.'
+    - ''
+    - '&6Premio: 500$'
+    - '&6+ una pieza de armadura tier I a eleccion'
+    - ''
+    - '&7Espantapajaros: &f%objective_score_{aq.scare}%/10'
+    - '&7Abejorros: &f%objective_score_{aq.bee}%/10'
+    - '&7Elites: &f%objective_score_{aq.helite}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '2'
+    update: true
+  'aceptar_2':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '2'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_2':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '2'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_3':
+    material: NAUTILUS_SHELL
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 3/9'
+    lore:
+    - '&7La marea: derrota al Cangrejo en las playas'
+    - '&7y volve con el Viajero.'
+    - ''
+    - '&6Premio: 1000$'
+    - ''
+    - '&7Cangrejo: &f%objective_score_{aq.f1}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '3'
+    update: true
+  'aceptar_3':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '3'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_3':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '3'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_4':
+    material: OAK_SAPLING
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 4/9'
+    lore:
+    - '&7El bosque: mata 15 Caras Voladoras y'
+    - '&7derrota al Chaman.'
+    - ''
+    - '&6Premio: 1500$'
+    - ''
+    - '&7Caras: &f%objective_score_{aq.face}%/15'
+    - '&7Chaman: &f%objective_score_{aq.f2}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '4'
+    update: true
+  'aceptar_4':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '4'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_4':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '4'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_5':
+    material: SANDSTONE
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 5/9'
+    lore:
+    - '&7Arena con memoria: derrota a la Momia.'
+    - ''
+    - '&6Premio: 2000$'
+    - '&6+ material astral'
+    - ''
+    - '&7Momia: &f%objective_score_{aq.f3}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '5'
+    update: true
+  'aceptar_5':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '5'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_5':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '5'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_6':
+    material: IRON_PICKAXE
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 6/9'
+    lore:
+    - '&7Minas Olvidadas: completa las cuatro salas.'
+    - ''
+    - '&6Premio: 2500$'
+    - ''
+    - '&7Minas completadas: &f%objective_score_{aq.f4}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '6'
+    update: true
+  'aceptar_6':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '6'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_6':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '6'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_7':
+    material: SNOWBALL
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 7/9'
+    lore:
+    - '&7El silencio blanco: derrota al Yeti.'
+    - ''
+    - '&6Premio: 3000$'
+    - '&6+ material astral'
+    - ''
+    - '&7Yeti: &f%objective_score_{aq.f5}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '7'
+    update: true
+  'aceptar_7':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '7'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_7':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '7'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_8':
+    material: BLAZE_POWDER
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 8/9'
+    lore:
+    - '&7El corazon de la forja: forja una pieza'
+    - '&7tier V y derrota al Golem de Forja.'
+    - ''
+    - '&6Premio: 5000$'
+    - ''
+    - '&7Forja tier V: &f%objective_score_{aq.forge5}%/1'
+    - '&7Golem: &f%objective_score_{aq.f6}%/1'
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '8'
+    update: true
+  'aceptar_8':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '8'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_8':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '8'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_9':
+    material: NETHER_STAR
+    slot: 13
+    amount: 1
+    display_name: '&b&lCapitulo 9/9'
+    lore:
+    - '&7Encender la estrella: habla con el Viajero'
+    - '&7para reunir los fragmentos.'
+    - ''
+    - '&6Premio: 10000$'
+    - '&6+ titulo Portador de la Estrella'
+    - ''
+    - ''
+    - '&eUsa el boton de abajo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '9'
+    update: true
+  'aceptar_9':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Los objetivos cuentan desde que aceptas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '9'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
+    - '[refresh]<delay=2>'
+  'cobrar_9':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Comprueba los objetivos y entrega'
+    - '&7los materiales de esta mision.'
+    - '&7Si falta algo, no consume ni paga.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '9'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.accepted}%'
+          output: '1'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/viajero'
+    - '[refresh]<delay=2>'
+  'historia_fin':
+    material: NETHER_STAR
+    slot: 13
+    amount: 1
+    display_name: '&6&lHistoria completada'
+    lore:
+    - '&7La Estrella vuelve a brillar.'
+    - '&7El Santuario Celestial te espera.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    update: true
+  'premio_pendiente':
+    material: CHEST
+    slot: 24
+    amount: 1
+    display_name: '&6Elegir premio de armadura'
+    lore:
+    - '&7Se desbloquea al cobrar el capitulo 2.'
+    - '&7Elegis una sola pieza, una sola vez.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/4'
+    - '[refresh]<delay=2>'
+  'diaria_1':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lRonda nocturna'
+    lore:
+    - '&7Mata 15 hostiles de AstralRPG'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.hostil}%/15'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '1'
+    update: true
+  'diaria_2':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lProvisiones'
+    lore:
+    - '&7Entrega 32 panes o 32 carnes cocidas del'
+    - '&7mismo tipo a la Tienda'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '2'
+    update: true
+  'diaria_3':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lMadera para el Refugio'
+    lore:
+    - '&7Entrega 64 troncos al Cronista'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '3'
+    update: true
+  'diaria_4':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lPiedra y hierro'
+    lore:
+    - '&7Entrega 64 piedras y 16 lingotes de hierro'
+    - '&7al Herrero'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '4'
+    update: true
+  'diaria_5':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lPlaga de aranas'
+    lore:
+    - '&7Mata 10 Aranas Amatista'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.spider}%/10'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '5'
+    update: true
+  'diaria_6':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lCaza de elites'
+    lore:
+    - '&7Mata 3 elites vanilla o de MythicMobs'
+    - ''
+    - '&6Premio: 750$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.elite}%/3'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d1}%'
+          output: '6'
+    update: true
+  'diaria_7':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lEncargo del Bazar'
+    lore:
+    - '&7Entrega 5 Esencias de Elite al Bazar'
+    - ''
+    - '&6Premio: 750$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d1}%'
+          output: '7'
+    update: true
+  'diaria_8':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lExplorador'
+    lore:
+    - '&7Visita 3 zonas distintas: desierto, nieve,'
+    - '&7pantano, bosque, llanura, Nether'
+    - ''
+    - '&6Premio: 750$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.biomes}%/3'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d1}%'
+          output: '8'
+    update: true
+  'diaria_9':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lMascota entrenada'
+    lore:
+    - '&7Mata 25 mobs con una mascota seleccionada,'
+    - '&7fuera del lobby'
+    - ''
+    - '&6Premio: 750$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.pet}%/25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d1}%'
+          output: '9'
+    update: true
+  'diaria_10':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lJinete'
+    lore:
+    - '&7Recorre 1000 bloques en una montura'
+    - '&7terrestre'
+    - ''
+    - '&6Premio: 750$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.ride}%/100000 cm'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d1}%'
+          output: '10'
+    update: true
+  'diaria_11':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lExpedicion a las Minas'
+    lore:
+    - '&7Completa las Minas Olvidadas'
+    - ''
+    - '&6Premio: 1500$'
+    - '&6+ Alma Corrupta'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.mine}%/1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d2}%'
+          output: '11'
+    update: true
+  'diaria_12':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lCazador de jefes'
+    lore:
+    - '&7Derrota a un jefe'
+    - ''
+    - '&6Premio: 1500$'
+    - '&6+ Alma Corrupta'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.boss}%/1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d2}%'
+          output: '12'
+    update: true
+  'diaria_13':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lPesadilla'
+    lore:
+    - '&7Mata un elite vanilla de tier IV o V'
+    - ''
+    - '&6Premio: 1500$'
+    - '&6+ 25% de Chispa Astral'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.nightmare}%/1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d2}%'
+          output: '13'
+    update: true
+  'diaria_14':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lMejora arriesgada'
+    lore:
+    - '&7Intenta una mejora +5 o mayor en el Herrero'
+    - ''
+    - '&6Premio: 1500$'
+    - '&6+ 2 Esencias de Elite'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.upgrade}%/1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.d2}%'
+          output: '14'
+    update: true
+  'diaria_aceptar_0':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Empieza a contar tu progreso.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '0'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/accept/0'
+    - '[refresh]<delay=2>'
+  'diaria_cobrar_0':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Valida solo esta mision.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '1'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/claim/0'
+    - '[refresh]<delay=2>'
+  'diaria_fin_0':
+    material: GRAY_DYE
+    slot: 22
+    amount: 1
+    display_name: '&7&lMision cobrada'
+    lore:
+    - '&7Volve manana para una mision nueva.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '1'
+    update: true
+  'diaria_aceptar_1':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Empieza a contar tu progreso.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active1}%'
+          output: '0'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done1}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/accept/1'
+    - '[refresh]<delay=2>'
+  'diaria_cobrar_1':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Valida solo esta mision.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active1}%'
+          output: '1'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done1}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/claim/1'
+    - '[refresh]<delay=2>'
+  'diaria_fin_1':
+    material: GRAY_DYE
+    slot: 22
+    amount: 1
+    display_name: '&7&lMision cobrada'
+    lore:
+    - '&7Volve manana para una mision nueva.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '2'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done1}%'
+          output: '1'
+    update: true
+  'diaria_aceptar_2':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Empieza a contar tu progreso.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active2}%'
+          output: '0'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done2}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/accept/2'
+    - '[refresh]<delay=2>'
+  'diaria_cobrar_2':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Valida solo esta mision.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.active2}%'
+          output: '1'
+        r2:
+          type: string equals
+          input: '%objective_score_{aq.done2}%'
+          output: '0'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/claim/2'
+    - '[refresh]<delay=2>'
+  'diaria_fin_2':
+    material: GRAY_DYE
+    slot: 22
+    amount: 1
+    display_name: '&7&lMision cobrada'
+    lore:
+    - '&7Volve manana para una mision nueva.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '3'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done2}%'
+          output: '1'
+    update: true
+  'premio_1':
+    material: IRON_HELMET
+    slot: 9
+    amount: 1
+    display_name: '&6Berserker - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/1'
+    - '[refresh]<delay=2>'
+  'premio_2':
+    material: IRON_CHESTPLATE
+    slot: 10
+    amount: 1
+    display_name: '&6Berserker - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/2'
+    - '[refresh]<delay=2>'
+  'premio_3':
+    material: IRON_LEGGINGS
+    slot: 11
+    amount: 1
+    display_name: '&6Berserker - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/3'
+    - '[refresh]<delay=2>'
+  'premio_4':
+    material: IRON_BOOTS
+    slot: 12
+    amount: 1
+    display_name: '&6Berserker - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/4'
+    - '[refresh]<delay=2>'
+  'premio_5':
+    material: IRON_HELMET
+    slot: 13
+    amount: 1
+    display_name: '&6Mago - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/5'
+    - '[refresh]<delay=2>'
+  'premio_6':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&6Mago - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/6'
+    - '[refresh]<delay=2>'
+  'premio_7':
+    material: IRON_LEGGINGS
+    slot: 15
+    amount: 1
+    display_name: '&6Mago - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/7'
+    - '[refresh]<delay=2>'
+  'premio_8':
+    material: IRON_BOOTS
+    slot: 16
+    amount: 1
+    display_name: '&6Mago - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/8'
+    - '[refresh]<delay=2>'
+  'premio_9':
+    material: IRON_HELMET
+    slot: 18
+    amount: 1
+    display_name: '&6Arquero - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/9'
+    - '[refresh]<delay=2>'
+  'premio_10':
+    material: IRON_CHESTPLATE
+    slot: 19
+    amount: 1
+    display_name: '&6Arquero - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/10'
+    - '[refresh]<delay=2>'
+  'premio_11':
+    material: IRON_LEGGINGS
+    slot: 20
+    amount: 1
+    display_name: '&6Arquero - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/11'
+    - '[refresh]<delay=2>'
+  'premio_12':
+    material: IRON_BOOTS
+    slot: 21
+    amount: 1
+    display_name: '&6Arquero - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.page}%'
+          output: '4'
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/12'
+    - '[refresh]<delay=2>'
+  'volver':
+    material: ARROW
+    slot: 26
+    amount: 1
+    display_name: '&fVolver al menu'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+  'vidrio_4':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 4
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

@@ -61,3 +61,25 @@ Fallo visual reportado en inventario: hacha al arrastrar y objetos cerca del cur
 Revisado el pack: no contiene shaders ni reemplazos de modelos/texturas vanilla de herramientas.
 Resaltados de casillas conservan medidas, alpha y metadatos de Minecraft 26.1.2.
 Pendiente la prueba comparativa sin resource pack antes de atribuir una causa o publicar una correccion.
+
+31/10, segunda revision: el kill vanilla no retiro definitivamente el NPC invulnerable de Minas.
+Se uso mm mobs kill astral_npc_mina (2 instancias) y se creo solo el de la galeria en 204.5,100,278.5.
+Expediciones trasladado a 178.636,100,225.735; Cronista a 181.636,100,225.735;
+holograma de Expediciones a 178.636,103.8,225.735. Posiciones verificadas por consola.
+
+Misiones con botones: un solo menu /misiones, una mision por pantalla. Historia y tres diarias
+se alternan con pestanas; aceptar, comprobar/cobrar y elegir armadura tier I son botones.
+Objetivos nuevos solo cuentan tras aceptar; la migracion conserva los capitulos en curso y
+el progreso diario existente. Cobros repetidos no pagan dos veces. Las entregas diarias
+requieren estar a menos de 6 bloques del vendedor indicado. Prueba local en Paper 26.1.2:
+capitulo 1 paga 300 una sola vez; el siguiente no cuenta Espantapajaros hasta aceptarlo;
+diaria facil no cuenta antes de aceptar y dos cobros dejan el total en 600, no 900.
+
+Mascotas que desaparecen: summon asignaba por defecto al controlador como dueno despues
+del setowner al jugador. Se deshabilitan summonerIsOwner y summonerIsParent para conservar
+el dueno elegido al aparecer. Se recrea el controlador para no conservar referencias anteriores.
+
+Pack de prueba para el fallo del cursor: se retiran solamente 6 sprites de resaltado/tooltip y
+sus metadatos (12 entradas); los otros 1218 archivos quedan identicos. Ventanas, HUD y modelos
+se conservan. SHA1 nuevo: cae600b9330a088534ce0106cf6cbce90cf70726.
+Es una mitigacion para probar en Minecraft, no una causa confirmada del fallo visual.

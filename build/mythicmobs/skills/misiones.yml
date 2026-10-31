@@ -1,7 +1,8 @@
 # Generado por misiones.py
 AQ_VIAJERO:
   Skills:
-  - 'command{c="execute as <target.name> at @s run function astral:quest/viajero"}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/gui/page/0"}'
+  - 'command{c="dm open misiones <target.name>"}'
 
 AQ_HERRERO:
   Skills:
@@ -9,7 +10,8 @@ AQ_HERRERO:
 
 AQ_CRONISTA:
   Skills:
-  - 'command{c="execute as <target.name> at @s run function astral:quest/cronista"}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/gui/page/1"}'
+  - 'command{c="dm open misiones <target.name>"}'
 
 AQ_TIENDA:
   Skills:

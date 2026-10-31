@@ -12,3 +12,5 @@ gui_menus:
     file: bazar.yml
   principal:
     file: principal.yml
+  misiones:
+    file: misiones.yml

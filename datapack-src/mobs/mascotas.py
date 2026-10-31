@@ -140,7 +140,10 @@ def skill_yml():
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
               sk(f'command{{c="scoreboard players set {p} petsel {n}"}}'),
               sk("delay 25"),                                  # que la anterior alcance a irse
-              sk(f"summon{{type=astral_pet_{pid};amount=1}}"),
+              # El invocador es el controlador invisible, no el jugador.
+              # Si summon vuelve a asignarlo como dueno, ownerIsOnline borra
+              # la mascota al segundo. Respetar el setowner de ~onSpawn.
+              sk(f"summon{{type=astral_pet_{pid};amount=1;summonerIsOwner=false;summonerIsParent=false}}"),
               sk("particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}"),
               sk(f'message{{m="&7Invocaste a tu &f{d["nombre"]}&7. &8(/mascotas para guardarla)"}}'), ""]
         L += [f"MASC_NOTIENE_{pid}:", "  TargetConditions:", f"  - score{{o=mascota;v={n}}} true",

@@ -13,8 +13,8 @@ Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-
 
 1. Entrar aceptando el resource pack. Si ya estabas dentro, salir y volver a entrar para descargarlo.
 2. `/menu` → Misiones e historia. Viajero en `(178,98,190)`, en la union de los cuatro bloques marcados: clic para historia; shift+clic para ir al mundo.
-3. Cronista: cerca del Viajero, en `(174.5,100,212.5)`. Muestra/cobra diarias. Reinicio a medianoche argentina.
-4. Portal de Expediciones: arco violeta en `(172.5,100,214.5)`. Su guardian lleva a la terraza nueva.
+3. Cronista: junto a Expediciones, en `(181.636,100,225.735)`. Muestra/cobra diarias. Reinicio a medianoche argentina.
+4. Expediciones: guardian en `(178.636,100,225.735)`, con su holograma encima. Lleva a la terraza nueva.
 5. Terraza: `(180.5,100,288.5)` en el lobby. Tiene accesos distintos para bosque, tumba, minas, nieve,
    forja, santuario y arena. Hablar con el guardian delante del arco. `/spawn` vuelve a la plaza.
 6. Bazar: puesto verde `(178.637,101,152.678)`; Subastas: reubicado por el dueno en `(205.466,100,175.476)`;
@@ -97,3 +97,7 @@ el reloj y atiende los premios para todos. No es necesario volver a crear los NP
 El datapack contiene `astral:ambiente/lobby` para el montaje inicial y `astral:ambiente/prueba/<mundo>`
 para las plataformas de prueba. **No repetir las plataformas una vez que haya construcciones propias**:
 limpian el espacio de combate de las copias nuevas. No afectan los ZIP originales ni las Minas.
+
+Las entregas diarias se cobran con el boton cerca del NPC indicado. El premio de armadura del capitulo 2 se elige desde el cofre de recompensas del menu. El progreso previo se conserva.
+
+Pack de prueba del cursor: resaltado y tooltip originales; volver a entrar para bajar la version nueva y probar arrastrar el hacha, pasar el cursor por motosierras y cerrar/reabrir la shulker. Si persiste, registrar que fallo y en que ventana.

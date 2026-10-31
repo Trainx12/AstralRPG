@@ -62,11 +62,16 @@ def generate(files, items):
         return f"scoreboard players add @s aqmoney {amount}"
 
     def inc(counter, amount=1):
-        return f"scoreboard players add @s aq.{counter} {amount}"
+        command = f"scoreboard players add @s aq.{counter} {amount}"
+        daily = next((d for d in DAILIES if d[3] == counter), None)
+        if counter in ("scare", "bee", "face", "helite"):
+            return f"execute if score @s aq.accepted matches 1 run {command}"
+        return f"execute if score @s aq.active{daily[1]} matches 1 run {command}" if daily else command
 
     objectives = COUNTERS + ["state", "money", "herrero", "forge1", "forge5", "scare", "bee", "face", "helite",
                              "day", "streak", "last", "mask", "horse", "hbase", "tmp", "clock", "reward"]
     objectives += [f"f{i}" for i in range(1, 7)]
+    objectives += ["accepted", "page"] + [f"active{i}" for i in range(3)]
     objectives += [f"d{i}" for i in range(3)] + [f"done{i}" for i in range(3)]
     load = [f"scoreboard objectives add {obj(o)} dummy" for o in objectives if o not in ("horse", "reward")]
     load += ["scoreboard objectives add aq.journal trigger",
@@ -92,9 +97,17 @@ def generate(files, items):
         "execute store result score #hard aq.clock run random value 11..14",
     ])
     init = [f"scoreboard players add @s {obj(o)} 0" for o in objectives if o not in ("horse", "reward", "day")]
-    fn("init", init + ["tag @s add aq.ready", "scoreboard players add @s aq.horse 0"])
+    fn("init", init + ["tag @s add aq.ready", "tag @s add aq.gui", "scoreboard players add @s aq.horse 0"])
+    fn("gui/migrate", [
+        "scoreboard players set @s aq.page 0",
+        "scoreboard players set @s aq.accepted 0",
+        "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1",
+        *[f"scoreboard players set @s aq.active{i} 1" for i in range(3)],
+        "tag @s add aq.gui",
+    ])
     fn("sync", [
         "execute unless entity @s[tag=aq.ready] run " + call("init"),
+        "execute unless entity @s[tag=aq.gui] run " + call("gui/migrate"),
         "execute if score #today aq.clock matches 1.. unless score @s aq.day = #today aq.clock run " + call("new_day"),
     ])
     fn("new_day", [
@@ -105,11 +118,12 @@ def generate(files, items):
         "scoreboard players operation @s aq.hbase = @s aq.horse",
         "scoreboard players set @s aq.mask 0",
     ] + [f"scoreboard players set @s aq.done{i} 0" for i in range(3)]
+      + [f"scoreboard players set @s aq.active{i} 0" for i in range(3)]
       + [f"scoreboard players set @s aq.{c} 0" for c in COUNTERS])
     fn("tick", [
         "execute as @a at @s run " + call("sync"),
-        "execute as @a[scores={aq.d1=8,aq.done1=0}] at @s unless dimension minecraft:arena unless dimension minecraft:lobby run " + call("explore"),
-        "execute as @a[scores={aq.d1=10,aq.done1=0}] at @s run " + call("ride"),
+        "execute as @a[scores={aq.d1=8,aq.done1=0,aq.active1=1}] at @s unless dimension minecraft:arena unless dimension minecraft:lobby run " + call("explore"),
+        "execute as @a[scores={aq.d1=10,aq.done1=0,aq.active1=1}] at @s run " + call("ride"),
         "scoreboard players enable @a aq.reward",
         "scoreboard players enable @a aq.journal",
         "execute as @a[scores={aq.journal=1..}] at @s run " + call("journal"),
@@ -152,11 +166,11 @@ def generate(files, items):
     event("nightmare", [inc("nightmare")])
     event("pet", ["execute unless dimension minecraft:lobby if score @s petsel matches 1..6 run " + inc("pet")])
     event("upgrade", [inc("upgrade")])
-    event("forge1", ["execute if score @s aq.state matches 1 run scoreboard players set @s aq.forge1 1"])
-    event("forge5", ["execute if score @s aq.state matches 8 run scoreboard players set @s aq.forge5 1"])
+    event("forge1", ["execute if score @s aq.accepted matches 1 if score @s aq.state matches 1 run scoreboard players set @s aq.forge1 1"])
+    event("forge5", ["execute if score @s aq.accepted matches 1 if score @s aq.state matches 8 run scoreboard players set @s aq.forge5 1"])
     for boss, (state, flag, item) in STORY.items():
         event(boss, [inc("mine" if boss == "mina" else "boss"),
-                     f"execute if score @s aq.state matches {state} if score @s aq.f{flag} matches 0 run " + call(f"fragment/{flag}")])
+                     f"execute if score @s aq.accepted matches 1 if score @s aq.state matches {state} if score @s aq.f{flag} matches 0 run " + call(f"fragment/{flag}")])
         fn(f"fragment/{flag}", [f"scoreboard players set @s aq.f{flag} 1",
                                f"loot give @s loot astral:item/{item}",
                                msg("Una parte de la estrella te reconoce. Volve con el Viajero.", "aqua")])
@@ -169,17 +183,23 @@ def generate(files, items):
     fn("pet_kill", ["advancement revoke @s only astral:quest/pet", call("event/pet")])
 
     # Click normal conversa; agacharse conserva el viaje al mundo.
-    fn("viajero", [call("sync"), "execute if score @s aq.state matches 0 run return run " + call("start")]
+    fn("gui/accept", [call("sync"),
+        "execute if score @s aq.state matches 0 run " + call("start"),
+        "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1"])
+    for page in range(5):
+        fn(f"gui/page/{page}", [call("sync"), f"scoreboard players set @s aq.page {page}"])
+    fn("viajero", [call("sync"),
+        "execute unless score @s aq.accepted matches 1 run return run " + msg("Primero acepta la mision con el boton verde de /misiones.", "yellow")]
        + [f"execute if score @s aq.state matches {i} run return run " + call(f"chapter/{i}") for i in range(1, 10)]
        + [msg("La estrella vuelve a brillar. El Santuario Celestial guarda sus ecos Ancestrales.", "gold")])
     fn("start", ["scoreboard players set @s aq.state 1", msg("Viajero: la Estrella Astral se partio. Sus fragmentos corrompieron a las criaturas.", "aqua"),
                  msg("El Refugio es lo que quedo del cielo. Habla con el Herrero, forja tu primer equipo y volve.")])
-    fn("herrero", [call("sync"), "execute if score @s aq.state matches 1 run scoreboard players set @s aq.herrero 1",
+    fn("herrero", [call("sync"), "execute if score @s aq.accepted matches 1 if score @s aq.state matches 1 run scoreboard players set @s aq.herrero 1",
                     "execute if score @s aq.state matches 1 run " + msg("Herrero: acercate a una mesa de herreria y forja equipo de tier I desde la Guia AstralRPG.", "gold"),
                     "execute if score @s aq.state matches 8 run " + msg("Herrero: el ultimo fragmento esta en mi antiguo golem. Forja tier V y vence al Golem de Forja.", "gold"),
                     call("deliver/herrero")])
     def complete(state, amount, extra=()):
-        fn(f"complete/{state}", [f"scoreboard players set @s aq.state {state + 1}", money(amount)] + list(extra)
+        fn(f"complete/{state}", [f"scoreboard players set @s aq.state {state + 1}", "scoreboard players set @s aq.accepted 0", money(amount)] + list(extra)
            + [msg(f"Capitulo terminado. Recompensa: {amount}$.", "green")]
            + ([msg(CHAPTERS[state], "aqua")] if state < 9 else []))
     complete(1, 300)
@@ -221,6 +241,7 @@ def generate(files, items):
         d = next(x for x in DAILIES if x[0] == daily)
         tier = d[1]
         dispatch = [call("sync"), f"execute unless score @s aq.d{tier} matches {daily} run return 0",
+                    f"execute unless score @s aq.active{tier} matches 1 run return 0",
                     f"execute if score @s aq.done{tier} matches 1 run return 0"]
         for k, ingredients in enumerate(variants):
             checks = []
@@ -241,7 +262,9 @@ def generate(files, items):
             show.append(f"execute if score @s aq.d{tier} matches {did} if score @s aq.done{tier} matches 0 if score @s aq.{counter} matches {goal}.. run " + call(f"daily/claim/{did}"))
         show.append(f"execute if score @s aq.d{tier} matches {did} run " + msg(f"[{tier + 1}] {name}: {desc}. Premio: {[300,750,1500][tier]}$.", "aqua"))
         show.append(f'execute if score @s aq.d{tier} matches {did} run tellraw @s [{{"text":"Cobrada (0=no, 1=si): "}},{{"score":{{"name":"@s","objective":"aq.done{tier}"}}}}]')
-        claim = [f"execute if score @s aq.done{tier} matches 1 run return 0",
+        claim = [f"execute unless score @s aq.d{tier} matches {did} run return 0",
+                 f"execute unless score @s aq.active{tier} matches 1 run return 0",
+                 f"execute if score @s aq.done{tier} matches 1 run return 0",
                  f"scoreboard players set @s aq.done{tier} 1", money([300,750,1500][tier]), msg(f"Diaria completada: {name}.", "green")]
         if did in (11,12): claim.append("loot give @s loot astral:item/alma_corrupta")
         if did == 13:
@@ -250,6 +273,27 @@ def generate(files, items):
         if did == 14: claim += ["loot give @s loot astral:item/esencia_elite"] * 2
         fn(f"daily/claim/{did}", claim + [call("streak")])
     fn("cronista", show + [call("deliver/cronista")])
+    from lobby import NPC_POS
+    delivery_npc = {2: "tienda", 3: "cronista", 4: "herrero", 7: "bazar"}
+    for tier in range(3):
+        fn(f"gui/daily/accept/{tier}", [call("sync"),
+            f"execute if score @s aq.done{tier} matches 0 run scoreboard players set @s aq.active{tier} 1"])
+        claim_button = [call("sync"),
+            f"execute unless score @s aq.active{tier} matches 1 run return 0"]
+        for did, dtier, name, counter, goal, desc in DAILIES:
+            if dtier != tier:
+                continue
+            if counter:
+                claim_button.append(f"execute if score @s aq.d{tier} matches {did} if score @s aq.{counter} matches {goal}.. run return run " + call(f"daily/claim/{did}"))
+            else:
+                npc = delivery_npc[did]
+                x, y, z, _ = NPC_POS["astral_npc_" + npc]
+                claim_button.append(f"execute if score @s aq.d{tier} matches {did} if dimension minecraft:lobby positioned {x} {y} {z} if entity @s[distance=..6] run return run " + call(f"deliver/{npc}"))
+        fn(f"gui/daily/claim/{tier}", claim_button + [msg("Todavia faltan objetivos. Para entregas, acercate al vendedor indicado y usa este boton.", "yellow")])
+    for n in range(1, 13):
+        fn(f"gui/choice/{n}", [
+            "execute unless entity @s[tag=aq.choice] run return run " + msg("No tenes una armadura pendiente. Este premio se obtiene al cobrar el capitulo 2.", "yellow"),
+            f"scoreboard players set @s aq.reward {n}", call("choice")])
     journal = ["scoreboard players set @s aq.journal 0", call("sync")]
     journal += [f"execute if score @s aq.state matches {i} run " + msg(text, "gold") for i,text in enumerate(CHAPTERS,1)]
     journal += ["execute if score @s aq.state matches 0 run " + msg("Habla con el Viajero para empezar la historia.", "gold"),
@@ -286,7 +330,12 @@ def write_bridge():
     skills = []
     for npc in ("viajero", "herrero", "cronista", "tienda", "bazar"):
         target = npc if npc in ("viajero", "herrero", "cronista") else "deliver/" + npc
-        skills += [f"AQ_{npc.upper()}:", "  Skills:", "  - " + q(cmd(f"execute as <target.name> at @s run function astral:quest/{target}")), ""]
+        if npc in ("viajero", "cronista"):
+            page = 0 if npc == "viajero" else 1
+            actions = [cmd(f"execute as <target.name> at @s run function astral:quest/gui/page/{page}"), cmd("dm open misiones <target.name>")]
+        else:
+            actions = [cmd(f"execute as <target.name> at @s run function astral:quest/{target}")]
+        skills += [f"AQ_{npc.upper()}:", "  Skills:", *["  - " + q(action) for action in actions], ""]
     skills += ["AQ_CLOCK:", "  Skills:", "  - " + q(cmd("scoreboard players set #epoch aq.clock <utils.epoch>")),
                "  - " + q(cmd("function astral:quest/clock")), "",
                "AQ_PAY:", "  TargetConditions:", "  - score{o=aqmoney;v=>0} true", "  Skills:",
@@ -307,11 +356,11 @@ def write_bridge():
     (folder / "comandos.txt").write_text("\n".join([
         "# Misiones: despues de subir el datapack (servidor apagado) y las configs MythicMobs.",
         "# Cargar/reiniciar el servidor. Para configs solamente: mm reload.",
-        "# El Cronista usa el chunk del lobby x=174 z=212. No duplicar el NPC si ya existe.",
-        "execute in minecraft:lobby run forceload add 174 212",
+        "# El Cronista usa el chunk del lobby x=181 z=225. No duplicar el NPC si ya existe.",
+        "execute in minecraft:lobby run forceload add 181 225",
         "rg flag -w lobby __global__ mob-spawning allow",
-        "mm mobs spawn astral_npc_cronista 1 lobby,174.5,100,212.5",
-        "rg flag -w lobby __global__ mob-spawning deny",
+        "mm mobs spawn astral_npc_cronista 1 lobby,181.636,100,225.735",
+        "rg flag -w lobby __global__ mob-spawning allow",
         "# Esperar 1 segundo y comprobar el reloj:",
         "scoreboard players get #today aq.clock",
         "# Tiene que ser un numero positivo (dias reales desde 1970, en UTC-3).",

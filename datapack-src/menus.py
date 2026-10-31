@@ -11,9 +11,11 @@ Los menus que abren los vendedores se abren desde la consola con 'dm open <menu>
 Salida: ../build/menus/DeluxeMenus/  (gui_menus/*.yml + config-gui_menus.yml con la lista para config.yml)
 """
 import os
+import textwrap
 
 from lobby import GACHAS, PITY, HOLO_COLOR, HOLO_NAME, HOLO_DESC, pity_obj, TIRADAS, money, RARITY_WEIGHT
 from mobs.mascotas import MASCOTAS
+from misiones import CHAPTERS, DAILIES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "menus", "DeluxeMenus")
@@ -168,15 +170,88 @@ def principal_menu():
     items += item("spawn", "COMPASS", 22, "&f&lVolver al lobby", ["&7Te lleva a la plaza"],
                   extra={"click_commands": ["[close]", "[player] spawn"]})
     items += item("misiones", "BOOK", 20, "&b&lMisiones e historia", ["&7Consulta tu capitulo y las diarias", "&7El Cronista entrega los premios"],
-                  extra={"click_commands": ["[close]", "[player] trigger aq.journal set 1"]})
+                  extra={"click_commands": ["[console] execute as %player_name% at @s run function astral:quest/gui/page/0", "[openguimenu] misiones"]})
     items += relleno("LIGHT_BLUE_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16, 20, 22])
     return menu("&8Menu de AstralRPG", "menu", 27, items, update=True)
+
+
+def misiones_menu():
+    """Una mision por pantalla, con acciones que validan el progreso en el datapack."""
+    P = "%player_name%"
+
+    def req(page, **scores):
+        scores = {"page": page, **scores}
+        return "\n      requirements:" + "".join(
+            f"\n        r{i}:\n          type: string equals\n          input: {q(SCORE.format('aq.' + key))}\n          output: {q(value)}"
+            for i, (key, value) in enumerate(scores.items()))
+
+    def action(function):
+        return [f"[console] execute as {P} at @s run function astral:quest/{function}", "[refresh]<delay=2>"]
+
+    def button(key, material, slot, name, lore, page, function=None, **scores):
+        extra = {"priority": 1, "view_requirement": req(page, **scores), "update": "true"}
+        if function:
+            extra["click_commands"] = action(function)
+        return item(key, material, slot, name, lore, extra=extra)
+
+    icons = ["COMPASS", "WHEAT", "NAUTILUS_SHELL", "OAK_SAPLING", "SANDSTONE", "IRON_PICKAXE", "SNOWBALL", "BLAZE_POWDER", "NETHER_STAR"]
+    rewards = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
+    progress = {
+        1: ["&7Herrero: &f" + SCORE.format("aq.herrero") + "/1", "&7Forja tier I: &f" + SCORE.format("aq.forge1") + "/1"],
+        2: ["&7Espantapajaros: &f" + SCORE.format("aq.scare") + "/10", "&7Abejorros: &f" + SCORE.format("aq.bee") + "/10", "&7Elites: &f" + SCORE.format("aq.helite") + "/1"],
+        3: ["&7Cangrejo: &f" + SCORE.format("aq.f1") + "/1"],
+        4: ["&7Caras: &f" + SCORE.format("aq.face") + "/15", "&7Chaman: &f" + SCORE.format("aq.f2") + "/1"],
+        5: ["&7Momia: &f" + SCORE.format("aq.f3") + "/1"],
+        6: ["&7Minas completadas: &f" + SCORE.format("aq.f4") + "/1"],
+        7: ["&7Yeti: &f" + SCORE.format("aq.f5") + "/1"],
+        8: ["&7Forja tier V: &f" + SCORE.format("aq.forge5") + "/1", "&7Golem: &f" + SCORE.format("aq.f6") + "/1"],
+    }
+    L = []
+    for page, label, icon in [(0, "Historia", "BOOK"), (1, "Diaria facil", "PAPER"), (2, "Diaria media", "MAP"), (3, "Diaria dificil", "ENCHANTED_BOOK")]:
+        L += item(f"tab_{page}", icon, page, f"&b&l{label}", ["&eClic para ver una mision"], extra={"click_commands": action(f"gui/page/{page}")})
+    for state in range(10):
+        chapter = max(1, state)
+        lore = ["&7" + line for line in textwrap.wrap(CHAPTERS[chapter - 1], 43)]
+        lore += ["", f"&6Premio: {rewards[chapter - 1]}$"]
+        if chapter == 2: lore += ["&6+ una pieza de armadura tier I a eleccion"]
+        if chapter in (5, 7): lore += ["&6+ material astral"]
+        if chapter == 9: lore += ["&6+ titulo Portador de la Estrella"]
+        lore += [""] + progress.get(chapter, []) + ["", "&eUsa el boton de abajo."]
+        L += button(f"historia_{state}", icons[chapter - 1], 13, f"&b&lCapitulo {chapter}/9", lore, 0, state=state)
+        if state == 0:
+            L += button("empezar", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Empieza tu historia en el Refugio."], 0, "gui/accept", state=0)
+        else:
+            L += button(f"aceptar_{state}", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Los objetivos cuentan desde que aceptas."], 0, "gui/accept", state=state, accepted=0)
+            L += button(f"cobrar_{state}", "EMERALD", 22, "&a&lComprobar y cobrar", ["&7Comprueba los objetivos y entrega", "&7los materiales de esta mision.", "&7Si falta algo, no consume ni paga."], 0, "viajero", state=state, accepted=1)
+    L += button("historia_fin", "NETHER_STAR", 13, "&6&lHistoria completada", ["&7La Estrella vuelve a brillar.", "&7El Santuario Celestial te espera."], 0, state=10)
+    L += button("premio_pendiente", "CHEST", 24, "&6Elegir premio de armadura", ["&7Se desbloquea al cobrar el capitulo 2.", "&7Elegis una sola pieza, una sola vez."], 0, "gui/page/4")
+    for did, tier, name, counter, goal, desc in DAILIES:
+        page = tier + 1
+        lore = ["&7" + line for line in textwrap.wrap(desc, 43)] + ["", f"&6Premio: {[300,750,1500][tier]}$"]
+        extras = {11: "&6+ Alma Corrupta", 12: "&6+ Alma Corrupta", 13: "&6+ 25% de Chispa Astral", 14: "&6+ 2 Esencias de Elite"}
+        if did in extras: lore += [extras[did]]
+        if counter:
+            lore += ["", f"&7Progreso: &f{SCORE.format('aq.' + counter)}/{goal}" + (" cm" if counter == "ride" else "")]
+        else:
+            lore += ["", "&7Para entregar: acercate al NPC indicado", "&7y usa Comprobar y cobrar."]
+        L += button(f"diaria_{did}", "PAPER", 13, f"&b&l{name}", lore, page, **{f"d{tier}": did})
+    for tier in range(3):
+        page = tier + 1
+        L += button(f"diaria_aceptar_{tier}", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Empieza a contar tu progreso."], page, f"gui/daily/accept/{tier}", **{f"active{tier}": 0, f"done{tier}": 0})
+        L += button(f"diaria_cobrar_{tier}", "EMERALD", 22, "&a&lComprobar y cobrar", ["&7Valida solo esta mision."], page, f"gui/daily/claim/{tier}", **{f"active{tier}": 1, f"done{tier}": 0})
+        L += button(f"diaria_fin_{tier}", "GRAY_DYE", 22, "&7&lMision cobrada", ["&7Volve manana para una mision nueva."], page, **{f"done{tier}": 1})
+    for n, (cls, piece, material) in enumerate(((c, p, m) for c in ("Berserker", "Mago", "Arquero") for p, m in (("Casco", "IRON_HELMET"), ("Pechera", "IRON_CHESTPLATE"), ("Grebas", "IRON_LEGGINGS"), ("Botas", "IRON_BOOTS"))), 1):
+        L += button(f"premio_{n}", material, [9,10,11,12,13,14,15,16,18,19,20,21][n-1], f"&6{cls} - {piece}", ["&7Premio del capitulo 2: una sola pieza.", "&eClic para elegir y recibirla."], 4, f"gui/choice/{n}")
+    L += item("volver", "ARROW", 26, "&fVolver al menu", extra={"click_commands": ["[openguimenu] principal"]})
+    L += relleno("BLUE_STAINED_GLASS_PANE", 27, [0,1,2,3,9,10,11,12,13,14,15,16,18,19,20,21,22,24,26])
+    result = menu("&8Misiones de AstralRPG", "misiones", 27, L, update=True)
+    return result.replace("items:\n", f"open_commands:\n- '[console] execute as {P} at @s run function astral:quest/sync'\n- '[refresh]<delay=2>'\nitems:\n", 1)
 
 
 def main():
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
-    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "principal": principal_menu()})
+    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "principal": principal_menu(), "misiones": misiones_menu()})
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]

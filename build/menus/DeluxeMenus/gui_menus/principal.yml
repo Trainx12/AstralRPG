@@ -82,8 +82,8 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
-    - '[close]'
-    - '[player] trigger aq.journal set 1'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
+    - '[openguimenu] misiones'
   'vidrio_0':
     material: LIGHT_BLUE_STAINED_GLASS_PANE
     slot: 0
