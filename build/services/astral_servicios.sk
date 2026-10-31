@@ -5118,17 +5118,17 @@ function asg_refresh(p: player):
         asg_action({_p}, "blocked", "&7MEJORAR", "&7Primero coloca tu equipo.")
         stop
     asg_inspect({_p})
-    if "asgui.valid" is not in scoreboard tags of {_p}:
+    if {_p} does not have the scoreboard tag "asgui.valid":
         asg_bar({_p}, "invalid", "&cSolo equipo de AstralRPG. Los bastones no se mejoran.")
         asg_action({_p}, "blocked", "&cMEJORAR", "&7Este objeto no es mejorable.")
         stop
-    if "asgui.max" is in scoreboard tags of {_p}:
+    if {_p} has the scoreboard tag "asgui.max":
         asg_bar({_p}, "max", "&6Tu equipo ya alcanzo +10.")
         asg_action({_p}, "blocked", "&6NIVEL MAXIMO", "&7No hay mas mejoras.")
         stop
     set {_n} to 0
     loop 10 times:
-        if "asgui.next%loop-number%" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.next%loop-number%":
             set {_n} to loop-number
     if {_n} is 0:
         stop
@@ -5139,7 +5139,7 @@ function asg_refresh(p: player):
     if {_n} is 1:
         set {_mat} to asg_icon("astral:esencia_elite", "&eEsencia de Elite x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.esencia_elite" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.esencia_elite":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5147,7 +5147,7 @@ function asg_refresh(p: player):
     if {_n} is 2:
         set {_mat} to asg_icon("astral:esencia_elite", "&eEsencia de Elite x2")
         set item amount of {_mat} to 2
-        if "asgui.mat.esencia_elite" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.esencia_elite":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5155,14 +5155,14 @@ function asg_refresh(p: player):
     if {_n} is 3:
         set {_mat} to asg_icon("astral:esencia_elite", "&eEsencia de Elite x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.esencia_elite" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.esencia_elite":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:fragmento_astral", "&eFragmento Astral x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.fragmento_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.fragmento_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5170,14 +5170,14 @@ function asg_refresh(p: player):
     if {_n} is 4:
         set {_mat} to asg_icon("astral:esencia_elite", "&eEsencia de Elite x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.esencia_elite" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.esencia_elite":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:alma_corrupta", "&eAlma Corrupta x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.alma_corrupta" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.alma_corrupta":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5185,14 +5185,14 @@ function asg_refresh(p: player):
     if {_n} is 5:
         set {_mat} to asg_icon("astral:alma_corrupta", "&eAlma Corrupta x2")
         set item amount of {_mat} to 2
-        if "asgui.mat.alma_corrupta" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.alma_corrupta":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:esencia_elite", "&eEsencia de Elite x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.esencia_elite" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.esencia_elite":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5200,14 +5200,14 @@ function asg_refresh(p: player):
     if {_n} is 6:
         set {_mat} to asg_icon("astral:chispa_astral", "&eChispa Astral x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.chispa_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.chispa_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:alma_corrupta", "&eAlma Corrupta x2")
         set item amount of {_mat} to 2
-        if "asgui.mat.alma_corrupta" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.alma_corrupta":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5215,14 +5215,14 @@ function asg_refresh(p: player):
     if {_n} is 7:
         set {_mat} to asg_icon("astral:chispa_astral", "&eChispa Astral x2")
         set item amount of {_mat} to 2
-        if "asgui.mat.chispa_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.chispa_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:alma_corrupta", "&eAlma Corrupta x2")
         set item amount of {_mat} to 2
-        if "asgui.mat.alma_corrupta" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.alma_corrupta":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5230,14 +5230,14 @@ function asg_refresh(p: player):
     if {_n} is 8:
         set {_mat} to asg_icon("astral:chispa_astral", "&eChispa Astral x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.chispa_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.chispa_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:alma_corrupta", "&eAlma Corrupta x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.alma_corrupta" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.alma_corrupta":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5245,14 +5245,14 @@ function asg_refresh(p: player):
     if {_n} is 9:
         set {_mat} to asg_icon("astral:chispa_astral", "&eChispa Astral x3")
         set item amount of {_mat} to 3
-        if "asgui.mat.chispa_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.chispa_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:nucleo_astral", "&eNucleo Astral x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.nucleo_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.nucleo_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
@@ -5260,21 +5260,21 @@ function asg_refresh(p: player):
     if {_n} is 10:
         set {_mat} to asg_icon("astral:chispa_astral", "&eChispa Astral x5")
         set item amount of {_mat} to 5
-        if "asgui.mat.chispa_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.chispa_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 23 of {_inv} to {_mat}
         set {_mat} to asg_icon("astral:nucleo_astral", "&eNucleo Astral x1")
         set item amount of {_mat} to 1
-        if "asgui.mat.nucleo_astral" is in scoreboard tags of {_p}:
+        if {_p} has the scoreboard tag "asgui.mat.nucleo_astral":
             set lore of {_mat} to "&aMateriales suficientes en tu inventario."
         else:
             set lore of {_mat} to "&cFaltan materiales en tu inventario."
         set slot 24 of {_inv} to {_mat}
     set {_model} to "blocked"
     set {_label} to "&cFaltan materiales o dinero"
-    if "asgui.ready" is in scoreboard tags of {_p}:
+    if {_p} has the scoreboard tag "asgui.ready":
         if balance of {_p} >= {_cost}:
             set {_model} to "improve"
             set {_label} to "&a&lMEJORAR A +%{_n}%"
@@ -5325,6 +5325,9 @@ on inventory click:
     set {_inv} to {asg.gui::%{_id}%}
     if {_inv} is not set:
         stop
+    if player's current inventory is not {_inv}:
+        asg_return(player)
+        stop
     cancel event
     if {asg.busy::%{_id}%} is true:
         stop
@@ -5335,7 +5338,7 @@ on inventory click:
         if click type is left mouse button or right mouse button:
             uncancel event
             stop
-        if click type is shift left mouse button or shift right mouse button:
+        if click type is left mouse button with shift or right mouse button with shift:
             if {asg.escrow::%{_id}%} is not set:
                 set {_item} to event-slot
                 if {_item} is not air:
@@ -5421,12 +5424,12 @@ on inventory click:
         if {asg.escrow::%{_id}%} is not set:
             stop
         asg_refresh(player)
-        if "asgui.ready" is not in scoreboard tags of player:
+        if player does not have the scoreboard tag "asgui.ready":
             send "&cRevisa el equipo y los materiales indicados." to player
             stop
         set {_n} to 0
         loop 10 times:
-            if "asgui.next%loop-number%" is in scoreboard tags of player:
+            if player has the scoreboard tag "asgui.next%loop-number%":
                 set {_n} to loop-number
         set {_cost} to asg_cost({_n})
         if {_n} is 0:
@@ -5442,20 +5445,21 @@ on inventory click:
         set player's tool to {_original}
         set {asg.escrow::%{_id}%} to {_result}
         set slot 20 of {_inv} to {_result}
-        if "asgui.success" is in scoreboard tags of player:
+        if player has the scoreboard tag "asgui.success":
             remove {_cost} from player's balance
             set {asg.notice::%{_id}%} to "ok%{_n}%"
-        else if "asgui.attempted" is in scoreboard tags of player:
+        else if player has the scoreboard tag "asgui.attempted":
             set {asg.notice::%{_id}%} to "fail%{_n}%"
         delete {asg.busy::%{_id}%}
         asg_refresh(player)
 
 on inventory drag:
     if {asg.gui::%uuid of player%} is set:
-        cancel event
+        if player's current inventory is {asg.gui::%uuid of player%}:
+            cancel event
 
 on inventory close:
-    if event-inventory is {asg.gui::%uuid of player%}:
+    if {asg.gui::%uuid of player%} is set:
         asg_return(player)
 
 on quit:

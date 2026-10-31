@@ -43,3 +43,19 @@ ni el funcionamiento. Prompts utilizados (resumen de las instrucciones visuales)
 
 Las vistas previas son composiciones estáticas: la validación de interacción
 debe hacerse también con Skript cargado y dentro de Minecraft.
+
+## Validación de despliegue
+
+- Skript 2.17.1 compiló y recargó `astral_servicios.sk` sin errores después de
+  usar la condición nativa `has the scoreboard tag` y los nombres correctos de
+  clic con Shift.
+- EconomyShopGUI recargó los 28 archivos de categorías y 28 tiendas sin errores
+  de tamaño. Sus seis filas **incluyen** la barra de navegación: hay 45 casillas
+  de productos y nueve de navegación. Los diseños de `item-layout` conservan
+  seis filas y la barra final no se usa para productos.
+- El manejador de clics actúa solo en la interfaz activa del servicio. Al
+  cerrarla se devuelve el objeto y se limpia la sesión, sin bloquear Bazar.
+- Los destinos del Bazar se abren un tick después de cerrar DeluxeMenus,
+  fuera del evento de clic del inventario anterior.
+- `verify.py` comprueba también las texturas del atlas de servicios, los
+  glifos, su avance horizontal neto cero y la inclusión del backend de mejora.

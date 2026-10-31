@@ -153,7 +153,7 @@ def bazar_menu():
         for index,slot in enumerate(row*9+col for row in rows for col in cols):
             lines += item(f'{key}_{index}','PAPER',slot,name,lore,extra={
                 'item_model':q(f'astral:servicios/bazar_{key}_{index}'),
-                'click_commands':['[close]',f'[player] {command}']})
+                'click_commands':['[sound] UI_BUTTON_CLICK','[close]',f'[player] {command} <delay=1>']})
     lines += item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas y ordenes: otros jugadores.'])
     lines += item('volver','ARROW',53,'&fVolver',extra={'click_commands':['[openguimenu] principal']})

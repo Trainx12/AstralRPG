@@ -1,5 +1,6 @@
 """Backend de interfaces de servicios y Skript generado para Aternos."""
 import json
+import re
 from pathlib import Path
 from items import MEJORAS, MATERIALS
 from services_ui import title
@@ -249,6 +250,9 @@ on inventory click:
     set {_inv} to {asg.gui::%{_id}%}
     if {_inv} is not set:
         stop
+    if player's current inventory is not {_inv}:
+        asg_return(player)
+        stop
     cancel event
     if {asg.busy::%{_id}%} is true:
         stop
@@ -376,10 +380,11 @@ on inventory click:
 
 on inventory drag:
     if {asg.gui::%uuid of player%} is set:
-        cancel event
+        if player's current inventory is {asg.gui::%uuid of player%}:
+            cancel event
 
 on inventory close:
-    if event-inventory is {asg.gui::%uuid of player%}:
+    if {asg.gui::%uuid of player%} is set:
         asg_return(player)
 
 on quit:
@@ -402,4 +407,7 @@ every 10 ticks:
         if {asg.gui::%uuid of loop-player%} is set:
             asg_refresh(loop-player)
 '''.replace('__MATERIALS__','\n'.join(render_mats))
+    core=re.sub(r'"([^"\n]+)" is not in scoreboard tags of (\{_p\}|player)',r'\2 does not have the scoreboard tag "\1"',core)
+    core=re.sub(r'"([^"\n]+)" is in scoreboard tags of (\{_p\}|player)',r'\2 has the scoreboard tag "\1"',core)
+    core=core.replace('shift left mouse button or shift right mouse button','left mouse button with shift or right mouse button with shift')
     return '# Generado por datapack-src/services.py. Requiere Skript 2.17+, Vault y EconomyShopGUI.\n'+ '\n'.join(options+cost+setup)+core

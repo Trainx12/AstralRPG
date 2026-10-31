@@ -111,7 +111,7 @@ def main():
             item_sources = json.loads(vanilla.read('assets/minecraft/atlases/items.json'))['sources']
             directories = [source['source'] + '/' for source in item_sources if source['type'] == 'minecraft:directory']
             for path in names:
-                if not path.startswith('assets/astral/models/cronista/'):
+                if not path.startswith(('assets/astral/models/cronista/', 'assets/astral/models/servicios/')):
                     continue
                 model = json.loads(pack.read(path))
                 for resource in model['textures'].values():
@@ -123,6 +123,19 @@ def main():
                     if max(sprite.size) > 16:
                         assert definition.get('oversized_in_gui') is True, (path, 'el atlas GUI recorta el modelo a 16 px')
             print('Cronista: texturas incluidas en el atlas real del cliente y glifos de hasta 256 px OK')
+            from services_ui import GLYPHS, REWINDS, START, END, title
+            advances={}
+            for provider in default_font['providers']:
+                if provider['type']=='space':advances.update(provider['advances'])
+                elif provider['type']=='bitmap' and '/servicios/' in provider['file']:
+                    namespace,relative=provider['file'].split(':',1)
+                    image=Image.open(io.BytesIO(pack.read(f'assets/{namespace}/textures/{relative}')))
+                    advances[provider['chars'][0]]=image.getbbox()[2]+1
+            for kind in GLYPHS:
+                assert sum(advances[c] for c in title(kind)[2:])==0,(kind,'el titulo desplaza el texto del inventario')
+            for path in ['data/astral/function/mejora/gui/inspect.mcfunction','data/astral/function/mejora/gui/apply.mcfunction']:
+                with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as datapack:assert path in datapack.namelist()
+            print('Servicios: modelos en atlas, titulos de avance cero y backend de mejora incluidos OK')
         print('Estilo: 54 iconos; armaduras puestas y barras vanilla; bloques sin sustituir OK')
         print('Menu: fuentes bitmap, espaciado, traducciones y guia del servidor conservada OK')
 

@@ -15,8 +15,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_0'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_1':
     material: PAPER
     slot: 10
@@ -29,8 +30,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_1'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_2':
     material: PAPER
     slot: 11
@@ -43,8 +45,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_2'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_3':
     material: PAPER
     slot: 12
@@ -57,8 +60,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_3'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_4':
     material: PAPER
     slot: 18
@@ -71,8 +75,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_4'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_5':
     material: PAPER
     slot: 19
@@ -85,8 +90,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_5'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_6':
     material: PAPER
     slot: 20
@@ -99,8 +105,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_6'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'comprar_7':
     material: PAPER
     slot: 21
@@ -113,8 +120,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_comprar_7'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop'
+    - '[player] shop <delay=1>'
   'vender_0':
     material: PAPER
     slot: 14
@@ -128,8 +136,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_0'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_1':
     material: PAPER
     slot: 15
@@ -143,8 +152,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_1'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_2':
     material: PAPER
     slot: 16
@@ -158,8 +168,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_2'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_3':
     material: PAPER
     slot: 17
@@ -173,8 +184,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_3'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_4':
     material: PAPER
     slot: 23
@@ -188,8 +200,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_4'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_5':
     material: PAPER
     slot: 24
@@ -203,8 +216,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_5'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_6':
     material: PAPER
     slot: 25
@@ -218,8 +232,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_6'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'vender_7':
     material: PAPER
     slot: 26
@@ -233,8 +248,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_vender_7'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa'
+    - '[player] astralventa <delay=1>'
   'subastas_0':
     material: PAPER
     slot: 27
@@ -247,8 +263,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_0'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_1':
     material: PAPER
     slot: 28
@@ -261,8 +278,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_1'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_2':
     material: PAPER
     slot: 29
@@ -275,8 +293,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_2'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_3':
     material: PAPER
     slot: 30
@@ -289,8 +308,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_3'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_4':
     material: PAPER
     slot: 36
@@ -303,8 +323,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_4'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_5':
     material: PAPER
     slot: 37
@@ -317,8 +338,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_5'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_6':
     material: PAPER
     slot: 38
@@ -331,8 +353,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_6'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'subastas_7':
     material: PAPER
     slot: 39
@@ -345,8 +368,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_7'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah'
+    - '[player] ah <delay=1>'
   'ordenes_0':
     material: PAPER
     slot: 32
@@ -359,8 +383,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_0'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_1':
     material: PAPER
     slot: 33
@@ -373,8 +398,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_1'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_2':
     material: PAPER
     slot: 34
@@ -387,8 +413,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_2'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_3':
     material: PAPER
     slot: 35
@@ -401,8 +428,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_3'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_4':
     material: PAPER
     slot: 41
@@ -415,8 +443,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_4'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_5':
     material: PAPER
     slot: 42
@@ -429,8 +458,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_5'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_6':
     material: PAPER
     slot: 43
@@ -443,8 +473,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_6'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'ordenes_7':
     material: PAPER
     slot: 44
@@ -457,8 +488,9 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_ordenes_7'
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders'
+    - '[player] orders <delay=1>'
   'saldo':
     material: GOLD_NUGGET
     slot: 4

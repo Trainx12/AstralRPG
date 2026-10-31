@@ -33,9 +33,9 @@ def generate():
                 'buy-screen','sell-screen','buy-stacks-screen']:
         block=data[key]
         clear_fill(block)
-        if key=='main-menu':block['gui-rows']=5
+        if key=='main-menu':block['gui-rows']=6
         if key.endswith('-screen'):
-            block['menu-size']=5
+            block['menu-size']=6
             for button in block['items'].values():
                 action=button.get('action','')
                 if action in {'REMOVE1','REMOVE16','REMOVE32','ADD1','ADD16','ADD32'}:
@@ -65,20 +65,20 @@ def generate():
         section['title']=title('tienda')
         clear_fill(section)
         if 'item-layout' in section:
-            layout=section['item-layout']
-            if len(layout)==6 and set(layout[-1].replace(' ',''))=={'0'}:section['item-layout']=layout[:-1]
+            assert len(section['item-layout'])<=6,path
+            section['item-layout'] += ['0 0 0 0 0 0 0 0 0']*(6-len(section['item-layout']))
         dump(OUT/'sections'/path.relative_to(LOCAL/'shop-sections-before'),section)
     for path in (LOCAL/'shop-catalog').rglob('*.yml'):
         before=yaml.safe_load(path.read_text(encoding='utf-8'))
         shop=yaml.safe_load(path.read_text(encoding='utf-8'))
         for page in shop.get('pages',{}).values():
-            page['gui-rows']=5
+            page['gui-rows']=6
             for item in page.get('items',{}).values():assert int(item.get('slot',1))<=45,(path,item)
         # Solo cambiamos el tamaño: precios, componentes y permisos intactos.
         for page in shop.get('pages',{}).values():page.pop('gui-rows',None)
         for page in before.get('pages',{}).values():page.pop('gui-rows',None)
         assert shop==before,path
-        for page in shop.get('pages',{}).values():page['gui-rows']=5
+        for page in shop.get('pages',{}).values():page['gui-rows']=6
         dump(OUT/'shops'/path.relative_to(LOCAL/'shop-catalog'),shop)
     print('Apariencia EconomyShopGUI preparada en',OUT)
 
