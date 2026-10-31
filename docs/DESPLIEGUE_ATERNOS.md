@@ -24,3 +24,6 @@ Guia y comandos: PROBAR_ATERNOS.md.
 
 Respaldos privados: .local/backups/lobby-antes-ambientacion.zip y config-antes-despliegue.json.
 Captura del servidor online: .local/backups/aternos-despliegue.jpg.
+
+Reubicacion solicitada con capturas: Herrero lobby 198.657 100 181.429 (yaw 92.1);
+Subastas lobby 205.466 100 175.476 (yaw 2.7). Teletransportados los NPC existentes y posiciones verificadas.

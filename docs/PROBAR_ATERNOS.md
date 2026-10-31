@@ -17,8 +17,8 @@ Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-
 4. Portal de Expediciones: arco violeta en `(172.5,100,214.5)`. Su guardian lleva a la terraza nueva.
 5. Terraza: `(180.5,100,288.5)` en el lobby. Tiene accesos distintos para bosque, tumba, minas, nieve,
    forja, santuario y arena. Hablar con el guardian delante del arco. `/spawn` vuelve a la plaza.
-6. Bazar: puesto verde `(166.5,100,187.5)`; Subastas: puesto violeta `(190.5,100,187.5)`;
-   Herrero: taller de piedra y cobre `(180.5,100,202.5)`. Sus funciones anteriores se conservan.
+6. Bazar: puesto verde `(166.5,100,187.5)`; Subastas: reubicado por el dueno en `(205.466,100,175.476)`;
+   Herrero: reubicado por el dueno en `(198.657,100,181.429)`. Sus funciones anteriores se conservan.
 
 Las mazmorras nuevas tienen plataformas y espacios despejados para probar oleadas; las salas de las Minas
 no se reconstruyen. Se teletransporta automaticamente de una sala a la siguiente al limpiar sus enemigos.

@@ -61,8 +61,8 @@ execute in minecraft:lobby run setblock 211 101 191 minecraft:air
 execute in minecraft:lobby run setblock 208 101 197 minecraft:air
 rg flag -w lobby __global__ mob-spawning allow
 mm mobs spawn astral_npc_bazar 1 lobby,166.5,100,187.5,180,0
-mm mobs spawn astral_npc_subastas 1 lobby,190.5,100,187.5,180,0
-mm mobs spawn astral_npc_herrero 1 lobby,180.5,100,202.5,180,0
+mm mobs spawn astral_npc_subastas 1 lobby,205.466,100,175.476,2.7,0
+mm mobs spawn astral_npc_herrero 1 lobby,198.657,100,181.429,92.1,0
 mm mobs spawn astral_npc_expediciones 1 lobby,172.5,100,214.5,180,0
 mm mobs spawn astral_npc_tienda 1 lobby,178.5,100,166.5,0,0
 mm mobs spawn astral_npc_venta 1 lobby,158.5,100,177.5,-90,0
