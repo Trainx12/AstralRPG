@@ -183,10 +183,18 @@ def generate(files, items):
     fn("pet_kill", ["advancement revoke @s only astral:quest/pet", call("event/pet")])
 
     # Click normal conversa; agacharse conserva el viaje al mundo.
+    fn('gui/accepted', [
+        'title @s times 5 45 10',
+        'title @s subtitle {"text":"Completa el objetivo y usa COMPROBAR","color":"white"}',
+        'title @s title {"text":"MISION ACEPTADA","color":"aqua","bold":true}',
+        'playsound minecraft:entity.experience_orb.pickup player @s ~ ~ ~ 0.7 1.2',
+        msg('Mision ACTIVA. Ya podes avanzar. Consulta objetivo, premio y progreso en /misiones.', 'green')])
     fn("gui/accept", [call("sync"),
+        'execute if score @s aq.state matches 10.. run return run ' + msg('Ya completaste la historia.', 'gold'),
+        'execute if score @s aq.accepted matches 1 run return run ' + msg('Esta mision YA esta ACTIVA. Completa el objetivo y usa COMPROBAR.', 'aqua'),
         "execute if score @s aq.state matches 0 run " + call("start"),
-        "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1",
-        msg("Mision aceptada. Consulta el objetivo y el premio en el objeto central del menu.", "green")])
+        'execute unless score @s aq.state matches 1..9 run return 0',
+        'scoreboard players set @s aq.accepted 1', call('gui/accepted')])
     fn("gui/reject", [call("sync"), "scoreboard players set @s aq.accepted 0",
         msg("Mision rechazada o pausada. Conservas tus avances y podes aceptarla mas tarde.", "yellow")])
     for state in range(10):
@@ -286,10 +294,17 @@ def generate(files, items):
     for tier in range(3):
         fn(f"gui/daily/accept/{tier}", [call("sync"),
             "execute unless score #today aq.clock matches 1.. run return run " + msg("El reloj de diarias no esta conectado. Avisa al administrador.", "yellow"),
-            f"execute if score @s aq.done{tier} matches 1 run return 0",
+            f'execute unless score @s aq.d{tier} matches {min(d[0] for d in DAILIES if d[1] == tier)}..{max(d[0] for d in DAILIES if d[1] == tier)} run return 0',
+            f"execute if score @s aq.done{tier} matches 1 run return run " + msg('Ya cobraste esta diaria. Volve manana.', 'gold'),
+            f'execute if score @s aq.active{tier} matches 1 run return run ' + msg('Esta diaria YA esta ACTIVA. Usa COMPROBAR al terminar.', 'aqua'),
             "scoreboard players operation @s aq.hbase = @s aq.horse" if tier == 1 else "# Sin desplazamiento pendiente",
             f"scoreboard players set @s aq.active{tier} 1",
-            msg("Diaria aceptada. Los objetivos ya cuentan; consulta los detalles en el objeto central.", "green")])
+            call('gui/accepted')])
+        for did, dtier, *_ in DAILIES:
+            if dtier == tier:
+                fn(f'gui/daily/accept/{tier}/{did}', [call('sync'),
+                    f'execute unless score @s aq.d{tier} matches {did} run return run ' + msg('La diaria cambio. Lee la nueva tarjeta y volve a aceptarla.', 'yellow'),
+                    call(f'gui/daily/accept/{tier}')])
         fn(f"gui/daily/reject/{tier}", [call("sync"),
             f"execute if score @s aq.done{tier} matches 1 run return 0",
             f"scoreboard players set @s aq.active{tier} 0",

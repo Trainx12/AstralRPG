@@ -176,103 +176,154 @@ def principal_menu():
 
 
 def misiones_menu(current_page=0):
-    """Una mision por pantalla, con acciones que validan el progreso en el datapack."""
+    """Tarjetas grandes: tocar la mision o ACEPTAR inicia el mismo flujo."""
+    from cronista_ui import title as cronista_title
     P = "%player_name%"
     priorities = {}
+    card_slots = list(range(9, 36))
+    primary_slots = [38, 39, 40, 41, 42]
 
-    def req(page, **scores):
-        # Cada seccion es un menu real: navegar no depende de leer aq.page.
+    def req(**scores):
         return "\n      requirements:" + "".join(
             f"\n        r{i}:\n          type: string equals\n          input: {q(SCORE.format('aq.' + key))}\n          output: {q(value)}"
             for i, (key, value) in enumerate(scores.items()))
 
     def action(function):
-        if function.startswith("gui/details/"):
-            return ["[close]", f"[console] execute as {P} at @s run function astral:quest/{function}",
-                    f"[message] &7Volve al detalle con /{mission_menu_id(current_page)}."]
-        if function.startswith("gui/page/"):
-            page = int(function.rsplit("/", 1)[1])
-            return [f"[console] execute as {P} at @s run function astral:quest/{function}",
-                    f"[openguimenu] {mission_menu_id(page)}"]
+        page = int(function.rsplit('/', 1)[1]) if function.startswith('gui/page/') else current_page
+        # Abrir desde consola reconstruye las condiciones con los scores ya
+        # actualizados. No cerrar para mandar al jugador a leer el chat.
         return [f"[console] execute as {P} at @s run function astral:quest/{function}",
-                f"[openguimenu] {mission_menu_id(current_page)}<delay=2>"]
+                f"[console] dm open {mission_menu_id(page)} {P}<delay=2>"]
 
-    def button(key, material, slot, name, lore, page, function=None, **scores):
+    def button(key, material, slot, name, lore, page, function=None, model=None, shift=False, **scores):
         if page != current_page:
             return []
-        # DeluxeMenus indexa las variantes de un slot por prioridad. Repetirla
-        # descarta variantes anteriores aunque tengan requisitos distintos.
         priorities[slot] = priorities.get(slot, 0) + 1
-        extra = {"priority": priorities[slot], "update": "true"}
+        extra = {'priority': priorities[slot], 'update': 'true'}
         if scores:
-            extra["view_requirement"] = req(page, **scores)
+            extra['view_requirement'] = req(**scores)
+        if model:
+            extra['item_model'] = q(model if ':' in model else 'astral:cronista/' + model)
         if function:
-            extra["click_commands"] = action(function)
+            if shift:
+                extra['left_click_commands'] = ['[message] &7Para pausar, usa &eShift + clic&7. Tus avances se conservan.']
+                extra['shift_left_click_commands'] = action(function)
+            else:
+                extra['click_commands'] = action(function)
         return item(key, material, slot, name, lore, extra=extra)
 
-    icons = ["COMPASS", "WHEAT", "NAUTILUS_SHELL", "OAK_SAPLING", "SANDSTONE", "IRON_PICKAXE", "SNOWBALL", "BLAZE_POWDER", "NETHER_STAR"]
+    def card_button(key, name, lore, page, model, function=None, **scores):
+        lines = []
+        for index, slot in enumerate(card_slots):
+            lines += button(key if slot == 22 else f'{key}_hit_{slot}', 'PAPER', slot, name, lore, page,
+                            function, model=f'{model}_{index}', **scores)
+        return lines
+
+    def primary(key, caption, lore, page, function=None, model='accept', **scores):
+        lines = []
+        for index, slot in enumerate(primary_slots):
+            lines += button(key if slot == 40 else f'{key}_hit_{slot}', 'PAPER', slot, caption, lore, page,
+                            function, model=f'{model}_{index}', **scores)
+        return lines
+
+    L = []
+    for page, label, icon, model in [(0, 'Historia', 'BOOK', 'history'), (1, 'Diaria facil - 300$', 'CLOCK', 'easy'),
+                                     (2, 'Diaria media - 750$', 'CLOCK', 'medium'), (3, 'Diaria dificil - 1500$', 'CLOCK', 'hard')]:
+        L += item(f'tab_{page}', icon, page, f'&b&l{label}', ['&7Abre la tarjeta de esa mision.',
+                  '&7Cambiar de pestana no acepta nada.'], extra={'item_model': q('astral:cronista/' + model),
+                  'click_commands': action(f'gui/page/{page}')})
+    L += item('ayuda', 'CLOCK', 8, '&b&lComo aceptar', ['&f1. Lee el objetivo y el premio en la tarjeta.',
+              '&f2. Clic en la tarjeta o en &aACEPTAR MISION&f.', '&f3. Vas a ver &bACTIVA &fy una confirmacion.',
+              '&f4. Completa el objetivo y usa &eCOMPROBAR&f.', '&7Las diarias cambian a las 00:00 (Argentina).'],
+              extra={'item_model': q('astral:cronista/active')})
+
     rewards = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
     progress = {
-        1: ["&7Herrero: &f" + SCORE.format("aq.herrero") + "/1", "&7Forja tier I: &f" + SCORE.format("aq.forge1") + "/1"],
-        2: ["&7Espantapajaros: &f" + SCORE.format("aq.scare") + "/10", "&7Abejorros: &f" + SCORE.format("aq.bee") + "/10", "&7Elites: &f" + SCORE.format("aq.helite") + "/1"],
-        3: ["&7Cangrejo: &f" + SCORE.format("aq.f1") + "/1"],
-        4: ["&7Caras: &f" + SCORE.format("aq.face") + "/15", "&7Chaman: &f" + SCORE.format("aq.f2") + "/1"],
-        5: ["&7Momia: &f" + SCORE.format("aq.f3") + "/1"],
-        6: ["&7Minas completadas: &f" + SCORE.format("aq.f4") + "/1"],
-        7: ["&7Yeti: &f" + SCORE.format("aq.f5") + "/1"],
-        8: ["&7Forja tier V: &f" + SCORE.format("aq.forge5") + "/1", "&7Golem: &f" + SCORE.format("aq.f6") + "/1"],
+        1: ['&7Herrero: &f' + SCORE.format('aq.herrero') + '/1', '&7Forja tier I: &f' + SCORE.format('aq.forge1') + '/1'],
+        2: ['&7Espantapajaros: &f' + SCORE.format('aq.scare') + '/10', '&7Abejorros: &f' + SCORE.format('aq.bee') + '/10', '&7Elites: &f' + SCORE.format('aq.helite') + '/1'],
+        3: ['&7Cangrejo: &f' + SCORE.format('aq.f1') + '/1'],
+        4: ['&7Caras: &f' + SCORE.format('aq.face') + '/15', '&7Chaman: &f' + SCORE.format('aq.f2') + '/1'],
+        5: ['&7Momia: &f' + SCORE.format('aq.f3') + '/1'], 6: ['&7Minas: &f' + SCORE.format('aq.f4') + '/1'],
+        7: ['&7Yeti: &f' + SCORE.format('aq.f5') + '/1'],
+        8: ['&7Forja tier V: &f' + SCORE.format('aq.forge5') + '/1', '&7Golem: &f' + SCORE.format('aq.f6') + '/1'],
     }
-    L = []
-    for page, label, icon in [(0, "Historia", "BOOK"), (1, "Diaria facil", "PAPER"), (2, "Diaria media", "MAP"), (3, "Diaria dificil", "ENCHANTED_BOOK")]:
-        L += item(f"tab_{page}", icon, page, f"&b&l{label}", ["&eClic para ver una mision"], extra={"click_commands": action(f"gui/page/{page}")})
     for state in range(10):
         chapter = max(1, state)
-        lore = ["&7" + line for line in textwrap.wrap(CHAPTERS[chapter - 1], 43)]
-        lore += ["", f"&6Premio: {rewards[chapter - 1]}$"]
-        if chapter == 2: lore += ["&6+ una pieza de armadura tier I a eleccion"]
-        if chapter in (5, 7): lore += ["&6+ material astral"]
-        if chapter == 9: lore += ["&6+ titulo Portador de la Estrella"]
-        lore += [""] + progress.get(chapter, []) + ["", "&eClic: ver el objetivo en el chat.", "&eVerde: aceptar o comprobar y cobrar.", "&cRojo: rechazar o abandonar."]
-        L += button(f"historia_{state}", icons[chapter - 1], 13, f"&b&lCapitulo {chapter}/9", lore, 0, f"gui/details/story/{state}", state=state)
-        if state == 0:
-            L += button("empezar", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Empieza tu historia en el Refugio."], 0, "gui/accept", state=0)
-        else:
-            L += button(f"aceptar_{state}", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Los objetivos cuentan desde que aceptas."], 0, "gui/accept", state=state, accepted=0)
-            L += button(f"cobrar_{state}", "EMERALD", 22, "&a&lComprobar y cobrar", ["&7Comprueba los objetivos y entrega", "&7los materiales de esta mision.", "&7Si falta algo, no consume ni paga."], 0, "viajero", state=state, accepted=1)
-            L += button(f"pausar_{state}", "RED_DYE", 20, "&c&lAbandonar mision", ["&7Pausa los objetivos sin borrar avances.", "&7Podes aceptarla otra vez mas tarde.", "&eClic para abandonar."], 0, "gui/reject", state=state, accepted=1)
-        L += button(f"rechazar_{state}", "RED_DYE", 20, "&c&lRechazar por ahora", ["&7No inicia la mision ni entrega premios.", "&7Podes volver a aceptarla mas tarde."], 0, "gui/reject", state=state, accepted=0)
-    L += button("historia_fin", "NETHER_STAR", 13, "&6&lHistoria completada", ["&7La Estrella vuelve a brillar.", "&7El Santuario Celestial te espera."], 0, state=10)
-    L += button("premio_pendiente", "CHEST", 24, "&6Elegir premio de armadura", ["&7Se desbloquea al cobrar el capitulo 2.", "&7Elegis una sola pieza, una sola vez."], 0, "gui/page/4")
+        base = ['&f' + line for line in textwrap.wrap(CHAPTERS[chapter - 1], 43)]
+        base += ['', f'&6Recompensa: {rewards[chapter - 1]}$']
+        if chapter == 2: base += ['&6+ una pieza de armadura tier I a eleccion']
+        if chapter in (5, 7): base += ['&6+ material astral']
+        if chapter == 9: base += ['&6+ titulo Portador de la Estrella']
+        base += [''] + progress.get(chapter, [])
+        for active in ((0,) if state == 0 else (0, 1)):
+            scores = {'state': state, **({'accepted': active} if state else {})}
+            status = 'active' if active else 'available'
+            lore = base + ['', '&b&lACTIVA - ya la aceptaste.' if active else '&e&lSIN ACEPTAR',
+                           '&7Completa y usa COMPROBAR.' if active else '&aClic en esta tarjeta para aceptarla.']
+            L += card_button(f'historia_{state}_{status}', f'&b&lCapitulo {chapter}/9', lore, 0,
+                             f'story_{state}_{status}', None if active else 'gui/accept', **scores)
+            if active:
+                L += primary(f'cobrar_{state}', '&b&lCOMPROBAR OBJETIVOS', ['&bEsta mision YA esta aceptada.',
+                             '&7Comprueba avances y cobra si terminaste.', '&7Si falta algo no consume ni paga.'], 0, 'viajero', model='claim', **scores)
+                L += button(f'pausar_{state}', 'CLOCK', 45, '&cPausar mision', ['&7Conserva tus avances.',
+                             '&eShift + clic para pausar.'], 0, 'gui/reject', model='pause', shift=True, **scores)
+            else:
+                L += primary(f'aceptar_{state}', '&a&lACEPTAR MISION', ['&fUn clic la deja ACTIVA.',
+                             '&7No tenes que escribir comandos.'], 0, 'gui/accept', **scores)
+                L += button(f'rechazar_{state}', 'CLOCK', 45, '&7Dejar para mas tarde', ['&7No acepta ni entrega premios.'],
+                             0, 'gui/reject', model='pause', **scores)
+    L += card_button('historia_fin', '&6&lHistoria completada', ['&7El Santuario Celestial te espera.'],
+                     0, 'story_complete', state=10)
+    L += button('premio_pendiente', 'CHEST', 7, '&6Premio de armadura', ['&7Se desbloquea al cobrar el capitulo 2.'],
+                 0, 'gui/page/4', model='reward')
+
+    extras = {11: '&6+ Alma Corrupta', 12: '&6+ Alma Corrupta', 13: '&6+ 25% de Chispa Astral', 14: '&6+ 2 Esencias de Elite'}
     for did, tier, name, counter, goal, desc in DAILIES:
         page = tier + 1
-        lore = ["&7" + line for line in textwrap.wrap(desc, 43)] + ["", f"&6Premio: {[300,750,1500][tier]}$"]
-        extras = {11: "&6+ Alma Corrupta", 12: "&6+ Alma Corrupta", 13: "&6+ 25% de Chispa Astral", 14: "&6+ 2 Esencias de Elite"}
-        if did in extras: lore += [extras[did]]
+        base = ['&f' + line for line in textwrap.wrap(desc, 43)] + ['', f'&6Recompensa: {[300, 750, 1500][tier]}$']
+        if did in extras: base += [extras[did]]
         if counter:
-            lore += ["", f"&7Progreso: &f{SCORE.format('aq.' + counter)}/{goal}" + (" cm" if counter == "ride" else "")]
+            base += ['', f'&7Progreso: &f{SCORE.format("aq." + counter)}/{goal}' + (' cm (1000 bloques)' if counter == 'ride' else '')]
         else:
-            lore += ["", "&7Para entregar: acercate al NPC indicado", "&7y usa Comprobar y cobrar."]
-        lore += ["", "&eClic: ver el objetivo en el chat.", "&eVerde: aceptar o comprobar y cobrar.", "&cRojo: rechazar o abandonar."]
-        L += button(f"diaria_{did}", "PAPER", 13, f"&b&l{name}", lore, page, f"gui/details/daily/{tier}", **{f"d{tier}": did})
-    for tier in range(3):
-        page = tier + 1
-        L += button(f"diaria_aceptar_{tier}", "LIME_DYE", 22, "&a&lAceptar mision", ["&7Empieza a contar tu progreso."], page, f"gui/daily/accept/{tier}", **{f"active{tier}": 0, f"done{tier}": 0})
-        L += button(f"diaria_rechazar_{tier}", "RED_DYE", 20, "&c&lRechazar por ahora", ["&7No inicia la mision ni entrega premios.", "&7Podes aceptarla mas tarde hoy."], page, f"gui/daily/reject/{tier}", **{f"active{tier}": 0, f"done{tier}": 0})
-        L += button(f"diaria_abandonar_{tier}", "RED_DYE", 20, "&c&lAbandonar mision", ["&7Pausa los objetivos sin borrar avances.", "&7Podes retomarla antes de medianoche.", "&eClic para abandonar."], page, f"gui/daily/reject/{tier}", **{f"active{tier}": 1, f"done{tier}": 0})
-        L += button(f"diaria_cobrar_{tier}", "EMERALD", 22, "&a&lComprobar y cobrar", ["&7Valida solo esta mision."], page, f"gui/daily/claim/{tier}", **{f"active{tier}": 1, f"done{tier}": 0})
-        L += button(f"diaria_fin_{tier}", "GRAY_DYE", 22, "&7&lMision cobrada", ["&7Volve manana para una mision nueva."], page, **{f"done{tier}": 1})
-    for n, (cls, piece, material) in enumerate(((c, p, m) for c in ("Berserker", "Mago", "Arquero") for p, m in (("Casco", "IRON_HELMET"), ("Pechera", "IRON_CHESTPLATE"), ("Grebas", "IRON_LEGGINGS"), ("Botas", "IRON_BOOTS"))), 1):
-        L += button(f"premio_{n}", material, [9,10,11,12,13,14,15,16,18,19,20,21][n-1], f"&6{cls} - {piece}", ["&7Premio del capitulo 2: una sola pieza.", "&eClic para elegir y recibirla."], 4, f"gui/choice/{n}")
+            base += ['', '&7Entrega junto al NPC indicado en el objetivo.', '&7Acepta primero; despues usa COMPROBAR.']
+        for active, done, status in [(0, 0, 'available'), (1, 0, 'active'), (0, 1, 'done'), (1, 1, 'done')]:
+            scores = {f'd{tier}': did, f'active{tier}': active, f'done{tier}': done}
+            suffix = f'{did}_{active}_{done}'
+            lore = base + ['', '&7Ya cobraste esta diaria.' if done else '&b&lACTIVA - ya la aceptaste.' if active else '&e&lSIN ACEPTAR',
+                           '&7Volve manana.' if done else '&7Completa y usa COMPROBAR.' if active else '&aClic en esta tarjeta para aceptarla.']
+            accept = f'gui/daily/accept/{tier}/{did}'
+            L += card_button(f'diaria_{suffix}', '&b&l' + name, lore, page, f'daily_{did}_{status}',
+                             accept if not active and not done else None, **scores)
+            if done:
+                L += primary(f'diaria_fin_{suffix}', '&7&lYA COBRADA', ['&7No se puede cobrar otra vez hoy.'], page, model='done', **scores)
+            elif active:
+                L += primary(f'diaria_cobrar_{suffix}', '&b&lCOMPROBAR OBJETIVOS', ['&bEsta diaria YA esta aceptada.',
+                             '&7Comprueba avances y cobra si terminaste.'], page, f'gui/daily/claim/{tier}', model='claim', **scores)
+                L += button(f'diaria_pausar_{suffix}', 'CLOCK', 45, '&cPausar diaria', ['&7Conserva avances hasta medianoche.',
+                             '&eShift + clic para pausar.'], page, f'gui/daily/reject/{tier}', model='pause', shift=True, **scores)
+            else:
+                L += primary(f'diaria_aceptar_{suffix}', '&a&lACEPTAR MISION', ['&fUn clic la deja ACTIVA.',
+                             '&7Desde ese momento cuenta el progreso.'], page, accept, **scores)
+                L += button(f'diaria_rechazar_{suffix}', 'CLOCK', 45, '&7Dejar para mas tarde', ['&7No acepta ni entrega premios.'],
+                             page, f'gui/daily/reject/{tier}', model='pause', **scores)
+
+    for n, (cls, piece, material) in enumerate(((c, p, m) for c in ('Berserker', 'Mago', 'Arquero')
+            for p, m in (('Casco', 'IRON_HELMET'), ('Pechera', 'IRON_CHESTPLATE'), ('Grebas', 'IRON_LEGGINGS'), ('Botas', 'IRON_BOOTS'))), 1):
+        slot = [10, 11, 12, 13, 19, 20, 21, 22, 28, 29, 30, 31][n - 1]
+        L += button(f'premio_{n}', material, slot, f'&6{cls} - {piece}', ['&7Una sola pieza del capitulo 2.',
+                     '&eClic para elegir y recibirla.'], 4, f'gui/choice/{n}')
     if current_page != 4:
-        L += item("sin_datos", "BARRIER", 13, "&e&lMisiones sin cargar", ["&7Todavia no se pudieron leer tus misiones.", "&7Volve a abrir el menu en unos segundos.", "&7Si sigue igual, avisa al administrador.", "&7Falta revisar el reloj o ScoreboardObjectives."], extra={"priority": 99})
-        L += item("sin_accion", "CLOCK", 22, "&eEsperando los datos de la mision", ["&7Usa Actualizar; si sigue igual,", "&7avisa al administrador."], extra={"priority": 99})
-    L += item("ayuda", "OAK_SIGN", 8, "&b&lComo funcionan las misiones", ["&71. Elegi historia o una diaria arriba.", "&72. Pasa el cursor por el objeto central:", "&7   muestra objetivo, premio y progreso.", "&73. Acepta con el boton verde.", "&74. Completa y usa Comprobar y cobrar.", "&7Rojo: rechazar o pausar sin cobrar.", "&7Las diarias cambian a las 00:00 (Argentina)."])
-    L += item("actualizar", "SUNFLOWER", 25, "&eActualizar misiones", extra={"click_commands": action(f"gui/page/{current_page}")})
-    L += item("volver", "ARROW", 26, "&fVolver al menu", extra={"click_commands": ["[openguimenu] principal"]})
-    L += relleno("BLUE_STAINED_GLASS_PANE", 27, [0,1,2,3,8,9,10,11,12,13,14,15,16,18,19,20,21,22,24,25,26])
-    titles = ["Historia", "Diaria facil - 300$", "Diaria media - 750$", "Diaria dificil - 1500$", "Premio de historia"]
-    result = menu("&8" + titles[current_page], mission_menu_id(current_page), 27, L, update=True)
-    return result.replace("items:\n", f"open_commands:\n- '[console] execute as {P} at @s run function astral:quest/sync'\n- '[refresh]<delay=2>'\nitems:\n", 1)
+        L += item('sin_datos', 'BARRIER', 22, '&eMisiones sin cargar', ['&7Actualiza o avisa al administrador.'], extra={'priority': 9999})
+        for slot in primary_slots:
+            L += item('sin_accion' if slot == 40 else f'sin_accion_hit_{slot}', 'CLOCK', slot, '&7Esperando datos',
+                      ['&7No se puede aceptar sin una mision asignada.'], extra={'priority': 9999,
+                      'item_model': q(f'astral:cronista/waiting_{primary_slots.index(slot)}')})
+    L += item('actualizar', 'CLOCK', 52, '&bActualizar', ['&7Vuelve a leer tus objetivos y estado.'],
+              extra={'item_model': q('astral:cronista/refresh'), 'click_commands': action(f'gui/page/{current_page}')})
+    L += item('volver', 'ARROW', 53, '&fVolver al menu', extra={'item_model': q('astral:cronista/back'),
+              'click_commands': ['[openguimenu] principal']})
+    result = menu(cronista_title(current_page), mission_menu_id(current_page), 54, L, update=True)
+    return result.replace('items:\n', f"open_commands:\n- '[console] execute as {P} at @s run function astral:quest/sync'\n- '[refresh]<delay=2>'\nitems:\n", 1)
 
 
 def mission_menu_id(page):

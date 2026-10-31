@@ -209,6 +209,12 @@ for name, sprite in item_sprites().items():
 # Los iconos de inventario de la referencia se conservan por separado.
 from escape_menu import assets as escape_assets
 files.update(escape_assets())
+from cronista_ui import assets as cronista_assets
+cronista_files, cronista_providers = cronista_assets()
+files.update(cronista_files)
+default_font = json.loads(files['assets/minecraft/font/default.json'])
+default_font['providers'] = cronista_providers + default_font['providers']
+put_json('assets/minecraft/font/default.json', default_font)
 
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
