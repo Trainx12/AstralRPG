@@ -12,7 +12,7 @@ Como funciona:
     Si el dueno guarda, cambia de mascota o se desconecta, la mascota desaparece.
   - Nivel: suben con los mobs que mata el dueno mientras la mascota esta afuera (1 nivel cada 25, hasta 30).
     Nivel 10 y 20: efecto extra. Nivel 30: se ve mas grande y con particulas.
-  - En el lobby no aparecen (ahi no hay mobs).
+  - Se pueden invocar en todos los mundos. Los bonus solo se activan en mazmorras.
 
 Salida: ../../build/mythicmobs/{mobs,skills}/mascotas.yml y ../../build/mascotas/comandos.txt
 """
@@ -22,6 +22,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "..", "build")
 KILLS_POR_NIVEL = 25
 NIVEL_MAX = 30
+MUNDOS_BONUS = ("mina", "bosque", "tumba", "cumbre", "forja", "santuario")
+
+
+def condicion_mazmorra():
+    return "  - world{w=" + ",".join(MUNDOS_BONUS) + "} true"
 
 # id: numero del boton, nombre, color, como se consigue, efectos por nivel (desde 1, desde 10, desde 20)
 #   efecto = (efecto de pocion, nivel 0 = I)
@@ -82,7 +87,6 @@ def mob_yml():
               "  AITargetSelectors:", "  - clear", "  Skills:"] + [sk(x) for x in skills] + [""]
     x, y, z = CONTROL
     tim = [f"skill{{s=MASC_MENU}} @PlayersOnServer ~onTimer:5", "skill{s=MASC_GUARDAR} @PlayersOnServer ~onTimer:5",
-           "skill{s=MASC_LOBBY} @PlayersOnServer ~onTimer:5", "skill{s=MASC_ARENA} @PlayersOnServer ~onTimer:5",
            "skill{s=MASC_NIVELES} @self ~onTimer:20"]
     for pid in MASCOTAS:
         tim += [f"skill{{s=MASC_INVOCAR_{pid}}} @PlayersOnServer ~onTimer:5", f"skill{{s=MASC_NOTIENE_{pid}}} @PlayersOnServer ~onTimer:5"]
@@ -104,7 +108,9 @@ def skill_yml():
               sk("particles{p=poof;amount=12;hS=0.4;vS=0.4} @self"), sk("remove @self"), ""]
         # efectos por nivel (duran 3 s y se renuevan cada 2 s: si la mascota se va, se terminan solos)
         for t, (efs, desde) in enumerate(zip(d["efectos"], (1, 10, 20))):
-            cond = ["  TargetConditions:", f"  - score{{o={lv};v={desde}to{NIVEL_MAX}}} true"] if desde > 1 else []
+            cond = ["  TargetConditions:", condicion_mazmorra()]
+            if desde > 1:
+                cond.append(f"  - score{{o={lv};v={desde}to{NIVEL_MAX}}} true")
             lines = [sk(f"potion{{type={e};duration=70;level={a};hasParticles=false}}") for e, a in efs]
             if not lines:
                 lines = [sk("delay 1")]
@@ -114,13 +120,13 @@ def skill_yml():
               sk(f"model{{m=astral_pet_{pid};s=1.35}} @self"),
               sk("particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self"), ""]
         if d.get("brillo"):
-            L += [f"PET_{pid}_MARCA:", "  Skills:", sk(f"skill{{s=PET_{pid}_MARCA_UNO}} @LivingInRadius{{r=14}}"), "",
+            L += [f"PET_{pid}_MARCA:", "  TargetConditions:", condicion_mazmorra(), "  Skills:", sk(f"skill{{s=PET_{pid}_MARCA_UNO}} @LivingInRadius{{r=14}}"), "",
                   f"PET_{pid}_MARCA_UNO:", "  TargetConditions:", "  - isplayer false", "  Skills:",
                   sk("potion{type=GLOWING;duration=60;level=0;hasParticles=false}"), ""]
         if d.get("rescate"):
             for t, cd in enumerate(d["rescate"]):
                 desde, hasta = (1, 9) if t == 0 else ((10, 19) if t == 1 else (20, NIVEL_MAX))
-                L += [f"PET_{pid}_RESCATE{t + 1}:", "  TargetConditions:", "  - healthpercent{p=<0.3} true",
+                L += [f"PET_{pid}_RESCATE{t + 1}:", "  TargetConditions:", condicion_mazmorra(), "  - healthpercent{p=<0.3} true",
                       f"  - score{{o={lv};v={desde}to{hasta}}} true", "  Skills:",
                       sk("addtag{tag=pet.rescate} @self"),
                       sk("potion{type=REGENERATION;duration=100;level=2}"), sk("potion{type=ABSORPTION;duration=400;level=1}"),
@@ -130,7 +136,7 @@ def skill_yml():
                       sk(f"delay {cd * 20}"), sk("removetag{tag=pet.rescate} @self"), ""]
         # controlador: invocar / no la tenes
         L += [f"MASC_INVOCAR_{pid}:", "  TargetConditions:", f"  - score{{o=mascota;v={n}}} true",
-              f"  - haspermission{{p=astral.mascota.{pid}}} true", "  - world{w=lobby} false", "  - world{w=arena} false", "  Skills:",
+              f"  - haspermission{{p=astral.mascota.{pid}}} true", "  Skills:",
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
               sk(f'command{{c="scoreboard players set {p} petsel {n}"}}'),
               sk("delay 25"),                                  # que la anterior alcance a irse
@@ -153,7 +159,7 @@ def skill_yml():
     L += ["MASC_MENU:", "  TargetConditions:", "  - score{o=mascota;v=99} true", "  Skills:",
           sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
           sk(f"command{{c=\"tellraw {p} ['',{{text:'✦ Mascotas ✦ ',color:'#FFB347',bold:true}},"
-             f"{{text:'(una a la vez - suben de nivel con los mobs que matas)',color:'gray'}}]\"}}"),
+             f"{{text:'(una a la vez - bonus solo en mazmorras)',color:'gray'}}]\"}}"),
           sk("skill{s=MASC_MENU_NINGUNA}")] + [sk(f"skill{{s=MASC_MENU_{pid}}}") for pid in MASCOTAS] + [
           sk(f"command{{c=\"tellraw {p} {{text:'[Guardar mascota]',color:'gray',click_event:{{action:'run_command',command:'/trigger mascota set 98'}}}}\"}}"),
           ""]
@@ -169,13 +175,10 @@ def skill_yml():
     L += ["MASC_GUARDAR:", "  TargetConditions:", "  - score{o=mascota;v=98} true", "  Skills:",
           sk(f'command{{c="scoreboard players set {p} mascota 0"}}'), sk(f'command{{c="scoreboard players set {p} petsel 0"}}'),
           sk('message{m="&7Guardaste tu mascota."}'), "",
-          "MASC_LOBBY:", "  TargetConditions:", "  - score{o=mascota;v=1to6} true", "  - world{w=lobby} true", "  Skills:",
-          sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
-          sk('message{m="&cEn el lobby no pueden salir mascotas. &7Invocala en el mundo."}'), ""]
+          # Compatibilidad con controladores cargados antes de /mm reload.
+          "MASC_LOBBY:", "  Skills:", sk("delay 1"), ""]
     # niveles: mobs que mato el dueno con la mascota afuera -> experiencia -> nivel
-    L += ["MASC_ARENA:", "  TargetConditions:", "  - world{w=arena} true", "  Skills:",
-          sk(f'command{{c="execute as {p} if score @s petsel matches 1.. run scoreboard players set @s petsel 0"}}'),
-          sk(f'command{{c="execute as {p} if score @s mascota matches 1..6 run scoreboard players set @s mascota 0"}}'), ""]
+    L += ["MASC_ARENA:", "  Skills:", sk("delay 1"), ""]
     niv = []
     for pid, d in MASCOTAS.items():
         n = d["n"]
@@ -205,7 +208,9 @@ def commands():
           f"execute in minecraft:lobby run forceload add {int(x)} {int(z)}",
           "rg flag -w lobby __global__ mob-spawning allow",
           f"mm mobs spawn astral_mascotas_control 1 lobby,{x},{y},{z}",
-          "rg flag -w lobby __global__ mob-spawning deny",
+          "# Permitir mascotas invocadas; desactivar apariciones naturales.",
+          "mv gamerule set minecraft:spawn_mobs false lobby",
+          "rg flag -w lobby __global__ mob-spawning allow",
           "# /mascotas: agregar en commands.yml (raiz de Files), dentro de 'aliases:'",
           "#   mascotas:",
           "#   - minecraft:trigger mascota set 99",

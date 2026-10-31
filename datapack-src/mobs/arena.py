@@ -28,7 +28,7 @@ def generate():
              f'mv gamerule set minecraft:mob_drops false {world}',
              f'mv gamerule set minecraft:entity_drops false {world}',
              f'rg flag -w {world} __global__ build deny', f'rg flag -w {world} __global__ chest-access deny',
-             f'rg flag -w {world} __global__ pvp allow', f'rg flag -w {world} __global__ mob-spawning deny',
+             f'rg flag -w {world} __global__ pvp allow', f'rg flag -w {world} __global__ mob-spawning allow',
              '# Apagar PvP en el resto. Ejecutar solo sobre mundos que existan:']
     for name in ("world","world_nether","world_the_end","lobby","mina","bosque","tumba","cumbre","forja","santuario"):
         lines += [f'mv modify {name} set pvp false', f'rg flag -w {name} __global__ pvp deny']

@@ -12,7 +12,7 @@ Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-
 ## Recorrido
 
 1. Entrar aceptando el resource pack. Si ya estabas dentro, salir y volver a entrar para descargarlo.
-2. `/menu` → Misiones e historia. Hablar con el Viajero: clic para historia; shift+clic para ir al mundo.
+2. `/menu` → Misiones e historia. Viajero en `(178,98,190)`, en la union de los cuatro bloques marcados: clic para historia; shift+clic para ir al mundo.
 3. Cronista: cerca del Viajero, en `(174.5,100,212.5)`. Muestra/cobra diarias. Reinicio a medianoche argentina.
 4. Portal de Expediciones: arco violeta en `(172.5,100,214.5)`. Su guardian lleva a la terraza nueva.
 5. Terraza: `(180.5,100,288.5)` en el lobby. Tiene accesos distintos para bosque, tumba, minas, nieve,
@@ -23,7 +23,9 @@ Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-
 Las mazmorras nuevas tienen plataformas y espacios despejados para probar oleadas; las salas de las Minas
 no se reconstruyen. Se teletransporta automaticamente de una sala a la siguiente al limpiar sus enemigos.
 La Forja incluye solamente el volcan sur. El Santuario encadena cinco Ancestrales y requiere historia completa.
-La arena permite PvP sin perder inventario; no suma progreso de misiones y guarda las mascotas.
+La arena permite PvP sin perder inventario; no suma progreso de misiones. Las mascotas pueden acompanarte,
+pero sus bonus se activan solo en mina, bosque, tumba, cumbre, forja y santuario.
+Los efectos ya aplicados terminan por su duracion normal al salir (hasta 3,5 segundos; absorcion del Fenix hasta 20 segundos).
 
 ## Pruebas utiles
 
@@ -34,6 +36,8 @@ La arena permite PvP sin perder inventario; no suma progreso de misiones y guard
 - Cofre: completar otra vez antes de 30 minutos; no debe volver a pagar. La historia si debe contar la victoria.
 - Bazar/Subastas: comprobar que abren los mismos menus; Herrero: probar consulta y shift+clic con un arma.
 - Arena: probar una muerte con objetos y experiencia; confirmar que los conservas al reaparecer.
+- Mascotas: `/mascotas`, invocar y viajar del lobby al mundo y a una mazmorra; comprobar seguimiento y que
+  los efectos solo se renuevan dentro de las mazmorras. En arena no deben activarse ni marcar enemigos.
 
 Para probar rapidamente como OP:
 

@@ -40,3 +40,24 @@ Hologramas Bazar y Subastas con see_through, brillo 15 y view_range 1.5 para leg
 Viendo desde la plaza: Venta rapida izquierda (174.5,101,152.678), Bazar centro, Tienda derecha (182.5,101,152.678).
 Tres hologramas alineados a Y=104.5, Z=161.5: Venta X=174.5, Bazar X=178.637, Tienda X=182.5.
 Subastas atrasado exactamente 2 bloques hacia la casa: posicion final 205.5 104.3 184.5.
+
+31/10: Viajero movido a lobby (178.0,98.0,190.0), yaw 180. Se verificaron los cuatro bloques
+chiseled_stone_bricks en X=177/178, Z=189/190, Y=97 y la posicion exacta del NPC por NBT.
+Minas conserva el acceso de la galeria (204.5,100,278.5), cartel (204.5,105.8,275.5).
+Se retiro el aldeano duplicado de (171.5,100,224.5) y su cartel antiguo; save-all confirmado.
+El generador de montaje inicial deja de crear ese segundo acceso; ese cambio de montaje queda
+en el ZIP para futuras instalaciones y no requiere ejecutar de nuevo el montaje en este servidor.
+
+Mascotas: instalados y releidos ambos mascotas.yml, recargado MythicMobs (105 mobs, 298 skills),
+recreado solo astral_mascotas_control y recargado menu mascotas (DeluxeMenus: 9 menus).
+Se quitaron el guardado automatico en lobby/arena y las restricciones de invocacion de esos mundos.
+Todos los bonus, marca del Cuervo y rescate del Fenix verifican el mundo del dueno contra las seis mazmorras.
+WorldGuard mob-spawning allow y spawn_mobs=false en lobby/arena, conservando las otras protecciones.
+Prueba local Paper/MythicMobs: el mismo mecanismo world con lista separada por comas aplica Fuerza
+cuando incluye world y no aplica efectos con la lista real de mazmorras desde world.
+El seguimiento de mascotas entre mundos y el recorrido completo requieren prueba del jugador.
+
+Fallo visual reportado en inventario: hacha al arrastrar y objetos cerca del cursor en shulker.
+Revisado el pack: no contiene shaders ni reemplazos de modelos/texturas vanilla de herramientas.
+Resaltados de casillas conservan medidas, alpha y metadatos de Minecraft 26.1.2.
+Pendiente la prueba comparativa sin resource pack antes de atribuir una causa o publicar una correccion.

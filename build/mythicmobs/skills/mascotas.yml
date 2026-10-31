@@ -13,17 +13,21 @@ PET_lobo_CHEQUEO:
   - 'remove @self'
 
 PET_lobo_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_lobo;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_lobo;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -39,8 +43,6 @@ MASC_INVOCAR_lobo:
   TargetConditions:
   - score{o=mascota;v=1} true
   - haspermission{p=astral.mascota.lobo} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 1"}'
@@ -80,17 +82,21 @@ PET_cuervo_CHEQUEO:
   - 'remove @self'
 
 PET_cuervo_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_cuervo;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_cuervo;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
@@ -103,6 +109,8 @@ PET_cuervo_EVOLUCION:
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 PET_cuervo_MARCA:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'skill{s=PET_cuervo_MARCA_UNO} @LivingInRadius{r=14}'
 
@@ -116,8 +124,6 @@ MASC_INVOCAR_cuervo:
   TargetConditions:
   - score{o=mascota;v=2} true
   - haspermission{p=astral.mascota.cuervo} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 2"}'
@@ -157,17 +163,21 @@ PET_golem_CHEQUEO:
   - 'remove @self'
 
 PET_golem_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_golem;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_golem;v=20to30} true
   Skills:
   - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
@@ -183,8 +193,6 @@ MASC_INVOCAR_golem:
   TargetConditions:
   - score{o=mascota;v=3} true
   - haspermission{p=astral.mascota.golem} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 3"}'
@@ -224,17 +232,21 @@ PET_zorro_CHEQUEO:
   - 'remove @self'
 
 PET_zorro_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_zorro;v=10to30} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_zorro;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=1;hasParticles=false}'
@@ -250,8 +262,6 @@ MASC_INVOCAR_zorro:
   TargetConditions:
   - score{o=mascota;v=4} true
   - haspermission{p=astral.mascota.zorro} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 4"}'
@@ -291,17 +301,21 @@ PET_dragon_CHEQUEO:
   - 'remove @self'
 
 PET_dragon_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_dragon;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_dragon;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -317,8 +331,6 @@ MASC_INVOCAR_dragon:
   TargetConditions:
   - score{o=mascota;v=5} true
   - haspermission{p=astral.mascota.dragon} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 5"}'
@@ -358,17 +370,21 @@ PET_fenix_CHEQUEO:
   - 'remove @self'
 
 PET_fenix_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_fenix;v=10to30} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
   - 'delay 1'
@@ -382,6 +398,7 @@ PET_fenix_EVOLUCION:
 
 PET_fenix_RESCATE1:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=1to9} true
   Skills:
@@ -397,6 +414,7 @@ PET_fenix_RESCATE1:
 
 PET_fenix_RESCATE2:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=10to19} true
   Skills:
@@ -412,6 +430,7 @@ PET_fenix_RESCATE2:
 
 PET_fenix_RESCATE3:
   TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
@@ -429,8 +448,6 @@ MASC_INVOCAR_fenix:
   TargetConditions:
   - score{o=mascota;v=6} true
   - haspermission{p=astral.mascota.fenix} true
-  - world{w=lobby} false
-  - world{w=arena} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 6"}'
@@ -462,7 +479,7 @@ MASC_MENU:
   - score{o=mascota;v=99} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="tellraw <target.name> ['''',{text:''✦ Mascotas ✦ '',color:''#FFB347'',bold:true},{text:''(una a la vez - suben de nivel con los mobs que matas)'',color:''gray''}]"}'
+  - 'command{c="tellraw <target.name> ['''',{text:''✦ Mascotas ✦ '',color:''#FFB347'',bold:true},{text:''(una a la vez - bonus solo en mazmorras)'',color:''gray''}]"}'
   - 'skill{s=MASC_MENU_NINGUNA}'
   - 'skill{s=MASC_MENU_lobo}'
   - 'skill{s=MASC_MENU_cuervo}'
@@ -528,19 +545,12 @@ MASC_GUARDAR:
   - 'message{m="&7Guardaste tu mascota."}'
 
 MASC_LOBBY:
-  TargetConditions:
-  - score{o=mascota;v=1to6} true
-  - world{w=lobby} true
   Skills:
-  - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'message{m="&cEn el lobby no pueden salir mascotas. &7Invocala en el mundo."}'
+  - 'delay 1'
 
 MASC_ARENA:
-  TargetConditions:
-  - world{w=arena} true
   Skills:
-  - 'command{c="execute as <target.name> if score @s petsel matches 1.. run scoreboard players set @s petsel 0"}'
-  - 'command{c="execute as <target.name> if score @s mascota matches 1..6 run scoreboard players set @s mascota 0"}'
+  - 'delay 1'
 
 MASC_NIVELES:
   Skills:

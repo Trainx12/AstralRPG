@@ -224,8 +224,6 @@ astral_mascotas_control:
   Skills:
   - 'skill{s=MASC_MENU} @PlayersOnServer ~onTimer:5'
   - 'skill{s=MASC_GUARDAR} @PlayersOnServer ~onTimer:5'
-  - 'skill{s=MASC_LOBBY} @PlayersOnServer ~onTimer:5'
-  - 'skill{s=MASC_ARENA} @PlayersOnServer ~onTimer:5'
   - 'skill{s=MASC_NIVELES} @self ~onTimer:20'
   - 'skill{s=MASC_INVOCAR_lobo} @PlayersOnServer ~onTimer:5'
   - 'skill{s=MASC_NOTIENE_lobo} @PlayersOnServer ~onTimer:5'

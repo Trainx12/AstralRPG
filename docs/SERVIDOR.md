@@ -91,7 +91,10 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 
 ## Mascotas
 
-6 mascotas 3D que siguen al jugador (también entre mundos) y le dan efectos mientras están afuera. Una a la vez. En el lobby no salen.
+6 mascotas 3D que siguen al jugador, tambien entre mundos y en el lobby o la arena. Una a la vez.
+Sus efectos solo se activan en mina, bosque, tumba, cumbre, forja y santuario. Al salir, los efectos
+ya aplicados caducan naturalmente: hasta 3,5 segundos, o 20 segundos para la absorcion del Fenix.
+En lobby y arena se permiten invocaciones con WorldGuard; `spawn_mobs=false` impide apariciones naturales.
 
 | Mascota | Nivel 1 | Nivel 10 | Nivel 20 | Cómo se consigue |
 |---|---|---|---|---|

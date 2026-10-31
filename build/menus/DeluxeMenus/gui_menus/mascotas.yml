@@ -12,7 +12,8 @@ items:
     - '&7Suben de nivel con los mobs que matas:'
     - '&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.'
     - ''
-    - '&8En el lobby no pueden salir.'
+    - '&7Te acompanan en todos los mundos.'
+    - '&8Bonus solo dentro de las mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
   'm_lobo':

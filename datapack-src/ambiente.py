@@ -109,7 +109,7 @@ def generate(files):
     terrace.append(title("Galeria de Expediciones","light_purple","astral.amb.rotulo_hub",y=5,z=0.5));fn("terraza",terrace)
     setup=["execute in minecraft:lobby positioned 180 100 288 run function astral:ambiente/terraza"]
     for key,x,z,reverse in HUB:setup.append(f'execute in minecraft:lobby positioned {x} 100 {z} run function astral:ambiente/{key}{"_sur" if reverse else ""}')
-    for key,x,z in [("mina",171,224),("expediciones",172,214),("bazar",166,187),("subastas",190,187),("herrero",180,202)]:
+    for key,x,z in [("expediciones",172,214),("bazar",166,187),("subastas",190,187),("herrero",180,202)]:
         setup.append(f"execute in minecraft:lobby positioned {x} 100 {z} run function astral:ambiente/{key}")
     fn("lobby",setup)
 

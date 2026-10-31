@@ -12,7 +12,7 @@ mv gamerule set minecraft:entity_drops false arena
 rg flag -w arena __global__ build deny
 rg flag -w arena __global__ chest-access deny
 rg flag -w arena __global__ pvp allow
-rg flag -w arena __global__ mob-spawning deny
+rg flag -w arena __global__ mob-spawning allow
 # Apagar PvP en el resto. Ejecutar solo sobre mundos que existan:
 mv modify world set pvp false
 rg flag -w world __global__ pvp deny

@@ -16,7 +16,7 @@ execute in minecraft:lobby run worldborder center 178 192
 execute in minecraft:lobby run worldborder set 360
 rg flag -w lobby __global__ build deny
 rg flag -w lobby __global__ pvp deny
-rg flag -w lobby __global__ mob-spawning deny
+rg flag -w lobby __global__ mob-spawning allow
 rg flag -w lobby __global__ fall-damage deny
 rg flag -w lobby __global__ invincible allow
 rg flag -w lobby __global__ item-drop deny
@@ -69,11 +69,11 @@ mm mobs spawn astral_npc_venta 1 lobby,174.5,101,152.678,0,0
 mm mobs spawn astral_npc_gacha_rpg 1 lobby,211.5,101,191.5,90,0
 mm mobs spawn astral_npc_gacha_monturas 1 lobby,208.5,101,185.5,90,0
 mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,208.5,101,197.5,90,0
-mm mobs spawn astral_npc_viajero 1 lobby,180.5,100,212.5,180,0
+mm mobs spawn astral_npc_viajero 1 lobby,178.0,98,190.0,180,0
 mm mobs spawn astral_npc_cronista 1 lobby,174.5,100,212.5,180,0
 # Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):
 #   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)
-rg flag -w lobby __global__ mob-spawning deny
+rg flag -w lobby __global__ mob-spawning allow
 # --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)
 execute in minecraft:lobby run minecraft:kill @e[type=minecraft:text_display,tag=astral_holo]
 execute in minecraft:lobby run summon minecraft:text_display 211.5 102.55 191.5 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:220,text:{"text": "", "extra": [{"text": "\u2726 Gacha de Armas \u2726", "color": "#B07CFF", "bold": true}, {"text": "\nArmas, materiales y talismanes", "color": "gray"}, {"text": "\n1000$ por tirada", "color": "gold"}, {"text": "\nEpico garantizado cada ", "color": "white"}, {"text": "50 tiradas", "color": "#B07CFF", "bold": true}, {"text": "\nClic: tirar  -  Shift+clic: premios", "color": "dark_gray"}]}}

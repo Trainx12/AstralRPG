@@ -119,7 +119,7 @@ def mascotas_menu():
     P = "%player_name%"
     items = item("info", "BONE", 4, "&6&l✦ Mascotas ✦",
                  ["&7Una a la vez. Te siguen y te dan efectos.", "&7Suben de nivel con los mobs que matas:",
-                  "&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.", "", "&8En el lobby no pueden salir."])
+                  "&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.", "", "&7Te acompanan en todos los mundos.", "&8Bonus solo dentro de las mazmorras."])
     for slot, (pid, d) in zip([10, 11, 12, 14, 15, 16], MASCOTAS.items()):
         col = hexc(d["color"])
         lore = ["", f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", "",

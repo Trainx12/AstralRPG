@@ -31,7 +31,7 @@ NPC_POS = {
     "astral_npc_gacha_rpg": (211.5, 101, 191.5, 90),          # el del medio
     "astral_npc_gacha_monturas": (208.5, 101, 185.5, 90),     # el del norte
     "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
-    "astral_npc_viajero": (180.5, 100, 212.5, 180),     # junto al banco del sur
+    "astral_npc_viajero": (178.0, 98, 190.0, 180),      # union de los cuatro bloques marcados
     "astral_npc_cronista": (174.5, 100, 212.5, 180),
 }
 
@@ -486,7 +486,7 @@ def commands():
          f"execute in minecraft:{WORLD} run worldborder set 360",
          f"rg flag -w {WORLD} __global__ build deny",
          f"rg flag -w {WORLD} __global__ pvp deny",
-         f"rg flag -w {WORLD} __global__ mob-spawning deny",
+         f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ fall-damage deny",
          f"rg flag -w {WORLD} __global__ invincible allow",
          f"rg flag -w {WORLD} __global__ item-drop deny",
@@ -528,7 +528,7 @@ def commands():
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")
     C.append("# Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):")
     C.append("#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)")
-    C.append(f"rg flag -w {WORLD} __global__ mob-spawning deny")
+    C.append(f"rg flag -w {WORLD} __global__ mob-spawning allow")
     C += holo_cmds()
     C += bazar_cmds()
     return "\n".join(C) + "\n"

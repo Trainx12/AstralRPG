@@ -19,7 +19,9 @@ scoreboard objectives add plv_fenix dummy
 execute in minecraft:lobby run forceload add 180 190
 rg flag -w lobby __global__ mob-spawning allow
 mm mobs spawn astral_mascotas_control 1 lobby,180.5,92,190.5
-rg flag -w lobby __global__ mob-spawning deny
+# Permitir mascotas invocadas; desactivar apariciones naturales.
+mv gamerule set minecraft:spawn_mobs false lobby
+rg flag -w lobby __global__ mob-spawning allow
 # /mascotas: agregar en commands.yml (raiz de Files), dentro de 'aliases:'
 #   mascotas:
 #   - minecraft:trigger mascota set 99
