@@ -11,7 +11,7 @@ AQ_HERRERO:
 AQ_CRONISTA:
   Skills:
   - 'command{c="execute as <target.name> at @s run function astral:quest/gui/page/1"}'
-  - 'command{c="dm open misiones <target.name>"}'
+  - 'command{c="dm open misiones_1 <target.name>"}'
 
 AQ_TIENDA:
   Skills:

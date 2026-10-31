@@ -1,5 +1,36 @@
 # Cambios locales del 30/10/2026
 
+## Correccion del Cronista (31/10/2026)
+
+- Historia, las tres dificultades y el premio de armadura usan pantallas propias. Los clics abren
+  el menu correspondiente; ya no dependen de refrescar la condicion oculta `aq.page`.
+- El objeto central muestra objetivo, dinero, premios extra y progreso al pasar el cursor.
+  Al hacer clic, cierra la ventana y muestra el objetivo en el chat con el comando para volver.
+- Verde permite aceptar o comprobar/cobrar. Rojo permite rechazar o abandonar: pausa el conteo
+  y conserva avances, sin pagar ni consumir materiales. Las diarias se borran a medianoche como antes.
+- Retomar Jinete actualiza la referencia de distancia para no contar recorridos hechos durante la pausa.
+- Si faltan datos, aparecen un aviso y Actualizar. Las pestañas y la ayuda siguen visibles aunque
+  no funcione la expansion; las acciones siguen validando los objetivos desde el datapack.
+- Faltaba incluir `ScoreboardObjectives` en los pasos de instalacion. Es necesaria para las
+  condiciones y el progreso del menu: https://github.com/PlaceholderAPI/Expansion-ScoreboardObjectives.
+
+Para instalar esta correccion (todavia **no subida a Aternos**):
+
+1. Con el servidor apagado, reemplazar `world/datapacks/AstralRPG-Items.zip` por el ZIP de `build/`.
+2. Copiar los cinco archivos `build/menus/DeluxeMenus/gui_menus/misiones*.yml` a
+   `plugins/DeluxeMenus/gui_menus/`. Agregar las cinco entradas de misiones de
+   `build/menus/DeluxeMenus/config-gui_menus.yml` en `gui_menus:` del config existente.
+3. Reemplazar `plugins/MythicMobs/skills/misiones.yml` con `build/mythicmobs/skills/misiones.yml`.
+4. Arrancar y ejecutar en consola `papi ecloud download ScoreboardObjectives`, `papi reload`,
+   `dm reload` y `mm reload`. Si ya esta instalada, basta con verificar que este cargada.
+5. Como jugador, `/papi parse me %objective_score_{aq.state}%` debe devolver un numero.
+   Abrir al Cronista y probar las tres pestañas, detalle, aceptar, abandonar, retomar y cobrar.
+   Las entregas se cobran junto al NPC indicado en el objetivo. No recrear el Cronista.
+
+Verificado en PC: `python -m unittest test_misiones` (historia, 14 diarias, falta de expansion,
+acciones y navegacion) y `python verify.py` (JSON y referencias de funciones/loot/skills).
+Pendiente: prueba visual con jugador y plugins completos; no se modifico el resource pack.
+
 Estos cambios estan preparados en la PC. **No se subieron a Aternos, no se hizo commit ni push.**
 La historia, las diarias, los nuevos accesos y el HUD necesitan una prueba con jugador antes de publicarse.
 

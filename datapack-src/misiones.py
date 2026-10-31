@@ -185,7 +185,15 @@ def generate(files, items):
     # Click normal conversa; agacharse conserva el viaje al mundo.
     fn("gui/accept", [call("sync"),
         "execute if score @s aq.state matches 0 run " + call("start"),
-        "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1"])
+        "execute if score @s aq.state matches 1..9 run scoreboard players set @s aq.accepted 1",
+        msg("Mision aceptada. Consulta el objetivo y el premio en el objeto central del menu.", "green")])
+    fn("gui/reject", [call("sync"), "scoreboard players set @s aq.accepted 0",
+        msg("Mision rechazada o pausada. Conservas tus avances y podes aceptarla mas tarde.", "yellow")])
+    for state in range(10):
+        chapter = max(1, state)
+        amount = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000][chapter - 1]
+        fn(f"gui/details/story/{state}", [msg(CHAPTERS[chapter - 1], "aqua"),
+            msg(f"Premio: {amount}$. Acepta la mision, completa el objetivo y usa Comprobar y cobrar.", "gold")])
     for page in range(5):
         fn(f"gui/page/{page}", [call("sync"), f"scoreboard players set @s aq.page {page}"])
     fn("viajero", [call("sync"),
@@ -277,7 +285,18 @@ def generate(files, items):
     delivery_npc = {2: "tienda", 3: "cronista", 4: "herrero", 7: "bazar"}
     for tier in range(3):
         fn(f"gui/daily/accept/{tier}", [call("sync"),
-            f"execute if score @s aq.done{tier} matches 0 run scoreboard players set @s aq.active{tier} 1"])
+            "execute unless score #today aq.clock matches 1.. run return run " + msg("El reloj de diarias no esta conectado. Avisa al administrador.", "yellow"),
+            f"execute if score @s aq.done{tier} matches 1 run return 0",
+            "scoreboard players operation @s aq.hbase = @s aq.horse" if tier == 1 else "# Sin desplazamiento pendiente",
+            f"scoreboard players set @s aq.active{tier} 1",
+            msg("Diaria aceptada. Los objetivos ya cuentan; consulta los detalles en el objeto central.", "green")])
+        fn(f"gui/daily/reject/{tier}", [call("sync"),
+            f"execute if score @s aq.done{tier} matches 1 run return 0",
+            f"scoreboard players set @s aq.active{tier} 0",
+            msg("Diaria rechazada o pausada. Conservas tus avances hasta las 00:00 de Argentina.", "yellow")])
+        fn(f"gui/details/daily/{tier}", [call("sync")] + [
+            f"execute if score @s aq.d{tier} matches {did} run " + msg(f"{name}: {desc}. Premio: {[300,750,1500][tier]}$. Consulta los premios extra y el progreso en el menu.", "aqua")
+            for did, dtier, name, counter, goal, desc in DAILIES if dtier == tier])
         claim_button = [call("sync"),
             f"execute unless score @s aq.active{tier} matches 1 run return 0"]
         for did, dtier, name, counter, goal, desc in DAILIES:
@@ -332,7 +351,8 @@ def write_bridge():
         target = npc if npc in ("viajero", "herrero", "cronista") else "deliver/" + npc
         if npc in ("viajero", "cronista"):
             page = 0 if npc == "viajero" else 1
-            actions = [cmd(f"execute as <target.name> at @s run function astral:quest/gui/page/{page}"), cmd("dm open misiones <target.name>")]
+            menu_id = "misiones" if page == 0 else f"misiones_{page}"
+            actions = [cmd(f"execute as <target.name> at @s run function astral:quest/gui/page/{page}"), cmd(f"dm open {menu_id} <target.name>")]
         else:
             actions = [cmd(f"execute as <target.name> at @s run function astral:quest/{target}")]
         skills += [f"AQ_{npc.upper()}:", "  Skills:", *["  - " + q(action) for action in actions], ""]
@@ -355,6 +375,11 @@ def write_bridge():
     folder.mkdir(parents=True, exist_ok=True)
     (folder / "comandos.txt").write_text("\n".join([
         "# Misiones: despues de subir el datapack (servidor apagado) y las configs MythicMobs.",
+        "# Subir TODOS los misiones*.yml y registrar sus entradas de config-gui_menus.yml en DeluxeMenus.",
+        "papi ecloud download ScoreboardObjectives",
+        "papi reload",
+        "dm reload",
+        "# Comprobar como jugador: /papi parse me %objective_score_{aq.state}% (debe ser un numero).",
         "# Cargar/reiniciar el servidor. Para configs solamente: mm reload.",
         "# El Cronista usa el chunk del lobby x=181 z=225. No duplicar el NPC si ya existe.",
         "execute in minecraft:lobby run forceload add 181 225",

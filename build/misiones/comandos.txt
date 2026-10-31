@@ -1,4 +1,9 @@
 # Misiones: despues de subir el datapack (servidor apagado) y las configs MythicMobs.
+# Subir TODOS los misiones*.yml y registrar sus entradas de config-gui_menus.yml en DeluxeMenus.
+papi ecloud download ScoreboardObjectives
+papi reload
+dm reload
+# Comprobar como jugador: /papi parse me %objective_score_{aq.state}% (debe ser un numero).
 # Cargar/reiniciar el servidor. Para configs solamente: mm reload.
 # El Cronista usa el chunk del lobby x=181 z=225. No duplicar el NPC si ya existe.
 execute in minecraft:lobby run forceload add 181 225

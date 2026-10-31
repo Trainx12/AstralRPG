@@ -1,0 +1,422 @@
+menu_title: '&8Diaria facil - 300$'
+open_command: misiones_1
+size: 27
+update_interval: 1
+open_commands:
+- '[console] execute as %player_name% at @s run function astral:quest/sync'
+- '[refresh]<delay=2>'
+items:
+  'tab_0':
+    material: BOOK
+    slot: 0
+    amount: 1
+    display_name: '&b&lHistoria'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
+    - '[openguimenu] misiones'
+  'tab_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&b&lDiaria facil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/1'
+    - '[openguimenu] misiones_1'
+  'tab_2':
+    material: MAP
+    slot: 2
+    amount: 1
+    display_name: '&b&lDiaria media'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/2'
+    - '[openguimenu] misiones_2'
+  'tab_3':
+    material: ENCHANTED_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&b&lDiaria dificil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/3'
+    - '[openguimenu] misiones_3'
+  'diaria_1':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lRonda nocturna'
+    lore:
+    - '&7Mata 15 hostiles de AstralRPG'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.hostil}%/15'
+    - ''
+    - '&eClic: ver el objetivo en el chat.'
+    - '&eVerde: aceptar o comprobar y cobrar.'
+    - '&cRojo: rechazar o abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '1'
+    click_commands:
+    - '[close]'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/details/daily/0'
+    - '[message] &7Volve al detalle con /misiones_1.'
+  'diaria_2':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lProvisiones'
+    lore:
+    - '&7Entrega 32 panes o 32 carnes cocidas del'
+    - '&7mismo tipo a la Tienda'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    - ''
+    - '&eClic: ver el objetivo en el chat.'
+    - '&eVerde: aceptar o comprobar y cobrar.'
+    - '&cRojo: rechazar o abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '2'
+    click_commands:
+    - '[close]'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/details/daily/0'
+    - '[message] &7Volve al detalle con /misiones_1.'
+  'diaria_3':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lMadera para el Refugio'
+    lore:
+    - '&7Entrega 64 troncos al Cronista'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    - ''
+    - '&eClic: ver el objetivo en el chat.'
+    - '&eVerde: aceptar o comprobar y cobrar.'
+    - '&cRojo: rechazar o abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '3'
+    click_commands:
+    - '[close]'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/details/daily/0'
+    - '[message] &7Volve al detalle con /misiones_1.'
+  'diaria_4':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lPiedra y hierro'
+    lore:
+    - '&7Entrega 64 piedras y 16 lingotes de hierro'
+    - '&7al Herrero'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Para entregar: acercate al NPC indicado'
+    - '&7y usa Comprobar y cobrar.'
+    - ''
+    - '&eClic: ver el objetivo en el chat.'
+    - '&eVerde: aceptar o comprobar y cobrar.'
+    - '&cRojo: rechazar o abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '4'
+    click_commands:
+    - '[close]'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/details/daily/0'
+    - '[message] &7Volve al detalle con /misiones_1.'
+  'diaria_5':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&b&lPlaga de aranas'
+    lore:
+    - '&7Mata 10 Aranas Amatista'
+    - ''
+    - '&6Premio: 300$'
+    - ''
+    - '&7Progreso: &f%objective_score_{aq.spider}%/10'
+    - ''
+    - '&eClic: ver el objetivo en el chat.'
+    - '&eVerde: aceptar o comprobar y cobrar.'
+    - '&cRojo: rechazar o abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.d0}%'
+          output: '5'
+    click_commands:
+    - '[close]'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/details/daily/0'
+    - '[message] &7Volve al detalle con /misiones_1.'
+  'diaria_aceptar_0':
+    material: LIME_DYE
+    slot: 22
+    amount: 1
+    display_name: '&a&lAceptar mision'
+    lore:
+    - '&7Empieza a contar tu progreso.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/accept/0'
+    - '[openguimenu] misiones_1<delay=2>'
+  'diaria_rechazar_0':
+    material: RED_DYE
+    slot: 20
+    amount: 1
+    display_name: '&c&lRechazar por ahora'
+    lore:
+    - '&7No inicia la mision ni entrega premios.'
+    - '&7Podes aceptarla mas tarde hoy.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '0'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/reject/0'
+    - '[openguimenu] misiones_1<delay=2>'
+  'diaria_abandonar_0':
+    material: RED_DYE
+    slot: 20
+    amount: 1
+    display_name: '&c&lAbandonar mision'
+    lore:
+    - '&7Pausa los objetivos sin borrar avances.'
+    - '&7Podes retomarla antes de medianoche.'
+    - '&eClic para abandonar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/reject/0'
+    - '[openguimenu] misiones_1<delay=2>'
+  'diaria_cobrar_0':
+    material: EMERALD
+    slot: 22
+    amount: 1
+    display_name: '&a&lComprobar y cobrar'
+    lore:
+    - '&7Valida solo esta mision.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.active0}%'
+          output: '1'
+        r1:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '0'
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/daily/claim/0'
+    - '[openguimenu] misiones_1<delay=2>'
+  'diaria_fin_0':
+    material: GRAY_DYE
+    slot: 22
+    amount: 1
+    display_name: '&7&lMision cobrada'
+    lore:
+    - '&7Volve manana para una mision nueva.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.done0}%'
+          output: '1'
+  'sin_datos':
+    material: BARRIER
+    slot: 13
+    amount: 1
+    display_name: '&e&lMisiones sin cargar'
+    lore:
+    - '&7Todavia no se pudieron leer tus misiones.'
+    - '&7Volve a abrir el menu en unos segundos.'
+    - '&7Si sigue igual, avisa al administrador.'
+    - '&7Falta revisar el reloj o ScoreboardObjectives.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 99
+  'sin_accion':
+    material: CLOCK
+    slot: 22
+    amount: 1
+    display_name: '&eEsperando los datos de la mision'
+    lore:
+    - '&7Usa Actualizar; si sigue igual,'
+    - '&7avisa al administrador.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 99
+  'ayuda':
+    material: OAK_SIGN
+    slot: 8
+    amount: 1
+    display_name: '&b&lComo funcionan las misiones'
+    lore:
+    - '&71. Elegi historia o una diaria arriba.'
+    - '&72. Pasa el cursor por el objeto central:'
+    - '&7   muestra objetivo, premio y progreso.'
+    - '&73. Acepta con el boton verde.'
+    - '&74. Completa y usa Comprobar y cobrar.'
+    - '&7Rojo: rechazar o pausar sin cobrar.'
+    - '&7Las diarias cambian a las 00:00 (Argentina).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'actualizar':
+    material: SUNFLOWER
+    slot: 25
+    amount: 1
+    display_name: '&eActualizar misiones'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/1'
+    - '[openguimenu] misiones_1'
+  'volver':
+    material: ARROW
+    slot: 26
+    amount: 1
+    display_name: '&fVolver al menu'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+  'vidrio_4':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 4
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

@@ -1,0 +1,312 @@
+menu_title: '&8Premio de historia'
+open_command: misiones_4
+size: 27
+update_interval: 1
+open_commands:
+- '[console] execute as %player_name% at @s run function astral:quest/sync'
+- '[refresh]<delay=2>'
+items:
+  'tab_0':
+    material: BOOK
+    slot: 0
+    amount: 1
+    display_name: '&b&lHistoria'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
+    - '[openguimenu] misiones'
+  'tab_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&b&lDiaria facil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/1'
+    - '[openguimenu] misiones_1'
+  'tab_2':
+    material: MAP
+    slot: 2
+    amount: 1
+    display_name: '&b&lDiaria media'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/2'
+    - '[openguimenu] misiones_2'
+  'tab_3':
+    material: ENCHANTED_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&b&lDiaria dificil'
+    lore:
+    - '&eClic para ver una mision'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/3'
+    - '[openguimenu] misiones_3'
+  'premio_1':
+    material: IRON_HELMET
+    slot: 9
+    amount: 1
+    display_name: '&6Berserker - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/1'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_2':
+    material: IRON_CHESTPLATE
+    slot: 10
+    amount: 1
+    display_name: '&6Berserker - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/2'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_3':
+    material: IRON_LEGGINGS
+    slot: 11
+    amount: 1
+    display_name: '&6Berserker - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/3'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_4':
+    material: IRON_BOOTS
+    slot: 12
+    amount: 1
+    display_name: '&6Berserker - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/4'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_5':
+    material: IRON_HELMET
+    slot: 13
+    amount: 1
+    display_name: '&6Mago - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/5'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_6':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&6Mago - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/6'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_7':
+    material: IRON_LEGGINGS
+    slot: 15
+    amount: 1
+    display_name: '&6Mago - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/7'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_8':
+    material: IRON_BOOTS
+    slot: 16
+    amount: 1
+    display_name: '&6Mago - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/8'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_9':
+    material: IRON_HELMET
+    slot: 18
+    amount: 1
+    display_name: '&6Arquero - Casco'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/9'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_10':
+    material: IRON_CHESTPLATE
+    slot: 19
+    amount: 1
+    display_name: '&6Arquero - Pechera'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/10'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_11':
+    material: IRON_LEGGINGS
+    slot: 20
+    amount: 1
+    display_name: '&6Arquero - Grebas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/11'
+    - '[openguimenu] misiones_4<delay=2>'
+  'premio_12':
+    material: IRON_BOOTS
+    slot: 21
+    amount: 1
+    display_name: '&6Arquero - Botas'
+    lore:
+    - '&7Premio del capitulo 2: una sola pieza.'
+    - '&eClic para elegir y recibirla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/12'
+    - '[openguimenu] misiones_4<delay=2>'
+  'ayuda':
+    material: OAK_SIGN
+    slot: 8
+    amount: 1
+    display_name: '&b&lComo funcionan las misiones'
+    lore:
+    - '&71. Elegi historia o una diaria arriba.'
+    - '&72. Pasa el cursor por el objeto central:'
+    - '&7   muestra objetivo, premio y progreso.'
+    - '&73. Acepta con el boton verde.'
+    - '&74. Completa y usa Comprobar y cobrar.'
+    - '&7Rojo: rechazar o pausar sin cobrar.'
+    - '&7Las diarias cambian a las 00:00 (Argentina).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'actualizar':
+    material: SUNFLOWER
+    slot: 25
+    amount: 1
+    display_name: '&eActualizar misiones'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/4'
+    - '[openguimenu] misiones_4'
+  'volver':
+    material: ARROW
+    slot: 26
+    amount: 1
+    display_name: '&fVolver al menu'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+  'vidrio_4':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 4
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: BLUE_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

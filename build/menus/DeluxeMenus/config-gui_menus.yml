@@ -14,3 +14,11 @@ gui_menus:
     file: principal.yml
   misiones:
     file: misiones.yml
+  misiones_1:
+    file: misiones_1.yml
+  misiones_2:
+    file: misiones_2.yml
+  misiones_3:
+    file: misiones_3.yml
+  misiones_4:
+    file: misiones_4.yml
