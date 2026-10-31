@@ -98,6 +98,7 @@ def main():
                 assert texture in names, texture
                 image = Image.open(io.BytesIO(pack.read(texture)))
                 assert image.mode == 'RGBA' and provider['ascent'] <= provider['height'], texture
+                assert image.width <= 256 and image.height <= 256, (texture, 'glifo mayor que la hoja de fuentes del cliente')
                 # Dos espacios negativos dejan el ancho logico del rotulo
                 # dentro del boton y evitan su recorte por Minecraft.
                 assert image.width + 1 - 32 < 194, texture
@@ -107,6 +108,17 @@ def main():
             for part in ('helmet', 'chestplate', 'leggings', 'boots'):
                 leather = json.loads(pack.read(f'assets/minecraft/items/leather_{part}.json'))['model']
                 assert 'tints' not in leather['on_false']
+            item_sources = json.loads(vanilla.read('assets/minecraft/atlases/items.json'))['sources']
+            directories = [source['source'] + '/' for source in item_sources if source['type'] == 'minecraft:directory']
+            for path in names:
+                if not path.startswith('assets/astral/models/cronista/'):
+                    continue
+                model = json.loads(pack.read(path))
+                for resource in model['textures'].values():
+                    namespace, relative = resource.split(':', 1)
+                    assert any(relative.startswith(prefix) for prefix in directories), (path, 'textura fuera del atlas de items', resource)
+                    assert f'assets/{namespace}/textures/{relative}.png' in names, resource
+            print('Cronista: texturas incluidas en el atlas real del cliente y glifos de hasta 256 px OK')
         print('Estilo: 54 iconos; armaduras puestas y barras vanilla; bloques sin sustituir OK')
         print('Menu: fuentes bitmap, espaciado, traducciones y guia del servidor conservada OK')
 

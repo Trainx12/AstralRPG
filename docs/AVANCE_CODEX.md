@@ -5,7 +5,7 @@
 El nuevo menu ilustrado, los iconos y el HUD de referencia ya estan publicados e instalados.
 Ver [TEXTURE_PACK_ESTILO.md](TEXTURE_PACK_ESTILO.md) para fuentes, vistas previas y comprobaciones.
 El HUD morado descrito mas abajo es historico y fue reemplazado: la barra inferior ahora es vanilla.
-SHA1 vigente con el panel del Cronista: `8d696c5d43057641f162ef1803b172138c15dc8a`.
+SHA1 vigente con el panel del Cronista: `1b9e6cb28cd1f4055fc5e50b7fad9aa38c4bb41f`.
 Correccion posterior: ventanas de ladrillo oscuro, armaduras puestas vanilla, guia con tinta oscura
 y recorte solo de la punta del bambu sobre Opciones. El HUD aprobado no cambia.
 
@@ -150,3 +150,9 @@ Subir el datapack con el servidor apagado. Las configs correspondientes van en `
 y los menus en `plugins/DeluxeMenus/gui_menus`. Recargar configs con `mm reload` y `dm reload`.
 Si se publica el resource pack, actualizar su SHA1 en `server.properties` despues de publicar el ZIP.
 No ejecutar la reconstruccion del lobby ni recrear las Minas para instalar estas novedades.
+
+## Hologramas de servicios
+
+Bazar, Venta rapida y Tienda: hologramas `astral.amb.rotulo` movidos de Y=104.5
+a Y=105.5 en el lobby; X/Z conservados. Verificado con NBT Pos de los tres.
+Se modificaron solo text_display, sin mover NPCs.

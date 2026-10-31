@@ -23,3 +23,7 @@ Generadores: `misiones.py`, `menus.py`, `cronista_ui.py`, `build_pack.py`.
 Verificacion: `python -m unittest test_misiones` desde `datapack-src` y
 `verify.py --client-jar ...`. La vista previa `build/Cronista-preview.png`
 representa el diseno; la comprobacion final se realiza con DeluxeMenus.
+
+Correccion del cliente: texturas bajo `textures/item/cronista` para incorporarlas
+al atlas real de items de 26.1; fondo de hasta 256 px para la hoja de fuentes.
+El verificador comprueba ambas restricciones, ademas de la existencia del PNG.

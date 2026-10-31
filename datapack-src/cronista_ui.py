@@ -25,8 +25,11 @@ def png(im):
 
 def panel(rewards=False):
     source = Image.open(ART).convert('RGBA')
-    im = Image.new('RGBA', (208, 286))
+    # La hoja de glifos del cliente mide 256 px: un bitmap mas alto no se
+    # puede hornear y termina como un glifo faltante, con avance incorrecto.
+    im = Image.new('RGBA', (208, 256))
     im.alpha_composite(source.resize(im.size, Image.Resampling.NEAREST))
+    ImageDraw.Draw(im).rectangle((122, 0, 207, 65), fill=(0, 0, 0, 0))
     body = Image.new('RGBA', (176, 222), '#071a2d')
     d = ImageDraw.Draw(body)
     # Las posiciones son las del cofre de 54 slots y su inventario inferior.
@@ -59,7 +62,10 @@ def panel(rewards=False):
     for col in range(9):
         x = 8 + col * 18
         d.rectangle((x, 198, x + 15, 213), fill=(0, 0, 0, 0))
-    im.paste(body, (16, 48))
+    im.paste(body, (16, 24))
+    # Reloj completo en la cabecera, por encima de la primera fila de slots.
+    clock_art = source.crop((round(source.width * .56), 0, source.width, round(source.height * .25)))
+    im.alpha_composite(clock_art.resize((52, 40), Image.Resampling.NEAREST), (148, 0))
     return im
 
 
@@ -142,8 +148,9 @@ def assets():
     files, providers = {}, []
 
     def model(name, image):
-        tex = f'astral:cronista/{name}'
-        files[f'assets/astral/textures/cronista/{name}.png'] = png(image)
+        # El atlas de items de 26.1 solo incorpora el directorio textures/item.
+        tex = f'astral:item/cronista/{name}'
+        files[f'assets/astral/textures/item/cronista/{name}.png'] = png(image)
         definition = {'parent': 'minecraft:item/generated', 'gui_light': 'front', 'textures': {'layer0': tex},
                       'display': {'gui': {'scale': [image.width / 16, image.height / 16, 1]}}}
         files[f'assets/astral/models/cronista/{name}.json'] = json.dumps(definition).encode('utf-8')
@@ -162,7 +169,7 @@ def assets():
         im = panel(reward)
         files[f'assets/astral/textures/font/cronista/{name}.png'] = png(im)
         providers.append({'type': 'bitmap', 'file': f'astral:font/cronista/{name}.png',
-                          'height': 286, 'ascent': 61, 'chars': [char]})
+                          'height': 256, 'ascent': 37, 'chars': [char]})
     providers.append({'type': 'space', 'advances': {'\ue430': -24, '\ue432': -185}})
     for name, caption, color in [('accept', 'ACEPTAR MISION', '#166456'), ('claim', 'COMPROBAR', '#18577b'),
                                   ('done', 'YA COBRADA', '#344658'), ('waiting', 'SIN DATOS', '#344658')]:
@@ -188,7 +195,7 @@ def title(page):
 
 
 def preview(path):
-    im = Image.new('RGBA', (208, 286), '#2d2922')
+    im = Image.new('RGBA', (208, 256), '#2d2922')
     im.alpha_composite(panel())
     body = Image.new('RGBA', (176, 222))
     icons = ['history', 'easy', 'medium', 'hard']
@@ -203,8 +210,8 @@ def preview(path):
     body.alpha_composite(clock('#b4c9d5'), (152, 108))
     text(body, 'CRONISTA', (43, 5), '#b9eaf5')
     text(body, 'Inventario', (37, 129), '#30343b')
-    im.alpha_composite(body, (16, 48))
+    im.alpha_composite(body, (16, 24))
     target = Path(path)
     temp = target.with_suffix('.png.tmp')
-    temp.write_bytes(png(im.resize((624, 858), Image.Resampling.NEAREST)))
+    temp.write_bytes(png(im.resize((624, 768), Image.Resampling.NEAREST)))
     temp.replace(target)
