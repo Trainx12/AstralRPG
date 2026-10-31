@@ -23,14 +23,35 @@ def png(im):
     return buffer.getvalue()
 
 
-def panel(rewards=False):
+# El marco va de GUI(-16, -37) a GUI(192, 240), siendo GUI(0, 0) la esquina del
+# cofre de 54 slots. La abertura interior del dibujo queda justo alrededor de
+# las casillas, asi el marco no tapa nada y nada tapa el marco.
+OFFSET = (16, 37)
+ART_INNER_TOP, ART_INNER_BOTTOM = 287, 1292   # bordes de la abertura en el dibujo
+GUI_INNER_TOP, GUI_INNER_BOTTOM = 16, 218
+# Un glifo no puede medir mas de 256 px ni tener ascent mayor a su alto,
+# por eso el marco se parte en una franja de arriba y el resto.
+SPLIT = 50
+
+
+def frame():
     source = Image.open(ART).convert('RGBA')
-    # La hoja de glifos del cliente mide 256 px: un bitmap mas alto no se
-    # puede hornear y termina como un glifo faltante, con avance incorrecto.
-    im = Image.new('RGBA', (208, 256))
-    im.alpha_composite(source.resize(im.size, Image.Resampling.NEAREST))
-    ImageDraw.Draw(im).rectangle((122, 0, 207, 65), fill=(0, 0, 0, 0))
-    body = Image.new('RGBA', (176, 222), '#071a2d')
+    top_h = GUI_INNER_TOP + OFFSET[1]
+    scale = (GUI_INNER_BOTTOM - GUI_INNER_TOP) / (ART_INNER_BOTTOM - ART_INNER_TOP)
+    rest_h = round((source.height - ART_INNER_TOP) * scale)
+    im = Image.new('RGBA', (208, top_h + rest_h))
+    top = source.crop((0, 0, source.width, ART_INNER_TOP)).resize((208, top_h), Image.Resampling.NEAREST)
+    rest = source.crop((0, ART_INNER_TOP, source.width, source.height)).resize((208, rest_h), Image.Resampling.NEAREST)
+    im.alpha_composite(top, (0, 0))
+    im.alpha_composite(rest, (0, top_h))
+    # Titulo dentro de la franja de estrellas, a la izquierda del reloj.
+    text(im, 'CRONISTA', (78, 25), color='#b9eaf5')
+    return im
+
+
+def panel(rewards=False):
+    im = frame()
+    body = Image.new('RGBA', (176, 222))
     d = ImageDraw.Draw(body)
     # Las posiciones son las del cofre de 54 slots y su inventario inferior.
     for row in range(6):
@@ -46,27 +67,36 @@ def panel(rewards=False):
     for col in range(9):
         x = 7 + col * 18
         d.rectangle((x, 197, x + 17, 214), fill='#102b40', outline='#78919b')
+    im.alpha_composite(body, OFFSET)
     # Los titulos se dibujan sobre los items. Las ventanas transparentes
     # permiten ver modelos, cantidades y los objetos reales del jugador.
+    holes = ImageDraw.Draw(im)
+    ox, oy = OFFSET
+
+    def hole(x0, y0, x1, y1):
+        holes.rectangle((x0 + ox, y0 + oy, x1 + ox, y1 + oy), fill=(0, 0, 0, 0))
     for row in range(6):
         for col in range(9):
             x, y = 8 + col * 18, 18 + row * 18
-            d.rectangle((x, y, x + 15, y + 15), fill=(0, 0, 0, 0))
+            hole(x, y, x + 15, y + 15)
     if not rewards:
-        d.rectangle((7, 35, 168, 88), fill=(0, 0, 0, 0))
-        d.rectangle((43, 89, 132, 106), fill=(0, 0, 0, 0))
+        hole(7, 35, 168, 88)
+        hole(43, 89, 132, 106)
     for row in range(3):
         for col in range(9):
             x, y = 8 + col * 18, 140 + row * 18
-            d.rectangle((x, y, x + 15, y + 15), fill=(0, 0, 0, 0))
+            hole(x, y, x + 15, y + 15)
     for col in range(9):
         x = 8 + col * 18
-        d.rectangle((x, 198, x + 15, 213), fill=(0, 0, 0, 0))
-    im.paste(body, (16, 24))
-    # Reloj completo en la cabecera, por encima de la primera fila de slots.
-    clock_art = source.crop((round(source.width * .56), 0, source.width, round(source.height * .25)))
-    im.alpha_composite(clock_art.resize((52, 40), Image.Resampling.NEAREST), (148, 0))
+        hole(x, 198, x + 15, 213)
     return im
+
+
+def glyph_parts(im):
+    """Parte el marco en dos glifos validos: (imagen, ascent)."""
+    top, rest = im.crop((0, 0, 208, SPLIT)), im.crop((0, SPLIT, 208, im.height))
+    # La parte de arriba de un glifo queda en y = 13 - ascent dentro del cofre.
+    return [(top, 13 + OFFSET[1]), (rest, 13 + OFFSET[1] - SPLIT)]
 
 
 @lru_cache(maxsize=1)
@@ -166,12 +196,14 @@ def assets():
             for col in range(columns):
                 model(f'{name}_{row * columns + col}', image.crop((col*18, row*18, col*18+18, row*18+18)))
 
-    for name, char, reward in [('background', '\ue431', False), ('rewards', '\ue433', True)]:
-        im = panel(reward)
-        files[f'assets/astral/textures/font/cronista/{name}.png'] = png(im)
-        providers.append({'type': 'bitmap', 'file': f'astral:font/cronista/{name}.png',
-                          'height': 256, 'ascent': 37, 'chars': [char]})
-    providers.append({'type': 'space', 'advances': {'\ue430': -24, '\ue432': -185}})
+    for name, chars, reward in [('background', ('\ue431', '\ue435'), False), ('rewards', ('\ue433', '\ue436'), True)]:
+        for part, ((im, ascent), char) in enumerate(zip(glyph_parts(panel(reward)), chars)):
+            files[f'assets/astral/textures/font/cronista/{name}_{part}.png'] = png(im)
+            providers.append({'type': 'bitmap', 'file': f'astral:font/cronista/{name}_{part}.png',
+                              'height': im.height, 'ascent': ascent, 'chars': [char]})
+    # Cada glifo avanza 209 px (ancho + 1). \ue430 lleva al borde del marco,
+    # \ue434 vuelve para dibujar la segunda parte en el mismo lugar.
+    providers.append({'type': 'space', 'advances': {'\ue430': -24, '\ue434': -209, '\ue432': -185}})
     for name, caption, color in [('accept', 'ACEPTAR MISION', '#166456'), ('claim', 'COMPROBAR', '#18577b'),
                                   ('done', 'YA COBRADA', '#344658'), ('waiting', 'SIN DATOS', '#344658')]:
         tiles(name, action_button(caption, color))
@@ -191,13 +223,17 @@ def assets():
 
 
 def title(page):
-    glyph = '\ue433' if page == 4 else '\ue431'
-    return '&f\ue430' + glyph + '\ue432&b&lCRONISTA'
+    top, rest = ('\ue433', '\ue436') if page == 4 else ('\ue431', '\ue435')
+    # El nombre CRONISTA ya viene dibujado en el marco.
+    return '&f\ue430' + top + '\ue434' + rest + '\ue432'
 
 
 def preview(path):
-    im = Image.new('RGBA', (208, 256), '#2d2922')
-    im.alpha_composite(panel())
+    frame_im = panel()
+    im = Image.new('RGBA', frame_im.size, '#2d2922')
+    # Lo que se ve por las ventanas: el fondo oscuro vanilla del cofre.
+    ImageDraw.Draw(im).rectangle((OFFSET[0], OFFSET[1], OFFSET[0] + 175, OFFSET[1] + 221), fill='#1b1b1b')
+    im.alpha_composite(frame_im)
     body = Image.new('RGBA', (176, 222))
     icons = ['history', 'easy', 'medium', 'hard']
     colors = ['#f0cd75', '#67e8cd', '#60bcf2', '#ac9dff']
@@ -209,10 +245,9 @@ def preview(path):
     body.alpha_composite(clock('#d97c7c'), (8, 108))
     body.alpha_composite(clock('#89cadd'), (134, 108))
     body.alpha_composite(clock('#b4c9d5'), (152, 108))
-    text(body, 'CRONISTA', (43, 5), '#b9eaf5')
     text(body, 'Inventario', (37, 129), '#30343b')
-    im.alpha_composite(body, (16, 24))
+    im.alpha_composite(body, OFFSET)
     target = Path(path)
     temp = target.with_suffix('.png.tmp')
-    temp.write_bytes(png(im.resize((624, 768), Image.Resampling.NEAREST)))
+    temp.write_bytes(png(im.resize((im.width * 3, im.height * 3), Image.Resampling.NEAREST)))
     temp.replace(target)
