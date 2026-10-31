@@ -1236,7 +1236,7 @@ astral_npc_subastas:
 
 astral_npc_herrero:
   Type: VILLAGER
-  Display: '&6&lHerrero &7(clic: costo - shift+clic: mejorar)'
+  Display: '&6&lHerrero &7- mejorar equipo'
   Health: 100
   Options:
     NoAI: true
@@ -1253,47 +1253,7 @@ astral_npc_herrero:
   Skills:
   - cancelevent @self ~onInteract
   - 'skill{s=AQ_HERRERO} @trigger ~onInteract'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/ver"} @self ~onInteract'
-  - 'message{m="&7Shift + clic para mejorar a &e+1&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=1}'
-  - 'message{m="&cTe faltan &e300$&c para la mejora a +1 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=1} ?~!hascurrency{a=300}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=1} ?~hascurrency{a=300}'
-  - 'currencytake{a=300} @trigger ~onInteract ?~score{o=astralmejok;v=1}'
-  - 'message{m="&7Shift + clic para mejorar a &e+2&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=2}'
-  - 'message{m="&cTe faltan &e600$&c para la mejora a +2 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=2} ?~!hascurrency{a=600}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=2} ?~hascurrency{a=600}'
-  - 'currencytake{a=600} @trigger ~onInteract ?~score{o=astralmejok;v=2}'
-  - 'message{m="&7Shift + clic para mejorar a &e+3&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=3}'
-  - 'message{m="&cTe faltan &e1000$&c para la mejora a +3 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=3} ?~!hascurrency{a=1000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=3} ?~hascurrency{a=1000}'
-  - 'currencytake{a=1000} @trigger ~onInteract ?~score{o=astralmejok;v=3}'
-  - 'message{m="&7Shift + clic para mejorar a &e+4&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=4}'
-  - 'message{m="&cTe faltan &e1500$&c para la mejora a +4 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=4} ?~!hascurrency{a=1500}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=4} ?~hascurrency{a=1500}'
-  - 'currencytake{a=1500} @trigger ~onInteract ?~score{o=astralmejok;v=4}'
-  - 'message{m="&7Shift + clic para mejorar a &e+5&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=5}'
-  - 'message{m="&cTe faltan &e2000$&c para la mejora a +5 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=5} ?~!hascurrency{a=2000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=5} ?~hascurrency{a=2000}'
-  - 'currencytake{a=2000} @trigger ~onInteract ?~score{o=astralmejok;v=5}'
-  - 'message{m="&7Shift + clic para mejorar a &e+6&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=6}'
-  - 'message{m="&cTe faltan &e3000$&c para la mejora a +6 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=6} ?~!hascurrency{a=3000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=6} ?~hascurrency{a=3000}'
-  - 'currencytake{a=3000} @trigger ~onInteract ?~score{o=astralmejok;v=6}'
-  - 'message{m="&7Shift + clic para mejorar a &e+7&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=7}'
-  - 'message{m="&cTe faltan &e4000$&c para la mejora a +7 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=7} ?~!hascurrency{a=4000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=7} ?~hascurrency{a=4000}'
-  - 'currencytake{a=4000} @trigger ~onInteract ?~score{o=astralmejok;v=7}'
-  - 'message{m="&7Shift + clic para mejorar a &e+8&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=8}'
-  - 'message{m="&cTe faltan &e5000$&c para la mejora a +8 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=8} ?~!hascurrency{a=5000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=8} ?~hascurrency{a=5000}'
-  - 'currencytake{a=5000} @trigger ~onInteract ?~score{o=astralmejok;v=8}'
-  - 'message{m="&7Shift + clic para mejorar a &e+9&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=9}'
-  - 'message{m="&cTe faltan &e7500$&c para la mejora a +9 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=9} ?~!hascurrency{a=7500}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=9} ?~hascurrency{a=7500}'
-  - 'currencytake{a=7500} @trigger ~onInteract ?~score{o=astralmejok;v=9}'
-  - 'message{m="&7Shift + clic para mejorar a &e+10&7."} @trigger ~onInteract ?~!crouching ?~score{o=astralmejn;v=10}'
-  - 'message{m="&cTe faltan &e10000$&c para la mejora a +10 &7(mira tu plata con /balance)"} @trigger ~onInteract ?~crouching ?~score{o=astralmejn;v=10} ?~!hascurrency{a=10000}'
-  - 'command{c="execute as <trigger.name> at <trigger.name> run function astral:mejora/hacer"} @self ~onInteract ?~crouching ?~score{o=astralmejn;v=10} ?~hascurrency{a=10000}'
-  - 'currencytake{a=10000} @trigger ~onInteract ?~score{o=astralmejok;v=10}'
+  - 'command{c="astralherrero <trigger.name>"} @self ~onInteract'
 
 astral_npc_tienda:
   Type: VILLAGER
@@ -1334,7 +1294,7 @@ astral_npc_venta:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="sudo <trigger.name> sellgui"} @self ~onInteract'
+  - 'command{c="astralventa <trigger.name>"} @self ~onInteract'
 
 astral_npc_gacha_rpg:
   Type: SHEEP

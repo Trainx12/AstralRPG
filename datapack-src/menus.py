@@ -140,22 +140,24 @@ def mascotas_menu():
 
 
 def bazar_menu():
-    items = item("info", "OAK_SIGN", 4, "&6&l✦ Bazar ✦", ["&7Compra y vende con el servidor", "&7o con otros jugadores."])
-    items += item("mercado", "EMERALD", 10, "&a&lMercado",
-                  ["&7Compra y vende materiales al servidor.", "", "&eClic para abrir"],
-                  extra={"click_commands": ["[close]", "[player] shop"]})
-    items += item("venta", "HOPPER", 12, "&2&lVenta rapida",
-                  ["&7Pone lo que quieras vender y listo.", "", "&eClic para abrir"],
-                  extra={"click_commands": ["[close]", "[player] sellgui"]})
-    items += item("subastas", "GOLD_INGOT", 14, "&e&lSubastas",
-                  ["&7Items unicos entre jugadores (armas, armaduras...).", "&7Para publicar: agarra el item y usa",
-                   "&f/ah sell <precio>", "", "&eClic para abrir"], extra={"click_commands": ["[close]", "[player] ah"]})
-    items += item("ordenes", "PAPER", 16, "&b&lOrdenes de compra",
-                  ["&7Pedi algo que buscas y paga por adelantado:", "&7cuando alguien te lo entrega, te llega solo.",
-                   "&7Tambien podes entregar lo que otros piden.", "", "&eClic para abrir"],
-                  extra={"click_commands": ["[close]", "[player] orders"]})
-    items += relleno("YELLOW_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16])
-    return menu("&8Bazar", "astralmenu_bazar", 27, items)
+    from services_ui import title, bazar_regions
+    actions = {
+        'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'shop'),
+        'vender': ('&6&lVenta rapida', ['&7Coloca el objeto, revisa su importe', '&7y confirma con VENDER.', '&7Cerrar devuelve el objeto.'], 'astralventa'),
+        'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Para publicar: /ah sell <precio>'], 'ah'),
+        'ordenes': ('&b&lOrdenes de compra', ['&7Publica pedidos o completa encargos.', '&7El pago lo administra el mercado.'], 'orders'),
+    }
+    lines=[]
+    for key,cols,rows in bazar_regions():
+        name,lore,command=actions[key]
+        for index,slot in enumerate(row*9+col for row in rows for col in cols):
+            lines += item(f'{key}_{index}','PAPER',slot,name,lore,extra={
+                'item_model':q(f'astral:servicios/bazar_{key}_{index}'),
+                'click_commands':['[close]',f'[player] {command}']})
+    lines += item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
+    lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas y ordenes: otros jugadores.'])
+    lines += item('volver','ARROW',53,'&fVolver',extra={'click_commands':['[openguimenu] principal']})
+    return menu(title('bazar'),'astralmenu_bazar',54,lines,update=True)
 
 
 def principal_menu():

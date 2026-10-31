@@ -2008,6 +2008,8 @@ from misiones import generate as generate_quests
 generate_quests(files, ITEMS)
 from ambiente import generate as generate_ambience
 generate_ambience(files)
+from services import generate as generate_services
+generate_services(files, ITEMS)
 
 # ---------------------------------------------------------------------------
 # Escribir

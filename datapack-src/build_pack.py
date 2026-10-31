@@ -214,6 +214,10 @@ cronista_files, cronista_providers = cronista_assets()
 files.update(cronista_files)
 default_font = json.loads(files['assets/minecraft/font/default.json'])
 default_font['providers'] = cronista_providers + default_font['providers']
+from services_ui import assets as services_assets
+service_files, service_providers = services_assets()
+files.update(service_files)
+default_font['providers'] = service_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
 # pack.mcmeta y pack.png

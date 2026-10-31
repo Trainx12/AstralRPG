@@ -1,228 +1,490 @@
-menu_title: '&8Bazar'
+menu_title: '&f'
 open_command: astralmenu_bazar
-size: 27
+size: 54
+update_interval: 1
 items:
-  'info':
-    material: OAK_SIGN
-    slot: 4
+  'comprar_0':
+    material: PAPER
+    slot: 9
     amount: 1
-    display_name: '&6&l✦ Bazar ✦'
+    display_name: '&a&lComprar en la Tienda'
     lore:
-    - '&7Compra y vende con el servidor'
-    - '&7o con otros jugadores.'
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'mercado':
-    material: EMERALD
-    slot: 10
-    amount: 1
-    display_name: '&a&lMercado'
-    lore:
-    - '&7Compra y vende materiales al servidor.'
-    - ''
-    - '&eClic para abrir'
-    item_flags:
-    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_0'
     click_commands:
     - '[close]'
     - '[player] shop'
-  'venta':
-    material: HOPPER
+  'comprar_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_1'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'comprar_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_2'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'comprar_3':
+    material: PAPER
     slot: 12
     amount: 1
-    display_name: '&2&lVenta rapida'
+    display_name: '&a&lComprar en la Tienda'
     lore:
-    - '&7Pone lo que quieras vender y listo.'
-    - ''
-    - '&eClic para abrir'
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_3'
     click_commands:
     - '[close]'
-    - '[player] sellgui'
-  'subastas':
-    material: GOLD_INGOT
+    - '[player] shop'
+  'comprar_4':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_4'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'comprar_5':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_5'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'comprar_6':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_6'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'comprar_7':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&a&lComprar en la Tienda'
+    lore:
+    - '&7Selecciona un producto, revisa el precio'
+    - '&7y confirma con COMPRAR.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_comprar_7'
+    click_commands:
+    - '[close]'
+    - '[player] shop'
+  'vender_0':
+    material: PAPER
     slot: 14
     amount: 1
-    display_name: '&e&lSubastas'
+    display_name: '&6&lVenta rapida'
     lore:
-    - '&7Items unicos entre jugadores (armas, armaduras...).'
-    - '&7Para publicar: agarra el item y usa'
-    - '&f/ah sell <precio>'
-    - ''
-    - '&eClic para abrir'
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_0'
     click_commands:
     - '[close]'
-    - '[player] ah'
-  'ordenes':
+    - '[player] astralventa'
+  'vender_1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_1'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_2':
     material: PAPER
     slot: 16
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&6&lVenta rapida'
     lore:
-    - '&7Pedi algo que buscas y paga por adelantado:'
-    - '&7cuando alguien te lo entrega, te llega solo.'
-    - '&7Tambien podes entregar lo que otros piden.'
-    - ''
-    - '&eClic para abrir'
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_2'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_3':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_3'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_4':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_4'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_5'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_6'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'vender_7':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&6&lVenta rapida'
+    lore:
+    - '&7Coloca el objeto, revisa su importe'
+    - '&7y confirma con VENDER.'
+    - '&7Cerrar devuelve el objeto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_vender_7'
+    click_commands:
+    - '[close]'
+    - '[player] astralventa'
+  'subastas_0':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_0'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_1'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_2'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_3'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_4':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_4'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_5':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_5'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_6':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_6'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'subastas_7':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&e&lSubastas'
+    lore:
+    - '&7Comercio entre jugadores.'
+    - '&7Para publicar: /ah sell <precio>'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_subastas_7'
+    click_commands:
+    - '[close]'
+    - '[player] ah'
+  'ordenes_0':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_ordenes_0'
     click_commands:
     - '[close]'
     - '[player] orders'
-  'vidrio_0':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 0
+  'ordenes_1':
+    material: PAPER
+    slot: 33
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_1':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 1
+    item_model: 'astral:servicios/bazar_ordenes_1'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_2':
+    material: PAPER
+    slot: 34
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_2':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 2
+    item_model: 'astral:servicios/bazar_ordenes_2'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_3':
+    material: PAPER
+    slot: 35
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_3':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 3
+    item_model: 'astral:servicios/bazar_ordenes_3'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_4':
+    material: PAPER
+    slot: 41
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_5':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 5
+    item_model: 'astral:servicios/bazar_ordenes_4'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_5':
+    material: PAPER
+    slot: 42
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_6':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 6
+    item_model: 'astral:servicios/bazar_ordenes_5'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_6':
+    material: PAPER
+    slot: 43
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_7':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 7
+    item_model: 'astral:servicios/bazar_ordenes_6'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'ordenes_7':
+    material: PAPER
+    slot: 44
     amount: 1
-    display_name: ' '
+    display_name: '&b&lOrdenes de compra'
+    lore:
+    - '&7Publica pedidos o completa encargos.'
+    - '&7El pago lo administra el mercado.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_8':
-    material: YELLOW_STAINED_GLASS_PANE
+    item_model: 'astral:servicios/bazar_ordenes_7'
+    click_commands:
+    - '[close]'
+    - '[player] orders'
+  'saldo':
+    material: GOLD_NUGGET
+    slot: 4
+    amount: 1
+    display_name: '&6Tu saldo'
+    lore:
+    - '&e%vault_eco_balance_formatted%$'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
+  'ayuda':
+    material: WRITABLE_BOOK
     slot: 8
     amount: 1
-    display_name: ' '
+    display_name: '&fBazar del Refugio'
+    lore:
+    - '&7Comprar y vender: precios del servidor.'
+    - '&7Subastas y ordenes: otros jugadores.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_9':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 9
+  'volver':
+    material: ARROW
+    slot: 53
     amount: 1
-    display_name: ' '
+    display_name: '&fVolver'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_11':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 11
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_13':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 13
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_15':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 15
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_17':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_18':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_19':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 19
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 20
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_21':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 21
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_22':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 22
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_23':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 23
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 24
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_25':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 25
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: YELLOW_STAINED_GLASS_PANE
-    slot: 26
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'

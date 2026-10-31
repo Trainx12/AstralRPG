@@ -267,17 +267,8 @@ def _gacha(gid, cost):
 
 
 def _herrero():
-    """Clic: ver cuanto cuesta la siguiente mejora del item en la mano. Shift + clic: mejorar.
-    El datapack (astral:mejora/...) revisa el item y los materiales; aca solo se cobra la plata si salio bien."""
-    run = "execute as <trigger.name> at <trigger.name> run function astral:mejora/"
-    sk = [f"command{{c=\"{run}ver\"}} @self ~onInteract"]
-    for L, (plata, _, _) in MEJORAS.items():
-        n = f"?~score{{o=astralmejn;v={L}}}"
-        sk += [f"message{{m=\"&7Shift + clic para mejorar a &e+{L}&7.\"}} @trigger ~onInteract ?~!crouching {n}",
-               f"message{{m=\"&cTe faltan &e{plata}$&c para la mejora a +{L} &7(mira tu plata con /balance)\"}} @trigger ~onInteract ?~crouching {n} ?~!hascurrency{{a={plata}}}",
-               f"command{{c=\"{run}hacer\"}} @self ~onInteract ?~crouching {n} ?~hascurrency{{a={plata}}}",
-               f"currencytake{{a={plata}}} @trigger ~onInteract ?~score{{o=astralmejok;v={L}}}"]
-    return sk
+    """La interfaz conserva el objeto y usa las mismas reglas del datapack."""
+    return ['command{c="astralherrero <trigger.name>"} @self ~onInteract']
 
 
 def _bazar():
@@ -290,11 +281,11 @@ NPCS = {
                                 ['command{c="execute in minecraft:lobby run minecraft:tp <trigger.name> 180.5 100 288.5"} @self ~onInteract']),
     "astral_npc_bazar": ("&6&lBazar &7(mercado y subastas)", "CARTOGRAPHER", _bazar()),
     "astral_npc_subastas": ("&e&lSubastas &7(/ah)", "ARMORER", ["command{c=\"sudo <trigger.name> ah\"} @self ~onInteract"]),
-    "astral_npc_herrero": ("&6&lHerrero &7(clic: costo - shift+clic: mejorar)", "WEAPONSMITH", _herrero()),
+    "astral_npc_herrero": ("&6&lHerrero &7- mejorar equipo", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
                           ["command{c=\"sudo <trigger.name> shop\"} @self ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
-                         ["command{c=\"sudo <trigger.name> sellgui\"} @self ~onInteract"]),
+                         ["command{c=\"astralventa <trigger.name>\"} @self ~onInteract"]),
     "astral_npc_gacha_rpg": ("&5&lGacha de Armas", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
     "astral_npc_gacha_monturas": ("&a&lGacha de Monturas", "SHEPHERD",
                                   _gacha("gacha_monturas", 2500)),
