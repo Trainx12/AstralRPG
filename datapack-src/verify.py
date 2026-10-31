@@ -74,7 +74,6 @@ def main():
                 assert path+".mcmeta" not in pack.namelist(),path
         print(f"HUD: {len(hud())} PNG RGBA con rutas y dimensiones del cliente OK")
         from reference_style import item_sprites
-        from vanilla_armor_style import equipment
         with zipfile.ZipFile(args.client_jar) as vanilla, zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as pack:
             names = set(pack.namelist())
             hud_root = 'assets/minecraft/textures/gui/sprites/hud/'
@@ -88,9 +87,7 @@ def main():
                 actual = Image.open(io.BytesIO(pack.read(path)))
                 assert actual.size == (16, 16) and actual.mode == 'RGBA', path
                 assert actual.getpixel((0, 0))[3] == 0, (path, 'fondo de la referencia sin quitar')
-            for path in equipment():
-                actual = Image.open(io.BytesIO(pack.read(path)))
-                assert actual.size == (64, 32) and actual.mode == 'RGBA', path
+            assert not any(path.startswith('assets/minecraft/textures/entity/equipment/') for path in names)
             assert not any(path.startswith('assets/minecraft/textures/block/') for path in names)
             default_font = json.loads(pack.read('assets/minecraft/font/default.json'))
             for provider in default_font['providers']:
@@ -110,7 +107,7 @@ def main():
             for part in ('helmet', 'chestplate', 'leggings', 'boots'):
                 leather = json.loads(pack.read(f'assets/minecraft/items/leather_{part}.json'))['model']
                 assert 'tints' not in leather['on_false']
-        print('Estilo: 54 iconos, 16 capas de armadura; barras vanilla y bloques sin sustituir OK')
+        print('Estilo: 54 iconos; armaduras puestas y barras vanilla; bloques sin sustituir OK')
         print('Menu: fuentes bitmap, espaciado, traducciones y guia del servidor conservada OK')
 
 

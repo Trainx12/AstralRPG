@@ -205,9 +205,8 @@ for name, sprite in item_sprites().items():
             'type': 'minecraft:condition', 'property': 'minecraft:has_component', 'component': 'minecraft:dyed_color',
             'on_true': {'type': 'minecraft:model', 'model': dyed, 'tints': [{'type': 'minecraft:dye', 'default': -6265536}]},
             'on_false': {'type': 'minecraft:model', 'model': plain}}})
-from vanilla_armor_style import equipment
-for path, sprite in equipment().items():
-    files[path] = _png(sprite)
+# Las armaduras puestas heredan todas las texturas y la geometria vanilla.
+# Los iconos de inventario de la referencia se conservan por separado.
 from escape_menu import assets as escape_assets
 files.update(escape_assets())
 

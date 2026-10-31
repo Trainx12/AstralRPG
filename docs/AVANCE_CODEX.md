@@ -5,7 +5,9 @@
 El nuevo menu ilustrado, los iconos y el HUD de referencia ya estan publicados e instalados.
 Ver [TEXTURE_PACK_ESTILO.md](TEXTURE_PACK_ESTILO.md) para fuentes, vistas previas y comprobaciones.
 El HUD morado descrito mas abajo es historico y fue reemplazado: la barra inferior ahora es vanilla.
-SHA1 vigente: `52ae8e58d3105d6d68009911eeeccdb64b1c8d47`.
+SHA1 vigente: `ec588988d1a4cf736e7aee2c5de70270b98217e8`.
+Correccion posterior: ventanas de ladrillo oscuro, armaduras puestas vanilla, guia con tinta oscura
+y recorte solo de la punta del bambu sobre Opciones. El HUD aprobado no cambia.
 
 ## Correccion del Cronista (31/10/2026)
 

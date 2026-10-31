@@ -77,6 +77,9 @@ def wide_button(caption, footer=False, english=False):
     for box in ((40, 590, 249, 632), (331, 590, 1025, 632), (1201, 590, 1230, 632)):
         clean.rectangle(box, fill=(0, 0, 0, 0))
     top = source.crop((40, 590, 1230, 800)).resize((220, 40), Image.Resampling.NEAREST)
+    # Recorte pedido: solo la punta del bambu que invade Opciones.
+    # El personaje y el lado de Denunciar jugador quedan como estaban.
+    ImageDraw.Draw(top).rectangle((35, 0, 56, 12), fill=(0, 0, 0, 0))
     panel = source.crop((15, 790, 1250, 1225)).resize((220, 50), Image.Resampling.NEAREST)
     out.alpha_composite(top, (0, 0))
     out.alpha_composite(panel, (0, 40))
@@ -140,4 +143,7 @@ def preview(path):
     canvas.alpha_composite(wide_button('DESCONECTARSE', True), (55, 114))
     text(canvas, 'MENU DE PAUSA / ASTRALRPG', (165, 245))
     text(canvas, 'VISTA DE TEXTURAS - NO CAPTURA', (165, 262))
-    canvas.resize((990, 900), Image.Resampling.NEAREST).convert('RGB').save(path)
+    target = Path(path)
+    temporary = target.with_suffix('.png.tmp')
+    temporary.write_bytes(png(canvas.resize((990, 900), Image.Resampling.NEAREST).convert('RGB')))
+    temporary.replace(target)

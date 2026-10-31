@@ -146,7 +146,6 @@ if __name__ == '__main__':
     import argparse
     import io
     import zipfile
-    from vanilla_armor_style import preview3d as armor_preview
     parser = argparse.ArgumentParser()
     parser.add_argument('--client-jar', required=True)
     args = parser.parse_args()
@@ -155,6 +154,5 @@ if __name__ == '__main__':
                    for name, filename in [('hotbar', 'hotbar.png'), ('selection', 'hotbar_selection.png')]}
     output = HERE.parent / 'build'
     preview(output / 'HUD-preview.png', vanilla)
-    armor_preview(output / 'Armor-vanilla-preview.png')
     menu_preview(output / 'Menu-style-preview.png')
     items_preview(output / 'Items-reference-preview.png')

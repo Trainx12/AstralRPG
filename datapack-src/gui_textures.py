@@ -97,15 +97,31 @@ def mezcla(a, b, t):
     return tuple(int(a[k] + (b[k] - a[k]) * t) for k in range(3))
 
 
-def gris_a_color(v):
+def gris_a_color(v, piedra=PIEDRA, oro_claro=ORO_CLARO):
     """Grises que no son los de la paleta base: escala de marron oscuro a dorado claro."""
     t = v / 255
     if t < 0.5:
-        return mezcla(CONTORNO, PIEDRA, t * 2)
-    return mezcla(PIEDRA, ORO_CLARO, (t - 0.5) * 2)
+        return mezcla(CONTORNO, piedra, t * 2)
+    return mezcla(piedra, oro_claro, (t - 0.5) * 2)
 
 
-def recolor(im):
+def ladrillo_oscuro(x, y):
+    fila = y // 4
+    dx = x + (4 if fila % 2 else 0)
+    if y % 4 == 3 or dx % 8 == 7:
+        base = (63, 57, 47)
+    else:
+        v = random.Random((dx // 8) * 7919 + fila * 104729).randint(-8, 8)
+        base = tuple(max(0, min(255, c + v)) for c in (94, 87, 76))
+    n = random.Random(x * 31337 + y * 7331).randint(-4, 4)
+    return tuple(max(0, min(255, c + n)) for c in base)
+
+
+def recolor(im, dark_container=False):
+    oro, brillo, bronce, hueco, sombra, luz, piedra = (
+        ((217, 164, 58), (240, 200, 96), (107, 74, 28), (46, 41, 34),
+         (23, 19, 14), (122, 106, 80), (94, 87, 76)) if dark_container else
+        (ORO, ORO_CLARO, BRONCE, HUECO, HUECO_SOMBRA, HUECO_LUZ, PIEDRA))
     im = im.convert("RGBA")
     w, h = im.size
     src = im.load()
@@ -129,20 +145,20 @@ def recolor(im):
                 continue
             v = r
             if v == 198:
-                c = ladrillo(x, y)
+                c = ladrillo_oscuro(x, y) if dark_container else ladrillo(x, y)
             elif v == 139:
-                c = HUECO
+                c = hueco
             elif v == 255:
                 junto_hueco = any(es(x + dx, y + dy, 139) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)))
-                c = HUECO_LUZ if junto_hueco else ORO
+                c = luz if junto_hueco else oro
             elif v == 85:
-                c = BRONCE
+                c = bronce
             elif v == 55:
-                c = HUECO_SOMBRA
+                c = sombra
             elif v == 0:
                 c = CONTORNO
             else:
-                c = gris_a_color(v)
+                c = gris_a_color(v, piedra, brillo)
             dst[x, y] = c + (a,)
     return out
 
@@ -204,7 +220,7 @@ def main():
         elif rel.endswith("tooltip/frame.png"):
             out = tooltip_marco(im)
         else:
-            out = recolor(im)
+            out = recolor(im, dark_container=rel.startswith(('container/', 'sprites/container/', 'sprites/recipe_book/')))
         dst = os.path.normpath(os.path.join(OUT, "assets", "minecraft", "textures", "gui", rel))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         save_png(out, dst)

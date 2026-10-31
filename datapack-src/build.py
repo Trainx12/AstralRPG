@@ -1419,27 +1419,49 @@ fn("forge/craft", [
 fn("forge/dispatch", [f"$function {NS}:forge/r/$(id)"])
 
 
+def guide_ink(label):
+    """Conservar colores por categoria con tinta oscura sobre el pergamino."""
+    palette = {'white': '#30241b', 'gray': '#3b3029', 'dark_gray': '#3b3029',
+               'gold': '#704100', 'yellow': '#704100', 'aqua': '#00545b',
+               'dark_aqua': '#00545b', 'light_purple': '#61206d', 'dark_purple': '#61206d',
+               'red': '#8a2020', 'dark_red': '#8a2020', 'green': '#17582b',
+               'dark_green': '#17582b', 'blue': '#253d80', 'dark_blue': '#253d80', 'black': '#161210'}
+    if isinstance(label, list):
+        return [guide_ink(part) for part in label]
+    if not isinstance(label, dict):
+        return label
+    result = dict(label)
+    color = result.get('color', 'white')
+    if color.startswith('#') and len(color) == 7:
+        result['color'] = '#' + ''.join(f'{round(int(color[i:i+2], 16) * .43):02x}' for i in (1, 3, 5))
+    else:
+        result['color'] = palette.get(color, '#30241b')
+    if 'extra' in result:
+        result['extra'] = guide_ink(result['extra'])
+    return result
+
+
 def dlg(path, title, body, actions, back=None, columns=1, width=310):
     if not actions:
         # pantalla solo de lectura: un unico boton para volver
         d = {"type": "minecraft:notice", "title": title, "body": body, "after_action": "none",
              "can_close_with_escape": True, "pause": False,
-             "action": {"label": txt("Volver", "gray"), "width": 200,
+             "action": {"label": txt("Volver", "#3b3029"), "width": 200,
                         "action": {"type": "show_dialog", "dialog": f"{NS}:{back or 'guia'}"}}}
         put(f"data/{NS}/dialog/{path}.json", d)
         return
     d = {"type": "minecraft:multi_action", "title": title, "body": body, "actions": actions,
          "columns": columns, "after_action": "none", "can_close_with_escape": True, "pause": False}
     if back:
-        d["exit_action"] = {"label": txt("Volver", "gray"), "width": 200,
+        d["exit_action"] = {"label": txt("Volver", "#3b3029"), "width": 200,
                             "action": {"type": "show_dialog", "dialog": f"{NS}:{back}"}}
     else:
-        d["exit_action"] = {"label": txt("Cerrar", "gray"), "width": 200}
+        d["exit_action"] = {"label": txt("Cerrar", "#3b3029"), "width": 200}
     put(f"data/{NS}/dialog/{path}.json", d)
 
 
 def btn(label, dialog=None, command=None, tooltip=None, width=150):
-    b = {"label": label if isinstance(label, dict) else txt(label, "white"), "width": width}
+    b = {"label": guide_ink(label if isinstance(label, dict) else txt(label, "white")), "width": width}
     if tooltip:
         b["tooltip"] = tooltip
     if dialog:
