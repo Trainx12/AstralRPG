@@ -1,6 +1,7 @@
 # Texture pack de referencia — 31/10/2026
 
-Preparado localmente. Esta version todavia no se publico en GitHub ni se instalo en Aternos.
+Publicado en GitHub e instalado en Aternos el 31/10/2026. Se comprobo el SHA1 de la descarga
+publica, se guardo el mismo valor en `resource-pack-sha1` y se reinicio el servidor.
 
 - `build/AstralRPG-Textures.zip`: pack completo para Minecraft 26.1.2.
 - `build/Menu-style-preview.png`: simulacion del menu de pausa, no captura del juego.
@@ -21,7 +22,7 @@ de Minecraft. El constructor filtra las texturas antiguas para que no vuelva la 
 No se cambian bloques ni las armas, objetos y armaduras de los tiers RPG.
 
 Los iconos de cuero sin tinte usan un modelo sin la capa y el tinte marron vanilla, para conservar
-el dibujo de la referencia dentro del juego. Los objetos tenidos conservan un icono coloreable.
+el dibujo de la referencia dentro del juego. Los objetos teñidos conservan un icono coloreable.
 Los trims se mantienen en la armadura puesta; el icono de cuero muestra el dibujo de referencia.
 
 ## Regenerar

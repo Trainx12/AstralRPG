@@ -1,5 +1,12 @@
 # Cambios locales del 30/10/2026
 
+## Texture pack publicado (31/10/2026)
+
+El nuevo menu ilustrado, los iconos y el HUD de referencia ya estan publicados e instalados.
+Ver [TEXTURE_PACK_ESTILO.md](TEXTURE_PACK_ESTILO.md) para fuentes, vistas previas y comprobaciones.
+El HUD morado descrito mas abajo es historico y fue reemplazado: la barra inferior ahora es vanilla.
+SHA1 vigente: `52ae8e58d3105d6d68009911eeeccdb64b1c8d47`.
+
 ## Correccion del Cronista (31/10/2026)
 
 Publicada en GitHub e instalada en Aternos el 31/10. La prueba con jugador detecto ademas
