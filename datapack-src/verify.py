@@ -118,6 +118,10 @@ def main():
                     namespace, relative = resource.split(':', 1)
                     assert any(relative.startswith(prefix) for prefix in directories), (path, 'textura fuera del atlas de items', resource)
                     assert f'assets/{namespace}/textures/{relative}.png' in names, resource
+                    sprite = Image.open(io.BytesIO(pack.read(f'assets/{namespace}/textures/{relative}.png')))
+                    definition = json.loads(pack.read(path.replace('/models/', '/items/')))
+                    if max(sprite.size) > 16:
+                        assert definition.get('oversized_in_gui') is True, (path, 'el atlas GUI recorta el modelo a 16 px')
             print('Cronista: texturas incluidas en el atlas real del cliente y glifos de hasta 256 px OK')
         print('Estilo: 54 iconos; armaduras puestas y barras vanilla; bloques sin sustituir OK')
         print('Menu: fuentes bitmap, espaciado, traducciones y guia del servidor conservada OK')

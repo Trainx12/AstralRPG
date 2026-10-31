@@ -154,8 +154,9 @@ def assets():
         definition = {'parent': 'minecraft:item/generated', 'gui_light': 'front', 'textures': {'layer0': tex},
                       'display': {'gui': {'scale': [image.width / 16, image.height / 16, 1]}}}
         files[f'assets/astral/models/cronista/{name}.json'] = json.dumps(definition).encode('utf-8')
-        files[f'assets/astral/items/cronista/{name}.json'] = json.dumps({'model': {
-            'type': 'minecraft:model', 'model': f'astral:cronista/{name}'}}).encode('utf-8')
+        files[f'assets/astral/items/cronista/{name}.json'] = json.dumps({
+            'oversized_in_gui': image.width > 16 or image.height > 16,
+            'model': {'type': 'minecraft:model', 'model': f'astral:cronista/{name}'}}).encode('utf-8')
 
     def tiles(name, image):
         # Cada slot dibuja su fragmento a escala 1.125. Evita el limite de

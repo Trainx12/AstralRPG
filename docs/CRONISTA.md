@@ -27,3 +27,7 @@ representa el diseno; la comprobacion final se realiza con DeluxeMenus.
 Correccion del cliente: texturas bajo `textures/item/cronista` para incorporarlas
 al atlas real de items de 26.1; fondo de hasta 256 px para la hoja de fuentes.
 El verificador comprueba ambas restricciones, ademas de la existencia del PNG.
+
+Los fragmentos de 18 px necesitan `oversized_in_gui: true` en la definicion
+del item: sin esa propiedad 26.1 recorta cada fragmento a 16 px y aparecen
+las separaciones de la cuadricula. El verificador comprueba esta propiedad.

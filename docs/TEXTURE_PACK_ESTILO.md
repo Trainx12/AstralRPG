@@ -3,7 +3,7 @@
 El Cronista incorpora ahora un panel propio azul con relojes, tarjetas de objetivo
 y botones grandes de aceptar/comprobar. Ver [CRONISTA.md](CRONISTA.md).
 El HUD y los demas assets de este documento se conservan.
-SHA1 del pack con Cronista: `1b9e6cb28cd1f4055fc5e50b7fad9aa38c4bb41f`.
+SHA1 del pack con Cronista: `329e7e0bb444762565203d307c4711588bbeec87`.
 
 Publicado en GitHub e instalado en Aternos el 31/10/2026. Se comprobo el SHA1 de la descarga
 publica, se guardo el mismo valor en `resource-pack-sha1` y se reinicio el servidor.
