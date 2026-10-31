@@ -1,5 +1,10 @@
 # Texture pack de referencia — 31/10/2026
 
+El Cronista incorpora ahora un panel propio azul con relojes, tarjetas de objetivo
+y botones grandes de aceptar/comprobar. Ver [CRONISTA.md](CRONISTA.md).
+El HUD y los demas assets de este documento se conservan.
+SHA1 del pack con Cronista: `8d696c5d43057641f162ef1803b172138c15dc8a`.
+
 Publicado en GitHub e instalado en Aternos el 31/10/2026. Se comprobo el SHA1 de la descarga
 publica, se guardo el mismo valor en `resource-pack-sha1` y se reinicio el servidor.
 

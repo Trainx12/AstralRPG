@@ -61,6 +61,7 @@ class MissionMenus(unittest.TestCase):
                     self.assertEqual(shown[45]['key'], f"pausar_{state}" if active else f"rechazar_{state}")
                     self.check_click_targets(shown, 'viajero' if active else 'gui/accept', active)
         self.assertEqual(visible(items, {"aq.state": 10})[22]['key'], "historia_fin")
+        self.assertEqual(visible(items, {"aq.state": 10})[40]['key'], "historia_terminada")
 
     def test_every_daily_has_details_accept_reject_and_claim(self):
         for did, tier, *_ in DAILIES:

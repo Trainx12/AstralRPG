@@ -5,11 +5,19 @@
 El nuevo menu ilustrado, los iconos y el HUD de referencia ya estan publicados e instalados.
 Ver [TEXTURE_PACK_ESTILO.md](TEXTURE_PACK_ESTILO.md) para fuentes, vistas previas y comprobaciones.
 El HUD morado descrito mas abajo es historico y fue reemplazado: la barra inferior ahora es vanilla.
-SHA1 vigente: `ec588988d1a4cf736e7aee2c5de70270b98217e8`.
+SHA1 vigente con el panel del Cronista: `8d696c5d43057641f162ef1803b172138c15dc8a`.
 Correccion posterior: ventanas de ladrillo oscuro, armaduras puestas vanilla, guia con tinta oscura
 y recorte solo de la punta del bambu sobre Opciones. El HUD aprobado no cambia.
 
 ## Correccion del Cronista (31/10/2026)
+
+Revision posterior: [CRONISTA.md](CRONISTA.md). La tarjeta y ACEPTAR activan
+la misma mision, ACTIVA confirma el estado y COMPROBAR conserva los requisitos
+de cobro. El panel azul y los relojes son exclusivos de estos menus. Ocho pruebas
+automatizadas cubren variantes visibles, clics, navegacion, aceptacion repetida,
+diarias cobradas y tarjetas obsoletas. Los cinco YAML, el datapack y el SHA1 se
+cargaron en Aternos. La prueba visual en Minecraft requiere un jugador conectado.
+La descripcion siguiente corresponde a la revision anterior:
 
 Publicada en GitHub e instalada en Aternos el 31/10. La prueba con jugador detecto ademas
 prioridades repetidas entre variantes del mismo slot: DeluxeMenus descartaba opciones y

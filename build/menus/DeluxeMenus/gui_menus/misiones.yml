@@ -19998,6 +19998,96 @@ items:
           input: '%objective_score_{aq.state}%'
           output: '10'
     item_model: 'astral:cronista/story_complete_26'
+  'historia_terminada_hit_38':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&6&lHISTORIA COMPLETADA'
+    lore:
+    - '&7Completaste los nueve capitulos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    item_model: 'astral:cronista/done_0'
+  'historia_terminada_hit_39':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lHISTORIA COMPLETADA'
+    lore:
+    - '&7Completaste los nueve capitulos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    item_model: 'astral:cronista/done_1'
+  'historia_terminada':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lHISTORIA COMPLETADA'
+    lore:
+    - '&7Completaste los nueve capitulos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    item_model: 'astral:cronista/done_2'
+  'historia_terminada_hit_41':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lHISTORIA COMPLETADA'
+    lore:
+    - '&7Completaste los nueve capitulos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    item_model: 'astral:cronista/done_3'
+  'historia_terminada_hit_42':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&6&lHISTORIA COMPLETADA'
+    lore:
+    - '&7Completaste los nueve capitulos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        r0:
+          type: string equals
+          input: '%objective_score_{aq.state}%'
+          output: '10'
+    item_model: 'astral:cronista/done_4'
   'premio_pendiente':
     material: CHEST
     slot: 7

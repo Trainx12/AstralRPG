@@ -274,6 +274,8 @@ def misiones_menu(current_page=0):
                              0, 'gui/reject', model='pause', **scores)
     L += card_button('historia_fin', '&6&lHistoria completada', ['&7El Santuario Celestial te espera.'],
                      0, 'story_complete', state=10)
+    L += primary('historia_terminada', '&6&lHISTORIA COMPLETADA', ['&7Completaste los nueve capitulos.'],
+                 0, model='done', state=10)
     L += button('premio_pendiente', 'CHEST', 7, '&6Premio de armadura', ['&7Se desbloquea al cobrar el capitulo 2.'],
                  0, 'gui/page/4', model='reward')
 
