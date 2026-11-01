@@ -47,13 +47,25 @@ def bazar_regions():
             ('subastas',range(0,4),range(3,5)),('ordenes',range(5,9),range(3,5))]
 
 
+# Casillas de arriba que de verdad usa cada menu. Las demas se dejan lisas
+# para que el menu se lea mas limpio (los recuadros grandes tienen su hueco).
+USED = {
+    'bazar': {4, 8, 53},                                             # saldo, ayuda, volver
+    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 53},
+    'venta': {8, 20, 24, *range(28, 35), 41, 42, 43, 44, 45, 53},
+}
+
+
 def panel(kind):
     out=frame(kind);d=ImageDraw.Draw(out);ox,oy=OFFSET
     fill,edge=THEMES[kind][4:]
+    used=USED.get(kind)
     d.rectangle((ox,oy+16,ox+175,oy+218),fill=fill)
     def box(rect,**kw):d.rectangle(tuple(v+(ox if i%2==0 else oy) for i,v in enumerate(rect)),**kw)
+    def shown(slot):return used is None or slot in used
     for row in range(6):
         for col in range(9):
+            if not shown(row*9+col):continue
             x,y=7+col*18,17+row*18
             box((x,y,x+17,y+17),fill=fill,outline=edge)
     box((7,128,168,137),fill='#bab7aa')
@@ -66,6 +78,7 @@ def panel(kind):
     def hole(rect):box(rect,fill=(0,0,0,0))
     for row in range(6):
         for col in range(9):
+            if not shown(row*9+col):continue
             x,y=8+col*18,18+row*18;hole((x,y,x+15,y+15))
     for row in range(3):
         for col in range(9):
@@ -76,29 +89,40 @@ def panel(kind):
         for _,cols,rows in bazar_regions():
             hole((7+min(cols)*18,17+min(rows)*18,6+(max(cols)+1)*18,16+(max(rows)+1)*18))
     elif kind=='herrero':
-        box((24,35,79,88),fill='#1d1e20',outline='#aa7947')
-        box((42,52,61,71),fill='#090d11',outline='#67c7d2')
+        # Dos recuadros que terminan justo arriba de la barra de estado (y 71).
+        box((24,34,77,70),fill='#1d1e20',outline='#aa7947')
+        box((42,52,61,70),fill='#090d11',outline='#67c7d2')
         hole((44,54,59,69)) # slot 20: objeto REAL depositado
-        text(out,'EQUIPO',(ox+52,oy+39),color='#eac58a')
-        text(out,'MATERIALES',(ox+124,oy+39),color='#eac58a')
+        text(out,'EQUIPO',(ox+51,oy+38),color='#eac58a')
+        box((96,34,169,70),fill='#1d1e20',outline='#aa7947')
+        for slot in (23,24,25,26):  # materiales y costo
+            x,y=7+(slot%9)*18,17+(slot//9)*18
+            box((x,y,x+17,y+17),fill=fill,outline=edge);hole((x+1,y+1,x+16,y+16))
+        text(out,'MATERIALES',(ox+132,oy+38),color='#eac58a')
         hole((25,71,150,88)) # estado / nivel / dinero / probabilidad
         hole((61,89,114,106)) # MEJORAR
-    elif kind in ('compra','venta_tienda','venta'):
+    elif kind=='venta':
+        box((24,34,77,70),fill='#1d1e20',outline='#a8a6a0')
+        box((42,52,61,70),fill='#11151b',outline='#7fd39a')
+        hole((44,54,59,69)) # slot 20: precio de venta
+        text(out,'VALOR',(ox+51,oy+38),color='#e1d7bd')
+        box((96,34,151,70),fill='#841a24',outline='#b96d65')
+        box((114,52,133,70),fill='#11151b',outline='#d6d3c7')
+        hole((116,54,131,69)) # slot 24: objeto a vender
+        text(out,'OBJETO',(ox+124,oy+38),color='#f3dcc8')
+        hole((25,71,150,88))
+        hole((97,89,168,106))
+    elif kind in ('compra','venta_tienda'):
         box((99,32,150,86),fill='#841a24',outline='#b96d65')
         box((113,51,134,72),fill='#11151b',outline='#d6d3c7')
         hole((116,54,131,69)) # objeto seleccionado (slot 24)
-        if kind=='venta':
-            hole((25,71,150,88))
-            hole((97,89,168,106))
-            text(out,'VALOR',(ox+52,oy+39),color='#e1d7bd')
-        else:
-            for slot,label in [(9,'-1'),(18,'-16'),(27,'-32'),(12,'+1'),(21,'+16'),(30,'+32')]:
-                x,y=7+(slot%9)*18,17+(slot//9)*18
-                color='#6f2931' if label.startswith('-') else '#28683c'
-                box((x,y,x+35,y+17),fill=color,outline='#b7b9b6')
-                text(out,label,(ox+x+18,oy+y+5),color='#ffffff')
-            b=button('COMPRAR' if kind=='compra' else 'VENDER',72,'#34692e' if kind=='compra' else '#8b2832')
-            out.alpha_composite(b,(ox+97,oy+89))
+        for slot,label in [(9,'-1'),(18,'-16'),(27,'-32'),(12,'+1'),(21,'+16'),(30,'+32')]:
+            x,y=7+(slot%9)*18,17+(slot//9)*18
+            color='#6f2931' if label.startswith('-') else '#28683c'
+            box((x,y,x+35,y+17),fill=color,outline='#b7b9b6')
+            text(out,label,(ox+x+18,oy+y+5),color='#ffffff')
+        b=button('COMPRAR' if kind=='compra' else 'VENDER',72,'#34692e' if kind=='compra' else '#8b2832')
+        out.alpha_composite(b,(ox+97,oy+89))
     return out
 
 

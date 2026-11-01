@@ -195,7 +195,7 @@ function asg_refresh(p: player):
     set {_cost} to asg_cost({_n})
     set {_coins} to gold nugget named "&6Costo: %{_cost}%$"
     set lore of {_coins} to "&7Tu saldo: &e%balance of {_p}%$" and "&7El dinero se cobra solo si la mejora tiene exito."
-    set slot 16 of {_inv} to {_coins}
+    set slot 26 of {_inv} to {_coins}
 __MATERIALS__
     set {_model} to "blocked"
     set {_label} to "&cFaltan materiales o dinero"

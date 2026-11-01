@@ -198,11 +198,15 @@ def assets():
 
     for name, chars, reward in [('background', ('\ue431', '\ue435'), False), ('rewards', ('\ue433', '\ue436'), True)]:
         for part, ((im, ascent), char) in enumerate(zip(glyph_parts(panel(reward)), chars)):
+            # Minecraft mide el avance de un glifo hasta su ultima columna con
+            # pixeles visibles. Un punto casi invisible en la ultima columna
+            # fija el avance en 209 para las dos partes y no se corren.
+            im.putpixel((im.width - 1, 0), (0, 0, 0, 1))
             files[f'assets/astral/textures/font/cronista/{name}_{part}.png'] = png(im)
             providers.append({'type': 'bitmap', 'file': f'astral:font/cronista/{name}_{part}.png',
                               'height': im.height, 'ascent': ascent, 'chars': [char]})
-    # Cada glifo avanza 209 px (ancho + 1). \ue430 lleva al borde del marco,
-    # \ue434 vuelve para dibujar la segunda parte en el mismo lugar.
+    # \ue430 lleva al borde del marco, \ue434 vuelve 209 para dibujar la
+    # segunda parte en el mismo lugar y \ue432 deja el cursor donde estaba.
     providers.append({'type': 'space', 'advances': {'\ue430': -24, '\ue434': -209, '\ue432': -185}})
     for name, caption, color in [('accept', 'ACEPTAR MISION', '#166456'), ('claim', 'COMPROBAR', '#18577b'),
                                   ('done', 'YA COBRADA', '#344658'), ('waiting', 'SIN DATOS', '#344658')]:
