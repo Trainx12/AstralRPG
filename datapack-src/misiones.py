@@ -11,14 +11,14 @@ ROOT = Path(__file__).resolve().parent.parent
 NS = "astral"
 CHAPTERS = [
     "Llegar al Refugio: habla con el Herrero y forja una pieza de tier I.",
-    "Los campos: mata 10 Espantapajaros, 10 Abejorros y 1 elite; entrega 3 Esencias al Viajero.",
-    "La marea: derrota al Cangrejo en las playas y volve con el Viajero.",
+    "Los campos: mata 10 Espantapajaros, 10 Abejorros y 1 elite; entrega 3 Esencias al Cronista.",
+    "La marea: derrota al Cangrejo en las playas y volve con el Cronista.",
     "El bosque: mata 15 Caras Voladoras y derrota al Chaman.",
     "Arena con memoria: derrota a la Momia.",
     "Minas Olvidadas: completa las cuatro salas.",
     "El silencio blanco: derrota al Yeti.",
     "El corazon de la forja: forja una pieza tier V y derrota al Golem de Forja.",
-    "Encender la estrella: habla con el Viajero para reunir los fragmentos.",
+    "Encender la estrella: habla con el Cronista para reunir los fragmentos.",
 ]
 # id, dificultad, nombre, objetivo, meta, descripcion
 DAILIES = [
@@ -173,7 +173,7 @@ def generate(files, items):
                      f"execute if score @s aq.accepted matches 1 if score @s aq.state matches {state} if score @s aq.f{flag} matches 0 run " + call(f"fragment/{flag}")])
         fn(f"fragment/{flag}", [f"scoreboard players set @s aq.f{flag} 1",
                                f"loot give @s loot astral:item/{item}",
-                               msg("Una parte de la estrella te reconoce. Volve con el Viajero.", "aqua")])
+                               msg("Una parte de la estrella te reconoce. Volve con el Cronista.", "aqua")])
 
     # Solo cuenta mobs (nunca jugadores). Se revoca para volver a dispararse.
     files["data/astral/advancement/quest/pet.json"] = json.dumps({
@@ -182,7 +182,7 @@ def generate(files, items):
              "predicate": {"type": "minecraft:player"}}}]}}}, "rewards": {"function": "astral:quest/pet_kill"}})
     fn("pet_kill", ["advancement revoke @s only astral:quest/pet", call("event/pet")])
 
-    # Click normal conversa; agacharse conserva el viaje al mundo.
+    # La historia se acepta y se cobra en el menu del Cronista.
     fn('gui/accepted', [
         'title @s times 5 45 10',
         'title @s subtitle {"text":"Completa el objetivo y usa COMPROBAR","color":"white"}',
@@ -208,7 +208,7 @@ def generate(files, items):
         "execute unless score @s aq.accepted matches 1 run return run " + msg("Primero acepta la mision con el boton verde de /misiones.", "yellow")]
        + [f"execute if score @s aq.state matches {i} run return run " + call(f"chapter/{i}") for i in range(1, 10)]
        + [msg("La estrella vuelve a brillar. El Santuario Celestial guarda sus ecos Ancestrales.", "gold")])
-    fn("start", ["scoreboard players set @s aq.state 1", msg("Viajero: la Estrella Astral se partio. Sus fragmentos corrompieron a las criaturas.", "aqua"),
+    fn("start", ["scoreboard players set @s aq.state 1", msg("Cronista: la Estrella Astral se partio. Sus fragmentos corrompieron a las criaturas.", "aqua"),
                  msg("El Refugio es lo que quedo del cielo. Habla con el Herrero, forja tu primer equipo y volve.")])
     fn("herrero", [call("sync"), "execute if score @s aq.accepted matches 1 if score @s aq.state matches 1 run scoreboard players set @s aq.herrero 1",
                     "execute if score @s aq.state matches 1 run " + msg("Herrero: acercate a una mesa de herreria y forja equipo de tier I desde la Guia AstralRPG.", "gold"),
@@ -240,7 +240,7 @@ def generate(files, items):
         if boss == "chaman": cond += " if score @s aq.face matches 15.."
         if boss == "golem_forja": cond += " if score @s aq.forge5 matches 1"
         fn(f"chapter/{state}", [f"execute {cond} run return run " + call(f"complete/{state}"), msg(CHAPTERS[state - 1])])
-    fn("chapter/9", [msg("Viajero: guarde el eco de cada fragmento que trajiste. Juntos vuelven a encender la estrella.", "aqua"), call("complete/9")])
+    fn("chapter/9", [msg("Cronista: guarde el eco de cada fragmento que trajiste. Juntos vuelven a encender la estrella.", "aqua"), call("complete/9")])
     # Los recuerdos no se consumen: no son llaves transferibles, ni ingredientes.
     # Evitar premiar tier I mas de una vez, aun repitiendo el trigger.
     choice = ["execute unless entity @s[tag=aq.choice] run return run scoreboard players set @s aq.reward 0"]
@@ -333,7 +333,7 @@ def generate(files, items):
             f"scoreboard players set @s aq.reward {n}", call("choice")])
     journal = ["scoreboard players set @s aq.journal 0", call("sync")]
     journal += [f"execute if score @s aq.state matches {i} run " + msg(text, "gold") for i,text in enumerate(CHAPTERS,1)]
-    journal += ["execute if score @s aq.state matches 0 run " + msg("Habla con el Viajero para empezar la historia.", "gold"),
+    journal += ["execute if score @s aq.state matches 0 run " + msg("Habla con el Cronista para empezar la historia.", "gold"),
                 "execute if score @s aq.state matches 10.. run " + msg("Historia completada. El Santuario Celestial te espera.", "gold")]
     for did,tier,name,counter,goal,desc in DAILIES:
         journal.append(f"execute if score @s aq.d{tier} matches {did} run " + msg(name + ": " + desc, "aqua"))
@@ -367,8 +367,10 @@ def write_bridge():
     skills = []
     for npc in ("viajero", "herrero", "cronista", "tienda", "bazar"):
         target = npc if npc in ("viajero", "herrero", "cronista") else "deliver/" + npc
-        if npc in ("viajero", "cronista"):
-            page = 0 if npc == "viajero" else 1
+        if npc == "viajero":
+            actions = [cmd("mvtp <target.name> w:world")]
+        elif npc == "cronista":
+            page = 1
             menu_id = "misiones" if page == 0 else f"misiones_{page}"
             actions = [cmd(f"execute as <target.name> at @s run function astral:quest/gui/page/{page}"), cmd(f"dm open {menu_id} <target.name>")]
         else:
@@ -409,7 +411,7 @@ def write_bridge():
         "# Tiene que ser un numero positivo (dias reales desde 1970, en UTC-3).",
         "# Los NPC existentes necesitan las configs de astral.yml actualizadas.",
         "# Si el cambio de skills no aparece en NPC persistentes, volver a crearlos de uno en uno.",
-        "# El Viajero: clic = historia; shift+clic = mundo. El Herrero conserva las mejoras.",
+        "# El Viajero solo lleva al mundo. La historia se gestiona en el Cronista.",
         "# El dinero pendiente queda en aqmoney hasta que el Cronista lo paga con Essentials.",
         "# Revisar que EssentialsX, Vault, LuckPerms y CrazyCrates esten activos ANTES de habilitar misiones.",
     ]) + "\n", encoding="utf-8")

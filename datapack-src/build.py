@@ -1387,6 +1387,10 @@ for idx, (out, n, ings, group) in enumerate(RECIPES, start=1):
     for _ in range(n):
         lines.append(f"loot give @s loot {NS}:item/{out}")
     it = ITEMS[out]
+    # La guia fabrica desde el inventario; debe notificar igual que el altar.
+    for _tier in (1, 5):
+        if f'tier:{_tier},' in it['components']['minecraft:custom_data'] or f'tier:{_tier}}}' in it['components']['minecraft:custom_data'] or out == f'baston_{_tier}':
+            lines.append(f"function {NS}:quest/event/forge{_tier}")
     lines += [
         "playsound minecraft:block.smithing_table.use player @s ~ ~ ~ 1 1",
         "playsound minecraft:block.enchantment_table.use player @s ~ ~ ~ 0.8 1.4",

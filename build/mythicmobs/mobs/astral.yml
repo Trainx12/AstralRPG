@@ -1380,9 +1380,7 @@ astral_npc_viajero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=AQ_VIAJERO} @trigger ~onInteract ?~!crouching'
-  - 'message{m="&7Shift + clic para ir al mundo."} @trigger ~onInteract ?~!crouching'
-  - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract ?~crouching'
+  - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract'
 
 astral_npc_cronista:
   Type: VILLAGER

@@ -56,6 +56,14 @@ debe hacerse también con Skript cargado y dentro de Minecraft.
 - El manejador de clics actúa solo en la interfaz activa del servicio. Al
   cerrarla se devuelve el objeto y se limpia la sesión, sin bloquear Bazar.
 - Los destinos del Bazar se abren un tick después de cerrar DeluxeMenus,
-  fuera del evento de clic del inventario anterior.
+  fuera del evento de clic del inventario anterior. La etiqueta `<delay=1>`
+  va pegada al comando: un espacio anterior se conserva en el comando real y
+  Minecraft lo rechaza como argumento vacío.
 - `verify.py` comprueba también las texturas del atlas de servicios, los
   glifos, su avance horizontal neto cero y la inclusión del backend de mejora.
+
+El Viajero lleva directamente al mundo con clic normal. La historia y sus
+entregas se gestionan desde el Cronista. La fabricación desde la guía notifica
+los eventos de tier I y V después de entregar el objeto, igual que el altar;
+una receta sin materiales no registra progreso. `test_forge_story.py` comprueba
+estos enlaces en el datapack generado y la interacción del Viajero.

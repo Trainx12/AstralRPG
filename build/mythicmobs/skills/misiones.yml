@@ -1,8 +1,7 @@
 # Generado por misiones.py
 AQ_VIAJERO:
   Skills:
-  - 'command{c="execute as <target.name> at @s run function astral:quest/gui/page/0"}'
-  - 'command{c="dm open misiones <target.name>"}'
+  - 'command{c="mvtp <target.name> w:world"}'
 
 AQ_HERRERO:
   Skills:
