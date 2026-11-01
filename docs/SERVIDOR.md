@@ -140,7 +140,7 @@ Tienen que estar antes de generar un mundo nuevo, si no, no aparecen sus estruct
 
 ## Resource pack
 
-- Se sirve desde una URL fija al commit, no desde `main`. Version actual: `https://raw.githubusercontent.com/Trainx12/AstralRPG/6b2b9e6ecadad9666cfa2487febd82e1460c0363/build/AstralRPG-Textures.zip`; SHA-1 `5f6a434583d2dba6cd021c3938d510c855a3245a`.
+- Se sirve desde una URL fija al commit, no desde `main`. Version actual: `https://raw.githubusercontent.com/Trainx12/AstralRPG/6be411a627286adfce385944f0036269d50a29f4/build/AstralRPG-Textures.zip`; SHA-1 `e3a2f5e5b1ea97af4bc0c89be0386f09731a77a3`.
 - Es obligatorio (`require-resource-pack=true`).
 - Incluye las texturas originales del dueño (`assets/astral`, `assets/armasrpg`), las armaduras de Mago, Berserker y Arquero, las texturas CC0 (créditos en `datapack-src/pack-source/cc0/CREDITOS.txt`), los taladros y motosierras, y los modelos de BetterModel.
 - Después de cambiarlo: commit y push, comprobar la descarga desde el commit nuevo, actualizar URL y SHA-1 en `server.properties` y reiniciar.
