@@ -149,8 +149,8 @@ AstralRPG/
 ### Resource pack
 Cada vez que cambia `build/AstralRPG-Textures.zip`:
 1. Commit y push.
-2. Esperar a que `https://raw.githubusercontent.com/Trainx12/AstralRPG/main/build/AstralRPG-Textures.zip` devuelva el archivo nuevo (puede tardar unos minutos).
-3. Poner el sha1 nuevo en `server.properties` → `resource-pack-sha1` (en Aternos: Files → server.properties → Resource pack SHA-1).
+2. Usar una URL fija al commit publicado: `https://raw.githubusercontent.com/Trainx12/AstralRPG/<SHA-completo-del-commit>/build/AstralRPG-Textures.zip`. Descargarla y comprobar su SHA-1.
+3. Guardar esa URL en `server.properties` → `resource-pack` y su hash en `resource-pack-sha1`. Guardar ambos campos en Aternos. No usar `main`: cambiarlo mientras un servidor sigue con el hash anterior puede romper las descargas.
 4. Reiniciar.
 
 ---
