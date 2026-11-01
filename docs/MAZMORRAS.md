@@ -36,6 +36,15 @@ El Santuario se abre despues del titulo Portador de la Estrella; no bloquea el e
 
 ## Ajuste de la sala final de Tumba (01/11/2026)
 
+**Instalado en Aternos el 01/11/2026**, desde el commit `ef0ec9c`:
+reemplazados `mobs/tumba.yml` y `skills/tumba.yml`, creado `ad.party` y recargado
+MythicMobs (115 mobs y 358 skills; sin errores nuevos, solo los tres avisos de
+dialogos de ejemplo). Se retiro un controlador viejo por sala y se creo uno nuevo
+en cada ubicacion; posiciones comprobadas por consola. Se retiraron las seis cargas
+temporales de chunks. WorldGuard confirma `build: DENY` en Tumba. No se modifico
+el mapa ni el modo de juego del jugador. Pendiente prueba de combate con dos tier III.
+Comprobante privado: `.local/deploy-ui/tumba-instalada.jpg`.
+
 Sala1: llegada `-148.426 62 -97.473`, controlador `-148.5 60 -98.5`, radio 28.
 Seleccion WorldEdit `(-128,63,-112)..(-168,58,-86)` (6642 bloques).
 Los puntos de aparicion usan piso y tres bloques libres del recorte local, dentro de
