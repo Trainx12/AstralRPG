@@ -197,6 +197,8 @@ def dq(s):
 def crate_yml(gid, g, garantia=False):
     """Caja de CrazyCrates tipo CSGO: la ruleta gira en un inventario y frena en el premio.
     garantia=True: misma caja pero solo con Epicos y Legendarios (la tirada garantizada del pity)."""
+    from gacha_ui import title as spin_title, SOUNDS
+    cycle_sound, stop_sound = SOUNDS[gid]
     rewards = g["rewards"]()
     if garantia:
         rewards = [r for r in rewards if r[0] in PITY_RARITIES]
@@ -210,14 +212,14 @@ def crate_yml(gid, g, garantia=False):
          "  InGUI: false", "  Slot: 0", "  OpeningBroadCast: false", "  BroadCast: " + dq(""),
          "  opening-command:", "    toggle: false", "    commands: []",
          "  sound:",
-         "    cycle-sound:", "      toggle: true", "      value: " + dq("block.note_block.pling"), "      volume: 0.6", "      pitch: 1.4",
+         "    cycle-sound:", "      toggle: true", "      value: " + dq(cycle_sound), "      volume: 0.6", "      pitch: 1.4",
          "    click-sound:", "      toggle: true", "      value: " + dq("ui.button.click"), "      volume: 1.0", "      pitch: 1.0",
-         "    stop-sound:", "      toggle: true", "      value: " + dq("ui.toast.challenge_complete"), "      volume: 1.0", "      pitch: 1.0",
+         "    stop-sound:", "      toggle: true", "      value: " + dq(stop_sound), "      volume: 1.0", "      pitch: 1.0",
          "  Prize-Message:", "    - " + dq("<gray>Ganaste <white>%reward% <gray>en la " + GACHA_MINI[gid] + "<gray>!"),
          "  Prize-Commands: []",
          "  Settings:", "    Tracking-Crate-Opening: false", "    Knock-Back: false", "    Disabled-Worlds: []",
-         "    Border:", "      Glass-Border:", "        Toggle: true", "        Air: true",
-         "    CSGO:", "      Finished-Material: " + dq(frame), "      Cycle-Material: " + dq(frame),
+         "    Border:", "      Glass-Border:", "        Toggle: false", "        Air: true",
+         "    CSGO:", "      Finished-Material: " + dq("air"), "      Cycle-Material: " + dq("air"),
          "    Broadcast:", "      Toggle: false", "      Messages: []", "      Permission: " + dq(""),
          "    Rewards:", "      Re-Roll-Spin: false", "      Permission:", "        Toggle: false", "        Persist: false",
          "        Max-Cap: 20",
@@ -227,10 +229,9 @@ def crate_yml(gid, g, garantia=False):
          "  Preview:", "    Name: " + dq(GACHA_MINI[gid] + "<reset><gray> - premios"), "    Toggle: true", "    Rows: 6",
          "    Glass:", "      Toggle: true", "      Name: " + dq(" "), "      Item: " + dq(glass), "      Custom-Model-Data: -1",
          "      Model:", "        Namespace: " + dq(""), "        Id: " + dq(""),
-         "  Animation:", "    Name: " + dq(GACHA_MINI[gid] + "<reset><gray> - girando..."),
-         "    Glass-Frame:", "      Toggle: true", "      Items:",
-         "        \"1\":", "          name: " + dq(" "), "          lore: []", "          material: " + dq(glass), "          amount: 1",
-         "      Random:", "        Toggle: true", "        Items: {}",
+         "  Animation:", "    Name: " + dq(spin_title(gid)),
+         "    Glass-Frame:", "      Toggle: false", "      Items: {}",
+         "      Random:", "        Toggle: false", "        Items: {}",
          "  PhysicalKey:", "    Name: " + dq(GACHA_MINI[gid] + " - llave"), "    Lore: []", "    Item: " + dq("tripwire_hook"),
          "    Custom-Model-Data: -1", "    Model:", "      Namespace: " + dq(""), "      Id: " + dq(""),
          "    Glowing: " + dq("add_glow"), "    flags:", "      components: []",

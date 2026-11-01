@@ -14,7 +14,7 @@ Crate:
   sound:
     cycle-sound:
       toggle: true
-      value: "block.note_block.pling"
+      value: "block.note_block.banjo"
       volume: 0.6
       pitch: 1.4
     click-sound:
@@ -24,7 +24,7 @@ Crate:
       pitch: 1.0
     stop-sound:
       toggle: true
-      value: "ui.toast.challenge_complete"
+      value: "entity.experience_orb.pickup"
       volume: 1.0
       pitch: 1.0
   Prize-Message:
@@ -36,11 +36,11 @@ Crate:
     Disabled-Worlds: []
     Border:
       Glass-Border:
-        Toggle: true
+        Toggle: false
         Air: true
     CSGO:
-      Finished-Material: "saddle"
-      Cycle-Material: "saddle"
+      Finished-Material: "air"
+      Cycle-Material: "air"
     Broadcast:
       Toggle: false
       Messages: []
@@ -75,17 +75,12 @@ Crate:
         Namespace: ""
         Id: ""
   Animation:
-    Name: "<#7ED957><bold>Gacha de Monturas<reset><gray> - girando..."
+    Name: "<reset><white>"
     Glass-Frame:
-      Toggle: true
-      Items:
-        "1":
-          name: " "
-          lore: []
-          material: "yellow_stained_glass_pane"
-          amount: 1
+      Toggle: false
+      Items: {}
       Random:
-        Toggle: true
+        Toggle: false
         Items: {}
   PhysicalKey:
     Name: "<#7ED957><bold>Gacha de Monturas - llave"

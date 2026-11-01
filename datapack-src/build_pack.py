@@ -222,6 +222,10 @@ from market_ui import assets as market_assets
 market_files, market_providers = market_assets()
 files.update(market_files)
 default_font['providers'] = market_providers + default_font['providers']
+from gacha_ui import assets as gacha_assets
+gacha_files, gacha_providers = gacha_assets()
+files.update(gacha_files)
+default_font['providers'] = gacha_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
 # pack.mcmeta y pack.png

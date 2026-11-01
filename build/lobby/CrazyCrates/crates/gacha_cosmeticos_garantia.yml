@@ -14,7 +14,7 @@ Crate:
   sound:
     cycle-sound:
       toggle: true
-      value: "block.note_block.pling"
+      value: "block.note_block.chime"
       volume: 0.6
       pitch: 1.4
     click-sound:
@@ -36,11 +36,11 @@ Crate:
     Disabled-Worlds: []
     Border:
       Glass-Border:
-        Toggle: true
+        Toggle: false
         Air: true
     CSGO:
-      Finished-Material: "name_tag"
-      Cycle-Material: "name_tag"
+      Finished-Material: "air"
+      Cycle-Material: "air"
     Broadcast:
       Toggle: false
       Messages: []
@@ -75,17 +75,12 @@ Crate:
         Namespace: ""
         Id: ""
   Animation:
-    Name: "<#FF7BD5><bold>Gacha de Cosmeticos<reset><gray> - girando..."
+    Name: "<reset><white>"
     Glass-Frame:
-      Toggle: true
-      Items:
-        "1":
-          name: " "
-          lore: []
-          material: "light_blue_stained_glass_pane"
-          amount: 1
+      Toggle: false
+      Items: {}
       Random:
-        Toggle: true
+        Toggle: false
         Items: {}
   PhysicalKey:
     Name: "<#FF7BD5><bold>Gacha de Cosmeticos - llave"

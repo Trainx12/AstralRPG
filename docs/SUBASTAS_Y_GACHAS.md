@@ -79,3 +79,35 @@ las tres gachas y Bazar reemplazados, `subastas.yml` creado y registrado en
 `MythicMobs/mobs/astral.yml` y los tres titulos cambiados en
 `CrazyAuctions/config.yml`. El servidor arranco con 15 menus y sin errores.
 Pendiente: probar con un jugador el aspecto, cobros, premios y compras reales.
+
+## Ruleta durante la tirada
+
+`datapack-src/gacha_ui.py` agrega escenarios exclusivos para el inventario
+CSGO de tres filas: Arsenal Arcano con cristales violetas, Sendas Salvajes
+con ramas y hojas, y Galeria Celeste con estrellas rosas. Reutiliza los
+marcos originales de los menus. La cinta de premios ocupa las casillas 9..17;
+las flechas del escenario senalan el premio de la casilla 13. Los vidrios
+aleatorios y los objetos de las casillas 4/22 se sustituyen por el arte del
+escenario. Cada tema tiene su propio sonido de giro y de finalizacion.
+El mismo escenario se aplica a la caja normal y a su caja de garantia.
+No cambian premios, probabilidades, comandos de entrega, precios ni pity.
+
+Generar desde `datapack-src`:
+
+```text
+python lobby.py
+python build_pack.py pack-source
+python gacha_ui.py --client-jar <26.1.2.jar>
+python -m unittest test_gacha_ui test_market_ui test_bazar
+```
+
+Vista previa: `build/Servicios-preview/gachas-ruletas.png`. Es una composicion
+local con premios de muestra; la animacion real la sigue ejecutando CrazyCrates.
+Para instalar: publicar el pack con URL fija y SHA1 segun GUIA.md, reemplazar
+las seis cajas `build/lobby/CrazyCrates/crates/gacha_*.yml` en CrazyCrates y
+ejecutar `crates reload`. Los nuevos titulos necesitan el nuevo pack antes de
+abrir una ruleta. No requiere reemplazar menus de DeluxeMenus ni reconstruir
+el lobby. Pendiente de instalar y verificar con un jugador en el servidor.
+
+Distribucion CSGO contrastada con el codigo oficial:
+https://github.com/Crazy-Crew/CrazyCrates/blob/main/paper/src/main/java/com/badbones69/crazycrates/paper/tasks/crates/types/CsgoCrate.java
