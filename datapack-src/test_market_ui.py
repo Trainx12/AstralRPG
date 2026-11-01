@@ -63,5 +63,17 @@ class MarketUI(unittest.TestCase):
         self.assertEqual(patch_config(changed),changed)
         with self.assertRaises(ValueError):patch_config('Settings: {}')
 
+    def test_catalog_titles_are_told_apart(self):
+        # CrazyAuctions elige la logica del clic con title.contains(<titulo>).
+        changed=patch_config('Settings:\n  GUIName: a\n  Players-Current-Items: b\n  Cancelled/Expired-Items: c\n')
+        titles=[line.split(': ',1)[1].strip("'") for line in changed.splitlines()[1:]]
+        for a in titles:
+            for b in titles:
+                if a is not b:self.assertNotIn(b,a)
+        spaces={}
+        for provider in self.providers:
+            if provider['type']=='space':spaces.update(provider['advances'])
+        for tag in market_ui.CATALOG_TAGS.values():self.assertEqual(spaces[tag],0)
+
 
 if __name__=='__main__':unittest.main()

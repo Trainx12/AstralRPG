@@ -30,6 +30,10 @@ def band_color(edge):
 START, END = '\ue500', '\ue501'
 GLYPHS = {k: tuple(chr(0xe510 + i*4+j) for j in range(4)) for i,k in enumerate(THEMES)}
 GLYPHS['subastas_catalogo']=tuple(chr(0xe530+j) for j in range(4))
+# CrazyAuctions reconoce cada ventana buscando su titulo con "contains": las
+# tres ventanas del catalogo llevan una marca invisible distinta (avance 0)
+# para que el mismo marco no confunda el mercado con las otras dos.
+CATALOG_TAGS = {'GUIName': '', 'Players-Current-Items': '', 'Cancelled/Expired-Items': ''}
 
 
 def title(kind):
@@ -98,7 +102,7 @@ def panel(kind, catalog=False):
 
 
 def assets():
-    files,providers={},[];advances={START:-32,END:32}
+    files,providers={},[];advances={START:-32,END:32,**{tag:0 for tag in CATALOG_TAGS.values()}}
     def model(name,im):
         base='assets/astral/'
         files[base+f'textures/item/servicios/{name}.png']=png(im)

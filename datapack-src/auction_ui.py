@@ -7,7 +7,7 @@ No lee ni escribe data.yml (publicaciones, jugadores y objetos).
 import argparse
 import re
 from pathlib import Path
-from market_ui import title
+from market_ui import title, CATALOG_TAGS
 
 ROOT=Path(__file__).resolve().parent.parent
 KEYS=('GUIName','Players-Current-Items','Cancelled/Expired-Items')
@@ -16,7 +16,7 @@ KEYS=('GUIName','Players-Current-Items','Cancelled/Expired-Items')
 def patch_config(source):
     for key in KEYS:
         source,count=re.subn(rf'(?m)^  {re.escape(key)}:.*$',
-            lambda _:f"  {key}: '{title('subastas_catalogo')}'",source)
+            lambda _:f"  {key}: '{title('subastas_catalogo')+CATALOG_TAGS[key]}'",source)
         if count!=1:raise ValueError(f'Esquema CrazyAuctions no reconocido: {key} ({count})')
     return source
 
@@ -26,7 +26,7 @@ def generate():
     parser.add_argument('--config',type=Path)
     args=parser.parse_args()
     out=ROOT/'build/menus/CrazyAuctions';out.mkdir(parents=True,exist_ok=True)
-    patch='Settings:\n'+''.join(f"  {key}: '{title('subastas_catalogo')}'\n" for key in KEYS)
+    patch='Settings:\n'+''.join(f"  {key}: '{title('subastas_catalogo')+CATALOG_TAGS[key]}'\n" for key in KEYS)
     (out/'titulos.patch.yml').write_text(patch,encoding='utf-8')
     (out/'INSTALAR.txt').write_text(
         'Este archivo es un parche: NO reemplazar config.yml por titulos.patch.yml.\n'
