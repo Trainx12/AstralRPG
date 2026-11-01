@@ -1,6 +1,6 @@
-menu_title: '&8Gacha de Armas'
+menu_title: '&f'
 open_command: astralmenu_gacha_rpg
-size: 27
+size: 54
 update_interval: 1
 items:
   'info':
@@ -20,9 +20,9 @@ items:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
     update: true
-  'x1':
-    material: AMETHYST_SHARD
-    slot: 10
+  'x1_0':
+    material: PAPER
+    slot: 9
     amount: 1
     display_name: '&#B07CFF&lTirar x1'
     lore:
@@ -34,6 +34,7 @@ items:
     - '&eClic para tirar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_0'
     click_requirement:
       requirements:
         plata:
@@ -50,12 +51,243 @@ items:
     - '[console] scoreboard players set %player_name% gachaflag 0'
     - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
     - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
-    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
-    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
-  'x10':
-    material: AMETHYST_SHARD
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_1'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_2'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_3':
+    material: PAPER
     slot: 12
-    amount: 10
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_3'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_4':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_4'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_5':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_5'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_6':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_6'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x1_7':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&#B07CFF&lTirar x1'
+    lore:
+    - ''
+    - '&7Precio: &e1.000$'
+    - '&7Suma 1 tirada a tu garantia'
+    - ''
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x1_7'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 1000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 1'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+  'x10_0':
+    material: PAPER
+    slot: 14
+    amount: 1
     display_name: '&#B07CFF&lTirar x10'
     lore:
     - ''
@@ -66,6 +298,7 @@ items:
     - '&eClic para tirar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_0'
     click_requirement:
       requirements:
         plata:
@@ -82,16 +315,275 @@ items:
     - '[console] scoreboard players set %player_name% gachaflag 0'
     - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
     - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
-    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
-    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
     - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
     - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
     - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
-  'x25':
-    material: AMETHYST_SHARD
-    slot: 14
-    amount: 25
+  'x10_1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_1'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_2'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_3':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_3'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_4':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_4'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_5'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_6'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x10_7':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&#B07CFF&lTirar x10'
+    lore:
+    - ''
+    - '&7Precio: &e10.000$'
+    - '&7Suma 10 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x10_7'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 10000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e10.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 10000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 10'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
+    - '[console] crates give virtual gacha_rpg 9 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 9<delay=141>'
+    - '[message] &aListo: &f10 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_0':
+    material: PAPER
+    slot: 27
+    amount: 1
     display_name: '&#B07CFF&lTirar x25'
     lore:
     - ''
@@ -102,6 +594,7 @@ items:
     - '&eClic para tirar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_0'
     click_requirement:
       requirements:
         plata:
@@ -118,16 +611,275 @@ items:
     - '[console] scoreboard players set %player_name% gachaflag 0'
     - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
     - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
-    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
-    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
     - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
     - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
     - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
-  'x50':
-    material: NETHER_STAR
-    slot: 16
-    amount: 50
+  'x25_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_1'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_2'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_3'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_4':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_4'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_5':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_5'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_6':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_6'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x25_7':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&#B07CFF&lTirar x25'
+    lore:
+    - ''
+    - '&7Precio: &e25.000$'
+    - '&7Suma 25 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x25_7'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 25000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 25000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 25'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
+    - '[console] crates give virtual gacha_rpg 24 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 24<delay=141>'
+    - '[message] &aListo: &f25 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_0':
+    material: PAPER
+    slot: 32
+    amount: 1
     display_name: '&#B07CFF&lTirar x50'
     lore:
     - ''
@@ -136,11 +888,9 @@ items:
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
     - '&eClic para tirar'
-    enchantments:
-    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
+    item_model: 'astral:servicios/gacha_rpg_x50_0'
     click_requirement:
       requirements:
         plata:
@@ -157,15 +907,274 @@ items:
     - '[console] scoreboard players set %player_name% gachaflag 0'
     - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
     - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
-    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%'
-    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_1':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_1'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_2':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_2'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_3':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_3'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_4':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_4'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_5':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_5'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_6':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_6'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
+    - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
+    - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
+    - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
+    - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
+  'x50_7':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&#B07CFF&lTirar x50'
+    lore:
+    - ''
+    - '&7Precio: &e50.000$'
+    - '&7Suma 50 tiradas a tu garantia'
+    - '&8Gira 1 ruleta y despues llegan los demas premios'
+    - ''
+    - '&eClic para tirar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/gacha_rpg_x50_7'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 50000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[takemoney] 50000'
+    - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
+    - '[console] scoreboard players add %player_name% pity_rpg 50'
+    - '[console] scoreboard players set %player_name% gachaflag 0'
+    - '[console] execute if score %player_name% pity_rpg matches 50.. run scoreboard players set %player_name% gachaflag 1'
+    - '[console] execute if score %player_name% gachaflag matches 1 run minecraft:tellraw %player_name% {text:''Tirada garantizada! (Epico o Legendario seguro)'',color:''light_purple'',bold:true}'
+    - '[console] execute if score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg_garantia %player_name%<delay=3>'
+    - '[console] execute unless score %player_name% gachaflag matches 1 run crates forceopen gacha_rpg %player_name%<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
     - '[console] crates give virtual gacha_rpg 49 %player_name% -s<delay=140>'
     - '[console] sudo %player_name% crates mass-open gacha_rpg virtual 49<delay=141>'
     - '[message] &aListo: &f50 tiradas &aen la Gacha de Armas.<delay=142>'
   'premios':
     material: CHEST
-    slot: 22
+    slot: 49
     amount: 1
     display_name: '&6&lVer premios'
     lore:
@@ -174,151 +1183,56 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[close]'
-    - '[console] sudo %player_name% crates preview gacha_rpg'
-  'vidrio_0':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 0
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_1':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 1
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_2':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 2
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_3':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 3
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_5':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 5
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_6':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 6
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_7':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 7
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_8':
-    material: PURPLE_STAINED_GLASS_PANE
+    - '[console] sudo %player_name% crates preview gacha_rpg<delay=3>'
+  'saldo':
+    material: GOLD_NUGGET
     slot: 8
     amount: 1
-    display_name: ' '
+    display_name: '&6Tu saldo'
+    lore:
+    - '&e%vault_eco_balance_formatted%$'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_9':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 9
+    update: true
+  'garantia':
+    material: ENDER_EYE
+    slot: 47
     amount: 1
-    display_name: ' '
+    display_name: '&dGarantia'
+    lore:
+    - '&7Tu progreso: &e%objective_score_{pity_rpg}%&7/50'
+    - '&7Un Epico o Legendario reinicia el contador.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_11':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 11
+    update: true
+  'probabilidades':
+    material: BOOK
+    slot: 51
     amount: 1
-    display_name: ' '
+    display_name: '&bProbabilidades'
+    lore:
+    - '&fComun: 60%'
+    - '&aPoco comun: 25%'
+    - '&bRaro: 11%'
+    - '&dEpico: 3,5%'
+    - '&6Legendario: 0,5%'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_13':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 13
+  'volver':
+    material: ARROW
+    slot: 45
     amount: 1
-    display_name: ' '
+    display_name: '&fVolver al Bazar'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_15':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 15
+    click_commands:
+    - '[openguimenu] bazar'
+  'cerrar':
+    material: BARRIER
+    slot: 53
     amount: 1
-    display_name: ' '
+    display_name: '&cCerrar'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_17':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_18':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_19':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 19
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 20
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_21':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 21
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_23':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 23
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 24
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_25':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 25
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: PURPLE_STAINED_GLASS_PANE
-    slot: 26
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'

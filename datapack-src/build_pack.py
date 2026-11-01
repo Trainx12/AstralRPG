@@ -218,6 +218,10 @@ from services_ui import assets as services_assets
 service_files, service_providers = services_assets()
 files.update(service_files)
 default_font['providers'] = service_providers + default_font['providers']
+from market_ui import assets as market_assets
+market_files, market_providers = market_assets()
+files.update(market_files)
+default_font['providers'] = market_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
 # pack.mcmeta y pack.png

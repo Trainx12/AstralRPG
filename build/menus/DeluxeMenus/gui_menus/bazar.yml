@@ -258,14 +258,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_0'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_1':
     material: PAPER
     slot: 28
@@ -273,14 +273,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_1'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_2':
     material: PAPER
     slot: 29
@@ -288,14 +288,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_2'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_3':
     material: PAPER
     slot: 30
@@ -303,14 +303,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_3'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_4':
     material: PAPER
     slot: 36
@@ -318,14 +318,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_4'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_5':
     material: PAPER
     slot: 37
@@ -333,14 +333,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_5'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_6':
     material: PAPER
     slot: 38
@@ -348,14 +348,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_6'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'subastas_7':
     material: PAPER
     slot: 39
@@ -363,14 +363,14 @@ items:
     display_name: '&e&lSubastas'
     lore:
     - '&7Comercio entre jugadores.'
-    - '&7Para publicar: /ah sell <precio>'
+    - '&7Explora, consulta tus ventas y retira objetos.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_subastas_7'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=3>'
+    - '[player] astralmenu_subastas<delay=3>'
   'ordenes_0':
     material: PAPER
     slot: 32

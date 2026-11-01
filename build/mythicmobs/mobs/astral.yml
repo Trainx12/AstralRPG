@@ -1216,7 +1216,7 @@ astral_npc_bazar:
 
 astral_npc_subastas:
   Type: VILLAGER
-  Display: '&e&lSubastas &7(/ah)'
+  Display: '&e&lSubastas'
   Health: 100
   Options:
     NoAI: true
@@ -1232,7 +1232,7 @@ astral_npc_subastas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="sudo <trigger.name> ah"} @self ~onInteract'
+  - 'command{c="dm open subastas <trigger.name>"} @self ~onInteract'
 
 astral_npc_herrero:
   Type: VILLAGER

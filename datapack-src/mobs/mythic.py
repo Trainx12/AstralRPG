@@ -280,7 +280,7 @@ NPCS = {
     "astral_npc_expediciones": ("&b&lExpediciones Astrales &7- mazmorras y arena", "CARTOGRAPHER",
                                 ['command{c="execute in minecraft:lobby run minecraft:tp <trigger.name> 180.5 100 288.5"} @self ~onInteract']),
     "astral_npc_bazar": ("&6&lBazar &7(mercado y subastas)", "CARTOGRAPHER", _bazar()),
-    "astral_npc_subastas": ("&e&lSubastas &7(/ah)", "ARMORER", ["command{c=\"sudo <trigger.name> ah\"} @self ~onInteract"]),
+    "astral_npc_subastas": ("&e&lSubastas", "ARMORER", ["command{c=\"dm open subastas <trigger.name>\"} @self ~onInteract"]),
     "astral_npc_herrero": ("&6&lHerrero &7- mejorar equipo", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
                           ["command{c=\"sudo <trigger.name> economyshopgui:shop\"} @self ~onInteract"]),

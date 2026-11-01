@@ -83,14 +83,14 @@ def requisito_plata(costo):
 
 
 def gacha_menu(gid, g):
+    from market_ui import title, regions
     col, name, n, o = hexc(HOLO_COLOR[gid]), HOLO_NAME[gid], PITY[gid], pity_obj(gid)
     P = "%player_name%"
     items = item("info", ICONO[gid], 4, f"{col}&l✦ {name} ✦",
                  [f"&7{HOLO_DESC[gid]}", "", f"&7Precio: &e{money(g['cost'])} &7por tirada",
                   f"&7Epico garantizado cada &f{n} &7tiradas", f"&7Tu garantia: &e{SCORE.format(o)}&7/{n}"], glow=True,
                  extra={"update": "true"})
-    slots = [10, 12, 14, 16]
-    for slot, t in zip(slots, TIRADAS):
+    for (_, slots), t in zip(regions(gid), TIRADAS):
         costo = g["cost"] * t
         cmds = ["[close]", f"[takemoney] {costo}", "[sound] BLOCK_AMETHYST_BLOCK_CHIME",
                 f"[console] scoreboard players add {P} {o} {t}",
@@ -105,16 +105,49 @@ def gacha_menu(gid, g):
                      f"[console] crates give virtual {gid} {t - 1} {P} -s<delay={RULETA_TICKS}>",
                      f"[console] sudo {P} crates mass-open {gid} virtual {t - 1}<delay={RULETA_TICKS + 1}>",
                      f"[message] &aListo: &f{t} tiradas &aen la {name}.<delay={RULETA_TICKS + 2}>"]
-        items += item(f"x{t}", TIRADA_ICONO[gid] if t < 50 else "NETHER_STAR", slot,
+        for index,slot in enumerate(slots):
+            items += item(f"x{t}_{index}", 'PAPER', slot,
                       f"{col}&lTirar x{t}",
                       ["", f"&7Precio: &e{money(costo)}", "&7Suma " + (f"{t} tiradas" if t > 1 else "1 tirada") + " a tu garantia",
                        "" if t == 1 else "&8Gira 1 ruleta y despues llegan los demas premios", "", "&eClic para tirar"],
-                      amount=t, glow=t == 50,
-                      extra={"click_requirement": requisito_plata(costo), "click_commands": cmds})
-    items += item("premios", "CHEST", 22, "&6&lVer premios", ["&7Todos los premios y su probabilidad"],
-                  extra={"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}"]})
-    items += relleno(VIDRIO[gid], 27, [4, 10, 12, 14, 16, 22])
-    return menu(f"&8{name}", f"astralmenu_{gid}", 27, items, update=True)
+                      extra={"item_model":q(f'astral:servicios/{gid}_x{t}_{index}'),
+                             "click_requirement": requisito_plata(costo), "click_commands": [c+'<delay=3>' if 'crates forceopen ' in c else c for c in cmds]})
+    items += item("premios", "CHEST", 49, "&6&lVer premios", ["&7Todos los premios y su probabilidad"],
+                  extra={"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
+    items += item('saldo','GOLD_NUGGET',8,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
+    items += item('garantia','ENDER_EYE',47,'&dGarantia',[f'&7Tu progreso: &e{SCORE.format(o)}&7/{n}',
+                  '&7Un Epico o Legendario reinicia el contador.'],extra={'update':'true'})
+    items += item('probabilidades','BOOK',51,'&bProbabilidades',['&fComun: 60%','&aPoco comun: 25%',
+                  '&bRaro: 11%','&dEpico: 3,5%','&6Legendario: 0,5%'])
+    items += item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
+    items += item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
+    return menu(title(gid), f"astralmenu_{gid}", 54, items, update=True)
+
+
+def subastas_menu():
+    from market_ui import title, regions
+    actions={
+        'mercado':('&6Explorar el mercado',['&7Objetos publicados por otros jugadores.','&eClic para explorar.'],'ah'),
+        'publicaciones':('&eMis publicaciones',['&7Consulta o cancela tus ventas activas.'],'ah listed'),
+        'retirar':('&aRetirar objetos',['&7Recupera tus objetos cancelados o vencidos.'],'ah collect'),
+        'publicar':('&bComo publicar',['&f1. Sostene el objeto que queres vender.','&f2. Escribi /ah sell <precio>.',
+                    '&7El precio y la confirmacion los administra','&7el sistema de subastas.'],None),
+    }
+    lines=[]
+    for key,slots in regions('subastas'):
+        caption,lore,command=actions[key]
+        for index,slot in enumerate(slots):
+            cmds=['[sound] UI_BUTTON_CLICK']
+            if command:cmds+=['[close]',f'[player] {command}<delay=3>']
+            else:cmds+=['[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.']
+            lines+=item(f'{key}_{index}','PAPER',slot,caption,lore,extra={
+                'item_model':q(f'astral:servicios/subastas_{key}_{index}'),'click_commands':cmds})
+    lines+=item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
+    lines+=item('ayuda','BOOK',8,'&eCasa de Subastas',['&7Compra y vende entre jugadores.',
+                '&7Revisa el objeto y su precio antes de comprar.'])
+    lines+=item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
+    lines+=item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
+    return menu(title('subastas'),'astralmenu_subastas',54,lines,update=True)
 
 
 def mascotas_menu():
@@ -144,7 +177,7 @@ def bazar_menu():
     actions = {
         'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'economyshopgui:shop'),
         'vender': ('&6&lVenta rapida', ['&7Coloca el objeto, revisa su importe', '&7y confirma con VENDER.', '&7Cerrar devuelve el objeto.'], 'astralventa'),
-        'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Para publicar: /ah sell <precio>'], 'ah'),
+        'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Explora, consulta tus ventas y retira objetos.'], 'astralmenu_subastas'),
         'ordenes': ('&b&lOrdenes de compra', ['&7Publica pedidos o completa encargos.', '&7El pago lo administra el mercado.'], 'orders'),
     }
     lines=[]
@@ -340,7 +373,7 @@ def mission_menu_id(page):
 def main():
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
-    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "principal": principal_menu(), "misiones": misiones_menu()})
+    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)

@@ -1,0 +1,6 @@
+Este archivo es un parche: NO reemplazar config.yml por titulos.patch.yml.
+Cambiar solamente los tres titulos de Settings en el config.yml existente.
+Alternativa: python auction_ui.py --config <copia-del-config.yml>
+La copia completa se prepara en .local/auction-ui-deploy/config.yml.
+No modificar data.yml. No cambiar impuestos, tiempos ni permisos.
+Subir el resource pack y luego recargar CrazyAuctions con /ah reload.

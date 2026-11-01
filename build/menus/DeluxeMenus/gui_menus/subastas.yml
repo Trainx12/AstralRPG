@@ -1,0 +1,515 @@
+menu_title: '&f'
+open_command: astralmenu_subastas
+size: 54
+update_interval: 1
+items:
+  'mercado_0':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_3':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_3'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_4':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_4'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_5':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_5'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_6':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_6'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'mercado_7':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&6Explorar el mercado'
+    lore:
+    - '&7Objetos publicados por otros jugadores.'
+    - '&eClic para explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_mercado_7'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'publicaciones_0':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_3':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_3'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_4':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_4'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_5'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_6'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'publicaciones_7':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&eMis publicaciones'
+    lore:
+    - '&7Consulta o cancela tus ventas activas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicaciones_7'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah listed<delay=3>'
+  'retirar_0':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_3'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_4':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_4'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_5':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_5'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_6':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_6'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'retirar_7':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&aRetirar objetos'
+    lore:
+    - '&7Recupera tus objetos cancelados o vencidos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_retirar_7'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah collect<delay=3>'
+  'publicar_0':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_1':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_2':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_3':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_3'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_4':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_4'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_5':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_5'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_6':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_6'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'publicar_7':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&bComo publicar'
+    lore:
+    - '&f1. Sostene el objeto que queres vender.'
+    - '&f2. Escribi /ah sell <precio>.'
+    - '&7El precio y la confirmacion los administra'
+    - '&7el sistema de subastas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/subastas_publicar_7'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[message] &eCon el objeto en la mano, usa &f/ah sell <precio>&e.'
+  'saldo':
+    material: GOLD_NUGGET
+    slot: 4
+    amount: 1
+    display_name: '&6Tu saldo'
+    lore:
+    - '&e%vault_eco_balance_formatted%$'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
+  'ayuda':
+    material: BOOK
+    slot: 8
+    amount: 1
+    display_name: '&eCasa de Subastas'
+    lore:
+    - '&7Compra y vende entre jugadores.'
+    - '&7Revisa el objeto y su precio antes de comprar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'volver':
+    material: ARROW
+    slot: 45
+    amount: 1
+    display_name: '&fVolver al Bazar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] bazar'
+  'cerrar':
+    material: BARRIER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'

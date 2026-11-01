@@ -44,7 +44,7 @@ class BazarNavigation(unittest.TestCase):
         def capture(key,material,slot,name,lore=(),amount=1,extra=None,glow=False):
             entries.append((key,extra or {}))
             return []
-        expected={'comprar':'economyshopgui:shop','vender':'astralventa','subastas':'ah','ordenes':'orders'}
+        expected={'comprar':'economyshopgui:shop','vender':'astralventa','subastas':'astralmenu_subastas','ordenes':'orders'}
         seen=set()
         with patch.object(menus,'item',capture):menus.bazar_menu()
         for key,extra in entries:

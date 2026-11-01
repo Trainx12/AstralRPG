@@ -10,6 +10,8 @@ gui_menus:
     file: mascotas.yml
   bazar:
     file: bazar.yml
+  subastas:
+    file: subastas.yml
   principal:
     file: principal.yml
   misiones:

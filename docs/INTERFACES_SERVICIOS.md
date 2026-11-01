@@ -1,5 +1,7 @@
 # Interfaces de servicios
 
+Subastas y los tres gachas: ver [SUBASTAS_Y_GACHAS.md](SUBASTAS_Y_GACHAS.md).
+
 Generadores: `services_ui.py` (arte, modelos y fuentes), `services.py`
 (datapack y `build/services/astral_servicios.sk`) y `shop_ui.py`
 (apariencia de EconomyShopGUI sobre copias privadas en `.local`).
