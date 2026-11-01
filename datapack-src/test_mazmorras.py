@@ -149,6 +149,15 @@ class TumbaBossVictoryTests(unittest.TestCase):
         self.assertTrue(any(s.startswith('remove @MobsInRadius') for s in skills['TUMBA_SALA3_LIMPIA']['Skills']))
         for state in ('INICIO', 'RESET'):
             self.assertIn('removetag{tag=tumba.jefe.derrotado} @self', skills['TUMBA_SALA3_' + state]['Skills'])
+        # Al ganar no se teletransporta: aparecen el cofre y el guia de Expediciones.
+        fin = skills['TUMBA_SALA3_LIMPIA']['Skills']
+        self.assertFalse(any('spawn <target.name>' in s for s in fin))
+        self.assertTrue(any(s.startswith('summon{type=astral_tumba_cofre') for s in fin))
+        self.assertTrue(any(s.startswith('summon{type=astral_tumba_guia') for s in fin))
+        cofre = mobs['astral_tumba_cofre']['Skills']
+        self.assertIn('skill{s=TUMBA_PREMIO} @trigger ~onInteract', cofre)
+        self.assertIn('command{c="dm open expediciones <trigger.name>"} @self ~onInteract', mobs['astral_tumba_guia']['Skills'])
+        self.assertIn('astral_tumba_cofre', skills['TUMBA_SALA3_RESET']['Skills'][0])
         start = skills['TUMBA_SALA3_INICIO']['Skills']
         self.assertLess(start.index('addtag{tag=tumba.espera} @self'), next(i for i,s in enumerate(start) if s.startswith('summon{')))
         self.assertIn('delay 10', start)

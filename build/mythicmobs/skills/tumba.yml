@@ -465,20 +465,15 @@ TUMBA_SALA3_LIMPIA:
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=64}'
-  - delay 40
-  - 'skill{s=TUMBA_PREMIO} @PlayersInRadius{r=64}'
-  - 'skill{s=TUMBA_PREMIO_YA} @PlayersInRadius{r=64}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=64}'
-  - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=64}'
+  - 'remove @MobsInRadius{r=64;types=astral_tumba_cofre,astral_tumba_guia}'
+  - 'summon{type=astral_tumba_cofre;amount=1;radius=0} @Location{x=0.5;y=72;z=0.5}'
+  - 'summon{type=astral_tumba_guia;amount=1;radius=0} @Location{x=0.5;y=72;z=3.5}'
   - delay 20
-  - removetag{tag=tumba.on} @self
-  - removetag{tag=tumba.fin} @self
-  - removetag{tag=tumba.ola1} @self
+  - 'message{m="&eEl cofre aparecio en la base de oro: &fclic para abrirlo&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
 
 TUMBA_SALA3_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=64;types=HUSK,astral_tumba_momia}'
+  - 'remove @MobsInRadius{r=64;types=HUSK,astral_tumba_momia,astral_tumba_cofre,astral_tumba_guia}'
   - removetag{tag=tumba.jefe.derrotado} @self
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self

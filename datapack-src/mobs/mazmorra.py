@@ -286,17 +286,30 @@ def skill_yml(dungeon=None):
                   *(["  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos_sala(s)}}}")] if s.get("require_boss_death") else []),
                   "  - " + q(f'message{{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - " + q("sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=" + str(r + 8) + "}"),
-                  "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}'),
-                  "  - delay 40",
-                  "  - " + q(f"skill{{s=MINA_PREMIO}} @PlayersInRadius{{r={r + 8}}}"),
-                  "  - " + q(f"skill{{s=MINA_PREMIO_YA}} @PlayersInRadius{{r={r + 8}}}"),
-                  "  - " + q(f'message{{m="&7En 15 segundos vuelven al lobby."}} @PlayersInRadius{{r={r + 8}}}'),
-                  "  - delay 300",
-                  "  - " + q(f'command{{c="spawn <target.name>"}} @PlayersInRadius{{r={r + 8}}}'),
-                  "  - delay 20",
-                  "  - removetag{tag=mina.on} @self", "  - removetag{tag=mina.fin} @self"] + \
-                 [f"  - removetag{{tag=mina.ola{k}}} @self" for k in range(1, n + 1)] + [""]
+                  "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}')]
+            fin = s.get("final_npcs")
+            if fin:
+                # Sin teletransporte: aparece un cofre (se cobra con clic) y el guia de
+                # Expediciones, que los lleva a donde quieran. RESET los quita cuando se van.
+                L += ["  - " + q(f"remove @MobsInRadius{{r={r + 8};types=astral_mina_cofre,astral_mina_guia}}"),
+                      "  - " + q("summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["cofre"]),
+                      "  - " + q("summon{type=astral_mina_guia;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["guia"]),
+                      "  - delay 20",
+                      "  - " + q(f'message{{m="&eEl cofre aparecio en la base de oro: &fclic para abrirlo&e. '
+                                 f'&7El guia de Expediciones los lleva a donde quieran."}} @PlayersInRadius{{r={r + 8}}}'), ""]
+            else:
+                L += ["  - delay 40",
+                      "  - " + q(f"skill{{s=MINA_PREMIO}} @PlayersInRadius{{r={r + 8}}}"),
+                      "  - " + q(f"skill{{s=MINA_PREMIO_YA}} @PlayersInRadius{{r={r + 8}}}"),
+                      "  - " + q(f'message{{m="&7En 15 segundos vuelven al lobby."}} @PlayersInRadius{{r={r + 8}}}'),
+                      "  - delay 300",
+                      "  - " + q(f'command{{c="spawn <target.name>"}} @PlayersInRadius{{r={r + 8}}}'),
+                      "  - delay 20",
+                      "  - removetag{tag=mina.on} @self", "  - removetag{tag=mina.fin} @self"] + \
+                     [f"  - removetag{{tag=mina.ola{k}}} @self" for k in range(1, n + 1)] + [""]
         tipos = tipos_sala(s)
+        if i == len(SALAS) - 1 and s.get("final_npcs"):
+            tipos += ",astral_mina_cofre,astral_mina_guia"
         L += [f"MINA_{S}_RESET:", "  Skills:", "  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos}}}"),
               *(["  - removetag{tag=mina.jefe.derrotado} @self"] if s.get("require_boss_death") else []),
               "  - removetag{tag=mina.on} @self", "  - removetag{tag=mina.fin} @self", "  - removetag{tag=mina.espera} @self"] + \

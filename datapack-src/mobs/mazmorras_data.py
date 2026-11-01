@@ -116,6 +116,9 @@ def catalog():
                         enabled=definition.get("enabled", True), mob_blocks="\n".join(blocks), tier=definition["tier"], map=definition["map"])
         if key == "tumba":
             dungeon["rooms"][-1]["require_boss_death"] = True
+            # Al ganar: cofre en el centro de la base de oro (donde aparece la Momia) y el
+            # guia de Expediciones al lado. Bloque de oro comprobado debajo de 0 71 0.
+            dungeon["rooms"][-1]["final_npcs"] = {"cofre": (0.5, 72, 0.5), "guia": (0.5, 72, 3.5)}
             configure_tumba_sala2(dungeon)
             configure_tumba_sala1(dungeon)
         out.append(dungeon)
