@@ -68,5 +68,14 @@ campos y comentarios. Recargar con `/ah reload`. No tocar `data.yml`.
 Verificacion local: pruebas de las 96 zonas de tirada, costo unico por clic,
 condiciones de garantia, cantidades multiples, rutas del arte, avance cero de
 los titulos, limite de 256 px por bitmap y navegacion sin cierre tardio.
-Pendiente: instalar en Aternos y probar con un jugador el aspecto, cobros,
-premios, permisos y compras reales. No se publico ni subio al servidor.
+Las tres ventanas del catalogo usan el mismo marco, pero cada titulo lleva al
+final una marca invisible distinta (``, ``, ``, avance 0):
+CrazyAuctions decide la logica de cada clic con `title.contains(...)`, y con
+titulos iguales un clic en "Mis publicaciones" pasaria por la del mercado.
+
+Instalado en Aternos el 01/11/2026: pack fijado al commit `70e0d0d`, menus de
+las tres gachas y Bazar reemplazados, `subastas.yml` creado y registrado en
+`plugins/DeluxeMenus/config.yml`, NPC Subastas actualizado en
+`MythicMobs/mobs/astral.yml` y los tres titulos cambiados en
+`CrazyAuctions/config.yml`. El servidor arranco con 15 menus y sin errores.
+Pendiente: probar con un jugador el aspecto, cobros, premios y compras reales.
