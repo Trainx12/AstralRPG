@@ -150,8 +150,12 @@ def mob_yml(dungeon=None):
         for k in range(2, n + 1):
             sk.append(f"skill{{s=MINA_{S}_OLA{k}}} @self ~onTimer:20 ?hastag{{tag=mina.ola{k - 1}}} ?!hastag{{tag=mina.ola{k}}} "
                       f"?!hastag{{tag=mina.espera}} ?mobsinradius{{types={tipos};a=0;r={r + 8}}}")
+        # Sala de jefe: alcanza con que muera el jefe. Sus ayudantes (y los husks del
+        # desierto) no deben trabar el final; se limpian en LIMPIA.
+        fin_cond = ("?hastag{tag=mina.jefe.derrotado}" if s.get("require_boss_death")
+                    else f"?mobsinradius{{types={tipos};a=0;r={r + 8}}}")
         sk.append(f"skill{{s=MINA_{S}_LIMPIA}} @self ~onTimer:20 ?hastag{{tag=mina.ola{n}}} ?!hastag{{tag=mina.fin}} ?!hastag{{tag=mina.espera}} "
-                  f"?mobsinradius{{types={tipos};a=0;r={r + 8}}}")
+                  + fin_cond)
         sk.append(f"skill{{s=MINA_{S}_RESET}} @self ~onTimer:200 ?hastag{{tag=mina.on}} ?!playerwithin{{d={r + 8}}}")
         L += [f"astral_mina_control_{s['id']}:", "  Type: ARMOR_STAND", f"  Display: {q('Control ' + s['name'])}", "  Health: 100",
               "  Options:", "    Invisible: true", "    Marker: true", "    Invincible: true", "    Silent: true", "    NoGravity: true",
@@ -253,9 +257,12 @@ def skill_yml(dungeon=None):
             return ["  - " + x for x in out]
         L += group_wave_skills(s, WORLD)
         n = len(s["oleadas"])
-        L += [f"MINA_{S}_INICIO:", "  Skills:", "  - addtag{tag=mina.on} @self", "  - addtag{tag=mina.ola1} @self",
+        L += [f"MINA_{S}_INICIO:", "  Skills:",
+              *(["  - removetag{tag=mina.jefe.derrotado} @self", "  - addtag{tag=mina.espera} @self"] if s.get("require_boss_death") else []),
+              "  - addtag{tag=mina.on} @self", "  - addtag{tag=mina.ola1} @self",
               "  - " + q(f'message{{m="&8[&7Mina&8] &f{s["name"]} &7- sala {i + 1}/{len(SALAS)}. &cAhi vienen!"}} @PlayersInRadius{{r={r + 8}}}'),
-              "  - " + q("sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=" + str(r + 8) + "}")] + ola(1) + [""]
+              "  - " + q("sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=" + str(r + 8) + "}")] + ola(1) + \
+             (["  - delay 10", "  - removetag{tag=mina.espera} @self"] if s.get("require_boss_death") else []) + [""]
         for k in range(2, n + 1):
             L += [f"MINA_{S}_OLA{k}:", "  Skills:", f"  - addtag{{tag=mina.ola{k}}} @self", "  - addtag{tag=mina.espera} @self",
                   "  - " + q(f'message{{m="&8[&7Mina&8] &7Oleada {k}/{n}..."}} @PlayersInRadius{{r={r + 8}}}'),
@@ -273,7 +280,10 @@ def skill_yml(dungeon=None):
                   "  - " + q("sound{s=entity.enderman.teleport}"), ""]
         else:
             # sala final: premio y vuelta al lobby
-            L += [f"MINA_{S}_LIMPIA:", "  Skills:", "  - addtag{tag=mina.fin} @self",
+            L += [f"MINA_{S}_LIMPIA:",
+                  *(["  Conditions:", "  - hastag{tag=mina.jefe.derrotado} true", "  - hastag{tag=mina.fin} false"] if s.get("require_boss_death") else []),
+                  "  Skills:", "  - addtag{tag=mina.fin} @self",
+                  *(["  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos_sala(s)}}}")] if s.get("require_boss_death") else []),
                   "  - " + q(f'message{{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - " + q("sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=" + str(r + 8) + "}"),
                   "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}'),
@@ -288,6 +298,7 @@ def skill_yml(dungeon=None):
                  [f"  - removetag{{tag=mina.ola{k}}} @self" for k in range(1, n + 1)] + [""]
         tipos = tipos_sala(s)
         L += [f"MINA_{S}_RESET:", "  Skills:", "  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos}}}"),
+              *(["  - removetag{tag=mina.jefe.derrotado} @self"] if s.get("require_boss_death") else []),
               "  - removetag{tag=mina.on} @self", "  - removetag{tag=mina.fin} @self", "  - removetag{tag=mina.espera} @self"] + \
              [f"  - removetag{{tag=mina.ola{k}}} @self" for k in range(1, len(s["oleadas"]) + 1)] + [""]
     # premio final (una vez cada 30 minutos por jugador)

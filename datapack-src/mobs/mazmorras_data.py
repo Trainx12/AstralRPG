@@ -65,6 +65,10 @@ def variant(key, source, ancestral=False, boss=False):
         block = block.replace(original + ":\n", mid + ":\n", 1)
     else:
         block = mythic.mob_block(mid, data, model=base)
+    if key == "tumba" and boss:
+        # Only this summoned boss can acknowledge victory to its own controller.
+        # Se avisa al control de la sala del jefe por cercania (no depende de @Parent).
+        block += "  - addtag{tag=tumba.jefe.derrotado} @MobsInRadius{r=96;types=astral_tumba_control_sala3} ~onDeath\n"
     # Tambien esperar/limpiar los ayudantes que invocan sus fases y afijos.
     helpers = set(re.findall(r"summon\{type=([^;}]+)", " ".join(data.get("skills", []))))
     if ancestral:
@@ -109,6 +113,7 @@ def catalog():
                         money=definition["money"], cooldown="30m", event=definition["event"],
                         enabled=definition.get("enabled", True), mob_blocks="\n".join(blocks), tier=definition["tier"], map=definition["map"])
         if key == "tumba":
+            dungeon["rooms"][-1]["require_boss_death"] = True
             configure_tumba_sala2(dungeon)
             configure_tumba_sala1(dungeon)
         out.append(dungeon)

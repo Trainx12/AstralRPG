@@ -445,15 +445,23 @@ TUMBA_SALA2_RESET:
 
 TUMBA_SALA3_INICIO:
   Skills:
+  - removetag{tag=tumba.jefe.derrotado} @self
+  - addtag{tag=tumba.espera} @self
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
   - 'message{m="&8[&7Tumba del Rey de Arena&8] &fTrono del Rey de Arena &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=64}'
   - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=64}'
   - 'summon{type=astral_tumba_momia;amount=1;radius=0} @self'
+  - delay 10
+  - removetag{tag=tumba.espera} @self
 
 TUMBA_SALA3_LIMPIA:
+  Conditions:
+  - hastag{tag=tumba.jefe.derrotado} true
+  - hastag{tag=tumba.fin} false
   Skills:
   - addtag{tag=tumba.fin} @self
+  - 'remove @MobsInRadius{r=64;types=HUSK,astral_tumba_momia}'
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=64}'
@@ -471,6 +479,7 @@ TUMBA_SALA3_LIMPIA:
 TUMBA_SALA3_RESET:
   Skills:
   - 'remove @MobsInRadius{r=64;types=HUSK,astral_tumba_momia}'
+  - removetag{tag=tumba.jefe.derrotado} @self
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.espera} @self

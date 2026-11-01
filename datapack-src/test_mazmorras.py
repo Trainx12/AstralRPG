@@ -130,5 +130,27 @@ class TumbaSala1Tests(TumbaSala2Tests):
                 self.assertTrue(any(mob in line and "LIMPIA" in line for line in control))
 
 
+class TumbaBossVictoryTests(unittest.TestCase):
+    def test_absence_or_despawn_cannot_complete_boss_room(self):
+        dungeon = next(d for d in catalog() if d['key'] == 'tumba')
+        skills = yaml.safe_load(skill_yml(dungeon))
+        mobs = yaml.safe_load(mob_yml(dungeon))
+        victory = skills['TUMBA_SALA3_LIMPIA']['Conditions']
+        self.assertIn('hastag{tag=tumba.jefe.derrotado} true', victory)
+        self.assertIn('hastag{tag=tumba.fin} false', victory)
+        timer = next(s for s in mobs['astral_tumba_control_sala3']['Skills'] if 'LIMPIA' in s)
+        self.assertIn('?hastag{tag=tumba.jefe.derrotado}', timer)
+        # Los husks que invoca el jefe (o los del desierto) no pueden trabar el final.
+        self.assertNotIn('mobsinradius', timer)
+        self.assertIn('addtag{tag=tumba.jefe.derrotado} @MobsInRadius{r=96;types=astral_tumba_control_sala3} ~onDeath',
+                      mobs['astral_tumba_momia']['Skills'])
+        self.assertTrue(any(s.startswith('remove @MobsInRadius') for s in skills['TUMBA_SALA3_LIMPIA']['Skills']))
+        for state in ('INICIO', 'RESET'):
+            self.assertIn('removetag{tag=tumba.jefe.derrotado} @self', skills['TUMBA_SALA3_' + state]['Skills'])
+        start = skills['TUMBA_SALA3_INICIO']['Skills']
+        self.assertLess(start.index('addtag{tag=tumba.espera} @self'), next(i for i,s in enumerate(start) if s.startswith('summon{')))
+        self.assertIn('delay 10', start)
+
+
 if __name__ == "__main__":
     unittest.main()
