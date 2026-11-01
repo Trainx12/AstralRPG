@@ -142,8 +142,10 @@ class TumbaBossVictoryTests(unittest.TestCase):
         self.assertIn('?hastag{tag=tumba.jefe.derrotado}', timer)
         # Los husks que invoca el jefe (o los del desierto) no pueden trabar el final.
         self.assertNotIn('mobsinradius', timer)
-        self.assertIn('addtag{tag=tumba.jefe.derrotado} @MobsInRadius{r=96;types=astral_tumba_control_sala3} ~onDeath',
-                      mobs['astral_tumba_momia']['Skills'])
+        aviso = next(s for s in mobs['astral_tumba_momia']['Skills'] if 'tumba.jefe.derrotado' in s)
+        self.assertTrue(aviso.startswith('command{') and aviso.endswith('~onDeath'))
+        # El comando busca al control por su nombre visible: tienen que coincidir.
+        self.assertIn("name='" + mobs['astral_tumba_control_sala3']['Display'] + "'", aviso)
         self.assertTrue(any(s.startswith('remove @MobsInRadius') for s in skills['TUMBA_SALA3_LIMPIA']['Skills']))
         for state in ('INICIO', 'RESET'):
             self.assertIn('removetag{tag=tumba.jefe.derrotado} @self', skills['TUMBA_SALA3_' + state]['Skills'])

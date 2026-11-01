@@ -390,4 +390,4 @@ astral_tumba_momia:
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
-  - addtag{tag=tumba.jefe.derrotado} @MobsInRadius{r=96;types=astral_tumba_control_sala3} ~onDeath
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..96,name='Control Trono del Rey de Arena'] add tumba.jefe.derrotado"} @self ~onDeath

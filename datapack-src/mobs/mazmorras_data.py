@@ -67,8 +67,10 @@ def variant(key, source, ancestral=False, boss=False):
         block = mythic.mob_block(mid, data, model=base)
     if key == "tumba" and boss:
         # Only this summoned boss can acknowledge victory to its own controller.
-        # Se avisa al control de la sala del jefe por cercania (no depende de @Parent).
-        block += "  - addtag{tag=tumba.jefe.derrotado} @MobsInRadius{r=96;types=astral_tumba_control_sala3} ~onDeath\n"
+        # Se avisa al control de la sala del jefe con un comando vanilla: los targeters de
+        # MythicMobs (@Parent, @MobsInRadius) no encuentran al armor stand marker del control.
+        block += ("  - command{c=\"execute at <caster.uuid> run tag @e[type=armor_stand,distance=..96,"
+                  "name='Control Trono del Rey de Arena'] add tumba.jefe.derrotado\"} @self ~onDeath\n")
     # Tambien esperar/limpiar los ayudantes que invocan sus fases y afijos.
     helpers = set(re.findall(r"summon\{type=([^;}]+)", " ".join(data.get("skills", []))))
     if ancestral:
