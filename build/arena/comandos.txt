@@ -34,7 +34,9 @@ mv modify forja set pvp false
 rg flag -w forja __global__ pvp deny
 mv modify santuario set pvp false
 rg flag -w santuario __global__ pvp deny
-# Entrada propuesta (OP en creativo): execute in minecraft:arena run minecraft:tp <jugador> -171.5 -44 -2282.5
+# Entrada de referencia (OP en creativo): execute in minecraft:arena run minecraft:tp <jugador> -206.5 73 -2371.5
+# El NPC reparte aleatoriamente entre 25 puntos interiores de la zona seleccionada.
+# Instalar mobs/arena.yml Y skills/arena.yml en MythicMobs; ejecutar mm reload.
 # Al verificarla, ajustar arrival y enabled=True en mobs/mazmorras_data.py y regenerar.
 # NPC del lobby: mm mobs spawn astral_npc_arena
 # Salida de jugadores: /spawn. No hay premios ni contadores de bajas PvP.

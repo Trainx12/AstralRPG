@@ -17,7 +17,7 @@ un piso/puente. Primero recorrer en creativo; despues probar el combate en super
 | `cumbre` | (-128.5,79,0.5) → (0.5,115,0.5) → (96.5,97,0.5) | Yeti |
 | `forja` | (1536.5,224,1900.5) → (1456.5,210,2032.5) → (1536.5,200,2304.5) | Golem de Forja |
 | `santuario` | (-329.5,51,65.5), una arena con cinco oleadas de un jefe cada una | Cangrejo → Chaman → Momia → Yeti → Golem, todos Ancestrales |
-| `arena` | Entrada propuesta (-171.5,-44,-2282.5) | Solo PvP, sin premios ni progreso |
+| `arena` | 25 llegadas aleatorias entre X=-218..-194, Y=73, Z=-2383..-2357 | Solo PvP, sin premios ni progreso |
 
 En la Forja hay lava y magma. Preparar plataformas y revisar especialmente la segunda y tercera sala.
 Se usa **un solo volcan: el del sur** de `volcan gigante.zip`. El recorte preparado excluye el volcan
@@ -30,6 +30,16 @@ esta en la isla inicial y necesita comprobar que los jefes grandes no caigan al 
 El spawn original de la arena (-32,70,48) cae en el vacio. La propuesta usa la zona de estadio donde estaba
 el jugador guardado, y se comprobo que hay piedra a Y=-46. En el desierto el spawn original (35531,60,35496)
 es una plataforma de servicio; las salas se proponen en el escenario principal, cerca del origen.
+
+Actualizacion de Arena (01/11/2026): el dueno selecciono `(-194,73,-2357)` y
+`(-218,73,-2383)` (675 bloques). La entrada del NPC ahora elige al azar entre
+25 puntos interiores a Y=73, comprobados contra el recorte privado: piso solido
+y tres bloques de aire. Cada entrada se sortea de forma independiente; dos jugadores
+pueden recibir el mismo punto. Reemplaza la llegada anterior a Y=-44.
+Para instalar: reemplazar `plugins/MythicMobs/mobs/arena.yml`, agregar
+`plugins/MythicMobs/skills/arena.yml` y ejecutar `mm reload`. No hace falta mover el
+NPC del lobby ni cambiar el mapa. El ajuste afecta la entrada por el NPC, no el
+respawn de muerte ni otros teletransportes.
 
 El Cangrejo sigue en las playas del mundo normal. `volcan.zip` sigue de reserva.
 El Santuario se abre despues del titulo Portador de la Estrella; no bloquea el epilogo inicial.

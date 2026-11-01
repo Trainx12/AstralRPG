@@ -17,4 +17,4 @@ astral_npc_arena:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -171.5 -44 -2282.5"} @self ~onInteract'
+  - 'skill{s=ARENA_ENTRAR} @trigger ~onInteract'

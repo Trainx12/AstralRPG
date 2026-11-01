@@ -43,7 +43,12 @@ DEFINITIONS = [
          enemies=[], money=5000),
 ]
 ARENA = dict(world="arena", map="batalla_de_Jugadores.zip", enabled=True,
-             arrival=(-171.5, -44, -2282.5), npc="astral_npc_arena")
+             arrival=(-206.5, 73, -2371.5), npc="astral_npc_arena",
+             spawn_bounds=((-218, 73, -2383), (-194, 73, -2357)),
+             # Reparto aleatorio entre puntos interiores con piso y altura libre.
+             spawn_points=[(x + 0.5, 73, z + 0.5)
+                           for x in range(-217, -195, 5)
+                           for z in range(-2382, -2360, 5)])
 
 
 def variant(key, source, ancestral=False, boss=False):

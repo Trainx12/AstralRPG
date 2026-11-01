@@ -1,0 +1,105 @@
+# Generado por mobs/arena.py
+ARENA_ENTRAR:
+  Skills:
+  - randomskill{skills=ARENA_LLEGADA_0,ARENA_LLEGADA_1,ARENA_LLEGADA_2,ARENA_LLEGADA_3,ARENA_LLEGADA_4,ARENA_LLEGADA_5,ARENA_LLEGADA_6,ARENA_LLEGADA_7,ARENA_LLEGADA_8,ARENA_LLEGADA_9,ARENA_LLEGADA_10,ARENA_LLEGADA_11,ARENA_LLEGADA_12,ARENA_LLEGADA_13,ARENA_LLEGADA_14,ARENA_LLEGADA_15,ARENA_LLEGADA_16,ARENA_LLEGADA_17,ARENA_LLEGADA_18,ARENA_LLEGADA_19,ARENA_LLEGADA_20,ARENA_LLEGADA_21,ARENA_LLEGADA_22,ARENA_LLEGADA_23,ARENA_LLEGADA_24} @trigger
+
+ARENA_LLEGADA_0:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -216.5 73 -2381.5"} @trigger'
+
+ARENA_LLEGADA_1:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -216.5 73 -2376.5"} @trigger'
+
+ARENA_LLEGADA_2:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -216.5 73 -2371.5"} @trigger'
+
+ARENA_LLEGADA_3:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -216.5 73 -2366.5"} @trigger'
+
+ARENA_LLEGADA_4:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -216.5 73 -2361.5"} @trigger'
+
+ARENA_LLEGADA_5:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -211.5 73 -2381.5"} @trigger'
+
+ARENA_LLEGADA_6:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -211.5 73 -2376.5"} @trigger'
+
+ARENA_LLEGADA_7:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -211.5 73 -2371.5"} @trigger'
+
+ARENA_LLEGADA_8:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -211.5 73 -2366.5"} @trigger'
+
+ARENA_LLEGADA_9:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -211.5 73 -2361.5"} @trigger'
+
+ARENA_LLEGADA_10:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -206.5 73 -2381.5"} @trigger'
+
+ARENA_LLEGADA_11:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -206.5 73 -2376.5"} @trigger'
+
+ARENA_LLEGADA_12:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -206.5 73 -2371.5"} @trigger'
+
+ARENA_LLEGADA_13:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -206.5 73 -2366.5"} @trigger'
+
+ARENA_LLEGADA_14:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -206.5 73 -2361.5"} @trigger'
+
+ARENA_LLEGADA_15:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -201.5 73 -2381.5"} @trigger'
+
+ARENA_LLEGADA_16:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -201.5 73 -2376.5"} @trigger'
+
+ARENA_LLEGADA_17:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -201.5 73 -2371.5"} @trigger'
+
+ARENA_LLEGADA_18:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -201.5 73 -2366.5"} @trigger'
+
+ARENA_LLEGADA_19:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -201.5 73 -2361.5"} @trigger'
+
+ARENA_LLEGADA_20:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -196.5 73 -2381.5"} @trigger'
+
+ARENA_LLEGADA_21:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -196.5 73 -2376.5"} @trigger'
+
+ARENA_LLEGADA_22:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -196.5 73 -2371.5"} @trigger'
+
+ARENA_LLEGADA_23:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -196.5 73 -2366.5"} @trigger'
+
+ARENA_LLEGADA_24:
+  Skills:
+  - 'command{c="execute in minecraft:arena run minecraft:tp <trigger.name> -196.5 73 -2361.5"} @trigger'
+
