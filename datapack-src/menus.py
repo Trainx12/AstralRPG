@@ -142,7 +142,7 @@ def mascotas_menu():
 def bazar_menu():
     from services_ui import title, bazar_regions
     actions = {
-        'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'shop'),
+        'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'economyshopgui:shop'),
         'vender': ('&6&lVenta rapida', ['&7Coloca el objeto, revisa su importe', '&7y confirma con VENDER.', '&7Cerrar devuelve el objeto.'], 'astralventa'),
         'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Para publicar: /ah sell <precio>'], 'ah'),
         'ordenes': ('&b&lOrdenes de compra', ['&7Publica pedidos o completa encargos.', '&7El pago lo administra el mercado.'], 'orders'),
@@ -153,7 +153,10 @@ def bazar_menu():
         for index,slot in enumerate(row*9+col for row in rows for col in cols):
             lines += item(f'{key}_{index}','PAPER',slot,name,lore,extra={
                 'item_model':q(f'astral:servicios/bazar_{key}_{index}'),
-                'click_commands':['[sound] UI_BUTTON_CLICK','[close]',f'[player] {command}<delay=1>']})
+                # DeluxeMenus programa la accion CLOSE al tick siguiente y
+                # closeMenu programa closeInventory OTRO tick mas tarde.
+                # Abrir antes del tercero cierra tambien el menu de destino.
+                'click_commands':['[sound] UI_BUTTON_CLICK','[close]',f'[player] {command}<delay=3>']})
     lines += item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas y ordenes: otros jugadores.'])
     lines += item('volver','ARROW',53,'&fVolver',extra={'click_commands':['[openguimenu] principal']})

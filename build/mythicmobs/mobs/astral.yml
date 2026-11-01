@@ -1274,7 +1274,7 @@ astral_npc_tienda:
   Skills:
   - cancelevent @self ~onInteract
   - 'skill{s=AQ_TIENDA} @trigger ~onInteract'
-  - 'command{c="sudo <trigger.name> shop"} @self ~onInteract'
+  - 'command{c="sudo <trigger.name> economyshopgui:shop"} @self ~onInteract'
 
 astral_npc_venta:
   Type: VILLAGER

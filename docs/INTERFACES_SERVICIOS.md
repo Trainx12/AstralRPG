@@ -55,10 +55,16 @@ debe hacerse también con Skript cargado y dentro de Minecraft.
   seis filas y la barra final no se usa para productos.
 - El manejador de clics actúa solo en la interfaz activa del servicio. Al
   cerrarla se devuelve el objeto y se limpia la sesión, sin bloquear Bazar.
-- Los destinos del Bazar se abren un tick después de cerrar DeluxeMenus,
-  fuera del evento de clic del inventario anterior. La etiqueta `<delay=1>`
+- Los destinos del Bazar se abren al tercer tick. DeluxeMenus primero programa
+  `ClickActionTask.CLOSE` y después `Menu.closeMenu` programa otro `runTask`
+  para `closeInventory`: abrir al primer tick deja el destino expuesto a ese
+  cierre pendiente. `test_bazar.py` reproduce esa cola de tareas con todos los
+  botones generados. La etiqueta `<delay=3>`
   va pegada al comando: un espacio anterior se conserva en el comando real y
   Minecraft lo rechaza como argumento vacío.
+- Comprar y el aldeano Tienda usan `economyshopgui:shop`. El alias `/shop`
+  también lo registra QuickShop-Hikari y puede resolver al plugin equivocado
+  después de reiniciar; no debe usarse para abrir el catálogo del servidor.
 - `verify.py` comprueba también las texturas del atlas de servicios, los
   glifos, su avance horizontal neto cero y la inclusión del backend de mejora.
 

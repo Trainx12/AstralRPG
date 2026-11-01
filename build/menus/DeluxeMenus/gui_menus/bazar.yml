@@ -17,7 +17,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_1':
     material: PAPER
     slot: 10
@@ -32,7 +32,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_2':
     material: PAPER
     slot: 11
@@ -47,7 +47,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_3':
     material: PAPER
     slot: 12
@@ -62,7 +62,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_4':
     material: PAPER
     slot: 18
@@ -77,7 +77,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_5':
     material: PAPER
     slot: 19
@@ -92,7 +92,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_6':
     material: PAPER
     slot: 20
@@ -107,7 +107,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'comprar_7':
     material: PAPER
     slot: 21
@@ -122,7 +122,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] shop<delay=1>'
+    - '[player] economyshopgui:shop<delay=3>'
   'vender_0':
     material: PAPER
     slot: 14
@@ -138,7 +138,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_1':
     material: PAPER
     slot: 15
@@ -154,7 +154,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_2':
     material: PAPER
     slot: 16
@@ -170,7 +170,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_3':
     material: PAPER
     slot: 17
@@ -186,7 +186,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_4':
     material: PAPER
     slot: 23
@@ -202,7 +202,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_5':
     material: PAPER
     slot: 24
@@ -218,7 +218,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_6':
     material: PAPER
     slot: 25
@@ -234,7 +234,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'vender_7':
     material: PAPER
     slot: 26
@@ -250,7 +250,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] astralventa<delay=1>'
+    - '[player] astralventa<delay=3>'
   'subastas_0':
     material: PAPER
     slot: 27
@@ -265,7 +265,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_1':
     material: PAPER
     slot: 28
@@ -280,7 +280,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_2':
     material: PAPER
     slot: 29
@@ -295,7 +295,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_3':
     material: PAPER
     slot: 30
@@ -310,7 +310,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_4':
     material: PAPER
     slot: 36
@@ -325,7 +325,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_5':
     material: PAPER
     slot: 37
@@ -340,7 +340,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_6':
     material: PAPER
     slot: 38
@@ -355,7 +355,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'subastas_7':
     material: PAPER
     slot: 39
@@ -370,7 +370,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] ah<delay=1>'
+    - '[player] ah<delay=3>'
   'ordenes_0':
     material: PAPER
     slot: 32
@@ -385,7 +385,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_1':
     material: PAPER
     slot: 33
@@ -400,7 +400,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_2':
     material: PAPER
     slot: 34
@@ -415,7 +415,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_3':
     material: PAPER
     slot: 35
@@ -430,7 +430,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_4':
     material: PAPER
     slot: 41
@@ -445,7 +445,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_5':
     material: PAPER
     slot: 42
@@ -460,7 +460,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_6':
     material: PAPER
     slot: 43
@@ -475,7 +475,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'ordenes_7':
     material: PAPER
     slot: 44
@@ -490,7 +490,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=1>'
+    - '[player] orders<delay=3>'
   'saldo':
     material: GOLD_NUGGET
     slot: 4

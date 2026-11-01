@@ -283,7 +283,7 @@ NPCS = {
     "astral_npc_subastas": ("&e&lSubastas &7(/ah)", "ARMORER", ["command{c=\"sudo <trigger.name> ah\"} @self ~onInteract"]),
     "astral_npc_herrero": ("&6&lHerrero &7- mejorar equipo", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
-                          ["command{c=\"sudo <trigger.name> shop\"} @self ~onInteract"]),
+                          ["command{c=\"sudo <trigger.name> economyshopgui:shop\"} @self ~onInteract"]),
     "astral_npc_venta": ("&a&lVenta rapida", "FARMER",
                          ["command{c=\"astralventa <trigger.name>\"} @self ~onInteract"]),
     "astral_npc_gacha_rpg": ("&5&lGacha de Armas", "LIBRARIAN", _gacha("gacha_rpg", 1000)),
