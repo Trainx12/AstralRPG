@@ -169,6 +169,38 @@ def tp(x, y, z, who="<target.name>", world=WORLD):
     return f'command{{c="execute in minecraft:{world} run minecraft:tp {who} {x} {y} {z}"}}'
 
 
+def located_summon(mob, point):
+    x, y, z = point
+    return f"summon{{type={mob};amount=1;radius=0}} @Location{{x={x};y={y};z={z}}}"
+
+
+def group_wave_skills(room, world):
+    """Refuerzos sin limite artificial ni expresiones que requieran Premium.
+
+    El contador pertenece al UUID del controlador y se toma al comenzar cada ola.
+    Cada llamada consume uno (o dos) de los jugadores por encima de la base de dos.
+    """
+    lines = []
+    S = room["id"].upper()
+    x, y, z = room["centro"]
+    for k, (mob, amount, players_per_batch) in room.get("group_scaling", {}).items():
+        name = f"MINA_{S}_GRUPO{k}"
+        points = room["golem_points"] if mob.endswith("_golem") else room["spawn_points"]
+        choices = [f"{name}_P{i}" for i in range(len(points))]
+        lines += [name + ":", "  Skills:",
+                  "  - " + q(f'command{{c="execute in minecraft:{world} positioned {x} {y} {z} store result score <caster.uuid> ad.party run execute if entity @a[distance=..{room["r"]},gamemode=!spectator]"}} @self'),
+                  "  - " + q('command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'),
+                  "  - " + q(f"skill{{s={name}_LOOP}} @self"), "",
+                  name + "_LOOP:", "  Conditions:",
+                  f"  - score{{o=ad.party;v=>{players_per_batch - 1}}} true", "  Skills:",
+                  "  - " + q(f'command{{c="scoreboard players remove <caster.uuid> ad.party {players_per_batch}"}} @self')]
+        lines += ["  - " + q("randomskill{skills=" + ",".join(choices) + "} @self")] * amount
+        lines += ["  - " + q(f"skill{{s={name}_LOOP}} @self"), ""]
+        for name, point in zip(choices, points):
+            lines += [name + ":", "  Skills:", "  - " + q(located_summon(mob, point)), ""]
+    return lines
+
+
 def skill_yml(dungeon=None):
     dungeon = dungeon or MINA
     MOBS, SALAS, WORLD = dungeon["mobs"], dungeon["rooms"], dungeon["world"]
@@ -179,6 +211,7 @@ def skill_yml(dungeon=None):
             m, sc, col = d["model"]
             L += [f"MINA_MODELO_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={m};s={sc}}} @self",
                   "  - delay 2", f"  - tint{{c={col}}} @self", ""]
+    model_skills = L[:]
     # ondas con aviso (1 segundo para alejarse)
     for nombre, dano, radio in (("GOLEM", 7, 5), ("GUARDIAN", 9, 6)):
         L += [f"MINA_ONDA_{nombre}:", "  Skills:",
@@ -195,7 +228,7 @@ def skill_yml(dungeon=None):
           "  - potion{type=STRENGTH;duration=999999;level=0} @self", "  - potion{type=SPEED;duration=999999;level=0} @self", ""]
     # salas
     if dungeon["key"] != "mina":
-        L = ["# Mazmorra " + dungeon["name"] + " (generada por mazmorra.py)", ""]
+        L = ["# Mazmorra " + dungeon["name"] + " (generada por mazmorra.py)"] + model_skills[1:]
     for i, s in enumerate(SALAS):
         S = s["id"].upper()
         r = s["r"]
@@ -203,11 +236,22 @@ def skill_yml(dungeon=None):
 
         def ola(k):
             out = []
+            spawn_radius = s.get("spawn_radius", 4)
+            index = 0
             for (m, base, extra) in s["oleadas"][k - 1]:
-                out.append(q(f"summon{{type={m};amount={base};radius=4}} @self"))
+                if "spawn_points" in s:
+                    points = s["golem_points"] if m.endswith("_golem") else s["spawn_points"]
+                    for _ in range(base):
+                        out.append(q(located_summon(m, points[index % len(points)])))
+                        index += 1
+                    continue
+                out.append(q(f"summon{{type={m};amount={base};radius={spawn_radius}}} @self"))
                 if extra:
-                    out.append(q(f"summon{{type={m};amount={extra};radius=4}} @self ?playersinradius{{r={r};a=>1}}"))
+                    out.append(q(f"summon{{type={m};amount={extra};radius={spawn_radius}}} @self ?playersinradius{{r={r};a=>1}}"))
+            if k in s.get("group_scaling", {}):
+                out.append(q(f"skill{{s=MINA_{S}_GRUPO{k}}} @self"))
             return ["  - " + x for x in out]
+        L += group_wave_skills(s, WORLD)
         n = len(s["oleadas"])
         L += [f"MINA_{S}_INICIO:", "  Skills:", "  - addtag{tag=mina.on} @self", "  - addtag{tag=mina.ola1} @self",
               "  - " + q(f'message{{m="&8[&7Mina&8] &f{s["name"]} &7- sala {i + 1}/{len(SALAS)}. &cAhi vienen!"}} @PlayersInRadius{{r={r + 8}}}'),
@@ -344,6 +388,9 @@ def new_commands(dungeon):
              f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
              f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
              '# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):']
+    if any(s.get("group_scaling") for s in dungeon["rooms"]):
+        lines += ['# Contador de jugadores para los refuerzos (una vez; si ya existe, conservarlo).',
+                  'scoreboard objectives add ad.party dummy']
     for room in dungeon["rooms"]:
         x,y,z = room["llegada"]
         lines += [f'# {room["name"]}: execute in minecraft:{w} run minecraft:tp <jugador> {x} {y} {z}',

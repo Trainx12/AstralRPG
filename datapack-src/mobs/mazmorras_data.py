@@ -18,7 +18,12 @@ DEFINITIONS = [
          labels=["Sendero de las raices", "Claro corrompido", "Altar del Chaman"],
          enemies=["espantapajaros", "abejorro", "cara"], money=1500),
     dict(key="tumba", name="Tumba del Rey de Arena", map="desierto.zip", boss="momia", event="momia", tier=3,
-         points=[(-192.5, 83, 128.5), (-128.5, 72, -64.5), (96.5, 73, -192.5)],
+         points=[(-148.5, 60, -98.5), (-175.5, 88, 203.5), (0.568, 72, 0.512)],
+         # Sala2: seleccion WorldEdit (-191,88,195)..(-160,93,211).
+         arrivals={"sala1": (-148.426, 62, -97.473), "sala2": (-203.163, 88, 203.533)},
+         # Sala final revisada por el dueno: jefe en la primera captura,
+         # jugadores en la segunda. El radio incluye ambos extremos de la sala.
+         final_arrival=(0.368, 73, -44.104), final_radius=56, final_spawn_radius=0,
          labels=["Patio de los olvidados", "Pasaje de los sellos", "Trono del Rey de Arena"],
          enemies=["espantapajaros", "arana", "cara"], money=2000),
     dict(key="cumbre", name="Cumbre Helada", map="nieve.zip", boss="yeti", event="yeti", tier=4,
@@ -88,10 +93,74 @@ def catalog():
             for i, (point, label) in enumerate(zip(definition["points"], definition["labels"])):
                 last = i == len(definition["points"]) - 1
                 waves = [[(boss,1,0)]] if last else [[(enemies[i],4+i,2)], [(enemies[i],2,1),(enemies[(i+1)%len(enemies)],3,1)]]
-                rooms.append(dict(id=f"sala{i+1}", name=label, centro=point, llegada=point,
-                                  r=28 if last else 18, oleadas=waves, extra=sorted(helpers) if last else []))
-        out.append(dict(key=key, name=definition["name"], world=key, mobs={}, rooms=rooms,
+                rooms.append(dict(id=f"sala{i+1}", name=label, centro=point,
+                                  llegada=definition.get("arrivals", {}).get(
+                                      f"sala{i+1}", definition.get("final_arrival", point) if last else point),
+                                  r=definition.get("final_radius", 28) if last else 18,
+                                  spawn_radius=definition.get("final_spawn_radius", 4) if last else 4,
+                                  oleadas=waves, extra=sorted(helpers) if last else []))
+        dungeon = dict(key=key, name=definition["name"], world=key, mobs={}, rooms=rooms,
                         npc=f"astral_npc_{key}", reward=[("esencia_elite",4),("alma_corrupta",1)],
                         money=definition["money"], cooldown="30m", event=definition["event"],
-                        enabled=definition.get("enabled", True), mob_blocks="\n".join(blocks), tier=definition["tier"], map=definition["map"]))
+                        enabled=definition.get("enabled", True), mob_blocks="\n".join(blocks), tier=definition["tier"], map=definition["map"])
+        if key == "tumba":
+            configure_tumba_sala2(dungeon)
+            configure_tumba_sala1(dungeon)
+        out.append(dungeon)
     return out
+
+
+def configure_tumba_sala2(dungeon):
+    """Dificil para dos tier III. Variantes propias, sin alterar al jefe Momia."""
+    prefix = "astral_tumba_s2_"
+    specs = {
+        "arana": dict(type="CAVE_SPIDER", name="&2Arana Venenosa", hp=32, dmg=6, speed=0.30, money=15),
+        "momia": dict(type="HUSK", name="&eMomia del Pasaje", hp=60, dmg=9, speed=0.24, money=20),
+        "esqueleto": dict(type="SKELETON", name="&fEsqueleto del Pasaje", hp=40, dmg=7, speed=0.25,
+                          equip=["bow HAND"], money=20),
+        "cara": dict(type="PHANTOM", name="&cCara Voladora del Pasaje", hp=36, dmg=7, speed=0.30,
+                     model=("astral_cara", 1, "FFFFFF"), money=20),
+        "espantapajaros": dict(type="VEX", name="&6Espantapajaros del Pasaje", hp=70, dmg=10, speed=0.25,
+                              model=("astral_espantapajaros", 1, "FFFFFF"), money=30),
+        "golem": dict(type="IRON_GOLEM", name="&6&lGolem Agresivo de Arena", hp=380, dmg=16, speed=0.24,
+                      hostile=True, money=100),
+    }
+    dungeon["mobs"].update({prefix + key: value for key, value in specs.items()})
+    room = dungeon["rooms"][1]
+    room.update(r=36, extra=[],
+                spawn_bounds=((-191, 88, 195), (-160, 93, 211)),
+                # Piso solido y tres bloques de aire comprobados en el recorte local.
+                spawn_points=[(x, 88, z) for x, z in (
+                    (-189.5, 196.5), (-189.5, 199.5), (-183.5, 196.5), (-180.5, 196.5),
+                    (-174.5, 196.5), (-171.5, 196.5), (-165.5, 196.5), (-162.5, 196.5),
+                    (-162.5, 199.5), (-162.5, 202.5), (-162.5, 205.5), (-162.5, 208.5))],
+                golem_points=[(-188.5, 88, 198.5), (-161.5, 88, 208.5)],
+                # Base para 1-2 jugadores; refuerzos por encima de dos, por oleada.
+                group_scaling={1: (prefix + "momia", 3, 1),
+                               2: (prefix + "esqueleto", 4, 1),
+                               3: (prefix + "golem", 1, 2)},
+                oleadas=[[(prefix + m, n, 0) for m, n in wave] for wave in (
+                    [("arana", 5), ("momia", 5), ("esqueleto", 4), ("cara", 2), ("espantapajaros", 1)],
+                    [("arana", 7), ("momia", 6), ("esqueleto", 5)],
+                    [("golem", 2)])])
+
+
+def configure_tumba_sala1(dungeon):
+    """Mismo balance tier III de sala2, con cantidades y zona propias."""
+    prefix = "astral_tumba_s1_"
+    for mob in ("arana", "momia", "esqueleto", "cara"):
+        data = deepcopy(dungeon["mobs"]["astral_tumba_s2_" + mob])
+        data["name"] = data["name"].replace("del Pasaje", "del Patio")
+        dungeon["mobs"][prefix + mob] = data
+    dungeon["rooms"][0].update(
+        r=28, extra=[], spawn_bounds=((-168, 58, -112), (-128, 63, -86)),
+        # Puntos sobre piso y libres de obstaculos en el recorte local.
+        spawn_points=[(-164.5, 58, -108.5), (-160.5, 58, -104.5),
+                      (-160.5, 58, -100.5), (-160.5, 58, -92.5),
+                      (-156.5, 58, -108.5), (-156.5, 60, -100.5),
+                      (-152.5, 58, -100.5), (-148.5, 60, -100.5),
+                      (-148.5, 60, -88.5), (-140.5, 58, -100.5)],
+        group_scaling={1: (prefix + "momia", 3, 1), 2: (prefix + "esqueleto", 4, 1)},
+        oleadas=[[(prefix + m, n, 0) for m, n in wave] for wave in (
+            [("arana", 3), ("momia", 3), ("esqueleto", 2), ("cara", 1)],
+            [("arana", 4), ("momia", 3), ("esqueleto", 3)])])

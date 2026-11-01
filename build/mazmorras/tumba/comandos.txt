@@ -15,21 +15,23 @@ rg flag -w tumba __global__ chest-access deny
 rg flag -w tumba __global__ pvp deny
 rg flag -w tumba __global__ mob-spawning allow
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Patio de los olvidados: execute in minecraft:tumba run minecraft:tp <jugador> -192.5 83 128.5
+# Contador de jugadores para los refuerzos (una vez; si ya existe, conservarlo).
+scoreboard objectives add ad.party dummy
+# Patio de los olvidados: execute in minecraft:tumba run minecraft:tp <jugador> -148.426 62 -97.473
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Pasaje de los sellos: execute in minecraft:tumba run minecraft:tp <jugador> -128.5 72 -64.5
+# Pasaje de los sellos: execute in minecraft:tumba run minecraft:tp <jugador> -203.163 88 203.533
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Trono del Rey de Arena: execute in minecraft:tumba run minecraft:tp <jugador> 96.5 73 -192.5
+# Trono del Rey de Arena: execute in minecraft:tumba run minecraft:tp <jugador> 0.368 73 -44.104
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
 # DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:tumba run forceload add -192 128
-# mm mobs spawn astral_tumba_control_sala1 1 tumba,-192.5,83,128.5
-# execute in minecraft:tumba run forceload remove -192 128
-# execute in minecraft:tumba run forceload add -128 -64
-# mm mobs spawn astral_tumba_control_sala2 1 tumba,-128.5,72,-64.5
-# execute in minecraft:tumba run forceload remove -128 -64
-# execute in minecraft:tumba run forceload add 96 -192
-# mm mobs spawn astral_tumba_control_sala3 1 tumba,96.5,73,-192.5
-# execute in minecraft:tumba run forceload remove 96 -192
+# execute in minecraft:tumba run forceload add -148 -98
+# mm mobs spawn astral_tumba_control_sala1 1 tumba,-148.5,60,-98.5
+# execute in minecraft:tumba run forceload remove -148 -98
+# execute in minecraft:tumba run forceload add -175 203
+# mm mobs spawn astral_tumba_control_sala2 1 tumba,-175.5,88,203.5
+# execute in minecraft:tumba run forceload remove -175 203
+# execute in minecraft:tumba run forceload add 0 0
+# mm mobs spawn astral_tumba_control_sala3 1 tumba,0.568,72,0.512
+# execute in minecraft:tumba run forceload remove 0 0
 # NPC de entrada (en el lobby): mm mobs spawn astral_npc_tumba
 # Los jefes y mobs del mundo normal conservan sus apariciones.

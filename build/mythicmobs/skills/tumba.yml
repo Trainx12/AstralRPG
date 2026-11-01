@@ -1,34 +1,183 @@
 # Mazmorra Tumba del Rey de Arena (generada por mazmorra.py)
 
+TUMBA_MODELO_astral_tumba_s2_cara:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cara;s=1} @self
+  - delay 2
+  - tint{c=FFFFFF} @self
+
+TUMBA_MODELO_astral_tumba_s2_espantapajaros:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_espantapajaros;s=1} @self
+  - delay 2
+  - tint{c=FFFFFF} @self
+
+TUMBA_MODELO_astral_tumba_s1_cara:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_cara;s=1} @self
+  - delay 2
+  - tint{c=FFFFFF} @self
+
+TUMBA_SALA1_GRUPO1:
+  Skills:
+  - 'command{c="execute in minecraft:tumba positioned -148.5 60 -98.5 store result score <caster.uuid> ad.party run execute if entity @a[distance=..28,gamemode=!spectator]"} @self'
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'skill{s=TUMBA_SALA1_GRUPO1_LOOP} @self'
+
+TUMBA_SALA1_GRUPO1_LOOP:
+  Conditions:
+  - score{o=ad.party;v=>0} true
+  Skills:
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 1"} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO1_P0,TUMBA_SALA1_GRUPO1_P1,TUMBA_SALA1_GRUPO1_P2,TUMBA_SALA1_GRUPO1_P3,TUMBA_SALA1_GRUPO1_P4,TUMBA_SALA1_GRUPO1_P5,TUMBA_SALA1_GRUPO1_P6,TUMBA_SALA1_GRUPO1_P7,TUMBA_SALA1_GRUPO1_P8,TUMBA_SALA1_GRUPO1_P9} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO1_P0,TUMBA_SALA1_GRUPO1_P1,TUMBA_SALA1_GRUPO1_P2,TUMBA_SALA1_GRUPO1_P3,TUMBA_SALA1_GRUPO1_P4,TUMBA_SALA1_GRUPO1_P5,TUMBA_SALA1_GRUPO1_P6,TUMBA_SALA1_GRUPO1_P7,TUMBA_SALA1_GRUPO1_P8,TUMBA_SALA1_GRUPO1_P9} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO1_P0,TUMBA_SALA1_GRUPO1_P1,TUMBA_SALA1_GRUPO1_P2,TUMBA_SALA1_GRUPO1_P3,TUMBA_SALA1_GRUPO1_P4,TUMBA_SALA1_GRUPO1_P5,TUMBA_SALA1_GRUPO1_P6,TUMBA_SALA1_GRUPO1_P7,TUMBA_SALA1_GRUPO1_P8,TUMBA_SALA1_GRUPO1_P9} @self'
+  - 'skill{s=TUMBA_SALA1_GRUPO1_LOOP} @self'
+
+TUMBA_SALA1_GRUPO1_P0:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-164.5;y=58;z=-108.5}'
+
+TUMBA_SALA1_GRUPO1_P1:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-160.5;y=58;z=-104.5}'
+
+TUMBA_SALA1_GRUPO1_P2:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-160.5;y=58;z=-100.5}'
+
+TUMBA_SALA1_GRUPO1_P3:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-160.5;y=58;z=-92.5}'
+
+TUMBA_SALA1_GRUPO1_P4:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=58;z=-108.5}'
+
+TUMBA_SALA1_GRUPO1_P5:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=60;z=-100.5}'
+
+TUMBA_SALA1_GRUPO1_P6:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-152.5;y=58;z=-100.5}'
+
+TUMBA_SALA1_GRUPO1_P7:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-148.5;y=60;z=-100.5}'
+
+TUMBA_SALA1_GRUPO1_P8:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-148.5;y=60;z=-88.5}'
+
+TUMBA_SALA1_GRUPO1_P9:
+  Skills:
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-140.5;y=58;z=-100.5}'
+
+TUMBA_SALA1_GRUPO2:
+  Skills:
+  - 'command{c="execute in minecraft:tumba positioned -148.5 60 -98.5 store result score <caster.uuid> ad.party run execute if entity @a[distance=..28,gamemode=!spectator]"} @self'
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'skill{s=TUMBA_SALA1_GRUPO2_LOOP} @self'
+
+TUMBA_SALA1_GRUPO2_LOOP:
+  Conditions:
+  - score{o=ad.party;v=>0} true
+  Skills:
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 1"} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO2_P0,TUMBA_SALA1_GRUPO2_P1,TUMBA_SALA1_GRUPO2_P2,TUMBA_SALA1_GRUPO2_P3,TUMBA_SALA1_GRUPO2_P4,TUMBA_SALA1_GRUPO2_P5,TUMBA_SALA1_GRUPO2_P6,TUMBA_SALA1_GRUPO2_P7,TUMBA_SALA1_GRUPO2_P8,TUMBA_SALA1_GRUPO2_P9} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO2_P0,TUMBA_SALA1_GRUPO2_P1,TUMBA_SALA1_GRUPO2_P2,TUMBA_SALA1_GRUPO2_P3,TUMBA_SALA1_GRUPO2_P4,TUMBA_SALA1_GRUPO2_P5,TUMBA_SALA1_GRUPO2_P6,TUMBA_SALA1_GRUPO2_P7,TUMBA_SALA1_GRUPO2_P8,TUMBA_SALA1_GRUPO2_P9} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO2_P0,TUMBA_SALA1_GRUPO2_P1,TUMBA_SALA1_GRUPO2_P2,TUMBA_SALA1_GRUPO2_P3,TUMBA_SALA1_GRUPO2_P4,TUMBA_SALA1_GRUPO2_P5,TUMBA_SALA1_GRUPO2_P6,TUMBA_SALA1_GRUPO2_P7,TUMBA_SALA1_GRUPO2_P8,TUMBA_SALA1_GRUPO2_P9} @self'
+  - 'randomskill{skills=TUMBA_SALA1_GRUPO2_P0,TUMBA_SALA1_GRUPO2_P1,TUMBA_SALA1_GRUPO2_P2,TUMBA_SALA1_GRUPO2_P3,TUMBA_SALA1_GRUPO2_P4,TUMBA_SALA1_GRUPO2_P5,TUMBA_SALA1_GRUPO2_P6,TUMBA_SALA1_GRUPO2_P7,TUMBA_SALA1_GRUPO2_P8,TUMBA_SALA1_GRUPO2_P9} @self'
+  - 'skill{s=TUMBA_SALA1_GRUPO2_LOOP} @self'
+
+TUMBA_SALA1_GRUPO2_P0:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-164.5;y=58;z=-108.5}'
+
+TUMBA_SALA1_GRUPO2_P1:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-160.5;y=58;z=-104.5}'
+
+TUMBA_SALA1_GRUPO2_P2:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-160.5;y=58;z=-100.5}'
+
+TUMBA_SALA1_GRUPO2_P3:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-160.5;y=58;z=-92.5}'
+
+TUMBA_SALA1_GRUPO2_P4:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-156.5;y=58;z=-108.5}'
+
+TUMBA_SALA1_GRUPO2_P5:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-156.5;y=60;z=-100.5}'
+
+TUMBA_SALA1_GRUPO2_P6:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-152.5;y=58;z=-100.5}'
+
+TUMBA_SALA1_GRUPO2_P7:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-148.5;y=60;z=-100.5}'
+
+TUMBA_SALA1_GRUPO2_P8:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-148.5;y=60;z=-88.5}'
+
+TUMBA_SALA1_GRUPO2_P9:
+  Skills:
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-140.5;y=58;z=-100.5}'
+
 TUMBA_SALA1_INICIO:
   Skills:
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPatio de los olvidados &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
-  - 'summon{type=astral_tumba_espantapajaros;amount=4;radius=4} @self'
-  - 'summon{type=astral_tumba_espantapajaros;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPatio de los olvidados &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-164.5;y=58;z=-108.5}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-160.5;y=58;z=-104.5}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-160.5;y=58;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-160.5;y=58;z=-92.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=58;z=-108.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=60;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-152.5;y=58;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-148.5;y=60;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_cara;amount=1;radius=0} @Location{x=-148.5;y=60;z=-88.5}'
+  - 'skill{s=TUMBA_SALA1_GRUPO1} @self'
 
 TUMBA_SALA1_OLA2:
   Skills:
   - addtag{tag=tumba.ola2} @self
   - addtag{tag=tumba.espera} @self
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=36}'
   - delay 40
-  - 'summon{type=astral_tumba_espantapajaros;amount=2;radius=4} @self'
-  - 'summon{type=astral_tumba_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
-  - 'summon{type=astral_tumba_arana;amount=3;radius=4} @self'
-  - 'summon{type=astral_tumba_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-164.5;y=58;z=-108.5}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-160.5;y=58;z=-104.5}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-160.5;y=58;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_arana;amount=1;radius=0} @Location{x=-160.5;y=58;z=-92.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=58;z=-108.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-156.5;y=60;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_momia;amount=1;radius=0} @Location{x=-152.5;y=58;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-148.5;y=60;z=-100.5}'
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-148.5;y=60;z=-88.5}'
+  - 'summon{type=astral_tumba_s1_esqueleto;amount=1;radius=0} @Location{x=-140.5;y=58;z=-100.5}'
+  - 'skill{s=TUMBA_SALA1_GRUPO2} @self'
   - delay 10
   - removetag{tag=tumba.espera} @self
 
 TUMBA_SALA1_LIMPIA:
   Skills:
   - addtag{tag=tumba.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fPasaje de los sellos"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fPasaje de los sellos"} @PlayersInRadius{r=36}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
   - delay 100
-  - 'skill{s=TUMBA_IR_SALA2} @PlayersInRadius{r=26}'
+  - 'skill{s=TUMBA_IR_SALA2} @PlayersInRadius{r=36}'
   - delay 20
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
@@ -37,87 +186,283 @@ TUMBA_SALA1_LIMPIA:
 
 TUMBA_IR_SALA2:
   Skills:
-  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> -128.5 72 -64.5"}'
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> -203.163 88 203.533"}'
   - 'sound{s=entity.enderman.teleport}'
 
 TUMBA_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_tumba_arana,astral_tumba_espantapajaros}'
+  - 'remove @MobsInRadius{r=36;types=astral_tumba_s1_arana,astral_tumba_s1_cara,astral_tumba_s1_esqueleto,astral_tumba_s1_momia}'
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.espera} @self
   - removetag{tag=tumba.ola1} @self
   - removetag{tag=tumba.ola2} @self
 
+TUMBA_SALA2_GRUPO1:
+  Skills:
+  - 'command{c="execute in minecraft:tumba positioned -175.5 88 203.5 store result score <caster.uuid> ad.party run execute if entity @a[distance=..36,gamemode=!spectator]"} @self'
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO1_LOOP} @self'
+
+TUMBA_SALA2_GRUPO1_LOOP:
+  Conditions:
+  - score{o=ad.party;v=>0} true
+  Skills:
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 1"} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO1_P0,TUMBA_SALA2_GRUPO1_P1,TUMBA_SALA2_GRUPO1_P2,TUMBA_SALA2_GRUPO1_P3,TUMBA_SALA2_GRUPO1_P4,TUMBA_SALA2_GRUPO1_P5,TUMBA_SALA2_GRUPO1_P6,TUMBA_SALA2_GRUPO1_P7,TUMBA_SALA2_GRUPO1_P8,TUMBA_SALA2_GRUPO1_P9,TUMBA_SALA2_GRUPO1_P10,TUMBA_SALA2_GRUPO1_P11} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO1_P0,TUMBA_SALA2_GRUPO1_P1,TUMBA_SALA2_GRUPO1_P2,TUMBA_SALA2_GRUPO1_P3,TUMBA_SALA2_GRUPO1_P4,TUMBA_SALA2_GRUPO1_P5,TUMBA_SALA2_GRUPO1_P6,TUMBA_SALA2_GRUPO1_P7,TUMBA_SALA2_GRUPO1_P8,TUMBA_SALA2_GRUPO1_P9,TUMBA_SALA2_GRUPO1_P10,TUMBA_SALA2_GRUPO1_P11} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO1_P0,TUMBA_SALA2_GRUPO1_P1,TUMBA_SALA2_GRUPO1_P2,TUMBA_SALA2_GRUPO1_P3,TUMBA_SALA2_GRUPO1_P4,TUMBA_SALA2_GRUPO1_P5,TUMBA_SALA2_GRUPO1_P6,TUMBA_SALA2_GRUPO1_P7,TUMBA_SALA2_GRUPO1_P8,TUMBA_SALA2_GRUPO1_P9,TUMBA_SALA2_GRUPO1_P10,TUMBA_SALA2_GRUPO1_P11} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO1_LOOP} @self'
+
+TUMBA_SALA2_GRUPO1_P0:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P1:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+
+TUMBA_SALA2_GRUPO1_P2:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P3:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P4:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P5:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-171.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P6:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-165.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P7:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO1_P8:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=199.5}'
+
+TUMBA_SALA2_GRUPO1_P9:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=202.5}'
+
+TUMBA_SALA2_GRUPO1_P10:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=205.5}'
+
+TUMBA_SALA2_GRUPO1_P11:
+  Skills:
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=208.5}'
+
+TUMBA_SALA2_GRUPO2:
+  Skills:
+  - 'command{c="execute in minecraft:tumba positioned -175.5 88 203.5 store result score <caster.uuid> ad.party run execute if entity @a[distance=..36,gamemode=!spectator]"} @self'
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO2_LOOP} @self'
+
+TUMBA_SALA2_GRUPO2_LOOP:
+  Conditions:
+  - score{o=ad.party;v=>0} true
+  Skills:
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 1"} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO2_P0,TUMBA_SALA2_GRUPO2_P1,TUMBA_SALA2_GRUPO2_P2,TUMBA_SALA2_GRUPO2_P3,TUMBA_SALA2_GRUPO2_P4,TUMBA_SALA2_GRUPO2_P5,TUMBA_SALA2_GRUPO2_P6,TUMBA_SALA2_GRUPO2_P7,TUMBA_SALA2_GRUPO2_P8,TUMBA_SALA2_GRUPO2_P9,TUMBA_SALA2_GRUPO2_P10,TUMBA_SALA2_GRUPO2_P11} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO2_P0,TUMBA_SALA2_GRUPO2_P1,TUMBA_SALA2_GRUPO2_P2,TUMBA_SALA2_GRUPO2_P3,TUMBA_SALA2_GRUPO2_P4,TUMBA_SALA2_GRUPO2_P5,TUMBA_SALA2_GRUPO2_P6,TUMBA_SALA2_GRUPO2_P7,TUMBA_SALA2_GRUPO2_P8,TUMBA_SALA2_GRUPO2_P9,TUMBA_SALA2_GRUPO2_P10,TUMBA_SALA2_GRUPO2_P11} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO2_P0,TUMBA_SALA2_GRUPO2_P1,TUMBA_SALA2_GRUPO2_P2,TUMBA_SALA2_GRUPO2_P3,TUMBA_SALA2_GRUPO2_P4,TUMBA_SALA2_GRUPO2_P5,TUMBA_SALA2_GRUPO2_P6,TUMBA_SALA2_GRUPO2_P7,TUMBA_SALA2_GRUPO2_P8,TUMBA_SALA2_GRUPO2_P9,TUMBA_SALA2_GRUPO2_P10,TUMBA_SALA2_GRUPO2_P11} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO2_P0,TUMBA_SALA2_GRUPO2_P1,TUMBA_SALA2_GRUPO2_P2,TUMBA_SALA2_GRUPO2_P3,TUMBA_SALA2_GRUPO2_P4,TUMBA_SALA2_GRUPO2_P5,TUMBA_SALA2_GRUPO2_P6,TUMBA_SALA2_GRUPO2_P7,TUMBA_SALA2_GRUPO2_P8,TUMBA_SALA2_GRUPO2_P9,TUMBA_SALA2_GRUPO2_P10,TUMBA_SALA2_GRUPO2_P11} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO2_LOOP} @self'
+
+TUMBA_SALA2_GRUPO2_P0:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P1:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+
+TUMBA_SALA2_GRUPO2_P2:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P3:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P4:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P5:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-171.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P6:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-165.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P7:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=196.5}'
+
+TUMBA_SALA2_GRUPO2_P8:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=199.5}'
+
+TUMBA_SALA2_GRUPO2_P9:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=202.5}'
+
+TUMBA_SALA2_GRUPO2_P10:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=205.5}'
+
+TUMBA_SALA2_GRUPO2_P11:
+  Skills:
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=208.5}'
+
+TUMBA_SALA2_GRUPO3:
+  Skills:
+  - 'command{c="execute in minecraft:tumba positioned -175.5 88 203.5 store result score <caster.uuid> ad.party run execute if entity @a[distance=..36,gamemode=!spectator]"} @self'
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO3_LOOP} @self'
+
+TUMBA_SALA2_GRUPO3_LOOP:
+  Conditions:
+  - score{o=ad.party;v=>1} true
+  Skills:
+  - 'command{c="scoreboard players remove <caster.uuid> ad.party 2"} @self'
+  - 'randomskill{skills=TUMBA_SALA2_GRUPO3_P0,TUMBA_SALA2_GRUPO3_P1} @self'
+  - 'skill{s=TUMBA_SALA2_GRUPO3_LOOP} @self'
+
+TUMBA_SALA2_GRUPO3_P0:
+  Skills:
+  - 'summon{type=astral_tumba_s2_golem;amount=1;radius=0} @Location{x=-188.5;y=88;z=198.5}'
+
+TUMBA_SALA2_GRUPO3_P1:
+  Skills:
+  - 'summon{type=astral_tumba_s2_golem;amount=1;radius=0} @Location{x=-161.5;y=88;z=208.5}'
+
 TUMBA_SALA2_INICIO:
   Skills:
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPasaje de los sellos &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
-  - 'summon{type=astral_tumba_arana;amount=5;radius=4} @self'
-  - 'summon{type=astral_tumba_arana;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fPasaje de los sellos &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=44}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=44}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-171.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-165.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=202.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=205.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-162.5;y=88;z=208.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_cara;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_cara;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_espantapajaros;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+  - 'skill{s=TUMBA_SALA2_GRUPO1} @self'
 
 TUMBA_SALA2_OLA2:
   Skills:
   - addtag{tag=tumba.ola2} @self
   - addtag{tag=tumba.espera} @self
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/3..."} @PlayersInRadius{r=44}'
   - delay 40
-  - 'summon{type=astral_tumba_arana;amount=2;radius=4} @self'
-  - 'summon{type=astral_tumba_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
-  - 'summon{type=astral_tumba_cara;amount=3;radius=4} @self'
-  - 'summon{type=astral_tumba_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-171.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_arana;amount=1;radius=0} @Location{x=-165.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=202.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=205.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-162.5;y=88;z=208.5}'
+  - 'summon{type=astral_tumba_s2_momia;amount=1;radius=0} @Location{x=-189.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-189.5;y=88;z=199.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-183.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-180.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-174.5;y=88;z=196.5}'
+  - 'summon{type=astral_tumba_s2_esqueleto;amount=1;radius=0} @Location{x=-171.5;y=88;z=196.5}'
+  - 'skill{s=TUMBA_SALA2_GRUPO2} @self'
+  - delay 10
+  - removetag{tag=tumba.espera} @self
+
+TUMBA_SALA2_OLA3:
+  Skills:
+  - addtag{tag=tumba.ola3} @self
+  - addtag{tag=tumba.espera} @self
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 3/3..."} @PlayersInRadius{r=44}'
+  - delay 40
+  - 'summon{type=astral_tumba_s2_golem;amount=1;radius=0} @Location{x=-188.5;y=88;z=198.5}'
+  - 'summon{type=astral_tumba_s2_golem;amount=1;radius=0} @Location{x=-161.5;y=88;z=208.5}'
+  - 'skill{s=TUMBA_SALA2_GRUPO3} @self'
   - delay 10
   - removetag{tag=tumba.espera} @self
 
 TUMBA_SALA2_LIMPIA:
   Skills:
   - addtag{tag=tumba.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Rey de Arena"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Rey de Arena"} @PlayersInRadius{r=44}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=44}'
   - delay 100
-  - 'skill{s=TUMBA_IR_SALA3} @PlayersInRadius{r=26}'
+  - 'skill{s=TUMBA_IR_SALA3} @PlayersInRadius{r=44}'
   - delay 20
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.ola1} @self
   - removetag{tag=tumba.ola2} @self
+  - removetag{tag=tumba.ola3} @self
 
 TUMBA_IR_SALA3:
   Skills:
-  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> 96.5 73 -192.5"}'
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <target.name> 0.368 73 -44.104"}'
   - 'sound{s=entity.enderman.teleport}'
 
 TUMBA_SALA2_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_tumba_arana,astral_tumba_cara}'
+  - 'remove @MobsInRadius{r=44;types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia}'
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.espera} @self
   - removetag{tag=tumba.ola1} @self
   - removetag{tag=tumba.ola2} @self
+  - removetag{tag=tumba.ola3} @self
 
 TUMBA_SALA3_INICIO:
   Skills:
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fTrono del Rey de Arena &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
-  - 'summon{type=astral_tumba_momia;amount=1;radius=4} @self'
+  - 'message{m="&8[&7Tumba del Rey de Arena&8] &fTrono del Rey de Arena &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=64}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=64}'
+  - 'summon{type=astral_tumba_momia;amount=1;radius=0} @self'
 
 TUMBA_SALA3_LIMPIA:
   Skills:
   - addtag{tag=tumba.fin} @self
-  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
-  - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=36}'
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=64}'
   - delay 40
-  - 'skill{s=TUMBA_PREMIO} @PlayersInRadius{r=36}'
-  - 'skill{s=TUMBA_PREMIO_YA} @PlayersInRadius{r=36}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
+  - 'skill{s=TUMBA_PREMIO} @PlayersInRadius{r=64}'
+  - 'skill{s=TUMBA_PREMIO_YA} @PlayersInRadius{r=64}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=64}'
   - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=64}'
   - delay 20
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
@@ -125,7 +470,7 @@ TUMBA_SALA3_LIMPIA:
 
 TUMBA_SALA3_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=36;types=HUSK,astral_tumba_momia}'
+  - 'remove @MobsInRadius{r=64;types=HUSK,astral_tumba_momia}'
   - removetag{tag=tumba.on} @self
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.espera} @self
@@ -154,5 +499,5 @@ TUMBA_PREMIO_YA:
 TUMBA_ENTRAR:
   Skills:
   - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Bajando a las &fTumba del Rey de Arena&7... &8(3 salas. Para salir: /spawn)"}'
-  - 'command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -192.5 83 128.5"}'
+  - 'command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -148.426 62 -97.473"}'
 

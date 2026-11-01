@@ -12,7 +12,7 @@ un piso/puente. Primero recorrer en creativo; despues probar el combate en super
 | Mundo | Salas sugeridas (X, Y, Z) | Final |
 |---|---|---|
 | `bosque` | (1440.5,104,1568.5) → (1504.5,107,1504.5) → (1600.5,97,1440.5) | Chaman |
-| `tumba` | (-192.5,83,128.5) → (-128.5,72,-64.5) → (96.5,73,-192.5) | Momia |
+| `tumba` | llegada (-148.426,62,-97.473) → llegada (-203.163,88,203.533) → llegada (0.368,73,-44.104), jefe (0.568,72,0.512) | Momia |
 | `mina` | Se conservan sus cuatro salas e identificadores actuales | Guardian |
 | `cumbre` | (-128.5,79,0.5) → (0.5,115,0.5) → (96.5,97,0.5) | Yeti |
 | `forja` | (1536.5,224,1900.5) → (1456.5,210,2032.5) → (1536.5,200,2304.5) | Golem de Forja |
@@ -33,6 +33,84 @@ es una plataforma de servicio; las salas se proponen en el escenario principal, 
 
 El Cangrejo sigue en las playas del mundo normal. `volcan.zip` sigue de reserva.
 El Santuario se abre despues del titulo Portador de la Estrella; no bloquea el epilogo inicial.
+
+## Ajuste de la sala final de Tumba (01/11/2026)
+
+Sala1: llegada `-148.426 62 -97.473`, controlador `-148.5 60 -98.5`, radio 28.
+Seleccion WorldEdit `(-128,63,-112)..(-168,58,-86)` (6642 bloques).
+Los puntos de aparicion usan piso y tres bloques libres del recorte local, dentro de
+la seleccion y a diferentes alturas segun el terreno.
+Base para dos jugadores tier III, dificil, con las mismas estadisticas de sala2:
+
+| Oleada | Base | Refuerzos por encima de 2 jugadores |
+|---|---|---|
+| 1 | 3 aranas venenosas, 3 momias, 2 esqueletos, 1 cara | 3 momias por jugador extra |
+| 2 | 4 aranas venenosas, 3 momias, 3 esqueletos | 4 esqueletos por jugador extra |
+
+Las variantes de sala1 tienen IDs propios `astral_tumba_s1_*`, para que no se
+mezclen los contadores ni la limpieza entre salas. Para mover su controlador:
+cargar el chunk viejo con `execute in minecraft:tumba run forceload add -192 128`,
+ejecutar `mm mobs kill astral_tumba_control_sala1`, retirar esa carga y crear el nuevo
+con las tres lineas de sala1 del archivo de comandos generado. Hacerlo sin un
+combate activo. Las ocho pruebas de `test_mazmorras` cubren ambas salas.
+
+La segunda sala usa llegada `-203.163 88 203.533` y controlador nuevo en
+`-175.5 88 203.5`, radio 36 (limpieza y transicion 44). La seleccion del dueno es
+`(-191,88,195)..(-160,93,211)`. Las apariciones se reparten en puntos dentro del
+rectangulo, con piso solido y tres bloques de aire comprobados en el recorte privado.
+Se evitan el agua y las columnas del interior; los golems usan dos puntos con espacio
+de 3x3. Si el escenario fue modificado en Aternos, volver a revisar esos puntos.
+
+Base de dos jugadores tier III, dificil; con un jugador se mantiene la misma base:
+
+| Oleada | Base | Refuerzos por encima de 2 jugadores |
+|---|---|---|
+| 1 | 5 aranas venenosas, 5 momias comunes, 4 esqueletos, 2 caras, 1 espantapajaros | 3 momias por jugador extra |
+| 2 | 7 aranas venenosas, 6 momias comunes, 5 esqueletos | 4 esqueletos por jugador extra |
+| 3 | 2 golems agresivos | 1 golem por cada 2 jugadores extra completos |
+
+Se cuenta al inicio de cada oleada dentro del radio del controlador, excluyendo
+espectadores. Ejemplo con 4 jugadores: 11 momias en ola1, 13 esqueletos en ola2,
+3 golems en ola3. No se mezclan estos refuerzos con el antiguo extra fijo de grupo.
+
+Balance inicial (vida/dano): arana 32/6, momia 60/9, esqueleto 40/7, cara 36/7,
+espantapajaros 70/10, golem 380/16. La arana usa CAVE_SPIDER para el veneno y
+el golem tiene IA agresiva contra jugadores. Las momias comunes no tienen fases
+ni habilidades del jefe. Falta validar dificultad efectiva con dos jugadores en Minecraft.
+
+Ademas de reemplazar los dos YAML de Tumba y ejecutar `mm reload`, crear una vez
+`scoreboard objectives add ad.party dummy` (si ya existe, conservarlo). Con la
+mazmorra vacia, cargar el chunk viejo de sala2 con
+`execute in minecraft:tumba run forceload add -128 -64`, ejecutar
+`mm mobs kill astral_tumba_control_sala2`, retirar la carga con
+`execute in minecraft:tumba run forceload remove -128 -64` y crear el controlador
+nuevo con las tres lineas de sala2 del archivo de comandos generado.
+
+Validacion local: `python -m unittest test_mazmorras` con PyYAML. Se interpretan las
+llamadas del YAML generado y se verifican cantidades para grupos de 1 a 20,
+limites de aparicion, controladores, IA y referencias de modelos. No sustituye una
+prueba con Paper/MythicMobs y jugadores. Sintaxis de referencia:
+[Summon](https://wiki.mythiccraft.io/mythicmobs/skills/mechanics/summon) y
+[Location](https://wiki.mythiccraft.io/mythicmobs/Skills/Targeters/Location).
+
+Preparado localmente segun las dos capturas del dueno: la Momia aparece exactamente en
+`0.568 72 0.512` (sin dispersion aleatoria) y el grupo llega a `0.368 73 -44.104`.
+El controlador va en el punto del jefe; radio de activacion 56 y de limpieza/premios 64,
+para incluir la llegada a unos 45 bloques. Falta probar el combate en Minecraft.
+
+Para aplicar en una Tumba ya instalada: reemplazar `plugins/MythicMobs/mobs/tumba.yml`
+y `plugins/MythicMobs/skills/tumba.yml` por los generados en `build/mythicmobs/` y
+ejecutar `mm reload`. Con la mazmorra vacia, cargar el chunk del controlador viejo
+(`execute in minecraft:tumba run forceload add 96 -192`), eliminarlo con
+`mm mobs kill astral_tumba_control_sala3` y retirar esa carga
+(`execute in minecraft:tumba run forceload remove 96 -192`). Crear el controlador nuevo
+con las tres lineas de sala3 de `build/mazmorras/tumba/comandos.txt`.
+No volver a crear el mundo ni los otros controladores.
+
+La proteccion generada es `rg flag -w tumba __global__ build deny`: impide construir
+y romper a jugadores sin bypass de WorldGuard. Comprobarla con una cuenta sin OP.
+El dueno cerrara las entradas en el mapa. `/spawn` sigue disponible para salir de la
+mazmorra; este ajuste no bloquea comandos de escape.
 
 ## Recortes privados preparados
 

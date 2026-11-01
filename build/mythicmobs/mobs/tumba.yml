@@ -1,5 +1,197 @@
 # Mazmorra Tumba del Rey de Arena (generado por datapack-src/mobs/mazmorra.py)
 
+astral_tumba_s2_arana:
+  Type: CAVE_SPIDER
+  Display: '&2Arana Venenosa'
+  Health: 32
+  Damage: 6
+  Options:
+    MovementSpeed: 0.3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s2_momia:
+  Type: HUSK
+  Display: '&eMomia del Pasaje'
+  Health: 60
+  Damage: 9
+  Options:
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s2_esqueleto:
+  Type: SKELETON
+  Display: '&fEsqueleto del Pasaje'
+  Health: 40
+  Damage: 7
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Equipment:
+  - bow HAND
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s2_cara:
+  Type: PHANTOM
+  Display: '&cCara Voladora del Pasaje'
+  Health: 36
+  Damage: 7
+  Options:
+    MovementSpeed: 0.3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onSpawn'
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onLoad'
+  - 'state{s=attack} @self ~onAttack'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s2_espantapajaros:
+  Type: VEX
+  Display: '&6Espantapajaros del Pasaje'
+  Health: 70
+  Damage: 10
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onSpawn'
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onLoad'
+  - 'state{s=attack} @self ~onAttack'
+  - 'command{c="eco give <trigger.name> 30"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s2_golem:
+  Type: IRON_GOLEM
+  Display: '&6&lGolem Agresivo de Arena'
+  Health: 380
+  Damage: 16
+  Options:
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 100"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s1_arana:
+  Type: CAVE_SPIDER
+  Display: '&2Arana Venenosa'
+  Health: 32
+  Damage: 6
+  Options:
+    MovementSpeed: 0.3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s1_momia:
+  Type: HUSK
+  Display: '&eMomia del Patio'
+  Health: 60
+  Damage: 9
+  Options:
+    MovementSpeed: 0.24
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s1_esqueleto:
+  Type: SKELETON
+  Display: '&fEsqueleto del Patio'
+  Health: 40
+  Damage: 7
+  Options:
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Equipment:
+  - bow HAND
+  Drops:
+  - exp 15
+  Skills:
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
+astral_tumba_s1_cara:
+  Type: PHANTOM
+  Display: '&cCara Voladora del Patio'
+  Health: 36
+  Damage: 7
+  Options:
+    MovementSpeed: 0.3
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    Despawn: false
+    FollowRange: 32
+  Drops:
+  - exp 15
+  Skills:
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onSpawn'
+  - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onLoad'
+  - 'state{s=attack} @self ~onAttack'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+
 astral_tumba_control_sala1:
   Type: ARMOR_STAND
   Display: 'Control Patio de los olvidados'
@@ -14,10 +206,10 @@ astral_tumba_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_espantapajaros;a=0;r=26}'
-  - 'skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_espantapajaros;a=0;r=26}'
-  - 'skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=26}'
+  - 'skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s1_arana,astral_tumba_s1_cara,astral_tumba_s1_esqueleto,astral_tumba_s1_momia;a=0;r=36}'
+  - 'skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s1_arana,astral_tumba_s1_cara,astral_tumba_s1_esqueleto,astral_tumba_s1_momia;a=0;r=36}'
+  - 'skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}'
 
 astral_tumba_control_sala2:
   Type: ARMOR_STAND
@@ -33,10 +225,11 @@ astral_tumba_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=18} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_cara;a=0;r=26}'
-  - 'skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_arana,astral_tumba_cara;a=0;r=26}'
-  - 'skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=26}'
+  - 'skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
+  - 'skill{s=TUMBA_SALA2_OLA3} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.ola3} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
+  - 'skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola3} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
+  - 'skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=44}'
 
 astral_tumba_control_sala3:
   Type: ARMOR_STAND
@@ -52,9 +245,9 @@ astral_tumba_control_sala3:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=HUSK,astral_tumba_momia;a=0;r=36}'
-  - 'skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}'
+  - 'skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on}'
+  - 'skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=HUSK,astral_tumba_momia;a=0;r=64}'
+  - 'skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=64}'
 
 astral_npc_tumba:
   Type: VILLAGER
