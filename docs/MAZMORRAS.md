@@ -41,6 +41,12 @@ Para instalar: reemplazar `plugins/MythicMobs/mobs/arena.yml`, agregar
 NPC del lobby ni cambiar el mapa. El ajuste afecta la entrada por el NPC, no el
 respawn de muerte ni otros teletransportes.
 
+Instalado en Aternos el 01/11/2026 desde `4f72c7b`: reemplazado `mobs/arena.yml`,
+creado `skills/arena.yml` y ejecutado `mm reload`. El registro confirma 115 mobs
+y 384 skills (26 nuevas), sin errores nuevos; siguen los tres avisos conocidos de
+dialogos de ejemplo. No fue necesario mover el NPC. Pendiente probar la entrada con
+jugador. Comprobante privado: `.local/deploy-ui/arena-instalada.jpg`.
+
 El Cangrejo sigue en las playas del mundo normal. `volcan.zip` sigue de reserva.
 El Santuario se abre despues del titulo Portador de la Estrella; no bloquea el epilogo inicial.
 
