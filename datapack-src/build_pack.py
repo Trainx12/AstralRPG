@@ -56,6 +56,10 @@ for iid, tex in WEAPON_TEX.items():
              {"parent": "minecraft:item/handheld", "textures": {"layer0": f"armasrpg:item/{tex}"}})
     put_json(f"assets/astral/items/{iid}.json", {"model": model_ref(f"astral:item/{iid}")})
 
+# Bastones de Mago en 3D con brillo animado (varitas3d.py); reemplazan el modelo plano
+from varitas3d import assets as wand_assets
+files.update(wand_assets())
+
 # Arcos con animacion
 for iid, tex in BOW_TEX.items():
     for suf in ("", "_pulling_0", "_pulling_1", "_pulling_2"):
@@ -222,6 +226,10 @@ from market_ui import assets as market_assets
 market_files, market_providers = market_assets()
 files.update(market_files)
 default_font['providers'] = market_providers + default_font['providers']
+from adventure_ui import assets as adventure_assets
+adventure_files, adventure_providers = adventure_assets()
+files.update(adventure_files)
+default_font['providers'] = adventure_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)

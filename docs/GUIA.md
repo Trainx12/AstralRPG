@@ -62,6 +62,7 @@ AstralRPG/
 |---|---|---|---|
 | Un material, arma, armadura, talismán | `datapack-src/items.py` (y la textura en `textures.py`) | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack |
 | Una receta o lógica (hechizos, forja, guía) | `datapack-src/build.py` | `python build.py` | datapack |
+| Forma 3D o colores de un Baston de Mago | `datapack-src/varitas3d.py` (una funcion por baston) | `python varitas3d.py` (vista previa en `build/previews/`) y `python build_pack.py pack-source` | resource pack |
 | Un taladro o motosierra | `datapack-src/tools.py` | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack |
 | Una criatura nueva o cambiar su forma | `mobs/creatures.py` (agregarla a `ALL`) | `python mobs/build_models.py` | `build/models/*.bbmodel` + resource pack (ver 4) |
 | Vida, daño, drops o dónde aparece una criatura | `mobs/mythic.py` (`MOBS`) | `python mobs/mythic.py` | `plugins/MythicMobs/...` + `mm reload` |
