@@ -13,6 +13,8 @@ THEMES = {
     'gacha_cosmeticos': ('GALERIA CELESTE', '#322036', '#e99cc9'),
 }
 # Titulo claro con contorno oscuro: se lee sobre carteles dorados, rosas o oscuros.
+# Altura del titulo, centrada en el cartel de cada marco (Sendas Salvajes es la referencia).
+TITLE_Y = {'subastas': 21, 'gacha_rpg': 24, 'gacha_monturas': 27, 'gacha_cosmeticos': 24}
 TITLE_OUTLINE = {'subastas': '#3b2108', 'gacha_rpg': '#1c1030', 'gacha_monturas': '#0f2418', 'gacha_cosmeticos': '#4a1538'}
 # Casillas de la fila de abajo que usa cada menu: volver, cerrar y, en las
 # gachas, garantia, premios y probabilidades.
@@ -74,6 +76,9 @@ def panel(kind, catalog=False):
     sy=[0,round(source.height*.20),round(source.height*.92),source.height]
     dx=[0,24,200,224];dy=[0,56,258,280]
     im=Image.new('RGBA',SIZE)
+    # Fondo debajo del cartel: algunos marcos dejan ahi pixeles transparentes
+    # y en el juego se veia el mundo a traves del menu.
+    ImageDraw.Draw(im).rectangle((24,36,199,56),fill=fill)
     for r in range(3):
         for c in range(3):
             piece=source.crop((sx[c],sy[r],sx[c+1],sy[r+1]))
@@ -81,8 +86,8 @@ def panel(kind, catalog=False):
     d=ImageDraw.Draw(im);ox,oy=OFFSET
     d.rectangle((ox,oy+16,ox+175,oy+218),fill=fill)
     for dx_,dy_ in ((-1,0),(1,0),(0,-1),(0,1)):
-        text(im,caption,(112+dx_,27+dy_),color=TITLE_OUTLINE[kind])
-    text(im,caption,(112,27),color='#fff0d5')
+        text(im,caption,(112+dx_,TITLE_Y[kind]+dy_),color=TITLE_OUTLINE[kind])
+    text(im,caption,(112,TITLE_Y[kind]),color='#fff0d5')
     slots=list(range(54)) if catalog else [4,8,*NAV.get(kind,NAV_GACHA)]
     for slot in slots:
         x,y=ox+7+slot%9*18,oy+17+slot//9*18
