@@ -88,7 +88,9 @@ def mob_yml():
     for pid, d in MASCOTAS.items():
         n = d["n"]
         skills = [f"skill{{s=PET_MODELO_{pid}}} @self ~onSpawn", f"skill{{s=PET_MODELO_{pid}}} @self ~onLoad",
-                  "setowner @NearestPlayer{r=4} ~onSpawn",
+                  # targetcreative: sin esto MythicMobs ignora a quien esta en creativo,
+                  # la mascota queda sin dueno y 'remove ?!hasowner' la borra a los 2 segundos.
+                  "setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn",
                   "remove @self ~onTimer:40 ?!hasowner", "remove @self ~onTimer:20 ?!ownerIsOnline",
                   f"skill{{s=PET_{pid}_CHEQUEO}} @owner ~onTimer:20",
                   f"skill{{s=PET_{pid}_BONUS1}} @owner ~onTimer:40",
