@@ -45,7 +45,7 @@ function astral_safe_floor(l: location) :: boolean:
 function astral_rescue(p: player):
     set {_id} to uuid of {_p}
     set {_world} to name of world of {_p}
-    set {_safe} to {astral.safe::%{_id}%::%{_world}%}
+    set {_safe} to {-astral.safe::%{_id}%::%{_world}%}
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
     if {_safe} is set:
@@ -58,12 +58,12 @@ function astral_rescue(p: player):
         set fall distance of {_p} to 0
         send action bar "&eVolviste al ultimo lugar seguro." to {_p}
     else:
-        delete {astral.safe::%{_id}%::%{_world}%}
+        delete {-astral.safe::%{_id}%::%{_world}%}
         execute console command "spawn %name of {_p}%"
 
 # No reutilizar un punto de otra visita o de una sala anterior al morir.
 on world change:
-    delete {astral.safe::%uuid of player%::*}
+    delete {-astral.safe::%uuid of player%::*}
 
 function astral_dungeon(w: world) :: boolean:
     if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario":
@@ -148,7 +148,7 @@ on mount:
                 cancel event
 
 on death of player:
-    delete {astral.safe::%uuid of victim%::*}
+    delete {-astral.safe::%uuid of victim%::*}
     set {_w} to name of world of victim
     if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario":
         keep the inventory and experiences
@@ -200,19 +200,19 @@ every tick:
                 if loop-player is on ground:
                     if astral_safe_floor(location of loop-player) is true:
                         set {_world} to name of world of loop-player
-                        set {astral.safe::%{_id}%::%{_world}%} to location of loop-player
+                        set {-astral.safe::%{_id}%::%{_world}%} to location of loop-player
         if astral_dungeon(world of loop-player) is true:
             if astral_builder(loop-player) is false:
                 set {_world} to name of world of loop-player
                 if loop-player is swimming:
-                    if {astral.dry::%{_id}%::%{_world}%} is set:
-                        teleport loop-player to {astral.dry::%{_id}%::%{_world}%}
+                    if {-astral.dry::%{_id}%::%{_world}%} is set:
+                        teleport loop-player to {-astral.dry::%{_id}%::%{_world}%}
                     else:
                         execute console command "spawn %name of loop-player%"
                     continue
                 if loop-player is on ground:
                     if block at loop-player is not water:
-                        set {astral.dry::%{_id}%::%{_world}%} to location of loop-player
+                        set {-astral.dry::%{_id}%::%{_world}%} to location of loop-player
                 if chestplate of loop-player is elytra:
                     execute console command "spawn %name of loop-player%"
                     send "&cNo puedes equipar elitras dentro de una mazmorra. Conservas el objeto." to loop-player
