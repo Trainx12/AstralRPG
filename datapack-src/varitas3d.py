@@ -36,8 +36,10 @@ def hx(h):
 
 
 class Wand:
-    def __init__(self, iid, name, palette):
+    def __init__(self, iid, name, palette, tilt=-30, tex_dir=TEX_DIR):
         self.iid = iid
+        self.tilt = tilt                  # giro del icono del inventario para que se vea el volumen
+        self.tex_dir = tex_dir
         self.name = name
         self.palette = palette            # {muestra: (color, tipo)}
         self.slots = {k: i for i, k in enumerate(palette)}
@@ -67,6 +69,50 @@ class Wand:
 
     def ring(self, y, h, sw, w=2.6):
         self.box((8 - w / 2, y, 8 - w / 2), (8 + w / 2, y + h, 8 + w / 2), sw)
+
+    def seg(self, p, ang, ln, wd, sw, z=(7.6, 8.4), glow=0, off=0.0):
+        """Barra que sale de p=(x,y) con direccion ang (grados, multiplo de 22.5) y largo ln.
+        off la corre de costado (positivo = a la izquierda de la direccion). Devuelve el punto final."""
+        a = math.radians(ang)
+        d = (math.cos(a), math.sin(a))
+        nx, ny = -d[1], d[0]
+        cx = p[0] + d[0] * ln / 2 + nx * off
+        cy = p[1] + d[1] * ln / 2 + ny * off
+        r = ((ang + 90) % 180) - 90                    # angulo de la linea en (-90, 90]
+        L = ln + 0.3                                   # un poco mas largo para que no queden huecos
+        if abs(r) <= 45:
+            size, rot = (L, wd), r
+        else:
+            size, rot = (wd, L), (r - 90 if r > 0 else r + 90)
+        c = (cx, cy, (z[0] + z[1]) / 2)
+        self.cen(c, (size[0], size[1], z[1] - z[0]), sw, ("z", rot) if rot else None, glow)
+        return (p[0] + d[0] * ln, p[1] + d[1] * ln)
+
+    def blade(self, p, segs, sw, edge=None, spine=None, side=-1, edge_w=0.7, spine_w=0.6,
+              z=(7.6, 8.4), edge_glow=0, teeth=None):
+        """Hoja curva: segs = [(angulo, largo, ancho[, color]), ...].
+        edge = filo; side=-1 lo pone a la derecha de la direccion (abajo si la hoja va hacia -x).
+        spine = lomo del otro lado; teeth = dientes sobre el lomo."""
+        pts = []
+        for k, sg in enumerate(segs):
+            ang, ln, wd = sg[:3]
+            col = sg[3] if len(sg) > 3 else sw
+            q = self.seg(p, ang, ln, wd, col, z)
+            if edge:
+                self.seg(p, ang, ln, edge_w, edge, (z[0] + 0.15, z[1] - 0.15), edge_glow,
+                         side * (wd / 2 + edge_w / 2 - 0.15))
+            if spine:
+                self.seg(p, ang, ln * 0.9, spine_w, spine, (z[0] - 0.12, z[1] + 0.12), 0,
+                         -side * (wd / 2 - spine_w / 2))
+            if teeth and k < len(segs) - 1:
+                a = math.radians(ang)
+                nx, ny = math.sin(a) * side, -math.cos(a) * side
+                mx, my = p[0] + math.cos(a) * ln * 0.5, p[1] + math.sin(a) * ln * 0.5
+                self.cen((mx + nx * wd / 2, my + ny * wd / 2, (z[0] + z[1]) / 2),
+                         (1.1, 1.1, z[1] - z[0] - 0.1), teeth, ("z", 45))
+            pts.append(q)
+            p = q
+        return pts
 
 
 # ---------------------------------------------------------------------------
@@ -414,6 +460,8 @@ def _pattern(name, x, y, n, seed):
         if (x, y) in ((1, 1), (2, 1), (1, 2)):
             k += 0.45
         return k
+    if name.startswith("prism"):                                    # cristal con franjas diagonales
+        return 1 + 0.05 * n + (0.22 if (x + y) // 2 % 3 == 0 else 0) - 0.12 * (y / TS)
     if name.startswith(("leaf", "feather")):
         return 1 + (0.15 if x == TS // 2 else 0) + 0.08 * n - 0.1 * (y / TS)
     if name.startswith(("navy", "deep")):
@@ -508,19 +556,28 @@ def _bounds(w):
     return min(ys) - 0.5, max(ys) + 0.5
 
 
+def _xmid(w):
+    xs = [c[0] for e in w.els for c in _corners(e)]
+    return (min(xs) + max(xs)) / 2
+
+
+def _fit(w, m, room=15.2):
+    """Escala y traslado para que el modelo girado con m quede centrado en el casillero."""
+    pts = [_app(m, [c[i] - 8 for i in range(3)]) for e in w.els for c in _corners(e)]
+    x0, x1 = min(p[0] for p in pts), max(p[0] for p in pts)
+    y0, y1 = min(p[1] for p in pts), max(p[1] for p in pts)
+    s = round(min(1.0, room / max(x1 - x0, y1 - y0)), 3)
+    return s, [round(-(x0 + x1) / 2 * s, 2), round(-(y0 + y1) / 2 * s, 2), 0]
+
+
 def display(w):
     """Como se ve en la mano, el inventario, el piso y los marcos."""
-    y0, y1 = _bounds(w)
-    length = y1 - y0
-    mid = (y0 + y1) / 2
     # Inventario: diagonal como los iconos vanilla, girado un poco para que se vea el volumen
-    gui_m = _mul(_rz(math.radians(-45)), _ry(math.radians(-30)))
-    s = round(min(1.0, 21.5 / length), 3)
-    off = _app(gui_m, [0, (mid - 8) * s, 0])
-    gui_t = [round(-off[0], 2), round(-off[1], 2), 0]
+    gui_m = _mul(_rz(math.radians(-45)), _ry(math.radians(w.tilt)))
+    s, gui_t = _fit(w, gui_m)
     gui_r = _euler_xyz(gui_m)
     fixed_m = _mul(_ry(math.pi), gui_m)
-    off2 = _app(fixed_m, [0, (mid - 8) * s, 0])
+    s2, fixed_t = _fit(w, fixed_m)
     return {
         # mismo angulo que una herramienta vanilla, menos 45 grados porque el modelo esta parado
         "thirdperson_righthand": {"rotation": [0, -90, 10], "translation": [0, 4, 0.5], "scale": [0.85, 0.85, 0.85]},
@@ -528,15 +585,14 @@ def display(w):
         "firstperson_righthand": {"rotation": [0, -90, -20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
         "firstperson_lefthand": {"rotation": [0, 90, 20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
         "gui": {"rotation": gui_r, "translation": gui_t, "scale": [s, s, s]},
-        "fixed": {"rotation": _euler_xyz(fixed_m), "translation": [round(-off2[0], 2), round(-off2[1], 2), 0],
-                  "scale": [s, s, s]},
+        "fixed": {"rotation": _euler_xyz(fixed_m), "translation": fixed_t, "scale": [s2, s2, s2]},
         "ground": {"rotation": gui_r, "translation": [0, 3, 0], "scale": [0.32, 0.32, 0.32]},
         "head": {"rotation": [0, 0, -45], "translation": [0, 10, 0], "scale": [0.8, 0.8, 0.8]},
     }
 
 
 def model_json(w):
-    tex = f"astral:{TEX_DIR}/{w.iid}"
+    tex = f"astral:{w.tex_dir}/{w.iid}"
     els = []
     for e in w.els:
         slot = w.slots[e["sw"]]
@@ -561,14 +617,14 @@ def _png(im):
     return b.getvalue()
 
 
-def assets():
+def assets(items=None):
     """{ruta en el pack: bytes} para build_pack.py."""
     out = {}
-    for w in WANDS:
+    for w in items or WANDS:
         im, n = texture(w)
-        out[f"assets/astral/textures/{TEX_DIR}/{w.iid}.png"] = _png(im)
+        out[f"assets/astral/textures/{w.tex_dir}/{w.iid}.png"] = _png(im)
         if n > 1:
-            out[f"assets/astral/textures/{TEX_DIR}/{w.iid}.png.mcmeta"] = json.dumps(
+            out[f"assets/astral/textures/{w.tex_dir}/{w.iid}.png.mcmeta"] = json.dumps(
                 {"animation": {"frametime": FRAMETIME, "interpolate": True}}, indent=1).encode()
         out[f"assets/astral/models/item/{w.iid}.json"] = json.dumps(model_json(w), indent=1).encode()
         out[f"assets/astral/items/{w.iid}.json"] = json.dumps(
@@ -576,10 +632,10 @@ def assets():
     return out
 
 
-def check():
+def check(items=None):
     """Revisa limites de Minecraft: coordenadas -16..32, angulos permitidos, 16 muestras."""
     problems = []
-    for w in WANDS:
+    for w in items or WANDS:
         for e in w.els:
             for c in e["from"] + e["to"]:
                 if not -16 <= c <= 32:
@@ -633,7 +689,7 @@ def _corners(e):
     return pts
 
 
-def render(w, frame_im, view, scale, size, center):
+def render(w, frame_im, view, scale, size, center, xc=8):
     """Dibuja el baston con la matriz view. Devuelve imagen RGBA."""
     ss = 3
     img = Image.new("RGBA", (size[0] * ss, size[1] * ss), (0, 0, 0, 0))
@@ -654,7 +710,7 @@ def render(w, frame_im, view, scale, size, center):
                 p = [(e["from"], e["to"])[c[i]][i] for i in range(3)]
                 if m:
                     p = [a + b for a, b in zip(_app(m, [p[i] - org[i] for i in range(3)]), org)]
-                pts.append(_app(view, [p[0] - 8, p[1] - center, p[2] - 8]))
+                pts.append(_app(view, [p[0] - xc, p[1] - center, p[2] - 8]))
             if m:
                 n = _app(m, n)
             n = _app(view, n)
@@ -682,21 +738,22 @@ def render(w, frame_im, view, scale, size, center):
     return img.resize(size, Image.LANCZOS)
 
 
-def preview(path):
-    W, H, SC = 150, 330, 7.0
+def preview(path, items=None, W=150):
+    items = items or WANDS
+    H, SC = 330, 7.0
     frames = []
-    strips = [texture(w)[0] for w in WANDS]
+    strips = [texture(w)[0] for w in items]
     steps = 36
     for k in range(steps):
         yaw = math.radians(k * 360 / steps)
         view = _mul(_rx(math.radians(-12)), _ry(yaw))
-        bg = Image.new("RGBA", (W * len(WANDS), H + 34), (34, 24, 52, 255))
-        for i, w in enumerate(WANDS):
+        bg = Image.new("RGBA", (W * len(items), H + 34), (34, 24, 52, 255))
+        for i, w in enumerate(items):
             n = strips[i].size[1] // TEX
             f = (k * 2) % FRAMES if n > 1 else 0
             fim = strips[i].crop((0, f * TEX, TEX, f * TEX + TEX)) if n > 1 else strips[i]
             y0, y1 = _bounds(w)
-            im = render(w, fim, view, SC, (W, H), (y0 + y1) / 2)
+            im = render(w, fim, view, SC, (W, H), (y0 + y1) / 2, _xmid(w))
             bg.alpha_composite(im, (i * W, 0))
             ImageDraw.Draw(bg).text((i * W + 10, H + 10), w.name, fill=(230, 220, 255, 255))
         frames.append(bg.convert("RGB").convert("P", palette=Image.ADAPTIVE, colors=255))
@@ -704,8 +761,8 @@ def preview(path):
     frames[0].save(path, save_all=True, append_images=frames[1:], duration=70, loop=0, disposal=2)
     # tambien un PNG fijo grande y los iconos del inventario
     frames[3].convert("RGB").save(path.replace(".gif", ".png"))
-    icons = Image.new("RGBA", (5 * 80, 80), (139, 139, 139, 255))
-    for i, w in enumerate(WANDS):
+    icons = Image.new("RGBA", (len(items) * 80, 80), (139, 139, 139, 255))
+    for i, w in enumerate(items):
         d = display(w)["gui"]
         m = _rot_of(d["rotation"])
         s = d["scale"][0]
@@ -714,7 +771,7 @@ def preview(path):
         im = render(w, fim, mm, 4.0, (64, 64), 8 - 0)
         # la traslacion del gui va en pixeles del casillero
         icons.alpha_composite(im, (i * 80 + 8 + int(d["translation"][0] * 4), 8 - int(d["translation"][1] * 4)))
-    icons.resize((5 * 160, 160), Image.NEAREST).save(path.replace(".gif", "_iconos.png"))
+    icons.resize((len(items) * 160, 160), Image.NEAREST).save(path.replace(".gif", "_iconos.png"))
 
 
 if __name__ == "__main__":

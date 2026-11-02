@@ -26,5 +26,5 @@ estilo y colores; los modelos se hacen de cero, sin copiar ningún diseño.
 | `varitas_01` a `varitas_07` | Varitas usadas para los Bastones de Mago (ya hechos) | Si sobran ideas: cuernos rojos → Hacha del Apocalipsis; halo de sol con plumas → Espada del Dios de la Guerra |
 
 ## Pendiente
-1. Guadañas (5) → `guadana_1` a `guadana_5` (hoy usan texturas planas de `textures.py`).
+1. ~~Guadañas~~: hechas el 01/11/2026 en `datapack-src/guadanas3d.py` (las 5 de Mago y la Guadaña Umbría de la gacha).
 2. Espadas, hachas y arcos. Los arcos tienen animación de tensado: hacen falta 4 modelos (normal y 3 de tensado).

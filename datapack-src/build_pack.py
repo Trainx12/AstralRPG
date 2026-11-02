@@ -80,6 +80,9 @@ for iid in GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
     parent = "minecraft:item/handheld" if iid in GEN_WEAPON else "minecraft:item/generated"
     put_json(f"assets/astral/models/item/{iid}.json", {"parent": parent, "textures": {"layer0": f"astral:item/gen/{iid}"}})
     put_json(f"assets/astral/items/{iid}.json", {"model": model_ref(f"astral:item/{iid}")})
+# Guadanas en 3D (guadanas3d.py); van despues de las texturas planas para reemplazarlas
+from guadanas3d import assets as scythe_assets
+files.update(scythe_assets())
 # Taladros y motosierras (texturas de pack-source/drills, las animadas con .mcmeta)
 import colorsys
 import io as _io
