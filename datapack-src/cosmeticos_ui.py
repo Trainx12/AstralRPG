@@ -83,6 +83,9 @@ def medal(index,locked=False):
     if rarity in ('epic','legendary'):
         d.point((2,2),fill=color);d.point((15,2),fill=color)
         d.point((2,15),fill=color);d.point((15,15),fill=color)
+    if not locked:
+        d.polygon(((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4)),outline='#f2d27f')
+        d.line((4,2,8,2),fill='#fff3cf');d.point((3,3),fill='#fff3cf')
     if locked:
         alpha=im.getchannel('A');im=ImageOps.grayscale(im).convert('RGBA');im.putalpha(alpha)
         # Barniz oscuro sobre el metal: la silueta aun permite reconocer el titulo.
@@ -90,6 +93,29 @@ def medal(index,locked=False):
         d.rectangle((11,10,16,16),fill='#17242c',outline='#a3adb2')
         d.arc((12,6,15,13),180,360,fill='#ccd4ce')
         d.point((14,13),fill='#d4c79e')
+    return im
+
+
+def nav_icon(kind):
+    """Botones del marco en el mismo metal y terciopelo que la galeria."""
+    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+    d.rectangle((0,0,17,17),outline=EDGE);d.rectangle((1,1,16,16),fill='#163f4c',outline='#365d69')
+    d.line((2,1,15,1),fill='#ebdab1')
+    gold,ivory,teal='#d9b766','#f2e8c9',ACCENT
+    if kind=='info':      # pergamino con la i
+        d.rectangle((5,4,12,13),fill=ivory);d.line((4,4,13,4),fill=gold);d.line((4,13,13,13),fill=gold)
+        d.point((8,6),fill='#244650');d.line((8,8,8,11),fill='#244650')
+    elif kind=='gacha':   # cofre con gema turquesa
+        d.rectangle((3,7,14,13),fill='#7a5230',outline=gold);d.rectangle((3,5,14,7),fill='#946238',outline=gold)
+        d.line((3,9,14,9),fill=gold);d.rectangle((7,8,10,11),fill=gold)
+        d.point((8,9),fill=teal);d.point((9,10),fill=teal)
+        d.point((13,3),fill=teal);d.point((15,5),fill='#edc36b')
+    elif kind=='back':    # flecha dorada
+        d.polygon(((3,9),(8,4),(8,7),(14,7),(14,11),(8,11),(8,14)),fill=gold)
+        d.line((9,8,13,8),fill=ivory)
+    else:                 # cerrar: aspa marfil
+        d.line((5,5,12,12),fill=ivory,width=2);d.line((12,5,5,12),fill=ivory,width=2)
+        d.point((8,8),fill='#e07a5f')
     return im
 
 
@@ -117,6 +143,8 @@ def panel():
     for y,caption in ((75,'OFICIOS Y AVENTURA'),(111,'HONORES Y LEYENDAS')):
         d.rectangle((47,y-2,176,y+33),fill='#0d222f',outline='#6a7a6d')
         d.line((50,y+19,173,y+19),fill=EDGE)
+        for cx,cy in ((47,y-2),(176,y-2),(47,y+33),(176,y+33)):
+            d.polygon(((cx,cy-2),(cx+2,cy),(cx,cy+2),(cx-2,cy)),fill='#d9b766')
         text(im,caption,(112,y+23),color='#c2d5cf')
         for col in range(7):
             x=49+col*18
@@ -128,6 +156,9 @@ def panel():
     d.rectangle((67,147,156,164),fill=(0,0,0,0))
     # Inventario real del jugador con la misma ubicacion que el cofre de seis filas.
     d.rectangle((31,168,192,177),fill=band_color(EDGE));d.line((31,167,192,167),fill=EDGE)
+    d.line((31,178,192,178),fill=EDGE);d.line((33,169,190,169),fill='#ffffff60')
+    for x,s in ((31,1),(192,-1)):
+        d.polygon(((x,172),(x+3*s,169),(x+6*s,172),(x+3*s,175)),fill=EDGE)
     for row in (*range(3),4):
         for col in range(9):
             x,y=31+col*18,179+row*18 if row<3 else 237
@@ -153,6 +184,7 @@ def assets():
             'model':{'type':'minecraft:model','model':f'astral:cosmeticos/{name}'}}).encode()
     for index,(_,name,_) in enumerate(TITLES):
         for locked in (False,True):model(key_for(name)+('_locked' if locked else ''),medal(index,locked))
+    for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
     button=clear_button()
     for i in range(5):model(f'clear_{i}',button.crop((i*18,0,i*18+18,18)))
     return files,providers
@@ -165,8 +197,8 @@ def previews(folder):
         for index,slot in enumerate(TITLE_SLOTS):
             im.alpha_composite(medal(index,sample=='mixta' and index not in (0,1,4,8,11)),(31+slot%9*18,57+slot//9*18))
         im.alpha_composite(clear_button(),(67,147))
-        for slot,label in ((4,'i'),(8,'G'),(45,'<'),(53,'X')):
-            text(im,label,(39+slot%9*18,62+slot//9*18),color='#f5e6be')
+        for slot,kind in ((4,'info'),(8,'gacha'),(45,'back'),(53,'close')):
+            im.alpha_composite(nav_icon(kind),(31+slot%9*18,57+slot//9*18))
         text(im,'Inventario',(86,169),color='#383c40')
         (folder/f'cosmeticos-{sample}.png').write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)))
 
