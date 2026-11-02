@@ -1,6 +1,6 @@
 # Armas especiales independientes
 
-Implementacion local del 02/11/2026. No publicadas en Aternos.
+Instaladas en Aternos el 02/11/2026 (datapack + script `special_weapons.sk`).
 Se forjan en Guia AstralRPG → Especiales y aparecen en `admin/kit_especiales`.
 Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 
@@ -13,7 +13,8 @@ Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 | Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 20 por uso | Disparo: 1 s |
 
 Los valores son puntos de vida, antes de armadura/resistencia (2 puntos = 1 corazon).
-El mana se consume con `SkillsUser.consumeMana`, sobre el saldo real de AuraSkills.
+El mana se lee con la skill de MythicMobs `ASW_LEER_MANA` (PlaceholderAPI `%auraskills_mana_int%`)
+y se descuenta con `auraskills:mana remove`. No hace falta ningun addon de Skript.
 La varita hace su golpe fisico normal aunque no alcance el mana para la explosion.
 Los costos y danos adicionales elegidos son un balance inicial ajustable.
 
@@ -67,17 +68,17 @@ python special_weapons3d.py
 python verify.py
 ```
 
-1. Instalar **skript-reflect 2.6.3** desde el catalogo de plugins de Aternos. Necesita
-   Skript 2.14 o superior; se probo con Skript 2.17.1 y AuraSkills 2.4.0.
-2. Subir `build/gameplay/astral_armas_especiales.sk` a `plugins/Skript/scripts/`.
+1. Subir `build/gameplay/astral_armas_especiales.sk` a `plugins/Skript/scripts/` con el
+   nombre `special_weapons.sk` (asi se llama en Aternos; no dejar los dos, se duplicarian).
+2. Subir `build/mythicmobs/skills/armas_especiales.yml` a `plugins/MythicMobs/skills/` y `mm reload`.
 3. Instalar el datapack y resource pack regenerados siguiendo `GUIA.md`.
    Cambiar URL y SHA-1 juntos. No reemplazar el mundo completo.
-4. Reiniciar tras instalar el complemento; luego `skript reload astral_armas_especiales`.
+4. `skript reload special_weapons` (nombre completo: AuraSkills puede capturar `sk`).
 5. Dar una copia de cada arma con `loot give <jugador> loot astral:item/<id>` o
    `execute as <jugador> run function astral:admin/kit_especiales`.
 
-Sin el script o skript-reflect, los objetos y recetas cargan, pero sus habilidades
-no funcionan. No se necesita un plugin Java propio ni mods del cliente.
+Sin el script, los objetos y recetas cargan, pero sus habilidades no funcionan.
+No se necesita un plugin Java propio, addons de Skript ni mods del cliente.
 
 La prueba local usa Paper 26.1.2 build 74, dos clientes de protocolo locales,
 AuraSkills 2.4.0, Skript 2.17.1 y skript-reflect 2.6.3. Se comprobaron carga sin
@@ -89,5 +90,4 @@ Tambien se comprobo dano real entre los dos jugadores dentro de arena, cancelaci
 externa de dano y devolucion de mana ante teletransporte cancelado.
 
 Referencias tecnicas: [API de AuraSkills](https://wiki.aurelium.dev/auraskills/api),
-[skript-reflect](https://github.com/SkriptLang/skript-reflect),
 [API de Paper](https://jd.papermc.io/paper/26.1.2/org/bukkit/World.html).

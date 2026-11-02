@@ -162,7 +162,19 @@ Se modificaron solo text_display, sin mover NPCs.
 Filo de la Tormenta, Danza del Ender, Filo del Destello, Hacha del Sismo y Varita
 del Estallido. Modelos originales animados, recetas y caja de especiales; fuera
 de los kits de clases. [Detalles e instalacion](ARMAS_ESPECIALES.md).
-Se regeneraron los ZIP de items/texturas. Requieren instalar skript-reflect y
-`build/gameplay/astral_armas_especiales.sk`. Sin commit, push ni cambios en Aternos.
+Se regeneraron los ZIP de items/texturas. El script final no usa addons (sin skript-reflect).
+Instalado en Aternos el 02/11/2026 (ver mas abajo).
 Probados con dos clientes locales: mana, saltos, seis golpes distintos, PvP solo
 en arena, cancelaciones de dano/teletransporte y limpieza del efecto del hacha.
+
+## Revision e instalacion (02/11/2026, Claude)
+
+Revisado el trabajo pendiente de ChatGPT, regenerado todo y 71 pruebas OK.
+- Datapack nuevo (armas especiales) subido a `world/datapacks` con el server apagado.
+- Rescate de caidas: `astral_gameplay.sk` reemplazado en Aternos.
+- Armas especiales: el script ya estaba en Aternos como `special_weapons.sk` (identico).
+- Plugins nuevos (SleepMost, AxShulkers, AxTrade, Duels, ExpendableBackpacks) ya
+  estaban instalados con sus configs. Duels quedo con la config del server (version
+  de config mas nueva). Se descarto la config de DamageIndicator preparada: era de
+  otro plugin con claves distintas.
+- Resource pack: sin cambios (ya tenia los modelos 3D de las armas).
