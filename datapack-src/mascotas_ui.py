@@ -34,7 +34,7 @@ def portrait(pid):
     texture=model.export()[1]
     image=build_models.preview3d(model,texture,yaw=30,pitch=18,scale=3,background=(0,0,0,0))
     image=image.crop(image.getbbox())
-    image.thumbnail((46,20),Image.Resampling.NEAREST)
+    image.thumbnail((42,14),Image.Resampling.NEAREST)
     return image
 
 
@@ -43,22 +43,65 @@ def card(pid,locked=False):
     im=Image.new('RGBA',(54,36),FILL);d=ImageDraw.Draw(im)
     d.rectangle((0,0,53,35),outline=EDGE)
     d.rectangle((2,2,51,33),outline='#3e5550')
-    # Nicho y pedestal: cada criatura conserva sus colores y su silueta 3D.
-    d.rectangle((4,3,49,22),fill='#0d2025')
-    d.ellipse((12,17,41,22),fill='#28443e',outline='#496052')
+    # Nicho y pedestal arriba; nombre, filete dorado y bonus abajo, sin pisarse.
+    d.rectangle((4,3,49,17),fill='#0d2025')
+    d.ellipse((13,13,40,18),fill='#28443e',outline='#496052')
     image=portrait(pid)
-    im.alpha_composite(image,((54-image.width)//2,2+(20-image.height)//2))
-    d.line((4,23,49,23),fill=EDGE)
-    text(im,LABELS[pid],(27,24),color=color)
-    text(im,BONUS[pid],(27,30),color='#f3e4b8')
+    im.alpha_composite(image,((54-image.width)//2,3+(14-image.height)//2))
+    text(im,LABELS[pid],(27,18),color=color)
+    d.line((8,26,45,26),fill=EDGE)
+    d.point((7,26),fill='#ddc98c');d.point((46,26),fill='#ddc98c')
+    # Fuente de 3x5 dibujada a su resolucion nativa para el beneficio compacto.
+    tiny_text(im,BONUS[pid],28,'#f3e4b8')
     for x in (1,52):
         for y in (1,34):d.point((x,y),fill='#ddc98c')
     if locked:
         im=Image.blend(ImageOps.grayscale(im).convert('RGBA'),Image.new('RGBA',im.size,'#22322f'),.45)
         d=ImageDraw.Draw(im)
-        d.rectangle((43,16,50,23),fill='#172623',outline='#b1b9aa')
-        d.arc((44,11,49,19),180,360,fill='#d7d5c0')
-        d.point((47,19),fill='#d7d5c0')
+        d.rectangle((42,7,49,13),fill='#172623',outline='#b1b9aa')
+        d.arc((43,3,48,10),180,360,fill='#d7d5c0')
+        d.point((45,10),fill='#d7d5c0')
+    return im
+
+
+def tiny_text(im,caption,y,color):
+    alphabet={
+        'A':('010','101','111','101','101'),'C':('011','100','100','100','011'),
+        'D':('110','101','101','101','110'),'E':('111','100','110','100','111'),
+        'F':('111','100','110','100','100'),'G':('011','100','101','101','011'),
+        'I':('111','010','010','010','111'),'L':('100','100','100','100','111'),
+        'N':('101','111','111','111','101'),'O':('010','101','101','101','010'),
+        'P':('110','101','110','100','100'),'R':('110','101','110','101','101'),
+        'S':('011','100','010','001','110'),'T':('111','010','010','010','010'),
+        'U':('101','101','101','101','111'),'V':('101','101','101','101','010'),
+        'Z':('111','001','010','100','111'),' ':('000',)*5}
+    d=ImageDraw.Draw(im);x=(im.width-(len(caption)*4-1))//2
+    for letter in caption:
+        for row,line in enumerate(alphabet[letter]):
+            for col,pixel in enumerate(line):
+                if pixel=='1':d.point((x+col,y+row),fill=color)
+        x+=4
+
+
+def nav_icon(kind):
+    """Botones del marco en madera, musgo y oro del santuario."""
+    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+    d.rectangle((0,0,17,17),outline=EDGE);d.rectangle((1,1,16,16),fill='#1d3a33',outline='#3e5550')
+    d.line((2,1,15,1),fill='#e4d2a5')
+    gold,ivory,teal='#d9b766','#eee3be','#7fe0c8'
+    if kind=='info':      # huella
+        d.ellipse((6,8,11,13),fill=gold)
+        for x,y in ((4,6),(7,4),(10,4),(13,6)):d.ellipse((x-1,y-1,x+1,y+1),fill=ivory)
+    elif kind=='gacha':   # montura con gema
+        d.polygon(((3,9),(6,6),(11,6),(14,9),(12,12),(5,12)),fill='#8a5a32',outline=gold)
+        d.line((6,12,6,15),fill=gold);d.line((11,12,11,15),fill=gold)
+        d.rectangle((8,7,9,8),fill=teal);d.point((14,3),fill=teal);d.point((15,5),fill=gold)
+    elif kind=='back':    # flecha dorada
+        d.polygon(((3,9),(8,4),(8,7),(14,7),(14,11),(8,11),(8,14)),fill=gold)
+        d.line((9,8,13,8),fill=ivory)
+    else:                 # cerrar
+        d.line((5,5,12,12),fill=ivory,width=2);d.line((12,5,5,12),fill=ivory,width=2)
+        d.point((8,8),fill='#e07a5f')
     return im
 
 
@@ -93,6 +136,9 @@ def panel():
     d.rectangle((67,147,156,164),fill=(0,0,0,0))
     d.rectangle((31,168,192,177),fill=band_color(EDGE))
     d.line((31,167,192,167),fill=EDGE);d.line((31,178,192,178),fill=EDGE)
+    d.line((33,169,190,169),fill='#ffffff60')
+    for x,s in ((31,1),(192,-1)):
+        d.polygon(((x,172),(x+3*s,169),(x+6*s,172),(x+3*s,175)),fill=EDGE)
     for row in (*range(3),4):
         for col in range(9):
             x,y=31+col*18,179+row*18 if row<3 else 237
@@ -123,6 +169,7 @@ def assets():
                 for col in range(3):
                     index=row*3+col
                     model(pid+('_locked' if locked else '')+f'_{index}',image.crop((col*18,row*18,col*18+18,row*18+18)))
+    for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
     image=rest_button()
     for i in range(5):model(f'rest_{i}',image.crop((i*18,0,i*18+18,18)))
     return files,providers
@@ -136,8 +183,8 @@ def previews(folder):
             slot=slots[0]
             im.alpha_composite(card(pid,sample=='mixta' and i in (2,4,5)),(31+slot%9*18,57+slot//9*18))
         im.alpha_composite(rest_button(),(67,147))
-        for slot,label in ((4,'i'),(8,'G'),(45,'<'),(53,'X')):
-            text(im,label,(39+slot%9*18,62+slot//9*18),color='#f3e4b8')
+        for slot,kind in ((4,'info'),(8,'gacha'),(45,'back'),(53,'close')):
+            im.alpha_composite(nav_icon(kind),(31+slot%9*18,57+slot//9*18))
         text(im,'Inventario',(86,169),color='#383c40')
         (folder/f'mascotas-{sample}.png').write_bytes(png(im.resize((672,900),Image.Resampling.NEAREST)))
 

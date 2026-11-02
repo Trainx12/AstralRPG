@@ -153,10 +153,11 @@ def subastas_menu():
 def mascotas_menu():
     from mascotas_ui import title, regions, REST_SLOTS
     P = "%player_name%"
-    items = item("info", "BONE", 4, "&6&lSantuario de companeros",
+    items = item("info", "PAPER", 4, "&6&lSantuario de companeros",
                  ["&7Puedes llevar una mascota a la vez.", "&7Te sigue y sube de nivel con tus bajas.",
                   "&7Nivel 10 y 20: mejores bonus; nivel 30: evolucion.", "",
-                  "&7Pasa el cursor por cada retrato para ver sus bonus.", "&8Bonus solo dentro de las mazmorras."])
+                  "&7Pasa el cursor por cada retrato para ver sus bonus.", "&8Bonus solo dentro de las mazmorras."],
+                 extra={'item_model': q('astral:mascotas/nav_info')})
     for pid, slots in regions():
         d = MASCOTAS[pid]
         col = hexc(d["color"])
@@ -189,11 +190,13 @@ def mascotas_menu():
                       '&a&lDejar descansar a tu mascota', ['&7Guarda a tu companero actual.', '&7Conserva su nivel y sus mejoras.'],
                       extra={'item_model': q(f'astral:mascotas/rest_{index}'),
                              'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
-    items += item('gacha', 'SADDLE', 8, '&6&lConseguir mas companeros',
+    items += item('gacha', 'PAPER', 8, '&6&lConseguir mas companeros',
                   ['&7La Gacha de Monturas puede dar mascotas.', '&7Los otros retratos indican donde conseguirlas.'],
-                  extra={'click_commands': ['[openguimenu] gacha_monturas']})
-    items += item('volver', 'ARROW', 45, '&fVolver al atlas', extra={'click_commands': ['[openguimenu] principal']})
-    items += item('cerrar', 'BARRIER', 53, '&cCerrar', extra={'click_commands': ['[close]']})
+                  extra={'item_model': q('astral:mascotas/nav_gacha'), 'click_commands': ['[openguimenu] gacha_monturas']})
+    items += item('volver', 'PAPER', 45, '&fVolver al atlas',
+                  extra={'item_model': q('astral:mascotas/nav_back'), 'click_commands': ['[openguimenu] principal']})
+    items += item('cerrar', 'PAPER', 53, '&cCerrar',
+                  extra={'item_model': q('astral:mascotas/nav_close'), 'click_commands': ['[close]']})
     return menu(title(), 'mascotas', 54, items, update=True)
 
 

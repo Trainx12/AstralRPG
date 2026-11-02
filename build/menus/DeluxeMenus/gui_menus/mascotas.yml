@@ -4,7 +4,7 @@ size: 54
 update_interval: 1
 items:
   'info':
-    material: BONE
+    material: PAPER
     slot: 4
     amount: 1
     display_name: '&6&lSantuario de companeros'
@@ -17,6 +17,7 @@ items:
     - '&8Bonus solo dentro de las mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/nav_info'
   'm_lobo_nv20':
     material: PAPER
     slot: 9
@@ -5914,7 +5915,7 @@ items:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 98'
   'gacha':
-    material: SADDLE
+    material: PAPER
     slot: 8
     amount: 1
     display_name: '&6&lConseguir mas companeros'
@@ -5923,23 +5924,26 @@ items:
     - '&7Los otros retratos indican donde conseguirlas.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/nav_gacha'
     click_commands:
     - '[openguimenu] gacha_monturas'
   'volver':
-    material: ARROW
+    material: PAPER
     slot: 45
     amount: 1
     display_name: '&fVolver al atlas'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/nav_back'
     click_commands:
     - '[openguimenu] principal'
   'cerrar':
-    material: BARRIER
+    material: PAPER
     slot: 53
     amount: 1
     display_name: '&cCerrar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/nav_close'
     click_commands:
     - '[close]'
