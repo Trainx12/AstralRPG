@@ -1,0 +1,5 @@
+execute in minecraft:cavernas run forceload remove 172 91
+execute in minecraft:exp_desierto run forceload remove 179 135
+execute in minecraft:exp_hielo run forceload remove 9 8
+execute in minecraft:reino run forceload remove 7 0
+execute in minecraft:exp_santuario run forceload remove 25 -31

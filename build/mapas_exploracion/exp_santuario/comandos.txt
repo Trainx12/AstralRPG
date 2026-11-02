@@ -1,0 +1,28 @@
+# Expedicion al Santuario: mapa aparte para explorar. Sin aldeanos ni combates configurados.
+# Crear SOLO si el nombre exp_santuario esta libre; conservar todos los mundos anteriores.
+mv create exp_santuario normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Aplicar estas reglas al mundo vacio ANTES de subir el escenario:
+mv modify exp_santuario set gamemode adventure
+mv modify exp_santuario set difficulty peaceful
+mv modify exp_santuario set pvp false
+mv modify exp_santuario set allow-weather false
+mv modify exp_santuario set adjust-spawn false
+mv gamerule set minecraft:spawn_mobs false exp_santuario
+mv gamerule set minecraft:random_tick_speed 0 exp_santuario
+mv gamerule set minecraft:fire_spread_radius_around_player 0 exp_santuario
+mv gamerule set minecraft:mob_griefing false exp_santuario
+mv gamerule set minecraft:keep_inventory true exp_santuario
+mv gamerule set minecraft:log_admin_commands false exp_santuario
+rg flag -w exp_santuario __global__ build deny
+rg flag -w exp_santuario __global__ chest-access deny
+rg flag -w exp_santuario __global__ pvp deny
+# Apagar el servidor y subir SOLO .local/mapas/astral-nuevos/preparados/exp_santuario/region/*.mca
+# al NUEVO mundo world/dimensions/minecraft/exp_santuario/region.
+# Copiar tambien entities/ o poi/ si aparecen en el informe. Nunca Worlds -> Upload sobre world.
+# Encender y fijar la llegada sobre el camino original:
+# Orden comprobado en Multiverse 5.8.2: X,Y,Z,yaw,pitch.
+mv setspawn exp_santuario:26.5,103,-31.5,180,0
+# Revision: no mover jugadores automaticamente. Sustituir <jugador> cuando quiera explorar.
+# execute in minecraft:exp_santuario run minecraft:tp <jugador> 26.5 103 -31.5 180 0
+# Volver al lobby: /spawn. No usar /setspawn: cambiaria Essentials.
+# No ejecutar fill, setblock, //set, //paste ni crear plataformas.

@@ -88,6 +88,8 @@ from armas3d import assets as weapon3d_assets
 files.update(weapon3d_assets())
 from lanzas3d import assets as spear_assets
 files.update(spear_assets())
+from special_weapons3d import assets as special_weapon_assets
+files.update(special_weapon_assets())
 # Taladros y motosierras (texturas de pack-source/drills, las animadas con .mcmeta)
 import colorsys
 import io as _io

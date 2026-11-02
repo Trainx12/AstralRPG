@@ -51,6 +51,7 @@ astral_santuario_cangrejo_eco:
   Damage: 14.4
   Armor: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -117,6 +118,7 @@ astral_santuario_chaman_eco:
   Damage: 12.8
   Armor: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -189,6 +191,7 @@ astral_santuario_momia_eco:
   Damage: 16.0
   Armor: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -260,6 +263,7 @@ astral_santuario_yeti_eco:
   Damage: 22.4
   Armor: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -333,6 +337,7 @@ astral_santuario_golem_forja_eco:
   Damage: 25.6
   Armor: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true

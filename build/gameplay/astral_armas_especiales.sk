@@ -1,0 +1,366 @@
+# Generado por special_weapons.py. Skript 2.17 sin addons. MythicMobs + PlaceholderAPI + AuraSkills.
+function asw_identify(p: player):
+    execute console command "execute as %name of {_p}% run function astral:special/identify"
+
+function asw_holds(p: player, id: text) :: boolean:
+    asw_identify({_p})
+    if scoreboard tags of {_p} contains "astral.special.%{_id}%":
+        return true
+    return false
+
+function asw_target(p: player, e: entity) :: boolean:
+    if {_e} is not a living entity:
+        return false
+    if {_e} is {_p}:
+        return false
+    if {_e} is dead:
+        return false
+    if world of {_e} is not world of {_p}:
+        return false
+    if name of world of {_p} is "lobby" or "minecraft:lobby":
+        return false
+    if {_e} is invulnerable:
+        return false
+    if {_e} has metadata "NPC":
+        return false
+    if {_e} is a player:
+        if name of world of {_p} is not "arena" or "minecraft:arena":
+            return false
+        if gamemode of {_e} is not survival:
+            if gamemode of {_e} is not adventure:
+                return false
+        return true
+    if {_e} is a wolf or cat or parrot or horse or donkey or mule or llama:
+        return false
+    if {_e} is an armor stand or villager or wandering trader or allay or happy ghast or camel:
+        return false
+    if {_e} has metadata "asw.protected":
+        return false
+    return true
+
+function asw_ready(p: player) :: boolean:
+    if {_p} is not online:
+        return false
+    if {_p} is dead:
+        return false
+    if gamemode of {_p} is not survival:
+        if gamemode of {_p} is not adventure:
+            return false
+    if name of world of {_p} is "lobby" or "minecraft:lobby":
+        return false
+    if vehicle of {_p} is set:
+        return false
+    return true
+
+# MythicMobs lee PAPI sin menus ni addons. Respuesta solo desde consola.
+command /asw_mana <player> <number>:
+    executable by: console
+    trigger:
+        set {asw.mana::%uuid of arg-1%} to arg-2
+
+function asw_pay(p: player, amount: number) :: boolean:
+    delete {asw.mana::%uuid of {_p}%}
+    execute console command "mm test cast ASW_LEER_MANA %name of {_p}%"
+    set {_mana} to {asw.mana::%uuid of {_p}%}
+    delete {asw.mana::%uuid of {_p}%}
+    if {_mana} is not set:
+        send action bar "&cNo se pudo leer el mana. Avisale a un administrador." to {_p}
+        return false
+    if {_mana} >= {_amount}:
+        execute console command "auraskills:mana remove %name of {_p}% %{_amount}% true"
+        return true
+    send action bar "&cNecesitas %{_amount}% de mana." to {_p}
+    return false
+
+function asw_hurt(p: player, e: entity, amount: number):
+    if asw_target({_p}, {_e}) is false:
+        stop
+    # Atribucion al jugador y evento Bukkit: WorldGuard y otros plugins pueden cancelar.
+    set {asw.damage::%uuid of {_p}%} to true
+    set {_ticks} to no damage time of {_e}
+    set no damage time of {_e} to 0 ticks
+    set {_source} to a custom damage source:
+        set the damage type to player attack
+        set the causing entity to {_p}
+        set the direct entity to {_p}
+    set {_hearts} to {_amount} / 2
+    damage {_e} by {_hearts} using {_source}
+    set no damage time of {_e} to {_ticks}
+    delete {asw.damage::%uuid of {_p}%}
+
+function asw_area(p: player, center: location, radius: number, amount: number):
+    loop all living entities in radius {_radius} around {_center}:
+        if asw_target({_p}, loop-entity) is true:
+            if {_p} has line of sight to loop-entity:
+                asw_hurt({_p}, loop-entity, {_amount})
+
+function asw_explode(p: player, center: location):
+    # Solo efectos: nunca se crea TNT ni una explosion que rompa bloques.
+    play sound "entity.generic.explode" with volume 0.6 and pitch 1.5 at {_center}
+    set {_dimension} to asw_dimension(world of {_center})
+    execute console command "execute in %{_dimension}% run particle minecraft:explosion %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% 0.3 0.3 0.3 0 3"
+    asw_area({_p}, {_center}, 2, 6)
+
+function asw_dimension(w: world) :: text:
+    set {_name} to name of {_w}
+    if {_name} contains ":":
+        return {_name}
+    if {_name} is "world":
+        return "minecraft:overworld"
+    if {_name} is "world_nether":
+        return "minecraft:the_nether"
+    if {_name} is "world_the_end":
+        return "minecraft:the_end"
+    return "minecraft:%{_name}%"
+
+function asw_clear_path(p: player, dest: location) :: boolean:
+    if world of {_p} is not world of {_dest}:
+        return false
+    set {_start} to location of {_p}
+    set {_length} to distance between {_start} and {_dest}
+    set {_steps} to ceil({_length} / 0.2)
+    if {_steps} < 1:
+        return false
+    set {_delta} to vector from {_start} to {_dest}
+    loop {_steps} times:
+        set {_part} to {_delta} * (loop-number / {_steps})
+        set {_pos} to {_start} offset by {_part}
+        set {_border} to world border of world of {_p}
+        set {_middle} to world border center of {_border}
+        set {_radius} to world border radius of {_border}
+        if abs(x-coordinate of {_pos} - x-coordinate of {_middle}) > {_radius}:
+            return false
+        if abs(z-coordinate of {_pos} - z-coordinate of {_middle}) > {_radius}:
+            return false
+        # Volumen del cuerpo: cuatro esquinas a tres alturas cada 0,2 bloques.
+        loop 12 times:
+            set {_test} to {_pos} offset by vector(-0.3, 0.01, -0.3)
+            set {_corner} to loop-number-2
+            if {_corner} is 2 or 4 or 6 or 8 or 10 or 12:
+                add 0.6 to x-coordinate of {_test}
+            if {_corner} is 1 or 2 or 5 or 6 or 9 or 10:
+                add 0.6 to z-coordinate of {_test}
+            set {_height} to floor(((loop-number-2) - 1) / 4) * 0.89
+            add {_height} to y-coordinate of {_test}
+            if block at {_test} is not passable:
+                return false
+            if block at {_test} is lava or fire or soul fire or powder snow:
+                return false
+    return true
+
+function asw_mobility(p: player) :: boolean:
+    if astral_dungeon(world of {_p}) is true:
+        send action bar "&cLos saltos especiales estan desactivados en mazmorras." to {_p}
+        return false
+    return true
+
+function asw_blink(p: player):
+    set {_dest} to location of {_p} offset by (vector in direction of {_p} * 3)
+    if asw_clear_path({_p}, {_dest}) is false:
+        send action bar "&cNo hay espacio libre para el salto." to {_p}
+        stop
+    if asw_pay({_p}, 10) is false:
+        stop
+    teleport {_p} to {_dest}
+    if distance between location of {_p} and {_dest} > 0.1:
+        execute console command "auraskills:mana add %name of {_p}% 10 true"
+        stop
+    play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.6 at {_p}
+
+function asw_shadow(p: player):
+    set {_id} to uuid of {_p}
+    if {asw.shadow::%{_id}%} is set:
+        if difference between now and {asw.shadow::%{_id}%} is less than 5 seconds:
+            send action bar "&7Danza del Ender: recargando (5 s)." to {_p}
+            stop
+    set {_origin} to location of {_p}
+    # Se eligen una vez los seis mas cercanos al origen; cada uno aparece una sola vez.
+    loop 6 times:
+        delete {_best}
+        set {_distance} to 13
+        loop all living entities in radius 12 around {_origin}:
+            if {_seen::%uuid of loop-entity%} is not true:
+                if asw_target({_p}, loop-entity) is true:
+                    if {_p} has line of sight to loop-entity:
+                        set {_d} to distance between {_origin} and location of loop-entity
+                        if {_d} < {_distance}:
+                            set {_distance} to {_d}
+                            set {_best} to loop-entity
+        if {_best} is set:
+            add {_best} to {_targets::*}
+            set {_seen::%uuid of {_best}%} to true
+    if size of {_targets::*} is 0:
+        send action bar "&7No hay enemigos visibles a 12 bloques." to {_p}
+        stop
+    if asw_pay({_p}, 40) is false:
+        stop
+    set {asw.shadow::%{_id}%} to now
+    set {asw.busy::%{_id}%} to true
+    loop {_targets::*}:
+        if asw_ready({_p}) is false:
+            exit loop
+        if world of {_p} is not world of {_origin}:
+            exit loop
+        if asw_holds({_p}, "espada_sombras") is false:
+            exit loop
+        if asw_target({_p}, loop-value) is true:
+            set {_target} to loop-value
+            if distance between {_origin} and location of {_target} <= 12:
+                if {_p} has line of sight to {_target}:
+                    delete {_dest}
+                    # Probar cuatro posiciones al lado del enemigo, con suelo y cuerpo libres.
+                    loop 4 times:
+                        set {_candidate} to location of {_target}
+                        if loop-number is 1:
+                            add 1.3 to x-coordinate of {_candidate}
+                        if loop-number is 2:
+                            subtract 1.3 from x-coordinate of {_candidate}
+                        if loop-number is 3:
+                            add 1.3 to z-coordinate of {_candidate}
+                        if loop-number is 4:
+                            subtract 1.3 from z-coordinate of {_candidate}
+                        set {_floor} to {_candidate} offset by vector(0, -0.2, 0)
+                        if block at {_floor} is not passable:
+                            if asw_clear_path({_p}, {_candidate}) is true:
+                                set {_dest} to {_candidate}
+                                exit loop
+                    if {_dest} is set:
+                        teleport {_p} to {_dest}
+                        if distance between location of {_p} and {_dest} < 0.1:
+                            play sound "entity.enderman.teleport" with volume 0.4 and pitch 0.8 at {_p}
+                            asw_hurt({_p}, {_target}, 10)
+        wait 5 ticks
+    delete {asw.busy::%{_id}%}
+
+function asw_quake(p: player):
+    set {_id} to uuid of {_p}
+    if {asw.quake::%{_id}%} is set:
+        if difference between now and {asw.quake::%{_id}%} is less than 6 seconds:
+            send action bar "&7Hacha del Sismo: recargando (6 s)." to {_p}
+            stop
+    if asw_pay({_p}, 30) is false:
+        stop
+    set {asw.quake::%{_id}%} to now
+    asw_area({_p}, location of {_p}, 3, 10)
+    play sound "entity.iron_golem.attack" with volume 0.8 and pitch 0.5 at {_p}
+    set {_center} to location of {_p}
+    loop 12 times:
+        set {_angle} to loop-number * 30
+        set {_loc} to {_center} offset by vector(cos({_angle}) * 2, -1, sin({_angle}) * 2)
+        set {_block} to block at {_loc}
+        if {_block} is solid:
+            set {_data} to block data of {_block}
+            if {_block} is interactable:
+                set {_data} to "minecraft:stone" parsed as block data
+            spawn a block display at location of {_block}
+            set {_display} to last spawned entity
+            set block data of {_display} to {_data}
+            add "astral.sismo" to scoreboard tags of {_display}
+            set teleport duration of {_display} to 2 ticks
+            add {_display} to {_displays::*}
+    loop 8 times:
+        loop {_displays::*}:
+            set {_display} to loop-value-2
+            set {_loc} to location of {_display}
+            if loop-number <= 4:
+                add 0.2 to y-coordinate of {_loc}
+            else:
+                subtract 0.2 from y-coordinate of {_loc}
+            teleport {_display} to {_loc}
+        wait 2 ticks
+    loop {_displays::*}:
+        kill loop-value
+
+function asw_wand(p: player):
+    set {_id} to uuid of {_p}
+    if {asw.wand::%{_id}%} is set:
+        if difference between now and {asw.wand::%{_id}%} is less than 1 second:
+            stop
+    if asw_pay({_p}, 20) is false:
+        stop
+    set {asw.wand::%{_id}%} to now
+    set {_point} to eye location of {_p}
+    set {_step} to vector in direction of {_p} * 0.5
+    loop 32 times:
+        set {_point} to {_point} offset by {_step}
+        if block at {_point} is not passable:
+            set {_point} to {_point} offset by ({_step} * -1)
+            asw_explode({_p}, {_point})
+            stop
+        loop all living entities in radius 0.8 around {_point}:
+            if asw_target({_p}, loop-entity) is true:
+                asw_explode({_p}, {_point})
+                stop
+    asw_explode({_p}, {_point})
+
+on right click:
+    asw_identify(player)
+    if scoreboard tags of player does not contain "astral.special":
+        stop
+    cancel event
+    if asw_ready(player) is false:
+        stop
+    if {asw.busy::%uuid of player%} is true:
+        stop
+    if scoreboard tags of player contains "astral.special.espada_destello":
+        if asw_mobility(player) is true:
+            asw_blink(player)
+        stop
+    if scoreboard tags of player contains "astral.special.espada_sombras":
+        if asw_mobility(player) is true:
+            asw_shadow(player)
+        stop
+    if scoreboard tags of player contains "astral.special.hacha_terremoto":
+        asw_quake(player)
+        stop
+    if scoreboard tags of player contains "astral.special.varita_estallido":
+        asw_wand(player)
+
+on uncancelled damage of living entity with priority monitor:
+    if attacker is not a player:
+        stop
+    if damage cause is not entity attack:
+        stop
+    if damage <= 0:
+        stop
+    set {_p} to attacker
+    if {asw.damage::%uuid of {_p}%} is true:
+        stop
+    if asw_ready({_p}) is false:
+        stop
+    if asw_target({_p}, victim) is false:
+        stop
+    asw_identify({_p})
+    set {_center} to location of victim
+    if scoreboard tags of {_p} contains "astral.special.espada_tormenta":
+        chance of 25%:
+            wait 1 tick
+            if asw_ready({_p}) is true:
+                if world of {_p} is world of {_center}:
+                    strike lightning effect at {_center}
+                    asw_area({_p}, {_center}, 2, 6)
+        stop
+    if scoreboard tags of {_p} contains "astral.special.varita_estallido":
+        if asw_pay({_p}, 20) is true:
+            wait 1 tick
+            if asw_ready({_p}) is true:
+                if world of {_p} is world of {_center}:
+                    asw_explode({_p}, {_center})
+
+on load:
+    delete {asw.busy::*}
+    delete {asw.damage::*}
+    loop all worlds:
+        loop all entities in loop-world:
+            if scoreboard tags of loop-entity contains "astral.sismo":
+                kill loop-entity
+
+on unload:
+    loop all worlds:
+        loop all entities in loop-world:
+            if scoreboard tags of loop-entity contains "astral.sismo":
+                kill loop-entity
+
+on quit:
+    delete {asw.busy::%uuid of player%}
+    delete {asw.damage::%uuid of player%}

@@ -10,6 +10,7 @@ SKILLS = {
     "sorcery": "Hechiceria",  # Magic
     "archery": "Arqueria",    # Archery
     "fighting": "Combate",    # Combat
+    "defense": "Defensa",
     "mining": "Mineria",      # Engineering
     "foraging": "Tala",       # Woodworking
 }
@@ -188,6 +189,13 @@ ARMOR_SETS = {
 }
 
 ROMAN = ["I", "II", "III", "IV", "V"]
+# Defensa progresa mas lento: requisitos inferiores a las armas de cada tier.
+ARMOR_DEFENSE_LEVELS = (6, 10, 14, 18, 22)
+ARMOR_DURABILITY = (2000, 3000, 4500, 6500, 9000)
+for _set in ARMOR_SETS.values():
+    _set['skill'] = 'defense'
+    for _index, _tier in enumerate(_set['tiers']):
+        _tier['lvl'] = ARMOR_DEFENSE_LEVELS[_index]
 
 # ---------------------------------------------------------------------------
 # ARMAS

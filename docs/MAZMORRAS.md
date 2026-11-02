@@ -196,3 +196,27 @@ Sus Ancestrales conservan el combate y los afijos; no anuncian un evento global 
 La arena tiene `keep_inventory`, PvP solo en ese mundo y sin mobs naturales; se guardan las mascotas
 al entrar. Las misiones excluyen ese mundo. Los comandos para apagar PvP en los demas mundos estan
 en su `.txt`, pero solo se ejecutan para los mundos que existan.
+
+## Correccion de finalizacion prematura de Tumba (01/11/2026)
+
+El registro de Aternos mostro llegada al trono a las 22:00:39, credito de
+victoria a las 22:00:40 y /spawn a las 22:00:57, sin muerte del jefe. Al
+cargar la sala se encontro la Momia Ancestral aun viva. La primera comprobacion
+de ausencia de mobs podia adelantarse al registro del summon.
+
+La sala3 ahora mantiene tumba.espera durante los primeros 10 ticks de la
+invocacion. Ademas, su temporizador y la skill de victoria exigen la marca
+tumba.jefe.derrotado: solo la Momia de esta mazmorra la entrega a su propio
+controlador mediante @Parent en ~onDeath. Inicio y reset borran la marca;
+una ausencia, desaparicion o fallo de aparicion no concede victoria. Se
+conserva la espera de que no queden ayudantes antes de dar el premio.
+Las demas salas, recompensas y posiciones no cambian. Nueve pruebas de
+mazmorras pasaron, incluida la regresion de esta condicion de victoria.
+
+Aplicado en Aternos: MythicMobs recargo a las 22:11:28 sin errores nuevos.
+Se reinicio la sala vacia y se comprobo la retirada de la Momia anterior.
+Regresion real: con sala vacia y tumba.ola1 establecido a las 22:14:06,
+la consulta de las 22:14:25 conservo ola1 sin tumba.fin ni credito/premios.
+Se retiro la marca de prueba y la carga temporal del chunk. Las 52 pruebas
+locales completas pasaron. Falta repetir el combate normal con jugador para
+comprobar el ciclo de muerte del jefe, ayudantes, premio y regreso.

@@ -1,0 +1,7 @@
+# Cavernas: pistas de Minas Olvidadas. No modifica el terreno.
+# Posiciones de las capturas del dueno, texto unos 2.5 bloques sobre sus pies.
+execute in minecraft:exp_desierto run forceload add 180 134
+execute in minecraft:exp_desierto unless entity @e[type=minecraft:text_display,tag=astral.pista.tumba.inicio] run summon minecraft:text_display 180.3 107.8 134.783 {Tags:["astral.pista.tumba.inicio"],Pos:[180.3d,107.8d,134.783d],billboard:"center",text:[{"text":"Para encontrar la mazmorra\n","color":"white"},{"text":"\"Tumba del Rey de Arena\"\n","color":"gold","bold":true},{"text":"debes primero ver lo que queda del Rey","color":"white","bold":false}],line_width:300,alignment:"center",shadow:1b,see_through:0b,background:1073741824,brightness:{block:15,sky:15},view_range:0.6f}
+execute in minecraft:exp_desierto as @e[type=minecraft:text_display,tag=astral.pista.tumba.inicio] run data merge entity @s {Tags:["astral.pista.tumba.inicio"],Pos:[180.3d,107.8d,134.783d],billboard:"center",text:[{"text":"Para encontrar la mazmorra\n","color":"white"},{"text":"\"Tumba del Rey de Arena\"\n","color":"gold","bold":true},{"text":"debes primero ver lo que queda del Rey","color":"white","bold":false}],line_width:300,alignment:"center",shadow:1b,see_through:0b,background:1073741824,brightness:{block:15,sky:15},view_range:0.6f}
+execute in minecraft:exp_desierto run data get entity @e[type=minecraft:text_display,tag=astral.pista.tumba.inicio,limit=1] text
+execute in minecraft:exp_desierto run forceload remove 180 134

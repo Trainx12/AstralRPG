@@ -123,7 +123,7 @@ def mob_yml(dungeon=None):
     for mid, d in MOBS.items():
         L += [f"{mid}:", f"  Type: {d['type']}", f"  Display: {q(d['name'])}", f"  Health: {d['hp']}", f"  Damage: {d['dmg']}",
               "  Options:", f"    MovementSpeed: {d['speed']}", "    PreventOtherDrops: true", "    PreventSunburn: true", "    PreventRandomEquipment: true",
-              "    Despawn: false", "    FollowRange: 32"]
+              "    Despawn: false", "    FollowRange: 32", "    Glowing: true"]
         if d.get("boss"):
             L += ["    KnockbackResistance: 0.8", "  BossBar:", "    Enabled: true", f"    Title: {q(d['name'])}", "    Range: 48",
                   f"    Color: {d['boss']}", "    Style: SEGMENTED_10"]
@@ -160,6 +160,20 @@ def mob_yml(dungeon=None):
         L += [f"astral_mina_control_{s['id']}:", "  Type: ARMOR_STAND", f"  Display: {q('Control ' + s['name'])}", "  Health: 100",
               "  Options:", "    Invisible: true", "    Marker: true", "    Invincible: true", "    Silent: true", "    NoGravity: true",
               "    Despawn: false", "    Persistent: true", "    Collidable: false", "  Skills:"] + ["  - " + q(x) for x in sk] + [""]
+    # cofre y guia que aparecen al ganar (solo si la sala final los pide)
+    if SALAS[-1].get("final_npcs"):
+        quieto = ["    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
+                  "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true"]
+        L += ["astral_mina_cofre:", "  Type: SHEEP", f"  Display: {q('&6&lCofre de Minas Olvidadas &7(clic)')}", "  Health: 100",
+              "  Options:"] + quieto + ["  Skills:", "  - cancelevent @self ~onInteract",
+              "  - model{m=astral_cofre_rpg} @self ~onSpawn", "  - model{m=astral_cofre_rpg} @self ~onLoad",
+              "  - state{s=open} @self ~onInteract",
+              "  - " + q("skill{s=MINA_PREMIO_YA} @trigger ~onInteract"),
+              "  - " + q("skill{s=MINA_PREMIO} @trigger ~onInteract"), ""]
+        L += ["astral_mina_guia:", "  Type: VILLAGER", f"  Display: {q('&b&lExpediciones Astrales &7- elegir destino')}",
+              "  Health: 100", "  Options:"] + quieto + ["    Profession: CARTOGRAPHER", "    VillagerType: PLAINS",
+              "  Skills:", "  - cancelevent @self ~onInteract",
+              "  - " + q('command{c="dm open expediciones <trigger.name>"} @self ~onInteract'), ""]
     # vendedor del lobby
     L += [f"{LOBBY_NPC}:", "  Type: VILLAGER", f"  Display: {q('&8&lMazmorra: &7Minas Olvidadas')}", "  Health: 100", "  Options:",
           "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",

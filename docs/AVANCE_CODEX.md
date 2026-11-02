@@ -156,3 +156,13 @@ No ejecutar la reconstruccion del lobby ni recrear las Minas para instalar estas
 Bazar, Venta rapida y Tienda: hologramas `astral.amb.rotulo` movidos de Y=104.5
 a Y=105.5 en el lobby; X/Z conservados. Verificado con NBT Pos de los tres.
 Se modificaron solo text_display, sin mover NPCs.
+
+## Cinco armas especiales (02/11/2026, solo local)
+
+Filo de la Tormenta, Danza del Ender, Filo del Destello, Hacha del Sismo y Varita
+del Estallido. Modelos originales animados, recetas y caja de especiales; fuera
+de los kits de clases. [Detalles e instalacion](ARMAS_ESPECIALES.md).
+Se regeneraron los ZIP de items/texturas. Requieren instalar skript-reflect y
+`build/gameplay/astral_armas_especiales.sk`. Sin commit, push ni cambios en Aternos.
+Probados con dos clientes locales: mana, saltos, seis golpes distintos, PvP solo
+en arena, cancelaciones de dano/teletransporte y limpieza del efecto del hacha.

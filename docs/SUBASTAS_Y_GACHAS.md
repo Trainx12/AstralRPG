@@ -107,7 +107,17 @@ Para instalar: publicar el pack con URL fija y SHA1 segun GUIA.md, reemplazar
 las seis cajas `build/lobby/CrazyCrates/crates/gacha_*.yml` en CrazyCrates y
 ejecutar `crates reload`. Los nuevos titulos necesitan el nuevo pack antes de
 abrir una ruleta. No requiere reemplazar menus de DeluxeMenus ni reconstruir
-el lobby. Pendiente de instalar y verificar con un jugador en el servidor.
+el lobby.
+
+Instalado el 01/11/2026: pack fijado al commit
+`3c7ffe326239fdc62a6d4b7a40dd26422fd92cf9`, SHA1
+`de97c34683e0c85c56370207932a24cdc7422507`. Se actualizaron las seis cajas
+en Aternos conservando integro el bloque Prizes de cada archivo, y se
+releyeron despues de guardar para comprobar la persistencia exacta.
+Servidor reiniciado, CrazyCrates habilitado sin errores y `crates reload`
+confirmado con "You have reloaded the Config and Data Files."
+No se accionaron tiradas ni se modifico el estado del jugador para probar.
+Pendiente de confirmar el aspecto de las tres ruletas dentro del juego.
 
 Distribucion CSGO contrastada con el codigo oficial:
 https://github.com/Crazy-Crew/CrazyCrates/blob/main/paper/src/main/java/com/badbones69/crazycrates/paper/tasks/crates/types/CsgoCrate.java

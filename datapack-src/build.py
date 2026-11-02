@@ -11,17 +11,17 @@ import zipfile
 
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
-                   SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA)
+                   SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, ARMOR_DURABILITY)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 3   # la mejora +N (encantamiento) se conserva al actualizar
+ITEM_VERSION = 4   # migracion en el mismo slot; conserva mejoras, adornos y desgaste
 
 # ID del encantamiento de mineria 3x3 de ExcellentEnchants (None = no se usa)
-TUNNEL_ENCHANT = os.environ.get("ASTRAL_TUNNEL", "excellentenchants:tunnel")
+TUNNEL_ENCHANT = None  # Una sola implementacion del area, con Shift y proteccion por mundo.
 
 files = {}
 
@@ -124,8 +124,8 @@ for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
              {"type": "quest"}, model=model, glint=glint, kind="quest")
 
 add_item("gancho", "minecraft:carrot_on_a_stick", "Gancho de Escalada", "#d0d0d0",
-         [txt("Click derecho apuntando a un bloque"), txt("para impulsarte hacia el (hasta 32 bloques)."),
-          txt("Agachate para soltarte.", "dark_gray")],
+         [txt("Click derecho: impulso hacia donde miras"), txt("Salto elevado sin dano de caida."),
+          txt("Enfriamiento: 2 segundos.", "dark_gray")],
          {"type": "hook"}, model="minecraft:fishing_rod",
          extra={"minecraft:enchantments": {f"{NS}:gancho": 1},
                 "minecraft:tooltip_display": {"hidden_components": ["minecraft:enchantments"]},
@@ -213,12 +213,12 @@ for set_id, sdef in ARMOR_SETS.items():
             for npz, (desc, _) in SET_BONUS[set_id].items():
                 lore.append(txt(f" ({npz}) {desc}", sdef["color"]))
             lore.append(req_line(sdef["skill"], tier["lvl"]))
-            extra = {"minecraft:attribute_modifiers":
+            extra = {"minecraft:max_damage": int(ARMOR_DURABILITY[ti] * {'helmet':0.8,'chestplate':1,'leggings':0.95,'boots':0.85}[piece]),
+                     "minecraft:attribute_modifiers":
                      armor_attrs(iid, piece, mat, {k: v for k, v in stats.items() if k not in chest_only},
                                  tier.get("extra_armor", 0), tier.get("tough", 0))}
             if mat == "leather":
                 extra["minecraft:dyed_color"] = sdef["dye"][ti]
-                extra["minecraft:max_damage"] = {"helmet": 55, "chestplate": 80, "leggings": 75, "boots": 65}[piece] * (3 + ti * 2)
                 extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:dyed_color"]}
             ench = {}
             if piece == "chestplate":
@@ -309,7 +309,7 @@ for i, s in enumerate(SWORDS):
         extra.append({"type": "minecraft:attack_knockback", "id": f"{NS}:{iid}.kbo", "amount": s["kb_out"],
                       "operation": "add_value", "slot": "mainhand"})
     weapon_item(iid, s["base"], s["name"], BERS, "Espada Berserker", t, [f"+{s['bonus']}% de dano"] + s["desc"],
-                "forging", s["lvl"], weapon_mods(iid, dmg, 1.6, extra), fx_to_ench(s["fx"]), {"w": "sword"})
+                "fighting", s["lvl"], weapon_mods(iid, dmg, 1.6, extra), fx_to_ench(s["fx"]), {"w": "sword"})
     ings = list(s["cost"]) if t == 1 else [("c", f"espada_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Armas Berserker"))
 
@@ -318,7 +318,7 @@ for i, s in enumerate(AXES):
     iid = f"hacha_{t}"
     dmg = s["dmg"] * (1 + s["bonus"] / 100)
     weapon_item(iid, s["base"], s["name"], BERS, "Hacha Berserker", t, [f"+{s['bonus']}% de dano"] + s["desc"],
-                "forging", s["lvl"], weapon_mods(iid, dmg, s["spd"]), fx_to_ench(s["fx"]), {"w": "axe"})
+                "fighting", s["lvl"], weapon_mods(iid, dmg, s["spd"]), fx_to_ench(s["fx"]), {"w": "axe"})
     ings = list(s["cost"]) if t == 1 else [("c", f"hacha_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Armas Berserker"))
 
@@ -369,6 +369,8 @@ for i, s in enumerate(BOWS):
     RECIPES.append((iid, 1, ings, "Arcos"))
 
 # Especiales
+from special_weapons import WEAPONS as SPECIAL_WEAPONS, register as register_special_weapons
+register_special_weapons(add_item, RECIPES, txt, weapon_mods)
 add_item("guadana_umbria", "minecraft:netherite_hoe", "Guadana Umbria", "#7d3cff",
          [txt("Clase Segador", "#7d3cff"), txt("Dano en area en cono"), txt("Roba vida"), req_line("sorcery", 16)],
          {"type": "weapon", "w": "scythe"},
@@ -392,7 +394,7 @@ if TUNNEL_ENCHANT:
     drill_ench[TUNNEL_ENCHANT] = 3
 add_item("taladro_infernal", "minecraft:netherite_pickaxe", "Taladro Infernal", "#ff5a1f",
          [txt("Reemplaza al pico", "gray"), txt("Rompe en area 3x3", "gold"), req_line("mining", 18)],
-         {"type": "tool"}, extra={"minecraft:enchantments": drill_ench},
+         {"type": "tool", "tool":"drill", "tier":3, "area":4}, extra={"minecraft:enchantments": drill_ench},
          pdc=aura_pdc("item", "mining", 18), kind="weapon")
 RECIPES.append(("taladro_infernal", 1, [("c", "shadowsteel", 4), ("c", "netherita_reforzada", 1),
                                          ("v", "minecraft:redstone_block", 2), ("v", "minecraft:blaze_rod", 1)], "Especiales"))
@@ -412,7 +414,7 @@ for i, d in enumerate(DRILLS):
     lore = [txt(f"Taladro {ROMAN_EXT[i]}", d["color"]),
             txt("Mas rapido que un pico de netherita" if d["area"] == 1 else f"Rompe en area {AREA_NAMES[d['area']]}", "gold"),
             txt(f"Velocidad: {d['speed']} (pico de netherita: 9)", "gray"),
-            txt("Pica piedra, menas y tierra", "dark_gray")]
+            txt("Pica piedra, menas y tierra", "dark_gray"),txt("Shift: rompe solo el bloque apuntado.", "yellow")]
     if t >= 3:
         extra["minecraft:unbreakable"] = {}
         lore.append(txt("Indestructible", "aqua"))
@@ -439,7 +441,7 @@ for i, c in enumerate(CHAINSAWS):
     else:
         what = f"Corta {c['chain'] + 1} troncos de un corte"
     lore = [txt(f"Motosierra {ROMAN_EXT[i]}", c["color"]), txt(what, "gold"),
-            txt(f"Velocidad: {c['speed']} (hacha de netherita: 9)", "gray")]
+            txt(f"Velocidad: {c['speed']} (hacha de netherita: 9)", "gray"),txt("Shift: corta un solo bloque.", "yellow")]
     if c["chain"]:
         lore.append(txt("Solo en arboles naturales (con hojas)", "dark_gray"))
     if t >= 3:
@@ -1550,7 +1552,7 @@ for tid, t in TALISMANS.items():
 dlg("guia/talismanes", txt("Talismanes", "aqua", bold=True),
     [msg("Se llevan en la mano secundaria. Se hacen con lo que sueltan los mobs elite.")], tal_btns, back="guia", columns=2)
 recipe_leaf("guia/especiales", "Especiales", rids_where(
-    lambda o: o in ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")), "guia")
+    lambda o: o in SPECIAL_WEAPONS or o in ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")), "guia")
 recipe_leaf("guia/taladros", "Taladros (Mineria)", rids_where(lambda o: o.startswith("taladro_") and o != "taladro_infernal"), "guia")
 recipe_leaf("guia/motosierras", "Motosierras (Tala)", rids_where(lambda o: o.startswith("motosierra_")), "guia")
 dlg("guia/materiales", txt("Materiales", "light_purple", bold=True),
@@ -1655,7 +1657,7 @@ KITS = [
     ("armas", "Armas de clase", "gold", "minecraft:orange_shulker_box",
      [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and i[-1].isdigit()]),
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
-     [i for i in ITEMS if i.startswith(("lanza_", "talisman_")) or i in
+     [i for i in ITEMS if i in SPECIAL_WEAPONS or i.startswith(("lanza_", "talisman_")) or i in
       ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")]),
     ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
      [i for i in ITEMS if (i.startswith("taladro_") and i != "taladro_infernal") or i.startswith("motosierra_")]),
@@ -1714,6 +1716,8 @@ fn("tool/store", [
 fn("tool/broke", [
     "scoreboard players reset @s astral.dr",
     "scoreboard players reset @s astral.cs",
+    f"execute if predicate {NS}:sneaking run return 0",
+    *[f'execute if dimension minecraft:{w} run return 0' for w in ('lobby','bosque','tumba','mina','cumbre','forja','santuario','cavernas','reino','exp_desierto','exp_hielo','exp_santuario')],
     "execute if score @s astral.tok matches ..0 run return 0",
     f"execute store result storage {NS}:tmp tool.x int 1 run scoreboard players get @s astral.tx",
     f"execute store result storage {NS}:tmp tool.y int 1 run scoreboard players get @s astral.ty",
@@ -1731,6 +1735,8 @@ fn("tool/do", [
 fn("tool/drill", [
     f"execute store result score #a astral.tmp run data get entity @s SelectedItem.components.\"minecraft:custom_data\".{NS}.area",
     "execute if score #a astral.tmp matches ..1 run return 0",
+    f"execute if entity @s[x_rotation=50..90] run return run function {NS}:tool/d/down",
+    f"execute if entity @s[x_rotation=-90..-50] run return run function {NS}:tool/d/up",
     "# si el bloque esta a la altura de tus pies, el area crece hacia arriba",
     "execute store result score #py astral.tmp run data get entity @s Pos[1]",
     "scoreboard players set #up astral.tmp 0",
@@ -1738,9 +1744,9 @@ fn("tool/drill", [
     "scoreboard players set #v astral.tmp 0",
     "execute if entity @s[x_rotation=50..90] run scoreboard players set #v astral.tmp 1",
     "execute if entity @s[x_rotation=-90..-50] run scoreboard players set #v astral.tmp 1",
-    f"execute if entity @s[y_rotation=-45..45] run function {NS}:tool/d/s",
-    f"execute if entity @s[y_rotation=45..135] run function {NS}:tool/d/w",
-    f"execute if entity @s[y_rotation=-135..-45] run function {NS}:tool/d/e",
+    f"execute if entity @s[y_rotation=-45..45] run return run function {NS}:tool/d/s",
+    f"execute if entity @s[y_rotation=45..135] run return run function {NS}:tool/d/w",
+    f"execute if entity @s[y_rotation=-135..-45] run return run function {NS}:tool/d/e",
     f"execute unless entity @s[y_rotation=-135..135] run function {NS}:tool/d/n",
     "playsound minecraft:block.stone.break block @a ~ ~ ~ 0.8 0.8",
 ])
@@ -1760,10 +1766,17 @@ def area_ranges(a, up, vertical):
 
 
 fn("tool/mine", [
+    f"execute unless block ~ ~ ~ #{NS}:drillable unless block ~ ~ ~ #{NS}:tree_logs run return 0",
     "loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand",
     "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
     "setblock ~ ~ ~ minecraft:air",
 ])
+for vertical_name, direction in [('down',-1),('up',1)]:
+    # El bloque inicial ya lo rompio el jugador. Mirando vertical: columna bajo los pies/encima.
+    fn('tool/d/'+vertical_name,[
+        f'execute if score #a astral.tmp matches {minimum}.. positioned ~ ~{direction*depth} ~ '
+        f'if block ~ ~ ~ #{NS}:drillable run function {NS}:tool/mine'
+        for depth,minimum in [(1,2),(2,4),(3,5)]])
 for f, (F, R) in FACING.items():
     disp = []
     for a in range(2, 6):
@@ -2014,6 +2027,10 @@ from ambiente import generate as generate_ambience
 generate_ambience(files)
 from services import generate as generate_services
 generate_services(files, ITEMS)
+from gameplay import apply as apply_gameplay
+apply_gameplay(files, ITEMS, ITEM_VERSION)
+from special_weapons import generate as generate_special_weapons
+generate_special_weapons(files)
 
 # ---------------------------------------------------------------------------
 # Escribir

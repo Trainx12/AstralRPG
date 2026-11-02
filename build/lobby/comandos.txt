@@ -82,3 +82,7 @@ execute in minecraft:lobby run summon minecraft:text_display 208.5 102.55 197.5 
 # ============================== BAZAR Y SUBASTAS ==============================
 # menus de DeluxeMenus (build/menus/): los abre el aldeano 'astral_npc_bazar' con 'dm open bazar <jugador>'
 #   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas   (con mob-spawning allow en el lobby)
+# Velocidad I en todo el lobby. Instalar build/mythicmobs/mobs/lobby.yml y hacer mm reload.
+# Crear UNA sola vez el controlador invisible (no volver a spawnearlo si ya existe):
+execute in minecraft:lobby run forceload add 180 190
+mm mobs spawn astral_lobby_movimiento 1 lobby,180.5,98,190.5

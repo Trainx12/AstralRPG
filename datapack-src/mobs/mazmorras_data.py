@@ -65,6 +65,8 @@ def variant(key, source, ancestral=False, boss=False):
         block = block.replace(original + ":\n", mid + ":\n", 1)
     else:
         block = mythic.mob_block(mid, data, model=base)
+    # Contorno permanente como la flecha espectral, solo en esta variante de mazmorra.
+    block = block.replace("  Options:\n", "  Options:\n    Glowing: true\n", 1)
     if key == "tumba" and boss:
         # Only this summoned boss can acknowledge victory to its own controller.
         # Se avisa al control de la sala del jefe con un comando vanilla: los targeters de

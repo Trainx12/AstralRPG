@@ -1,0 +1,4 @@
+# Puente sin addons para consultar el saldo real de AuraSkills.
+ASW_LEER_MANA:
+  Skills:
+  - 'command{c="asw_mana <target.name> %auraskills_mana_int%"} @self'

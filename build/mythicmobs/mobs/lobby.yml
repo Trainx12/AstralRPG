@@ -1,0 +1,16 @@
+# Generado por datapack-src/lobby.py
+astral_lobby_movimiento:
+  Type: ARMOR_STAND
+  Display: 'Control de velocidad del lobby'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'potion{type=SPEED;duration=60;level=0;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'

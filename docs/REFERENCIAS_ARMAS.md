@@ -98,6 +98,10 @@ Ninguna imagen nueva queda mejor que lo ya hecho para los **bastones** y **guada
   fuego con un núcleo de meteoro.
 
 ## Pendiente
+
+Las cinco armas nuevas independientes de las clases y sus referencias elegidas
+estan en [Armas especiales](ARMAS_ESPECIALES.md). Los modelos originales se generan
+con `datapack-src/special_weapons3d.py`.
 1. Ideas sin arma todavía: escudos, mazas y martillos (`set_bronce...`, `mixto_fflash_mazas.png`), arco bordó de fuego.
 
 ### Revision detallada del arsenal

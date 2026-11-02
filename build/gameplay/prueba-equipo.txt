@@ -1,0 +1,16 @@
+execute in minecraft:lobby run forceload add 178 225
+execute in minecraft:lobby unless entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] run summon minecraft:armor_stand 178.636 104 225.735 {Tags:["astral.balance_test"],Invisible:1b,Marker:1b,NoGravity:1b,Invulnerable:1b}
+execute in minecraft:lobby run minecraft:loot replace entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] armor.head loot astral:item/berserker_1_helmet
+execute in minecraft:lobby run minecraft:item modify entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] armor.head {function:"minecraft:set_components",components:{"minecraft:damage":117,"minecraft:trim":{material:"minecraft:gold",pattern:"minecraft:coast"}}}
+execute in minecraft:lobby run minecraft:item modify entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] armor.head {function:"minecraft:set_enchantments",enchantments:{"astral:mejora_armadura":7,"minecraft:thorns":3},add:false}
+execute in minecraft:lobby run minecraft:item modify entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] armor.head {function:"minecraft:set_custom_data",tag:{astral:{v:3}}}
+execute in minecraft:lobby as @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] run function astral:upgrade/slot/armor_head
+execute in minecraft:lobby run minecraft:data get entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] equipment.head.components."minecraft:custom_data"
+execute in minecraft:lobby run minecraft:data get entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] equipment.head.components."minecraft:damage"
+execute in minecraft:lobby run minecraft:data get entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] equipment.head.components."minecraft:enchantments"
+execute in minecraft:lobby run minecraft:data get entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] equipment.head.components."minecraft:trim"
+execute in minecraft:lobby run minecraft:data get entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] equipment.head.components."minecraft:max_damage"
+execute in minecraft:lobby run minecraft:item replace entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] armor.head with minecraft:air
+execute in minecraft:lobby run minecraft:item replace entity @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1] weapon.mainhand with minecraft:air
+execute in minecraft:lobby run minecraft:kill @e[type=minecraft:armor_stand,tag=astral.balance_test,limit=1]
+execute in minecraft:lobby run forceload remove 178 225

@@ -1,0 +1,16 @@
+# Generado por mapas_exploracion.py --enlaces.
+# Instalar los tres bloques NPC de mobs/mythic.py en mobs/astral.yml y ejecutar mm reload.
+# Expediciones y todos los guias abren ahora la interfaz de seis busquedas.
+# No ejecutar el montaje viejo de ambiente/expediciones ni crear plataformas.
+execute in minecraft:reino run forceload add 7 0
+rg flag -w reino __global__ mob-spawning allow
+execute in minecraft:reino if block 7 66 0 minecraft:dirt_path if block 7 67 0 minecraft:air if block 7 68 0 minecraft:air unless entity @e[type=minecraft:villager,x=7.5,y=67,z=0.5,distance=..0.8] run mm mobs spawn astral_npc_guia_cavernas 1 reino,7.5,67,0.5
+execute in minecraft:reino as @e[type=minecraft:villager,x=7.5,y=67,z=0.5,distance=..0.8] run data merge entity @s {Rotation:[90f,0f]}
+execute in minecraft:reino run forceload remove 7 0
+execute in minecraft:cavernas run forceload add 172 91
+rg flag -w cavernas __global__ mob-spawning allow
+execute in minecraft:cavernas if block 172 101 91 minecraft:packed_mud if block 172 102 91 minecraft:air if block 172 103 91 minecraft:air unless entity @e[type=minecraft:villager,x=172.5,y=102,z=91.5,distance=..0.8] run mm mobs spawn astral_npc_guia_reino 1 cavernas,172.5,102,91.5
+execute in minecraft:cavernas as @e[type=minecraft:villager,x=172.5,y=102,z=91.5,distance=..0.8] run data merge entity @s {Rotation:[180f,0f]}
+execute in minecraft:cavernas run forceload remove 172 91
+# Actualizar la definicion del guardian del lobby sin recrearlo ni moverlo.
+# Los tres guias nuevos salen de viajes_mazmorras.py: guias-expediciones.txt.

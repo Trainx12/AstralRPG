@@ -1,0 +1,31 @@
+mv gamerule set minecraft:keep_inventory true lobby
+mv gamerule set minecraft:keep_inventory true bosque
+mv gamerule set minecraft:keep_inventory true tumba
+mv gamerule set minecraft:keep_inventory true mina
+mv gamerule set minecraft:keep_inventory true cumbre
+mv gamerule set minecraft:keep_inventory true forja
+mv gamerule set minecraft:keep_inventory true santuario
+mv gamerule set minecraft:keep_inventory true cavernas
+mv gamerule set minecraft:keep_inventory true reino
+mv gamerule set minecraft:keep_inventory true exp_desierto
+mv gamerule set minecraft:keep_inventory true exp_hielo
+mv gamerule set minecraft:keep_inventory true exp_santuario
+rg flag -w bosque __global__ block-break deny
+rg flag -w bosque __global__ block-place deny
+rg flag -w bosque __global__ build deny
+rg flag -w tumba __global__ block-break deny
+rg flag -w tumba __global__ block-place deny
+rg flag -w tumba __global__ build deny
+rg flag -w mina __global__ block-break deny
+rg flag -w mina __global__ block-place deny
+rg flag -w mina __global__ build deny
+rg flag -w cumbre __global__ block-break deny
+rg flag -w cumbre __global__ block-place deny
+rg flag -w cumbre __global__ build deny
+rg flag -w forja __global__ block-break deny
+rg flag -w forja __global__ block-place deny
+rg flag -w forja __global__ build deny
+rg flag -w santuario __global__ block-break deny
+rg flag -w santuario __global__ block-place deny
+rg flag -w santuario __global__ build deny
+lp group default permission set axgraves.allowgraves true

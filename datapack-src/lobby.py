@@ -577,6 +577,35 @@ def bazar_cmds():
             "#   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas   (con mob-spawning allow en el lobby)"]
 
 
+def movement_mob():
+    """Renueva Velocidad I solo en lobby; caduca tres segundos despues de salir."""
+    return '''# Generado por datapack-src/lobby.py
+astral_lobby_movimiento:
+  Type: ARMOR_STAND
+  Display: 'Control de velocidad del lobby'
+  Health: 100
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    Silent: true
+    NoGravity: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Skills:
+  - 'potion{type=SPEED;duration=60;level=0;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'
+'''
+
+
+def movement_commands():
+    x, _, z, _ = SPAWN
+    return ["# Velocidad I en todo el lobby. Instalar build/mythicmobs/mobs/lobby.yml y hacer mm reload.",
+            "# Crear UNA sola vez el controlador invisible (no volver a spawnearlo si ya existe):",
+            f"execute in minecraft:{WORLD} run forceload add {int(x)} {int(z)}",
+            f"mm mobs spawn astral_lobby_movimiento 1 {WORLD},{x},98,{z}"]
+
+
 def main():
     os.makedirs(os.path.join(OUT, "Essentials"), exist_ok=True)
     mm = os.path.join(HERE, "..", "build", "mythicmobs", "skills")
@@ -598,7 +627,11 @@ def main():
     with open(os.path.join(OUT, "Essentials", "spawn.yml"), "w", encoding="utf-8") as f:
         f.write(spawn_yml())
     with open(os.path.join(OUT, "comandos.txt"), "w", encoding="utf-8") as f:
-        f.write(commands())
+        f.write(commands() + "\n".join(movement_commands()) + "\n")
+    mob_dir = os.path.join(HERE, "..", "build", "mythicmobs", "mobs")
+    os.makedirs(mob_dir, exist_ok=True)
+    with open(os.path.join(mob_dir, "lobby.yml"), "w", encoding="utf-8") as f:
+        f.write(movement_mob())
     n = sum(len(g["rewards"]()) for g in GACHAS.values())
     print(f"lobby: {len(GACHAS)} gachas ({n} premios), {len(NPC_POS)} vendedores -> {os.path.abspath(OUT)}")
 

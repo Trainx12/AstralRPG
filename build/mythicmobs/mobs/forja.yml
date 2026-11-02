@@ -84,6 +84,7 @@ astral_forja_espantapajaros:
   Health: 34
   Damage: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -111,6 +112,7 @@ astral_forja_arana:
   Health: 26
   Damage: 5
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -137,6 +139,7 @@ astral_forja_cara:
   Health: 22
   Damage: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -163,6 +166,7 @@ astral_forja_golem_forja:
   Health: 500
   Damage: 16
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true

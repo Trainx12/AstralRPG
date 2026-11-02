@@ -14,7 +14,7 @@ Se conservo una copia privada del lobby anterior en `.local/backups/lobby-antes-
 1. Entrar aceptando el resource pack. Si ya estabas dentro, salir y volver a entrar para descargarlo.
 2. `/menu` → Misiones e historia. Viajero en `(178,98,190)`, en la union de los cuatro bloques marcados: clic para historia; shift+clic para ir al mundo.
 3. Cronista: junto a Expediciones, en `(181.636,100,225.735)`. Muestra/cobra diarias. Reinicio a medianoche argentina.
-4. Expediciones: guardian en `(178.636,100,225.735)`, con su holograma encima. Lleva a la terraza nueva.
+4. Expediciones: guardian en `(178.636,100,225.735)`, con su holograma encima. Lleva a Cavernas; junto a cada llegada hay un guia para pasar entre Cavernas y Reino. Ver `MAPAS_EXPLORACION.md`.
 5. Terraza: `(180.5,100,288.5)` en el lobby. Tiene accesos distintos para bosque, tumba, minas, nieve,
    forja, santuario y arena. Hablar con el guardian delante del arco. `/spawn` vuelve a la plaza.
 6. Bazar: puesto verde `(178.637,101,152.678)`; Subastas: reubicado por el dueno en `(205.466,100,175.476)`;

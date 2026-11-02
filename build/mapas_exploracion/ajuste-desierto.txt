@@ -1,0 +1,9 @@
+execute in minecraft:exp_desierto run forceload add 176 128 191 159
+execute in minecraft:exp_desierto if block 179 101 135 minecraft:sandstone if block 179 102 135 minecraft:air if block 179 103 135 minecraft:air run minecraft:tp @e[type=minecraft:villager,x=184.5,y=95,z=145.5,distance=..0.6,limit=1] 179.5 102 135.5 -124.8 0
+mv setspawn exp_desierto:180.233,102,134.266,-124.8,0
+execute in minecraft:exp_desierto run minecraft:data merge entity @e[type=minecraft:villager,x=185.27445222064034,y=95,z=144.0311717429187,distance=..0.15,limit=1] {Health:0.0f}
+execute in minecraft:exp_desierto run minecraft:kill @e[type=minecraft:villager,x=185.27445222064034,y=95,z=144.0311717429187,distance=..0.15,limit=1]
+skript reload astral_viajes
+execute in minecraft:exp_desierto run minecraft:data get entity @e[type=minecraft:villager,x=179.5,y=102,z=135.5,distance=..0.6,limit=1] Pos
+execute in minecraft:exp_desierto if entity @e[type=minecraft:villager,x=185.27445222064034,y=95,z=144.0311717429187,distance=..0.15,limit=1] run minecraft:data get entity @e[type=minecraft:villager,x=185.27445222064034,y=95,z=144.0311717429187,distance=..0.15,limit=1] Pos
+execute in minecraft:exp_desierto run forceload remove 176 128 191 159

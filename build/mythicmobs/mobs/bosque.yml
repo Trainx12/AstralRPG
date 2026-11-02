@@ -84,6 +84,7 @@ astral_bosque_espantapajaros:
   Health: 34
   Damage: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -111,6 +112,7 @@ astral_bosque_abejorro:
   Health: 20
   Damage: 5
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -137,6 +139,7 @@ astral_bosque_cara:
   Health: 22
   Damage: 6
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
@@ -163,6 +166,7 @@ astral_bosque_chaman:
   Health: 340
   Damage: 8
   Options:
+    Glowing: true
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
