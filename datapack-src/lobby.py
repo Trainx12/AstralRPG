@@ -368,9 +368,9 @@ TAB_SECTIONS = r'''header-footer:
 playerlist-objective:
   enabled: true
   value: "%player_health_rounded%"
-  fancy-value: ""
+  fancy-value: "<white>%player_health_rounded% <red>❤"
   title: "Vida"
-  render-type: HEARTS
+  render-type: INTEGER
   disable-condition: ''
 belowname-objective:
   enabled: true
