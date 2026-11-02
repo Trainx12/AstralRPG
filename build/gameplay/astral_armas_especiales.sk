@@ -321,11 +321,11 @@ function asw_quake(p: player):
         # Golpe del anillo: lo que esta a esta distancia y todavia no fue golpeado.
         set {_reach} to {_r} + 0.5
         loop all living entities in radius {_reach} around {_center}:
-            if {_hit::%uuid of loop-entity-2%} is not set:
-                if asw_target({_p}, loop-entity-2) is true:
-                    set {_hit::%uuid of loop-entity-2%} to true
-                    asw_hurt_as({_p}, loop-entity-2, 10, "sismo")
-                    push loop-entity-2 upwards at speed 0.45
+            if {_hit::%uuid of loop-entity%} is not set:
+                if asw_target({_p}, loop-entity) is true:
+                    set {_hit::%uuid of loop-entity%} to true
+                    asw_hurt_as({_p}, loop-entity, 10, "sismo")
+                    push loop-entity upwards at speed 0.45
         wait 2 ticks
     wait 2 ticks
     loop {_displays::*}:
