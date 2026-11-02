@@ -2,27 +2,46 @@
 import json
 from pathlib import Path
 from lobby import TITLES
+from cosmeticos_ui import title, TITLE_SLOTS, CLEAR_SLOTS, RARITIES, key_for
 
 ROOT=Path(__file__).resolve().parent.parent
 
 def menu_data():
     items={}
-    slots=[10,11,12,13,14,15,16,19,20,21,22,23,24,25]
-    for index,(_,name,color) in enumerate(TITLES):
-        key=name.lower().replace(' ','_');perm='astral.cosmetico.titulo.'+key
+    if len(TITLES)>len(TITLE_SLOTS):
+        raise ValueError('La galeria admite catorce titulos; ampliar el diseno antes de agregar mas.')
+    for index,(rarity,name,color) in enumerate(TITLES):
+        key=key_for(name);perm='astral.cosmetico.titulo.'+key
         req={'requirements':{'obtenido':{'type':'has permission','permission':perm}}}
-        items[key]={'slot':slots[index],'material':'NAME_TAG','priority':1,'display_name':color+name,
-                    'lore':['&aTitulo desbloqueado.','&eClic para equipar. Tus otros titulos se conservan.'],
+        items[key]={'slot':TITLE_SLOTS[index],'material':'PAPER','item_model':'astral:cosmeticos/'+key,
+                    'item_flags':['HIDE_ATTRIBUTES'],'priority':1,'display_name':color+name,
+                    'lore':['&7Rareza: &f'+RARITIES[rarity][0],'','&aInsignia desbloqueada.',
+                            '&7Se muestra como titulo junto a tu nombre.','&eClic para equipar. Tus otros titulos se conservan.'],
                     'view_requirement':req,'click_requirement':dict(req,deny_commands=['[message] &cTodavia no obtuviste este titulo.']),
                     'click_commands':['[close]',f'[player] titulo {key}']}
-        items[key+'_locked']={'slot':slots[index],'material':'GRAY_DYE','priority':2,'display_name':'&8'+name,
-                             'lore':['&7Puedes obtenerlo en la gacha de cosmeticos.'],
-                             'click_commands':['[message] &7Todavia no obtuviste este titulo.']}
-    items['none']={'slot':39,'material':'MILK_BUCKET','display_name':'&eQuitar titulo activo',
-                   'lore':['&7Conservas todos tus titulos desbloqueados.'],
-                   'click_commands':['[close]','[player] titulo quitar']}
-    items['close']={'slot':44,'material':'BARRIER','display_name':'&cCerrar','click_commands':['[close]']}
-    return {'menu_title':'&8Mis cosmeticos: titulos','open_command':['cosmeticos','titulos'],'register_command':True,'size':45,'items':items}
+        items[key+'_locked']={'slot':TITLE_SLOTS[index],'material':'PAPER',
+                             'item_model':'astral:cosmeticos/'+key+'_locked','item_flags':['HIDE_ATTRIBUTES'],
+                             'priority':2,'display_name':'&8'+name,
+                             'lore':['&7Rareza: &f'+RARITIES[rarity][0],'','&8Insignia sin desbloquear.',
+                                     '&7Se consigue en la Galeria Celeste.','&7Usa la gema de arriba para ver la gacha.'],
+                             'click_commands':['[message] &7Todavia no obtuviste este titulo.','[sound] ENTITY_VILLAGER_NO']}
+    for index,slot in enumerate(CLEAR_SLOTS):
+        items['none' if index==0 else f'none_hit_{index}']={
+            'slot':slot,'material':'PAPER','item_model':f'astral:cosmeticos/clear_{index}',
+            'item_flags':['HIDE_ATTRIBUTES'],'display_name':'&eQuitar titulo activo',
+            'lore':['&7Deja tu nombre sin titulo.','&7Conservas todas tus insignias desbloqueadas.'],
+            'click_commands':['[close]','[player] titulo quitar']}
+    items['info']={'slot':4,'material':'NETHER_STAR','display_name':'&b&lTu coleccion de insignias',
+                   'lore':['&7Pasa el cursor por una insignia para leer su titulo.',
+                           '&7Clic en una desbloqueada para equiparla.',
+                           '&7Las apagadas con candado aun no son tuyas.',
+                           '&7Cambiar de titulo conserva toda tu coleccion.']}
+    items['gacha']={'slot':8,'material':'AMETHYST_SHARD','display_name':'&6&lConseguir mas titulos',
+                    'lore':['&7Abre la gacha Galeria Celeste.','&7Consulta sus precios y premios antes de tirar.'],
+                    'click_commands':['[openguimenu] gacha_cosmeticos']}
+    items['back']={'slot':45,'material':'ARROW','display_name':'&fVolver al atlas','click_commands':['[openguimenu] principal']}
+    items['close']={'slot':53,'material':'BARRIER','display_name':'&cCerrar','click_commands':['[close]']}
+    return {'menu_title':title(),'open_command':['cosmeticos','titulos'],'register_command':True,'size':54,'items':items}
 
 def script():
     lines=['# Generado por cosmeticos.py. Equipar cambia solo el prefijo cosmetico de prioridad 100.',

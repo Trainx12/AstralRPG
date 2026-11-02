@@ -1,0 +1,174 @@
+"""Galeria ceremonial de titulos: azul petroleo, marfil y oro antiguo."""
+import json
+from pathlib import Path
+from PIL import Image,ImageDraw,ImageOps
+from services_ui import png,SIZE,SPLIT
+from escape_menu import text
+from market_ui import band_color
+from lobby import TITLES
+
+ROOT=Path(__file__).resolve().parent
+FILL,EDGE,ACCENT='#102b38','#b89a5d','#8bdce2'
+START,END='\ue700','\ue701'
+GLYPHS=tuple(chr(0xe710+i) for i in range(4))
+RARITIES={'common':('Comun','#a8bac1'),'uncommon':('Poco comun','#94bc91'),
+          'rare':('Raro','#73cee0'),'epic':('Epico','#94b1f0'),'legendary':('Legendario','#edc36b')}
+TITLE_SLOTS=tuple(range(10,17))+tuple(range(28,35))
+CLEAR_SLOTS=tuple(range(47,52))
+
+
+def title():
+    return '&f'+START+''.join(GLYPHS)+END
+
+
+def key_for(name):
+    return name.lower().replace(' ','_')
+
+
+def icon(index,color):
+    """Emblemas originales para las catorce profesiones y honores."""
+    im=Image.new('RGBA',(18,18));d=ImageDraw.Draw(im)
+    dark='#244650';light='#f2e8c9'
+    if index==0: # brujula
+        d.ellipse((4,4,13,13),outline=color)
+        d.polygon(((9,4),(11,9),(8,12),(7,8)),fill=light)
+    elif index==1: # mapa
+        d.polygon(((3,5),(7,4),(11,5),(14,4),(14,12),(10,13),(7,12),(3,13)),fill=color)
+        d.line((7,5,7,11),fill=dark);d.line((10,6,12,8,10,10),fill=dark)
+    elif index in (2,3,5):
+        if index==5: # yunque
+            d.polygon(((3,5),(14,5),(12,8),(10,8),(10,11),(13,13),(4,13),(7,11),(7,8),(4,8)),fill=color)
+            d.line((5,6,12,6),fill=light)
+        else:
+            d.line((5,13,11,5),fill='#c3a579',width=2)
+            if index==2:d.polygon(((7,4),(12,4),(14,8),(10,9)),fill=color)
+            else:d.line((4,5,10,4,14,7),fill=color,width=2)
+    elif index in (4,10): # arco y flecha
+        if index==4:
+            d.arc((3,3,12,14),270,90,fill=color,width=2)
+            d.line((8,3,8,14),fill=light)
+        d.line((3,9,14,9),fill=light)
+        d.polygon(((14,9),(11,7),(11,11)),fill=color)
+    elif index==6: # frasco de alquimia
+        d.rectangle((7,3,10,6),fill=light)
+        d.polygon(((7,6),(4,11),(5,14),(12,14),(13,11),(10,6)),fill=color)
+        d.line((6,10,11,10),fill=light)
+    elif index==7: # huella
+        d.ellipse((6,8,12,13),fill=color)
+        for x,y in ((4,6),(7,4),(11,4),(14,6)):d.ellipse((x-1,y-1,x+1,y+1),fill=light)
+    elif index==8: # sigilo arcano
+        d.polygon(((9,3),(11,7),(15,9),(11,11),(9,15),(7,11),(3,9),(7,7)),fill=color)
+        d.rectangle((8,8,9,9),fill=light)
+    elif index==9: # espadas cruzadas
+        d.line((4,4,13,13),fill=color,width=2);d.line((13,4,4,13),fill=light,width=2)
+        d.line((3,10,7,14),fill='#c3a579');d.line((10,14,14,10),fill='#c3a579')
+    elif index==11: # copa
+        d.rectangle((6,4,11,9),fill=color);d.arc((3,4,14,10),0,180,fill=color)
+        d.line((9,9,9,12),fill=color,width=2);d.rectangle((6,12,11,13),fill=light)
+    elif index==12: # ojo del abismo
+        d.polygon(((3,9),(7,5),(11,5),(15,9),(11,12),(7,12)),fill=color)
+        d.ellipse((7,6,11,11),fill=dark);d.line((9,7,9,10),fill=light)
+    else: # corona astral
+        d.polygon(((3,6),(6,8),(9,3),(12,8),(15,6),(13,13),(5,13)),fill=color)
+        d.line((6,12,12,12),fill=light);d.rectangle((8,8,10,10),fill=ACCENT)
+    return im
+
+
+def medal(index,locked=False):
+    rarity,_,_=TITLES[index];color=RARITIES[rarity][1]
+    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+    d.polygon(((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4)),fill='#163f4c',outline=EDGE)
+    d.rectangle((4,3,13,14),outline='#365d69')
+    im.alpha_composite(icon(index,color))
+    if rarity in ('epic','legendary'):
+        d.point((2,2),fill=color);d.point((15,2),fill=color)
+        d.point((2,15),fill=color);d.point((15,15),fill=color)
+    if locked:
+        alpha=im.getchannel('A');im=ImageOps.grayscale(im).convert('RGBA');im.putalpha(alpha)
+        # Barniz oscuro sobre el metal: la silueta aun permite reconocer el titulo.
+        im=Image.blend(im,Image.new('RGBA',im.size,'#233039'),.50);d=ImageDraw.Draw(im)
+        d.rectangle((11,10,16,16),fill='#17242c',outline='#a3adb2')
+        d.arc((12,6,15,13),180,360,fill='#ccd4ce')
+        d.point((14,13),fill='#d4c79e')
+    return im
+
+
+def clear_button():
+    im=Image.new('RGBA',(90,18),'#1c3b47');d=ImageDraw.Draw(im)
+    d.rectangle((0,0,89,17),outline=EDGE);d.rectangle((2,2,87,15),outline='#587475')
+    d.line((3,1,86,1),fill='#ebdab1')
+    text(im,'SIN TITULO',(45,5),color='#f2e6c9')
+    return im
+
+
+def panel():
+    source=Image.open(ROOT/'pack-source/ref/cosmeticos-illustrated-frame.png').convert('RGBA')
+    sx=[0,round(source.width*.15),round(source.width*.85),source.width]
+    sy=[0,round(source.height*.24),round(source.height*.92),source.height]
+    dx,dy=[0,24,200,224],[0,56,258,280]
+    im=Image.new('RGBA',SIZE)
+    for row in range(3):
+        for col in range(3):
+            piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
+            im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
+    text(im,'COSMETICOS',(112,30),color='#f5e6be')
+    d=ImageDraw.Draw(im);d.rectangle((24,56,199,258),fill=FILL)
+    # Dos vitrinas; los emblemas ocupan solo las catorce casillas clicables.
+    for y,caption in ((75,'OFICIOS Y AVENTURA'),(111,'HONORES Y LEYENDAS')):
+        d.rectangle((47,y-2,176,y+33),fill='#0d222f',outline='#6a7a6d')
+        d.line((50,y+19,173,y+19),fill=EDGE)
+        text(im,caption,(112,y+23),color='#c2d5cf')
+        for col in range(7):
+            x=49+col*18
+            d.line((x,y+19,x,y+21),fill=EDGE)
+    for slot in (*TITLE_SLOTS,4,8,45,53):
+        x,y=31+slot%9*18,57+slot//9*18
+        d.rectangle((x,y,x+17,y+17),outline=EDGE)
+        d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+    d.rectangle((67,147,156,164),fill=(0,0,0,0))
+    # Inventario real del jugador con la misma ubicacion que el cofre de seis filas.
+    d.rectangle((31,168,192,177),fill=band_color(EDGE));d.line((31,167,192,167),fill=EDGE)
+    for row in (*range(3),4):
+        for col in range(9):
+            x,y=31+col*18,179+row*18 if row<3 else 237
+            d.rectangle((x,y,x+17,y+17),outline='#597477')
+            d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+    return im
+
+
+def assets():
+    files,providers={},[];advances={START:-32,END:32}
+    a,b,c,d=GLYPHS;im=panel()
+    for n,(part,ascent,char,rewind) in enumerate(((im.crop((0,0,224,SPLIT)),53,a,b),(im.crop((0,SPLIT,224,280)),-3,c,d))):
+        path=f'font/cosmeticos/gallery_{n}.png'
+        files['assets/astral/textures/'+path]=png(part)
+        providers.append({'type':'bitmap','file':'astral:'+path,'height':part.height,'ascent':ascent,'chars':[char]})
+        advances[rewind]=-(part.getbbox()[2]+1)
+    providers.append({'type':'space','advances':advances})
+    def model(name,image):
+        files[f'assets/astral/textures/item/cosmeticos/{name}.png']=png(image)
+        files[f'assets/astral/models/cosmeticos/{name}.json']=json.dumps({'parent':'minecraft:item/generated','gui_light':'front',
+            'textures':{'layer0':f'astral:item/cosmeticos/{name}'},'display':{'gui':{'scale':[1.125,1.125,1]}}}).encode()
+        files[f'assets/astral/items/cosmeticos/{name}.json']=json.dumps({'oversized_in_gui':True,
+            'model':{'type':'minecraft:model','model':f'astral:cosmeticos/{name}'}}).encode()
+    for index,(_,name,_) in enumerate(TITLES):
+        for locked in (False,True):model(key_for(name)+('_locked' if locked else ''),medal(index,locked))
+    button=clear_button()
+    for i in range(5):model(f'clear_{i}',button.crop((i*18,0,i*18+18,18)))
+    return files,providers
+
+
+def previews(folder):
+    folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
+    for sample in ('mixta','completa'):
+        im=Image.new('RGBA',SIZE,'#1a2531');im.alpha_composite(panel())
+        for index,slot in enumerate(TITLE_SLOTS):
+            im.alpha_composite(medal(index,sample=='mixta' and index not in (0,1,4,8,11)),(31+slot%9*18,57+slot//9*18))
+        im.alpha_composite(clear_button(),(67,147))
+        for slot,label in ((4,'i'),(8,'G'),(45,'<'),(53,'X')):
+            text(im,label,(39+slot%9*18,62+slot//9*18),color='#f5e6be')
+        text(im,'Inventario',(86,169),color='#383c40')
+        (folder/f'cosmeticos-{sample}.png').write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)))
+
+
+if __name__=='__main__':previews(ROOT.parent/'build/Servicios-preview')

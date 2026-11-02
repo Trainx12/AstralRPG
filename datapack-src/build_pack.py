@@ -238,6 +238,10 @@ from adventure_ui import assets as adventure_assets
 adventure_files, adventure_providers = adventure_assets()
 files.update(adventure_files)
 default_font['providers'] = adventure_providers + default_font['providers']
+from cosmeticos_ui import assets as cosmetic_assets
+cosmetic_files, cosmetic_providers = cosmetic_assets()
+files.update(cosmetic_files)
+default_font['providers'] = cosmetic_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)
