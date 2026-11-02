@@ -1255,7 +1255,7 @@ for i, (name, color, hp, dmg, spd, armor, kb) in enumerate(ELITE_TIERS):
         f"attribute @s minecraft:knockback_resistance modifier add {NS}:elite {kb} add_value",
         f"attribute @s minecraft:follow_range modifier add {NS}:elite 0.5 add_multiplied_base",
         "data modify entity @s Health set value 1024.0f",
-        "data modify entity @s PersistenceRequired set value 1b",
+        "# sin PersistenceRequired: los elites desaparecen como cualquier mob (si no, se acumulan)",
         f"data modify entity @s CustomName set value {{text:\"{stars} {name}\",color:\"{color}\",bold:{'true' if t >= 4 else 'false'}}}",
     ]
     if t >= 3:
@@ -1285,6 +1285,9 @@ for i, (name, color, hp, dmg, spd, armor, kb) in enumerate(ELITE_TIERS):
     fn(f"drop/elite{t}", dl)
 
 fn("elite/fx", [
+    "# elites viejos que quedaron persistentes: liberarlos una vez para que puedan desaparecer",
+    "execute as @e[tag=astral.elite,tag=!astral.libre] run data modify entity @s PersistenceRequired set value 0b",
+    "tag @e[tag=astral.elite,tag=!astral.libre] add astral.libre",
     "execute as @e[tag=astral.elite4] at @s run particle minecraft:flame ~ ~1 ~ 0.3 0.5 0.3 0.01 3",
     "execute as @e[tag=astral.elite5] at @s run particle minecraft:end_rod ~ ~1 ~ 0.3 0.5 0.3 0.02 4",
 ])
