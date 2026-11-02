@@ -76,33 +76,54 @@ function asw_pay(p: player, amount: number) :: boolean:
     return false
 
 function asw_hurt(p: player, e: entity, amount: number):
+    asw_hurt_as({_p}, {_e}, {_amount}, "player")
+
+# tipo: "player" (blanco), "rayo" (cian), "explosion" (naranja), "sismo" (ambar).
+# Cada tipo tiene su color en DamageIndicator.
+function asw_hurt_as(p: player, e: entity, amount: number, kind: text):
     if asw_target({_p}, {_e}) is false:
         stop
     # Atribucion al jugador y evento Bukkit: WorldGuard y otros plugins pueden cancelar.
     set {-asw.damage::%uuid of {_p}%} to true
     set {_ticks} to no damage time of {_e}
     set no damage time of {_e} to 0 ticks
-    set {_source} to a custom damage source:
-        set the damage type to player attack
-        set the causing entity to {_p}
-        set the direct entity to {_p}
+    if {_kind} is "rayo":
+        set {_source} to a custom damage source:
+            set the damage type to lightning bolt
+            set the causing entity to {_p}
+            set the direct entity to {_p}
+    else if {_kind} is "explosion":
+        set {_source} to a custom damage source:
+            set the damage type to player explosion
+            set the causing entity to {_p}
+            set the direct entity to {_p}
+    else if {_kind} is "sismo":
+        set {_source} to a custom damage source:
+            set the damage type to falling block
+            set the causing entity to {_p}
+            set the direct entity to {_p}
+    else:
+        set {_source} to a custom damage source:
+            set the damage type to player attack
+            set the causing entity to {_p}
+            set the direct entity to {_p}
     set {_hearts} to {_amount} / 2
     damage {_e} by {_hearts} using {_source}
     set no damage time of {_e} to {_ticks}
     delete {-asw.damage::%uuid of {_p}%}
 
-function asw_area(p: player, center: location, radius: number, amount: number):
+function asw_area(p: player, center: location, radius: number, amount: number, kind: text):
     loop all living entities in radius {_radius} around {_center}:
         if asw_target({_p}, loop-entity) is true:
             if {_p} has line of sight to loop-entity:
-                asw_hurt({_p}, loop-entity, {_amount})
+                asw_hurt_as({_p}, loop-entity, {_amount}, {_kind})
 
 function asw_explode(p: player, center: location):
     # Solo efectos: nunca se crea TNT ni una explosion que rompa bloques.
     play sound "entity.generic.explode" with volume 0.6 and pitch 1.5 at {_center}
     set {_dimension} to asw_dimension(world of {_center})
     execute console command "execute in %{_dimension}% run particle minecraft:explosion %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% 0.3 0.3 0.3 0 3"
-    asw_area({_p}, {_center}, 2, 6)
+    asw_area({_p}, {_center}, 2, 6, "explosion")
 
 function asw_dimension(w: world) :: text:
     set {_name} to name of {_w}
@@ -157,18 +178,29 @@ function asw_mobility(p: player) :: boolean:
         return false
     return true
 
+# Impulso de 3 bloques: el cliente lo dibuja suave (un teleport seco se ve a saltos).
 function asw_blink(p: player):
-    set {_dest} to location of {_p} offset by (vector in direction of {_p} * 3)
+    set {_dir} to vector in direction of {_p}
+    set {_dest} to location of {_p} offset by ({_dir} * 3)
     if asw_clear_path({_p}, {_dest}) is false:
         send action bar "&cNo hay espacio libre para el salto." to {_p}
         stop
-    if asw_pay({_p}, 5) is false:
+    if asw_pay({_p}, 10) is false:
         stop
-    teleport {_p} to {_dest}
-    if distance between location of {_p} and {_dest} > 0.1:
-        execute console command "auraskills:mana add %name of {_p}% 5 true"
-        stop
-    play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.6 at {_p}
+    play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.8 at {_p}
+    set {_dimension} to asw_dimension(world of {_p})
+    loop 3 times:
+        set {_at} to location of {_p}
+        set {_y} to y-coordinate of {_at} + 1
+        execute console command "execute in %{_dimension}% run particle minecraft:reverse_portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.2 0.4 0.2 0.02 12"
+        set velocity of {_p} to {_dir} * 1.05
+        set fall distance of {_p} to 0
+        wait 1 tick
+    set velocity of {_p} to {_dir} * 0.15
+    set fall distance of {_p} to 0
+    set {_at} to location of {_p}
+    set {_y} to y-coordinate of {_at} + 1
+    execute console command "execute in %{_dimension}% run particle minecraft:portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.3 0.5 0.3 0.4 20"
 
 function asw_shadow(p: player):
     set {_id} to uuid of {_p}
@@ -228,13 +260,28 @@ function asw_shadow(p: player):
                                 set {_dest} to {_candidate}
                                 exit loop
                     if {_dest} is set:
+                        set {_from} to location of {_p}
+                        set {_dimension} to asw_dimension(world of {_p})
+                        # Estela entre el punto de salida y el de llegada.
+                        loop 6 times:
+                            set {_t} to loop-number-2 / 6
+                            set {_x} to x-coordinate of {_from} + (x-coordinate of {_dest} - x-coordinate of {_from}) * {_t}
+                            set {_y} to y-coordinate of {_from} + (y-coordinate of {_dest} - y-coordinate of {_from}) * {_t} + 1
+                            set {_z} to z-coordinate of {_from} + (z-coordinate of {_dest} - z-coordinate of {_from}) * {_t}
+                            execute console command "execute in %{_dimension}% run particle minecraft:reverse_portal %{_x}% %{_y}% %{_z}% 0.1 0.2 0.1 0.01 4"
                         teleport {_p} to {_dest}
                         if distance between location of {_p} and {_dest} < 0.1:
+                            make {_p} face {_target}
                             play sound "entity.enderman.teleport" with volume 0.4 and pitch 0.8 at {_p}
+                            play sound "entity.player.attack.sweep" with volume 0.7 and pitch 1.2 at {_p}
+                            set {_hit} to location of {_target}
+                            set {_hy} to y-coordinate of {_hit} + 1
+                            execute console command "execute in %{_dimension}% run particle minecraft:sweep_attack %x-coordinate of {_hit}% %{_hy}% %z-coordinate of {_hit}% 0.2 0.2 0.2 0 1"
                             asw_hurt({_p}, {_target}, 10)
-        wait 5 ticks
+        wait 4 ticks
     delete {-asw.busy::%{_id}%}
 
+# Onda de 5 anillos: cada anillo levanta el suelo y golpea a lo que alcanza.
 function asw_quake(p: player):
     set {_id} to uuid of {_p}
     if {-asw.quake::%{_id}%} is set:
@@ -244,33 +291,49 @@ function asw_quake(p: player):
     if asw_pay({_p}, 10) is false:
         stop
     set {-asw.quake::%{_id}%} to now
-    asw_area({_p}, location of {_p}, 3, 10)
-    play sound "entity.iron_golem.attack" with volume 0.8 and pitch 0.5 at {_p}
+    set {-asw.busy::%{_id}%} to true
     set {_center} to location of {_p}
-    loop 12 times:
-        set {_angle} to loop-number * 30
-        set {_loc} to {_center} offset by vector(cos({_angle}) * 2, -1, sin({_angle}) * 2)
-        set {_block} to block at {_loc}
-        if {_block} is solid:
-            set {_data} to block data of {_block}
-            if {_block} is interactable:
-                set {_data} to "minecraft:stone" parsed as block data
-            spawn a block display at location of {_block}
-            set {_display} to last spawned entity
-            set block data of {_display} to {_data}
-            add "astral.sismo" to scoreboard tags of {_display}
-            set teleport duration of {_display} to 2 ticks
-            add {_display} to {_displays::*}
-    loop 8 times:
-        loop {_displays::*}:
-            set {_display} to loop-value-2
-            set {_loc} to location of {_display}
-            if loop-number <= 4:
-                add 0.2 to y-coordinate of {_loc}
-            else:
-                subtract 0.2 from y-coordinate of {_loc}
-            teleport {_display} to {_loc}
+    play sound "entity.iron_golem.attack" with volume 0.9 and pitch 0.5 at {_p}
+    play sound "entity.generic.explode" with volume 0.4 and pitch 0.6 at {_p}
+    loop 5 times:
+        set {_r} to loop-number
+        set {_count} to 6 * {_r}
+        loop {_count} times:
+            set {_angle} to loop-number-2 * (360 / {_count})
+            set {_loc} to {_center} offset by vector(cos({_angle}) * {_r}, -1, sin({_angle}) * {_r})
+            set {_block} to block at {_loc}
+            if {_block} is solid:
+                set {_data} to block data of {_block}
+                if {_block} is interactable:
+                    set {_data} to "minecraft:stone" parsed as block data
+                spawn a block display at location of {_block}
+                set {_display} to last spawned entity
+                set block data of {_display} to {_data}
+                add "astral.sismo" to scoreboard tags of {_display}
+                set teleport duration of {_display} to 3 ticks
+                add {_display} to {_rise::*}
+                add {_display} to {_displays::*}
+        loop {_rise::*}:
+            set {_up} to location of loop-value-2
+            add 0.6 to y-coordinate of {_up}
+            teleport loop-value-2 to {_up}
+        delete {_rise::*}
+        # Golpe del anillo: lo que esta a esta distancia y todavia no fue golpeado.
+        set {_reach} to {_r} + 0.5
+        loop all living entities in radius {_reach} around {_center}:
+            if {_hit::%uuid of loop-entity-2%} is not set:
+                if asw_target({_p}, loop-entity-2) is true:
+                    set {_hit::%uuid of loop-entity-2%} to true
+                    asw_hurt_as({_p}, loop-entity-2, 10, "sismo")
+                    push loop-entity-2 upwards at speed 0.45
         wait 2 ticks
+    wait 2 ticks
+    loop {_displays::*}:
+        set {_down} to location of loop-value
+        subtract 0.6 from y-coordinate of {_down}
+        teleport loop-value to {_down}
+    delete {-asw.busy::%{_id}%}
+    wait 4 ticks
     loop {_displays::*}:
         kill loop-value
 
@@ -318,8 +381,7 @@ on right click:
             asw_blink(player)
         stop
     if scoreboard tags of player contains "astral.special.espada_sombras":
-        if asw_mobility(player) is true:
-            asw_shadow(player)
+        asw_shadow(player)
         stop
     if scoreboard tags of player contains "astral.special.hacha_terremoto":
         asw_quake(player)
@@ -345,11 +407,15 @@ on uncancelled damage of living entity with priority monitor:
     set {_center} to location of victim
     if scoreboard tags of {_p} contains "astral.special.espada_tormenta":
         chance of 25%:
+            # El rayo hace el 30% del golpe (minimo 1 punto de vida) en radio 2.
+            set {_bolt} to final damage * 2 * 0.3
+            if {_bolt} < 1:
+                set {_bolt} to 1
             wait 1 tick
             if asw_ready({_p}) is true:
                 if world of {_p} is world of {_center}:
                     strike lightning effect at {_center}
-                    asw_area({_p}, {_center}, 2, 6)
+                    asw_area({_p}, {_center}, 2, {_bolt}, "rayo")
         stop
     if scoreboard tags of {_p} contains "astral.special.varita_estallido":
         asw_request({_p})

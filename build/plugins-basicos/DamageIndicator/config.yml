@@ -1,0 +1,59 @@
+health_bar_display_duration: '5'
+health_bar_length: '16'
+health_bar_prefix: '&(0,255,0)HP '
+health_bar_suffix: '&(0,255,0) <<'
+health_bar_alive_symbol: '&(0,255,0)♥'
+health_bar_dead_symbol: '&(100,100,100)♡'
+hologram_position: '-0.3'
+hologram_name_position: '0'
+hologram_follow_speed: '3'
+# AstralRPG: colores vivos y distintos por tipo de dano.
+# Golpe normal = blanco. Habilidades de armas especiales:
+#   rayo (Filo de la Tormenta) = cian electrico   -> lightning
+#   explosion (Varita del Estallido) = naranja    -> entity_explosion
+#   sismo (Hacha del Sismo) = amarillo ambar      -> falling_block
+magic: '&(200,60,255)'
+poison: '&(60,255,60)'
+fire: '&(255,120,0)'
+fall_damage: '&(255,90,90)'
+kill: '&(255,215,0)'
+world_border: '&(170,0,255)'
+contact: '&(255,90,90)'
+entity_attack: '&(255,255,255)'
+entity_sweep_attack: '&(220,220,220)'
+projectile: '&(255,170,60)'
+suffocation: '&(30,144,255)'
+fall: '&(255,90,90)'
+fire_tick: '&(255,120,0)'
+melting: '&(120,160,255)'
+lava: '&(255,80,0)'
+drowning: '&(0,200,255)'
+block_explosion: '&(255,110,0)'
+entity_explosion: '&(255,110,0)'
+void: '&(150,0,0)'
+lightning: '&(0,240,255)'
+suicide: '&(255,0,0)'
+starvation: '&(220,20,60)'
+wither: '&(150,0,200)'
+falling_block: '&(255,210,0)'
+thorns: '&(0,200,120)'
+dragon_breath: '&(255,0,255)'
+custom: '&(255,0,170)'
+fly_into_wall: '&(170,170,170)'
+hot_floor: '&(255,120,0)'
+cramming: '&(0,160,0)'
+dryout: '&(244,164,96)'
+freeze: '&(140,230,255)'
+sonic_boom: '&(0,255,200)'
+other: '&(230,230,80)'
+dry_out: '&(244,164,96)'
+enable_damage_indicator: true
+enable_health_bar: false
+enable_hologram_health_bar: false
+enable_holographic_custom_names: false
+health_bar_always_visible: false
+enable_damage_merge: true
+damage_merge_timeout: 1.5
+damage_merge_jump_duration: 15
+hologram_velocity_y: 0.15
+hologram_gravity: 0.01
