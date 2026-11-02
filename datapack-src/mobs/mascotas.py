@@ -124,7 +124,9 @@ def skill_yml():
     for pid, d in MASCOTAS.items():
         n = d["n"]
         lv = f"plv_{pid}"
-        L += [f"PET_MODELO_{pid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m=astral_pet_{pid}}} @self", ""]
+        # clearlag_exclude: ClearLag no la limpia ni la despawnea por distancia.
+        L += [f"PET_MODELO_{pid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", "  - addtag{tag=clearlag_exclude} @self",
+              f"  - model{{m=astral_pet_{pid}}} @self", ""]
         # chequeo: si el dueno ya no la tiene elegida, la mascota se va
         L += [f"PET_{pid}_CHEQUEO:", "  TargetConditions:", f"  - score{{o=petsel;v={n}}} false", "  Skills:",
               sk("particles{p=poof;amount=12;hS=0.4;vS=0.4} @self"), sk("remove @self"), ""]
@@ -233,6 +235,8 @@ def commands():
           f"execute in minecraft:lobby run forceload add {int(x)} {int(z)}",
           "rg flag -w lobby __global__ mob-spawning allow",
           f"mm mobs spawn astral_mascotas_control 1 lobby,{x},{y},{z}",
+          "# ClearLag: en plugins/ClearLag/config.yml -> optimizations.mob-spawn-limiter.exempt-spawn-reasons",
+          "#   agregar CUSTOM (las mascotas las invoca MythicMobs; sin esto el limite de 20 pasivos las cancela)",
           "# Permitir mascotas invocadas; desactivar apariciones naturales.",
           "mv gamerule set minecraft:spawn_mobs false lobby",
           "rg flag -w lobby __global__ mob-spawning allow",

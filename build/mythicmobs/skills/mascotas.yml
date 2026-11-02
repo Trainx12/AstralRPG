@@ -3,6 +3,7 @@
 PET_MODELO_lobo:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_lobo} @self
 
 PET_lobo_CHEQUEO:
@@ -72,6 +73,7 @@ PET_GANAR_LOBO:
 PET_MODELO_cuervo:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_cuervo} @self
 
 PET_cuervo_CHEQUEO:
@@ -153,6 +155,7 @@ PET_GANAR_CUERVO:
 PET_MODELO_golem:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_golem} @self
 
 PET_golem_CHEQUEO:
@@ -222,6 +225,7 @@ PET_GANAR_GOLEM:
 PET_MODELO_zorro:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_zorro} @self
 
 PET_zorro_CHEQUEO:
@@ -291,6 +295,7 @@ PET_GANAR_ZORRO:
 PET_MODELO_dragon:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_dragon} @self
 
 PET_dragon_CHEQUEO:
@@ -360,6 +365,7 @@ PET_GANAR_DRAGON:
 PET_MODELO_fenix:
   Skills:
   - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
   - model{m=astral_pet_fenix} @self
 
 PET_fenix_CHEQUEO:
