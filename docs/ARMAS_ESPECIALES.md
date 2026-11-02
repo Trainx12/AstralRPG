@@ -6,10 +6,10 @@ Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 
 | Arma / ID | Habilidad | Mana | Recarga |
 |---|---|---:|---:|
-| Filo de la Tormenta / `espada_tormenta` | 25% por golpe cuerpo a cuerpo aceptado: rayo visual y 6 de dano en radio 2 | 0 | — |
-| Danza del Ender / `espada_sombras` | Clic derecho: selecciona hasta 6 enemigos distintos a 12 bloques y salta junto a cada uno, con un golpe de 10; un salto cada 5 ticks, secuencia de 1,5 s a 20 TPS | 15 | 5 s |
-| Filo del Destello / `espada_destello` | Clic derecho: 3 bloques siguiendo la mirada, tambien verticalmente | 5 | Ninguna |
-| Hacha del Sismo / `hacha_terremoto` | Clic derecho: 10 de dano en radio 3; doce fragmentos del suelo suben y bajan durante 0,8 s | 10 | 6 s |
+| Filo de la Tormenta / `espada_tormenta` | 25% por golpe cuerpo a cuerpo: rayo visual que hace el 30% del dano del golpe (minimo 1) en radio 2 | 0 | — |
+| Danza del Ender / `espada_sombras` | Clic derecho: hasta 6 enemigos a 12 bloques; salta junto a cada uno con estela, lo mira y golpea 10. Un salto cada 4 ticks (1,2 s). Se puede usar en mazmorras | 15 | 5 s |
+| Filo del Destello / `espada_destello` | Clic derecho: impulso fluido de ~3 bloques segun la mirada (velocidad, no teleport seco), con estela. No se puede en mazmorras | 10 | Ninguna |
+| Hacha del Sismo / `hacha_terremoto` | Clic derecho: onda de 5 anillos (hasta 5 bloques); cada anillo levanta el suelo y golpea 10 a lo que alcanza, con empuje hacia arriba | 10 | 6 s |
 | Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 5 por uso | Disparo: 1 s |
 
 Los valores son puntos de vida, antes de armadura/resistencia (2 puntos = 1 corazon).
@@ -20,6 +20,11 @@ servidor: por eso ninguna habilidad con mana funcionaba. Costos bajados porque e
 base de AuraSkills es 20. Funcionan en supervivencia, aventura y creativo (no espectador). No hace falta ningun addon de Skript.
 La varita hace su golpe fisico normal aunque no alcance el mana para la explosion.
 Los costos y danos adicionales elegidos son un balance inicial ajustable.
+
+Colores en DamageIndicator (cada habilidad usa su tipo de dano): golpe normal blanco,
+rayo cian (`lightning`), explosion de la varita naranja (`entity_explosion`), sismo
+amarillo (`falling_block`). Config en `build/plugins-basicos/DamageIndicator/config.yml`;
+se aplica al reiniciar (el plugin no tiene comando de recarga).
 
 ## Protecciones
 
