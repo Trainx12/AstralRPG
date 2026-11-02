@@ -23,6 +23,10 @@ Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [
 Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al panel, apretar **Start** y dejar terminar el anuncio. Si se cierra el anuncio antes de tiempo, a veces el arranque se cancela y hay que apretar Start de nuevo.
 
 **Reglas al cambiar archivos:**
+- **ClearLag y mascotas:** el limitador de apariciones (`optimizations.mob-spawn-limiter`) cancela todo mob nuevo cuando
+  hay 20 pasivos cada 4 chunks, y eso incluye las mascotas que invoca MythicMobs (desaparecian al invocarlas en el spawn y
+  en el lobby). En `plugins/ClearLag/config.yml`, `exempt-spawn-reasons` tiene que incluir `CUSTOM` ademas de `CURED`.
+  Las mascotas llevan la etiqueta `clearlag_exclude` para que las otras limpiezas no las toquen.
 - Aternos no deja reemplazar archivos con el servidor prendido: hay que apagarlo antes de subir el datapack o configs nuevas.
 - Cada vez que cambia `AstralRPG-Textures.zip`, hay que actualizar `resource-pack-sha1` en `server.properties` con el sha1 nuevo. Si no se actualiza, los jugadores no bajan la versión nueva o el pack falla al cargar.
 - **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 (no había backups porque Aternos solo los hace con Google Drive vinculado). Conviene vincular Google Drive en Backups y bajar el mundo de vez en cuando.
@@ -140,7 +144,7 @@ Tienen que estar antes de generar un mundo nuevo, si no, no aparecen sus estruct
 
 ## Resource pack
 
-- Se sirve desde una URL fija al commit, no desde `main`. Version actual: `https://raw.githubusercontent.com/Trainx12/AstralRPG/9cd96614a4e1526921eaff57fcf5780b804ef6e2/build/AstralRPG-Textures.zip`; SHA-1 `afdf3e3b90f781dfd4b8be252cc9cc88b7167b23`.
+- Se sirve desde una URL fija al commit, no desde `main`. Version actual: `https://raw.githubusercontent.com/Trainx12/AstralRPG/f23aa9a257dff7127cc93eae6a5fe0e01a9acd30/build/AstralRPG-Textures.zip`; SHA-1 `7f7a7450d600e5a6e8d9aafedf6ab850febc2482`.
 - Es obligatorio (`require-resource-pack=true`).
 - Incluye las texturas originales del dueño (`assets/astral`, `assets/armasrpg`), las armaduras de Mago, Berserker y Arquero, las texturas CC0 (créditos en `datapack-src/pack-source/cc0/CREDITOS.txt`), los taladros y motosierras, y los modelos de BetterModel.
 - Después de cambiarlo: commit y push, comprobar la descarga desde el commit nuevo, actualizar URL y SHA-1 en `server.properties` y reiniciar.
