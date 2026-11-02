@@ -30,6 +30,8 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 
 ## Trampas conocidas
 - MythicMobs: skills con `: ` rompen el YAML (usar comillas simples). En `~onInteract`, condiciones del jugador con `?~` (ej. `?~hascurrency{a=1000}`). Comandos como jugador: `command{c="sudo <trigger.name> ..."}`.
+- MythicMobs: `@NearestPlayer` no encuentra a jugadores en creativo. Para asignar un dueño usar el nombre (`@PlayerByName{name=<global.var>}`), como las mascotas.
+- ClearLag: el limitador de apariciones cancela mobs de plugins salvo que `exempt-spawn-reasons` incluya `CUSTOM` (ver docs/SERVIDOR.md).
 - CrazyCrates: `crates preview` solo funciona como jugador (usar `sudo`); `crates forceopen <caja> <jugador>` abre gratis.
 - Lobby: WorldGuard bloquea mobs; para spawnear vendedores, `mob-spawning allow` un momento (ver `build/lobby/comandos.txt`).
 - `cookie_request` al entrar = el server está apagado.
