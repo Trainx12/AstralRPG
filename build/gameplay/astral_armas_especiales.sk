@@ -43,24 +43,27 @@ function asw_ready(p: player) :: boolean:
         return false
     if {_p} is dead:
         return false
-    if gamemode of {_p} is not survival:
-        if gamemode of {_p} is not adventure:
-            return false
+    if gamemode of {_p} is spectator:
+        return false
     if name of world of {_p} is "lobby" or "minecraft:lobby":
         return false
     if vehicle of {_p} is set:
         return false
     return true
 
-# MythicMobs lee PAPI sin menus ni addons. Respuesta solo desde consola.
+# DeluxeMenus resuelve PlaceholderAPI con los datos del jugador y responde por consola.
+# (MythicMobs 'mm test cast' desde consola leia el mana del servidor, no del jugador.)
 command /asw_mana <player> <number>:
     executable by: console
     trigger:
         set {-asw.mana::%uuid of arg-1%} to arg-2
 
-function asw_pay(p: player, amount: number) :: boolean:
+function asw_request(p: player):
     delete {-asw.mana::%uuid of {_p}%}
-    execute console command "mm test cast ASW_LEER_MANA %name of {_p}%"
+    execute console command "dm execute %name of {_p}% [console] asw_mana %%player_name%% %%auraskills_mana_int%%"
+
+# Usa el mana leido por asw_request en este mismo uso.
+function asw_pay(p: player, amount: number) :: boolean:
     set {_mana} to {-asw.mana::%uuid of {_p}%}
     delete {-asw.mana::%uuid of {_p}%}
     if {_mana} is not set:
@@ -159,11 +162,11 @@ function asw_blink(p: player):
     if asw_clear_path({_p}, {_dest}) is false:
         send action bar "&cNo hay espacio libre para el salto." to {_p}
         stop
-    if asw_pay({_p}, 10) is false:
+    if asw_pay({_p}, 5) is false:
         stop
     teleport {_p} to {_dest}
     if distance between location of {_p} and {_dest} > 0.1:
-        execute console command "auraskills:mana add %name of {_p}% 10 true"
+        execute console command "auraskills:mana add %name of {_p}% 5 true"
         stop
     play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.6 at {_p}
 
@@ -192,7 +195,7 @@ function asw_shadow(p: player):
     if size of {_targets::*} is 0:
         send action bar "&7No hay enemigos visibles a 12 bloques." to {_p}
         stop
-    if asw_pay({_p}, 40) is false:
+    if asw_pay({_p}, 15) is false:
         stop
     set {-asw.shadow::%{_id}%} to now
     set {-asw.busy::%{_id}%} to true
@@ -238,7 +241,7 @@ function asw_quake(p: player):
         if difference between now and {-asw.quake::%{_id}%} is less than 6 seconds:
             send action bar "&7Hacha del Sismo: recargando (6 s)." to {_p}
             stop
-    if asw_pay({_p}, 30) is false:
+    if asw_pay({_p}, 10) is false:
         stop
     set {-asw.quake::%{_id}%} to now
     asw_area({_p}, location of {_p}, 3, 10)
@@ -276,7 +279,7 @@ function asw_wand(p: player):
     if {-asw.wand::%{_id}%} is set:
         if difference between now and {-asw.wand::%{_id}%} is less than 1 second:
             stop
-    if asw_pay({_p}, 20) is false:
+    if asw_pay({_p}, 5) is false:
         stop
     set {-asw.wand::%{_id}%} to now
     set {_point} to eye location of {_p}
@@ -298,10 +301,18 @@ on right click:
     if scoreboard tags of player does not contain "astral.special":
         stop
     cancel event
+    # Paper puede avisar el clic de las dos manos: un solo uso por clic.
+    if {-asw.click::%uuid of player%} is set:
+        if difference between now and {-asw.click::%uuid of player%} is less than 0.2 seconds:
+            stop
+    set {-asw.click::%uuid of player%} to now
     if asw_ready(player) is false:
         stop
     if {-asw.busy::%uuid of player%} is true:
         stop
+    asw_request(player)
+    if {-asw.mana::%uuid of player%} is not set:
+        wait 2 ticks
     if scoreboard tags of player contains "astral.special.espada_destello":
         if asw_mobility(player) is true:
             asw_blink(player)
@@ -341,8 +352,9 @@ on uncancelled damage of living entity with priority monitor:
                     asw_area({_p}, {_center}, 2, 6)
         stop
     if scoreboard tags of {_p} contains "astral.special.varita_estallido":
-        if asw_pay({_p}, 20) is true:
-            wait 1 tick
+        asw_request({_p})
+        wait 2 ticks
+        if asw_pay({_p}, 5) is true:
             if asw_ready({_p}) is true:
                 if world of {_p} is world of {_center}:
                     asw_explode({_p}, {_center})

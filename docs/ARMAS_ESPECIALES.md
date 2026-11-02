@@ -7,14 +7,17 @@ Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 | Arma / ID | Habilidad | Mana | Recarga |
 |---|---|---:|---:|
 | Filo de la Tormenta / `espada_tormenta` | 25% por golpe cuerpo a cuerpo aceptado: rayo visual y 6 de dano en radio 2 | 0 | — |
-| Danza del Ender / `espada_sombras` | Clic derecho: selecciona hasta 6 enemigos distintos a 12 bloques y salta junto a cada uno, con un golpe de 10; un salto cada 5 ticks, secuencia de 1,5 s a 20 TPS | 40 | 5 s |
-| Filo del Destello / `espada_destello` | Clic derecho: 3 bloques siguiendo la mirada, tambien verticalmente | 10 | Ninguna |
-| Hacha del Sismo / `hacha_terremoto` | Clic derecho: 10 de dano en radio 3; doce fragmentos del suelo suben y bajan durante 0,8 s | 30 | 6 s |
-| Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 20 por uso | Disparo: 1 s |
+| Danza del Ender / `espada_sombras` | Clic derecho: selecciona hasta 6 enemigos distintos a 12 bloques y salta junto a cada uno, con un golpe de 10; un salto cada 5 ticks, secuencia de 1,5 s a 20 TPS | 15 | 5 s |
+| Filo del Destello / `espada_destello` | Clic derecho: 3 bloques siguiendo la mirada, tambien verticalmente | 5 | Ninguna |
+| Hacha del Sismo / `hacha_terremoto` | Clic derecho: 10 de dano en radio 3; doce fragmentos del suelo suben y bajan durante 0,8 s | 10 | 6 s |
+| Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 5 por uso | Disparo: 1 s |
 
 Los valores son puntos de vida, antes de armadura/resistencia (2 puntos = 1 corazon).
-El mana se lee con la skill de MythicMobs `ASW_LEER_MANA` (PlaceholderAPI `%auraskills_mana_int%`)
-y se descuenta con `auraskills:mana remove`. No hace falta ningun addon de Skript.
+El mana se lee con `dm execute <jugador> [console] asw_mana %player_name% %auraskills_mana_int%`
+(DeluxeMenus resuelve el placeholder con los datos del jugador) y se descuenta con
+`auraskills:mana remove`. Antes se usaba `mm test cast` desde consola, que leia el mana del
+servidor: por eso ninguna habilidad con mana funcionaba. Costos bajados porque el mana
+base de AuraSkills es 20. Funcionan en supervivencia, aventura y creativo (no espectador). No hace falta ningun addon de Skript.
 La varita hace su golpe fisico normal aunque no alcance el mana para la explosion.
 Los costos y danos adicionales elegidos son un balance inicial ajustable.
 
