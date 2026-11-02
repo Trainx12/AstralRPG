@@ -1,23 +1,186 @@
-menu_title: '&8Mascotas'
+menu_title: '&f'
 open_command: mascotas
-size: 27
+size: 54
+update_interval: 1
 items:
   'info':
     material: BONE
     slot: 4
     amount: 1
-    display_name: '&6&l✦ Mascotas ✦'
+    display_name: '&6&lSantuario de companeros'
     lore:
-    - '&7Una a la vez. Te siguen y te dan efectos.'
-    - '&7Suben de nivel con los mobs que matas:'
-    - '&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.'
+    - '&7Puedes llevar una mascota a la vez.'
+    - '&7Te sigue y sube de nivel con tus bajas.'
+    - '&7Nivel 10 y 20: mejores bonus; nivel 30: evolucion.'
     - ''
-    - '&7Te acompanan en todos los mundos.'
+    - '&7Pasa el cursor por cada retrato para ver sus bonus.'
     - '&8Bonus solo dentro de las mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
+  'm_lobo_nv20':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_0'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_nv10':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
   'm_lobo':
-    material: WOLF_SPAWN_EGG
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_no':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_lobo_hit_1_nv20':
+    material: PAPER
     slot: 10
     amount: 1
     display_name: '&#9AA0A8&lLobo del Bosque'
@@ -25,367 +188,5758 @@ items:
     - ''
     - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
     - ''
-    - '&fNivel 1: &7Fuerza I'
-    - '&fNivel 10: &7+ Velocidad I'
-    - '&fNivel 20: &7+ Resistencia I'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_1'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
-  'm_lobo_no':
-    material: GRAY_DYE
+  'm_lobo_hit_1_nv10':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_1_no':
+    material: PAPER
     slot: 10
     amount: 1
     display_name: '&8&lLobo del Bosque &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
     - ''
-    - '&8Nivel 1: Fuerza I'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 2
-  'm_cuervo':
-    material: PARROT_SPAWN_EGG
+    item_model: 'astral:mascotas/lobo_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_lobo_hit_2_nv20':
+    material: PAPER
     slot: 11
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_2_nv10':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_2_no':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_lobo_hit_3_nv20':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_3_nv10':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_3':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_3_no':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_lobo_hit_4_nv20':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_4_nv10':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_4':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_4_no':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_lobo_hit_5_nv20':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_5_nv10':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_lobo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_5':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&#9AA0A8&lLobo del Bosque'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_lobo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.lobo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 1'
+  'm_lobo_hit_5_no':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&8&lLobo del Bosque &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fFuerza I'
+    - '&eDesde nivel 10: &f+ Velocidad I'
+    - '&eDesde nivel 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/lobo_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_nv20':
+    material: PAPER
+    slot: 12
     amount: 1
     display_name: '&#B07CFF&lCuervo Arcano'
     lore:
     - ''
     - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
     - ''
-    - '&fNivel 1: &7Vision nocturna y marca a los mobs cercanos'
-    - '&fNivel 10: &7+ Suerte'
-    - '&fNivel 20: &7+ Velocidad I'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_0'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_nv10':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
   'm_cuervo_no':
-    material: GRAY_DYE
-    slot: 11
+    material: PAPER
+    slot: 12
     amount: 1
     display_name: '&8&lCuervo Arcano &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fGacha de Monturas'
     - ''
-    - '&8Nivel 1: Vision nocturna y marca a los mobs cercanos'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_hit_1_nv20':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_1_nv10':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_1'
     priority: 2
-  'm_golem':
-    material: IRON_GOLEM_SPAWN_EGG
-    slot: 12
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_1':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_1_no':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_hit_2_nv20':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_2_nv10':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_2':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_2_no':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_hit_3_nv20':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_3_nv10':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_3':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_3_no':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_hit_4_nv20':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_4_nv10':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_4':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_4_no':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_cuervo_hit_5_nv20':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Velocidad I'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_5_nv10':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Suerte'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_cuervo}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_5':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&#B07CFF&lCuervo Arcano'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_cuervo}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Vision nocturna'
+    - '&f+ Marca a los mobs cercanos'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.cuervo
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 2'
+  'm_cuervo_hit_5_no':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&8&lCuervo Arcano &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVision nocturna y marca a los mobs cercanos'
+    - '&eDesde nivel 10: &f+ Suerte'
+    - '&eDesde nivel 20: &f+ Velocidad I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/cuervo_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_nv20':
+    material: PAPER
+    slot: 15
     amount: 1
     display_name: '&#8A8A8A&lGolem de Piedra'
     lore:
     - ''
     - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
     - ''
-    - '&fNivel 1: &7Resistencia I'
-    - '&fNivel 10: &7+ Regeneracion I'
-    - '&fNivel 20: &7+ 2 corazones de absorcion'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_0'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_nv10':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
   'm_golem_no':
-    material: GRAY_DYE
-    slot: 12
+    material: PAPER
+    slot: 15
     amount: 1
     display_name: '&8&lGolem de Piedra &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
     - ''
-    - '&8Nivel 1: Resistencia I'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_hit_1_nv20':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_1_nv10':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_1'
     priority: 2
-  'm_zorro':
-    material: FOX_SPAWN_EGG
-    slot: 14
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_1':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_1_no':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_hit_2_nv20':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_2_nv10':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_2':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_2_no':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_hit_3_nv20':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_3_nv10':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_3':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_3_no':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_hit_4_nv20':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_4_nv10':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_4':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_4_no':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_golem_hit_5_nv20':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - '&f+ 2 corazones de absorcion'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_5_nv10':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - '&f+ Regeneracion I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_golem}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_5':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&#8A8A8A&lGolem de Piedra'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_golem}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.golem
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 3'
+  'm_golem_hit_5_no':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&8&lGolem de Piedra &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia I'
+    - '&eDesde nivel 10: &f+ Regeneracion I'
+    - '&eDesde nivel 20: &f+ 2 corazones de absorcion'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fMazmorra Minas Olvidadas (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/golem_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_nv20':
+    material: PAPER
+    slot: 27
     amount: 1
     display_name: '&#BFE8FF&lZorro Espectral'
     lore:
     - ''
     - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
     - ''
-    - '&fNivel 1: &7Velocidad I'
-    - '&fNivel 10: &7+ Salto I'
-    - '&fNivel 20: &7Velocidad II'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_0'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_nv10':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
   'm_zorro_no':
-    material: GRAY_DYE
-    slot: 14
+    material: PAPER
+    slot: 27
     amount: 1
     display_name: '&8&lZorro Espectral &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
     - ''
-    - '&8Nivel 1: Velocidad I'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_hit_1_nv20':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_1_nv10':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_1'
     priority: 2
-  'm_dragon':
-    material: BLAZE_SPAWN_EGG
-    slot: 15
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_1_no':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_hit_2_nv20':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_2_nv10':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_2_no':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_hit_3_nv20':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_3_nv10':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_3':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_3_no':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_hit_4_nv20':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_4_nv10':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_4':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_4_no':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_zorro_hit_5_nv20':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad II'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_5_nv10':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - '&f+ Salto I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_zorro}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_5':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&#BFE8FF&lZorro Espectral'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_zorro}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Velocidad I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.zorro
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 4'
+  'm_zorro_hit_5_no':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&8&lZorro Espectral &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fVelocidad I'
+    - '&eDesde nivel 10: &f+ Salto I'
+    - '&eDesde nivel 20: &fVelocidad II'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fYeti de las Cumbres y Caras Voladoras (raro)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/zorro_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_nv20':
+    material: PAPER
+    slot: 30
     amount: 1
     display_name: '&#E04A3A&lDragoncito de Fuego'
     lore:
     - ''
     - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
     - ''
-    - '&fNivel 1: &7Resistencia al fuego'
-    - '&fNivel 10: &7+ Fuerza I'
-    - '&fNivel 20: &7+ Prisa I'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_0'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_nv10':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
   'm_dragon_no':
-    material: GRAY_DYE
-    slot: 15
+    material: PAPER
+    slot: 30
     amount: 1
     display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fGacha de Monturas (epico)'
     - ''
-    - '&8Nivel 1: Resistencia al fuego'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_hit_1_nv20':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_1_nv10':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_1'
     priority: 2
-  'm_fenix':
-    material: CHICKEN_SPAWN_EGG
-    slot: 16
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_1':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_1_no':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_hit_2_nv20':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_2_nv10':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_2':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_2_no':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_hit_3_nv20':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_3_nv10':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_3_no':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_hit_4_nv20':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_4_nv10':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_4':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_4_no':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_dragon_hit_5_nv20':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - '&f+ Prisa I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_5_nv10':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - '&f+ Fuerza I'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_dragon}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_5':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&#E04A3A&lDragoncito de Fuego'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_dragon}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Resistencia al fuego'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.dragon
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 5'
+  'm_dragon_hit_5_no':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&8&lDragoncito de Fuego &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fResistencia al fuego'
+    - '&eDesde nivel 10: &f+ Fuerza I'
+    - '&eDesde nivel 20: &f+ Prisa I'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (epico)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/dragon_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_nv20':
+    material: PAPER
+    slot: 33
     amount: 1
     display_name: '&#FF7A2A&lFenix'
     lore:
     - ''
     - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
     - ''
-    - '&fNivel 1: &7Te salva con poca vida (cada 10 min)'
-    - '&fNivel 10: &7cada 7 min'
-    - '&fNivel 20: &7cada 5 min'
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
     - ''
-    - '&eClic para invocar'
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_0'
     priority: 1
+    update: true
     view_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_nv10':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
   'm_fenix_no':
-    material: GRAY_DYE
-    slot: 16
+    material: PAPER
+    slot: 33
     amount: 1
     display_name: '&8&lFenix &7(bloqueada)'
     lore:
     - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
     - '&7Se consigue en: &fGacha de Monturas (legendario)'
     - ''
-    - '&8Nivel 1: Te salva con poca vida (cada 10 min)'
+    - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 2
-  'guardar':
-    material: BARRIER
-    slot: 22
+    item_model: 'astral:mascotas/fenix_locked_0'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_hit_1_nv20':
+    material: PAPER
+    slot: 34
     amount: 1
-    display_name: '&c&lGuardar mascota'
+    display_name: '&#FF7A2A&lFenix'
     lore:
-    - '&7La mascota que tengas afuera vuelve a descansar'
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_1_nv10':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_1':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_1_no':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_locked_1'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_hit_2_nv20':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_2_nv10':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_2':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_2_no':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_locked_2'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_hit_3_nv20':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_3_nv10':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_3':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_3_no':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_locked_3'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_hit_4_nv20':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_4'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_4_nv10':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_4'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_4':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_4'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_4_no':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_locked_4'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'm_fenix_hit_5_nv20':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 5 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_5'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '20'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_5_nv10':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 7 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_5'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_fenix}%'
+          output: '10'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_5':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&#FF7A2A&lFenix'
+    lore:
+    - ''
+    - '&7Nivel: &e%objective_score_{plv_fenix}%&7/30'
+    - ''
+    - '&a&lAl equiparla ahora:'
+    - '&f+ Rescate con poca vida (cada 10 min)'
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&eClic para equipar e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_5'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.fenix
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 6'
+  'm_fenix_hit_5_no':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&8&lFenix &7(bloqueada)'
+    lore:
+    - ''
+    - '&6&lMejoras que te da'
+    - '&aDesde nivel 1: &fTe salva con poca vida (cada 10 min)'
+    - '&eDesde nivel 10: &fcada 7 min'
+    - '&eDesde nivel 20: &fcada 5 min'
+    - '&7Nivel 30: evolucion visual'
+    - ''
+    - '&8Los bonus solo se activan en mazmorras.'
+    - ''
+    - '&7Se consigue en: &fGacha de Monturas (legendario)'
+    - ''
+    - '&7Desbloqueala para invocarla desde el santuario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/fenix_locked_5'
+    priority: 4
+    click_commands:
+    - '[message] &7Todavia no tienes esta mascota.'
+    - '[sound] ENTITY_VILLAGER_NO'
+  'guardar':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/rest_0'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'guardar_hit_1':
+    material: PAPER
+    slot: 48
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/rest_1'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'guardar_hit_2':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/rest_2'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'guardar_hit_3':
+    material: PAPER
+    slot: 50
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/rest_3'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'guardar_hit_4':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/rest_4'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'gacha':
+    material: SADDLE
+    slot: 8
+    amount: 1
+    display_name: '&6&lConseguir mas companeros'
+    lore:
+    - '&7La Gacha de Monturas puede dar mascotas.'
+    - '&7Los otros retratos indican donde conseguirlas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] gacha_monturas'
+  'volver':
+    material: ARROW
+    slot: 45
+    amount: 1
+    display_name: '&fVolver al atlas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+  'cerrar':
+    material: BARRIER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[close]'
-    - '[console] scoreboard players set %player_name% mascota 98'
-  'vidrio_0':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 0
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_1':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 1
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_2':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 2
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_3':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 3
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_5':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 5
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_6':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 6
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_7':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 7
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_8':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 8
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_9':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 9
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_13':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 13
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_17':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_18':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_19':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 19
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 20
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_21':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 21
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_23':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 23
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 24
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_25':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 25
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: ORANGE_STAINED_GLASS_PANE
-    slot: 26
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES

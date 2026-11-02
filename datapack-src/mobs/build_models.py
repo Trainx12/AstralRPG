@@ -56,7 +56,7 @@ FACE_GEOM = {
 }
 
 
-def preview3d(model, img, yaw=35, pitch=25, scale=4):
+def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255)):
     """Vista 3D ortografica con z-buffer (sin numpy). yaw>0 muestra el frente y el costado +X."""
     import math
     data = model.export()[0]
@@ -118,7 +118,7 @@ def preview3d(model, img, yaw=35, pitch=25, scale=4):
     minx, maxx, miny, maxy = min(xs_all), max(xs_all), min(ys_all), max(ys_all)
     W, H = int((maxx - minx) * scale) + 8, int((maxy - miny) * scale) + 8
     zbuf = [[1e9] * W for _ in range(H)]
-    out = Image.new("RGBA", (W, H), (50, 50, 60, 255))
+    out = Image.new("RGBA", (W, H), background)
     px = out.load()
     tex = img.load()
     for (O, U, V, uv) in faces:

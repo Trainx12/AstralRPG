@@ -242,6 +242,10 @@ from cosmeticos_ui import assets as cosmetic_assets
 cosmetic_files, cosmetic_providers = cosmetic_assets()
 files.update(cosmetic_files)
 default_font['providers'] = cosmetic_providers + default_font['providers']
+from mascotas_ui import assets as pet_ui_assets
+pet_ui_files, pet_ui_providers = pet_ui_assets()
+files.update(pet_ui_files)
+default_font['providers'] = pet_ui_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)

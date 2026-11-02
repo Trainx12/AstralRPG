@@ -14,7 +14,7 @@ import os
 import textwrap
 
 from lobby import GACHAS, PITY, HOLO_COLOR, HOLO_NAME, HOLO_DESC, pity_obj, TIRADAS, money, RARITY_WEIGHT
-from mobs.mascotas import MASCOTAS
+from mobs.mascotas import MASCOTAS, beneficios_actuales
 from misiones import CHAPTERS, DAILIES
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -151,25 +151,50 @@ def subastas_menu():
 
 
 def mascotas_menu():
+    from mascotas_ui import title, regions, REST_SLOTS
     P = "%player_name%"
-    items = item("info", "BONE", 4, "&6&l✦ Mascotas ✦",
-                 ["&7Una a la vez. Te siguen y te dan efectos.", "&7Suben de nivel con los mobs que matas:",
-                  "&7nivel 10 y 20 = efecto extra, nivel 30 = evolucion.", "", "&7Te acompanan en todos los mundos.", "&8Bonus solo dentro de las mazmorras."])
-    for slot, (pid, d) in zip([10, 11, 12, 14, 15, 16], MASCOTAS.items()):
+    items = item("info", "BONE", 4, "&6&lSantuario de companeros",
+                 ["&7Puedes llevar una mascota a la vez.", "&7Te sigue y sube de nivel con tus bajas.",
+                  "&7Nivel 10 y 20: mejores bonus; nivel 30: evolucion.", "",
+                  "&7Pasa el cursor por cada retrato para ver sus bonus.", "&8Bonus solo dentro de las mazmorras."])
+    for pid, slots in regions():
+        d = MASCOTAS[pid]
         col = hexc(d["color"])
-        lore = ["", f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", "",
-                f"&fNivel 1: &7{d['texto'][0]}", f"&fNivel 10: &7{d['texto'][1]}", f"&fNivel 20: &7{d['texto'][2]}", "",
-                "&eClic para invocar"]
-        items += item(f"m_{pid}", MASC_ICONO[pid], slot, f"{col}&l{d['nombre']}", lore, extra={
-            "priority": 1,
-            "view_requirement": f"\n      requirements:\n        tiene:\n          type: has permission\n          permission: astral.mascota.{pid}",
-            "click_commands": ["[close]", f"[console] scoreboard players set {P} mascota {d['n']}"]})
-        items += item(f"m_{pid}_no", "GRAY_DYE", slot, f"&8&l{d['nombre']} &7(bloqueada)",
-                      ["", f"&7Se consigue en: &f{d['fuente']}", "", f"&8Nivel 1: {d['texto'][0]}"], extra={"priority": 2})
-    items += item("guardar", "BARRIER", 22, "&c&lGuardar mascota", ["&7La mascota que tengas afuera vuelve a descansar"],
-                  extra={"click_commands": ["[close]", f"[console] scoreboard players set {P} mascota 98"]})
-    items += relleno("ORANGE_STAINED_GLASS_PANE", 27, [4, 10, 11, 12, 14, 15, 16, 22])
-    return menu("&8Mascotas", "mascotas", 27, items)
+        permission = f"astral.mascota.{pid}"
+        requirement = f"\n      requirements:\n        tiene:\n          type: has permission\n          permission: {permission}"
+        benefits = ["&6&lMejoras que te da", f"&aDesde nivel 1: &f{d['texto'][0]}",
+                    f"&eDesde nivel 10: &f{d['texto'][1]}", f"&eDesde nivel 20: &f{d['texto'][2]}",
+                    "&7Nivel 30: evolucion visual", "", "&8Los bonus solo se activan en mazmorras."]
+        for index, slot in enumerate(slots):
+            key = f"m_{pid}" if index == 0 else f"m_{pid}_hit_{index}"
+            for priority, level in enumerate((20, 10, 1), 1):
+                view = requirement
+                if level > 1:
+                    view += f"\n        nivel:\n          type: '>='\n          input: '{SCORE.format('plv_' + pid)}'\n          output: '{level}'"
+                lore = ["", f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", "", "&a&lAl equiparla ahora:",
+                        *['&f+ ' + bonus for bonus in beneficios_actuales(pid, level)], "", *benefits,
+                        "", "&eClic para equipar e invocar"]
+                items += item(key if level == 1 else key + f'_nv{level}', 'PAPER', slot, f"{col}&l{d['nombre']}", lore, extra={
+                    'item_model': q(f'astral:mascotas/{pid}_{index}'), 'priority': priority, 'update': 'true',
+                    'view_requirement': view,
+                    'click_requirement': requirement + "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'\n      - '[sound] ENTITY_VILLAGER_NO'",
+                    'click_commands': ['[close]', f"[console] scoreboard players set {P} mascota {d['n']}"]})
+            items += item(key+'_no', 'PAPER', slot, f"&8&l{d['nombre']} &7(bloqueada)",
+                          ['', *benefits, '', f"&7Se consigue en: &f{d['fuente']}", '',
+                           '&7Desbloqueala para invocarla desde el santuario.'], extra={
+                'item_model': q(f'astral:mascotas/{pid}_locked_{index}'), 'priority': 4,
+                'click_commands': ['[message] &7Todavia no tienes esta mascota.', '[sound] ENTITY_VILLAGER_NO']})
+    for index, slot in enumerate(REST_SLOTS):
+        items += item('guardar' if index == 0 else f'guardar_hit_{index}', 'PAPER', slot,
+                      '&a&lDejar descansar a tu mascota', ['&7Guarda a tu companero actual.', '&7Conserva su nivel y sus mejoras.'],
+                      extra={'item_model': q(f'astral:mascotas/rest_{index}'),
+                             'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
+    items += item('gacha', 'SADDLE', 8, '&6&lConseguir mas companeros',
+                  ['&7La Gacha de Monturas puede dar mascotas.', '&7Los otros retratos indican donde conseguirlas.'],
+                  extra={'click_commands': ['[openguimenu] gacha_monturas']})
+    items += item('volver', 'ARROW', 45, '&fVolver al atlas', extra={'click_commands': ['[openguimenu] principal']})
+    items += item('cerrar', 'BARRIER', 53, '&cCerrar', extra={'click_commands': ['[close]']})
+    return menu(title(), 'mascotas', 54, items, update=True)
 
 
 def bazar_menu():

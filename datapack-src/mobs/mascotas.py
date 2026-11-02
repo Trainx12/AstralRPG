@@ -53,6 +53,28 @@ MASCOTAS = {
 CONTROL = (180.5, 92, 190.5)        # debajo de la plaza del lobby (chunk siempre cargado con forceload)
 
 
+def beneficios_actuales(pid, nivel):
+    """Descripcion del bonus real: acumula efectos y reemplaza mejoras del mismo tipo."""
+    d = MASCOTAS[pid]
+    tier = 2 if nivel >= 20 else (1 if nivel >= 10 else 0)
+    if d.get('rescate'):
+        return [f"Rescate con poca vida (cada {d['rescate'][tier] // 60} min)"]
+    nombres = {'strength': 'Fuerza', 'speed': 'Velocidad', 'resistance': 'Resistencia',
+               'night_vision': 'Vision nocturna', 'luck': 'Suerte', 'regeneration': 'Regeneracion',
+               'absorption': '2 corazones de absorcion', 'jump_boost': 'Salto',
+               'fire_resistance': 'Resistencia al fuego', 'haste': 'Prisa'}
+    efectos = {}
+    for etapa in d['efectos'][:tier + 1]:
+        for efecto, amp in etapa:
+            efectos[efecto] = max(efectos.get(efecto, 0), amp)
+    resultado = [nombres[e] + ((' I' if amp == 0 else ' II') if e in
+                 ('strength', 'speed', 'resistance', 'regeneration', 'jump_boost', 'haste') else '')
+                 for e, amp in efectos.items()]
+    if d.get('brillo'):
+        resultado.append('Marca a los mobs cercanos')
+    return resultado
+
+
 def q(s):
     return "'" + str(s).replace("'", "''") + "'"
 
