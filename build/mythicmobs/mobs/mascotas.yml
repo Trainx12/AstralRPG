@@ -24,7 +24,7 @@ astral_pet_lobo:
   Skills:
   - 'skill{s=PET_MODELO_lobo} @self ~onSpawn'
   - 'skill{s=PET_MODELO_lobo} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_lobo_CHEQUEO} @owner ~onTimer:20'
@@ -58,7 +58,7 @@ astral_pet_cuervo:
   Skills:
   - 'skill{s=PET_MODELO_cuervo} @self ~onSpawn'
   - 'skill{s=PET_MODELO_cuervo} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_cuervo_CHEQUEO} @owner ~onTimer:20'
@@ -93,7 +93,7 @@ astral_pet_golem:
   Skills:
   - 'skill{s=PET_MODELO_golem} @self ~onSpawn'
   - 'skill{s=PET_MODELO_golem} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_golem_CHEQUEO} @owner ~onTimer:20'
@@ -127,7 +127,7 @@ astral_pet_zorro:
   Skills:
   - 'skill{s=PET_MODELO_zorro} @self ~onSpawn'
   - 'skill{s=PET_MODELO_zorro} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_zorro_CHEQUEO} @owner ~onTimer:20'
@@ -161,7 +161,7 @@ astral_pet_dragon:
   Skills:
   - 'skill{s=PET_MODELO_dragon} @self ~onSpawn'
   - 'skill{s=PET_MODELO_dragon} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_dragon_CHEQUEO} @owner ~onTimer:20'
@@ -195,7 +195,7 @@ astral_pet_fenix:
   Skills:
   - 'skill{s=PET_MODELO_fenix} @self ~onSpawn'
   - 'skill{s=PET_MODELO_fenix} @self ~onLoad'
-  - 'setowner @NearestPlayer{r=4;targetcreative=true} ~onSpawn'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_fenix_CHEQUEO} @owner ~onTimer:20'
