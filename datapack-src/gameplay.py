@@ -60,44 +60,12 @@ function astral_rescue_height(w: world) :: number:
 __RESCUE_LIMITS__
     return -10000
 
-# Se valida al guardar y al rescatar: un bloque que desaparecio no es un destino seguro.
-function astral_safe_floor(l: location) :: boolean:
-    if block at {_l} is not air:
-        return false
-    set {_head} to {_l}
-    add 1 to y-coordinate of {_head}
-    if block at {_head} is not air:
-        return false
-    set {_floor} to {_l}
-    subtract 0.1 from y-coordinate of {_floor}
-    if block at {_floor} is not solid:
-        return false
-    if block at {_floor} is magma block or cactus or campfire or soul campfire:
-        return false
-    return true
-
+# Caer debajo del limite del mundo: directo a /spawn. No se guarda ninguna posicion.
 function astral_rescue(p: player):
-    set {_id} to uuid of {_p}
-    set {_world} to name of world of {_p}
-    set {_safe} to {-astral.safe::%{_id}%::%{_world}%}
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
-    if {_safe} is set:
-        if world of {_safe} is world of {_p}:
-            if astral_safe_floor({_safe}) is true:
-                set {_target} to {_safe}
-    if {_target} is set:
-        teleport {_p} to {_target}
-        set velocity of {_p} to vector(0, 0, 0)
-        set fall distance of {_p} to 0
-        send action bar "&eVolviste al ultimo lugar seguro." to {_p}
-    else:
-        delete {-astral.safe::%{_id}%::%{_world}%}
-        execute console command "spawn %name of {_p}%"
-
-# No reutilizar un punto de otra visita o de una sala anterior al morir.
-on world change:
-    delete {-astral.safe::%uuid of player%::*}
+    execute console command "spawn %name of {_p}%"
+    send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 
 function astral_dungeon(w: world) :: boolean:
     if name of {_w} is __WORLDS__:
@@ -182,7 +150,6 @@ on mount:
                 cancel event
 
 on death of player:
-    delete {-astral.safe::%uuid of victim%::*}
     set {_w} to name of world of victim
     if {_w} is __PROTECTED__:
         keep the inventory and experiences
@@ -191,12 +158,12 @@ on death of player:
         set {_y} to floor(y-coordinate of victim)
         set {_z} to floor(z-coordinate of victim)
         send "&eMoriste en &f%{_w}%&e: &f%{_x}%, %{_y}%, %{_z}%&e. Conservas tus objetos." to victim
-    delete {astral.jump.used::%uuid of victim%}
-    delete {astral.launch::%uuid of victim%}
+    delete {-astral.jump.used::%uuid of victim%}
+    delete {-astral.launch::%uuid of victim%}
 
 on jump:
-    set {astral.jump.armed::%uuid of player%} to true
-    set {astral.jump.first::%uuid of player%} to now
+    set {-astral.jump.armed::%uuid of player%} to true
+    set {-astral.jump.first::%uuid of player%} to now
 
 on player jump key press:
     if astral_dungeon(world of player) is true:
@@ -210,13 +177,13 @@ on player jump key press:
         stop
     if player is flying:
         stop
-    if {astral.jump.armed::%uuid of player%} is not true:
+    if {-astral.jump.armed::%uuid of player%} is not true:
         stop
-    if {astral.jump.used::%uuid of player%} is true:
+    if {-astral.jump.used::%uuid of player%} is true:
         stop
-    if difference between now and {astral.jump.first::%uuid of player%} is less than 150 milliseconds:
+    if difference between now and {-astral.jump.first::%uuid of player%} is less than 150 milliseconds:
         stop
-    set {astral.jump.used::%uuid of player%} to true
+    set {-astral.jump.used::%uuid of player%} to true
     set {_v} to velocity of player
     set y component of {_v} to 0.65
     set velocity of player to {_v}
@@ -231,10 +198,6 @@ every tick:
                 if y-coordinate of loop-player is less than {_limit}:
                     astral_rescue(loop-player)
                     continue
-                if loop-player is on ground:
-                    if astral_safe_floor(location of loop-player) is true:
-                        set {_world} to name of world of loop-player
-                        set {-astral.safe::%{_id}%::%{_world}%} to location of loop-player
         if astral_dungeon(world of loop-player) is true:
             if astral_builder(loop-player) is false:
                 set {_world} to name of world of loop-player
@@ -252,24 +215,24 @@ every tick:
                     send "&cNo puedes equipar elitras dentro de una mazmorra. Conservas el objeto." to loop-player
                     continue
         if loop-player is on ground:
-            delete {astral.jump.used::%{_id}%}
-            if {astral.launch.air::%{_id}%} is true:
-                delete {astral.launch::%{_id}%}
-                delete {astral.launch.air::%{_id}%}
+            delete {-astral.jump.used::%{_id}%}
+            if {-astral.launch.air::%{_id}%} is true:
+                delete {-astral.launch::%{_id}%}
+                delete {-astral.launch.air::%{_id}%}
         else:
-            if {astral.launch::%{_id}%} is set:
-                set {astral.launch.air::%{_id}%} to true
+            if {-astral.launch::%{_id}%} is set:
+                set {-astral.launch.air::%{_id}%} to true
         if scoreboard tags of loop-player contains "astral.grapple.request":
             remove "astral.grapple.request" from scoreboard tags of loop-player
             if astral_dungeon(world of loop-player) is true:
                 send action bar "&cEl gancho no se puede usar dentro de las mazmorras." to loop-player
                 continue
-            if {astral.grapple.cd::%{_id}%} is set:
-                if difference between now and {astral.grapple.cd::%{_id}%} is less than 2 seconds:
+            if {-astral.grapple.cd::%{_id}%} is set:
+                if difference between now and {-astral.grapple.cd::%{_id}%} is less than 2 seconds:
                     continue
             if gamemode of loop-player is spectator:
                 continue
-            set {astral.grapple.cd::%{_id}%} to now
+            set {-astral.grapple.cd::%{_id}%} to now
             set {_v} to vector from yaw (yaw of loop-player) and pitch (pitch of loop-player)
             set x component of {_v} to (x component of {_v}) * 1.25
             set y component of {_v} to (y component of {_v}) * 1.25
@@ -277,27 +240,27 @@ every tick:
             if y component of {_v} is less than 0.9:
                 set y component of {_v} to 0.9
             set velocity of loop-player to {_v}
-            set {astral.launch::%{_id}%} to now
-            delete {astral.launch.air::%{_id}%}
+            set {-astral.launch::%{_id}%} to now
+            delete {-astral.launch.air::%{_id}%}
             play sound "entity.fishing_bobber.throw" with volume 0.6 and pitch 1.1 at loop-player
-        if {astral.launch::%{_id}%} is set:
-            if difference between now and {astral.launch::%{_id}%} is greater than 30 seconds:
-                delete {astral.launch::%{_id}%}
-                delete {astral.launch.air::%{_id}%}
+        if {-astral.launch::%{_id}%} is set:
+            if difference between now and {-astral.launch::%{_id}%} is greater than 30 seconds:
+                delete {-astral.launch::%{_id}%}
+                delete {-astral.launch.air::%{_id}%}
 
 on damage of player:
     if damage cause is fall:
-        if {astral.launch::%uuid of victim%} is set:
+        if {-astral.launch::%uuid of victim%} is set:
             cancel event
-            delete {astral.launch::%uuid of victim%}
-            delete {astral.launch.air::%uuid of victim%}
+            delete {-astral.launch::%uuid of victim%}
+            delete {-astral.launch.air::%uuid of victim%}
 
 on quit:
-    delete {astral.jump.used::%uuid of player%}
-    delete {astral.jump.armed::%uuid of player%}
-    delete {astral.grapple.cd::%uuid of player%}
-    delete {astral.launch::%uuid of player%}
-    delete {astral.launch.air::%uuid of player%}
+    delete {-astral.jump.used::%uuid of player%}
+    delete {-astral.jump.armed::%uuid of player%}
+    delete {-astral.grapple.cd::%uuid of player%}
+    delete {-astral.launch::%uuid of player%}
+    delete {-astral.launch.air::%uuid of player%}
 '''.replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
 
 def patch_graves(config):

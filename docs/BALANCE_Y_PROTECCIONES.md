@@ -47,28 +47,16 @@ La comprobacion de sensacion de salto/gancho, muerte real de jugador y
 teletransportes con inventario debe completarse en Minecraft; no se mato ni
 se movio automaticamente a ningun jugador para probar.
 
-## Rescate de caidas (02/11/2026, pendiente de instalar)
+## Rescate de caidas (simplificado 02/11/2026)
 
-`gameplay.py` genera el rescate en `build/gameplay/astral_gameplay.sk`.
-En supervivencia y aventura, guarda cada tick el ultimo punto con piso solido,
-pies y cabeza libres, excluyendo magma, cactus y fogatas. Al caer bajo el limite
-del mundo vuelve a ese punto y pone en cero velocidad y distancia de caida.
-Valida otra vez el piso antes de regresar; sin punto valido usa `/spawn`.
-Los puntos se descartan al cambiar de mundo o morir.
-
-Limites Y absolutos configurables en las opciones `rescate-y-*` del generador:
-lobby 60; mina -60 (sus salas estan bajo cero); bosque, tumba, cumbre, forja y
-santuario 0. Creativo, espectador y mundos de exploracion quedan fuera.
-Para instalar, reemplazar `plugins/Skript/scripts/astral_gameplay.sk` y ejecutar
-`skript reload astral_gameplay`. Usar el nombre completo porque AuraSkills puede
-capturar el alias `sk`. No requiere reemplazar el datapack.
-Referencia de distancia de caida: [documentacion de Skript](https://docs.skriptlang.org/expressions/#ExprFallDistance).
-
-Verificado en Paper 26.1.2 / Skript 2.17.1 local: recarga sin errores, ocho
-pruebas Python y nueve comprobaciones con jugador de prueba (rescate automatico,
-distancia de caida, piso, obstaculos, peligros, limites y cambio de mundo).
-En la copia local se adapto el nombre del lobby a `world_minecraft_lobby`,
-porque ese servidor carga los mundos desde dimensiones del datapack.
+`gameplay.py` genera el rescate en `build/gameplay/astral_gameplay.sk`. En supervivencia
+y aventura, si el jugador baja del limite Y del mundo, la consola hace `/spawn <jugador>`
+(lobby). No se guarda ninguna posicion: antes se guardaba el ultimo piso cada tick y
+Skript no daba abasto escribiendo variables. Limites en `rescate-y-*`: lobby 60;
+mina -60; bosque, tumba, cumbre, forja y santuario 0. Creativo, espectador y mundos de
+exploracion quedan fuera. Las variables por tick (gancho, doble salto, ultimo punto seco
+en mazmorras) son solo de memoria (`{-...}`), no se escriben a disco.
+Instalar: reemplazar `plugins/Skript/scripts/astral_gameplay.sk` y `skript reload astral_gameplay`.
 
 ## Comprobacion en Aternos
 
