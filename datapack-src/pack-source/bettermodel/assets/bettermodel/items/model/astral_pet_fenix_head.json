@@ -1,1 +1,1 @@
-{"model":{"type":"model","model":"bettermodel:model/astral_pet_fenix_head_1","tints":[{"type":"custom_model_data","default":16777215}]}}
+{"model":{"type":"composite","models":[{"type":"model","model":"bettermodel:model/astral_pet_fenix_head_1","tints":[{"type":"custom_model_data","default":16777215}]},{"type":"model","model":"bettermodel:model/astral_pet_fenix_head_2","tints":[{"type":"custom_model_data","default":16777215}]}]}}
