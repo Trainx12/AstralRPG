@@ -36,8 +36,10 @@ def hx(h):
 
 
 class Wand:
-    def __init__(self, iid, name, palette, tilt=-30, tex_dir=TEX_DIR):
+    def __init__(self, iid, name, palette, tilt=-30, tex_dir=TEX_DIR, hand="handheld", tex_name=None):
         self.iid = iid
+        self.hand = hand                  # "handheld" (como herramienta) o "bow" (como arco)
+        self.tex_name = tex_name or iid   # los 4 modelos de un arco comparten textura
         self.tilt = tilt                  # giro del icono del inventario para que se vea el volumen
         self.tex_dir = tex_dir
         self.name = name
@@ -494,6 +496,9 @@ def _frame_color(base, kind, f, n, x, y, pat):
 
 def texture(w):
     """Tira de FRAMES cuadros de 32x32."""
+    if getattr(w, 'refined_materials', False):
+        from weapon_details import material_texture
+        return material_texture(w)
     animated = any(kind != "s" for _, kind in w.palette.values())
     n = FRAMES if animated else 1
     im = Image.new("RGBA", (TEX, TEX * n), (0, 0, 0, 0))
@@ -578,12 +583,24 @@ def display(w):
     gui_r = _euler_xyz(gui_m)
     fixed_m = _mul(_ry(math.pi), gui_m)
     s2, fixed_t = _fit(w, fixed_m)
-    return {
+    if w.hand == "bow":
+        # angulos del arco vanilla (item/bow) menos 45 grados porque el modelo esta parado
+        hands = {
+            "thirdperson_righthand": {"rotation": [-80, 260, -85], "translation": [-1, -2, 2.5], "scale": [0.9, 0.9, 0.9]},
+            "thirdperson_lefthand": {"rotation": [-80, -280, 85], "translation": [-1, -2, 2.5], "scale": [0.9, 0.9, 0.9]},
+            "firstperson_righthand": {"rotation": [0, -90, -20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
+            "firstperson_lefthand": {"rotation": [0, 90, 20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
+        }
+    else:
         # mismo angulo que una herramienta vanilla, menos 45 grados porque el modelo esta parado
-        "thirdperson_righthand": {"rotation": [0, -90, 10], "translation": [0, 4, 0.5], "scale": [0.85, 0.85, 0.85]},
-        "thirdperson_lefthand": {"rotation": [0, 90, -10], "translation": [0, 4, 0.5], "scale": [0.85, 0.85, 0.85]},
-        "firstperson_righthand": {"rotation": [0, -90, -20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
-        "firstperson_lefthand": {"rotation": [0, 90, 20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
+        hands = {
+            "thirdperson_righthand": {"rotation": [0, -90, 10], "translation": [0, 4, 0.5], "scale": [0.85, 0.85, 0.85]},
+            "thirdperson_lefthand": {"rotation": [0, 90, -10], "translation": [0, 4, 0.5], "scale": [0.85, 0.85, 0.85]},
+            "firstperson_righthand": {"rotation": [0, -90, -20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
+            "firstperson_lefthand": {"rotation": [0, 90, 20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
+        }
+    return {
+        **hands,
         "gui": {"rotation": gui_r, "translation": gui_t, "scale": [s, s, s]},
         "fixed": {"rotation": _euler_xyz(fixed_m), "translation": fixed_t, "scale": [s2, s2, s2]},
         "ground": {"rotation": gui_r, "translation": [0, 3, 0], "scale": [0.32, 0.32, 0.32]},
@@ -592,7 +609,7 @@ def display(w):
 
 
 def model_json(w):
-    tex = f"astral:{w.tex_dir}/{w.iid}"
+    tex = f"astral:{w.tex_dir}/{w.tex_name}"
     els = []
     for e in w.els:
         slot = w.slots[e["sw"]]
@@ -772,6 +789,11 @@ def preview(path, items=None, W=150):
         # la traslacion del gui va en pixeles del casillero
         icons.alpha_composite(im, (i * 80 + 8 + int(d["translation"][0] * 4), 8 - int(d["translation"][1] * 4)))
     icons.resize((len(items) * 160, 160), Image.NEAREST).save(path.replace(".gif", "_iconos.png"))
+
+
+from weapon_details import refine_wand
+for _wand in WANDS:
+    refine_wand(_wand)
 
 
 if __name__ == "__main__":

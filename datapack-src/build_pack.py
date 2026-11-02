@@ -83,6 +83,11 @@ for iid in GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
 # Guadanas en 3D (guadanas3d.py); van despues de las texturas planas para reemplazarlas
 from guadanas3d import assets as scythe_assets
 files.update(scythe_assets())
+# Espadas, hachas, Guantes de Puno Meteoro y arcos en 3D (armas3d.py)
+from armas3d import assets as weapon3d_assets
+files.update(weapon3d_assets())
+from lanzas3d import assets as spear_assets
+files.update(spear_assets())
 # Taladros y motosierras (texturas de pack-source/drills, las animadas con .mcmeta)
 import colorsys
 import io as _io

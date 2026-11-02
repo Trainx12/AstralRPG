@@ -384,6 +384,9 @@ def umbria():
 
 
 SCYTHES = [umbria_menor(), ritual(), vacio(), archimago(), astral(), umbria()]
+from weapon_details import refine_scythe
+for _scythe in SCYTHES:
+    refine_scythe(_scythe)
 
 
 def assets():

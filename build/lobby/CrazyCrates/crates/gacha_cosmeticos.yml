@@ -126,7 +126,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3125
       Commands:
-        - "lp user %player% meta setprefix 100 &b&l«ASTRAL»"
+        - "lp user %player% permission set astral.cosmetico.titulo.astral true"
+        - "tellraw %player% {\"text\":\"Titulo ASTRAL desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «ASTRAL»',color:'white'}]"
     "2":
@@ -178,7 +179,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.3462
       Commands:
-        - "lp user %player% meta setprefix 100 &6&l«Campeon»"
+        - "lp user %player% permission set astral.cosmetico.titulo.campeon true"
+        - "tellraw %player% {\"text\":\"Titulo Campeon desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Campeon»',color:'white'}]"
     "4":
@@ -204,7 +206,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.3462
       Commands:
-        - "lp user %player% meta setprefix 100 &5&l«Senor del Abismo»"
+        - "lp user %player% permission set astral.cosmetico.titulo.senor_del_abismo true"
+        - "tellraw %player% {\"text\":\"Titulo Senor del Abismo desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Senor del Abismo»',color:'white'}]"
     "5":
@@ -254,7 +257,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.9643
       Commands:
-        - "lp user %player% meta setprefix 100 &e«Domador»"
+        - "lp user %player% permission set astral.cosmetico.titulo.domador true"
+        - "tellraw %player% {\"text\":\"Titulo Domador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "7":
       DisplayName: "<aqua><bold>Titulo «Arcano»"
       DisplayItem: "name_tag"
@@ -276,7 +280,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.9643
       Commands:
-        - "lp user %player% meta setprefix 100 &5«Arcano»"
+        - "lp user %player% permission set astral.cosmetico.titulo.arcano true"
+        - "tellraw %player% {\"text\":\"Titulo Arcano desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "8":
       DisplayName: "<aqua><bold>Titulo «Berserker»"
       DisplayItem: "name_tag"
@@ -298,7 +303,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.9643
       Commands:
-        - "lp user %player% meta setprefix 100 &4«Berserker»"
+        - "lp user %player% permission set astral.cosmetico.titulo.berserker true"
+        - "tellraw %player% {\"text\":\"Titulo Berserker desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "9":
       DisplayName: "<aqua><bold>Titulo «Arquero»"
       DisplayItem: "name_tag"
@@ -320,7 +326,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.9643
       Commands:
-        - "lp user %player% meta setprefix 100 &a«Arquero»"
+        - "lp user %player% permission set astral.cosmetico.titulo.arquero true"
+        - "tellraw %player% {\"text\":\"Titulo Arquero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "10":
       DisplayName: "<aqua><bold>Molde de adorno: vex"
       DisplayItem: "vex_armor_trim_smithing_template"
@@ -430,7 +437,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 5.4348
       Commands:
-        - "lp user %player% meta setprefix 100 &2«Cazador»"
+        - "lp user %player% permission set astral.cosmetico.titulo.cazador true"
+        - "tellraw %player% {\"text\":\"Titulo Cazador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "15":
       DisplayName: "<green><bold>Titulo «Herrero»"
       DisplayItem: "name_tag"
@@ -452,7 +460,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 5.4348
       Commands:
-        - "lp user %player% meta setprefix 100 &c«Herrero»"
+        - "lp user %player% permission set astral.cosmetico.titulo.herrero true"
+        - "tellraw %player% {\"text\":\"Titulo Herrero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "16":
       DisplayName: "<green><bold>Titulo «Alquimista»"
       DisplayItem: "name_tag"
@@ -474,7 +483,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 5.4348
       Commands:
-        - "lp user %player% meta setprefix 100 &d«Alquimista»"
+        - "lp user %player% permission set astral.cosmetico.titulo.alquimista true"
+        - "tellraw %player% {\"text\":\"Titulo Alquimista desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "17":
       DisplayName: "<green><bold>Molde de adorno: coast"
       DisplayItem: "coast_armor_trim_smithing_template"
@@ -584,7 +594,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 11.1111
       Commands:
-        - "lp user %player% meta setprefix 100 &7«Aventurero»"
+        - "lp user %player% permission set astral.cosmetico.titulo.aventurero true"
+        - "tellraw %player% {\"text\":\"Titulo Aventurero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "22":
       DisplayName: "<white><bold>Titulo «Explorador»"
       DisplayItem: "name_tag"
@@ -606,7 +617,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 11.1111
       Commands:
-        - "lp user %player% meta setprefix 100 &a«Explorador»"
+        - "lp user %player% permission set astral.cosmetico.titulo.explorador true"
+        - "tellraw %player% {\"text\":\"Titulo Explorador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "23":
       DisplayName: "<white><bold>Titulo «Lenador»"
       DisplayItem: "name_tag"
@@ -628,7 +640,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 11.1111
       Commands:
-        - "lp user %player% meta setprefix 100 &6«Lenador»"
+        - "lp user %player% permission set astral.cosmetico.titulo.lenador true"
+        - "tellraw %player% {\"text\":\"Titulo Lenador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "24":
       DisplayName: "<white><bold>Titulo «Minero»"
       DisplayItem: "name_tag"
@@ -650,7 +663,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 11.1111
       Commands:
-        - "lp user %player% meta setprefix 100 &8«Minero»"
+        - "lp user %player% permission set astral.cosmetico.titulo.minero true"
+        - "tellraw %player% {\"text\":\"Titulo Minero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
     "25":
       DisplayName: "<white><bold>Cohetes x16"
       DisplayItem: "firework_rocket"

@@ -74,6 +74,8 @@ astral_npc_cumbre:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'command{c="lp user <trigger.name> permission set astral.descubierto.cumbre true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.cumbre}'
+  - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
   - 'skill{s=CUMBRE_ENTRAR} @trigger ~onInteract'
 
 astral_cumbre_arana:

@@ -165,6 +165,8 @@ def mob_yml(dungeon=None):
           "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
           "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true",
           "    Profession: MASON", "    VillagerType: PLAINS", "  Skills:", "  - cancelevent @self ~onInteract",
+          "  - " + q(f'command{{c="lp user <trigger.name> permission set astral.descubierto.{dungeon["key"]} true"}} @self ~onInteract ?~!haspermission{{p=astral.descubierto.{dungeon["key"]}}}'),
+          "  - " + q('message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'),
           "  - " + q("skill{s=MINA_ENTRAR} @trigger ~onInteract"), ""]
     return finish("\n".join(L) + "\n", dungeon) + dungeon.get("mob_blocks", "")
 
@@ -332,8 +334,6 @@ def skill_yml(dungeon=None):
         L += ["MINA_ENTRAR:", "  Skills:", "  - " + q('message{m="&eEsta mazmorra esta en preparacion. Falta revisar las salas en Minecraft."}'), ""]
         return finish("\n".join(L) + "\n", dungeon)
     L += ["MINA_ENTRAR:"]
-    if dungeon["key"] == "santuario":
-        L += ["  TargetConditions:", "  - score{o=aq.state;v=>9} true"]
     L += ["  Skills:",
           "  - " + q(f'message{{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8({len(SALAS)} salas. Para salir: /spawn)"}}'),
           "  - " + q(tp(*s1["llegada"], who="<trigger.name>", world=WORLD)), ""]

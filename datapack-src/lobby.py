@@ -132,7 +132,9 @@ TITLES = [
 def cosmetic_rewards():
     R = []
     for rar, name, col in TITLES:
-        R.append((rar, 10, f"Titulo «{name}»", [f'lp user %player% meta setprefix 100 {col}«{name}»']))
+        key=name.lower().replace(' ','_')
+        R.append((rar, 10, f"Titulo «{name}»", [f'lp user %player% permission set astral.cosmetico.titulo.{key} true',
+                    f'tellraw %player% {{"text":"Titulo {name} desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.","color":"light_purple"}}']))
     R.append(("common", 8, "Cohetes x16", ["give %player% minecraft:firework_rocket 16"]))
     R.append(("common", 6, "Etiquetas x3", ["give %player% minecraft:name_tag 3"]))
     for t in ("coast", "dune", "wild", "sentry"):

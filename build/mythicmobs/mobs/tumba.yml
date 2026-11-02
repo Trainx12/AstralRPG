@@ -309,6 +309,8 @@ astral_npc_tumba:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'command{c="lp user <trigger.name> permission set astral.descubierto.tumba true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.tumba}'
+  - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
   - 'skill{s=TUMBA_ENTRAR} @trigger ~onInteract'
 
 astral_tumba_espantapajaros:

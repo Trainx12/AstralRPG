@@ -1,0 +1,19 @@
+AstralRPG / arsenal refinado
+
+32 armas: 5 espadas, 5 bastones, 6 guadanas, 5 hachas, 5 arcos,
+5 lanzas y el guantelete. Los arcos tienen cuatro estados: 47 modelos vanilla.
+
+visor.html: abrir en un navegador con WebGL para girar los modelos originales.
+blockbench/: abrir cada .bbmodel en Blockbench para editar geometria y atlas.
+assets/: modelos Minecraft, definiciones y texturas originales exportadas.
+
+Las vistas son renders de la geometria final, no imagenes generadas de armas.
+Los acabados animados conservan ocho cuadros de tres ticks y los puntos de agarre.
+No cambia el dano, las recetas, los costos ni la progresion del equipo.
+La comprobacion de escala en mano y aparicion de brillos dentro de Minecraft
+se debe hacer al instalar el resource pack.
+
+Regenerar desde datapack-src:
+  python weapon_showcase.py
+  python build_pack.py pack-source
+  python -m unittest test_weapons3d test_adventure_ui test_viajes_mazmorras

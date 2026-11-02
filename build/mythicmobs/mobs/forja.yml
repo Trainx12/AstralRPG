@@ -74,6 +74,8 @@ astral_npc_forja:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - 'command{c="lp user <trigger.name> permission set astral.descubierto.forja true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.forja}'
+  - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
   - 'skill{s=FORJA_ENTRAR} @trigger ~onInteract'
 
 astral_forja_espantapajaros:

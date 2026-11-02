@@ -24,3 +24,9 @@ gui_menus:
     file: misiones_3.yml
   misiones_4:
     file: misiones_4.yml
+  mazmorras:
+    file: mazmorras.yml
+  expediciones:
+    file: expediciones.yml
+  cosmeticos:
+    file: cosmeticos.yml

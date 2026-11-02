@@ -126,7 +126,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 7.8125
       Commands:
-        - "lp user %player% meta setprefix 100 &b&l«ASTRAL»"
+        - "lp user %player% permission set astral.cosmetico.titulo.astral true"
+        - "tellraw %player% {\"text\":\"Titulo ASTRAL desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «ASTRAL»',color:'white'}]"
     "2":
@@ -178,7 +179,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 33.6538
       Commands:
-        - "lp user %player% meta setprefix 100 &6&l«Campeon»"
+        - "lp user %player% permission set astral.cosmetico.titulo.campeon true"
+        - "tellraw %player% {\"text\":\"Titulo Campeon desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Campeon»',color:'white'}]"
     "4":
@@ -204,7 +206,8 @@ Crate:
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 33.6538
       Commands:
-        - "lp user %player% meta setprefix 100 &5&l«Senor del Abismo»"
+        - "lp user %player% permission set astral.cosmetico.titulo.senor_del_abismo true"
+        - "tellraw %player% {\"text\":\"Titulo Senor del Abismo desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Senor del Abismo»',color:'white'}]"
     "5":

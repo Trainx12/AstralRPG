@@ -1191,7 +1191,67 @@ astral_npc_expediciones:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="execute in minecraft:lobby run minecraft:tp <trigger.name> 180.5 100 288.5"} @self ~onInteract'
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
+astral_npc_guia_reino:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
+astral_npc_guia_cavernas:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
+astral_npc_guia_expediciones:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
 
 astral_npc_bazar:
   Type: VILLAGER

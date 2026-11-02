@@ -79,10 +79,18 @@ def card(kind,key,locked=False):
     if locked: color='#7f7a84'
     d.rectangle((0,0,width-1,height-1),outline=edge)
     d.rectangle((2,2,width-3,height-3),outline='#47505a' if not locked else '#44414b')
+    d.line((3,1,width-4,1),fill='#d6be85' if kind!='mazmorras' else '#bcb1cd')
+    d.line((3,height-2,width-4,height-2),fill='#0b101c')
+    for x in (1,width-2):
+        for y in (1,height-2):d.point((x,y),fill='#f3dcab')
     if main:
         star(d,7,8,color,2)
         text(im,MAIN_LABELS[MAIN.index(key)],(41,5),color='#f4e4be')
     else:
+        # Nichos de piedra, cartelas y pequenos brillos del bioma.
+        d.line((7,21,width-8,21),fill='#47534d' if kind=='expediciones' else '#494054')
+        d.line((5,23,width-6,23),fill='#101923')
+        for x in (6,width-7):star(d,x,12,color,1)
         emblem(d,key,27,12,color)
         text(im,LABELS[DESTINATIONS.index(key)],(27,25),color=color)
         if locked:
@@ -93,29 +101,20 @@ def card(kind,key,locked=False):
 
 def panel(kind):
     caption,fill,edge,accent=THEMES[kind]
-    im=Image.new('RGBA',SIZE);d=ImageDraw.Draw(im)
-    d.rectangle((7,10,216,275),fill='#10121c',outline=edge,width=2)
-    d.rectangle((11,14,212,271),fill=fill,outline='#4a4351',width=2)
-    # Bloques y remaches del marco: siempre fuera de las casillas utilizables.
-    for y in range(40,264,14):
-        for x in (12,201):
-            d.rectangle((x,y,x+10,y+12),fill='#3d3945' if kind=='mazmorras' else '#3a403e',outline='#171b25')
-            d.point((x+2,y+2),fill=edge)
-    for x in (16,207):
-        for y in (19,263):
-            star(d,x,y,accent,5)
-    d.rectangle((29,12,194,37),fill='#101923',outline=edge)
-    text(im,caption,(112,20),color='#f8e7c0')
-    # Bandeau decoratif: constellation, carte ou chaine runique.
-    if kind=='expediciones':
-        d.line((39,45,67,40,95,47,124,41,155,47,182,41),fill=edge)
-        for x,y in ((39,45),(95,47),(155,47)):
-            star(d,x,y,accent,2)
-    elif kind=='mazmorras':
-        for x in range(38,188,12):d.rectangle((x,42,x+7,46),outline=edge)
-    else:
-        d.line((40,45,73,40,112,47,153,40,184,45),fill='#56677e')
-        for x,y in ((40,45),(73,40),(112,47),(153,40),(184,45)):star(d,x,y,accent,2)
+    source=Image.open(Path(__file__).resolve().parent/f'pack-source/ref/{kind}-illustrated-frame.png').convert('RGBA')
+    top={'principal':320,'expediciones':320,'mazmorras':350}[kind]
+    sx=[0,round(source.width*.13),round(source.width*.87),source.width]
+    sy=[0,top,round(source.height*.92),source.height]
+    dx,dy=[0,24,200,224],[0,56,258,280]
+    im=Image.new('RGBA',SIZE)
+    for row in range(3):
+        for col in range(3):
+            piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
+            im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
+    # El titulo queda dentro del cartel ilustrado.
+    ty={'principal':39,'expediciones':31,'mazmorras':39}[kind]
+    text(im,caption,(112,ty),color='#fff0d5')
+    d=ImageDraw.Draw(im)
     # El fondo cubre la ventana vanilla; solo las areas reales son transparentes.
     d.rectangle((24,56,199,258),fill=fill)
     for _,slots in regions(kind):

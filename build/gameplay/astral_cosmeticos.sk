@@ -1,0 +1,109 @@
+# Generado por cosmeticos.py. Equipar cambia solo el prefijo cosmetico de prioridad 100.
+command /titulo [<text>]:
+    executable by: players
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open cosmeticos %name of player%"
+            stop
+        if arg-1 is "quitar":
+            execute console command "lp user %name of player% meta removeprefix 100"
+            stop
+        if arg-1 is "aventurero":
+            if player does not have permission "astral.cosmetico.titulo.aventurero":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&7«Aventurero»"""
+            send "&aTitulo equipado: Aventurero. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "explorador":
+            if player does not have permission "astral.cosmetico.titulo.explorador":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&a«Explorador»"""
+            send "&aTitulo equipado: Explorador. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "lenador":
+            if player does not have permission "astral.cosmetico.titulo.lenador":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&6«Lenador»"""
+            send "&aTitulo equipado: Lenador. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "minero":
+            if player does not have permission "astral.cosmetico.titulo.minero":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&8«Minero»"""
+            send "&aTitulo equipado: Minero. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "cazador":
+            if player does not have permission "astral.cosmetico.titulo.cazador":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&2«Cazador»"""
+            send "&aTitulo equipado: Cazador. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "herrero":
+            if player does not have permission "astral.cosmetico.titulo.herrero":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&c«Herrero»"""
+            send "&aTitulo equipado: Herrero. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "alquimista":
+            if player does not have permission "astral.cosmetico.titulo.alquimista":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&d«Alquimista»"""
+            send "&aTitulo equipado: Alquimista. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "domador":
+            if player does not have permission "astral.cosmetico.titulo.domador":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&e«Domador»"""
+            send "&aTitulo equipado: Domador. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "arcano":
+            if player does not have permission "astral.cosmetico.titulo.arcano":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&5«Arcano»"""
+            send "&aTitulo equipado: Arcano. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "berserker":
+            if player does not have permission "astral.cosmetico.titulo.berserker":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&4«Berserker»"""
+            send "&aTitulo equipado: Berserker. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "arquero":
+            if player does not have permission "astral.cosmetico.titulo.arquero":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&a«Arquero»"""
+            send "&aTitulo equipado: Arquero. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "campeon":
+            if player does not have permission "astral.cosmetico.titulo.campeon":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&6&l«Campeon»"""
+            send "&aTitulo equipado: Campeon. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "senor_del_abismo":
+            if player does not have permission "astral.cosmetico.titulo.senor_del_abismo":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&5&l«Senor del Abismo»"""
+            send "&aTitulo equipado: Senor del Abismo. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "astral":
+            if player does not have permission "astral.cosmetico.titulo.astral":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&b&l«ASTRAL»"""
+            send "&aTitulo equipado: ASTRAL. Tus otros titulos siguen guardados." to player
+            stop
+        send "&eUsa /cosmeticos para elegir un titulo." to player

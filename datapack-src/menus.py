@@ -197,20 +197,33 @@ def bazar_menu():
 
 
 def principal_menu():
-    items = item("info", "NETHER_STAR", 4, "&b&l✦ AstralRPG ✦", ["&7Todo lo del servidor, sin comandos."], glow=True)
-    items += item("mascotas", "BONE", 10, "&6&lMascotas", ["&7Invoca o guarda tu mascota"],
-                  extra={"click_commands": ["[openguimenu] mascotas"]})
-    items += item("bazar", "EMERALD", 12, "&a&lBazar", ["&7Mercado, subastas y ordenes"],
-                  extra={"click_commands": ["[openguimenu] bazar"]})
-    items += item("guia", "WRITABLE_BOOK", 14, "&d&lGuia de AstralRPG", ["&7Clases, items, recetas y la Forja"],
-                  extra={"click_commands": ["[close]", "[player] trigger astral.guia set 1"]})
-    items += item("plata", "GOLD_NUGGET", 16, "&e&lTu plata", ["&7Tenes: &e%vault_eco_balance_formatted%$"], extra={"update": "true"})
-    items += item("spawn", "COMPASS", 22, "&f&lVolver al lobby", ["&7Te lleva a la plaza"],
-                  extra={"click_commands": ["[close]", "[player] spawn"]})
-    items += item("misiones", "BOOK", 20, "&b&lMisiones e historia", ["&7Consulta tu capitulo y las diarias", "&7El Cronista entrega los premios"],
-                  extra={"click_commands": ["[console] execute as %player_name% at @s run function astral:quest/gui/page/0", "[openguimenu] misiones"]})
-    items += relleno("LIGHT_BLUE_STAINED_GLASS_PANE", 27, [4, 10, 12, 14, 16, 20, 22])
-    return menu("&8Menu de AstralRPG", "menu", 27, items, update=True)
+    from adventure_ui import title, regions
+    actions = {
+        'expediciones': ('&a&lExpediciones Astrales', ['&7Explora seis destinos y encuentra sus guardianes.'], ['[openguimenu] expediciones']),
+        'mazmorras': ('&d&lMazmorras descubiertas', ['&7Viaja a los portales que ya descubriste.'], ['[openguimenu] mazmorras']),
+        'misiones': ('&b&lEl Cronista', ['&7Historia, misiones diarias y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
+        'bazar': ('&6&lBazar del Refugio', ['&7Tienda, venta rapida, subastas y ordenes.'], ['[openguimenu] bazar']),
+        'mascotas': ('&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
+        'cosmeticos': ('&d&lMis cosmeticos', ['&7Elige entre tus titulos desbloqueados.'], ['[openguimenu] cosmeticos']),
+        'guia': ('&b&lGuia de AstralRPG', ['&7Clases, equipo, recetas y la Forja.'], ['[close]', '[player] trigger astral.guia set 1']),
+        'spawn': ('&f&lVolver al lobby', ['&7Regresa a la plaza del Refugio.'], ['[close]', '[player] spawn']),
+    }
+    items = []
+    for key, slots in regions('principal'):
+        caption, lore, commands = actions[key]
+        for index, slot in enumerate(slots):
+            items += item(f'{key}_{index}', 'PAPER', slot, caption, lore,
+                          extra={'item_model': q(f'astral:aventuras/principal_{key}_{index}'),
+                                 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
+    items += item('info', 'NETHER_STAR', 4, '&b&lAtlas de AstralRPG',
+                  ['&7Tu aventura empieza en el Refugio.', '&7Pasa el cursor por cada tarjeta para leer mas.'])
+    items += item('saldo', 'GOLD_NUGGET', 8, '&6Tu saldo', ['&e%vault_eco_balance_formatted%$'], extra={'update': 'true'})
+    items += item('gachas', 'AMETHYST_SHARD', 49, '&d&lGachas del Refugio',
+                  ['&7Arsenal Arcano, Sendas Salvajes y Galeria Celeste.', '&7Busca sus cofres en la plaza del lobby.'],
+                  extra={'click_commands': ['[message] &dEn el lobby te esperan los tres cofres de invocacion.']})
+    items += item('ayuda', 'BOOK', 51, '&bComo usar el atlas', ['&7Cada tarjeta abre su servicio.', '&7Los guardianes desbloquean el viaje a mazmorras.'])
+    items += item('cerrar', 'BARRIER', 53, '&cCerrar', extra={'click_commands': ['[close]']})
+    return menu(title('principal'), 'menu', 54, items, update=True)
 
 
 def misiones_menu(current_page=0):
@@ -371,6 +384,10 @@ def mission_menu_id(page):
 
 
 def main():
+    from cosmeticos import generate as generate_cosmetics
+    generate_cosmetics()
+    from viajes_mazmorras import generate as generate_dungeon_travel
+    generate_dungeon_travel()
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu()})
@@ -379,6 +396,9 @@ def main():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]
     lista += [f"  {k}:\n    file: {k}.yml" for k in menus]
+    lista += ['  mazmorras:\n    file: mazmorras.yml']
+    lista += ['  expediciones:\n    file: expediciones.yml']
+    lista += ['  cosmeticos:\n    file: cosmeticos.yml']
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")
 

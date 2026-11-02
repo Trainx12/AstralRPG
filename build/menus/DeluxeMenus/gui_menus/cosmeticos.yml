@@ -1,0 +1,661 @@
+{
+  "menu_title": "&8Mis cosmeticos: titulos",
+  "open_command": [
+    "cosmeticos",
+    "titulos"
+  ],
+  "register_command": true,
+  "size": 45,
+  "items": {
+    "aventurero": {
+      "slot": 10,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&7Aventurero",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.aventurero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.aventurero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo aventurero"
+      ]
+    },
+    "aventurero_locked": {
+      "slot": 10,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Aventurero",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "explorador": {
+      "slot": 11,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&aExplorador",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.explorador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.explorador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo explorador"
+      ]
+    },
+    "explorador_locked": {
+      "slot": 11,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Explorador",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "lenador": {
+      "slot": 12,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&6Lenador",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.lenador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.lenador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo lenador"
+      ]
+    },
+    "lenador_locked": {
+      "slot": 12,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Lenador",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "minero": {
+      "slot": 13,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&8Minero",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.minero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.minero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo minero"
+      ]
+    },
+    "minero_locked": {
+      "slot": 13,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Minero",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "cazador": {
+      "slot": 14,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&2Cazador",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.cazador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.cazador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo cazador"
+      ]
+    },
+    "cazador_locked": {
+      "slot": 14,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Cazador",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "herrero": {
+      "slot": 15,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&cHerrero",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.herrero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.herrero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo herrero"
+      ]
+    },
+    "herrero_locked": {
+      "slot": 15,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Herrero",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "alquimista": {
+      "slot": 16,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&dAlquimista",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.alquimista"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.alquimista"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo alquimista"
+      ]
+    },
+    "alquimista_locked": {
+      "slot": 16,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Alquimista",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "domador": {
+      "slot": 19,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&eDomador",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.domador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.domador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo domador"
+      ]
+    },
+    "domador_locked": {
+      "slot": 19,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Domador",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "arcano": {
+      "slot": 20,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&5Arcano",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arcano"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arcano"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo arcano"
+      ]
+    },
+    "arcano_locked": {
+      "slot": 20,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Arcano",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "berserker": {
+      "slot": 21,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&4Berserker",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.berserker"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.berserker"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo berserker"
+      ]
+    },
+    "berserker_locked": {
+      "slot": 21,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Berserker",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "arquero": {
+      "slot": 22,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&aArquero",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arquero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arquero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo arquero"
+      ]
+    },
+    "arquero_locked": {
+      "slot": 22,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Arquero",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "campeon": {
+      "slot": 23,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&6&lCampeon",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.campeon"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.campeon"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo campeon"
+      ]
+    },
+    "campeon_locked": {
+      "slot": 23,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Campeon",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "senor_del_abismo": {
+      "slot": 24,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&5&lSenor del Abismo",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.senor_del_abismo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.senor_del_abismo"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo senor_del_abismo"
+      ]
+    },
+    "senor_del_abismo_locked": {
+      "slot": 24,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Senor del Abismo",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "astral": {
+      "slot": 25,
+      "material": "NAME_TAG",
+      "priority": 1,
+      "display_name": "&b&lASTRAL",
+      "lore": [
+        "&aTitulo desbloqueado.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.astral"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.astral"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo astral"
+      ]
+    },
+    "astral_locked": {
+      "slot": 25,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8ASTRAL",
+      "lore": [
+        "&7Puedes obtenerlo en la gacha de cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo."
+      ]
+    },
+    "none": {
+      "slot": 39,
+      "material": "MILK_BUCKET",
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Conservas todos tus titulos desbloqueados."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "close": {
+      "slot": 44,
+      "material": "BARRIER",
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

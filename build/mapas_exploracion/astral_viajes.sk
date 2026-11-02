@@ -1,0 +1,76 @@
+# Generado por viajes_mazmorras.py. No acepta un jugador destino ni comandos del usuario.
+command /mazmorras [<text>]:
+    executable by: players
+    description: Viaja a una mazmorra descubierta.
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open mazmorras %name of player%"
+            stop
+        set {_destino} to arg-1
+        if {_destino} is "minas":
+            set {_destino} to "mina"
+        if {_destino} is "bosque":
+            if player does not have permission "astral.descubierto.bosque":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1440.5 104 1568.5"
+            stop
+        if {_destino} is "tumba":
+            if player does not have permission "astral.descubierto.tumba":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:tumba run minecraft:tp %name of player% -148.426 62 -97.473"
+            stop
+        if {_destino} is "mina":
+            if player does not have permission "astral.descubierto.mina":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:mina run minecraft:tp %name of player% 10.5 -45 -124.5"
+            stop
+        if {_destino} is "cumbre":
+            if player does not have permission "astral.descubierto.cumbre":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:cumbre run minecraft:tp %name of player% -128.5 79 0.5"
+            stop
+        if {_destino} is "forja":
+            if player does not have permission "astral.descubierto.forja":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:forja run minecraft:tp %name of player% 1536.5 224 1900.5"
+            stop
+        if {_destino} is "santuario":
+            if player does not have permission "astral.descubierto.santuario":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:santuario run minecraft:tp %name of player% -329.5 51 65.5"
+            stop
+        send "&eDestinos: bosque, tumba, mina, cumbre, forja y santuario." to player
+
+# Rutas de exploracion publicas. El viaje directo a la mazmorra se controla por separado.
+command /expediciones [<text>]:
+    aliases: expedicion
+    executable by: players
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open expediciones %name of player%"
+            stop
+        if arg-1 is "bosque":
+            execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
+            stop
+        if arg-1 is "tumba":
+            execute console command "execute in minecraft:exp_desierto run minecraft:tp %name of player% 180.233 102 134.266 -124.8 0"
+            stop
+        if arg-1 is "mina":
+            execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
+            stop
+        if arg-1 is "cumbre":
+            execute console command "execute in minecraft:exp_hielo run minecraft:tp %name of player% 8.5 65 8.5 180 0"
+            stop
+        if arg-1 is "forja":
+            execute console command "execute in minecraft:reino run minecraft:tp %name of player% 5.5 67 0.5 180 0"
+            stop
+        if arg-1 is "santuario":
+            execute console command "execute in minecraft:exp_santuario run minecraft:tp %name of player% 26.5 103 -31.5 180 0"
+            stop
+        send "&eUsa /expediciones para elegir un destino." to player

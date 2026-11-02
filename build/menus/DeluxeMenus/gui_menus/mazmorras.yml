@@ -1,0 +1,2075 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "update_interval": 1,
+  "items": {
+    "info": {
+      "material": "COMPASS",
+      "slot": 4,
+      "display_name": "&b&lMazmorras descubiertas",
+      "lore": [
+        "&7Encuentra a cada guardian para guardar su destino.",
+        "&7Tus descubrimientos son personales y permanentes.",
+        "&7Tambien puedes usar &e/mazmorras <destino>&7."
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 45,
+      "display_name": "&fVolver al atlas",
+      "click_commands": [
+        "[openguimenu] principal"
+      ]
+    },
+    "explorar": {
+      "material": "MAP",
+      "slot": 49,
+      "display_name": "&aBuscar nuevos destinos",
+      "click_commands": [
+        "[openguimenu] expediciones"
+      ]
+    },
+    "ayuda": {
+      "material": "BOOK",
+      "slot": 51,
+      "display_name": "&dSellos de descubrimiento",
+      "lore": [
+        "&7El candado indica un portal sin descubrir.",
+        "&7Habla con su guardian para activarlo."
+      ]
+    },
+    "saldo": {
+      "material": "GOLD_NUGGET",
+      "slot": 8,
+      "display_name": "&6Tu saldo",
+      "lore": [
+        "&e%vault_eco_balance_formatted%$"
+      ],
+      "update": true
+    },
+    "bosque": {
+      "material": "PAPER",
+      "slot": 9,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_hit_1": {
+      "material": "PAPER",
+      "slot": 10,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_hit_2": {
+      "material": "PAPER",
+      "slot": 11,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_hit_3": {
+      "material": "PAPER",
+      "slot": 18,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_hit_4": {
+      "material": "PAPER",
+      "slot": 19,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_hit_5": {
+      "material": "PAPER",
+      "slot": 20,
+      "priority": 1,
+      "display_name": "&a&l1. Bosque Sombrio",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.bosque"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras bosque"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada": {
+      "material": "PAPER",
+      "slot": 9,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 10,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 11,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 18,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 19,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "bosque_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 20,
+      "priority": 2,
+      "display_name": "&8&l1. Bosque Sombrio",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_bosque_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba": {
+      "material": "PAPER",
+      "slot": 12,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_1": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_2": {
+      "material": "PAPER",
+      "slot": 14,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_3": {
+      "material": "PAPER",
+      "slot": 21,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_4": {
+      "material": "PAPER",
+      "slot": 22,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_5": {
+      "material": "PAPER",
+      "slot": 23,
+      "priority": 1,
+      "display_name": "&a&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.tumba"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras tumba"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada": {
+      "material": "PAPER",
+      "slot": 12,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 14,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 21,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 22,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 23,
+      "priority": 2,
+      "display_name": "&8&l2. Tumba del Rey de Arena",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Desierto.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_tumba_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina": {
+      "material": "PAPER",
+      "slot": 15,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_hit_1": {
+      "material": "PAPER",
+      "slot": 16,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_hit_2": {
+      "material": "PAPER",
+      "slot": 17,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_hit_3": {
+      "material": "PAPER",
+      "slot": 24,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_hit_4": {
+      "material": "PAPER",
+      "slot": 25,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_hit_5": {
+      "material": "PAPER",
+      "slot": 26,
+      "priority": 1,
+      "display_name": "&a&l3. Minas Olvidadas",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.mina"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras mina"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada": {
+      "material": "PAPER",
+      "slot": 15,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 16,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 17,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 24,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 25,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "mina_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 26,
+      "priority": 2,
+      "display_name": "&8&l3. Minas Olvidadas",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Cavernas.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_mina_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre": {
+      "material": "PAPER",
+      "slot": 27,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_hit_1": {
+      "material": "PAPER",
+      "slot": 28,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_hit_2": {
+      "material": "PAPER",
+      "slot": 29,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_hit_3": {
+      "material": "PAPER",
+      "slot": 36,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_hit_4": {
+      "material": "PAPER",
+      "slot": 37,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_hit_5": {
+      "material": "PAPER",
+      "slot": 38,
+      "priority": 1,
+      "display_name": "&a&l4. Cumbre Helada",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.cumbre"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras cumbre"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada": {
+      "material": "PAPER",
+      "slot": 27,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 28,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 29,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 36,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 37,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "cumbre_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 38,
+      "priority": 2,
+      "display_name": "&8&l4. Cumbre Helada",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Hielo.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_cumbre_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja": {
+      "material": "PAPER",
+      "slot": 30,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_hit_1": {
+      "material": "PAPER",
+      "slot": 31,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_hit_2": {
+      "material": "PAPER",
+      "slot": 32,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_hit_3": {
+      "material": "PAPER",
+      "slot": 39,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_hit_4": {
+      "material": "PAPER",
+      "slot": 40,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_hit_5": {
+      "material": "PAPER",
+      "slot": 41,
+      "priority": 1,
+      "display_name": "&a&l5. Corazon de la Forja",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.forja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras forja"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada": {
+      "material": "PAPER",
+      "slot": 30,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 31,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 32,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 39,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 40,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "forja_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 41,
+      "priority": 2,
+      "display_name": "&8&l5. Corazon de la Forja",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Reino.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_forja_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario": {
+      "material": "PAPER",
+      "slot": 33,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_hit_1": {
+      "material": "PAPER",
+      "slot": 34,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_hit_2": {
+      "material": "PAPER",
+      "slot": 35,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_hit_3": {
+      "material": "PAPER",
+      "slot": 42,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_hit_4": {
+      "material": "PAPER",
+      "slot": 43,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_hit_5": {
+      "material": "PAPER",
+      "slot": 44,
+      "priority": 1,
+      "display_name": "&a&l6. Santuario Celestial",
+      "lore": [
+        "&aDestino descubierto.",
+        "&7Clic para viajar al inicio de la mazmorra."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "descubierta": {
+            "type": "has permission",
+            "permission": "astral.descubierto.santuario"
+          }
+        },
+        "deny_commands": [
+          "[message] &cPrimero encuentra y habla con su aldeano."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] mazmorras santuario"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada": {
+      "material": "PAPER",
+      "slot": 33,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada_hit_1": {
+      "material": "PAPER",
+      "slot": 34,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada_hit_2": {
+      "material": "PAPER",
+      "slot": 35,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada_hit_3": {
+      "material": "PAPER",
+      "slot": 42,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada_hit_4": {
+      "material": "PAPER",
+      "slot": 43,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "santuario_bloqueada_hit_5": {
+      "material": "PAPER",
+      "slot": 44,
+      "priority": 2,
+      "display_name": "&8&l6. Santuario Celestial",
+      "lore": [
+        "&cSin descubrir.",
+        "&7Busca a su aldeano en Santuario.",
+        "&7Habla con el al menos una vez para desbloquearla."
+      ],
+      "click_commands": [
+        "[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ],
+      "item_model": "astral:aventuras/mazmorras_santuario_locked_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    }
+  }
+}
