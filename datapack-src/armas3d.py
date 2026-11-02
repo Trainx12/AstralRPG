@@ -90,6 +90,8 @@ def axe_head(w, x_in, x_out, yc, h_in, h_out, sw, edge=None, edge_glow=0, z=(7.4
              beard=0.0, rim=None):
     """Hoja de hacha: columnas que se abren desde x_in hasta x_out (sirve para los dos lados).
     Es mas gruesa junto al mango y se afina hacia el filo; rim pone un borde en relieve arriba y abajo."""
+    x_out = x_in + (x_out - x_in) * 1.25
+    h_in, h_out = h_in * 1.12, h_out * 1.2
     s = 1 if x_out > x_in else -1
     cw = abs(x_out - x_in) / cols
     for k in range(cols):
@@ -411,6 +413,7 @@ def bow(iid, name, palette, build, string_sw, string_glow=0):
 def _limbs(w, segs, sw, grip_sw, start=(6.0, 8.0), half=1.6, spine=None, edge=None, cap=None):
     """Brazos simetricos desde la empunadura. segs = [(angulo hacia arriba, largo, ancho[, color])].
     spine = lomo de atras, edge = franja del lado de la cuerda, cap = puntas con muesca."""
+    segs = [(a, l, wd * 1.4) + tuple(r) for a, l, wd, *r in segs]
     top = w.blade((start[0], start[1] + half), segs, sw, spine=spine, edge=edge, side=-1, edge_w=0.35,
                   spine_w=0.45, z=(7.3, 8.7))
     down = [(360 - a if a else 0, l, wd) + tuple(r) for a, l, wd, *r in segs]

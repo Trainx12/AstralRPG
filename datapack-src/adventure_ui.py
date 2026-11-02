@@ -36,6 +36,31 @@ def title(kind):
     return '&f'+START+''.join(GLYPHS[kind])+END
 
 
+def label(image, caption, center, max_width, color):
+    """Texto centrado; si no entra en el boton, junta las letras en vez de pisar el borde."""
+    from escape_menu import ROOT
+    font = Image.open(ROOT / 'vanilla-base/font/ascii.png').convert('RGBA')
+    chars = json.loads((ROOT / 'vanilla-base/font/ascii.json').read_text(encoding='utf-8'))['chars']
+    glyphs = {}
+    for row, line in enumerate(chars):
+        for col, char in enumerate(line):
+            glyph = font.crop((col * 8, row * 8, col * 8 + 8, row * 8 + 8))
+            box = glyph.getbbox()
+            glyphs[char] = (glyph, box[2] if box else 3)
+    def width(gap):
+        return sum(glyphs.get(c, glyphs['?'])[1] + gap for c in caption) - gap
+    gap = 1 if width(1) <= max_width else 0
+    x, y = round(center[0] - width(gap) / 2), center[1]
+    for char in caption:
+        glyph, advance = glyphs.get(char, glyphs['?'])
+        alpha = glyph.getchannel('A')
+        for offset, tint in (((1, 1), '#51331d'), ((0, 0), color)):
+            layer = Image.new('RGBA', (8, 8), tint)
+            layer.putalpha(alpha)
+            image.alpha_composite(layer, (x + offset[0], y + offset[1]))
+        x += advance + gap
+
+
 def star(draw,x,y,color,r=3):
     draw.line((x-r,y,x+r,y),fill=color)
     draw.line((x,y-r,x,y+r),fill=color)
@@ -85,14 +110,14 @@ def card(kind,key,locked=False):
         for y in (1,height-2):d.point((x,y),fill='#f3dcab')
     if main:
         star(d,7,8,color,2)
-        text(im,MAIN_LABELS[MAIN.index(key)],(41,5),color='#f4e4be')
+        label(im,MAIN_LABELS[MAIN.index(key)],(41,5),55,'#f4e4be')
     else:
         # Nichos de piedra, cartelas y pequenos brillos del bioma.
         d.line((7,21,width-8,21),fill='#47534d' if kind=='expediciones' else '#494054')
         d.line((5,23,width-6,23),fill='#101923')
         for x in (6,width-7):star(d,x,12,color,1)
         emblem(d,key,27,12,color)
-        text(im,LABELS[DESTINATIONS.index(key)],(27,25),color=color)
+        label(im,LABELS[DESTINATIONS.index(key)],(27,25),48,color)
         if locked:
             d.rectangle((42,10,48,16),fill='#342f3c',outline='#b4a7b9')
             d.arc((43,6,47,13),180,360,fill='#b4a7b9')
@@ -125,7 +150,22 @@ def panel(kind):
         x,y=31+slot%9*18,57+slot//9*18
         d.rectangle((x,y,x+17,y+17),outline=edge)
         d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+    # Placa de Inventario con bordes y remates del tema (el juego escribe la palabra encima).
     d.rectangle((31,168,192,177),fill=band_color(edge))
+    d.line((31,167,192,167),fill=edge)
+    d.line((31,178,192,178),fill=edge)
+    d.line((33,169,190,169),fill='#ffffff60')
+    for x in (31,192):
+        d.polygon([(x,172),(x+(3 if x<100 else -3),169),(x+(6 if x<100 else -6),172),(x+(3 if x<100 else -3),175)],fill=edge)
+    if kind=='principal':
+        # Columna del medio: separador con estrellas en vez de un hueco vacio.
+        x0=31+4*18
+        d.rectangle((x0+2,75,x0+15,146),fill=fill)
+        d.line((x0+8,77,x0+8,144),fill=edge)
+        d.line((x0+9,77,x0+9,144),fill='#0b101c')
+        for y in (84,102,120,138):
+            d.polygon([(x0+8,y-4),(x0+12,y),(x0+8,y+4),(x0+4,y)],fill=edge)
+            d.point((x0+8,y),fill=accent)
     for row in (*range(3),4):
         for col in range(9):
             x,y=31+col*18,179+row*18 if row<3 else 237

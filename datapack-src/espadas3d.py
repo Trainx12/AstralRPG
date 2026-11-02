@@ -39,7 +39,7 @@ def blade(w,profile,body,shade,edge,ridge,depth=1.35,step=.65,glow=0):
     count=math.ceil((y1-y0)/step)
     for i in range(count):
         a=y0+(y1-y0)*i/count;b=y0+(y1-y0)*(i+1)/count
-        wd=section(profile,(a+b)/2)
+        wd=section(profile,(a+b)/2)*getattr(w,'blade_scale',1.2)
         if wd<.18:continue
         sw=body((a+b)/2) if callable(body) else body
         # Centro grueso, flancos de media seccion y filos casi laminados.
@@ -110,6 +110,7 @@ def espada_saqueador():
         p=w.seg((8+side*2.5,3.5),0 if side==1 else 180,1.7,1.1,'trim',(7.05,8.95))
         p=w.seg(p,-45 if side==1 else 225,2.4,1.15,'guard',(7.1,8.9))
         w.cen((*p,8),(1.15,.75,2.05),'ridge',('z',-45 if side==1 else 45))
+    w.blade_scale=1.35
     profile=[(4.1,3.9),(7,3.8),(18.7,3.65),(24.8,3.35),(28,1.5),(29.1,.20)]
     blade(w,profile,'steel','cold','edge','ridge',1.6)
     # Canal hundido, dos nervaduras de acero y punta con sello de diamante.

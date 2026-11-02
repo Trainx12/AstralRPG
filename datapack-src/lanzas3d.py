@@ -5,6 +5,7 @@ from espadas3d import weapon, wrapped_grip, blade, ferrule, jewel, plate, rune, 
 def spear(tier,name,colors,shaft,wrap,metal):
     w=weapon(f'lanza_{tier}',name,colors)
     w.tex_dir='item/lanzas3d'
+    w.blade_scale=1.6
     w.box((7.32,-11,7.32),(8.68,22,8.68),shaft)
     wrapped_grip(w,-8,1.2,shaft,wrap,metal,1.6)
     for y in (-10.5,2.2,10,18.5,20):ferrule(w,y,metal,2.1,.35)
