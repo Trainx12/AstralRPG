@@ -112,9 +112,12 @@ def config():
     assert AREA_NAMES == {1: "1x1", 2: "2x1", 3: "2x2", 4: "3x3", 5: "4x4"}, "actualizar am_tool_area en minas.sk"
     lines.append("    delete {-am.off::*}")
     for area in range(2, 6):
-        offsets = {direction: [(0, sign * depth, 0) for depth, minimum in ((1, 2), (2, 4), (3, 5)) if area >= minimum]
-                   for direction, sign in (("down", -1), ("up", 1))}
-        for face, (_, right) in FACING.items():
+        offsets = {}
+        for face, (forward, right) in FACING.items():
+            # Piso o techo: cuadrado horizontal (a lo ancho y hacia adelante) alrededor del bloque.
+            horizontal, depth = area_ranges(area, 0, True)
+            offsets[f"v{face}"] = [(u * right[0] + v * forward[0], 0, u * right[2] + v * forward[2])
+                                   for u in horizontal for v in depth if (u, v) != (0, 0)]
             for up in (0, 1):
                 horizontal, vertical = area_ranges(area, up, False)
                 offsets[f"{face}{up}"] = [(u * right[0], v, u * right[2])
@@ -152,21 +155,21 @@ def sidebar(original):
     mine += """        - "<aqua><bold>⛏ Minas Astrales</bold>"
         - "<gray>Estás en||%condition:am_here%"
         - "<gray>Siguiente||%condition:am_next%"
-        - "%condition:am_need%"
-        - "%condition:am_pay%"
+        - "<gray>Picar en||%condition:am_current%"
+        - "<gray>Bloques||%condition:am_need%"
+        - "<gray>Costo||%condition:am_pay%"
         - "%condition:am_time%"
         - "%animation:astral_ip%"
 """
     last = len(MINES)
     conditions = [
         "  am_need:", "    conditions:", f'      - "%objective_score_{{am_rank}}%<{last}"',
-        '    true: "<gray>Picar en||%condition:am_current%: <white>%objective_score_{am_blocks}%<gray>/'
-        '<white>%objective_score_{am_goal}%"',
-        '    false: "<green>Abriste todas las minas"',
+        '    true: "<white>%objective_score_{am_blocks}%<gray>/<white>%objective_score_{am_goal}%"',
+        '    false: "<green>¡Todas abiertas!"',
         "  am_pay:", "    conditions:", f'      - "%objective_score_{{am_rank}}%<{last}"',
-        '    true: "<gray>Costo||<gold>%objective_score_{am_cost}% oro"', '    false: ""',
+        '    true: "<gold>%objective_score_{am_cost}% oro"', '    false: "<gray>—"',
         "  am_time:", "    conditions:", f'      - "%objective_score_{{am_rank}}%={last - 1}"',
-        f'    true: "<gray>Minería activa||<white>%objective_score_{{am_minutes}}%<gray>/{FINAL_MINUTES} min"',
+        f'    true: "<gray>Minería activa: <white>%objective_score_{{am_minutes}}%<gray>/{FINAL_MINUTES} min"',
         '    false: ""',
     ]
 

@@ -51,8 +51,9 @@ scoreboard:
         - "<aqua><bold>⛏ Minas Astrales</bold>"
         - "<gray>Estás en||%condition:am_here%"
         - "<gray>Siguiente||%condition:am_next%"
-        - "%condition:am_need%"
-        - "%condition:am_pay%"
+        - "<gray>Picar en||%condition:am_current%"
+        - "<gray>Bloques||%condition:am_need%"
+        - "<gray>Costo||%condition:am_pay%"
         - "%condition:am_time%"
         - "%animation:astral_ip%"
     astral:
@@ -77,17 +78,17 @@ conditions:
   am_need:
     conditions:
       - "%objective_score_{am_rank}%<20"
-    true: "<gray>Picar en||%condition:am_current%: <white>%objective_score_{am_blocks}%<gray>/<white>%objective_score_{am_goal}%"
-    false: "<green>Abriste todas las minas"
+    true: "<white>%objective_score_{am_blocks}%<gray>/<white>%objective_score_{am_goal}%"
+    false: "<green>¡Todas abiertas!"
   am_pay:
     conditions:
       - "%objective_score_{am_rank}%<20"
-    true: "<gray>Costo||<gold>%objective_score_{am_cost}% oro"
-    false: ""
+    true: "<gold>%objective_score_{am_cost}% oro"
+    false: "<gray>—"
   am_time:
     conditions:
       - "%objective_score_{am_rank}%=19"
-    true: "<gray>Minería activa||<white>%objective_score_{am_minutes}%<gray>/1500 min"
+    true: "<gray>Minería activa: <white>%objective_score_{am_minutes}%<gray>/1500 min"
     false: ""
   am_here1_2:
     conditions:

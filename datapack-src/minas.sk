@@ -320,23 +320,26 @@ on uncancelled break with priority monitor:
     set {_area} to am_drill_area(player)
     if {_area} < 2:
         stop
-    set {_pitch} to pitch of player
-    if {_pitch} >= 50:
-        set {_dir} to "down"
-    else if {_pitch} <= -50:
-        set {_dir} to "up"
+    set {_yaw} to mod(yaw of player + 360, 360)
+    if {_yaw} is between 45 and 135:
+        set {_face} to "w"
+    else if {_yaw} is between 135 and 225:
+        set {_face} to "n"
+    else if {_yaw} is between 225 and 315:
+        set {_face} to "e"
     else:
-        set {_yaw} to mod(yaw of player + 360, 360)
-        if {_yaw} is between 45 and 135:
-            set {_face} to "w"
-        else if {_yaw} is between 135 and 225:
-            set {_face} to "n"
-        else if {_yaw} is between 225 and 315:
-            set {_face} to "e"
-        else:
-            set {_face} to "s"
+        set {_face} to "s"
+    # Piso (bloque mas abajo que los pies) o techo (mas arriba de la cabeza): cuadrado horizontal
+    # alrededor del bloque apuntado. A la altura del cuerpo: la pared de frente.
+    set {_by} to floor(y-coordinate of event-block)
+    set {_py} to floor(y-coordinate of player)
+    if {_by} < {_py}:
+        set {_dir} to "v%{_face}%"
+    else if {_by} > {_py} + 1:
+        set {_dir} to "v%{_face}%"
+    else:
         set {_up} to 0
-        if y-coordinate of event-block <= floor(y-coordinate of player):
+        if {_by} <= {_py}:
             set {_up} to 1
         set {_dir} to "%{_face}%%{_up}%"
     set {_origin} to location of event-block
