@@ -1,502 +1,594 @@
-# AstralRPG / minas. Requiere Skript, skript-reflect y Vault.
-import:
-    org.bukkit.Bukkit
-    org.bukkit.Material
-    net.milkbowl.vault.economy.Economy
+# AstralRPG / Minas Astrales. Generado por datapack-src/minas.py: no editar a mano.
+# Solo Skript + Vault (EssentialsX). No usa skript-reflect.
+#
+# Variables guardadas: {am.rank::uuid} (mina mas alta abierta), {am.blocks::uuid} (bloques picados
+# en esa mina para abrir la siguiente) y {am.enabled}. El contador vive en memoria ({-am.b::uuid})
+# y se guarda cada 30 segundos y al salir, para no escribir el archivo en cada bloque.
 
 on load:
+    set {-am.count} to 20
     set {-am.finalMinutes} to 1500
     set {-am.slot::1} to 10
-    set {-am.destination::10} to 1
+    set {-am.dest::10} to 1
     set {-am.name::1} to "I · Carbón"
-    set {-am.base::1} to Material.STONE
-    set {-am.ore::1} to Material.COAL_ORE
-    set {-am.chance::1} to 24
+    set {-am.desc::1} to "Piedra con mena de carbón."
+    set {-am.base::1} to "minecraft:stone" parsed as item type
+    set {-am.ore::1} to "minecraft:coal_ore" parsed as item type
+    set {-am.icon::1} to "minecraft:coal_ore" parsed as item type
+    set {-am.baseid::1} to "minecraft:stone"
+    set {-am.chance::1} to 22
     set {-am.goal::1} to 0
     set {-am.cost::1} to 0
+    set {-am.value::1} to 0.21
     set {-am.slot::2} to 11
-    set {-am.destination::11} to 2
+    set {-am.dest::11} to 2
     set {-am.name::2} to "I · Cobre"
-    set {-am.base::2} to Material.STONE
-    set {-am.ore::2} to Material.COPPER_ORE
-    set {-am.chance::2} to 24
-    set {-am.goal::2} to 350
-    set {-am.cost::2} to 55
+    set {-am.desc::2} to "Piedra con mena de cobre."
+    set {-am.base::2} to "minecraft:stone" parsed as item type
+    set {-am.ore::2} to "minecraft:copper_ore" parsed as item type
+    set {-am.icon::2} to "minecraft:copper_ore" parsed as item type
+    set {-am.baseid::2} to "minecraft:stone"
+    set {-am.chance::2} to 22
+    set {-am.goal::2} to 400
+    set {-am.cost::2} to 80
+    set {-am.value::2} to 0.27
     set {-am.slot::3} to 12
-    set {-am.destination::12} to 3
+    set {-am.dest::12} to 3
     set {-am.name::3} to "I · Hierro"
-    set {-am.base::3} to Material.STONE
-    set {-am.ore::3} to Material.IRON_ORE
-    set {-am.chance::3} to 24
-    set {-am.goal::3} to 550
+    set {-am.desc::3} to "Piedra con mena de hierro."
+    set {-am.base::3} to "minecraft:stone" parsed as item type
+    set {-am.ore::3} to "minecraft:iron_ore" parsed as item type
+    set {-am.icon::3} to "minecraft:iron_ore" parsed as item type
+    set {-am.baseid::3} to "minecraft:stone"
+    set {-am.chance::3} to 22
+    set {-am.goal::3} to 600
     set {-am.cost::3} to 150
+    set {-am.value::3} to 0.41
     set {-am.slot::4} to 13
-    set {-am.destination::13} to 4
+    set {-am.dest::13} to 4
     set {-am.name::4} to "I · Oro"
-    set {-am.base::4} to Material.STONE
-    set {-am.ore::4} to Material.GOLD_ORE
-    set {-am.chance::4} to 24
-    set {-am.goal::4} to 750
-    set {-am.cost::4} to 240
+    set {-am.desc::4} to "Piedra con mena de oro."
+    set {-am.base::4} to "minecraft:stone" parsed as item type
+    set {-am.ore::4} to "minecraft:gold_ore" parsed as item type
+    set {-am.icon::4} to "minecraft:gold_ore" parsed as item type
+    set {-am.baseid::4} to "minecraft:stone"
+    set {-am.chance::4} to 22
+    set {-am.goal::4} to 800
+    set {-am.cost::4} to 300
+    set {-am.value::4} to 0.63
     set {-am.slot::5} to 14
-    set {-am.destination::14} to 5
+    set {-am.dest::14} to 5
     set {-am.name::5} to "I · Esmeralda"
-    set {-am.base::5} to Material.STONE
-    set {-am.ore::5} to Material.EMERALD_ORE
-    set {-am.chance::5} to 24
+    set {-am.desc::5} to "Piedra con mena de esmeralda."
+    set {-am.base::5} to "minecraft:stone" parsed as item type
+    set {-am.ore::5} to "minecraft:emerald_ore" parsed as item type
+    set {-am.icon::5} to "minecraft:emerald_ore" parsed as item type
+    set {-am.baseid::5} to "minecraft:stone"
+    set {-am.chance::5} to 22
     set {-am.goal::5} to 1000
-    set {-am.cost::5} to 350
+    set {-am.cost::5} to 550
+    set {-am.value::5} to 1.18
     set {-am.slot::6} to 15
-    set {-am.destination::15} to 6
+    set {-am.dest::15} to 6
     set {-am.name::6} to "I · Diamante"
-    set {-am.base::6} to Material.STONE
-    set {-am.ore::6} to Material.DIAMOND_ORE
-    set {-am.chance::6} to 24
-    set {-am.goal::6} to 1250
-    set {-am.cost::6} to 600
+    set {-am.desc::6} to "Piedra con mena de diamante."
+    set {-am.base::6} to "minecraft:stone" parsed as item type
+    set {-am.ore::6} to "minecraft:diamond_ore" parsed as item type
+    set {-am.icon::6} to "minecraft:diamond_ore" parsed as item type
+    set {-am.baseid::6} to "minecraft:stone"
+    set {-am.chance::6} to 22
+    set {-am.goal::6} to 1300
+    set {-am.cost::6} to 1300
+    set {-am.value::6} to 1.84
     set {-am.slot::7} to 19
-    set {-am.destination::19} to 7
+    set {-am.dest::19} to 7
     set {-am.name::7} to "II · Carbón"
-    set {-am.base::7} to Material.COAL_ORE
-    set {-am.ore::7} to Material.COAL_BLOCK
+    set {-am.desc::7} to "Mena y bloques de carbón."
+    set {-am.base::7} to "minecraft:coal_ore" parsed as item type
+    set {-am.ore::7} to "minecraft:coal_block" parsed as item type
+    set {-am.icon::7} to "minecraft:coal_block" parsed as item type
+    set {-am.baseid::7} to "minecraft:coal_ore"
     set {-am.chance::7} to 30
-    set {-am.goal::7} to 1600
-    set {-am.cost::7} to 1000
+    set {-am.goal::7} to 1700
+    set {-am.cost::7} to 2500
+    set {-am.value::7} to 2.22
     set {-am.slot::8} to 20
-    set {-am.destination::20} to 8
+    set {-am.dest::20} to 8
     set {-am.name::8} to "II · Cobre"
-    set {-am.base::8} to Material.COPPER_ORE
-    set {-am.ore::8} to Material.COPPER_BLOCK
+    set {-am.desc::8} to "Mena y bloques de cobre."
+    set {-am.base::8} to "minecraft:copper_ore" parsed as item type
+    set {-am.ore::8} to "minecraft:copper_block" parsed as item type
+    set {-am.icon::8} to "minecraft:copper_block" parsed as item type
+    set {-am.baseid::8} to "minecraft:copper_ore"
     set {-am.chance::8} to 30
-    set {-am.goal::8} to 2100
-    set {-am.cost::8} to 2000
+    set {-am.goal::8} to 2200
+    set {-am.cost::8} to 4000
+    set {-am.value::8} to 3.31
     set {-am.slot::9} to 21
-    set {-am.destination::21} to 9
+    set {-am.dest::21} to 9
     set {-am.name::9} to "II · Hierro"
-    set {-am.base::9} to Material.IRON_ORE
-    set {-am.ore::9} to Material.IRON_BLOCK
+    set {-am.desc::9} to "Mena y bloques de hierro."
+    set {-am.base::9} to "minecraft:iron_ore" parsed as item type
+    set {-am.ore::9} to "minecraft:iron_block" parsed as item type
+    set {-am.icon::9} to "minecraft:iron_block" parsed as item type
+    set {-am.baseid::9} to "minecraft:iron_ore"
     set {-am.chance::9} to 30
-    set {-am.goal::9} to 2600
-    set {-am.cost::9} to 3500
+    set {-am.goal::9} to 2700
+    set {-am.cost::9} to 7000
+    set {-am.value::9} to 5.25
     set {-am.slot::10} to 22
-    set {-am.destination::22} to 10
+    set {-am.dest::22} to 10
     set {-am.name::10} to "II · Oro"
-    set {-am.base::10} to Material.GOLD_ORE
-    set {-am.ore::10} to Material.GOLD_BLOCK
+    set {-am.desc::10} to "Mena y bloques de oro."
+    set {-am.base::10} to "minecraft:gold_ore" parsed as item type
+    set {-am.ore::10} to "minecraft:gold_block" parsed as item type
+    set {-am.icon::10} to "minecraft:gold_block" parsed as item type
+    set {-am.baseid::10} to "minecraft:gold_ore"
     set {-am.chance::10} to 30
     set {-am.goal::10} to 3200
-    set {-am.cost::10} to 4800
+    set {-am.cost::10} to 13000
+    set {-am.value::10} to 8.35
     set {-am.slot::11} to 23
-    set {-am.destination::23} to 11
+    set {-am.dest::23} to 11
     set {-am.name::11} to "II · Esmeralda"
-    set {-am.base::11} to Material.EMERALD_ORE
-    set {-am.ore::11} to Material.EMERALD_BLOCK
+    set {-am.desc::11} to "Mena y bloques de esmeralda."
+    set {-am.base::11} to "minecraft:emerald_ore" parsed as item type
+    set {-am.ore::11} to "minecraft:emerald_block" parsed as item type
+    set {-am.icon::11} to "minecraft:emerald_block" parsed as item type
+    set {-am.baseid::11} to "minecraft:emerald_ore"
     set {-am.chance::11} to 30
-    set {-am.goal::11} to 3800
-    set {-am.cost::11} to 6500
+    set {-am.goal::11} to 3700
+    set {-am.cost::11} to 25000
+    set {-am.value::11} to 17.0
     set {-am.slot::12} to 24
-    set {-am.destination::24} to 12
+    set {-am.dest::24} to 12
     set {-am.name::12} to "II · Diamante"
-    set {-am.base::12} to Material.DIAMOND_ORE
-    set {-am.ore::12} to Material.DIAMOND_BLOCK
+    set {-am.desc::12} to "Mena y bloques de diamante."
+    set {-am.base::12} to "minecraft:diamond_ore" parsed as item type
+    set {-am.ore::12} to "minecraft:diamond_block" parsed as item type
+    set {-am.icon::12} to "minecraft:diamond_block" parsed as item type
+    set {-am.baseid::12} to "minecraft:diamond_ore"
     set {-am.chance::12} to 30
     set {-am.goal::12} to 4500
-    set {-am.cost::12} to 10000
+    set {-am.cost::12} to 60000
+    set {-am.value::12} to 27.2
     set {-am.slot::13} to 25
-    set {-am.destination::25} to 13
+    set {-am.dest::25} to 13
     set {-am.name::13} to "II · Restos ancestrales"
-    set {-am.base::13} to Material.NETHERRACK
-    set {-am.ore::13} to Material.ANCIENT_DEBRIS
-    set {-am.chance::13} to 23
+    set {-am.desc::13} to "Netherrack con restos ancestrales."
+    set {-am.base::13} to "minecraft:netherrack" parsed as item type
+    set {-am.ore::13} to "minecraft:ancient_debris" parsed as item type
+    set {-am.icon::13} to "minecraft:ancient_debris" parsed as item type
+    set {-am.baseid::13} to "minecraft:netherrack"
+    set {-am.chance::13} to 8
     set {-am.goal::13} to 5500
-    set {-am.cost::13} to 17000
+    set {-am.cost::13} to 120000
+    set {-am.value::13} to 48.18
     set {-am.slot::14} to 28
-    set {-am.destination::28} to 14
+    set {-am.dest::28} to 14
     set {-am.name::14} to "III · Carbón"
-    set {-am.base::14} to Material.COAL_BLOCK
-    set {-am.ore::14} to Material.COAL_BLOCK
+    set {-am.desc::14} to "Solo bloques de carbón."
+    set {-am.base::14} to "minecraft:coal_block" parsed as item type
+    set {-am.ore::14} to "minecraft:coal_block" parsed as item type
+    set {-am.icon::14} to "minecraft:coal_block" parsed as item type
+    set {-am.baseid::14} to "minecraft:coal_block"
     set {-am.chance::14} to 0
-    set {-am.goal::14} to 6500
-    set {-am.cost::14} to 26000
+    set {-am.goal::14} to 7000
+    set {-am.cost::14} to 250000
+    set {-am.value::14} to 6.0
     set {-am.slot::15} to 29
-    set {-am.destination::29} to 15
+    set {-am.dest::29} to 15
     set {-am.name::15} to "III · Cobre"
-    set {-am.base::15} to Material.COPPER_BLOCK
-    set {-am.ore::15} to Material.COPPER_BLOCK
+    set {-am.desc::15} to "Solo bloques de cobre."
+    set {-am.base::15} to "minecraft:copper_block" parsed as item type
+    set {-am.ore::15} to "minecraft:copper_block" parsed as item type
+    set {-am.icon::15} to "minecraft:copper_block" parsed as item type
+    set {-am.baseid::15} to "minecraft:copper_block"
     set {-am.chance::15} to 0
     set {-am.goal::15} to 8000
     set {-am.cost::15} to 40000
+    set {-am.value::15} to 9.0
     set {-am.slot::16} to 30
-    set {-am.destination::30} to 16
+    set {-am.dest::30} to 16
     set {-am.name::16} to "III · Hierro"
-    set {-am.base::16} to Material.IRON_BLOCK
-    set {-am.ore::16} to Material.IRON_BLOCK
+    set {-am.desc::16} to "Solo bloques de hierro."
+    set {-am.base::16} to "minecraft:iron_block" parsed as item type
+    set {-am.ore::16} to "minecraft:iron_block" parsed as item type
+    set {-am.icon::16} to "minecraft:iron_block" parsed as item type
+    set {-am.baseid::16} to "minecraft:iron_block"
     set {-am.chance::16} to 0
     set {-am.goal::16} to 9500
-    set {-am.cost::16} to 60000
+    set {-am.cost::16} to 70000
+    set {-am.value::16} to 14.0
     set {-am.slot::17} to 31
-    set {-am.destination::31} to 17
+    set {-am.dest::31} to 17
     set {-am.name::17} to "III · Oro"
-    set {-am.base::17} to Material.GOLD_BLOCK
-    set {-am.ore::17} to Material.GOLD_BLOCK
+    set {-am.desc::17} to "Solo bloques de oro."
+    set {-am.base::17} to "minecraft:gold_block" parsed as item type
+    set {-am.ore::17} to "minecraft:gold_block" parsed as item type
+    set {-am.icon::17} to "minecraft:gold_block" parsed as item type
+    set {-am.baseid::17} to "minecraft:gold_block"
     set {-am.chance::17} to 0
     set {-am.goal::17} to 12000
-    set {-am.cost::17} to 95000
+    set {-am.cost::17} to 135000
+    set {-am.value::17} to 22.0
     set {-am.slot::18} to 32
-    set {-am.destination::32} to 18
+    set {-am.dest::32} to 18
     set {-am.name::18} to "III · Esmeralda"
-    set {-am.base::18} to Material.EMERALD_BLOCK
-    set {-am.ore::18} to Material.EMERALD_BLOCK
+    set {-am.desc::18} to "Solo bloques de esmeralda."
+    set {-am.base::18} to "minecraft:emerald_block" parsed as item type
+    set {-am.ore::18} to "minecraft:emerald_block" parsed as item type
+    set {-am.icon::18} to "minecraft:emerald_block" parsed as item type
+    set {-am.baseid::18} to "minecraft:emerald_block"
     set {-am.chance::18} to 0
     set {-am.goal::18} to 15000
-    set {-am.cost::18} to 160000
+    set {-am.cost::18} to 260000
+    set {-am.value::18} to 45.0
     set {-am.slot::19} to 33
-    set {-am.destination::33} to 19
+    set {-am.dest::33} to 19
     set {-am.name::19} to "III · Diamante"
-    set {-am.base::19} to Material.DIAMOND_BLOCK
-    set {-am.ore::19} to Material.DIAMOND_BLOCK
+    set {-am.desc::19} to "Solo bloques de diamante."
+    set {-am.base::19} to "minecraft:diamond_block" parsed as item type
+    set {-am.ore::19} to "minecraft:diamond_block" parsed as item type
+    set {-am.icon::19} to "minecraft:diamond_block" parsed as item type
+    set {-am.baseid::19} to "minecraft:diamond_block"
     set {-am.chance::19} to 0
     set {-am.goal::19} to 20000
-    set {-am.cost::19} to 300000
+    set {-am.cost::19} to 700000
+    set {-am.value::19} to 72.0
     set {-am.slot::20} to 34
-    set {-am.destination::34} to 20
+    set {-am.dest::34} to 20
     set {-am.name::20} to "III · Netherita"
-    set {-am.base::20} to Material.NETHERITE_BLOCK
-    set {-am.ore::20} to Material.NETHERITE_BLOCK
+    set {-am.desc::20} to "Solo bloques de netherita."
+    set {-am.base::20} to "minecraft:netherite_block" parsed as item type
+    set {-am.ore::20} to "minecraft:netherite_block" parsed as item type
+    set {-am.icon::20} to "minecraft:netherite_block" parsed as item type
+    set {-am.baseid::20} to "minecraft:netherite_block"
     set {-am.chance::20} to 0
     set {-am.goal::20} to 500000
     set {-am.cost::20} to 25000000
-    set {-am.price::STONE} to 0.16
-    set {-am.price::COBBLESTONE} to 0.16
-    set {-am.price::COAL} to 1
-    set {-am.price::COAL_ORE} to 1
-    set {-am.price::DEEPSLATE_COAL_ORE} to 1
-    set {-am.price::COAL_BLOCK} to 9
-    set {-am.price::RAW_IRON} to 1.3
-    set {-am.price::IRON_INGOT} to 1.3
-    set {-am.price::IRON_ORE} to 1.3
-    set {-am.price::DEEPSLATE_IRON_ORE} to 1.3
-    set {-am.price::IRON_BLOCK} to 11.7
-    set {-am.price::RAW_IRON_BLOCK} to 11.7
-    set {-am.price::RAW_GOLD} to 1.95
-    set {-am.price::GOLD_INGOT} to 1.95
-    set {-am.price::GOLD_ORE} to 1.95
-    set {-am.price::DEEPSLATE_GOLD_ORE} to 1.95
-    set {-am.price::GOLD_BLOCK} to 17.55
-    set {-am.price::RAW_GOLD_BLOCK} to 17.55
-    set {-am.price::NETHER_GOLD_ORE} to 0.8
-    set {-am.price::GOLD_NUGGET} to 0.21
-    set {-am.price::DIAMOND} to 4
-    set {-am.price::DIAMOND_ORE} to 4
-    set {-am.price::DEEPSLATE_DIAMOND_ORE} to 4
-    set {-am.price::DIAMOND_BLOCK} to 36
-    set {-am.price::RAW_COPPER} to 0.2
-    set {-am.price::COPPER_INGOT} to 0.2
-    set {-am.price::COPPER_ORE} to 0.2
-    set {-am.price::DEEPSLATE_COPPER_ORE} to 0.2
-    set {-am.price::COPPER_BLOCK} to 1.8
-    set {-am.price::RAW_COPPER_BLOCK} to 1.8
-    set {-am.price::NETHERITE_BLOCK} to 4390.2
-    set {-am.price::REDSTONE} to 1
-    set {-am.price::REDSTONE_BLOCK} to 9
-    set {-am.price::REDSTONE_ORE} to 4
-    set {-am.price::DEEPSLATE_REDSTONE_ORE} to 4
-    set {-am.price::LAPIS_LAZULI} to 1
-    set {-am.price::LAPIS_BLOCK} to 9
-    set {-am.price::LAPIS_ORE} to 4
-    set {-am.price::DEEPSLATE_LAPIS_ORE} to 4
-    set {-am.price::EMERALD} to 4
-    set {-am.price::EMERALD_BLOCK} to 36
-    set {-am.price::EMERALD_ORE} to 4
-    set {-am.price::DEEPSLATE_EMERALD_ORE} to 4
-    set {-am.price::QUARTZ} to 1
-    set {-am.price::NETHER_QUARTZ_ORE} to 1
-    set {-am.price::AMETHYST_SHARD} to 0.5
-    set {-am.price::NETHERRACK} to 0.04
-    set {-am.price::ANCIENT_DEBRIS} to 120
-    set {-am.price::NETHERITE_SCRAP} to 120
-    set {-am.price::NETHERITE_INGOT} to 487.8
-    set {-am.drill::taladro_diamante} to 1
-    set {-am.drill::taladro_mitril} to 2
-    set {-am.drill::taladro_amatista} to 2
-    set {-am.drill::taladro_rubi} to 3
-    set {-am.drill::taladro_topacio} to 3
-    set {-am.drill::taladro_titanio} to 4
-    set {-am.drill::taladro_jaspe} to 4
-    set {-am.drill::taladro_gemas} to 5
-    set {-am.drill::taladro_divan} to 5
-    set {-am.offset::2::down::1} to "0,-1,0"
-    set {-am.offset::2::up::1} to "0,1,0"
-    set {-am.offset::2::n0::1} to "0,-1,0"
-    set {-am.offset::2::n1::1} to "0,1,0"
-    set {-am.offset::2::s0::1} to "0,-1,0"
-    set {-am.offset::2::s1::1} to "0,1,0"
-    set {-am.offset::2::e0::1} to "0,-1,0"
-    set {-am.offset::2::e1::1} to "0,1,0"
-    set {-am.offset::2::w0::1} to "0,-1,0"
-    set {-am.offset::2::w1::1} to "0,1,0"
-    set {-am.offset::3::down::1} to "0,-1,0"
-    set {-am.offset::3::up::1} to "0,1,0"
-    set {-am.offset::3::n0::1} to "0,-1,0"
-    set {-am.offset::3::n0::2} to "1,-1,0"
-    set {-am.offset::3::n0::3} to "1,0,0"
-    set {-am.offset::3::n1::1} to "0,1,0"
-    set {-am.offset::3::n1::2} to "1,0,0"
-    set {-am.offset::3::n1::3} to "1,1,0"
-    set {-am.offset::3::s0::1} to "0,-1,0"
-    set {-am.offset::3::s0::2} to "-1,-1,0"
-    set {-am.offset::3::s0::3} to "-1,0,0"
-    set {-am.offset::3::s1::1} to "0,1,0"
-    set {-am.offset::3::s1::2} to "-1,0,0"
-    set {-am.offset::3::s1::3} to "-1,1,0"
-    set {-am.offset::3::e0::1} to "0,-1,0"
-    set {-am.offset::3::e0::2} to "0,-1,1"
-    set {-am.offset::3::e0::3} to "0,0,1"
-    set {-am.offset::3::e1::1} to "0,1,0"
-    set {-am.offset::3::e1::2} to "0,0,1"
-    set {-am.offset::3::e1::3} to "0,1,1"
-    set {-am.offset::3::w0::1} to "0,-1,0"
-    set {-am.offset::3::w0::2} to "0,-1,-1"
-    set {-am.offset::3::w0::3} to "0,0,-1"
-    set {-am.offset::3::w1::1} to "0,1,0"
-    set {-am.offset::3::w1::2} to "0,0,-1"
-    set {-am.offset::3::w1::3} to "0,1,-1"
-    set {-am.offset::4::down::1} to "0,-1,0"
-    set {-am.offset::4::down::2} to "0,-2,0"
-    set {-am.offset::4::up::1} to "0,1,0"
-    set {-am.offset::4::up::2} to "0,2,0"
-    set {-am.offset::4::n0::1} to "-1,-1,0"
-    set {-am.offset::4::n0::2} to "-1,0,0"
-    set {-am.offset::4::n0::3} to "-1,1,0"
-    set {-am.offset::4::n0::4} to "0,-1,0"
-    set {-am.offset::4::n0::5} to "0,1,0"
-    set {-am.offset::4::n0::6} to "1,-1,0"
-    set {-am.offset::4::n0::7} to "1,0,0"
-    set {-am.offset::4::n0::8} to "1,1,0"
-    set {-am.offset::4::n1::1} to "-1,-1,0"
-    set {-am.offset::4::n1::2} to "-1,0,0"
-    set {-am.offset::4::n1::3} to "-1,1,0"
-    set {-am.offset::4::n1::4} to "0,-1,0"
-    set {-am.offset::4::n1::5} to "0,1,0"
-    set {-am.offset::4::n1::6} to "1,-1,0"
-    set {-am.offset::4::n1::7} to "1,0,0"
-    set {-am.offset::4::n1::8} to "1,1,0"
-    set {-am.offset::4::s0::1} to "1,-1,0"
-    set {-am.offset::4::s0::2} to "1,0,0"
-    set {-am.offset::4::s0::3} to "1,1,0"
-    set {-am.offset::4::s0::4} to "0,-1,0"
-    set {-am.offset::4::s0::5} to "0,1,0"
-    set {-am.offset::4::s0::6} to "-1,-1,0"
-    set {-am.offset::4::s0::7} to "-1,0,0"
-    set {-am.offset::4::s0::8} to "-1,1,0"
-    set {-am.offset::4::s1::1} to "1,-1,0"
-    set {-am.offset::4::s1::2} to "1,0,0"
-    set {-am.offset::4::s1::3} to "1,1,0"
-    set {-am.offset::4::s1::4} to "0,-1,0"
-    set {-am.offset::4::s1::5} to "0,1,0"
-    set {-am.offset::4::s1::6} to "-1,-1,0"
-    set {-am.offset::4::s1::7} to "-1,0,0"
-    set {-am.offset::4::s1::8} to "-1,1,0"
-    set {-am.offset::4::e0::1} to "0,-1,-1"
-    set {-am.offset::4::e0::2} to "0,0,-1"
-    set {-am.offset::4::e0::3} to "0,1,-1"
-    set {-am.offset::4::e0::4} to "0,-1,0"
-    set {-am.offset::4::e0::5} to "0,1,0"
-    set {-am.offset::4::e0::6} to "0,-1,1"
-    set {-am.offset::4::e0::7} to "0,0,1"
-    set {-am.offset::4::e0::8} to "0,1,1"
-    set {-am.offset::4::e1::1} to "0,-1,-1"
-    set {-am.offset::4::e1::2} to "0,0,-1"
-    set {-am.offset::4::e1::3} to "0,1,-1"
-    set {-am.offset::4::e1::4} to "0,-1,0"
-    set {-am.offset::4::e1::5} to "0,1,0"
-    set {-am.offset::4::e1::6} to "0,-1,1"
-    set {-am.offset::4::e1::7} to "0,0,1"
-    set {-am.offset::4::e1::8} to "0,1,1"
-    set {-am.offset::4::w0::1} to "0,-1,1"
-    set {-am.offset::4::w0::2} to "0,0,1"
-    set {-am.offset::4::w0::3} to "0,1,1"
-    set {-am.offset::4::w0::4} to "0,-1,0"
-    set {-am.offset::4::w0::5} to "0,1,0"
-    set {-am.offset::4::w0::6} to "0,-1,-1"
-    set {-am.offset::4::w0::7} to "0,0,-1"
-    set {-am.offset::4::w0::8} to "0,1,-1"
-    set {-am.offset::4::w1::1} to "0,-1,1"
-    set {-am.offset::4::w1::2} to "0,0,1"
-    set {-am.offset::4::w1::3} to "0,1,1"
-    set {-am.offset::4::w1::4} to "0,-1,0"
-    set {-am.offset::4::w1::5} to "0,1,0"
-    set {-am.offset::4::w1::6} to "0,-1,-1"
-    set {-am.offset::4::w1::7} to "0,0,-1"
-    set {-am.offset::4::w1::8} to "0,1,-1"
-    set {-am.offset::5::down::1} to "0,-1,0"
-    set {-am.offset::5::down::2} to "0,-2,0"
-    set {-am.offset::5::down::3} to "0,-3,0"
-    set {-am.offset::5::up::1} to "0,1,0"
-    set {-am.offset::5::up::2} to "0,2,0"
-    set {-am.offset::5::up::3} to "0,3,0"
-    set {-am.offset::5::n0::1} to "-1,-2,0"
-    set {-am.offset::5::n0::2} to "-1,-1,0"
-    set {-am.offset::5::n0::3} to "-1,0,0"
-    set {-am.offset::5::n0::4} to "-1,1,0"
-    set {-am.offset::5::n0::5} to "0,-2,0"
-    set {-am.offset::5::n0::6} to "0,-1,0"
-    set {-am.offset::5::n0::7} to "0,1,0"
-    set {-am.offset::5::n0::8} to "1,-2,0"
-    set {-am.offset::5::n0::9} to "1,-1,0"
-    set {-am.offset::5::n0::10} to "1,0,0"
-    set {-am.offset::5::n0::11} to "1,1,0"
-    set {-am.offset::5::n0::12} to "2,-2,0"
-    set {-am.offset::5::n0::13} to "2,-1,0"
-    set {-am.offset::5::n0::14} to "2,0,0"
-    set {-am.offset::5::n0::15} to "2,1,0"
-    set {-am.offset::5::n1::1} to "-1,-1,0"
-    set {-am.offset::5::n1::2} to "-1,0,0"
-    set {-am.offset::5::n1::3} to "-1,1,0"
-    set {-am.offset::5::n1::4} to "-1,2,0"
-    set {-am.offset::5::n1::5} to "0,-1,0"
-    set {-am.offset::5::n1::6} to "0,1,0"
-    set {-am.offset::5::n1::7} to "0,2,0"
-    set {-am.offset::5::n1::8} to "1,-1,0"
-    set {-am.offset::5::n1::9} to "1,0,0"
-    set {-am.offset::5::n1::10} to "1,1,0"
-    set {-am.offset::5::n1::11} to "1,2,0"
-    set {-am.offset::5::n1::12} to "2,-1,0"
-    set {-am.offset::5::n1::13} to "2,0,0"
-    set {-am.offset::5::n1::14} to "2,1,0"
-    set {-am.offset::5::n1::15} to "2,2,0"
-    set {-am.offset::5::s0::1} to "1,-2,0"
-    set {-am.offset::5::s0::2} to "1,-1,0"
-    set {-am.offset::5::s0::3} to "1,0,0"
-    set {-am.offset::5::s0::4} to "1,1,0"
-    set {-am.offset::5::s0::5} to "0,-2,0"
-    set {-am.offset::5::s0::6} to "0,-1,0"
-    set {-am.offset::5::s0::7} to "0,1,0"
-    set {-am.offset::5::s0::8} to "-1,-2,0"
-    set {-am.offset::5::s0::9} to "-1,-1,0"
-    set {-am.offset::5::s0::10} to "-1,0,0"
-    set {-am.offset::5::s0::11} to "-1,1,0"
-    set {-am.offset::5::s0::12} to "-2,-2,0"
-    set {-am.offset::5::s0::13} to "-2,-1,0"
-    set {-am.offset::5::s0::14} to "-2,0,0"
-    set {-am.offset::5::s0::15} to "-2,1,0"
-    set {-am.offset::5::s1::1} to "1,-1,0"
-    set {-am.offset::5::s1::2} to "1,0,0"
-    set {-am.offset::5::s1::3} to "1,1,0"
-    set {-am.offset::5::s1::4} to "1,2,0"
-    set {-am.offset::5::s1::5} to "0,-1,0"
-    set {-am.offset::5::s1::6} to "0,1,0"
-    set {-am.offset::5::s1::7} to "0,2,0"
-    set {-am.offset::5::s1::8} to "-1,-1,0"
-    set {-am.offset::5::s1::9} to "-1,0,0"
-    set {-am.offset::5::s1::10} to "-1,1,0"
-    set {-am.offset::5::s1::11} to "-1,2,0"
-    set {-am.offset::5::s1::12} to "-2,-1,0"
-    set {-am.offset::5::s1::13} to "-2,0,0"
-    set {-am.offset::5::s1::14} to "-2,1,0"
-    set {-am.offset::5::s1::15} to "-2,2,0"
-    set {-am.offset::5::e0::1} to "0,-2,-1"
-    set {-am.offset::5::e0::2} to "0,-1,-1"
-    set {-am.offset::5::e0::3} to "0,0,-1"
-    set {-am.offset::5::e0::4} to "0,1,-1"
-    set {-am.offset::5::e0::5} to "0,-2,0"
-    set {-am.offset::5::e0::6} to "0,-1,0"
-    set {-am.offset::5::e0::7} to "0,1,0"
-    set {-am.offset::5::e0::8} to "0,-2,1"
-    set {-am.offset::5::e0::9} to "0,-1,1"
-    set {-am.offset::5::e0::10} to "0,0,1"
-    set {-am.offset::5::e0::11} to "0,1,1"
-    set {-am.offset::5::e0::12} to "0,-2,2"
-    set {-am.offset::5::e0::13} to "0,-1,2"
-    set {-am.offset::5::e0::14} to "0,0,2"
-    set {-am.offset::5::e0::15} to "0,1,2"
-    set {-am.offset::5::e1::1} to "0,-1,-1"
-    set {-am.offset::5::e1::2} to "0,0,-1"
-    set {-am.offset::5::e1::3} to "0,1,-1"
-    set {-am.offset::5::e1::4} to "0,2,-1"
-    set {-am.offset::5::e1::5} to "0,-1,0"
-    set {-am.offset::5::e1::6} to "0,1,0"
-    set {-am.offset::5::e1::7} to "0,2,0"
-    set {-am.offset::5::e1::8} to "0,-1,1"
-    set {-am.offset::5::e1::9} to "0,0,1"
-    set {-am.offset::5::e1::10} to "0,1,1"
-    set {-am.offset::5::e1::11} to "0,2,1"
-    set {-am.offset::5::e1::12} to "0,-1,2"
-    set {-am.offset::5::e1::13} to "0,0,2"
-    set {-am.offset::5::e1::14} to "0,1,2"
-    set {-am.offset::5::e1::15} to "0,2,2"
-    set {-am.offset::5::w0::1} to "0,-2,1"
-    set {-am.offset::5::w0::2} to "0,-1,1"
-    set {-am.offset::5::w0::3} to "0,0,1"
-    set {-am.offset::5::w0::4} to "0,1,1"
-    set {-am.offset::5::w0::5} to "0,-2,0"
-    set {-am.offset::5::w0::6} to "0,-1,0"
-    set {-am.offset::5::w0::7} to "0,1,0"
-    set {-am.offset::5::w0::8} to "0,-2,-1"
-    set {-am.offset::5::w0::9} to "0,-1,-1"
-    set {-am.offset::5::w0::10} to "0,0,-1"
-    set {-am.offset::5::w0::11} to "0,1,-1"
-    set {-am.offset::5::w0::12} to "0,-2,-2"
-    set {-am.offset::5::w0::13} to "0,-1,-2"
-    set {-am.offset::5::w0::14} to "0,0,-2"
-    set {-am.offset::5::w0::15} to "0,1,-2"
-    set {-am.offset::5::w1::1} to "0,-1,1"
-    set {-am.offset::5::w1::2} to "0,0,1"
-    set {-am.offset::5::w1::3} to "0,1,1"
-    set {-am.offset::5::w1::4} to "0,2,1"
-    set {-am.offset::5::w1::5} to "0,-1,0"
-    set {-am.offset::5::w1::6} to "0,1,0"
-    set {-am.offset::5::w1::7} to "0,2,0"
-    set {-am.offset::5::w1::8} to "0,-1,-1"
-    set {-am.offset::5::w1::9} to "0,0,-1"
-    set {-am.offset::5::w1::10} to "0,1,-1"
-    set {-am.offset::5::w1::11} to "0,2,-1"
-    set {-am.offset::5::w1::12} to "0,-1,-2"
-    set {-am.offset::5::w1::13} to "0,0,-2"
-    set {-am.offset::5::w1::14} to "0,1,-2"
-    set {-am.offset::5::w1::15} to "0,2,-2"
-    set {-am.count} to size of {-am.name::*}
-    set {-am.board} to Bukkit.getScoreboardManager().getMainScoreboard()
-    set {_registration} to Bukkit.getServicesManager().getRegistration(Economy.class)
-    loop "am_rank", "am_goal", "am_blocks", "am_cost", "am_here" and "am_minutes":
-        if {-am.board}.getObjective(loop-value) is not set:
-            execute console command "minecraft:scoreboard objectives add %loop-value% dummy"
-    delete {-am.economy}
-    if {_registration} is set:
-        set {-am.economy} to {_registration}.getProvider()
-    delete {-am.busy}
-    delete {-am.ready::*}
-    delete {-am.lastMine::*}
-    delete {-am.drilling::*}
-    set {-am.cursor} to 0
+    set {-am.value::20} to 4000.0
+    delete {-am.price::*}
+    set {_t} to "minecraft:stone" parsed as item type
+    set {-am.price::%{_t}%} to 0.1
+    set {_t} to "minecraft:cobblestone" parsed as item type
+    set {-am.price::%{_t}%} to 0.1
+    set {_t} to "minecraft:netherrack" parsed as item type
+    set {-am.price::%{_t}%} to 0.2
+    set {_t} to "minecraft:coal" parsed as item type
+    set {-am.price::%{_t}%} to 0.6
+    set {_t} to "minecraft:coal_ore" parsed as item type
+    set {-am.price::%{_t}%} to 0.6
+    set {_t} to "minecraft:deepslate_coal_ore" parsed as item type
+    set {-am.price::%{_t}%} to 0.6
+    set {_t} to "minecraft:coal_block" parsed as item type
+    set {-am.price::%{_t}%} to 6
+    set {_t} to "minecraft:raw_copper" parsed as item type
+    set {-am.price::%{_t}%} to 0.25
+    set {_t} to "minecraft:copper_ingot" parsed as item type
+    set {-am.price::%{_t}%} to 0.25
+    set {_t} to "minecraft:copper_ore" parsed as item type
+    set {-am.price::%{_t}%} to 0.9
+    set {_t} to "minecraft:deepslate_copper_ore" parsed as item type
+    set {-am.price::%{_t}%} to 0.9
+    set {_t} to "minecraft:copper_block" parsed as item type
+    set {-am.price::%{_t}%} to 9
+    set {_t} to "minecraft:raw_copper_block" parsed as item type
+    set {-am.price::%{_t}%} to 2.25
+    set {_t} to "minecraft:raw_iron" parsed as item type
+    set {-am.price::%{_t}%} to 1.5
+    set {_t} to "minecraft:iron_ingot" parsed as item type
+    set {-am.price::%{_t}%} to 1.5
+    set {_t} to "minecraft:iron_ore" parsed as item type
+    set {-am.price::%{_t}%} to 1.5
+    set {_t} to "minecraft:deepslate_iron_ore" parsed as item type
+    set {-am.price::%{_t}%} to 1.5
+    set {_t} to "minecraft:iron_block" parsed as item type
+    set {-am.price::%{_t}%} to 14
+    set {_t} to "minecraft:raw_iron_block" parsed as item type
+    set {-am.price::%{_t}%} to 13.5
+    set {_t} to "minecraft:raw_gold" parsed as item type
+    set {-am.price::%{_t}%} to 2.5
+    set {_t} to "minecraft:gold_ingot" parsed as item type
+    set {-am.price::%{_t}%} to 2.5
+    set {_t} to "minecraft:gold_ore" parsed as item type
+    set {-am.price::%{_t}%} to 2.5
+    set {_t} to "minecraft:deepslate_gold_ore" parsed as item type
+    set {-am.price::%{_t}%} to 2.5
+    set {_t} to "minecraft:gold_block" parsed as item type
+    set {-am.price::%{_t}%} to 22
+    set {_t} to "minecraft:raw_gold_block" parsed as item type
+    set {-am.price::%{_t}%} to 22.5
+    set {_t} to "minecraft:emerald" parsed as item type
+    set {-am.price::%{_t}%} to 5
+    set {_t} to "minecraft:emerald_ore" parsed as item type
+    set {-am.price::%{_t}%} to 5
+    set {_t} to "minecraft:deepslate_emerald_ore" parsed as item type
+    set {-am.price::%{_t}%} to 5
+    set {_t} to "minecraft:emerald_block" parsed as item type
+    set {-am.price::%{_t}%} to 45
+    set {_t} to "minecraft:diamond" parsed as item type
+    set {-am.price::%{_t}%} to 8
+    set {_t} to "minecraft:diamond_ore" parsed as item type
+    set {-am.price::%{_t}%} to 8
+    set {_t} to "minecraft:deepslate_diamond_ore" parsed as item type
+    set {-am.price::%{_t}%} to 8
+    set {_t} to "minecraft:diamond_block" parsed as item type
+    set {-am.price::%{_t}%} to 72
+    set {_t} to "minecraft:ancient_debris" parsed as item type
+    set {-am.price::%{_t}%} to 600
+    set {_t} to "minecraft:netherite_scrap" parsed as item type
+    set {-am.price::%{_t}%} to 600
+    set {_t} to "minecraft:netherite_block" parsed as item type
+    set {-am.price::%{_t}%} to 4000
+    set {_t} to "minecraft:redstone" parsed as item type
+    set {-am.price::%{_t}%} to 0.3
+    set {_t} to "minecraft:lapis_lazuli" parsed as item type
+    set {-am.price::%{_t}%} to 0.3
+    set {_t} to "minecraft:quartz" parsed as item type
+    set {-am.price::%{_t}%} to 0.4
+    set {_t} to "minecraft:nether_quartz_ore" parsed as item type
+    set {-am.price::%{_t}%} to 0.4
+    delete {-am.drillnames::*}
+    add "Taladro de Diamante" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Diamante} to 1
+    add "Taladro de Mitril" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Mitril} to 2
+    add "Taladro de Amatista" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Amatista} to 2
+    add "Taladro de Rubi" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Rubi} to 3
+    add "Taladro de Topacio" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Topacio} to 3
+    add "Taladro de Titanio" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Titanio} to 4
+    add "Taladro de Jaspe" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Jaspe} to 4
+    add "Taladro de Gemas" to {-am.drillnames::*}
+    set {-am.drill::Taladro de Gemas} to 5
+    add "Taladro Divan" to {-am.drillnames::*}
+    set {-am.drill::Taladro Divan} to 5
+    delete {-am.off::*}
+    set {-am.off::2::down::1} to vector(0, -1, 0)
+    set {-am.off::2::up::1} to vector(0, 1, 0)
+    set {-am.off::2::n0::1} to vector(0, -1, 0)
+    set {-am.off::2::n1::1} to vector(0, 1, 0)
+    set {-am.off::2::s0::1} to vector(0, -1, 0)
+    set {-am.off::2::s1::1} to vector(0, 1, 0)
+    set {-am.off::2::e0::1} to vector(0, -1, 0)
+    set {-am.off::2::e1::1} to vector(0, 1, 0)
+    set {-am.off::2::w0::1} to vector(0, -1, 0)
+    set {-am.off::2::w1::1} to vector(0, 1, 0)
+    set {-am.off::3::down::1} to vector(0, -1, 0)
+    set {-am.off::3::up::1} to vector(0, 1, 0)
+    set {-am.off::3::n0::1} to vector(0, -1, 0)
+    set {-am.off::3::n0::2} to vector(1, -1, 0)
+    set {-am.off::3::n0::3} to vector(1, 0, 0)
+    set {-am.off::3::n1::1} to vector(0, 1, 0)
+    set {-am.off::3::n1::2} to vector(1, 0, 0)
+    set {-am.off::3::n1::3} to vector(1, 1, 0)
+    set {-am.off::3::s0::1} to vector(0, -1, 0)
+    set {-am.off::3::s0::2} to vector(-1, -1, 0)
+    set {-am.off::3::s0::3} to vector(-1, 0, 0)
+    set {-am.off::3::s1::1} to vector(0, 1, 0)
+    set {-am.off::3::s1::2} to vector(-1, 0, 0)
+    set {-am.off::3::s1::3} to vector(-1, 1, 0)
+    set {-am.off::3::e0::1} to vector(0, -1, 0)
+    set {-am.off::3::e0::2} to vector(0, -1, 1)
+    set {-am.off::3::e0::3} to vector(0, 0, 1)
+    set {-am.off::3::e1::1} to vector(0, 1, 0)
+    set {-am.off::3::e1::2} to vector(0, 0, 1)
+    set {-am.off::3::e1::3} to vector(0, 1, 1)
+    set {-am.off::3::w0::1} to vector(0, -1, 0)
+    set {-am.off::3::w0::2} to vector(0, -1, -1)
+    set {-am.off::3::w0::3} to vector(0, 0, -1)
+    set {-am.off::3::w1::1} to vector(0, 1, 0)
+    set {-am.off::3::w1::2} to vector(0, 0, -1)
+    set {-am.off::3::w1::3} to vector(0, 1, -1)
+    set {-am.off::4::down::1} to vector(0, -1, 0)
+    set {-am.off::4::down::2} to vector(0, -2, 0)
+    set {-am.off::4::up::1} to vector(0, 1, 0)
+    set {-am.off::4::up::2} to vector(0, 2, 0)
+    set {-am.off::4::n0::1} to vector(-1, -1, 0)
+    set {-am.off::4::n0::2} to vector(-1, 0, 0)
+    set {-am.off::4::n0::3} to vector(-1, 1, 0)
+    set {-am.off::4::n0::4} to vector(0, -1, 0)
+    set {-am.off::4::n0::5} to vector(0, 1, 0)
+    set {-am.off::4::n0::6} to vector(1, -1, 0)
+    set {-am.off::4::n0::7} to vector(1, 0, 0)
+    set {-am.off::4::n0::8} to vector(1, 1, 0)
+    set {-am.off::4::n1::1} to vector(-1, -1, 0)
+    set {-am.off::4::n1::2} to vector(-1, 0, 0)
+    set {-am.off::4::n1::3} to vector(-1, 1, 0)
+    set {-am.off::4::n1::4} to vector(0, -1, 0)
+    set {-am.off::4::n1::5} to vector(0, 1, 0)
+    set {-am.off::4::n1::6} to vector(1, -1, 0)
+    set {-am.off::4::n1::7} to vector(1, 0, 0)
+    set {-am.off::4::n1::8} to vector(1, 1, 0)
+    set {-am.off::4::s0::1} to vector(1, -1, 0)
+    set {-am.off::4::s0::2} to vector(1, 0, 0)
+    set {-am.off::4::s0::3} to vector(1, 1, 0)
+    set {-am.off::4::s0::4} to vector(0, -1, 0)
+    set {-am.off::4::s0::5} to vector(0, 1, 0)
+    set {-am.off::4::s0::6} to vector(-1, -1, 0)
+    set {-am.off::4::s0::7} to vector(-1, 0, 0)
+    set {-am.off::4::s0::8} to vector(-1, 1, 0)
+    set {-am.off::4::s1::1} to vector(1, -1, 0)
+    set {-am.off::4::s1::2} to vector(1, 0, 0)
+    set {-am.off::4::s1::3} to vector(1, 1, 0)
+    set {-am.off::4::s1::4} to vector(0, -1, 0)
+    set {-am.off::4::s1::5} to vector(0, 1, 0)
+    set {-am.off::4::s1::6} to vector(-1, -1, 0)
+    set {-am.off::4::s1::7} to vector(-1, 0, 0)
+    set {-am.off::4::s1::8} to vector(-1, 1, 0)
+    set {-am.off::4::e0::1} to vector(0, -1, -1)
+    set {-am.off::4::e0::2} to vector(0, 0, -1)
+    set {-am.off::4::e0::3} to vector(0, 1, -1)
+    set {-am.off::4::e0::4} to vector(0, -1, 0)
+    set {-am.off::4::e0::5} to vector(0, 1, 0)
+    set {-am.off::4::e0::6} to vector(0, -1, 1)
+    set {-am.off::4::e0::7} to vector(0, 0, 1)
+    set {-am.off::4::e0::8} to vector(0, 1, 1)
+    set {-am.off::4::e1::1} to vector(0, -1, -1)
+    set {-am.off::4::e1::2} to vector(0, 0, -1)
+    set {-am.off::4::e1::3} to vector(0, 1, -1)
+    set {-am.off::4::e1::4} to vector(0, -1, 0)
+    set {-am.off::4::e1::5} to vector(0, 1, 0)
+    set {-am.off::4::e1::6} to vector(0, -1, 1)
+    set {-am.off::4::e1::7} to vector(0, 0, 1)
+    set {-am.off::4::e1::8} to vector(0, 1, 1)
+    set {-am.off::4::w0::1} to vector(0, -1, 1)
+    set {-am.off::4::w0::2} to vector(0, 0, 1)
+    set {-am.off::4::w0::3} to vector(0, 1, 1)
+    set {-am.off::4::w0::4} to vector(0, -1, 0)
+    set {-am.off::4::w0::5} to vector(0, 1, 0)
+    set {-am.off::4::w0::6} to vector(0, -1, -1)
+    set {-am.off::4::w0::7} to vector(0, 0, -1)
+    set {-am.off::4::w0::8} to vector(0, 1, -1)
+    set {-am.off::4::w1::1} to vector(0, -1, 1)
+    set {-am.off::4::w1::2} to vector(0, 0, 1)
+    set {-am.off::4::w1::3} to vector(0, 1, 1)
+    set {-am.off::4::w1::4} to vector(0, -1, 0)
+    set {-am.off::4::w1::5} to vector(0, 1, 0)
+    set {-am.off::4::w1::6} to vector(0, -1, -1)
+    set {-am.off::4::w1::7} to vector(0, 0, -1)
+    set {-am.off::4::w1::8} to vector(0, 1, -1)
+    set {-am.off::5::down::1} to vector(0, -1, 0)
+    set {-am.off::5::down::2} to vector(0, -2, 0)
+    set {-am.off::5::down::3} to vector(0, -3, 0)
+    set {-am.off::5::up::1} to vector(0, 1, 0)
+    set {-am.off::5::up::2} to vector(0, 2, 0)
+    set {-am.off::5::up::3} to vector(0, 3, 0)
+    set {-am.off::5::n0::1} to vector(-1, -2, 0)
+    set {-am.off::5::n0::2} to vector(-1, -1, 0)
+    set {-am.off::5::n0::3} to vector(-1, 0, 0)
+    set {-am.off::5::n0::4} to vector(-1, 1, 0)
+    set {-am.off::5::n0::5} to vector(0, -2, 0)
+    set {-am.off::5::n0::6} to vector(0, -1, 0)
+    set {-am.off::5::n0::7} to vector(0, 1, 0)
+    set {-am.off::5::n0::8} to vector(1, -2, 0)
+    set {-am.off::5::n0::9} to vector(1, -1, 0)
+    set {-am.off::5::n0::10} to vector(1, 0, 0)
+    set {-am.off::5::n0::11} to vector(1, 1, 0)
+    set {-am.off::5::n0::12} to vector(2, -2, 0)
+    set {-am.off::5::n0::13} to vector(2, -1, 0)
+    set {-am.off::5::n0::14} to vector(2, 0, 0)
+    set {-am.off::5::n0::15} to vector(2, 1, 0)
+    set {-am.off::5::n1::1} to vector(-1, -1, 0)
+    set {-am.off::5::n1::2} to vector(-1, 0, 0)
+    set {-am.off::5::n1::3} to vector(-1, 1, 0)
+    set {-am.off::5::n1::4} to vector(-1, 2, 0)
+    set {-am.off::5::n1::5} to vector(0, -1, 0)
+    set {-am.off::5::n1::6} to vector(0, 1, 0)
+    set {-am.off::5::n1::7} to vector(0, 2, 0)
+    set {-am.off::5::n1::8} to vector(1, -1, 0)
+    set {-am.off::5::n1::9} to vector(1, 0, 0)
+    set {-am.off::5::n1::10} to vector(1, 1, 0)
+    set {-am.off::5::n1::11} to vector(1, 2, 0)
+    set {-am.off::5::n1::12} to vector(2, -1, 0)
+    set {-am.off::5::n1::13} to vector(2, 0, 0)
+    set {-am.off::5::n1::14} to vector(2, 1, 0)
+    set {-am.off::5::n1::15} to vector(2, 2, 0)
+    set {-am.off::5::s0::1} to vector(1, -2, 0)
+    set {-am.off::5::s0::2} to vector(1, -1, 0)
+    set {-am.off::5::s0::3} to vector(1, 0, 0)
+    set {-am.off::5::s0::4} to vector(1, 1, 0)
+    set {-am.off::5::s0::5} to vector(0, -2, 0)
+    set {-am.off::5::s0::6} to vector(0, -1, 0)
+    set {-am.off::5::s0::7} to vector(0, 1, 0)
+    set {-am.off::5::s0::8} to vector(-1, -2, 0)
+    set {-am.off::5::s0::9} to vector(-1, -1, 0)
+    set {-am.off::5::s0::10} to vector(-1, 0, 0)
+    set {-am.off::5::s0::11} to vector(-1, 1, 0)
+    set {-am.off::5::s0::12} to vector(-2, -2, 0)
+    set {-am.off::5::s0::13} to vector(-2, -1, 0)
+    set {-am.off::5::s0::14} to vector(-2, 0, 0)
+    set {-am.off::5::s0::15} to vector(-2, 1, 0)
+    set {-am.off::5::s1::1} to vector(1, -1, 0)
+    set {-am.off::5::s1::2} to vector(1, 0, 0)
+    set {-am.off::5::s1::3} to vector(1, 1, 0)
+    set {-am.off::5::s1::4} to vector(1, 2, 0)
+    set {-am.off::5::s1::5} to vector(0, -1, 0)
+    set {-am.off::5::s1::6} to vector(0, 1, 0)
+    set {-am.off::5::s1::7} to vector(0, 2, 0)
+    set {-am.off::5::s1::8} to vector(-1, -1, 0)
+    set {-am.off::5::s1::9} to vector(-1, 0, 0)
+    set {-am.off::5::s1::10} to vector(-1, 1, 0)
+    set {-am.off::5::s1::11} to vector(-1, 2, 0)
+    set {-am.off::5::s1::12} to vector(-2, -1, 0)
+    set {-am.off::5::s1::13} to vector(-2, 0, 0)
+    set {-am.off::5::s1::14} to vector(-2, 1, 0)
+    set {-am.off::5::s1::15} to vector(-2, 2, 0)
+    set {-am.off::5::e0::1} to vector(0, -2, -1)
+    set {-am.off::5::e0::2} to vector(0, -1, -1)
+    set {-am.off::5::e0::3} to vector(0, 0, -1)
+    set {-am.off::5::e0::4} to vector(0, 1, -1)
+    set {-am.off::5::e0::5} to vector(0, -2, 0)
+    set {-am.off::5::e0::6} to vector(0, -1, 0)
+    set {-am.off::5::e0::7} to vector(0, 1, 0)
+    set {-am.off::5::e0::8} to vector(0, -2, 1)
+    set {-am.off::5::e0::9} to vector(0, -1, 1)
+    set {-am.off::5::e0::10} to vector(0, 0, 1)
+    set {-am.off::5::e0::11} to vector(0, 1, 1)
+    set {-am.off::5::e0::12} to vector(0, -2, 2)
+    set {-am.off::5::e0::13} to vector(0, -1, 2)
+    set {-am.off::5::e0::14} to vector(0, 0, 2)
+    set {-am.off::5::e0::15} to vector(0, 1, 2)
+    set {-am.off::5::e1::1} to vector(0, -1, -1)
+    set {-am.off::5::e1::2} to vector(0, 0, -1)
+    set {-am.off::5::e1::3} to vector(0, 1, -1)
+    set {-am.off::5::e1::4} to vector(0, 2, -1)
+    set {-am.off::5::e1::5} to vector(0, -1, 0)
+    set {-am.off::5::e1::6} to vector(0, 1, 0)
+    set {-am.off::5::e1::7} to vector(0, 2, 0)
+    set {-am.off::5::e1::8} to vector(0, -1, 1)
+    set {-am.off::5::e1::9} to vector(0, 0, 1)
+    set {-am.off::5::e1::10} to vector(0, 1, 1)
+    set {-am.off::5::e1::11} to vector(0, 2, 1)
+    set {-am.off::5::e1::12} to vector(0, -1, 2)
+    set {-am.off::5::e1::13} to vector(0, 0, 2)
+    set {-am.off::5::e1::14} to vector(0, 1, 2)
+    set {-am.off::5::e1::15} to vector(0, 2, 2)
+    set {-am.off::5::w0::1} to vector(0, -2, 1)
+    set {-am.off::5::w0::2} to vector(0, -1, 1)
+    set {-am.off::5::w0::3} to vector(0, 0, 1)
+    set {-am.off::5::w0::4} to vector(0, 1, 1)
+    set {-am.off::5::w0::5} to vector(0, -2, 0)
+    set {-am.off::5::w0::6} to vector(0, -1, 0)
+    set {-am.off::5::w0::7} to vector(0, 1, 0)
+    set {-am.off::5::w0::8} to vector(0, -2, -1)
+    set {-am.off::5::w0::9} to vector(0, -1, -1)
+    set {-am.off::5::w0::10} to vector(0, 0, -1)
+    set {-am.off::5::w0::11} to vector(0, 1, -1)
+    set {-am.off::5::w0::12} to vector(0, -2, -2)
+    set {-am.off::5::w0::13} to vector(0, -1, -2)
+    set {-am.off::5::w0::14} to vector(0, 0, -2)
+    set {-am.off::5::w0::15} to vector(0, 1, -2)
+    set {-am.off::5::w1::1} to vector(0, -1, 1)
+    set {-am.off::5::w1::2} to vector(0, 0, 1)
+    set {-am.off::5::w1::3} to vector(0, 1, 1)
+    set {-am.off::5::w1::4} to vector(0, 2, 1)
+    set {-am.off::5::w1::5} to vector(0, -1, 0)
+    set {-am.off::5::w1::6} to vector(0, 1, 0)
+    set {-am.off::5::w1::7} to vector(0, 2, 0)
+    set {-am.off::5::w1::8} to vector(0, -1, -1)
+    set {-am.off::5::w1::9} to vector(0, 0, -1)
+    set {-am.off::5::w1::10} to vector(0, 1, -1)
+    set {-am.off::5::w1::11} to vector(0, 2, -1)
+    set {-am.off::5::w1::12} to vector(0, -1, -2)
+    set {-am.off::5::w1::13} to vector(0, 0, -2)
+    set {-am.off::5::w1::14} to vector(0, 1, -2)
+    set {-am.off::5::w1::15} to vector(0, 2, -2)
+    loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost" and "am_minutes":
+        execute console command "minecraft:scoreboard objectives add %loop-value% dummy"
     loop all players:
+        am_load(loop-player)
         am_sync(loop-player)
 
-function am_score(p: player, objective: text, value: number):
-    set {_obj} to {-am.board}.getObjective({_objective})
-    if {_obj} is set:
-        set {_score} to {_obj}.getScore({_p}.getName())
-        {_score}.setScore({_value}.intValue())
+# ---------------------------------------------------------------- utilidades
 
-function am_sync(p: player):
-    if name of world of {_p} is "astral_minas":
-        {_p}.addScoreboardTag("astral.mines")
-        am_sidebar({_p})
-        am_score({_p}, "am_here", am_id(location of {_p}))
-    else:
-        {_p}.removeScoreboardTag("astral.mines")
-
-function am_rank(p: player) :: number:
-    return {am.rank::%uuid of {_p}%} ? 1
-
-function am_sidebar(p: player):
-    set {_rank} to am_rank({_p})
-    set {_next} to {_rank} + 1
-    am_score({_p}, "am_rank", {_rank})
-    am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
-    am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
-    am_score({_p}, "am_blocks", {am.blocks::%uuid of {_p}%} ? 0)
-    am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
+function am_world() :: world:
+    return world "astral_minas"
 
 function am_id(loc: location) :: number:
     if name of world of {_loc} is not "astral_minas":
@@ -507,244 +599,281 @@ function am_id(loc: location) :: number:
         return {_i}
     return 0
 
-function am_spawn(i: number) :: location:
-    set {_x} to ({_i} - 1) * 512 + 89.5
-    return location({_x}, 93, 70.5, world "astral_minas", 0, 0)
+function am_rank(p: player) :: number:
+    return {am.rank::%uuid of {_p}%} ? 1
 
-function am_lobby(p: player):
-    set {_name} to {_p}.getName()
-    execute console command "mvtp %{_name}% w:lobby"
+function am_spawn(i: number) :: location:
+    return location(({_i} - 1) * 512 + 89.5, 93, 70.5, am_world(), 0, 0)
+
+# Dentro del pozo (coordenadas locales iguales en todos los mapas).
+function am_in_pit(loc: location, i: number) :: boolean:
+    set {_x} to x-coordinate of {_loc} - ({_i} - 1) * 512
+    if {_x} is not between 75 and 105.999:
+        return false
+    if y-coordinate of {_loc} is not between 73 and 92.999:
+        return false
+    if z-coordinate of {_loc} is not between 76 and 106.999:
+        return false
+    return true
+
+function am_score(p: player, objective: text, value: number):
+    execute console command "minecraft:scoreboard players set %name of {_p}% %{_objective}% %floor({_value})%"
+
+function am_load(p: player):
+    set {-am.b::%uuid of {_p}%} to {am.blocks::%uuid of {_p}%} ? 0
+
+function am_save(p: player):
+    set {_id} to uuid of {_p}
+    if {-am.b::%{_id}%} is set:
+        if {am.blocks::%{_id}%} is not {-am.b::%{_id}%}:
+            set {am.blocks::%{_id}%} to {-am.b::%{_id}%}
+
+function am_sidebar(p: player):
+    set {_next} to am_rank({_p}) + 1
+    am_score({_p}, "am_rank", am_rank({_p}))
+    am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
+    am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
+    am_score({_p}, "am_blocks", {-am.b::%uuid of {_p}%} ? 0)
+    am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
+    set {-am.shown::%uuid of {_p}%} to {-am.b::%uuid of {_p}%} ? 0
+
+function am_sync(p: player):
+    if name of world of {_p} is "astral_minas":
+        add "astral.mines" to scoreboard tags of {_p}
+        am_sidebar({_p})
+        am_score({_p}, "am_here", am_id(location of {_p}))
+    else:
+        remove "astral.mines" from scoreboard tags of {_p}
+
+# ---------------------------------------------------------------- menu de minas
 
 function am_menu(p: player):
     set {_rank} to am_rank({_p})
     set {_next} to {_rank} + 1
+    set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
     set {_inv} to chest inventory with 6 rows named "&8Minas Astrales"
-    set slot 4 of {_inv} to gold nugget named "&6Tu oro" with lore "&e%balance of {_p}%"
+    loop 54 times:
+        set slot loop-number - 1 of {_inv} to black stained glass pane named " "
+    set slot 4 of {_inv} to gold ingot named "&6Tu oro: &e%{_p}'s balance%" with lore "&7Abrí la siguiente mina picando" and "&7en la anterior y pagando su costo."
+    set slot 9 of {_inv} to stone named "&f&lTier I" with lore "&7Piedra con minerales."
+    set slot 18 of {_inv} to coal block named "&e&lTier II" with lore "&7Minerales con bloques compactos."
+    set slot 27 of {_inv} to diamond block named "&b&lTier III" with lore "&7Solo bloques compactos."
     loop {-am.count} times:
         set {_i} to loop-number
         set {_slot} to {-am.slot::%{_i}%}
         set {_name} to {-am.name::%{_i}%}
+        set {_icon} to {-am.icon::%{_i}%}
         if {_i} <= {_rank}:
-            set slot {_slot} of {_inv} to iron pickaxe named "&a%{_i}%. %{_name}%" with lore "&7Clic para viajar."
+            set slot {_slot} of {_inv} to {_icon} named "&a%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{-am.value::%{_i}%}% oro &7por bloque" and "" and "&aClic para viajar."
         else if {_i} is {_next}:
             set {_goal} to {-am.goal::%{_i}%}
             set {_cost} to {-am.cost::%{_i}%}
-            set {_blocks} to {am.blocks::%uuid of {_p}%} ? 0
-            set slot {_slot} of {_inv} to gold ingot named "&e%{_i}%. %{_name}%" with lore "&7Bloques en la mina %{_rank}%: &f%{_blocks}%/%{_goal}%" and "&7Costo: &6%{_cost}% oro" and "&eClic para desbloquear y viajar."
+            set {_okb} to "&c✘"
+            if {_blocks} >= {_goal}:
+                set {_okb} to "&a✔"
+            set {_okc} to "&c✘"
+            if {_p}'s balance >= {_cost}:
+                set {_okc} to "&a✔"
+            set slot {_slot} of {_inv} to {_icon} named "&e%{_name}% &7(bloqueada)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "%{_okb}% &7Picar en %{-am.name::%{_rank}%}%: &f%{_blocks}%&7/&f%{_goal}%" and "%{_okc}% &7Costo: &6%{_cost}% oro" and "" and "&eClic para desbloquear."
             if {_i} is {-am.count}:
-                set {_minutes} to {am.minutes::%uuid of {_p}%} ? 0
-                add "&7Minería activa: &f%{_minutes}%/%{-am.finalMinutes}% minutos" to lore of slot {_slot} of {_inv}
+                set {_min} to {am.minutes::%uuid of {_p}%} ? 0
+                set {_okt} to "&c✘"
+                if {_min} >= {-am.finalMinutes}:
+                    set {_okt} to "&a✔"
+                add "%{_okt}% &7Minería activa: &f%{_min}%&7/&f%{-am.finalMinutes}% min" to lore of slot {_slot} of {_inv}
         else:
-            set slot {_slot} of {_inv} to barrier named "&c%{_i}%. %{_name}%" with lore "&7Desbloquea las minas anteriores."
+            set slot {_slot} of {_inv} to barrier named "&c%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
     set slot 49 of {_inv} to ender pearl named "&bVolver al lobby"
-    set {-am.gui::%uuid of {_p}%} to {_inv}
     open {_inv} to {_p}
+    set {-am.gui::%uuid of {_p}%} to "menu"
 
 function am_travel(p: player, i: number):
-    if {-am.ready::%{_i}%} is not true:
-        send "&eEsta mina se está preparando. Volvé a intentar en unos segundos." to {_p}
-        stop
     set {_rank} to am_rank({_p})
-    set {_next} to {_rank} + 1
-    if {_i} > {_rank}:
-        if {_i} is not {_next}:
-            stop
+    if {_i} > {_rank} + 1:
+        stop
+    if {_i} is {_rank} + 1:
         set {_goal} to {-am.goal::%{_i}%}
         set {_cost} to {-am.cost::%{_i}%}
-        set {_blocks} to {am.blocks::%uuid of {_p}%} ? 0
+        set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
         if {_blocks} < {_goal}:
-            send "&cTodavía te faltan bloques en la mina %{_rank}%." to {_p}
+            send "&cTe faltan &f%{_goal} - {_blocks}% &cbloques en %{-am.name::%{_rank}%}%." to {_p}
             stop
         if {_i} is {-am.count}:
-            set {_minutes} to {am.minutes::%uuid of {_p}%} ? 0
-            if {_minutes} < {-am.finalMinutes}:
-                send "&cTodavía te faltan minutos de minería activa en Diamante III." to {_p}
+            if ({am.minutes::%uuid of {_p}%} ? 0) < {-am.finalMinutes}:
+                send "&cTe faltan minutos de minería activa en %{-am.name::%{_rank}%}%." to {_p}
                 stop
-        if {-am.economy} is not set:
-            send "&cLa economía no está disponible." to {_p}
+        if {_p}'s balance < {_cost}:
+            send "&cNecesitás &6%{_cost}% oro &cpara abrir esta mina." to {_p}
             stop
-        set {_response} to {-am.economy}.withdrawPlayer({_p}, {_cost}.doubleValue())
-        if {_response}.transactionSuccess() is not true:
-            send "&cNecesitás %{_cost}% de oro para abrir esta mina." to {_p}
-            stop
+        remove {_cost} from {_p}'s balance
         set {am.rank::%uuid of {_p}%} to {_i}
-        delete {am.blocks::%uuid of {_p}%}
-        set {_name} to {-am.name::%{_i}%}
-        send "&aDesbloqueaste %{_i}%. %{_name}%." to {_p}
-    am_sidebar({_p})
+        set {-am.b::%uuid of {_p}%} to 0
+        set {am.blocks::%uuid of {_p}%} to 0
+        send "&a&l¡Desbloqueaste %{-am.name::%{_i}%}%!" to {_p}
+        play sound "entity.player.levelup" to {_p}
+        am_sidebar({_p})
     close inventory of {_p}
-    if {_p}.teleport(am_spawn({_i})) is true:
-        am_score({_p}, "am_here", {_i})
-    else:
-        send "&eNo se pudo viajar. Podés volver a intentarlo desde /minas." to {_p}
+    teleport {_p} to am_spawn({_i})
+    send "&7Estás en &f%{-am.name::%{_i}%}%&7. La mina se regenera cada &f9 minutos&7." to {_p}
 
-function am_sell(p: player):
-    if gamemode of {_p} is not survival:
-        stop
-    if {-am.economy} is not set:
-        send "&cLa economía no está disponible." to {_p}
-        stop
-    set {_inv} to {_p}.getInventory()
+# ---------------------------------------------------------------- venta rapida
+
+function am_sell_value(p: player, sell: boolean) :: number:
     set {_total} to 0
     loop 36 times:
         set {_slot} to loop-number - 1
-        set {_item} to {_inv}.getItem({_slot}.intValue())
-        if {_item} is set:
-            if {_item}.hasItemMeta() is false:
-                set {_material} to {_item}.getType().name()
-                if {-am.price::%{_material}%} is set:
-                    set {_amount} to {_item}.getAmount()
-                    add {_amount} * {-am.price::%{_material}%} to {_total}
-                    add {_slot} to {_slots::*}
-    if {_total} is 0:
-        send "&eNo tenés minerales admitidos para vender." to {_p}
+        set {_it} to slot {_slot} of {_p}'s inventory
+        if {_it} is not air:
+            # Los objetos con nombre o descripcion (equipo Astral, items custom) no se venden.
+            if name of {_it} is not set:
+                if lore of {_it} is not set:
+                    set {_price} to {-am.price::%type of {_it}%}
+                    if {_price} is set:
+                        add item amount of {_it} * {_price} to {_total}
+                        if {_sell} is true:
+                            set slot {_slot} of {_p}'s inventory to air
+    return round({_total} * 100) / 100
+
+function am_sale_menu(p: player):
+    set {_value} to am_sell_value({_p}, false)
+    set {_inv} to chest inventory with 3 rows named "&8Venta rápida de minerales"
+    loop 27 times:
+        set slot loop-number - 1 of {_inv} to gray stained glass pane named " "
+    set slot 13 of {_inv} to emerald named "&a&lVender todos mis minerales" with lore "&7Vende piedra, roca y minerales" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
+    set slot 22 of {_inv} to barrier named "&cCerrar"
+    open {_inv} to {_p}
+    set {-am.gui::%uuid of {_p}%} to "venta"
+
+function am_sell(p: player):
+    set {_total} to am_sell_value({_p}, true)
+    if {_total} <= 0:
+        send "&eNo tenés minerales para vender." to {_p}
         stop
-    set {_total} to round({_total} * 100) / 100
-    set {_response} to {-am.economy}.depositPlayer({_p}, {_total}.doubleValue())
-    if {_response}.transactionSuccess() is true:
-        loop {_slots::*}:
-            {_inv}.clear(loop-value.intValue())
-        send "&aVendiste tus minerales por &6%{_total}% oro&a." to {_p}
-    else:
-        send "&cLa venta falló. Conservás tus minerales." to {_p}
+    add {_total} to {_p}'s balance
+    send "&aVendiste tus minerales por &6%{_total}% oro&a." to {_p}
+    play sound "entity.experience_orb.pickup" to {_p}
+
+# Comandos que usan los aldeanos de MythicMobs (corren desde la consola).
+command /minasmenu <player>:
+    executable by: console
+    trigger:
+        am_menu(arg-1)
+
+command /minasventa <player>:
+    executable by: console
+    trigger:
+        if am_id(location of arg-1) is 0:
+            stop
+        am_sale_menu(arg-1)
 
 command /minas:
     executable by: players
     trigger:
-        set {_world} to name of world of player
-        if {_world} is "lobby" or "astral_minas":
+        if name of world of player is "lobby" or "astral_minas":
             am_menu(player)
         else:
-            send "&eAbrí el menú de minas desde el lobby." to player
-
-on right click on villager:
-    set {_tags} to event-entity.getScoreboardTags()
-    if {_tags}.contains("astral_minas_lobby") is true:
-        cancel event
-        am_menu(player)
-    else if {_tags}.contains("astral_mina_venta") is true:
-        cancel event
-        set {_i} to am_id(location of player)
-        if {_i} is between 1 and am_rank(player):
-            set {_inv} to chest inventory with 3 rows named "&8Venta rápida de minerales"
-            set slot 13 of {_inv} to emerald named "&aVender todos mis minerales" with lore "&7Incluye piedra, roca y minerales de las minas." and "&7Deja el equipo y los objetos personalizados."
-            set {-am.sale::%uuid of player%} to {_inv}
-            open {_inv} to player
+            send "&eLas minas se abren desde el lobby (aldeano &bMinas Astrales&e)." to player
 
 on inventory click:
-    set {_top} to player's current inventory
-    if {_top} is {-am.gui::%uuid of player%}:
-        cancel event
-        if clicked inventory is {_top}:
-            set {_slot} to index of event-slot
-            wait 1 tick
-            if player's current inventory is not {_top}:
-                stop
-            if {_slot} is 49:
-                close inventory of player
-                am_lobby(player)
-            else:
-                set {_destination} to {-am.destination::%{_slot}%}
-                if {_destination} is set:
-                    am_travel(player, {_destination})
-    else if {_top} is {-am.sale::%uuid of player%}:
-        cancel event
-        if clicked inventory is {_top}:
-            if index of event-slot is 13:
-                wait 1 tick
-                if player's current inventory is {_top}:
-                    if am_id(location of player) > 0:
-                        am_sell(player)
+    set {_gui} to {-am.gui::%uuid of player%}
+    if {_gui} is not set:
+        stop
+    cancel event
+    if clicked inventory is player's inventory:
+        stop
+    set {_slot} to index of event-slot
+    if {_gui} is "menu":
+        if {_slot} is 49:
+            close inventory of player
+            execute console command "spawn %name of player%"
+            stop
+        set {_dest} to {-am.dest::%{_slot}%}
+        if {_dest} is set:
+            am_travel(player, {_dest})
+    else if {_gui} is "venta":
+        if {_slot} is 13:
+            close inventory of player
+            am_sell(player)
+        else if {_slot} is 22:
+            close inventory of player
 
 on inventory drag:
-    if player's current inventory is {-am.gui::%uuid of player%} or {-am.sale::%uuid of player%}:
+    if {-am.gui::%uuid of player%} is set:
         cancel event
 
 on inventory close:
-    if event-inventory is {-am.gui::%uuid of player%}:
-        delete {-am.gui::%uuid of player%}
-    if event-inventory is {-am.sale::%uuid of player%}:
-        delete {-am.sale::%uuid of player%}
+    delete {-am.gui::%uuid of player%}
+
+# ---------------------------------------------------------------- picar
 
 function am_can_break(b: block, p: player) :: boolean:
-    set {_loc} to {_b}.getLocation()
-    set {_i} to am_id({_loc})
-    if {_i} is not between 1 and am_rank({_p}):
+    set {_i} to am_id(location of {_b})
+    if {_i} is 0:
         return false
-    if {-am.ready::%{_i}%} is not true:
+    if {_i} > am_rank({_p}):
         return false
-    set {_local} to x-coordinate of {_loc} - ({_i} - 1) * 512
-    if {_local} is not between 75 and 105:
+    if am_in_pit(location of {_b}, {_i}) is false:
         return false
-    if y-coordinate of {_loc} is not between 73 and 92:
-        return false
-    if z-coordinate of {_loc} is not between 76 and 106:
-        return false
-    set {_type} to {_b}.getType()
-    if {_type} is {-am.base::%{_i}%} or {-am.ore::%{_i}%}:
+    if type of {_b} is {-am.base::%{_i}%}:
+        return true
+    if type of {_b} is {-am.ore::%{_i}%}:
         return true
     return false
 
-function am_drill_area(p: player) :: number:
-    set {_item} to {_p}.getInventory().getItemInMainHand()
-    if {_item}.getType() is not Material.NETHERITE_PICKAXE:
-        return 0
-    set {_meta} to {_item}.getItemMeta()
-    if {_meta}.hasItemModel() is not true:
-        return 0
-    set {_model} to {_meta}.getItemModel()
-    if {_model}.getNamespace() is not "astral":
-        return 0
-    set {_key} to {_model}.getKey()
-    return {-am.drill::%{_key}%} ? 0
-
-function am_drill(p: player, origin: location, area: number, direction: text):
-    if world of {_p} is not world of {_origin}:
+function am_count(p: player, i: number, n: number):
+    if {_i} is not am_rank({_p}):
         stop
-    if distance between {_p} and {_origin} > 8:
-        stop
-    if am_drill_area({_p}) is not {_area}:
+    if {_i} is {-am.count} - 1:
+        set {-am.active::%uuid of {_p}%} to now
+    set {_goal} to {-am.goal::%{_i} + 1%}
+    if {_goal} is not set:
         stop
     set {_id} to uuid of {_p}
-    set {-am.drilling::%{_id}%} to true
-    loop {-am.offset::%{_area}%::%{_direction}%::*}:
-        set {_parts::*} to loop-value split at ","
-        set {_loc} to {_origin}.clone()
-        add {_parts::1} parsed as number to x-coordinate of {_loc}
-        add {_parts::2} parsed as number to y-coordinate of {_loc}
-        add {_parts::3} parsed as number to z-coordinate of {_loc}
-        set {_block} to {_loc}.getBlock()
-        if am_can_break({_block}, {_p}) is true:
-            if am_drill_area({_p}) is {_area}:
-                {_p}.breakBlock({_block})
-    delete {-am.drilling::%{_id}%}
+    set {_b} to ({-am.b::%{_id}%} ? 0) + {_n}
+    if {_b} >= {_goal}:
+        if ({-am.b::%{_id}%} ? 0) < {_goal}:
+            send "&a&l¡Ya picaste lo necesario! &7Abrí &f%{-am.name::%{_i} + 1%}% &7desde &f/minas&7." to {_p}
+            play sound "entity.player.levelup" to {_p}
+        set {_b} to {_goal}
+    set {-am.b::%{_id}%} to {_b}
+
+# Area de los taladros dentro del pozo (el datapack no pica en este mundo).
+function am_drill_area(p: player) :: number:
+    set {_name} to uncolored name of {_p}'s tool
+    if {_name} is not set:
+        return 0
+    loop {-am.drillnames::*}:
+        if {_name} contains loop-value:
+            return {-am.drill::%loop-value%}
+    return 0
+
+function am_drill(p: player, origin: location, area: number, dir: text):
+    set {_i} to am_id({_origin})
+    set {_n} to 0
+    loop {-am.off::%{_area}%::%{_dir}%::*}:
+        set {_b} to block at ({_origin} ~ loop-value)
+        if am_can_break({_b}, {_p}) is true:
+            break {_b} naturally using {_p}'s tool
+            add 1 to {_n}
+    if {_n} > 0:
+        am_count({_p}, {_i}, {_n})
 
 on break with priority highest:
-    if name of world of event-block is "astral_minas":
-        if am_can_break(event-block, player) is false:
-            cancel event
+    if name of world of event-block is not "astral_minas":
+        stop
+    if player's gamemode is creative:
+        if player has permission "astral.minas.admin":
+            stop
+    if am_can_break(event-block, player) is false:
+        cancel event
 
 on uncancelled break with priority monitor:
+    if name of world of event-block is not "astral_minas":
+        stop
     if player's gamemode is not survival:
         stop
-    set {_loc} to event-block.getLocation()
-    set {_i} to am_id({_loc})
-    if {_i} is 0:
-        stop
-    set {_id} to uuid of player
-    if {_i} is am_rank(player):
-        set {_next} to {_i} + 1
-        if {_next} is {-am.count}:
-            set {-am.active::%{_id}%} to now
-        set {_goal} to {-am.goal::%{_next}%}
-        set {_blocks} to {am.blocks::%{_id}%} ? 0
-        if {_goal} is set:
-            if {_blocks} < {_goal}:
-                add 1 to {_blocks}
-                set {am.blocks::%{_id}%} to {_blocks}
-                am_score(player, "am_blocks", {_blocks})
-    if {-am.drilling::%{_id}%} is true:
-        stop
+    set {_i} to am_id(location of event-block)
+    am_count(player, {_i}, 1)
     if player is sneaking:
         stop
     set {_area} to am_drill_area(player)
@@ -752,9 +881,9 @@ on uncancelled break with priority monitor:
         stop
     set {_pitch} to pitch of player
     if {_pitch} >= 50:
-        set {_direction} to "down"
+        set {_dir} to "down"
     else if {_pitch} <= -50:
-        set {_direction} to "up"
+        set {_dir} to "up"
     else:
         set {_yaw} to mod(yaw of player + 360, 360)
         if {_yaw} is between 45 and 135:
@@ -766,16 +895,18 @@ on uncancelled break with priority monitor:
         else:
             set {_face} to "s"
         set {_up} to 0
-        if y-coordinate of {_loc} <= floor(y-coordinate of player):
+        if y-coordinate of event-block <= floor(y-coordinate of player):
             set {_up} to 1
-        set {_direction} to "%{_face}%%{_up}%"
+        set {_dir} to "%{_face}%%{_up}%"
+    set {_origin} to location of event-block
     wait 1 tick
     if player is online:
-        am_drill(player, {_loc}, {_area}, {_direction})
+        am_drill(player, {_origin}, {_area}, {_dir})
 
 on place:
     if name of world of event-block is "astral_minas":
-        cancel event
+        if player's gamemode is not creative:
+            cancel event
 
 on explode:
     if name of world of event-location is "astral_minas":
@@ -783,134 +914,199 @@ on explode:
 
 on bucket empty:
     if name of world of player is "astral_minas":
-        cancel event
-
-on bucket fill:
-    if name of world of player is "astral_minas":
-        cancel event
+        if player's gamemode is not creative:
+            cancel event
 
 on damage of player:
     if name of world of victim is "astral_minas":
         cancel event
 
+# ---------------------------------------------------------------- entrar y salir
+
 on join:
+    am_load(player)
     am_sync(player)
 
 on world change:
     am_sync(player)
 
 on quit:
-    set {_id} to uuid of player
-    delete {-am.lastMine::%{_id}%}
-    delete {-am.active::%{_id}%}
-    delete {-am.seconds::%{_id}%}
+    am_save(player)
+    delete {-am.b::%uuid of player%}
+    delete {-am.shown::%uuid of player%}
+    delete {-am.gui::%uuid of player%}
+    delete {-am.active::%uuid of player%}
+    delete {-am.sec::%uuid of player%}
 
+# Nadie entra por /tp o /tpa a una mina que no abrio.
 on teleport:
     if name of world of event-location is not "astral_minas":
         stop
     if player has permission "astral.minas.admin":
-        if gamemode of player is creative:
+        if player's gamemode is creative:
             stop
     set {_i} to am_id(event-location)
     if {_i} is 0:
         cancel event
     else if {_i} > am_rank(player):
         cancel event
+        send "&cTodavía no abriste esa mina." to player
+
+every 30 seconds:
+    loop all players:
+        am_save(loop-player)
 
 every 1 second:
-    if {am.enabled} is not true:
-        stop
-    set {_world} to world "astral_minas"
-    if {_world} is not set:
-        stop
-    loop all players in {_world}:
-        if loop-player has permission "astral.minas.admin":
-            if gamemode of loop-player is creative:
+    loop all players in am_world():
+        if loop-player's gamemode is creative:
+            if loop-player has permission "astral.minas.admin":
                 continue
         set {_i} to am_id(location of loop-player)
         if {_i} is 0:
-            am_lobby(loop-player)
-        else if {_i} > am_rank(loop-player):
-            am_lobby(loop-player)
-        else:
-            set {_id} to uuid of loop-player
-            if {-am.lastMine::%{_id}%} is not {_i}:
-                set {-am.lastMine::%{_id}%} to {_i}
-                am_score(loop-player, "am_here", {_i})
-            if y-coordinate of loop-player < 66:
-                teleport loop-player to am_spawn({_i})
+            execute console command "spawn %name of loop-player%"
+            continue
+        if {_i} > am_rank(loop-player):
+            execute console command "spawn %name of loop-player%"
+            continue
+        set {_id} to uuid of loop-player
+        if {-am.here::%{_id}%} is not {_i}:
+            set {-am.here::%{_id}%} to {_i}
+            am_score(loop-player, "am_here", {_i})
+        if y-coordinate of loop-player < 66:
+            teleport loop-player to am_spawn({_i})
+        # Minutos de mineria activa (picó en los ultimos 10 s) para abrir la ultima mina.
+        if {-am.active::%{_id}%} is set:
             if {_i} is {-am.count} - 1:
-                if {_i} is am_rank(loop-player):
-                    set {_active} to {-am.active::%{_id}%}
-                    if {_active} is set:
-                        if difference between now and {_active} <= 10 seconds:
-                            if ({am.minutes::%{_id}%} ? 0) < {-am.finalMinutes}:
-                                add 1 to {-am.seconds::%{_id}%}
-                                if {-am.seconds::%{_id}%} >= 60:
-                                    delete {-am.seconds::%{_id}%}
-                                    add 1 to {am.minutes::%{_id}%}
-                                    am_score(loop-player, "am_minutes", {am.minutes::%{_id}%})
+                if difference between now and {-am.active::%{_id}%} <= 10 seconds:
+                    if ({am.minutes::%{_id}%} ? 0) < {-am.finalMinutes}:
+                        add 1 to {-am.sec::%{_id}%}
+                        if {-am.sec::%{_id}%} >= 60:
+                            delete {-am.sec::%{_id}%}
+                            add 1 to {am.minutes::%{_id}%}
+                            am_score(loop-player, "am_minutes", {am.minutes::%{_id}%})
+
+# El panel lateral se actualiza cada 3 segundos y solo si cambio el contador.
+every 3 seconds:
+    loop all players in am_world():
+        set {_id} to uuid of loop-player
+        if {-am.shown::%{_id}%} is not {-am.b::%{_id}%}:
+            set {-am.shown::%{_id}%} to {-am.b::%{_id}%}
+            am_score(loop-player, "am_blocks", {-am.b::%{_id}%} ? 0)
+
+# ---------------------------------------------------------------- regeneracion
+#
+# Cada mina tiene dos moldes ya rellenos debajo del pozo (tapados por la isla). Regenerar es un
+# solo /clone del molde al pozo: no recorre bloques con Skript. Se turnan los dos moldes para que
+# no salga siempre igual. Solo se regenera una mina con jugadores adentro (si esta vacia, sus
+# chunks ni estan cargados); al llegar alguien, si ya paso el tiempo se regenera en el momento.
 
 function am_reset(i: number):
-    if {-am.busy} is true:
-        stop
-    set {_world} to world "astral_minas"
-    if {_world} is not set:
-        stop
-    set {-am.busy} to true
-    delete {-am.ready::%{_i}%}
-    set {_offset} to ({_i} - 1) * 512
-    loop all players in {_world}:
+    set {_x} to ({_i} - 1) * 512
+    loop all players in am_world():
         if am_id(location of loop-player) is {_i}:
-            teleport loop-player to am_spawn({_i})
-            send "&eRegenerando la mina. El pozo se abre en unos segundos." to loop-player
-    set {_base} to {-am.base::%{_i}%}.createBlockData()
-    set {_ore} to {-am.ore::%{_i}%}.createBlockData()
-    set {_chance} to {-am.chance::%{_i}%}
-    loop 620 times:
-        set {_row} to loop-number - 1
-        set {_y} to floor({_row} / 31) + 73
-        set {_z} to mod({_row}, 31) + 76
-        loop 31 times:
-            set {_x} to {_offset} + 74 + loop-number-2
-            set {_block} to {_world}.getBlockAt({_x}.intValue(), {_y}.intValue(), {_z}.intValue())
-            set {_data} to {_base}
-            set {_roll} to random integer between 1 and 100
-            if {_roll} <= {_chance}:
-                set {_data} to {_ore}
-            {_block}.setBlockData({_data}, false)
-        if mod({_row}, 8) is 7:
-            wait 1 tick
-    loop all players in {_world}:
-        if am_id(location of loop-player) is {_i}:
-            if y-coordinate of loop-player < 93:
+            if am_in_pit(location of loop-player, {_i}) is true:
                 teleport loop-player to am_spawn({_i})
-    set {-am.ready::%{_i}%} to true
-    delete {-am.busy}
-
-command /minasactivar:
-    permission: astral.minas.admin
-    trigger:
-        if world "astral_minas" is not set:
-            send "&cFalta cargar el mundo astral_minas." to sender
-            stop
-        set {am.enabled} to true
-        send "&aMinas activadas. Los pozos se habilitan al completar su primera regeneración." to sender
+            send action bar "&a⛏ La mina se regeneró" to loop-player
+    set {-am.mold::%{_i}%} to mod(({-am.mold::%{_i}%} ? 0) + 1, 2)
+    set {_y} to -20 - {-am.mold::%{_i}%} * 25
+    execute console command "minecraft:execute in minecraft:astral_minas run clone %{_x} + 75% %{_y}% 76 %{_x} + 105% %{_y} + 20 - 1% 106 %{_x} + 75% 73 76 replace"
+    set {_t} to now
+    add 9 minutes to {_t}
+    set {-am.next::%{_i}%} to {_t}
+    delete {-am.warned::%{_i}%}
 
 every 5 seconds:
     if {am.enabled} is not true:
         stop
-    if {-am.busy} is true:
+    if {-am.building} is true:
         stop
-    loop {-am.count} times:
-        if {-am.ready::%loop-number%} is not true:
-            am_reset(loop-number)
-            stop
+    loop all players in am_world():
+        set {_i} to am_id(location of loop-player)
+        if {_i} > 0:
+            set {_busy::%{_i}%} to true
+    loop {_busy::*}:
+        set {_i} to loop-index parsed as number
+        if {-am.next::%{_i}%} is not set:
+            am_reset({_i})
+        else if {-am.next::%{_i}%} <= now:
+            am_reset({_i})
+        else if {-am.warned::%{_i}%} is not set:
+            if difference between now and {-am.next::%{_i}%} <= 10 seconds:
+                set {-am.warned::%{_i}%} to true
+                loop all players in am_world():
+                    if am_id(location of loop-player) is {_i}:
+                        send "&eLa mina se regenera en 10 segundos." to loop-player
 
-every 27 seconds:
-    if {am.enabled} is not true:
-        stop
-    if {-am.busy} is true:
-        stop
-    set {-am.cursor} to mod({-am.cursor}, {-am.count}) + 1
-    am_reset({-am.cursor})
+# Rellena los dos moldes de una mina (solo al instalar o si cambian las mezclas).
+function am_build_mold(i: number, m: number):
+    set {_w} to am_world()
+    set {_x0} to ({_i} - 1) * 512 + 75
+    set {_y0} to -20 - {_m} * 25
+    set {_base} to {-am.base::%{_i}%}
+    set {_ore} to {-am.ore::%{_i}%}
+    set {_chance} to {-am.chance::%{_i}%}
+    execute console command "minecraft:execute in minecraft:astral_minas run forceload add %{_x0}% 76 %{_x0} + 105 - 75% 106"
+    wait 10 ticks
+    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x0}% %{_y0}% 76 %{_x0} + 105 - 75% %{_y0} + 20 - 1% 106 %{-am.baseid::%{_i}%}%"
+    if {_chance} > 0:
+        set {_y} to {_y0}
+        while {_y} < {_y0} + 20:
+            set {_x} to {_x0}
+            while {_x} < {_x0} + 31:
+                set {_z} to 76
+                while {_z} <= 106:
+                    if random integer between 1 and 1000 <= {_chance} * 10:
+                        set block at location({_x}, {_y}, {_z}, {_w}) to {_ore}
+                    add 1 to {_z}
+                add 1 to {_x}
+            add 1 to {_y}
+            wait 1 tick
+    execute console command "minecraft:execute in minecraft:astral_minas run forceload remove %{_x0}% 76 %{_x0} + 105 - 75% 106"
+
+command /minasmoldes [<integer>]:
+    permission: astral.minas.admin
+    trigger:
+        if am_world() is not set:
+            send "&cFalta crear el mundo astral_minas (ver instalacion.txt)." to sender
+            stop
+        if {-am.building} is true:
+            send "&eYa se están armando los moldes." to sender
+            stop
+        set {-am.building} to true
+        set {_from} to arg-1 ? 1
+        set {_to} to arg-1 ? {-am.count}
+        send "&eArmando moldes de las minas %{_from}% a %{_to}%..." to sender
+        loop {-am.count} times:
+            if loop-number is between {_from} and {_to}:
+                am_build_mold(loop-number, 0)
+                am_build_mold(loop-number, 1)
+                delete {-am.next::%loop-number%}
+                send "&7  Molde listo: %{-am.name::%loop-number%}%" to sender
+        delete {-am.building}
+        send "&aMoldes listos." to sender
+
+command /minasactivar:
+    permission: astral.minas.admin
+    trigger:
+        if am_world() is not set:
+            send "&cFalta crear el mundo astral_minas (ver instalacion.txt)." to sender
+            stop
+        set {am.enabled} to true
+        send "&aMinas activadas. Cada pozo se llena cuando entra el primer jugador." to sender
+
+command /minasreset <integer>:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is between 1 and {-am.count}:
+            am_reset(arg-1)
+            send "&aRegenerada %{-am.name::%arg-1%}%." to sender
+
+command /minasrango <player> <integer>:
+    permission: astral.minas.admin
+    trigger:
+        if arg-2 is between 1 and {-am.count}:
+            set {am.rank::%uuid of arg-1%} to arg-2
+            set {am.blocks::%uuid of arg-1%} to 0
+            set {-am.b::%uuid of arg-1%} to 0
+            am_sidebar(arg-1)
+            send "&a%arg-1% ahora tiene abierta hasta %{-am.name::%arg-2%}%." to sender

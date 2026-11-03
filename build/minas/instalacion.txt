@@ -1,143 +1,174 @@
-# Ejecutar la creación una sola vez. Confirmar que la dimensión es minecraft:astral_minas.
-/mv create astral_minas normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-/mv modify astral_minas set pvp false
-/mv modify astral_minas set hunger false
-/mv modify astral_minas set gamemode survival
-/mv modify astral_minas set allow-weather false
-/mv gamerule set minecraft:spawn_mobs false astral_minas
-/mv gamerule set minecraft:keep_inventory true astral_minas
-/mv gamerule set minecraft:advance_time false astral_minas
-/minecraft:execute in minecraft:astral_minas run time set noon
-/rg flag -w astral_minas __global__ block-place deny
-/rg flag -w astral_minas __global__ chest-access deny
-/rg flag -w astral_minas __global__ pistons deny
-# Subir los siete .schem del ZIP a WorldEdit/schematics antes de pegar.
-# Pegar en creativo como administrador. Confirmar cada paste antes de seguir.
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 0 64 0
+# Minas Astrales: armado inicial (generado por datapack-src/minas.py).
+# 1) Crear el mundo vacio (una sola vez), desde la consola:
+mv create astral_minas normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify astral_minas set pvp false
+mv modify astral_minas set hunger false
+mv modify astral_minas set gamemode survival
+mv modify astral_minas set allow-weather false
+mv gamerule set minecraft:spawn_mobs false astral_minas
+mv gamerule set minecraft:keep_inventory true astral_minas
+mv gamerule set minecraft:advance_time false astral_minas
+minecraft:execute in minecraft:astral_minas run time set noon
+rg flag -w astral_minas __global__ block-place deny
+rg flag -w astral_minas __global__ chest-access deny
+rg flag -w astral_minas __global__ pistons deny
+rg flag -w astral_minas __global__ mob-spawning allow
+
+# 2) Subir los 7 .schem a plugins/WorldEdit/schematics/ (ya estan en Aternos).
+#    Pegar EN EL JUEGO, en creativo y con OP, mina por mina (esperar que termine cada //paste):
+# Mina 1: I · Carbón
+/execute in minecraft:astral_minas run tp @s 0 64 0
 //schem load astral-mina-carbon
 //paste -a
-/minecraft:fill 84 92 67 96 92 74 polished_deepslate
-/minecraft:fill 84 93 67 96 96 74 air
-/minecraft:summon villager 94.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 512 64 0
+/fill 84 92 67 96 92 74 polished_deepslate
+/fill 84 93 67 96 96 74 air
+# Mina 2: I · Cobre
+/execute in minecraft:astral_minas run tp @s 512 64 0
 //schem load astral-mina-cobre
 //paste -a
-/minecraft:fill 596 92 67 608 92 74 polished_deepslate
-/minecraft:fill 596 93 67 608 96 74 air
-/minecraft:summon villager 606.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 1024 64 0
+/fill 596 92 67 608 92 74 polished_deepslate
+/fill 596 93 67 608 96 74 air
+# Mina 3: I · Hierro
+/execute in minecraft:astral_minas run tp @s 1024 64 0
 //schem load astral-mina-hierro
 //paste -a
-/minecraft:fill 1108 92 67 1120 92 74 polished_deepslate
-/minecraft:fill 1108 93 67 1120 96 74 air
-/minecraft:summon villager 1118.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 1536 64 0
+/fill 1108 92 67 1120 92 74 polished_deepslate
+/fill 1108 93 67 1120 96 74 air
+# Mina 4: I · Oro
+/execute in minecraft:astral_minas run tp @s 1536 64 0
 //schem load astral-mina-oro
 //paste -a
-/minecraft:fill 1620 92 67 1632 92 74 polished_deepslate
-/minecraft:fill 1620 93 67 1632 96 74 air
-/minecraft:summon villager 1630.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 2048 64 0
+/fill 1620 92 67 1632 92 74 polished_deepslate
+/fill 1620 93 67 1632 96 74 air
+# Mina 5: I · Esmeralda
+/execute in minecraft:astral_minas run tp @s 2048 64 0
 //schem load astral-mina-esmeralda
 //paste -a
-/minecraft:fill 2132 92 67 2144 92 74 polished_deepslate
-/minecraft:fill 2132 93 67 2144 96 74 air
-/minecraft:summon villager 2142.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 2560 64 0
+/fill 2132 92 67 2144 92 74 polished_deepslate
+/fill 2132 93 67 2144 96 74 air
+# Mina 6: I · Diamante
+/execute in minecraft:astral_minas run tp @s 2560 64 0
 //schem load astral-mina-diamante
 //paste -a
-/minecraft:fill 2644 92 67 2656 92 74 polished_deepslate
-/minecraft:fill 2644 93 67 2656 96 74 air
-/minecraft:summon villager 2654.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 3072 64 0
+/fill 2644 92 67 2656 92 74 polished_deepslate
+/fill 2644 93 67 2656 96 74 air
+# Mina 7: II · Carbón
+/execute in minecraft:astral_minas run tp @s 3072 64 0
 //schem load astral-mina-carbon
 //paste -a
-/minecraft:fill 3156 92 67 3168 92 74 polished_deepslate
-/minecraft:fill 3156 93 67 3168 96 74 air
-/minecraft:summon villager 3166.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 3584 64 0
+/fill 3156 92 67 3168 92 74 polished_deepslate
+/fill 3156 93 67 3168 96 74 air
+# Mina 8: II · Cobre
+/execute in minecraft:astral_minas run tp @s 3584 64 0
 //schem load astral-mina-cobre
 //paste -a
-/minecraft:fill 3668 92 67 3680 92 74 polished_deepslate
-/minecraft:fill 3668 93 67 3680 96 74 air
-/minecraft:summon villager 3678.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 4096 64 0
+/fill 3668 92 67 3680 92 74 polished_deepslate
+/fill 3668 93 67 3680 96 74 air
+# Mina 9: II · Hierro
+/execute in minecraft:astral_minas run tp @s 4096 64 0
 //schem load astral-mina-hierro
 //paste -a
-/minecraft:fill 4180 92 67 4192 92 74 polished_deepslate
-/minecraft:fill 4180 93 67 4192 96 74 air
-/minecraft:summon villager 4190.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 4608 64 0
+/fill 4180 92 67 4192 92 74 polished_deepslate
+/fill 4180 93 67 4192 96 74 air
+# Mina 10: II · Oro
+/execute in minecraft:astral_minas run tp @s 4608 64 0
 //schem load astral-mina-oro
 //paste -a
-/minecraft:fill 4692 92 67 4704 92 74 polished_deepslate
-/minecraft:fill 4692 93 67 4704 96 74 air
-/minecraft:summon villager 4702.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 5120 64 0
+/fill 4692 92 67 4704 92 74 polished_deepslate
+/fill 4692 93 67 4704 96 74 air
+# Mina 11: II · Esmeralda
+/execute in minecraft:astral_minas run tp @s 5120 64 0
 //schem load astral-mina-esmeralda
 //paste -a
-/minecraft:fill 5204 92 67 5216 92 74 polished_deepslate
-/minecraft:fill 5204 93 67 5216 96 74 air
-/minecraft:summon villager 5214.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 5632 64 0
+/fill 5204 92 67 5216 92 74 polished_deepslate
+/fill 5204 93 67 5216 96 74 air
+# Mina 12: II · Diamante
+/execute in minecraft:astral_minas run tp @s 5632 64 0
 //schem load astral-mina-diamante
 //paste -a
-/minecraft:fill 5716 92 67 5728 92 74 polished_deepslate
-/minecraft:fill 5716 93 67 5728 96 74 air
-/minecraft:summon villager 5726.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 6144 64 0
+/fill 5716 92 67 5728 92 74 polished_deepslate
+/fill 5716 93 67 5728 96 74 air
+# Mina 13: II · Restos ancestrales
+/execute in minecraft:astral_minas run tp @s 6144 64 0
 //schem load astral-mina-netherita
 //paste -a
-/minecraft:fill 6228 92 67 6240 92 74 polished_deepslate
-/minecraft:fill 6228 93 67 6240 96 74 air
-/minecraft:summon villager 6238.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 6656 64 0
+/fill 6228 92 67 6240 92 74 polished_deepslate
+/fill 6228 93 67 6240 96 74 air
+# Mina 14: III · Carbón
+/execute in minecraft:astral_minas run tp @s 6656 64 0
 //schem load astral-mina-carbon
 //paste -a
-/minecraft:fill 6740 92 67 6752 92 74 polished_deepslate
-/minecraft:fill 6740 93 67 6752 96 74 air
-/minecraft:summon villager 6750.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 7168 64 0
+/fill 6740 92 67 6752 92 74 polished_deepslate
+/fill 6740 93 67 6752 96 74 air
+# Mina 15: III · Cobre
+/execute in minecraft:astral_minas run tp @s 7168 64 0
 //schem load astral-mina-cobre
 //paste -a
-/minecraft:fill 7252 92 67 7264 92 74 polished_deepslate
-/minecraft:fill 7252 93 67 7264 96 74 air
-/minecraft:summon villager 7262.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 7680 64 0
+/fill 7252 92 67 7264 92 74 polished_deepslate
+/fill 7252 93 67 7264 96 74 air
+# Mina 16: III · Hierro
+/execute in minecraft:astral_minas run tp @s 7680 64 0
 //schem load astral-mina-hierro
 //paste -a
-/minecraft:fill 7764 92 67 7776 92 74 polished_deepslate
-/minecraft:fill 7764 93 67 7776 96 74 air
-/minecraft:summon villager 7774.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 8192 64 0
+/fill 7764 92 67 7776 92 74 polished_deepslate
+/fill 7764 93 67 7776 96 74 air
+# Mina 17: III · Oro
+/execute in minecraft:astral_minas run tp @s 8192 64 0
 //schem load astral-mina-oro
 //paste -a
-/minecraft:fill 8276 92 67 8288 92 74 polished_deepslate
-/minecraft:fill 8276 93 67 8288 96 74 air
-/minecraft:summon villager 8286.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 8704 64 0
+/fill 8276 92 67 8288 92 74 polished_deepslate
+/fill 8276 93 67 8288 96 74 air
+# Mina 18: III · Esmeralda
+/execute in minecraft:astral_minas run tp @s 8704 64 0
 //schem load astral-mina-esmeralda
 //paste -a
-/minecraft:fill 8788 92 67 8800 92 74 polished_deepslate
-/minecraft:fill 8788 93 67 8800 96 74 air
-/minecraft:summon villager 8798.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 9216 64 0
+/fill 8788 92 67 8800 92 74 polished_deepslate
+/fill 8788 93 67 8800 96 74 air
+# Mina 19: III · Diamante
+/execute in minecraft:astral_minas run tp @s 9216 64 0
 //schem load astral-mina-diamante
 //paste -a
-/minecraft:fill 9300 92 67 9312 92 74 polished_deepslate
-/minecraft:fill 9300 93 67 9312 96 74 air
-/minecraft:summon villager 9310.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:astral_minas run minecraft:tp @s 9728 64 0
+/fill 9300 92 67 9312 92 74 polished_deepslate
+/fill 9300 93 67 9312 96 74 air
+# Mina 20: III · Netherita
+/execute in minecraft:astral_minas run tp @s 9728 64 0
 //schem load astral-mina-netherita
 //paste -a
-/minecraft:fill 9812 92 67 9824 92 74 polished_deepslate
-/minecraft:fill 9812 93 67 9824 96 74 air
-/minecraft:summon villager 9822.5 93 70.5 {Tags:["astral_mina_venta"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Venta rápida",color:"gold"},CustomNameVisible:1b}
-/minecraft:execute in minecraft:lobby run minecraft:summon villager 174.636 100 225.735 {Tags:["astral_minas_lobby"],NoAI:1b,Invulnerable:1b,Silent:1b,PersistenceRequired:1b,CustomName:{text:"Minas Astrales",color:"aqua"},CustomNameVisible:1b}
-# La expansión ScoreboardObjectives ya se usa para las diarias. Instalarla si falta.
-/papi ecloud download ScoreboardObjectives
-/papi reload
-/skript reload astral_minas
-/tab reload
-# Habilitar después de comprobar los nueve pegados y el suelo del aldeano del lobby.
-/minasactivar
+/fill 9812 92 67 9824 92 74 polished_deepslate
+/fill 9812 93 67 9824 96 74 air
+
+# 3) Subir build/mythicmobs/mobs/astral.yml (trae los aldeanos nuevos) y recargar:
+mm reload
+#    Aldeanos de venta rapida (uno por mina) desde la consola:
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,94.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,606.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,1118.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,1630.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,2142.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,2654.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,3166.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,3678.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,4190.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,4702.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,5214.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,5726.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,6238.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,6750.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,7262.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,7774.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,8286.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,8798.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,9310.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,9822.5,93,70.5,0,0
+
+# 4) Aldeano del lobby (al lado de Expediciones). WorldGuard bloquea mobs en el lobby:
+rg flag -w lobby __global__ mob-spawning allow
+mm mobs spawn astral_npc_minas 1 lobby,174.636,100,225.735,180,0
+rg flag -w lobby __global__ mob-spawning deny
+
+# 5) Script y panel. Subir astral_minas.sk a plugins/Skript/scripts/ y la seccion de TAB.
+skript reload astral_minas
+tab reload
+# 6) Rellenar los moldes (tarda ~1 minuto por mina; se puede hacer de a una: /minasmoldes 3)
+minasmoldes
+minasactivar

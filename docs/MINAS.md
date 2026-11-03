@@ -1,60 +1,81 @@
 # Minas Astrales
 
+Todo sale de `datapack-src/minas.py` (números, precios, instalación, panel de TAB) y `datapack-src/minas.sk`
+(lógica). Correr `python minas.py` y `python lobby.py` desde `datapack-src/`.
+
+**Solo usa Skript + Vault (EssentialsX).** La primera versión necesitaba skript-reflect, que Aternos no tiene en su
+catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera en Skript puro (03/11/2026).
+
+## Las 20 minas
+
+| # | Mina | Mezcla | Para abrirla: bloques en la anterior | Oro |
+|---|---|---|---:|---:|
+| 1 | I · Carbón | piedra + 22 % mena | — | — |
+| 2-6 | I · Cobre, Hierro, Oro, Esmeralda, Diamante | piedra + 22 % mena | 400 → 1.300 | 80 → 1.300 |
+| 7-12 | II · Carbón … Diamante | mena + 30 % bloque compacto | 1.700 → 4.500 | 2.500 → 60.000 |
+| 13 | II · Restos ancestrales | netherrack + 8 % restos | 5.500 | 120.000 |
+| 14-19 | III · Carbón … Diamante | solo bloques compactos | 7.000 → 20.000 | 250.000 → 700.000 |
+| 20 | III · Netherita | solo bloques de netherita | 500.000 | 25.000.000 + 25 h de minería activa en Diamante III |
+
+- Los bloques solo cuentan en **la mina más alta que abriste** (la que lleva a la siguiente). Se cuentan en memoria
+  y se guardan cada 30 s y al salir (no se escribe el disco en cada bloque).
+- "Minería activa" = estar en Diamante III habiendo picado en los últimos 10 segundos.
+- Precios de venta en `PRICES` (piedra y roca 0,1; carbón 0,6; diamante 8; bloque de diamante 72; restos 600;
+  bloque de netherita 4.000…). Ojo: Tier III Carbón paga menos por bloque que Restos ancestrales (los bloques de
+  carbón valen poco); se compensa con que son 100 % bloques y con el costo bajo de las siguientes.
+
+## Cómo funciona
+
+- **Lobby:** aldeano *Minas Astrales* (`astral_npc_minas`, MythicMobs) 4 bloques al oeste de Expediciones. Abre
+  el menú (`/minas` también, desde el lobby o las minas): verde = abierta (clic viaja), amarilla = la siguiente
+  (muestra bloques, oro y ✔/✘; clic la desbloquea si cumple), barrera = bloqueada.
+- **Cada mina:** aldeano *Venta rápida* (`astral_npc_mina_venta`) junto a la plataforma, con el botón
+  **"Vender todos mis minerales"** (muestra cuánto te pagan). Vende minerales, piedra y roca del inventario; no
+  toca nada con nombre o descripción (equipo y objetos Astral).
+- **Protección:** en el mundo `astral_minas` solo se pueden romper los bloques de la mezcla, dentro del pozo, y
+  en una mina abierta. No se puede poner bloques, ni explotar, ni recibir daño. Si alguien entra por `/tp` a una
+  mina que no abrió, vuelve al spawn. Si cae al vacío, vuelve a la plataforma.
+- **Taladros:** el datapack no pica en este mundo (tag `astral.mines`); el script rompe el área del taladro
+  (se reconoce por el nombre del ítem) solo dentro del pozo, y esos bloques también cuentan. Con Shift pica uno.
+- **Regeneración:** cada mina tiene dos moldes ya rellenos debajo del pozo (y −20..−1 y −45..−26, tapados por la
+  isla). Regenerar es un solo `/clone` del molde al pozo, alternando moldes. Solo se regenera una mina con gente
+  adentro, cada 9 minutos (aviso 10 s antes; los que están en el pozo suben a la plataforma).
+- **Panel lateral (TAB):** en el mundo de minas el panel es el mismo, pero en lugar de las misiones diarias muestra
+  la mina actual, la siguiente, bloques picados / necesarios, el costo y (en Diamante III) los minutos.
+
 ## Mapas
 
-Hay **siete construcciones para veinte minas**. Carbón, cobre, hierro, oro, esmeralda y diamante tienen cada uno su mapa, repetido en los tres tiers. El mapa de Netherita se usa para Restos ancestrales II y Netherita III. El pozo ocupa las mismas coordenadas locales en los siete mapas.
+Siete construcciones para las 20 minas (cada mineral usa el mismo mapa en los 3 tiers; Netherita para Restos y
+Netherita III). El pozo (31 × 20 × 31) está en las mismas coordenadas locales en las siete.
 
-Para Hierro se usó el adjunto **mina.schem**, de 180 × 124 × 190 bloques. Se retiraron 16 bloques de comandos, el contenido de los contenedores y los datos interactivos de carteles y atriles. Se diseñaron las otras seis islas con terreno, edificios y paletas temáticas propias. Los otros adjuntos eran variantes PvP o mundos antiguos completos.
+- El de Hierro sale del `mina.schem` que mandó el dueño (de terceros): por eso **los schematics no están en el repo**
+  (se sacó el ZIP el 03/11/2026). Se arman con `python minas.py --schematic <mina.schem>` en `.local/minas/` y ya
+  están subidos a `plugins/WorldEdit/schematics/` en Aternos.
+- Los otros seis son islas generadas por `minas_mapas.py`. [Vista](../build/minas/Vista-Minas-Astrales.png).
+- Pendiente si se quiere: reemplazarlos por mapas gratis más lindos (ver opciones abajo; casi todos piden cuenta).
+  - [15 Prison Mines (Premiere Setups)](https://builtbybit.com/resources/free-15-prison-mines-premiere-setups.22712/)
+  - [4 Free Prison Mines (Jusserhead)](https://www.planetminecraft.com/project/4-free-prison-mines-download-a-project-by-jusser-/) — licencia no comercial sin derivados.
+  - [27 Prison Mines (Horace Creations)](https://www.planetminecraft.com/project/27-prison-mines/)
 
-[Descargar los siete schematics](../build/minas/Mapas-Minas-Astrales.zip) · [Vista de las construcciones](../build/minas/Vista-Minas-Astrales.png)
+## Instalación en Aternos
 
-También se compararon tres opciones públicas antes de elegir el adjunto.
+Seguir [instalacion.txt](../build/minas/instalacion.txt) en orden:
 
-- [15 Prison Mines de Premiere Setups](https://builtbybit.com/resources/free-15-prison-mines-premiere-setups.22712/). Pack gratuito de schematics individuales con descarga tras iniciar sesión.
-- [4 Free Prison Mines de Jusserhead](https://www.planetminecraft.com/project/4-free-prison-mines-download-a-project-by-jusser-/). Cuatro temas y pozos de 31 × 31 × 21. El autor distribuye un mundo y aplica una licencia no comercial sin derivados.
-- [27 Prison Mines de Horace Creations](https://www.planetminecraft.com/project/27-prison-mines/). Conjunto de construcciones de 250 × 250 con demo gratuita.
+1. Crear el mundo `astral_minas` con Multiverse y sus reglas.
+2. Pegar los 20 mapas en el juego (creativo, OP) con `//schem load` + `//paste -a`.
+3. Invocar los 20 aldeanos de venta y el del lobby (`mm mobs spawn ...`). Antes subir el `astral.yml` nuevo de
+   MythicMobs y `mm reload`.
+4. Subir `build/minas/Skript/scripts/astral_minas.sk` a `plugins/Skript/scripts/` y la sección de TAB
+   (`build/lobby/TAB/secciones-config.yml`: `scoreboard` y `conditions`). `skript reload astral_minas`, `tab reload`.
+5. `/minasmoldes` (rellena los moldes, unos segundos por mina; se puede de a una: `/minasmoldes 5`) y `/minasactivar`.
 
-## Progresión inicial
+El datapack ya tiene el cambio del taladro (no hace falta volver a subirlo).
 
-El primer tier tiene piedra y mena. El segundo tiene mena y bloques compactos, seguido por Netherrack con restos ancestrales. El tercero se compone de bloques compactos y termina en bloques de netherita. La primera mina está abierta desde el inicio.
+Comandos de admin (`astral.minas.admin`): `/minasmoldes [n]`, `/minasactivar`, `/minasreset <n>`,
+`/minasrango <jugador> <n>`. Con creativo + ese permiso se puede editar el mundo libremente.
 
-| Mina | Bloques en la anterior | Oro |
-| --- | ---: | ---: |
-| I · Carbón | — | — |
-| I · Cobre | 350 | 55 |
-| I · Hierro | 550 | 150 |
-| I · Oro | 750 | 240 |
-| I · Esmeralda | 1.000 | 350 |
-| I · Diamante | 1.250 | 600 |
-| II · Carbón | 1.600 | 1.000 |
-| II · Cobre | 2.100 | 2.000 |
-| II · Hierro | 2.600 | 3.500 |
-| II · Oro | 3.200 | 4.800 |
-| II · Esmeralda | 3.800 | 6.500 |
-| II · Diamante | 4.500 | 10.000 |
-| II · Restos ancestrales | 5.500 | 17.000 |
-| III · Carbón | 6.500 | 26.000 |
-| III · Cobre | 8.000 | 40.000 |
-| III · Hierro | 9.500 | 60.000 |
-| III · Oro | 12.000 | 95.000 |
-| III · Esmeralda | 15.000 | 160.000 |
-| III · Diamante | 20.000 | 300.000 |
-| III · Netherita | 500.000 | 25.000.000 |
+## Probado
 
-Netherita III exige además **25 horas de minería activa en Diamante III**. El tiempo avanza mientras el jugador está en esa mina y ha picado en los últimos diez segundos. El tiempo completo se guarda por minuto.
-
-La progresión guarda el mayor rango abierto y los bloques de ese rango por UUID. El marcador muestra la mina actual, el siguiente desbloqueo, el lugar donde cuenta el progreso y su costo. El contador se detiene al cumplir el requisito y vuelve a cero al abrir el siguiente destino. La venta usa una lista de minerales, piedra y roca con precios propios y conserva el equipo y los objetos con datos personalizados. Las mezclas y los precios se ajustan en [minas.py](../datapack-src/minas.py).
-
-Cada regeneración recorre 19.220 bloques en tandas de hasta 248 por tick. Se turnan las veinte minas, cada nueve minutos por mina a 20 TPS. Al comenzar se traslada a los jugadores del sector a la plataforma del vendedor. Los taladros reutilizan su área habitual dentro del pozo y cada bloque extra pasa por la misma protección y contador. Con Shift pican un bloque.
-
-## Instalación
-
-1. Los siete schematics están en el ZIP. Para regenerarlos localmente, ejecutar `python datapack-src/minas.py --schematic "C:/Users/Trainx/Downloads/mina.schem"`. Se preparan los siete mapas con origen en la esquina de la selección.
-2. Extraer el ZIP y subir los siete archivos `.schem` a `plugins/WorldEdit/schematics/` y seguir [los comandos de instalación](../build/minas/instalacion.txt). Ejecutar los pegados en creativo con permisos de WorldEdit y `astral.minas.admin`. Comprobar el primer pozo en X 75–105, Y 73–92, Z 76–106 y la plataforma en X 89.5, Y 93, Z 70.5 antes de continuar.
-3. Copiar [astral_minas.sk](../build/minas/Skript/scripts/astral_minas.sk) a `plugins/Skript/scripts/`. Requiere Skript, skript-reflect y Vault con EssentialsX. Actualizar [el datapack](../build/AstralRPG-Items.zip) para que en este mundo el área del taladro pase por la protección de minas.
-4. Integrar la entrada `scoreboard.scoreboards.minas` antes de `astral` y las condiciones `am_*` de [la plantilla de TAB](../build/lobby/TAB/secciones-config.yml) en el `config.yml` activo. Mantener el orden para que el panel de minas tenga prioridad dentro de `astral_minas`. Usa la expansión ScoreboardObjectives de PlaceholderAPI, como el panel de diarias.
-5. Verificar el piso del lobby en X 174.636, Y 100, Z 225.735 antes de invocar al aldeano, a cuatro bloques del de Expediciones. Recargar Skript y TAB. Ejecutar `/minasactivar` al terminar los pegados. Probar con un jugador en supervivencia el menú, la protección fuera del pozo, el contador y una venta mixta con herramientas y minerales.
-
-## Estado en Aternos
-
-Los siete schematics están cargados en WorldEdit. Se guardó la sección de TAB y se actualizó el datapack tras comparar el ZIP activo con el local. La única diferencia es la función que dirige el taladro al sistema de minas. Los dos scripts de minas quedaron deshabilitados después de probar el arranque. Aternos no ofrece skript-reflect en su catálogo y Skript rechazó las llamadas de esa dependencia. La dimensión, los pegados, los vendedores y el aldeano del lobby quedan pendientes de una implementación compatible con Aternos.
+En el Paper local (Skript 2.17.1, sin skript-reflect): el script carga sin errores, los moldes salen con la mezcla
+correcta, el `clone` regenera el pozo alternando moldes, los precios, la detección de mina/pozo y el área del
+taladro. **No probado con un jugador real** (menú, cobro, venta y picar): probarlo en Aternos al instalar.

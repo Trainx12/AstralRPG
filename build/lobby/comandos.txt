@@ -71,6 +71,7 @@ mm mobs spawn astral_npc_gacha_monturas 1 lobby,208.5,101,185.5,90,0
 mm mobs spawn astral_npc_gacha_cosmeticos 1 lobby,208.5,101,197.5,90,0
 mm mobs spawn astral_npc_viajero 1 lobby,178.0,98,190.0,180,0
 mm mobs spawn astral_npc_cronista 1 lobby,181.636,100,225.735,180,0
+mm mobs spawn astral_npc_minas 1 lobby,174.636,100,225.735,180,0
 # Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):
 #   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)
 rg flag -w lobby __global__ mob-spawning allow

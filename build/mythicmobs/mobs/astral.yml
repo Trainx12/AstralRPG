@@ -1442,6 +1442,46 @@ astral_npc_viajero:
   - cancelevent @self ~onInteract
   - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract'
 
+astral_npc_minas:
+  Type: VILLAGER
+  Display: '&b&lMinas Astrales &7- elegir mina'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: TOOLSMITH
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="minasmenu <trigger.name>"} @self ~onInteract'
+
+astral_npc_mina_venta:
+  Type: VILLAGER
+  Display: '&a&lVenta rapida &7- minerales'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: MASON
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="minasventa <trigger.name>"} @self ~onInteract'
+
 astral_npc_cronista:
   Type: VILLAGER
   Display: '&b&lCronista &7- misiones diarias'

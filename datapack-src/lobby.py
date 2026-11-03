@@ -35,6 +35,7 @@ NPC_POS = {
     "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
     "astral_npc_viajero": (178.0, 98, 190.0, 180),      # union de los cuatro bloques marcados
     "astral_npc_cronista": (181.636, 100, 225.735, 180),
+    "astral_npc_minas": (174.636, 100, 225.735, 180),    # 4 bloques al oeste de Expediciones
 }
 
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}
