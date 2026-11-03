@@ -1389,9 +1389,9 @@ fn("mob/vida", vida)
 for x in ("u", "k"):
     for n, ceros in ((2, "00"), (1, "0"), (0, "")):
         fn(f"mob/pad_{x}_{n}", [f"$data modify storage {H}.{x}s set value \"{ceros}$({x})\""])
-fn("mob/vida_1", ['$data modify entity @s CustomName[-1].text set value " ❤ $(u)"'])
-fn("mob/vida_2", ['$data modify entity @s CustomName[-1].text set value " ❤ $(k).$(us)"'])
-fn("mob/vida_3", ['$data modify entity @s CustomName[-1].text set value " ❤ $(m).$(ks).$(us)"'])
+fn("mob/vida_1", ['$data modify entity @s CustomName.extra[-1].text set value " ❤ $(u)"'])
+fn("mob/vida_2", ['$data modify entity @s CustomName.extra[-1].text set value " ❤ $(k).$(us)"'])
+fn("mob/vida_3", ['$data modify entity @s CustomName.extra[-1].text set value " ❤ $(m).$(ks).$(us)"'])
 fn("mob/nombre_vanilla", [
     f"execute if entity @s[type={e}] run data modify storage {NS}:tmp mob.n append value "
     f"{{translate:\"entity.minecraft.{e.split(':')[1]}\"}}" for e in HOSTILE + ["minecraft:vex"]])
