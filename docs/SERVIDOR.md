@@ -42,8 +42,8 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
   cada recarga: medido +2-3 MB por `skript reload all` o `mm reload`, que no se liberan hasta reiniciar.
 - **Lag:** los elites del datapack eran persistentes y se acumulaban (se mataron 115 brujas cerca del spawn); el
   rescate de caidas escribia variables de Skript a disco cada tick. Las dos cosas se corrigieron.
-- **Plugins sacados por memoria (03/11/2026):** QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers.
-  No reinstalarlos sin medir. En Aternos, borrar un jar hay que confirmarlo con un clic real en "Yes" y revisar
+- **Plugins sacados por memoria (03/11/2026):** QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers
+  (y despues LevelledMobs y DamageIndicator por la escala por tier). No reinstalarlos sin medir. En Aternos, borrar un jar hay que confirmarlo con un clic real en "Yes" y revisar
   la lista despues: si no, el jar sigue ahi y vuelve a cargar. Resultado: Non-heap al prender 421 -> 395 MB.
 - **Reglas:** despues de una sesion con muchas recargas, reiniciar. Antes de sumar un plugin, medir Non-heap antes y
   despues. Estado sano sin jugadores: 20 TPS, ~420 MB Non-heap, ~1 GB de 2,2 GB de memoria normal.

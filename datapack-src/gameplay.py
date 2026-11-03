@@ -46,13 +46,82 @@ def apply(files,items,version):
     commands += ['lp group default permission set axgraves.allowgraves true']
     (output/'comandos.txt').write_text('\n'.join(commands)+'\n',encoding='utf-8')
 
-def pvp_lines():
-    from escala import FACTOR_ARMA
-    lines = []
-    for t in range(1, 6):
-        lines.append(f'    if scoreboard tags of attacker contains "astral.ht{t}":')
-        lines.append(f'        set damage to damage / {round(FACTOR_ARMA[t], 3)}')
-    return '\n'.join(lines)
+def indicador():
+    """Numeros de dano y vida del mob (reemplaza DamageIndicator).
+
+    El dano y la vida reales son chicos (sin miles de corazones); lo que se ve es lo real
+    x FACTOR_MOSTRADO del tier del mob (etiqueta astral.mt# que pone el datapack).
+    """
+    from escala import FACTOR_MOSTRADO
+    factores = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {round(FACTOR_MOSTRADO[t], 4)}'
+                         for t in range(1, 6))
+    return r'''
+# Indicador de dano: "-2.500" y la vida del mob, en numeros del tier (escala.py).
+function astral_factor(e: entity) :: number:
+__FACTORES__
+    return 1
+
+function astral_fmt(n: number) :: text:
+    set {_n} to floor({_n})
+    set {_out} to ""
+    while {_n} >= 1000:
+        set {_r} to mod({_n}, 1000)
+        if {_r} < 10:
+            set {_out} to ".00%{_r}%%{_out}%"
+        else if {_r} < 100:
+            set {_out} to ".0%{_r}%%{_out}%"
+        else:
+            set {_out} to ".%{_r}%%{_out}%"
+        set {_n} to floor({_n} / 1000)
+    return "%{_n}%%{_out}%"
+
+function astral_dim(w: world) :: text:
+    set {_name} to name of {_w}
+    if {_name} contains ":":
+        return {_name}
+    if {_name} is "world":
+        return "minecraft:overworld"
+    if {_name} is "world_nether":
+        return "minecraft:the_nether"
+    if {_name} is "world_the_end":
+        return "minecraft:the_end"
+    return "minecraft:%{_name}%"
+
+on uncancelled damage of living entity with priority monitor:
+    victim is not a player
+    attacker is a player
+    set {_f} to astral_factor(victim)
+    set {_real} to final damage * 2
+    if {_real} <= 0:
+        stop
+    set {_vida} to (health of victim * 2) - {_real}
+    if {_vida} < 0:
+        set {_vida} to 0
+    set {_dano} to astral_fmt({_real} * {_f})
+    set {_v} to astral_fmt({_vida} * {_f})
+    set {_max} to astral_fmt(max health of victim * 2 * {_f})
+    set {_color} to "white"
+    if damage cause is lightning:
+        set {_color} to "aqua"
+    else if damage cause is entity explosion or block explosion:
+        set {_color} to "gold"
+    else if damage cause is projectile:
+        set {_color} to "yellow"
+    else if damage cause is magic:
+        set {_color} to "light_purple"
+    set {_id} to random integer between 1 and 999999999
+    set {_l} to location of victim
+    set {_x} to x-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_y} to y-coordinate of {_l} + 2.1 + random number between 0 and 0.3
+    set {_z} to z-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_d} to astral_dim(world of victim)
+    execute console command "execute in %{_d}% run summon minecraft:text_display %{_x}% %{_y}% %{_z}% {billboard:""center"",see_through:1b,shadow:1b,background:0,Tags:[""astral.dmg"",""astral.dmg%{_id}%""],text:[{text:""-%{_dano}%"",color:""%{_color}%"",bold:1b},{text:""\n❤ %{_v}% / %{_max}%"",color:""red"",bold:0b}]}"
+    wait 25 ticks
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg%{_id}%]"
+
+on load:
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
+'''.replace('__FACTORES__', factores)
 
 
 def script():
@@ -270,14 +339,7 @@ on quit:
     delete {-astral.grapple.cd::%uuid of player%}
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
-
-# Arena PvP: el dano de las armas Astral esta escalado por tier (escala.py).
-# Entre jugadores se divide por el factor del arma del atacante: queda como antes.
-on damage of player with priority low:
-    attacker is a player
-    name of world of victim is "arena"
-__PVP__
-'''.replace('__PVP__',pvp_lines()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
+__INDICADOR__'''.replace('__INDICADOR__',indicador()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
 
 def patch_graves(config):
     """Conservar objetos en la tumba hasta recogerlos; respetar keep_inventory."""

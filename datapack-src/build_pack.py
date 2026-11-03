@@ -273,6 +273,16 @@ try:
 except Exception as e:
     print("sin pack.png:", e)
 
+# Sin corazones oscuros al pegar (particula damage_indicator): textura transparente.
+# El dano se ve con el indicador propio de astral_gameplay.sk (escala.py).
+try:
+    from PIL import Image as _Img
+    _buf = _io.BytesIO()
+    _Img.new("RGBA", (8, 8), (0, 0, 0, 0)).save(_buf, "PNG")
+    files["assets/minecraft/textures/particle/damage.png"] = _buf.getvalue()
+except Exception as e:
+    print("sin particula transparente:", e)
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

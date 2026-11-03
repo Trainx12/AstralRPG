@@ -9,7 +9,7 @@ import os
 import shutil
 import zipfile
 
-from escala import FACTOR_ARMA, TIER_ESPECIAL, MANA_BASTON, VIDA_MOSTRADA, fmt
+from escala import FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, fmt
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
                    SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, ARMOR_DURABILITY)
@@ -19,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 6   # escala por tier (escala.py); migracion en el mismo slot, conserva mejoras
+ITEM_VERSION = 7   # escala por tier mostrada (escala.py); migracion en el mismo slot, conserva mejoras
 
 files = {}
 
@@ -199,10 +199,7 @@ for set_id, sdef in ARMOR_SETS.items():
             per_piece = {k: v for k, v in stats.items()}
             # stats que van completos en la pechera
             chest_only = {"draw"}
-            # Defensa MOSTRADA (escala.py): la armadura real no cambia, el numero se ve grande.
-            defensa = (ARMOR_VALUES[mat][piece] + tier.get("extra_armor", 0)) * VIDA_MOSTRADA[tnum]
             lore = [txt(f"{sdef['clase']} {ROMAN[ti]}", sdef["color"]),
-                    txt(f"Defensa: {fmt(defensa)}", "aqua"),
                     txt("Bonus del set completo:", "gray")]
             lore += stat_lines({k: v for k, v in stats.items()})
             if tier.get("lifesteal"):
@@ -218,11 +215,9 @@ for set_id, sdef in ARMOR_SETS.items():
                      "minecraft:attribute_modifiers":
                      armor_attrs(iid, piece, mat, {k: v for k, v in stats.items() if k not in chest_only},
                                  tier.get("extra_armor", 0), tier.get("tough", 0))}
-            # se oculta el "+8 Armadura" vanilla: la defensa se muestra arriba, escalada
-            extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:attribute_modifiers"]}
             if mat == "leather":
                 extra["minecraft:dyed_color"] = sdef["dye"][ti]
-                extra["minecraft:tooltip_display"]["hidden_components"].append("minecraft:dyed_color")
+                extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:dyed_color"]}
             ench = {}
             if piece == "chestplate":
                 if tier.get("lifesteal"):
@@ -272,13 +267,19 @@ def weapon_mods(iid, dmg_total, speed, extra=None):
 
 def weapon_item(iid, base, name, color, clase, tier, desc, skill, lvl, mods, ench, astral, model=None,
                 traits=None, more_lore=None):
-    lore = [txt(f"{clase} {ROMAN[tier - 1]}", color)] + [txt(d, "gray") for d in desc]
+    lore = [txt(f"{clase} {ROMAN[tier - 1]}", color)]
+    real = next((m["amount"] + 1 for m in (mods or []) if m["type"] == "minecraft:attack_damage"), None)
+    if real is not None:
+        lore.append(txt(f"Dano: {fmt(real * FACTOR_MOSTRADO[tier])}", "red"))
+    lore += [txt(d, "gray") for d in desc]
     if more_lore:
         lore += more_lore
     lore.append(req_line(skill, lvl))
     extra = {}
     if mods is not None:
         extra["minecraft:attribute_modifiers"] = mods
+        if real is not None:
+            extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:attribute_modifiers"]}
     if ench:
         extra["minecraft:enchantments"] = ench
     add_item(iid, base, name, color, lore, dict({"type": "weapon", "tier": tier}, **astral), extra=extra,
@@ -338,7 +339,7 @@ for i, s in enumerate(STAFFS):
     spell = s["spell"] * FACTOR_ARMA[t]
     astral = {"w": "staff", "type": "staff", "tier": t, "spell": int(spell * 100), "mdmg": s["mdmg"] * 100,
               "cd": s["cd"], "cdr": s.get("cdr", 0) * 100}
-    lore_extra = [txt(f"Dano del hechizo: {fmt(spell)}", "light_purple")]
+    lore_extra = [txt(f"Dano del hechizo: {fmt(spell * FACTOR_MOSTRADO[t])}", "light_purple")]
     add_item(iid, "minecraft:carrot_on_a_stick", s["name"], MAGO,
              [txt(f"Baston de Mago {ROMAN[i]}", MAGO)] + [txt(d) for d in desc] + lore_extra + [req_line("sorcery", s["lvl"])],
              astral, pdc=aura_pdc("item", "sorcery", s["lvl"], traits), model=s["model"], glint=t >= 2,
@@ -364,7 +365,7 @@ ARQ = ARMOR_SETS["arquero"]["color"]
 for i, s in enumerate(BOWS):
     t = i + 1
     iid = f"arco_{t}"
-    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Dano de flecha cargada: ~{fmt(9 * FACTOR_ARMA[t])}"] + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
+    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Dano de flecha cargada: ~{fmt(9 * FACTOR_MOSTRADO[t])}"] + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
     mods = None
     if s.get("spd"):
         mods = [{"type": "minecraft:movement_speed", "id": f"{NS}:{iid}.spd", "amount": s["spd"] / 100,
@@ -487,7 +488,6 @@ for i, s in enumerate(SPEARS):
     iid = f"lanza_{t}"
     ench = fx_to_ench(s["fx"])
     ench[f"{NS}:empalar"] = t
-    ench[f"{NS}:poder_astral"] = t
     weapon_item(iid, s["base"], s["name"], "#ffb347", "Lanza de Combate", t,
                 [f"+{s['bonus']} de dano por golpe"] + s["desc"], "fighting", s["lvl"], None, ench, {"w": "spear"})
     ings = list(s["cost"]) if t == 1 else [("c", f"lanza_{t - 1}", 1)] + s["cost"]
@@ -782,12 +782,6 @@ enchant("gancho", "Gancho", "gray", 1, ["mainhand"], {"minecraft:tick": [{
 enchant("empalar", "Empalar", "gold", 5, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:add",
                "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0], "fallback": 6.0}},
-    "requirements": DIRECT}]})
-
-# Poder Astral: multiplica el dano de las lanzas segun su tier (escala.py).
-enchant("poder_astral", "Poder Astral", "light_purple", 5, ["mainhand"], {"minecraft:damage": [{
-    "effect": {"type": "minecraft:multiply", "factor": {"type": "minecraft:lookup",
-               "values": [round(FACTOR_ARMA[t], 3) for t in range(1, 6)], "fallback": round(FACTOR_ARMA[5], 3)}},
     "requirements": DIRECT}]})
 
 # Mejora +1..+10 del Herrero (el nivel del encantamiento es el +N)
@@ -1267,19 +1261,6 @@ lvl += [f"tag @s remove astral.ht{t}" for t in range(6)]
 lvl += [f"execute if score @s astral.ht matches {t} run tag @s add astral.ht{t}" for t in range(6)]
 fn("player/lvl", lvl)
 
-# Vida MOSTRADA (panel TAB): la real x VIDA_MOSTRADA[tier de armadura]. La vida real no cambia.
-from escala import VIDA_MOSTRADA
-fn("player/vida", [
-    "execute store result score @s astral.vida run data get entity @s Health 10",
-    "execute store result score @s astral.vidamax run attribute @s minecraft:max_health get 10",
-    *[f"execute if score @s astral.at matches {t} run scoreboard players set #vm astral.tmp {int(VIDA_MOSTRADA[t])}"
-      for t in range(6)],
-    "scoreboard players operation @s astral.vida *= #vm astral.tmp",
-    "scoreboard players operation @s astral.vidamax *= #vm astral.tmp",
-    "scoreboard players operation @s astral.vida /= #10 astral.const",
-    "scoreboard players operation @s astral.vidamax /= #10 astral.const",
-])
-
 # ---------------------------------------------------------------------------
 # Tier de cada mob nuevo (escala.py). Mundo: se adapta a la mejor arma del jugador
 # mas cercano (86% igual, 4% uno mas, 10% uno menos). Mazmorras: tier fijo.
@@ -1322,7 +1303,7 @@ fn("mob/tier_mundo", [
 for t in range(1, 6):
     fn(f"mob/t{t}", [
         f"attribute @s minecraft:max_health modifier add {NS}:tier {round(VIDA_MOB[t] - 1, 4)} add_multiplied_base",
-        f"attribute @s minecraft:attack_damage modifier add {NS}:tier {round(DANO_MOB[t] - 1, 4)} add_multiplied_base",
+        f"tag @s add astral.mt{t}",
     ])
 extra_mz = []
 for w, mult in EXTRA_VIDA_MAZMORRA.items():
@@ -1976,8 +1957,6 @@ load = [
     "scoreboard objectives add astral.wt dummy",
     "scoreboard objectives add astral.at dummy",
     "scoreboard objectives add astral.mt dummy",
-    "scoreboard objectives add astral.vida dummy",
-    "scoreboard objectives add astral.vidamax dummy",
     "scoreboard objectives add astral.rem dummy",
     "scoreboard objectives add astral.lvl dummy",
     "scoreboard objectives add astral.draw dummy",
@@ -2140,7 +2119,6 @@ t10 += [
     f"execute as @a[scores={{astral.guia=1..}}] run function {NS}:guide/give",
     f"schedule function {NS}:loop/t10 10t replace",
 ]
-t10.append(f"execute as @a run function {NS}:player/vida")
 fn("loop/t10", t10)
 fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",

@@ -228,18 +228,77 @@ on quit:
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
 
-# Arena PvP: el dano de las armas Astral esta escalado por tier (escala.py).
-# Entre jugadores se divide por el factor del arma del atacante: queda como antes.
-on damage of player with priority low:
+# Indicador de dano: "-2.500" y la vida del mob, en numeros del tier (escala.py).
+function astral_factor(e: entity) :: number:
+    if scoreboard tags of {_e} contains "astral.mt1":
+        return 15.1515
+    if scoreboard tags of {_e} contains "astral.mt2":
+        return 70.6215
+    if scoreboard tags of {_e} contains "astral.mt3":
+        return 285.7143
+    if scoreboard tags of {_e} contains "astral.mt4":
+        return 1322.7513
+    if scoreboard tags of {_e} contains "astral.mt5":
+        return 5208.3333
+    return 1
+
+function astral_fmt(n: number) :: text:
+    set {_n} to floor({_n})
+    set {_out} to ""
+    while {_n} >= 1000:
+        set {_r} to mod({_n}, 1000)
+        if {_r} < 10:
+            set {_out} to ".00%{_r}%%{_out}%"
+        else if {_r} < 100:
+            set {_out} to ".0%{_r}%%{_out}%"
+        else:
+            set {_out} to ".%{_r}%%{_out}%"
+        set {_n} to floor({_n} / 1000)
+    return "%{_n}%%{_out}%"
+
+function astral_dim(w: world) :: text:
+    set {_name} to name of {_w}
+    if {_name} contains ":":
+        return {_name}
+    if {_name} is "world":
+        return "minecraft:overworld"
+    if {_name} is "world_nether":
+        return "minecraft:the_nether"
+    if {_name} is "world_the_end":
+        return "minecraft:the_end"
+    return "minecraft:%{_name}%"
+
+on uncancelled damage of living entity with priority monitor:
+    victim is not a player
     attacker is a player
-    name of world of victim is "arena"
-    if scoreboard tags of attacker contains "astral.ht1":
-        set damage to damage / 15.152
-    if scoreboard tags of attacker contains "astral.ht2":
-        set damage to damage / 70.621
-    if scoreboard tags of attacker contains "astral.ht3":
-        set damage to damage / 285.714
-    if scoreboard tags of attacker contains "astral.ht4":
-        set damage to damage / 1322.751
-    if scoreboard tags of attacker contains "astral.ht5":
-        set damage to damage / 5208.333
+    set {_f} to astral_factor(victim)
+    set {_real} to final damage * 2
+    if {_real} <= 0:
+        stop
+    set {_vida} to (health of victim * 2) - {_real}
+    if {_vida} < 0:
+        set {_vida} to 0
+    set {_dano} to astral_fmt({_real} * {_f})
+    set {_v} to astral_fmt({_vida} * {_f})
+    set {_max} to astral_fmt(max health of victim * 2 * {_f})
+    set {_color} to "white"
+    if damage cause is lightning:
+        set {_color} to "aqua"
+    else if damage cause is entity explosion or block explosion:
+        set {_color} to "gold"
+    else if damage cause is projectile:
+        set {_color} to "yellow"
+    else if damage cause is magic:
+        set {_color} to "light_purple"
+    set {_id} to random integer between 1 and 999999999
+    set {_l} to location of victim
+    set {_x} to x-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_y} to y-coordinate of {_l} + 2.1 + random number between 0 and 0.3
+    set {_z} to z-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_d} to astral_dim(world of victim)
+    execute console command "execute in %{_d}% run summon minecraft:text_display %{_x}% %{_y}% %{_z}% {billboard:""center"",see_through:1b,shadow:1b,background:0,Tags:[""astral.dmg"",""astral.dmg%{_id}%""],text:[{text:""-%{_dano}%"",color:""%{_color}%"",bold:1b},{text:""\n❤ %{_v}% / %{_max}%"",color:""red"",bold:0b}]}"
+    wait 25 ticks
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg%{_id}%]"
+
+on load:
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
