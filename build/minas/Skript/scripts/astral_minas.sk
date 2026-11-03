@@ -1078,10 +1078,13 @@ command /minasmoldes [<integer>]:
         send "&eArmando moldes de las minas %{_from}% a %{_to}%..." to sender
         loop {-am.count} times:
             if loop-number is between {_from} and {_to}:
+                # am_build_mold tiene esperas: Skript sigue sin esperarla, asi que se espacia a mano
+                # para no armar las 40 a la vez.
                 am_build_mold(loop-number, 0)
                 am_build_mold(loop-number, 1)
                 delete {-am.next::%loop-number%}
-                send "&7  Molde listo: %{-am.name::%loop-number%}%" to sender
+                send "&7  Molde en marcha: %{-am.name::%loop-number%}%" to sender
+                wait 3 seconds
         delete {-am.building}
         send "&aMoldes listos." to sender
 
