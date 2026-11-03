@@ -288,8 +288,6 @@ on uncancelled damage of living entity with priority monitor:
         set {_color} to "gold"
     else if damage cause is projectile:
         set {_color} to "yellow"
-    else if damage cause is magic:
-        set {_color} to "light_purple"
     set {_id} to random integer between 1 and 999999999
     set {_l} to location of victim
     set {_x} to x-coordinate of {_l} + random number between -0.4 and 0.4

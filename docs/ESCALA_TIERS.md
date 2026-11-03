@@ -24,7 +24,7 @@ probó con daño y vida reales gigantes, pero Minecraft tira un corazón oscuro 
   oculta el "8,75 de daño" vanilla); bastones y arcos muestran su daño en números del tier.
 - **Indicador de daño** (reemplaza DamageIndicator, `astral_gameplay.sk`): cada golpe de un jugador a
   un mob muestra `-2.500` y `❤ 9.000 / 11.500` arriba del mob por un segundo. Colores: blanco golpe,
-  cian rayo, dorado explosión, amarillo flecha, violeta magia.
+  cian rayo, dorado explosión, amarillo flecha.
 - **Corazones al pegar:** la partícula `damage` del resource pack es transparente.
 - **Maná de bastones:** 50 / 100 / 180 / 300 / 500 (antes 20 / 40 / 70 / 110 / 180). Es real.
 
