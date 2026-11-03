@@ -1802,7 +1802,7 @@ fn("admin/todo", [f"loot give @s loot {NS}:kit/{k[0]}" for k in KITS] + [
 # Cada tick se guarda el bloque al que apuntas. Cuando la estadistica "usado" del pico/hacha
 # sube y ese bloque ya es aire, lo rompiste vos: se pica el area o se sigue el tronco.
 # ---------------------------------------------------------------------------
-from tools import TREE_LOGS, DRILLABLE
+from tools import TREE_LOGS, DRILLABLE, FACING, area_ranges
 put(f"data/{NS}/tags/block/drillable.json", {"values": DRILLABLE})
 put(f"data/{NS}/tags/block/tree_logs.json", {"values": [f"minecraft:{b}" for b in TREE_LOGS]})
 put(f"data/{NS}/tags/block/ray_pass.json", {"values": ["minecraft:air", "minecraft:cave_air", "minecraft:void_air",
@@ -1847,6 +1847,7 @@ fn("tool/at", [
     f"$execute positioned $(x) $(y) $(z) if block ~ ~ ~ #{NS}:ray_pass run function {NS}:tool/do",
 ])
 fn("tool/do", [
+    "execute if entity @s[tag=astral.mines] run return 0",
     f"execute if items entity @s weapon.mainhand {DRILL_SEL} run return run function {NS}:tool/drill",
     f"execute if score @s astral.tok matches 2 if items entity @s weapon.mainhand {SAW_SEL} run function {NS}:tool/saw",
 ])
@@ -1869,21 +1870,6 @@ fn("tool/drill", [
     f"execute unless entity @s[y_rotation=-135..135] run function {NS}:tool/d/n",
     "playsound minecraft:block.stone.break block @a ~ ~ ~ 0.8 0.8",
 ])
-FACING = {"n": ((0, 0, -1), (1, 0, 0)), "s": ((0, 0, 1), (-1, 0, 0)),
-          "e": ((1, 0, 0), (0, 0, 1)), "w": ((-1, 0, 0), (0, 0, -1))}
-
-
-def area_ranges(a, up, vertical):
-    u = {2: [0], 3: [0, 1], 4: [-1, 0, 1], 5: [-1, 0, 1, 2]}[a]
-    if a == 4:
-        v = [-1, 0, 1]
-    elif vertical or up:
-        v = {2: [0, 1], 3: [0, 1], 5: [-1, 0, 1, 2]}[a]
-    else:
-        v = {2: [-1, 0], 3: [-1, 0], 5: [-2, -1, 0, 1]}[a]
-    return u, v
-
-
 fn("tool/mine", [
     f"execute unless block ~ ~ ~ #{NS}:drillable unless block ~ ~ ~ #{NS}:tree_logs run return 0",
     "loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand",

@@ -77,3 +77,18 @@ DRILLABLE = ["#minecraft:base_stone_overworld", "#minecraft:base_stone_nether", 
              "minecraft:sandstone", "minecraft:red_sandstone", "minecraft:magma_block", "minecraft:amethyst_block",
              "minecraft:gravel", "minecraft:clay", "minecraft:soul_sand", "minecraft:soul_soil",
              "minecraft:snow_block", "minecraft:packed_ice"]
+
+
+FACING = {"n": ((0, 0, -1), (1, 0, 0)), "s": ((0, 0, 1), (-1, 0, 0)),
+          "e": ((1, 0, 0), (0, 0, 1)), "w": ((-1, 0, 0), (0, 0, -1))}
+
+
+def area_ranges(a, up, vertical):
+    u = {2: [0], 3: [0, 1], 4: [-1, 0, 1], 5: [-1, 0, 1, 2]}[a]
+    if a == 4:
+        v = [-1, 0, 1]
+    elif vertical or up:
+        v = {2: [0, 1], 3: [0, 1], 5: [-1, 0, 1, 2]}[a]
+    else:
+        v = {2: [-1, 0], 3: [-1, 0], 5: [-2, -1, 0, 1]}[a]
+    return u, v

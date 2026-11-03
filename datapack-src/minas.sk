@@ -1,0 +1,467 @@
+# AstralRPG / minas. Requiere Skript, skript-reflect y Vault.
+import:
+    org.bukkit.Bukkit
+    org.bukkit.Material
+    net.milkbowl.vault.economy.Economy
+
+on load:
+    # CATALOGO
+    set {-am.count} to size of {-am.name::*}
+    set {-am.board} to Bukkit.getScoreboardManager().getMainScoreboard()
+    set {_registration} to Bukkit.getServicesManager().getRegistration(Economy.class)
+    loop "am_rank", "am_goal", "am_blocks", "am_cost", "am_here" and "am_minutes":
+        if {-am.board}.getObjective(loop-value) is not set:
+            execute console command "minecraft:scoreboard objectives add %loop-value% dummy"
+    delete {-am.economy}
+    if {_registration} is set:
+        set {-am.economy} to {_registration}.getProvider()
+    delete {-am.busy}
+    delete {-am.ready::*}
+    delete {-am.lastMine::*}
+    delete {-am.drilling::*}
+    set {-am.cursor} to 0
+    loop all players:
+        am_sync(loop-player)
+
+function am_score(p: player, objective: text, value: number):
+    set {_obj} to {-am.board}.getObjective({_objective})
+    if {_obj} is set:
+        set {_score} to {_obj}.getScore({_p}.getName())
+        {_score}.setScore({_value}.intValue())
+
+function am_sync(p: player):
+    if name of world of {_p} is "astral_minas":
+        {_p}.addScoreboardTag("astral.mines")
+        am_sidebar({_p})
+        am_score({_p}, "am_here", am_id(location of {_p}))
+    else:
+        {_p}.removeScoreboardTag("astral.mines")
+
+function am_rank(p: player) :: number:
+    return {am.rank::%uuid of {_p}%} ? 1
+
+function am_sidebar(p: player):
+    set {_rank} to am_rank({_p})
+    set {_next} to {_rank} + 1
+    am_score({_p}, "am_rank", {_rank})
+    am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
+    am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
+    am_score({_p}, "am_blocks", {am.blocks::%uuid of {_p}%} ? 0)
+    am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
+
+function am_id(loc: location) :: number:
+    if name of world of {_loc} is not "astral_minas":
+        return 0
+    set {_x} to x-coordinate of {_loc}
+    set {_i} to floor({_x} / 512) + 1
+    if {_i} is between 1 and {-am.count}:
+        return {_i}
+    return 0
+
+function am_spawn(i: number) :: location:
+    set {_x} to ({_i} - 1) * 512 + 89.5
+    return location({_x}, 93, 70.5, world "astral_minas", 0, 0)
+
+function am_lobby(p: player):
+    set {_name} to {_p}.getName()
+    execute console command "mvtp %{_name}% w:lobby"
+
+function am_menu(p: player):
+    set {_rank} to am_rank({_p})
+    set {_next} to {_rank} + 1
+    set {_inv} to chest inventory with 6 rows named "&8Minas Astrales"
+    set slot 4 of {_inv} to gold nugget named "&6Tu oro" with lore "&e%balance of {_p}%"
+    loop {-am.count} times:
+        set {_i} to loop-number
+        set {_slot} to {-am.slot::%{_i}%}
+        set {_name} to {-am.name::%{_i}%}
+        if {_i} <= {_rank}:
+            set slot {_slot} of {_inv} to iron pickaxe named "&a%{_i}%. %{_name}%" with lore "&7Clic para viajar."
+        else if {_i} is {_next}:
+            set {_goal} to {-am.goal::%{_i}%}
+            set {_cost} to {-am.cost::%{_i}%}
+            set {_blocks} to {am.blocks::%uuid of {_p}%} ? 0
+            set slot {_slot} of {_inv} to gold ingot named "&e%{_i}%. %{_name}%" with lore "&7Bloques en la mina %{_rank}%: &f%{_blocks}%/%{_goal}%" and "&7Costo: &6%{_cost}% oro" and "&eClic para desbloquear y viajar."
+            if {_i} is {-am.count}:
+                set {_minutes} to {am.minutes::%uuid of {_p}%} ? 0
+                add "&7Minería activa: &f%{_minutes}%/%{-am.finalMinutes}% minutos" to lore of slot {_slot} of {_inv}
+        else:
+            set slot {_slot} of {_inv} to barrier named "&c%{_i}%. %{_name}%" with lore "&7Desbloquea las minas anteriores."
+    set slot 49 of {_inv} to ender pearl named "&bVolver al lobby"
+    set {-am.gui::%uuid of {_p}%} to {_inv}
+    open {_inv} to {_p}
+
+function am_travel(p: player, i: number):
+    if {-am.ready::%{_i}%} is not true:
+        send "&eEsta mina se está preparando. Volvé a intentar en unos segundos." to {_p}
+        stop
+    set {_rank} to am_rank({_p})
+    set {_next} to {_rank} + 1
+    if {_i} > {_rank}:
+        if {_i} is not {_next}:
+            stop
+        set {_goal} to {-am.goal::%{_i}%}
+        set {_cost} to {-am.cost::%{_i}%}
+        set {_blocks} to {am.blocks::%uuid of {_p}%} ? 0
+        if {_blocks} < {_goal}:
+            send "&cTodavía te faltan bloques en la mina %{_rank}%." to {_p}
+            stop
+        if {_i} is {-am.count}:
+            set {_minutes} to {am.minutes::%uuid of {_p}%} ? 0
+            if {_minutes} < {-am.finalMinutes}:
+                send "&cTodavía te faltan minutos de minería activa en Diamante III." to {_p}
+                stop
+        if {-am.economy} is not set:
+            send "&cLa economía no está disponible." to {_p}
+            stop
+        set {_response} to {-am.economy}.withdrawPlayer({_p}, {_cost}.doubleValue())
+        if {_response}.transactionSuccess() is not true:
+            send "&cNecesitás %{_cost}% de oro para abrir esta mina." to {_p}
+            stop
+        set {am.rank::%uuid of {_p}%} to {_i}
+        delete {am.blocks::%uuid of {_p}%}
+        set {_name} to {-am.name::%{_i}%}
+        send "&aDesbloqueaste %{_i}%. %{_name}%." to {_p}
+    am_sidebar({_p})
+    close inventory of {_p}
+    if {_p}.teleport(am_spawn({_i})) is true:
+        am_score({_p}, "am_here", {_i})
+    else:
+        send "&eNo se pudo viajar. Podés volver a intentarlo desde /minas." to {_p}
+
+function am_sell(p: player):
+    if gamemode of {_p} is not survival:
+        stop
+    if {-am.economy} is not set:
+        send "&cLa economía no está disponible." to {_p}
+        stop
+    set {_inv} to {_p}.getInventory()
+    set {_total} to 0
+    loop 36 times:
+        set {_slot} to loop-number - 1
+        set {_item} to {_inv}.getItem({_slot}.intValue())
+        if {_item} is set:
+            if {_item}.hasItemMeta() is false:
+                set {_material} to {_item}.getType().name()
+                if {-am.price::%{_material}%} is set:
+                    set {_amount} to {_item}.getAmount()
+                    add {_amount} * {-am.price::%{_material}%} to {_total}
+                    add {_slot} to {_slots::*}
+    if {_total} is 0:
+        send "&eNo tenés minerales admitidos para vender." to {_p}
+        stop
+    set {_total} to round({_total} * 100) / 100
+    set {_response} to {-am.economy}.depositPlayer({_p}, {_total}.doubleValue())
+    if {_response}.transactionSuccess() is true:
+        loop {_slots::*}:
+            {_inv}.clear(loop-value.intValue())
+        send "&aVendiste tus minerales por &6%{_total}% oro&a." to {_p}
+    else:
+        send "&cLa venta falló. Conservás tus minerales." to {_p}
+
+command /minas:
+    executable by: players
+    trigger:
+        set {_world} to name of world of player
+        if {_world} is "lobby" or "astral_minas":
+            am_menu(player)
+        else:
+            send "&eAbrí el menú de minas desde el lobby." to player
+
+on right click on villager:
+    set {_tags} to event-entity.getScoreboardTags()
+    if {_tags}.contains("astral_minas_lobby") is true:
+        cancel event
+        am_menu(player)
+    else if {_tags}.contains("astral_mina_venta") is true:
+        cancel event
+        set {_i} to am_id(location of player)
+        if {_i} is between 1 and am_rank(player):
+            set {_inv} to chest inventory with 3 rows named "&8Venta rápida de minerales"
+            set slot 13 of {_inv} to emerald named "&aVender todos mis minerales" with lore "&7Incluye piedra, roca y minerales de las minas." and "&7Deja el equipo y los objetos personalizados."
+            set {-am.sale::%uuid of player%} to {_inv}
+            open {_inv} to player
+
+on inventory click:
+    set {_top} to player's current inventory
+    if {_top} is {-am.gui::%uuid of player%}:
+        cancel event
+        if clicked inventory is {_top}:
+            set {_slot} to index of event-slot
+            wait 1 tick
+            if player's current inventory is not {_top}:
+                stop
+            if {_slot} is 49:
+                close inventory of player
+                am_lobby(player)
+            else:
+                set {_destination} to {-am.destination::%{_slot}%}
+                if {_destination} is set:
+                    am_travel(player, {_destination})
+    else if {_top} is {-am.sale::%uuid of player%}:
+        cancel event
+        if clicked inventory is {_top}:
+            if index of event-slot is 13:
+                wait 1 tick
+                if player's current inventory is {_top}:
+                    if am_id(location of player) > 0:
+                        am_sell(player)
+
+on inventory drag:
+    if player's current inventory is {-am.gui::%uuid of player%} or {-am.sale::%uuid of player%}:
+        cancel event
+
+on inventory close:
+    if event-inventory is {-am.gui::%uuid of player%}:
+        delete {-am.gui::%uuid of player%}
+    if event-inventory is {-am.sale::%uuid of player%}:
+        delete {-am.sale::%uuid of player%}
+
+function am_can_break(b: block, p: player) :: boolean:
+    set {_loc} to {_b}.getLocation()
+    set {_i} to am_id({_loc})
+    if {_i} is not between 1 and am_rank({_p}):
+        return false
+    if {-am.ready::%{_i}%} is not true:
+        return false
+    set {_local} to x-coordinate of {_loc} - ({_i} - 1) * 512
+    if {_local} is not between 75 and 105:
+        return false
+    if y-coordinate of {_loc} is not between 73 and 92:
+        return false
+    if z-coordinate of {_loc} is not between 76 and 106:
+        return false
+    set {_type} to {_b}.getType()
+    if {_type} is {-am.base::%{_i}%} or {-am.ore::%{_i}%}:
+        return true
+    return false
+
+function am_drill_area(p: player) :: number:
+    set {_item} to {_p}.getInventory().getItemInMainHand()
+    if {_item}.getType() is not Material.NETHERITE_PICKAXE:
+        return 0
+    set {_meta} to {_item}.getItemMeta()
+    if {_meta}.hasItemModel() is not true:
+        return 0
+    set {_model} to {_meta}.getItemModel()
+    if {_model}.getNamespace() is not "astral":
+        return 0
+    set {_key} to {_model}.getKey()
+    return {-am.drill::%{_key}%} ? 0
+
+function am_drill(p: player, origin: location, area: number, direction: text):
+    if world of {_p} is not world of {_origin}:
+        stop
+    if distance between {_p} and {_origin} > 8:
+        stop
+    if am_drill_area({_p}) is not {_area}:
+        stop
+    set {_id} to uuid of {_p}
+    set {-am.drilling::%{_id}%} to true
+    loop {-am.offset::%{_area}%::%{_direction}%::*}:
+        set {_parts::*} to loop-value split at ","
+        set {_loc} to {_origin}.clone()
+        add {_parts::1} parsed as number to x-coordinate of {_loc}
+        add {_parts::2} parsed as number to y-coordinate of {_loc}
+        add {_parts::3} parsed as number to z-coordinate of {_loc}
+        set {_block} to {_loc}.getBlock()
+        if am_can_break({_block}, {_p}) is true:
+            if am_drill_area({_p}) is {_area}:
+                {_p}.breakBlock({_block})
+    delete {-am.drilling::%{_id}%}
+
+on break with priority highest:
+    if name of world of event-block is "astral_minas":
+        if am_can_break(event-block, player) is false:
+            cancel event
+
+on uncancelled break with priority monitor:
+    if player's gamemode is not survival:
+        stop
+    set {_loc} to event-block.getLocation()
+    set {_i} to am_id({_loc})
+    if {_i} is 0:
+        stop
+    set {_id} to uuid of player
+    if {_i} is am_rank(player):
+        set {_next} to {_i} + 1
+        if {_next} is {-am.count}:
+            set {-am.active::%{_id}%} to now
+        set {_goal} to {-am.goal::%{_next}%}
+        set {_blocks} to {am.blocks::%{_id}%} ? 0
+        if {_goal} is set:
+            if {_blocks} < {_goal}:
+                add 1 to {_blocks}
+                set {am.blocks::%{_id}%} to {_blocks}
+                am_score(player, "am_blocks", {_blocks})
+    if {-am.drilling::%{_id}%} is true:
+        stop
+    if player is sneaking:
+        stop
+    set {_area} to am_drill_area(player)
+    if {_area} < 2:
+        stop
+    set {_pitch} to pitch of player
+    if {_pitch} >= 50:
+        set {_direction} to "down"
+    else if {_pitch} <= -50:
+        set {_direction} to "up"
+    else:
+        set {_yaw} to mod(yaw of player + 360, 360)
+        if {_yaw} is between 45 and 135:
+            set {_face} to "w"
+        else if {_yaw} is between 135 and 225:
+            set {_face} to "n"
+        else if {_yaw} is between 225 and 315:
+            set {_face} to "e"
+        else:
+            set {_face} to "s"
+        set {_up} to 0
+        if y-coordinate of {_loc} <= floor(y-coordinate of player):
+            set {_up} to 1
+        set {_direction} to "%{_face}%%{_up}%"
+    wait 1 tick
+    if player is online:
+        am_drill(player, {_loc}, {_area}, {_direction})
+
+on place:
+    if name of world of event-block is "astral_minas":
+        cancel event
+
+on explode:
+    if name of world of event-location is "astral_minas":
+        cancel event
+
+on bucket empty:
+    if name of world of player is "astral_minas":
+        cancel event
+
+on bucket fill:
+    if name of world of player is "astral_minas":
+        cancel event
+
+on damage of player:
+    if name of world of victim is "astral_minas":
+        cancel event
+
+on join:
+    am_sync(player)
+
+on world change:
+    am_sync(player)
+
+on quit:
+    set {_id} to uuid of player
+    delete {-am.lastMine::%{_id}%}
+    delete {-am.active::%{_id}%}
+    delete {-am.seconds::%{_id}%}
+
+on teleport:
+    if name of world of event-location is not "astral_minas":
+        stop
+    if player has permission "astral.minas.admin":
+        if gamemode of player is creative:
+            stop
+    set {_i} to am_id(event-location)
+    if {_i} is 0:
+        cancel event
+    else if {_i} > am_rank(player):
+        cancel event
+
+every 1 second:
+    if {am.enabled} is not true:
+        stop
+    set {_world} to world "astral_minas"
+    if {_world} is not set:
+        stop
+    loop all players in {_world}:
+        if loop-player has permission "astral.minas.admin":
+            if gamemode of loop-player is creative:
+                continue
+        set {_i} to am_id(location of loop-player)
+        if {_i} is 0:
+            am_lobby(loop-player)
+        else if {_i} > am_rank(loop-player):
+            am_lobby(loop-player)
+        else:
+            set {_id} to uuid of loop-player
+            if {-am.lastMine::%{_id}%} is not {_i}:
+                set {-am.lastMine::%{_id}%} to {_i}
+                am_score(loop-player, "am_here", {_i})
+            if y-coordinate of loop-player < 66:
+                teleport loop-player to am_spawn({_i})
+            if {_i} is {-am.count} - 1:
+                if {_i} is am_rank(loop-player):
+                    set {_active} to {-am.active::%{_id}%}
+                    if {_active} is set:
+                        if difference between now and {_active} <= 10 seconds:
+                            if ({am.minutes::%{_id}%} ? 0) < {-am.finalMinutes}:
+                                add 1 to {-am.seconds::%{_id}%}
+                                if {-am.seconds::%{_id}%} >= 60:
+                                    delete {-am.seconds::%{_id}%}
+                                    add 1 to {am.minutes::%{_id}%}
+                                    am_score(loop-player, "am_minutes", {am.minutes::%{_id}%})
+
+function am_reset(i: number):
+    if {-am.busy} is true:
+        stop
+    set {_world} to world "astral_minas"
+    if {_world} is not set:
+        stop
+    set {-am.busy} to true
+    delete {-am.ready::%{_i}%}
+    set {_offset} to ({_i} - 1) * 512
+    loop all players in {_world}:
+        if am_id(location of loop-player) is {_i}:
+            teleport loop-player to am_spawn({_i})
+            send "&eRegenerando la mina. El pozo se abre en unos segundos." to loop-player
+    set {_base} to {-am.base::%{_i}%}.createBlockData()
+    set {_ore} to {-am.ore::%{_i}%}.createBlockData()
+    set {_chance} to {-am.chance::%{_i}%}
+    loop 620 times:
+        set {_row} to loop-number - 1
+        set {_y} to floor({_row} / 31) + 73
+        set {_z} to mod({_row}, 31) + 76
+        loop 31 times:
+            set {_x} to {_offset} + 74 + loop-number-2
+            set {_block} to {_world}.getBlockAt({_x}.intValue(), {_y}.intValue(), {_z}.intValue())
+            set {_data} to {_base}
+            set {_roll} to random integer between 1 and 100
+            if {_roll} <= {_chance}:
+                set {_data} to {_ore}
+            {_block}.setBlockData({_data}, false)
+        if mod({_row}, 8) is 7:
+            wait 1 tick
+    loop all players in {_world}:
+        if am_id(location of loop-player) is {_i}:
+            if y-coordinate of loop-player < 93:
+                teleport loop-player to am_spawn({_i})
+    set {-am.ready::%{_i}%} to true
+    delete {-am.busy}
+
+command /minasactivar:
+    permission: astral.minas.admin
+    trigger:
+        if world "astral_minas" is not set:
+            send "&cFalta cargar el mundo astral_minas." to sender
+            stop
+        set {am.enabled} to true
+        send "&aMinas activadas. Los pozos se habilitan al completar su primera regeneración." to sender
+
+every 5 seconds:
+    if {am.enabled} is not true:
+        stop
+    if {-am.busy} is true:
+        stop
+    loop {-am.count} times:
+        if {-am.ready::%loop-number%} is not true:
+            am_reset(loop-number)
+            stop
+
+every 27 seconds:
+    if {am.enabled} is not true:
+        stop
+    if {-am.busy} is true:
+        stop
+    set {-am.cursor} to mod({-am.cursor}, {-am.count}) + 1
+    am_reset({-am.cursor})

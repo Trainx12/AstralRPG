@@ -38,6 +38,24 @@ scoreboard:
   hidden-by-default: false
   delay-on-join-milliseconds: 1500
   scoreboards:
+    minas:
+      display-condition: "%world%=astral_minas"
+      title: "%animation:astral_titulo%"
+      lines:
+        - "<gray>⚔ <white><bold>%player%</bold>"
+        - "<gray>Rango||%condition:rango%"
+        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
+        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
+        - "<aqua>⚡ Poder||<white>%auraskills_power%"
+        - ""
+        - "<aqua><bold>Progresión de minas</bold>"
+        - "<gray>Mina actual||%condition:am_here%"
+        - "<gray>Siguiente||%condition:am_next%"
+        - "<gray>Avanza en||%condition:am_current%"
+        - "<gray>Bloques||<white>%objective_score_{am_blocks}%<gray>/%objective_score_{am_goal}%"
+        - "<gray>Costo||<gold>%objective_score_{am_cost}%"
+        - "%condition:am_time%"
+        - "%animation:astral_ip%"
     astral:
       title: "%animation:astral_titulo%"
       lines:
@@ -57,6 +75,296 @@ scoreboard:
         - "<gray>Hora argentina||<aqua>%time%"
         - "%animation:astral_ip%"
 conditions:
+  am_time:
+    conditions:
+      - "%objective_score_{am_rank}%=19"
+    true: "<gray>Minería activa||<white>%objective_score_{am_minutes}%/1500 min"
+    false: ""
+  am_here1_2:
+    conditions:
+      - "%objective_score_{am_here}%<=1"
+    true: "<white>I · Carbón"
+    false: "<white>I · Cobre"
+  am_here1_3:
+    conditions:
+      - "%objective_score_{am_here}%<=2"
+    true: "%condition:am_here1_2%"
+    false: "<white>I · Hierro"
+  am_here4_5:
+    conditions:
+      - "%objective_score_{am_here}%<=4"
+    true: "<white>I · Oro"
+    false: "<white>I · Esmeralda"
+  am_here1_5:
+    conditions:
+      - "%objective_score_{am_here}%<=3"
+    true: "%condition:am_here1_3%"
+    false: "%condition:am_here4_5%"
+  am_here6_7:
+    conditions:
+      - "%objective_score_{am_here}%<=6"
+    true: "<white>I · Diamante"
+    false: "<white>II · Carbón"
+  am_here6_8:
+    conditions:
+      - "%objective_score_{am_here}%<=7"
+    true: "%condition:am_here6_7%"
+    false: "<white>II · Cobre"
+  am_here9_10:
+    conditions:
+      - "%objective_score_{am_here}%<=9"
+    true: "<white>II · Hierro"
+    false: "<white>II · Oro"
+  am_here6_10:
+    conditions:
+      - "%objective_score_{am_here}%<=8"
+    true: "%condition:am_here6_8%"
+    false: "%condition:am_here9_10%"
+  am_here1_10:
+    conditions:
+      - "%objective_score_{am_here}%<=5"
+    true: "%condition:am_here1_5%"
+    false: "%condition:am_here6_10%"
+  am_here11_12:
+    conditions:
+      - "%objective_score_{am_here}%<=11"
+    true: "<white>II · Esmeralda"
+    false: "<white>II · Diamante"
+  am_here11_13:
+    conditions:
+      - "%objective_score_{am_here}%<=12"
+    true: "%condition:am_here11_12%"
+    false: "<white>II · Restos ancestrales"
+  am_here14_15:
+    conditions:
+      - "%objective_score_{am_here}%<=14"
+    true: "<white>III · Carbón"
+    false: "<white>III · Cobre"
+  am_here11_15:
+    conditions:
+      - "%objective_score_{am_here}%<=13"
+    true: "%condition:am_here11_13%"
+    false: "%condition:am_here14_15%"
+  am_here16_17:
+    conditions:
+      - "%objective_score_{am_here}%<=16"
+    true: "<white>III · Hierro"
+    false: "<white>III · Oro"
+  am_here16_18:
+    conditions:
+      - "%objective_score_{am_here}%<=17"
+    true: "%condition:am_here16_17%"
+    false: "<white>III · Esmeralda"
+  am_here19_20:
+    conditions:
+      - "%objective_score_{am_here}%<=19"
+    true: "<white>III · Diamante"
+    false: "<white>III · Netherita"
+  am_here16_20:
+    conditions:
+      - "%objective_score_{am_here}%<=18"
+    true: "%condition:am_here16_18%"
+    false: "%condition:am_here19_20%"
+  am_here11_20:
+    conditions:
+      - "%objective_score_{am_here}%<=15"
+    true: "%condition:am_here11_15%"
+    false: "%condition:am_here16_20%"
+  am_here:
+    conditions:
+      - "%objective_score_{am_here}%<=10"
+    true: "%condition:am_here1_10%"
+    false: "%condition:am_here11_20%"
+  am_current1_2:
+    conditions:
+      - "%objective_score_{am_rank}%<=1"
+    true: "<white>I · Carbón"
+    false: "<white>I · Cobre"
+  am_current1_3:
+    conditions:
+      - "%objective_score_{am_rank}%<=2"
+    true: "%condition:am_current1_2%"
+    false: "<white>I · Hierro"
+  am_current4_5:
+    conditions:
+      - "%objective_score_{am_rank}%<=4"
+    true: "<white>I · Oro"
+    false: "<white>I · Esmeralda"
+  am_current1_5:
+    conditions:
+      - "%objective_score_{am_rank}%<=3"
+    true: "%condition:am_current1_3%"
+    false: "%condition:am_current4_5%"
+  am_current6_7:
+    conditions:
+      - "%objective_score_{am_rank}%<=6"
+    true: "<white>I · Diamante"
+    false: "<white>II · Carbón"
+  am_current6_8:
+    conditions:
+      - "%objective_score_{am_rank}%<=7"
+    true: "%condition:am_current6_7%"
+    false: "<white>II · Cobre"
+  am_current9_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=9"
+    true: "<white>II · Hierro"
+    false: "<white>II · Oro"
+  am_current6_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=8"
+    true: "%condition:am_current6_8%"
+    false: "%condition:am_current9_10%"
+  am_current1_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=5"
+    true: "%condition:am_current1_5%"
+    false: "%condition:am_current6_10%"
+  am_current11_12:
+    conditions:
+      - "%objective_score_{am_rank}%<=11"
+    true: "<white>II · Esmeralda"
+    false: "<white>II · Diamante"
+  am_current11_13:
+    conditions:
+      - "%objective_score_{am_rank}%<=12"
+    true: "%condition:am_current11_12%"
+    false: "<white>II · Restos ancestrales"
+  am_current14_15:
+    conditions:
+      - "%objective_score_{am_rank}%<=14"
+    true: "<white>III · Carbón"
+    false: "<white>III · Cobre"
+  am_current11_15:
+    conditions:
+      - "%objective_score_{am_rank}%<=13"
+    true: "%condition:am_current11_13%"
+    false: "%condition:am_current14_15%"
+  am_current16_17:
+    conditions:
+      - "%objective_score_{am_rank}%<=16"
+    true: "<white>III · Hierro"
+    false: "<white>III · Oro"
+  am_current16_18:
+    conditions:
+      - "%objective_score_{am_rank}%<=17"
+    true: "%condition:am_current16_17%"
+    false: "<white>III · Esmeralda"
+  am_current19_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=19"
+    true: "<white>III · Diamante"
+    false: "<white>III · Netherita"
+  am_current16_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=18"
+    true: "%condition:am_current16_18%"
+    false: "%condition:am_current19_20%"
+  am_current11_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=15"
+    true: "%condition:am_current11_15%"
+    false: "%condition:am_current16_20%"
+  am_current:
+    conditions:
+      - "%objective_score_{am_rank}%<=10"
+    true: "%condition:am_current1_10%"
+    false: "%condition:am_current11_20%"
+  am_next1_2:
+    conditions:
+      - "%objective_score_{am_rank}%<=1"
+    true: "<white>I · Cobre"
+    false: "<white>I · Hierro"
+  am_next1_3:
+    conditions:
+      - "%objective_score_{am_rank}%<=2"
+    true: "%condition:am_next1_2%"
+    false: "<white>I · Oro"
+  am_next4_5:
+    conditions:
+      - "%objective_score_{am_rank}%<=4"
+    true: "<white>I · Esmeralda"
+    false: "<white>I · Diamante"
+  am_next1_5:
+    conditions:
+      - "%objective_score_{am_rank}%<=3"
+    true: "%condition:am_next1_3%"
+    false: "%condition:am_next4_5%"
+  am_next6_7:
+    conditions:
+      - "%objective_score_{am_rank}%<=6"
+    true: "<white>II · Carbón"
+    false: "<white>II · Cobre"
+  am_next6_8:
+    conditions:
+      - "%objective_score_{am_rank}%<=7"
+    true: "%condition:am_next6_7%"
+    false: "<white>II · Hierro"
+  am_next9_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=9"
+    true: "<white>II · Oro"
+    false: "<white>II · Esmeralda"
+  am_next6_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=8"
+    true: "%condition:am_next6_8%"
+    false: "%condition:am_next9_10%"
+  am_next1_10:
+    conditions:
+      - "%objective_score_{am_rank}%<=5"
+    true: "%condition:am_next1_5%"
+    false: "%condition:am_next6_10%"
+  am_next11_12:
+    conditions:
+      - "%objective_score_{am_rank}%<=11"
+    true: "<white>II · Diamante"
+    false: "<white>II · Restos ancestrales"
+  am_next11_13:
+    conditions:
+      - "%objective_score_{am_rank}%<=12"
+    true: "%condition:am_next11_12%"
+    false: "<white>III · Carbón"
+  am_next14_15:
+    conditions:
+      - "%objective_score_{am_rank}%<=14"
+    true: "<white>III · Cobre"
+    false: "<white>III · Hierro"
+  am_next11_15:
+    conditions:
+      - "%objective_score_{am_rank}%<=13"
+    true: "%condition:am_next11_13%"
+    false: "%condition:am_next14_15%"
+  am_next16_17:
+    conditions:
+      - "%objective_score_{am_rank}%<=16"
+    true: "<white>III · Oro"
+    false: "<white>III · Esmeralda"
+  am_next16_18:
+    conditions:
+      - "%objective_score_{am_rank}%<=17"
+    true: "%condition:am_next16_17%"
+    false: "<white>III · Diamante"
+  am_next19_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=19"
+    true: "<white>III · Netherita"
+    false: "<white>Completada"
+  am_next16_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=18"
+    true: "%condition:am_next16_18%"
+    false: "%condition:am_next19_20%"
+  am_next11_20:
+    conditions:
+      - "%objective_score_{am_rank}%<=15"
+    true: "%condition:am_next11_15%"
+    false: "%condition:am_next16_20%"
+  am_next:
+    conditions:
+      - "%objective_score_{am_rank}%<=10"
+    true: "%condition:am_next1_10%"
+    false: "%condition:am_next11_20%"
   rango:
     conditions:
       - "%auraskills_power%>=1500"

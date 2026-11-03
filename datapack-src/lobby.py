@@ -12,6 +12,8 @@ y en ../build/mythicmobs/skills/gachas.yml lo que hace el vendedor: cobra con Va
 """
 import os
 
+from minas import sidebar as mines_sidebar
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "lobby")
 WORLD = "lobby"
@@ -437,6 +439,9 @@ TAB_SECTIONS += daily_sidebar_conditions() + '''placeholders:
   time-offset: -3
   locale: "es-AR"
 '''
+
+TAB_SECTIONS = mines_sidebar(TAB_SECTIONS)
+
 
 TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)
 _DEFAULT_:
