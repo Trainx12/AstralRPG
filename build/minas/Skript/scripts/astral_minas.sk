@@ -329,25 +329,6 @@ on load:
     set {-am.price::%{_t}%} to 0.4
     set {_t} to "minecraft:nether_quartz_ore" parsed as item type
     set {-am.price::%{_t}%} to 0.4
-    delete {-am.drillnames::*}
-    add "Taladro de Diamante" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Diamante} to 1
-    add "Taladro de Mitril" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Mitril} to 2
-    add "Taladro de Amatista" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Amatista} to 2
-    add "Taladro de Rubi" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Rubi} to 3
-    add "Taladro de Topacio" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Topacio} to 3
-    add "Taladro de Titanio" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Titanio} to 4
-    add "Taladro de Jaspe" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Jaspe} to 4
-    add "Taladro de Gemas" to {-am.drillnames::*}
-    set {-am.drill::Taladro de Gemas} to 5
-    add "Taladro Divan" to {-am.drillnames::*}
-    set {-am.drill::Taladro Divan} to 5
     delete {-am.off::*}
     set {-am.off::2::down::1} to vector(0, -1, 0)
     set {-am.off::2::up::1} to vector(0, 1, 0)
@@ -838,14 +819,27 @@ function am_count(p: player, i: number, n: number):
     set {-am.b::%{_id}%} to {_b}
 
 # Area de los taladros dentro del pozo (el datapack no pica en este mundo).
-function am_drill_area(p: player) :: number:
-    set {_name} to uncolored name of {_p}'s tool
-    if {_name} is not set:
+# El area sale de la descripcion del taladro ("Rompe en area 3x3"): el nombre esta en el
+# componente item_name, que Skript no lee, y el area real (custom_data) tampoco se puede leer.
+function am_tool_area(tool: item) :: number:
+    if type of {_tool} is not netherite pickaxe:
         return 0
-    loop {-am.drillnames::*}:
-        if {_name} contains loop-value:
-            return {-am.drill::%loop-value%}
+    loop lore of {_tool}:
+        set {_l} to uncolored loop-value
+        if {_l} contains "Rompe en area":
+            # Igual que AREA_NAMES en tools.py: 2 = 2x1, 3 = 2x2, 4 = 3x3, 5 = 4x4.
+            if {_l} contains "4x4":
+                return 5
+            if {_l} contains "3x3":
+                return 4
+            if {_l} contains "2x2":
+                return 3
+            if {_l} contains "2x1":
+                return 2
     return 0
+
+function am_drill_area(p: player) :: number:
+    return am_tool_area({_p}'s tool)
 
 function am_drill(p: player, origin: location, area: number, dir: text):
     set {_i} to am_id({_origin})

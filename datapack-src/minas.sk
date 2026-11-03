@@ -266,14 +266,27 @@ function am_count(p: player, i: number, n: number):
     set {-am.b::%{_id}%} to {_b}
 
 # Area de los taladros dentro del pozo (el datapack no pica en este mundo).
-function am_drill_area(p: player) :: number:
-    set {_name} to uncolored name of {_p}'s tool
-    if {_name} is not set:
+# El area sale de la descripcion del taladro ("Rompe en area 3x3"): el nombre esta en el
+# componente item_name, que Skript no lee, y el area real (custom_data) tampoco se puede leer.
+function am_tool_area(tool: item) :: number:
+    if type of {_tool} is not netherite pickaxe:
         return 0
-    loop {-am.drillnames::*}:
-        if {_name} contains loop-value:
-            return {-am.drill::%loop-value%}
+    loop lore of {_tool}:
+        set {_l} to uncolored loop-value
+        if {_l} contains "Rompe en area":
+            # Igual que AREA_NAMES en tools.py: 2 = 2x1, 3 = 2x2, 4 = 3x3, 5 = 4x4.
+            if {_l} contains "4x4":
+                return 5
+            if {_l} contains "3x3":
+                return 4
+            if {_l} contains "2x2":
+                return 3
+            if {_l} contains "2x1":
+                return 2
     return 0
+
+function am_drill_area(p: player) :: number:
+    return am_tool_area({_p}'s tool)
 
 function am_drill(p: player, origin: location, area: number, dir: text):
     set {_i} to am_id({_origin})

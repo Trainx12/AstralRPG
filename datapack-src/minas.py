@@ -11,7 +11,7 @@ import gzip
 from pathlib import Path
 from zipfile import ZipFile
 
-from tools import DRILLS, FACING, area_ranges
+from tools import AREA_NAMES, FACING, area_ranges
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build/minas"
@@ -108,10 +108,8 @@ def config():
     for material, price in PRICES.items():
         lines.append(f'    set {{_t}} to "minecraft:{material}" parsed as item type')
         lines.append(f"    set {{-am.price::%{{_t}}%}} to {price}")
-    lines.append("    delete {-am.drillnames::*}")
-    for drill in DRILLS:
-        lines.append(f'    add "{drill["name"]}" to {{-am.drillnames::*}}')
-        lines.append(f'    set {{-am.drill::{drill["name"]}}} to {drill["area"]}')
+    # El script reconoce el area por la descripcion "Rompe en area NxM" (ver AREA_NAMES).
+    assert AREA_NAMES == {1: "1x1", 2: "2x1", 3: "2x2", 4: "3x3", 5: "4x4"}, "actualizar am_tool_area en minas.sk"
     lines.append("    delete {-am.off::*}")
     for area in range(2, 6):
         offsets = {direction: [(0, sign * depth, 0) for depth, minimum in ((1, 2), (2, 4), (3, 5)) if area >= minimum]
