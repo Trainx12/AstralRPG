@@ -35,7 +35,9 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 ## Memoria y lag (revision 02/11/2026)
 
 - **Cuelgue del 02/11 18:25:** `java.lang.OutOfMemoryError: Metaspace`. Metaspace es la memoria donde Java guarda
-  el codigo de los plugins; tiene un tope y no se puede agrandar en Aternos. El server arranca en ~420 MB
+  el codigo de los plugins. Aternos arranca Java con `-XX:MaxMetaspaceSize=350M -Xmx2300M` (visto en el informe
+  de spark, pestana JVM Flags) y no deja cambiarlo. Con ~35 plugins se usan ~300-325 MB de esos 350 a los pocos
+  minutos de prender (el "Non-heap" de spark suma ademas la cache de codigo, por eso marca ~430 MB). El server arranca en ~420 MB
   ("Non-heap" en `spark health --memory`) y crece cuando se usan cosas nuevas (entrar a mundos, mobs nuevos) y con
   cada recarga: medido +2-3 MB por `skript reload all` o `mm reload`, que no se liberan hasta reiniciar.
 - **Lag:** los elites del datapack eran persistentes y se acumulaban (se mataron 115 brujas cerca del spawn); el
