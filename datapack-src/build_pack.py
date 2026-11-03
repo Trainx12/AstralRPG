@@ -283,6 +283,38 @@ try:
 except Exception as e:
     print("sin particula transparente:", e)
 
+# Stellarity (resource pack oficial, con permiso del autor): ver pack-source/terceros/CREDITOS.txt.
+# Lo nuestro gana en los choques; la fuente default se junta; sus overlays van al pack.mcmeta.
+def stellarity():
+    zpath = os.path.join(SRC, "terceros", "Stellarity-6.0.1-RP.zip")
+    if not os.path.exists(zpath):
+        print("sin Stellarity:", zpath)
+        return
+    with zipfile.ZipFile(zpath) as st:
+        meta = json.loads(st.read("pack.mcmeta").decode("utf-8"))
+        added = 0
+        for name in st.namelist():
+            if name.endswith("/") or name in ("pack.mcmeta", "pack.png", "README.md") or "/optifine/" in name:
+                continue
+            data = st.read(name)
+            if name == "assets/minecraft/font/default.json" and name in files:
+                ours = json.loads(files[name])
+                theirs = json.loads(data.decode("utf-8"))
+                ours["providers"] = ours.get("providers", []) + theirs.get("providers", [])
+                files[name] = json.dumps(ours, ensure_ascii=False).encode("utf-8")
+                continue
+            if name in files:
+                continue
+            files[name] = data
+            added += 1
+    pack = json.loads(files["pack.mcmeta"])
+    pack["overlays"] = meta.get("overlays", {"entries": []})
+    files["pack.mcmeta"] = json.dumps(pack, indent=1).encode("utf-8")
+    print(f"Stellarity: {added} archivos agregados")
+
+
+stellarity()
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

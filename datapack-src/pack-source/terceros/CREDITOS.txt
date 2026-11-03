@@ -1,0 +1,14 @@
+Recursos de terceros incluidos en el resource pack de AstralRPG
+
+- Stellarity-6.0.1-RP.zip: resource pack oficial de Stellarity, por kohara / Prismatic Shards.
+  https://modrinth.com/datapack/stellarity
+  https://github.com/Prismatic-Shards/Stellarity
+  Se incluye con permiso del autor (pedido por el dueno de AstralRPG, 03/11/2026).
+  Stellarity NO es obra de AstralRPG.
+
+  Cambios respecto del original (build_pack.py, funcion stellarity):
+  - No se copian pack.mcmeta, pack.png, README.md ni la carpeta optifine.
+  - assets/minecraft/font/default.json: se juntan sus providers con los de AstralRPG.
+  - assets/minecraft/items/leather_*.json: se usan los de AstralRPG (colores de las armaduras
+    de clase); se pierden los adornos de Stellarity solo en armaduras de cuero.
+  - Sus overlays por version se agregan al pack.mcmeta de AstralRPG.
