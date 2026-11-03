@@ -48,7 +48,9 @@ también a tamaño nativo. Los doce PNG finales de 16×16 se exportan a
 También se empaquetan los doce PNG nativos en `build/talismans-16px.zip`.
 Esta revisión de talismanes modifica solo el resource pack; conserva los mismos
 IDs y modelos de ítem y no requiere otra migración del datapack.
-Los ZIP son cambios locales: falta cargar ambos packs y comprobarlos en Minecraft.
+Los ZIP están publicados en `c3b32bd` e instalados en Aternos. El servidor arrancó
+y confirmó `file/AstralRPG-Items.zip (world)` entre los ocho datapacks habilitados.
+Falta la revisión visual del jugador dentro de Minecraft.
 
 Los originales, referencias ampliadas y retoques de motosierras/gancho quedan
 en `datapack-src/pack-source/art/chainsaws/`. Sus prompts piden explícitamente
@@ -69,3 +71,8 @@ ampliada y a tamaño nativo inspeccionada. Se usó ImageGen integrado, con los
 prompts exactos en `pack-source/art/items/talisman_*.prompt.txt`.
 
 SHA1 del resource pack local: `e68693c160e3742288ea39b15c00ef1aafc8b0df`.
+
+URL instalada y verificada por descarga pública:
+`https://raw.githubusercontent.com/Trainx12/AstralRPG/c3b32bd7270f25d54a3052c2109e979398285a08/build/AstralRPG-Textures.zip`.
+URL y SHA1 releídos después de recargar `server.properties`. Copias de los ZIP
+publicados anteriores y valores anteriores en `.local/backups/items-redesign/`.

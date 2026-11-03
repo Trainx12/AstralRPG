@@ -83,3 +83,17 @@ Pack de prueba para el fallo del cursor: se retiran solamente 6 sprites de resal
 sus metadatos (12 entradas); los otros 1218 archivos quedan identicos. Ventanas, HUD y modelos
 se conservan. SHA1 nuevo: cae600b9330a088534ce0106cf6cbce90cf70726.
 Es una mitigacion para probar en Minecraft, no una causa confirmada del fallo visual.
+
+02/11/2026, rediseño de ítems: publicados los generadores, arte y ambos ZIP en
+`c3b32bd7270f25d54a3052c2109e979398285a08`. Datapack reemplazado con el servidor
+apagado en `world/datapacks/AstralRPG-Items.zip`; versión de ítems 5, sin Taladro
+Infernal. Talismanes nativos 16×16 y ocho colores; motosierras y gancho conservan
+sus siluetas con retoques interiores; materiales y fragmentos rediseñados.
+
+Resource pack fijado a ese commit. SHA1 configurado, releído tras recargar la
+página y verificado por descarga pública: `e68693c160e3742288ea39b15c00ef1aafc8b0df`.
+Arranque completo en 47,882 s; `datapack list enabled` confirmó AstralRPG-Items
+entre ocho packs habilitados. No se detectaron errores de carga del datapack.
+Servidor online al terminar. No se tocaron mundos ni configuraciones de plugins.
+Pendiente la inspección visual del jugador. Respaldos de los ZIP publicados
+anteriores y de la URL/SHA1 anteriores en `.local/backups/items-redesign/`.

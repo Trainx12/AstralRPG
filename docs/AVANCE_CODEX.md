@@ -1,10 +1,14 @@
 # Cambios locales del 30/10/2026
 
-## Rediseño de ítems (02/11/2026, local)
+## Rediseño de ítems (02/11/2026, publicado e instalado)
 
 Ver [ITEMS_REDISENO.md](ITEMS_REDISENO.md): 31 sprites nuevos de motosierras,
 talismanes, gancho y materiales; retirada del Taladro Infernal. Se reconstruyen
-los dos ZIP y la versión de ítems sube a 5. Pendiente de publicar y probar en Minecraft.
+los dos ZIP y la versión de ítems sube a 5. Publicado en `c3b32bd` e instalado en
+Aternos: datapack reemplazado, URL inmutable y SHA1 guardados, arranque completo
+y datapack habilitado confirmados. Los doce talismanes son nativos de 16×16.
+SHA1 vigente: `e68693c160e3742288ea39b15c00ef1aafc8b0df`.
+Pendiente únicamente la revisión visual del jugador dentro de Minecraft.
 
 ## Texture pack publicado (31/10/2026)
 
