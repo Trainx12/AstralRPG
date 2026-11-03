@@ -69,8 +69,15 @@ def relleno(material, size, ocupados):
     return L
 
 
+# Comandos que los jugadores escriben: se registran como comandos de verdad.
+# Sin register_command, DeluxeMenus solo los atrapa al escribirlos y el chat los marca en rojo.
+COMANDOS_JUGADOR = {"menu", "comandos", "mascotas", "misiones"}
+
+
 def menu(title, command, size, items, update=False):
     L = [f"menu_title: {q(title)}", f"open_command: {command}", f"size: {size}"]
+    if command in COMANDOS_JUGADOR:
+        L.append("register_command: true")
     if update:
         L.append("update_interval: 1")
     return "\n".join(L + ["items:"] + items) + "\n"

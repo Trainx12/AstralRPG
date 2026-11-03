@@ -1,6 +1,7 @@
 menu_title: '&f'
 open_command: misiones
 size: 54
+register_command: true
 update_interval: 1
 open_commands:
 - '[console] execute as %player_name% at @s run function astral:quest/sync'

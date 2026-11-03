@@ -1,6 +1,7 @@
 menu_title: '&f'
 open_command: mascotas
 size: 54
+register_command: true
 update_interval: 1
 items:
   'info':

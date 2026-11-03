@@ -1,6 +1,7 @@
 menu_title: '&8Comandos de AstralRPG'
 open_command: comandos
 size: 54
+register_command: true
 items:
   'tema_1':
     material: LIME_STAINED_GLASS_PANE
