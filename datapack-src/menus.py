@@ -5,7 +5,7 @@ Menus de cofre (DeluxeMenus) para que los jugadores no tengan que escribir coman
   /menu          menu principal (mascotas, mercado, subastas, guia, volver al lobby)
   /mascotas      tus mascotas: invocar o guardar (las que no tenes aparecen bloqueadas)
   gacha_*        lo abre el cofre de cada gacha: tirar x1 / x10 / x25 / x50 y ver premios
-  bazar          lo abre el aldeano Bazar: mercado y venta rapida (EconomyShopGUI), subastas (CrazyAuctions), ordenes (DonutOrders)
+  bazar          lo abre el aldeano Bazar: mercado y venta rapida (EconomyShopGUI), subastas (CrazyAuctions), intercambio (AxTrade)
 
 Los menus que abren los vendedores se abren desde la consola con 'dm open <menu> <jugador>'.
 Salida: ../build/menus/DeluxeMenus/  (gui_menus/*.yml + config-gui_menus.yml con la lista para config.yml)
@@ -206,7 +206,7 @@ def bazar_menu():
         'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'economyshopgui:shop'),
         'vender': ('&6&lVenta rapida', ['&7Coloca el objeto, revisa su importe', '&7y confirma con VENDER.', '&7Cerrar devuelve el objeto.'], 'astralventa'),
         'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Explora, consulta tus ventas y retira objetos.'], 'astralmenu_subastas'),
-        'ordenes': ('&b&lOrdenes de compra', ['&7Publica pedidos o completa encargos.', '&7El pago lo administra el mercado.'], 'orders'),
+        'intercambio': ('&b&lIntercambio', ['&7Cambia objetos y oro cara a cara', '&7con otro jugador: &f/trade <jugador>'], None),
     }
     lines=[]
     for key,cols,rows in bazar_regions():
@@ -217,9 +217,11 @@ def bazar_menu():
                 # DeluxeMenus programa la accion CLOSE al tick siguiente y
                 # closeMenu programa closeInventory OTRO tick mas tarde.
                 # Abrir antes del tercero cierra tambien el menu de destino.
-                'click_commands':['[sound] UI_BUTTON_CLICK','[close]',f'[player] {command}<delay=3>']})
+                'click_commands':['[sound] UI_BUTTON_CLICK','[close]',f'[player] {command}<delay=3>'] if command else
+                    ['[sound] UI_BUTTON_CLICK','[close]','[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.',
+                     '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.']})
     lines += item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
-    lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas y ordenes: otros jugadores.'])
+    lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas e intercambio: otros jugadores.'])
     lines += item('volver','ARROW',53,'&fVolver',extra={'click_commands':['[openguimenu] principal']})
     return menu(title('bazar'),'astralmenu_bazar',54,lines,update=True)
 
@@ -230,7 +232,7 @@ def principal_menu():
         'expediciones': ('&a&lExpediciones Astrales', ['&7Explora seis destinos y encuentra sus guardianes.'], ['[openguimenu] expediciones']),
         'mazmorras': ('&d&lMazmorras descubiertas', ['&7Viaja a los portales que ya descubriste.'], ['[openguimenu] mazmorras']),
         'misiones': ('&b&lEl Cronista', ['&7Historia, misiones diarias y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
-        'bazar': ('&6&lBazar del Refugio', ['&7Tienda, venta rapida, subastas y ordenes.'], ['[openguimenu] bazar']),
+        'bazar': ('&6&lBazar del Refugio', ['&7Tienda, venta rapida, subastas e intercambio.'], ['[openguimenu] bazar']),
         'mascotas': ('&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
         'cosmeticos': ('&d&lMis cosmeticos', ['&7Elige entre tus titulos desbloqueados.'], ['[openguimenu] cosmeticos']),
         'guia': ('&b&lGuia de AstralRPG', ['&7Clases, equipo, recetas y la Forja.'], ['[close]', '[player] trigger astral.guia set 1']),

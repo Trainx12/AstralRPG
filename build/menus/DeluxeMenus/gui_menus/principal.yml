@@ -169,7 +169,7 @@ items:
     amount: 1
     display_name: '&6&lBazar del Refugio'
     lore:
-    - '&7Tienda, venta rapida, subastas y ordenes.'
+    - '&7Tienda, venta rapida, subastas e intercambio.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:aventuras/principal_bazar_0'
@@ -182,7 +182,7 @@ items:
     amount: 1
     display_name: '&6&lBazar del Refugio'
     lore:
-    - '&7Tienda, venta rapida, subastas y ordenes.'
+    - '&7Tienda, venta rapida, subastas e intercambio.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:aventuras/principal_bazar_1'
@@ -195,7 +195,7 @@ items:
     amount: 1
     display_name: '&6&lBazar del Refugio'
     lore:
-    - '&7Tienda, venta rapida, subastas y ordenes.'
+    - '&7Tienda, venta rapida, subastas e intercambio.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:aventuras/principal_bazar_2'
@@ -208,7 +208,7 @@ items:
     amount: 1
     display_name: '&6&lBazar del Refugio'
     lore:
-    - '&7Tienda, venta rapida, subastas y ordenes.'
+    - '&7Tienda, venta rapida, subastas e intercambio.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:aventuras/principal_bazar_3'

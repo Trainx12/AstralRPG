@@ -371,126 +371,134 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] astralmenu_subastas<delay=3>'
-  'ordenes_0':
+  'intercambio_0':
     material: PAPER
     slot: 32
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_0'
+    item_model: 'astral:servicios/bazar_intercambio_0'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_1':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_1':
     material: PAPER
     slot: 33
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_1'
+    item_model: 'astral:servicios/bazar_intercambio_1'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_2':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_2':
     material: PAPER
     slot: 34
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_2'
+    item_model: 'astral:servicios/bazar_intercambio_2'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_3':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_3':
     material: PAPER
     slot: 35
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_3'
+    item_model: 'astral:servicios/bazar_intercambio_3'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_4':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_4':
     material: PAPER
     slot: 41
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_4'
+    item_model: 'astral:servicios/bazar_intercambio_4'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_5':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_5':
     material: PAPER
     slot: 42
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_5'
+    item_model: 'astral:servicios/bazar_intercambio_5'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_6':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_6':
     material: PAPER
     slot: 43
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_6'
+    item_model: 'astral:servicios/bazar_intercambio_6'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
-  'ordenes_7':
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'intercambio_7':
     material: PAPER
     slot: 44
     amount: 1
-    display_name: '&b&lOrdenes de compra'
+    display_name: '&b&lIntercambio'
     lore:
-    - '&7Publica pedidos o completa encargos.'
-    - '&7El pago lo administra el mercado.'
+    - '&7Cambia objetos y oro cara a cara'
+    - '&7con otro jugador: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:servicios/bazar_ordenes_7'
+    item_model: 'astral:servicios/bazar_intercambio_7'
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] orders<delay=3>'
+    - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
+    - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
   'saldo':
     material: GOLD_NUGGET
     slot: 4
@@ -508,7 +516,7 @@ items:
     display_name: '&fBazar del Refugio'
     lore:
     - '&7Comprar y vender: precios del servidor.'
-    - '&7Subastas y ordenes: otros jugadores.'
+    - '&7Subastas e intercambio: otros jugadores.'
     item_flags:
     - HIDE_ATTRIBUTES
   'volver':

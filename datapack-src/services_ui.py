@@ -44,7 +44,7 @@ def frame(kind):
 
 def bazar_regions():
     return [('comprar',range(0,4),range(1,3)),('vender',range(5,9),range(1,3)),
-            ('subastas',range(0,4),range(3,5)),('ordenes',range(5,9),range(3,5))]
+            ('subastas',range(0,4),range(3,5)),('intercambio',range(5,9),range(3,5))]
 
 
 # Casillas de arriba que de verdad usa cada menu. Las demas se dejan lisas
@@ -172,7 +172,7 @@ def assets():
             advances[REWINDS[kind][n]]=-(part.getbbox()[2]+1)
     providers.append({'type':'space','advances':advances})
     for key,caption,sub,color in [('comprar','COMPRAR','TIENDA','#304e36'),('vender','VENDER','VENTA RAPIDA','#60432b'),
-                                  ('subastas','SUBASTAS','JUGADORES','#5d4928'),('ordenes','ORDENES','ENCARGOS','#2b4750')]:
+                                  ('subastas','SUBASTAS','JUGADORES','#5d4928'),('intercambio','INTERCAMBIO','JUGADORES','#2b4750')]:
         tiles('bazar_'+key,card(caption,sub,color))
     for name,caption,width,color in [('improve','MEJORAR',54,'#366b48'),('blocked','MEJORAR',54,'#683c36'),
                                      ('sell','VENDER',72,'#93333a'),('sell_blocked','VENDER',72,'#59434a')]:
@@ -193,7 +193,7 @@ def previews(folder):
     for kind in THEMES:
         im=Image.new('RGBA',SIZE,'#252a28');im.alpha_composite(panel(kind))
         if kind=='bazar':
-            for (key,cols,rows),(caption,sub,color) in zip(bazar_regions(),[('COMPRAR','TIENDA','#304e36'),('VENDER','VENTA RAPIDA','#60432b'),('SUBASTAS','JUGADORES','#5d4928'),('ORDENES','ENCARGOS','#2b4750')]):
+            for (key,cols,rows),(caption,sub,color) in zip(bazar_regions(),[('COMPRAR','TIENDA','#304e36'),('VENDER','VENTA RAPIDA','#60432b'),('SUBASTAS','JUGADORES','#5d4928'),('INTERCAMBIO','JUGADORES','#2b4750')]):
                 im.alpha_composite(card(caption,sub,color),(24+7+min(cols)*18,40+17+min(rows)*18))
         elif kind=='herrero':
             im.alpha_composite(banner('+1 / 300$ / 100%'),(24+25,40+71));im.alpha_composite(button('MEJORAR'),(24+61,40+89))
