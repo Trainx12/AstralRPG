@@ -507,7 +507,7 @@ def holo_cmds():
             {"text": NL + "Si no entiendes algo, ¡puedes pedir ayuda a un administrador!", "color": "gray"},
             {"text": NL + "¡Que tengas una gran aventura!", "color": "#B07CFF", "bold": True}]
     comp = json.dumps({"text": "", "extra": text})
-    out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + 2.7} {z} "
+    out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + 4.7} {z} "
                f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
                f"line_width:320,text:{comp}}}")
     return out
