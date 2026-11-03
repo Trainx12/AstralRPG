@@ -1,6 +1,6 @@
 # AstralRPG — instrucciones para Claude
 
-Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Aternos, `AstralRPG2.aternos.me`). El dueño habla en español rioplatense; responder en español, simple y sin jerga.
+Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Aternos, `AstralRPG.aternos.me`). El dueño habla en español rioplatense; responder en español, simple y sin jerga.
 
 **Antes de tocar algo, leer:**
 - `docs/GUIA.md` — mapa del repo, dónde se agrega cada cosa, cómo subir a Aternos y trucos que ya nos costaron.

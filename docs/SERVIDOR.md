@@ -12,7 +12,7 @@ Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [
 
 | Dato | Valor |
 |---|---|
-| Dirección | `AstralRPG2.aternos.me` |
+| Dirección | `AstralRPG.aternos.me` |
 | Hosting | Aternos (panel en https://aternos.org/server/) |
 | Software | Paper 26.1.2, build 74 (Java 25) |
 | Modo | No premium (`online-mode=false`): entran cuentas cracked y originales |
