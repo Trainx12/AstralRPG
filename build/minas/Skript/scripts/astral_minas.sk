@@ -683,7 +683,7 @@ function am_menu(p: player):
                 add "%{_okt}% &7Minería activa: &f%{_min}%&7/&f%{-am.finalMinutes}% min" to lore of slot {_slot} of {_inv}
         else:
             set slot {_slot} of {_inv} to barrier named "&c%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
-    set slot 49 of {_inv} to ender pearl named "&bVolver al lobby"
+    set slot 49 of {_inv} to ender pearl named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "menu"
 

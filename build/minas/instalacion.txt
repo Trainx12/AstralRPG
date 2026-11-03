@@ -139,27 +139,47 @@ rg flag -w astral_minas __global__ mob-spawning allow
 
 # 3) Subir build/mythicmobs/mobs/astral.yml (trae los aldeanos nuevos) y recargar:
 mm reload
-#    Aldeanos de venta rapida (uno por mina) desde la consola:
+#    Aldeanos de venta rapida y de viajes (dos por mina) desde la consola:
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,94.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,84.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,606.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,596.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,1118.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1108.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,1630.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1620.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,2142.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2132.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,2654.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2644.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,3166.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,3156.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,3678.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,3668.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,4190.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,4180.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,4702.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,4692.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,5214.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,5204.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,5726.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,5716.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,6238.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,6228.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,6750.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,6740.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,7262.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7252.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,7774.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7764.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,8286.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8276.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,8798.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8788.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,9310.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9300.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,9822.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9812.5,93,70.5,0,0
 
 # 4) Aldeano del lobby (al lado de Expediciones). WorldGuard bloquea mobs en el lobby:
 rg flag -w lobby __global__ mob-spawning allow

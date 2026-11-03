@@ -32,6 +32,8 @@ catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera e
 - **Cada mina:** aldeano *Venta rápida* (`astral_npc_mina_venta`) junto a la plataforma, con el botón
   **"Vender todos mis minerales"** (muestra cuánto te pagan). Vende minerales, piedra y roca del inventario; no
   toca nada con nombre o descripción (equipo y objetos Astral).
+- **Viajes:** en cada mina, del otro lado de la plataforma, el aldeano *Viajes* (`astral_npc_mina_viaje`) abre el
+  mismo menú: volver al lobby o ir a otra mina abierta.
 - **Protección:** en el mundo `astral_minas` solo se pueden romper los bloques de la mezcla, dentro del pozo, y
   en una mina abierta. No se puede poner bloques, ni explotar, ni recibir daño. Si alguien entra por `/tp` a una
   mina que no abrió, vuelve al spawn. Si cae al vacío, vuelve a la plataforma.

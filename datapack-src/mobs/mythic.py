@@ -303,6 +303,8 @@ NPCS = {
                          ['command{c="minasmenu <trigger.name>"} @self ~onInteract']),
     "astral_npc_mina_venta": ("&a&lVenta rapida &7- minerales", "MASON",
                               ['command{c="minasventa <trigger.name>"} @self ~onInteract']),
+    "astral_npc_mina_viaje": ("&b&lViajes &7- lobby u otra mina", "CARTOGRAPHER",
+                              ['command{c="minasmenu <trigger.name>"} @self ~onInteract']),
     "astral_npc_cronista": ("&b&lCronista &7- misiones diarias", "LIBRARIAN",
                             ["skill{s=AQ_CRONISTA} @trigger ~onInteract",
                              "skill{s=AQ_CLOCK} @self ~onTimer:200",

@@ -22,6 +22,7 @@ SPACING = 512                     # cada mina esta 512 bloques en X despues de l
 PIT = dict(x1=75, x2=105, y1=73, y2=92, z1=76, z2=106)   # pozo, igual en los 7 mapas
 SPAWN = (89.5, 93, 70.5)          # plataforma junto al pozo
 VENDOR = (94.5, 93, 70.5, 0)      # aldeano de venta rapida, mirando al pozo
+TRAVEL = (84.5, 93, 70.5, 0)      # aldeano de viajes (lobby u otra mina), del otro lado de la plataforma
 MOLD_Y, MOLD_STEP = -20, 25       # moldes de regeneracion debajo del pozo (y -20..-1 y -45..-26)
 RESET_MIN = 9                     # minutos entre regeneraciones de una mina con gente
 FALL_Y = 66
@@ -285,10 +286,12 @@ def install_commands():
     c += ["",
           "# 3) Subir build/mythicmobs/mobs/astral.yml (trae los aldeanos nuevos) y recargar:",
           "mm reload",
-          "#    Aldeanos de venta rapida (uno por mina) desde la consola:"]
+          "#    Aldeanos de venta rapida y de viajes (dos por mina) desde la consola:"]
     for i in range(1, len(MINES) + 1):
         x = (i - 1) * SPACING + VENDOR[0]
         c.append(f"mm mobs spawn astral_npc_mina_venta 1 {WORLD},{x},{VENDOR[1]},{VENDOR[2]},{VENDOR[3]},0")
+        t = (i - 1) * SPACING + TRAVEL[0]
+        c.append(f"mm mobs spawn astral_npc_mina_viaje 1 {WORLD},{t},{TRAVEL[1]},{TRAVEL[2]},{TRAVEL[3]},0")
     lx, ly, lz, lyaw = LOBBY_NPC
     c += ["",
           "# 4) Aldeano del lobby (al lado de Expediciones). WorldGuard bloquea mobs en el lobby:",
