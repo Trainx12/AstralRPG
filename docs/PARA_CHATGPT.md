@@ -543,7 +543,7 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | LevelledMobs | Sube el nivel de los mobs según la distancia al spawn |
 | MythicMobs 5.13.0 | Criaturas custom: fauna, hostiles, monturas, élites y jefes |
 | BetterModel 3.6.0 | Modelos 3D de esas criaturas (sin mods) |
-| ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal usa Tunnel) |
+| ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal fue retirado; los taladros usan el area del datapack) |
 | Bolt | Protege cofres, shulkers y puertas |
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
 | AuthMe | Login con contraseña (necesario en modo no premium) |

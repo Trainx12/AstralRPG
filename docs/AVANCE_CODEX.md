@@ -1,5 +1,11 @@
 # Cambios locales del 30/10/2026
 
+## Rediseño de ítems (02/11/2026, local)
+
+Ver [ITEMS_REDISENO.md](ITEMS_REDISENO.md): 31 sprites nuevos de motosierras,
+talismanes, gancho y materiales; retirada del Taladro Infernal. Se reconstruyen
+los dos ZIP y la versión de ítems sube a 5. Pendiente de publicar y probar en Minecraft.
+
 ## Texture pack publicado (31/10/2026)
 
 El nuevo menu ilustrado, los iconos y el HUD de referencia ya estan publicados e instalados.

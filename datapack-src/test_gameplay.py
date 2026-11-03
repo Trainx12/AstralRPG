@@ -48,7 +48,9 @@ class GameplayTests(unittest.TestCase):
         self.assertEqual(mine.count('loot spawn'),1)
         self.assertIn('unless block ~ ~ ~ #astral:drillable',mine)
         self.assertIn('positioned ~ ~-2 ~',(PACK/'function/tool/d/down.mcfunction').read_text())
-        self.assertNotIn('excellentenchants:tunnel',str(self.components('taladro_infernal')))
+        self.assertFalse((PACK/'loot_table/item/taladro_infernal.json').exists())
+        for iid in ('taladro_diamante', 'taladro_divan'):
+            self.assertNotIn('excellentenchants:tunnel', str(self.components(iid)))
 
     def test_graves_preserve_only_protected_world_inventory(self):
         config=patch_graves({'disabled-worlds':['old']})

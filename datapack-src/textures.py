@@ -68,7 +68,7 @@ WEAPON_TEX.update({
 })
 
 # Texturas generadas por gen_textures.py (carpeta textures/item/gen)
-GEN_WEAPON = ["hacha_4", "hacha_5", "guadana_1", "guadana_4", "guadana_umbria", "taladro_infernal", "gancho"]
+GEN_WEAPON = ["hacha_4", "hacha_5", "guadana_1", "guadana_4", "guadana_umbria", "gancho"]
 GEN_ITEM = ["guantes_meteoro", "fragmento_cristal", "cristal_refinado", "corazon_shulker",
             "esencia_elite", "alma_corrupta", "chispa_astral"] + \
            [f"talisman_{t}_{l}" for t in ("vida", "furia", "viento", "roca") for l in (1, 2, 3)]

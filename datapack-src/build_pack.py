@@ -254,6 +254,10 @@ files.update(gacha_files)
 default_font['providers'] = gacha_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
+# Arte nuevo de inventario: prevalece sobre las texturas antiguas.
+from item_redesign import assets as redesigned_item_assets, IDS as REDESIGN_IDS
+files.update(redesigned_item_assets())
+
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
     "description": [{"text": "AstralRPG", "color": "light_purple"}, {"text": " - texturas del servidor", "color": "gray"}],
@@ -285,6 +289,6 @@ print(f"{len(files)} archivos -> {OUT}")
 def models_for_datapack():
     """Devuelve {id_item: item_model} para el datapack."""
     m = {}
-    for iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
+    for iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS + REDESIGN_IDS:
         m[iid] = f"astral:{iid}"
     return m

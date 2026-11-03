@@ -42,7 +42,6 @@ PICKS = {
     "guadana_1": lambda: cell("steel-weapons.png", 14, 10),       # Guadana Umbria Menor
     "guadana_4": lambda: cell("gold-weapons.png", 14, 15),        # Guadana del Archimago: dorada
     "guadana_umbria": lambda: cell("steel-weapons.png", 14, 16),  # Guadana Umbria (especial)
-    "taladro_infernal": lambda: cell("steel-weapons.png", 23, 11),  # martillo con cabeza ardiente
     "gancho": lambda: cell("steel-weapons.png", 15, 12),          # gancho curvo
     "guantes_meteoro": lambda: jet(4, 5),                         # guantelete
     # materiales

@@ -18,10 +18,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 4   # migracion en el mismo slot; conserva mejoras, adornos y desgaste
-
-# ID del encantamiento de mineria 3x3 de ExcellentEnchants (None = no se usa)
-TUNNEL_ENCHANT = None  # Una sola implementacion del area, con Shift y proteccion por mundo.
+ITEM_VERSION = 5   # migracion en el mismo slot; conserva mejoras, adornos y desgaste
 
 files = {}
 
@@ -389,16 +386,6 @@ add_item("guantes_meteoro", "minecraft:paper", "Guantes de Puno Meteoro", "#ff8c
 RECIPES.append(("guantes_meteoro", 1, [("c", "netherita_reforzada", 2), ("v", "minecraft:blaze_powder", 2),
                                         ("c", "gema_luminica", 1)], "Especiales"))
 
-drill_ench = {"minecraft:efficiency": 5, "minecraft:unbreaking": 3}
-if TUNNEL_ENCHANT:
-    drill_ench[TUNNEL_ENCHANT] = 3
-add_item("taladro_infernal", "minecraft:netherite_pickaxe", "Taladro Infernal", "#ff5a1f",
-         [txt("Reemplaza al pico", "gray"), txt("Rompe en area 3x3", "gold"), req_line("mining", 18)],
-         {"type": "tool", "tool":"drill", "tier":3, "area":4}, extra={"minecraft:enchantments": drill_ench},
-         pdc=aura_pdc("item", "mining", 18), kind="weapon")
-RECIPES.append(("taladro_infernal", 1, [("c", "shadowsteel", 4), ("c", "netherita_reforzada", 1),
-                                         ("v", "minecraft:redstone_block", 2), ("v", "minecraft:blaze_rod", 1)], "Especiales"))
-
 # ---------------------------------------------------------------------------
 # TALADROS (Mineria) y MOTOSIERRAS (Deforestacion)
 # ---------------------------------------------------------------------------
@@ -501,6 +488,9 @@ for i, s in enumerate(SPEARS):
 # ---------------------------------------------------------------------------
 from textures import MATERIAL_TEX, BLOCK_ITEMS, WEAPON_TEX, BOW_TEX, GEN_WEAPON, GEN_ITEM, ARMOR_ITEMS
 for _iid in list(MATERIAL_TEX) + list(BLOCK_ITEMS) + list(WEAPON_TEX) + list(BOW_TEX) + GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
+    ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
+from item_redesign import IDS as REDESIGN_IDS
+for _iid in REDESIGN_IDS:
     ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
 for _t in DRILLS + CHAINSAWS:
     ITEMS[_t["id"]]["components"]["minecraft:item_model"] = f"{NS}:{_t['id']}"
@@ -1555,8 +1545,8 @@ for tid, t in TALISMANS.items():
 dlg("guia/talismanes", txt("Talismanes", "aqua", bold=True),
     [msg("Se llevan en la mano secundaria. Se hacen con lo que sueltan los mobs elite.")], tal_btns, back="guia", columns=2)
 recipe_leaf("guia/especiales", "Especiales", rids_where(
-    lambda o: o in SPECIAL_WEAPONS or o in ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")), "guia")
-recipe_leaf("guia/taladros", "Taladros (Mineria)", rids_where(lambda o: o.startswith("taladro_") and o != "taladro_infernal"), "guia")
+    lambda o: o in SPECIAL_WEAPONS or o in ("gancho", "guadana_umbria", "guantes_meteoro")), "guia")
+recipe_leaf("guia/taladros", "Taladros (Mineria)", rids_where(lambda o: o.startswith("taladro_")), "guia")
 recipe_leaf("guia/motosierras", "Motosierras (Tala)", rids_where(lambda o: o.startswith("motosierra_")), "guia")
 dlg("guia/materiales", txt("Materiales", "light_purple", bold=True),
     [msg("Materiales que se forjan a partir de otros.")],
@@ -1661,9 +1651,9 @@ KITS = [
      [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and i[-1].isdigit()]),
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
      [i for i in ITEMS if i in SPECIAL_WEAPONS or i.startswith(("lanza_", "talisman_")) or i in
-      ("gancho", "guadana_umbria", "guantes_meteoro", "taladro_infernal")]),
+      ("gancho", "guadana_umbria", "guantes_meteoro")]),
     ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
-     [i for i in ITEMS if (i.startswith("taladro_") and i != "taladro_infernal") or i.startswith("motosierra_")]),
+     [i for i in ITEMS if i.startswith(("taladro_", "motosierra_"))]),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:

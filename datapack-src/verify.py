@@ -22,6 +22,7 @@ def main():
     args=parser.parse_args()
     with zipfile.ZipFile(ROOT/"build/AstralRPG-Items.zip") as pack:
         names=set(pack.namelist())
+        assert not any('taladro_infernal' in name for name in names)
         for name in names:
             if name.endswith(".json"):json.loads(pack.read(name))
             if not name.endswith(".mcfunction"):continue
@@ -34,6 +35,36 @@ def main():
             for item in re.findall(r"loot astral:item/([a-z0-9_]+)",text):
                 assert f"data/astral/loot_table/item/{item}.json" in names,(name,item)
         print("Datapack: JSON y referencias de funciones/loot OK")
+    from item_redesign import IDS as redesigned_items
+    from tools import DRILLS
+    with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as textures, \
+            zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as datapack:
+        assert not any('taladro_infernal' in name for name in textures.namelist())
+        for iid in redesigned_items:
+            definition = json.loads(textures.read(f'assets/astral/items/{iid}.json'))
+            model_name = definition['model']['model'].split(':', 1)[1]
+            model = json.loads(textures.read(f'assets/astral/models/{model_name}.json'))
+            namespace, path = model['textures']['layer0'].split(':', 1)
+            im = Image.open(io.BytesIO(textures.read(f'assets/{namespace}/textures/{path}.png')))
+            size = 16 if iid.startswith('talisman_') else 32
+            assert im.width == size and im.height % size == 0 and im.mode == 'RGBA', iid
+            if iid.startswith('talisman_'):
+                assert len({p[:3] for p in im.getdata() if p[3]}) <= 8, (iid, 'demasiados colores')
+            assert set(im.getchannel('A').getdata()) == {0, 255}, iid
+            assert im.getbbox() and im.getpixel((0, 0))[3] == 0, iid
+            if iid.startswith('motosierra_') or iid == 'gancho':
+                original = Image.open(HERE/'pack-source/art/chainsaws'/f'{iid}-original.png').convert('RGBA')
+                original = original.resize(im.size, Image.Resampling.NEAREST)
+                assert im.getchannel('A').tobytes() == original.getchannel('A').tobytes(), (iid, 'silueta cambiada')
+                assert max(abs(a-b) for old, new in zip(original.getdata(), im.getdata())
+                           for a,b in zip(old[:3], new[:3]) if old[3]) <= 20, (iid, 'retoque excesivo')
+            loot = json.loads(datapack.read(f'data/astral/loot_table/item/{iid}.json'))
+            components = loot['pools'][0]['entries'][0]['functions'][0]['components']
+            assert components['minecraft:item_model'] == f'astral:{iid}', iid
+        for drill in DRILLS:
+            assert f"data/astral/loot_table/item/{drill['id']}.json" in datapack.namelist()
+            assert f"assets/astral/items/{drill['id']}.json" in textures.namelist()
+        print(f'Arte de items: {len(redesigned_items)} sprites RGBA, modelos y loot OK; nueve taladros conservados')
     sys.path.insert(0,str(HERE/"mobs"))
     import mazmorra
     from mazmorras_data import catalog

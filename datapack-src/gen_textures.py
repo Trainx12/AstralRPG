@@ -118,7 +118,6 @@ def main():
         "guadana_1": (W + "scythe_1.png", ("#1e1e23", "#6e6e78", "#d2d2dc")),
         "guadana_4": (W + "scythe_3.png", ("#1e0a32", "#7832b4", "#f0c85a")),
         "guadana_umbria": (W + "scythe_1.png", ("#0f0519", "#4b1e78", "#b478ff")),
-        "taladro_infernal": (A + "martillo_de_reforjado.png", ("#280a05", "#b43c14", "#ffc850")),
         "guantes_meteoro": (A + "nucleo_de_furia.png", ("#3c1405", "#e66e1e", "#ffe68c")),
         # materiales
         "fragmento_cristal": (A + "fragmento_umbrio.png", ("#3c2864", "#a07cf0", "#f0e6ff")),
