@@ -1,7 +1,7 @@
 # Generado por special_weapons.py. Skript 2.17 sin addons. MythicMobs + PlaceholderAPI + AuraSkills.
 # escala.py: armas especiales = tier 3; sus habilidades pegan x FACTOR_ARMA[3].
 options:
-    escala: 1
+    escala: 285.714
 
 function asw_identify(p: player):
     execute console command "execute as %name of {_p}% run function astral:special/identify"

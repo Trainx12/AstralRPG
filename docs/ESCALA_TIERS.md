@@ -1,32 +1,37 @@
-# Escala por tier (números grandes, mostrados)
+# Escala por tier (números grandes reales)
 
 Pedido del dueño (03/11/2026): que cada tier se sienta como un salto enorme. Todo sale de
 `datapack-src/escala.py`; para cambiar un número se edita ahí y se regenera (`python build.py`,
-`python gameplay.py`, `python build_pack.py pack-source`).
+`python gameplay.py`).
 
-**Los números reales quedan chicos** (como Minecraft) y lo que se **ve** es grande. Primero se
-probó con daño y vida reales gigantes, pero Minecraft tira un corazón oscuro por cada 2 de daño
-(miles por golpe, lag) y no puede mostrar la vida de mobs con cientos de miles de corazones.
+El **daño de las armas Astral y la vida de los mobs son reales y enormes**. La vida del jugador, su
+armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y al dueño no le gustó).
 
 ## Números
 
-| Tier | Daño mostrado (espada) | Vida mostrada de un mob de su tier (zombi) | Golpes | Vida real del mob |
-|---|---|---|---|---|
-| 0 (sin arma Astral) | vanilla | vanilla | — | ×1 |
-| 1 | 100 | 500 | 5 | ×1,65 |
-| 2 | 500 | 2.400 | 4,8 | ×1,7 |
-| 3 | 2.500 | 11.500 | 4,6 | ×2,01 |
-| 4 | 12.500 | 55.000 | 4,4 | ×2,08 |
-| 5 | 62.500 | 262.500 | 4,2 | ×2,52 |
+| Tier | Daño espada | Vida de un mob de su tier (zombi) | Golpes |
+|---|---|---|---|
+| 0 (sin arma Astral) | vanilla | vanilla | — |
+| 1 | 100 | 500 (×25) | 5 |
+| 2 | 500 | 2.400 (×120) | 4,8 |
+| 3 | 2.500 | 11.500 (×575) | 4,6 |
+| 4 | 12.500 | 55.000 (×2.750) | 4,4 |
+| 5 | 62.500 | 262.500 (×13.125) | 4,2 |
 
-- **Lo mostrado** = lo real × `FACTOR_MOSTRADO` del tier del mob golpeado (×15 en T1 … ×5.208 en T5).
-- **Armas:** el daño real no cambia. Las cuerpo a cuerpo muestran "Daño: 2.500" en la descripción (se
-  oculta el "8,75 de daño" vanilla); bastones y arcos muestran su daño en números del tier.
+- **Armas:** todas las armas Astral de un tier se multiplican por `FACTOR_ARMA` (daño de la tabla /
+  daño viejo de la espada); cada clase conserva su diferencia. Espadas, hachas y guadañas: atributo de
+  daño y "Daño: 2.500" en la descripción. Bastones: daño del hechizo. Arcos: Puntería multiplica la
+  flecha. Lanzas: encantamiento **Poder Astral**. Armas especiales, Guadaña Umbría y Guantes Meteoro:
+  **tier 3** (sus habilidades también, opción `escala` de `special_weapons.sk`).
+- **Efectos** (sangrado, remate, hendidura, cono) escalan con el tier del arma del atacante; contra
+  jugadores quedan como antes. Ejecución mata seguro.
+- **Arena PvP:** el daño entre jugadores se divide por el factor del arma del atacante.
 - **Indicador de daño** (reemplaza DamageIndicator, `astral_gameplay.sk`): cada golpe de un jugador a
   un mob muestra `-2.500` y `❤ 9.000 / 11.500` arriba del mob por un segundo. Colores: blanco golpe,
   cian rayo, dorado explosión, amarillo flecha.
-- **Corazones al pegar:** la partícula `damage` del resource pack es transparente.
-- **Maná de bastones:** 50 / 100 / 180 / 300 / 500 (antes 20 / 40 / 70 / 110 / 180). Es real.
+- **Corazones al pegar:** Minecraft tira uno por cada 2 de daño (miles por golpe). La partícula `damage`
+  del resource pack es transparente para que no se vean.
+- **Maná de bastones:** 50 / 100 / 180 / 300 / 500 (antes 20 / 40 / 70 / 110 / 180).
 
 ## Mobs
 
@@ -43,7 +48,7 @@ probó con daño y vida reales gigantes, pero Minecraft tira un corazón oscuro 
 
 ## Servidor (Aternos)
 
-- `spigot.yml`: topes de `maxHealth` y `attackDamage` subidos (no hacen falta con la vida real chica,
-  pero no molestan). `log-named-deaths: false` porque ahora casi todos los mobs tienen nombre.
-- Datapack con `ITEM_VERSION = 7`: los objetos se actualizan solos conservando mejoras.
+- `spigot.yml`: topes de `maxHealth` (1.000.000.000) y `attackDamage` (10.000.000) subidos: hacen falta
+  para la vida real enorme. `log-named-deaths: false` porque ahora casi todos los mobs tienen nombre.
+- Datapack con `ITEM_VERSION = 8`: los objetos se actualizan solos conservando mejoras.
 - Resource pack nuevo (partícula transparente): actualizar URL y SHA-1 en `server.properties`.

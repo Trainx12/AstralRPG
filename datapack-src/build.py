@@ -19,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 7   # escala por tier mostrada (escala.py); migracion en el mismo slot, conserva mejoras
+ITEM_VERSION = 8   # escala por tier real (escala.py); migracion en el mismo slot, conserva mejoras
 
 files = {}
 
@@ -365,7 +365,7 @@ ARQ = ARMOR_SETS["arquero"]["color"]
 for i, s in enumerate(BOWS):
     t = i + 1
     iid = f"arco_{t}"
-    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Dano de flecha cargada: ~{fmt(9 * FACTOR_MOSTRADO[t])}"] + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
+    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Dano de flecha cargada: ~{fmt(9 * FACTOR_ARMA[t])}"] + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
     mods = None
     if s.get("spd"):
         mods = [{"type": "minecraft:movement_speed", "id": f"{NS}:{iid}.spd", "amount": s["spd"] / 100,
@@ -488,6 +488,7 @@ for i, s in enumerate(SPEARS):
     iid = f"lanza_{t}"
     ench = fx_to_ench(s["fx"])
     ench[f"{NS}:empalar"] = t
+    ench[f"{NS}:poder_astral"] = t
     weapon_item(iid, s["base"], s["name"], "#ffb347", "Lanza de Combate", t,
                 [f"+{s['bonus']} de dano por golpe"] + s["desc"], "fighting", s["lvl"], None, ench, {"w": "spear"})
     ings = list(s["cost"]) if t == 1 else [("c", f"lanza_{t - 1}", 1)] + s["cost"]
@@ -782,6 +783,12 @@ enchant("gancho", "Gancho", "gray", 1, ["mainhand"], {"minecraft:tick": [{
 enchant("empalar", "Empalar", "gold", 5, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:add",
                "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0], "fallback": 6.0}},
+    "requirements": DIRECT}]})
+
+# Poder Astral: multiplica el dano de las lanzas segun su tier (escala.py).
+enchant("poder_astral", "Poder Astral", "light_purple", 5, ["mainhand"], {"minecraft:damage": [{
+    "effect": {"type": "minecraft:multiply", "factor": {"type": "minecraft:lookup",
+               "values": [round(FACTOR_ARMA[t], 3) for t in range(1, 6)], "fallback": round(FACTOR_ARMA[5], 3)}},
     "requirements": DIRECT}]})
 
 # Mejora +1..+10 del Herrero (el nivel del encantamiento es el +N)

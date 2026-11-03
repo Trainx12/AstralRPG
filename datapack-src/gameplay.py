@@ -46,6 +46,19 @@ def apply(files,items,version):
     commands += ['lp group default permission set axgraves.allowgraves true']
     (output/'comandos.txt').write_text('\n'.join(commands)+'\n',encoding='utf-8')
 
+def pvp():
+    """Arena PvP: el dano de las armas Astral es enorme (escala.py); entre jugadores se
+    divide por el factor del arma del atacante, asi el PvP queda como antes."""
+    from escala import FACTOR_ARMA
+    lines = ['# Arena PvP: dano de armas Astral dividido por su factor (escala.py).',
+             'on damage of player with priority low:', '    attacker is a player',
+             '    name of world of victim is "arena"']
+    for t in range(1, 6):
+        lines.append(f'    if scoreboard tags of attacker contains "astral.ht{t}":')
+        lines.append(f'        set damage to damage / {round(FACTOR_ARMA[t], 3)}')
+    return chr(10).join(lines) + chr(10)
+
+
 def indicador():
     """Numeros de dano y vida del mob (reemplaza DamageIndicator).
 
@@ -337,7 +350,8 @@ on quit:
     delete {-astral.grapple.cd::%uuid of player%}
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
-__INDICADOR__'''.replace('__INDICADOR__',indicador()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
+__INDICADOR__
+__PVP__'''.replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
 
 def patch_graves(config):
     """Conservar objetos en la tumba hasta recogerlos; respetar keep_inventory."""

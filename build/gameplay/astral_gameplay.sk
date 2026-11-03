@@ -231,15 +231,15 @@ on quit:
 # Indicador de dano: "-2.500" y la vida del mob, en numeros del tier (escala.py).
 function astral_factor(e: entity) :: number:
     if scoreboard tags of {_e} contains "astral.mt1":
-        return 15.1515
+        return 1.0
     if scoreboard tags of {_e} contains "astral.mt2":
-        return 70.6215
+        return 1.0
     if scoreboard tags of {_e} contains "astral.mt3":
-        return 285.7143
+        return 1.0
     if scoreboard tags of {_e} contains "astral.mt4":
-        return 1322.7513
+        return 1.0
     if scoreboard tags of {_e} contains "astral.mt5":
-        return 5208.3333
+        return 1.0
     return 1
 
 function astral_fmt(n: number) :: text:
@@ -300,3 +300,18 @@ on uncancelled damage of living entity with priority monitor:
 
 on load:
     execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
+
+# Arena PvP: dano de armas Astral dividido por su factor (escala.py).
+on damage of player with priority low:
+    attacker is a player
+    name of world of victim is "arena"
+    if scoreboard tags of attacker contains "astral.ht1":
+        set damage to damage / 15.152
+    if scoreboard tags of attacker contains "astral.ht2":
+        set damage to damage / 70.621
+    if scoreboard tags of attacker contains "astral.ht3":
+        set damage to damage / 285.714
+    if scoreboard tags of attacker contains "astral.ht4":
+        set damage to damage / 1322.751
+    if scoreboard tags of attacker contains "astral.ht5":
+        set damage to damage / 5208.333
