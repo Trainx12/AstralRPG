@@ -42,7 +42,8 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
 - **Mazmorras:** tier fijo: mina 1, bosque 2, tumba 3, cumbre 4, forja 5, santuario 5 con ×1,5 de vida.
 - **Élites:** misma probabilidad que antes (6% + 5% por amenaza); en mazmorras la mitad. Multiplican la
   vida ya escalada (Élite ×1,9 … Astral ×5).
-- **Nombre:** `[T3] Elite Zombi` / `[T2] Minero Corrupto`.
+- **Nombre con vida:** `[T3] Elite Zombi ❤ 11.500`, visible sobre la cabeza sin tener que pegarle. La vida
+  se actualiza cada segundo en mobs a 32 bloques de un jugador (`mob/vida`).
 - El daño de los mobs al jugador y la vida del jugador son **normales**.
 - Se sacó **LevelledMobs** (subía la vida por distancia) y **DamageIndicator** (lo reemplaza el indicador).
 

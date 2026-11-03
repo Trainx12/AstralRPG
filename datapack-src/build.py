@@ -1296,8 +1296,8 @@ mob_roll += [
     f"execute if score #dg astral.tmp matches 1 run function {NS}:mob/extra_mazmorra",
     "scoreboard players operation @s astral.mt = #mt astral.tmp",
     f"function {NS}:mob/elite_chance",
-    f"function {NS}:mob/nombre",
     "data modify entity @s Health set value 1.0E9f",
+    f"function {NS}:mob/nombre",
 ]
 fn("mob/roll", mob_roll)
 fn("mob/tier_mundo", [
@@ -1353,8 +1353,45 @@ fn("mob/nombre", nombre + [
     f"execute unless data entity @s CustomName run function {NS}:mob/nombre_vanilla",
     "# un mob comun de tier 0 queda sin cartel",
     f"execute unless data storage {NS}:tmp mob.n[1] run return 0",
+    "# ultimo pedazo del nombre: la vida (se actualiza cada segundo con mob/vida)",
+    f"data modify storage {NS}:tmp mob.n append value {{text:\" ❤\",color:\"red\"}}",
     f"data modify entity @s CustomName set from storage {NS}:tmp mob.n",
+    "data modify entity @s CustomNameVisible set value 1b",
+    "tag @s add astral.hpname",
+    f"function {NS}:mob/vida",
 ])
+
+# Vida en el nombre: " ❤ 11.500" (con puntos de miles). Se llama cerca de jugadores.
+H = f"{NS}:tmp hp"
+vida = [
+    "execute store result score #hp astral.tmp run data get entity @s Health 1",
+    "execute if score #hp astral.tmp matches ..0 run scoreboard players set #hp astral.tmp 1",
+    "scoreboard players operation #u astral.tmp = #hp astral.tmp",
+    "scoreboard players operation #u astral.tmp %= #1000 astral.const",
+    "scoreboard players operation #k astral.tmp = #hp astral.tmp",
+    "scoreboard players operation #k astral.tmp /= #1000 astral.const",
+    "scoreboard players operation #m astral.tmp = #k astral.tmp",
+    "scoreboard players operation #m astral.tmp /= #1000 astral.const",
+    "scoreboard players operation #k astral.tmp %= #1000 astral.const",
+]
+for x in ("u", "k", "m"):
+    vida.append(f"execute store result storage {H}.{x} int 1 run scoreboard players get #{x} astral.tmp")
+for x in ("u", "k"):
+    vida += [f"execute if score #{x} astral.tmp matches ..9 run function {NS}:mob/pad_{x}_2 with storage {H}",
+             f"execute if score #{x} astral.tmp matches 10..99 run function {NS}:mob/pad_{x}_1 with storage {H}",
+             f"execute if score #{x} astral.tmp matches 100.. run function {NS}:mob/pad_{x}_0 with storage {H}"]
+vida += [
+    f"execute if score #hp astral.tmp matches ..999 run return run function {NS}:mob/vida_1 with storage {H}",
+    f"execute if score #hp astral.tmp matches ..999999 run return run function {NS}:mob/vida_2 with storage {H}",
+    f"function {NS}:mob/vida_3 with storage {H}",
+]
+fn("mob/vida", vida)
+for x in ("u", "k"):
+    for n, ceros in ((2, "00"), (1, "0"), (0, "")):
+        fn(f"mob/pad_{x}_{n}", [f"$data modify storage {H}.{x}s set value \"{ceros}$({x})\""])
+fn("mob/vida_1", ['$data modify entity @s CustomName[-1].text set value " ❤ $(u)"'])
+fn("mob/vida_2", ['$data modify entity @s CustomName[-1].text set value " ❤ $(k).$(us)"'])
+fn("mob/vida_3", ['$data modify entity @s CustomName[-1].text set value " ❤ $(m).$(ks).$(us)"'])
 fn("mob/nombre_vanilla", [
     f"execute if entity @s[type={e}] run data modify storage {NS}:tmp mob.n append value "
     f"{{translate:\"entity.minecraft.{e.split(':')[1]}\"}}" for e in HOSTILE + ["minecraft:vex"]])
@@ -1972,6 +2009,7 @@ load = [
     "scoreboard players set #10 astral.const 10",
     "scoreboard players set #100 astral.const 100",
     "scoreboard players set #10000 astral.const 10000",
+    "scoreboard players set #1000 astral.const 1000",
     f"schedule function {NS}:loop/t5 5t replace",
     f"schedule function {NS}:loop/t10 10t replace",
     f"schedule function {NS}:loop/t20 20t replace",
@@ -2120,6 +2158,7 @@ fn("loop/t20", [
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
     f"execute as @a run function {NS}:player/lvl",
     f"execute as @e[type=#{NS}:escalable,tag=!astral.seen] at @s run function {NS}:mob/roll",
+    f"execute as @e[tag=astral.hpname] at @s if entity @a[distance=..32] run function {NS}:mob/vida",
     f"function {NS}:elite/fx",
     f"schedule function {NS}:loop/t20 20t replace",
 ])
