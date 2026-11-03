@@ -21,13 +21,14 @@ WEAPONS = {
 
 
 def register(add_item, recipes, txt, weapon_mods):
+    from escala import FACTOR_ARMA, TIER_ESPECIAL
     for iid, w in WEAPONS.items():
         add_item(iid, 'minecraft:'+w['base'], w['name'], w['color'],
                  [txt('Arma especial - cualquier clase', w['color'])] + [txt(s) for s in w['lore']] +
                  [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')],
-                 {'type':'weapon', 'special':iid}, model='astral:'+iid, kind='weapon',
+                 {'type':'weapon', 'special':iid, 'tier':TIER_ESPECIAL}, model='astral:'+iid, kind='weapon',
                  pdc={'auraskills:ignore_interact':True},
-                 extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage'],w['speed'])})
+                 extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage']*FACTOR_ARMA[TIER_ESPECIAL],w['speed'])})
         recipes.append((iid,1,w['cost'],'Especiales'))
 
 

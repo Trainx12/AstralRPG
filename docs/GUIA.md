@@ -61,6 +61,7 @@ AstralRPG/
 | Quiero agregar / cambiar... | Dónde | Después correr | Subir a |
 |---|---|---|---|
 | Un material, arma, armadura, talismán | `datapack-src/items.py` (y la textura en `textures.py`) | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack |
+| Daño por tier, vida de mobs, maná de bastones, vida mostrada | `datapack-src/escala.py` (ver `docs/ESCALA_TIERS.md`) | `python build.py`, `python gameplay.py`, `python lobby.py` | datapack + scripts + TAB |
 | Una receta o lógica (hechizos, forja, guía) | `datapack-src/build.py` | `python build.py` | datapack |
 | Armas especiales independientes (rayo, saltos, sismo, estallido) | `special_weapons.py`, `special_weapons.sk`, `special_weapons3d.py`; ver `docs/ARMAS_ESPECIALES.md` | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack + script (`special_weapons.sk` en Aternos) |
 | Forma 3D o colores de un arma (bastones, guadanas, espadas, hachas, arcos, Guantes Meteoro) | `datapack-src/varitas3d.py` (bastones y motor), `guadanas3d.py` o `armas3d.py` (una funcion por arma; los arcos tienen 4 modelos: quieto y 3 de tensado) | `python varitas3d.py`, `python guadanas3d.py` o `python armas3d.py` (vista previa en `build/previews/`) y `python build_pack.py pack-source` | resource pack |

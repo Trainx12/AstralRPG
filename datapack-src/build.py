@@ -9,6 +9,7 @@ import os
 import shutil
 import zipfile
 
+from escala import FACTOR_ARMA, TIER_ESPECIAL, MANA_BASTON, VIDA_MOSTRADA, fmt
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
                    SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, ARMOR_DURABILITY)
@@ -18,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 5   # migracion en el mismo slot; conserva mejoras, adornos y desgaste
+ITEM_VERSION = 6   # escala por tier (escala.py); migracion en el mismo slot, conserva mejoras
 
 files = {}
 
@@ -198,7 +199,10 @@ for set_id, sdef in ARMOR_SETS.items():
             per_piece = {k: v for k, v in stats.items()}
             # stats que van completos en la pechera
             chest_only = {"draw"}
+            # Defensa MOSTRADA (escala.py): la armadura real no cambia, el numero se ve grande.
+            defensa = (ARMOR_VALUES[mat][piece] + tier.get("extra_armor", 0)) * VIDA_MOSTRADA[tnum]
             lore = [txt(f"{sdef['clase']} {ROMAN[ti]}", sdef["color"]),
+                    txt(f"Defensa: {fmt(defensa)}", "aqua"),
                     txt("Bonus del set completo:", "gray")]
             lore += stat_lines({k: v for k, v in stats.items()})
             if tier.get("lifesteal"):
@@ -214,9 +218,11 @@ for set_id, sdef in ARMOR_SETS.items():
                      "minecraft:attribute_modifiers":
                      armor_attrs(iid, piece, mat, {k: v for k, v in stats.items() if k not in chest_only},
                                  tier.get("extra_armor", 0), tier.get("tough", 0))}
+            # se oculta el "+8 Armadura" vanilla: la defensa se muestra arriba, escalada
+            extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:attribute_modifiers"]}
             if mat == "leather":
                 extra["minecraft:dyed_color"] = sdef["dye"][ti]
-                extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:dyed_color"]}
+                extra["minecraft:tooltip_display"]["hidden_components"].append("minecraft:dyed_color")
             ench = {}
             if piece == "chestplate":
                 if tier.get("lifesteal"):
@@ -305,6 +311,7 @@ for i, s in enumerate(SWORDS):
     if s.get("kb_out"):
         extra.append({"type": "minecraft:attack_knockback", "id": f"{NS}:{iid}.kbo", "amount": s["kb_out"],
                       "operation": "add_value", "slot": "mainhand"})
+    dmg *= FACTOR_ARMA[t]
     weapon_item(iid, s["base"], s["name"], BERS, "Espada Berserker", t, [f"+{s['bonus']}% de dano"] + s["desc"],
                 "fighting", s["lvl"], weapon_mods(iid, dmg, 1.6, extra), fx_to_ench(s["fx"]), {"w": "sword"})
     ings = list(s["cost"]) if t == 1 else [("c", f"espada_{t - 1}", 1)] + s["cost"]
@@ -313,7 +320,7 @@ for i, s in enumerate(SWORDS):
 for i, s in enumerate(AXES):
     t = i + 1
     iid = f"hacha_{t}"
-    dmg = s["dmg"] * (1 + s["bonus"] / 100)
+    dmg = s["dmg"] * (1 + s["bonus"] / 100) * FACTOR_ARMA[t]
     weapon_item(iid, s["base"], s["name"], BERS, "Hacha Berserker", t, [f"+{s['bonus']}% de dano"] + s["desc"],
                 "fighting", s["lvl"], weapon_mods(iid, dmg, s["spd"]), fx_to_ench(s["fx"]), {"w": "axe"})
     ings = list(s["cost"]) if t == 1 else [("c", f"hacha_{t - 1}", 1)] + s["cost"]
@@ -323,13 +330,15 @@ MAGO = ARMOR_SETS["mago"]["color"]
 for i, s in enumerate(STAFFS):
     t = i + 1
     iid = f"baston_{t}"
-    traits = [("max_mana", s["mana"], "add")]
+    mana = MANA_BASTON[t]
+    traits = [("max_mana", mana, "add")]
     if s.get("mregen"):
         traits.append(("mana_regen", s["mregen"], "add_percent"))
-    desc = [f"+{s['mana']} mana", f"+{s['mdmg']}% dano magico", "Click derecho: proyectil arcano"] + s["desc"]
-    astral = {"w": "staff", "type": "staff", "spell": int(s["spell"] * 100), "mdmg": s["mdmg"] * 100,
+    desc = [f"+{mana} mana", f"+{s['mdmg']}% dano magico", "Click derecho: proyectil arcano"] + s["desc"]
+    spell = s["spell"] * FACTOR_ARMA[t]
+    astral = {"w": "staff", "type": "staff", "tier": t, "spell": int(spell * 100), "mdmg": s["mdmg"] * 100,
               "cd": s["cd"], "cdr": s.get("cdr", 0) * 100}
-    lore_extra = [txt(f"Dano del hechizo: {s['spell']}", "light_purple")]
+    lore_extra = [txt(f"Dano del hechizo: {fmt(spell)}", "light_purple")]
     add_item(iid, "minecraft:carrot_on_a_stick", s["name"], MAGO,
              [txt(f"Baston de Mago {ROMAN[i]}", MAGO)] + [txt(d) for d in desc] + lore_extra + [req_line("sorcery", s["lvl"])],
              astral, pdc=aura_pdc("item", "sorcery", s["lvl"], traits), model=s["model"], glint=t >= 2,
@@ -347,7 +356,7 @@ for i, s in enumerate(SCYTHES):
         astral["reset_cd"] = 1
     desc = ([f"+{s['mdmg']}% dano magico"] if s["mdmg"] else []) + s["desc"]
     weapon_item(iid, s["base"], s["name"], MAGO, "Guadana de Mago", t, desc, "sorcery", s["lvl"],
-                weapon_mods(iid, s["dmg"], 1.3), ench, astral)
+                weapon_mods(iid, s["dmg"] * FACTOR_ARMA[t], 1.3), ench, astral)
     ings = list(s["cost"]) if t == 1 else [("c", f"guadana_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Armas de Mago"))
 
@@ -355,7 +364,7 @@ ARQ = ARMOR_SETS["arquero"]["color"]
 for i, s in enumerate(BOWS):
     t = i + 1
     iid = f"arco_{t}"
-    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
+    desc = ([f"+{s['bonus']}% de dano"] if s["bonus"] else []) + [f"Dano de flecha cargada: ~{fmt(9 * FACTOR_ARMA[t])}"] + [f"Mantene click derecho: dispara solo cada {[18, 15, 12, 10, 8][i] / 20:.2f}s".replace(".", ",")] + s["desc"]
     mods = None
     if s.get("spd"):
         mods = [{"type": "minecraft:movement_speed", "id": f"{NS}:{iid}.spd", "amount": s["spd"] / 100,
@@ -370,8 +379,8 @@ from special_weapons import WEAPONS as SPECIAL_WEAPONS, register as register_spe
 register_special_weapons(add_item, RECIPES, txt, weapon_mods)
 add_item("guadana_umbria", "minecraft:netherite_hoe", "Guadana Umbria", "#7d3cff",
          [txt("Clase Segador", "#7d3cff"), txt("Dano en area en cono"), txt("Roba vida"), req_line("sorcery", 16)],
-         {"type": "weapon", "w": "scythe"},
-         extra={"minecraft:attribute_modifiers": weapon_mods("guadana_umbria", 9, 1.2),
+         {"type": "weapon", "w": "scythe", "tier": TIER_ESPECIAL},
+         extra={"minecraft:attribute_modifiers": weapon_mods("guadana_umbria", 9 * FACTOR_ARMA[TIER_ESPECIAL], 1.2),
                 "minecraft:enchantments": {f"{NS}:cono": 1, f"{NS}:robo_vida": 3}},
          pdc=aura_pdc("item", "sorcery", 16), kind="weapon")
 RECIPES.append(("guadana_umbria", 1, [("c", "gema_umbria", 3), ("c", "shadowsteel", 2), ("c", "palo_reforzado", 1)], "Especiales"))
@@ -379,8 +388,8 @@ RECIPES.append(("guadana_umbria", 1, [("c", "gema_umbria", 3), ("c", "shadowstee
 add_item("guantes_meteoro", "minecraft:paper", "Guantes de Puno Meteoro", "#ff8c1a",
          [txt("Clase Monje", "#ff8c1a"), txt("Tus golpes queman"), txt("Mucho mas dano que a mano limpia"),
           req_line("fighting", 12)],
-         {"type": "weapon", "w": "gloves"}, model="minecraft:blaze_powder", glint=True,
-         extra={"minecraft:attribute_modifiers": weapon_mods("guantes_meteoro", 7, 2.2),
+         {"type": "weapon", "w": "gloves", "tier": TIER_ESPECIAL}, model="minecraft:blaze_powder", glint=True,
+         extra={"minecraft:attribute_modifiers": weapon_mods("guantes_meteoro", 7 * FACTOR_ARMA[TIER_ESPECIAL], 2.2),
                 "minecraft:enchantments": {f"{NS}:igneo": 1}, "minecraft:max_stack_size": 1},
          pdc=aura_pdc("item", "fighting", 12), kind="weapon")
 RECIPES.append(("guantes_meteoro", 1, [("c", "netherita_reforzada", 2), ("v", "minecraft:blaze_powder", 2),
@@ -478,6 +487,7 @@ for i, s in enumerate(SPEARS):
     iid = f"lanza_{t}"
     ench = fx_to_ench(s["fx"])
     ench[f"{NS}:empalar"] = t
+    ench[f"{NS}:poder_astral"] = t
     weapon_item(iid, s["base"], s["name"], "#ffb347", "Lanza de Combate", t,
                 [f"+{s['bonus']} de dano por golpe"] + s["desc"], "fighting", s["lvl"], None, ench, {"w": "spear"})
     ings = list(s["cost"]) if t == 1 else [("c", f"lanza_{t - 1}", 1)] + s["cost"]
@@ -752,7 +762,8 @@ ARROW_REQ = {"condition": "minecraft:entity_properties", "entity": "direct_attac
              "predicate": {"type": "#minecraft:arrows"}}
 enchant("punteria", "Punteria", "green", 5, ["mainhand", "offhand"], {
     "minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
-        "type": "minecraft:lookup", "values": [1.0, 1.08, 1.15, 1.22, 1.30], "fallback": 1.3}},
+        "type": "minecraft:lookup", "values": [round(m * FACTOR_ARMA[i + 1], 3) for i, m in enumerate([1.0, 1.08, 1.15, 1.22, 1.30])],
+        "fallback": round(1.3 * FACTOR_ARMA[5], 3)}},
         "requirements": ARROW_REQ}],
     "minecraft:projectile_spawned": [{"effect": {"type": "minecraft:run_function", "function": f"{NS}:bow/tag"}}],
     "minecraft:ammo_use": [{"effect": {"type": "minecraft:set", "value": {
@@ -771,6 +782,12 @@ enchant("gancho", "Gancho", "gray", 1, ["mainhand"], {"minecraft:tick": [{
 enchant("empalar", "Empalar", "gold", 5, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:add",
                "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0], "fallback": 6.0}},
+    "requirements": DIRECT}]})
+
+# Poder Astral: multiplica el dano de las lanzas segun su tier (escala.py).
+enchant("poder_astral", "Poder Astral", "light_purple", 5, ["mainhand"], {"minecraft:damage": [{
+    "effect": {"type": "minecraft:multiply", "factor": {"type": "minecraft:lookup",
+               "values": [round(FACTOR_ARMA[t], 3) for t in range(1, 6)], "fallback": round(FACTOR_ARMA[5], 3)}},
     "requirements": DIRECT}]})
 
 # Mejora +1..+10 del Herrero (el nivel del encantamiento es el +N)
@@ -823,18 +840,29 @@ fn("fx/victim_pct", [
     "scoreboard players operation #h astral.tmp /= #m astral.tmp",
     "scoreboard players operation #pct astral.tmp = #h astral.tmp",
 ])
+# #ht = tier del arma en la mano del atacante (score astral.ht, lo calcula player/lvl).
+fn("fx/attacker_tier", [
+    "scoreboard players set #ht astral.tmp 0",
+    "execute on attacker run scoreboard players operation #ht astral.tmp = @s astral.ht",
+    "# contra jugadores (arena) el sangrado y el remate quedan como antes",
+    "execute if entity @s[type=minecraft:player] run scoreboard players set #ht astral.tmp 0",
+])
 fn("fx/remate", [
     f"function {NS}:fx/victim_pct",
     "execute if score #pct astral.tmp matches 50.. run return 0",
     "execute if score #pct astral.tmp matches ..0 run return 0",
     "# se aplica un rato despues para que no lo absorba la invulnerabilidad del golpe",
     "scoreboard players set @s astral.rem 2",
+    f"function {NS}:fx/attacker_tier",
+    *[f"execute if score #ht astral.tmp matches {t} run scoreboard players set @s astral.remd {round(15 * FACTOR_ARMA[t])}"
+      for t in range(0, 6)],
 ])
 fn("fx/remate_tick", [
     "scoreboard players remove @s astral.rem 1",
     "execute if score @s astral.rem matches 1.. run return 0",
     "tag @s add astral.nohit",
-    "damage @s 1.5 minecraft:generic",
+    f"execute store result storage {NS}:tmp hit.dmg float 0.1 run scoreboard players get @s astral.remd",
+    f"function {NS}:fx/generic_hit with storage {NS}:tmp hit",
     "particle minecraft:crit ~ ~1 ~ 0.3 0.4 0.3 0.1 8",
     "tag @s remove astral.nohit",
 ])
@@ -855,25 +883,33 @@ for thr in (15, 20):
         "execute if score #pct astral.tmp matches ..0 run return 0",
         "particle minecraft:damage_indicator ~ ~1 ~ 0.3 0.3 0.3 0.1 10",
         "playsound minecraft:entity.player.attack.crit player @a[distance=..16] ~ ~ ~ 1 0.6",
-        f"function {NS}:fx/extra_hit {{dmg:1000.0}}",
+        f"function {NS}:fx/extra_hit {{dmg:1.0E9}}",
     ])
 fn("fx/bleed_start", [
     "scoreboard players set @s astral.bleed 5",
+    f"function {NS}:fx/attacker_tier",
+    *[f"execute if score #ht astral.tmp matches {t} run scoreboard players set @s astral.bleedd {round(15 * FACTOR_ARMA[t])}"
+      for t in range(0, 6)],
     "particle minecraft:dust{color:[0.7,0.0,0.0],scale:1.2} ~ ~1 ~ 0.3 0.4 0.3 0 15",
 ])
 fn("fx/bleed_tick", [
     "scoreboard players remove @s astral.bleed 1",
     "particle minecraft:dust{color:[0.7,0.0,0.0],scale:1.0} ~ ~1 ~ 0.3 0.4 0.3 0 8",
     "tag @s add astral.nohit",
-    "damage @s 1.5 minecraft:generic",
+    f"execute store result storage {NS}:tmp hit.dmg float 0.1 run scoreboard players get @s astral.bleedd",
+    f"function {NS}:fx/generic_hit with storage {NS}:tmp hit",
     "tag @s remove astral.nohit",
 ])
+fn("fx/generic_hit", ["$damage @s $(dmg) minecraft:generic"])
 fn("fx/cleave", [
     "tag @s add astral.src",
     "execute on attacker run tag @s add astral.atk",
     f"tag @e[{MOB},distance=..2.5,tag=!astral.src,tag=!astral.atk] add astral.tgt",
     "tag @e[tag=astral.tgt] add astral.nohit",
-    "execute as @e[tag=astral.tgt] at @s run damage @s 5 minecraft:player_attack by @e[tag=astral.atk,limit=1]",
+    "scoreboard players set #ht astral.tmp 0",
+    "scoreboard players operation #ht astral.tmp = @e[tag=astral.atk,limit=1] astral.ht",
+    *[f"execute if score #ht astral.tmp matches {t} as @e[tag=astral.tgt] at @s run damage @s {round(5 * FACTOR_ARMA[t], 2)} minecraft:player_attack by @e[tag=astral.atk,limit=1]"
+      for t in range(0, 6)],
     "particle minecraft:sweep_attack ~ ~1 ~ 1 0.2 1 0 5",
     "tag @e[tag=astral.tgt] remove astral.nohit",
     "tag @e[tag=astral.tgt] remove astral.tgt",
@@ -887,7 +923,10 @@ fn("fx/cone", [
     f"execute as @e[tag=astral.atk,limit=1] at @s anchored eyes positioned ^ ^-0.6 ^3.5 run tag @e[{MOB},distance=..1.8,tag=!astral.src,tag=!astral.atk] add astral.tgt",
     "execute as @e[tag=astral.atk,limit=1] at @s anchored eyes positioned ^ ^-0.4 ^2 run particle minecraft:sweep_attack ~ ~ ~ 0.8 0.2 0.8 0 4",
     "tag @e[tag=astral.tgt] add astral.nohit",
-    "execute as @e[tag=astral.tgt] at @s run damage @s 4 minecraft:player_attack by @e[tag=astral.atk,limit=1]",
+    "scoreboard players set #ht astral.tmp 0",
+    "scoreboard players operation #ht astral.tmp = @e[tag=astral.atk,limit=1] astral.ht",
+    *[f"execute if score #ht astral.tmp matches {t} as @e[tag=astral.tgt] at @s run damage @s {round(4 * FACTOR_ARMA[t], 2)} minecraft:player_attack by @e[tag=astral.atk,limit=1]"
+      for t in range(0, 6)],
     "tag @e[tag=astral.tgt] remove astral.nohit",
     "tag @e[tag=astral.tgt] remove astral.tgt",
     "tag @e[tag=astral.atk] remove astral.atk",
@@ -1207,29 +1246,130 @@ for t in range(1, 6):
     for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet", "weapon.mainhand", "weapon.offhand"):
         lvl.append(f"execute if score @s astral.lvl matches ..{t - 1} if items entity @s {slot} "
                    f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}}] run scoreboard players set @s astral.lvl {t}")
+# Escala por tier (escala.py):
+#   astral.ht = tier del arma en la mano; astral.wt = mejor arma Astral del inventario
+#   (los mobs se adaptan a esta); astral.at = mejor armadura puesta (vida mostrada).
+ARMA_TIER = lambda t: (f"*[minecraft:custom_data~{{{NS}:{{type:\"weapon\",tier:{t}}}}}]",
+                       f"*[minecraft:custom_data~{{{NS}:{{type:\"staff\",tier:{t}}}}}]")
+lvl += ["scoreboard players set @s astral.ht 0", "scoreboard players set @s astral.wt 0",
+        "scoreboard players set @s astral.at 0"]
+for t in range(1, 6):
+    for sel in ARMA_TIER(t):
+        lvl.append(f"execute if items entity @s weapon.mainhand {sel} run scoreboard players set @s astral.ht {t}")
+        for slot in ("container.*", "weapon.offhand"):
+            lvl.append(f"execute if score @s astral.wt matches ..{t - 1} if items entity @s {slot} {sel} "
+                       f"run scoreboard players set @s astral.wt {t}")
+    for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet"):
+        lvl.append(f"execute if score @s astral.at matches ..{t - 1} if items entity @s {slot} "
+                   f"*[minecraft:custom_data~{{{NS}:{{type:\"armor\",tier:{t}}}}}] run scoreboard players set @s astral.at {t}")
+# Etiquetas para Skript (PvP en la arena divide el dano segun el arma del atacante)
+lvl += [f"tag @s remove astral.ht{t}" for t in range(6)]
+lvl += [f"execute if score @s astral.ht matches {t} run tag @s add astral.ht{t}" for t in range(6)]
 fn("player/lvl", lvl)
 
-fn("elite/roll", [
+# Vida MOSTRADA (panel TAB): la real x VIDA_MOSTRADA[tier de armadura]. La vida real no cambia.
+from escala import VIDA_MOSTRADA
+fn("player/vida", [
+    "execute store result score @s astral.vida run data get entity @s Health 10",
+    "execute store result score @s astral.vidamax run attribute @s minecraft:max_health get 10",
+    *[f"execute if score @s astral.at matches {t} run scoreboard players set #vm astral.tmp {int(VIDA_MOSTRADA[t])}"
+      for t in range(6)],
+    "scoreboard players operation @s astral.vida *= #vm astral.tmp",
+    "scoreboard players operation @s astral.vidamax *= #vm astral.tmp",
+    "scoreboard players operation @s astral.vida /= #10 astral.const",
+    "scoreboard players operation @s astral.vidamax /= #10 astral.const",
+])
+
+# ---------------------------------------------------------------------------
+# Tier de cada mob nuevo (escala.py). Mundo: se adapta a la mejor arma del jugador
+# mas cercano (86% igual, 4% uno mas, 10% uno menos). Mazmorras: tier fijo.
+# Despues puede salir elite (en mazmorras con la mitad de chance).
+# ---------------------------------------------------------------------------
+from escala import (VIDA_MOB, DANO_MOB, TIER_MAZMORRA, EXTRA_VIDA_MAZMORRA, PROB_TIER_MAS,
+                    PROB_TIER_MENOS, COLOR_TIER)
+# Ademas de los hostiles vanilla: criaturas de MythicMobs con tipos neutrales.
+put(f"data/{NS}/tags/entity_type/escalable.json",
+    {"values": [f"#{NS}:hostile", "minecraft:iron_golem", "minecraft:vex"]})
+mob_roll = [
     "tag @s add astral.seen",
+    "# mascotas, vendedores y cofres son invulnerables: no se tocan",
+    "execute if data entity @s {Invulnerable:1b} run return 0",
+    "# golems de aldea (sin nombre de MythicMobs): no se tocan",
+    "execute if entity @s[type=minecraft:iron_golem] unless data entity @s CustomName run return 0",
+    "scoreboard players set #mt astral.tmp 0",
+    "scoreboard players set #dg astral.tmp 0",
+]
+for w, t in TIER_MAZMORRA.items():
+    mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
+    mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 1")
+mob_roll += [
+    f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
+] + [f"execute if score #mt astral.tmp matches {t} run function {NS}:mob/t{t}" for t in range(1, 6)] + [
+    f"execute if score #dg astral.tmp matches 1 run function {NS}:mob/extra_mazmorra",
+    "scoreboard players operation @s astral.mt = #mt astral.tmp",
+    f"function {NS}:mob/elite_chance",
+    f"function {NS}:mob/nombre",
+    "data modify entity @s Health set value 1.0E9f",
+]
+fn("mob/roll", mob_roll)
+fn("mob/tier_mundo", [
+    "scoreboard players operation #mt astral.tmp = @p[distance=..128,gamemode=!spectator] astral.wt",
+    "execute if score #mt astral.tmp matches 0 run return 0",
+    "execute store result score #r astral.tmp run random value 1..100",
+    f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS} if score #mt astral.tmp matches ..4 run return run scoreboard players add #mt astral.tmp 1",
+    f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS + PROB_TIER_MENOS} run scoreboard players remove #mt astral.tmp 1",
+])
+for t in range(1, 6):
+    fn(f"mob/t{t}", [
+        f"attribute @s minecraft:max_health modifier add {NS}:tier {round(VIDA_MOB[t] - 1, 4)} add_multiplied_base",
+        f"attribute @s minecraft:attack_damage modifier add {NS}:tier {round(DANO_MOB[t] - 1, 4)} add_multiplied_base",
+    ])
+extra_mz = []
+for w, mult in EXTRA_VIDA_MAZMORRA.items():
+    extra_mz.append(f"execute if dimension minecraft:{w} run attribute @s minecraft:max_health modifier add "
+                    f"{NS}:mazmorra {round(mult - 1, 4)} add_multiplied_total")
+fn("mob/extra_mazmorra", extra_mz or ["return 0"])
+
+fn("mob/elite_chance", [
     "execute unless entity @a[distance=..64,gamemode=!spectator] run return 0",
     "scoreboard players operation #a astral.tmp = @p[distance=..64,gamemode=!spectator] astral.lvl",
     "execute store result score #day astral.tmp run time query day",
     "scoreboard players operation #day astral.tmp /= #7 astral.const",
     "execute if score #day astral.tmp matches 4.. run scoreboard players set #day astral.tmp 3",
     "scoreboard players operation #a astral.tmp += #day astral.tmp",
-    "# probabilidad = 6% + 5% por nivel de amenaza",
+    "# probabilidad = 6% + 5% por nivel de amenaza (la mitad dentro de mazmorras)",
     "scoreboard players operation #c astral.tmp = #a astral.tmp",
     "scoreboard players operation #c astral.tmp *= #5 astral.const",
     "scoreboard players add #c astral.tmp 6",
+    "execute if score #dg astral.tmp matches 1 run scoreboard players operation #c astral.tmp /= #2 astral.const",
     "execute store result score #r astral.tmp run random value 1..100",
     "execute if score #r astral.tmp > #c astral.tmp run return 0",
-    "# tier = 1 + azar(0..amenaza)/2, maximo 5",
+    "# tier del elite = 1 + azar(0..amenaza)/2, maximo 5",
     f"execute store result storage {NS}:tmp elite.max int 1 run scoreboard players get #a astral.tmp",
     f"function {NS}:elite/rand with storage {NS}:tmp elite",
     "scoreboard players operation #t astral.tmp /= #2 astral.const",
     "scoreboard players add #t astral.tmp 1",
     "execute if score #t astral.tmp matches 6.. run scoreboard players set #t astral.tmp 5",
 ] + [f"execute if score #t astral.tmp matches {i + 1} run return run function {NS}:elite/t{i + 1}" for i in range(5)])
+
+# Nombre: [T#] + (elite) + nombre del mob (el de MythicMobs o el vanilla).
+nombre = [f"data modify storage {NS}:tmp mob.n set value []"]
+for t in range(1, 6):
+    nombre.append(f"execute if score #mt astral.tmp matches {t} run data modify storage {NS}:tmp mob.n append value "
+                  f"{{text:\"[T{t}] \",color:\"{COLOR_TIER[t]}\"}}")
+for i, (name, color, *_rest) in enumerate(ELITE_TIERS):
+    nombre.append(f"execute if entity @s[tag=astral.elite{i + 1}] run data modify storage {NS}:tmp mob.n append value "
+                  f"{{text:\"{name} \",color:\"{color}\",bold:{'true' if i + 1 >= 4 else 'false'}}}")
+nombre.append(f"execute if data entity @s CustomName run data modify storage {NS}:tmp mob.n append from entity @s CustomName")
+fn("mob/nombre", nombre + [
+    f"execute unless data entity @s CustomName run function {NS}:mob/nombre_vanilla",
+    "# un mob comun de tier 0 queda sin cartel",
+    f"execute unless data storage {NS}:tmp mob.n[1] run return 0",
+    f"data modify entity @s CustomName set from storage {NS}:tmp mob.n",
+])
+fn("mob/nombre_vanilla", [
+    f"execute if entity @s[type={e}] run data modify storage {NS}:tmp mob.n append value "
+    f"{{translate:\"entity.minecraft.{e.split(':')[1]}\"}}" for e in HOSTILE + ["minecraft:vex"]])
 fn("elite/rand", ["$execute store result score #t astral.tmp run random value 0..$(max)"])
 
 for i, (name, color, hp, dmg, spd, armor, kb) in enumerate(ELITE_TIERS):
@@ -1238,15 +1378,13 @@ for i, (name, color, hp, dmg, spd, armor, kb) in enumerate(ELITE_TIERS):
     lines = [
         f"tag @s add astral.elite",
         f"tag @s add astral.elite{t}",
-        f"attribute @s minecraft:max_health modifier add {NS}:elite {hp / 100} add_multiplied_base",
-        f"attribute @s minecraft:attack_damage modifier add {NS}:elite {dmg / 100} add_multiplied_base",
+        f"attribute @s minecraft:max_health modifier add {NS}:elite {hp / 100} add_multiplied_total",
+        f"attribute @s minecraft:attack_damage modifier add {NS}:elite {dmg / 100} add_multiplied_total",
         f"attribute @s minecraft:movement_speed modifier add {NS}:elite {spd / 100} add_multiplied_base",
         f"attribute @s minecraft:armor modifier add {NS}:elite {armor} add_value",
         f"attribute @s minecraft:knockback_resistance modifier add {NS}:elite {kb} add_value",
         f"attribute @s minecraft:follow_range modifier add {NS}:elite 0.5 add_multiplied_base",
-        "data modify entity @s Health set value 1024.0f",
         "# sin PersistenceRequired: los elites desaparecen como cualquier mob (si no, se acumulan)",
-        f"data modify entity @s CustomName set value {{text:\"{stars} {name}\",color:\"{color}\",bold:{'true' if t >= 4 else 'false'}}}",
     ]
     if t >= 3:
         lines.append("effect give @s minecraft:fire_resistance infinite 0 true")
@@ -1832,6 +1970,14 @@ load = [
     "scoreboard objectives add astral.cd dummy",
     "scoreboard objectives add astral.grap dummy",
     "scoreboard objectives add astral.bleed dummy",
+    "scoreboard objectives add astral.bleedd dummy",
+    "scoreboard objectives add astral.remd dummy",
+    "scoreboard objectives add astral.ht dummy",
+    "scoreboard objectives add astral.wt dummy",
+    "scoreboard objectives add astral.at dummy",
+    "scoreboard objectives add astral.mt dummy",
+    "scoreboard objectives add astral.vida dummy",
+    "scoreboard objectives add astral.vidamax dummy",
     "scoreboard objectives add astral.rem dummy",
     "scoreboard objectives add astral.lvl dummy",
     "scoreboard objectives add astral.draw dummy",
@@ -1851,6 +1997,7 @@ load = [
     "scoreboard players set #3 astral.const 3",
     "scoreboard players set #5 astral.const 5",
     "scoreboard players set #7 astral.const 7",
+    "scoreboard players set #10 astral.const 10",
     "scoreboard players set #100 astral.const 100",
     "scoreboard players set #10000 astral.const 10000",
     f"schedule function {NS}:loop/t5 5t replace",
@@ -1993,6 +2140,7 @@ t10 += [
     f"execute as @a[scores={{astral.guia=1..}}] run function {NS}:guide/give",
     f"schedule function {NS}:loop/t10 10t replace",
 ]
+t10.append(f"execute as @a run function {NS}:player/vida")
 fn("loop/t10", t10)
 fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",
@@ -2000,7 +2148,7 @@ fn("loop/t20", [
     f"execute as @a run function {NS}:set/check",
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
     f"execute as @a run function {NS}:player/lvl",
-    f"execute as @e[type=#{NS}:hostile,tag=!astral.seen] at @s run function {NS}:elite/roll",
+    f"execute as @e[type=#{NS}:escalable,tag=!astral.seen] at @s run function {NS}:mob/roll",
     f"function {NS}:elite/fx",
     f"schedule function {NS}:loop/t20 20t replace",
 ])

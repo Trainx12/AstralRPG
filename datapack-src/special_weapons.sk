@@ -1,4 +1,8 @@
 # Generado por special_weapons.py. Skript 2.17 sin addons. MythicMobs + PlaceholderAPI + AuraSkills.
+# escala.py: armas especiales = tier 3; sus habilidades pegan x FACTOR_ARMA[3].
+options:
+    escala: 285.714
+
 function asw_identify(p: player):
     execute console command "execute as %name of {_p}% run function astral:special/identify"
 
@@ -83,6 +87,9 @@ function asw_hurt(p: player, e: entity, amount: number):
 function asw_hurt_as(p: player, e: entity, amount: number, kind: text):
     if asw_target({_p}, {_e}) is false:
         stop
+    # El rayo ya es un % del golpe; el resto escala al tier de las armas especiales.
+    if {_kind} is not "rayo":
+        set {_amount} to {_amount} * {@escala}
     # Atribucion al jugador y evento Bukkit: WorldGuard y otros plugins pueden cancelar.
     set {-asw.damage::%uuid of {_p}%} to true
     set {_ticks} to no damage time of {_e}

@@ -227,3 +227,19 @@ on quit:
     delete {-astral.grapple.cd::%uuid of player%}
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
+
+# Arena PvP: el dano de las armas Astral esta escalado por tier (escala.py).
+# Entre jugadores se divide por el factor del arma del atacante: queda como antes.
+on damage of player with priority low:
+    attacker is a player
+    name of world of victim is "arena"
+    if scoreboard tags of attacker contains "astral.ht1":
+        set damage to damage / 15.152
+    if scoreboard tags of attacker contains "astral.ht2":
+        set damage to damage / 70.621
+    if scoreboard tags of attacker contains "astral.ht3":
+        set damage to damage / 285.714
+    if scoreboard tags of attacker contains "astral.ht4":
+        set damage to damage / 1322.751
+    if scoreboard tags of attacker contains "astral.ht5":
+        set damage to damage / 5208.333

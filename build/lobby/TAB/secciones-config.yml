@@ -10,7 +10,7 @@ header-footer:
         - ""
       footer:
         - ""
-        - "<red>❤ <white>%player_health_rounded%<gray>/%player_max_health_rounded%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
+        - "<red>❤ <white>%objective_score_{astral.vida}%<gray>/%objective_score_{astral.vidamax}%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
         - "<gray>Jugadores <white>%online%<dark_gray>/<gray>20   <dark_gray>✦   <gray>Ping <white>%ping%ms   <dark_gray>✦   <gray>TPS %server_tps_1_colored%"
         - "<gray>Estas en <white>%condition:mundo%   <dark_gray>✦   <gray>/spawn <dark_gray>vuelve al lobby"
         - ""
@@ -18,15 +18,15 @@ header-footer:
         - "<dark_gray><strikethrough>                                                  </strikethrough>"
 playerlist-objective:
   enabled: true
-  value: "%player_health_rounded%"
-  fancy-value: "<white>%player_health_rounded% <red>❤"
+  value: "%objective_score_{astral.vida}%"
+  fancy-value: "<white>%objective_score_{astral.vida}% <red>❤"
   title: "Vida"
   render-type: INTEGER
   disable-condition: ''
 belowname-objective:
   enabled: true
-  value: "%player_health_rounded%"
-  fancy-value: "<red>❤ <white>%player_health_rounded% <dark_gray>| <aqua>⚡%auraskills_power%"
+  value: "%objective_score_{astral.vida}%"
+  fancy-value: "<red>❤ <white>%objective_score_{astral.vida}% <dark_gray>| <aqua>⚡%auraskills_power%"
   fancy-value-default: ""
   title: "<red>❤"
   disable-condition: '%world%=lobby'
@@ -43,7 +43,7 @@ scoreboard:
       lines:
         - "<gray>⚔ <white><bold>%player%</bold>"
         - "<gray>Rango||%condition:rango%"
-        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
+        - "<red>❤ Vida||<white>%objective_score_{astral.vida}%<gray>/%objective_score_{astral.vidamax}%"
         - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
         - "<aqua>⚡ Poder||<white>%auraskills_power%"
         - ""
