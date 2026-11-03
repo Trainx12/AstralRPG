@@ -79,3 +79,11 @@ Comandos de admin (`astral.minas.admin`): `/minasmoldes [n]`, `/minasactivar`, `
 En el Paper local (Skript 2.17.1, sin skript-reflect): el script carga sin errores, los moldes salen con la mezcla
 correcta, el `clone` regenera el pozo alternando moldes, los precios, la detección de mina/pozo y el área del
 taladro. **No probado con un jugador real** (menú, cobro, venta y picar): probarlo en Aternos al instalar.
+
+## Estado en Aternos (03/11/2026)
+
+Instalado y activado: mundo `astral_minas`, los 20 mapas pegados (verificado el piso de cada pozo), 20 aldeanos de
+venta, aldeano del lobby, script cargado sin errores, panel de TAB y moldes rellenos.
+- `//schem load` necesita el nombre **con `.schem`** (sin la extensión WorldEdit dice "Invalid value for <schematic>").
+- Los pegados se hicieron con `sudo <jugador> /paste -a` estando el jugador en la esquina de cada mina: WorldEdit
+  desde la consola no puede elegir dónde pegar.
