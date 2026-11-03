@@ -36,3 +36,5 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 - Lobby: WorldGuard bloquea mobs; para spawnear vendedores, `mob-spawning allow` un momento (ver `build/lobby/comandos.txt`).
 - `cookie_request` al entrar = el server está apagado.
 - Spam en el chat de los OP ("Se ha cambiado la puntuación..."): en Aternos `broadcast-console-to-ops=false` y gamerule `log_admin_commands false`; en skills que corren seguido, filtrar a quién se aplica (`@a[scores={x=1..}]`).
+- Memoria de codigo (Metaspace): con ~35 plugins el server arranca en ~420 MB de "Non-heap" (`spark health --memory`) y el 02/11 se colgo con `OutOfMemoryError: Metaspace`. Cada `mm reload`/`skript reload` deja 2-3 MB pegados: tras muchas recargas, reiniciar el server en vez de seguir. No sumar plugins sin medir antes y despues.
+- Mobs del datapack: nunca `PersistenceRequired` en mobs que aparecen solos (los elites se acumulaban: 115 brujas). Variables de Skript que cambian cada tick: siempre `{-...}` (solo memoria).

@@ -32,6 +32,17 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 - **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 (no había backups porque Aternos solo los hace con Google Drive vinculado). Conviene vincular Google Drive en Backups y bajar el mundo de vez en cuando.
 - En Paper 26.1 todos los mundos viven dentro de `world/`: `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/region`.
 
+## Memoria y lag (revision 02/11/2026)
+
+- **Cuelgue del 02/11 18:25:** `java.lang.OutOfMemoryError: Metaspace`. Metaspace es la memoria donde Java guarda
+  el codigo de los plugins; tiene un tope y no se puede agrandar en Aternos. El server arranca en ~420 MB
+  ("Non-heap" en `spark health --memory`) y crece cuando se usan cosas nuevas (entrar a mundos, mobs nuevos) y con
+  cada recarga: medido +2-3 MB por `skript reload all` o `mm reload`, que no se liberan hasta reiniciar.
+- **Lag:** los elites del datapack eran persistentes y se acumulaban (se mataron 115 brujas cerca del spawn); el
+  rescate de caidas escribia variables de Skript a disco cada tick. Las dos cosas se corrigieron.
+- **Reglas:** despues de una sesion con muchas recargas, reiniciar. Antes de sumar un plugin, medir Non-heap antes y
+  despues. Estado sano sin jugadores: 20 TPS, ~420 MB Non-heap, ~1 GB de 2,2 GB de memoria normal.
+
 ## Plugins
 
 | Plugin | Para qué está |
