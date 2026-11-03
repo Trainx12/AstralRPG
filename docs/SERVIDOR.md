@@ -42,6 +42,9 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
   cada recarga: medido +2-3 MB por `skript reload all` o `mm reload`, que no se liberan hasta reiniciar.
 - **Lag:** los elites del datapack eran persistentes y se acumulaban (se mataron 115 brujas cerca del spawn); el
   rescate de caidas escribia variables de Skript a disco cada tick. Las dos cosas se corrigieron.
+- **Plugins sacados por memoria (03/11/2026):** QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers.
+  No reinstalarlos sin medir. En Aternos, borrar un jar hay que confirmarlo con un clic real en "Yes" y revisar
+  la lista despues: si no, el jar sigue ahi y vuelve a cargar. Resultado: Non-heap al prender 421 -> 395 MB.
 - **Reglas:** despues de una sesion con muchas recargas, reiniciar. Antes de sumar un plugin, medir Non-heap antes y
   despues. Estado sano sin jugadores: 20 TPS, ~420 MB Non-heap, ~1 GB de 2,2 GB de memoria normal.
 
@@ -53,11 +56,10 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | LevelledMobs | Sube el nivel de los mobs según la distancia al spawn |
 | MythicMobs 5.13.0 | Criaturas custom: fauna, hostiles, monturas, élites y jefes |
 | BetterModel 3.6.0 | Modelos 3D de esas criaturas (sin mods) |
-| ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal usa Tunnel) |
+| ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal fue retirado; los taladros usan el area del datapack) |
 | Bolt | Protege cofres, shulkers y puertas |
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
 | AuthMe | Login con contraseña (necesario en modo no premium). Modo premium activado: los premium con `/premium` entran sin contraseña. **No instalar FastLogin**: choca con el `/premium` de AuthMe 6 |
-| SkinsRestorer | Skins para cuentas no premium |
 | AxGraves | Tumba con tus cosas al morir |
 | ClearLag++ | Limpia ítems tirados para que no haya lag |
 | TAB | Tabulador y panel lateral de stats (ver Lobby) |
@@ -71,8 +73,6 @@ Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al 
 | CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
 | DeluxeMenus 1.14.1 | Menús de cofre: `/menu`, `/mascotas`, gachas y bazar (los genera `datapack-src/menus.py`) |
 | CrazyAuctions (26.1.2) | Subastas entre jugadores (`/ah`), 5% de impuesto por venta |
-| DonutOrders 2.0.0 | Órdenes de compra entre jugadores (`/orders`) |
-| QuickShop-Hikari 6.3.0.3 | Instalado pero sin permisos para jugadores (se usó en los puestos que se sacaron) |
 
 ## Lobby (mundo `lobby`)
 
@@ -129,10 +129,10 @@ En lobby y arena se permiten invocaciones con WorldGuard; `spawn_mobs=false` imp
 
 ## Menús, bazar y subastas
 
-- **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`: mercado, venta rápida, subastas y órdenes). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
+- **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`: mercado, venta rápida, subastas e intercambio). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
 - **Mercado y venta rápida:** EconomyShopGUI (`/shop`, `/sellgui`), con precios fijos.
 - **Subastas (CrazyAuctions, `/ah`):** ítems únicos entre jugadores; publicar con `/ah sell <precio>` y el ítem en la mano. Aldeano *Subastas* (`astral_npc_subastas`).
-- **Órdenes de compra (DonutOrders, `/orders`):** pedís algo y pagás por adelantado; quien te lo entrega cobra al toque.
+- **Intercambio (AxTrade, `/trade <jugador>`):** cambio de objetos y oro cara a cara. Es la cuarta tarjeta del Bazar (antes era Órdenes de DonutOrders).
 - EzAuction y RoyalBazaar (los que se habían elegido) no están en el catálogo de plugins de Aternos.
 - Los 4 puestos con cofres y alquiler que hubo antes se sacaron (regiones `puesto1-4`, grupos y cofres borrados).
 
