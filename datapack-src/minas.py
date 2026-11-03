@@ -1,7 +1,7 @@
 """Minas Astrales: genera el Skript (sin skript-reflect), la instalacion y el panel de TAB.
 
 Uso:  python minas.py                          -> build/minas/ y build/lobby/TAB/secciones-config.yml
-      python minas.py --schematic <mina.schem> -> arma los 7 mapas en .local/minas (no se publican)
+      python minas.py --schematic <mina.schem> -> prepara el mapa común en .local/minas (no se publican)
 
 Progresion (pedido del duenio): Tier I piedra + mineral, Tier II mineral + bloque compacto, y la
 ultima mina es Netherrack con restos ancestrales. Cada mina paga mas por bloque que la anterior.
@@ -9,7 +9,6 @@ ultima mina es Netherrack con restos ancestrales. Cada mina paga mas por bloque 
 import argparse
 import gzip
 from pathlib import Path
-from zipfile import ZipFile
 
 from tools import AREA_NAMES, FACING, area_ranges
 
@@ -19,7 +18,9 @@ LOCAL = ROOT / ".local/minas"
 WORLD = "astral_minas"
 DIM = "minecraft:astral_minas"
 SPACING = 512                     # cada mina esta 512 bloques en X despues de la anterior
-PIT = dict(x1=75, x2=105, y1=73, y2=92, z1=76, z2=106)   # pozo, igual en los 7 mapas
+MAP = "astral-mina-hierro.schem"
+PASTE_X, PASTE_Z = 7, 2
+PIT = dict(x1=82, x2=112, y1=73, y2=92, z1=78, z2=108)  # Hierro I: X 1106..1136
 SPAWN = (89.5, 93, 70.5)          # plataforma junto al pozo
 VENDOR = (94.5, 93, 70.5, 0)      # aldeano de venta rapida, mirando al pozo
 TRAVEL = (84.5, 93, 70.5, 0)      # aldeano de viajes (lobby u otra mina), del otro lado de la plataforma
@@ -52,7 +53,6 @@ COSTS = [0, 80, 150, 300, 550, 1300, 2500, 4000, 7000, 13000, 25000, 60000, 1200
          250000, 40000, 70000, 135000, 260000, 700000, 25000000]
 FINAL_MINUTES = 25 * 60
 MINES = [(*mix, goal, cost) for mix, goal, cost in zip(MIXES, GOALS, COSTS, strict=True)]
-MAPS = ("carbon", "cobre", "hierro", "oro", "esmeralda", "diamante", "netherita")
 
 # Precio de venta por unidad (oro). Incluye lo que suelta cada bloque (la piedra suelta roca, las
 # menas sueltan el mineral) y los bloques en si, por si se pican con Toque de seda.
@@ -247,12 +247,6 @@ def prepare_schematic(source):
     raw = bytes([tree[0]]) + nbt_string("Schematic") + nbt_payload(tree)
     LOCAL.mkdir(parents=True, exist_ok=True)
     (LOCAL / "astral-mina-hierro.schem").write_bytes(gzip.compress(raw, mtime=0))
-    from minas_mapas import write_maps
-    write_maps(LOCAL)
-    with ZipFile(LOCAL / "Mapas-Minas-Astrales.zip", "w") as archive:
-        for theme in MAPS:
-            name = f"astral-mina-{theme}.schem"
-            archive.write(LOCAL / name, name)
 
 
 def install_commands():
@@ -273,14 +267,14 @@ def install_commands():
         f"rg flag -w {WORLD} __global__ pistons deny",
         f"rg flag -w {WORLD} __global__ mob-spawning allow",
         "",
-        "# 2) Subir los 7 .schem a plugins/WorldEdit/schematics/ (ya estan en Aternos).",
+        "# 2) Subir astral-mina-hierro.schem a plugins/WorldEdit/schematics/ (ya estan en Aternos).",
         "#    Pegar EN EL JUEGO, en creativo y con OP, mina por mina (esperar que termine cada //paste):",
     ]
     for i, mine in enumerate(MINES, 1):
         x = (i - 1) * SPACING
         c += [f"# Mina {i}: {mine[0]}",
-              f"/execute in {DIM} run tp @s {x} 64 0",
-              f"//schem load astral-mina-{mine[4]}",
+              f"/execute in {DIM} run minecraft:tp @s {x + PASTE_X + 0.5} 64 {PASTE_Z + 0.5}",
+              f"//schem load {MAP}",
               "//paste -a",
               f"/fill {x+84} 92 67 {x+96} 92 74 polished_deepslate",
               f"/fill {x+84} 93 67 {x+96} 96 74 air"]
@@ -310,10 +304,65 @@ def install_commands():
     return "\n".join(c) + "\n"
 
 
+def migration_commands():
+    commands = [
+        "# Mantener una copia del mundo y cerrar el acceso a jugadores durante el reemplazo.",
+        "# Deshabilitar astral_minas antes de limpiar y conservar variables.csv y los aldeanos.",
+        "# Ejecutar en astral_minas, como OP en creativo. Esperar después de cada comando WorldEdit.",
+    ]
+    for i, mine in enumerate(MINES):
+        x = i * SPACING
+        commands += [
+            f"# Mina {i + 1}: {mine[0]}",
+            f"/execute in {DIM} run minecraft:tp @s {x + PASTE_X + 0.5} 64 {PASTE_Z + 0.5}",
+            f"//schem load {MAP}",
+            "//paste",  # Con aire, para borrar la construccion anterior dentro de la huella.
+            f"/fill {x + 84} 92 67 {x + 96} 92 74 polished_deepslate",
+            f"/fill {x + 84} 93 67 {x + 96} 96 74 air",
+            f"/execute if block {x + PIT['x1']} 72 {PIT['z1']} bedrock",
+            f"/execute if block {x + PIT['x2']} 72 {PIT['z2']} bedrock",
+        ]
+    commands += ["# Habilitar el script actualizado y comprobar que cargue sin errores.",
+                 "# Ejecutar minasmoldes y esperar Moldes listos antes de reabrir el acceso."]
+    return "\n".join(commands) + "\n"
+
+
+def sign_commands():
+    commands = []
+    tier_numbers = {"I": 1, "II": 2, "III": 3}
+    colors = {1: "gold", 2: "aqua", 3: "light_purple"}
+    y = PIT["y2"] + 5  # cuatro bloques sobre la cara superior del último bloque
+    z = (PIT["z1"] + PIT["z2"] + 1) / 2
+    for i, mine in enumerate(MINES):
+        roman, material = mine[0].split(" · ", 1)
+        tier = tier_numbers[roman]
+        x = i * SPACING + (PIT["x1"] + PIT["x2"] + 1) / 2
+        tag = f"astral.mina.rotulo.{i + 1}"
+        target = f"@e[type=minecraft:text_display,tag={tag},distance=..2,limit=1]"
+        text = f'[{{text:"Tier {tier}",color:"{colors[tier]}",bold:1b}},{{text:"\\nMina de {material}",color:"white",bold:1b}}]'
+        transform = (
+            "{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],"
+            "scale:[2f,2f,2f],right_rotation:[0f,0f,0f,1f]}"
+        )
+        settings = (
+            f'{{billboard:"center",shadow:1b,background:1073741824,'
+            f'transformation:{transform},text:{text}}}'
+        )
+        position = f"execute in {DIM} positioned {x} {y} {z}"
+        commands.extend([
+            f'{position} unless entity {target} run summon minecraft:text_display ~ ~ ~ '
+            f'{{Tags:["{tag}"],{settings[1:]}',
+            f'{position} run data merge entity {target} {settings}',
+        ])
+    return "\n".join(commands) + "\n"
+
+
 def generate():
     from lobby import TAB_SECTIONS
     outputs = {OUT / "Skript/scripts/astral_minas.sk": script(),
                OUT / "instalacion.txt": install_commands(),
+               OUT / "reemplazar-mapas.txt": migration_commands(),
+               OUT / "carteles.txt": sign_commands(),
                ROOT / "build/lobby/TAB/secciones-config.yml": TAB_SECTIONS}
     for path, content in outputs.items():
         path.parent.mkdir(parents=True, exist_ok=True)

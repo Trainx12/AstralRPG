@@ -1,0 +1,54 @@
+# Ejecutar desde consola mientras la regeneración está pausada.
+# Clona los bloques de Hierro I sin copiar ni eliminar aldeanos.
+command /minasclonar <integer> <integer>:
+    executable by: console
+    trigger:
+        if {-am.migration} is set:
+            send "MINAS: ya hay una copia en curso." to console
+            stop
+        set {_first} to arg-1
+        set {_last} to arg-2
+        if {_first} is not between 1 and 20:
+            stop
+        if {_last} is not between {_first} and 20:
+            stop
+        set {_world} to world "astral_minas"
+        if {_world} is not set:
+            stop
+        if block at location(1106, 72, 78, {_world}) is not bedrock:
+            send "MINAS: el mapa de Hierro I no está alineado." to console
+            stop
+        if block at location(1136, 72, 108, {_world}) is not bedrock:
+            send "MINAS: el mapa de Hierro I no está alineado." to console
+            stop
+        set {-am.migration} to true
+        set {_mine} to {_first}
+        while {_mine} <= {_last}:
+            if {_mine} is not 3:
+                set {_base} to ({_mine} - 1) * 512
+                send "MINAS: copiando %{_mine}% por chunks." to console
+                set {_x} to 0
+                while {_x} < 192:
+                    set {_sx} to 1024 + {_x}
+                    set {_dx} to {_base} + {_x}
+                    set {_z} to 0
+                    while {_z} < 192:
+                        execute console command "minecraft:execute in minecraft:astral_minas run forceload add %{_sx}% %{_z}%"
+                        execute console command "minecraft:execute in minecraft:astral_minas run forceload add %{_dx}% %{_z}%"
+                        wait 4 ticks
+                        execute console command "minecraft:execute in minecraft:astral_minas run clone %{_sx}% 64 %{_z}% %{_sx} + 15% 187 %{_z} + 15% %{_dx}% 64 %{_z}% replace"
+                        wait 2 ticks
+                        execute console command "minecraft:execute in minecraft:astral_minas run forceload remove %{_sx}% %{_z}%"
+                        execute console command "minecraft:execute in minecraft:astral_minas run forceload remove %{_dx}% %{_z}%"
+                        add 16 to {_z}
+                    add 16 to {_x}
+                if block at location({_base} + 82, 72, 78, {_world}) is bedrock:
+                    if block at location({_base} + 112, 72, 108, {_world}) is bedrock:
+                        send "MINAS: mina %{_mine}% copiada, esquinas del pozo verificadas." to console
+                    else:
+                        send "MINAS: revisar el piso de la mina %{_mine}%." to console
+                else:
+                    send "MINAS: revisar el piso de la mina %{_mine}%." to console
+            add 1 to {_mine}
+        delete {-am.migration}
+        send "MINAS: lote terminado." to console

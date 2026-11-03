@@ -14,125 +14,125 @@ rg flag -w astral_minas __global__ chest-access deny
 rg flag -w astral_minas __global__ pistons deny
 rg flag -w astral_minas __global__ mob-spawning allow
 
-# 2) Subir los 7 .schem a plugins/WorldEdit/schematics/ (ya estan en Aternos).
+# 2) Subir astral-mina-hierro.schem a plugins/WorldEdit/schematics/ (ya estan en Aternos).
 #    Pegar EN EL JUEGO, en creativo y con OP, mina por mina (esperar que termine cada //paste):
 # Mina 1: I · Carbón
-/execute in minecraft:astral_minas run tp @s 0 64 0
-//schem load astral-mina-carbon
+/execute in minecraft:astral_minas run minecraft:tp @s 7.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 84 92 67 96 92 74 polished_deepslate
 /fill 84 93 67 96 96 74 air
 # Mina 2: I · Cobre
-/execute in minecraft:astral_minas run tp @s 512 64 0
-//schem load astral-mina-cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 519.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 596 92 67 608 92 74 polished_deepslate
 /fill 596 93 67 608 96 74 air
 # Mina 3: I · Hierro
-/execute in minecraft:astral_minas run tp @s 1024 64 0
-//schem load astral-mina-hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 1031.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 1108 92 67 1120 92 74 polished_deepslate
 /fill 1108 93 67 1120 96 74 air
 # Mina 4: I · Oro
-/execute in minecraft:astral_minas run tp @s 1536 64 0
-//schem load astral-mina-oro
+/execute in minecraft:astral_minas run minecraft:tp @s 1543.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 1620 92 67 1632 92 74 polished_deepslate
 /fill 1620 93 67 1632 96 74 air
 # Mina 5: I · Esmeralda
-/execute in minecraft:astral_minas run tp @s 2048 64 0
-//schem load astral-mina-esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 2055.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 2132 92 67 2144 92 74 polished_deepslate
 /fill 2132 93 67 2144 96 74 air
 # Mina 6: I · Diamante
-/execute in minecraft:astral_minas run tp @s 2560 64 0
-//schem load astral-mina-diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 2567.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 2644 92 67 2656 92 74 polished_deepslate
 /fill 2644 93 67 2656 96 74 air
 # Mina 7: II · Carbón
-/execute in minecraft:astral_minas run tp @s 3072 64 0
-//schem load astral-mina-carbon
+/execute in minecraft:astral_minas run minecraft:tp @s 3079.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 3156 92 67 3168 92 74 polished_deepslate
 /fill 3156 93 67 3168 96 74 air
 # Mina 8: II · Cobre
-/execute in minecraft:astral_minas run tp @s 3584 64 0
-//schem load astral-mina-cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 3591.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 3668 92 67 3680 92 74 polished_deepslate
 /fill 3668 93 67 3680 96 74 air
 # Mina 9: II · Hierro
-/execute in minecraft:astral_minas run tp @s 4096 64 0
-//schem load astral-mina-hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 4103.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 4180 92 67 4192 92 74 polished_deepslate
 /fill 4180 93 67 4192 96 74 air
 # Mina 10: II · Oro
-/execute in minecraft:astral_minas run tp @s 4608 64 0
-//schem load astral-mina-oro
+/execute in minecraft:astral_minas run minecraft:tp @s 4615.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 4692 92 67 4704 92 74 polished_deepslate
 /fill 4692 93 67 4704 96 74 air
 # Mina 11: II · Esmeralda
-/execute in minecraft:astral_minas run tp @s 5120 64 0
-//schem load astral-mina-esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 5127.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 5204 92 67 5216 92 74 polished_deepslate
 /fill 5204 93 67 5216 96 74 air
 # Mina 12: II · Diamante
-/execute in minecraft:astral_minas run tp @s 5632 64 0
-//schem load astral-mina-diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 5639.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 5716 92 67 5728 92 74 polished_deepslate
 /fill 5716 93 67 5728 96 74 air
 # Mina 13: II · Restos ancestrales
-/execute in minecraft:astral_minas run tp @s 6144 64 0
-//schem load astral-mina-netherita
+/execute in minecraft:astral_minas run minecraft:tp @s 6151.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 6228 92 67 6240 92 74 polished_deepslate
 /fill 6228 93 67 6240 96 74 air
 # Mina 14: III · Carbón
-/execute in minecraft:astral_minas run tp @s 6656 64 0
-//schem load astral-mina-carbon
+/execute in minecraft:astral_minas run minecraft:tp @s 6663.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 6740 92 67 6752 92 74 polished_deepslate
 /fill 6740 93 67 6752 96 74 air
 # Mina 15: III · Cobre
-/execute in minecraft:astral_minas run tp @s 7168 64 0
-//schem load astral-mina-cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 7175.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 7252 92 67 7264 92 74 polished_deepslate
 /fill 7252 93 67 7264 96 74 air
 # Mina 16: III · Hierro
-/execute in minecraft:astral_minas run tp @s 7680 64 0
-//schem load astral-mina-hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 7687.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 7764 92 67 7776 92 74 polished_deepslate
 /fill 7764 93 67 7776 96 74 air
 # Mina 17: III · Oro
-/execute in minecraft:astral_minas run tp @s 8192 64 0
-//schem load astral-mina-oro
+/execute in minecraft:astral_minas run minecraft:tp @s 8199.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 8276 92 67 8288 92 74 polished_deepslate
 /fill 8276 93 67 8288 96 74 air
 # Mina 18: III · Esmeralda
-/execute in minecraft:astral_minas run tp @s 8704 64 0
-//schem load astral-mina-esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 8711.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 8788 92 67 8800 92 74 polished_deepslate
 /fill 8788 93 67 8800 96 74 air
 # Mina 19: III · Diamante
-/execute in minecraft:astral_minas run tp @s 9216 64 0
-//schem load astral-mina-diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 9223.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 9300 92 67 9312 92 74 polished_deepslate
 /fill 9300 93 67 9312 96 74 air
 # Mina 20: III · Netherita
-/execute in minecraft:astral_minas run tp @s 9728 64 0
-//schem load astral-mina-netherita
+/execute in minecraft:astral_minas run minecraft:tp @s 9735.5 64 2.5
+//schem load astral-mina-hierro.schem
 //paste -a
 /fill 9812 92 67 9824 92 74 polished_deepslate
 /fill 9812 93 67 9824 96 74 air

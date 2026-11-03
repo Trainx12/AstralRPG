@@ -683,11 +683,11 @@ function am_spawn(i: number) :: location:
 # Dentro del pozo (coordenadas locales iguales en todos los mapas).
 function am_in_pit(loc: location, i: number) :: boolean:
     set {_x} to x-coordinate of {_loc} - ({_i} - 1) * 512
-    if {_x} is not between 75 and 105.999:
+    if {_x} is not between 82 and 112.999:
         return false
     if y-coordinate of {_loc} is not between 73 and 92.999:
         return false
-    if z-coordinate of {_loc} is not between 76 and 106.999:
+    if z-coordinate of {_loc} is not between 78 and 108.999:
         return false
     return true
 
@@ -935,13 +935,24 @@ function am_tool_area(tool: item) :: number:
 function am_drill_area(p: player) :: number:
     return am_tool_area({_p}'s tool)
 
+# Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
+function am_give(p: player, items: items):
+    loop {_items::*}:
+        if {_p}'s inventory has enough space for loop-value:
+            give loop-value to {_p}
+        else:
+            drop loop-value at {_p}
+
 function am_drill(p: player, origin: location, area: number, dir: text):
     set {_i} to am_id({_origin})
     set {_n} to 0
     loop {-am.off::%{_area}%::%{_dir}%::*}:
         set {_b} to block at ({_origin} ~ loop-value)
         if am_can_break({_b}, {_p}) is true:
-            break {_b} naturally using {_p}'s tool
+            set {_d::*} to drops of {_b} using {_p}'s tool
+            set block at {_b} to air
+            am_give({_p}, {_d::*})
+            delete {_d::*}
             add 1 to {_n}
     if {_n} > 0:
         am_count({_p}, {_i}, {_n})
@@ -962,6 +973,9 @@ on uncancelled break with priority monitor:
         stop
     set {_i} to am_id(location of event-block)
     am_count(player, {_i}, 1)
+    set {_d::*} to drops of event-block using player's tool
+    clear drops
+    am_give(player, {_d::*})
     if player is sneaking:
         stop
     set {_area} to am_drill_area(player)
@@ -1100,7 +1114,7 @@ function am_reset(i: number):
             send action bar "&a⛏ La mina se regeneró" to loop-player
     set {-am.mold::%{_i}%} to mod(({-am.mold::%{_i}%} ? 0) + 1, 2)
     set {_y} to -20 - {-am.mold::%{_i}%} * 25
-    execute console command "minecraft:execute in minecraft:astral_minas run clone %{_x} + 75% %{_y}% 76 %{_x} + 105% %{_y} + 20 - 1% 106 %{_x} + 75% 73 76 replace"
+    execute console command "minecraft:execute in minecraft:astral_minas run clone %{_x} + 82% %{_y}% 78 %{_x} + 112% %{_y} + 20 - 1% 108 %{_x} + 82% 73 78 replace"
     set {_t} to now
     add 9 minutes to {_t}
     set {-am.next::%{_i}%} to {_t}
@@ -1131,28 +1145,28 @@ every 5 seconds:
 # Rellena los dos moldes de una mina (solo al instalar o si cambian las mezclas).
 function am_build_mold(i: number, m: number):
     set {_w} to am_world()
-    set {_x0} to ({_i} - 1) * 512 + 75
+    set {_x0} to ({_i} - 1) * 512 + 82
     set {_y0} to -20 - {_m} * 25
     set {_base} to {-am.base::%{_i}%}
     set {_ore} to {-am.ore::%{_i}%}
     set {_chance} to {-am.chance::%{_i}%}
-    execute console command "minecraft:execute in minecraft:astral_minas run forceload add %{_x0}% 76 %{_x0} + 105 - 75% 106"
+    execute console command "minecraft:execute in minecraft:astral_minas run forceload add %{_x0}% 78 %{_x0} + 112 - 82% 108"
     wait 10 ticks
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x0}% %{_y0}% 76 %{_x0} + 105 - 75% %{_y0} + 20 - 1% 106 %{-am.baseid::%{_i}%}%"
+    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x0}% %{_y0}% 78 %{_x0} + 112 - 82% %{_y0} + 20 - 1% 108 %{-am.baseid::%{_i}%}%"
     if {_chance} > 0:
         set {_y} to {_y0}
         while {_y} < {_y0} + 20:
             set {_x} to {_x0}
             while {_x} < {_x0} + 31:
-                set {_z} to 76
-                while {_z} <= 106:
+                set {_z} to 78
+                while {_z} <= 108:
                     if random integer between 1 and 1000 <= {_chance} * 10:
                         set block at location({_x}, {_y}, {_z}, {_w}) to {_ore}
                     add 1 to {_z}
                 add 1 to {_x}
             add 1 to {_y}
             wait 1 tick
-    execute console command "minecraft:execute in minecraft:astral_minas run forceload remove %{_x0}% 76 %{_x0} + 105 - 75% 106"
+    execute console command "minecraft:execute in minecraft:astral_minas run forceload remove %{_x0}% 78 %{_x0} + 112 - 82% 108"
 
 command /minasmoldes [<integer>]:
     permission: astral.minas.admin

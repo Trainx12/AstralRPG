@@ -288,13 +288,24 @@ function am_tool_area(tool: item) :: number:
 function am_drill_area(p: player) :: number:
     return am_tool_area({_p}'s tool)
 
+# Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
+function am_give(p: player, items: items):
+    loop {_items::*}:
+        if {_p}'s inventory has enough space for loop-value:
+            give loop-value to {_p}
+        else:
+            drop loop-value at {_p}
+
 function am_drill(p: player, origin: location, area: number, dir: text):
     set {_i} to am_id({_origin})
     set {_n} to 0
     loop {-am.off::%{_area}%::%{_dir}%::*}:
         set {_b} to block at ({_origin} ~ loop-value)
         if am_can_break({_b}, {_p}) is true:
-            break {_b} naturally using {_p}'s tool
+            set {_d::*} to drops of {_b} using {_p}'s tool
+            set block at {_b} to air
+            am_give({_p}, {_d::*})
+            delete {_d::*}
             add 1 to {_n}
     if {_n} > 0:
         am_count({_p}, {_i}, {_n})
@@ -315,6 +326,9 @@ on uncancelled break with priority monitor:
         stop
     set {_i} to am_id(location of event-block)
     am_count(player, {_i}, 1)
+    set {_d::*} to drops of event-block using player's tool
+    clear drops
+    am_give(player, {_d::*})
     if player is sneaking:
         stop
     set {_area} to am_drill_area(player)

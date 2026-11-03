@@ -39,6 +39,8 @@ catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera e
   mina que no abrió, vuelve al spawn. Si cae al vacío, vuelve a la plataforma.
 - **Taladros:** el datapack no pica en este mundo (tag `astral.mines`); el script rompe el área del taladro
   (se reconoce por el nombre del ítem) solo dentro del pozo, y esos bloques también cuentan. Con Shift pica uno.
+- **Auto-recolectado:** lo que se pica (a mano o con taladro) va directo al inventario, respetando Fortuna. Si el
+  inventario está lleno, cae a los pies del jugador.
 - **Regeneración:** cada mina tiene dos moldes ya rellenos debajo del pozo (y −20..−1 y −45..−26, tapados por la
   isla). Regenerar es un solo `/clone` del molde al pozo, alternando moldes. Solo se regenera una mina con gente
   adentro, cada 9 minutos (aviso 10 s antes; los que están en el pozo suben a la plataforma).
@@ -47,24 +49,18 @@ catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera e
 
 ## Mapas
 
-Siete construcciones para las 20 minas (cada mineral usa el mismo mapa en los 3 tiers; Netherita para Restos y
-Netherita III). El pozo (31 × 20 × 31) está en las mismas coordenadas locales en las siete.
+Las 20 minas usan el schematic de Hierro, `astral-mina-hierro.schem`. Cada copia conserva la mezcla de su rango, el vendedor y el aldeano de viajes.
 
-- El de Hierro sale del `mina.schem` que mandó el dueño (de terceros): por eso **los schematics no están en el repo**
-  (se sacó el ZIP el 03/11/2026). Se arman con `python minas.py --schematic <mina.schem>` en `.local/minas/` y ya
-  están subidos a `plugins/WorldEdit/schematics/` en Aternos.
-- Los otros seis son islas generadas por `minas_mapas.py`. [Vista](../build/minas/Vista-Minas-Astrales.png).
-- Pendiente si se quiere: reemplazarlos por mapas gratis más lindos (ver opciones abajo; casi todos piden cuenta).
-  - [15 Prison Mines (Premiere Setups)](https://builtbybit.com/resources/free-15-prison-mines-premiere-setups.22712/)
-  - [4 Free Prison Mines (Jusserhead)](https://www.planetminecraft.com/project/4-free-prison-mines-download-a-project-by-jusser-/) — licencia no comercial sin derivados.
-  - [27 Prison Mines (Horace Creations)](https://www.planetminecraft.com/project/27-prison-mines/)
+El pozo ocupa X local 82–112, Y 73–92 y Z 78–108. En Hierro I equivale a X 1106–1136. El punto de pegado es X base + 7, Y 64 y Z 2 para alinear la plantilla con ese pozo.
+
+Para migrar un mundo existente, seguir [reemplazar-mapas.txt](../build/minas/reemplazar-mapas.txt). El procedimiento limpia las construcciones anteriores antes de pegar, conserva las entidades y vuelve a preparar los moldes con los límites corregidos. Hacer una copia del mundo antes de ejecutar la limpieza.
 
 ## Instalación en Aternos
 
 Seguir [instalacion.txt](../build/minas/instalacion.txt) en orden:
 
 1. Crear el mundo `astral_minas` con Multiverse y sus reglas.
-2. Pegar los 20 mapas en el juego (creativo, OP) con `//schem load` + `//paste -a`.
+2. Pegar las 20 copias del mapa de Hierro en el juego (creativo, OP) con `//schem load` + `//paste -a`.
 3. Invocar los 20 aldeanos de venta y el del lobby (`mm mobs spawn ...`). Antes subir el `astral.yml` nuevo de
    MythicMobs y `mm reload`.
 4. Subir `build/minas/Skript/scripts/astral_minas.sk` a `plugins/Skript/scripts/` y la sección de TAB
@@ -89,3 +85,7 @@ venta, aldeano del lobby, script cargado sin errores, panel de TAB y moldes rell
 - `//schem load` necesita el nombre **con `.schem`** (sin la extensión WorldEdit dice "Invalid value for <schematic>").
 - Los pegados se hicieron con `sudo <jugador> /paste -a` estando el jugador en la esquina de cada mina: WorldEdit
   desde la consola no puede elegir dónde pegar.
+
+## Migración al mapa común en Aternos
+
+Se copiaron los bloques de Hierro I al resto de las minas por chunks con `astral_minas_migracion.sk`. Se verificaron las esquinas de los pozos, se reconstruyeron los moldes y se reactivó la regeneración. La prueba en Hierro I clonó 19.220 bloques. La consola confirmó que las veinte minas conservan un aldeano en cada uno de los dos puntos previstos. El mundo se guardó al finalizar.

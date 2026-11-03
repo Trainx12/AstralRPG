@@ -1,0 +1,165 @@
+# Mantener una copia del mundo y cerrar el acceso a jugadores durante el reemplazo.
+# Deshabilitar astral_minas antes de limpiar y conservar variables.csv y los aldeanos.
+# Ejecutar en astral_minas, como OP en creativo. Esperar después de cada comando WorldEdit.
+# Mina 1: I · Carbón
+/execute in minecraft:astral_minas run minecraft:tp @s 7.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 84 92 67 96 92 74 polished_deepslate
+/fill 84 93 67 96 96 74 air
+/execute if block 82 72 78 bedrock
+/execute if block 112 72 108 bedrock
+# Mina 2: I · Cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 519.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 596 92 67 608 92 74 polished_deepslate
+/fill 596 93 67 608 96 74 air
+/execute if block 594 72 78 bedrock
+/execute if block 624 72 108 bedrock
+# Mina 3: I · Hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 1031.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 1108 92 67 1120 92 74 polished_deepslate
+/fill 1108 93 67 1120 96 74 air
+/execute if block 1106 72 78 bedrock
+/execute if block 1136 72 108 bedrock
+# Mina 4: I · Oro
+/execute in minecraft:astral_minas run minecraft:tp @s 1543.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 1620 92 67 1632 92 74 polished_deepslate
+/fill 1620 93 67 1632 96 74 air
+/execute if block 1618 72 78 bedrock
+/execute if block 1648 72 108 bedrock
+# Mina 5: I · Esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 2055.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 2132 92 67 2144 92 74 polished_deepslate
+/fill 2132 93 67 2144 96 74 air
+/execute if block 2130 72 78 bedrock
+/execute if block 2160 72 108 bedrock
+# Mina 6: I · Diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 2567.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 2644 92 67 2656 92 74 polished_deepslate
+/fill 2644 93 67 2656 96 74 air
+/execute if block 2642 72 78 bedrock
+/execute if block 2672 72 108 bedrock
+# Mina 7: II · Carbón
+/execute in minecraft:astral_minas run minecraft:tp @s 3079.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 3156 92 67 3168 92 74 polished_deepslate
+/fill 3156 93 67 3168 96 74 air
+/execute if block 3154 72 78 bedrock
+/execute if block 3184 72 108 bedrock
+# Mina 8: II · Cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 3591.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 3668 92 67 3680 92 74 polished_deepslate
+/fill 3668 93 67 3680 96 74 air
+/execute if block 3666 72 78 bedrock
+/execute if block 3696 72 108 bedrock
+# Mina 9: II · Hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 4103.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 4180 92 67 4192 92 74 polished_deepslate
+/fill 4180 93 67 4192 96 74 air
+/execute if block 4178 72 78 bedrock
+/execute if block 4208 72 108 bedrock
+# Mina 10: II · Oro
+/execute in minecraft:astral_minas run minecraft:tp @s 4615.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 4692 92 67 4704 92 74 polished_deepslate
+/fill 4692 93 67 4704 96 74 air
+/execute if block 4690 72 78 bedrock
+/execute if block 4720 72 108 bedrock
+# Mina 11: II · Esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 5127.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 5204 92 67 5216 92 74 polished_deepslate
+/fill 5204 93 67 5216 96 74 air
+/execute if block 5202 72 78 bedrock
+/execute if block 5232 72 108 bedrock
+# Mina 12: II · Diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 5639.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 5716 92 67 5728 92 74 polished_deepslate
+/fill 5716 93 67 5728 96 74 air
+/execute if block 5714 72 78 bedrock
+/execute if block 5744 72 108 bedrock
+# Mina 13: II · Restos ancestrales
+/execute in minecraft:astral_minas run minecraft:tp @s 6151.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 6228 92 67 6240 92 74 polished_deepslate
+/fill 6228 93 67 6240 96 74 air
+/execute if block 6226 72 78 bedrock
+/execute if block 6256 72 108 bedrock
+# Mina 14: III · Carbón
+/execute in minecraft:astral_minas run minecraft:tp @s 6663.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 6740 92 67 6752 92 74 polished_deepslate
+/fill 6740 93 67 6752 96 74 air
+/execute if block 6738 72 78 bedrock
+/execute if block 6768 72 108 bedrock
+# Mina 15: III · Cobre
+/execute in minecraft:astral_minas run minecraft:tp @s 7175.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 7252 92 67 7264 92 74 polished_deepslate
+/fill 7252 93 67 7264 96 74 air
+/execute if block 7250 72 78 bedrock
+/execute if block 7280 72 108 bedrock
+# Mina 16: III · Hierro
+/execute in minecraft:astral_minas run minecraft:tp @s 7687.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 7764 92 67 7776 92 74 polished_deepslate
+/fill 7764 93 67 7776 96 74 air
+/execute if block 7762 72 78 bedrock
+/execute if block 7792 72 108 bedrock
+# Mina 17: III · Oro
+/execute in minecraft:astral_minas run minecraft:tp @s 8199.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 8276 92 67 8288 92 74 polished_deepslate
+/fill 8276 93 67 8288 96 74 air
+/execute if block 8274 72 78 bedrock
+/execute if block 8304 72 108 bedrock
+# Mina 18: III · Esmeralda
+/execute in minecraft:astral_minas run minecraft:tp @s 8711.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 8788 92 67 8800 92 74 polished_deepslate
+/fill 8788 93 67 8800 96 74 air
+/execute if block 8786 72 78 bedrock
+/execute if block 8816 72 108 bedrock
+# Mina 19: III · Diamante
+/execute in minecraft:astral_minas run minecraft:tp @s 9223.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 9300 92 67 9312 92 74 polished_deepslate
+/fill 9300 93 67 9312 96 74 air
+/execute if block 9298 72 78 bedrock
+/execute if block 9328 72 108 bedrock
+# Mina 20: III · Netherita
+/execute in minecraft:astral_minas run minecraft:tp @s 9735.5 64 2.5
+//schem load astral-mina-hierro.schem
+//paste
+/fill 9812 92 67 9824 92 74 polished_deepslate
+/fill 9812 93 67 9824 96 74 air
+/execute if block 9810 72 78 bedrock
+/execute if block 9840 72 108 bedrock
+# Habilitar el script actualizado y comprobar que cargue sin errores.
+# Ejecutar minasmoldes y esperar Moldes listos antes de reabrir el acceso.
