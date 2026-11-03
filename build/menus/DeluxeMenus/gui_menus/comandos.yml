@@ -1,0 +1,586 @@
+menu_title: '&8Comandos de AstralRPG'
+open_command: comandos
+size: 54
+items:
+  'tema_1':
+    material: LIME_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: '&f&lAventura'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'cmd_menu':
+    material: COMPASS
+    slot: 10
+    amount: 1
+    display_name: '&e&l/menu'
+    lore:
+    - '&7Menu principal: expediciones, mazmorras,'
+    - '&7misiones, bazar, mascotas y guia.'
+    - ''
+    - '&fUso: &e/menu'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] principal'
+  'cmd_mazmorras':
+    material: NETHER_STAR
+    slot: 11
+    amount: 1
+    display_name: '&e&l/mazmorras'
+    lore:
+    - '&7Viaja a las mazmorras que ya descubriste'
+    - '&7hablando con su guardian.'
+    - ''
+    - '&fUso: &e/mazmorras'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] mazmorras<delay=3>'
+  'cmd_expediciones':
+    material: FILLED_MAP
+    slot: 12
+    amount: 1
+    display_name: '&e&l/expediciones'
+    lore:
+    - '&7Destinos de exploracion: Reino,'
+    - '&7Cavernas y las zonas de busqueda.'
+    - ''
+    - '&fUso: &e/expediciones'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] expediciones<delay=3>'
+  'cmd_spawn':
+    material: RED_BED
+    slot: 13
+    amount: 1
+    display_name: '&e&l/spawn'
+    lore:
+    - '&7Vuelve a la plaza del lobby.'
+    - '&7Sirve si te perdes o te trabas.'
+    - ''
+    - '&fUso: &e/spawn'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] spawn'
+  'cmd_guia':
+    material: BOOK
+    slot: 14
+    amount: 1
+    display_name: '&e&lGuia'
+    lore:
+    - '&7Clases, equipo, recetas y la Forja.'
+    - '&7Tambien desde /menu.'
+    - ''
+    - '&fUso: &eBoton Guia en /menu'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.guia set 1'
+  'tema_2':
+    material: LIGHT_BLUE_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: '&f&lPersonaje'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'cmd_skills':
+    material: EXPERIENCE_BOTTLE
+    slot: 19
+    amount: 1
+    display_name: '&e&l/skills'
+    lore:
+    - '&7Tus habilidades (Forja, Hechiceria,'
+    - '&7Arqueria, Combate...) y sus niveles.'
+    - ''
+    - '&fUso: &e/skills'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] skills<delay=3>'
+  'cmd_mascotas':
+    material: BONE
+    slot: 20
+    amount: 1
+    display_name: '&e&l/mascotas'
+    lore:
+    - '&7Invoca o guarda a tu mascota.'
+    - '&7Sube de nivel matando mobs con ella.'
+    - ''
+    - '&fUso: &e/mascotas'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] mascotas'
+  'cmd_cosmeticos':
+    material: NAME_TAG
+    slot: 21
+    amount: 1
+    display_name: '&e&l/cosmeticos'
+    lore:
+    - '&7Elegi tu titulo para el chat entre'
+    - '&7los que desbloqueaste. Tambien /titulos.'
+    - ''
+    - '&fUso: &e/cosmeticos'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] cosmeticos'
+  'cmd_titulo':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&e&l/titulo quitar'
+    lore:
+    - '&7Saca el titulo que tenes puesto.'
+    - '&7No pierde los que desbloqueaste.'
+    - ''
+    - '&fUso: &e/titulo quitar'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] titulo quitar'
+  'cmd_sb':
+    material: ITEM_FRAME
+    slot: 23
+    amount: 1
+    display_name: '&e&l/sb'
+    lore:
+    - '&7Muestra u oculta el panel de la'
+    - '&7derecha (vida, oro, poder, nivel).'
+    - ''
+    - '&fUso: &e/sb'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] sb'
+  'tema_3':
+    material: YELLOW_STAINED_GLASS_PANE
+    slot: 27
+    amount: 1
+    display_name: '&f&lEconomia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'cmd_balance':
+    material: GOLD_INGOT
+    slot: 28
+    amount: 1
+    display_name: '&e&l/balance'
+    lore:
+    - '&7Cuanto oro tenes.'
+    - ''
+    - '&fUso: &e/balance'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] balance'
+  'cmd_baltop':
+    material: GOLD_BLOCK
+    slot: 29
+    amount: 1
+    display_name: '&e&l/baltop'
+    lore:
+    - '&7Los jugadores con mas oro.'
+    - ''
+    - '&fUso: &e/baltop'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] baltop'
+  'cmd_pay':
+    material: GOLD_NUGGET
+    slot: 30
+    amount: 1
+    display_name: '&e&l/pay'
+    lore:
+    - '&7Pasale oro a otro jugador.'
+    - ''
+    - '&fUso: &e/pay <jugador> <cantidad>'
+    - '&7Escribilo en el chat.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[message] &eEscribi: &f/pay <jugador> <cantidad>'
+  'cmd_shop':
+    material: EMERALD
+    slot: 31
+    amount: 1
+    display_name: '&e&l/shop'
+    lore:
+    - '&7Tienda del servidor: compra'
+    - '&7materiales y objetos vanilla.'
+    - ''
+    - '&fUso: &e/shop'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] economyshopgui:shop<delay=3>'
+  'cmd_sellgui':
+    material: CHEST
+    slot: 32
+    amount: 1
+    display_name: '&e&l/sellgui'
+    lore:
+    - '&7Venta rapida: pone objetos y'
+    - '&7cobralos al precio del servidor.'
+    - ''
+    - '&fUso: &e/sellgui'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] sellgui<delay=3>'
+  'cmd_worth':
+    material: OAK_SIGN
+    slot: 33
+    amount: 1
+    display_name: '&e&l/worth'
+    lore:
+    - '&7Cuanto vale el objeto que'
+    - '&7tenes en la mano.'
+    - ''
+    - '&fUso: &e/worth'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] worth'
+  'cmd_ah':
+    material: BELL
+    slot: 34
+    amount: 1
+    display_name: '&e&l/ah'
+    lore:
+    - '&7Subastas entre jugadores.'
+    - '&7Vender: objeto en la mano y /ah sell <precio>.'
+    - ''
+    - '&fUso: &e/ah'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] ah<delay=3>'
+  'cmd_trade':
+    material: VILLAGER_SPAWN_EGG
+    slot: 35
+    amount: 1
+    display_name: '&e&l/trade'
+    lore:
+    - '&7Intercambio cara a cara con otro'
+    - '&7jugador: objetos y oro, los dos confirman.'
+    - ''
+    - '&fUso: &e/trade <jugador>'
+    - '&7Escribilo en el chat.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[message] &eEscribi: &f/trade <jugador>'
+  'tema_4':
+    material: RED_STAINED_GLASS_PANE
+    slot: 36
+    amount: 1
+    display_name: '&f&lCuenta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'cmd_login':
+    material: TRIPWIRE_HOOK
+    slot: 37
+    amount: 1
+    display_name: '&e&l/login'
+    lore:
+    - '&7Entrar con tu clave al conectarte.'
+    - '&7La primera vez: /register <clave> <clave>.'
+    - ''
+    - '&fUso: &e/login <clave>'
+    - '&7Escribilo en el chat.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[message] &eEscribi: &f/login <clave>'
+  'cmd_changepassword':
+    material: IRON_DOOR
+    slot: 38
+    amount: 1
+    display_name: '&e&l/changepassword'
+    lore:
+    - '&7Cambiar tu clave.'
+    - ''
+    - '&fUso: &e/changepassword <vieja> <nueva>'
+    - '&7Escribilo en el chat.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[message] &eEscribi: &f/changepassword <vieja> <nueva>'
+  'cmd_premium':
+    material: DIAMOND
+    slot: 39
+    amount: 1
+    display_name: '&e&l/premium'
+    lore:
+    - '&7Solo cuentas originales: despues'
+    - '&7entras sin escribir la clave.'
+    - ''
+    - '&fUso: &e/premium'
+    - '&7Escribilo en el chat.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[message] &eEscribi: &f/premium'
+  'info':
+    material: WRITABLE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&e&lComandos de AstralRPG'
+    lore:
+    - '&7Pasa el cursor por cada uno para ver'
+    - '&7para que sirve. Los que no piden datos'
+    - '&7se usan con un clic.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'volver':
+    material: ARROW
+    slot: 49
+    amount: 1
+    display_name: '&fVolver al menu'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+  'vidrio_0':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_15':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 15
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_16':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 16
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_40':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 40
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_41':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_42':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 42
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_43':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 43
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_44':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 44
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_45':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 45
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_46':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 46
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_47':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 47
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_48':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 48
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_50':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 50
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_51':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 51
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_52':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 52
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_53':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 53
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

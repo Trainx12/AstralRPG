@@ -473,6 +473,21 @@ items:
     - '&7Los guardianes desbloquean el viaje a mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
+  'comandos':
+    material: WRITABLE_BOOK
+    slot: 45
+    amount: 1
+    display_name: '&e&lComandos del servidor'
+    lore:
+    - '&7Todos los comandos que podes usar'
+    - '&7y para que sirve cada uno.'
+    - ''
+    - '&eClic para ver. &7Tambien: &f/comandos'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] comandos'
   'cerrar':
     material: BARRIER
     slot: 53

@@ -252,8 +252,71 @@ def principal_menu():
                   ['&7Arsenal Arcano, Sendas Salvajes y Galeria Celeste.', '&7Busca sus cofres en la plaza del lobby.'],
                   extra={'click_commands': ['[message] &dEn el lobby te esperan los tres cofres de invocacion.']})
     items += item('ayuda', 'BOOK', 51, '&bComo usar el atlas', ['&7Cada tarjeta abre su servicio.', '&7Los guardianes desbloquean el viaje a mazmorras.'])
+    items += item('comandos', 'WRITABLE_BOOK', 45, '&e&lComandos del servidor',
+                  ['&7Todos los comandos que podes usar', '&7y para que sirve cada uno.', '', '&eClic para ver. &7Tambien: &f/comandos'],
+                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] comandos']})
     items += item('cerrar', 'BARRIER', 53, '&cCerrar', extra={'click_commands': ['[close]']})
     return menu(title('principal'), 'menu', 54, items, update=True)
+
+
+# (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
+COMANDOS = [
+    ('Aventura', 'LIME_STAINED_GLASS_PANE', [
+        ('menu', 'COMPASS', '/menu', ['Menu principal: expediciones, mazmorras,', 'misiones, bazar, mascotas y guia.'], '/menu', ['[openguimenu] principal']),
+        ('mazmorras', 'NETHER_STAR', '/mazmorras', ['Viaja a las mazmorras que ya descubriste', 'hablando con su guardian.'], '/mazmorras', ['[close]', '[player] mazmorras<delay=3>']),
+        ('expediciones', 'FILLED_MAP', '/expediciones', ['Destinos de exploracion: Reino,', 'Cavernas y las zonas de busqueda.'], '/expediciones', ['[close]', '[player] expediciones<delay=3>']),
+        ('spawn', 'RED_BED', '/spawn', ['Vuelve a la plaza del lobby.', 'Sirve si te perdes o te trabas.'], '/spawn', ['[close]', '[player] spawn']),
+        ('guia', 'BOOK', 'Guia', ['Clases, equipo, recetas y la Forja.', 'Tambien desde /menu.'], 'Boton Guia en /menu', ['[close]', '[player] trigger astral.guia set 1']),
+    ]),
+    ('Personaje', 'LIGHT_BLUE_STAINED_GLASS_PANE', [
+        ('skills', 'EXPERIENCE_BOTTLE', '/skills', ['Tus habilidades (Forja, Hechiceria,', 'Arqueria, Combate...) y sus niveles.'], '/skills', ['[close]', '[player] skills<delay=3>']),
+        ('mascotas', 'BONE', '/mascotas', ['Invoca o guarda a tu mascota.', 'Sube de nivel matando mobs con ella.'], '/mascotas', ['[openguimenu] mascotas']),
+        ('cosmeticos', 'NAME_TAG', '/cosmeticos', ['Elegi tu titulo para el chat entre', 'los que desbloqueaste. Tambien /titulos.'], '/cosmeticos', ['[openguimenu] cosmeticos']),
+        ('titulo', 'PAPER', '/titulo quitar', ['Saca el titulo que tenes puesto.', 'No pierde los que desbloqueaste.'], '/titulo quitar', ['[close]', '[player] titulo quitar']),
+        ('sb', 'ITEM_FRAME', '/sb', ['Muestra u oculta el panel de la', 'derecha (vida, oro, poder, nivel).'], '/sb', ['[close]', '[player] sb']),
+    ]),
+    ('Economia', 'YELLOW_STAINED_GLASS_PANE', [
+        ('balance', 'GOLD_INGOT', '/balance', ['Cuanto oro tenes.'], '/balance', ['[close]', '[player] balance']),
+        ('baltop', 'GOLD_BLOCK', '/baltop', ['Los jugadores con mas oro.'], '/baltop', ['[close]', '[player] baltop']),
+        ('pay', 'GOLD_NUGGET', '/pay', ['Pasale oro a otro jugador.'], '/pay <jugador> <cantidad>', None),
+        ('shop', 'EMERALD', '/shop', ['Tienda del servidor: compra', 'materiales y objetos vanilla.'], '/shop', ['[close]', '[player] economyshopgui:shop<delay=3>']),
+        ('sellgui', 'CHEST', '/sellgui', ['Venta rapida: pone objetos y', 'cobralos al precio del servidor.'], '/sellgui', ['[close]', '[player] sellgui<delay=3>']),
+        ('worth', 'OAK_SIGN', '/worth', ['Cuanto vale el objeto que', 'tenes en la mano.'], '/worth', ['[close]', '[player] worth']),
+        ('ah', 'BELL', '/ah', ['Subastas entre jugadores.', 'Vender: objeto en la mano y /ah sell <precio>.'], '/ah', ['[close]', '[player] ah<delay=3>']),
+        ('trade', 'VILLAGER_SPAWN_EGG', '/trade', ['Intercambio cara a cara con otro', 'jugador: objetos y oro, los dos confirman.'], '/trade <jugador>', None),
+    ]),
+    ('Cuenta', 'RED_STAINED_GLASS_PANE', [
+        ('login', 'TRIPWIRE_HOOK', '/login', ['Entrar con tu clave al conectarte.', 'La primera vez: /register <clave> <clave>.'], '/login <clave>', None),
+        ('changepassword', 'IRON_DOOR', '/changepassword', ['Cambiar tu clave.'], '/changepassword <vieja> <nueva>', None),
+        ('premium', 'DIAMOND', '/premium', ['Solo cuentas originales: despues', 'entras sin escribir la clave.'], '/premium', None),
+    ]),
+]
+
+
+def comandos_menu():
+    """Lista de comandos para jugadores, agrupada por tema (una fila por tema)."""
+    items = []
+    used = set()
+    for row, (tema, vidrio, cmds) in enumerate(COMANDOS, start=1):
+        base = row * 9
+        items += item(f'tema_{row}', vidrio, base, f'&f&l{tema}')
+        used.add(base)
+        for col, (key, material, name, que, uso, clic) in enumerate(cmds, start=1):
+            lore = ['&7' + x for x in que] + ['', '&fUso: &e' + uso]
+            if clic:
+                lore.append('&aClic para usarlo.')
+                extra = {'click_commands': ['[sound] UI_BUTTON_CLICK'] + clic}
+            else:
+                lore.append('&7Escribilo en el chat.')
+                extra = {'click_commands': ['[close]', f'[message] &eEscribi: &f{uso}']}
+            items += item(f'cmd_{key}', material, base + col, '&e&l' + name, lore, extra=extra)
+            used.add(base + col)
+    items += item('info', 'WRITABLE_BOOK', 4, '&e&lComandos de AstralRPG',
+                  ['&7Pasa el cursor por cada uno para ver', '&7para que sirve. Los que no piden datos', '&7se usan con un clic.'])
+    items += item('volver', 'ARROW', 49, '&fVolver al menu', extra={'click_commands': ['[openguimenu] principal']})
+    used |= {4, 49}
+    items += relleno('GRAY_STAINED_GLASS_PANE', 54, used)
+    return menu('&8Comandos de AstralRPG', 'comandos', 54, items)
 
 
 def misiones_menu(current_page=0):
@@ -420,7 +483,7 @@ def main():
     generate_dungeon_travel()
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
-    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu()})
+    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)

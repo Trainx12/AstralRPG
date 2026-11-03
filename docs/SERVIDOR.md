@@ -129,6 +129,7 @@ En lobby y arena se permiten invocaciones con WorldGuard; `spawn_mobs=false` imp
 
 ## Menús, bazar y subastas
 
+- **Menú de comandos:** `/comandos` (o el libro abajo a la izquierda de `/menu`) lista los comandos para jugadores por tema, con para qué sirve y cómo se usa; los que no piden datos se usan con un clic. Se edita en `COMANDOS` de `datapack-src/menus.py`.
 - **Menús de cofre (DeluxeMenus):** `/menu` (principal), `/mascotas`, y los que abren los vendedores: cada cofre de gacha (`dm open gacha_<x> <jugador>`: tirar x1/x10/x25/x50 y ver premios) y el aldeano *Bazar* (`dm open bazar <jugador>`: mercado, venta rápida, subastas e intercambio). Shift + clic al cofre de gacha sigue mostrando la vitrina. La garantía se ve en el menú con `%objective_score_{pity_rpg}%` (expansión ScoreboardObjectives de PlaceholderAPI).
 - **Mercado y venta rápida:** EconomyShopGUI (`/shop`, `/sellgui`), con precios fijos.
 - **Subastas (CrazyAuctions, `/ah`):** ítems únicos entre jugadores; publicar con `/ah sell <precio>` y el ítem en la mano. Aldeano *Subastas* (`astral_npc_subastas`).
