@@ -1,0 +1,28 @@
+# Generado por portales.py. Destinos fijos, sin comandos del usuario.
+command /umbrales [<text>]:
+    executable by: players
+    description: Elige un Portal Astral.
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open portales %name of player%"
+            stop
+        if arg-1 is "end":
+            execute console command "execute in minecraft:portales_astrales run minecraft:tp %name of player% 146.5 84 68.5 180 0"
+            stop
+        if arg-1 is "nether":
+            execute console command "execute in minecraft:portales_astrales run minecraft:tp %name of player% -2192.5 81 90.5 180 0"
+            stop
+        if arg-1 is "lobby":
+            execute console command "spawn %name of player%"
+            stop
+        send "&eUsa /umbrales para elegir un portal." to player
+
+# Rescate: debajo de Y=50 en portales_astrales vuelve al lobby.
+every 10 ticks:
+    loop all players in world "portales_astrales":
+        if gamemode of loop-player is survival or adventure:
+            if y-coordinate of loop-player is less than 50:
+                set velocity of loop-player to vector(0, 0, 0)
+                set fall distance of loop-player to 0
+                execute console command "spawn %name of loop-player%"
+                send action bar "&eTe caiste del portal: volviste al lobby." to loop-player

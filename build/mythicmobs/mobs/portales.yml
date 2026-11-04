@@ -1,0 +1,21 @@
+# Generado por portales.py. Ubicacion en el lobby elegida por el dueno.
+astral_npc_portales:
+  Type: VILLAGER
+  Display: '&b&lGuardian de los Portales'
+  Health: 20
+  Options:
+    NoAI: true
+    Silent: true
+    Invincible: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    Profession: CLERIC
+    VillagerType: PLAINS
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open portales <trigger.name>"} @self ~onInteract'

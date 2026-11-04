@@ -1,5 +1,44 @@
 # Mazmorras nuevas: preparacion y recorrido de revision
 
+Portales Astrales, instalados el 04/11/2026: mundo vacio `portales_astrales`,
+plataforma central de terracota negra en `0.5 81 125.5`, End al este y Nether
+al oeste mirando al norte. Se copio la torre del End con su primer plano y se
+excluyo el fondo situado detras de la torre (Z original menor que 60).
+El aldeano `astral_npc_portales` esta en `lobby 124.472 100 193.529` y abre
+el menu DeluxeMenus `portales`. `/umbrales` permite abrir el mismo menu.
+El NPC se creo en Portales Astrales y se traslado al lobby para respetar la
+proteccion existente de aparicion de mobs. Se comprobaron en vivo su posicion,
+los pisos de llegada y los bloques activos de ambos portales.
+
+Portales separados (04/11/2026, mismo mundo `portales_astrales`):
+- End: el dueno borro la torre vieja y se pego `portal_END.schem` (322x236x241,
+  WorldEdit) con `//paste -a` parado en `146 82 78`. Portal activo en
+  `145 96 0`. Despues se borro con `//replace` el terreno natural que traia
+  (piedra, tierra, arena, agua, lava, arboles, minerales, plantas), con
+  `//perf neighbors off` para que no cayera el polvo de concreto. Llegada
+  `146.5 84 68.5` mirando al norte, frente a la torre. Los huecos que quedaron
+  en el piso (4750 columnas rodeadas por la construccion) se taparon con
+  concreto negro (`fill ... keep`, 2927 comandos calculados del schematic).
+- Un aldeano `astral_npc_portales` a 2 bloques al este de cada llegada abre el mismo
+  menu (otro portal o "Volver al Lobby" = `/umbrales lobby` -> `/spawn`). Rehacerlos:
+  `mm mobs spawn astral_npc_portales 1 portales_astrales,148.5,84,68.5` y
+  `mm mobs spawn astral_npc_portales 1 portales_astrales,-2190.5,81,90.5`, despues
+  girarlos con `minecraft:tp` (no `tp`: lo agarra Essentials) a yaw 90.
+- Caerse por debajo de Y=50 en `portales_astrales` (supervivencia/aventura) lleva
+  al lobby con `/spawn` (en `astral_portales.sk`, generado por `portales.py`).
+- Nether: `GuardianNPv3-92.schem` ("guardianes"), separado en X -2248..-2138;
+  llegada `-2192.5 81 90.5` mirando al norte (elegida por el dueno).
+- El menu del aldeano lleva a cada uno (`/umbrales end|nether`, en `portales.py`).
+  Ambos viajes se probaron en vivo.
+
+La construccion de `Entrada_Del_nether.zip` se exporto como
+`plugins/WorldEdit/schematics/entrada-del-nether.schem` para la colocacion
+manual del dueno. Mide 367x256x119 bloques. En un mundo con techo Y=319,
+una base Y=64 permite colocar su altura completa. Los ZIP originales y los
+resultados privados estan en `.local/portales/`. Las cargas de revision se
+retiraron de `chunk_tickets.dat` con el servidor apagado, conservando las
+65 cargas que ya tenia el lobby. Respaldos en `.local/portales/cargas/`.
+
 Estado local: generadores y recortes preparados. **Ningun mundo se modifico en Aternos.** Las entradas nuevas
 estan deshabilitadas hasta revisar piso, llegada, altura libre y espacio de combate dentro de Minecraft.
 El usuario pidio preparar ubicaciones sugeridas para hacer esa revision.
