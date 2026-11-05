@@ -1,6 +1,15 @@
 # Tabulador y dos ganchos de prueba (05/11/2026)
 
-Cambios preparados localmente; sin commit, push ni instalacion en Aternos.
+Publicado en `20eb286` e instalado en Aternos el 05/11/2026.
+Se reemplazaron el datapack y `astral_gameplay.sk`, se actualizaron encabezado,
+pie y objetivo de vida de TAB conservando el panel instalado, y se aplicaron
+los colores de grupos y las dos animaciones Astral. Respaldos de TAB en
+`.local/backups/tab-gancho-2026-11-05/` (ignorados por Git).
+
+Arranque completo confirmado: los nueve scripts cargaron sin errores,
+`datapack list enabled` incluyo AstralRPG y `tab reload` termino correctamente.
+ByTrainx se conecto y recibio una unidad de cada gancho. La consola confirmo
+ambas entregas. Captura local: `build/Aternos-tab-ganchos-instalados.jpg`.
 
 El tabulador comparte titulo, degradado azul/violeta, separadores, textos claros
 y colores secundarios con `sidebar.py`. Conserva jugadores, vida, oro, poder,
