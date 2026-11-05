@@ -44,3 +44,34 @@ Crear un unico controlador en el punto indicado, luego de verificar piso y
 espacio. Aplicar las reglas y protecciones de los comandos generados. No hacer
 aparecer otro NPC de descubrimiento si el del mapa de expedicion ya existe.
 La prueba completa del combate con jugadores debe registrarse por separado.
+
+## Instalado en Aternos
+
+Instalado el 05/11/2026 a las 16:41 (Argentina), desde `1195875`.
+La carpeta nueva se subio desde Files con el servidor apagado y se importo con
+Multiverse despues del arranque. Se instalaron los dos YAML de Santuario y se
+actualizo unicamente su llegada en el script de viajes, conservando los demas
+destinos que ya estaban instalados. Los archivos anteriores se respaldaron en
+`.local/santuario-freemap9/`.
+
+Paper arranco en 56.009 segundos, con los scripts cargados sin errores. No se
+observaron errores al leer o convertir el escenario. La consola comprobo el piso
+y dos bloques libres de llegada y arena, y un area de 13x13x6 de aire en la zona
+de aparicion de jefes. Multiverse confirma FLAT, sin estructuras, spawn y yaw
+correctos. Un chunk nuevo lejano tiene `the_void` y aire, sin terreno natural.
+
+Se creo un unico `astral_santuario_control_sala1` y su posicion se consulto:
+`33.5 103 -60.5`. Se aplicaron las protecciones y reglas del mundo. Las tres
+cargas temporales se retiraron y la consulta final confirmo que no quedaban.
+`save-all flush` confirmo el guardado de todas las dimensiones.
+
+En el mismo arranque se volvieron a comprobar Forja y ambos portales: los bloques
+restaurados persisten despues del reinicio. Sus cargas de comprobacion tambien
+se retiraron. El servidor quedo online con 20 TPS.
+
+Validacion local: 25 pruebas pasaron. Una segunda ejecucion completa del generador
+produjo archivos identicos a los subidos. La inspeccion local confirma 72 chunks
+sin logica activa importada. Sigue pendiente el recorrido visual y combate
+completo con jugadores; no se afirmo haber probado la victoria de las cinco olas.
+Comprobantes privados: `consola-verificacion.txt`, `aternos-consola.jpg`,
+`aternos-online.jpg` e `informe.json` en `.local/santuario-freemap9/`.
