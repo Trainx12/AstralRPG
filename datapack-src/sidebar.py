@@ -64,7 +64,7 @@ def location_conditions(centered=False):
     from mobs.mazmorra import MINA
 
     labels = {"world": "Survival", "lobby": "Spawn", "world_nether": "Nether",
-              "world_the_end": "End", ARENA["world"]: "Arena PvP",
+              "world_the_end": "End", "portales_astrales": "Portales Astrales", ARENA["world"]: "Arena PvP",
               MINA["world"]: "Mazmorra · Minas Olvidadas", "astral_minas": "Minas Astrales"}
     labels.update({d["key"]: f'Mazmorra · {d["name"]}' for d in DUNGEONS})
     labels.update({"bosque": "Mazmorra · Bosque Sombrío", "forja": "Expedición Astral · Forja"})

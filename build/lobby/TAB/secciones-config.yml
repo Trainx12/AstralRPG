@@ -10,7 +10,7 @@ header-footer:
       footer:
         - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
         - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%  <#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
-        - "<#D6B4FF>♟ <#AA96C5>Jugadores <#F0E6FF>%online%/%maxplayers%  <#D6B4FF>· <#AA96C5>Ping <#F0E6FF>%ping%ms  <#D6B4FF>· <#AA96C5>TPS <#F0E6FF>%server_tps_1%"
+        - "<#D6B4FF>♟ <#AA96C5>Jugadores <#F0E6FF>%online%/%server_max_players%  <#D6B4FF>· <#AA96C5>Ping <#F0E6FF>%ping%ms  <#D6B4FF>· <#AA96C5>TPS <#F0E6FF>%server_tps_1%"
         - "<#D6B4FF>⌖ <#F0E6FF>%condition:mundo%  <#D6B4FF>· <#AA96C5>/spawn vuelve al lobby"
         - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
         - "<#D6B4FF>AstralRPG.aternos.me"
@@ -560,24 +560,29 @@ conditions:
     false: "%condition:mundo_11%"
   mundo_13:
     conditions:
-      - "%world%=world_the_end"
-    true: "End"
+      - "%world%=portales_astrales"
+    true: "Portales Astrales"
     false: "%condition:mundo_12%"
   mundo_14:
     conditions:
-      - "%world%=world_nether"
-    true: "Nether"
+      - "%world%=world_the_end"
+    true: "End"
     false: "%condition:mundo_13%"
   mundo_15:
     conditions:
+      - "%world%=world_nether"
+    true: "Nether"
+    false: "%condition:mundo_14%"
+  mundo_16:
+    conditions:
       - "%world%=lobby"
     true: "Spawn"
-    false: "%condition:mundo_14%"
+    false: "%condition:mundo_15%"
   mundo:
     conditions:
       - "%world%=world"
     true: "Survival"
-    false: "%condition:mundo_15%"
+    false: "%condition:mundo_16%"
   sidebar_world_0:
     conditions:
       - "%world%=exp_santuario"
@@ -645,24 +650,29 @@ conditions:
     false: "%condition:sidebar_world_11%"
   sidebar_world_13:
     conditions:
-      - "%world%=world_the_end"
-    true: "              <#F0E6FF>End"
+      - "%world%=portales_astrales"
+    true: "     <#F0E6FF>Portales Astrales"
     false: "%condition:sidebar_world_12%"
   sidebar_world_14:
     conditions:
-      - "%world%=world_nether"
-    true: "            <#F0E6FF>Nether"
+      - "%world%=world_the_end"
+    true: "              <#F0E6FF>End"
     false: "%condition:sidebar_world_13%"
   sidebar_world_15:
     conditions:
+      - "%world%=world_nether"
+    true: "            <#F0E6FF>Nether"
+    false: "%condition:sidebar_world_14%"
+  sidebar_world_16:
+    conditions:
       - "%world%=lobby"
     true: "             <#F0E6FF>Spawn"
-    false: "%condition:sidebar_world_14%"
+    false: "%condition:sidebar_world_15%"
   sidebar_world:
     conditions:
       - "%world%=world"
     true: "           <#F0E6FF>Survival"
-    false: "%condition:sidebar_world_15%"
+    false: "%condition:sidebar_world_16%"
   diaria0:
     conditions:
       - "%objective_score_{aq.done0}%=1"

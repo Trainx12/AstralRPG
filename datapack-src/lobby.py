@@ -372,7 +372,7 @@ TAB_HEADER = [DIVIDER, TITLE, f"{section('♟ Jugador')} {TEXT}%player% {MUTED}�
 TAB_FOOTER = [
     DIVIDER,
     f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%  {PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
-    f"{PURPLE}♟ {MUTED}Jugadores {TEXT}%online%/%maxplayers%  {PURPLE}· {MUTED}Ping {TEXT}%ping%ms  {PURPLE}· {MUTED}TPS {TEXT}%server_tps_1%",
+    f"{PURPLE}♟ {MUTED}Jugadores {TEXT}%online%/%server_max_players%  {PURPLE}· {MUTED}Ping {TEXT}%ping%ms  {PURPLE}· {MUTED}TPS {TEXT}%server_tps_1%",
     f"{PURPLE}⌖ {TEXT}%condition:mundo%  {PURPLE}· {MUTED}/spawn vuelve al lobby",
     *SERVER_ROWS, DIVIDER,
 ]
