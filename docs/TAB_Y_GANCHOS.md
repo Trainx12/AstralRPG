@@ -59,3 +59,17 @@ misiones; `verify.py` comprueba JSON y referencias. Paper 26.1.2 y Skript 2.17.1
 cargaron el datapack y el script; la recarga termino sin errores (registro en
 `build/gameplay/gancho-validacion-local.txt`). La sensacion del tiron,
 las colisiones y la apariencia del tabulador requieren prueba con jugador.
+
+## Correccion de contacto y ubicacion (05/11/2026)
+
+La prueba del jugador encontro que la boya vanilla rebotaba en las paredes y
+caia: `bobber in ground` no bastaba para anclarla. Ahora se comprueba contacto
+con las seis caras del bloque, se guarda ese bloque y la posicion de contacto,
+y se fija la boya sin gravedad manteniendo el sedal. Al recoger se acepta ese
+anclaje tambien si Minecraft emite `reel in`. Aire y agua no sirven; romper el
+bloque libera el gancho. Distancia y propietario siguen validados.
+
+Prueba de contacto ejecutada en Paper/Skript local: 8/8 (seis caras, aire y
+agua); cinco pruebas Python del gancho. El script carga sin errores.
+El tabulador y panel muestran `Portales Astrales`; el contador de capacidad
+usa `%server_max_players%` en lugar del placeholder sin resolver.

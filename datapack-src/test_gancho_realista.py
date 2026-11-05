@@ -30,7 +30,8 @@ class RealisticHookTests(unittest.TestCase):
         self.assertIn('location of fishing hook', text)
         self.assertIn('location of hooked entity', text)
         self.assertIn('vector from eye location of player to {_anchor}', text)
-        self.assertNotIn('teleport', text)
+        self.assertNotIn('teleport player', text)
+        self.assertNotIn('teleport loop-player', text)
         self.assertNotIn('pitch of player', text)
 
     def test_ownership_limits_and_dungeon_guards(self):
@@ -41,6 +42,16 @@ class RealisticHookTests(unittest.TestCase):
         self.assertIn('less than 2 seconds:', text)
         self.assertIn('on death of player:', text)
         self.assertIn('on world change:', text)
+
+    def test_wall_contact_is_saved_before_reeling(self):
+        text = realistic_hook()
+        self.assertIn('function astral_hook_contact(at: location) :: block:', text)
+        self.assertIn('if block at {_probe} is solid:', text)
+        self.assertIn('set gravity of {_hook} to false', text)
+        self.assertIn('teleport {_hook} to {-astral.realistic::%{_id}%::anchor}', text)
+        self.assertIn('set {_anchor} to {-astral.realistic::%{_id}%::anchor}', text)
+        self.assertIn('if {_anchor} is not set:', text)
+        self.assertIn('if {_block} is not solid:', text)
 
 
 if __name__ == '__main__':

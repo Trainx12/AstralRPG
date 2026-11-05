@@ -354,6 +354,7 @@ on quit:
     delete {-astral.jump.armed::%uuid of player%}
     delete {-astral.grapple.cd::%uuid of player%}
     delete {-astral.realistic::%uuid of player%}
+    delete {-astral.realistic::%uuid of player%::*}
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
@@ -362,6 +363,57 @@ __PVP__'''.replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__
 
 def realistic_hook():
     return r'''
+# La boya vanilla rebota en paredes. Detectamos el contacto por sus caras,
+# guardamos el bloque y fijamos la boya, conservando el sedal real.
+function astral_hook_contact(at: location) :: block:
+    set {_offsets::*} to vector(0, 0, 0), vector(0.18, 0, 0), vector(-0.18, 0, 0), vector(0, 0.28, 0), vector(0, -0.18, 0), vector(0, 0, 0.18) and vector(0, 0, -0.18)
+    loop {_offsets::*}:
+        set {_probe} to {_at} offset by loop-value
+        if block at {_probe} is solid:
+            return block at {_probe}
+
+every tick:
+    loop all players:
+        set {_id} to uuid of loop-player
+        set {_hook} to {-astral.realistic::%{_id}%::hook}
+        if {_hook} is not set:
+            continue
+        if {_hook} is not valid:
+            delete {-astral.realistic::%{_id}%}
+            delete {-astral.realistic::%{_id}%::*}
+            continue
+        if world of {_hook} is not world of loop-player:
+            kill {_hook}
+            delete {-astral.realistic::%{_id}%}
+            delete {-astral.realistic::%{_id}%::*}
+            continue
+        if distance between {_hook} and loop-player > 32:
+            kill {_hook}
+            delete {-astral.realistic::%{_id}%}
+            delete {-astral.realistic::%{_id}%::*}
+            continue
+        if {-astral.realistic::%{_id}%::anchor} is set:
+            if {-astral.realistic::%{_id}%::block} is not solid:
+                kill {_hook}
+                delete {-astral.realistic::%{_id}%}
+                delete {-astral.realistic::%{_id}%::*}
+                send action bar "&7El bloque del anclaje desaparecio." to loop-player
+                continue
+            teleport {_hook} to {-astral.realistic::%{_id}%::anchor}
+            set velocity of {_hook} to vector(0, 0, 0)
+            continue
+        set {_block} to astral_hook_contact(location of {_hook})
+        if {_block} is set:
+            # No se engancha al piso bajo los pies al lanzar.
+            if distance between {_hook} and eye location of loop-player < 1.5:
+                continue
+            set {-astral.realistic::%{_id}%::anchor} to location of {_hook}
+            set {-astral.realistic::%{_id}%::block} to {_block}
+            set gravity of {_hook} to false
+            set velocity of {_hook} to vector(0, 0, 0)
+            play sound "block.chain.hit" with volume 0.6 and pitch 1.4 at {_hook}
+            send action bar "&dGancho anclado. Clic derecho para tirar." to loop-player
+
 # La identidad se valida con custom_data en el momento del evento, no por nombre.
 # Cada lanzamiento pertenece a un jugador y a un anzuelo concreto.
 on fishing state change:
@@ -373,6 +425,7 @@ on fishing state change:
     remove "astral.realistic.held" from scoreboard tags of player
     if event-fishing state is fishing line cast:
         delete {-astral.realistic::%{_id}%}
+        delete {-astral.realistic::%{_id}%::*}
         if {_real} is false:
             stop
         if astral_dungeon(world of player) is true:
@@ -383,6 +436,7 @@ on fishing state change:
             cancel event
             stop
         set {-astral.realistic::%{_id}%} to uuid of fishing hook
+        set {-astral.realistic::%{_id}%::hook} to fishing hook
         stop
     if {-astral.realistic::%{_id}%} is not set:
         stop
@@ -394,17 +448,25 @@ on fishing state change:
         stop
     if event-fishing state is not bobber in ground or entity caught or reel in:
         stop
+    set {_anchor} to {-astral.realistic::%{_id}%::anchor}
+    set {_block} to {-astral.realistic::%{_id}%::block}
     delete {-astral.realistic::%{_id}%}
+    delete {-astral.realistic::%{_id}%::*}
     if {_real} is false:
         stop
     if astral_dungeon(world of player) is true:
         stop
     if gamemode of player is spectator:
         stop
+    if {_block} is set:
+        if {_block} is not solid:
+            stop
     if event-fishing state is reel in:
-        send action bar "&7El anzuelo no se engancho a nada." to player
-        stop
-    set {_anchor} to location of fishing hook
+        if {_anchor} is not set:
+            send action bar "&7El anzuelo no se engancho a nada." to player
+            stop
+    if {_anchor} is not set:
+        set {_anchor} to location of fishing hook
     if event-fishing state is entity caught:
         set {_anchor} to location of hooked entity
         # Evita el tiron vanilla a la entidad: quien se desplaza es el usuario.
@@ -431,9 +493,11 @@ on fishing state change:
 
 on death of player:
     delete {-astral.realistic::%uuid of victim%}
+    delete {-astral.realistic::%uuid of victim%::*}
 
 on world change:
     delete {-astral.realistic::%uuid of player%}
+    delete {-astral.realistic::%uuid of player%::*}
 '''
 
 def patch_graves(config):

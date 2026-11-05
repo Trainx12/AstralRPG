@@ -12,3 +12,5 @@
 [01:07:44] [Server thread/INFO]: [Skript] Reloading astral_gameplay.sk...
 [01:07:45] [Server thread/INFO]: [Skript] Successfully reloaded astral_gameplay.sk. (513ms)
 [01:07:55] [Server thread/INFO]: [Skript] Disabling Skript v2.17.1
+[01:20:44] [Server thread/INFO]: [Skript] All scripts loaded without errors.
+[01:20:57] [Server thread/INFO]: HOOK_CONTACT_RESULT 8/8
