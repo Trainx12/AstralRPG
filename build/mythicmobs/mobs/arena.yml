@@ -17,4 +17,4 @@ astral_npc_arena:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'skill{s=ARENA_ENTRAR} @trigger ~onInteract'
+  - 'command{c="dm open arenas <trigger.name>"} @self ~onInteract'

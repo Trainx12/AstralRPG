@@ -1,0 +1,102 @@
+{
+  "menu_title": "&8Mapas de Parkour",
+  "size": 36,
+  "items": {
+    "spiral": {
+      "material": "FEATHER",
+      "slot": 10,
+      "display_name": "&a&lSpiral Parkour Challenge",
+      "lore": [
+        "&7Una espiral de saltos hasta la cima.",
+        "&7Dificultad: &fProgresiva",
+        "&7Sin gancho ni dano de caida."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral<delay=3>"
+      ]
+    },
+    "proximo_11": {
+      "material": "GRAY_DYE",
+      "slot": 11,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_12": {
+      "material": "GRAY_DYE",
+      "slot": 12,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_13": {
+      "material": "GRAY_DYE",
+      "slot": 13,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_14": {
+      "material": "GRAY_DYE",
+      "slot": 14,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_15": {
+      "material": "GRAY_DYE",
+      "slot": 15,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_16": {
+      "material": "GRAY_DYE",
+      "slot": 16,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_19": {
+      "material": "GRAY_DYE",
+      "slot": 19,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_20": {
+      "material": "GRAY_DYE",
+      "slot": 20,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_21": {
+      "material": "GRAY_DYE",
+      "slot": 21,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_22": {
+      "material": "GRAY_DYE",
+      "slot": 22,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_23": {
+      "material": "GRAY_DYE",
+      "slot": 23,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_24": {
+      "material": "GRAY_DYE",
+      "slot": 24,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_25": {
+      "material": "GRAY_DYE",
+      "slot": 25,
+      "display_name": "&7Proximamente"
+    },
+    "lobby": {
+      "material": "RED_BED",
+      "slot": 30,
+      "display_name": "&fVolver al lobby",
+      "click_commands": [
+        "[close]",
+        "[player] spawn<delay=3>"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 32,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

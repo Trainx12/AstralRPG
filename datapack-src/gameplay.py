@@ -1,6 +1,7 @@
 """Balance, migracion sin reemplazar inventarios y reglas de las mazmorras."""
 import json
 from pathlib import Path
+from minijuegos import parkour_worlds, arena_worlds
 
 ROOT=Path(__file__).resolve().parent.parent
 DUNGEONS=('bosque','tumba','mina','cumbre','forja','santuario')
@@ -55,7 +56,7 @@ def pvp():
     from escala import FACTOR_ARMA
     lines = ['# Arena PvP: dano de armas Astral dividido por su factor (escala.py).',
              'on damage of player with priority low:', '    attacker is a player',
-             '    name of world of victim is "arena"']
+             '    name of world of victim is ' + ' or '.join(f'"{w}"' for w in arena_worlds())]
     for t in range(1, 6):
         lines.append(f'    if scoreboard tags of attacker contains "astral.ht{t}":')
         lines.append(f'        set damage to damage / {round(FACTOR_ARMA[t], 3)}')
@@ -139,8 +140,8 @@ on load:
 
 
 def script():
-    worlds=' or '.join('"'+w+'"' for w in DUNGEONS)
-    protected=' or '.join('"'+w+'"' for w in PROTECTED)
+    worlds=' or '.join('"'+w+'"' for w in DUNGEONS + parkour_worlds())
+    protected=' or '.join('"'+w+'"' for w in PROTECTED + parkour_worlds() + arena_worlds())
     rescue_options='\n'.join(f'    rescate-y-{w}: {y}' for w,y in RESCUE_HEIGHTS.items())
     rescue_limits='\n'.join(f'    if name of {{_w}} is "{w}":\n        return {{@rescate-y-{w}}}' for w in RESCUE_HEIGHTS)
     return r'''# Generado por gameplay.py. Skript 2.17+, Paper 26.1. Sin addons ni permisos de vuelo.

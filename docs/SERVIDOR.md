@@ -291,3 +291,14 @@ con un aviso a `/sellgui`, porque algunas variantes incluyen todos los slots.
 los drops y del inventario antes de las tumbas; se entrega otra al reaparecer.
 Revisar consola y comprobar estas interacciones en Aternos con AxTrade,
 EconomyShopGUI, CrazyAuctions y AxGraves: las pruebas locales no sustituyen esa revision.
+
+
+## Parkour y Arenas PvP
+
+Los selectores `/parkour` y `/arenas`, sus aldeanos, llegadas OP y reglas salen de
+`datapack-src/minijuegos.py` (listas `PARKOURS` y `ARENAS`). Regenerar con
+`python menus.py`; incluye el Skript de gameplay actualizado, sin cambiar el resource pack.
+Instalación, ZIP privados, coordenadas por revisar y pruebas en
+[Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para Aternos:
+`build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
+jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.

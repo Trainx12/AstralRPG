@@ -34,7 +34,7 @@ function astral_rescue(p: player):
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario":
+    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "parkour_spiral":
         return true
     return false
 
@@ -117,7 +117,7 @@ on mount:
 
 on death of player:
     set {_w} to name of world of victim
-    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario":
+    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "arena" or "arenas_tft":
         keep the inventory and experiences
         clear drops
         set {_x} to floor(x-coordinate of victim)
@@ -444,7 +444,7 @@ on load:
 # Arena PvP: dano de armas Astral dividido por su factor (escala.py).
 on damage of player with priority low:
     attacker is a player
-    name of world of victim is "arena"
+    name of world of victim is "arena" or "arenas_tft"
     if scoreboard tags of attacker contains "astral.ht1":
         set damage to damage / 15.152
     if scoreboard tags of attacker contains "astral.ht2":

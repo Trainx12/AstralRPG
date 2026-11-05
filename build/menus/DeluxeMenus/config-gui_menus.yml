@@ -32,5 +32,9 @@ gui_menus:
     file: expediciones.yml
   portales:
     file: portales.yml
+  parkour:
+    file: parkour.yml
+  arenas:
+    file: arenas.yml
   cosmeticos:
     file: cosmeticos.yml

@@ -1,0 +1,82 @@
+# Generado por minijuegos.py. Ver docs/PARKOUR_Y_ARENAS.md antes de instalar.
+# Apagar para instalar mundos NUEVOS. Nunca reemplazar world ni Worlds > Upload en world.
+# ZIP privados: .local/mapas/subir/parkour_spiral.zip y arenas_tft.zip.
+# Importacion depende del soporte del panel para mundos adicionales; si no existe, detener esa parte.
+# Si NO existen: con servidor encendido crear SOLO mundos nuevos, sin jugadores dentro:
+mv create minecraft:parkour_spiral normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:arenas_tft normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Apagar. Worlds > Upload SOLO en las filas nuevas parkour_spiral y arenas_tft, con su ZIP respectivo.
+# Archivos locales -> destino (editor Files; conservar las otras entradas de config.yml):
+build/menus/DeluxeMenus/gui_menus/principal.yml -> plugins/DeluxeMenus/gui_menus/principal.yml
+build/menus/DeluxeMenus/gui_menus/comandos.yml -> plugins/DeluxeMenus/gui_menus/comandos.yml
+build/menus/DeluxeMenus/gui_menus/parkour.yml -> plugins/DeluxeMenus/gui_menus/parkour.yml
+build/menus/DeluxeMenus/gui_menus/arenas.yml -> plugins/DeluxeMenus/gui_menus/arenas.yml
+build/menus/DeluxeMenus/config-gui_menus.yml -> fusionar gui_menus en plugins/DeluxeMenus/config.yml
+build/minijuegos/astral_minijuegos.sk -> plugins/Skript/scripts/astral_minijuegos.sk
+build/gameplay/astral_gameplay.sk -> plugins/Skript/scripts/astral_gameplay.sk
+build/mythicmobs/mobs/minijuegos.yml -> plugins/MythicMobs/mobs/minijuegos.yml
+build/mythicmobs/mobs/arena.yml -> plugins/MythicMobs/mobs/arena.yml
+# No instalar dos definiciones astral_npc_arena. Se reutiliza y reubica el NPC existente.
+# Encender tras instalar los mundos; importar solo si aparecen como carpetas NUEVAS:
+mv import minecraft:parkour_spiral normal
+mv import minecraft:arenas_tft normal
+# Paper 26.1: comprobar /mv list y /minecraft:execute in (autocompletado OP).
+# Claves esperadas: minecraft:parkour_spiral y minecraft:arenas_tft. Si difieren, NO abrir acceso.
+mv modify parkour_spiral set pvp false
+mv modify parkour_spiral set gamemode survival
+mv gamerule set minecraft:keep_inventory true parkour_spiral
+mv gamerule set minecraft:spawn_mobs false parkour_spiral
+mv gamerule set minecraft:command_blocks_work false parkour_spiral
+mv gamerule set minecraft:pvp false parkour_spiral
+mv modify parkour_spiral set respawn-world parkour_spiral
+rg flag -w parkour_spiral __global__ build deny
+rg flag -w parkour_spiral __global__ block-break deny
+rg flag -w parkour_spiral __global__ block-place deny
+rg flag -w parkour_spiral __global__ chest-access deny
+rg flag -w parkour_spiral __global__ mob-spawning deny
+rg flag -w parkour_spiral __global__ pvp deny
+mv gamerule set minecraft:fall_damage false parkour_spiral
+lp group default permission set mv.bypass.gamemode.parkour_spiral true
+rg flag -w parkour_spiral __global__ fall-damage deny
+mv modify arena set pvp true
+mv modify arena set gamemode survival
+mv gamerule set minecraft:keep_inventory true arena
+mv gamerule set minecraft:spawn_mobs false arena
+mv gamerule set minecraft:command_blocks_work false arena
+mv gamerule set minecraft:pvp true arena
+mv modify arena set respawn-world arena
+rg flag -w arena __global__ build deny
+rg flag -w arena __global__ block-break deny
+rg flag -w arena __global__ block-place deny
+rg flag -w arena __global__ chest-access deny
+rg flag -w arena __global__ mob-spawning allow
+rg flag -w arena __global__ pvp allow
+mv modify arenas_tft set pvp true
+mv modify arenas_tft set gamemode survival
+mv gamerule set minecraft:keep_inventory true arenas_tft
+mv gamerule set minecraft:spawn_mobs false arenas_tft
+mv gamerule set minecraft:command_blocks_work false arenas_tft
+mv gamerule set minecraft:pvp true arenas_tft
+mv modify arenas_tft set respawn-world arenas_tft
+rg flag -w arenas_tft __global__ build deny
+rg flag -w arenas_tft __global__ block-break deny
+rg flag -w arenas_tft __global__ block-place deny
+rg flag -w arenas_tft __global__ chest-access deny
+rg flag -w arenas_tft __global__ mob-spawning allow
+rg flag -w arenas_tft __global__ pvp allow
+# Reiniciar una vez para cargar todo junto y evitar acumular Metaspace con recargas.
+# Si solo se actualizan configs con los mundos ya instalados:
+dm reload
+mm reload
+skript:skript reload astral_gameplay
+skript:skript reload astral_minijuegos
+# Revisar consola: sin errores Skript/MythicMobs/DeluxeMenus. Si hay errores, mantener acceso cerrado.
+# NPC: ejecutar SOLO luego de cargar los menus/scripts y revisar las llegadas.
+rg flag -w lobby __global__ mob-spawning allow
+mm mobs kill astral_npc_parkour
+mm mobs spawn astral_npc_parkour 1 lobby,121.5,100,193.529
+mm mobs kill astral_npc_arena
+mm mobs spawn astral_npc_arena 1 lobby,127.5,100,193.529
+rg flag -w lobby __global__ mob-spawning deny
+# OP en cada arena TFT: /astralpunto arena tft1 (o tft2/tft3). /astralpunto lista.
+# Verificacion: estrella slot 9, salida lobby, modo restaurado, gancho bloqueado, rescate y PvP con dos jugadores.

@@ -14,10 +14,8 @@ def generate():
     for i, (x, y, z) in enumerate(arrivals):
         skills += [f"ARENA_LLEGADA_{i}:", "  Skills:",
                    f'  - \'command{{c="execute in minecraft:{world} run minecraft:tp <trigger.name> {x} {y} {z}"}} @trigger\'', ""]
-    if ARENA["enabled"]:
-        skill = 'skill{s=ARENA_ENTRAR} @trigger ~onInteract'
-    else:
-        skill = 'message{m="&eLa arena esta en preparacion. Primero hay que revisar el punto de entrada."} @trigger ~onInteract'
+    # El selector valida cada destino; conservar este ID reutiliza el NPC existente.
+    skill = 'command{c="dm open arenas <trigger.name>"} @self ~onInteract'
     mobs = ROOT / "mythicmobs" / "mobs" / "arena.yml"
     mobs.parent.mkdir(parents=True, exist_ok=True)
     mobs.write_text("# Generado por mobs/arena.py\n" + npc_block(ARENA["npc"], "&c&lArena de jugadores &7- PvP", "ARMORER", [skill]), encoding="utf-8")

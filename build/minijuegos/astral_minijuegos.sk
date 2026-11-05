@@ -1,0 +1,359 @@
+# Generado por minijuegos.py. Mundos y destinos limitados a la lista Python.
+# Persistentes: puntos OP, mapa elegido y modo anterior (reconexiones/reinicios).
+function astral_parkour_world(w: world) :: boolean:
+    if name of {_w} is "parkour_spiral":
+        return true
+    return false
+
+function astral_arena_world(w: world) :: boolean:
+    if name of {_w} is "arena" or "arenas_tft":
+        return true
+    return false
+
+function astral_parkour_mode(p: player):
+    set {_u} to uuid of {_p}
+    if astral_parkour_world(world of {_p}) is true:
+        if {_p} is op:
+            if gamemode of {_p} is creative:
+                stop
+        if {astral.minijuegos.mode::%{_u}%} is not set:
+            set {astral.minijuegos.mode::%{_u}%} to gamemode of {_p}
+        set gamemode of {_p} to adventure
+        set food level of {_p} to 10
+        set saturation of {_p} to 10
+    else:
+        if {astral.minijuegos.mode::%{_u}%} is set:
+            if {_p} is not op:
+                set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}
+            else if gamemode of {_p} is not creative:
+                set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}
+            delete {astral.minijuegos.mode::%{_u}%}
+
+function astral_minijuego_ir(p: player, id: text):
+    if {_id} is "parkour.spiral":
+        if world "parkour_spiral" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::parkour.spiral}
+        if {_l} is not set:
+            set {_l} to location(0.5, -11, -1.5, world "parkour_spiral", 0, 0)
+        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
+            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.spiral"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        execute console command "execute in minecraft:parkour_spiral run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "arena.clasica":
+        if world "arena" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::arena.clasica}
+        if {_l} is not set:
+            set {_n} to random integer between 1 and 25
+            if {_n} is 1:
+                set {_l} to location(-216.5, 73, -2381.5, world "arena", 0, 0)
+            if {_n} is 2:
+                set {_l} to location(-216.5, 73, -2376.5, world "arena", 0, 0)
+            if {_n} is 3:
+                set {_l} to location(-216.5, 73, -2371.5, world "arena", 0, 0)
+            if {_n} is 4:
+                set {_l} to location(-216.5, 73, -2366.5, world "arena", 0, 0)
+            if {_n} is 5:
+                set {_l} to location(-216.5, 73, -2361.5, world "arena", 0, 0)
+            if {_n} is 6:
+                set {_l} to location(-211.5, 73, -2381.5, world "arena", 0, 0)
+            if {_n} is 7:
+                set {_l} to location(-211.5, 73, -2376.5, world "arena", 0, 0)
+            if {_n} is 8:
+                set {_l} to location(-211.5, 73, -2371.5, world "arena", 0, 0)
+            if {_n} is 9:
+                set {_l} to location(-211.5, 73, -2366.5, world "arena", 0, 0)
+            if {_n} is 10:
+                set {_l} to location(-211.5, 73, -2361.5, world "arena", 0, 0)
+            if {_n} is 11:
+                set {_l} to location(-206.5, 73, -2381.5, world "arena", 0, 0)
+            if {_n} is 12:
+                set {_l} to location(-206.5, 73, -2376.5, world "arena", 0, 0)
+            if {_n} is 13:
+                set {_l} to location(-206.5, 73, -2371.5, world "arena", 0, 0)
+            if {_n} is 14:
+                set {_l} to location(-206.5, 73, -2366.5, world "arena", 0, 0)
+            if {_n} is 15:
+                set {_l} to location(-206.5, 73, -2361.5, world "arena", 0, 0)
+            if {_n} is 16:
+                set {_l} to location(-201.5, 73, -2381.5, world "arena", 0, 0)
+            if {_n} is 17:
+                set {_l} to location(-201.5, 73, -2376.5, world "arena", 0, 0)
+            if {_n} is 18:
+                set {_l} to location(-201.5, 73, -2371.5, world "arena", 0, 0)
+            if {_n} is 19:
+                set {_l} to location(-201.5, 73, -2366.5, world "arena", 0, 0)
+            if {_n} is 20:
+                set {_l} to location(-201.5, 73, -2361.5, world "arena", 0, 0)
+            if {_n} is 21:
+                set {_l} to location(-196.5, 73, -2381.5, world "arena", 0, 0)
+            if {_n} is 22:
+                set {_l} to location(-196.5, 73, -2376.5, world "arena", 0, 0)
+            if {_n} is 23:
+                set {_l} to location(-196.5, 73, -2371.5, world "arena", 0, 0)
+            if {_n} is 24:
+                set {_l} to location(-196.5, 73, -2366.5, world "arena", 0, 0)
+            if {_n} is 25:
+                set {_l} to location(-196.5, 73, -2361.5, world "arena", 0, 0)
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.clasica"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        execute console command "execute in minecraft:arena run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "arena.tft1":
+        if world "arenas_tft" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::arena.tft1}
+        if {_l} is not set:
+            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
+            stop
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft1"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "arena.tft2":
+        if world "arenas_tft" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::arena.tft2}
+        if {_l} is not set:
+            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
+            stop
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft2"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "arena.tft3":
+        if world "arenas_tft" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::arena.tft3}
+        if {_l} is not set:
+            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
+            stop
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft3"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+
+command /parkour [<text>]:
+    executable by: players
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open parkour %name of player%"
+            stop
+        if arg-1 is "spiral":
+            astral_minijuego_ir(player, "parkour.spiral")
+            stop
+        send "&eUsa /parkour para elegir un destino." to player
+
+command /arenas [<text>]:
+    executable by: players
+    trigger:
+        if arg-1 is not set:
+            execute console command "dm open arenas %name of player%"
+            stop
+        if arg-1 is "clasica":
+            astral_minijuego_ir(player, "arena.clasica")
+            stop
+        if arg-1 is "tft1":
+            astral_minijuego_ir(player, "arena.tft1")
+            stop
+        if arg-1 is "tft2":
+            astral_minijuego_ir(player, "arena.tft2")
+            stop
+        if arg-1 is "tft3":
+            astral_minijuego_ir(player, "arena.tft3")
+            stop
+        send "&eUsa /arenas para elegir un destino." to player
+
+command /astralpunto <text> [<text>]:
+    executable by: players
+    trigger:
+        if player is not op:
+            send "&cSolo OP." to player
+            stop
+        if arg-1 is "lista":
+            send "&eparkour spiral &7(parkour_spiral): %{astral.punto::parkour.spiral}%" to player
+            send "&earena clasica &7(arena): %{astral.punto::arena.clasica}%" to player
+            send "&earena tft1 &7(arenas_tft): %{astral.punto::arena.tft1}%" to player
+            send "&earena tft2 &7(arenas_tft): %{astral.punto::arena.tft2}%" to player
+            send "&earena tft3 &7(arenas_tft): %{astral.punto::arena.tft3}%" to player
+            stop
+        if arg-1 is "parkour":
+            if arg-2 is "spiral":
+                if name of world of player is not "parkour_spiral":
+                    send "&cPrimero entra al mundo parkour_spiral." to player
+                    stop
+                if y-coordinate of player is less than -20:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::parkour.spiral} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "arena":
+            if arg-2 is "clasica":
+                if name of world of player is not "arena":
+                    send "&cPrimero entra al mundo arena." to player
+                    stop
+                if y-coordinate of player is less than 0:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::arena.clasica} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "arena":
+            if arg-2 is "tft1":
+                if name of world of player is not "arenas_tft":
+                    send "&cPrimero entra al mundo arenas_tft." to player
+                    stop
+                if y-coordinate of player is less than 60:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::arena.tft1} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "arena":
+            if arg-2 is "tft2":
+                if name of world of player is not "arenas_tft":
+                    send "&cPrimero entra al mundo arenas_tft." to player
+                    stop
+                if y-coordinate of player is less than 60:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::arena.tft2} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "arena":
+            if arg-2 is "tft3":
+                if name of world of player is not "arenas_tft":
+                    send "&cPrimero entra al mundo arenas_tft." to player
+                    stop
+                if y-coordinate of player is less than 60:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::arena.tft3} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        send "&eUsa /astralpunto <parkour|arena> <id> o /astralpunto lista." to player
+
+on world change:
+    wait 2 ticks
+    astral_parkour_mode(player)
+
+on join:
+    wait 2 ticks
+    astral_parkour_mode(player)
+
+on respawn:
+    wait 2 ticks
+    if name of world of player is "arena":
+        set {_id} to {astral.minijuegos.selected::%uuid of player%}
+        if {_id} is not "arena.clasica":
+            set {_id} to "arena.clasica"
+        astral_minijuego_ir(player, {_id})
+    if name of world of player is "arenas_tft":
+        set {_id} to {astral.minijuegos.selected::%uuid of player%}
+        if {_id} is not "arena.tft1" or "arena.tft2" or "arena.tft3":
+            set {_id} to "arena.tft1"
+        astral_minijuego_ir(player, {_id})
+
+on damage of player:
+    if astral_parkour_world(world of victim) is true:
+        cancel event
+
+on food level change:
+    if astral_parkour_world(world of player) is true:
+        cancel event
+
+every 10 ticks:
+    loop all players:
+        astral_parkour_mode(loop-player)
+        set {_w} to name of world of loop-player
+        set {_id} to {astral.minijuegos.selected::%uuid of loop-player%}
+        if {_w} is "parkour_spiral":
+            if {_id} is not "parkour.spiral":
+                set {_id} to "parkour.spiral"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "parkour.spiral":
+                if y-coordinate of loop-player is less than -20:
+                    if gamemode of loop-player is survival or adventure:
+                        astral_minijuego_ir(loop-player, {_id})
+        if {_w} is "arena":
+            if {_id} is not "arena.clasica":
+                set {_id} to "arena.clasica"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "arena.clasica":
+                if y-coordinate of loop-player is less than 0:
+                    if gamemode of loop-player is survival or adventure:
+                        astral_minijuego_ir(loop-player, {_id})
+        if {_w} is "arenas_tft":
+            if {_id} is not "arena.tft1" or "arena.tft2" or "arena.tft3":
+                set {_id} to "arena.tft1"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "arena.tft1":
+                if y-coordinate of loop-player is less than 60:
+                    if gamemode of loop-player is survival or adventure:
+                        if {astral.punto::arena.tft1} is not set:
+                            execute console command "spawn %name of loop-player%"
+                        else:
+                            astral_minijuego_ir(loop-player, {_id})
+            if {_id} is "arena.tft2":
+                if y-coordinate of loop-player is less than 60:
+                    if gamemode of loop-player is survival or adventure:
+                        if {astral.punto::arena.tft2} is not set:
+                            execute console command "spawn %name of loop-player%"
+                        else:
+                            astral_minijuego_ir(loop-player, {_id})
+            if {_id} is "arena.tft3":
+                if y-coordinate of loop-player is less than 60:
+                    if gamemode of loop-player is survival or adventure:
+                        if {astral.punto::arena.tft3} is not set:
+                            execute console command "spawn %name of loop-player%"
+                        else:
+                            astral_minijuego_ir(loop-player, {_id})

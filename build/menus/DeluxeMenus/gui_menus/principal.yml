@@ -67,27 +67,6 @@ items:
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_11':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 11
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_13':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 13
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_15':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 15
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
   'vidrio_17':
     material: GRAY_STAINED_GLASS_PANE
     slot: 17
@@ -98,27 +77,6 @@ items:
   'vidrio_18':
     material: GRAY_STAINED_GLASS_PANE
     slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 20
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_22':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 22
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 24
     amount: 1
     display_name: ' '
     item_flags:
@@ -137,9 +95,23 @@ items:
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
+  'vidrio_28':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 28
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
   'vidrio_29':
     material: GRAY_STAINED_GLASS_PANE
     slot: 29
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_30':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 30
     amount: 1
     display_name: ' '
     item_flags:
@@ -151,9 +123,23 @@ items:
     display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
+  'vidrio_32':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 32
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
   'vidrio_33':
     material: GRAY_STAINED_GLASS_PANE
     slot: 33
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_34':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 34
     amount: 1
     display_name: ' '
     item_flags:
@@ -298,7 +284,7 @@ items:
     - '[openguimenu] bazar'
   'minas':
     material: IRON_PICKAXE
-    slot: 12
+    slot: 11
     amount: 1
     display_name: '&b&lMinas Astrales'
     lore:
@@ -311,7 +297,7 @@ items:
     - '[player] minas<delay=3>'
   'mazmorras':
     material: SPAWNER
-    slot: 14
+    slot: 12
     amount: 1
     display_name: '&d&lMazmorras'
     lore:
@@ -323,7 +309,7 @@ items:
     - '[openguimenu] mazmorras'
   'expediciones':
     material: FILLED_MAP
-    slot: 16
+    slot: 13
     amount: 1
     display_name: '&a&lExpediciones Astrales'
     lore:
@@ -335,7 +321,7 @@ items:
     - '[openguimenu] expediciones'
   'portales':
     material: ENDER_EYE
-    slot: 19
+    slot: 14
     amount: 1
     display_name: '&b&lPortales Astrales'
     lore:
@@ -345,9 +331,33 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] portales'
+  'parkour':
+    material: FEATHER
+    slot: 15
+    amount: 1
+    display_name: '&a&lParkour'
+    lore:
+    - '&7Elegi un mapa de saltos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] parkour'
+  'arenas':
+    material: IRON_SWORD
+    slot: 16
+    amount: 1
+    display_name: '&c&lArenas PvP'
+    lore:
+    - '&7Pelea sin perder tu equipo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] arenas'
   'misiones':
     material: WRITABLE_BOOK
-    slot: 21
+    slot: 19
     amount: 1
     display_name: '&e&lEl Cronista'
     lore:
@@ -360,7 +370,7 @@ items:
     - '[openguimenu] misiones'
   'mascotas':
     material: BONE
-    slot: 23
+    slot: 20
     amount: 1
     display_name: '&6&lMascotas'
     lore:
@@ -372,7 +382,7 @@ items:
     - '[openguimenu] mascotas'
   'cosmeticos':
     material: NAME_TAG
-    slot: 25
+    slot: 21
     amount: 1
     display_name: '&d&lCosmeticos y titulos'
     lore:
@@ -384,7 +394,7 @@ items:
     - '[openguimenu] cosmeticos'
   'skills':
     material: EXPERIENCE_BOTTLE
-    slot: 28
+    slot: 22
     amount: 1
     display_name: '&a&lHabilidades'
     lore:
@@ -397,7 +407,7 @@ items:
     - '[player] skills<delay=3>'
   'guia':
     material: BOOK
-    slot: 30
+    slot: 23
     amount: 1
     display_name: '&b&lGuia'
     lore:
@@ -410,7 +420,7 @@ items:
     - '[player] trigger astral.guia set 1<delay=3>'
   'comandos':
     material: OAK_SIGN
-    slot: 32
+    slot: 24
     amount: 1
     display_name: '&e&lComandos'
     lore:
@@ -422,7 +432,7 @@ items:
     - '[openguimenu] comandos'
   'spawn':
     material: RED_BED
-    slot: 34
+    slot: 25
     amount: 1
     display_name: '&f&lVolver al lobby'
     lore:
