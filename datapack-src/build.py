@@ -2188,6 +2188,8 @@ from services import generate as generate_services
 generate_services(files, ITEMS)
 from gameplay import apply as apply_gameplay
 apply_gameplay(files, ITEMS, ITEM_VERSION)
+from estrella_menu import generate as generate_menu_star
+generate_menu_star(files)
 from special_weapons import generate as generate_special_weapons
 generate_special_weapons(files)
 

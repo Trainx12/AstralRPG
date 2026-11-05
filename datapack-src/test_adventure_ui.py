@@ -17,6 +17,10 @@ class AdventureUITests(unittest.TestCase):
     def test_click_regions_match_models_and_have_no_overlaps(self):
         for kind,data in self.menus.items():
             self.assertEqual(data['size'],54)
+            if kind == 'principal':
+                self.assertEqual(data['menu_title'], '&8Menu Astral')
+                self.assertTrue(all('item_model' not in i for i in data['items'].values()))
+                continue
             self.assertEqual(data['menu_title'],title(kind))
             occupied=set()
             for key,slots in regions(kind):

@@ -206,3 +206,36 @@ Sirve para probar MythicMobs, BetterModel y el datapack sin tocar Aternos (sin e
 - **Un comando nuevo de DeluxeMenus sale en rojo en el chat pero funciona:** el juego del jugador no lo conoce hasta que vuelve a entrar.
 - **Los huevos de monturas y mascotas no funcionan en el lobby** (no aparecen mobs ahí): se usan en el mundo.
 - Después de cualquier cambio: revisar la consola. Los avisos `ExampleQuest...` de MythicMobs y los de GeoIP de AuthMe son normales.
+
+## Estrella del Menu (slot 9)
+
+Cada jugador recibe una Estrella del Nether **Menu Astral** en el slot 9 de la barra,
+tambien en creativo y en arena. Clic derecho o izquierdo abre `/menu`, un cofre con
+iconos vanilla, saldo y accesos a servicios. Ese slot queda reservado: si tenia un
+objeto, se mueve a un slot libre del inventario; si el inventario esta lleno,
+se suelta a los pies con todos sus componentes y cantidad. No se borra. La estrella se repone al entrar,
+reaparecer, cambiar de mundo y cada 5 segundos. No requiere otro resource pack.
+
+Generadores: `datapack-src/estrella_menu.py` y `menus.py`; `build.py` incorpora las
+funciones `astral:menu_star/*` al datapack. Desde `datapack-src/`: `python estrella_menu.py`,
+`python menus.py`, `python build.py`.
+
+Subir `build/gameplay/astral_estrella.sk` a `plugins/Skript/scripts/astral_estrella.sk`,
+`build/AstralRPG-Items.zip` a `world/datapacks/AstralRPG-Items.zip`, y los menus
+`principal.yml` y `comandos.yml` de `build/menus/DeluxeMenus/gui_menus/` a la misma
+carpeta dentro de `plugins/DeluxeMenus/gui_menus/`. Registrar `portales: {file: portales.yml}`
+en `gui_menus` de `plugins/DeluxeMenus/config.yml` conservando las otras entradas.
+
+**Apagar para reemplazar el datapack y volver a iniciar.** Luego `dm reload` y
+`skript:skript reload astral_estrella` (usar el nombre completo evita el alias `sk`
+de AuraSkills). El arranque ya carga el datapack; `minecraft:reload` solo si hace
+falta recargarlo despues. Admin OP: `/estrella [jugador]`. La lista exacta y las
+pruebas en juego estan en `build/gameplay/estrella-despliegue.txt`.
+
+La proteccion cubre movimientos, drops, mano secundaria y ventas por inventario.
+Las ventas directas `/sell`, `/sellall`, `/sellhand` y `/sellinventory` se redirigen
+con un aviso a `/sellgui`, porque algunas variantes incluyen todos los slots.
+`/ah sell` con la estrella seleccionada se cancela. La muerte quita la estrella de
+los drops y del inventario antes de las tumbas; se entrega otra al reaparecer.
+Revisar consola y comprobar estas interacciones en Aternos con AxTrade,
+EconomyShopGUI, CrazyAuctions y AxGraves: las pruebas locales no sustituyen esa revision.

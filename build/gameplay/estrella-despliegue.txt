@@ -1,0 +1,19 @@
+Estrella del Menu: Paper 26.1.2 + Skript 2.17, sin addons.
+APAGAR el servidor antes de reemplazar el datapack; luego arrancar.
+build/AstralRPG-Items.zip -> world/datapacks/AstralRPG-Items.zip
+build/gameplay/astral_estrella.sk -> plugins/Skript/scripts/astral_estrella.sk
+build/menus/DeluxeMenus/gui_menus/principal.yml -> plugins/DeluxeMenus/gui_menus/principal.yml
+build/menus/DeluxeMenus/gui_menus/comandos.yml -> plugins/DeluxeMenus/gui_menus/comandos.yml
+Integrar la entrada portales de build/menus/DeluxeMenus/config-gui_menus.yml en plugins/DeluxeMenus/config.yml, dentro de gui_menus (sin borrar las otras).
+portales:
+  file: portales.yml
+El archivo portales.yml existente debe estar en plugins/DeluxeMenus/gui_menus/portales.yml.
+Si falta: build/menus/DeluxeMenus/gui_menus/portales.yml -> misma ruta del servidor.
+Con el servidor iniciado, consola sin /:
+dm reload
+skript:skript reload astral_estrella
+minecraft:reload solo si se requiere recargar el datapack tras el arranque (el arranque ya lo carga).
+Reponer manualmente: estrella <jugador> (OP).
+Revisar consola: sin errores Skript/DeluxeMenus/datapack.
+Verificar supervivencia y creativo: ambos clics, Q, shift-clic, tecla 9, F, arrastre, doble clic, marcos/soportes, muerte con AxGraves, cambio de mundo, inventario lleno, /sellgui, venta rapida, /ah sell, /sell all, /trade.
+No cambiar el resource pack ni su SHA-1. Nunca subir/reemplazar mundos.

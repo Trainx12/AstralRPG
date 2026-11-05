@@ -1,0 +1,167 @@
+# Generado por estrella_menu.py. Skript 2.17+, sin addons.
+# Referencia completa obtenida SOLO de un slot validado por custom_data.
+# Comparar items incluye componentes: una estrella vanilla o renombrada no coincide.
+function astral_menu_refresh(p: player):
+    if {_p} is dead:
+        stop
+    execute console command "execute as %name of {_p}% at @s run function astral:menu_star/give"
+    execute console command "execute as %name of {_p}% run function astral:menu_star/check"
+    if scoreboard tags of {_p} contains "astral.menu.slot":
+        set {-astral.menu.reference} to slot 8 of inventory of {_p}
+
+function astral_menu_item(i: item) :: boolean:
+    if {-astral.menu.reference} is set:
+        if {_i} is {-astral.menu.reference}:
+            return true
+    return false
+
+# Identidad de cualquier slot, sin depender del nombre ni de su lore.
+function astral_menu_slot(p: player, slot: text) :: boolean:
+    remove "astral.menu.test" from scoreboard tags of {_p}
+    execute console command "execute as %name of {_p}% if items entity @s %{_slot}% *[minecraft:custom_data~{astral_menu:1b}] run tag @s add astral.menu.test"
+    if scoreboard tags of {_p} contains "astral.menu.test":
+        remove "astral.menu.test" from scoreboard tags of {_p}
+        return true
+    return false
+
+function astral_menu_held(p: player) :: boolean:
+    if tool of {_p} is not nether star:
+        return false
+    execute console command "execute as %name of {_p}% run function astral:menu_star/check"
+    if scoreboard tags of {_p} contains "astral.menu.held":
+        return true
+    return false
+
+on load:
+    loop all players:
+        astral_menu_refresh(loop-player)
+
+on join:
+    wait 2 ticks
+    astral_menu_refresh(player)
+
+on respawn:
+    wait 2 ticks
+    astral_menu_refresh(player)
+
+on world change:
+    wait 2 ticks
+    astral_menu_refresh(player)
+
+every 5 seconds:
+    loop all players:
+        astral_menu_refresh(loop-player)
+
+on right click:
+    if astral_menu_held(player) is true:
+        cancel event
+        execute console command "dm open principal %player%"
+
+on left click:
+    if astral_menu_held(player) is true:
+        cancel event
+        execute console command "dm open principal %player%"
+
+on break:
+    if astral_menu_held(player) is true:
+        cancel event
+
+on right click on entity:
+    if astral_menu_held(player) is true:
+        cancel event
+    if astral_menu_slot(player, "weapon.offhand") is true:
+        cancel event
+
+on damage:
+    attacker is a player
+    if astral_menu_held(attacker) is true:
+        cancel event
+
+on drop:
+    # El ItemDrop aun no esta agregado al mundo: no usar selector de entidad aqui.
+    if index of current hotbar slot of player is 8:
+        cancel event
+    if astral_menu_item(event-item) is true:
+        cancel event
+
+on swap hand items:
+    if astral_menu_held(player) is true:
+        cancel event
+    if astral_menu_slot(player, "weapon.offhand") is true:
+        cancel event
+
+# Misma regla para cofres, sellgui, venta rapida, subastas y AxTrade.
+on inventory click:
+    if clicked inventory is inventory of player:
+        if event-item is nether star:
+            set {_slot} to index of event-slot
+            if astral_menu_slot(player, "container.%{_slot}%") is true:
+                cancel event
+    if astral_menu_item(event-item) is true:
+        cancel event
+    if cursor slot of player is nether star:
+        if astral_menu_slot(player, "player.cursor") is true:
+            cancel event
+    if astral_menu_item(cursor slot of player) is true:
+        cancel event
+    if hotbar button is 8:
+        cancel event
+    # F dentro de un inventario usa otro tipo de click.
+    if click type is swap offhand:
+        if astral_menu_slot(player, "weapon.offhand") is true:
+            cancel event
+    # Doble clic puede recolectar estrellas similares de otros slots.
+    if click type is double click:
+        if astral_menu_item(cursor slot of player) is true:
+            cancel event
+
+on inventory drag:
+    if cursor slot of player is nether star:
+        if astral_menu_slot(player, "player.cursor") is true:
+            cancel event
+    if astral_menu_item(cursor slot of player) is true:
+        cancel event
+
+# Antes de que AxGraves lea drops o inventario. Solo se elimina nuestra estrella.
+on death of player with priority lowest:
+    loop integers from 0 to 35:
+        if slot loop-number of inventory of victim is nether star:
+            if astral_menu_slot(victim, "container.%loop-number%") is true:
+                set {_star} to slot loop-number of inventory of victim
+                remove {_star} from drops
+    if astral_menu_slot(victim, "weapon.offhand") is true:
+        set {_star} to offhand item of victim
+        remove {_star} from drops
+    loop drops:
+        if astral_menu_item(loop-item) is true:
+            remove loop-item from drops
+    execute console command "minecraft:clear %name of victim% *[minecraft:custom_data~{astral_menu:1b}]"
+
+# Estos plugins pueden vender directamente sin pasar por InventoryClickEvent.
+# Se bloquean sus comandos de venta aun con otro item seleccionado: /sell all incluye slot 9.
+on command:
+    set {_cmd} to lowercase command
+    set {_parts::*} to {_cmd} split at ":"
+    set {_cmd} to last element of {_parts::*}
+    if {_cmd} is "sell" or "sellall" or "sellhand" or "sellinventory":
+        cancel event
+        send "&eUsa /sellgui: la Estrella del Menu no se vende." to player
+    if {_cmd} is "ah" or "crazyauctions":
+        set {_args} to lowercase "%arguments%"
+        if {_args} starts with "sell":
+            if astral_menu_held(player) is true:
+                cancel event
+                send "&cLa Estrella del Menu no se puede subastar." to player
+
+command /estrella [<player>]:
+    trigger:
+        if sender is a player:
+            if player is not op:
+                stop
+        set {_p} to arg-1
+        if {_p} is not set:
+            if sender is not a player:
+                send "Indica el jugador: estrella <jugador>"
+                stop
+            set {_p} to player
+        astral_menu_refresh({_p})

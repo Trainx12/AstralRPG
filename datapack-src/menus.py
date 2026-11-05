@@ -234,42 +234,37 @@ def bazar_menu():
 
 
 def principal_menu():
-    from adventure_ui import title, regions
-    actions = {
-        'expediciones': ('&a&lExpediciones Astrales', ['&7Explora seis destinos y encuentra sus guardianes.'], ['[openguimenu] expediciones']),
-        'mazmorras': ('&d&lMazmorras descubiertas', ['&7Viaja a los portales que ya descubriste.'], ['[openguimenu] mazmorras']),
-        'misiones': ('&b&lEl Cronista', ['&7Historia, misiones diarias y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
-        'bazar': ('&6&lBazar del Refugio', ['&7Tienda, venta rapida, subastas e intercambio.'], ['[openguimenu] bazar']),
-        'mascotas': ('&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
-        'cosmeticos': ('&d&lMis cosmeticos', ['&7Elige entre tus titulos desbloqueados.'], ['[openguimenu] cosmeticos']),
-        'guia': ('&b&lGuia de AstralRPG', ['&7Clases, equipo, recetas y la Forja.'], ['[close]', '[player] trigger astral.guia set 1']),
-        'spawn': ('&f&lVolver al lobby', ['&7Regresa a la plaza del Refugio.'], ['[close]', '[player] spawn']),
-    }
-    items = []
-    for key, slots in regions('principal'):
-        caption, lore, commands = actions[key]
-        for index, slot in enumerate(slots):
-            items += item(f'{key}_{index}', 'PAPER', slot, caption, lore,
-                          extra={'item_model': q(f'astral:aventuras/principal_{key}_{index}'),
-                                 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
-    items += item('info', 'NETHER_STAR', 4, '&b&lAtlas de AstralRPG',
-                  ['&7Tu aventura empieza en el Refugio.', '&7Pasa el cursor por cada tarjeta para leer mas.'])
-    items += item('saldo', 'GOLD_NUGGET', 8, '&6Tu saldo', ['&e%vault_eco_balance_formatted%$'], extra={'update': 'true'})
-    items += item('gachas', 'AMETHYST_SHARD', 49, '&d&lGachas del Refugio',
-                  ['&7Arsenal Arcano, Sendas Salvajes y Galeria Celeste.', '&7Busca sus cofres en la plaza del lobby.'],
-                  extra={'click_commands': ['[message] &dEn el lobby te esperan los tres cofres de invocacion.']})
-    items += item('ayuda', 'BOOK', 51, '&bComo usar el atlas', ['&7Cada tarjeta abre su servicio.', '&7Los guardianes desbloquean el viaje a mazmorras.'])
-    items += item('comandos', 'WRITABLE_BOOK', 45, '&e&lComandos del servidor',
-                  ['&7Todos los comandos que podes usar', '&7y para que sirve cada uno.', '', '&eClic para ver. &7Tambien: &f/comandos'],
-                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] comandos']})
-    items += item('cerrar', 'BARRIER', 53, '&cCerrar', extra={'click_commands': ['[close]']})
-    return menu(title('principal'), 'menu', 54, items, update=True)
+    buttons = [
+        ('bazar', 'EMERALD', '&6&lBazar del Refugio', ['&7Compra, vende o intercambia.'], ['[openguimenu] bazar']),
+        ('minas', 'IRON_PICKAXE', '&b&lMinas Astrales', ['&7Entra a las minas desde el lobby.'], ['[close]', '[player] minas<delay=3>']),
+        ('mazmorras', 'SPAWNER', '&d&lMazmorras', ['&7Viaja a las mazmorras descubiertas.'], ['[openguimenu] mazmorras']),
+        ('expediciones', 'FILLED_MAP', '&a&lExpediciones Astrales', ['&7Explora y encontra a sus guardianes.'], ['[openguimenu] expediciones']),
+        ('portales', 'ENDER_EYE', '&b&lPortales Astrales', ['&7Elegi tu proximo destino.'], ['[openguimenu] portales']),
+        ('misiones', 'WRITABLE_BOOK', '&e&lEl Cronista', ['&7Misiones, historia y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
+        ('mascotas', 'BONE', '&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
+        ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tu titulo desbloqueado.'], ['[openguimenu] cosmeticos']),
+        ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
+        ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
+        ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
+        ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
+    ]
+    slots = [10, 12, 14, 16, 19, 21, 23, 25, 28, 30, 32, 34]
+    items = relleno('GRAY_STAINED_GLASS_PANE', 54, set(slots) | {4, 49})
+    for slot, (key, material, name, lore, commands) in zip(slots, buttons):
+        items += item(key, material, slot, name, lore,
+                      extra={'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
+    items += item('info', 'NETHER_STAR', 4, '&b&l%player_name%',
+                  ['&7Saldo: &e%vault_eco_balance_formatted%$', '&7Abri este menu con la Estrella del slot 9.'],
+                  extra={'update': 'true'})
+    items += item('cerrar', 'BARRIER', 49, '&cCerrar',
+                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]']})
+    return menu('&8Menu Astral', 'menu', 54, items, update=True)
 
 
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
 COMANDOS = [
     ('Aventura', 'LIME_STAINED_GLASS_PANE', [
-        ('menu', 'COMPASS', '/menu', ['Menu principal: expediciones, mazmorras,', 'misiones, bazar, mascotas y guia.'], '/menu', ['[openguimenu] principal']),
+        ('menu', 'COMPASS', '/menu', ['Menu principal: expediciones, mazmorras,', 'misiones, bazar, mascotas y guia.', 'Tambien con la Estrella del slot 9.'], '/menu', ['[openguimenu] principal']),
         ('mazmorras', 'NETHER_STAR', '/mazmorras', ['Viaja a las mazmorras que ya descubriste', 'hablando con su guardian.'], '/mazmorras', ['[close]', '[player] mazmorras<delay=3>']),
         ('expediciones', 'FILLED_MAP', '/expediciones', ['Destinos de exploracion: Reino,', 'Cavernas y las zonas de busqueda.'], '/expediciones', ['[close]', '[player] expediciones<delay=3>']),
         ('spawn', 'RED_BED', '/spawn', ['Vuelve a la plaza del lobby.', 'Sirve si te perdes o te trabas.'], '/spawn', ['[close]', '[player] spawn']),
@@ -498,6 +493,7 @@ def main():
     lista += [f"  {k}:\n    file: {k}.yml" for k in menus]
     lista += ['  mazmorras:\n    file: mazmorras.yml']
     lista += ['  expediciones:\n    file: expediciones.yml']
+    lista += ['  portales:\n    file: portales.yml']
     lista += ['  cosmeticos:\n    file: cosmeticos.yml']
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")

@@ -30,5 +30,7 @@ gui_menus:
     file: mazmorras.yml
   expediciones:
     file: expediciones.yml
+  portales:
+    file: portales.yml
   cosmeticos:
     file: cosmeticos.yml

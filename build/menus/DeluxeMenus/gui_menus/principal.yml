@@ -1,500 +1,456 @@
-menu_title: '&f'
+menu_title: '&8Menu Astral'
 open_command: menu
 size: 54
 register_command: true
 update_interval: 1
 items:
-  'expediciones_0':
-    material: PAPER
-    slot: 9
+  'vidrio_0':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 0
     amount: 1
-    display_name: '&a&lExpediciones Astrales'
-    lore:
-    - '&7Explora seis destinos y encuentra sus guardianes.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_expediciones_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] expediciones'
-  'expediciones_1':
-    material: PAPER
-    slot: 10
+  'vidrio_1':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 1
     amount: 1
-    display_name: '&a&lExpediciones Astrales'
-    lore:
-    - '&7Explora seis destinos y encuentra sus guardianes.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_expediciones_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] expediciones'
-  'expediciones_2':
-    material: PAPER
-    slot: 11
+  'vidrio_2':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 2
     amount: 1
-    display_name: '&a&lExpediciones Astrales'
-    lore:
-    - '&7Explora seis destinos y encuentra sus guardianes.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_expediciones_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] expediciones'
-  'expediciones_3':
-    material: PAPER
-    slot: 12
+  'vidrio_3':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 3
     amount: 1
-    display_name: '&a&lExpediciones Astrales'
-    lore:
-    - '&7Explora seis destinos y encuentra sus guardianes.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_expediciones_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] expediciones'
-  'mazmorras_0':
-    material: PAPER
-    slot: 14
+  'vidrio_5':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 5
     amount: 1
-    display_name: '&d&lMazmorras descubiertas'
-    lore:
-    - '&7Viaja a los portales que ya descubriste.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mazmorras_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mazmorras'
-  'mazmorras_1':
-    material: PAPER
-    slot: 15
+  'vidrio_6':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 6
     amount: 1
-    display_name: '&d&lMazmorras descubiertas'
-    lore:
-    - '&7Viaja a los portales que ya descubriste.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mazmorras_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mazmorras'
-  'mazmorras_2':
-    material: PAPER
-    slot: 16
+  'vidrio_7':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 7
     amount: 1
-    display_name: '&d&lMazmorras descubiertas'
-    lore:
-    - '&7Viaja a los portales que ya descubriste.'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mazmorras_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mazmorras'
-  'mazmorras_3':
-    material: PAPER
-    slot: 17
-    amount: 1
-    display_name: '&d&lMazmorras descubiertas'
-    lore:
-    - '&7Viaja a los portales que ya descubriste.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mazmorras_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mazmorras'
-  'misiones_0':
-    material: PAPER
-    slot: 18
-    amount: 1
-    display_name: '&b&lEl Cronista'
-    lore:
-    - '&7Historia, misiones diarias y recompensas.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_misiones_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
-    - '[openguimenu] misiones'
-  'misiones_1':
-    material: PAPER
-    slot: 19
-    amount: 1
-    display_name: '&b&lEl Cronista'
-    lore:
-    - '&7Historia, misiones diarias y recompensas.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_misiones_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
-    - '[openguimenu] misiones'
-  'misiones_2':
-    material: PAPER
-    slot: 20
-    amount: 1
-    display_name: '&b&lEl Cronista'
-    lore:
-    - '&7Historia, misiones diarias y recompensas.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_misiones_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
-    - '[openguimenu] misiones'
-  'misiones_3':
-    material: PAPER
-    slot: 21
-    amount: 1
-    display_name: '&b&lEl Cronista'
-    lore:
-    - '&7Historia, misiones diarias y recompensas.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_misiones_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
-    - '[openguimenu] misiones'
-  'bazar_0':
-    material: PAPER
-    slot: 23
-    amount: 1
-    display_name: '&6&lBazar del Refugio'
-    lore:
-    - '&7Tienda, venta rapida, subastas e intercambio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_bazar_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] bazar'
-  'bazar_1':
-    material: PAPER
-    slot: 24
-    amount: 1
-    display_name: '&6&lBazar del Refugio'
-    lore:
-    - '&7Tienda, venta rapida, subastas e intercambio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_bazar_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] bazar'
-  'bazar_2':
-    material: PAPER
-    slot: 25
-    amount: 1
-    display_name: '&6&lBazar del Refugio'
-    lore:
-    - '&7Tienda, venta rapida, subastas e intercambio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_bazar_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] bazar'
-  'bazar_3':
-    material: PAPER
-    slot: 26
-    amount: 1
-    display_name: '&6&lBazar del Refugio'
-    lore:
-    - '&7Tienda, venta rapida, subastas e intercambio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_bazar_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] bazar'
-  'mascotas_0':
-    material: PAPER
-    slot: 27
-    amount: 1
-    display_name: '&6&lMascotas'
-    lore:
-    - '&7Invoca o guarda a tu companero.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mascotas_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mascotas'
-  'mascotas_1':
-    material: PAPER
-    slot: 28
-    amount: 1
-    display_name: '&6&lMascotas'
-    lore:
-    - '&7Invoca o guarda a tu companero.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mascotas_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mascotas'
-  'mascotas_2':
-    material: PAPER
-    slot: 29
-    amount: 1
-    display_name: '&6&lMascotas'
-    lore:
-    - '&7Invoca o guarda a tu companero.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mascotas_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mascotas'
-  'mascotas_3':
-    material: PAPER
-    slot: 30
-    amount: 1
-    display_name: '&6&lMascotas'
-    lore:
-    - '&7Invoca o guarda a tu companero.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_mascotas_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] mascotas'
-  'cosmeticos_0':
-    material: PAPER
-    slot: 32
-    amount: 1
-    display_name: '&d&lMis cosmeticos'
-    lore:
-    - '&7Elige entre tus titulos desbloqueados.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_cosmeticos_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] cosmeticos'
-  'cosmeticos_1':
-    material: PAPER
-    slot: 33
-    amount: 1
-    display_name: '&d&lMis cosmeticos'
-    lore:
-    - '&7Elige entre tus titulos desbloqueados.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_cosmeticos_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] cosmeticos'
-  'cosmeticos_2':
-    material: PAPER
-    slot: 34
-    amount: 1
-    display_name: '&d&lMis cosmeticos'
-    lore:
-    - '&7Elige entre tus titulos desbloqueados.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_cosmeticos_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] cosmeticos'
-  'cosmeticos_3':
-    material: PAPER
-    slot: 35
-    amount: 1
-    display_name: '&d&lMis cosmeticos'
-    lore:
-    - '&7Elige entre tus titulos desbloqueados.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_cosmeticos_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] cosmeticos'
-  'guia_0':
-    material: PAPER
-    slot: 36
-    amount: 1
-    display_name: '&b&lGuia de AstralRPG'
-    lore:
-    - '&7Clases, equipo, recetas y la Forja.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_guia_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] trigger astral.guia set 1'
-  'guia_1':
-    material: PAPER
-    slot: 37
-    amount: 1
-    display_name: '&b&lGuia de AstralRPG'
-    lore:
-    - '&7Clases, equipo, recetas y la Forja.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_guia_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] trigger astral.guia set 1'
-  'guia_2':
-    material: PAPER
-    slot: 38
-    amount: 1
-    display_name: '&b&lGuia de AstralRPG'
-    lore:
-    - '&7Clases, equipo, recetas y la Forja.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_guia_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] trigger astral.guia set 1'
-  'guia_3':
-    material: PAPER
-    slot: 39
-    amount: 1
-    display_name: '&b&lGuia de AstralRPG'
-    lore:
-    - '&7Clases, equipo, recetas y la Forja.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_guia_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] trigger astral.guia set 1'
-  'spawn_0':
-    material: PAPER
-    slot: 41
-    amount: 1
-    display_name: '&f&lVolver al lobby'
-    lore:
-    - '&7Regresa a la plaza del Refugio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_spawn_0'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] spawn'
-  'spawn_1':
-    material: PAPER
-    slot: 42
-    amount: 1
-    display_name: '&f&lVolver al lobby'
-    lore:
-    - '&7Regresa a la plaza del Refugio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_spawn_1'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] spawn'
-  'spawn_2':
-    material: PAPER
-    slot: 43
-    amount: 1
-    display_name: '&f&lVolver al lobby'
-    lore:
-    - '&7Regresa a la plaza del Refugio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_spawn_2'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] spawn'
-  'spawn_3':
-    material: PAPER
-    slot: 44
-    amount: 1
-    display_name: '&f&lVolver al lobby'
-    lore:
-    - '&7Regresa a la plaza del Refugio.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:aventuras/principal_spawn_3'
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[player] spawn'
-  'info':
-    material: NETHER_STAR
-    slot: 4
-    amount: 1
-    display_name: '&b&lAtlas de AstralRPG'
-    lore:
-    - '&7Tu aventura empieza en el Refugio.'
-    - '&7Pasa el cursor por cada tarjeta para leer mas.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'saldo':
-    material: GOLD_NUGGET
+  'vidrio_8':
+    material: GRAY_STAINED_GLASS_PANE
     slot: 8
     amount: 1
-    display_name: '&6Tu saldo'
-    lore:
-    - '&e%vault_eco_balance_formatted%$'
+    display_name: ' '
     item_flags:
     - HIDE_ATTRIBUTES
-    update: true
-  'gachas':
-    material: AMETHYST_SHARD
-    slot: 49
+  'vidrio_9':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 9
     amount: 1
-    display_name: '&d&lGachas del Refugio'
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_11':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 11
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_13':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 13
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_15':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 15
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_22':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 22
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_27':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 27
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_29':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 29
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_31':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 31
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_33':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 33
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_35':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 35
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_36':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 36
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_37':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 37
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_38':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 38
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_39':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_40':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 40
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_41':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_42':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 42
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_43':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 43
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_44':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 44
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_45':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 45
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_46':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 46
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_47':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 47
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_48':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 48
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_50':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 50
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_51':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 51
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_52':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 52
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_53':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 53
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'bazar':
+    material: EMERALD
+    slot: 10
+    amount: 1
+    display_name: '&6&lBazar del Refugio'
     lore:
-    - '&7Arsenal Arcano, Sendas Salvajes y Galeria Celeste.'
-    - '&7Busca sus cofres en la plaza del lobby.'
+    - '&7Compra, vende o intercambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
-    - '[message] &dEn el lobby te esperan los tres cofres de invocacion.'
-  'ayuda':
-    material: BOOK
-    slot: 51
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] bazar'
+  'minas':
+    material: IRON_PICKAXE
+    slot: 12
     amount: 1
-    display_name: '&bComo usar el atlas'
+    display_name: '&b&lMinas Astrales'
     lore:
-    - '&7Cada tarjeta abre su servicio.'
-    - '&7Los guardianes desbloquean el viaje a mazmorras.'
+    - '&7Entra a las minas desde el lobby.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'comandos':
-    material: WRITABLE_BOOK
-    slot: 45
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] minas<delay=3>'
+  'mazmorras':
+    material: SPAWNER
+    slot: 14
     amount: 1
-    display_name: '&e&lComandos del servidor'
+    display_name: '&d&lMazmorras'
     lore:
-    - '&7Todos los comandos que podes usar'
-    - '&7y para que sirve cada uno.'
-    - ''
-    - '&eClic para ver. &7Tambien: &f/comandos'
+    - '&7Viaja a las mazmorras descubiertas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] mazmorras'
+  'expediciones':
+    material: FILLED_MAP
+    slot: 16
+    amount: 1
+    display_name: '&a&lExpediciones Astrales'
+    lore:
+    - '&7Explora y encontra a sus guardianes.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] expediciones'
+  'portales':
+    material: ENDER_EYE
+    slot: 19
+    amount: 1
+    display_name: '&b&lPortales Astrales'
+    lore:
+    - '&7Elegi tu proximo destino.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] portales'
+  'misiones':
+    material: WRITABLE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&e&lEl Cronista'
+    lore:
+    - '&7Misiones, historia y recompensas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
+    - '[openguimenu] misiones'
+  'mascotas':
+    material: BONE
+    slot: 23
+    amount: 1
+    display_name: '&6&lMascotas'
+    lore:
+    - '&7Invoca o guarda a tu companero.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] mascotas'
+  'cosmeticos':
+    material: NAME_TAG
+    slot: 25
+    amount: 1
+    display_name: '&d&lCosmeticos y titulos'
+    lore:
+    - '&7Elegi tu titulo desbloqueado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] cosmeticos'
+  'skills':
+    material: EXPERIENCE_BOTTLE
+    slot: 28
+    amount: 1
+    display_name: '&a&lHabilidades'
+    lore:
+    - '&7Consulta tus niveles y habilidades.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] skills<delay=3>'
+  'guia':
+    material: BOOK
+    slot: 30
+    amount: 1
+    display_name: '&b&lGuia'
+    lore:
+    - '&7Clases, equipo, recetas y Forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.guia set 1<delay=3>'
+  'comandos':
+    material: OAK_SIGN
+    slot: 32
+    amount: 1
+    display_name: '&e&lComandos'
+    lore:
+    - '&7Consulta como usar cada comando.'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] comandos'
+  'spawn':
+    material: RED_BED
+    slot: 34
+    amount: 1
+    display_name: '&f&lVolver al lobby'
+    lore:
+    - '&7Volve a la plaza del Refugio.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] spawn<delay=3>'
+  'info':
+    material: NETHER_STAR
+    slot: 4
+    amount: 1
+    display_name: '&b&l%player_name%'
+    lore:
+    - '&7Saldo: &e%vault_eco_balance_formatted%$'
+    - '&7Abri este menu con la Estrella del slot 9.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
   'cerrar':
     material: BARRIER
-    slot: 53
+    slot: 49
     amount: 1
     display_name: '&cCerrar'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
+    - '[sound] UI_BUTTON_CLICK'
     - '[close]'
