@@ -1,18 +1,37 @@
 """Regresiones de los formatos usados al copiar las construcciones privadas."""
 from pathlib import Path
+import gzip
 from tempfile import TemporaryDirectory
 import unittest
 
 import numpy as np
 import yaml
 
-from mapas import block, chunk_records
+from mapas import block, chunk_records, nbt_payload, nbt_string
 from portales_mapas import (canonical_air, load_schematic, pack_padded, rotate_half,
                             schematic, unpack_continuous, unpack_padded, write_world)
 from portales import menu_data, npc
 
 
 class PortalMapFormats(unittest.TestCase):
+    def test_sponge_v3_and_modern_chunk_version(self):
+        root = {'Schematic': (10, {
+            'Version': (3, 3), 'DataVersion': (3, 4790),
+            'Width': (2, 2), 'Height': (2, 1), 'Length': (2, 1),
+            'Blocks': (10, {'Palette': (10, {'minecraft:air': (3, 0),
+                                           'minecraft:end_portal': (3, 1)}),
+                           'Data': (7, bytes([1, 0]))})})}
+        with TemporaryDirectory(dir=Path(__file__).resolve().parent.parent/'.local') as directory:
+            path = Path(directory)/'end.schem'
+            path.write_bytes(gzip.compress(b'\x0a'+nbt_string('')+nbt_payload((10, root))))
+            palette, blocks = load_schematic(path)
+            self.assertEqual(palette[blocks[0, 0, 0]], 'minecraft:end_portal')
+            self.assertEqual(palette[blocks[0, 0, 1]], 'minecraft:air')
+            write_world(Path(directory)/'region', palette, blocks, (0, 64, 0), data_version=4790)
+            chunk = next(chunk_records((Path(directory)/'region/r.0.0.mca').read_bytes()))
+            self.assertEqual(chunk['DataVersion'], 4790)
+            self.assertEqual(block(chunk, 0, 64, 0), 'minecraft:end_portal')
+
     def test_generated_npc_and_menu_are_valid_configs(self):
         guardian = yaml.safe_load(npc())['astral_npc_portales']
         self.assertIn('cancelevent @self ~onInteract', guardian['Skills'])

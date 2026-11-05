@@ -88,13 +88,15 @@ def unpack_continuous(data, count, bits):
 
 def load_schematic(path):
     root = NBT(gzip.decompress(path.read_bytes())).root()
+    root = root.get('Schematic', root)
     width, height, length = (root[k] for k in ('Width', 'Height', 'Length'))
-    palette = [None] * len(root['Palette'])
-    for name, index in root['Palette'].items():
+    storage = root.get('Blocks', root)
+    palette = [None] * len(storage['Palette'])
+    for name, index in storage['Palette'].items():
         palette[index] = name
     blocks = np.empty(width * height * length, dtype=np.uint16)
     index = value = shift = 0
-    for byte in root['BlockData']:
+    for byte in storage.get('Data', storage.get('BlockData', b'')):
         value |= (byte & 127) << shift
         if byte & 128:
             shift += 7
@@ -223,7 +225,7 @@ def pack_padded(values, bits):
     return words.view(np.int64).tolist()
 
 
-def write_world(directory, palette, blocks, origin):
+def write_world(directory, palette, blocks, origin, data_version=3465):
     directory.mkdir(parents=True, exist_ok=True)
     x0, y0, z0 = origin
     height, length, width = blocks.shape
@@ -247,7 +249,7 @@ def write_world(directory, palette, blocks, origin):
                                       'biomes': (10, {'palette': (9, [(8, 'minecraft:the_void')])})}))
             if not sections:
                 continue
-            chunk = {'DataVersion': (3, 3465), 'xPos': (3, cx), 'zPos': (3, cz), 'yPos': (3, -4),
+            chunk = {'DataVersion': (3, data_version), 'xPos': (3, cx), 'zPos': (3, cz), 'yPos': (3, -4),
                      'Status': (8, 'minecraft:full'), 'LastUpdate': (4, 0), 'InhabitedTime': (4, 0),
                      'isLightOn': (1, 0), 'sections': (9, sections), 'block_entities': (9, [])}
             payload = zlib.compress(b'\x0a' + nbt_string('') + nbt_payload((10, chunk)))
