@@ -62,15 +62,38 @@ class MinijuegosTests(unittest.TestCase):
             m.ARENAS.pop()
             m.PARKOURS.pop()
 
-    def test_classic_random_arrivals_and_unreviewed_tft_gate(self):
+    def test_classic_random_arrivals(self):
         from mobs.mazmorras_data import ARENA
         self.assertEqual([p[:3] for p in m.ARENAS[0]['spawn_points']], ARENA['spawn_points'])
         self.assertIn('random integer between 1 and 25', m.script())
-        for d in m.ARENAS[1:]:
-            branch = m.script().split(f'if {{_id}} is "arena.{d["id"]}":', 1)[1].split('        stop', 1)[0]
-            self.assertTrue(d['needs_point'])
-            self.assertIn('world "arenas_tft"', branch)
-        self.assertIn('Esta arena necesita que un OP revise', m.script())
+
+    def test_tft_verified_arrivals_and_optional_override(self):
+        script = m.script()
+        travel = script.split('function astral_minijuego_ir', 1)[1].split('command /parkour', 1)[0]
+        expected = {'tft1': (-286.5, 143, -550.5, 0, 0),
+                    'tft2': (-286.5, 139, -282.5, 0, 0),
+                    'tft3': (-286.5, 139, -14.5, 0, 0)}
+        tft = {d['id']: d for d in m.ARENAS if d['id'].startswith('tft')}
+        self.assertEqual(set(tft), set(expected))
+        for key, arrival in expected.items():
+            d = tft[key]
+            self.assertFalse(d.get('needs_point', False))
+            self.assertEqual(d['arrival'], arrival)
+            self.assertEqual(d['rescue_y'], 120)
+            branch = travel.split(f'if {{_id}} is "arena.{key}":', 1)[1].split('    if {_id}', 1)[0]
+            fallback = ', '.join(map(str, arrival[:3])) + ', world "arenas_tft", 0, 0'
+            self.assertIn(f'set {{_l}} to {{astral.punto::arena.{key}}}\n'
+                          '        if {_l} is not set:\n'
+                          f'            set {{_l}} to location({fallback})', branch)
+            self.assertIn('execute in minecraft:arenas_tft run minecraft:tp', branch)
+            self.assertNotIn('Requiere una llegada', str(m.menu_data('arena')['items'][key]))
+        self.assertNotIn('Esta arena necesita que un OP revise', script)
+        rescue = script.split('every 10 ticks:', 1)[1]
+        for key in expected:
+            self.assertIn(f'if {{_id}} is "arena.{key}":\n'
+                          '                if y-coordinate of loop-player is less than 120:\n'
+                          '                    if gamemode of loop-player is survival or adventure:\n'
+                          '                        astral_minijuego_ir(loop-player, {_id})', rescue)
 
     def test_principal_commands_and_npc(self):
         principal = yaml.safe_load(principal_menu())['items']

@@ -126,8 +126,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::arena.tft1}
         if {_l} is not set:
-            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
-            stop
+            set {_l} to location(-286.5, 143, -550.5, world "arenas_tft", 0, 0)
         set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft1"
         set {_x} to x-coordinate of {_l}
         set {_y} to y-coordinate of {_l}
@@ -146,8 +145,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::arena.tft2}
         if {_l} is not set:
-            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
-            stop
+            set {_l} to location(-286.5, 139, -282.5, world "arenas_tft", 0, 0)
         set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft2"
         set {_x} to x-coordinate of {_l}
         set {_y} to y-coordinate of {_l}
@@ -166,8 +164,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::arena.tft3}
         if {_l} is not set:
-            send "&eEsta arena necesita que un OP revise y fije su llegada." to {_p}
-            stop
+            set {_l} to location(-286.5, 139, -14.5, world "arenas_tft", 0, 0)
         set {astral.minijuegos.selected::%uuid of {_p}%} to "arena.tft3"
         set {_x} to x-coordinate of {_l}
         set {_y} to y-coordinate of {_l}
@@ -252,7 +249,7 @@ command /astralpunto <text> [<text>]:
                 if name of world of player is not "arenas_tft":
                     send "&cPrimero entra al mundo arenas_tft." to player
                     stop
-                if y-coordinate of player is less than 60:
+                if y-coordinate of player is less than 120:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::arena.tft1} to location of player
@@ -263,7 +260,7 @@ command /astralpunto <text> [<text>]:
                 if name of world of player is not "arenas_tft":
                     send "&cPrimero entra al mundo arenas_tft." to player
                     stop
-                if y-coordinate of player is less than 60:
+                if y-coordinate of player is less than 120:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::arena.tft2} to location of player
@@ -274,7 +271,7 @@ command /astralpunto <text> [<text>]:
                 if name of world of player is not "arenas_tft":
                     send "&cPrimero entra al mundo arenas_tft." to player
                     stop
-                if y-coordinate of player is less than 60:
+                if y-coordinate of player is less than 120:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::arena.tft3} to location of player
@@ -337,23 +334,14 @@ every 10 ticks:
                 set {_id} to "arena.tft1"
                 set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
             if {_id} is "arena.tft1":
-                if y-coordinate of loop-player is less than 60:
+                if y-coordinate of loop-player is less than 120:
                     if gamemode of loop-player is survival or adventure:
-                        if {astral.punto::arena.tft1} is not set:
-                            execute console command "spawn %name of loop-player%"
-                        else:
-                            astral_minijuego_ir(loop-player, {_id})
+                        astral_minijuego_ir(loop-player, {_id})
             if {_id} is "arena.tft2":
-                if y-coordinate of loop-player is less than 60:
+                if y-coordinate of loop-player is less than 120:
                     if gamemode of loop-player is survival or adventure:
-                        if {astral.punto::arena.tft2} is not set:
-                            execute console command "spawn %name of loop-player%"
-                        else:
-                            astral_minijuego_ir(loop-player, {_id})
+                        astral_minijuego_ir(loop-player, {_id})
             if {_id} is "arena.tft3":
-                if y-coordinate of loop-player is less than 60:
+                if y-coordinate of loop-player is less than 120:
                     if gamemode of loop-player is survival or adventure:
-                        if {astral.punto::arena.tft3} is not set:
-                            execute console command "spawn %name of loop-player%"
-                        else:
-                            astral_minijuego_ir(loop-player, {_id})
+                        astral_minijuego_ir(loop-player, {_id})

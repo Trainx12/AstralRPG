@@ -32,23 +32,40 @@ Los originales no se modifican. Ninguno de estos archivos de terceros se publica
 |---|---|---|
 | Parkour / `spiral` | `0.5 -11 -1.5 0 0` | Spawn NBT: `Data.spawn.pos=[0,-11,-2]`, yaw/pitch 0; centrado en el bloque |
 | Arena / `clasica` | 25 puntos interiores, Y=73 | Conserva exactamente la lista de la arena existente |
-| Arena / `tft1` | `-286.5 143 -550.5 0 0` | Provisorio: requiere punto OP |
-| Arena / `tft2` | `-286.5 139 -282.5 0 0` | Provisorio: requiere punto OP |
-| Arena / `tft3` | `-286.5 139 -14.5 0 0` | Provisorio: requiere punto OP |
+| Arena / `tft1` | `-286.5 143 -550.5 0 0` | Verificada: centro del piso en Y=142 y dos bloques de aire |
+| Arena / `tft2` | `-286.5 139 -282.5 0 0` | Verificada: centro del piso en Y=138 y dos bloques de aire |
+| Arena / `tft3` | `-286.5 139 -14.5 0 0` | Verificada: centro del piso en Y=138 y dos bloques de aire |
 
 TFT es un mundo 1.12.2 cuyo spawn NBT es `0 64 0` (el TXT propone `0 100 0`).
 El schematic mide 263 × 256 × 801 y contiene tres grupos separados en Z:
 `0..253`, `274..527`, `547..800`; `WEOrigin=(-418,0,-683)`.
-Las propuestas trasladan tres columnas del schematic a ese origen. No está
-verificada la correspondencia con el mundo guardado ni la seguridad de esas
-llegadas. **Los tres botones TFT rechazan el viaje hasta fijar cada punto**;
-no mandan jugadores a coordenadas provisorias. No se implementó cronómetro/final.
+Claude verificó las regiones 1.12 de `.local/mapas/subir/arenas_tft.zip`: cada
+arena tiene un piso plano de 61 × 61 bloques y las llegadas de la tabla quedan
+en el centro, con dos bloques de aire arriba. Los tres botones TFT permiten
+viajar con estas llegadas por defecto. `/astralpunto` es una sobrescritura
+opcional y los puntos ya guardados conservan prioridad. No se implementó cronómetro/final.
 
 ## Instalación en Aternos
 
 La lista completa de archivos locales, destinos y comandos está en
 [`build/minijuegos/despliegue.txt`](../build/minijuegos/despliegue.txt).
 Debe continuarla quien tenga navegador y sesión del dueño. No hay APIs privadas.
+
+### Actualización TFT con los mundos ya instalados
+
+Copiar únicamente estos archivos con el editor Files:
+
+| Archivo local | Destino |
+|---|---|
+| `build/minijuegos/astral_minijuegos.sk` | `plugins/Skript/scripts/astral_minijuegos.sk` |
+| `build/menus/DeluxeMenus/gui_menus/arenas.yml` | `plugins/DeluxeMenus/gui_menus/arenas.yml` |
+
+Ejecutar `skript:skript reload astral_minijuegos` y `dm reload`. No requiere
+apagar ni reiniciar; si ya hubo muchas recargas, preferir un reinicio por Metaspace.
+Revisar consola y probar `/arenas tft1`, `/arenas tft2`, `/arenas tft3` y rescate
+bajo Y=120. No reinstalar ni sustituir mundos para esta actualización.
+
+### Instalación inicial completa
 
 1. Comprobar que se usa Paper 26.1.2, Skript 2.17+, DeluxeMenus, MythicMobs,
    Multiverse, WorldGuard y LuckPerms, y que los dos nombres nuevos están libres.
@@ -79,8 +96,9 @@ Debe continuarla quien tenga navegador y sesión del dueño. No hay APIs privada
    `mv.bypass.gamemode.parkour_spiral` deja a Skript conservar el modo anterior;
    OP en creativo conserva creativo. No se cambia la configuración global de modos.
 7. Recorrer cada mapa como OP en creativo, comprobar piso y dos bloques de aire,
-   orientación y nombres de dimensión. En TFT visitar primero las coordenadas
-   provisorias como OP, buscar un lugar seguro dentro de cada arena y fijarlo:
+   orientación y nombres de dimensión tras la conversión del mundo. Las llegadas
+   TFT ya están verificadas en el mapa; si se quiere cambiarlas, guardar otro punto
+   es opcional, igual que para parkour y la arena clásica:
 
    ```text
    /astralpunto parkour spiral
@@ -115,17 +133,18 @@ El control de modos y el permiso por mundo se documentan en
 - Un jugador normal entra en Spiral en aventura, no rompe/coloca bloques, no usa
   ganchos ni doble salto, no pierde hambre ni recibe daño; OP creativo conserva su modo.
 - Debajo de Y=-20 vuelve a la llegada de Spiral. Las arenas rescatan bajo Y=0
-  (`clasica`) o Y=60 (TFT), siempre al mapa elegido. Cambiar `rescue_y` si la
+  (`clasica`) o Y=120 (TFT), siempre al mapa elegido. Cambiar `rescue_y` si la
   recorrida revela que el escenario requiere otro límite.
 - La estrella del slot 9 abre el menú y permite volver al lobby. Se recupera el
   modo anterior al salir, también tras reconectar/reiniciar dentro del mapa.
-- TFT rechaza viajes antes de fijar el punto y luego acepta; un no OP no puede
-  guardar puntos. Un ID desconocido no ejecuta ningún comando de consola.
+- TFT permite viajar sin punto OP guardado a las coordenadas de la tabla; si hay
+  un punto guardado, tiene prioridad. Un no OP no puede guardar puntos.
+  Un ID desconocido no ejecuta ningún comando de consola.
 - Con dos jugadores: daño PvP ajustado por tier en ambas arenas, inventario y
   experiencia conservados al morir, regreso a la arena elegida si el respawn
   permanece en ese mundo. Si otro plugin manda al lobby, se respeta esa salida.
 - Revisar consola después de carga, viajes, muerte y rescate. Estas pruebas
-  con jugadores y los puntos de TFT siguen pendientes hasta el despliegue real.
+  con jugadores siguen pendientes hasta el despliegue real.
 
 ## Agregar un mapa
 

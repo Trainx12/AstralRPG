@@ -1,4 +1,10 @@
 # Generado por minijuegos.py. Ver docs/PARKOUR_Y_ARENAS.md antes de instalar.
+# Actualizacion TFT con mundos ya instalados: copiar SOLO estos dos archivos por Files:
+# build/minijuegos/astral_minijuegos.sk -> plugins/Skript/scripts/astral_minijuegos.sk
+# build/menus/DeluxeMenus/gui_menus/arenas.yml -> plugins/DeluxeMenus/gui_menus/arenas.yml
+# Recargar: skript:skript reload astral_minijuegos; dm reload. Revisar consola y probar /arenas tft1, tft2, tft3.
+# No requiere apagar ni reiniciar; si hubo muchas recargas, preferir un reinicio por Metaspace.
+# No reinstalar mundos para esta actualizacion. Lo siguiente es la instalacion inicial completa.
 # Apagar para instalar mundos NUEVOS. Nunca reemplazar world ni Worlds > Upload en world.
 # ZIP privados: .local/mapas/subir/parkour_spiral.zip y arenas_tft.zip.
 # Importacion depende del soporte del panel para mundos adicionales; si no existe, detener esa parte.
@@ -78,5 +84,6 @@ mm mobs spawn astral_npc_parkour 1 lobby,121.5,100,193.529
 mm mobs kill astral_npc_arena
 mm mobs spawn astral_npc_arena 1 lobby,127.5,100,193.529
 rg flag -w lobby __global__ mob-spawning deny
-# OP en cada arena TFT: /astralpunto arena tft1 (o tft2/tft3). /astralpunto lista.
+# TFT: llegadas verificadas por defecto, rescate bajo Y=120. No requieren fijar punto OP.
+# Opcional: /astralpunto arena tft1 (o tft2/tft3) sobrescribe la llegada. /astralpunto lista muestra puntos guardados.
 # Verificacion: estrella slot 9, salida lobby, modo restaurado, gancho bloqueado, rescate y PvP con dos jugadores.

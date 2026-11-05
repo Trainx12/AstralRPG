@@ -15,8 +15,7 @@ ARENAS = [dict(id='clasica', world='arena', name='Arena Astral', icon='IRON_SWOR
                spawn_points=[(x + .5, 73, z + .5, 0, 0) for x in range(-217, -195, 5)
                              for z in range(-2382, -2360, 5)], rescue_y=0)] + [
     dict(id=f'tft{i}', world='arenas_tft', name=f'TFT - Arena {i}', icon=icon,
-         description='Arena del paquete TFT Arenas.', arrival=arrival, rescue_y=60,
-         needs_point=True)
+         description='Arena del paquete TFT Arenas.', arrival=arrival, rescue_y=120)
     for i, icon, arrival in [(1, 'STONE_SWORD', (-286.5, 143, -550.5, 0, 0)),
                              (2, 'GOLDEN_SWORD', (-286.5, 139, -282.5, 0, 0)),
                              (3, 'DIAMOND_SWORD', (-286.5, 139, -14.5, 0, 0))]]
@@ -154,7 +153,7 @@ def script():
               'every 10 ticks:', '    loop all players:', '        astral_parkour_mode(loop-player)',
               '        set {_w} to name of world of loop-player',
               '        set {_id} to {astral.minijuegos.selected::%uuid of loop-player%}']
-    # Seleccion alternativa para quien entra por mvtp; TFT exige punto revisado.
+    # Seleccion alternativa para quien entra por mvtp; TFT tiene llegadas verificadas.
     for world in dict.fromkeys(d['world'] for _, d in definitions()):
         entries = [(k, d) for k, d in definitions() if d['world'] == world]
         keys = ' or '.join(f'"{k}.{d["id"]}"' for k, d in entries)
@@ -184,6 +183,12 @@ def npc(kind):
 
 def deployment():
     lines = ['# Generado por minijuegos.py. Ver docs/PARKOUR_Y_ARENAS.md antes de instalar.',
+             '# Actualizacion TFT con mundos ya instalados: copiar SOLO estos dos archivos por Files:',
+             '# build/minijuegos/astral_minijuegos.sk -> plugins/Skript/scripts/astral_minijuegos.sk',
+             '# build/menus/DeluxeMenus/gui_menus/arenas.yml -> plugins/DeluxeMenus/gui_menus/arenas.yml',
+             '# Recargar: skript:skript reload astral_minijuegos; dm reload. Revisar consola y probar /arenas tft1, tft2, tft3.',
+             '# No requiere apagar ni reiniciar; si hubo muchas recargas, preferir un reinicio por Metaspace.',
+             '# No reinstalar mundos para esta actualizacion. Lo siguiente es la instalacion inicial completa.',
              '# Apagar para instalar mundos NUEVOS. Nunca reemplazar world ni Worlds > Upload en world.',
              '# ZIP privados: .local/mapas/subir/parkour_spiral.zip y arenas_tft.zip.',
              '# Importacion depende del soporte del panel para mundos adicionales; si no existe, detener esa parte.',
@@ -233,7 +238,8 @@ def deployment():
         lines += [f'mm mobs kill astral_npc_{kind}',
                   f'mm mobs spawn astral_npc_{kind} 1 lobby,{position[0]},{position[1]},{position[2]}']
     lines += ['rg flag -w lobby __global__ mob-spawning deny',
-              '# OP en cada arena TFT: /astralpunto arena tft1 (o tft2/tft3). /astralpunto lista.',
+              '# TFT: llegadas verificadas por defecto, rescate bajo Y=120. No requieren fijar punto OP.',
+              '# Opcional: /astralpunto arena tft1 (o tft2/tft3) sobrescribe la llegada. /astralpunto lista muestra puntos guardados.',
               '# Verificacion: estrella slot 9, salida lobby, modo restaurado, gancho bloqueado, rescate y PvP con dos jugadores.']
     return '\n'.join(lines) + '\n'
 
