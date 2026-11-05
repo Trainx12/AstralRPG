@@ -80,3 +80,12 @@ comprobaciones del generador de restauracion. Falta recorrido visual con jugador
 la seleccion del espacio de combate de Forja y su controlador siguen pendientes
 de antes. Evidencia privada en `.local/restauracion-mundos-2026-11-05/`:
 `consola-verificacion.txt` y `aternos-online.jpg`.
+
+## Llegada del Nether elegida en captura (05/11/2026)
+
+El dueno eligio `-2191.114 81 179.263`, yaw `179`, pitch `-1.8`, en
+`portales_astrales`. `/umbrales nether` usa esa posicion. Su aldeano queda
+exactamente dos bloques al este, en `-2189.114 81 179.263`, mirando al oeste.
+Ambos puntos se comprobaron en Aternos con piso de terracota negra a Y=80
+y dos bloques de aire. Las posiciones salen de `portales.py`; se conserva
+la llegada del End. Esta eleccion reemplaza la llegada anterior del Nether.
