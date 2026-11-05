@@ -2,6 +2,6 @@
 _DEFAULT_:
   tabprefix: "%luckperms-prefix% "
   tagprefix: "%luckperms-prefix% "
-  customtabname: "<white>%player%"
-  tabsuffix: " <dark_gray>[<aqua>⚡%auraskills_power%<dark_gray>]"
+  customtabname: "<#F0E6FF>%player%"
+  tabsuffix: " <#AA96C5>[<#D6B4FF>⚡ <#F0E6FF>%auraskills_power%<#AA96C5>]"
   tagsuffix: ""

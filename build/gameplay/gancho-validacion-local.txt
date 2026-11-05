@@ -1,0 +1,14 @@
+[01:06:57] [Server thread/INFO]: [Skript] Loading server plugin Skript v2.17.1
+[01:07:06] [Server thread/INFO]: [Skript] Enabling Skript v2.17.1
+[01:07:07] [ForkJoinPool.commonPool-worker-1/INFO]: [Skript] You're currently running the latest stable version of Skript.
+[01:07:09] [Server thread/INFO]: [Skript] Loaded 5688 aliases in 890ms
+[01:07:09] [Server thread/INFO]: [Skript]  ~ created by & © Peter Güttinger aka Njol ~
+[01:07:13] [Server thread/INFO]: [Skript] Loading variables...
+[01:07:13] [Server thread/INFO]: [Skript] Loaded 7 variables in 0.0 seconds
+[01:07:16] [Server thread/INFO]: [Skript] All scripts loaded without errors.
+[01:07:16] [Server thread/INFO]: [Skript] Loaded 2 scripts with a total of 75 structures in 3.14 seconds
+[01:07:16] [Server thread/INFO]: [Skript] Finished loading.
+[01:07:17] [Server thread/INFO]: Done (33.014s)! For help, type "help"
+[01:07:44] [Server thread/INFO]: [Skript] Reloading astral_gameplay.sk...
+[01:07:45] [Server thread/INFO]: [Skript] Successfully reloaded astral_gameplay.sk. (513ms)
+[01:07:55] [Server thread/INFO]: [Skript] Disabling Skript v2.17.1

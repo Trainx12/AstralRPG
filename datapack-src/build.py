@@ -131,6 +131,14 @@ add_item("gancho", "minecraft:carrot_on_a_stick", "Gancho de Escalada", "#d0d0d0
 RECIPES.append(("gancho", 1, [("v", "minecraft:fishing_rod", 1), ("v", "minecraft:iron_ingot", 2),
                               ("v", "minecraft:string", 2)], "Especiales"))
 
+# Variante de prueba: caña vanilla con sedal y colision reales, sin receta por ahora.
+add_item("gancho_realista", "minecraft:fishing_rod", "Gancho realista", "#D6B4FF",
+         [txt("Click derecho: lanza el anzuelo (mano principal)."),
+          txt("Vuelve a pulsar al enganchar un bloque o entidad."),
+          txt("El tiron te lleva hacia el anzuelo, no hacia la mirada."),
+          txt("Prueba · alcance 32 bloques · recarga 2 s", "dark_gray")],
+         {"type": "realistic_hook"}, model="minecraft:fishing_rod")
+
 for (out, n, ings) in MAT_RECIPES:
     RECIPES.append((out, n, ings, "Materiales"))
 
@@ -1708,7 +1716,7 @@ for tid, t in TALISMANS.items():
 dlg("guia/talismanes", txt("Talismanes", "aqua", bold=True),
     [msg("Se llevan en la mano secundaria. Se hacen con lo que sueltan los mobs elite.")], tal_btns, back="guia", columns=2)
 recipe_leaf("guia/especiales", "Especiales", rids_where(
-    lambda o: o in SPECIAL_WEAPONS or o in ("gancho", "guadana_umbria", "guantes_meteoro")), "guia")
+    lambda o: o in SPECIAL_WEAPONS or o in ("gancho", "gancho_realista", "guadana_umbria", "guantes_meteoro")), "guia")
 recipe_leaf("guia/taladros", "Taladros (Mineria)", rids_where(lambda o: o.startswith("taladro_")), "guia")
 recipe_leaf("guia/motosierras", "Motosierras (Tala)", rids_where(lambda o: o.startswith("motosierra_")), "guia")
 dlg("guia/materiales", txt("Materiales", "light_purple", bold=True),
@@ -1814,7 +1822,7 @@ KITS = [
      [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and i[-1].isdigit()]),
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
      [i for i in ITEMS if i in SPECIAL_WEAPONS or i.startswith(("lanza_", "talisman_")) or i in
-      ("gancho", "guadana_umbria", "guantes_meteoro")]),
+      ("gancho", "gancho_realista", "guadana_umbria", "guantes_meteoro")]),
     ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
      [i for i in ITEMS if i.startswith(("taladro_", "motosierra_"))]),
 ]

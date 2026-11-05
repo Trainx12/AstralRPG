@@ -221,10 +221,86 @@ on damage of player:
             delete {-astral.launch::%uuid of victim%}
             delete {-astral.launch.air::%uuid of victim%}
 
+
+# La identidad se valida con custom_data en el momento del evento, no por nombre.
+# Cada lanzamiento pertenece a un jugador y a un anzuelo concreto.
+on fishing state change:
+    set {_id} to uuid of player
+    execute console command "execute as %name of player% run function astral:grapple/realistic_check"
+    set {_real} to false
+    if scoreboard tags of player contains "astral.realistic.held":
+        set {_real} to true
+    remove "astral.realistic.held" from scoreboard tags of player
+    if event-fishing state is fishing line cast:
+        delete {-astral.realistic::%{_id}%}
+        if {_real} is false:
+            stop
+        if astral_dungeon(world of player) is true:
+            cancel event
+            send action bar "&cEl gancho no se puede usar dentro de las mazmorras." to player
+            stop
+        if gamemode of player is spectator:
+            cancel event
+            stop
+        set {-astral.realistic::%{_id}%} to uuid of fishing hook
+        stop
+    if {-astral.realistic::%{_id}%} is not set:
+        stop
+    if uuid of fishing hook is not {-astral.realistic::%{_id}%}:
+        stop
+    # Mordidas y peces nunca sirven como anclaje ni generan premios de pesca.
+    if event-fishing state is fish bite or fish caught or fish escaped:
+        cancel event
+        stop
+    if event-fishing state is not bobber in ground or entity caught or reel in:
+        stop
+    delete {-astral.realistic::%{_id}%}
+    if {_real} is false:
+        stop
+    if astral_dungeon(world of player) is true:
+        stop
+    if gamemode of player is spectator:
+        stop
+    if event-fishing state is reel in:
+        send action bar "&7El anzuelo no se engancho a nada." to player
+        stop
+    set {_anchor} to location of fishing hook
+    if event-fishing state is entity caught:
+        set {_anchor} to location of hooked entity
+        # Evita el tiron vanilla a la entidad: quien se desplaza es el usuario.
+        cancel event
+        kill fishing hook
+    if world of {_anchor} is not world of player:
+        stop
+    set {_distance} to distance between eye location of player and {_anchor}
+    if {_distance} > 32:
+        send action bar "&cEl anclaje esta demasiado lejos (max. 32 bloques)." to player
+        stop
+    if {_distance} < 2:
+        stop
+    if {-astral.grapple.cd::%{_id}%} is set:
+        if difference between now and {-astral.grapple.cd::%{_id}%} is less than 2 seconds:
+            stop
+    set {-astral.grapple.cd::%{_id}%} to now
+    set {_v} to vector from eye location of player to {_anchor}
+    set vector length of {_v} to 1.35
+    set velocity of player to {_v}
+    set {-astral.launch::%{_id}%} to now
+    delete {-astral.launch.air::%{_id}%}
+    play sound "entity.fishing_bobber.retrieve" with volume 0.6 and pitch 1.1 at player
+
+on death of player:
+    delete {-astral.realistic::%uuid of victim%}
+
+on world change:
+    delete {-astral.realistic::%uuid of player%}
+
+
 on quit:
     delete {-astral.jump.used::%uuid of player%}
     delete {-astral.jump.armed::%uuid of player%}
     delete {-astral.grapple.cd::%uuid of player%}
+    delete {-astral.realistic::%uuid of player%}
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
 

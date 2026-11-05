@@ -3,23 +3,22 @@ header-footer:
   designs:
     default:
       header:
-        - "<dark_gray><strikethrough>                                                  </strikethrough>"
-        - ""
-        - "%animation:astral_titulo%"
-        - "<gray>Bienvenido, <white><bold>%player%</bold> <dark_gray>| %condition:rango%"
-        - ""
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player% <#AA96C5>· %condition:rango%"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
       footer:
-        - ""
-        - "<red>❤ <white>%player_health_rounded%<gray>/%player_max_health_rounded%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
-        - "<gray>Jugadores <white>%online%<dark_gray>/<gray>20   <dark_gray>✦   <gray>Ping <white>%ping%ms   <dark_gray>✦   <gray>TPS %server_tps_1_colored%"
-        - "<gray>Estas en <white>%condition:mundo%   <dark_gray>✦   <gray>/spawn <dark_gray>vuelve al lobby"
-        - ""
-        - "%animation:astral_ip%"
-        - "<dark_gray><strikethrough>                                                  </strikethrough>"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%  <#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
+        - "<#D6B4FF>♟ <#AA96C5>Jugadores <#F0E6FF>%online%/%maxplayers%  <#D6B4FF>· <#AA96C5>Ping <#F0E6FF>%ping%ms  <#D6B4FF>· <#AA96C5>TPS <#F0E6FF>%server_tps_1%"
+        - "<#D6B4FF>⌖ <#F0E6FF>%condition:mundo%  <#D6B4FF>· <#AA96C5>/spawn vuelve al lobby"
+        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
+        - "<#D6B4FF>AstralRPG.aternos.me"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
 playerlist-objective:
   enabled: true
   value: "%player_health_rounded%"
-  fancy-value: "<white>%player_health_rounded% <red>❤"
+  fancy-value: "<#F0E6FF>%player_health_rounded% <#D6B4FF>❤"
   title: "Vida"
   render-type: INTEGER
   disable-condition: ''
@@ -40,71 +39,165 @@ scoreboard:
   scoreboards:
     minas:
       display-condition: "%world%=astral_minas"
-      title: "%animation:astral_titulo%"
+      title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       lines:
-        - "<gray>⚔ <white><bold>%player%</bold>"
-        - "<gray>Rango||%condition:rango%"
-        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
-        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
-        - "<aqua>⚡ Poder||<white>%auraskills_power%"
-        - ""
-        - "<aqua><bold>⛏ Minas Astrales</bold>"
-        - "<gray>Estás en||%condition:am_here%"
-        - "<gray>Siguiente||%condition:am_next%"
-        - "<gray>Picar en||%condition:am_current%"
-        - "<gray>Bloques||%condition:am_need%"
-        - "<gray>Costo||%condition:am_pay%"
+        - "%condition:am_location%"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
+        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%statistic_time_played%"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
+        - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
+        - "<gradient:#5268C7:#D17AFF><bold>⛏ Minas</bold></gradient>"
+        - "<#D6B4FF>◷ <#AA96C5>Regeneración <#F0E6FF>%objective_score_{am_regen_m}%m %objective_score_{am_regen_s}%s"
+        - "%condition:am_next_row%"
+        - "%condition:am_source_row%"
+        - "%condition:am_need%"
+        - "%condition:am_pay%"
         - "%condition:am_time%"
-        - "%animation:astral_ip%"
+        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
+        - "<#D6B4FF>AstralRPG.aternos.me"
     astral:
-      title: "%animation:astral_titulo%"
+      title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       lines:
-        - "<gray>⚔ <white><bold>%player%</bold>"
-        - "<gray>Rango||%condition:rango%"
-        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
-        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
-        - "<aqua>⚡ Poder||<white>%auraskills_power%"
-        - ""
-        - "<aqua><bold>Misiones diarias</bold>"
-        - "<gray>Fácil||%condition:diaria0%"
-        - "<gray>Media||%condition:diaria1%"
-        - "<gray>Difícil||%condition:diaria2%"
-        - "<gray>Renuevan||<white>00:00 ARG"
-        - ""
-        - "<white>%date%"
-        - "<gray>Hora argentina||<aqua>%time%"
-        - "%animation:astral_ip%"
+        - "%condition:sidebar_world%"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
+        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%statistic_time_played%"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
+        - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
+        - "<gradient:#5268C7:#D17AFF><bold>✎ Diarias</bold></gradient> <#AA96C5>· 00:00 ARG"
+        - "<#D6B4FF>✦ <#AA96C5>Fácil %condition:diaria0%"
+        - "<#D6B4FF>✧ <#AA96C5>Media %condition:diaria1%"
+        - "<#D6B4FF>✶ <#AA96C5>Difícil %condition:diaria2%"
+        - "<#D6B4FF>✎ <#AA96C5>Historia %condition:historia%"
+        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
+        - "<#D6B4FF>AstralRPG.aternos.me"
 conditions:
+  am_bar_1:
+    conditions:
+      - "%objective_score_{am_segments}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■"
+    false: "<#665477>■■■■■■■■"
+  am_bar_2:
+    conditions:
+      - "%objective_score_{am_segments}%>=2"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■"
+    false: "%condition:am_bar_1%"
+  am_bar_3:
+    conditions:
+      - "%objective_score_{am_segments}%>=3"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■"
+    false: "%condition:am_bar_2%"
+  am_bar_4:
+    conditions:
+      - "%objective_score_{am_segments}%>=4"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■"
+    false: "%condition:am_bar_3%"
+  am_bar_5:
+    conditions:
+      - "%objective_score_{am_segments}%>=5"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■"
+    false: "%condition:am_bar_4%"
+  am_bar_6:
+    conditions:
+      - "%objective_score_{am_segments}%>=6"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■"
+    false: "%condition:am_bar_5%"
+  am_bar_7:
+    conditions:
+      - "%objective_score_{am_segments}%>=7"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■"
+    false: "%condition:am_bar_6%"
+  am_bar:
+    conditions:
+      - "%objective_score_{am_segments}%>=8"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477>"
+    false: "%condition:am_bar_7%"
+  am_time_bar_1:
+    conditions:
+      - "%objective_score_{am_minutes}%>=188"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+  am_time_bar_2:
+    conditions:
+      - "%objective_score_{am_minutes}%>=375"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_1%"
+  am_time_bar_3:
+    conditions:
+      - "%objective_score_{am_minutes}%>=563"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_2%"
+  am_time_bar_4:
+    conditions:
+      - "%objective_score_{am_minutes}%>=750"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_3%"
+  am_time_bar_5:
+    conditions:
+      - "%objective_score_{am_minutes}%>=938"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_4%"
+  am_time_bar_6:
+    conditions:
+      - "%objective_score_{am_minutes}%>=1125"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_5%"
+  am_time_bar_7:
+    conditions:
+      - "%objective_score_{am_minutes}%>=1313"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>%objective_score_{am_minutes}%/1500 min"
+    false: "%condition:am_time_bar_6%"
+  am_time_bar:
+    conditions:
+      - "%objective_score_{am_minutes}%>=1500"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>1500/1500 min"
+    false: "%condition:am_time_bar_7%"
+  am_location:
+    conditions:
+      - "%objective_score_{am_here}%>0"
+    true: "%condition:am_here%"
+    false: "       <#F0E6FF>Minas Astrales"
+  am_next_row:
+    conditions:
+      - "%objective_score_{am_rank}%<20"
+    true: "<#D6B4FF>» <#AA96C5>Siguiente %condition:am_next%"
+    false: ""
+  am_source_row:
+    conditions:
+      - "%objective_score_{am_rank}%<20"
+    true: "<#D6B4FF>⛏ <#AA96C5>Picar en %condition:am_current%"
+    false: ""
   am_need:
     conditions:
       - "%objective_score_{am_rank}%<20"
-    true: "<white>%objective_score_{am_blocks}%<gray>/<white>%objective_score_{am_goal}%"
-    false: "<green>¡Todas abiertas!"
+    true: "<#D6B4FF>⛏ <#AA96C5>Faltan <#F0E6FF>%objective_score_{am_left}%  %condition:am_bar% <#F0E6FF>%objective_score_{am_blocks}%/%objective_score_{am_goal}%"
+    false: "<#D6B4FF>✓ Todas abiertas"
   am_pay:
     conditions:
       - "%objective_score_{am_rank}%<20"
-    true: "<gold>%objective_score_{am_cost}% oro"
-    false: "<gray>—"
+    true: "<#D6B4FF>⛃ <#AA96C5>Costo <#F0E6FF>%objective_score_{am_cost}% oro"
+    false: ""
   am_time:
     conditions:
       - "%objective_score_{am_rank}%=19"
-    true: "<gray>Minería activa: <white>%objective_score_{am_minutes}%<gray>/1500 min"
+    true: "<#D6B4FF>◷ <#AA96C5>Activa %condition:am_time_bar%"
     false: ""
   am_here1_2:
     conditions:
       - "%objective_score_{am_here}%<=1"
-    true: "<white>I · Carbón"
-    false: "<white>I · Cobre"
+    true: "   <#F0E6FF>Mina · Carbón Tier 1"
+    false: "    <#F0E6FF>Mina · Cobre Tier 1"
   am_here1_3:
     conditions:
       - "%objective_score_{am_here}%<=2"
     true: "%condition:am_here1_2%"
-    false: "<white>I · Hierro"
+    false: "    <#F0E6FF>Mina · Hierro Tier 1"
   am_here4_5:
     conditions:
       - "%objective_score_{am_here}%<=4"
-    true: "<white>I · Oro"
-    false: "<white>I · Esmeralda"
+    true: "      <#F0E6FF>Mina · Oro Tier 1"
+    false: "  <#F0E6FF>Mina · Esmeralda Tier 1"
   am_here1_5:
     conditions:
       - "%objective_score_{am_here}%<=3"
@@ -113,18 +206,18 @@ conditions:
   am_here6_7:
     conditions:
       - "%objective_score_{am_here}%<=6"
-    true: "<white>I · Diamante"
-    false: "<white>II · Carbón"
+    true: "   <#F0E6FF>Mina · Diamante Tier 1"
+    false: "   <#F0E6FF>Mina · Carbón Tier 2"
   am_here6_8:
     conditions:
       - "%objective_score_{am_here}%<=7"
     true: "%condition:am_here6_7%"
-    false: "<white>II · Cobre"
+    false: "    <#F0E6FF>Mina · Cobre Tier 2"
   am_here9_10:
     conditions:
       - "%objective_score_{am_here}%<=9"
-    true: "<white>II · Hierro"
-    false: "<white>II · Oro"
+    true: "    <#F0E6FF>Mina · Hierro Tier 2"
+    false: "      <#F0E6FF>Mina · Oro Tier 2"
   am_here6_10:
     conditions:
       - "%objective_score_{am_here}%<=8"
@@ -138,18 +231,18 @@ conditions:
   am_here11_12:
     conditions:
       - "%objective_score_{am_here}%<=11"
-    true: "<white>II · Esmeralda"
-    false: "<white>II · Diamante"
+    true: "  <#F0E6FF>Mina · Esmeralda Tier 2"
+    false: "   <#F0E6FF>Mina · Diamante Tier 2"
   am_here11_13:
     conditions:
       - "%objective_score_{am_here}%<=12"
     true: "%condition:am_here11_12%"
-    false: "<white>II · Restos ancestrales"
+    false: "<#F0E6FF>Mina · Restos ancestrales Tier 2"
   am_here14_15:
     conditions:
       - "%objective_score_{am_here}%<=14"
-    true: "<white>III · Carbón"
-    false: "<white>III · Cobre"
+    true: "   <#F0E6FF>Mina · Carbón Tier 3"
+    false: "    <#F0E6FF>Mina · Cobre Tier 3"
   am_here11_15:
     conditions:
       - "%objective_score_{am_here}%<=13"
@@ -158,18 +251,18 @@ conditions:
   am_here16_17:
     conditions:
       - "%objective_score_{am_here}%<=16"
-    true: "<white>III · Hierro"
-    false: "<white>III · Oro"
+    true: "    <#F0E6FF>Mina · Hierro Tier 3"
+    false: "      <#F0E6FF>Mina · Oro Tier 3"
   am_here16_18:
     conditions:
       - "%objective_score_{am_here}%<=17"
     true: "%condition:am_here16_17%"
-    false: "<white>III · Esmeralda"
+    false: "  <#F0E6FF>Mina · Esmeralda Tier 3"
   am_here19_20:
     conditions:
       - "%objective_score_{am_here}%<=19"
-    true: "<white>III · Diamante"
-    false: "<white>III · Netherita"
+    true: "   <#F0E6FF>Mina · Diamante Tier 3"
+    false: "  <#F0E6FF>Mina · Netherita Tier 3"
   am_here16_20:
     conditions:
       - "%objective_score_{am_here}%<=18"
@@ -188,18 +281,18 @@ conditions:
   am_current1_2:
     conditions:
       - "%objective_score_{am_rank}%<=1"
-    true: "<white>I · Carbón"
-    false: "<white>I · Cobre"
+    true: "<white>Carbón Tier 1"
+    false: "<white>Cobre Tier 1"
   am_current1_3:
     conditions:
       - "%objective_score_{am_rank}%<=2"
     true: "%condition:am_current1_2%"
-    false: "<white>I · Hierro"
+    false: "<white>Hierro Tier 1"
   am_current4_5:
     conditions:
       - "%objective_score_{am_rank}%<=4"
-    true: "<white>I · Oro"
-    false: "<white>I · Esmeralda"
+    true: "<white>Oro Tier 1"
+    false: "<white>Esmeralda Tier 1"
   am_current1_5:
     conditions:
       - "%objective_score_{am_rank}%<=3"
@@ -208,18 +301,18 @@ conditions:
   am_current6_7:
     conditions:
       - "%objective_score_{am_rank}%<=6"
-    true: "<white>I · Diamante"
-    false: "<white>II · Carbón"
+    true: "<white>Diamante Tier 1"
+    false: "<white>Carbón Tier 2"
   am_current6_8:
     conditions:
       - "%objective_score_{am_rank}%<=7"
     true: "%condition:am_current6_7%"
-    false: "<white>II · Cobre"
+    false: "<white>Cobre Tier 2"
   am_current9_10:
     conditions:
       - "%objective_score_{am_rank}%<=9"
-    true: "<white>II · Hierro"
-    false: "<white>II · Oro"
+    true: "<white>Hierro Tier 2"
+    false: "<white>Oro Tier 2"
   am_current6_10:
     conditions:
       - "%objective_score_{am_rank}%<=8"
@@ -233,18 +326,18 @@ conditions:
   am_current11_12:
     conditions:
       - "%objective_score_{am_rank}%<=11"
-    true: "<white>II · Esmeralda"
-    false: "<white>II · Diamante"
+    true: "<white>Esmeralda Tier 2"
+    false: "<white>Diamante Tier 2"
   am_current11_13:
     conditions:
       - "%objective_score_{am_rank}%<=12"
     true: "%condition:am_current11_12%"
-    false: "<white>II · Restos ancestrales"
+    false: "<white>Restos ancestrales Tier 2"
   am_current14_15:
     conditions:
       - "%objective_score_{am_rank}%<=14"
-    true: "<white>III · Carbón"
-    false: "<white>III · Cobre"
+    true: "<white>Carbón Tier 3"
+    false: "<white>Cobre Tier 3"
   am_current11_15:
     conditions:
       - "%objective_score_{am_rank}%<=13"
@@ -253,18 +346,18 @@ conditions:
   am_current16_17:
     conditions:
       - "%objective_score_{am_rank}%<=16"
-    true: "<white>III · Hierro"
-    false: "<white>III · Oro"
+    true: "<white>Hierro Tier 3"
+    false: "<white>Oro Tier 3"
   am_current16_18:
     conditions:
       - "%objective_score_{am_rank}%<=17"
     true: "%condition:am_current16_17%"
-    false: "<white>III · Esmeralda"
+    false: "<white>Esmeralda Tier 3"
   am_current19_20:
     conditions:
       - "%objective_score_{am_rank}%<=19"
-    true: "<white>III · Diamante"
-    false: "<white>III · Netherita"
+    true: "<white>Diamante Tier 3"
+    false: "<white>Netherita Tier 3"
   am_current16_20:
     conditions:
       - "%objective_score_{am_rank}%<=18"
@@ -283,18 +376,18 @@ conditions:
   am_next1_2:
     conditions:
       - "%objective_score_{am_rank}%<=1"
-    true: "<white>I · Cobre"
-    false: "<white>I · Hierro"
+    true: "<white>Cobre Tier 1"
+    false: "<white>Hierro Tier 1"
   am_next1_3:
     conditions:
       - "%objective_score_{am_rank}%<=2"
     true: "%condition:am_next1_2%"
-    false: "<white>I · Oro"
+    false: "<white>Oro Tier 1"
   am_next4_5:
     conditions:
       - "%objective_score_{am_rank}%<=4"
-    true: "<white>I · Esmeralda"
-    false: "<white>I · Diamante"
+    true: "<white>Esmeralda Tier 1"
+    false: "<white>Diamante Tier 1"
   am_next1_5:
     conditions:
       - "%objective_score_{am_rank}%<=3"
@@ -303,18 +396,18 @@ conditions:
   am_next6_7:
     conditions:
       - "%objective_score_{am_rank}%<=6"
-    true: "<white>II · Carbón"
-    false: "<white>II · Cobre"
+    true: "<white>Carbón Tier 2"
+    false: "<white>Cobre Tier 2"
   am_next6_8:
     conditions:
       - "%objective_score_{am_rank}%<=7"
     true: "%condition:am_next6_7%"
-    false: "<white>II · Hierro"
+    false: "<white>Hierro Tier 2"
   am_next9_10:
     conditions:
       - "%objective_score_{am_rank}%<=9"
-    true: "<white>II · Oro"
-    false: "<white>II · Esmeralda"
+    true: "<white>Oro Tier 2"
+    false: "<white>Esmeralda Tier 2"
   am_next6_10:
     conditions:
       - "%objective_score_{am_rank}%<=8"
@@ -328,18 +421,18 @@ conditions:
   am_next11_12:
     conditions:
       - "%objective_score_{am_rank}%<=11"
-    true: "<white>II · Diamante"
-    false: "<white>II · Restos ancestrales"
+    true: "<white>Diamante Tier 2"
+    false: "<white>Restos ancestrales Tier 2"
   am_next11_13:
     conditions:
       - "%objective_score_{am_rank}%<=12"
     true: "%condition:am_next11_12%"
-    false: "<white>III · Carbón"
+    false: "<white>Carbón Tier 3"
   am_next14_15:
     conditions:
       - "%objective_score_{am_rank}%<=14"
-    true: "<white>III · Cobre"
-    false: "<white>III · Hierro"
+    true: "<white>Cobre Tier 3"
+    false: "<white>Hierro Tier 3"
   am_next11_15:
     conditions:
       - "%objective_score_{am_rank}%<=13"
@@ -348,17 +441,17 @@ conditions:
   am_next16_17:
     conditions:
       - "%objective_score_{am_rank}%<=16"
-    true: "<white>III · Oro"
-    false: "<white>III · Esmeralda"
+    true: "<white>Oro Tier 3"
+    false: "<white>Esmeralda Tier 3"
   am_next16_18:
     conditions:
       - "%objective_score_{am_rank}%<=17"
     true: "%condition:am_next16_17%"
-    false: "<white>III · Diamante"
+    false: "<white>Diamante Tier 3"
   am_next19_20:
     conditions:
       - "%objective_score_{am_rank}%<=19"
-    true: "<white>III · Netherita"
+    true: "<white>Netherita Tier 3"
     false: "<white>—"
   am_next16_20:
     conditions:
@@ -400,173 +493,544 @@ conditions:
       - "%luckperms_prefix%="
     true: "<dark_gray>ninguno"
     false: "%luckperms_prefix%"
-  mundo:
+  mundo_0:
     conditions:
-      - "%world%=lobby"
-    true: "Lobby"
-    false: "%condition:mundo2%"
-  mundo2:
+      - "%world%=exp_santuario"
+    true: "Expedición Astral · Santuario"
+    false: "%world%"
+  mundo_1:
     conditions:
-      - "%world%=world_nether"
-    true: "<red>Nether"
-    false: "%condition:mundo3%"
-  mundo3:
+      - "%world%=exp_hielo"
+    true: "Expedición Astral · Cumbre"
+    false: "%condition:mundo_0%"
+  mundo_2:
+    conditions:
+      - "%world%=exp_desierto"
+    true: "Expedición Astral · Desierto"
+    false: "%condition:mundo_1%"
+  mundo_3:
+    conditions:
+      - "%world%=cavernas"
+    true: "Expedición Astral · Cavernas"
+    false: "%condition:mundo_2%"
+  mundo_4:
+    conditions:
+      - "%world%=reino"
+    true: "Expedición Astral · Reino"
+    false: "%condition:mundo_3%"
+  mundo_5:
+    conditions:
+      - "%world%=santuario"
+    true: "Mazmorra · Santuario Celestial"
+    false: "%condition:mundo_4%"
+  mundo_6:
+    conditions:
+      - "%world%=forja"
+    true: "Expedición Astral · Forja"
+    false: "%condition:mundo_5%"
+  mundo_7:
+    conditions:
+      - "%world%=cumbre"
+    true: "Mazmorra · Cumbre Helada"
+    false: "%condition:mundo_6%"
+  mundo_8:
+    conditions:
+      - "%world%=tumba"
+    true: "Mazmorra · Tumba del Rey de Arena"
+    false: "%condition:mundo_7%"
+  mundo_9:
+    conditions:
+      - "%world%=bosque"
+    true: "Mazmorra · Bosque Sombrío"
+    false: "%condition:mundo_8%"
+  mundo_10:
+    conditions:
+      - "%world%=astral_minas"
+    true: "Minas Astrales"
+    false: "%condition:mundo_9%"
+  mundo_11:
+    conditions:
+      - "%world%=mina"
+    true: "Mazmorra · Minas Olvidadas"
+    false: "%condition:mundo_10%"
+  mundo_12:
+    conditions:
+      - "%world%=arena"
+    true: "Arena PvP"
+    false: "%condition:mundo_11%"
+  mundo_13:
     conditions:
       - "%world%=world_the_end"
-    true: "<light_purple>End"
-    false: "<green>Mundo"
+    true: "End"
+    false: "%condition:mundo_12%"
+  mundo_14:
+    conditions:
+      - "%world%=world_nether"
+    true: "Nether"
+    false: "%condition:mundo_13%"
+  mundo_15:
+    conditions:
+      - "%world%=lobby"
+    true: "Spawn"
+    false: "%condition:mundo_14%"
+  mundo:
+    conditions:
+      - "%world%=world"
+    true: "Survival"
+    false: "%condition:mundo_15%"
+  sidebar_world_0:
+    conditions:
+      - "%world%=exp_santuario"
+    true: "<#F0E6FF>Expedición Astral · Santuario"
+    false: "%world%"
+  sidebar_world_1:
+    conditions:
+      - "%world%=exp_hielo"
+    true: "<#F0E6FF>Expedición Astral · Cumbre"
+    false: "%condition:sidebar_world_0%"
+  sidebar_world_2:
+    conditions:
+      - "%world%=exp_desierto"
+    true: "<#F0E6FF>Expedición Astral · Desierto"
+    false: "%condition:sidebar_world_1%"
+  sidebar_world_3:
+    conditions:
+      - "%world%=cavernas"
+    true: "<#F0E6FF>Expedición Astral · Cavernas"
+    false: "%condition:sidebar_world_2%"
+  sidebar_world_4:
+    conditions:
+      - "%world%=reino"
+    true: " <#F0E6FF>Expedición Astral · Reino"
+    false: "%condition:sidebar_world_3%"
+  sidebar_world_5:
+    conditions:
+      - "%world%=santuario"
+    true: "<#F0E6FF>Mazmorra · Santuario Celestial"
+    false: "%condition:sidebar_world_4%"
+  sidebar_world_6:
+    conditions:
+      - "%world%=forja"
+    true: "<#F0E6FF>Expedición Astral · Forja"
+    false: "%condition:sidebar_world_5%"
+  sidebar_world_7:
+    conditions:
+      - "%world%=cumbre"
+    true: "<#F0E6FF>Mazmorra · Cumbre Helada"
+    false: "%condition:sidebar_world_6%"
+  sidebar_world_8:
+    conditions:
+      - "%world%=tumba"
+    true: "<#F0E6FF>Mazmorra · Tumba del Rey de Arena"
+    false: "%condition:sidebar_world_7%"
+  sidebar_world_9:
+    conditions:
+      - "%world%=bosque"
+    true: "<#F0E6FF>Mazmorra · Bosque Sombrío"
+    false: "%condition:sidebar_world_8%"
+  sidebar_world_10:
+    conditions:
+      - "%world%=astral_minas"
+    true: "       <#F0E6FF>Minas Astrales"
+    false: "%condition:sidebar_world_9%"
+  sidebar_world_11:
+    conditions:
+      - "%world%=mina"
+    true: "<#F0E6FF>Mazmorra · Minas Olvidadas"
+    false: "%condition:sidebar_world_10%"
+  sidebar_world_12:
+    conditions:
+      - "%world%=arena"
+    true: "          <#F0E6FF>Arena PvP"
+    false: "%condition:sidebar_world_11%"
+  sidebar_world_13:
+    conditions:
+      - "%world%=world_the_end"
+    true: "              <#F0E6FF>End"
+    false: "%condition:sidebar_world_12%"
+  sidebar_world_14:
+    conditions:
+      - "%world%=world_nether"
+    true: "            <#F0E6FF>Nether"
+    false: "%condition:sidebar_world_13%"
+  sidebar_world_15:
+    conditions:
+      - "%world%=lobby"
+    true: "             <#F0E6FF>Spawn"
+    false: "%condition:sidebar_world_14%"
+  sidebar_world:
+    conditions:
+      - "%world%=world"
+    true: "           <#F0E6FF>Survival"
+    false: "%condition:sidebar_world_15%"
   diaria0:
     conditions:
       - "%objective_score_{aq.done0}%=1"
-    true: "<gray>Cobrada"
+    true: "<#D6B4FF>✓ Cobrada"
     false: "%condition:diaria0_activa%"
   diaria0_activa:
     conditions:
       - "%objective_score_{aq.active0}%=1"
     true: "%condition:diaria0_id1%"
-    false: "<yellow>Sin aceptar"
+    false: "<#AA96C5>Sin aceptar"
+  diaria0_lista1_1:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=2"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+  diaria0_lista1_2:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=4"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_1%"
+  diaria0_lista1_3:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=6"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_2%"
+  diaria0_lista1_4:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=8"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_3%"
+  diaria0_lista1_5:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=10"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_4%"
+  diaria0_lista1_6:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=12"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_5%"
+  diaria0_lista1_7:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=14"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>%objective_score_{aq.hostil}%/15"
+    false: "%condition:diaria0_lista1_6%"
+  diaria0_lista1:
+    conditions:
+      - "%objective_score_{aq.hostil}%>=15"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>15/15 <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria0_lista1_7%"
   diaria0_id1:
     conditions:
       - "%objective_score_{aq.d0}%=1"
     true: "%condition:diaria0_lista1%"
     false: "%condition:diaria0_id2%"
-  diaria0_lista1:
-    conditions:
-      - "%objective_score_{aq.hostil}%>=15"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.hostil}%/15"
   diaria0_id2:
     conditions:
       - "%objective_score_{aq.d0}%=2"
-    true: "<green>Activa: entrega"
+    true: "<#D6B4FF>Activa: entrega"
     false: "%condition:diaria0_id3%"
   diaria0_id3:
     conditions:
       - "%objective_score_{aq.d0}%=3"
-    true: "<green>Activa: entrega"
+    true: "<#D6B4FF>Activa: entrega"
     false: "%condition:diaria0_id4%"
   diaria0_id4:
     conditions:
       - "%objective_score_{aq.d0}%=4"
-    true: "<green>Activa: entrega"
+    true: "<#D6B4FF>Activa: entrega"
     false: "%condition:diaria0_id5%"
+  diaria0_lista5_1:
+    conditions:
+      - "%objective_score_{aq.spider}%>=2"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+  diaria0_lista5_2:
+    conditions:
+      - "%objective_score_{aq.spider}%>=3"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_1%"
+  diaria0_lista5_3:
+    conditions:
+      - "%objective_score_{aq.spider}%>=4"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_2%"
+  diaria0_lista5_4:
+    conditions:
+      - "%objective_score_{aq.spider}%>=5"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_3%"
+  diaria0_lista5_5:
+    conditions:
+      - "%objective_score_{aq.spider}%>=7"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_4%"
+  diaria0_lista5_6:
+    conditions:
+      - "%objective_score_{aq.spider}%>=8"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_5%"
+  diaria0_lista5_7:
+    conditions:
+      - "%objective_score_{aq.spider}%>=9"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>%objective_score_{aq.spider}%/10"
+    false: "%condition:diaria0_lista5_6%"
+  diaria0_lista5:
+    conditions:
+      - "%objective_score_{aq.spider}%>=10"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>10/10 <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria0_lista5_7%"
   diaria0_id5:
     conditions:
       - "%objective_score_{aq.d0}%=5"
     true: "%condition:diaria0_lista5%"
-    false: "<green>Activa"
-  diaria0_lista5:
-    conditions:
-      - "%objective_score_{aq.spider}%>=10"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.spider}%/10"
+    false: "<#D6B4FF>Activa"
   diaria1:
     conditions:
       - "%objective_score_{aq.done1}%=1"
-    true: "<gray>Cobrada"
+    true: "<#D6B4FF>✓ Cobrada"
     false: "%condition:diaria1_activa%"
   diaria1_activa:
     conditions:
       - "%objective_score_{aq.active1}%=1"
     true: "%condition:diaria1_id6%"
-    false: "<yellow>Sin aceptar"
+    false: "<#AA96C5>Sin aceptar"
+  diaria1_lista6_1:
+    conditions:
+      - "%objective_score_{aq.elite}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.elite}%/3"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.elite}%/3"
+  diaria1_lista6_2:
+    conditions:
+      - "%objective_score_{aq.elite}%>=2"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.elite}%/3"
+    false: "%condition:diaria1_lista6_1%"
+  diaria1_lista6:
+    conditions:
+      - "%objective_score_{aq.elite}%>=3"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>3/3 <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria1_lista6_2%"
   diaria1_id6:
     conditions:
       - "%objective_score_{aq.d1}%=6"
     true: "%condition:diaria1_lista6%"
     false: "%condition:diaria1_id7%"
-  diaria1_lista6:
-    conditions:
-      - "%objective_score_{aq.elite}%>=3"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.elite}%/3"
   diaria1_id7:
     conditions:
       - "%objective_score_{aq.d1}%=7"
-    true: "<green>Activa: entrega"
+    true: "<#D6B4FF>Activa: entrega"
     false: "%condition:diaria1_id8%"
+  diaria1_lista8_1:
+    conditions:
+      - "%objective_score_{aq.biomes}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.biomes}%/3"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.biomes}%/3"
+  diaria1_lista8_2:
+    conditions:
+      - "%objective_score_{aq.biomes}%>=2"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.biomes}%/3"
+    false: "%condition:diaria1_lista8_1%"
+  diaria1_lista8:
+    conditions:
+      - "%objective_score_{aq.biomes}%>=3"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>3/3 <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria1_lista8_2%"
   diaria1_id8:
     conditions:
       - "%objective_score_{aq.d1}%=8"
     true: "%condition:diaria1_lista8%"
     false: "%condition:diaria1_id9%"
-  diaria1_lista8:
+  diaria1_lista9_1:
     conditions:
-      - "%objective_score_{aq.biomes}%>=3"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.biomes}%/3"
+      - "%objective_score_{aq.pet}%>=4"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+  diaria1_lista9_2:
+    conditions:
+      - "%objective_score_{aq.pet}%>=7"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_1%"
+  diaria1_lista9_3:
+    conditions:
+      - "%objective_score_{aq.pet}%>=10"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_2%"
+  diaria1_lista9_4:
+    conditions:
+      - "%objective_score_{aq.pet}%>=13"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_3%"
+  diaria1_lista9_5:
+    conditions:
+      - "%objective_score_{aq.pet}%>=16"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_4%"
+  diaria1_lista9_6:
+    conditions:
+      - "%objective_score_{aq.pet}%>=19"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_5%"
+  diaria1_lista9_7:
+    conditions:
+      - "%objective_score_{aq.pet}%>=22"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>%objective_score_{aq.pet}%/25"
+    false: "%condition:diaria1_lista9_6%"
+  diaria1_lista9:
+    conditions:
+      - "%objective_score_{aq.pet}%>=25"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>25/25 <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria1_lista9_7%"
   diaria1_id9:
     conditions:
       - "%objective_score_{aq.d1}%=9"
     true: "%condition:diaria1_lista9%"
     false: "%condition:diaria1_id10%"
-  diaria1_lista9:
+  diaria1_lista10_1:
     conditions:
-      - "%objective_score_{aq.pet}%>=25"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.pet}%/25"
+      - "%objective_score_{aq.ride}%>=12500"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+  diaria1_lista10_2:
+    conditions:
+      - "%objective_score_{aq.ride}%>=25000"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_1%"
+  diaria1_lista10_3:
+    conditions:
+      - "%objective_score_{aq.ride}%>=37500"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_2%"
+  diaria1_lista10_4:
+    conditions:
+      - "%objective_score_{aq.ride}%>=50000"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_3%"
+  diaria1_lista10_5:
+    conditions:
+      - "%objective_score_{aq.ride}%>=62500"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_4%"
+  diaria1_lista10_6:
+    conditions:
+      - "%objective_score_{aq.ride}%>=75000"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_5%"
+  diaria1_lista10_7:
+    conditions:
+      - "%objective_score_{aq.ride}%>=87500"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>%objective_score_{aq.ride}%/100000 cm"
+    false: "%condition:diaria1_lista10_6%"
+  diaria1_lista10:
+    conditions:
+      - "%objective_score_{aq.ride}%>=100000"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>100000/100000 cm <#D6B4FF>· Por cobrar"
+    false: "%condition:diaria1_lista10_7%"
   diaria1_id10:
     conditions:
       - "%objective_score_{aq.d1}%=10"
     true: "%condition:diaria1_lista10%"
-    false: "<green>Activa"
-  diaria1_lista10:
-    conditions:
-      - "%objective_score_{aq.ride}%>=100000"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa: recorrido"
+    false: "<#D6B4FF>Activa"
   diaria2:
     conditions:
       - "%objective_score_{aq.done2}%=1"
-    true: "<gray>Cobrada"
+    true: "<#D6B4FF>✓ Cobrada"
     false: "%condition:diaria2_activa%"
   diaria2_activa:
     conditions:
       - "%objective_score_{aq.active2}%=1"
     true: "%condition:diaria2_id11%"
-    false: "<yellow>Sin aceptar"
+    false: "<#AA96C5>Sin aceptar"
+  diaria2_lista11:
+    conditions:
+      - "%objective_score_{aq.mine}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>1/1 <#D6B4FF>· Por cobrar"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.mine}%/1"
   diaria2_id11:
     conditions:
       - "%objective_score_{aq.d2}%=11"
     true: "%condition:diaria2_lista11%"
     false: "%condition:diaria2_id12%"
-  diaria2_lista11:
+  diaria2_lista12:
     conditions:
-      - "%objective_score_{aq.mine}%>=1"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.mine}%/1"
+      - "%objective_score_{aq.boss}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>1/1 <#D6B4FF>· Por cobrar"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.boss}%/1"
   diaria2_id12:
     conditions:
       - "%objective_score_{aq.d2}%=12"
     true: "%condition:diaria2_lista12%"
     false: "%condition:diaria2_id13%"
-  diaria2_lista12:
+  diaria2_lista13:
     conditions:
-      - "%objective_score_{aq.boss}%>=1"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.boss}%/1"
+      - "%objective_score_{aq.nightmare}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>1/1 <#D6B4FF>· Por cobrar"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.nightmare}%/1"
   diaria2_id13:
     conditions:
       - "%objective_score_{aq.d2}%=13"
     true: "%condition:diaria2_lista13%"
     false: "%condition:diaria2_id14%"
-  diaria2_lista13:
+  diaria2_lista14:
     conditions:
-      - "%objective_score_{aq.nightmare}%>=1"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.nightmare}%/1"
+      - "%objective_score_{aq.upgrade}%>=1"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>1/1 <#D6B4FF>· Por cobrar"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>%objective_score_{aq.upgrade}%/1"
   diaria2_id14:
     conditions:
       - "%objective_score_{aq.d2}%=14"
     true: "%condition:diaria2_lista14%"
-    false: "<green>Activa"
-  diaria2_lista14:
+    false: "<#D6B4FF>Activa"
+  historia_1:
     conditions:
-      - "%objective_score_{aq.upgrade}%>=1"
-    true: "<gold>Por cobrar"
-    false: "<green>Activa <white>%objective_score_{aq.upgrade}%/1"
+      - "%objective_score_{aq.state}%>=2"
+    true: "<#665477>■■■■■■■■ <#F0E6FF>1/9"
+    false: "<#665477>■■■■■■■■ <#F0E6FF>0/9"
+  historia_2:
+    conditions:
+      - "%objective_score_{aq.state}%>=3"
+    true: "<gradient:#5268C7:#D17AFF>■</gradient><#665477>■■■■■■■ <#F0E6FF>2/9"
+    false: "%condition:historia_1%"
+  historia_3:
+    conditions:
+      - "%objective_score_{aq.state}%>=4"
+    true: "<gradient:#5268C7:#D17AFF>■■</gradient><#665477>■■■■■■ <#F0E6FF>3/9"
+    false: "%condition:historia_2%"
+  historia_4:
+    conditions:
+      - "%objective_score_{aq.state}%>=5"
+    true: "<gradient:#5268C7:#D17AFF>■■■</gradient><#665477>■■■■■ <#F0E6FF>4/9"
+    false: "%condition:historia_3%"
+  historia_5:
+    conditions:
+      - "%objective_score_{aq.state}%>=6"
+    true: "<gradient:#5268C7:#D17AFF>■■■■</gradient><#665477>■■■■ <#F0E6FF>5/9"
+    false: "%condition:historia_4%"
+  historia_6:
+    conditions:
+      - "%objective_score_{aq.state}%>=7"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■</gradient><#665477>■■■ <#F0E6FF>6/9"
+    false: "%condition:historia_5%"
+  historia_7:
+    conditions:
+      - "%objective_score_{aq.state}%>=8"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■</gradient><#665477>■■ <#F0E6FF>7/9"
+    false: "%condition:historia_6%"
+  historia_8:
+    conditions:
+      - "%objective_score_{aq.state}%>=9"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■</gradient><#665477>■ <#F0E6FF>8/9"
+    false: "%condition:historia_7%"
+  historia:
+    conditions:
+      - "%objective_score_{aq.state}%>=10"
+    true: "<gradient:#5268C7:#D17AFF>■■■■■■■■</gradient><#665477> <#F0E6FF>9/9"
+    false: "%condition:historia_8%"
+placeholder-output-replacements:
+  "%date%":
+    "lunes": "Lunes"
+    "martes": "Martes"
+    "miércoles": "Miércoles"
+    "jueves": "Jueves"
+    "viernes": "Viernes"
+    "sábado": "Sábado"
+    "domingo": "Domingo"
+  "%localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy%":
+    "%localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy%": ""
 placeholders:
-  date-format: "EEEE dd/MM/yyyy"
+  date-format: "EEEE"
   time-format: "HH:mm"
   time-offset: -3
   locale: "es-AR"

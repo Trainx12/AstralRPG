@@ -13,6 +13,8 @@ y en ../build/mythicmobs/skills/gachas.yml lo que hace el vendedor: cobra con Va
 import os
 
 from minas import sidebar as mines_sidebar
+from sidebar import (MUTED, PURPLE, TEXT, board, condition, location_conditions,
+                     meter, ref, score, section, steps, bar, weekday_replacements, TITLE, DIVIDER, SERVER_ROWS)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "lobby")
@@ -330,48 +332,56 @@ def daily_sidebar_conditions():
     from misiones import DAILIES
     lines = []
 
-    def condition(name, check, yes, no):
-        lines.extend([f'  {name}:', '    conditions:', f'      - "{check}"',
-                      f'    true: "{yes}"', f'    false: "{no}"'])
-
     for tier in range(3):
         missions = [d for d in DAILIES if d[1] == tier]
-        condition(f'diaria{tier}', f'%objective_score_{{aq.done{tier}}}%=1',
-                  '<gray>Cobrada', f'%condition:diaria{tier}_activa%')
-        condition(f'diaria{tier}_activa', f'%objective_score_{{aq.active{tier}}}%=1',
-                  f'%condition:diaria{tier}_id{missions[0][0]}%', '<yellow>Sin aceptar')
-        for index, (did, _, name, counter, goal, desc) in enumerate(missions):
-            following = f'%condition:diaria{tier}_id{missions[index+1][0]}%' if index+1 < len(missions) else '<green>Activa'
-            status = f'%condition:diaria{tier}_lista{did}%' if counter else '<green>Activa: entrega'
-            condition(f'diaria{tier}_id{did}', f'%objective_score_{{aq.d{tier}}}%={did}', status, following)
+        lines.append(condition(f'diaria{tier}', f'{score(f"aq.done{tier}")}=1',
+                               f'{PURPLE}✓ Cobrada', ref(f'diaria{tier}_activa')))
+        lines.append(condition(f'diaria{tier}_activa', f'{score(f"aq.active{tier}")}=1',
+                               ref(f'diaria{tier}_id{missions[0][0]}'), f'{MUTED}Sin aceptar'))
+        for index, (did, _, _, counter, goal, _) in enumerate(missions):
+            following = ref(f'diaria{tier}_id{missions[index+1][0]}') if index+1 < len(missions) else f'{PURPLE}Activa'
+            status = f'{PURPLE}Activa: entrega'
             if counter:
-                progress = f'<green>Activa <white>%objective_score_{{aq.{counter}}}%/{goal}' if counter != 'ride' else '<green>Activa: recorrido'
-                condition(f'diaria{tier}_lista{did}', f'%objective_score_{{aq.{counter}}}%>={goal}', '<gold>Por cobrar', progress)
-    return '\n'.join(lines) + '\n'
+                status, rules = meter(f'diaria{tier}_lista{did}', score(f'aq.{counter}'), goal,
+                                      ' cm' if counter == 'ride' else '', f' {PURPLE}· Por cobrar')
+                lines.append(rules)
+            lines.append(condition(f'diaria{tier}_id{did}', f'{score(f"aq.d{tier}")}={did}',
+                                   status, following))
+    return "".join(lines)
 
 
-TAB_SECTIONS = r'''header-footer:
-  enabled: true
-  designs:
-    default:
-      header:
-        - "<dark_gray><strikethrough>                                                  </strikethrough>"
-        - ""
-        - "%animation:astral_titulo%"
-        - "<gray>Bienvenido, <white><bold>%player%</bold> <dark_gray>| %condition:rango%"
-        - ""
-      footer:
-        - ""
-        - "<red>❤ <white>%player_health_rounded%<gray>/%player_max_health_rounded%   <gold>⛃ <yellow>%vault_eco_balance_formatted%   <aqua>⚡ <white>%auraskills_power%"
-        - "<gray>Jugadores <white>%online%<dark_gray>/<gray>20   <dark_gray>✦   <gray>Ping <white>%ping%ms   <dark_gray>✦   <gray>TPS %server_tps_1_colored%"
-        - "<gray>Estas en <white>%condition:mundo%   <dark_gray>✦   <gray>/spawn <dark_gray>vuelve al lobby"
-        - ""
-        - "%animation:astral_ip%"
-        - "<dark_gray><strikethrough>                                                  </strikethrough>"
-playerlist-objective:
+def story_sidebar_conditions():
+    from misiones import CHAPTERS
+    total = len(CHAPTERS)
+    states = [(0, f"{bar(0)} {TEXT}0/{total}")]
+    states += [(done + 1, f"{bar(8 * done // total)} {TEXT}{done}/{total}")
+               for done in range(1, total + 1)]
+    return steps("historia", score("aq.state"), states)[1]
+
+
+ASTRAL_BOARD = board("astral", ref("sidebar_world"), [
+    f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
+    *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
+      for i, (icon, label) in enumerate((("✦", "Fácil"), ("✧", "Media"), ("✶", "Difícil")))),
+    f"{PURPLE}✎ {MUTED}Historia {ref('historia')}",
+])
+
+
+# Los mismos colores, titulo y separadores que el panel lateral.
+TAB_HEADER = [DIVIDER, TITLE, f"{section('♟ Jugador')} {TEXT}%player% {MUTED}· %condition:rango%", DIVIDER]
+TAB_FOOTER = [
+    DIVIDER,
+    f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%  {PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
+    f"{PURPLE}♟ {MUTED}Jugadores {TEXT}%online%/%maxplayers%  {PURPLE}· {MUTED}Ping {TEXT}%ping%ms  {PURPLE}· {MUTED}TPS {TEXT}%server_tps_1%",
+    f"{PURPLE}⌖ {TEXT}%condition:mundo%  {PURPLE}· {MUTED}/spawn vuelve al lobby",
+    *SERVER_ROWS, DIVIDER,
+]
+TAB_SECTIONS = ('header-footer:\n  enabled: true\n  designs:\n    default:\n      header:\n'
+                + ''.join(f'        - "{row}"\n' for row in TAB_HEADER)
+                + '      footer:\n' + ''.join(f'        - "{row}"\n' for row in TAB_FOOTER)) + r'''playerlist-objective:
   enabled: true
   value: "%player_health_rounded%"
-  fancy-value: "<white>%player_health_rounded% <red>❤"
+  fancy-value: "<#F0E6FF>%player_health_rounded% <#D6B4FF>❤"
   title: "Vida"
   render-type: INTEGER
   disable-condition: ''
@@ -390,26 +400,7 @@ scoreboard:
   hidden-by-default: false
   delay-on-join-milliseconds: 1500
   scoreboards:
-    astral:
-      title: "%animation:astral_titulo%"
-      lines:
-        - "<gray>⚔ <white><bold>%player%</bold>"
-        - "<gray>Rango||%condition:rango%"
-        - "<red>❤ Vida||<white>%player_health_rounded%<gray>/%player_max_health_rounded%"
-        - "<gold>⛃ Oro||<yellow>%vault_eco_balance_formatted%"
-        - "<aqua>⚡ Poder||<white>%auraskills_power%"
-        - ""
-        - "<aqua><bold>Misiones diarias</bold>"
-        - "<gray>Fácil||%condition:diaria0%"
-        - "<gray>Media||%condition:diaria1%"
-        - "<gray>Difícil||%condition:diaria2%"
-        - "<gray>Renuevan||<white>00:00 ARG"
-        - ""
-        - "<white>%date%"
-        - "<gray>Hora argentina||<aqua>%time%"
-        - "%animation:astral_ip%"
-conditions:
-''' + "".join(
+''' + ASTRAL_BOARD + "conditions:\n" + "".join(
     "  rango%d:\n    conditions:\n      - \"%%auraskills_power%%>=%d\"\n    true: \"%s\"\n    false: \"%s\"\n" % (
         i, th, txt, ("%%condition:rango%d%%" % (i + 1)) if i + 1 < len(RANKS) - 1 else RANKS[-1][1])
     for i, (th, txt) in enumerate(RANKS[:-1])).replace("rango0", "rango") + r'''  titulo:
@@ -417,25 +408,11 @@ conditions:
       - "%luckperms_prefix%="
     true: "<dark_gray>ninguno"
     false: "%luckperms_prefix%"
-  mundo:
-    conditions:
-      - "%world%=lobby"
-    true: "Lobby"
-    false: "%condition:mundo2%"
-  mundo2:
-    conditions:
-      - "%world%=world_nether"
-    true: "<red>Nether"
-    false: "%condition:mundo3%"
-  mundo3:
-    conditions:
-      - "%world%=world_the_end"
-    true: "<light_purple>End"
-    false: "<green>Mundo"
 '''
 
-TAB_SECTIONS += daily_sidebar_conditions() + '''placeholders:
-  date-format: "EEEE dd/MM/yyyy"
+TAB_SECTIONS += (location_conditions() + location_conditions(centered=True) + daily_sidebar_conditions() + story_sidebar_conditions()
+                 + weekday_replacements()) + '''placeholders:
+  date-format: "EEEE"
   time-format: "HH:mm"
   time-offset: -3
   locale: "es-AR"
@@ -448,27 +425,16 @@ TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por d
 _DEFAULT_:
   tabprefix: "%luckperms-prefix% "
   tagprefix: "%luckperms-prefix% "
-  customtabname: "<white>%player%"
-  tabsuffix: " <dark_gray>[<aqua>⚡%auraskills_power%<dark_gray>]"
+  customtabname: "<#F0E6FF>%player%"
+  tabsuffix: " <#AA96C5>[<#D6B4FF>⚡ <#F0E6FF>%auraskills_power%<#AA96C5>]"
   tagsuffix: ""
 '''
 
-TAB_ANIMATIONS = r'''# Animaciones del tabulador y del panel (generado por datapack-src/lobby.py)
-astral_titulo:
-  change-interval: 150
-  texts:
-''' + "".join("    - \"%s\"\n" % t for t in [
-    "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
-    "<gradient:#9A6CFF:#5FD8FF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
-    "<gradient:#7EC8FF:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>",
-    "<gradient:#4FD1FF:#B07CFF><bold>✦ ASTRAL RPG ✦</bold></gradient>",
-    "<gradient:#FFD24A:#B07CFF><bold>✧ ASTRAL RPG ✧</bold></gradient>",
-    "<gradient:#B07CFF:#4FD1FF><bold>✦ ASTRAL RPG ✦</bold></gradient>"]) + r'''astral_ip:
-  change-interval: 200
-  texts:
-''' + "".join("    - \"%s\"\n" % t for t in [
-    "<dark_gray>AstralRPG2.aternos.me", "<gray>AstralRPG2.aternos.me", "<white>AstralRPG2.aternos.me",
-    "<aqua>AstralRPG2.aternos.me", "<white>AstralRPG2.aternos.me", "<gray>AstralRPG2.aternos.me"])
+# Compatibilidad con configs que referencian las animaciones anteriores.
+TAB_ANIMATIONS = ('astral_titulo:\n  change-interval: 1000\n  texts:\n'
+                  f'    - "{TITLE}"\n'
+                  'astral_ip:\n  change-interval: 1000\n  texts:\n'
+                  f'    - "{SERVER_ROWS[-1]}"\n')
 
 
 def spawn_yml():
@@ -558,6 +524,7 @@ def commands():
          "papi ecloud download Player",
          "papi ecloud download Server",
          "papi ecloud download Statistic",
+         "papi ecloud download LocalTime",
          "papi reload",
          "# --- contadores de garantia (pity) de las gachas",
          ] + [f"scoreboard objectives add {pity_obj(gid)} dummy" for gid in GACHAS] + [
