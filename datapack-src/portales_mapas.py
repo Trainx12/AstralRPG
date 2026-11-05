@@ -368,16 +368,17 @@ def prepare_sanctuary():
     return palette, blocks
 
 
-def world_metadata(world, spawn):
+def world_metadata(world, spawn, base=None, destination=None):
     """Metadatos de Paper 26.1, con generacion vacia fuera de las construcciones."""
-    base = ROOT/'.local/asw-native/server/world'
+    base = Path(base) if base is not None else ROOT/'.local/asw-native/server/world'
+    destination = Path(destination) if destination is not None else OUTPUT/world
     template = base/'dimensions/minecraft/overworld/data'
 
     def read(path):
         return NBT(gzip.decompress(path.read_bytes()), typed=True).root()
 
     def write(relative, tree):
-        path = OUTPUT/world/relative
+        path = destination/relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(gzip.compress(bytes([tree[0]]) + nbt_string('') + nbt_payload(tree), mtime=0))
 

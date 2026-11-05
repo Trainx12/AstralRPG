@@ -42,3 +42,41 @@ Instalacion, siempre con el servidor apagado:
 El script verifica las llegadas y el End activo antes de producir el informe
 privado con hashes SHA-256. Estas comprobaciones locales no sustituyen las de
 la consola despues de instalar.
+
+## Instalado y verificado en Aternos
+
+El 05/11/2026 a las 16:20 (Argentina), desde `af610a1`, se completaron las
+subidas selectivas y el arranque. El servidor quedo online. No se restauro el
+respaldo general ni se sustituyo el mundo principal. Los cambios locales previos
+de otras tareas se conservaron sin publicarlos.
+
+Se instalaron las 16 regiones de Forja, sus metadatos de generacion vacia y las
+cuatro regiones preparadas de Portales. Antes se guardaron las seis regiones
+relevantes de Portales, las cuatro regiones anteriores de Forja, su generador,
+el registro de Multiverse y el schematic del End dentro del respaldo privado.
+La Forja anterior contenia agua en 1146 chunks de esas cuatro regiones; la copia
+original reinstalada no contiene agua.
+
+Paper termino el arranque en 56.853 segundos. Los scripts cargaron sin errores.
+No se observaron errores de lectura/conversion de las regiones restauradas.
+Persisten los avisos de los dialogos de ejemplo de MythicMobs y se observo un
+aviso de velocidad de escritura de variables de Skript durante el arranque.
+
+La consola confirmo:
+
+- Piso y dos bloques de aire en las llegadas de End, Nether y Forja.
+- `minecraft:end_portal` en `145 96 0` y `minecraft:nether_portal` en
+  `-2199 83 119`.
+- Forja es FLAT, sin estructuras. Un chunk nuevo en `4096 4096` tiene bioma
+  `the_void` y aire a Y=-64, 0, 60 y 100: ya no genera oceano fuera del mapa.
+- Se repusieron los dos aldeanos de Portales, solo al comprobar que faltaban.
+- Se aplicaron las reglas de Forja: sin ajuste automatico del spawn ni clima,
+  sin mobs naturales, conservar inventario y proteccion de construccion/cofres/PvP.
+- Se retiraron las seis cargas temporales. La consulta final de ambas
+  dimensiones confirmo que no quedaron chunks forzados.
+
+Validacion local: ocho pruebas de formatos y metadatos pasaron, ademas de las
+comprobaciones del generador de restauracion. Falta recorrido visual con jugador;
+la seleccion del espacio de combate de Forja y su controlador siguen pendientes
+de antes. Evidencia privada en `.local/restauracion-mundos-2026-11-05/`:
+`consola-verificacion.txt` y `aternos-online.jpg`.

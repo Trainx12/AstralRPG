@@ -38,8 +38,10 @@ DEFINITIONS = [
          points=[(1536.5, 224, 1900.5), (1456.5, 210, 2032.5), (1536.5, 200, 2304.5)],
          labels=["Ladera de ceniza", "Puente de la escoria", "Nucleo de la Forja"],
          enemies=["espantapajaros", "arana", "cara"], money=3000),
-    dict(key="santuario", name="Santuario Celestial", map="vacio.zip", boss=None, event="santuario", tier=6,
-         points=[(-329.5, 51, 65.5)], labels=["Prueba de los cinco ecos"],
+    dict(key="santuario", name="Santuario Celestial", map="mapa_santuario.rar",
+         world="santuario_freemap9", boss=None, event="santuario", tier=6,
+         points=[(33.5, 103, -60.5)], arrival=(33.5, 103, -40.5), radius=32,
+         labels=["Prueba de los cinco ecos"],
          enemies=[], money=5000),
 ]
 ARENA = dict(world="arena", map="batalla_de_Jugadores.zip", enabled=True,
@@ -99,7 +101,8 @@ def catalog():
                 blocks.append(block); helpers.update(add)
                 waves.append([(mid, 1, 0)])
             rooms.append(dict(id="sala1", name=definition["labels"][0], centro=definition["points"][0],
-                              llegada=definition["points"][0], r=30, oleadas=waves, extra=sorted(helpers)))
+                              llegada=definition.get("arrival", definition["points"][0]),
+                              r=definition.get("radius", 30), oleadas=waves, extra=sorted(helpers)))
         else:
             boss, block, helpers = variant(key, definition["boss"], boss=True)
             blocks.append(block)
@@ -112,7 +115,7 @@ def catalog():
                                   r=definition.get("final_radius", 28) if last else 18,
                                   spawn_radius=definition.get("final_spawn_radius", 4) if last else 4,
                                   oleadas=waves, extra=sorted(helpers) if last else []))
-        dungeon = dict(key=key, name=definition["name"], world=key, mobs={}, rooms=rooms,
+        dungeon = dict(key=key, name=definition["name"], world=definition.get("world", key), mobs={}, rooms=rooms,
                         npc=f"astral_npc_{key}", reward=[("esencia_elite",4),("alma_corrupta",1)],
                         money=definition["money"], cooldown="30m", event=definition["event"],
                         enabled=definition.get("enabled", True), mob_blocks="\n".join(blocks), tier=definition["tier"], map=definition["map"])
