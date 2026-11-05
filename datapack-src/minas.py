@@ -11,6 +11,7 @@ import gzip
 from pathlib import Path
 
 from tools import AREA_NAMES, FACING, area_ranges
+from sidebar import MUTED, PURPLE, TEXT, bar, board, centered_location, condition, meter, ref, score, section, steps
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "build/minas"
@@ -130,7 +131,8 @@ def config():
 
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
-    values = {"WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
+    from travel_ui import title
+    values = {"MENU_TITLE": title("minas"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,
               "FALL_Y": FALL_Y, "PIT_H": PIT["y2"] - PIT["y1"] + 1, "PIT_W": PIT["x2"] - PIT["x1"] + 1}
     for key, v in PIT.items():
@@ -147,35 +149,37 @@ def script(world=WORLD, dim=DIM):
 def sidebar(original):
     """Agrega al TAB un panel para el mundo de minas: igual al normal, pero en lugar de las
     misiones diarias muestra la mina actual y lo que falta para abrir la siguiente."""
-    start = original.index("    astral:\n")
-    end = original.index("conditions:\n", start)
-    block = original[start:end]
-    daily = block.index('        - "<aqua><bold>Misiones diarias')
-    mine = block[:daily].replace("    astral:\n", f'    minas:\n      display-condition: "%world%={WORLD}"\n')
-    mine += """        - "<aqua><bold>⛏ Minas Astrales</bold>"
-        - "<gray>Estás en||%condition:am_here%"
-        - "<gray>Siguiente||%condition:am_next%"
-        - "<gray>Picar en||%condition:am_current%"
-        - "<gray>Bloques||%condition:am_need%"
-        - "<gray>Costo||%condition:am_pay%"
-        - "%condition:am_time%"
-        - "%animation:astral_ip%"
-"""
+    mine = board("minas", ref("am_location"), [
+        section("⛏ Minas"),
+        f"{PURPLE}◷ {MUTED}Regeneración {TEXT}{score('am_regen_m')}m {score('am_regen_s')}s",
+        ref("am_next_row"),
+        ref("am_source_row"),
+        ref("am_need"),
+        ref("am_pay"),
+        ref("am_time"),
+    ], world=WORLD)
     last = len(MINES)
-    conditions = [
-        "  am_need:", "    conditions:", f'      - "%objective_score_{{am_rank}}%<{last}"',
-        '    true: "<white>%objective_score_{am_blocks}%<gray>/<white>%objective_score_{am_goal}%"',
-        '    false: "<green>¡Todas abiertas!"',
-        "  am_pay:", "    conditions:", f'      - "%objective_score_{{am_rank}}%<{last}"',
-        '    true: "<gold>%objective_score_{am_cost}% oro"', '    false: "<gray>—"',
-        "  am_time:", "    conditions:", f'      - "%objective_score_{{am_rank}}%={last - 1}"',
-        f'    true: "<gray>Minería activa: <white>%objective_score_{{am_minutes}}%<gray>/{FINAL_MINUTES} min"',
-        '    false: ""',
-    ]
+    block_bar, block_rules = steps("am_bar", score("am_segments"),
+                                  [(i, bar(i)) for i in range(9)])
+    time_bar, time_rules = meter("am_time_bar", score("am_minutes"), FINAL_MINUTES, " min")
+    unlocked = f"{score('am_rank')}<{last}"
+    extra = block_rules + time_rules + "".join((
+        condition("am_location", f"{score('am_here')}>0", ref("am_here"), centered_location("Minas Astrales")),
+        condition("am_next_row", unlocked, f"{PURPLE}» {MUTED}Siguiente {ref('am_next')}", ""),
+        condition("am_source_row", unlocked, f"{PURPLE}⛏ {MUTED}Picar en {ref('am_current')}", ""),
+        condition("am_need", unlocked,
+                  f"{PURPLE}⛏ {MUTED}Faltan {TEXT}{score('am_left')}  {block_bar} {TEXT}{score('am_blocks')}/{score('am_goal')}",
+                  f"{PURPLE}✓ Todas abiertas"),
+        condition("am_pay", unlocked, f"{PURPLE}⛃ {MUTED}Costo {TEXT}{score('am_cost')} oro", ""),
+        condition("am_time", f"{score('am_rank')}={last - 1}", f"{PURPLE}◷ {MUTED}Activa {time_bar}", ""),
+    ))
+    conditions = []
 
     def label_tree(key, objective, labels, lo, hi):
         identifier = f"am_{key}" if (lo, hi) == (1, len(labels)) else f"am_{key}{lo}_{hi}"
         if lo == hi:
+            if key == "here":
+                return centered_location(f"Mina · {labels[lo-1]}")
             return f"<white>{labels[lo-1]}"
         mid = (lo + hi) // 2
         yes = label_tree(key, objective, labels, lo, mid)
@@ -185,11 +189,13 @@ def sidebar(original):
                            f'    true: "{yes}"', f'    false: "{no}"'])
         return f"%condition:{identifier}%"
 
-    labels = [row[0] for row in MINES]
+    tiers = {"I": 1, "II": 2, "III": 3}
+    labels = [f"{ore} Tier {tiers[tier]}" for tier, ore in (row[0].split(" · ") for row in MINES)]
     for key, objective, options in (("here", "am_here", labels), ("current", "am_rank", labels),
                                      ("next", "am_rank", labels[1:] + ["—"])):
         label_tree(key, objective, options, 1, len(options))
-    return original[:start] + mine + block + "conditions:\n" + "\n".join(conditions) + "\n" + original[end+len("conditions:\n"):]
+    return original.replace("    astral:\n", mine + "    astral:\n", 1).replace(
+        "\nconditions:\n", "\nconditions:\n" + extra + "\n".join(conditions) + "\n", 1)
 
 
 def prepare_schematic(source):

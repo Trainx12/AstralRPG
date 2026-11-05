@@ -1,85 +1,94 @@
 {
-  "menu_title": "&8Elige tu portal",
+  "menu_title": "&f",
   "size": 27,
   "items": {
-    "info": {
-      "material": "COMPASS",
-      "slot": 4,
-      "display_name": "&b&lPortales Astrales",
-      "lore": [
-        "&7Elige el portal que quieres visitar.",
-        "&7Cada destino tiene su propio acceso."
-      ]
-    },
     "nether": {
       "material": "OBSIDIAN",
-      "slot": 11,
-      "display_name": "&c&lPortal del Nether",
+      "slot": 10,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/nether",
       "lore": [
-        "&7Los Guardianes custodian el umbral del Nether.",
-        "&eClic para viajar a la plataforma de acceso."
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
       ],
       "click_commands": [
         "[close]",
-        "[player] umbrales nether"
+        "[player] umbrales nether<delay=3>"
       ]
     },
     "end": {
       "material": "END_PORTAL_FRAME",
-      "slot": 15,
-      "display_name": "&d&lPortal del End",
+      "slot": 12,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/end",
       "lore": [
-        "&7Visita la isla del End.",
-        "&eClic para viajar a la plataforma de acceso."
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
       ],
       "click_commands": [
         "[close]",
-        "[player] umbrales end"
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "parkour": {
+      "material": "FEATHER",
+      "slot": 14,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/parkour",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "arenas": {
+      "material": "IRON_SWORD",
+      "slot": 16,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/arenas",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
       ]
     },
     "lobby": {
       "material": "ENDER_PEARL",
-      "slot": 13,
-      "display_name": "&a&lVolver al Lobby",
+      "slot": 22,
+      "display_name": "&aVolver al lobby",
+      "item_model": "astral:viajes/lobby",
       "lore": [
-        "&7Te lleva al spawn del lobby.",
-        "&eClic para volver."
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
       ],
       "click_commands": [
         "[close]",
-        "[player] umbrales lobby"
+        "[player] umbrales lobby<delay=3>"
       ]
     },
     "cerrar": {
       "material": "BARRIER",
-      "slot": 22,
+      "slot": 26,
       "display_name": "&cCerrar",
+      "item_model": "astral:viajes/cerrar",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
       "click_commands": [
         "[close]"
-      ]
-    },
-    "fondo": {
-      "material": "BLACK_STAINED_GLASS_PANE",
-      "display_name": " ",
-      "slots": [
-        0,
-        1,
-        2,
-        3,
-        5,
-        6,
-        7,
-        8,
-        9,
-        17,
-        18,
-        19,
-        20,
-        21,
-        23,
-        24,
-        25,
-        26
       ]
     }
   }

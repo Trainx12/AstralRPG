@@ -64,10 +64,17 @@ Seguir [instalacion.txt](../build/minas/instalacion.txt) en orden:
 3. Invocar los 20 aldeanos de venta y el del lobby (`mm mobs spawn ...`). Antes subir el `astral.yml` nuevo de
    MythicMobs y `mm reload`.
 4. Subir `build/minas/Skript/scripts/astral_minas.sk` a `plugins/Skript/scripts/` y la sección de TAB
-   (`build/lobby/TAB/secciones-config.yml`: `scoreboard` y `conditions`). `skript reload astral_minas`, `tab reload`.
+   (`build/lobby/TAB/secciones-config.yml`: `scoreboard`, `conditions`, `placeholders` y
+   `placeholder-output-replacements`). Combinar las claves de las dos últimas secciones
+   con las que ya existan en TAB. Copiar el Skript generado antes de ejecutar
+   `skript reload astral_minas` y `tab reload`. La barra de bloques muestra el avance y los
+   bloques restantes; la de minutos solo aparece al preparar la última mina.
 5. `/minasmoldes` (rellena los moldes, unos segundos por mina; se puede de a una: `/minasmoldes 5`) y `/minasactivar`.
 
 El datapack ya tiene el cambio del taladro (no hace falta volver a subirlo).
+
+La presentación de `/minas` y de venta rápida usa el marco propio del resource
+pack. Generación, vistas previas y despliegue: [Interfaces de Portales y Minas](INTERFACES_PORTALES_MINAS.md).
 
 Comandos de admin (`astral.minas.admin`): `/minasmoldes [n]`, `/minasactivar`, `/minasreset <n>`,
 `/minasrango <jugador> <n>`. Con creativo + ese permiso se puede editar el mundo libremente.

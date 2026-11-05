@@ -16,27 +16,21 @@ NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2190.5, 81, 90.5)}
 
 
 def menu_data():
-    items = {
-        'info': {'material': 'COMPASS', 'slot': 4, 'display_name': '&b&lPortales Astrales',
-                 'lore': ['&7Elige el portal que quieres visitar.',
-                          '&7Cada destino tiene su propio acceso.']},
-        'nether': {'material': 'OBSIDIAN', 'slot': 11, 'display_name': '&c&lPortal del Nether',
-                   'lore': ['&7Los Guardianes custodian el umbral del Nether.',
-                            '&eClic para viajar a la plataforma de acceso.'],
-                   'click_commands': ['[close]', '[player] umbrales nether']},
-        'end': {'material': 'END_PORTAL_FRAME', 'slot': 15, 'display_name': '&d&lPortal del End',
-                'lore': ['&7Visita la isla del End.',
-                         '&eClic para viajar a la plataforma de acceso.'],
-                'click_commands': ['[close]', '[player] umbrales end']},
-        'lobby': {'material': 'ENDER_PEARL', 'slot': 13, 'display_name': '&a&lVolver al Lobby',
-                  'lore': ['&7Te lleva al spawn del lobby.', '&eClic para volver.'],
-                  'click_commands': ['[close]', '[player] umbrales lobby']},
-        'cerrar': {'material': 'BARRIER', 'slot': 22, 'display_name': '&cCerrar',
-                   'click_commands': ['[close]']},
-        'fondo': {'material': 'BLACK_STAINED_GLASS_PANE', 'display_name': ' ',
-                  'slots': [0, 1, 2, 3, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 23, 24, 25, 26]},
-    }
-    return {'menu_title': '&8Elige tu portal', 'size': 27, 'items': items}
+    from travel_ui import title
+    items = {}
+    for key, material, slot, name, lore, commands in (
+        ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
+        ('end', 'END_PORTAL_FRAME', 12, '&e&lEnd', ['&7Una isla al otro lado del vacío.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales end<delay=3>']),
+        ('parkour', 'FEATHER', 14, '&d&lParkour', ['&7Elegí tu circuito y probá tus saltos.'], ['[openguimenu] parkour']),
+        ('arenas', 'IRON_SWORD', 16, '&b&lArenas PvP', ['&7Elegí una arena para combatir.'], ['[openguimenu] arenas']),
+        ('lobby', 'ENDER_PEARL', 22, '&aVolver al lobby', ['&7Volvé al punto de aparición.'], ['[close]', '[player] umbrales lobby<delay=3>']),
+        ('cerrar', 'BARRIER', 26, '&cCerrar', ['&7Seguí explorando por tu cuenta.'], ['[close]']),
+    ):
+        items[key] = {'material': material, 'slot': slot, 'display_name': name,
+                      'item_model': f'astral:viajes/{key}', 'lore': lore + ['', '&eClic para elegir.'],
+                      'click_commands': commands}
+    return {'menu_title': title('portales'), 'size': 27, 'items': items}
+
 
 
 def script():

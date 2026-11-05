@@ -654,7 +654,7 @@ on load:
     set {-am.off::5::w1::13} to vector(0, 0, -2)
     set {-am.off::5::w1::14} to vector(0, 1, -2)
     set {-am.off::5::w1::15} to vector(0, 2, -2)
-    loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost" and "am_minutes":
+    loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost", "am_minutes", "am_regen_m", "am_regen_s", "am_segments" and "am_left":
         execute console command "minecraft:scoreboard objectives add %loop-value% dummy"
     loop all players:
         am_load(loop-player)
@@ -703,14 +703,28 @@ function am_save(p: player):
         if {am.blocks::%{_id}%} is not {-am.b::%{_id}%}:
             set {am.blocks::%{_id}%} to {-am.b::%{_id}%}
 
+function am_sidebar_blocks(p: player):
+    set {_next} to am_rank({_p}) + 1
+    set {_goal} to {-am.goal::%{_next}%} ? 0
+    set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
+    set {_filled} to 0
+    set {_shown} to {_blocks}
+    if {_goal} > 0:
+        if {_shown} > {_goal}:
+            set {_shown} to {_goal}
+        set {_filled} to floor(8 * {_shown} / {_goal})
+    am_score({_p}, "am_blocks", {_shown})
+    am_score({_p}, "am_segments", {_filled})
+    am_score({_p}, "am_left", {_goal} - {_shown})
+    set {-am.shown::%uuid of {_p}%} to {_blocks}
+
 function am_sidebar(p: player):
     set {_next} to am_rank({_p}) + 1
     am_score({_p}, "am_rank", am_rank({_p}))
     am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
     am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
-    am_score({_p}, "am_blocks", {-am.b::%uuid of {_p}%} ? 0)
+    am_sidebar_blocks({_p})
     am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
-    set {-am.shown::%uuid of {_p}%} to {-am.b::%uuid of {_p}%} ? 0
 
 function am_sync(p: player):
     if name of world of {_p} is "astral_minas":
@@ -720,19 +734,34 @@ function am_sync(p: player):
     else:
         remove "astral.mines" from scoreboard tags of {_p}
 
+function am_regen_sidebar(p: player, i: number):
+    set {_seconds} to 0
+    set {_next} to {-am.next::%{_i}%}
+    set {_now} to now
+    if {am.enabled} is true:
+        if {-am.building} is not true:
+            if {_next} is set:
+                if {_next} > {_now}:
+                    set {_left} to difference between {_next} and {_now}
+                    set {_seconds} to ceil({_left} / 1 second)
+    am_score({_p}, "am_regen_m", floor({_seconds} / 60))
+    am_score({_p}, "am_regen_s", mod({_seconds}, 60))
+
 # ---------------------------------------------------------------- menu de minas
 
 function am_menu(p: player):
     set {_rank} to am_rank({_p})
     set {_next} to {_rank} + 1
     set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
-    set {_inv} to chest inventory with 6 rows named "&8Minas Astrales"
-    loop 54 times:
-        set slot loop-number - 1 of {_inv} to black stained glass pane named " "
+    set {_inv} to chest inventory with 6 rows named "&f"
     set slot 4 of {_inv} to gold ingot named "&6Tu oro: &e%{_p}'s balance%" with lore "&7Abrí la siguiente mina picando" and "&7en la anterior y pagando su costo."
+    set item model of slot 4 of {_inv} to "astral:viajes/info"
     set slot 9 of {_inv} to stone named "&f&lTier I" with lore "&7Piedra con minerales."
+    set item model of slot 9 of {_inv} to "astral:viajes/tier1"
     set slot 18 of {_inv} to coal block named "&e&lTier II" with lore "&7Minerales con bloques compactos."
+    set item model of slot 18 of {_inv} to "astral:viajes/tier2"
     set slot 27 of {_inv} to diamond block named "&b&lTier III" with lore "&7Solo bloques compactos."
+    set item model of slot 27 of {_inv} to "astral:viajes/tier3"
     loop {-am.count} times:
         set {_i} to loop-number
         set {_slot} to {-am.slot::%{_i}%}
@@ -759,6 +788,11 @@ function am_menu(p: player):
         else:
             set slot {_slot} of {_inv} to barrier named "&c%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
     set slot 49 of {_inv} to ender pearl named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
+    set item model of slot 49 of {_inv} to "astral:viajes/lobby"
+    set slot 45 of {_inv} to iron pickaxe named "&eTu progreso: &f%{-am.name::%{_rank}%}%" with lore "&7Verde: mina abierta, clic para viajar." and "&eAmarillo: próxima mina, revisá el costo." and "&cRojo: abrí las anteriores primero."
+    set item model of slot 45 of {_inv} to "astral:viajes/info"
+    set slot 53 of {_inv} to barrier named "&cCerrar"
+    set item model of slot 53 of {_inv} to "astral:viajes/cerrar"
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "menu"
 
@@ -811,11 +845,11 @@ function am_sell_value(p: player, sell: boolean) :: number:
 
 function am_sale_menu(p: player):
     set {_value} to am_sell_value({_p}, false)
-    set {_inv} to chest inventory with 3 rows named "&8Venta rápida de minerales"
-    loop 27 times:
-        set slot loop-number - 1 of {_inv} to gray stained glass pane named " "
+    set {_inv} to chest inventory with 3 rows named "&f"
     set slot 13 of {_inv} to emerald named "&a&lVender todos mis minerales" with lore "&7Vende piedra, roca y minerales" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
+    set item model of slot 13 of {_inv} to "astral:viajes/sell"
     set slot 22 of {_inv} to barrier named "&cCerrar"
+    set item model of slot 22 of {_inv} to "astral:viajes/cerrar"
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "venta"
 
@@ -858,6 +892,9 @@ on inventory click:
         stop
     set {_slot} to index of event-slot
     if {_gui} is "menu":
+        if {_slot} is 53:
+            close inventory of player
+            stop
         if {_slot} is 49:
             close inventory of player
             execute console command "spawn %name of player%"
@@ -1063,10 +1100,11 @@ every 30 seconds:
 
 every 1 second:
     loop all players in am_world():
+        set {_i} to am_id(location of loop-player)
+        am_regen_sidebar(loop-player, {_i})
         if loop-player's gamemode is creative:
             if loop-player has permission "astral.minas.admin":
                 continue
-        set {_i} to am_id(location of loop-player)
         if {_i} is 0:
             execute console command "spawn %name of loop-player%"
             continue
@@ -1095,8 +1133,7 @@ every 3 seconds:
     loop all players in am_world():
         set {_id} to uuid of loop-player
         if {-am.shown::%{_id}%} is not {-am.b::%{_id}%}:
-            set {-am.shown::%{_id}%} to {-am.b::%{_id}%}
-            am_score(loop-player, "am_blocks", {-am.b::%{_id}%} ? 0)
+            am_sidebar_blocks(loop-player)
 
 # ---------------------------------------------------------------- regeneracion
 #

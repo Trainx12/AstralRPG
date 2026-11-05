@@ -252,6 +252,10 @@ from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)
 default_font['providers'] = gacha_providers + default_font['providers']
+from travel_ui import assets as travel_assets
+travel_files, travel_providers = travel_assets()
+files.update(travel_files)
+default_font['providers'] = travel_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
 # Arte nuevo de inventario: prevalece sobre las texturas antiguas.
