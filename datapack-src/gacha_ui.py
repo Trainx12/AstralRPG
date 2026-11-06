@@ -2,7 +2,7 @@
 from pathlib import Path
 from PIL import Image, ImageDraw
 from escape_menu import text
-from market_ui import THEMES, TITLE_Y, TITLE_OUTLINE, band_color
+from market_ui import THEMES, TITLE_Y, TITLE_OUTLINE, band_color, frame_source
 from services_ui import png
 
 ROOT = Path(__file__).resolve().parent
@@ -22,9 +22,7 @@ def title(kind):
 
 def panel(kind):
     caption, fill, edge = THEMES[kind]
-    source = Image.open(ROOT/f'pack-source/ref/{kind}-frame.png').convert('RGBA')
-    sx = [0, round(source.width*.13), round(source.width*.87), source.width]
-    sy = [0, round(source.height*.20), round(source.height*.92), source.height]
+    source, sx, sy = frame_source(kind)
     dx, dy = [0,24,200,224], [0,56,202,224]
     im = Image.new('RGBA', (224,224))
     ImageDraw.Draw(im).rectangle((24,36,199,56), fill=fill)
@@ -37,8 +35,9 @@ def panel(kind):
     for x,y in ((-1,0),(1,0),(0,-1),(0,1)):
         text(im,caption,(112+x,TITLE_Y[kind]+y),color=TITLE_OUTLINE[kind])
     text(im,caption,(112,TITLE_Y[kind]),color='#fff0d5')
-    d.rectangle((65,43,158,54),fill=fill)
-    text(im,'INVOCANDO...',(112,45),color=edge)
+    if TITLE_Y[kind] <= 30:  # solo si el cartel deja lugar debajo del titulo
+        d.rectangle((65,43,158,54),fill=fill)
+        text(im,'INVOCANDO...',(112,45),color=edge)
     # Los adornos ocupan las filas vacias. La cinta real gira en slots 9..17.
     for y in (58,96):
         for x in (39,57,75,147,165,183):

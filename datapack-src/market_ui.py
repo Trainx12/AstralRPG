@@ -8,14 +8,30 @@ from services_ui import png, button, OFFSET, SIZE, SPLIT
 ROOT = Path(__file__).resolve().parent
 THEMES = {
     'subastas': ('CASA DE SUBASTAS', '#302019', '#c59b51'),
-    'gacha_rpg': ('ARSENAL ARCANO', '#241a37', '#ae83e3'),
-    'gacha_monturas': ('SENDAS SALVAJES', '#192d25', '#a9c56c'),
-    'gacha_cosmeticos': ('GALERIA CELESTE', '#322036', '#e99cc9'),
+    'gacha_rpg': ('ARSENAL ARCANO', '#1e1226', '#ae83e3'),
+    'gacha_monturas': ('SENDAS SALVAJES', '#23261c', '#c9a85a'),
+    'gacha_cosmeticos': ('GALERIA CELESTE', '#16292f', '#7fd3d6'),
 }
+# Marcos de Gemini (noviembre 2026) e interior medido sobre cada original.
+FRAMES = {'gacha_rpg': ('gacha_rpg2', (220, 773, 1582, 2068)),
+          'gacha_monturas': ('gacha_monturas2', (254, 411, 1588, 2031)),
+          'gacha_cosmeticos': ('gacha_cosmeticos2', (196, 587, 1516, 1943))}
+# Gachas con iconos de tirada dibujados por Gemini.
+TIER_ART = ('gacha_rpg', 'gacha_monturas')
+
+
+def frame_source(kind):
+    """Imagen del marco y cortes de nueve partes (x, y) en el original."""
+    art, box = FRAMES.get(kind, (kind, None))
+    source = Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
+    if box is None:
+        box = (round(source.width*.13), round(source.height*.20), round(source.width*.87), round(source.height*.92))
+    l, t, r, b = box
+    return source, [0, l, r, source.width], [0, t, b, source.height]
 # Titulo claro con contorno oscuro: se lee sobre carteles dorados, rosas o oscuros.
 # Altura del titulo, centrada en el cartel de cada marco (Sendas Salvajes es la referencia).
-TITLE_Y = {'subastas': 21, 'gacha_rpg': 24, 'gacha_monturas': 27, 'gacha_cosmeticos': 24}
-TITLE_OUTLINE = {'subastas': '#3b2108', 'gacha_rpg': '#1c1030', 'gacha_monturas': '#0f2418', 'gacha_cosmeticos': '#4a1538'}
+TITLE_Y = {'subastas': 21, 'gacha_rpg': 41, 'gacha_monturas': 34, 'gacha_cosmeticos': 39}
+TITLE_OUTLINE = {'subastas': '#3b2108', 'gacha_rpg': '#1c1030', 'gacha_monturas': '#0f2418', 'gacha_cosmeticos': '#0a1c22'}
 # Casillas de la fila de abajo que usa cada menu: volver, cerrar y, en las
 # gachas, garantia, premios y probabilidades.
 NAV = {'subastas': [45, 53]}
@@ -62,6 +78,15 @@ def tile_card(kind, key):
         caption,sub = 'TIRAR '+key.upper(),money(GACHAS[kind]['cost']*int(key[1:]))
     im=Image.new('RGBA',(72,36),fill); d=ImageDraw.Draw(im)
     d.rectangle((0,0,71,35),outline=edge);d.rectangle((2,2,69,33),outline='#100f19')
+    if kind in TIER_ART:
+        # Icono de Gemini a la izquierda; TIRAR / X10 / precio a la derecha.
+        art=Image.open(ROOT/f'pack-source/ref/gemini/{kind}_{key}.png').convert('RGBA').resize((30,30),Image.Resampling.LANCZOS)
+        im.alpha_composite(art,(3,3))
+        text(im,'TIRAR',(53,3),color='#fff0d5');text(im,key.upper(),(53,13),color='#fff0d5')
+        price=Image.new('RGBA',(80,10));text(price,sub,(40,0),color=edge);price=price.crop(price.getbbox())
+        if price.width>36:price=price.resize((36,price.height),Image.Resampling.NEAREST)
+        im.alpha_composite(price,(53-price.width//2,25))
+        return im
     d.line((4,3,67,3),fill=edge)
     text(im,caption,(36,9),color='#fff0d5');text(im,sub,(36,23),color=edge)
     return im
@@ -70,10 +95,8 @@ def tile_card(kind, key):
 def panel(kind, catalog=False):
     if kind=='subastas_catalogo':kind,catalog='subastas',True
     caption,fill,edge=THEMES[kind]
-    source=Image.open(ROOT/f'pack-source/ref/{kind}-frame.png').convert('RGBA')
     # Nueve cortes: motivos en el borde, centro libre para las acciones reales.
-    sx=[0,round(source.width*.13),round(source.width*.87),source.width]
-    sy=[0,round(source.height*.20),round(source.height*.92),source.height]
+    source,sx,sy=frame_source(kind)
     dx=[0,24,200,224];dy=[0,56,258,280]
     im=Image.new('RGBA',SIZE)
     # Fondo debajo del cartel: algunos marcos dejan ahi pixeles transparentes
