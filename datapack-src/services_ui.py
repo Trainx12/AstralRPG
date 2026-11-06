@@ -29,16 +29,23 @@ def png(image):
 
 def frame(kind):
     art, (left, top, right, bottom), caption, ty, fill, edge = THEMES[kind]
+    out=ornament(art,(left,top,right,bottom))
+    text(out,caption,(112,ty),color='#fff0cd')
+    return out
+
+
+def ornament(art, interior, size=SIZE):
+    """Compone un marco ImageGen con nueve cortes, sin dibujar ornamentos."""
+    left,top,right,bottom=interior
     source=Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
     # Nueve cortes mantienen las esquinas y colocan el borde FUERA de los slots.
     sx=[0,left,right,source.width]; sy=[0,top,bottom,source.height]
-    dx=[0,24,200,224];dy=[0,56,258,280]
-    out=Image.new('RGBA',SIZE)
+    dx=[0,24,size[0]-24,size[0]];dy=[0,56,size[1]-22,size[1]]
+    out=Image.new('RGBA',size)
     for row in range(3):
         for col in range(3):
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             out.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
-    text(out,caption,(112,ty),color='#fff0cd')
     return out
 
 

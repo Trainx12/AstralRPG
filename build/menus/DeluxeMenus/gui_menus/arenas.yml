@@ -1,15 +1,121 @@
 {
-  "menu_title": "&8Arenas PvP",
-  "size": 36,
+  "menu_title": "&f",
+  "size": 54,
   "items": {
     "clasica": {
-      "material": "IRON_SWORD",
-      "slot": 10,
-      "display_name": "&a&lArena Astral",
+      "material": "PAPER",
+      "slot": 0,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
       "lore": [
+        "&7Arena Astral",
         "&7La arena clasica de AstralRPG.",
-        "&7Se pelea con tu equipo;",
-        "&7no perdes nada al morir."
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_1": {
+      "material": "PAPER",
+      "slot": 1,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_9": {
+      "material": "PAPER",
+      "slot": 9,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_10": {
+      "material": "PAPER",
+      "slot": 10,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_18": {
+      "material": "PAPER",
+      "slot": 18,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_19": {
+      "material": "PAPER",
+      "slot": 19,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_27": {
+      "material": "PAPER",
+      "slot": 27,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas clasica<delay=3>"
+      ]
+    },
+    "clasica_28": {
+      "material": "PAPER",
+      "slot": 28,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fColiseo",
+      "lore": [
+        "&7Arena Astral",
+        "&7La arena clasica de AstralRPG.",
+        "&7No perdes nada al morir."
       ],
       "click_commands": [
         "[close]",
@@ -17,13 +123,179 @@
       ]
     },
     "tft1": {
-      "material": "STONE_SWORD",
-      "slot": 11,
-      "display_name": "&a&lTFT - Arena 1",
+      "material": "PAPER",
+      "slot": 2,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
       "lore": [
+        "&7TFT - Arena 1",
         "&7Arena del paquete TFT Arenas.",
-        "&7Se pelea con tu equipo;",
-        "&7no perdes nada al morir."
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_3": {
+      "material": "PAPER",
+      "slot": 3,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_4": {
+      "material": "PAPER",
+      "slot": 4,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_11": {
+      "material": "PAPER",
+      "slot": 11,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_12": {
+      "material": "PAPER",
+      "slot": 12,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_13": {
+      "material": "PAPER",
+      "slot": 13,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_20": {
+      "material": "PAPER",
+      "slot": 20,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_21": {
+      "material": "PAPER",
+      "slot": 21,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_22": {
+      "material": "PAPER",
+      "slot": 22,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_29": {
+      "material": "PAPER",
+      "slot": 29,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_30": {
+      "material": "PAPER",
+      "slot": 30,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft1<delay=3>"
+      ]
+    },
+    "tft1_31": {
+      "material": "PAPER",
+      "slot": 31,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fRuinas",
+      "lore": [
+        "&7TFT - Arena 1",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
       ],
       "click_commands": [
         "[close]",
@@ -31,13 +303,119 @@
       ]
     },
     "tft2": {
-      "material": "GOLDEN_SWORD",
-      "slot": 12,
-      "display_name": "&a&lTFT - Arena 2",
+      "material": "PAPER",
+      "slot": 5,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
       "lore": [
+        "&7TFT - Arena 2",
         "&7Arena del paquete TFT Arenas.",
-        "&7Se pelea con tu equipo;",
-        "&7no perdes nada al morir."
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_6": {
+      "material": "PAPER",
+      "slot": 6,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_14": {
+      "material": "PAPER",
+      "slot": 14,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_15": {
+      "material": "PAPER",
+      "slot": 15,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_23": {
+      "material": "PAPER",
+      "slot": 23,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_24": {
+      "material": "PAPER",
+      "slot": 24,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_32": {
+      "material": "PAPER",
+      "slot": 32,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft2<delay=3>"
+      ]
+    },
+    "tft2_33": {
+      "material": "PAPER",
+      "slot": 33,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVacio",
+      "lore": [
+        "&7TFT - Arena 2",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
       ],
       "click_commands": [
         "[close]",
@@ -45,82 +423,178 @@
       ]
     },
     "tft3": {
-      "material": "DIAMOND_SWORD",
-      "slot": 13,
-      "display_name": "&a&lTFT - Arena 3",
+      "material": "PAPER",
+      "slot": 7,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
       "lore": [
+        "&7TFT - Arena 3",
         "&7Arena del paquete TFT Arenas.",
-        "&7Se pelea con tu equipo;",
-        "&7no perdes nada al morir."
+        "&7No perdes nada al morir."
       ],
       "click_commands": [
         "[close]",
         "[player] arenas tft3<delay=3>"
       ]
     },
-    "proximo_14": {
-      "material": "GRAY_DYE",
-      "slot": 14,
-      "display_name": "&7Proximamente"
+    "tft3_8": {
+      "material": "PAPER",
+      "slot": 8,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
     },
-    "proximo_15": {
-      "material": "GRAY_DYE",
-      "slot": 15,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_16": {
-      "material": "GRAY_DYE",
+    "tft3_16": {
+      "material": "PAPER",
       "slot": 16,
-      "display_name": "&7Proximamente"
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
     },
-    "proximo_19": {
-      "material": "GRAY_DYE",
-      "slot": 19,
-      "display_name": "&7Proximamente"
+    "tft3_17": {
+      "material": "PAPER",
+      "slot": 17,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
     },
-    "proximo_20": {
-      "material": "GRAY_DYE",
-      "slot": 20,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_21": {
-      "material": "GRAY_DYE",
-      "slot": 21,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_22": {
-      "material": "GRAY_DYE",
-      "slot": 22,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_23": {
-      "material": "GRAY_DYE",
-      "slot": 23,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_24": {
-      "material": "GRAY_DYE",
-      "slot": 24,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_25": {
-      "material": "GRAY_DYE",
+    "tft3_25": {
+      "material": "PAPER",
       "slot": 25,
-      "display_name": "&7Proximamente"
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
+    },
+    "tft3_26": {
+      "material": "PAPER",
+      "slot": 26,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
+    },
+    "tft3_34": {
+      "material": "PAPER",
+      "slot": 34,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
+    },
+    "tft3_35": {
+      "material": "PAPER",
+      "slot": 35,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fVolcan",
+      "lore": [
+        "&7TFT - Arena 3",
+        "&7Arena del paquete TFT Arenas.",
+        "&7No perdes nada al morir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] arenas tft3<delay=3>"
+      ]
     },
     "lobby": {
-      "material": "RED_BED",
-      "slot": 30,
-      "display_name": "&fVolver al lobby",
+      "material": "PAPER",
+      "slot": 45,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fLobby",
+      "click_commands": [
+        "[close]",
+        "[player] spawn<delay=3>"
+      ]
+    },
+    "lobby_46": {
+      "material": "PAPER",
+      "slot": 46,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fLobby",
+      "click_commands": [
+        "[close]",
+        "[player] spawn<delay=3>"
+      ]
+    },
+    "lobby_47": {
+      "material": "PAPER",
+      "slot": 47,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fLobby",
       "click_commands": [
         "[close]",
         "[player] spawn<delay=3>"
       ]
     },
     "cerrar": {
-      "material": "BARRIER",
-      "slot": 32,
-      "display_name": "&cCerrar",
+      "material": "PAPER",
+      "slot": 51,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "cerrar_52": {
+      "material": "PAPER",
+      "slot": 52,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "cerrar_53": {
+      "material": "PAPER",
+      "slot": 53,
+      "item_model": "astral:viajes/blank",
+      "display_name": "&fCerrar",
       "click_commands": [
         "[close]"
       ]

@@ -37,7 +37,7 @@ class PortalMapFormats(unittest.TestCase):
         self.assertIn('cancelevent @self ~onInteract', guardian['Skills'])
         self.assertIn('command{c="dm open portales <trigger.name>"} @self ~onInteract', guardian['Skills'])
         menu = menu_data()
-        self.assertEqual(menu['size'], 27)
+        self.assertEqual(menu['size'], 54)
         for key in ('nether', 'end'):
             self.assertLess(menu['items'][key]['slot'], menu['size'])
 

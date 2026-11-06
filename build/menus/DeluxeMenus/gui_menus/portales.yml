@@ -1,12 +1,12 @@
 {
-  "menu_title": "&f",
-  "size": 27,
+  "menu_title": "&f",
+  "size": 54,
   "items": {
     "nether": {
       "material": "OBSIDIAN",
-      "slot": 10,
+      "slot": 0,
       "display_name": "&c&lNether",
-      "item_model": "astral:viajes/nether",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Obsidiana, brasas y guardianes.",
         "&7Viajá a la plataforma del umbral.",
@@ -20,9 +20,9 @@
     },
     "end": {
       "material": "END_PORTAL_FRAME",
-      "slot": 12,
+      "slot": 2,
       "display_name": "&e&lEnd",
-      "item_model": "astral:viajes/end",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Una isla al otro lado del vacío.",
         "&7Viajá a la plataforma del umbral.",
@@ -36,9 +36,9 @@
     },
     "parkour": {
       "material": "FEATHER",
-      "slot": 14,
+      "slot": 5,
       "display_name": "&d&lParkour",
-      "item_model": "astral:viajes/parkour",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Elegí tu circuito y probá tus saltos.",
         "",
@@ -50,9 +50,9 @@
     },
     "arenas": {
       "material": "IRON_SWORD",
-      "slot": 16,
+      "slot": 7,
       "display_name": "&b&lArenas PvP",
-      "item_model": "astral:viajes/arenas",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Elegí una arena para combatir.",
         "",
@@ -64,9 +64,9 @@
     },
     "lobby": {
       "material": "ENDER_PEARL",
-      "slot": 22,
+      "slot": 45,
       "display_name": "&aVolver al lobby",
-      "item_model": "astral:viajes/lobby",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Volvé al punto de aparición.",
         "",
@@ -79,9 +79,551 @@
     },
     "cerrar": {
       "material": "BARRIER",
-      "slot": 26,
+      "slot": 51,
       "display_name": "&cCerrar",
-      "item_model": "astral:viajes/cerrar",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "nether_1": {
+      "material": "OBSIDIAN",
+      "slot": 1,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_9": {
+      "material": "OBSIDIAN",
+      "slot": 9,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_10": {
+      "material": "OBSIDIAN",
+      "slot": 10,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_18": {
+      "material": "OBSIDIAN",
+      "slot": 18,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_19": {
+      "material": "OBSIDIAN",
+      "slot": 19,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_27": {
+      "material": "OBSIDIAN",
+      "slot": 27,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "nether_28": {
+      "material": "OBSIDIAN",
+      "slot": 28,
+      "display_name": "&c&lNether",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Obsidiana, brasas y guardianes.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales nether<delay=3>"
+      ]
+    },
+    "end_3": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 3,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_4": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 4,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_11": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 11,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_12": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 12,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_13": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 13,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_20": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 20,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_21": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 21,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_22": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 22,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_29": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 29,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_30": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 30,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "end_31": {
+      "material": "END_PORTAL_FRAME",
+      "slot": 31,
+      "display_name": "&e&lEnd",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Una isla al otro lado del vacío.",
+        "&7Viajá a la plataforma del umbral.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales end<delay=3>"
+      ]
+    },
+    "parkour_6": {
+      "material": "FEATHER",
+      "slot": 6,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_14": {
+      "material": "FEATHER",
+      "slot": 14,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_15": {
+      "material": "FEATHER",
+      "slot": 15,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_23": {
+      "material": "FEATHER",
+      "slot": 23,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_24": {
+      "material": "FEATHER",
+      "slot": 24,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_32": {
+      "material": "FEATHER",
+      "slot": 32,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "parkour_33": {
+      "material": "FEATHER",
+      "slot": 33,
+      "display_name": "&d&lParkour",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí tu circuito y probá tus saltos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "arenas_8": {
+      "material": "IRON_SWORD",
+      "slot": 8,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_16": {
+      "material": "IRON_SWORD",
+      "slot": 16,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_17": {
+      "material": "IRON_SWORD",
+      "slot": 17,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_25": {
+      "material": "IRON_SWORD",
+      "slot": 25,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_26": {
+      "material": "IRON_SWORD",
+      "slot": 26,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_34": {
+      "material": "IRON_SWORD",
+      "slot": 34,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "arenas_35": {
+      "material": "IRON_SWORD",
+      "slot": 35,
+      "display_name": "&b&lArenas PvP",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ]
+    },
+    "lobby_46": {
+      "material": "ENDER_PEARL",
+      "slot": 46,
+      "display_name": "&aVolver al lobby",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ]
+    },
+    "lobby_47": {
+      "material": "ENDER_PEARL",
+      "slot": 47,
+      "display_name": "&aVolver al lobby",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ]
+    },
+    "cerrar_52": {
+      "material": "BARRIER",
+      "slot": 52,
+      "display_name": "&cCerrar",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "cerrar_53": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Seguí explorando por tu cuenta.",
         "",
