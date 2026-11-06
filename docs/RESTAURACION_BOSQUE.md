@@ -33,3 +33,26 @@ En la misma tarea se termino de aplicar la llegada del Nether del commit
 `73fcfd7`: script guardado y recargado sin errores; aldeano existente trasladado
 a `-2189.114 81 179.263`, yaw 90, dos bloques al este de la llegada.
 La posicion se consulto por consola. Se retiraron las dos cargas temporales.
+
+## Instalado y verificado
+
+La restauracion se completo en Aternos durante la misma parada utilizada para
+corregir Santuario al ZIP confirmado. Se respaldo `region/` antes de sustituir
+las cuatro regiones de Bosque. Se conservaron el generador, las entidades,
+los permisos y los archivos de los demas mundos.
+
+El arranque termino en 42.083 segundos y los scripts cargaron sin errores.
+La consola confirmo piso y dos bloques libres en las tres llegadas. Se fijo
+el spawn en `1440.5 103 1569.5`, reemplazando el spawn vacio `8 -63 8`, y se
+desactivo el ajuste automatico del spawn. El respawn sigue apuntando al lobby.
+
+Faltaban los tres controladores: se creo uno por sala y se consultaron sus
+posiciones, coincidentes con los comandos generados. Las tres cargas de revision
+se retiraron; la consulta final confirma que no quedan chunks forzados.
+`save-all flush` confirmo el guardado. Servidor online con 20 TPS al finalizar.
+No se observaron errores de lectura de las regiones. Falta el recorrido y
+combate de las salas con jugadores.
+
+Evidencia privada: `.local/bosque-restaurado-2026-11-05/region-antes.zip`,
+`informe.json` y `consola-verificacion.txt`. El codigo de preparacion se publico
+en `6d840cd`; el cambio correcto de Santuario en `2627ba6`.
