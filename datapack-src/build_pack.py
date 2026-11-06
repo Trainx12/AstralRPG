@@ -289,6 +289,14 @@ except Exception as e:
 
 # Stellarity (resource pack oficial, con permiso del autor): ver pack-source/terceros/CREDITOS.txt.
 # Lo nuestro gana en los choques; la fuente default se junta; sus overlays van al pack.mcmeta.
+STELLARITY_RENOMBRES = {  # nombre en el datapack 5.4.2 -> nombre en el pack 6.0.1
+    "endermans_hand": "enderman_hand",
+    "shepherds_pie": "shepherd_pie",
+    "void_locket": "void_pendant",
+    "_technical/empress_wing": "empress_wings",
+}
+
+
 def stellarity():
     zpath = os.path.join(SRC, "terceros", "Stellarity-6.0.1-RP.zip")
     if not os.path.exists(zpath):
@@ -310,6 +318,13 @@ def stellarity():
             if name in files:
                 continue
             files[name] = data
+            added += 1
+    # El server usa el datapack 5.4.2 y el pack es 6.0.1: algunos items cambiaron de nombre.
+    # Se agrega el nombre viejo apuntando al modelo nuevo (si no, salen violeta y negro).
+    for old, new in STELLARITY_RENOMBRES.items():
+        src, dst = f"assets/stellarity/items/{new}.json", f"assets/stellarity/items/{old}.json"
+        if src in files and dst not in files:
+            files[dst] = files[src]
             added += 1
     pack = json.loads(files["pack.mcmeta"])
     pack["overlays"] = meta.get("overlays", {"entries": []})

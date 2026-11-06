@@ -270,7 +270,7 @@ def assets():
                 # se combina el modelo vanilla del bloque, que el cliente ya trae.
                 block=VANILLA[i-1].split('/')[1].replace('ancient_debris_side','ancient_debris')
                 parts=[{'type':'minecraft:model','model':f'astral:viajes/frame_{state}'},
-                       {'type':'minecraft:model','model':f'minecraft:item/{block}'}]
+                       {'type':'minecraft:model','model':f'minecraft:block/{block}'}]
                 if state=='locked':parts.append({'type':'minecraft:model','model':'astral:viajes/lock_front'})
                 model={'type':'minecraft:composite','models':parts}
             files[f'assets/astral/items/viajes/{name}.json']=json.dumps({'model':model}).encode()
