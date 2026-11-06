@@ -48,7 +48,8 @@ class TravelUI(unittest.TestCase):
         self.assertEqual({i['slot'] for i in data['items'].values()},ui.USED['portales'])
         for key,item in data['items'].items():
             self.assertTrue(item['click_commands'],key)
-            self.assertEqual(item['item_model'],'astral:viajes/blank')
+            if key=='lobby':self.assertEqual(item['material'],'BARRIER')
+            else:self.assertEqual(item['item_model'],'astral:viajes/blank')
             base=key.split('_')[0]
             self.assertEqual(item['click_commands'],data['items'][base]['click_commands'])
         for key in ('nether','end','lobby'):

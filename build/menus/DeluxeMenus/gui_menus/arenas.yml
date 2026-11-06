@@ -543,10 +543,9 @@
       ]
     },
     "lobby": {
-      "material": "PAPER",
+      "material": "BARRIER",
       "slot": 45,
-      "item_model": "astral:viajes/blank",
-      "display_name": "&fLobby",
+      "display_name": "&fVolver al lobby",
       "click_commands": [
         "[close]",
         "[player] spawn<delay=3>"

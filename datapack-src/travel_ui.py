@@ -91,8 +91,8 @@ def panel(kind):
             im.alpha_composite(plaque,(x,y))
         label(im,'Elegi tu campo de batalla' if kind=='arenas' else 'Cruza tu proximo umbral',(112,135),160)
         im.alpha_composite(button('',54,'#60432b'),(31,147))
-        im.alpha_composite(icon('lobby'),(33,148))
-        text(im,'Lobby',(65,152),color='#fff0cd')
+        # La casilla 45 muestra la barrera vanilla (item real); aca solo el texto.
+        text(im,'Lobby',(67,152),color='#fff0cd')
         im.alpha_composite(button('',54,'#683c36'),(139,147))
         im.alpha_composite(icon('cerrar'),(158,148))
     elif kind=='minas':
@@ -248,12 +248,31 @@ def assets():
         files[f'assets/astral/items/viajes/{name}.json']=json.dumps({'model':{'type':'minecraft:model','model':f'astral:viajes/{name}'}}).encode()
     for state in FRAME_COLORS:put(f'assets/astral/textures/item/viajes/frame_{state}.png',mine_frame(state))
     put('assets/astral/textures/item/viajes/lock.png',lock_icon())
+    flat={'gui_light':'front','display':{'gui':{'rotation':[0,0,0],'translation':[0,0,0],'scale':[1,1,1]}}}
+    def plane_model(tex,z):
+        face={'uv':[0,0,16,16],'texture':'#t'}
+        return dict(flat,textures={'t':tex,'particle':tex},elements=[{'from':[0,0,z],'to':[16,16,z],'shade':False,
+                    'faces':{'south':face,'north':dict(face,uv=[16,0,0,16])}}])
+    for state in FRAME_COLORS:
+        # Marco detras (z=0) y candado delante (z=16) del cubo vanilla.
+        files[f'assets/astral/models/viajes/frame_{state}.json']=json.dumps(plane_model(f'astral:item/viajes/frame_{state}',0)).encode()
+    files['assets/astral/models/viajes/lock_front.json']=json.dumps(plane_model('astral:item/viajes/lock',16)).encode()
     for i in range(1,21):
         for state in FRAME_COLORS:
-            name=f'mine_{i}_{state}';model={'type':'minecraft:model','model':f'astral:viajes/{name}'}
-            # Bloqueada: el icono vanilla se oscurece con un tinte fijo.
-            if state=='locked':model['tints']=[{'type':'minecraft:constant','value':0xa0a0aa}]
-            files[f'assets/astral/models/viajes/{name}.json']=json.dumps(mine_model(i,state)).encode()
+            name=f'mine_{i}_{state}'
+            if VANILLA[i-1].startswith('item/'):
+                model={'type':'minecraft:model','model':f'astral:viajes/{name}'}
+                # Bloqueada: el icono vanilla se oscurece con un tinte fijo.
+                if state=='locked':model['tints']=[{'type':'minecraft:constant','value':0xa0a0aa}]
+                files[f'assets/astral/models/viajes/{name}.json']=json.dumps(mine_model(i,state)).encode()
+            else:
+                # Las texturas de bloque no se pueden usar en un modelo de item propio (salen violeta y negro):
+                # se combina el modelo vanilla del bloque, que el cliente ya trae.
+                block=VANILLA[i-1].split('/')[1].replace('ancient_debris_side','ancient_debris')
+                parts=[{'type':'minecraft:model','model':f'astral:viajes/frame_{state}'},
+                       {'type':'minecraft:model','model':f'minecraft:item/{block}'}]
+                if state=='locked':parts.append({'type':'minecraft:model','model':'astral:viajes/lock_front'})
+                model={'type':'minecraft:composite','models':parts}
             files[f'assets/astral/items/viajes/{name}.json']=json.dumps({'model':model}).encode()
     return files,providers
 
@@ -264,9 +283,14 @@ def previews(folder,concept=None):
     for kind in KINDS:
         im=Image.new('RGBA',(448,560),'#252a28');im.alpha_composite(panel(kind))
         if kind=='minas':
-            mapping={9:icon('tier1'),18:icon('tier2'),27:icon('tier3'),45:icon('info'),49:icon('lobby'),53:icon('cerrar')}
+            mapping={9:icon('tier1'),18:icon('tier2'),27:icon('tier3'),45:icon('info'),53:icon('cerrar')}
+            barrier=vanilla_texture('item/barrier')
+            if barrier is not None:mapping[49]=barrier
             mapping.update({slot(i):mine_icon(i,'open' if i<=5 else 'next' if i==6 else 'locked') for i in range(1,len(MINES)+1)})
             for s,art in mapping.items():im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+s%9*18)*2,(GRID_Y+1+s//9*18)*2))
+        if kind in ('portales','arenas'):
+            art=vanilla_texture('item/barrier')
+            if art is not None:im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+0*18)*2,(GRID_Y+1+5*18)*2))
         if kind=='minas-venta':
             for s,name in SALE_STRIP.items():
                 art=vanilla_texture('item/'+name)

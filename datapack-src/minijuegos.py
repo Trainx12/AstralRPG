@@ -50,6 +50,8 @@ def menu_data(kind):
         for key,slots,commands in [('lobby',[45,46,47],['[close]','[player] spawn<delay=3>']),('cerrar',[51,52,53],['[close]'])]:
             for n,slot in enumerate(slots):
                 items[key if n==0 else f'{key}_{slot}']=dict(material='PAPER',slot=slot,item_model='astral:viajes/blank',display_name='&f'+key.title(),click_commands=commands)
+        # Lobby: la primera casilla muestra la barrera vanilla.
+        items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
         return dict(menu_title=title('arenas'),size=54,items=items)
     maps = PARKOURS if kind == 'parkour' else ARENAS
     command = 'parkour' if kind == 'parkour' else 'arenas'

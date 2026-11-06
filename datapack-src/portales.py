@@ -35,6 +35,8 @@ def menu_data():
         item['item_model']='astral:viajes/blank'
         item['slot']=slots[0]
         for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
+    # Lobby: la primera casilla muestra la barrera vanilla.
+    items['lobby']['material']='BARRIER';del items['lobby']['item_model']
     return {'menu_title': title('portales'), 'size': 54, 'items': items}
 
 

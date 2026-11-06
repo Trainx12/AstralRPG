@@ -63,10 +63,9 @@
       ]
     },
     "lobby": {
-      "material": "ENDER_PEARL",
+      "material": "BARRIER",
       "slot": 45,
       "display_name": "&aVolver al lobby",
-      "item_model": "astral:viajes/blank",
       "lore": [
         "&7Volvé al punto de aparición.",
         "",
