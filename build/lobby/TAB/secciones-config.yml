@@ -157,7 +157,7 @@ conditions:
     conditions:
       - "%objective_score_{am_here}%>0"
     true: "%condition:am_here%"
-    false: "                     <#F0E6FF>Minas Astrales                     "
+    false: "           <#F0E6FF>Minas Astrales"
   am_next_row:
     conditions:
       - "%objective_score_{am_rank}%<20"
@@ -186,18 +186,18 @@ conditions:
   am_here1_2:
     conditions:
       - "%objective_score_{am_here}%<=1"
-    true: "                 <#F0E6FF>Mina · Carbón Tier 1                 "
-    false: "                  <#F0E6FF>Mina · Cobre Tier 1                  "
+    true: "       <#F0E6FF>Mina · Carbón Tier 1"
+    false: "        <#F0E6FF>Mina · Cobre Tier 1"
   am_here1_3:
     conditions:
       - "%objective_score_{am_here}%<=2"
     true: "%condition:am_here1_2%"
-    false: "                 <#F0E6FF>Mina · Hierro Tier 1                  "
+    false: "        <#F0E6FF>Mina · Hierro Tier 1"
   am_here4_5:
     conditions:
       - "%objective_score_{am_here}%<=4"
-    true: "                   <#F0E6FF>Mina · Oro Tier 1                    "
-    false: "               <#F0E6FF>Mina · Esmeralda Tier 1                "
+    true: "         <#F0E6FF>Mina · Oro Tier 1"
+    false: "     <#F0E6FF>Mina · Esmeralda Tier 1"
   am_here1_5:
     conditions:
       - "%objective_score_{am_here}%<=3"
@@ -206,18 +206,18 @@ conditions:
   am_here6_7:
     conditions:
       - "%objective_score_{am_here}%<=6"
-    true: "                <#F0E6FF>Mina · Diamante Tier 1                 "
-    false: "                 <#F0E6FF>Mina · Carbón Tier 2                 "
+    true: "      <#F0E6FF>Mina · Diamante Tier 1"
+    false: "       <#F0E6FF>Mina · Carbón Tier 2"
   am_here6_8:
     conditions:
       - "%objective_score_{am_here}%<=7"
     true: "%condition:am_here6_7%"
-    false: "                  <#F0E6FF>Mina · Cobre Tier 2                  "
+    false: "        <#F0E6FF>Mina · Cobre Tier 2"
   am_here9_10:
     conditions:
       - "%objective_score_{am_here}%<=9"
-    true: "                 <#F0E6FF>Mina · Hierro Tier 2                  "
-    false: "                   <#F0E6FF>Mina · Oro Tier 2                    "
+    true: "        <#F0E6FF>Mina · Hierro Tier 2"
+    false: "         <#F0E6FF>Mina · Oro Tier 2"
   am_here6_10:
     conditions:
       - "%objective_score_{am_here}%<=8"
@@ -231,18 +231,18 @@ conditions:
   am_here11_12:
     conditions:
       - "%objective_score_{am_here}%<=11"
-    true: "               <#F0E6FF>Mina · Esmeralda Tier 2                "
-    false: "                <#F0E6FF>Mina · Diamante Tier 2                 "
+    true: "     <#F0E6FF>Mina · Esmeralda Tier 2"
+    false: "      <#F0E6FF>Mina · Diamante Tier 2"
   am_here11_13:
     conditions:
       - "%objective_score_{am_here}%<=12"
     true: "%condition:am_here11_12%"
-    false: "         <#F0E6FF>Mina · Restos ancestrales Tier 2          "
+    false: "<#F0E6FF>Mina · Restos ancestrales Tier 2"
   am_here14_15:
     conditions:
       - "%objective_score_{am_here}%<=14"
-    true: "                 <#F0E6FF>Mina · Carbón Tier 3                 "
-    false: "                  <#F0E6FF>Mina · Cobre Tier 3                  "
+    true: "       <#F0E6FF>Mina · Carbón Tier 3"
+    false: "        <#F0E6FF>Mina · Cobre Tier 3"
   am_here11_15:
     conditions:
       - "%objective_score_{am_here}%<=13"
@@ -251,18 +251,18 @@ conditions:
   am_here16_17:
     conditions:
       - "%objective_score_{am_here}%<=16"
-    true: "                 <#F0E6FF>Mina · Hierro Tier 3                  "
-    false: "                   <#F0E6FF>Mina · Oro Tier 3                    "
+    true: "        <#F0E6FF>Mina · Hierro Tier 3"
+    false: "         <#F0E6FF>Mina · Oro Tier 3"
   am_here16_18:
     conditions:
       - "%objective_score_{am_here}%<=17"
     true: "%condition:am_here16_17%"
-    false: "               <#F0E6FF>Mina · Esmeralda Tier 3                "
+    false: "     <#F0E6FF>Mina · Esmeralda Tier 3"
   am_here19_20:
     conditions:
       - "%objective_score_{am_here}%<=19"
-    true: "                <#F0E6FF>Mina · Diamante Tier 3                 "
-    false: "                <#F0E6FF>Mina · Netherita Tier 3                "
+    true: "      <#F0E6FF>Mina · Diamante Tier 3"
+    false: "      <#F0E6FF>Mina · Netherita Tier 3"
   am_here16_20:
     conditions:
       - "%objective_score_{am_here}%<=18"
@@ -636,142 +636,142 @@ conditions:
   sidebar_world_0:
     conditions:
       - "%world%=exp_santuario"
-    true: "               <#F0E6FF>Expedición al Santuario                "
-    false: "                       <#F0E6FF>Exploración                       "
+    true: "      <#F0E6FF>Expedición al Santuario"
+    false: "             <#F0E6FF>Exploración"
   sidebar_world_1:
     conditions:
       - "%world%=exp_nieve"
-    true: "                 <#F0E6FF>Expedición a la Nieve                 "
+    true: "       <#F0E6FF>Expedición a la Nieve"
     false: "%condition:sidebar_world_0%"
   sidebar_world_2:
     conditions:
       - "%world%=exp_hielo"
-    true: "                   <#F0E6FF>Expedición al Hielo                   "
+    true: "         <#F0E6FF>Expedición al Hielo"
     false: "%condition:sidebar_world_1%"
   sidebar_world_3:
     conditions:
       - "%world%=exp_desierto"
-    true: "                <#F0E6FF>Expedición al Desierto                 "
+    true: "      <#F0E6FF>Expedición al Desierto"
     false: "%condition:sidebar_world_2%"
   sidebar_world_4:
     conditions:
       - "%world%=cavernas"
-    true: "                        <#F0E6FF>Cavernas                        "
+    true: "              <#F0E6FF>Cavernas"
     false: "%condition:sidebar_world_3%"
   sidebar_world_5:
     conditions:
       - "%world%=reino"
-    true: "               <#F0E6FF>Reino de las Mazmorras                "
+    true: "     <#F0E6FF>Reino de las Mazmorras"
     false: "%condition:sidebar_world_4%"
   sidebar_world_6:
     conditions:
       - "%world%=santuario_freemap9"
-    true: "                <#F0E6FF>Jardines del Santuario                "
+    true: "      <#F0E6FF>Jardines del Santuario"
     false: "%condition:sidebar_world_5%"
   sidebar_world_7:
     conditions:
       - "%world%=santuario"
-    true: "                  <#F0E6FF>Santuario Celestial                   "
+    true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_6%"
   sidebar_world_8:
     conditions:
       - "%world%=forja"
-    true: "                  <#F0E6FF>Volcán de la Forja                   "
+    true: "        <#F0E6FF>Volcán de la Forja"
     false: "%condition:sidebar_world_7%"
   sidebar_world_9:
     conditions:
       - "%world%=cumbre"
-    true: "                    <#F0E6FF>Cumbre Nevada                     "
+    true: "          <#F0E6FF>Cumbre Nevada"
     false: "%condition:sidebar_world_8%"
   sidebar_world_10:
     conditions:
       - "%world%=astral_minas"
-    true: "                     <#F0E6FF>Minas Astrales                     "
+    true: "           <#F0E6FF>Minas Astrales"
     false: "%condition:sidebar_world_9%"
   sidebar_world_11:
     conditions:
       - "%world%=mina"
-    true: "                    <#F0E6FF>Minas Olvidadas                     "
+    true: "          <#F0E6FF>Minas Olvidadas"
     false: "%condition:sidebar_world_10%"
   sidebar_world_12:
     conditions:
       - "%world%=parkour_spiral"
-    true: "                    <#F0E6FF>Parkour Espiral                     "
+    true: "          <#F0E6FF>Parkour Espiral"
     false: "%condition:sidebar_world_11%"
   sidebar_world_13:
     conditions:
       - "%world%=arenas_tft"
-    true: "                       <#F0E6FF>Arenas PvP                       "
+    true: "             <#F0E6FF>Arenas PvP"
     false: "%condition:sidebar_world_12%"
   sidebar_world_14:
     conditions:
       - "%world%=arena"
-    true: "                      <#F0E6FF>Arena Astral                      "
+    true: "            <#F0E6FF>Arena Astral"
     false: "%condition:sidebar_world_13%"
   sidebar_world_15:
     conditions:
       - "%world%=portales_astrales"
-    true: "                   <#F0E6FF>Portales Astrales                   "
+    true: "         <#F0E6FF>Portales Astrales"
     false: "%condition:sidebar_world_14%"
   sidebar_world_16:
     conditions:
       - "%world%=the_end"
-    true: "                          <#F0E6FF>El End                           "
+    true: "                <#F0E6FF>El End"
     false: "%condition:sidebar_world_15%"
   sidebar_world_17:
     conditions:
       - "%world%=world_the_end"
-    true: "                          <#F0E6FF>El End                           "
+    true: "                <#F0E6FF>El End"
     false: "%condition:sidebar_world_16%"
   sidebar_world_18:
     conditions:
       - "%world%=the_nether"
-    true: "                        <#F0E6FF>El Nether                         "
+    true: "              <#F0E6FF>El Nether"
     false: "%condition:sidebar_world_17%"
   sidebar_world_19:
     conditions:
       - "%world%=world_nether"
-    true: "                        <#F0E6FF>El Nether                         "
+    true: "              <#F0E6FF>El Nether"
     false: "%condition:sidebar_world_18%"
   sidebar_world_20:
     conditions:
       - "%world%=lobby"
-    true: "                     <#F0E6FF>Refugio Astral                      "
+    true: "           <#F0E6FF>Refugio Astral"
     false: "%condition:sidebar_world_19%"
   sidebar_world_21:
     conditions:
       - "%world%=overworld"
-    true: "                     <#F0E6FF>Supervivencia                      "
+    true: "           <#F0E6FF>Supervivencia"
     false: "%condition:sidebar_world_20%"
   sidebar_world_22:
     conditions:
       - "%world%=world"
-    true: "                     <#F0E6FF>Supervivencia                      "
+    true: "           <#F0E6FF>Supervivencia"
     false: "%condition:sidebar_world_21%"
   sidebar_world_23:
     conditions:
       - "%world%=santuario_interstellar"
-    true: "                  <#F0E6FF>Santuario Celestial                   "
+    true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_22%"
   sidebar_world_24:
     conditions:
       - "%world%=forja_volcano"
-    true: "                 <#F0E6FF>Corazón de la Forja                 "
+    true: "       <#F0E6FF>Corazón de la Forja"
     false: "%condition:sidebar_world_23%"
   sidebar_world_25:
     conditions:
       - "%world%=cumbre_hielo"
-    true: "                     <#F0E6FF>Cumbre Helada                     "
+    true: "           <#F0E6FF>Cumbre Helada"
     false: "%condition:sidebar_world_24%"
   sidebar_world_26:
     conditions:
       - "%world%=tumba"
-    true: "               <#F0E6FF>Tumba del Rey de Arena               "
+    true: "     <#F0E6FF>Tumba del Rey de Arena"
     false: "%condition:sidebar_world_25%"
   sidebar_world:
     conditions:
       - "%world%=bosque"
-    true: "                    <#F0E6FF>Bosque Sombrío                    "
+    true: "          <#F0E6FF>Bosque Sombrío"
     false: "%condition:sidebar_world_26%"
   diaria0:
     conditions:

@@ -9,7 +9,7 @@ TITLE = f"{GRADIENT}<bold>✦ ASTRAL RPG ✦</bold></gradient>"
 DIVIDER = f"{GRADIENT}{'─' * 16}</gradient>"
 
 
-SIDEBAR_WIDTH = 240
+SIDEBAR_WIDTH = 160
 
 
 def text_width(label):
@@ -18,13 +18,11 @@ def text_width(label):
 
 
 def centered_location(label):
-    # Pad both sides: the location itself establishes a stable sidebar width.
-    # TAB cannot center individual scoreboard lines automatically.
+    # Approximate the existing rows' width without widening the board with blanks.
+    # Trailing spaces count towards Minecraft's sidebar background width.
     gap = max(0, SIDEBAR_WIDTH - text_width(label))
-    spaces = (gap + 3) // 4
-    left = spaces // 2
-    right = spaces - left
-    return " " * left + TEXT + label + " " * right
+    left = round(gap / 8)
+    return " " * left + TEXT + label
 
 
 def section(label):

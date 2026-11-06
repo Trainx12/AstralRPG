@@ -27,14 +27,13 @@ class WorldNamesTests(unittest.TestCase):
                 self.assertEqual(value, centered_location(label) if root == 'sidebar_world' else label)
                 self.assertNotIn('_', value)
 
-    def test_padded_names_establish_constant_width_and_balanced_margins(self):
+    def test_names_do_not_widen_the_board_with_trailing_spaces(self):
         for label in world_labels().values():
             result = centered_location(label).replace(TEXT, '')
-            self.assertGreaterEqual(text_width(result), SIDEBAR_WIDTH)
-            self.assertLess(text_width(result), SIDEBAR_WIDTH+4)
+            self.assertEqual(result, result.rstrip(' '))
+            self.assertLessEqual(text_width(result), max(SIDEBAR_WIDTH, text_width(label)))
             left = len(result)-len(result.lstrip(' '))
-            right = len(result)-len(result.rstrip(' '))
-            self.assertLessEqual(abs(left-right), 1)
+            self.assertLessEqual(abs(left*4 + text_width(label)/2 - max(SIDEBAR_WIDTH,text_width(label))/2), 2)
 
 
 class BossScaleTests(unittest.TestCase):

@@ -1,6 +1,6 @@
 # Movilidad y presentacion — 05/11/2026
 
-- TAB: nombres legibles de todos los mundos conocidos y alias de restauraciones; mayusculas iniciales, acentos y centrado con espacios a ambos lados. El ancho se calcula con la fuente vanilla; fuentes personalizadas pueden variar el resultado.
+- TAB: nombres legibles de todos los mundos conocidos y alias de restauraciones; mayusculas iniciales, acentos y centrado aproximado al ancho de las filas existentes (160 px). Solo usa margen izquierdo: se retiro el relleno final y el ancho fijo de 240 px que dejaban un espacio vacio grande. El calculo usa la fuente vanilla; fuentes personalizadas pueden variar el resultado.
 - Items v9: `gancho` pasa a **Saltador**; `gancho_realista` a **Gancho de escalada**. La migracion existente actualiza los objetos conservando sus datos de mejora.
 - Gancho de escalada: sin recarga compartida con el Saltador; cada recogida libera la boya antes de lanzar otra. Conserva limite de 32 bloques y restricciones de mazmorras. El anclaje compensa el -0.03 vertical propio de FishingHook, incluso con NoGravity, y restaura su posicion cada tick. Limpieza al salir, morir, cambiar de mundo y descargar Skript.
 - Doble salto: segunda pulsacion despues de soltar la tecla, sin espera minima de 150 ms; conserva movimiento horizontal y un solo impulso por salto.
