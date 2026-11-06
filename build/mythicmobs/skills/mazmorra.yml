@@ -3,7 +3,7 @@
 MINA_MODELO_astral_mina_guardian:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_golem_forja;s=1.5} @self
+  - model{m=astral_golem_forja;s=2.0} @self
   - delay 2
   - tint{c=8A93A6} @self
 

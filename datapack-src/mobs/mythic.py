@@ -372,7 +372,8 @@ def mob_block(mid, d, model=None, elite=None):
     lines.append("  Drops:")
     lines += [f"  - {x}" for x in drops]
     # habilidades
-    sk = [f"- skill{{s=AST_MODEL_{(elite and mid) or model}}} @self ~onSpawn", f"- skill{{s=AST_MODEL_{(elite and mid) or model}}} @self ~onLoad"]
+    model_skill = d.get('model_skill', f'AST_MODEL_{(elite and mid) or model}')
+    sk = [f"- skill{{s={model_skill}}} @self ~onSpawn", f"- skill{{s={model_skill}}} @self ~onLoad"]
     if d["kind"] == "montura":
         mode = "flying" if d.get("fly") else "walking"
         sk += [f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
@@ -429,7 +430,8 @@ def mob_block(mid, d, model=None, elite=None):
 def metaskills():
     out = []
     for mid, d in MOBS.items():
-        out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}}} @self"]
+        scale = ';s=2.0' if d['kind'] == 'jefe' else ''
+        out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}{scale}}} @self"]
         if d["kind"] == "montura":
             # BetterModel mueve la montura con la velocidad de movimiento y salta con jump_strength
             out += [f"AST_MOUNT_{mid}:", "  Skills:", "  - delay 2",
@@ -438,6 +440,8 @@ def metaskills():
                     "  - skill{s=AST_SILLA_VER} @self"]
             if d.get("jump"):
                 out += [f"  - command{{c=\"attribute <caster.uuid> minecraft:jump_strength base set {d['jump']}\"}} @self"]
+    out += ['AST_MODEL_astral_yeti_cumbre:', '  Skills:',
+            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_yeti;s=4.0} @self']
     # la silla se ve solo si el jugador le puso una montura
     out += ["AST_SILLA_VER:", "  Skills:", "  - delay 3",
             "  - partvisibility{p=silla;v=false} @self ?!hastag{tag=astral.ensillado}",
@@ -467,7 +471,7 @@ def metaskills():
             out += ["  - " + x for x in once]
     for mid, (color, name) in ANCESTRALES.items():
         out += [f"AST_MODEL_{mid}_ancestral:", "  Skills:", "  - addtag{tag=astral.seen} @self",
-                f"  - model{{m={mid};s=1.7}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
+                f"  - model{{m={mid};s=2.0}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
                 f"AST_ANCESTRAL_SEVA_{mid}:", "  Skills:",
                 f"  - 'message{{m=\"&7{name} &7se desvanecio... nadie pudo con el.\"}} @PlayersOnServer'",
                 "  - remove @self"]

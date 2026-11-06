@@ -60,7 +60,7 @@ MOBS = {
                                       "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140"]),
     # jefe final (modelo del Golem de la Forja, mas grande y gris piedra)
     "astral_mina_guardian": dict(type="IRON_GOLEM", name="&8&lGuardian de las Profundidades", hp=1000, dmg=16, speed=0.24,
-                                 boss="PURPLE", hostile=True, model=("astral_golem_forja", 1.5, "8A93A6"), money=1500,
+                                 boss="PURPLE", hostile=True, model=("astral_golem_forja", 2.0, "8A93A6"), money=1500,
                                  drops=drop("chispa_astral", 1.0, 2) + drop("alma_corrupta", 1.0, 2) + drop("nucleo_furia", 0.5),
                                  skills=["potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200",
                                          "throw{velocity=8;velocityY=3} @target ~onAttack 0.35",
@@ -125,6 +125,8 @@ def mob_yml(dungeon=None):
               "  Options:", f"    MovementSpeed: {d['speed']}", "    PreventOtherDrops: true", "    PreventSunburn: true", "    PreventRandomEquipment: true",
               "    Despawn: false", "    FollowRange: 32", "    Glowing: true"]
         if d.get("boss"):
+            if not d.get('model'):
+                L.append('    Scale: 2.0')
             L += ["    KnockbackResistance: 0.8", "  BossBar:", "    Enabled: true", f"    Title: {q(d['name'])}", "    Range: 48",
                   f"    Color: {d['boss']}", "    Style: SEGMENTED_10"]
         if d.get("hostile"):

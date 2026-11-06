@@ -89,23 +89,27 @@ AST_MOUNT_astral_pterodactilo:
 AST_MODEL_astral_momia:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_momia} @self
+  - model{m=astral_momia;s=2.0} @self
 AST_MODEL_astral_yeti:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti} @self
+  - model{m=astral_yeti;s=2.0} @self
 AST_MODEL_astral_golem_forja:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_golem_forja} @self
+  - model{m=astral_golem_forja;s=2.0} @self
 AST_MODEL_astral_cangrejo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_cangrejo} @self
+  - model{m=astral_cangrejo;s=2.0} @self
 AST_MODEL_astral_chaman:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_chaman} @self
+  - model{m=astral_chaman;s=2.0} @self
+AST_MODEL_astral_yeti_cumbre:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_yeti;s=4.0} @self
 AST_SILLA_VER:
   Skills:
   - delay 3
@@ -465,7 +469,7 @@ AST_AFIJO_astral_chaman_ancestral_mald:
 AST_MODEL_astral_momia_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_momia;s=1.7} @self
+  - model{m=astral_momia;s=2.0} @self
   - delay 2
   - tint{c=FFD24A} @self
 AST_ANCESTRAL_SEVA_astral_momia:
@@ -475,7 +479,7 @@ AST_ANCESTRAL_SEVA_astral_momia:
 AST_MODEL_astral_yeti_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti;s=1.7} @self
+  - model{m=astral_yeti;s=2.0} @self
   - delay 2
   - tint{c=9FE8FF} @self
 AST_ANCESTRAL_SEVA_astral_yeti:
@@ -485,7 +489,7 @@ AST_ANCESTRAL_SEVA_astral_yeti:
 AST_MODEL_astral_golem_forja_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_golem_forja;s=1.7} @self
+  - model{m=astral_golem_forja;s=2.0} @self
   - delay 2
   - tint{c=FF6A2A} @self
 AST_ANCESTRAL_SEVA_astral_golem_forja:
@@ -495,7 +499,7 @@ AST_ANCESTRAL_SEVA_astral_golem_forja:
 AST_MODEL_astral_cangrejo_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_cangrejo;s=1.7} @self
+  - model{m=astral_cangrejo;s=2.0} @self
   - delay 2
   - tint{c=FF9AD0} @self
 AST_ANCESTRAL_SEVA_astral_cangrejo:
@@ -505,7 +509,7 @@ AST_ANCESTRAL_SEVA_astral_cangrejo:
 AST_MODEL_astral_chaman_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_chaman;s=1.7} @self
+  - model{m=astral_chaman;s=2.0} @self
   - delay 2
   - tint{c=7CFF6A} @self
 AST_ANCESTRAL_SEVA_astral_chaman:

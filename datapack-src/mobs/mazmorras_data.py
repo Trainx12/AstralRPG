@@ -57,6 +57,8 @@ def variant(key, source, ancestral=False, boss=False):
     base = "astral_" + source
     mid = f"astral_{key}_{source}" + ("_eco" if ancestral else "")
     data = deepcopy(mythic.ancestral_def(base) if ancestral else mythic.MOBS[base])
+    if key == 'cumbre' and source == 'yeti' and boss:
+        data['model_skill'] = 'AST_MODEL_astral_yeti_cumbre'
     if boss: data["suppress_quest"] = True  # credito compartido al terminar la sala
     if ancestral:
         # Conserva modelo, tintado, fases, afijo y drops del Ancestral. La prueba

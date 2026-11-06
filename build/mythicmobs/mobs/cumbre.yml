@@ -186,8 +186,8 @@ astral_cumbre_yeti:
   - leather 4-8 1
   - exp 150
   Skills:
-  - skill{s=AST_MODEL_astral_yeti} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_yeti} @self ~onLoad
+  - skill{s=AST_MODEL_astral_yeti_cumbre} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_yeti_cumbre} @self ~onLoad
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0

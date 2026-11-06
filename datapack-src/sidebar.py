@@ -9,10 +9,22 @@ TITLE = f"{GRADIENT}<bold>✦ ASTRAL RPG ✦</bold></gradient>"
 DIVIDER = f"{GRADIENT}{'─' * 16}</gradient>"
 
 
+SIDEBAR_WIDTH = 240
+
+
+def text_width(label):
+    return sum(4 if c == ' ' or c in 'tI' else 2 if c in "il.,:;!|'" else
+               5 if c in 'fk' else 6 for c in label)
+
+
 def centered_location(label):
-    # Approximate the vanilla font widths. Dynamic stats may widen the sidebar.
-    width = sum(2 if c in "il" else 4 if c in " tI" else 6 for c in label)
-    return " " * max(0, (134 - width) // 8) + TEXT + label
+    # Pad both sides: the location itself establishes a stable sidebar width.
+    # TAB cannot center individual scoreboard lines automatically.
+    gap = max(0, SIDEBAR_WIDTH - text_width(label))
+    spaces = (gap + 3) // 4
+    left = spaces // 2
+    right = spaces - left
+    return " " * left + TEXT + label + " " * right
 
 
 def section(label):
@@ -58,25 +70,36 @@ def steps(name, value, states):
     return expression, "".join(lines)
 
 
-def location_conditions(centered=False):
-    from mapas_exploracion import DEFINITIONS as EXPEDITIONS
+def world_labels():
     from mobs.mazmorras_data import DEFINITIONS as DUNGEONS, ARENA
     from mobs.mazmorra import MINA
+    labels = {d.get('world', d['key']): d['name'] for d in DUNGEONS}
+    labels.update({
+        'world': 'Supervivencia', 'overworld': 'Supervivencia', 'lobby': 'Refugio Astral',
+        'world_nether': 'El Nether', 'the_nether': 'El Nether',
+        'world_the_end': 'El End', 'the_end': 'El End',
+        'portales_astrales': 'Portales Astrales', ARENA['world']: 'Arena Astral',
+        'arenas_tft': 'Arenas PvP', 'parkour_spiral': 'Parkour Espiral',
+        MINA['world']: 'Minas Olvidadas', 'astral_minas': 'Minas Astrales',
+        'bosque': 'Bosque Sombrío', 'tumba': 'Tumba del Rey de Arena',
+        'cumbre': 'Cumbre Nevada', 'cumbre_hielo': 'Cumbre Helada',
+        'forja': 'Volcán de la Forja', 'forja_volcano': 'Corazón de la Forja',
+        'santuario': 'Santuario Celestial', 'santuario_interstellar': 'Santuario Celestial',
+        'santuario_freemap9': 'Jardines del Santuario',
+        'reino': 'Reino de las Mazmorras', 'cavernas': 'Cavernas',
+        'exp_desierto': 'Expedición al Desierto', 'exp_hielo': 'Expedición al Hielo',
+        'exp_nieve': 'Expedición a la Nieve', 'exp_santuario': 'Expedición al Santuario',
+    })
+    return labels
 
-    labels = {"world": "Survival", "lobby": "Spawn", "world_nether": "Nether",
-              "world_the_end": "End", "portales_astrales": "Portales Astrales", ARENA["world"]: "Arena PvP",
-              MINA["world"]: "Mazmorra · Minas Olvidadas", "astral_minas": "Minas Astrales"}
-    labels.update({d["key"]: f'Mazmorra · {d["name"]}' for d in DUNGEONS})
-    labels.update({"bosque": "Mazmorra · Bosque Sombrío", "forja": "Expedición Astral · Forja"})
-    labels.update({world: "Expedición Astral · " + name for world, name in {
-        "reino": "Reino", "cavernas": "Cavernas", "exp_desierto": "Desierto",
-        "exp_hielo": "Cumbre", "exp_santuario": "Santuario",
-    }.items() if world in EXPEDITIONS})
-    output = "%world%"
+
+def location_conditions(centered=False):
+    labels = world_labels()
+    output = centered_location('Exploración') if centered else 'Exploración'
     prefix = "sidebar_world" if centered else "mundo"
     lines = []
     for i, (world, label) in enumerate(reversed(list(labels.items()))):
-        key = prefix if world == "world" else f"{prefix}_{i}"
+        key = prefix if i == len(labels) - 1 else f"{prefix}_{i}"
         lines.append(condition(key, f"%world%={world}", centered_location(label) if centered else label, output))
         output = ref(key)
     return "".join(lines)

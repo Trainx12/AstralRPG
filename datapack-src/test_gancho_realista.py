@@ -16,7 +16,8 @@ class RealisticHookTests(unittest.TestCase):
         self.assertEqual(new['name'], 'minecraft:fishing_rod')
         components = new['functions'][0]['components']
         self.assertEqual(components['minecraft:item_model'], 'minecraft:fishing_rod')
-        self.assertIn('Gancho realista', str(components['minecraft:item_name']))
+        self.assertIn('Gancho de escalada', str(components['minecraft:item_name']))
+        self.assertIn('Saltador', str(old['functions'][0]['components']['minecraft:item_name']))
         self.assertIn('astral:item/gancho_realista', (PACK / 'loot_table/kit/especiales.json').read_text())
 
     def test_identity_uses_custom_data(self):
@@ -39,7 +40,8 @@ class RealisticHookTests(unittest.TestCase):
         self.assertIn('uuid of fishing hook is not {-astral.realistic::%{_id}%}', text)
         self.assertEqual(text.count('if astral_dungeon(world of player) is true:'), 2)
         self.assertIn('if {_distance} > 32:', text)
-        self.assertIn('less than 2 seconds:', text)
+        self.assertNotIn('astral.grapple.cd', text)
+        self.assertNotIn('wait ', text)
         self.assertIn('on death of player:', text)
         self.assertIn('on world change:', text)
 
@@ -52,6 +54,8 @@ class RealisticHookTests(unittest.TestCase):
         self.assertIn('set {_anchor} to {-astral.realistic::%{_id}%::anchor}', text)
         self.assertIn('if {_anchor} is not set:', text)
         self.assertIn('if {_block} is not solid:', text)
+        self.assertIn('set velocity of {_hook} to vector(0, 0.03, 0)', text)
+        self.assertIn('astral_hook_clear(player)', text)
 
 
 if __name__ == '__main__':

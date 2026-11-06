@@ -19,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 8   # escala por tier real (escala.py); migracion en el mismo slot, conserva mejoras
+ITEM_VERSION = 9   # Saltador y Gancho de escalada; migracion en el mismo slot, conserva mejoras
 
 files = {}
 
@@ -121,7 +121,7 @@ for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
     add_item(mid, "minecraft:paper", name, color, [txt(desc), txt("Recuerdo de la Estrella Astral", "dark_gray")],
              {"type": "quest"}, model=model, glint=glint, kind="quest")
 
-add_item("gancho", "minecraft:carrot_on_a_stick", "Gancho de Escalada", "#d0d0d0",
+add_item("gancho", "minecraft:carrot_on_a_stick", "Saltador", "#d0d0d0",
          [txt("Click derecho: impulso hacia donde miras"), txt("Salto elevado sin dano de caida."),
           txt("Enfriamiento: 2 segundos.", "dark_gray")],
          {"type": "hook"}, model="minecraft:fishing_rod",
@@ -132,11 +132,11 @@ RECIPES.append(("gancho", 1, [("v", "minecraft:fishing_rod", 1), ("v", "minecraf
                               ("v", "minecraft:string", 2)], "Especiales"))
 
 # Variante de prueba: caña vanilla con sedal y colision reales, sin receta por ahora.
-add_item("gancho_realista", "minecraft:fishing_rod", "Gancho realista", "#D6B4FF",
+add_item("gancho_realista", "minecraft:fishing_rod", "Gancho de escalada", "#D6B4FF",
          [txt("Click derecho: lanza el anzuelo (mano principal)."),
           txt("Vuelve a pulsar al enganchar un bloque o entidad."),
           txt("El tiron te lleva hacia el anzuelo, no hacia la mirada."),
-          txt("Prueba · alcance 32 bloques · recarga 2 s", "dark_gray")],
+          txt("Anclaje fijo · alcance 32 bloques · sin recarga", "dark_gray")],
          {"type": "realistic_hook"}, model="minecraft:fishing_rod")
 
 for (out, n, ings) in MAT_RECIPES:

@@ -99,6 +99,7 @@ astral_mina_capataz:
     Despawn: false
     FollowRange: 32
     Glowing: true
+    Scale: 2.0
     KnockbackResistance: 0.8
   BossBar:
     Enabled: true
@@ -134,6 +135,7 @@ astral_mina_golem:
     Despawn: false
     FollowRange: 32
     Glowing: true
+    Scale: 2.0
     KnockbackResistance: 0.8
   BossBar:
     Enabled: true
