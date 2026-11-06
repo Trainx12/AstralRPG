@@ -1,25 +1,25 @@
 # Santuario Celestial - ubicaciones propuestas, revisar en creativo antes de habilitar.
 # Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
 # Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
-mv create santuario_freemap9 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/santuario_freemap9/region.
+mv create santuario_interstellar normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/santuario_interstellar/region.
 # Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
-mv modify santuario_freemap9 set difficulty hard
-mv modify santuario_freemap9 set gamemode survival
-mv modify santuario_freemap9 set pvp false
-mv modify santuario_freemap9 set allow-weather false
-mv gamerule set minecraft:spawn_mobs false santuario_freemap9
-mv gamerule set minecraft:keep_inventory true santuario_freemap9
-rg flag -w santuario_freemap9 __global__ build deny
-rg flag -w santuario_freemap9 __global__ chest-access deny
-rg flag -w santuario_freemap9 __global__ pvp deny
-rg flag -w santuario_freemap9 __global__ mob-spawning allow
+mv modify santuario_interstellar set difficulty hard
+mv modify santuario_interstellar set gamemode survival
+mv modify santuario_interstellar set pvp false
+mv modify santuario_interstellar set allow-weather false
+mv gamerule set minecraft:spawn_mobs false santuario_interstellar
+mv gamerule set minecraft:keep_inventory true santuario_interstellar
+rg flag -w santuario_interstellar __global__ build deny
+rg flag -w santuario_interstellar __global__ chest-access deny
+rg flag -w santuario_interstellar __global__ pvp deny
+rg flag -w santuario_interstellar __global__ mob-spawning allow
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Prueba de los cinco ecos: execute in minecraft:santuario_freemap9 run minecraft:tp <jugador> 33.5 103 -40.5
+# Prueba de los cinco ecos: execute in minecraft:santuario_interstellar run minecraft:tp <jugador> 34.5 180 40.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
 # DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:santuario_freemap9 run forceload add 33 -60
-# mm mobs spawn astral_santuario_control_sala1 1 santuario_freemap9,33.5,103,-60.5
-# execute in minecraft:santuario_freemap9 run forceload remove 33 -60
+# execute in minecraft:santuario_interstellar run forceload add 46 48
+# mm mobs spawn astral_santuario_control_sala1 1 santuario_interstellar,46.5,180,48.5
+# execute in minecraft:santuario_interstellar run forceload remove 46 48
 # NPC de entrada (en el lobby): mm mobs spawn astral_npc_santuario
 # Los jefes y mobs del mundo normal conservan sus apariciones.

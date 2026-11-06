@@ -1,5 +1,10 @@
 # Santuario: mapa entregado por el dueno
 
+**Historico: este escenario dejo de ser el destino activo.** El mismo 05/11/2026
+el dueno corrigio el archivo elegido: el mapa correcto es
+`mapa_Santuari_Mazmorra.zip`, con `interstellar.litematic`. Ver
+`docs/SANTUARIO_INTERSTELLAR.md`. FreeMap9 se conserva aparte.
+
 El 05/11/2026 el dueno proporciono `mapa_santuario.rar` y pidio instalarlo como
 mapa de la mazmorra. Esta version reemplaza el destino de la mazmorra, conservando
 las dimensiones anteriores. No se publica el mapa de terceros en GitHub.

@@ -43,7 +43,7 @@ command /mazmorras [<text>]:
             if player does not have permission "astral.descubierto.santuario":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:santuario_freemap9 run minecraft:tp %name of player% 33.5 103 -40.5"
+            execute console command "execute in minecraft:santuario_interstellar run minecraft:tp %name of player% 34.5 180 40.5"
             stop
         send "&eDestinos: bosque, tumba, mina, cumbre, forja y santuario." to player
 

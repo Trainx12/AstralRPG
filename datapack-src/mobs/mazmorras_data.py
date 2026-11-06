@@ -38,9 +38,9 @@ DEFINITIONS = [
          points=[(1536.5, 224, 1900.5), (1456.5, 210, 2032.5), (1536.5, 200, 2304.5)],
          labels=["Ladera de ceniza", "Puente de la escoria", "Nucleo de la Forja"],
          enemies=["espantapajaros", "arana", "cara"], money=3000),
-    dict(key="santuario", name="Santuario Celestial", map="mapa_santuario.rar",
-         world="santuario_freemap9", boss=None, event="santuario", tier=6,
-         points=[(33.5, 103, -60.5)], arrival=(33.5, 103, -40.5), radius=32,
+    dict(key="santuario", name="Santuario Celestial", map="mapa_Santuari_Mazmorra.zip",
+         world="santuario_interstellar", boss=None, event="santuario", tier=6,
+         points=[(46.5, 180, 48.5)], arrival=(34.5, 180, 40.5), radius=18,
          labels=["Prueba de los cinco ecos"],
          enemies=[], money=5000),
 ]

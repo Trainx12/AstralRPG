@@ -35,10 +35,10 @@ class SantuarioMapTests(unittest.TestCase):
 
     def test_new_map_arrival_activates_five_boss_waves(self):
         dungeon = next(d for d in catalog() if d['key'] == 'santuario')
-        self.assertEqual(dungeon['world'], 'santuario_freemap9')
+        self.assertEqual(dungeon['world'], 'santuario_interstellar')
         room = dungeon['rooms'][0]
-        self.assertEqual(room['llegada'], (33.5, 103, -40.5))
-        self.assertGreaterEqual(room['r'], 21)
+        self.assertEqual(room['llegada'], (34.5, 180, 40.5))
+        self.assertGreaterEqual(room['r'], 15)
         self.assertEqual(len(room['oleadas']), 5)
         skills = yaml.safe_load(skill_yml(dungeon))
         summons = [line for value in skills.values() for line in value['Skills']
