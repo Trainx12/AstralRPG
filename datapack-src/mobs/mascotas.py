@@ -217,7 +217,10 @@ def skill_yml():
                 f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players operation @s plv_{pid} = @s pxp_{pid}"}} @self',
                 f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players operation @s plv_{pid} /= #nivel petkills"}} @self',
                 f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players add @s plv_{pid} 1"}} @self',
-                f'command{{c="execute as @a[scores={{plv_{pid}={NIVEL_MAX + 1}..}}] run scoreboard players set @s plv_{pid} {NIVEL_MAX}"}} @self']
+                f'command{{c="execute as @a[scores={{plv_{pid}={NIVEL_MAX + 1}..}}] run scoreboard players set @s plv_{pid} {NIVEL_MAX}"}} @self',
+                # Progreso dentro del nivel (0-24): lo usa la barra de "Mi companero".
+                f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players operation @s pmod_{pid} = @s pxp_{pid}"}} @self',
+                f'command{{c="execute as @a[scores={{petsel={n}}}] run scoreboard players operation @s pmod_{pid} %= #nivel petkills"}} @self']
     # 'execute if entity @a' evita el aviso 'No entity was found' en la consola cuando no hay nadie conectado
     # solo se resetea a quien mato algo, y con 'execute as' (si no, a los OP les llega "Se ha cambiado la puntuacion" cada vez)
     niv += ['command{c="execute as @a[scores={petkills=1..}] run scoreboard players set @s petkills 0"} @self',
@@ -234,7 +237,8 @@ def commands():
          "scoreboard objectives add petkills minecraft.custom:minecraft.mob_kills",
          f"scoreboard players set #nivel petkills {KILLS_POR_NIVEL}"]
     for pid in MASCOTAS:
-        C += [f"scoreboard objectives add pxp_{pid} dummy", f"scoreboard objectives add plv_{pid} dummy"]
+        C += [f"scoreboard objectives add pxp_{pid} dummy", f"scoreboard objectives add plv_{pid} dummy",
+              f"scoreboard objectives add pmod_{pid} dummy"]
     C += ["# controlador (en un chunk del lobby que queda siempre cargado)",
           f"execute in minecraft:lobby run forceload add {int(x)} {int(z)}",
           "rg flag -w lobby __global__ mob-spawning allow",

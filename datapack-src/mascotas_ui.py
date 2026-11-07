@@ -158,7 +158,6 @@ def assets():
         files['assets/astral/textures/'+path]=png(part)
         providers.append({'type':'bitmap','file':'astral:'+path,'height':part.height,'ascent':ascent,'chars':[char]})
         advances[rewind]=-(part.getbbox()[2]+1)
-    providers.append({'type':'space','advances':advances})
     def model(name,image):
         files[f'assets/astral/textures/item/mascotas/{name}.png']=png(image)
         files[f'assets/astral/models/mascotas/{name}.json']=json.dumps({'parent':'minecraft:item/generated','gui_light':'front',
@@ -175,6 +174,7 @@ def assets():
     for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
     image=rest_button()
     for i in range(5):model(f'rest_{i}',image.crop((i*18,0,i*18+18,18)))
+    providers.append({'type':'space','advances':advances})
     return files,providers
 
 

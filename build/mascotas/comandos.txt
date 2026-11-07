@@ -5,16 +5,22 @@ scoreboard objectives add petkills minecraft.custom:minecraft.mob_kills
 scoreboard players set #nivel petkills 25
 scoreboard objectives add pxp_lobo dummy
 scoreboard objectives add plv_lobo dummy
+scoreboard objectives add pmod_lobo dummy
 scoreboard objectives add pxp_cuervo dummy
 scoreboard objectives add plv_cuervo dummy
+scoreboard objectives add pmod_cuervo dummy
 scoreboard objectives add pxp_golem dummy
 scoreboard objectives add plv_golem dummy
+scoreboard objectives add pmod_golem dummy
 scoreboard objectives add pxp_zorro dummy
 scoreboard objectives add plv_zorro dummy
+scoreboard objectives add pmod_zorro dummy
 scoreboard objectives add pxp_dragon dummy
 scoreboard objectives add plv_dragon dummy
+scoreboard objectives add pmod_dragon dummy
 scoreboard objectives add pxp_fenix dummy
 scoreboard objectives add plv_fenix dummy
+scoreboard objectives add pmod_fenix dummy
 # controlador (en un chunk del lobby que queda siempre cargado)
 execute in minecraft:lobby run forceload add 180 190
 rg flag -w lobby __global__ mob-spawning allow

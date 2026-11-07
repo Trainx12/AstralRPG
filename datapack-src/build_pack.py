@@ -252,6 +252,10 @@ from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)
 default_font['providers'] = gacha_providers + default_font['providers']
+from companero_ui import assets as companero_assets
+companero_files, companero_providers = companero_assets()
+files.update(companero_files)
+default_font['providers'] = companero_providers + default_font['providers']
 from menu_ui import assets as menu_assets
 menu_files, menu_providers = menu_assets()
 files.update(menu_files)

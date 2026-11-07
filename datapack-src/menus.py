@@ -181,17 +181,19 @@ def mascotas_menu():
                     view += f"\n        nivel:\n          type: '>='\n          input: '{SCORE.format('plv_' + pid)}'\n          output: '{level}'"
                 lore = ["", f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", "", "&a&lAl equiparla ahora:",
                         *['&f+ ' + bonus for bonus in beneficios_actuales(pid, level)], "", *benefits,
-                        "", "&eClic para equipar e invocar"]
+                        "", "&eClic izquierdo: equipar e invocar", "&bClic derecho: ver detalle"]
                 items += item(key if level == 1 else key + f'_nv{level}', 'PAPER', slot, f"{col}&l{d['nombre']}", lore, extra={
                     'item_model': q(f'astral:mascotas/{pid}_{index}'), 'priority': priority, 'update': 'true',
                     'view_requirement': view,
-                    'click_requirement': requirement + "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'\n      - '[sound] ENTITY_VILLAGER_NO'",
-                    'click_commands': ['[close]', f"[console] scoreboard players set {P} mascota {d['n']}"]})
+                    'left_click_requirement': requirement + "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'\n      - '[sound] ENTITY_VILLAGER_NO'",
+                    'left_click_commands': ['[close]', f"[console] scoreboard players set {P} mascota {d['n']}"],
+                    'right_click_commands': [f'[openguimenu] mascota_{pid}']})
             items += item(key+'_no', 'PAPER', slot, f"&8&l{d['nombre']} &7(bloqueada)",
                           ['', *benefits, '', f"&7Se consigue en: &f{d['fuente']}", '',
                            '&7Desbloqueala para invocarla desde el santuario.'], extra={
                 'item_model': q(f'astral:mascotas/{pid}_locked_{index}'), 'priority': 4,
-                'click_commands': ['[message] &7Todavia no tienes esta mascota.', '[sound] ENTITY_VILLAGER_NO']})
+                'left_click_commands': ['[message] &7Todavia no tienes esta mascota.', '[sound] ENTITY_VILLAGER_NO'],
+                'right_click_commands': [f'[openguimenu] mascota_{pid}']})
     for index, slot in enumerate(REST_SLOTS):
         items += item('guardar' if index == 0 else f'guardar_hit_{index}', 'PAPER', slot,
                       '&a&lDejar descansar a tu mascota', ['&7Guarda a tu companero actual.', '&7Conserva su nivel y sus mejoras.'],
@@ -205,6 +207,69 @@ def mascotas_menu():
     items += item('cerrar', 'PAPER', 53, '&cCerrar',
                   extra={'item_model': q('astral:mascotas/nav_close'), 'click_commands': ['[close]']})
     return menu(title(), 'mascotas', 54, items, update=True)
+
+
+def mascota_detalle_menu(pid):
+    """Mi companero (companero_ui.py): cartel de nivel, barra de experiencia y mejoras con su estado real."""
+    from companero_ui import title, LEVEL_SLOTS, XP_SLOTS, PERK_ROWS, PERK_LEVELS, INVOKE_SLOTS, REST_SLOTS
+    P = "%player_name%"
+    d = MASCOTAS[pid]
+    col = hexc(d["color"])
+    lv, mod = SCORE.format('plv_' + pid), SCORE.format('pmod_' + pid)
+    perm = f"astral.mascota.{pid}"
+
+    def cmp(name, kind, value, number):
+        return f"\n        {name}:\n          type: '{kind}'\n          input: '{value}'\n          output: '{number}'"
+    info = [f"&7Nivel: &e{lv}&7/30", f"&7Experiencia: &e{mod}&7/25 bajas",
+            "&7Sube con los mobs que matas con ella afuera.", "&8Los bonus solo se activan en mazmorras."]
+    items = []
+    # Cartel "Nivel X / 30": una version por nivel; sin datos muestra el nivel 1.
+    for i, slot in enumerate(LEVEL_SLOTS):
+        for level in range(1, 31):
+            items += item(f'nivel_{level}_{i}', 'PAPER', slot, f"{col}&l{d['nombre']}", info, extra={
+                'item_model': q(f'astral:companero/nivel_{level}_{i}'), 'priority': level, 'update': 'true',
+                'view_requirement': "\n      requirements:" + cmp('nivel', '==', lv, level)})
+        items += item(f'nivel_base_{i}', 'PAPER', slot, f"{col}&l{d['nombre']}", info, extra={
+            'item_model': q(f'astral:companero/nivel_1_{i}'), 'priority': 31})
+    # Barra de 5 casillas: cada una cubre 5 de las 25 bajas del nivel; en nivel 30 queda llena.
+    for j, slot in enumerate(XP_SLOTS):
+        lore = [f"&7Experiencia: &e{mod}&7/25 bajas para el proximo nivel."]
+        items += item(f'xp_{j}_full', 'PAPER', slot, '&bExperiencia', lore, extra={
+            'item_model': q(f'astral:companero/xp_{j}_2'), 'priority': 1, 'update': 'true',
+            'view_requirement': "\n      minimum_requirements: 1\n      requirements:" + cmp('maximo', '>=', lv, 30) + cmp('lleno', '>=', mod, 5 * (j + 1))})
+        items += item(f'xp_{j}_half', 'PAPER', slot, '&bExperiencia', lore, extra={
+            'item_model': q(f'astral:companero/xp_{j}_1'), 'priority': 2, 'update': 'true',
+            'view_requirement': "\n      requirements:" + cmp('medio', '>=', mod, 5 * j + 3)})
+        items += item(f'xp_{j}', 'PAPER', slot, '&bExperiencia', lore, extra={
+            'item_model': q(f'astral:companero/xp_{j}_0'), 'priority': 3, 'update': 'true'})
+    texts = list(d['texto']) + ['Evolucion visual de la mascota']
+    for row, level, caption in zip(PERK_ROWS, PERK_LEVELS, texts):
+        lore = [f"&7Desde nivel &e{level}&7: &f{caption}", "&8Los bonus solo se activan en mazmorras."]
+        for c in range(8):
+            items += item(f'mejora_{level}_{c}', 'PAPER', row * 9 + c, f"&6Nivel {level}", lore,
+                          extra={'item_model': q('astral:viajes/blank')})
+        items += item(f'estado_{level}', 'PAPER', row * 9 + 8, f"&aDesbloqueada (nivel {level})", lore, extra={
+            'item_model': q('astral:companero/ok'), 'priority': 1, 'update': 'true',
+            'view_requirement': "\n      requirements:" + cmp('nivel', '>=', lv, level)})
+        items += item(f'estado_{level}_no', 'PAPER', row * 9 + 8, f"&7Bloqueada: llega a nivel {level}", lore, extra={
+            'item_model': q('astral:companero/lock'), 'priority': 2})
+    deny = ("\n      requirements:\n        tiene:\n          type: has permission\n          permission: " + perm +
+            "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'\n      - '[sound] ENTITY_VILLAGER_NO'")
+    for index, slot in enumerate(INVOKE_SLOTS):
+        items += item('invocar' if index == 0 else f'invocar_{index}', 'PAPER', slot, f"&b&lInvocar a {d['nombre']}",
+                      ['&7La equipa y la llama a tu lado.', '&7Solo una mascota a la vez.'], extra={
+                          'item_model': q(f'astral:companero/invocar_{index}'), 'click_requirement': deny,
+                          'click_commands': ['[close]', f"[console] scoreboard players set {P} mascota {d['n']}"]})
+    for index, slot in enumerate(REST_SLOTS):
+        items += item('descansar' if index == 0 else f'descansar_{index}', 'PAPER', slot, '&a&lDejar descansar a tu mascota',
+                      ['&7Guarda a tu companero actual.', '&7Conserva su nivel y sus mejoras.'], extra={
+                          'item_model': q(f'astral:companero/descansar_{index}'),
+                          'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
+    items += item('coleccion', 'PAPER', 45, '&fVolver a la coleccion', extra={
+        'item_model': q('astral:companero/volver'), 'click_commands': ['[openguimenu] mascotas']})
+    items += item('cerrar', 'PAPER', 53, '&cCerrar', extra={
+        'item_model': q('astral:companero/cerrar'), 'click_commands': ['[close]']})
+    return menu(title(pid), f'mascota_{pid}', 54, items, update=True)
 
 
 def bazar_menu():
@@ -495,6 +560,7 @@ def main():
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
+    menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]

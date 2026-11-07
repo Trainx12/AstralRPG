@@ -34,10 +34,12 @@ class MascotasTests(unittest.TestCase):
                         self.assertEqual(reqs['nivel']['output'], str(level))
                     for bonus in beneficios_actuales(pid, level):
                         self.assertIn('&f+ ' + bonus, entry['lore'])
-                    self.assertIn('click_requirement', entry)
+                    self.assertIn('left_click_requirement', entry)
+                    self.assertEqual(entry['right_click_commands'], [f'[openguimenu] mascota_{pid}'])
                 locked = data['items'][key + '_no']
                 self.assertEqual(locked['priority'], 4)
-                self.assertTrue(all(c.startswith(('[message]', '[sound]')) for c in locked['click_commands']))
+                self.assertTrue(all(c.startswith(('[message]', '[sound]')) for c in locked['left_click_commands']))
+                self.assertEqual(locked['right_click_commands'], [f'[openguimenu] mascota_{pid}'])
                 for stage in MASCOTAS[pid]['texto']:
                     self.assertTrue(any(stage in line for line in locked['lore']))
 

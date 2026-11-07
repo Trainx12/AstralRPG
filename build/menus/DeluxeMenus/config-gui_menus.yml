@@ -26,6 +26,18 @@ gui_menus:
     file: misiones_3.yml
   misiones_4:
     file: misiones_4.yml
+  mascota_lobo:
+    file: mascota_lobo.yml
+  mascota_cuervo:
+    file: mascota_cuervo.yml
+  mascota_golem:
+    file: mascota_golem.yml
+  mascota_zorro:
+    file: mascota_zorro.yml
+  mascota_dragon:
+    file: mascota_dragon.yml
+  mascota_fenix:
+    file: mascota_fenix.yml
   mazmorras:
     file: mazmorras.yml
   expediciones:
