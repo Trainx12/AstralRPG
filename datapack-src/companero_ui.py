@@ -22,7 +22,9 @@ FILL, EDGE, GOLD = '#182c2d', '#c9a14f', '#e2b85a'
 FRAME = ('companero2', (215, 430, 1813, 1699))
 TITLE, TITLE_Y, SUB_FRAC = 'MI COMPANERO', 22, .80   # cartel grande y cinta del nombre (fraccion del encabezado)
 START, END = '', ''
-GLYPHS = {pid: tuple(chr(0xeb10 + i * 4 + j) for j in range(4)) for i, pid in enumerate(MASCOTAS)}
+# Minecraft no dibuja glifos de mas de 256 px de ancho: cada parte va en dos mitades (izquierda y derecha).
+HALF = W // 2
+GLYPHS = {pid: tuple(chr(0xeb10 + i * 8 + j) for j in range(8)) for i, pid in enumerate(MASCOTAS)}
 
 LEVEL_SLOTS = (0, 1, 2, 3)      # cartel "Nivel X / 30"
 XP_SLOTS = (4, 5, 6, 7, 8)      # "Experiencia" y la barra
@@ -47,6 +49,7 @@ def slot_xy(slot):
 
 
 def title(pid):
+    # Por parte: mitad izquierda, salto a la mitad derecha, mitad derecha, vuelta al origen.
     return '&f' + START + ''.join(GLYPHS[pid]) + END
 
 
@@ -200,12 +203,19 @@ def assets():
     advances = {START: -(32 + E), END: 32 + E}
     for pid in MASCOTAS:
         im, head_height = full(pid)
-        a, b, c, d = GLYPHS[pid]
-        for n, ((part, ascent), char, rewind) in enumerate(zip(glyph_parts(im, head_height), (a, c), (b, d))):
-            path = f'font/companero/{pid}_{n}.png'
-            files['assets/astral/textures/' + path] = png(part)
-            providers.append({'type': 'bitmap', 'file': 'astral:' + path, 'height': part.height, 'ascent': ascent, 'chars': [char]})
-            advances[rewind] = -(part.getbbox()[2] + 1)
+        chars = GLYPHS[pid]
+        for n, (part, ascent) in enumerate(glyph_parts(im, head_height)):
+            left_char, jump, right_char, back = chars[n * 4:n * 4 + 4]
+            for side, char, box in (('a', left_char, (0, 0, HALF, part.height)), ('b', right_char, (HALF, 0, W, part.height))):
+                piece = part.crop(box)
+                path = f'font/companero/{pid}_{n}{side}.png'
+                files['assets/astral/textures/' + path] = png(piece)
+                providers.append({'type': 'bitmap', 'file': 'astral:' + path, 'height': piece.height, 'ascent': ascent, 'chars': [char]})
+                width = piece.getbbox()[2] + 1
+                if side == 'a':
+                    advances[jump] = HALF - width        # deja el cursor en la mitad del marco
+                else:
+                    advances[back] = -(HALF + width)     # vuelve al borde izquierdo
     providers.append({'type': 'space', 'advances': advances})
 
     def model(name, image):
