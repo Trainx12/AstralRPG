@@ -1,38 +1,50 @@
 # AstralRPG: cómo está armado el servidor
 
-Documento de referencia para administrar el servidor. Actualizado el 28/10/2026.
+Documento de referencia para administrar el servidor. Actualizado el 07/11/2026 (mudanza a Empower Servers).
 Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [GUIA.md](GUIA.md).
 
 > **Contraseñas:** este repositorio es público, así que acá no va ninguna contraseña.
-> El usuario y la contraseña de Aternos están en `docs/CREDENCIALES.local.md`. Ese archivo existe solo
+> Las claves van en `docs/CREDENCIALES.local.md`. Ese archivo existe solo
 > en la PC del dueño y Git lo ignora, así que no se sube a GitHub.
-> Como la contraseña de Aternos se compartió por chat, conviene cambiarla y actualizar ese archivo.
+> La contraseña de Aternos se compartió con el soporte de Empower para la migración: cambiarla.
 
 ## Servidor
 
 | Dato | Valor |
 |---|---|
-| Dirección | `AstralRPG.aternos.me` |
-| Hosting | Aternos (panel en https://aternos.org/server/) |
+| Dirección | `103.106.58.173:7004` |
+| Hosting | Empower Servers, nodo AR01 (Argentina). Panel: https://gp.empowerservers.com/server/44d1ad66 · Facturación: https://billing.empowerservers.com |
+| Plan | 8 GB de RAM, 200 GB de disco, respaldos diarios (complemento). Trimestral, se renueva solo |
 | Software | Paper 26.1.2, build 74 (Java 25) |
 | Modo | No premium (`online-mode=false`): entran cuentas cracked y originales |
 | Login | AuthMe: los no premium hacen `/register <clave> <clave>` la primera vez y `/login <clave>` después. Los premium escriben `/premium` una vez (estando logueados) y desde ahí entran sin contraseña. Es el modo premium propio de AuthMe (`settings.enablePremium: true` en `plugins/AuthMe/config.yml`), que usa PacketEvents para confirmar la cuenta con Mojang. `/freemium` lo desactiva |
 | Mods | Ninguno. Se entra desde Minecraft vanilla 26.1.2 |
 | Repositorio | https://github.com/Trainx12/AstralRPG (público) |
 
-Aternos apaga el servidor cuando no hay nadie. Para prenderlo hay que entrar al panel, apretar **Start** y dejar terminar el anuncio. Si se cierra el anuncio antes de tiempo, a veces el arranque se cancela y hay que apretar Start de nuevo.
+El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done (177s)`) y usa ~2 GB al prender.
+
+### Empower: lo que hay que saber (07/11/2026)
+- **Java 25 elegido a mano:** Startup → Docker Image → **Java 25**. La imagen "Java Universal" detecta Java 17 y Paper 26.1 no arranca ("requires Java 25").
+- **El panel reescribe `server.properties` al arrancar:** pone `server-port`, `query.port` y `management-server-port` en 7004. Por eso `management-server-enabled=false` (si no, choca con el puerto del juego: "FAILED TO BIND TO PORT"). Dejar `resource-pack-prompt=` vacío: con comillas el panel rompe la línea siguiente (`resource-pack-sha1`).
+- **Versions → Install:** el interruptor **Wipe Server Files** borra todo el servidor. Tiene que quedar apagado.
+- **Archivos:** Files permite subir cualquier cosa, también `.jar`, y hay SFTP (misma clave que el panel). Sin tope de Metaspace (Aternos tenía 350 MB): Java arranca con `-Xmx6400M`.
+- **Soporte:** el chat de la esquina del panel (el formulario de tickets no tiene departamentos).
+- **Migración (07/11/2026):** el soporte pasó los 24 mundos, los datapacks y las configs de la raíz. La carpeta `plugins/` (configs y datos, sin los `.jar`) y `config/` (Paper) se bajaron de Aternos y se subieron a mano. Los 29 `.jar` se bajaron de Modrinth, Spigot (SleepMost) y GitHub (Vault) con las mismas versiones. El servidor de Aternos queda como copia hasta confirmar jugando que no falta nada.
 
 **Reglas al cambiar archivos:**
 - **ClearLag y mascotas:** el limitador de apariciones (`optimizations.mob-spawn-limiter`) cancela todo mob nuevo cuando
   hay 20 pasivos cada 4 chunks, y eso incluye las mascotas que invoca MythicMobs (desaparecian al invocarlas en el spawn y
   en el lobby). En `plugins/ClearLag/config.yml`, `exempt-spawn-reasons` tiene que incluir `CUSTOM` ademas de `CURED`.
   Las mascotas llevan la etiqueta `clearlag_exclude` para que las otras limpiezas no las toquen.
-- Aternos no deja reemplazar archivos con el servidor prendido: hay que apagarlo antes de subir el datapack o configs nuevas.
+- El datapack nuevo se toma al reiniciar: reemplazarlo en `world/datapacks` y reiniciar (o apagar, reemplazar, prender).
 - Cada vez que cambia `AstralRPG-Textures.zip`, hay que actualizar `resource-pack-sha1` en `server.properties` con el sha1 nuevo. Si no se actualiza, los jugadores no bajan la versión nueva o el pack falla al cargar.
-- **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 (no había backups porque Aternos solo los hace con Google Drive vinculado). Conviene vincular Google Drive en Backups y bajar el mundo de vez en cuando.
+- **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 en Aternos. En Empower hay respaldos diarios (pestaña Backups), pero los términos no los garantizan: bajar el mundo de vez en cuando igual.
 - En Paper 26.1 todos los mundos viven dentro de `world/`: `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/region`.
 
-## Memoria y lag (revision 02/11/2026)
+## Memoria y lag (revision 02/11/2026, en Aternos)
+
+> Desde el 07/11/2026 el server está en Empower, sin tope de Metaspace y con 8 GB. Lo de abajo explica por qué
+> se sacaron plugins en Aternos. Ahora se pueden volver a poner, pero conviene medir con spark antes y después.
 
 - **Cuelgue del 02/11 18:25:** `java.lang.OutOfMemoryError: Metaspace`. Metaspace es la memoria donde Java guarda
   el codigo de los plugins. Aternos arranca Java con `-XX:MaxMetaspaceSize=350M -Xmx2300M` (visto en el informe
@@ -238,14 +250,14 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - Avisos de MythicMobs sobre `ExampleQuest...`: son de los ejemplos que trae el plugin, no afectan nada.
 - Aviso de Paper "4 releases behind": se queda en 26.1.2 a propósito, porque los plugins están probados ahí.
 - Errores de GeoIP de AuthMe: no afectan.
-- Error al entrar `Failed to decode packet 'clientbound/minecraft:cookie_request'`: el servidor está apagado y responde la sala de espera de Aternos, que no es compatible con el cliente 26.1. Prender el servidor desde el panel y entrar cuando diga Online.
+- Error al entrar `Failed to decode packet 'clientbound/minecraft:cookie_request'`: era la sala de espera de Aternos con el server apagado. En Empower no pasa; si no conecta, revisar en el panel que diga Running y la consola.
 - Si alguien no ve texturas: que acepte el resource pack al entrar. Si sigue igual, revisar que el sha1 coincida.
 - Si aparece "Unknown skill": cargar el preset legacy de AuraSkills (ver comandos).
 - El área de los taladros puede romper bloques dentro de una zona de WorldGuard si picás justo en el borde.
 
 ## Servidor de prueba local
 
-Para probar sin tocar Aternos hubo una copia del servidor (mismos plugins, sin economía) en la carpeta temporal de Claude. Esas carpetas se pueden borrar; se rearma bajando Paper 26.1.2 y los mismos plugins. El mundo de prueba es plano. Detalles en [GUIA.md](GUIA.md#6-servidor-de-prueba-local).
+Para probar sin tocar el servidor hubo una copia del servidor (mismos plugins, sin economía) en la carpeta temporal de Claude. Esas carpetas se pueden borrar; se rearma bajando Paper 26.1.2 y los mismos plugins. El mundo de prueba es plano. Detalles en [GUIA.md](GUIA.md#6-servidor-de-prueba-local).
 
 ## Comandos de admin del lobby y la economía
 
@@ -289,7 +301,7 @@ Las ventas directas `/sell`, `/sellall`, `/sellhand` y `/sellinventory` se redir
 con un aviso a `/sellgui`, porque algunas variantes incluyen todos los slots.
 `/ah sell` con la estrella seleccionada se cancela. La muerte quita la estrella de
 los drops y del inventario antes de las tumbas; se entrega otra al reaparecer.
-Revisar consola y comprobar estas interacciones en Aternos con AxTrade,
+Revisar consola y comprobar estas interacciones en el servidor con AxTrade,
 EconomyShopGUI, CrazyAuctions y AxGraves: las pruebas locales no sustituyen esa revision.
 
 
@@ -299,6 +311,6 @@ Los selectores `/parkour` y `/arenas`, sus aldeanos, llegadas OP y reglas salen 
 `datapack-src/minijuegos.py` (listas `PARKOURS` y `ARENAS`). Regenerar con
 `python menus.py`; incluye el Skript de gameplay actualizado, sin cambiar el resource pack.
 Instalación, ZIP privados, coordenadas por revisar y pruebas en
-[Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para Aternos:
+[Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para el servidor:
 `build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.

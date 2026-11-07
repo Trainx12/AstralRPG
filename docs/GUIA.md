@@ -1,10 +1,10 @@
 # Guía para agregar cosas a AstralRPG
 
-Mapa de dónde está cada cosa, cómo se agrega algo nuevo y cómo se sube a Aternos.
+Mapa de dónde está cada cosa, cómo se agrega algo nuevo y cómo se sube al servidor (Empower Servers).
 La parte de administración (plugins, comandos, problemas conocidos) está en [SERVIDOR.md](SERVIDOR.md).
 
 > Regla de oro: **nada se edita a mano en el servidor si sale de un generador.** Se cambia el `.py` en
-> `datapack-src/`, se regenera, se hace commit y push, y recién ahí se sube a Aternos. Así el repo siempre
+> `datapack-src/`, se regenera, se hace commit y push, y recién ahí se sube al servidor. Así el repo siempre
 > tiene la versión buena y se puede rearmar todo.
 
 ---
@@ -19,7 +19,7 @@ AstralRPG/
 ├── docs/
 │   ├── SERVIDOR.md           Administración: plugins, lobby, comandos, problemas conocidos
 │   ├── GUIA.md               Este archivo
-│   └── CREDENCIALES.local.md Usuario y clave de Aternos (solo en tu PC, Git lo ignora)
+│   └── CREDENCIALES.local.md Claves del servidor (solo en tu PC, Git lo ignora)
 ├── datapack-src/             TODO lo que se genera sale de acá
 │   ├── items.py              Materiales, armas, armaduras, talismanes, lanzas, drops, élites
 │   ├── tools.py              Taladros y motosierras
@@ -42,7 +42,7 @@ AstralRPG/
 │       └── bettermodel_config.yml  Config de BetterModel usada en el server
 └── build/                    SALIDA (se sube al servidor; no se edita a mano)
     ├── AstralRPG-Items.zip         datapack → world/datapacks
-    ├── AstralRPG-Textures.zip      resource pack (Aternos lo baja de GitHub)
+    ├── AstralRPG-Textures.zip      resource pack (el servidor lo baja de GitHub)
     ├── models/*.bbmodel            → plugins/BetterModel/models/
     ├── mythicmobs/mobs/astral.yml  → plugins/MythicMobs/mobs/
     ├── mythicmobs/skills/astral.yml, gachas.yml → plugins/MythicMobs/skills/
@@ -63,7 +63,7 @@ AstralRPG/
 | Un material, arma, armadura, talismán | `datapack-src/items.py` (y la textura en `textures.py`) | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack |
 | Daño por tier, vida de mobs, maná de bastones, vida mostrada | `datapack-src/escala.py` (ver `docs/ESCALA_TIERS.md`) | `python build.py`, `python gameplay.py`, `python lobby.py` | datapack + scripts + TAB |
 | Una receta o lógica (hechizos, forja, guía) | `datapack-src/build.py` | `python build.py` | datapack |
-| Armas especiales independientes (rayo, saltos, sismo, estallido) | `special_weapons.py`, `special_weapons.sk`, `special_weapons3d.py`; ver `docs/ARMAS_ESPECIALES.md` | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack + script (`special_weapons.sk` en Aternos) |
+| Armas especiales independientes (rayo, saltos, sismo, estallido) | `special_weapons.py`, `special_weapons.sk`, `special_weapons3d.py`; ver `docs/ARMAS_ESPECIALES.md` | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack + script (`special_weapons.sk` en el servidor) |
 | Forma 3D o colores de un arma (bastones, guadanas, espadas, hachas, arcos, Guantes Meteoro) | `datapack-src/varitas3d.py` (bastones y motor), `guadanas3d.py` o `armas3d.py` (una funcion por arma; los arcos tienen 4 modelos: quieto y 3 de tensado) | `python varitas3d.py`, `python guadanas3d.py` o `python armas3d.py` (vista previa en `build/previews/`) y `python build_pack.py pack-source` | resource pack |
 | Un taladro o motosierra | `datapack-src/tools.py` | `python build.py` y `python build_pack.py pack-source` | datapack + resource pack |
 | Una criatura nueva o cambiar su forma | `mobs/creatures.py` (agregarla a `ALL`) | `python mobs/build_models.py` | `build/models/*.bbmodel` + resource pack (ver 4) |
@@ -120,12 +120,14 @@ AstralRPG/
 
 ---
 
-## 3. Cómo subir cambios a Aternos
+## 3. Cómo subir cambios al servidor (Empower)
+
+Desde el 07/11/2026 el servidor está en Empower Servers (`103.106.58.173:7004`). Datos y trampas del panel en [SERVIDOR.md](SERVIDOR.md#empower-lo-que-hay-que-saber-07112026).
 
 ### Lo básico
-1. Regenerar con Python, commit y push a `main` (Aternos y los pasos de abajo leen de GitHub).
-2. Entrar al panel de Aternos (el dueño inicia sesión; la clave está en `docs/CREDENCIALES.local.md`).
-3. Subir o editar los archivos (ver abajo).
+1. Regenerar con Python, commit y push a `main` (el resource pack se lee de GitHub).
+2. Entrar al panel https://gp.empowerservers.com/server/44d1ad66 (el dueño inicia sesión).
+3. Subir o editar los archivos en Files (ver abajo).
 4. Recargar el plugin o reiniciar, y mirar la consola por errores.
 
 ### Qué se recarga sin reiniciar
@@ -138,22 +140,22 @@ AstralRPG/
 | PlaceholderAPI | `papi reload` |
 | EssentialsX | `essentials reload` |
 | EconomyShopGUI | `sreload` |
-| Datapack (`AstralRPG-Items.zip`) | apagar, reemplazar, prender (Aternos no deja reemplazarlo prendido) |
-| Plugins nuevos | instalar desde Plugins y reiniciar |
+| Datapack (`AstralRPG-Items.zip`) | reemplazar en `world/datapacks` y reiniciar |
+| Plugins nuevos | subir el `.jar` a `plugins/` y reiniciar |
 
-### Cómo se editan archivos en Aternos (trucos)
-- **Archivos que ya existen** (configs de plugins): Files → abrir el archivo → pegar el contenido nuevo → Save. Si Aternos avisa "This file contains syntax errors", el YAML está roto: no guardar.
-- **Archivos nuevos dentro de `plugins/...`**: botón *New file* (el ícono al lado de *New folder*), ponerle el nombre y después abrirlo y pegar el contenido. En las carpetas de plugins **no hay botón Upload**.
-- **En la raíz de Files no se pueden crear carpetas** ("Access denied").
-- **`world/datapacks` sí tiene Upload**: Upload → Files.
-- **Nunca usar Worlds → Upload en la fila `world`: reemplaza el mundo entero** (así se perdió el primer mundo). Para un mundo nuevo: crearlo con Multiverse y subir sus `region/*.mca` con el server apagado.
+### Cómo se editan archivos en Empower
+- **Files** deja editar, crear, subir (también `.jar`) y descomprimir `.zip` en cualquier carpeta. Para muchos archivos: subir un `.zip` y usar *Unarchive*. También hay SFTP (misma clave que el panel).
+- **Plugins:** bajar el `.jar` de Modrinth, Hangar o Spigot y subirlo a `plugins/`. La pestaña Plugins del panel solo tiene versiones viejas. *Pull* desde URL existe, pero corta después de ~5 descargas seguidas.
+- **Versions → Install:** dejar apagado **Wipe Server Files** (borra todo el servidor).
+- **No tocar Startup → Docker Image:** tiene que quedar en Java 25.
+- Para un mundo nuevo: crearlo con Multiverse, o subir su carpeta a `world/dimensions/minecraft/` con el server apagado.
 - En Paper 26.1 todos los mundos están en `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/`.
 
 ### Resource pack
 Cada vez que cambia `build/AstralRPG-Textures.zip`:
 1. Commit y push.
 2. Usar una URL fija al commit publicado: `https://raw.githubusercontent.com/Trainx12/AstralRPG/<SHA-completo-del-commit>/build/AstralRPG-Textures.zip`. Descargarla y comprobar su SHA-1.
-3. Guardar esa URL en `server.properties` → `resource-pack` y su hash en `resource-pack-sha1`. Guardar ambos campos en Aternos. No usar `main`: cambiarlo mientras un servidor sigue con el hash anterior puede romper las descargas.
+3. Guardar esa URL en `server.properties` → `resource-pack` y su hash en `resource-pack-sha1`. Guardar ambos campos en el servidor (Files → `server.properties`). No usar `main`: cambiarlo mientras un servidor sigue con el hash anterior puede romper las descargas.
 4. Reiniciar.
 
 ---
@@ -162,7 +164,7 @@ Cada vez que cambia `build/AstralRPG-Textures.zip`:
 
 Los modelos `.bbmodel` los convierte BetterModel en el servidor. Para que el resource pack los tenga:
 1. `python mobs/build_models.py` y `python mobs/mythic.py`.
-2. Levantar un servidor de prueba local con BetterModel y los `.bbmodel` (o usar el de Aternos) para que genere `plugins/BetterModel/build/assets`.
+2. Levantar un servidor de prueba local con BetterModel y los `.bbmodel` (o usar el servidor) para que genere `plugins/BetterModel/build/assets`.
 3. Copiar esa carpeta `assets` a `datapack-src/pack-source/bettermodel/assets`.
 4. `python build_pack.py pack-source` → nuevo `AstralRPG-Textures.zip` → seguir los pasos de "Resource pack".
 5. Subir los `.bbmodel` a `plugins/BetterModel/models/` y `bettermodel reload`.
@@ -181,7 +183,7 @@ Algunas cosas no son archivos del repo sino estado del servidor. Están todas en
 
 Para mover o reemplazar un vendedor: `mm mobs kill astral_npc_<nombre>` y volver a spawnearlo con la línea de `comandos.txt`.
 
-**TAB:** `lobby.py` genera `build/lobby/TAB/secciones-config.yml` con solo las secciones que cambiamos (`header-footer`, `playerlist-objective`, `belowname-objective`, `scoreboard`, `conditions`). En `plugins/TAB/config.yml` se reemplazan esas secciones y el resto queda como está. `groups.yml` se reemplaza entero. Las animaciones (`astral_titulo`, `astral_ip`) se agregan al final de `animations.yml`.
+**TAB:** `lobby.py` genera `build/lobby/TAB/secciones-config.yml`. En `plugins/TAB/config.yml` se reemplazan las secciones del archivo y se combinan las claves de `placeholders` y `placeholder-output-replacements` con las que ya existan. El panel usa las expansiones Statistic (tiempo jugado) y ScoreboardObjectives (misiones y minas). Para el panel de minas hay que copiar también el nuevo `astral_minas.sk` y recargarlo antes de ejecutar `tab reload`. `groups.yml` se reemplaza entero. Las animaciones (`astral_titulo`, `astral_ip`) se agregan al final de `animations.yml`.
 
 Placeholders útiles para el panel o el tabulador: `%vault_eco_balance_formatted%`, `%player_health_rounded%`, `%player_max_health_rounded%`, `%player_level%`, `%auraskills_power%`, `%auraskills_<skill>%`, `%luckperms_prefix%`, `%statistic_mob_kills%`, `%server_tps_1_colored%`, `%condition:rango%`. Para probar uno: `papi parse <jugador> %placeholder%`.
 
@@ -189,7 +191,7 @@ Placeholders útiles para el panel o el tabulador: `%vault_eco_balance_formatted
 
 ## 6. Servidor de prueba local
 
-Sirve para probar MythicMobs, BetterModel y el datapack sin tocar Aternos (sin economía ni gachas).
+Sirve para probar MythicMobs, BetterModel y el datapack sin tocar el servidor (sin economía ni gachas).
 - Hubo uno en la carpeta temporal de Claude (`.../scratchpad/testsrv`, con su propio Java 25 en `jdk/`). Esas carpetas se pueden borrar; si no está, se rearma bajando Paper 26.1.2 y los mismos plugins.
 - Arrancarlo, esperar a que cargue, y mirar el log buscando `Loaded N mobs`, `models are loaded` y errores.
 
@@ -198,8 +200,8 @@ Sirve para probar MythicMobs, BetterModel y el datapack sin tocar Aternos (sin e
 ## 7. Cosas importantes que no hay que olvidar
 
 - **El repo es público.** Nunca commitear contraseñas; van en `docs/CREDENCIALES.local.md` (ignorado por Git). Tampoco subir mapas de terceros al repo.
-- **No hay backups automáticos** salvo que se vincule Google Drive en Aternos → Backups. Bajar el mundo de vez en cuando.
-- **Aternos apaga el server cuando no hay nadie.** Si al entrar sale `cookie_request`, es que está apagado: prenderlo desde el panel.
+- **Respaldos:** Empower hace uno por día (pestaña Backups), pero no los garantiza. Bajar el mundo de vez en cuando.
+- **El servidor está prendido 24/7** en Empower. Si no conecta, mirar en el panel que diga Running y revisar la consola.
 - **AuraSkills necesita el preset `legacy.zip`** para que existan Forja y Hechicería.
 - **Versiones fijas:** Paper 26.1.2, Stellarity 5.4.2 (la 6.x crashea), ExcellentEnchants 5.4.3 con NightCore 2.16.7. No usar ExcellentCrates (la 7.x no se puede configurar por archivo y la 6.x no anda con este NightCore).
 - **Chat de los OP lleno de "Se ha cambiado la puntuación...":** es la regla `log_admin_commands`; está apagada en los 5 mundos (ver `build/lobby/comandos.txt`). Si se crea un mundo nuevo, apagarla también ahí.
@@ -237,7 +239,7 @@ Las ventas directas `/sell`, `/sellall`, `/sellhand` y `/sellinventory` se redir
 con un aviso a `/sellgui`, porque algunas variantes incluyen todos los slots.
 `/ah sell` con la estrella seleccionada se cancela. La muerte quita la estrella de
 los drops y del inventario antes de las tumbas; se entrega otra al reaparecer.
-Revisar consola y comprobar estas interacciones en Aternos con AxTrade,
+Revisar consola y comprobar estas interacciones en el servidor con AxTrade,
 EconomyShopGUI, CrazyAuctions y AxGraves: las pruebas locales no sustituyen esa revision.
 
 
@@ -247,6 +249,6 @@ Los selectores `/parkour` y `/arenas`, sus aldeanos, llegadas OP y reglas salen 
 `datapack-src/minijuegos.py` (listas `PARKOURS` y `ARENAS`). Regenerar con
 `python menus.py`; incluye el Skript de gameplay actualizado, sin cambiar el resource pack.
 Instalación, ZIP privados, coordenadas por revisar y pruebas en
-[Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para Aternos:
+[Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para el servidor:
 `build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.

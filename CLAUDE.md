@@ -1,17 +1,21 @@
 # AstralRPG — instrucciones para Claude
 
-Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Aternos, `AstralRPG.aternos.me`). El dueño habla en español rioplatense; responder en español, simple y sin jerga.
+## Coordinacion con Codex
+
+El dueno pidio que Claude defina la estructura y Codex programe, pruebe y publique en GitHub. Para pedidos de implementacion, leer `docs/CLAUDE_CODEX.md`, escribir el plan en `.local/coordination/plan.md` e invocar `tools/invoke-codex-plan.mjs` con `--publish`. Esperar el resultado y revisarlo; no editar los mismos archivos mientras corre Codex. Luego continuar el despliegue en el panel de Empower desde el navegador si hay herramientas disponibles y sesion iniciada. Si no las hay, informar el despliegue pendiente. No afirmar que GitHub o el servidor estan actualizados sin comprobarlo. Para consultas sin cambios, responder directamente.
+
+Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Empower Servers, nodo Argentina, `103.106.58.173:7004`; panel https://gp.empowerservers.com/server/44d1ad66). Se mudo desde Aternos el 07/11/2026; el server de Aternos queda como copia hasta confirmar que no falta nada. El dueño habla en español rioplatense; responder en español, simple y sin jerga.
 
 **Antes de tocar algo, leer:**
-- `docs/GUIA.md` — mapa del repo, dónde se agrega cada cosa, cómo subir a Aternos y trucos que ya nos costaron.
+- `docs/GUIA.md` — mapa del repo, dónde se agrega cada cosa, cómo subir al servidor y trucos que ya nos costaron.
 - `docs/SERVIDOR.md` — plugins, lobby, comandos de admin y problemas conocidos.
 
 ## Reglas
-- Todo sale de generadores en `datapack-src/` (Python). Se edita el `.py`, se regenera `build/`, commit + push, y después se sube a Aternos. No editar a mano lo que está en `build/`.
+- Todo sale de generadores en `datapack-src/` (Python). Se edita el `.py`, se regenera `build/`, commit + push, y después se sube al servidor. No editar a mano lo que está en `build/`.
 - El repo es **público**: nunca commitear contraseñas (van en `docs/CREDENCIALES.local.md`, ignorado) ni mapas de terceros.
-- El dueño inicia sesión en Aternos en el navegador; Claude no escribe la contraseña.
-- **Nunca** indicar Worlds → Upload sobre la fila `world` en Aternos: reemplaza el mundo entero.
-- Aternos no deja reemplazar el datapack con el server prendido. Las configs de plugins se editan con el editor de Files y se recargan (`mm reload`, `crates reload`, `tab reload`, `papi reload`, `essentials reload`, `bettermodel reload`).
+- El dueño inicia sesión en el panel en el navegador; Claude no escribe contraseñas.
+- Empower: Startup → Docker Image tiene que ser **Java 25**; en Versions → Install dejar apagado **Wipe Server Files**; `management-server-enabled=false` (el panel le pone el puerto 7004 y choca con el juego). Ver docs/SERVIDOR.md.
+- El datapack nuevo se toma al reiniciar. Las configs de plugins se editan con el editor de Files y se recargan (`mm reload`, `crates reload`, `tab reload`, `papi reload`, `essentials reload`, `bettermodel reload`).
 - Si cambia `build/AstralRPG-Textures.zip`: push, esperar a que GitHub raw sirva el nuevo, y actualizar `resource-pack-sha1` en `server.properties`.
 - Commit y push solo cuando el dueño lo pide o lo aprueba para subir al server.
 
@@ -34,10 +38,9 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 - ClearLag: el limitador de apariciones cancela mobs de plugins salvo que `exempt-spawn-reasons` incluya `CUSTOM` (ver docs/SERVIDOR.md).
 - CrazyCrates: `crates preview` solo funciona como jugador (usar `sudo`); `crates forceopen <caja> <jugador>` abre gratis.
 - Lobby: WorldGuard bloquea mobs; para spawnear vendedores, `mob-spawning allow` un momento (ver `build/lobby/comandos.txt`).
-- `cookie_request` al entrar = el server está apagado.
-- Spam en el chat de los OP ("Se ha cambiado la puntuación..."): en Aternos `broadcast-console-to-ops=false` y gamerule `log_admin_commands false`; en skills que corren seguido, filtrar a quién se aplica (`@a[scores={x=1..}]`).
-- Memoria de codigo (Metaspace): Aternos la limita a 350 MB (`-XX:MaxMetaspaceSize=350M`, no se puede cambiar). Con ~35 plugins el server arranca en ~420 MB de "Non-heap" (`spark health --memory`) y el 02/11 se colgo con `OutOfMemoryError: Metaspace`. Cada `mm reload`/`skript reload` deja 2-3 MB pegados: tras muchas recargas, reiniciar el server en vez de seguir. No sumar plugins sin medir antes y despues.
+- Spam en el chat de los OP ("Se ha cambiado la puntuación..."): en `server.properties` `broadcast-console-to-ops=false` y gamerule `log_admin_commands false`; en skills que corren seguido, filtrar a quién se aplica (`@a[scores={x=1..}]`).
+- Memoria de codigo (Metaspace): en Aternos estaba limitada a 350 MB y el 02/11 se colgo con `OutOfMemoryError: Metaspace`. En Empower no hay tope (8 GB, `-Xmx6400M`). Igual cada `mm reload`/`skript reload` deja 2-3 MB pegados: tras muchas recargas, reiniciar. Medir con spark antes y despues de sumar plugins.
 - Mobs del datapack: nunca `PersistenceRequired` en mobs que aparecen solos (los elites se acumulaban: 115 brujas). Variables de Skript que cambian cada tick: siempre `{-...}` (solo memoria).
-- Plugins sacados por memoria el 03/11/2026: QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers. No reinstalarlos. El Bazar usa AxTrade (`/trade`) en lugar de Ordenes.
+- Plugins sacados por memoria en Aternos el 03/11/2026: QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers. En Empower se pueden reinstalar si el dueño lo pide (sus datos viejos siguen en `plugins/`). El Bazar usa AxTrade (`/trade`) en lugar de Ordenes.
 - Escala por tier (03/11/2026): dano de armas Astral y vida de mobs REALES y enormes (x5 por tier); vida del jugador, armadura y dano de mobs normales. Todo sale de `datapack-src/escala.py` (ver `docs/ESCALA_TIERS.md`). `spigot.yml` necesita los topes de atributos subidos; PvP de arena se divide en `astral_gameplay.sk`. DamageIndicator y LevelledMobs se sacaron.
-- Minas Astrales (`docs/MINAS.md`): Skript puro, **sin skript-reflect** (Aternos no lo tiene y no se pueden subir `.jar`). Los schematics no van al repo (el de Hierro es de terceros).
+- Minas Astrales (`docs/MINAS.md`): Skript puro, **sin skript-reflect** (se hizo asi por Aternos; en Empower ya se pueden subir `.jar`). Los schematics no van al repo (el de Hierro es de terceros).
