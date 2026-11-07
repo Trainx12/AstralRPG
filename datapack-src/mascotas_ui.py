@@ -4,13 +4,16 @@ from functools import lru_cache
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageOps
 from escape_menu import text
-from services_ui import png,SPLIT
+from services_ui import png,SPLIT,header,tall,glyph_parts,illustration
 from market_ui import band_color
 from mobs.mascotas import MASCOTAS
 
 ROOT=Path(__file__).resolve().parent
-SIZE=(224,300)
-FILL,EDGE='#142c2b','#a8894d'
+SIZE=(224,280)
+FILL,EDGE='#182c2d','#c9a14f'
+# Marco de Gemini (noviembre 2026): interior medido sobre el original.
+FRAME=('mascotas2',(170,597,1602,2023))
+TITLE,TITLE_Y='MASCOTAS',36
 START,END='\ue800','\ue801'
 GLYPHS=tuple(chr(0xe810+i) for i in range(4))
 LABELS={'lobo':'LOBO','cuervo':'CUERVO','golem':'GOLEM','zorro':'ZORRO','dragon':'DRAGON','fenix':'FENIX'}
@@ -39,28 +42,24 @@ def portrait(pid):
 
 
 def card(pid,locked=False):
+    """Retrato pintado por Gemini, con el nombre abajo; bloqueada en gris con candado."""
     color=MASCOTAS[pid]['color']
-    im=Image.new('RGBA',(54,36),FILL);d=ImageDraw.Draw(im)
-    d.rectangle((0,0,53,35),outline=EDGE)
-    d.rectangle((2,2,51,33),outline='#3e5550')
-    # Nicho y pedestal arriba; nombre, filete dorado y bonus abajo, sin pisarse.
-    d.rectangle((4,3,49,17),fill='#0d2025')
-    d.ellipse((13,13,40,18),fill='#28443e',outline='#496052')
-    image=portrait(pid)
-    im.alpha_composite(image,((54-image.width)//2,3+(14-image.height)//2))
-    text(im,LABELS[pid],(27,18),color=color)
-    d.line((8,26,45,26),fill=EDGE)
-    d.point((7,26),fill='#ddc98c');d.point((46,26),fill='#ddc98c')
-    # Fuente de 3x5 dibujada a su resolucion nativa para el beneficio compacto.
-    tiny_text(im,BONUS[pid],28,'#f3e4b8')
-    for x in (1,52):
-        for y in (1,34):d.point((x,y),fill='#ddc98c')
+    art=illustration('mascota_'+pid)
+    # Altura del centro del encuadre: donde queda la cara de cada mascota en su retrato.
+    focus={'lobo':.5,'cuervo':.42,'golem':.36,'zorro':.6,'dragon':.58,'fenix':.42}[pid]
+    ch=round(art.width*36/54);top=max(0,min(art.height-ch,round(art.height*focus-ch/2)))
+    im=art.crop((0,top,art.width,top+ch)).resize((54,36),Image.Resampling.LANCZOS)
     if locked:
-        im=Image.blend(ImageOps.grayscale(im).convert('RGBA'),Image.new('RGBA',im.size,'#22322f'),.45)
-        d=ImageDraw.Draw(im)
-        d.rectangle((42,7,49,13),fill='#172623',outline='#b1b9aa')
-        d.arc((43,3,48,10),180,360,fill='#d7d5c0')
-        d.point((45,10),fill='#d7d5c0')
+        alpha=im.getchannel('A');im=ImageOps.grayscale(im).convert('RGBA');im.putalpha(alpha)
+        im=Image.blend(im,Image.new('RGBA',im.size,'#1b2422'),.45)
+    im.alpha_composite(Image.new('RGBA',(54,11),(8,14,12,175)),(0,25))
+    d=ImageDraw.Draw(im)
+    d.rectangle((0,0,53,35),outline=EDGE if not locked else '#7f857c')
+    d.rectangle((1,1,52,34),outline='#2a3a33')
+    text(im,LABELS[pid],(27,26),color=color if not locked else '#b4b9b0')
+    if locked:
+        d.rectangle((44,4,50,10),fill='#172623',outline='#d7d5c0')
+        d.arc((45,0,49,7),180,360,fill='#d7d5c0')
     return im
 
 
@@ -114,17 +113,15 @@ def rest_button():
 
 
 def panel():
-    source=Image.open(ROOT/'pack-source/ref/mascotas-illustrated-frame.png').convert('RGBA')
-    sx=[0,round(source.width*.15),round(source.width*.85),source.width]
-    # El pie mas alto conserva al golem y al zorro debajo del inventario real.
-    sy=[0,round(source.height*.25),round(source.height*.68),source.height]
-    dx,dy=[0,24,200,224],[0,56,258,300]
+    art,(l,t,r,b)=FRAME
+    source=Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
+    sx,sy=[0,l,r,source.width],[0,t,b,source.height]
+    dx,dy=[0,24,200,224],[0,56,258,SIZE[1]]
     im=Image.new('RGBA',SIZE)
     for row in range(3):
         for col in range(3):
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
-    text(im,'MASCOTAS',(112,38),color='#f3e4b8')
     d=ImageDraw.Draw(im);d.rectangle((24,56,199,258),fill=FILL)
     for _,slots in regions():
         slot=slots[0];x,y=31+slot%9*18,57+slot//9*18
@@ -147,10 +144,16 @@ def panel():
     return im
 
 
+def full_panel(image=None):
+    """Panel con el encabezado a su alto real (el fenix no se aplasta)."""
+    head=header(FRAME[0],FRAME[1],TITLE,TITLE_Y,FILL)
+    return tall(panel() if image is None else image,head),head.height
+
+
 def assets():
     files,providers={},[];advances={START:-32,END:32}
-    a,b,c,d=GLYPHS;im=panel()
-    for n,(part,ascent,char,rewind) in enumerate(((im.crop((0,0,224,SPLIT)),53,a,b),(im.crop((0,SPLIT,224,300)),-3,c,d))):
+    a,b,c,d=GLYPHS;im,head_height=full_panel()
+    for n,((part,ascent),char,rewind) in enumerate(zip(glyph_parts(im,head_height),(a,c),(b,d))):
         path=f'font/mascotas/santuario_{n}.png'
         files['assets/astral/textures/'+path]=png(part)
         providers.append({'type':'bitmap','file':'astral:'+path,'height':part.height,'ascent':ascent,'chars':[char]})
@@ -186,7 +189,8 @@ def previews(folder):
         for slot,kind in ((4,'info'),(8,'gacha'),(45,'back'),(53,'close')):
             im.alpha_composite(nav_icon(kind),(31+slot%9*18,57+slot//9*18))
         text(im,'Inventario',(86,169),color='#383c40')
-        (folder/f'mascotas-{sample}.png').write_bytes(png(im.resize((672,900),Image.Resampling.NEAREST)))
+        im,_=full_panel(im);out=Image.new('RGBA',im.size,'#202c29');out.alpha_composite(im)
+        (folder/f'mascotas-{sample}.png').write_bytes(png(out.resize((out.width*3,out.height*3),Image.Resampling.NEAREST)))
 
 
 if __name__=='__main__':previews(ROOT.parent/'build/Servicios-preview')

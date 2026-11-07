@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 from PIL import Image, ImageDraw
 from escape_menu import text
-from services_ui import png, SIZE, SPLIT, outlined, illustration
+from services_ui import png, SIZE, SPLIT, outlined, illustration, header, tall, glyph_parts
 from market_ui import band_color
 
 THEMES = {
@@ -199,11 +199,24 @@ def panel(kind):
     return im
 
 
+# Marcos con encabezado alto: se dibujan a su proporcion real en vez de aplastarlos a 56 px.
+TALL = ('expediciones',)
+
+
+def full_panel(kind, image=None):
+    image = panel(kind) if image is None else image
+    if kind not in TALL:
+        return image, SPLIT
+    caption, fill = THEMES[kind][:2]
+    head = header(FRAMES[kind][0], FRAMES[kind][1], caption, {'expediciones': 42, 'mazmorras': 39}[kind], fill)
+    return tall(image, head), head.height
+
+
 def assets():
     files,providers={},[];advances={START:-32,END:32}
     for kind,(a,b,c,d) in GLYPHS.items():
-        im=panel(kind)
-        for n,(part,ascent,char,rewind) in enumerate(((im.crop((0,0,224,SPLIT)),53,a,b),(im.crop((0,SPLIT,224,280)),-3,c,d))):
+        im,head_height=full_panel(kind)
+        for n,((part,ascent),char,rewind) in enumerate(zip(glyph_parts(im,head_height),(a,c),(b,d))):
             resource=f'font/aventuras/{kind}_{n}.png'
             files[f'assets/astral/textures/{resource}']=png(part)
             providers.append({'type':'bitmap','file':'astral:'+resource,'height':part.height,'ascent':ascent,'chars':[char]})
@@ -234,8 +247,9 @@ def previews(folder):
         for slot,label in ((4,'i'),(8,'$'),(45,'<'),(49,'O'),(51,'?'),(53,'X')):
             text(im,label,(39+slot%9*18,62+slot//9*18),color='#fff0d5')
         text(im,'Inventario',(86,169),color='#383c40')
-        sheet.alpha_composite(im,(i*224,0))
-        (folder/f'{kind}.png').write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)))
+        im,_=full_panel(kind,im);out=Image.new('RGBA',im.size,'#22242a');out.alpha_composite(im)
+        sheet.alpha_composite(out.crop((0,out.height-280,224,out.height)),(i*224,0))
+        (folder/f'{kind}.png').write_bytes(png(out.resize((out.width*3,out.height*3),Image.Resampling.NEAREST)))
     (folder/'atlas-expediciones-mazmorras.png').write_bytes(png(sheet.resize((1344,560),Image.Resampling.NEAREST)))
 
 

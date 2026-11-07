@@ -55,6 +55,39 @@ def outlined(im,caption,center,color='#fff0cd',outline='#1a1208'):
     text(im,caption,center,color=color)
 
 
+def header(art, box, caption, title_y, fill=None, width=224, side=24, scale=1):
+    """Encabezado de un marco de Gemini SIN aplastar: su alto sale de la proporcion del dibujo.
+
+    title_y es la altura del titulo medida en el encabezado viejo de 56 px; se escala igual.
+    """
+    l, t, r, b = box
+    source = Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
+    inner = width - 2*side
+    height = round(t*inner/(r-l))
+    head = Image.new('RGBA', (width, height))
+    if fill:  # algunos marcos dejan pixeles transparentes debajo del cartel
+        ImageDraw.Draw(head).rectangle((side, height*2//3, width-side-1, height-1), fill=fill)
+    for (x0, x1), (d0, d1) in zip(((0, l), (l, r), (r, source.width)), ((0, side), (side, width-side), (width-side, width))):
+        piece = source.crop((x0, 0, x1, t)).resize((d1-d0, height), Image.Resampling.NEAREST)
+        head.alpha_composite(piece, (d0, 0))
+    outlined(head, caption, (width//2, round((title_y+4)*height/SPLIT)-4))
+    return head
+
+
+def tall(panel_image, head):
+    """Reemplaza el encabezado aplastado (primeros SPLIT px) por uno de alto real."""
+    out = Image.new('RGBA', (panel_image.width, head.height+panel_image.height-SPLIT))
+    out.alpha_composite(panel_image.crop((0, SPLIT, panel_image.width, panel_image.height)), (0, head.height))
+    out.alpha_composite(head, (0, 0))
+    return out
+
+
+def glyph_parts(image, head_height):
+    """Dos glifos: encabezado (termina donde empiezan las casillas) y el resto."""
+    return [(image.crop((0, 0, image.width, head_height)), head_height-3),
+            (image.crop((0, head_height, image.width, image.height)), -3)]
+
+
 def illustration(name):
     return Image.open(ROOT/f'pack-source/ref/gemini/{name}.png').convert('RGBA')
 
