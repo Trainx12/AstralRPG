@@ -12,7 +12,8 @@ from escape_menu import text
 from misiones import CHAPTERS, DAILIES
 
 ROOT = Path(__file__).resolve().parent
-ART = ROOT / 'pack-source/ref/cronista-clockwork.png'
+ART = ROOT / 'pack-source/ref/cronista2-frame.png'   # marco de Gemini (noviembre 2026)
+GEMINI = ROOT / 'pack-source/ref/gemini'
 TITLES = ['Historia', 'Diaria facil', 'Diaria media', 'Diaria dificil', 'Premio de historia']
 STORY_REWARDS = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
 
@@ -27,7 +28,8 @@ def png(im):
 # cofre de 54 slots. La abertura interior del dibujo queda justo alrededor de
 # las casillas, asi el marco no tapa nada y nada tapa el marco.
 OFFSET = (16, 37)
-ART_INNER_TOP, ART_INNER_BOTTOM = 287, 1292   # bordes de la abertura en el dibujo
+ART_INNER_TOP, ART_INNER_BOTTOM = 584, 2050   # bordes de la abertura en el dibujo
+ART_INNER_LEFT, ART_INNER_RIGHT = 232, 1624
 GUI_INNER_TOP, GUI_INNER_BOTTOM = 16, 218
 # Un glifo no puede medir mas de 256 px ni tener ascent mayor a su alto,
 # por eso el marco se parte en una franja de arriba y el resto.
@@ -40,13 +42,24 @@ def frame():
     scale = (GUI_INNER_BOTTOM - GUI_INNER_TOP) / (ART_INNER_BOTTOM - ART_INNER_TOP)
     rest_h = round((source.height - ART_INNER_TOP) * scale)
     im = Image.new('RGBA', (208, top_h + rest_h))
-    top = source.crop((0, 0, source.width, ART_INNER_TOP)).resize((208, top_h), Image.Resampling.NEAREST)
-    rest = source.crop((0, ART_INNER_TOP, source.width, source.height)).resize((208, rest_h), Image.Resampling.NEAREST)
-    im.alpha_composite(top, (0, 0))
-    im.alpha_composite(rest, (0, top_h))
-    # Titulo dentro de la franja de estrellas, a la izquierda del reloj.
-    text(im, 'CRONISTA', (78, 25), color='#b9eaf5')
+    # Nueve cortes: los costados del dibujo quedan fuera de las casillas (16 px por lado).
+    sx = [0, ART_INNER_LEFT, ART_INNER_RIGHT, source.width]
+    sy = [0, ART_INNER_TOP, source.height]
+    dx = [0, OFFSET[0], OFFSET[0] + 176, 208]
+    dy = [0, top_h, top_h + rest_h]
+    for row in range(2):
+        for col in range(3):
+            piece = source.crop((sx[col], sy[row], sx[col + 1], sy[row + 1]))
+            im.alpha_composite(piece.resize((dx[col + 1] - dx[col], dy[row + 1] - dy[row]), Image.Resampling.NEAREST), (dx[col], dy[row]))
+    # Titulo dentro del cartel azul del marco.
+    for ox, oy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+        text(im, 'EL CRONISTA', (104 + ox, 35 + oy), color='#0d1222')
+    text(im, 'EL CRONISTA', (104, 35), color='#f6e4b8')
     return im
+
+
+def gemini_icon(name, size=16):
+    return Image.open(GEMINI / f'{name}.png').convert('RGBA').resize((size, size), Image.Resampling.LANCZOS)
 
 
 def panel(rewards=False):
@@ -130,8 +143,13 @@ def wrap(caption, limit=150):
     return lines
 
 
-def card(name, objective, amount, status):
+def card(name, objective, amount, status, scene=False):
     im = Image.new('RGBA', (162, 54), '#102a43')
+    if scene:
+        art = Image.open(GEMINI / 'cronista_escena.png').convert('RGBA')
+        top = (art.height - art.width // 3) // 2
+        pic = art.crop((0, top, art.width, top + art.width // 3)).resize((162, 54), Image.Resampling.LANCZOS)
+        im = Image.blend(im, pic, .35)
     d = ImageDraw.Draw(im)
     colors = {'available': '#f5d881', 'active': '#75edec', 'done': '#a0acb6'}
     labels = {'available': 'SIN ACEPTAR', 'active': 'ACTIVA', 'done': 'COBRADA'}
@@ -156,6 +174,16 @@ def action_button(caption, color):
     d.rectangle((1, 1, 88, 16), fill=color, outline='#6bb6c3')
     d.line((2, 2, 87, 2), fill='#b9eef0')
     text(im, caption, (45, 5), color='#ffffff')
+    return im
+
+
+def tab_icon(art, color, marker=0):
+    im = gemini_icon(art)
+    d = ImageDraw.Draw(im)
+    if marker:
+        d.rectangle((10, 10, 15, 15), fill='#071a2d')
+        for x in range(marker):
+            d.line((11 + x * 2, 11, 11 + x * 2, 14), fill=color)
     return im
 
 
@@ -211,9 +239,11 @@ def assets():
     for name, caption, color in [('accept', 'ACEPTAR MISION', '#166456'), ('claim', 'COMPROBAR', '#18577b'),
                                   ('done', 'YA COBRADA', '#344658'), ('waiting', 'SIN DATOS', '#344658')]:
         tiles(name, action_button(caption, color))
-    for name, color, marker in [('history', '#f0cd75', 0), ('easy', '#67e8cd', 1), ('medium', '#60bcf2', 2),
-                                 ('hard', '#ac9dff', 3), ('reward', '#ffdb79', 0), ('active', '#5fe4e6', 0),
-                                 ('pause', '#d97c7c', 0), ('refresh', '#89cadd', 0), ('back', '#b4c9d5', 0)]:
+    for name, art, color, marker in [('history', 'cronista_historia', '#f0cd75', 0), ('easy', 'cronista_diarias', '#67e8cd', 1),
+                                      ('medium', 'cronista_diarias', '#60bcf2', 2), ('hard', 'cronista_diarias', '#ac9dff', 3),
+                                      ('reward', 'cronista_encargos', '#ffdb79', 0)]:
+        model(name, tab_icon(art, color, marker))
+    for name, color, marker in [('active', '#5fe4e6', 0), ('pause', '#d97c7c', 0), ('refresh', '#89cadd', 0), ('back', '#b4c9d5', 0)]:
         model(name, clock(color, marker))
     for did, tier, name, counter, goal, desc in DAILIES:
         for status in ('available', 'active', 'done'):
@@ -221,8 +251,8 @@ def assets():
     for state in range(10):
         chapter = max(1, state)
         for status in ('available', 'active'):
-            tiles(f'story_{state}_{status}', card(f'Capitulo {chapter} / 9', CHAPTERS[chapter - 1].split(': ', 1)[-1], STORY_REWARDS[chapter - 1], status))
-    tiles('story_complete', card('Historia completada', 'La Estrella vuelve a brillar. El Santuario Celestial te espera.', 0, 'done'))
+            tiles(f'story_{state}_{status}', card(f'Capitulo {chapter} / 9', CHAPTERS[chapter - 1].split(': ', 1)[-1], STORY_REWARDS[chapter - 1], status, True))
+    tiles('story_complete', card('Historia completada', 'La Estrella vuelve a brillar. El Santuario Celestial te espera.', 0, 'done', True))
     return files, providers
 
 
@@ -239,12 +269,11 @@ def preview(path):
     ImageDraw.Draw(im).rectangle((OFFSET[0], OFFSET[1], OFFSET[0] + 175, OFFSET[1] + 221), fill='#1b1b1b')
     im.alpha_composite(frame_im)
     body = Image.new('RGBA', (176, 222))
-    icons = ['history', 'easy', 'medium', 'hard']
+    arts = ['cronista_historia', 'cronista_diarias', 'cronista_diarias', 'cronista_diarias']
     colors = ['#f0cd75', '#67e8cd', '#60bcf2', '#ac9dff']
-    for slot, color in enumerate(colors):
-        body.alpha_composite(clock(color, min(slot, 3)), (8 + slot * 18, 18))
-    _, tier, name, counter, goal, desc = DAILIES[0]
-    body.alpha_composite(card(name, desc, 300, 'available'), (7, 35))
+    for slot, (art, color) in enumerate(zip(arts, colors)):
+        body.alpha_composite(tab_icon(art, color, min(slot, 3)), (8 + slot * 18, 18))
+    body.alpha_composite(card('Capitulo 1 / 9', CHAPTERS[0].split(': ', 1)[-1], STORY_REWARDS[0], 'available', True), (7, 35))
     body.alpha_composite(action_button('ACEPTAR MISION', '#166456'), (43, 89))
     body.alpha_composite(clock('#d97c7c'), (8, 108))
     body.alpha_composite(clock('#89cadd'), (134, 108))

@@ -3,21 +3,22 @@ import json
 from pathlib import Path
 from PIL import Image, ImageDraw
 from escape_menu import text
-from services_ui import png, button, OFFSET, SIZE, SPLIT
+from services_ui import png, button, OFFSET, SIZE, SPLIT, picture_card
 
 ROOT = Path(__file__).resolve().parent
 THEMES = {
-    'subastas': ('CASA DE SUBASTAS', '#302019', '#c59b51'),
+    'subastas': ('CASA DE SUBASTAS', '#25252d', '#c59b51'),
     'gacha_rpg': ('ARSENAL ARCANO', '#1e1226', '#ae83e3'),
     'gacha_monturas': ('SENDAS SALVAJES', '#23261c', '#c9a85a'),
     'gacha_cosmeticos': ('GALERIA CELESTE', '#16292f', '#7fd3d6'),
 }
 # Marcos de Gemini (noviembre 2026) e interior medido sobre cada original.
-FRAMES = {'gacha_rpg': ('gacha_rpg2', (220, 773, 1582, 2068)),
+FRAMES = {'subastas': ('subastas2', (234, 457, 1586, 2012)),
+          'gacha_rpg': ('gacha_rpg2', (220, 773, 1582, 2068)),
           'gacha_monturas': ('gacha_monturas2', (254, 411, 1588, 2031)),
           'gacha_cosmeticos': ('gacha_cosmeticos2', (196, 587, 1516, 1943))}
 # Gachas con iconos de tirada dibujados por Gemini.
-TIER_ART = ('gacha_rpg', 'gacha_monturas')
+TIER_ART = ('gacha_rpg', 'gacha_monturas', 'gacha_cosmeticos')
 
 
 def frame_source(kind):
@@ -30,7 +31,7 @@ def frame_source(kind):
     return source, [0, l, r, source.width], [0, t, b, source.height]
 # Titulo claro con contorno oscuro: se lee sobre carteles dorados, rosas o oscuros.
 # Altura del titulo, centrada en el cartel de cada marco (Sendas Salvajes es la referencia).
-TITLE_Y = {'subastas': 21, 'gacha_rpg': 41, 'gacha_monturas': 34, 'gacha_cosmeticos': 39}
+TITLE_Y = {'subastas': 34, 'gacha_rpg': 41, 'gacha_monturas': 34, 'gacha_cosmeticos': 39}
 TITLE_OUTLINE = {'subastas': '#3b2108', 'gacha_rpg': '#1c1030', 'gacha_monturas': '#0f2418', 'gacha_cosmeticos': '#0a1c22'}
 # Casillas de la fila de abajo que usa cada menu: volver, cerrar y, en las
 # gachas, garantia, premios y probabilidades.
@@ -71,6 +72,10 @@ def regions(kind):
 def tile_card(kind, key):
     _,fill,edge = THEMES[kind]
     from lobby import GACHAS, money
+    if kind == 'subastas':
+        caption, sub = {'mercado':('EXPLORAR','MERCADO'), 'publicaciones':('MIS VENTAS','EN VENTA'),
+                        'retirar':('RETIRAR','OBJETOS'), 'publicar':('PUBLICAR','COMO VENDER')}[key]
+        return picture_card(caption, sub, 'subastas_'+key)
     if kind == 'subastas':
         caption, sub = {'mercado':('EXPLORAR','MERCADO'), 'publicaciones':('MIS VENTAS','EN VENTA'),
                         'retirar':('RETIRAR','OBJETOS'), 'publicar':('PUBLICAR','COMO VENDER')}[key]

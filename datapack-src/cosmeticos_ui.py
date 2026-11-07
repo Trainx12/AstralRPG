@@ -8,7 +8,7 @@ from market_ui import band_color
 from lobby import TITLES
 
 ROOT=Path(__file__).resolve().parent
-FILL,EDGE,ACCENT='#102b38','#b89a5d','#8bdce2'
+FILL,EDGE,ACCENT='#1a1c2d','#b89a5d','#8bdce2'
 START,END='\ue700','\ue701'
 GLYPHS=tuple(chr(0xe710+i) for i in range(4))
 RARITIES={'common':('Comun','#a8bac1'),'uncommon':('Poco comun','#94bc91'),
@@ -79,7 +79,9 @@ def medal(index,locked=False):
     im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
     d.polygon(((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4)),fill='#163f4c',outline=EDGE)
     d.rectangle((4,3,13,14),outline='#365d69')
-    im.alpha_composite(icon(index,color))
+    # Emblema pintado por Gemini, dentro del marco con el color de la rareza.
+    from services_ui import illustration
+    im.alpha_composite(illustration(f'titulo_{index}').resize((14,14),Image.Resampling.LANCZOS),(2,2))
     if rarity in ('epic','legendary'):
         d.point((2,2),fill=color);d.point((15,2),fill=color)
         d.point((2,15),fill=color);d.point((15,15),fill=color)
@@ -128,16 +130,18 @@ def clear_button():
 
 
 def panel():
-    source=Image.open(ROOT/'pack-source/ref/cosmeticos-illustrated-frame.png').convert('RGBA')
-    sx=[0,round(source.width*.15),round(source.width*.85),source.width]
-    sy=[0,round(source.height*.24),round(source.height*.92),source.height]
+    # Marco de Gemini (noviembre 2026): interior medido sobre el original.
+    source=Image.open(ROOT/'pack-source/ref/cosmeticos2-frame.png').convert('RGBA')
+    sx=[0,108,1690,source.width]
+    sy=[0,573,2192,source.height]
     dx,dy=[0,24,200,224],[0,56,258,280]
     im=Image.new('RGBA',SIZE)
     for row in range(3):
         for col in range(3):
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
-    text(im,'COSMETICOS',(112,30),color='#f5e6be')
+    from services_ui import outlined
+    outlined(im,'COSMETICOS Y TITULOS',(112,34))
     d=ImageDraw.Draw(im);d.rectangle((24,56,199,258),fill=FILL)
     # Dos vitrinas; los emblemas ocupan solo las catorce casillas clicables.
     for y,caption in ((75,'OFICIOS Y AVENTURA'),(111,'HONORES Y LEYENDAS')):

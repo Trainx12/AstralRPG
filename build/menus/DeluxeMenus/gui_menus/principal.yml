@@ -1,275 +1,9 @@
-menu_title: '&8Menu Astral'
+menu_title: '&f'
 open_command: menu
 size: 54
 register_command: true
 update_interval: 1
 items:
-  'vidrio_0':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 0
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_1':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 1
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_2':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 2
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_3':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 3
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_5':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 5
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_6':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 6
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_7':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 7
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_8':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 8
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_9':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 9
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_17':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_18':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 26
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_27':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 27
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_28':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 28
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_29':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 29
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_30':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 30
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_31':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 31
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_32':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 32
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_33':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 33
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_34':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 34
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_35':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 35
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_36':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 36
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_37':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 37
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_38':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 38
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_39':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 39
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_40':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 40
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_41':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 41
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_42':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 42
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_43':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 43
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_44':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 44
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_45':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 45
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_46':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 46
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_47':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 47
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_48':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 48
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_50':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 50
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_51':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 51
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_52':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 52
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_53':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 53
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
   'bazar':
     material: EMERALD
     slot: 10
@@ -279,6 +13,7 @@ items:
     - '&7Compra, vende o intercambia.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_bazar
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] bazar'
@@ -291,6 +26,7 @@ items:
     - '&7Entra a las minas desde el lobby.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_minas
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -304,6 +40,7 @@ items:
     - '&7Viaja a las mazmorras descubiertas.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_mazmorras
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] mazmorras'
@@ -316,6 +53,7 @@ items:
     - '&7Explora y encontra a sus guardianes.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_expediciones
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] expediciones'
@@ -328,6 +66,7 @@ items:
     - '&7Elegi tu proximo destino.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_portales
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] portales'
@@ -340,6 +79,7 @@ items:
     - '&7Elegi un mapa de saltos.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_parkour
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] parkour'
@@ -352,6 +92,7 @@ items:
     - '&7Pelea sin perder tu equipo.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_arenas
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] arenas'
@@ -364,6 +105,7 @@ items:
     - '&7Misiones, historia y recompensas.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_misiones
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/page/0'
@@ -377,6 +119,7 @@ items:
     - '&7Invoca o guarda a tu companero.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_mascotas
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] mascotas'
@@ -389,6 +132,7 @@ items:
     - '&7Elegi tu titulo desbloqueado.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_cosmeticos
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] cosmeticos'
@@ -401,6 +145,7 @@ items:
     - '&7Consulta tus niveles y habilidades.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_skills
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -414,6 +159,7 @@ items:
     - '&7Clases, equipo, recetas y Forja.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_guia
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -427,6 +173,7 @@ items:
     - '&7Consulta como usar cada comando.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_comandos
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] comandos'
@@ -439,6 +186,7 @@ items:
     - '&7Volve a la plaza del Refugio.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_spawn
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'

@@ -11,6 +11,8 @@ class AdventureUITests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.files,cls.providers=assets()
+        from menu_ui import assets as menu_assets
+        cls.files.update(menu_assets()[0])
         cls.menus={'principal':yaml.safe_load(principal_menu()),
                    'mazmorras':menu_data(),'expediciones':exploration_menu()}
 
@@ -18,8 +20,8 @@ class AdventureUITests(unittest.TestCase):
         for kind,data in self.menus.items():
             self.assertEqual(data['size'],54)
             if kind == 'principal':
-                self.assertEqual(data['menu_title'], '&8Menu Astral')
-                self.assertTrue(all('item_model' not in i for i in data['items'].values()))
+                from menu_ui import title as menu_title
+                self.assertEqual(data['menu_title'], menu_title())
                 continue
             self.assertEqual(data['menu_title'],title(kind))
             occupied=set()

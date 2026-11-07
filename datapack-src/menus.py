@@ -250,17 +250,19 @@ def principal_menu():
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
     ]
-    slots = [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
-    items = relleno('GRAY_STAINED_GLASS_PANE', 54, set(slots) | {4, 49})
-    for slot, (key, material, name, lore, commands) in zip(slots, buttons):
+    from menu_ui import SLOTS, KEYS, title as menu_title
+    assert [b[0] for b in buttons] == list(KEYS)
+    items = []
+    for slot, (key, material, name, lore, commands) in zip(SLOTS, buttons):
+        # Icono de Gemini (menu_ui.py); el material queda por si falta el pack.
         items += item(key, material, slot, name, lore,
-                      extra={'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
+                      extra={'item_model': f'astral:menu/icon_{key}', 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
     items += item('info', 'NETHER_STAR', 4, '&b&l%player_name%',
                   ['&7Saldo: &e%vault_eco_balance_formatted%$', '&7Abri este menu con la Estrella del slot 9.'],
                   extra={'update': 'true'})
     items += item('cerrar', 'BARRIER', 49, '&cCerrar',
                   extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]']})
-    return menu('&8Menu Astral', 'menu', 54, items, update=True)
+    return menu(menu_title(), 'menu', 54, items, update=True)
 
 
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)

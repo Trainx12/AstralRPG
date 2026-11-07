@@ -1,4 +1,4 @@
-﻿"""Contrato del menu publico: destinos, filas, saldo y apertura entre plugins."""
+"""Contrato del menu publico: destinos, filas, saldo y apertura entre plugins."""
 import unittest
 import yaml
 from menus import principal_menu, comandos_menu
@@ -9,13 +9,16 @@ class PrincipalMenuTests(unittest.TestCase):
         self.menu = yaml.safe_load(principal_menu())
         self.items = self.menu['items']
 
-    def test_layout_and_vanilla_icons(self):
+    def test_layout_and_icons(self):
         self.assertEqual(self.menu['open_command'], 'menu')
         self.assertTrue(self.menu['register_command'])
-        self.assertEqual(self.menu['menu_title'], '&8Menu Astral')
+        from menu_ui import title, SLOTS, KEYS
+        self.assertEqual(self.menu['menu_title'], title())
         self.assertEqual(self.menu['size'], 54)
-        self.assertEqual(sorted(i['slot'] for i in self.items.values()), list(range(54)))
-        self.assertTrue(all('item_model' not in i for i in self.items.values()))
+        # Sin relleno de vidrio: el marco de menu_ui dibuja el fondo.
+        self.assertEqual(sorted(i['slot'] for i in self.items.values()), sorted([*SLOTS, 4, 49]))
+        for key in KEYS:
+            self.assertEqual(self.items[key]['item_model'], f'astral:menu/icon_{key}')
         self.assertEqual(self.items['cerrar']['slot'], 49)
         self.assertEqual(self.items['info']['slot'], 4)
         self.assertTrue(self.items['info']['update'])
