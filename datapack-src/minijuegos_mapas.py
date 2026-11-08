@@ -177,9 +177,8 @@ def main():
             ('parkour_spiral2.zip', 'parkour_spiral2'), ('parkour_paradise3.zip', 'parkour_paradise3'),
             ('dropper.zip', 'dropper_facil'), ('dropper_h4rs.zip', 'dropper_h4rs'),
             ('colorescape.zip', 'colorescape'), ('battleship.zip', 'battleship'),
-            ('towerdefence.zip', 'towerdefence'), ('towerdefence.zip', 'towerdefence_end'),
             ('magmarun.zip', 'magmarun')]
-    dims = {'towerdefence_end': 'DIM1'}     # el End del Tower Defence es su propio mundo
+    dims = {}   # mundo extra sacado de otra dimension del ZIP: {'mundo': 'DIM1'} (ej. el End)
     keep = {'colorescape', 'magmarun'}  # necesitan sus command blocks (selectores reescritos)
     from minijuegos_datapack import MAPS as DATAPACK_MAPS, Adapter
     only = set(sys.argv[1:])
@@ -187,7 +186,7 @@ def main():
         if only and world not in only:
             continue
         rewrite = None
-        owner = 'towerdefence' if world == 'towerdefence_end' else world
+        owner = world
         if owner in DATAPACK_MAPS:   # mapas con datapack adaptado: comandos con sus namespaces
             c = DATAPACK_MAPS[owner]
             rewrite = Adapter(owner, folder / filename, c['prefix'], c.get('console'), c.get('dims'),

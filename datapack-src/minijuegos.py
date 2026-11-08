@@ -37,10 +37,9 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
             # Datapacks adaptados con minijuegos_datapack.py (solo actuan en su mundo).
             dict(id='batallanaval', world='battleship', name='Batalla Naval', icon='OAK_BOAT',
                  description='Hunde la flota rival: 2 jugadores.', difficulty='2 jugadores',
-                 arrival=(19.5, 5, 37.5, 0, 0), rescue_y=-70, logic=True),
-            dict(id='towerdefence', world='towerdefence', name='Tower Defence', icon='CROSSBOW',
-                 description='Construi defensas contra oleadas de mobs.', difficulty='Estrategia',
-                 arrival=(15.5, 5, 2.5, 0, 0), rescue_y=-70, logic=True)]
+                 arrival=(19.5, 5, 37.5, 0, 0), rescue_y=-70, logic=True)]
+# Tower Defence se saco el 08/11/2026: su brujula "Game Menu" no abria el menu en el server
+# (el clic no llegaba ni al mapa ni a Skript). El mundo sigue en el server, sin datapack.
 # Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
 # Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
 # Cada nivel: (titulo, (x, y, z) de la salida original, Y de salida corregida, Y de llegada al fondo).
@@ -89,7 +88,7 @@ CE_SLICE = 7             # 153 x 29 x 7 = 31.059 bloques por clone (< 32.768)
 
 
 # Mundos de mini juego sin entrada propia en el menu (el End del Tower Defence).
-EXTRA_WORLDS = ('towerdefence_end',)
+EXTRA_WORLDS = ()
 
 
 def parkour_worlds():
@@ -404,19 +403,6 @@ def script():
                   f'                set {{astral.punto::{kind}.{d["id"]}}} to location of player',
                   '                send "&aLlegada guardada con orientacion." to player', '                stop']
     lines += ['        send "&eUsa /astralpunto <parkour|arena> <id> o /astralpunto lista." to player', '',
-              '# Tower Defence: su brujula "Game Menu" abre el menu del mapa con clic derecho. El mapa lo',
-              '# detecta con un logro de "usar item" que en el server no llegaba: lo abrimos desde aca.',
-              'on right click:',
-              '    if name of world of player is "towerdefence" or "towerdefence_end":',
-              '        if {-astral.td.click::%uuid of player%} is set:',
-              '            if difference between now and {-astral.td.click::%uuid of player%} is less than 1 second:',
-              '                stop',
-              '        set {-astral.td.click::%uuid of player%} to now',
-              '        if player\'s tool is not compass:',
-              '            stop',
-              '        send action bar "&7Abriendo menu..." to player',
-              '        execute console command "execute as %name of player% at @s run function td_game:interactions.show_menu"',
-              '',
               'on world change:', '    wait 2 ticks', '    astral_parkour_mode(player)', '',
               'on join:', '    wait 2 ticks', '    astral_parkour_mode(player)', '',
               'on respawn:', '    wait 2 ticks',
@@ -547,8 +533,6 @@ def deployment():
                             bid, name, top, color = d['bossbar']
                             lines += [f'bossbar add {bid} "{name}"', f'bossbar set {bid} max {top}',
                                       f'bossbar set {bid} color {color}']
-                if world == 'towerdefence':   # su opcion propia de vision nocturna (si no, la saca)
-                    lines += ['scoreboard players set #global td_game.saves.settings.night_vision 1']
                 if world == 'colorescape':
                     # Sus acertijos piden poner y romper bloques (aventura: solo los que el mapa permite).
                     lines += [f'rg flag -w {world} __global__ build allow',

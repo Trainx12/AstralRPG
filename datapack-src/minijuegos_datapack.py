@@ -33,10 +33,8 @@ MAPS = {
     'parkour_spiral2': dict(source='parkour_spiral2.zip', prefix='sp2', console=(0, -96)),
     # Batalla naval de 2 jugadores (TMA): todo en un mundo; sus 202 command blocks son los botones.
     'battleship': dict(source='battleship.zip', prefix='bs'),
-    # Tower Defence (MLE_qwq, licencia MIT): usa su mundo normal y su End. Los jugadores de los dos
-    # mundos llevan la marca td_m; sus equipos solo dan color al brillo (game.*) y se conservan.
-    'towerdefence': dict(source='towerdefence.zip', prefix='td', players_tag=True, keep_teams=True,
-                         dims={'overworld': 'towerdefence', 'the_end': 'towerdefence_end'}),
+    # Tower Defence (MLE_qwq; prefijo td, con dims/players_tag/keep_teams para su End como mundo
+    # towerdefence_end como mundo towerdefence_end) se saco el 08/11/2026: ver minijuegos.py.
 }
 UUID = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
 
