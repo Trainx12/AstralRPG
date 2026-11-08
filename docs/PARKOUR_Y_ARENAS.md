@@ -48,6 +48,16 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   `parkour_spiral2-datapack/` (en carpeta se puede corregir un archivo suelto sin volver a subir
   todo). Arranque sin funciones fallidas; `console` cargado y modo servidor activo en ambos.
   Falta probar jugando la largada, los checkpoints y los niveles con mecanismos.
+- **Trampa (08/11/2026):** el `load` de los datapacks corre antes de que Multiverse cargue los mundos,
+  y `execute in minecraft:<mundo>` falla en silencio: las tareas repetidas (largada, checkpoints,
+  registro del jugador) nunca arrancaban. Ahora `astral/tick` llama a `astral/start` una sola vez,
+  cuando el mundo ya existe (`#arranco <pp>_astral`). En Paradise la largada la da `player/tick_2`
+  (caja `x -35..-33, y 95..97, z 805..807`), no el end gateway.
+- **Color Escape:** su primer acertijo pide poner bloques de hierro en `3 -13 7` y `-3 -13 7` para
+  abrir la puerta: el mundo permite `build`, `block-place` y `block-break` (en aventura solo se
+  ponen los objetos que el mapa marca). `command_block_output false` en los mapas con command
+  blocks (si no, a los OP les llena el chat). El mapa pasa a aventura a todo el que no tenga `dev`;
+  los OP llevan la marca `astral.op` en los mini juegos y esos 4 command blocks la respetan.
 - **Mapas 26.2** (Spiral 2 y Paradise 3): se revisaron todos sus bloques, block entities y entidades;
   ninguno es nuevo de 26.2. Se baja `DataVersion` a 4790 (26.1.2) en `level.dat` y en cada chunk.
 - Los mundos preparados quedan en `.local/mapas/subir/` (no se publican).
