@@ -145,11 +145,13 @@ class MinijuegosTests(unittest.TestCase):
     def test_logic_maps_only_touch_local_players(self):
         from minijuegos_mapas import local_selectors as f
         self.assertEqual(f('clear @a minecraft:lapis_lazuli'), 'clear @p minecraft:lapis_lazuli')
-        self.assertEqual(f('kill @e[type=minecraft:wither]'), 'kill @e[distance=..300,type=minecraft:wither]')
+        self.assertEqual(f('kill @e[type=minecraft:wither]'), 'kill @e[distance=0..,type=minecraft:wither]')
         self.assertEqual(f('execute as @a[gamemode=creative] at @s run gamemode adventure @s'),
-                         'execute as @a[distance=..300,gamemode=creative] at @s run gamemode adventure @s')
+                         'execute as @a[distance=0..,gamemode=creative] at @s run gamemode adventure @s')
         self.assertEqual(f('execute at @a[distance=..4] run say x'), 'execute at @a[distance=..4] run say x')
         self.assertEqual(f('tp @r 0 0 0'), 'tp @p 0 0 0')
+        self.assertEqual(f('data merge entity @s {CustomName:[{"bold":"true",text:"a"}]}'),
+                         'data merge entity @s {CustomName:[{"bold":true,text:"a"}]}')
 
     def test_private_zip_whitelist_and_old_blocks_sanitized(self):
         blocks = bytearray(4096)

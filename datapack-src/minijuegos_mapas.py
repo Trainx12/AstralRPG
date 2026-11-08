@@ -25,15 +25,20 @@ def encode(tree):
     return bytes([tree[0]]) + nbt_string('') + nbt_payload(tree)
 
 
-RANGE = 300  # bloques: alcance de los selectores de mapas que conservan sus command blocks
+# Alcance de los selectores de mapas que conservan sus command blocks. Cada mini juego es su
+# propio mundo, asi que alcanza con no salir de el: sin tope. Con 300 bloques Magma Run perdia el
+# marcador que arma la torre al subir (y=357) y nunca terminaba de arrancar (08/11/2026).
+RANGE = '0..'
+# Texto JSON viejo con "true" entre comillas: en 26.x falla (y llena la consola cada tick).
+TEXT_BOOL = re.compile(r'((?:"|\b)(?:bold|italic|underlined|strikethrough|obfuscated)"?\s*:\s*)"(true|false)"')
 
 
 def local_selectors(command):
     """Que un command block del mapa solo toque a quien juega ahi (pedido del dueno, 08/11/2026).
 
     - @a/@r -> @p (el jugador que piso el boton o la placa).
-    - `execute as/at @a` (chequeos repetidos para todos los del mapa) -> @a a menos de RANGE.
-    - @e -> limitado a RANGE: sin eso mata criaturas de otros mundos.
+    - `execute as/at @a` (chequeos repetidos para todos los del mapa) -> @a de ese mundo.
+    - @e -> limitado al mundo del mapa (distance=0..): sin eso mata criaturas de otros mundos.
     - Un selector que ya tiene distance= se deja como esta.
     """
     pattern = re.compile(r'(?P<loop>execute (?:as|at) )?@(?P<kind>[aer])(?P<args>\[[^\]]*\])?')
@@ -44,10 +49,11 @@ def local_selectors(command):
             return m.group(0)
         if kind == 'e' or (kind == 'a' and loop):
             inner = args[1:-1]
-            return f"{loop}@{kind}[distance=..{RANGE}{',' + inner if inner else ''}]"
+            return f"{loop}@{kind}[distance={RANGE}{',' + inner if inner else ''}]"
         return f'{loop}@p{args}'
     # El mapa pasa a aventura a todo el que no tenga `dev` (y le saca `dev` a todos menos a su
     # autor). Skript marca a los OP con astral.op dentro de los mini juegos.
+    command = TEXT_BOOL.sub(r'\1\2', command)
     return pattern.sub(fix, command).replace('tag=!dev]', 'tag=!dev,tag=!astral.op]')
 
 
