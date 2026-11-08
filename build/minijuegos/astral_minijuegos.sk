@@ -240,7 +240,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil2}
         if {_l} is not set:
-            set {_l} to location(2000.5, 251, 98.5, world "dropper_facil", 0, 0)
+            set {_l} to location(1036.5, 157, 761.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil2"
@@ -263,7 +263,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil3}
         if {_l} is not set:
-            set {_l} to location(1036.5, 157, 761.5, world "dropper_facil", 0, 0)
+            set {_l} to location(347.5, 250, -162.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil3"
@@ -286,7 +286,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil4}
         if {_l} is not set:
-            set {_l} to location(347.5, 250, -162.5, world "dropper_facil", 0, 0)
+            set {_l} to location(150.5, 256, 983.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil4"
@@ -309,7 +309,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil5}
         if {_l} is not set:
-            set {_l} to location(150.5, 256, 983.5, world "dropper_facil", 0, 0)
+            set {_l} to location(310.5, 250, 143.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil5"
@@ -332,33 +332,10 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil6}
         if {_l} is not set:
-            set {_l} to location(310.5, 250, 143.5, world "dropper_facil", 0, 0)
-        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
-            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
-        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil6"
-        set {_x} to x-coordinate of {_l}
-        set {_y} to y-coordinate of {_l}
-        set {_z} to z-coordinate of {_l}
-        set {_yaw} to yaw of {_l}
-        set {_pitch} to pitch of {_l}
-        set {_name} to name of {_p}
-        set velocity of {_p} to vector(0, 0, 0)
-        set fall distance of {_p} to 0
-        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
-        remove all potion effects from {_p}
-        execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
-        astral_parkour_mode({_p})
-        stop
-    if {_id} is "parkour.facil7":
-        if world "dropper_facil" is not set:
-            send "&eEse mundo todavia no esta disponible." to {_p}
-            stop
-        set {_l} to {astral.punto::parkour.facil7}
-        if {_l} is not set:
             set {_l} to location(300.5, 249, -1.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
-        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil7"
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil6"
         set {_x} to x-coordinate of {_l}
         set {_y} to y-coordinate of {_l}
         set {_z} to z-coordinate of {_l}
@@ -773,9 +750,6 @@ command /parkour [<text>]:
         if arg-1 is "facil6":
             astral_minijuego_ir(player, "parkour.facil6")
             stop
-        if arg-1 is "facil7":
-            astral_minijuego_ir(player, "parkour.facil7")
-            stop
         if arg-1 is "h4rs1":
             astral_minijuego_ir(player, "parkour.h4rs1")
             stop
@@ -843,9 +817,6 @@ command /minijuegos [<text>]:
             stop
         if arg-1 is "facil6":
             astral_minijuego_ir(player, "parkour.facil6")
-            stop
-        if arg-1 is "facil7":
-            astral_minijuego_ir(player, "parkour.facil7")
             stop
         if arg-1 is "h4rs1":
             astral_minijuego_ir(player, "parkour.h4rs1")
@@ -965,7 +936,6 @@ command /astralpunto <text> [<text>]:
             send "&eparkour facil4 &7(dropper_facil): %{astral.punto::parkour.facil4}%" to player
             send "&eparkour facil5 &7(dropper_facil): %{astral.punto::parkour.facil5}%" to player
             send "&eparkour facil6 &7(dropper_facil): %{astral.punto::parkour.facil6}%" to player
-            send "&eparkour facil7 &7(dropper_facil): %{astral.punto::parkour.facil7}%" to player
             send "&eparkour h4rs1 &7(dropper_h4rs): %{astral.punto::parkour.h4rs1}%" to player
             send "&eparkour h4rs2 &7(dropper_h4rs): %{astral.punto::parkour.h4rs2}%" to player
             send "&eparkour h4rs3 &7(dropper_h4rs): %{astral.punto::parkour.h4rs3}%" to player
@@ -1089,17 +1059,6 @@ command /astralpunto <text> [<text>]:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::parkour.facil6} to location of player
-                send "&aLlegada guardada con orientacion." to player
-                stop
-        if arg-1 is "parkour":
-            if arg-2 is "facil7":
-                if name of world of player is not "dropper_facil":
-                    send "&cPrimero entra al mundo dropper_facil." to player
-                    stop
-                if y-coordinate of player is less than -10:
-                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
-                    stop
-                set {astral.punto::parkour.facil7} to location of player
                 send "&aLlegada guardada con orientacion." to player
                 stop
         if arg-1 is "parkour":
@@ -1334,7 +1293,7 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
         if {_w} is "dropper_facil":
-            if {_id} is not "parkour.facil1" or "parkour.facil2" or "parkour.facil3" or "parkour.facil4" or "parkour.facil5" or "parkour.facil6" or "parkour.facil7":
+            if {_id} is not "parkour.facil1" or "parkour.facil2" or "parkour.facil3" or "parkour.facil4" or "parkour.facil5" or "parkour.facil6":
                 set {_id} to "parkour.facil1"
                 set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
             if {_id} is "parkour.facil1":
@@ -1348,7 +1307,7 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil2":
-                if y-coordinate of loop-player is less than 195:
+                if y-coordinate of loop-player is less than 15:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.facil3")
                     # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
@@ -1358,7 +1317,7 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil3":
-                if y-coordinate of loop-player is less than 15:
+                if y-coordinate of loop-player is less than 190:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.facil4")
                     # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
@@ -1368,7 +1327,7 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil4":
-                if y-coordinate of loop-player is less than 190:
+                if y-coordinate of loop-player is less than 196:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.facil5")
                     # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
@@ -1378,7 +1337,7 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil5":
-                if y-coordinate of loop-player is less than 196:
+                if y-coordinate of loop-player is less than 12:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.facil6")
                     # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
@@ -1388,16 +1347,6 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil6":
-                if y-coordinate of loop-player is less than 12:
-                    if block at loop-player is water:
-                        astral_dropper_ganar(loop-player, "parkour.facil7")
-                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
-                    else if loop-player is on ground:
-                        astral_dropper_ganar(loop-player, "parkour.facil7")
-                if y-coordinate of loop-player is less than -10:
-                    if gamemode of loop-player is survival or adventure:
-                        astral_minijuego_ir(loop-player, {_id})
-            if {_id} is "parkour.facil7":
                 if y-coordinate of loop-player is less than 6:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "")

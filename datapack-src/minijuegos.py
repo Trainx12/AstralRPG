@@ -26,12 +26,11 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
 # En el original cada nivel empezaba parado sobre una placa (vidrio, piedra...) que quitaban sus
 # command blocks: sin ellos, los que fallaban (prueba del dueno, 08/11/2026) salen 2 bloques DEBAJO
 # de la placa, ya cayendo. Se gana al caer al agua o al quedar parado bajo la Y de llegada (slime,
-# alfombra del fondo...). None = como estaba (funcionaba). Se sacaron Small World, Anatomy y Rainbow
-# del facil: sin la logica original no son droppers (Rainbow ni tiene fondo).
+# alfombra del fondo...). None = como estaba (funcionaba). Se sacaron GLaDOS, Small World, Anatomy y
+# Rainbow del facil: sin la logica original no son droppers (Rainbow ni tiene fondo).
 DROPPERS = {
     'dropper_facil': dict(name='The Easiest Dropper', icon='WATER_BUCKET', rescue_y=-10, levels=[
-        ('Epilepsy Warning', (1009, 253, 468), 250, 6), ('GLaDOS', (2000, 255, 98), 251, None),
-        ('Gaming Rig', (1036, 169, 761), 157, 15), ('Metropolis', (347, 250, -163), None, None),
+        ('Epilepsy Warning', (1009, 253, 468), 250, 6), ('Gaming Rig', (1036, 169, 761), 157, 15), ('Metropolis', (347, 250, -163), None, None),
         ('Solar System', (150, 256, 983), None, None), ('The Nether', (310, 253, 143), 250, 12),
         ('Pixel Art', (300, 252, -2), 249, 6)]),
     # H4rs tiene agua decorativa a mitad de caida (Y 196-240); el agua final esta en Y 3-6.
