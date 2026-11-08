@@ -250,6 +250,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - Avisos de MythicMobs sobre `ExampleQuest...`: son de los ejemplos que trae el plugin, no afectan nada.
 - Aviso de Paper "4 releases behind": se queda en 26.1.2 a propósito, porque los plugins están probados ahí.
 - Errores de GeoIP de AuthMe: no afectan.
+- "Excediste la cantidad de registros" (AuthMe): limite de cuentas por IP. Subido de 1 a 3 el 08/11/2026 (`restrictions.maxRegPerIp: 3` en `plugins/AuthMe/config.yml`, luego `authme reload`) para amigos en la misma red.
 - Error al entrar `Failed to decode packet 'clientbound/minecraft:cookie_request'`: era la sala de espera de Aternos con el server apagado. En Empower no pasa; si no conecta, revisar en el panel que diga Running y la consola.
 - Si alguien no ve texturas: que acepte el resource pack al entrar. Si sigue igual, revisar que el sha1 coincida.
 - Si aparece "Unknown skill": cargar el preset legacy de AuraSkills (ver comandos).
