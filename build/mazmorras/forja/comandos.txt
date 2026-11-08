@@ -10,6 +10,7 @@ mv modify forja_volcano set pvp false
 mv modify forja_volcano set allow-weather false
 mv gamerule set minecraft:spawn_mobs false forja_volcano
 mv gamerule set minecraft:keep_inventory true forja_volcano
+mv gamerule set minecraft:random_tick_speed 0 forja_volcano
 rg flag -w forja_volcano __global__ build deny
 rg flag -w forja_volcano __global__ chest-access deny
 rg flag -w forja_volcano __global__ pvp deny

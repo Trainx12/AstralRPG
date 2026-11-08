@@ -10,6 +10,7 @@ mv modify tumba set pvp false
 mv modify tumba set allow-weather false
 mv gamerule set minecraft:spawn_mobs false tumba
 mv gamerule set minecraft:keep_inventory true tumba
+mv gamerule set minecraft:random_tick_speed 0 tumba
 rg flag -w tumba __global__ build deny
 rg flag -w tumba __global__ chest-access deny
 rg flag -w tumba __global__ pvp deny

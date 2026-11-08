@@ -10,6 +10,7 @@ mv modify bosque set pvp false
 mv modify bosque set allow-weather false
 mv gamerule set minecraft:spawn_mobs false bosque
 mv gamerule set minecraft:keep_inventory true bosque
+mv gamerule set minecraft:random_tick_speed 0 bosque
 rg flag -w bosque __global__ build deny
 rg flag -w bosque __global__ chest-access deny
 rg flag -w bosque __global__ pvp deny

@@ -69,9 +69,12 @@ function astral_parkour_mode(p: player):
     if astral_parkour_world(world of {_p}) is true:
         if {astral.minijuegos.mode::%{_u}%} is not set:
             set {astral.minijuegos.mode::%{_u}%} to gamemode of {_p}
-        # Nadie cambia de modo dentro de un mini juego (tampoco los OP).
+        # Todos en aventura; solo un OP puede quedarse en creativo (para revisar el mapa).
         if gamemode of {_p} is not adventure:
-            set gamemode of {_p} to adventure
+            if {_p} is not op:
+                set gamemode of {_p} to adventure
+            else if gamemode of {_p} is not creative:
+                set gamemode of {_p} to adventure
         astral_mj_guardar({_p})
         astral_mj_vida({_p})
         set food level of {_p} to 20

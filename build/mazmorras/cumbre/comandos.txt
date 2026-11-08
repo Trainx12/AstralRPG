@@ -10,6 +10,7 @@ mv modify cumbre_hielo set pvp false
 mv modify cumbre_hielo set allow-weather false
 mv gamerule set minecraft:spawn_mobs false cumbre_hielo
 mv gamerule set minecraft:keep_inventory true cumbre_hielo
+mv gamerule set minecraft:random_tick_speed 0 cumbre_hielo
 rg flag -w cumbre_hielo __global__ build deny
 rg flag -w cumbre_hielo __global__ chest-access deny
 rg flag -w cumbre_hielo __global__ pvp deny

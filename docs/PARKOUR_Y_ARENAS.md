@@ -10,7 +10,10 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   (modificador `astral:minijuego` que deja la vida en 20), y se borran los efectos. Todo se devuelve al
   salir a cualquier mundo que no sea mini juego. Variables persistentes `{astral.mj.inv::uuid::*}`:
   sobreviven a desconexiones y reinicios. Las arenas PvP no cambian.
-- **Modo trabado:** en un mini juego todos quedan en aventura, también los OP (se fuerza cada 10 ticks).
+- **Modo trabado:** en un mini juego todos quedan en aventura (se fuerza cada 10 ticks); solo un OP
+  puede quedarse en creativo para revisar el mapa.
+- **Nada crece solo:** `random_tick_speed 0` en mini juegos, arenas y mazmorras (chorus,
+  enredaderas, cultivos, kelp... arruinarían los mapas). Las expediciones ya lo tenían.
 - **Daño vanilla** (pedido del dueño, 08/11/2026): en parkour y Color Escape se recibe daño y se
   puede morir; al reaparecer se vuelve a la llegada del mapa elegido. Comida llena (la vida se
   regenera sola). La vida se revisa cada 10 ticks: si las skills la suben al reaparecer, se vuelve a 20.

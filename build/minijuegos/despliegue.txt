@@ -37,6 +37,7 @@ mv modify parkour_spiral set pvp false
 mv modify parkour_spiral set gamemode survival
 mv gamerule set minecraft:keep_inventory true parkour_spiral
 mv gamerule set minecraft:spawn_mobs false parkour_spiral
+mv gamerule set minecraft:random_tick_speed 0 parkour_spiral
 mv gamerule set minecraft:command_blocks_work false parkour_spiral
 mv gamerule set minecraft:pvp false parkour_spiral
 mv modify parkour_spiral set respawn-world parkour_spiral
@@ -53,6 +54,7 @@ mv modify parkour_spiral2 set pvp false
 mv modify parkour_spiral2 set gamemode survival
 mv gamerule set minecraft:keep_inventory true parkour_spiral2
 mv gamerule set minecraft:spawn_mobs false parkour_spiral2
+mv gamerule set minecraft:random_tick_speed 0 parkour_spiral2
 mv gamerule set minecraft:command_blocks_work false parkour_spiral2
 mv gamerule set minecraft:pvp false parkour_spiral2
 mv modify parkour_spiral2 set respawn-world parkour_spiral2
@@ -69,6 +71,7 @@ mv modify parkour_paradise3 set pvp false
 mv modify parkour_paradise3 set gamemode survival
 mv gamerule set minecraft:keep_inventory true parkour_paradise3
 mv gamerule set minecraft:spawn_mobs false parkour_paradise3
+mv gamerule set minecraft:random_tick_speed 0 parkour_paradise3
 mv gamerule set minecraft:command_blocks_work false parkour_paradise3
 mv gamerule set minecraft:pvp false parkour_paradise3
 mv modify parkour_paradise3 set respawn-world parkour_paradise3
@@ -85,6 +88,7 @@ mv modify colorescape set pvp false
 mv modify colorescape set gamemode survival
 mv gamerule set minecraft:keep_inventory true colorescape
 mv gamerule set minecraft:spawn_mobs false colorescape
+mv gamerule set minecraft:random_tick_speed 0 colorescape
 mv gamerule set minecraft:command_blocks_work false colorescape
 mv gamerule set minecraft:pvp false colorescape
 mv modify colorescape set respawn-world colorescape
@@ -105,6 +109,7 @@ mv modify dropper_facil set pvp false
 mv modify dropper_facil set gamemode survival
 mv gamerule set minecraft:keep_inventory true dropper_facil
 mv gamerule set minecraft:spawn_mobs false dropper_facil
+mv gamerule set minecraft:random_tick_speed 0 dropper_facil
 mv gamerule set minecraft:command_blocks_work false dropper_facil
 mv gamerule set minecraft:pvp false dropper_facil
 mv modify dropper_facil set respawn-world dropper_facil
@@ -121,6 +126,7 @@ mv modify dropper_h4rs set pvp false
 mv modify dropper_h4rs set gamemode survival
 mv gamerule set minecraft:keep_inventory true dropper_h4rs
 mv gamerule set minecraft:spawn_mobs false dropper_h4rs
+mv gamerule set minecraft:random_tick_speed 0 dropper_h4rs
 mv gamerule set minecraft:command_blocks_work false dropper_h4rs
 mv gamerule set minecraft:pvp false dropper_h4rs
 mv modify dropper_h4rs set respawn-world dropper_h4rs
@@ -137,6 +143,7 @@ mv modify arena set pvp true
 mv modify arena set gamemode survival
 mv gamerule set minecraft:keep_inventory true arena
 mv gamerule set minecraft:spawn_mobs false arena
+mv gamerule set minecraft:random_tick_speed 0 arena
 mv gamerule set minecraft:command_blocks_work false arena
 mv gamerule set minecraft:pvp true arena
 mv modify arena set respawn-world arena
@@ -150,6 +157,7 @@ mv modify arenas_tft set pvp true
 mv modify arenas_tft set gamemode survival
 mv gamerule set minecraft:keep_inventory true arenas_tft
 mv gamerule set minecraft:spawn_mobs false arenas_tft
+mv gamerule set minecraft:random_tick_speed 0 arenas_tft
 mv gamerule set minecraft:command_blocks_work false arenas_tft
 mv gamerule set minecraft:pvp true arenas_tft
 mv modify arenas_tft set respawn-world arenas_tft

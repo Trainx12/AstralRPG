@@ -10,6 +10,7 @@ mv modify santuario_interstellar set pvp false
 mv modify santuario_interstellar set allow-weather false
 mv gamerule set minecraft:spawn_mobs false santuario_interstellar
 mv gamerule set minecraft:keep_inventory true santuario_interstellar
+mv gamerule set minecraft:random_tick_speed 0 santuario_interstellar
 rg flag -w santuario_interstellar __global__ build deny
 rg flag -w santuario_interstellar __global__ chest-access deny
 rg flag -w santuario_interstellar __global__ pvp deny

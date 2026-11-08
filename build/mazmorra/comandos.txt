@@ -7,6 +7,7 @@ mv modify mina set pvp false
 mv modify mina set allow-weather false
 mv gamerule set minecraft:spawn_mobs false mina
 mv gamerule set minecraft:keep_inventory true mina
+mv gamerule set minecraft:random_tick_speed 0 mina
 mv gamerule set minecraft:advance_time false mina
 execute in minecraft:mina run time set midnight
 rg flag -w mina __global__ build deny

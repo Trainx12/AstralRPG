@@ -115,9 +115,9 @@ class MinijuegosTests(unittest.TestCase):
         script = m.script()
         self.assertIn('set gamemode of {_p} to adventure', script)
         self.assertIn('set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}', script)
-        # Nadie cambia de modo en un mini juego (tampoco OP en creativo).
+        # Todos en aventura; un OP puede quedarse en creativo.
         self.assertIn('if gamemode of {_p} is not adventure:', script)
-        self.assertNotIn('if gamemode of {_p} is creative:', script)
+        self.assertIn('else if gamemode of {_p} is not creative:', script)
         for kind, d in m.definitions():
             self.assertIn(f'less than {d["rescue_y"]}', script)
             death_guard = gameplay.script().split('on death of player:', 1)[1].split('on jump:', 1)[0]
