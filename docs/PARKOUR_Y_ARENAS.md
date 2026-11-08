@@ -44,6 +44,10 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   cargado el chunk del marcador `console` (corre los temporizadores). Al salir de un mini juego,
   Skript llama `<pp>_main:astral/salir` (marcas, puntajes, efectos y objetos del mapa).
   Estos dos mundos conservan entidades y command blocks (traducidos igual que el datapack).
+  **Instalado (08/11/2026)** como carpetas `world/datapacks/parkour_paradise3-datapack/` y
+  `parkour_spiral2-datapack/` (en carpeta se puede corregir un archivo suelto sin volver a subir
+  todo). Arranque sin funciones fallidas; `console` cargado y modo servidor activo en ambos.
+  Falta probar jugando la largada, los checkpoints y los niveles con mecanismos.
 - **Mapas 26.2** (Spiral 2 y Paradise 3): se revisaron todos sus bloques, block entities y entidades;
   ninguno es nuevo de 26.2. Se baja `DataVersion` a 4790 (26.1.2) en `level.dat` y en cada chunk.
 - Los mundos preparados quedan en `.local/mapas/subir/` (no se publican).

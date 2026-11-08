@@ -91,7 +91,8 @@ class Adapter:
     # ------------------------------------------------------------ reescritura
     def rename_ns(self, s):
         for old, new in self.ns.items():
-            s = re.sub(rf'(?<![\w.:-]){re.escape(old)}:(?=[a-z_])', new + ':', s)
+            # Rutas que empiezan con numero (random:5_percent) si; numeros SNBT (time:5b) no.
+            s = re.sub(rf'(?<![\w.:-]){re.escape(old)}:(?=(?!\d+[bsdflBSDFL]?(?![\w/]))[a-z0-9_])', new + ':', s)
         for tag in self.moved_tags:
             s = re.sub(rf'#minecraft:{re.escape(tag)}(?![\w/])', f'#{self.main}:{tag}', s)
         return s
