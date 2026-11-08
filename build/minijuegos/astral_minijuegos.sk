@@ -1467,6 +1467,16 @@ command /astralpunto <text> [<text>]:
                 stop
         send "&eUsa /astralpunto <parkour|arena> <id> o /astralpunto lista." to player
 
+# Tower Defence: su brujula "Game Menu" abre el menu del mapa con clic derecho. El mapa lo
+# detecta con un logro de "usar item" que en el server no llegaba: lo abrimos desde aca.
+on right click:
+    if name of world of player is "towerdefence" or "towerdefence_end":
+        if {-astral.td.click::%uuid of player%} is set:
+            if difference between now and {-astral.td.click::%uuid of player%} is less than 1 second:
+                stop
+        set {-astral.td.click::%uuid of player%} to now
+        execute console command "execute as %name of player% at @s if items entity @s weapon.mainhand *[minecraft:custom_data~{id:""show_menu""}] run function td_game:interactions.show_menu"
+
 on world change:
     wait 2 ticks
     astral_parkour_mode(player)
