@@ -240,7 +240,7 @@ class Adapter:
                 for old, new in self.dims.items():
                     content = re.sub(rf'"(?:minecraft:)?{old}"', f'"minecraft:{new}"', content)
                 if rest.startswith('advancement/'):
-                    content = self.advancement(content)
+                    content = self.advancement(content, f'{self.ns[ns]}:{rest[len("advancement/"):-len(".json")]}')
                 else:
                     content = self.selectors(content)
                 self.files[target] = content
@@ -295,12 +295,25 @@ class Adapter:
             'min_format': DATA_FORMAT, 'max_format': DATA_FORMAT}}, indent=2)
         return self.files
 
-    def advancement(self, content):
+    def advancement(self, content, adv_id=None):
         data = json.loads(content)
-        # Sin condicion de mundo (el predicate de dimension no funciona con Multiverse): las
-        # funciones de premio ya quedan limitadas por sus selectores con distance=.
+        # Sin condicion de mundo en el criterio (el predicate de dimension no funciona con
+        # Multiverse). El premio pasa por una funcion que primero mira si el jugador esta en el
+        # mundo del mapa: afuera solo se anula el logro. El "more_maps" de Paradise/Spiral se
+        # disparaba con cualquier entidad de interaccion (criaturas 3D de las mazmorras) y
+        # mandaba "Parkour Volcano" al chat (08/11/2026).
         if 'display' in data:
             data['display']['announce_to_chat'] = False
+        reward = data.get('rewards', {}).get('function')
+        if reward and adv_id:
+            key = re.sub(r'[^a-z0-9_]', '_', adv_id)
+            worlds = list(dict.fromkeys([self.world, *self.dims.values()]))
+            check = ' '.join(f'unless entity @s[distance=0..]' if i == 0 else f'in minecraft:{w} unless entity @s[distance=0..]'
+                             for i, w in enumerate(worlds))
+            self.files[f'data/{self.main}/function/astral/adv/{key}.mcfunction'] = '\n'.join([
+                f'execute in minecraft:{worlds[0]} {check} run return run advancement revoke @s only {adv_id}',
+                f'function {reward}'])
+            data['rewards']['function'] = f'{self.main}:astral/adv/{key}'
         return json.dumps(data, indent=2)
 
 

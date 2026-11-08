@@ -38,6 +38,10 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   Elige jugador 1 y 2 con equipos (`one`, `two`, `lobby`): se conservan como `bs_one`, `bs_two`,
   `bs_lobby` (sin ellos la partida no arrancaba, 08/11/2026). Al salir del mundo, `team leave`.
   Cuenta solo jugadores en aventura: un OP en creativo no cuenta para los 2.
+- **Logros de los datapacks (08/11/2026):** el premio de cada logro pasa por
+  `<pp>_main:astral/adv/...`, que primero mira si el jugador esta en el mundo del mapa; afuera solo
+  anula el logro. El cartel "more maps" de Paradise/Spiral se disparaba golpeando criaturas 3D de
+  las mazmorras y mandaba "Parkour Volcano" al chat.
   Tower Defence (MLE_qwq, MIT) usa su mundo y su End: el End es el mundo `towerdefence_end`
   (`EXTRA_WORLDS`), sus `in the_end` se traducen, los jugadores de los dos mundos llevan la marca
   `td_m` (sus @a/@p/@r la usan) y sus equipos `game.*` se conservan (solo dan color). Se quita
