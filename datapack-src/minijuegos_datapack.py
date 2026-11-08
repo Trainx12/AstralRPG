@@ -124,8 +124,46 @@ class Adapter:
         return re.sub(r'scores=\{([^}]*)\}', scores, line)
 
     def selectors(self, line):
-        line = re.sub(r'@([aeprn])\[', lambda m: f'@{m[1]}[predicate={self.pred},', line)
-        return re.sub(r'@([aeprn])(?![\[\w])', lambda m: f'@{m[1]}[predicate={self.pred}]', line)
+        """Limita cada selector al mundo donde corre el comando (siempre el del mapa).
+
+        `distance=` solo busca en la dimension de ejecucion. Un predicate de dimension no sirve:
+        en Paper con mundos de Multiverse da falso aunque el jugador este en el mapa (08/11/2026).
+        Si el selector ya trae distance=, ya esta limitado a su mundo y no se toca.
+        """
+        out, i = [], 0
+        while True:
+            m = re.compile(r'@([aeprn])(?![\w])').search(line, i)
+            if not m:
+                out.append(line[i:])
+                return ''.join(out)
+            out.append(line[i:m.end()])
+            i = m.end()
+            if i < len(line) and line[i] == '[':
+                depth, j, quote = 0, i, None
+                while j < len(line):        # fin del [ ... ] respetando {}, [] y comillas
+                    c = line[j]
+                    if quote:
+                        if c == '\\':
+                            j += 1
+                        elif c == quote:
+                            quote = None
+                    elif c in '"\'':
+                        quote = c
+                    elif c in '[{':
+                        depth += 1
+                    elif c in ']}':
+                        depth -= 1
+                        if depth == 0:
+                            break
+                    j += 1
+                args = line[i + 1:j]
+                top = re.sub(r'\{[^{}]*\}|\[[^\[\]]*\]', '', args)   # sin nbt/scores anidados
+                if not re.search(r'(^|,)\s*distance\s*=', top):
+                    args = 'distance=0..' + (',' + args if args.strip() else '')
+                out.append('[' + args + ']')
+                i = j + 1
+            else:
+                out.append('[distance=0..]')
 
     def schedule(self, line):
         def wrap(m):
@@ -223,15 +261,8 @@ class Adapter:
 
     def advancement(self, content):
         data = json.loads(content)
-        ref = {'condition': 'minecraft:reference', 'name': self.pred}
-        for criterion in data.get('criteria', {}).values():
-            if criterion.get('trigger') == 'minecraft:impossible':
-                continue
-            conditions = criterion.setdefault('conditions', {})
-            player = conditions.get('player', [])
-            if isinstance(player, dict):        # formato viejo: predicado de entidad
-                player = [{'condition': 'minecraft:entity_properties', 'entity': 'this', 'predicate': player}]
-            conditions['player'] = player + [ref]
+        # Sin condicion de mundo (el predicate de dimension no funciona con Multiverse): las
+        # funciones de premio ya quedan limitadas por sus selectores con distance=.
         if 'display' in data:
             data['display']['announce_to_chat'] = False
         return json.dumps(data, indent=2)
