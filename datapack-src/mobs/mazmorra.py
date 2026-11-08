@@ -374,6 +374,9 @@ def commands(dungeon=None):
          f"execute in minecraft:{WORLD} run time set midnight",
          f"rg flag -w {WORLD} __global__ build deny",
          f"rg flag -w {WORLD} __global__ chest-access deny",
+         # clic en cofres y aldeanos de MythicMobs (build deny los bloquea); puertas y botones siguen bloqueados
+         f"rg flag -w {WORLD} __global__ interact allow",
+         f"rg flag -w {WORLD} __global__ use deny",
          f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ pvp deny",
          "# --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):",
@@ -427,6 +430,7 @@ def new_commands(dungeon):
              f'mv gamerule set minecraft:spawn_mobs false {w}', f'mv gamerule set minecraft:keep_inventory true {w}',
              f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
              f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
+             f'rg flag -w {w} __global__ interact allow', f'rg flag -w {w} __global__ use deny',
              '# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):']
     if any(s.get("group_scaling") for s in dungeon["rooms"]):
         lines += ['# Contador de jugadores para los refuerzos (una vez; si ya existe, conservarlo).',

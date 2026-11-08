@@ -917,10 +917,10 @@ def momia():
     strips(m, "head", [(3.6, 30, -1, 5), (-4.6, 29, 1, 4), (-2, 25, -4.5, 3)])
     for n, x in (("arm_l", 6), ("arm_r", -6)):
         strips(m, n, [(x - 0.5, 12, 2.2, 5), (x - 1.5, 15, -2.6, 3)])
-    m.anim("idle", 3, {"arm_l": {"rotation": (-75, 0, swing(4, 0.33))}, "arm_r": {"rotation": (-75, 0, swing(-4, 0.33))},
+    m.anim("idle", 3, {"arm_l": {"rotation": (75, 0, swing(4, 0.33))}, "arm_r": {"rotation": (75, 0, swing(-4, 0.33))},
                        "head": {"rotation": (swing(4, 0.33), 0, swing(3, 0.2))}})
     m.anim("walk", 1.4, {"leg_l": {"rotation": (swing(25, 1.2), 0, 0)}, "leg_r": {"rotation": (swing(-25, 1.2), 0, 0)},
-                         "arm_l": {"rotation": (-75, swing(8, 1.2), 0)}, "arm_r": {"rotation": (-75, swing(-8, 1.2), 0)},
+                         "arm_l": {"rotation": (75, swing(8, 1.2), 0)}, "arm_r": {"rotation": (75, swing(-8, 1.2), 0)},
                          "body": {"rotation": (0, 0, swing(4, 1.2))}})
     return m
 

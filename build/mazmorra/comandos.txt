@@ -11,6 +11,8 @@ mv gamerule set minecraft:advance_time false mina
 execute in minecraft:mina run time set midnight
 rg flag -w mina __global__ build deny
 rg flag -w mina __global__ chest-access deny
+rg flag -w mina __global__ interact allow
+rg flag -w mina __global__ use deny
 rg flag -w mina __global__ mob-spawning allow
 rg flag -w mina __global__ pvp deny
 # --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):

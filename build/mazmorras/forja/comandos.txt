@@ -14,6 +14,8 @@ rg flag -w forja __global__ build deny
 rg flag -w forja __global__ chest-access deny
 rg flag -w forja __global__ pvp deny
 rg flag -w forja __global__ mob-spawning allow
+rg flag -w forja __global__ interact allow
+rg flag -w forja __global__ use deny
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
 # Ladera de ceniza: execute in minecraft:forja run minecraft:tp <jugador> 1536.5 224 1900.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.

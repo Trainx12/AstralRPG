@@ -259,3 +259,11 @@ la consulta de las 22:14:25 conservo ola1 sin tumba.fin ni credito/premios.
 Se retiro la marca de prueba y la carga temporal del chunk. Las 52 pruebas
 locales completas pasaron. Falta repetir el combate normal con jugador para
 comprobar el ciclo de muerte del jefe, ayudantes, premio y regreso.
+
+## Cofre final que no se abria (08/11/2026)
+
+El cofre de la Tumba aparecia pero el clic no hacia nada. Las mazmorras tenian `build deny` sin
+`interact allow`: WorldGuard cancela el clic sobre entidades y MythicMobs no recibe `~onInteract`
+(el lobby ya tenia `interact allow`). Ahora las mazmorras y los mapas de expedicion llevan
+`interact allow` (cofres y aldeanos) y `use deny` (puertas, botones y palancas siguen bloqueados).
+Los OP no lo notan porque saltean WorldGuard: probar con un jugador sin OP.

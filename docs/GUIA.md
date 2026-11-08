@@ -19,6 +19,7 @@ AstralRPG/
 ├── docs/
 │   ├── SERVIDOR.md           Administración: plugins, lobby, comandos, problemas conocidos
 │   ├── GUIA.md               Este archivo
+│   ├── IDEAS.md              Ideas pendientes del dueño, ordenadas por trabajo
 │   └── CREDENCIALES.local.md Claves del servidor (solo en tu PC, Git lo ignora)
 ├── datapack-src/             TODO lo que se genera sale de acá
 │   ├── items.py              Materiales, armas, armaduras, talismanes, lanzas, drops, élites

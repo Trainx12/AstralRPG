@@ -272,6 +272,8 @@ mv gamerule set minecraft:keep_inventory true {key}
 mv gamerule set minecraft:log_admin_commands false {key}
 rg flag -w {key} __global__ build deny
 rg flag -w {key} __global__ chest-access deny
+rg flag -w {key} __global__ interact allow
+rg flag -w {key} __global__ use deny
 rg flag -w {key} __global__ pvp deny
 # Apagar el servidor y subir SOLO .local/mapas/astral-nuevos/preparados/{key}/region/*.mca
 # al NUEVO mundo world/dimensions/minecraft/{key}/region.

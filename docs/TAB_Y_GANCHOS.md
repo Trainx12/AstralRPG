@@ -73,3 +73,12 @@ Prueba de contacto ejecutada en Paper/Skript local: 8/8 (seis caras, aire y
 agua); cinco pruebas Python del gancho. El script carga sin errores.
 El tabulador y panel muestran `Portales Astrales`; el contador de capacidad
 usa `%server_max_players%` en lugar del placeholder sin resolver.
+
+## Saltador y Gancho (08/11/2026)
+
+- `gancho` se llama **Saltador** y se ve como una **bola de slime** (`minecraft:slime_ball`).
+  Mas adelante tendra skin propia.
+- `gancho_realista` se llama **Gancho** y usa la skin del gancho (`astral:gancho`, ya esta en el
+  resource pack). Al lanzarlo no cambia de aspecto (la skin no tiene estado "lanzado").
+- El aspecto se fuerza en `build.py`, despues de los bucles de texturas que ponen `astral:<id>`.
+- `ITEM_VERSION` 10: los que ya tienen los objetos los ven actualizados al entrar.

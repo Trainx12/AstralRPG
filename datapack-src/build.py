@@ -19,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 9   # Saltador y Gancho de escalada; migracion en el mismo slot, conserva mejoras
+ITEM_VERSION = 10  # Saltador con aspecto de bola de slime; Gancho con la skin del gancho
 
 files = {}
 
@@ -124,7 +124,7 @@ for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
 add_item("gancho", "minecraft:carrot_on_a_stick", "Saltador", "#d0d0d0",
          [txt("Click derecho: impulso hacia donde miras"), txt("Salto elevado sin dano de caida."),
           txt("Enfriamiento: 2 segundos.", "dark_gray")],
-         {"type": "hook"}, model="minecraft:fishing_rod",
+         {"type": "hook"},
          extra={"minecraft:enchantments": {f"{NS}:gancho": 1},
                 "minecraft:tooltip_display": {"hidden_components": ["minecraft:enchantments"]},
                 "minecraft:max_stack_size": 1})
@@ -132,12 +132,12 @@ RECIPES.append(("gancho", 1, [("v", "minecraft:fishing_rod", 1), ("v", "minecraf
                               ("v", "minecraft:string", 2)], "Especiales"))
 
 # Variante de prueba: caña vanilla con sedal y colision reales, sin receta por ahora.
-add_item("gancho_realista", "minecraft:fishing_rod", "Gancho de escalada", "#D6B4FF",
+add_item("gancho_realista", "minecraft:fishing_rod", "Gancho", "#D6B4FF",
          [txt("Click derecho: lanza el anzuelo (mano principal)."),
           txt("Vuelve a pulsar al enganchar un bloque o entidad."),
           txt("El tiron te lleva hacia el anzuelo, no hacia la mirada."),
           txt("Anclaje fijo · alcance 32 bloques · sin recarga", "dark_gray")],
-         {"type": "realistic_hook"}, model="minecraft:fishing_rod")
+         {"type": "realistic_hook"})
 
 for (out, n, ings) in MAT_RECIPES:
     RECIPES.append((out, n, ings, "Materiales"))
@@ -513,6 +513,9 @@ for _iid in REDESIGN_IDS:
     ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
 for _t in DRILLS + CHAINSAWS:
     ITEMS[_t["id"]]["components"]["minecraft:item_model"] = f"{NS}:{_t['id']}"
+# El Saltador (id "gancho") se ve como bola de slime; su skin pasa al Gancho real
+ITEMS["gancho"]["components"]["minecraft:item_model"] = "minecraft:slime_ball"
+ITEMS["gancho_realista"]["components"]["minecraft:item_model"] = f"{NS}:gancho"
 # Armaduras: textura propia al tenerlas puestas
 _SOUND = {"leather": "leather", "chainmail": "chain", "iron": "iron", "diamond": "diamond", "netherite": "netherite"}
 for _iid in ARMOR_ITEMS:
@@ -1754,7 +1757,7 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
         "Cada objeto pide un nivel de AuraSkills para usarlo: /skills para ver tus niveles.", "gray"),
     msg("ARMAS ESPECIALES", "gold"),
     msg("Bastones: click derecho lanza un proyectil arcano. Arcos: mantene click derecho y disparan solos. "
-        "Gancho: click derecho apuntando a un bloque.", "gray"),
+        "Saltador: click derecho para impulsarte. Gancho: lanzalo a un bloque y volve a pulsar para tirarte.", "gray"),
     msg("MOBS ELITE", "gold"),
     msg("Cuanto mejor es tu equipo y mas dias pasan, aparecen mas mobs elite (Veterano, Elite, Campeon, "
         "Pesadilla y Astral). Son mas fuertes y sueltan materiales para Talismanes y Lanzas.", "gray"),
