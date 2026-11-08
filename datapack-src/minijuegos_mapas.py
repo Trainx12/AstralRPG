@@ -49,22 +49,27 @@ def local_selectors(command):
     return pattern.sub(fix, command)
 
 
-def keep_logic(tree):
-    """Para mapas que necesitan sus command blocks: solo se reescriben los selectores."""
+def keep_logic(tree, rewrite=None):
+    """Para mapas que necesitan sus command blocks: solo se reescriben los comandos.
+
+    Sin `rewrite`, se limitan los selectores por distancia (Color Escape). Con datapack
+    adaptado (minijuegos_datapack.Adapter.command) se usan sus namespaces y puntajes.
+    """
+    rewrite = rewrite or local_selectors
     root = tree[1]
     chunk = root['Level'][1] if 'Level' in root else root
     changed = 0
     for key in ('block_entities', 'TileEntities'):
         for _, data in chunk.get(key, (9, []))[1]:
             if 'Command' in data:
-                new = local_selectors(data['Command'][1])
+                new = rewrite(data['Command'][1])
                 if new != data['Command'][1]:
                     data['Command'] = (8, new)
                     changed += 1
     return changed
 
 
-def clean_region(raw, keep_commands=False):
+def clean_region(raw, keep_commands=False, rewrite=None):
     header = bytearray(raw[:8192])
     records = []
     sector = 2
@@ -83,7 +88,7 @@ def clean_region(raw, keep_commands=False):
             raise ValueError(f'Compresion de region no soportada: {compression}')
         tree = NBT(payload, typed=True).root()
         if keep_commands:
-            keep_logic(tree)
+            keep_logic(tree, rewrite)
         else:
             sanitize(tree)
         version = tree[1].get('DataVersion')
@@ -114,7 +119,7 @@ def clean_region(raw, keep_commands=False):
     return bytes(header) + b''.join(records)
 
 
-def prepare(source, destination, world, keep_commands=False):
+def prepare(source, destination, world, keep_commands=False, rewrite=None):
     """Lista permitida: level.dat y regiones; excluye jugadores, entidades y datapacks."""
     if not destination.resolve().is_relative_to((ROOT / '.local').resolve()):
         raise ValueError('Los mundos de terceros solo pueden escribirse en .local')
@@ -147,9 +152,8 @@ def prepare(source, destination, world, keep_commands=False):
             if match and (match.group(1) == 'region' or keep_commands):
                 if '..' in PurePosixPath(relative).parts:
                     raise ValueError('Ruta invalida')
-                raw = src.read(name)
-                if match.group(1) == 'region':
-                    raw = clean_region(raw, keep_commands)
+                # Entidades tambien: baja de version (mapas 26.2) sin tocar su contenido.
+                raw = clean_region(src.read(name), keep_commands, rewrite)
                 dst.writestr(f'{world}/{match.group(1)}/{match.group(2)}', raw)
                 count += 1
         if not count:
@@ -165,11 +169,16 @@ def main():
             ('dropper.zip', 'dropper_facil'), ('dropper_h4rs.zip', 'dropper_h4rs'),
             ('colorescape.zip', 'colorescape')]
     keep = {'colorescape'}  # necesita sus command blocks (selectores reescritos)
+    from minijuegos_datapack import MAPS as DATAPACK_MAPS, Adapter
     only = set(sys.argv[1:])
     for filename, world in maps:
         if only and world not in only:
             continue
-        count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world, world in keep)
+        rewrite = None
+        if world in DATAPACK_MAPS:   # mapas con datapack adaptado: comandos con sus namespaces
+            rewrite = Adapter(world, folder / filename, DATAPACK_MAPS[world]['prefix']).command
+        count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world,
+                        world in keep or rewrite is not None, rewrite)
         print(f'{world}: {count} regiones preparadas en .local/mapas/subir/{world}.zip')
 
 

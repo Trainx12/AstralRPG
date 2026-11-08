@@ -67,6 +67,11 @@ rg flag -w parkour_spiral2 __global__ pvp deny
 lp group default permission set mv.bypass.gamemode.parkour_spiral2 true
 mv gamerule set minecraft:fall_damage true parkour_spiral2
 rg flag -w parkour_spiral2 __global__ fall-damage
+mv gamerule set minecraft:command_blocks_work true parkour_spiral2
+rg flag -w parkour_spiral2 __global__ chest-access allow
+rg flag -w parkour_spiral2 __global__ interact allow
+rg flag -w parkour_spiral2 __global__ use allow
+rg flag -w parkour_spiral2 __global__ mob-spawning allow
 mv modify parkour_paradise3 set pvp false
 mv modify parkour_paradise3 set gamemode survival
 mv gamerule set minecraft:keep_inventory true parkour_paradise3
@@ -84,6 +89,11 @@ rg flag -w parkour_paradise3 __global__ pvp deny
 lp group default permission set mv.bypass.gamemode.parkour_paradise3 true
 mv gamerule set minecraft:fall_damage true parkour_paradise3
 rg flag -w parkour_paradise3 __global__ fall-damage
+mv gamerule set minecraft:command_blocks_work true parkour_paradise3
+rg flag -w parkour_paradise3 __global__ chest-access allow
+rg flag -w parkour_paradise3 __global__ interact allow
+rg flag -w parkour_paradise3 __global__ use allow
+rg flag -w parkour_paradise3 __global__ mob-spawning allow
 mv modify colorescape set pvp false
 mv modify colorescape set gamemode survival
 mv gamerule set minecraft:keep_inventory true colorescape

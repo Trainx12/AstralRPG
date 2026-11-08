@@ -33,6 +33,17 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   `colorescape`, `dropper_facil` y `dropper_h4rs` creados con Multiverse; sus `region/` (y
   `entities/` de Color Escape) copiados desde `mapas-subir/` con el servidor apagado. Se cargaron
   las 5 llegadas y el bloque de abajo coincide con el mapa. Falta probar jugando.
+- **Datapack propio de Spiral 2 y Paradise 3** (de Hielke Maps): sin él no hay largada, checkpoints
+  ni mecanismos. `python minijuegos_datapack.py` genera en `.local/mapas/subir/<mundo>-datapack.zip`
+  una copia que solo actúa en su mundo: namespaces con prefijo (`pp3_main`, `sp2_time`...), puntajes
+  con prefijo (`pp3_time`), todo `@a/@e/@p/@r/@n` con `predicate=<pp>_main:astral/en_mapa`, tick,
+  load y `schedule` dentro de `execute in minecraft:<mundo>`, etiquetas de bloque mudadas a su
+  namespace. Se quitan el filtro que bloqueaba recetas y logros de todo el server, `setdisplay` y
+  `team`; los logros solo se cumplen en el mapa y no se anuncian. Se recrean los puntajes del
+  `scoreboard.dat` del mapa, se activa el modo servidor del autor (`#is_server temp 1`) y queda
+  cargado el chunk del marcador `console` (corre los temporizadores). Al salir de un mini juego,
+  Skript llama `<pp>_main:astral/salir` (marcas, puntajes, efectos y objetos del mapa).
+  Estos dos mundos conservan entidades y command blocks (traducidos igual que el datapack).
 - **Mapas 26.2** (Spiral 2 y Paradise 3): se revisaron todos sus bloques, block entities y entidades;
   ninguno es nuevo de 26.2. Se baja `DataVersion` a 4790 (26.1.2) en `level.dat` y en cada chunk.
 - Los mundos preparados quedan en `.local/mapas/subir/` (no se publican).

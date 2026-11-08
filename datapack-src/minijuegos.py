@@ -5,16 +5,18 @@ Los mapas de terceros se preparan aparte con minijuegos_mapas.py, siempre en .lo
 import json
 from pathlib import Path
 
+from minijuegos_datapack import MAPS as DATAPACK_MAPS
+
 ROOT = Path(__file__).resolve().parent.parent
 PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Challenge',
                  icon='FEATHER', description='Una espiral de saltos hasta la cima.',
                  difficulty='Progresiva', arrival=(0.5, -11, -1.5, 0, 0), rescue_y=-20),
             dict(id='spiral2', world='parkour_spiral2', name='Parkour Spiral 2',
                  icon='PHANTOM_MEMBRANE', description='La segunda espiral: mas alta y mas larga.',
-                 difficulty='Dificil', arrival=(0.5, 54, -96.5, 0, 0), rescue_y=-70),
+                 difficulty='Dificil', arrival=(0.5, 54, -96.5, 0, 0), rescue_y=-70, logic=True),
             dict(id='paradise3', world='parkour_paradise3', name='Parkour Paradise 3',
                  icon='SUNFLOWER', description='Islas de saltos unidas por portales.',
-                 difficulty='Media', arrival=(-33.5, 131, 766.5, 0, 0), rescue_y=-10),
+                 difficulty='Media', arrival=(-33.5, 131, 766.5, 0, 0), rescue_y=-10, logic=True),
             dict(id='colorescape', world='colorescape', name='Color Escape', icon='LIME_DYE',
                  description='Escape de colores: resolve cada sala para salir.', difficulty='Puzzle',
                  arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True)]
@@ -177,6 +179,10 @@ def script():
               '    loop indices of {astral.mj.inv::%{_u}%::*}:',
               '        set {_i} to loop-value parsed as integer',
               '        set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}',
+              '    remove all potion effects from {_p}',
+              '    # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.',
+          ] + [f'    execute console command "execute as %name of {{_p}}% run function {d["prefix"]}_main:astral/salir"'
+               for d in DATAPACK_MAPS.values()] + [
               '    delete {astral.mj.inv::%{_u}%::*}',
               '    delete {astral.mj.saved::%{_u}%}',
               '    execute console command "attribute %name of {_p}% minecraft:max_health modifier remove astral:minijuego"',
@@ -390,6 +396,9 @@ def deployment():
                           f'rg flag -w {world} __global__ chest-access allow',
                           f'rg flag -w {world} __global__ interact allow',
                           f'rg flag -w {world} __global__ use allow']
+                if world in DATAPACK_MAPS:
+                    # Su datapack crea caballos, viboras y marcadores.
+                    lines += [f'rg flag -w {world} __global__ mob-spawning allow']
     lines += ['# Reiniciar una vez para cargar todo junto y evitar acumular Metaspace con recargas.',
               '# Si solo se actualizan configs con los mundos ya instalados:']
     lines += ['dm reload', 'mm reload', 'skript:skript reload astral_gameplay', 'skript:skript reload astral_minijuegos',

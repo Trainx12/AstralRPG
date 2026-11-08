@@ -60,6 +60,10 @@ function astral_mj_devolver(p: player):
     loop indices of {astral.mj.inv::%{_u}%::*}:
         set {_i} to loop-value parsed as integer
         set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}
+    remove all potion effects from {_p}
+    # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.
+    execute console command "execute as %name of {_p}% run function pp3_main:astral/salir"
+    execute console command "execute as %name of {_p}% run function sp2_main:astral/salir"
     delete {astral.mj.inv::%{_u}%::*}
     delete {astral.mj.saved::%{_u}%}
     execute console command "attribute %name of {_p}% minecraft:max_health modifier remove astral:minijuego"
