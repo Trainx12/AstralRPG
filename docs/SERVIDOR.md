@@ -254,7 +254,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - Si alguien no ve texturas: que acepte el resource pack al entrar. Si sigue igual, revisar que el sha1 coincida.
 - Si aparece "Unknown skill": cargar el preset legacy de AuraSkills (ver comandos).
 - El área de los taladros puede romper bloques dentro de una zona de WorldGuard si picás justo en el borde.
-- WorldEdit: su "varita de navegacion" era la brujula (clic derecho teletransporta) y le ganaba el clic a la brujula Game Menu del Tower Defence. En `plugins/WorldEdit/config.yml` -> `navigation-wand.item: minecraft:structure_void` (08/11/2026), luego `worldedit reload`.
+- WorldEdit: su "varita de navegacion" es la brujula (clic derecho teletransporta a los OP). Se probo cambiarla para el Tower Defence y no alcanzo; se dejo como estaba (`navigation-wand.item: minecraft:compass`).
 - Consola y `execute console command` de Skript: `clear` es el de nonchat (borra el chat de todos) y `tp` el de Essentials. Usar `minecraft:clear` y `minecraft:tp`. Las funciones de datapacks si usan los de Minecraft.
 
 ## Servidor de prueba local
