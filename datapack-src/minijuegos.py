@@ -19,7 +19,19 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
                  difficulty='Media', arrival=(-33.5, 131, 766.5, 0, 0), rescue_y=-10, logic=True),
             dict(id='colorescape', world='colorescape', name='Color Escape', icon='LIME_DYE',
                  description='Escape de colores: resolve cada sala para salir.', difficulty='Puzzle',
-                 arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True),
+                 arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True, solo=True),
+            # Magma Run (Filip00_, 26.2 bajado a 26.1): command blocks, para un jugador. Sus puntajes
+            # y la barra estaban en los datos del mapa: se crean, y cada jugador arranca con los
+            # valores que tenia el autor. Cambia velocidad y caida segura: se restauran al salir.
+            dict(id='magmarun', world='magmarun', name='Magma Run', icon='MAGMA_BLOCK',
+                 description='Corre antes de que suba el magma: 7 temas.', difficulty='Carrera',
+                 arrival=(-28.5, 57, 74.5, 0, 0), rescue_y=-70, logic=True, solo=True,
+                 init_scores=[('magma', 4), ('lvl', 0), ('magma_on_off_s', 0), ('author', 0),
+                              ('difficulty', 0), ('RNG', 0), ('magma_speed', 1), ('rngsec', 0),
+                              ('magma_stop', 0), ('level_progress', 0), ('outline_sec', 0),
+                              ('outline_limit', 0), ('progress', 0), ('starting_game', 1),
+                              ('outline', 0), ('choose_theme', 0)],
+                 bossbar=('minecraft:progress', 'Level Progress', 10, 'red')),
             # Datapacks adaptados con minijuegos_datapack.py (solo actuan en su mundo).
             dict(id='batallanaval', world='battleship', name='Batalla Naval', icon='OAK_BOAT',
                  description='Hunde la flota rival: 2 jugadores.', difficulty='2 jugadores',
@@ -205,6 +217,10 @@ def script():
               '        set {_i} to loop-value parsed as integer',
               '        set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}',
               '    remove all potion effects from {_p}',
+              '    # Magma Run cambia atributos base del jugador: vuelven a los de siempre.',
+              '    execute console command "attribute %name of {_p}% minecraft:movement_speed base reset"',
+              '    execute console command "attribute %name of {_p}% minecraft:safe_fall_distance base reset"',
+          ] + [f'    execute console command "bossbar set {d["bossbar"][0]} players"' for d in PARKOURS if d.get('bossbar')] + [
               '    # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.',
           ] + [f'    execute console command "execute as %name of {{_p}}% run function {d["prefix"]}_main:astral/salir"'
                for d in DATAPACK_MAPS.values()] + [
@@ -270,13 +286,18 @@ def script():
                 if len(points) > 1:
                     lines += [f'            if {{_n}} is {i}:']; indent += '    '
                 lines += [f'{indent}set {{_l}} to location({x}, {y}, {z}, world "{d["world"]}", {yaw}, {pitch})']
-        if d['id'] == 'colorescape':
-            lines += ['        if name of world of {_p} is not "colorescape":',
-                      '            loop all players in world "colorescape":',
+        if d.get('solo'):
+            lines += [f'        if name of world of {{_p}} is not "{d["world"]}":',
+                      f'            loop all players in world "{d["world"]}":',
                       '                if loop-player is not {_p}:',
-                      '                    send "&eColor Escape esta ocupado: se juega de a uno. &7Proba en un rato." to {_p}',
-                      '                    stop',
-                      '        set {astral.ce.sucio} to true']
+                      f'                    send "&e{d["name"]} esta ocupado: se juega de a uno. &7Proba en un rato." to {{_p}}',
+                      '                    stop']
+        if d['id'] == 'colorescape':
+            lines += ['        set {astral.ce.sucio} to true']
+        for objective, value in d.get('init_scores', []):
+            lines += [f'        execute console command "scoreboard players set %name of {{_p}}% {objective} {value}"']
+        if d.get('bossbar'):
+            lines += [f'        execute console command "bossbar set {d["bossbar"][0]} players %name of {{_p}}%"']
         if kind == 'parkour':
             lines += ['        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:',
                       '            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}']
@@ -488,6 +509,13 @@ def deployment():
                           f'rg flag -w {world} __global__ chest-access allow',
                           f'rg flag -w {world} __global__ interact allow',
                           f'rg flag -w {world} __global__ use allow']
+                for d in PARKOURS:
+                    if d['world'] == world:
+                        lines += [f'scoreboard objectives add {o} dummy' for o, _ in d.get('init_scores', [])]
+                        if d.get('bossbar'):
+                            bid, name, top, color = d['bossbar']
+                            lines += [f'bossbar add {bid} "{name}"', f'bossbar set {bid} max {top}',
+                                      f'bossbar set {bid} color {color}']
                 if world == 'colorescape':
                     # Sus acertijos piden poner y romper bloques (aventura: solo los que el mapa permite).
                     lines += [f'rg flag -w {world} __global__ build allow',

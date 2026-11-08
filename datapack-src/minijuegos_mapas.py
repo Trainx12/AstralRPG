@@ -171,9 +171,10 @@ def main():
             ('parkour_spiral2.zip', 'parkour_spiral2'), ('parkour_paradise3.zip', 'parkour_paradise3'),
             ('dropper.zip', 'dropper_facil'), ('dropper_h4rs.zip', 'dropper_h4rs'),
             ('colorescape.zip', 'colorescape'), ('battleship.zip', 'battleship'),
-            ('towerdefence.zip', 'towerdefence'), ('towerdefence.zip', 'towerdefence_end')]
+            ('towerdefence.zip', 'towerdefence'), ('towerdefence.zip', 'towerdefence_end'),
+            ('magmarun.zip', 'magmarun')]
     dims = {'towerdefence_end': 'DIM1'}     # el End del Tower Defence es su propio mundo
-    keep = {'colorescape'}  # necesita sus command blocks (selectores reescritos)
+    keep = {'colorescape', 'magmarun'}  # necesitan sus command blocks (selectores reescritos)
     from minijuegos_datapack import MAPS as DATAPACK_MAPS, Adapter
     only = set(sys.argv[1:])
     for filename, world in maps:

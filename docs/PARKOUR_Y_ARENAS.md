@@ -39,6 +39,11 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   (`EXTRA_WORLDS`), sus `in the_end` se traducen, los jugadores de los dos mundos llevan la marca
   `td_m` (sus @a/@p/@r la usan) y sus equipos `game.*` se conservan (solo dan color). Se quita
   `difficulty`. Los puntajes pueden tener puntos (`game.data.wave.mob_count`).
+- **Magma Run (Filip00_):** 301 command blocks, sin datapack, 26.2 bajado a 26.1 (sin bloques
+  nuevos). Se prepara como Color Escape (selectores limitados, entidades conservadas) y se juega de
+  a uno (`solo=True`). Sus 16 puntajes y la barra `minecraft:progress` estaban en los datos del mapa:
+  el despliegue los crea y al entrar cada jugador recibe los valores que tenía el autor. Cambia la
+  velocidad y la caída segura del jugador: al salir de cualquier mini juego se resetean.
 - **BombaCraft no se puede:** es un mod de Fabric 26.2 (`bombanana-craft`); Paper no carga mods y
   cada jugador tendría que instalarlo.
 - **Criaturas de los mini juegos sin tier ni élite** (`mob/roll` de build.py sale en esos mundos):

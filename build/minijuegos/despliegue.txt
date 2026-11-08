@@ -14,6 +14,7 @@ mv create minecraft:arenas_tft normal --world-type FLAT --no-structures --genera
 mv create minecraft:parkour_spiral2 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:parkour_paradise3 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:colorescape normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:magmarun normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:battleship normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:towerdefence normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:dropper_facil normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
@@ -124,6 +125,47 @@ rg flag -w colorescape __global__ use allow
 rg flag -w colorescape __global__ build allow
 rg flag -w colorescape __global__ block-place allow
 rg flag -w colorescape __global__ block-break allow
+mv modify magmarun set pvp false
+mv modify magmarun set gamemode survival
+mv gamerule set minecraft:keep_inventory true magmarun
+mv gamerule set minecraft:spawn_mobs false magmarun
+mv gamerule set minecraft:random_tick_speed 0 magmarun
+mv gamerule set minecraft:command_blocks_work false magmarun
+mv gamerule set minecraft:pvp false magmarun
+mv modify magmarun set respawn-world magmarun
+rg flag -w magmarun __global__ build deny
+rg flag -w magmarun __global__ block-break deny
+rg flag -w magmarun __global__ block-place deny
+rg flag -w magmarun __global__ chest-access deny
+rg flag -w magmarun __global__ mob-spawning deny
+rg flag -w magmarun __global__ pvp deny
+lp group default permission set mv.bypass.gamemode.magmarun true
+mv gamerule set minecraft:fall_damage true magmarun
+rg flag -w magmarun __global__ fall-damage
+mv gamerule set minecraft:command_block_output false magmarun
+mv gamerule set minecraft:command_blocks_work true magmarun
+rg flag -w magmarun __global__ chest-access allow
+rg flag -w magmarun __global__ interact allow
+rg flag -w magmarun __global__ use allow
+scoreboard objectives add magma dummy
+scoreboard objectives add lvl dummy
+scoreboard objectives add magma_on_off_s dummy
+scoreboard objectives add author dummy
+scoreboard objectives add difficulty dummy
+scoreboard objectives add RNG dummy
+scoreboard objectives add magma_speed dummy
+scoreboard objectives add rngsec dummy
+scoreboard objectives add magma_stop dummy
+scoreboard objectives add level_progress dummy
+scoreboard objectives add outline_sec dummy
+scoreboard objectives add outline_limit dummy
+scoreboard objectives add progress dummy
+scoreboard objectives add starting_game dummy
+scoreboard objectives add outline dummy
+scoreboard objectives add choose_theme dummy
+bossbar add minecraft:progress "Level Progress"
+bossbar set minecraft:progress max 10
+bossbar set minecraft:progress color red
 mv modify battleship set pvp false
 mv modify battleship set gamemode survival
 mv gamerule set minecraft:keep_inventory true battleship

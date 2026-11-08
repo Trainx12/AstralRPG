@@ -1,7 +1,7 @@
 # Generado por minijuegos.py. Mundos y destinos limitados a la lista Python.
 # Persistentes: puntos OP, mapa elegido y modo anterior (reconexiones/reinicios).
 function astral_parkour_world(w: world) :: boolean:
-    if name of {_w} is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "battleship" or "towerdefence" or "dropper_facil" or "dropper_h4rs" or "towerdefence_end":
+    if name of {_w} is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "towerdefence" or "dropper_facil" or "dropper_h4rs" or "towerdefence_end":
         return true
     return false
 
@@ -61,6 +61,10 @@ function astral_mj_devolver(p: player):
         set {_i} to loop-value parsed as integer
         set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}
     remove all potion effects from {_p}
+    # Magma Run cambia atributos base del jugador: vuelven a los de siempre.
+    execute console command "attribute %name of {_p}% minecraft:movement_speed base reset"
+    execute console command "attribute %name of {_p}% minecraft:safe_fall_distance base reset"
+    execute console command "bossbar set minecraft:progress players"
     # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.
     execute console command "execute as %name of {_p}% run function pp3_main:astral/salir"
     execute console command "execute as %name of {_p}% run function sp2_main:astral/salir"
@@ -211,6 +215,51 @@ function astral_minijuego_ir(p: player, id: text):
         # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
         remove all potion effects from {_p}
         execute console command "execute in minecraft:colorescape run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "parkour.magmarun":
+        if world "magmarun" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::parkour.magmarun}
+        if {_l} is not set:
+            set {_l} to location(-28.5, 57, 74.5, world "magmarun", 0, 0)
+        if name of world of {_p} is not "magmarun":
+            loop all players in world "magmarun":
+                if loop-player is not {_p}:
+                    send "&eMagma Run esta ocupado: se juega de a uno. &7Proba en un rato." to {_p}
+                    stop
+        execute console command "scoreboard players set %name of {_p}% magma 4"
+        execute console command "scoreboard players set %name of {_p}% lvl 0"
+        execute console command "scoreboard players set %name of {_p}% magma_on_off_s 0"
+        execute console command "scoreboard players set %name of {_p}% author 0"
+        execute console command "scoreboard players set %name of {_p}% difficulty 0"
+        execute console command "scoreboard players set %name of {_p}% RNG 0"
+        execute console command "scoreboard players set %name of {_p}% magma_speed 1"
+        execute console command "scoreboard players set %name of {_p}% rngsec 0"
+        execute console command "scoreboard players set %name of {_p}% magma_stop 0"
+        execute console command "scoreboard players set %name of {_p}% level_progress 0"
+        execute console command "scoreboard players set %name of {_p}% outline_sec 0"
+        execute console command "scoreboard players set %name of {_p}% outline_limit 0"
+        execute console command "scoreboard players set %name of {_p}% progress 0"
+        execute console command "scoreboard players set %name of {_p}% starting_game 1"
+        execute console command "scoreboard players set %name of {_p}% outline 0"
+        execute console command "scoreboard players set %name of {_p}% choose_theme 0"
+        execute console command "bossbar set minecraft:progress players %name of {_p}%"
+        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
+            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.magmarun"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
+        execute console command "execute in minecraft:magmarun run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
     if {_id} is "parkour.batallanaval":
@@ -780,6 +829,9 @@ command /parkour [<text>]:
         if arg-1 is "colorescape":
             astral_minijuego_ir(player, "parkour.colorescape")
             stop
+        if arg-1 is "magmarun":
+            astral_minijuego_ir(player, "parkour.magmarun")
+            stop
         if arg-1 is "batallanaval":
             astral_minijuego_ir(player, "parkour.batallanaval")
             stop
@@ -853,6 +905,9 @@ command /minijuegos [<text>]:
             stop
         if arg-1 is "colorescape":
             astral_minijuego_ir(player, "parkour.colorescape")
+            stop
+        if arg-1 is "magmarun":
+            astral_minijuego_ir(player, "parkour.magmarun")
             stop
         if arg-1 is "batallanaval":
             astral_minijuego_ir(player, "parkour.batallanaval")
@@ -990,6 +1045,7 @@ command /astralpunto <text> [<text>]:
             send "&eparkour spiral2 &7(parkour_spiral2): %{astral.punto::parkour.spiral2}%" to player
             send "&eparkour paradise3 &7(parkour_paradise3): %{astral.punto::parkour.paradise3}%" to player
             send "&eparkour colorescape &7(colorescape): %{astral.punto::parkour.colorescape}%" to player
+            send "&eparkour magmarun &7(magmarun): %{astral.punto::parkour.magmarun}%" to player
             send "&eparkour batallanaval &7(battleship): %{astral.punto::parkour.batallanaval}%" to player
             send "&eparkour towerdefence &7(towerdefence): %{astral.punto::parkour.towerdefence}%" to player
             send "&eparkour facil1 &7(dropper_facil): %{astral.punto::parkour.facil1}%" to player
@@ -1055,6 +1111,17 @@ command /astralpunto <text> [<text>]:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::parkour.colorescape} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "parkour":
+            if arg-2 is "magmarun":
+                if name of world of player is not "magmarun":
+                    send "&cPrimero entra al mundo magmarun." to player
+                    stop
+                if y-coordinate of player is less than -70:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::parkour.magmarun} to location of player
                 send "&aLlegada guardada con orientacion." to player
                 stop
         if arg-1 is "parkour":
@@ -1373,6 +1440,14 @@ every 10 ticks:
                 set {_id} to "parkour.colorescape"
                 set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
             if {_id} is "parkour.colorescape":
+                if y-coordinate of loop-player is less than -70:
+                    if gamemode of loop-player is survival or adventure:
+                        astral_minijuego_ir(loop-player, {_id})
+        if {_w} is "magmarun":
+            if {_id} is not "parkour.magmarun":
+                set {_id} to "parkour.magmarun"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "parkour.magmarun":
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
