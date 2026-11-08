@@ -211,23 +211,30 @@ def script():
               '        set health of {_p} to max health of {_p}',
               '    delete {-astral.mj.vida::%{_u}%}',
               '',
-              'function astral_mj_devolver(p: player):',
-              '    set {_u} to uuid of {_p}',
-              '    if {astral.mj.saved::%{_u}%} is not set:', '        stop',
-              '    clear inventory of {_p}',
-              '    loop indices of {astral.mj.inv::%{_u}%::*}:',
-              '        set {_i} to loop-value parsed as integer',
-              '        set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}',
+              '# Borra todo lo que deja un mini juego: al salir al lobby y al pasar a otro mini juego',
+              '# (pedido del dueno, 08/11/2026: Magma Run dejaba sin salto y con su barra en Tower Defence).',
+              'function astral_mj_limpiar(p: player):',
+              '    if {astral.mj.saved::%uuid of {_p}%} is set:',
+              '        clear inventory of {_p}',
               '    remove all potion effects from {_p}',
               '    # Magma Run cambia atributos base del jugador: vuelven a los de siempre.',
               '    execute console command "attribute %name of {_p}% minecraft:movement_speed base reset"',
               '    execute console command "attribute %name of {_p}% minecraft:safe_fall_distance base reset"',
+              '    execute console command "attribute %name of {_p}% minecraft:jump_strength base reset"',
           ] + [f'    execute console command "bossbar set {d["bossbar"][0]} players"' for d in PARKOURS if d.get('bossbar')] + [
               f'    remove "{t}" from scoreboard tags of {{_p}}' for d in PARKOURS
                for t in d.get('init_tags', []) + d.get('exit_tags', [])] + [
               '    # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.',
           ] + [f'    execute console command "execute as %name of {{_p}}% run function {d["prefix"]}_main:astral/salir"'
                for d in DATAPACK_MAPS.values()] + [
+              '',
+              'function astral_mj_devolver(p: player):',
+              '    set {_u} to uuid of {_p}',
+              '    if {astral.mj.saved::%{_u}%} is not set:', '        stop',
+              '    astral_mj_limpiar({_p})',
+              '    loop indices of {astral.mj.inv::%{_u}%::*}:',
+              '        set {_i} to loop-value parsed as integer',
+              '        set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}',
               '    delete {astral.mj.inv::%{_u}%::*}',
               '    delete {astral.mj.saved::%{_u}%}',
               '    execute console command "attribute %name of {_p}% minecraft:max_health modifier remove astral:minijuego"',
@@ -247,6 +254,8 @@ def script():
               '                set gamemode of {_p} to adventure',
               '        astral_mj_guardar({_p})',
               '        astral_mj_vida({_p})',
+              '        if {_p} does not have potion night vision:',
+              '            execute console command "effect give %name of {_p}% minecraft:night_vision infinite 0 true"',
               '        set food level of {_p} to 20',
               '        set saturation of {_p} to 5',
               '    else:',
@@ -296,6 +305,9 @@ def script():
                       '                if loop-player is not {_p}:',
                       f'                    send "&e{d["name"]} esta ocupado: se juega de a uno. &7Proba en un rato." to {{_p}}',
                       '                    stop']
+        lines += [f'        if name of world of {{_p}} is not "{d["world"]}":',
+                  '            if astral_parkour_world(world of {_p}) is true:',
+                  '                astral_mj_limpiar({_p})']
         if d['id'] == 'colorescape':
             lines += ['        set {astral.ce.sucio} to true']
         for objective, value in d.get('init_scores', []):
