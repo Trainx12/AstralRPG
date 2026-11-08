@@ -150,16 +150,25 @@ def script():
               '    set {astral.mj.saved::%{_u}%} to now',
               '    clear inventory of {_p}',
               '    remove all potion effects from {_p}',
+              '    send "&7Tu inventario y tu vida extra quedan guardados: &fse devuelven al salir." to {_p}',
+              '',
+              '# Vida vanilla (20). Se revisa seguido: al reaparecer, las skills pueden volver a sumar vida.',
+              'function astral_mj_vida(p: player):',
+              '    if max health of {_p} is 10:', '        stop',
+              '    set {_u} to uuid of {_p}',
+              '    if {-astral.mj.vida::%{_u}%} is set:', '        stop',
+              '    set {-astral.mj.vida::%{_u}%} to true',
               '    set {_n} to name of {_p}',
               '    execute console command "attribute %{_n}% minecraft:max_health modifier remove astral:minijuego"',
               '    wait 1 tick',
               '    set {_h} to max health of {_p} * 2',
-              '    if {_h} > 20:',
+              '    if {_h} is not 20:',
               '        set {_d} to 20 - {_h}',
               '        execute console command "attribute %{_n}% minecraft:max_health modifier add astral:minijuego %{_d}% add_value"',
               '    wait 1 tick',
-              '    set health of {_p} to max health of {_p}',
-              '    send "&7Tu inventario y tu vida extra quedan guardados: &fse devuelven al salir." to {_p}',
+              '    if health of {_p} > max health of {_p}:',
+              '        set health of {_p} to max health of {_p}',
+              '    delete {-astral.mj.vida::%{_u}%}',
               '',
               'function astral_mj_devolver(p: player):',
               '    set {_u} to uuid of {_p}',
@@ -181,8 +190,9 @@ def script():
               '        if gamemode of {_p} is not adventure:',
               '            set gamemode of {_p} to adventure',
               '        astral_mj_guardar({_p})',
-              '        set food level of {_p} to 10',
-              '        set saturation of {_p} to 10',
+              '        astral_mj_vida({_p})',
+              '        set food level of {_p} to 20',
+              '        set saturation of {_p} to 5',
               '    else:',
               '        astral_mj_devolver({_p})',
               '        if {astral.minijuegos.mode::%{_u}%} is set:',
@@ -260,7 +270,12 @@ def script():
     lines += ['        send "&eUsa /astralpunto <parkour|arena> <id> o /astralpunto lista." to player', '',
               'on world change:', '    wait 2 ticks', '    astral_parkour_mode(player)', '',
               'on join:', '    wait 2 ticks', '    astral_parkour_mode(player)', '',
-              'on respawn:', '    wait 2 ticks']
+              'on respawn:', '    wait 2 ticks',
+              '    if astral_parkour_world(world of player) is true:',
+              '        set {_id} to {astral.minijuegos.selected::%uuid of player%}',
+              '        if {_id} is set:',
+              '            astral_minijuego_ir(player, {_id})',
+              '        stop']
     for world in arena_worlds():
         maps = [d for d in ARENAS if d['world'] == world]
         keys = ' or '.join(f'"arena.{d["id"]}"' for d in maps)
@@ -268,13 +283,14 @@ def script():
                   '        set {_id} to {astral.minijuegos.selected::%uuid of player%}',
                   f'        if {{_id}} is not {keys}:', f'            set {{_id}} to "arena.{maps[0]["id"]}"',
                   '        astral_minijuego_ir(player, {_id})']
-    lines += ['', 'on damage of player:', '    if astral_parkour_world(world of victim) is true:',
+    # Parkour y Color Escape: danio y muerte como en vanilla (pedido del dueno, 08/11/2026).
+    # Al morir se conserva todo y se reaparece en la llegada del mapa (on respawn).
+    lines += ['', 'on damage of player:', '    if astral_dropper_world(world of victim) is true:',
               '        cancel event',
               '        if damage cause is fall:',
-              '            if astral_dropper_world(world of victim) is true:',
-              '                if {-astral.dropper.win::%uuid of victim%} is not set:',
-              '                    send "&cTe estrellaste. &7Volves al principio del nivel." to victim',
-              '                    astral_minijuego_ir(victim, {astral.minijuegos.selected::%uuid of victim%})', '',
+              '            if {-astral.dropper.win::%uuid of victim%} is not set:',
+              '                send "&cTe estrellaste. &7Volves al principio del nivel." to victim',
+              '                astral_minijuego_ir(victim, {astral.minijuegos.selected::%uuid of victim%})', '',
               'on food level change:', '    if astral_parkour_world(world of player) is true:', '        cancel event', '',
               'every 10 ticks:', '    loop all players:', '        astral_parkour_mode(loop-player)',
               '        set {_w} to name of world of loop-player',
@@ -361,12 +377,9 @@ def deployment():
                   f'rg flag -w {world} __global__ pvp {"deny" if parkour else "allow"}']
         if parkour:
             lines += [f'lp group default permission set mv.bypass.gamemode.{world} true']
-            if world in dropper_worlds():
-                # Hace falta el evento de caida para saber que se estrello (Skript lo cancela).
-                lines += [f'mv gamerule set minecraft:fall_damage true {world}']
-            else:
-                lines += [f'mv gamerule set minecraft:fall_damage false {world}',
-                          f'rg flag -w {world} __global__ fall-damage deny']
+            # Danio vanilla (en droppers el evento de caida marca que se estrello).
+            lines += [f'mv gamerule set minecraft:fall_damage true {world}',
+                      f'rg flag -w {world} __global__ fall-damage']
             if world in logic_worlds():
                 # Color Escape: sus command blocks (selectores ya limitados) y sus cofres y botones.
                 lines += [f'mv gamerule set minecraft:command_blocks_work true {world}',

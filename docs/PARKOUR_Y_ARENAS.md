@@ -11,6 +11,9 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   salir a cualquier mundo que no sea mini juego. Variables persistentes `{astral.mj.inv::uuid::*}`:
   sobreviven a desconexiones y reinicios. Las arenas PvP no cambian.
 - **Modo trabado:** en un mini juego todos quedan en aventura, también los OP (se fuerza cada 10 ticks).
+- **Daño vanilla** (pedido del dueño, 08/11/2026): en parkour y Color Escape se recibe daño y se
+  puede morir; al reaparecer se vuelve a la llegada del mapa elegido. Comida llena (la vida se
+  regenera sola). La vida se revisa cada 10 ticks: si las skills la suben al reaparecer, se vuelve a 20.
 - **Droppers:** daño por caída = te estrellaste, volvés al inicio del nivel. Caer al agua por debajo de
   `finish_y` = nivel completado y pasás al siguiente (el último te manda al lobby). Easiest: 60 bloques
   bajo la salida; H4rs: Y 20 (tiene agua decorativa a mitad de caída). Las salidas salen de los command

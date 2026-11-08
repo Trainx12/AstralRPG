@@ -132,6 +132,11 @@ class MinijuegosTests(unittest.TestCase):
             if d.get('group'):
                 self.assertIn(f'less than {d["finish_y"]}', script)
         self.assertIn('if damage cause is fall:', script)
+        # Parkour con danio vanilla: solo los droppers cancelan el danio.
+        dmg = script.split('on damage of player:', 1)[1].split('on food level change:', 1)[0]
+        self.assertIn('astral_dropper_world(world of victim)', dmg)
+        self.assertNotIn('astral_parkour_world(world of victim)', dmg)
+        self.assertIn('astral_mj_vida({_p})', script)
         self.assertEqual(len([d for d in m.PARKOURS if d.get('group') == 'dropper_h4rs']), 10)
 
     def test_logic_maps_only_touch_local_players(self):
