@@ -1,6 +1,6 @@
 # Parche en vivo de Magma Run (08/11/2026), por consola sin "/".
 # Mismo cambio que minijuegos_mapas.py: selectores sin tope de 300 bloques y textos con true/false
-# sin comillas. Al final devuelve los marcadores de la torre a su lugar (quedaron corridos).
+# sin comillas. Al final (minecraft:tp: "tp" desde consola es el de Essentials) devuelve los marcadores de la torre a su lugar (quedaron corridos).
 # Si el mundo se vuelve a preparar con minijuegos_mapas.py, este parche ya no hace falta.
 execute in minecraft:magmarun run data modify block -25 56 23 Command set value 'execute at @e[distance=0..,tag=progress] if entity @a[distance=..8] run scoreboard players add @p progress 1'
 execute in minecraft:magmarun run data modify block -23 56 23 Command set value 'execute at @e[distance=0..,tag=End] if entity @a[distance=..3,tag=Player] run tp @p -28.5 57 74.5'
@@ -150,7 +150,7 @@ execute in minecraft:magmarun run data modify block 9 56 87 Command set value 'e
 execute in minecraft:magmarun run data modify block 12 56 87 Command set value 'execute if entity @p[scores={magma_speed=1}] run data merge entity @e[distance=0..,type=text_display,tag=magma_speed,limit=1] {CustomName:[{"color":"white","text":"Magma Speed: "},{"color":"dark_green","bold":true,"text":"FAST"}]}'
 execute in minecraft:magmarun run data modify block 11 56 87 Command set value 'execute if entity @p[scores={magma_speed=0}] run data merge entity @e[distance=0..,type=text_display,tag=magma_speed,limit=1] {CustomName:[{"color":"white","text":"Magma Speed: "},{"color":"yellow","bold":true,"text":"SLOW"}]}'
 execute in minecraft:magmarun run setblock -4 56 22 minecraft:air
-execute in minecraft:magmarun run tp @e[type=armor_stand,tag=outline,distance=0..] 28.5 57 29.5
-execute in minecraft:magmarun run tp @e[type=armor_stand,tag=lvl,distance=0..] 29.77 57 30.18
-execute in minecraft:magmarun run tp @e[type=armor_stand,tag=magma,distance=0..] 29.5 237 30.5
-execute in minecraft:magmarun run tp @e[type=armor_stand,tag=progress,distance=0..] 30.7 224.42 35.0
+execute in minecraft:magmarun run minecraft:tp @e[type=armor_stand,tag=outline,distance=0..] 28.5 57 29.5
+execute in minecraft:magmarun run minecraft:tp @e[type=armor_stand,tag=lvl,distance=0..] 29.77 57 30.18
+execute in minecraft:magmarun run minecraft:tp @e[type=armor_stand,tag=magma,distance=0..] 29.5 237 30.5
+execute in minecraft:magmarun run minecraft:tp @e[type=armor_stand,tag=progress,distance=0..] 30.7 224.42 35.0
