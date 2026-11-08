@@ -62,9 +62,39 @@
         "[player] parkour colorescape<delay=3>"
       ]
     },
+    "batallanaval": {
+      "material": "OAK_BOAT",
+      "slot": 14,
+      "display_name": "&a&lBatalla Naval",
+      "lore": [
+        "&7Hunde la flota rival: 2 jugadores.",
+        "&7Tipo: &f2 jugadores",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour batallanaval<delay=3>"
+      ]
+    },
+    "towerdefence": {
+      "material": "CROSSBOW",
+      "slot": 15,
+      "display_name": "&a&lTower Defence",
+      "lore": [
+        "&7Construi defensas contra oleadas de mobs.",
+        "&7Tipo: &fEstrategia",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour towerdefence<delay=3>"
+      ]
+    },
     "dropper_facil": {
       "material": "WATER_BUCKET",
-      "slot": 14,
+      "slot": 16,
       "display_name": "&a&lThe Easiest Dropper",
       "lore": [
         "&76 niveles de caida libre.",
@@ -78,7 +108,7 @@
     },
     "dropper_h4rs": {
       "material": "HEART_OF_THE_SEA",
-      "slot": 15,
+      "slot": 19,
       "display_name": "&a&lThe Dropper (H4rs)",
       "lore": [
         "&710 niveles de caida libre.",
@@ -89,16 +119,6 @@
       "click_commands": [
         "[openguimenu] dropper_h4rs"
       ]
-    },
-    "proximo_16": {
-      "material": "GRAY_DYE",
-      "slot": 16,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_19": {
-      "material": "GRAY_DYE",
-      "slot": 19,
-      "display_name": "&7Proximamente"
     },
     "proximo_20": {
       "material": "GRAY_DYE",

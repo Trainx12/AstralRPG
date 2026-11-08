@@ -14,8 +14,11 @@ mv create minecraft:arenas_tft normal --world-type FLAT --no-structures --genera
 mv create minecraft:parkour_spiral2 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:parkour_paradise3 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:colorescape normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:battleship normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:towerdefence normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:dropper_facil normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:dropper_h4rs normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:towerdefence_end normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 # Apagar. Worlds > Upload SOLO en las filas nuevas parkour_spiral y arenas_tft, con su ZIP respectivo.
 # Archivos locales -> destino (editor Files; conservar las otras entradas de config.yml):
 build/menus/DeluxeMenus/gui_menus/principal.yml -> plugins/DeluxeMenus/gui_menus/principal.yml
@@ -121,6 +124,52 @@ rg flag -w colorescape __global__ use allow
 rg flag -w colorescape __global__ build allow
 rg flag -w colorescape __global__ block-place allow
 rg flag -w colorescape __global__ block-break allow
+mv modify battleship set pvp false
+mv modify battleship set gamemode survival
+mv gamerule set minecraft:keep_inventory true battleship
+mv gamerule set minecraft:spawn_mobs false battleship
+mv gamerule set minecraft:random_tick_speed 0 battleship
+mv gamerule set minecraft:command_blocks_work false battleship
+mv gamerule set minecraft:pvp false battleship
+mv modify battleship set respawn-world battleship
+rg flag -w battleship __global__ build deny
+rg flag -w battleship __global__ block-break deny
+rg flag -w battleship __global__ block-place deny
+rg flag -w battleship __global__ chest-access deny
+rg flag -w battleship __global__ mob-spawning deny
+rg flag -w battleship __global__ pvp deny
+lp group default permission set mv.bypass.gamemode.battleship true
+mv gamerule set minecraft:fall_damage true battleship
+rg flag -w battleship __global__ fall-damage
+mv gamerule set minecraft:command_block_output false battleship
+mv gamerule set minecraft:command_blocks_work true battleship
+rg flag -w battleship __global__ chest-access allow
+rg flag -w battleship __global__ interact allow
+rg flag -w battleship __global__ use allow
+rg flag -w battleship __global__ mob-spawning allow
+mv modify towerdefence set pvp false
+mv modify towerdefence set gamemode survival
+mv gamerule set minecraft:keep_inventory true towerdefence
+mv gamerule set minecraft:spawn_mobs false towerdefence
+mv gamerule set minecraft:random_tick_speed 0 towerdefence
+mv gamerule set minecraft:command_blocks_work false towerdefence
+mv gamerule set minecraft:pvp false towerdefence
+mv modify towerdefence set respawn-world towerdefence
+rg flag -w towerdefence __global__ build deny
+rg flag -w towerdefence __global__ block-break deny
+rg flag -w towerdefence __global__ block-place deny
+rg flag -w towerdefence __global__ chest-access deny
+rg flag -w towerdefence __global__ mob-spawning deny
+rg flag -w towerdefence __global__ pvp deny
+lp group default permission set mv.bypass.gamemode.towerdefence true
+mv gamerule set minecraft:fall_damage true towerdefence
+rg flag -w towerdefence __global__ fall-damage
+mv gamerule set minecraft:command_block_output false towerdefence
+mv gamerule set minecraft:command_blocks_work true towerdefence
+rg flag -w towerdefence __global__ chest-access allow
+rg flag -w towerdefence __global__ interact allow
+rg flag -w towerdefence __global__ use allow
+rg flag -w towerdefence __global__ mob-spawning allow
 mv modify dropper_facil set pvp false
 mv modify dropper_facil set gamemode survival
 mv gamerule set minecraft:keep_inventory true dropper_facil
@@ -155,6 +204,29 @@ rg flag -w dropper_h4rs __global__ pvp deny
 lp group default permission set mv.bypass.gamemode.dropper_h4rs true
 mv gamerule set minecraft:fall_damage true dropper_h4rs
 rg flag -w dropper_h4rs __global__ fall-damage
+mv modify towerdefence_end set pvp false
+mv modify towerdefence_end set gamemode survival
+mv gamerule set minecraft:keep_inventory true towerdefence_end
+mv gamerule set minecraft:spawn_mobs false towerdefence_end
+mv gamerule set minecraft:random_tick_speed 0 towerdefence_end
+mv gamerule set minecraft:command_blocks_work false towerdefence_end
+mv gamerule set minecraft:pvp false towerdefence_end
+mv modify towerdefence_end set respawn-world towerdefence_end
+rg flag -w towerdefence_end __global__ build deny
+rg flag -w towerdefence_end __global__ block-break deny
+rg flag -w towerdefence_end __global__ block-place deny
+rg flag -w towerdefence_end __global__ chest-access deny
+rg flag -w towerdefence_end __global__ mob-spawning deny
+rg flag -w towerdefence_end __global__ pvp deny
+lp group default permission set mv.bypass.gamemode.towerdefence_end true
+mv gamerule set minecraft:fall_damage true towerdefence_end
+rg flag -w towerdefence_end __global__ fall-damage
+mv gamerule set minecraft:command_block_output false towerdefence_end
+mv gamerule set minecraft:command_blocks_work true towerdefence_end
+rg flag -w towerdefence_end __global__ chest-access allow
+rg flag -w towerdefence_end __global__ interact allow
+rg flag -w towerdefence_end __global__ use allow
+rg flag -w towerdefence_end __global__ mob-spawning allow
 mv modify arena set pvp true
 mv modify arena set gamemode survival
 mv gamerule set minecraft:keep_inventory true arena

@@ -121,13 +121,13 @@ def clean_region(raw, keep_commands=False, rewrite=None):
     return bytes(header) + b''.join(records)
 
 
-def prepare(source, destination, world, keep_commands=False, rewrite=None):
+def prepare(source, destination, world, keep_commands=False, rewrite=None, source_dim=None):
     """Lista permitida: level.dat y regiones; excluye jugadores, entidades y datapacks."""
     if not destination.resolve().is_relative_to((ROOT / '.local').resolve()):
         raise ValueError('Los mundos de terceros solo pueden escribirse en .local')
     destination.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(source) as src, zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED) as dst:
-        level = next(n for n in src.namelist() if n.endswith('/level.dat'))
+        level = next(n for n in src.namelist() if n.endswith('/level.dat') and '__MACOSX' not in n)
         prefix = level[:-len('level.dat')]
         tree = NBT(gzip.decompress(src.read(level)), typed=True).root()
         data = tree[1]['Data'][1]
@@ -149,7 +149,8 @@ def prepare(source, destination, world, keep_commands=False, rewrite=None):
         count = 0
         for name in src.namelist():
             relative = name.removeprefix(prefix)
-            match = REGION.fullmatch(relative) if name.startswith(prefix) else None
+            pattern = re.compile(rf'{source_dim}/(region|entities)/(r\.-?\d+\.-?\d+\.mca)') if source_dim else REGION
+            match = pattern.fullmatch(relative) if name.startswith(prefix) else None
             # Entidades solo en los mapas que conservan su logica (marcos, mobs del puzzle).
             if match and (match.group(1) == 'region' or keep_commands):
                 if '..' in PurePosixPath(relative).parts:
@@ -169,7 +170,9 @@ def main():
     maps = [('parkour_spiral.zip', 'parkour_spiral'), ('arenapvp_3.zip', 'arenas_tft'),
             ('parkour_spiral2.zip', 'parkour_spiral2'), ('parkour_paradise3.zip', 'parkour_paradise3'),
             ('dropper.zip', 'dropper_facil'), ('dropper_h4rs.zip', 'dropper_h4rs'),
-            ('colorescape.zip', 'colorescape')]
+            ('colorescape.zip', 'colorescape'), ('battleship.zip', 'battleship'),
+            ('towerdefence.zip', 'towerdefence'), ('towerdefence.zip', 'towerdefence_end')]
+    dims = {'towerdefence_end': 'DIM1'}     # el End del Tower Defence es su propio mundo
     keep = {'colorescape'}  # necesita sus command blocks (selectores reescritos)
     from minijuegos_datapack import MAPS as DATAPACK_MAPS, Adapter
     only = set(sys.argv[1:])
@@ -177,10 +180,13 @@ def main():
         if only and world not in only:
             continue
         rewrite = None
-        if world in DATAPACK_MAPS:   # mapas con datapack adaptado: comandos con sus namespaces
-            rewrite = Adapter(world, folder / filename, DATAPACK_MAPS[world]['prefix']).command
+        owner = 'towerdefence' if world == 'towerdefence_end' else world
+        if owner in DATAPACK_MAPS:   # mapas con datapack adaptado: comandos con sus namespaces
+            c = DATAPACK_MAPS[owner]
+            rewrite = Adapter(owner, folder / filename, c['prefix'], c.get('console'), c.get('dims'),
+                              c.get('players_tag', False), c.get('keep_teams', False)).command
         count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world,
-                        world in keep or rewrite is not None, rewrite)
+                        world in keep or rewrite is not None, rewrite, dims.get(world))
         print(f'{world}: {count} regiones preparadas en .local/mapas/subir/{world}.zip')
 
 

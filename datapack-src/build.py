@@ -1289,8 +1289,11 @@ from escala import (VIDA_MOB, DANO_MOB, TIER_MAZMORRA, EXTRA_VIDA_MAZMORRA, PROB
 # Ademas de los hostiles vanilla: criaturas de MythicMobs con tipos neutrales.
 put(f"data/{NS}/tags/entity_type/escalable.json",
     {"values": [f"#{NS}:hostile", "minecraft:iron_golem", "minecraft:vex"]})
+from minijuegos import parkour_worlds as _minijuegos
 mob_roll = [
     "tag @s add astral.seen",
+    "# mini juegos: sus criaturas son del mapa (oleadas, niveles): sin tier ni elite",
+    *[f"execute if dimension minecraft:{w} run return 0" for w in _minijuegos()],
     "# mascotas, vendedores y cofres son invulnerables: no se tocan",
     "execute if data entity @s {Invulnerable:1b} run return 0",
     "# golems de aldea (sin nombre de MythicMobs): no se tocan",

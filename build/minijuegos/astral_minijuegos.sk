@@ -1,7 +1,7 @@
 # Generado por minijuegos.py. Mundos y destinos limitados a la lista Python.
 # Persistentes: puntos OP, mapa elegido y modo anterior (reconexiones/reinicios).
 function astral_parkour_world(w: world) :: boolean:
-    if name of {_w} is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "dropper_facil" or "dropper_h4rs":
+    if name of {_w} is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "battleship" or "towerdefence" or "dropper_facil" or "dropper_h4rs" or "towerdefence_end":
         return true
     return false
 
@@ -64,6 +64,8 @@ function astral_mj_devolver(p: player):
     # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.
     execute console command "execute as %name of {_p}% run function pp3_main:astral/salir"
     execute console command "execute as %name of {_p}% run function sp2_main:astral/salir"
+    execute console command "execute as %name of {_p}% run function bs_main:astral/salir"
+    execute console command "execute as %name of {_p}% run function td_main:astral/salir"
     delete {astral.mj.inv::%{_u}%::*}
     delete {astral.mj.saved::%{_u}%}
     execute console command "attribute %name of {_p}% minecraft:max_health modifier remove astral:minijuego"
@@ -209,6 +211,52 @@ function astral_minijuego_ir(p: player, id: text):
         # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
         remove all potion effects from {_p}
         execute console command "execute in minecraft:colorescape run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "parkour.batallanaval":
+        if world "battleship" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::parkour.batallanaval}
+        if {_l} is not set:
+            set {_l} to location(19.5, 5, 37.5, world "battleship", 0, 0)
+        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
+            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.batallanaval"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
+        execute console command "execute in minecraft:battleship run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
+        astral_parkour_mode({_p})
+        stop
+    if {_id} is "parkour.towerdefence":
+        if world "towerdefence" is not set:
+            send "&eEse mundo todavia no esta disponible." to {_p}
+            stop
+        set {_l} to {astral.punto::parkour.towerdefence}
+        if {_l} is not set:
+            set {_l} to location(15.5, 5, 2.5, world "towerdefence", 0, 0)
+        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
+            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
+        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.towerdefence"
+        set {_x} to x-coordinate of {_l}
+        set {_y} to y-coordinate of {_l}
+        set {_z} to z-coordinate of {_l}
+        set {_yaw} to yaw of {_l}
+        set {_pitch} to pitch of {_l}
+        set {_name} to name of {_p}
+        set velocity of {_p} to vector(0, 0, 0)
+        set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
+        execute console command "execute in minecraft:towerdefence run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
     if {_id} is "parkour.facil1":
@@ -732,6 +780,12 @@ command /parkour [<text>]:
         if arg-1 is "colorescape":
             astral_minijuego_ir(player, "parkour.colorescape")
             stop
+        if arg-1 is "batallanaval":
+            astral_minijuego_ir(player, "parkour.batallanaval")
+            stop
+        if arg-1 is "towerdefence":
+            astral_minijuego_ir(player, "parkour.towerdefence")
+            stop
         if arg-1 is "facil1":
             astral_minijuego_ir(player, "parkour.facil1")
             stop
@@ -799,6 +853,12 @@ command /minijuegos [<text>]:
             stop
         if arg-1 is "colorescape":
             astral_minijuego_ir(player, "parkour.colorescape")
+            stop
+        if arg-1 is "batallanaval":
+            astral_minijuego_ir(player, "parkour.batallanaval")
+            stop
+        if arg-1 is "towerdefence":
+            astral_minijuego_ir(player, "parkour.towerdefence")
             stop
         if arg-1 is "facil1":
             astral_minijuego_ir(player, "parkour.facil1")
@@ -930,6 +990,8 @@ command /astralpunto <text> [<text>]:
             send "&eparkour spiral2 &7(parkour_spiral2): %{astral.punto::parkour.spiral2}%" to player
             send "&eparkour paradise3 &7(parkour_paradise3): %{astral.punto::parkour.paradise3}%" to player
             send "&eparkour colorescape &7(colorescape): %{astral.punto::parkour.colorescape}%" to player
+            send "&eparkour batallanaval &7(battleship): %{astral.punto::parkour.batallanaval}%" to player
+            send "&eparkour towerdefence &7(towerdefence): %{astral.punto::parkour.towerdefence}%" to player
             send "&eparkour facil1 &7(dropper_facil): %{astral.punto::parkour.facil1}%" to player
             send "&eparkour facil2 &7(dropper_facil): %{astral.punto::parkour.facil2}%" to player
             send "&eparkour facil3 &7(dropper_facil): %{astral.punto::parkour.facil3}%" to player
@@ -993,6 +1055,28 @@ command /astralpunto <text> [<text>]:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::parkour.colorescape} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "parkour":
+            if arg-2 is "batallanaval":
+                if name of world of player is not "battleship":
+                    send "&cPrimero entra al mundo battleship." to player
+                    stop
+                if y-coordinate of player is less than -70:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::parkour.batallanaval} to location of player
+                send "&aLlegada guardada con orientacion." to player
+                stop
+        if arg-1 is "parkour":
+            if arg-2 is "towerdefence":
+                if name of world of player is not "towerdefence":
+                    send "&cPrimero entra al mundo towerdefence." to player
+                    stop
+                if y-coordinate of player is less than -70:
+                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
+                    stop
+                set {astral.punto::parkour.towerdefence} to location of player
                 send "&aLlegada guardada con orientacion." to player
                 stop
         if arg-1 is "parkour":
@@ -1289,6 +1373,22 @@ every 10 ticks:
                 set {_id} to "parkour.colorescape"
                 set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
             if {_id} is "parkour.colorescape":
+                if y-coordinate of loop-player is less than -70:
+                    if gamemode of loop-player is survival or adventure:
+                        astral_minijuego_ir(loop-player, {_id})
+        if {_w} is "battleship":
+            if {_id} is not "parkour.batallanaval":
+                set {_id} to "parkour.batallanaval"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "parkour.batallanaval":
+                if y-coordinate of loop-player is less than -70:
+                    if gamemode of loop-player is survival or adventure:
+                        astral_minijuego_ir(loop-player, {_id})
+        if {_w} is "towerdefence":
+            if {_id} is not "parkour.towerdefence":
+                set {_id} to "parkour.towerdefence"
+                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
+            if {_id} is "parkour.towerdefence":
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})

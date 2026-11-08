@@ -31,6 +31,12 @@ MAPS = {
     # console: marcador que corre los temporizadores; su chunk tiene que estar siempre cargado.
     'parkour_paradise3': dict(source='parkour_paradise3.zip', prefix='pp3', console=(-34, 766)),
     'parkour_spiral2': dict(source='parkour_spiral2.zip', prefix='sp2', console=(0, -96)),
+    # Batalla naval de 2 jugadores (TMA): todo en un mundo; sus 202 command blocks son los botones.
+    'battleship': dict(source='battleship.zip', prefix='bs'),
+    # Tower Defence (MLE_qwq, licencia MIT): usa su mundo normal y su End. Los jugadores de los dos
+    # mundos llevan la marca td_m; sus equipos solo dan color al brillo (game.*) y se conservan.
+    'towerdefence': dict(source='towerdefence.zip', prefix='td', players_tag=True, keep_teams=True,
+                         dims={'overworld': 'towerdefence', 'the_end': 'towerdefence_end'}),
 }
 UUID = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
 
@@ -40,15 +46,20 @@ def text(raw):
 
 
 class Adapter:
-    def __init__(self, world, source, prefix, console=None):
+    def __init__(self, world, source, prefix, console=None, dims=None, players_tag=False, keep_teams=False):
         self.world, self.prefix, self.console = world, prefix, console
+        self.dims = dims or {}                  # dimension del mapa -> mundo del servidor
+        self.players_tag = players_tag          # mapas de varios mundos: jugadores con marca <pp>_m
+        self.keep_teams = keep_teams
+        self.mark = f'{prefix}_m'
         self.zip = zipfile.ZipFile(source)
         level = next(n for n in self.zip.namelist() if n.endswith('/level.dat') and n.count('/') == 1)
         self.base = level[:-len('level.dat')]
         self.dp = self.base + 'datapacks/'
         self.files = {}           # ruta dentro del datapack nuevo -> contenido (str)
         self.schedules = {}
-        names = [n for n in self.zip.namelist() if n.startswith(self.dp) and not n.endswith('/')]
+        names = [n for n in self.zip.namelist() if n.startswith(self.dp) and not n.endswith('/')
+                 and '/._' not in n and not n.endswith('.DS_Store')]   # basura de Mac
         self.sources = {n: self.zip.read(n) for n in names}
         self.moved_tags = sorted({re.sub(r'^.*?/data/minecraft/tags/[a-z_]+/', '', n)[:-5] for n in names
                                   if '/data/minecraft/tags/' in n and '/tags/function/' not in n and n.endswith('.json')})
@@ -58,11 +69,11 @@ class Adapter:
         self.pred = f'{self.main}:astral/en_mapa'
         self.objectives, self.fake_scores, self.triggers = self.read_scoreboard()
         alltext = '\n'.join(text(v) for k, v in self.sources.items() if k.endswith(('.mcfunction', '.json')))
-        for name, crit in re.findall(r'objectives add (\w+) (\S+)', alltext):
+        for name, crit in re.findall(r'objectives add ([\w.+-]+) (\S+)', alltext):
             self.objectives.add(name)
             if crit == 'trigger':
                 self.triggers.add(name)
-        self.triggers |= set(re.findall(r'players enable \S+ (\w+)', alltext))
+        self.triggers |= set(re.findall(r'players enable \S+ ([\w.+-]+)', alltext))
         self.tags = set(re.findall(r'\btag \S+ (?:add|remove) ([\w.+-]+)', alltext))
 
     # ------------------------------------------------------------ datos guardados
@@ -101,19 +112,20 @@ class Adapter:
         return f'{self.prefix}_{name}' if name in self.objectives else name
 
     def rename_objectives(self, line):
+        # Puntajes: letras, numeros y _ . - + (Tower Defence usa game.data.wave.mob_count).
         o = self.obj
-        line = re.sub(r'(scoreboard objectives (?:add|remove|modify) )(\w+)', lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(scoreboard players (?:set|add|remove|reset|get|enable|test) \S+ )(\w+)',
+        line = re.sub(r'(scoreboard objectives (?:add|remove|modify) )([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'(scoreboard players (?:set|add|remove|reset|get|enable|test) \S+ )([\w.+-]+)',
                       lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(scoreboard players display \w+ \S+ )(\w+)', lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(scoreboard players operation \S+ )(\w+)( \S+ \S+ )(\w+)',
+        line = re.sub(r'(scoreboard players display \w+ \S+ )([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'(scoreboard players operation \S+ )([\w.+-]+)( \S+ \S+ )([\w.+-]+)',
                       lambda m: m[1] + o(m[2]) + m[3] + o(m[4]), line)
-        line = re.sub(r'((?:if|unless) score \S+ )(\w+)( (?:<|<=|=|>=|>) \S+ )(\w+)',
+        line = re.sub(r'((?:if|unless) score \S+ )([\w.+-]+)( (?:<|<=|=|>=|>) \S+ )([\w.+-]+)',
                       lambda m: m[1] + o(m[2]) + m[3] + o(m[4]), line)
-        line = re.sub(r'((?:if|unless) score \S+ )(\w+)', lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(store (?:result|success) score \S+ )(\w+)', lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(objective["\']?\s*:\s*["\'])(\w+)', lambda m: m[1] + o(m[2]), line)
-        line = re.sub(r'(/?trigger )(\w+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'((?:if|unless) score \S+ )([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'(store (?:result|success) score \S+ )([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'(objective["\']?\s*:\s*["\'])([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
+        line = re.sub(r'(/?trigger )([\w.+-]+)', lambda m: m[1] + o(m[2]), line)
 
         def scores(m):
             parts = []
@@ -158,10 +170,14 @@ class Adapter:
                     j += 1
                 args = line[i + 1:j]
                 top = re.sub(r'\{[^{}]*\}|\[[^\[\]]*\]', '', args)   # sin nbt/scores anidados
-                if not re.search(r'(^|,)\s*distance\s*=', top):
+                if self.players_tag and m[1] in 'apr':
+                    args = f'tag={self.mark}' + (',' + args if args.strip() else '')
+                elif not re.search(r'(^|,)\s*distance\s*=', top):
                     args = 'distance=0..' + (',' + args if args.strip() else '')
                 out.append('[' + args + ']')
                 i = j + 1
+            elif self.players_tag and m[1] in 'apr':
+                out.append(f'[tag={self.mark}]')
             else:
                 out.append('[distance=0..]')
 
@@ -179,8 +195,11 @@ class Adapter:
             return line
         verb_part = stripped.split(' run ')[-1] if stripped.startswith(('execute', '$execute')) else stripped
         verb = verb_part.lstrip('$/').split(' ')[0]
-        if verb == 'team' or 'scoreboard objectives setdisplay' in stripped:
+        if (verb == 'team' and not self.keep_teams) or verb == 'difficulty' \
+                or 'scoreboard objectives setdisplay' in stripped:
             return '# (AstralRPG) quitado: ' + stripped
+        for old, new in self.dims.items():      # dimensiones del mapa -> mundos del servidor
+            line = re.sub(rf'\b(in|dimension)\s+(?:minecraft:)?{old}\b', rf'\1 minecraft:{new}', line)
         line = self.rename_ns(line)
         line = self.rename_objectives(line)
         line = self.selectors(line)
@@ -211,6 +230,8 @@ class Adapter:
                 self.files[target] = '\n'.join(self.command(l) for l in text(raw).split('\n'))
             elif rest.endswith('.json'):
                 content = self.rename_ns(text(raw))
+                for old, new in self.dims.items():
+                    content = re.sub(rf'"(?:minecraft:)?{old}"', f'"minecraft:{new}"', content)
                 if rest.startswith('advancement/'):
                     content = self.advancement(content)
                 else:
@@ -225,7 +246,10 @@ class Adapter:
              'predicate': {'location': {'dimension': world}}}, indent=2)
         flag = f'{self.prefix}_astral'
         self.files[f'data/{m}/function/astral/tick.mcfunction'] = '\n'.join(
-            ['# Arranca las tareas repetidas una sola vez, cuando el mundo ya cargo (Multiverse).',
+            ([f'tag @a[tag={self.mark}] remove {self.mark}']
+             + [f'execute in minecraft:{w} run tag @a[distance=0..] add {self.mark}'
+                for w in dict.fromkeys([self.world, *self.dims.values()])] if self.players_tag else [])
+            + ['# Arranca las tareas repetidas una sola vez, cuando el mundo ya cargo (Multiverse).',
              f'execute unless score #arranco {flag} matches 1 in {world} run function {m}:astral/start']
             + [f'execute in {world} run function {f}' for f in ticks])
         load = [f'# Puntajes que el mapa traia guardados (scoreboard.dat), con prefijo {self.prefix}_.']
@@ -249,7 +273,7 @@ class Adapter:
             self.files[f'data/{m}/function/astral/s/{key}.mcfunction'] = f'execute in {world} run function {target}'
         salir = [f'tag @s remove {t}' for t in sorted(self.tags)]
         salir += [f'scoreboard players reset @s {self.obj(o)}' for o in sorted(self.objectives)]
-        salir += ['effect clear @s', 'attribute @s minecraft:safe_fall_distance modifier remove spawn',
+        salir += [f'tag @s remove {self.mark}', 'effect clear @s', 'attribute @s minecraft:safe_fall_distance modifier remove spawn',
                   f'clear @s *[minecraft:custom_data~{{"hielkemaps:item":true}}]']
         self.files[f'data/{m}/function/astral/salir.mcfunction'] = '\n'.join(salir)
         self.files['data/minecraft/tags/function/tick.json'] = json.dumps({'values': [f'{m}:astral/tick']})
@@ -270,7 +294,8 @@ class Adapter:
 
 def generate(world):
     cfg = MAPS[world]
-    adapter = Adapter(world, ROOT / '.local/mapas' / cfg['source'], cfg['prefix'], cfg.get('console'))
+    adapter = Adapter(world, ROOT / '.local/mapas' / cfg['source'], cfg['prefix'], cfg.get('console'),
+                      cfg.get('dims'), cfg.get('players_tag', False), cfg.get('keep_teams', False))
     files = adapter.build()
     out = ROOT / '.local/mapas/subir' / f'{world}-datapack.zip'
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:

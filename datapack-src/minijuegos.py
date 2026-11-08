@@ -19,7 +19,14 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
                  difficulty='Media', arrival=(-33.5, 131, 766.5, 0, 0), rescue_y=-10, logic=True),
             dict(id='colorescape', world='colorescape', name='Color Escape', icon='LIME_DYE',
                  description='Escape de colores: resolve cada sala para salir.', difficulty='Puzzle',
-                 arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True)]
+                 arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True),
+            # Datapacks adaptados con minijuegos_datapack.py (solo actuan en su mundo).
+            dict(id='batallanaval', world='battleship', name='Batalla Naval', icon='OAK_BOAT',
+                 description='Hunde la flota rival: 2 jugadores.', difficulty='2 jugadores',
+                 arrival=(19.5, 5, 37.5, 0, 0), rescue_y=-70, logic=True),
+            dict(id='towerdefence', world='towerdefence', name='Tower Defence', icon='CROSSBOW',
+                 description='Construi defensas contra oleadas de mobs.', difficulty='Estrategia',
+                 arrival=(15.5, 5, 2.5, 0, 0), rescue_y=-70, logic=True)]
 # Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
 # Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
 # Cada nivel: (titulo, (x, y, z) de la salida original, Y de salida corregida, Y de llegada al fondo).
@@ -67,8 +74,12 @@ CE_BACKUP_DX = 3000      # copia limpia, 3000 bloques al este en el mismo mundo
 CE_SLICE = 7             # 153 x 29 x 7 = 31.059 bloques por clone (< 32.768)
 
 
+# Mundos de mini juego sin entrada propia en el menu (el End del Tower Defence).
+EXTRA_WORLDS = ('towerdefence_end',)
+
+
 def parkour_worlds():
-    return tuple(dict.fromkeys(d['world'] for d in PARKOURS))
+    return tuple(dict.fromkeys([d['world'] for d in PARKOURS] + list(EXTRA_WORLDS)))
 
 
 def dropper_worlds():
@@ -470,7 +481,7 @@ def deployment():
             # Danio vanilla (en droppers el evento de caida marca que se estrello).
             lines += [f'mv gamerule set minecraft:fall_damage true {world}',
                       f'rg flag -w {world} __global__ fall-damage']
-            if world in logic_worlds():
+            if world in logic_worlds() or world in EXTRA_WORLDS:
                 # Color Escape: sus command blocks (selectores ya limitados) y sus cofres y botones.
                 lines += [f'mv gamerule set minecraft:command_block_output false {world}',
                           f'mv gamerule set minecraft:command_blocks_work true {world}',
@@ -482,7 +493,7 @@ def deployment():
                     lines += [f'rg flag -w {world} __global__ build allow',
                               f'rg flag -w {world} __global__ block-place allow',
                               f'rg flag -w {world} __global__ block-break allow']
-                if world in DATAPACK_MAPS:
+                if world in DATAPACK_MAPS or world in EXTRA_WORLDS:
                     # Su datapack crea caballos, viboras y marcadores.
                     lines += [f'rg flag -w {world} __global__ mob-spawning allow']
     lines += ['# Reiniciar una vez para cargar todo junto y evitar acumular Metaspace con recargas.',

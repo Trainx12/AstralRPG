@@ -33,6 +33,16 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   `colorescape`, `dropper_facil` y `dropper_h4rs` creados con Multiverse; sus `region/` (y
   `entities/` de Color Escape) copiados desde `mapas-subir/` con el servidor apagado. Se cargaron
   las 5 llegadas y el bloque de abajo coincide con el mapa. Falta probar jugando.
+- **Batalla Naval y Tower Defence (08/11/2026):** datapacks adaptados igual que Paradise.
+  Battleship (TMA, 2 jugadores) conserva sus 202 command blocks (los botones del tablero).
+  Tower Defence (MLE_qwq, MIT) usa su mundo y su End: el End es el mundo `towerdefence_end`
+  (`EXTRA_WORLDS`), sus `in the_end` se traducen, los jugadores de los dos mundos llevan la marca
+  `td_m` (sus @a/@p/@r la usan) y sus equipos `game.*` se conservan (solo dan color). Se quita
+  `difficulty`. Los puntajes pueden tener puntos (`game.data.wave.mob_count`).
+- **BombaCraft no se puede:** es un mod de Fabric 26.2 (`bombanana-craft`); Paper no carga mods y
+  cada jugador tendría que instalarlo.
+- **Criaturas de los mini juegos sin tier ni élite** (`mob/roll` de build.py sale en esos mundos):
+  si no, las oleadas de Tower Defence y los mobs de Paradise cambiaban de vida o salían élite.
 - **Droppers corregidos (prueba del dueño, 08/11/2026):** en el original cada nivel empezaba parado
   sobre una placa (vidrio, piedra, lana) que quitaban sus command blocks. Los niveles que fallaban
   salen 2 bloques debajo de la placa; se gana al caer al agua o al quedar parado bajo la Y de llegada
