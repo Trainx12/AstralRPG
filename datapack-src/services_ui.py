@@ -12,11 +12,12 @@ SIZE = (224, 280)
 SPLIT = 56
 THEMES = {
     'herrero': ('herrero', (132, 220, 990, 1270), 'HERRERO ASTRAL', 29, '#25272a', '#776345'),
-    'bazar': ('bazar', (150, 325, 977, 1275), 'BAZAR DEL REFUGIO', 13, '#2a211a', '#86612e'),
-    'tienda': ('comercio', (180, 255, 935, 1260), 'TIENDA', 35, '#22252b', '#787a80'),
-    'compra': ('comercio', (180, 255, 935, 1260), 'COMPRAR', 35, '#22252b', '#787a80'),
-    'venta': ('comercio', (180, 255, 935, 1260), 'VENTA RAPIDA', 35, '#22252b', '#787a80'),
-    'venta_tienda': ('comercio', (180, 255, 935, 1260), 'VENDER', 35, '#22252b', '#787a80'),
+    # Marcos de Gemini (noviembre 2026): interior medido sobre cada original.
+    'bazar': ('bazar2', (239, 631, 1617, 2059), 'BAZAR DEL REFUGIO', 35, '#2e2018', '#a07a3c'),
+    'tienda': ('tienda2', (214, 286, 1584, 1982), 'TIENDA', 27, '#2a2017', '#a07a3c'),
+    'compra': ('tienda2', (214, 286, 1584, 1982), 'COMPRAR', 27, '#2a2017', '#a07a3c'),
+    'venta': ('venta2', (164, 559, 1641, 2110), 'VENTA RAPIDA', 34, '#242329', '#b8913f'),
+    'venta_tienda': ('tienda2', (214, 286, 1584, 1982), 'VENDER', 27, '#2a2017', '#a07a3c'),
 }
 GLYPHS = {name: (chr(0xe450+i*2), chr(0xe451+i*2)) for i,name in enumerate(THEMES)}
 START, BACK, END = '\ue460', '\ue461', '\ue462'
@@ -29,22 +30,88 @@ def png(image):
 
 def frame(kind):
     art, (left, top, right, bottom), caption, ty, fill, edge = THEMES[kind]
+    out=ornament(art,(left,top,right,bottom))
+    outlined(out,caption,(112,ty))
+    return out
+
+
+def ornament(art, interior, size=SIZE):
+    """Compone un marco ImageGen con nueve cortes, sin dibujar ornamentos."""
+    left,top,right,bottom=interior
     source=Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
     # Nueve cortes mantienen las esquinas y colocan el borde FUERA de los slots.
     sx=[0,left,right,source.width]; sy=[0,top,bottom,source.height]
-    dx=[0,24,200,224];dy=[0,56,258,280]
-    out=Image.new('RGBA',SIZE)
+    dx=[0,24,size[0]-24,size[0]];dy=[0,56,size[1]-22,size[1]]
+    out=Image.new('RGBA',size)
     for row in range(3):
         for col in range(3):
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             out.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
-    text(out,caption,(112,ty),color='#fff0cd')
     return out
+
+
+def outlined(im,caption,center,color='#fff0cd',outline='#1a1208'):
+    for dx,dy in ((-1,0),(1,0),(0,-1),(0,1)):text(im,caption,(center[0]+dx,center[1]+dy),color=outline)
+    text(im,caption,center,color=color)
+
+
+def header(art, box, caption, title_y, fill=None, width=224, side=24, scale=1):
+    """Encabezado de un marco de Gemini SIN aplastar: su alto sale de la proporcion del dibujo.
+
+    title_y es la altura del titulo medida en el encabezado viejo de 56 px; se escala igual.
+    """
+    l, t, r, b = box
+    source = Image.open(ROOT/f'pack-source/ref/{art}-frame.png').convert('RGBA')
+    inner = width - 2*side
+    height = round(t*inner/(r-l))
+    head = Image.new('RGBA', (width, height))
+    if fill:  # algunos marcos dejan pixeles transparentes debajo del cartel
+        ImageDraw.Draw(head).rectangle((side, height*2//3, width-side-1, height-1), fill=fill)
+    for (x0, x1), (d0, d1) in zip(((0, l), (l, r), (r, source.width)), ((0, side), (side, width-side), (width-side, width))):
+        piece = source.crop((x0, 0, x1, t)).resize((d1-d0, height), Image.Resampling.NEAREST)
+        head.alpha_composite(piece, (d0, 0))
+    outlined(head, caption, (width//2, round((title_y+4)*height/SPLIT)-4))
+    return head
+
+
+def tall(panel_image, head):
+    """Reemplaza el encabezado aplastado (primeros SPLIT px) por uno de alto real."""
+    out = Image.new('RGBA', (panel_image.width, head.height+panel_image.height-SPLIT))
+    out.alpha_composite(panel_image.crop((0, SPLIT, panel_image.width, panel_image.height)), (0, head.height))
+    out.alpha_composite(head, (0, 0))
+    return out
+
+
+def glyph_parts(image, head_height):
+    """Dos glifos: encabezado (termina donde empiezan las casillas) y el resto."""
+    return [(image.crop((0, 0, image.width, head_height)), head_height-3),
+            (image.crop((0, head_height, image.width, image.height)), -3)]
+
+
+def illustration(name):
+    return Image.open(ROOT/f'pack-source/ref/gemini/{name}.png').convert('RGBA')
+
+
+def picture_card(caption,sub,name,size=(72,36),focus=.55):
+    """Tarjeta con la ilustracion de Gemini de fondo y el texto encima con contorno."""
+    w,h=size;art=illustration(name)
+    ch=round(art.width*h/w);top=max(0,min(art.height-ch,round(art.height*focus-ch/2)))
+    im=art.crop((0,top,art.width,top+ch)).resize(size,Image.Resampling.LANCZOS)
+    shade=Image.new('RGBA',size);sd=ImageDraw.Draw(shade)
+    sd.rectangle((0,0,w,11),fill=(10,8,6,140));sd.rectangle((0,h-12,w,h),fill=(10,8,6,150))
+    im.alpha_composite(shade);d=ImageDraw.Draw(im)
+    d.rectangle((0,0,w-1,h-1),outline='#d8b25a');d.rectangle((1,1,w-2,h-2),outline='#3b2a14')
+    outlined(im,caption,(w//2,3));outlined(im,sub,(w//2,h-10),color='#cfe3b8')
+    return im
 
 
 def bazar_regions():
     return [('comprar',range(0,4),range(1,3)),('vender',range(5,9),range(1,3)),
             ('subastas',range(0,4),range(3,5)),('intercambio',range(5,9),range(3,5))]
+
+
+BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
+             ('subastas','SUBASTAS','JUGADORES'),('intercambio','INTERCAMBIO','JUGADORES')]
 
 
 # Casillas de arriba que de verdad usa cada menu. Las demas se dejan lisas
@@ -106,14 +173,14 @@ def panel(kind):
         box((42,52,61,70),fill='#11151b',outline='#7fd39a')
         hole((44,54,59,69)) # slot 20: precio de venta
         text(out,'VALOR',(ox+51,oy+38),color='#e1d7bd')
-        box((96,34,151,70),fill='#841a24',outline='#b96d65')
+        box((96,34,151,70),fill='#4a3216',outline='#d8b25a')
         box((114,52,133,70),fill='#11151b',outline='#d6d3c7')
         hole((116,54,131,69)) # slot 24: objeto a vender
         text(out,'OBJETO',(ox+124,oy+38),color='#f3dcc8')
         hole((25,71,150,88))
         hole((97,89,168,106))
     elif kind in ('compra','venta_tienda'):
-        box((99,32,150,86),fill='#841a24',outline='#b96d65')
+        box((99,32,150,86),fill='#4a3216',outline='#d8b25a')
         box((113,51,134,72),fill='#11151b',outline='#d6d3c7')
         hole((116,54,131,69)) # objeto seleccionado (slot 24)
         for slot,label in [(9,'-1'),(18,'-16'),(27,'-32'),(12,'+1'),(21,'+16'),(30,'+32')]:
@@ -171,9 +238,8 @@ def assets():
             providers.append({'type':'bitmap','file':f'astral:font/servicios/{kind}_{n}.png','height':part.height,'ascent':ascent,'chars':[char]})
             advances[REWINDS[kind][n]]=-(part.getbbox()[2]+1)
     providers.append({'type':'space','advances':advances})
-    for key,caption,sub,color in [('comprar','COMPRAR','TIENDA','#304e36'),('vender','VENDER','VENTA RAPIDA','#60432b'),
-                                  ('subastas','SUBASTAS','JUGADORES','#5d4928'),('intercambio','INTERCAMBIO','JUGADORES','#2b4750')]:
-        tiles('bazar_'+key,card(caption,sub,color))
+    for key,caption,sub in BAZAR_CARDS:
+        tiles('bazar_'+key,picture_card(caption,sub,'bazar_'+key))
     for name,caption,width,color in [('improve','MEJORAR',54,'#366b48'),('blocked','MEJORAR',54,'#683c36'),
                                      ('sell','VENDER',72,'#93333a'),('sell_blocked','VENDER',72,'#59434a')]:
         tiles(name,button(caption,width,color))
@@ -193,8 +259,8 @@ def previews(folder):
     for kind in THEMES:
         im=Image.new('RGBA',SIZE,'#252a28');im.alpha_composite(panel(kind))
         if kind=='bazar':
-            for (key,cols,rows),(caption,sub,color) in zip(bazar_regions(),[('COMPRAR','TIENDA','#304e36'),('VENDER','VENTA RAPIDA','#60432b'),('SUBASTAS','JUGADORES','#5d4928'),('INTERCAMBIO','JUGADORES','#2b4750')]):
-                im.alpha_composite(card(caption,sub,color),(24+7+min(cols)*18,40+17+min(rows)*18))
+            for (key,cols,rows),(_,caption,sub) in zip(bazar_regions(),BAZAR_CARDS):
+                im.alpha_composite(picture_card(caption,sub,'bazar_'+key),(24+7+min(cols)*18,40+17+min(rows)*18))
         elif kind=='herrero':
             im.alpha_composite(banner('+1 / 300$ / 100%'),(24+25,40+71));im.alpha_composite(button('MEJORAR'),(24+61,40+89))
         elif kind=='venta':

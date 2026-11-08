@@ -1,0 +1,12 @@
+# AstralRPG: intercambios de oro via Vault; sin monedas de ejemplo.
+placeholder-currencies: {}
+currencies:
+  Vault:
+    register: true
+    name: Oro
+    tax: 0
+    required: 0
+  Experience:
+    register: false
+    name: exp
+version: 11

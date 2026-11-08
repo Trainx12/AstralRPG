@@ -16,7 +16,7 @@ NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2189.114, 81, 179.263)}
 
 
 def menu_data():
-    from travel_ui import title
+    from travel_ui import title, CARD_SLOTS
     items = {}
     for key, material, slot, name, lore, commands in (
         ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
@@ -29,7 +29,15 @@ def menu_data():
         items[key] = {'material': material, 'slot': slot, 'display_name': name,
                       'item_model': f'astral:viajes/{key}', 'lore': lore + ['', '&eClic para elegir.'],
                       'click_commands': commands}
-    return {'menu_title': title('portales'), 'size': 27, 'items': items}
+    # Cada tarjeta comparte tooltip y accion en sus seis casillas.
+    for key,item in list(items.items()):
+        slots=CARD_SLOTS.get(key,[45,46,47] if key=='lobby' else [51,52,53])
+        item['item_model']='astral:viajes/blank'
+        item['slot']=slots[0]
+        for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
+    # Lobby: la primera casilla muestra la barrera vanilla.
+    items['lobby']['material']='BARRIER';del items['lobby']['item_model']
+    return {'menu_title': title('portales'), 'size': 54, 'items': items}
 
 
 

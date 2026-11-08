@@ -1,5 +1,15 @@
 # Mazmorras nuevas: preparacion y recorrido de revision
 
+Santuario, cambio del 04/11/2026: instalado el escenario de
+`mapa_Santuari_Mazmorra.zip` (`interstellar.litematic`) en
+`santuario_interstellar`. Llegada `34.5 180 40.5`, controlador
+`46.5 180 48.5`, radio 18. Se conservan las cinco oleadas de Ancestrales.
+Ambos puntos usan el piso original de bloques de hierro. La arena cuenta con
+9x9 bloques libres en el centro y la llegada conecta con ese sector a pie.
+El aldeano existente y `/mazmorras santuario` apuntan al mundo nuevo.
+Se comprobaron pisos, altura libre y controlador en Aternos. Falta prueba de
+combate con jugadores. La copia anterior sigue disponible en `santuario`.
+
 Portales Astrales, instalados el 04/11/2026: mundo vacio `portales_astrales`,
 plataforma central de terracota negra en `0.5 81 125.5`, End al este y Nether
 al oeste mirando al norte. Se copio la torre del End con su primer plano y se
@@ -38,6 +48,43 @@ una base Y=64 permite colocar su altura completa. Los ZIP originales y los
 resultados privados estan en `.local/portales/`. Las cargas de revision se
 retiraron de `chunk_tickets.dat` con el servidor apagado, conservando las
 65 cargas que ya tenia el lobby. Respaldos en `.local/portales/cargas/`.
+
+Forja, cambio del 04/11/2026: `volcano.zip` esta instalado en
+`forja_volcano`, con llegada de revision `82.5 52 -55.5`. El volcan sur
+anterior (`forja`, procedente de `volcan gigante.zip`) pasa a expedicion,
+con llegada `1536.5 222 1900.5` y aldeano en `1536.5 222 1901.5`.
+Las dos llegadas y el punto del aldeano se comprobaron en Aternos con piso
+y dos bloques de aire. Skript y MythicMobs recargaron las rutas.
+La nueva Forja queda disponible para revisar el escenario. Falta seleccionar
+el espacio de combate y colocar su controlador. El mapa es muy irregular y
+la llegada comprobada no garantiza espacio para un golem.
+
+El dueno confirmo eliminar `reino` completo con sus aldeanos. Se retiro
+su entrada de Multiverse y se elimino `world/dimensions/minecraft/reino`
+desde Aternos con el servidor apagado.
+
+Intercambio de Cumbre preparado para Aternos. La expedicion usa `exp_nieve`
+con las regiones extraidas de `nieve.zip`; las plataformas del servidor no
+forman parte de esos archivos. La mazmorra usa `cumbre_hielo` con el escenario
+de `ice-lobby.zip`. Las regiones privadas estan en
+`.local/mapas/intercambio-nieve/<mundo>/region/`. Crear o comprobar ambos mundos
+en Multiverse y subir sus regiones con el servidor apagado. Las dimensiones
+anteriores quedan disponibles para volver atras.
+
+Tras el arranque, comprobar el piso y el espacio de llegada de ambos mundos.
+Aplicar `build/mapas_exploracion/astral_viajes.sk` y los dos YAML de Cumbre en
+`build/mythicmobs/`, y recargar Skript y MythicMobs. En `exp_nieve`, fijar el
+spawn en `16.5,83,10.5,0,0` y colocar `astral_npc_cumbre` en
+`16.5,83,12.5`. En `cumbre_hielo`, fijar el spawn en `8.5,65,8.5,180,0`
+y crear los tres controladores con los comandos de `build/mazmorras/cumbre/`.
+Revisar las tres salas con un jugador antes de dar por probado el combate.
+
+Actualizacion de Forja (03/11/2026): los cuatro archivos de region existentes en
+Aternos contenian solo aire. Se respaldaron en `.local/mapas/respaldo-forja-aternos/`
+y se instalaron las cuatro regiones del recorte del volcan sur con el servidor
+apagado, exclusivamente en `world/dimensions/minecraft/forja/region/`.
+La entrada existente de `/mazmorras forja` usa `1536.5 224 1900.5`; en el
+recorte instalado hay piedra en Y=221 y aire entre Y=222 y Y=226 en esa columna.
 
 Estado local: generadores y recortes preparados. **Ningun mundo se modifico en Aternos.** Las entradas nuevas
 estan deshabilitadas hasta revisar piso, llegada, altura libre y espacio de combate dentro de Minecraft.

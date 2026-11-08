@@ -52,7 +52,7 @@ class TravelTests(unittest.TestCase):
     def test_exploration_routes_are_ordered_and_separate_from_dungeons(self):
         menu=exploration_menu()['items']
         self.assertEqual([EXPLORATION[d['key']][0] for d in destinations()],
-                         ['cavernas','exp_desierto','cavernas','exp_hielo','reino','exp_santuario'])
+                         ['cavernas','exp_desierto','cavernas','exp_nieve','forja','exp_santuario'])
         for d in destinations():
             self.assertEqual(menu[d['key']]['click_commands'],['[close]',f'[player] expediciones {d["key"]}'])
         self.assertEqual(menu['lobby']['click_commands'],['[close]','[player] spawn'])

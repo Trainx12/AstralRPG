@@ -17,7 +17,7 @@ rg flag -w bosque __global__ mob-spawning allow
 rg flag -w bosque __global__ interact allow
 rg flag -w bosque __global__ use deny
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Sendero de las raices: execute in minecraft:bosque run minecraft:tp <jugador> 1440.5 104 1568.5
+# Sendero de las raices: execute in minecraft:bosque run minecraft:tp <jugador> 1440.5 103 1569.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
 # Claro corrompido: execute in minecraft:bosque run minecraft:tp <jugador> 1504.5 107 1504.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.

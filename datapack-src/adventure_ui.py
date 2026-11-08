@@ -7,14 +7,17 @@ import json
 from pathlib import Path
 from PIL import Image, ImageDraw
 from escape_menu import text
-from services_ui import png, SIZE, SPLIT
+from services_ui import png, SIZE, SPLIT, outlined, illustration, header, tall, glyph_parts
 from market_ui import band_color
 
 THEMES = {
     'principal': ('ATLAS ASTRAL', '#151f35', '#c5aa65', '#7ecfdd'),
-    'expediciones': ('EXPEDICIONES', '#24342d', '#c5ad77', '#90c8a0'),
-    'mazmorras': ('PORTALES RUNICOS', '#27232f', '#93859c', '#c88bdb'),
+    'expediciones': ('EXPEDICIONES ASTRALES', '#162930', '#c5ad77', '#90c8a0'),
+    'mazmorras': ('MAZMORRAS', '#1f1329', '#b28fd0', '#c88bdb'),
 }
+# Marcos de Gemini (noviembre 2026) e interior medido sobre cada original.
+FRAMES = {'expediciones': ('expediciones2', (290, 753, 1566, 2102)),
+          'mazmorras': ('mazmorras2', (278, 888, 1502, 2026))}
 START, END = '\ue600', '\ue601'
 GLYPHS = {k: tuple(chr(0xe610+i*4+j) for j in range(4)) for i,k in enumerate(THEMES)}
 DESTINATIONS = ('bosque', 'tumba', 'mina', 'cumbre', 'forja', 'santuario')
@@ -112,6 +115,24 @@ def card(kind,key,locked=False):
         star(d,7,8,color,2)
         label(im,MAIN_LABELS[MAIN.index(key)],(41,5),55,'#f4e4be')
     else:
+        # Ilustracion de Gemini de fondo y el nombre abajo, con contorno.
+        art=illustration(f'{kind}_{key}')
+        ch=round(art.width*height/width);top=max(0,(art.height-ch)//2)
+        pic=art.crop((0,top,art.width,top+ch)).resize((width,height),Image.Resampling.LANCZOS)
+        if locked:
+            from PIL import ImageOps
+            alpha=pic.getchannel('A');pic=ImageOps.grayscale(pic).convert('RGBA');pic.putalpha(alpha)
+            pic=Image.blend(pic,Image.new('RGBA',pic.size,'#1b1820'),.45)
+        im.alpha_composite(pic);d=ImageDraw.Draw(im)
+        shade=Image.new('RGBA',(width,11),(8,6,12,170));im.alpha_composite(shade,(0,height-11))
+        d.rectangle((0,0,width-1,height-1),outline='#d8b25a' if not locked else '#7f7a84')
+        d.rectangle((1,1,width-2,height-2),outline='#2a2030')
+        label(im,LABELS[DESTINATIONS.index(key)],(27,height-10),50,'#fff0d5' if not locked else '#b9b3bf')
+        if locked:
+            d.rectangle((42,5,49,11),fill='#342f3c',outline='#d4c9a8')
+            d.arc((43,1,48,8),180,360,fill='#d4c9a8')
+        return im
+    if False:
         # Nichos de piedra, cartelas y pequenos brillos del bioma.
         d.line((7,21,width-8,21),fill='#47534d' if kind=='expediciones' else '#494054')
         d.line((5,23,width-6,23),fill='#101923')
@@ -126,10 +147,14 @@ def card(kind,key,locked=False):
 
 def panel(kind):
     caption,fill,edge,accent=THEMES[kind]
-    source=Image.open(Path(__file__).resolve().parent/f'pack-source/ref/{kind}-illustrated-frame.png').convert('RGBA')
-    top={'principal':320,'expediciones':320,'mazmorras':350}[kind]
-    sx=[0,round(source.width*.13),round(source.width*.87),source.width]
-    sy=[0,top,round(source.height*.92),source.height]
+    if kind in FRAMES:
+        art,(l,t,r,b)=FRAMES[kind]
+        source=Image.open(Path(__file__).resolve().parent/f'pack-source/ref/{art}-frame.png').convert('RGBA')
+        sx,sy=[0,l,r,source.width],[0,t,b,source.height]
+    else:
+        source=Image.open(Path(__file__).resolve().parent/f'pack-source/ref/{kind}-illustrated-frame.png').convert('RGBA')
+        sx=[0,round(source.width*.13),round(source.width*.87),source.width]
+        sy=[0,320,round(source.height*.92),source.height]
     dx,dy=[0,24,200,224],[0,56,258,280]
     im=Image.new('RGBA',SIZE)
     for row in range(3):
@@ -137,8 +162,8 @@ def panel(kind):
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
     # El titulo queda dentro del cartel ilustrado.
-    ty={'principal':39,'expediciones':31,'mazmorras':39}[kind]
-    text(im,caption,(112,ty),color='#fff0d5')
+    ty={'principal':39,'expediciones':42,'mazmorras':39}[kind]
+    outlined(im,caption,(112,ty))
     d=ImageDraw.Draw(im)
     # El fondo cubre la ventana vanilla; solo las areas reales son transparentes.
     d.rectangle((24,56,199,258),fill=fill)
@@ -174,11 +199,24 @@ def panel(kind):
     return im
 
 
+# Marcos con encabezado alto: se dibujan a su proporcion real en vez de aplastarlos a 56 px.
+TALL = ('expediciones',)
+
+
+def full_panel(kind, image=None):
+    image = panel(kind) if image is None else image
+    if kind not in TALL:
+        return image, SPLIT
+    caption, fill = THEMES[kind][:2]
+    head = header(FRAMES[kind][0], FRAMES[kind][1], caption, {'expediciones': 42, 'mazmorras': 39}[kind], fill)
+    return tall(image, head), head.height
+
+
 def assets():
     files,providers={},[];advances={START:-32,END:32}
     for kind,(a,b,c,d) in GLYPHS.items():
-        im=panel(kind)
-        for n,(part,ascent,char,rewind) in enumerate(((im.crop((0,0,224,SPLIT)),53,a,b),(im.crop((0,SPLIT,224,280)),-3,c,d))):
+        im,head_height=full_panel(kind)
+        for n,((part,ascent),char,rewind) in enumerate(zip(glyph_parts(im,head_height),(a,c),(b,d))):
             resource=f'font/aventuras/{kind}_{n}.png'
             files[f'assets/astral/textures/{resource}']=png(part)
             providers.append({'type':'bitmap','file':'astral:'+resource,'height':part.height,'ascent':ascent,'chars':[char]})
@@ -209,8 +247,9 @@ def previews(folder):
         for slot,label in ((4,'i'),(8,'$'),(45,'<'),(49,'O'),(51,'?'),(53,'X')):
             text(im,label,(39+slot%9*18,62+slot//9*18),color='#fff0d5')
         text(im,'Inventario',(86,169),color='#383c40')
-        sheet.alpha_composite(im,(i*224,0))
-        (folder/f'{kind}.png').write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)))
+        im,_=full_panel(kind,im);out=Image.new('RGBA',im.size,'#22242a');out.alpha_composite(im)
+        sheet.alpha_composite(out.crop((0,out.height-280,224,out.height)),(i*224,0))
+        (folder/f'{kind}.png').write_bytes(png(out.resize((out.width*3,out.height*3),Image.Resampling.NEAREST)))
     (folder/'atlas-expediciones-mazmorras.png').write_bytes(png(sheet.resize((1344,560),Image.Resampling.NEAREST)))
 
 

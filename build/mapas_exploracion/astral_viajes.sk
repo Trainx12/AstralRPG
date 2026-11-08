@@ -13,7 +13,7 @@ command /mazmorras [<text>]:
             if player does not have permission "astral.descubierto.bosque":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1440.5 104 1568.5"
+            execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1440.5 103 1569.5"
             stop
         if {_destino} is "tumba":
             if player does not have permission "astral.descubierto.tumba":
@@ -31,13 +31,13 @@ command /mazmorras [<text>]:
             if player does not have permission "astral.descubierto.cumbre":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:cumbre run minecraft:tp %name of player% -128.5 79 0.5"
+            execute console command "execute in minecraft:cumbre_hielo run minecraft:tp %name of player% 8.5 65 8.5"
             stop
         if {_destino} is "forja":
             if player does not have permission "astral.descubierto.forja":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:forja run minecraft:tp %name of player% 1536.5 224 1900.5"
+            execute console command "execute in minecraft:forja_volcano run minecraft:tp %name of player% 82.5 52 -55.5"
             stop
         if {_destino} is "santuario":
             if player does not have permission "astral.descubierto.santuario":
@@ -65,10 +65,10 @@ command /expediciones [<text>]:
             execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
             stop
         if arg-1 is "cumbre":
-            execute console command "execute in minecraft:exp_hielo run minecraft:tp %name of player% 8.5 65 8.5 180 0"
+            execute console command "execute in minecraft:exp_nieve run minecraft:tp %name of player% 16.5 83 10.5 0 0"
             stop
         if arg-1 is "forja":
-            execute console command "execute in minecraft:reino run minecraft:tp %name of player% 5.5 67 0.5 180 0"
+            execute console command "execute in minecraft:forja run minecraft:tp %name of player% 1536.5 222 1900.5 0 0"
             stop
         if arg-1 is "santuario":
             execute console command "execute in minecraft:exp_santuario run minecraft:tp %name of player% 26.5 103 -31.5 180 0"

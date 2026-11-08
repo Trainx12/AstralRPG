@@ -219,9 +219,13 @@ class DailySidebar(unittest.TestCase):
     def test_day_format_and_line_budget(self):
         from lobby import TAB_SECTIONS
         board=TAB_SECTIONS.split('scoreboards:\n',1)[1].split('\nconditions:',1)[0]
-        self.assertEqual(len(re.findall(r'^        - ',board,re.M)),15)
-        self.assertIn('date-format: "EEEE dd/MM/yyyy"',TAB_SECTIONS)
+        for layout in re.split(r'^    \w+:\n', board, flags=re.M)[1:]:
+            self.assertLessEqual(len(re.findall(r'^        - ',layout,re.M)),15)
+            self.assertNotIn('Rango', layout)
+            self.assertIn('%statistic_time_played%', layout)
+        self.assertIn('date-format: "EEEE"',TAB_SECTIONS)
         self.assertIn('time-format: "HH:mm"',TAB_SECTIONS)
+        self.assertIn('"miércoles": "Miércoles"',TAB_SECTIONS)
         self.assertIn('time-offset: -3',TAB_SECTIONS)
         self.assertIn('locale: "es-AR"',TAB_SECTIONS)
 
@@ -241,7 +245,8 @@ class DailySidebar(unittest.TestCase):
             scores={f'aq.d{tier}':did,f'aq.active{tier}':0,f'aq.done{tier}':0}
             self.assertIn('Sin aceptar',resolve(f'diaria{tier}',scores))
             scores[f'aq.active{tier}']=1
-            self.assertIn('Activa',resolve(f'diaria{tier}',scores))
+            active = resolve(f'diaria{tier}',scores)
+            self.assertIn(f'/{goal}' if counter else 'Activa: entrega', active)
             if counter:
                 scores['aq.'+counter]=goal
                 self.assertIn('Por cobrar',resolve(f'diaria{tier}',scores))

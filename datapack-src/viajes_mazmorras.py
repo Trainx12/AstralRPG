@@ -12,8 +12,8 @@ EXPLORATION={
     'bosque':('cavernas',(172.5,102,89.5,0,0)),
     'tumba':('exp_desierto',(180.233,102,134.266,-124.8,0)),
     'mina':('cavernas',(172.5,102,89.5,0,0)),
-    'cumbre':('exp_hielo',(8.5,65,8.5,180,0)),
-    'forja':('reino',(5.5,67,0.5,180,0)),
+    'cumbre':('exp_nieve',(16.5,83,10.5,0,0)),
+    'forja':('forja',(1536.5,222,1900.5,0,0)),
     'santuario':('exp_santuario',(26.5,103,-31.5,180,0)),
 }
 
@@ -136,7 +136,6 @@ def generate():
     skript.write_text(script()+'\n'+exploration_script(),encoding='utf-8')
     guides=[]
     for world,x,y,z,floor in [('exp_desierto',179.5,102,135.5,'sandstone'),
-                              ('exp_hielo',9.5,65,8.5,'stone_bricks'),
                               ('exp_santuario',25.5,103,-31.5,'sandstone')]:
         import math
         bx,bz=math.floor(x),math.floor(z)
@@ -169,7 +168,7 @@ def generate():
     skript.with_name('ajuste-desierto.txt').write_text('\n'.join(desert_adjustment)+'\n',encoding='utf-8')
     audit_loads=[];audit_checks=[];audit_cleanup=[]
     arrivals=[('cavernas',172.5,102,91.5),('exp_desierto',179.5,102,135.5),
-              ('exp_hielo',9.5,65,8.5),('reino',7.5,67,0.5),('exp_santuario',25.5,103,-31.5)]
+              ('exp_santuario',25.5,103,-31.5)]
     for world,x,y,z in arrivals:
         report_path=ROOT/'.local/mapas/astral-nuevos/preparados'/f'{world}-informe.json'
         if not report_path.exists():continue # Los mapas privados no son necesarios para generar los menus.

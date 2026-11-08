@@ -41,7 +41,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_0'
@@ -56,7 +57,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -64,9 +65,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_nv10':
     material: PAPER
     slot: 9
@@ -88,7 +91,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_0'
@@ -103,7 +107,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -111,9 +115,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo':
     material: PAPER
     slot: 9
@@ -134,7 +140,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_0'
@@ -145,7 +152,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -153,9 +160,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_no':
     material: PAPER
     slot: 9
@@ -178,9 +187,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_1_nv20':
     material: PAPER
     slot: 10
@@ -203,7 +214,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_1'
@@ -218,7 +230,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -226,9 +238,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_1_nv10':
     material: PAPER
     slot: 10
@@ -250,7 +264,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_1'
@@ -265,7 +280,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -273,9 +288,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_1':
     material: PAPER
     slot: 10
@@ -296,7 +313,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_1'
@@ -307,7 +325,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -315,9 +333,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_1_no':
     material: PAPER
     slot: 10
@@ -340,9 +360,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_2_nv20':
     material: PAPER
     slot: 11
@@ -365,7 +387,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_2'
@@ -380,7 +403,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -388,9 +411,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_2_nv10':
     material: PAPER
     slot: 11
@@ -412,7 +437,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_2'
@@ -427,7 +453,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -435,9 +461,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_2':
     material: PAPER
     slot: 11
@@ -458,7 +486,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_2'
@@ -469,7 +498,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -477,9 +506,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_2_no':
     material: PAPER
     slot: 11
@@ -502,9 +533,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_3_nv20':
     material: PAPER
     slot: 18
@@ -527,7 +560,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_3'
@@ -542,7 +576,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -550,9 +584,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_3_nv10':
     material: PAPER
     slot: 18
@@ -574,7 +610,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_3'
@@ -589,7 +626,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -597,9 +634,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_3':
     material: PAPER
     slot: 18
@@ -620,7 +659,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_3'
@@ -631,7 +671,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -639,9 +679,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_3_no':
     material: PAPER
     slot: 18
@@ -664,9 +706,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_4_nv20':
     material: PAPER
     slot: 19
@@ -689,7 +733,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_4'
@@ -704,7 +749,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -712,9 +757,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_4_nv10':
     material: PAPER
     slot: 19
@@ -736,7 +783,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_4'
@@ -751,7 +799,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -759,9 +807,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_4':
     material: PAPER
     slot: 19
@@ -782,7 +832,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_4'
@@ -793,7 +844,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -801,9 +852,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_4_no':
     material: PAPER
     slot: 19
@@ -826,9 +879,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_5_nv20':
     material: PAPER
     slot: 20
@@ -851,7 +906,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_5'
@@ -866,7 +922,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -874,9 +930,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_5_nv10':
     material: PAPER
     slot: 20
@@ -898,7 +956,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_5'
@@ -913,7 +972,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_lobo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -921,9 +980,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_5':
     material: PAPER
     slot: 20
@@ -944,7 +1005,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_5'
@@ -955,7 +1017,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.lobo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -963,9 +1025,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 1'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_lobo_hit_5_no':
     material: PAPER
     slot: 20
@@ -988,9 +1052,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/lobo_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_lobo'
   'm_cuervo_nv20':
     material: PAPER
     slot: 12
@@ -1014,7 +1080,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_0'
@@ -1029,7 +1096,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1037,9 +1104,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_nv10':
     material: PAPER
     slot: 12
@@ -1062,7 +1131,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_0'
@@ -1077,7 +1147,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1085,9 +1155,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo':
     material: PAPER
     slot: 12
@@ -1109,7 +1181,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_0'
@@ -1120,7 +1193,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1128,9 +1201,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_no':
     material: PAPER
     slot: 12
@@ -1153,9 +1228,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_1_nv20':
     material: PAPER
     slot: 13
@@ -1179,7 +1256,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_1'
@@ -1194,7 +1272,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1202,9 +1280,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_1_nv10':
     material: PAPER
     slot: 13
@@ -1227,7 +1307,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_1'
@@ -1242,7 +1323,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1250,9 +1331,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_1':
     material: PAPER
     slot: 13
@@ -1274,7 +1357,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_1'
@@ -1285,7 +1369,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1293,9 +1377,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_1_no':
     material: PAPER
     slot: 13
@@ -1318,9 +1404,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_2_nv20':
     material: PAPER
     slot: 14
@@ -1344,7 +1432,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_2'
@@ -1359,7 +1448,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1367,9 +1456,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_2_nv10':
     material: PAPER
     slot: 14
@@ -1392,7 +1483,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_2'
@@ -1407,7 +1499,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1415,9 +1507,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_2':
     material: PAPER
     slot: 14
@@ -1439,7 +1533,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_2'
@@ -1450,7 +1545,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1458,9 +1553,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_2_no':
     material: PAPER
     slot: 14
@@ -1483,9 +1580,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_3_nv20':
     material: PAPER
     slot: 21
@@ -1509,7 +1608,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_3'
@@ -1524,7 +1624,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1532,9 +1632,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_3_nv10':
     material: PAPER
     slot: 21
@@ -1557,7 +1659,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_3'
@@ -1572,7 +1675,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1580,9 +1683,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_3':
     material: PAPER
     slot: 21
@@ -1604,7 +1709,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_3'
@@ -1615,7 +1721,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1623,9 +1729,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_3_no':
     material: PAPER
     slot: 21
@@ -1648,9 +1756,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_4_nv20':
     material: PAPER
     slot: 22
@@ -1674,7 +1784,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_4'
@@ -1689,7 +1800,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1697,9 +1808,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_4_nv10':
     material: PAPER
     slot: 22
@@ -1722,7 +1835,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_4'
@@ -1737,7 +1851,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1745,9 +1859,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_4':
     material: PAPER
     slot: 22
@@ -1769,7 +1885,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_4'
@@ -1780,7 +1897,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1788,9 +1905,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_4_no':
     material: PAPER
     slot: 22
@@ -1813,9 +1932,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_5_nv20':
     material: PAPER
     slot: 23
@@ -1839,7 +1960,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_5'
@@ -1854,7 +1976,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1862,9 +1984,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_5_nv10':
     material: PAPER
     slot: 23
@@ -1887,7 +2011,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_5'
@@ -1902,7 +2027,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_cuervo}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1910,9 +2035,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_5':
     material: PAPER
     slot: 23
@@ -1934,7 +2061,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_5'
@@ -1945,7 +2073,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.cuervo
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -1953,9 +2081,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 2'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_cuervo_hit_5_no':
     material: PAPER
     slot: 23
@@ -1978,9 +2108,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/cuervo_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_cuervo'
   'm_golem_nv20':
     material: PAPER
     slot: 15
@@ -2003,7 +2135,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_0'
@@ -2018,7 +2151,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2026,9 +2159,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_nv10':
     material: PAPER
     slot: 15
@@ -2050,7 +2185,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_0'
@@ -2065,7 +2201,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2073,9 +2209,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem':
     material: PAPER
     slot: 15
@@ -2096,7 +2234,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_0'
@@ -2107,7 +2246,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2115,9 +2254,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_no':
     material: PAPER
     slot: 15
@@ -2140,9 +2281,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_1_nv20':
     material: PAPER
     slot: 16
@@ -2165,7 +2308,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_1'
@@ -2180,7 +2324,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2188,9 +2332,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_1_nv10':
     material: PAPER
     slot: 16
@@ -2212,7 +2358,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_1'
@@ -2227,7 +2374,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2235,9 +2382,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_1':
     material: PAPER
     slot: 16
@@ -2258,7 +2407,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_1'
@@ -2269,7 +2419,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2277,9 +2427,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_1_no':
     material: PAPER
     slot: 16
@@ -2302,9 +2454,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_2_nv20':
     material: PAPER
     slot: 17
@@ -2327,7 +2481,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_2'
@@ -2342,7 +2497,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2350,9 +2505,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_2_nv10':
     material: PAPER
     slot: 17
@@ -2374,7 +2531,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_2'
@@ -2389,7 +2547,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2397,9 +2555,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_2':
     material: PAPER
     slot: 17
@@ -2420,7 +2580,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_2'
@@ -2431,7 +2592,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2439,9 +2600,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_2_no':
     material: PAPER
     slot: 17
@@ -2464,9 +2627,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_3_nv20':
     material: PAPER
     slot: 24
@@ -2489,7 +2654,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_3'
@@ -2504,7 +2670,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2512,9 +2678,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_3_nv10':
     material: PAPER
     slot: 24
@@ -2536,7 +2704,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_3'
@@ -2551,7 +2720,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2559,9 +2728,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_3':
     material: PAPER
     slot: 24
@@ -2582,7 +2753,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_3'
@@ -2593,7 +2765,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2601,9 +2773,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_3_no':
     material: PAPER
     slot: 24
@@ -2626,9 +2800,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_4_nv20':
     material: PAPER
     slot: 25
@@ -2651,7 +2827,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_4'
@@ -2666,7 +2843,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2674,9 +2851,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_4_nv10':
     material: PAPER
     slot: 25
@@ -2698,7 +2877,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_4'
@@ -2713,7 +2893,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2721,9 +2901,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_4':
     material: PAPER
     slot: 25
@@ -2744,7 +2926,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_4'
@@ -2755,7 +2938,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2763,9 +2946,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_4_no':
     material: PAPER
     slot: 25
@@ -2788,9 +2973,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_5_nv20':
     material: PAPER
     slot: 26
@@ -2813,7 +3000,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_5'
@@ -2828,7 +3016,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2836,9 +3024,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_5_nv10':
     material: PAPER
     slot: 26
@@ -2860,7 +3050,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_5'
@@ -2875,7 +3066,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_golem}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2883,9 +3074,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_5':
     material: PAPER
     slot: 26
@@ -2906,7 +3099,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_5'
@@ -2917,7 +3111,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.golem
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2925,9 +3119,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 3'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_golem_hit_5_no':
     material: PAPER
     slot: 26
@@ -2950,9 +3146,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/golem_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_golem'
   'm_zorro_nv20':
     material: PAPER
     slot: 27
@@ -2974,7 +3172,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_0'
@@ -2989,7 +3188,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -2997,9 +3196,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_nv10':
     material: PAPER
     slot: 27
@@ -3021,7 +3222,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_0'
@@ -3036,7 +3238,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3044,9 +3246,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro':
     material: PAPER
     slot: 27
@@ -3067,7 +3271,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_0'
@@ -3078,7 +3283,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3086,9 +3291,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_no':
     material: PAPER
     slot: 27
@@ -3111,9 +3318,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_1_nv20':
     material: PAPER
     slot: 28
@@ -3135,7 +3344,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_1'
@@ -3150,7 +3360,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3158,9 +3368,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_1_nv10':
     material: PAPER
     slot: 28
@@ -3182,7 +3394,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_1'
@@ -3197,7 +3410,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3205,9 +3418,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_1':
     material: PAPER
     slot: 28
@@ -3228,7 +3443,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_1'
@@ -3239,7 +3455,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3247,9 +3463,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_1_no':
     material: PAPER
     slot: 28
@@ -3272,9 +3490,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_2_nv20':
     material: PAPER
     slot: 29
@@ -3296,7 +3516,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_2'
@@ -3311,7 +3532,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3319,9 +3540,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_2_nv10':
     material: PAPER
     slot: 29
@@ -3343,7 +3566,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_2'
@@ -3358,7 +3582,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3366,9 +3590,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_2':
     material: PAPER
     slot: 29
@@ -3389,7 +3615,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_2'
@@ -3400,7 +3627,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3408,9 +3635,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_2_no':
     material: PAPER
     slot: 29
@@ -3433,9 +3662,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_3_nv20':
     material: PAPER
     slot: 36
@@ -3457,7 +3688,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_3'
@@ -3472,7 +3704,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3480,9 +3712,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_3_nv10':
     material: PAPER
     slot: 36
@@ -3504,7 +3738,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_3'
@@ -3519,7 +3754,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3527,9 +3762,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_3':
     material: PAPER
     slot: 36
@@ -3550,7 +3787,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_3'
@@ -3561,7 +3799,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3569,9 +3807,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_3_no':
     material: PAPER
     slot: 36
@@ -3594,9 +3834,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_4_nv20':
     material: PAPER
     slot: 37
@@ -3618,7 +3860,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_4'
@@ -3633,7 +3876,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3641,9 +3884,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_4_nv10':
     material: PAPER
     slot: 37
@@ -3665,7 +3910,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_4'
@@ -3680,7 +3926,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3688,9 +3934,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_4':
     material: PAPER
     slot: 37
@@ -3711,7 +3959,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_4'
@@ -3722,7 +3971,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3730,9 +3979,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_4_no':
     material: PAPER
     slot: 37
@@ -3755,9 +4006,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_5_nv20':
     material: PAPER
     slot: 38
@@ -3779,7 +4032,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_5'
@@ -3794,7 +4048,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3802,9 +4056,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_5_nv10':
     material: PAPER
     slot: 38
@@ -3826,7 +4082,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_5'
@@ -3841,7 +4098,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_zorro}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3849,9 +4106,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_5':
     material: PAPER
     slot: 38
@@ -3872,7 +4131,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_5'
@@ -3883,7 +4143,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.zorro
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3891,9 +4151,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 4'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_zorro_hit_5_no':
     material: PAPER
     slot: 38
@@ -3916,9 +4178,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/zorro_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_zorro'
   'm_dragon_nv20':
     material: PAPER
     slot: 30
@@ -3941,7 +4205,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_0'
@@ -3956,7 +4221,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -3964,9 +4229,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_nv10':
     material: PAPER
     slot: 30
@@ -3988,7 +4255,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_0'
@@ -4003,7 +4271,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4011,9 +4279,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon':
     material: PAPER
     slot: 30
@@ -4034,7 +4304,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_0'
@@ -4045,7 +4316,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4053,9 +4324,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_no':
     material: PAPER
     slot: 30
@@ -4078,9 +4351,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_1_nv20':
     material: PAPER
     slot: 31
@@ -4103,7 +4378,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_1'
@@ -4118,7 +4394,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4126,9 +4402,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_1_nv10':
     material: PAPER
     slot: 31
@@ -4150,7 +4428,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_1'
@@ -4165,7 +4444,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4173,9 +4452,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_1':
     material: PAPER
     slot: 31
@@ -4196,7 +4477,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_1'
@@ -4207,7 +4489,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4215,9 +4497,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_1_no':
     material: PAPER
     slot: 31
@@ -4240,9 +4524,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_2_nv20':
     material: PAPER
     slot: 32
@@ -4265,7 +4551,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_2'
@@ -4280,7 +4567,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4288,9 +4575,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_2_nv10':
     material: PAPER
     slot: 32
@@ -4312,7 +4601,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_2'
@@ -4327,7 +4617,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4335,9 +4625,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_2':
     material: PAPER
     slot: 32
@@ -4358,7 +4650,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_2'
@@ -4369,7 +4662,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4377,9 +4670,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_2_no':
     material: PAPER
     slot: 32
@@ -4402,9 +4697,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_3_nv20':
     material: PAPER
     slot: 39
@@ -4427,7 +4724,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_3'
@@ -4442,7 +4740,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4450,9 +4748,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_3_nv10':
     material: PAPER
     slot: 39
@@ -4474,7 +4774,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_3'
@@ -4489,7 +4790,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4497,9 +4798,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_3':
     material: PAPER
     slot: 39
@@ -4520,7 +4823,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_3'
@@ -4531,7 +4835,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4539,9 +4843,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_3_no':
     material: PAPER
     slot: 39
@@ -4564,9 +4870,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_4_nv20':
     material: PAPER
     slot: 40
@@ -4589,7 +4897,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_4'
@@ -4604,7 +4913,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4612,9 +4921,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_4_nv10':
     material: PAPER
     slot: 40
@@ -4636,7 +4947,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_4'
@@ -4651,7 +4963,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4659,9 +4971,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_4':
     material: PAPER
     slot: 40
@@ -4682,7 +4996,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_4'
@@ -4693,7 +5008,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4701,9 +5016,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_4_no':
     material: PAPER
     slot: 40
@@ -4726,9 +5043,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_5_nv20':
     material: PAPER
     slot: 41
@@ -4751,7 +5070,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_5'
@@ -4766,7 +5086,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4774,9 +5094,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_5_nv10':
     material: PAPER
     slot: 41
@@ -4798,7 +5120,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_5'
@@ -4813,7 +5136,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_dragon}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4821,9 +5144,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_5':
     material: PAPER
     slot: 41
@@ -4844,7 +5169,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_5'
@@ -4855,7 +5181,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.dragon
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4863,9 +5189,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 5'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_dragon_hit_5_no':
     material: PAPER
     slot: 41
@@ -4888,9 +5216,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/dragon_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_dragon'
   'm_fenix_nv20':
     material: PAPER
     slot: 33
@@ -4911,7 +5241,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_0'
@@ -4926,7 +5257,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4934,9 +5265,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_nv10':
     material: PAPER
     slot: 33
@@ -4957,7 +5290,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_0'
@@ -4972,7 +5306,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -4980,9 +5314,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix':
     material: PAPER
     slot: 33
@@ -5003,7 +5339,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_0'
@@ -5014,7 +5351,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5022,9 +5359,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_no':
     material: PAPER
     slot: 33
@@ -5047,9 +5386,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_0'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_1_nv20':
     material: PAPER
     slot: 34
@@ -5070,7 +5411,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_1'
@@ -5085,7 +5427,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5093,9 +5435,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_1_nv10':
     material: PAPER
     slot: 34
@@ -5116,7 +5460,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_1'
@@ -5131,7 +5476,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5139,9 +5484,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_1':
     material: PAPER
     slot: 34
@@ -5162,7 +5509,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_1'
@@ -5173,7 +5521,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5181,9 +5529,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_1_no':
     material: PAPER
     slot: 34
@@ -5206,9 +5556,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_1'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_2_nv20':
     material: PAPER
     slot: 35
@@ -5229,7 +5581,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_2'
@@ -5244,7 +5597,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5252,9 +5605,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_2_nv10':
     material: PAPER
     slot: 35
@@ -5275,7 +5630,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_2'
@@ -5290,7 +5646,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5298,9 +5654,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_2':
     material: PAPER
     slot: 35
@@ -5321,7 +5679,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_2'
@@ -5332,7 +5691,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5340,9 +5699,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_2_no':
     material: PAPER
     slot: 35
@@ -5365,9 +5726,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_2'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_3_nv20':
     material: PAPER
     slot: 42
@@ -5388,7 +5751,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_3'
@@ -5403,7 +5767,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5411,9 +5775,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_3_nv10':
     material: PAPER
     slot: 42
@@ -5434,7 +5800,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_3'
@@ -5449,7 +5816,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5457,9 +5824,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_3':
     material: PAPER
     slot: 42
@@ -5480,7 +5849,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_3'
@@ -5491,7 +5861,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5499,9 +5869,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_3_no':
     material: PAPER
     slot: 42
@@ -5524,9 +5896,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_3'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_4_nv20':
     material: PAPER
     slot: 43
@@ -5547,7 +5921,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_4'
@@ -5562,7 +5937,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5570,9 +5945,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_4_nv10':
     material: PAPER
     slot: 43
@@ -5593,7 +5970,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_4'
@@ -5608,7 +5986,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5616,9 +5994,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_4':
     material: PAPER
     slot: 43
@@ -5639,7 +6019,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_4'
@@ -5650,7 +6031,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5658,9 +6039,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_4_no':
     material: PAPER
     slot: 43
@@ -5683,9 +6066,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_4'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_5_nv20':
     material: PAPER
     slot: 44
@@ -5706,7 +6091,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_5'
@@ -5721,7 +6107,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '20'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5729,9 +6115,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_5_nv10':
     material: PAPER
     slot: 44
@@ -5752,7 +6140,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_5'
@@ -5767,7 +6156,7 @@ items:
           type: '>='
           input: '%objective_score_{plv_fenix}%'
           output: '10'
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5775,9 +6164,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_5':
     material: PAPER
     slot: 44
@@ -5798,7 +6189,8 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&eClic para equipar e invocar'
+    - '&eClic izquierdo: equipar e invocar'
+    - '&bClic derecho: ver detalle'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_5'
@@ -5809,7 +6201,7 @@ items:
         tiene:
           type: has permission
           permission: astral.mascota.fenix
-    click_requirement:
+    left_click_requirement:
       requirements:
         tiene:
           type: has permission
@@ -5817,9 +6209,11 @@ items:
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
       - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
+    left_click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 6'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'm_fenix_hit_5_no':
     material: PAPER
     slot: 44
@@ -5842,9 +6236,11 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/fenix_locked_5'
     priority: 4
-    click_commands:
+    left_click_commands:
     - '[message] &7Todavia no tienes esta mascota.'
     - '[sound] ENTITY_VILLAGER_NO'
+    right_click_commands:
+    - '[openguimenu] mascota_fenix'
   'guardar':
     material: PAPER
     slot: 47

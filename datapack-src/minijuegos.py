@@ -35,6 +35,24 @@ def definitions():
 
 
 def menu_data(kind):
+    if kind == 'arena':
+        from travel_ui import title, ARENA_SLOTS
+        if len(ARENAS)!=len(ARENA_SLOTS) or {d['id'] for d in ARENAS}!=set(ARENA_SLOTS):
+            raise ValueError('Actualizar las tarjetas de arte al cambiar el catalogo de arenas')
+        items={}
+        themes=('Coliseo','Ruinas','Vacio','Volcan')
+        for d,theme in zip(ARENAS,themes):
+            for n,slot in enumerate(ARENA_SLOTS[d['id']]):
+                key=d['id'] if n==0 else f'{d["id"]}_{slot}'
+                items[key]=dict(material='PAPER',slot=slot,item_model='astral:viajes/blank',
+                    display_name='&f'+theme,lore=['&7'+d['name'],'&7'+d['description'],'&7No perdes nada al morir.'],
+                    click_commands=['[close]',f'[player] arenas {d["id"]}<delay=3>'])
+        for key,slots,commands in [('lobby',[45,46,47],['[close]','[player] spawn<delay=3>']),('cerrar',[51,52,53],['[close]'])]:
+            for n,slot in enumerate(slots):
+                items[key if n==0 else f'{key}_{slot}']=dict(material='PAPER',slot=slot,item_model='astral:viajes/blank',display_name='&f'+key.title(),click_commands=commands)
+        # Lobby: la primera casilla muestra la barrera vanilla.
+        items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
+        return dict(menu_title=title('arenas'),size=54,items=items)
     maps = PARKOURS if kind == 'parkour' else ARENAS
     command = 'parkour' if kind == 'parkour' else 'arenas'
     slots = [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]

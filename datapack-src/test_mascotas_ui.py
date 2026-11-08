@@ -28,10 +28,11 @@ class PetsUITests(unittest.TestCase):
                 owned=self.menu['items'][key];locked=self.menu['items'][key+'_no']
                 self.assertEqual(owned['slot'],slot)
                 self.assertEqual(locked['slot'],slot)
-                for kind in ('view_requirement','click_requirement'):
+                for kind in ('view_requirement','left_click_requirement'):
                     self.assertEqual(owned[kind]['requirements']['tiene']['permission'],'astral.mascota.'+pid)
-                self.assertEqual(owned['click_commands'],['[close]',f'[console] scoreboard players set %player_name% mascota {MASCOTAS[pid]["n"]}'])
-                self.assertTrue(all(c.startswith(('[message]','[sound]')) for c in locked['click_commands']))
+                self.assertEqual(owned['left_click_commands'],['[close]',f'[console] scoreboard players set %player_name% mascota {MASCOTAS[pid]["n"]}'])
+                self.assertTrue(all(c.startswith(('[message]','[sound]')) for c in locked['left_click_commands']))
+                for entry in (owned,locked):self.assertEqual(entry['right_click_commands'],[f'[openguimenu] mascota_{pid}'])
                 self.assertIn(SCORE.format('plv_'+pid),str(owned['lore']))
                 self.assertIn(MASCOTAS[pid]['fuente'],str(locked['lore']))
 
@@ -81,3 +82,39 @@ class PetsUITests(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+
+
+class PetDetailTests(unittest.TestCase):
+    """Mi companero: una pantalla por mascota, con nivel, barra y mejoras reales."""
+
+    def test_detail_menus(self):
+        from menus import mascota_detalle_menu
+        from companero_ui import title as detail_title, LEVEL_SLOTS, XP_SLOTS, PERK_ROWS, PERK_LEVELS, assets as companero_assets
+        files, _ = companero_assets()
+        for pid in MASCOTAS:
+            data = yaml.safe_load(mascota_detalle_menu(pid))
+            items = data['items']
+            self.assertEqual(data['menu_title'], detail_title(pid))
+            for i, slot in enumerate(LEVEL_SLOTS):
+                for level in (1, 12, 30):
+                    entry = items[f'nivel_{level}_{i}']
+                    self.assertEqual(entry['slot'], slot)
+                    self.assertEqual(entry['view_requirement']['requirements']['nivel']['output'], str(level))
+                self.assertEqual(items[f'nivel_base_{i}']['priority'], 31)
+            for j, slot in enumerate(XP_SLOTS):
+                full = items[f'xp_{j}_full']
+                self.assertEqual(full['slot'], slot)
+                self.assertEqual(full['view_requirement']['minimum_requirements'], 1)
+                self.assertEqual(full['view_requirement']['requirements']['lleno']['input'], SCORE.format('pmod_' + pid))
+            for row, level in zip(PERK_ROWS, PERK_LEVELS):
+                ok = items[f'estado_{level}']
+                self.assertEqual(ok['slot'], row * 9 + 8)
+                self.assertEqual(ok['view_requirement']['requirements']['nivel']['output'], str(level))
+            self.assertEqual(items['invocar']['click_requirement']['requirements']['tiene']['permission'], 'astral.mascota.' + pid)
+            self.assertEqual(items['coleccion']['click_commands'], ['[openguimenu] mascotas'])
+            slots = [entry['slot'] for entry in items.values()]
+            self.assertTrue(all(0 <= slot < 54 for slot in slots))
+            for entry in items.values():
+                model = entry.get('item_model')
+                if model and model.startswith('astral:companero/'):
+                    self.assertIn('assets/astral/items/companero/' + model.split('/')[1] + '.json', files)

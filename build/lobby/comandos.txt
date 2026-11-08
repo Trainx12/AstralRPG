@@ -38,6 +38,7 @@ papi ecloud download Vault
 papi ecloud download Player
 papi ecloud download Server
 papi ecloud download Statistic
+papi ecloud download LocalTime
 papi reload
 # --- contadores de garantia (pity) de las gachas
 scoreboard objectives add pity_rpg dummy

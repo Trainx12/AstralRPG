@@ -16,12 +16,12 @@ las chicas las puede ir haciendo Claude. Lo marcado **a mano** lo hace el dueño
 | 7 | Más mapas de parkour (mínimo 1 más de la torre espiral) | Pendiente |
 | 8 | Ranking de parkour por mapa (más rápidos) | Definido |
 | 9 | Premio y deseo lite al terminar la historia del Cronista | Definido |
-| 10 | Saltador (gancho viejo) y Gancho (gancho real) | Hecho en el repo (08/11), falta subir |
-| 11 | Arreglar el cofre de los jefes al terminar la mazmorra (WorldGuard bloqueaba el clic) | Hecho en el repo (08/11), falta correr los comandos en el server |
+| 10 | Saltador (gancho viejo) y Gancho (gancho real) | Hecho y subido al server (08/11) |
+| 11 | Arreglar el cofre de los jefes al terminar la mazmorra (WorldGuard bloqueaba el clic) | Hecho y subido al server (08/11); probar con un jugador sin OP |
 | 12 | Decorar a cada aldeano que no tenga puesto | Pendiente |
 | 13 | Skins para los aldeanos | Pendiente |
 | 14 | Spawns de las arenas de pelea | Pendiente |
-| 15 | Arreglar la momia que camina al revés (tenía los brazos para atrás) | Hecho en el repo (08/11), falta subir |
+| 15 | Arreglar la momia que camina al revés (tenía los brazos para atrás) | Hecho y subido al server (08/11) |
 
 ## A mano (las hace el dueño)
 - Terminar las mazmorras de Forja, Santuario, Bosque y Cumbre.
@@ -92,3 +92,13 @@ lleva a la mazmorra.
 
 ## Por definir
 - **Final del Santuario** al vencer a los 6 jefes (animación, premio).
+
+## Mapas recibidos (08/11/2026)
+- **Dropper** ("The Easiest Dropper", 1.16.5, sin licencia en el ZIP): 10 niveles. Salidas leídas de sus
+  command blocks: 1 `1009 253 468`, 2 `2000 255 98`, 3 `1036 169 761`, 4 `560 177 1509`,
+  5 `347 250 -163`, 6 `150 256 983`, 7 `310 253 143`, 8 `300 252 -2`, 9 `16 254 -546` (sin agua),
+  10 `616 248 14`. Hub con élitros en `0 200 0`. Se gana cayendo al agua. Copia en `.local/mapas/dropper.zip`.
+- **Parkour Spiral 2**: guardado en Minecraft 26.2; el servidor es 26.1.2 y no abre mundos más nuevos.
+  Copia en `.local/mapas/parkour_spiral2.zip`.
+- **Bosque "Monoliths Remnants Vol 1"** (KAIZEN87): la licencia solo permite uso privado y prohíbe
+  servidores y extraer estructuras. **No se usa.**

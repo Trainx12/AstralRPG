@@ -753,9 +753,9 @@ function am_menu(p: player):
     set {_rank} to am_rank({_p})
     set {_next} to {_rank} + 1
     set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
-    set {_inv} to chest inventory with 6 rows named "&f"
+    set {_inv} to chest inventory with 6 rows named "&f"
     set slot 4 of {_inv} to gold ingot named "&6Tu oro: &e%{_p}'s balance%" with lore "&7Abrí la siguiente mina picando" and "&7en la anterior y pagando su costo."
-    set item model of slot 4 of {_inv} to "astral:viajes/info"
+    set item model of slot 4 of {_inv} to "astral:viajes/blank"
     set slot 9 of {_inv} to stone named "&f&lTier I" with lore "&7Piedra con minerales."
     set item model of slot 9 of {_inv} to "astral:viajes/tier1"
     set slot 18 of {_inv} to coal block named "&e&lTier II" with lore "&7Minerales con bloques compactos."
@@ -767,9 +767,12 @@ function am_menu(p: player):
         set {_slot} to {-am.slot::%{_i}%}
         set {_name} to {-am.name::%{_i}%}
         set {_icon} to {-am.icon::%{_i}%}
+        set {_state} to "locked"
         if {_i} <= {_rank}:
-            set slot {_slot} of {_inv} to {_icon} named "&a%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{-am.value::%{_i}%}% oro &7por bloque" and "" and "&aClic para viajar."
+            set {_state} to "open"
+            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{-am.value::%{_i}%}% oro &7por bloque" and "" and "&aClic para viajar."
         else if {_i} is {_next}:
+            set {_state} to "next"
             set {_goal} to {-am.goal::%{_i}%}
             set {_cost} to {-am.cost::%{_i}%}
             set {_okb} to "&c✘"
@@ -778,7 +781,7 @@ function am_menu(p: player):
             set {_okc} to "&c✘"
             if {_p}'s balance >= {_cost}:
                 set {_okc} to "&a✔"
-            set slot {_slot} of {_inv} to {_icon} named "&e%{_name}% &7(bloqueada)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "%{_okb}% &7Picar en %{-am.name::%{_rank}%}%: &f%{_blocks}%&7/&f%{_goal}%" and "%{_okc}% &7Costo: &6%{_cost}% oro" and "" and "&eClic para desbloquear."
+            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}% &7(siguiente)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "%{_okb}% &7Picar en %{-am.name::%{_rank}%}%: &f%{_blocks}%&7/&f%{_goal}%" and "%{_okc}% &7Costo: &6%{_cost}% oro" and "" and "&eClic para desbloquear."
             if {_i} is {-am.count}:
                 set {_min} to {am.minutes::%uuid of {_p}%} ? 0
                 set {_okt} to "&c✘"
@@ -786,9 +789,10 @@ function am_menu(p: player):
                     set {_okt} to "&a✔"
                 add "%{_okt}% &7Minería activa: &f%{_min}%&7/&f%{-am.finalMinutes}% min" to lore of slot {_slot} of {_inv}
         else:
-            set slot {_slot} of {_inv} to barrier named "&c%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
-    set slot 49 of {_inv} to ender pearl named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
-    set item model of slot 49 of {_inv} to "astral:viajes/lobby"
+            set slot {_slot} of {_inv} to barrier named "&f%{_name}% &7(bloqueada)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
+        add "&7%{-am.goal::%{_i}%}% bloques ? %{-am.cost::%{_i}%}% de oro" to lore of slot {_slot} of {_inv}
+        set item model of slot {_slot} of {_inv} to "astral:viajes/mine_%{_i}%_%{_state}%"
+    set slot 49 of {_inv} to barrier named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
     set slot 45 of {_inv} to iron pickaxe named "&eTu progreso: &f%{-am.name::%{_rank}%}%" with lore "&7Verde: mina abierta, clic para viajar." and "&eAmarillo: próxima mina, revisá el costo." and "&cRojo: abrí las anteriores primero."
     set item model of slot 45 of {_inv} to "astral:viajes/info"
     set slot 53 of {_inv} to barrier named "&cCerrar"
@@ -845,11 +849,18 @@ function am_sell_value(p: player, sell: boolean) :: number:
 
 function am_sale_menu(p: player):
     set {_value} to am_sell_value({_p}, false)
-    set {_inv} to chest inventory with 3 rows named "&f"
-    set slot 13 of {_inv} to emerald named "&a&lVender todos mis minerales" with lore "&7Vende piedra, roca y minerales" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
-    set item model of slot 13 of {_inv} to "astral:viajes/sell"
-    set slot 22 of {_inv} to barrier named "&cCerrar"
-    set item model of slot 22 of {_inv} to "astral:viajes/cerrar"
+    set {_inv} to chest inventory with 5 rows named "&f"
+    loop 7 times:
+        set {_s} to 27 + loop-number
+        set slot {_s} of {_inv} to paper named "&aVender todos mis minerales - Recibis: &6%{_value}% oro" with lore "&7Vende piedra, roca y minerales" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
+        set item model of slot {_s} of {_inv} to "astral:viajes/blank"
+    set slot 1 of {_inv} to coal named "&fCarbón" with lore "&7Se vende en la Venta rápida."
+    set slot 2 of {_inv} to iron ingot named "&fHierro" with lore "&7Se vende en la Venta rápida."
+    set slot 3 of {_inv} to gold ingot named "&fOro" with lore "&7Se vende en la Venta rápida."
+    set slot 4 of {_inv} to emerald named "&fEsmeralda" with lore "&7Se vende en la Venta rápida."
+    set slot 5 of {_inv} to diamond named "&fDiamante" with lore "&7Se vende en la Venta rápida."
+    set slot 35 of {_inv} to paper named "&cCerrar"
+    set item model of slot 35 of {_inv} to "astral:viajes/blank"
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "venta"
 
@@ -903,10 +914,10 @@ on inventory click:
         if {_dest} is set:
             am_travel(player, {_dest})
     else if {_gui} is "venta":
-        if {_slot} is 13:
+        if {_slot} is between 28 and 34:
             close inventory of player
             am_sell(player)
-        else if {_slot} is 22:
+        else if {_slot} is 35:
             close inventory of player
 
 on inventory drag:

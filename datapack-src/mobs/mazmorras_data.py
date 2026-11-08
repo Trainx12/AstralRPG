@@ -15,6 +15,7 @@ except ImportError:
 DEFINITIONS = [
     dict(key="bosque", name="Bosque Sombrio", map="bosque.zip", boss="chaman", event="chaman", tier=2,
          points=[(1440.5, 104, 1568.5), (1504.5, 107, 1504.5), (1600.5, 97, 1440.5)],
+         arrivals={"sala1": (1440.5, 103, 1569.5)},
          labels=["Sendero de las raices", "Claro corrompido", "Altar del Chaman"],
          enemies=["espantapajaros", "abejorro", "cara"], money=1500),
     dict(key="tumba", name="Tumba del Rey de Arena", map="desierto.zip", boss="momia", event="momia", tier=3,
@@ -26,17 +27,18 @@ DEFINITIONS = [
          final_arrival=(0.368, 73, -44.104), final_radius=56, final_spawn_radius=0,
          labels=["Patio de los olvidados", "Pasaje de los sellos", "Trono del Rey de Arena"],
          enemies=["espantapajaros", "arana", "cara"], money=2000),
-    dict(key="cumbre", name="Cumbre Helada", map="nieve.zip", boss="yeti", event="yeti", tier=4,
-         points=[(-128.5, 79, 0.5), (0.5, 115, 0.5), (96.5, 97, 0.5)],
+    dict(key="cumbre", name="Cumbre Helada", map="ice-lobby.zip", world="cumbre_hielo",
+         boss="yeti", event="yeti", tier=4,
+         points=[(16.5, 64, 18.5), (24.5, 66, -1.5), (6.5, 63, 32.5)],
+         arrivals={"sala1": (8.5, 65, 8.5)}, room_radius=14, final_radius=12,
          labels=["Paso de la escarcha", "Ascenso blanco", "Trono del Yeti"],
          enemies=["arana", "cara", "espantapajaros"], money=2500),
-    dict(key="forja", name="Corazon de la Forja", map="volcan gigante.zip", boss="golem_forja", event="golem_forja", tier=5,
-         # Solo el volcan SUR: el recorte X=1360..1647, Z=1792..2399
-         # excluye el volcan norte. Decision del dueno: un solo volcan para orientar el recorrido.
-         # La ultima requiere una plataforma sobre el crater. No teletransportar
-         # jugadores en supervivencia hasta construirla y verificarla.
-         points=[(1536.5, 224, 1900.5), (1456.5, 210, 2032.5), (1536.5, 200, 2304.5)],
-         labels=["Ladera de ceniza", "Puente de la escoria", "Nucleo de la Forja"],
+    dict(key="forja", name="Corazon de la Forja", map="volcano.zip", world="forja_volcano",
+         boss="golem_forja", event="golem_forja", tier=5,
+         # Llegada para revision del mapa. Colocar el controlador solo despues
+         # de que el dueno seleccione una zona de combate para el golem.
+         points=[(82.5, 52, -55.5)],
+         labels=["Nucleo de la Forja"],
          enemies=["espantapajaros", "arana", "cara"], money=3000),
     dict(key="santuario", name="Santuario Celestial", map="mapa_Santuari_Mazmorra.zip",
          world="santuario_interstellar", boss=None, event="santuario", tier=6,
@@ -114,7 +116,7 @@ def catalog():
                 rooms.append(dict(id=f"sala{i+1}", name=label, centro=point,
                                   llegada=definition.get("arrivals", {}).get(
                                       f"sala{i+1}", definition.get("final_arrival", point) if last else point),
-                                  r=definition.get("final_radius", 28) if last else 18,
+                                  r=definition.get("final_radius", 28) if last else definition.get("room_radius", 18),
                                   spawn_radius=definition.get("final_spawn_radius", 4) if last else 4,
                                   oleadas=waves, extra=sorted(helpers) if last else []))
         dungeon = dict(key=key, name=definition["name"], world=definition.get("world", key), mobs={}, rooms=rooms,

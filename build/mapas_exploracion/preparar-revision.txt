@@ -1,5 +1,3 @@
 execute in minecraft:cavernas run forceload add 172 91
 execute in minecraft:exp_desierto run forceload add 179 135
-execute in minecraft:exp_hielo run forceload add 9 8
-execute in minecraft:reino run forceload add 7 0
 execute in minecraft:exp_santuario run forceload add 25 -31

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Astral",
+    "disabled": false,
+    "kits": [],
+    "positions": {
+      "1": {
+        "world": "arena",
+        "x": -216.5,
+        "y": 73,
+        "z": -2381.5,
+        "pitch": 0,
+        "yaw": -45
+      },
+      "2": {
+        "world": "arena",
+        "x": -196.5,
+        "y": 73,
+        "z": -2361.5,
+        "pitch": 0,
+        "yaw": 135
+      }
+    }
+  }
+]

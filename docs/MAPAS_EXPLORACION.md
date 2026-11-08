@@ -157,8 +157,8 @@ las mazmorras descubiertas; buscar nunca concede el permiso de descubrimiento.
 | 1 | Bosque Sombrio | cavernas | 172.5 102 89.5 |
 | 2 | Tumba | exp_desierto (mapa_desierto.zip) | 180.233 102 134.266 |
 | 3 | Minas Olvidadas | cavernas | 172.5 102 89.5 |
-| 4 | Cumbre | exp_hielo (ice-lobby.zip) | 8.5 65 8.5 |
-| 5 | Corazon de la Forja | reino | 5.5 67 0.5 |
+| 4 | Cumbre | exp_nieve (nieve.zip) | 16.5 83 10.5 |
+| 5 | Corazon de la Forja | forja (volcan sur anterior) | 1536.5 222 1900.5 |
 | 6 | Santuario | exp_santuario (mapa_santuario.rar) | 26.5 103 -31.5 |
 
 Los tres mapas nuevos son mundos separados. Se exporta el escenario completo

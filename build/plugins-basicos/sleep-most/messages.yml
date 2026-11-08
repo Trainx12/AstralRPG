@@ -7,30 +7,30 @@
 # messagetype:
 #  - 'message1'
 
-prefix: "&8[&dAstralRPG&8]"
+prefix: '&8[&dAstralRPG&8]'
 user:
-  night-skipped-chat: "&eAmanece en AstralRPG. Buena aventura, %player%!"
-  storm-skipped-chat: "&eLa tormenta termino. El cielo vuelve a despejarse."
-  players-left-night: "&7Durmiendo para pasar la noche &d%sleeping%&7/&d%required%"
-  players-left-storm: "&7Durmiendo para pasar la tormenta &d%sleeping%&7/&d%required%"
-  sleep-prevented: "&cNo se puede dormir en este mundo."
-  no-sleep-storm: "&cAhora no se puede dormir durante la tormenta."
-  cannot-sleep-now: "&cAhora no podes dormir."
-  sleep-success: "&7Estas descansando."
-  no-longer-sleeping: "&7Dejaste de dormir."
+  night-skipped-chat: '&eAmanece en AstralRPG. Buena aventura, %player%!'
+  storm-skipped-chat: '&eLa tormenta termino. El cielo vuelve a despejarse.'
+  players-left-night: '&7Durmiendo para pasar la noche &d%sleeping%&7/&d%required%'
+  players-left-storm: '&7Durmiendo para pasar la tormenta &d%sleeping%&7/&d%required%'
+  sleep-prevented: '&cNo se puede dormir en este mundo.'
+  no-sleep-storm: '&cAhora no se puede dormir durante la tormenta.'
+  cannot-sleep-now: '&cAhora no podes dormir.'
+  sleep-success: '&7Estas descansando.'
+  no-longer-sleeping: '&7Dejaste de dormir.'
   no-bed-location-set: '&cThere is no bed location set'
   teleported-to-bed: '&bYou were teleported to your bed'
-  sleep-command-disabled: "&eUsa una cama para dormir."
+  sleep-command-disabled: '&eUsa una cama para dormir.'
   insomnia-not-sleepy: '&cYou don`t feel sleepy at the moment'
   insomnia-feeling-sleepy: '&bYou start feeling sleepy ...'
   kicked-player-from-bed: '&bYou kicked &a%player% &bout of their bed'
   kicked-from-bed: '&cYou were kicked out from your bed'
   kicking-not-allowed: '&cYou do not have permission to kick this player out of their
     bed'
-  night-skipped-title: "&eUn nuevo amanecer"
-  night-skipped-subtitle: "&dAstralRPG"
-  storm-skipped-title: "&eLa tormenta termino"
-  storm-skipped-subtitle: "&dVuelve la calma"
+  night-skipped-title: '&eUn nuevo amanecer'
+  night-skipped-subtitle: '&dAstralRPG'
+  storm-skipped-title: '&eLa tormenta termino'
+  storm-skipped-subtitle: '&dVuelve la calma'
   longer-night:
     sleep-prevented: '&cThe night is longer than usual, you don''t feel sleepy yet'
 boss-bar:

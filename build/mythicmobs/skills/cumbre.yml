@@ -4,31 +4,31 @@ CUMBRE_SALA1_INICIO:
   Skills:
   - addtag{tag=cumbre.on} @self
   - addtag{tag=cumbre.ola1} @self
-  - 'message{m="&8[&7Cumbre Helada&8] &fPaso de la escarcha &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Cumbre Helada&8] &fPaso de la escarcha &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=22}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=22}'
   - 'summon{type=astral_cumbre_arana;amount=4;radius=4} @self'
-  - 'summon{type=astral_cumbre_arana;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_arana;amount=2;radius=4} @self ?playersinradius{r=14;a=>1}'
 
 CUMBRE_SALA1_OLA2:
   Skills:
   - addtag{tag=cumbre.ola2} @self
   - addtag{tag=cumbre.espera} @self
-  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=22}'
   - delay 40
   - 'summon{type=astral_cumbre_arana;amount=2;radius=4} @self'
-  - 'summon{type=astral_cumbre_arana;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_arana;amount=1;radius=4} @self ?playersinradius{r=14;a=>1}'
   - 'summon{type=astral_cumbre_cara;amount=3;radius=4} @self'
-  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=14;a=>1}'
   - delay 10
   - removetag{tag=cumbre.espera} @self
 
 CUMBRE_SALA1_LIMPIA:
   Skills:
   - addtag{tag=cumbre.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAscenso blanco"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAscenso blanco"} @PlayersInRadius{r=22}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=22}'
   - delay 100
-  - 'skill{s=CUMBRE_IR_SALA2} @PlayersInRadius{r=26}'
+  - 'skill{s=CUMBRE_IR_SALA2} @PlayersInRadius{r=22}'
   - delay 20
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
@@ -37,12 +37,12 @@ CUMBRE_SALA1_LIMPIA:
 
 CUMBRE_IR_SALA2:
   Skills:
-  - 'command{c="execute in minecraft:cumbre run minecraft:tp <target.name> 0.5 115 0.5"}'
+  - 'command{c="execute in minecraft:cumbre_hielo run minecraft:tp <target.name> 24.5 66 -1.5"}'
   - 'sound{s=entity.enderman.teleport}'
 
 CUMBRE_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_cumbre_arana,astral_cumbre_cara}'
+  - 'remove @MobsInRadius{r=22;types=astral_cumbre_arana,astral_cumbre_cara}'
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
   - removetag{tag=cumbre.espera} @self
@@ -53,31 +53,31 @@ CUMBRE_SALA2_INICIO:
   Skills:
   - addtag{tag=cumbre.on} @self
   - addtag{tag=cumbre.ola1} @self
-  - 'message{m="&8[&7Cumbre Helada&8] &fAscenso blanco &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Cumbre Helada&8] &fAscenso blanco &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=22}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=22}'
   - 'summon{type=astral_cumbre_cara;amount=5;radius=4} @self'
-  - 'summon{type=astral_cumbre_cara;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_cara;amount=2;radius=4} @self ?playersinradius{r=14;a=>1}'
 
 CUMBRE_SALA2_OLA2:
   Skills:
   - addtag{tag=cumbre.ola2} @self
   - addtag{tag=cumbre.espera} @self
-  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
+  - 'message{m="&8[&7Cumbre Helada&8] &7Oleada 2/2..."} @PlayersInRadius{r=22}'
   - delay 40
   - 'summon{type=astral_cumbre_cara;amount=2;radius=4} @self'
-  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_cara;amount=1;radius=4} @self ?playersinradius{r=14;a=>1}'
   - 'summon{type=astral_cumbre_espantapajaros;amount=3;radius=4} @self'
-  - 'summon{type=astral_cumbre_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - 'summon{type=astral_cumbre_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=14;a=>1}'
   - delay 10
   - removetag{tag=cumbre.espera} @self
 
 CUMBRE_SALA2_LIMPIA:
   Skills:
   - addtag{tag=cumbre.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Yeti"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fTrono del Yeti"} @PlayersInRadius{r=22}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=22}'
   - delay 100
-  - 'skill{s=CUMBRE_IR_SALA3} @PlayersInRadius{r=26}'
+  - 'skill{s=CUMBRE_IR_SALA3} @PlayersInRadius{r=22}'
   - delay 20
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
@@ -86,12 +86,12 @@ CUMBRE_SALA2_LIMPIA:
 
 CUMBRE_IR_SALA3:
   Skills:
-  - 'command{c="execute in minecraft:cumbre run minecraft:tp <target.name> 96.5 97 0.5"}'
+  - 'command{c="execute in minecraft:cumbre_hielo run minecraft:tp <target.name> 6.5 63 32.5"}'
   - 'sound{s=entity.enderman.teleport}'
 
 CUMBRE_SALA2_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_cumbre_cara,astral_cumbre_espantapajaros}'
+  - 'remove @MobsInRadius{r=22;types=astral_cumbre_cara,astral_cumbre_espantapajaros}'
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
   - removetag{tag=cumbre.espera} @self
@@ -102,22 +102,22 @@ CUMBRE_SALA3_INICIO:
   Skills:
   - addtag{tag=cumbre.on} @self
   - addtag{tag=cumbre.ola1} @self
-  - 'message{m="&8[&7Cumbre Helada&8] &fTrono del Yeti &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
+  - 'message{m="&8[&7Cumbre Helada&8] &fTrono del Yeti &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=20}'
+  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=20}'
   - 'summon{type=astral_cumbre_yeti;amount=1;radius=4} @self'
 
 CUMBRE_SALA3_LIMPIA:
   Skills:
   - addtag{tag=cumbre.fin} @self
-  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
-  - 'command{c="execute as <target.name> at @s run function astral:quest/event/yeti"} @PlayersInRadius{r=36}'
+  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=20}'
+  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=20}'
+  - 'command{c="execute as <target.name> at @s run function astral:quest/event/yeti"} @PlayersInRadius{r=20}'
   - delay 40
-  - 'skill{s=CUMBRE_PREMIO} @PlayersInRadius{r=36}'
-  - 'skill{s=CUMBRE_PREMIO_YA} @PlayersInRadius{r=36}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
+  - 'skill{s=CUMBRE_PREMIO} @PlayersInRadius{r=20}'
+  - 'skill{s=CUMBRE_PREMIO_YA} @PlayersInRadius{r=20}'
+  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=20}'
   - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=20}'
   - delay 20
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
@@ -125,7 +125,7 @@ CUMBRE_SALA3_LIMPIA:
 
 CUMBRE_SALA3_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=36;types=STRAY,astral_cumbre_yeti}'
+  - 'remove @MobsInRadius{r=20;types=STRAY,astral_cumbre_yeti}'
   - removetag{tag=cumbre.on} @self
   - removetag{tag=cumbre.fin} @self
   - removetag{tag=cumbre.espera} @self
@@ -154,5 +154,5 @@ CUMBRE_PREMIO_YA:
 CUMBRE_ENTRAR:
   Skills:
   - 'message{m="&8[&7Cumbre Helada&8] &7Bajando a las &fCumbre Helada&7... &8(3 salas. Para salir: /spawn)"}'
-  - 'command{c="execute in minecraft:cumbre run minecraft:tp <trigger.name> -128.5 79 0.5"}'
+  - 'command{c="execute in minecraft:cumbre_hielo run minecraft:tp <trigger.name> 8.5 65 8.5"}'
 
