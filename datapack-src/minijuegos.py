@@ -31,6 +31,8 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
                               ('magma_stop', 0), ('level_progress', 0), ('outline_sec', 0),
                               ('outline_limit', 0), ('progress', 0), ('starting_game', 1),
                               ('outline', 0), ('choose_theme', 0)],
+                 # Marcas que el autor tenia puestas a mano: sin "lobby" el boton Start no hace nada.
+                 init_tags=['lobby', 'Player', 'magma_fast', 'magmasound'], exit_tags=['Start'],
                  bossbar=('minecraft:progress', 'Level Progress', 10, 'red')),
             # Datapacks adaptados con minijuegos_datapack.py (solo actuan en su mundo).
             dict(id='batallanaval', world='battleship', name='Batalla Naval', icon='OAK_BOAT',
@@ -221,6 +223,8 @@ def script():
               '    execute console command "attribute %name of {_p}% minecraft:movement_speed base reset"',
               '    execute console command "attribute %name of {_p}% minecraft:safe_fall_distance base reset"',
           ] + [f'    execute console command "bossbar set {d["bossbar"][0]} players"' for d in PARKOURS if d.get('bossbar')] + [
+              f'    remove "{t}" from scoreboard tags of {{_p}}' for d in PARKOURS
+               for t in d.get('init_tags', []) + d.get('exit_tags', [])] + [
               '    # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.',
           ] + [f'    execute console command "execute as %name of {{_p}}% run function {d["prefix"]}_main:astral/salir"'
                for d in DATAPACK_MAPS.values()] + [
@@ -296,6 +300,8 @@ def script():
             lines += ['        set {astral.ce.sucio} to true']
         for objective, value in d.get('init_scores', []):
             lines += [f'        execute console command "scoreboard players set %name of {{_p}}% {objective} {value}"']
+        for tag in d.get('init_tags', []):
+            lines += [f'        add "{tag}" to scoreboard tags of {{_p}}']
         if d.get('bossbar'):
             lines += [f'        execute console command "bossbar set {d["bossbar"][0]} players %name of {{_p}}%"']
         if kind == 'parkour':

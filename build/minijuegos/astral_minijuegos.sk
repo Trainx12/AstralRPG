@@ -65,6 +65,11 @@ function astral_mj_devolver(p: player):
     execute console command "attribute %name of {_p}% minecraft:movement_speed base reset"
     execute console command "attribute %name of {_p}% minecraft:safe_fall_distance base reset"
     execute console command "bossbar set minecraft:progress players"
+    remove "lobby" from scoreboard tags of {_p}
+    remove "Player" from scoreboard tags of {_p}
+    remove "magma_fast" from scoreboard tags of {_p}
+    remove "magmasound" from scoreboard tags of {_p}
+    remove "Start" from scoreboard tags of {_p}
     # Datapacks adaptados (minijuegos_datapack.py): marcas, puntajes y efectos del mapa.
     execute console command "execute as %name of {_p}% run function pp3_main:astral/salir"
     execute console command "execute as %name of {_p}% run function sp2_main:astral/salir"
@@ -245,6 +250,10 @@ function astral_minijuego_ir(p: player, id: text):
         execute console command "scoreboard players set %name of {_p}% starting_game 1"
         execute console command "scoreboard players set %name of {_p}% outline 0"
         execute console command "scoreboard players set %name of {_p}% choose_theme 0"
+        add "lobby" to scoreboard tags of {_p}
+        add "Player" to scoreboard tags of {_p}
+        add "magma_fast" to scoreboard tags of {_p}
+        add "magmasound" to scoreboard tags of {_p}
         execute console command "bossbar set minecraft:progress players %name of {_p}%"
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}

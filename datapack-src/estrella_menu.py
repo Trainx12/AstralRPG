@@ -62,6 +62,10 @@ def script():
 function astral_menu_refresh(p: player):
     if {_p} is dead:
         stop
+    # Tower Defence usa el slot 9 para su brujula "Game Menu": ahi no va la estrella (08/11/2026).
+    if name of world of {_p} is "towerdefence" or "towerdefence_end":
+        execute console command "clear %name of {_p}% ''' + PREDICATE + '''"
+        stop
     execute console command "execute as %name of {_p}% at @s run function astral:menu_star/give"
     execute console command "execute as %name of {_p}% run function astral:menu_star/check"
     if scoreboard tags of {_p} contains "astral.menu.slot":
