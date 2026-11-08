@@ -185,8 +185,11 @@ class Adapter:
         self.files[f'data/{m}/predicate/astral/en_mapa.json'] = json.dumps(
             {'condition': 'minecraft:entity_properties', 'entity': 'this',
              'predicate': {'location': {'dimension': world}}}, indent=2)
+        flag = f'{self.prefix}_astral'
         self.files[f'data/{m}/function/astral/tick.mcfunction'] = '\n'.join(
-            f'execute in {world} run function {f}' for f in ticks)
+            ['# Arranca las tareas repetidas una sola vez, cuando el mundo ya cargo (Multiverse).',
+             f'execute unless score #arranco {flag} matches 1 in {world} run function {m}:astral/start']
+            + [f'execute in {world} run function {f}' for f in ticks])
         load = [f'# Puntajes que el mapa traia guardados (scoreboard.dat), con prefijo {self.prefix}_.']
         for name in sorted(self.objectives):
             crit = 'trigger' if name in self.triggers else 'dummy'
@@ -197,10 +200,13 @@ class Adapter:
         if 'temp' in self.objectives:
             # Modo servidor del autor: varios jugadores, sin pasar a creativo en el entrenamiento.
             load.append(f'scoreboard players set #is_server {self.obj("temp")} 1')
-        if self.console:
-            load.append(f'execute in {world} run forceload add {self.console[0]} {self.console[1]}')
-        load += [f'execute in {world} run function {f}' for f in loads]
+        load += [f'scoreboard objectives add {flag} dummy', f'scoreboard players set #arranco {flag} 0']
         self.files[f'data/{m}/function/astral/load.mcfunction'] = '\n'.join(load)
+        start = [f'scoreboard players set #arranco {flag} 1']
+        if self.console:
+            start.append(f'forceload add {self.console[0]} {self.console[1]}')
+        start += [f'function {f}' for f in loads]
+        self.files[f'data/{m}/function/astral/start.mcfunction'] = '\n'.join(start)
         for key, target in self.schedules.items():
             self.files[f'data/{m}/function/astral/s/{key}.mcfunction'] = f'execute in {world} run function {target}'
         salir = [f'tag @s remove {t}' for t in sorted(self.tags)]

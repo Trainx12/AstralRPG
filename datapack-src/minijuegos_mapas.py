@@ -46,7 +46,9 @@ def local_selectors(command):
             inner = args[1:-1]
             return f"{loop}@{kind}[distance=..{RANGE}{',' + inner if inner else ''}]"
         return f'{loop}@p{args}'
-    return pattern.sub(fix, command)
+    # El mapa pasa a aventura a todo el que no tenga `dev` (y le saca `dev` a todos menos a su
+    # autor). Skript marca a los OP con astral.op dentro de los mini juegos.
+    return pattern.sub(fix, command).replace('tag=!dev]', 'tag=!dev,tag=!astral.op]')
 
 
 def keep_logic(tree, rewrite=None):

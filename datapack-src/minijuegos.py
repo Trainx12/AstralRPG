@@ -192,6 +192,8 @@ def script():
               '    if astral_parkour_world(world of {_p}) is true:',
               '        if {astral.minijuegos.mode::%{_u}%} is not set:',
               '            set {astral.minijuegos.mode::%{_u}%} to gamemode of {_p}',
+              '        if {_p} is op:',
+              '            add "astral.op" to scoreboard tags of {_p}',
               '        # Todos en aventura; solo un OP puede quedarse en creativo (para revisar el mapa).',
               '        if gamemode of {_p} is not adventure:',
               '            if {_p} is not op:',
@@ -203,6 +205,7 @@ def script():
               '        set food level of {_p} to 20',
               '        set saturation of {_p} to 5',
               '    else:',
+              '        remove "astral.op" from scoreboard tags of {_p}',
               '        astral_mj_devolver({_p})',
               '        if {astral.minijuegos.mode::%{_u}%} is set:',
               '            set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}',
@@ -392,10 +395,16 @@ def deployment():
                       f'rg flag -w {world} __global__ fall-damage']
             if world in logic_worlds():
                 # Color Escape: sus command blocks (selectores ya limitados) y sus cofres y botones.
-                lines += [f'mv gamerule set minecraft:command_blocks_work true {world}',
+                lines += [f'mv gamerule set minecraft:command_block_output false {world}',
+                          f'mv gamerule set minecraft:command_blocks_work true {world}',
                           f'rg flag -w {world} __global__ chest-access allow',
                           f'rg flag -w {world} __global__ interact allow',
                           f'rg flag -w {world} __global__ use allow']
+                if world == 'colorescape':
+                    # Sus acertijos piden poner y romper bloques (aventura: solo los que el mapa permite).
+                    lines += [f'rg flag -w {world} __global__ build allow',
+                              f'rg flag -w {world} __global__ block-place allow',
+                              f'rg flag -w {world} __global__ block-break allow']
                 if world in DATAPACK_MAPS:
                     # Su datapack crea caballos, viboras y marcadores.
                     lines += [f'rg flag -w {world} __global__ mob-spawning allow']
