@@ -184,5 +184,17 @@ class MinijuegosTests(unittest.TestCase):
                 self.assertEqual(data['LevelName'], 'nuevo')
 
 
+    def test_map_teams_get_prefix(self):
+        from minijuegos_datapack import Adapter
+        a = Adapter.__new__(Adapter)
+        a.world, a.prefix, a.dims, a.players_tag, a.keep_teams = 'battleship', 'bs', {}, False, False
+        a.teams, a.mark, a.ns, a.moved_tags, a.objectives, a.schedules, a.main = {'one': {}}, 'bs_m', {}, [], set(), {}, 'bs_main'
+        self.assertEqual(a.command('team join one @a[team=lobby,x=23,y=5,z=42,limit=1,distance=..0.8]'),
+                         'team join bs_one @a[team=lobby,x=23,y=5,z=42,limit=1,distance=..0.8]')
+        self.assertEqual(a.command('tp @a[team=one] 1 2 3'), 'tp @a[distance=0..,team=bs_one] 1 2 3')
+        a.teams = {}
+        self.assertTrue(a.command('team join one @s').startswith('# (AstralRPG) quitado'))
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -35,6 +35,9 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   las 5 llegadas y el bloque de abajo coincide con el mapa. Falta probar jugando.
 - **Batalla Naval y Tower Defence (08/11/2026):** datapacks adaptados igual que Paradise.
   Battleship (TMA, 2 jugadores) conserva sus 202 command blocks (los botones del tablero).
+  Elige jugador 1 y 2 con equipos (`one`, `two`, `lobby`): se conservan como `bs_one`, `bs_two`,
+  `bs_lobby` (sin ellos la partida no arrancaba, 08/11/2026). Al salir del mundo, `team leave`.
+  Cuenta solo jugadores en aventura: un OP en creativo no cuenta para los 2.
   Tower Defence (MLE_qwq, MIT) usa su mundo y su End: el End es el mundo `towerdefence_end`
   (`EXTRA_WORLDS`), sus `in the_end` se traducen, los jugadores de los dos mundos llevan la marca
   `td_m` (sus @a/@p/@r la usan) y sus equipos `game.*` se conservan (solo dan color). Se quita

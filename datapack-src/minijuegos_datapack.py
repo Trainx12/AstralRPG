@@ -32,9 +32,13 @@ MAPS = {
     'parkour_paradise3': dict(source='parkour_paradise3.zip', prefix='pp3', console=(-34, 766)),
     'parkour_spiral2': dict(source='parkour_spiral2.zip', prefix='sp2', console=(0, -96)),
     # Batalla naval de 2 jugadores (TMA): todo en un mundo; sus 202 command blocks son los botones.
-    'battleship': dict(source='battleship.zip', prefix='bs'),
+    # Elige jugador 1 y 2 con equipos: se renombran (bs_one...) para no chocar con otros (TAB).
+    'battleship': dict(source='battleship.zip', prefix='bs', teams={
+        'lobby': {'displayName': '{"text":"Lobby","color":"yellow","bold":true}'},
+        'one': {'displayName': '{"text":"P1","color":"red","bold":true}', 'nametagVisibility': 'never'},
+        'two': {'displayName': '{"text":"P2","color":"blue","bold":true}', 'nametagVisibility': 'never'}}),
     # Tower Defence (MLE_qwq; prefijo td, con dims/players_tag/keep_teams para su End como mundo
-    # towerdefence_end como mundo towerdefence_end) se saco el 08/11/2026: ver minijuegos.py.
+    # towerdefence_end) se saco el 08/11/2026: ver minijuegos.py.
 }
 UUID = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
 
@@ -44,11 +48,13 @@ def text(raw):
 
 
 class Adapter:
-    def __init__(self, world, source, prefix, console=None, dims=None, players_tag=False, keep_teams=False):
+    def __init__(self, world, source, prefix, console=None, dims=None, players_tag=False, keep_teams=False,
+                 teams=None):
         self.world, self.prefix, self.console = world, prefix, console
         self.dims = dims or {}                  # dimension del mapa -> mundo del servidor
         self.players_tag = players_tag          # mapas de varios mundos: jugadores con marca <pp>_m
         self.keep_teams = keep_teams
+        self.teams = teams or {}                # equipos del mapa que se conservan con prefijo <pp>_
         self.mark = f'{prefix}_m'
         self.zip = zipfile.ZipFile(source)
         level = next(n for n in self.zip.namelist() if n.endswith('/level.dat') and n.count('/') == 1)
@@ -193,7 +199,10 @@ class Adapter:
             return line
         verb_part = stripped.split(' run ')[-1] if stripped.startswith(('execute', '$execute')) else stripped
         verb = verb_part.lstrip('$/').split(' ')[0]
-        if (verb == 'team' and not self.keep_teams) or verb == 'difficulty' \
+        for team in self.teams:                 # equipos propios del mapa -> <pp>_<equipo>
+            line = re.sub(rf'\bteam=(!?){team}\b', rf'team=\1{self.prefix}_{team}', line)
+            line = re.sub(rf'\bteam (join|add|modify|remove|empty) {team}\b', rf'team \1 {self.prefix}_{team}', line)
+        if (verb == 'team' and not (self.keep_teams or self.teams)) or verb == 'difficulty' \
                 or 'scoreboard objectives setdisplay' in stripped:
             return '# (AstralRPG) quitado: ' + stripped
         for old, new in self.dims.items():      # dimensiones del mapa -> mundos del servidor
@@ -260,6 +269,9 @@ class Adapter:
         if 'temp' in self.objectives:
             # Modo servidor del autor: varios jugadores, sin pasar a creativo en el entrenamiento.
             load.append(f'scoreboard players set #is_server {self.obj("temp")} 1')
+        for team, options in self.teams.items():
+            load.append(f'team add {self.prefix}_{team}')
+            load += [f'team modify {self.prefix}_{team} {k} {v}' for k, v in options.items()]
         load += [f'scoreboard objectives add {flag} dummy', f'scoreboard players set #arranco {flag} 0']
         self.files[f'data/{m}/function/astral/load.mcfunction'] = '\n'.join(load)
         start = [f'scoreboard players set #arranco {flag} 1']
@@ -271,6 +283,8 @@ class Adapter:
             self.files[f'data/{m}/function/astral/s/{key}.mcfunction'] = f'execute in {world} run function {target}'
         salir = [f'tag @s remove {t}' for t in sorted(self.tags)]
         salir += [f'scoreboard players reset @s {self.obj(o)}' for o in sorted(self.objectives)]
+        if self.teams:
+            salir.append('team leave @s')
         salir += [f'tag @s remove {self.mark}', 'effect clear @s', 'attribute @s minecraft:safe_fall_distance modifier remove spawn',
                   f'clear @s *[minecraft:custom_data~{{"hielkemaps:item":true}}]']
         self.files[f'data/{m}/function/astral/salir.mcfunction'] = '\n'.join(salir)
@@ -293,7 +307,8 @@ class Adapter:
 def generate(world):
     cfg = MAPS[world]
     adapter = Adapter(world, ROOT / '.local/mapas' / cfg['source'], cfg['prefix'], cfg.get('console'),
-                      cfg.get('dims'), cfg.get('players_tag', False), cfg.get('keep_teams', False))
+                      cfg.get('dims'), cfg.get('players_tag', False), cfg.get('keep_teams', False),
+                      cfg.get('teams'))
     files = adapter.build()
     out = ROOT / '.local/mapas/subir' / f'{world}-datapack.zip'
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:

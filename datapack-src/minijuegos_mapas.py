@@ -190,7 +190,7 @@ def main():
         if owner in DATAPACK_MAPS:   # mapas con datapack adaptado: comandos con sus namespaces
             c = DATAPACK_MAPS[owner]
             rewrite = Adapter(owner, folder / filename, c['prefix'], c.get('console'), c.get('dims'),
-                              c.get('players_tag', False), c.get('keep_teams', False)).command
+                              c.get('players_tag', False), c.get('keep_teams', False), c.get('teams')).command
         count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world,
                         world in keep or rewrite is not None, rewrite, dims.get(world))
         print(f'{world}: {count} regiones preparadas en .local/mapas/subir/{world}.zip')
