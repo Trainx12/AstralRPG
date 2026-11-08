@@ -63,8 +63,11 @@ class MinijuegosTests(unittest.TestCase):
         try:
             self.assertIn('"arena_futura"', gameplay.pvp())
             guard = gameplay.script().split('function astral_dungeon', 1)[1].split('function astral_builder', 1)[0]
-            self.assertIn('"parkour_futuro"', guard)
+            # Mini juegos fuera de las reglas de mazmorra (el inventario, con el gancho, queda guardado).
+            self.assertNotIn('"parkour_futuro"', guard)
             self.assertNotIn('"arena_futura"', guard)
+            death = gameplay.script().split('on death of player:', 1)[1].split('on jump:', 1)[0]
+            self.assertIn('"parkour_futuro"', death)
         finally:
             m.ARENAS.pop()
             m.PARKOURS.pop()

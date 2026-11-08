@@ -34,7 +34,7 @@ function astral_rescue(p: player):
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "dropper_facil" or "dropper_h4rs":
+    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario":
         return true
     return false
 

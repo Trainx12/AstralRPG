@@ -140,7 +140,9 @@ on load:
 
 
 def script():
-    worlds=' or '.join('"'+w+'"' for w in DUNGEONS + parkour_worlds())
+    # Solo mazmorras: los mini juegos guardan el inventario al entrar y sus mapas necesitan poner
+    # bloques, perlas, elitros, agua y monturas (Color Escape, Paradise 3, droppers). 08/11/2026.
+    worlds=' or '.join('"'+w+'"' for w in DUNGEONS)
     protected=' or '.join('"'+w+'"' for w in PROTECTED + parkour_worlds() + arena_worlds())
     rescue_options='\n'.join(f'    rescate-y-{w}: {y}' for w,y in RESCUE_HEIGHTS.items())
     rescue_limits='\n'.join(f'    if name of {{_w}} is "{w}":\n        return {{@rescate-y-{w}}}' for w in RESCUE_HEIGHTS)
