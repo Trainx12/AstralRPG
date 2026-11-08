@@ -328,6 +328,8 @@ def deployment():
              '# Si NO existen: con servidor encendido crear SOLO mundos nuevos, sin jugadores dentro:',
              'mv create minecraft:parkour_spiral normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}',
              'mv create minecraft:arenas_tft normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}',
+             *[f'mv create minecraft:{w} normal --world-type FLAT --no-structures --generator-settings {{"layers":[{{"block":"minecraft:air","height":1}}],"biome":"minecraft:the_void"}}'
+               for w in parkour_worlds() if w != 'parkour_spiral'],
              '# Apagar. Worlds > Upload SOLO en las filas nuevas parkour_spiral y arenas_tft, con su ZIP respectivo.',
              '# Archivos locales -> destino (editor Files; conservar las otras entradas de config.yml):']
     for name in ('principal', 'comandos', 'parkour', 'arenas'):
@@ -358,9 +360,19 @@ def deployment():
                   f'rg flag -w {world} __global__ mob-spawning {"deny" if parkour else "allow"}',
                   f'rg flag -w {world} __global__ pvp {"deny" if parkour else "allow"}']
         if parkour:
-            lines += [f'mv gamerule set minecraft:fall_damage false {world}',
-                      f'lp group default permission set mv.bypass.gamemode.{world} true',
-                      f'rg flag -w {world} __global__ fall-damage deny']
+            lines += [f'lp group default permission set mv.bypass.gamemode.{world} true']
+            if world in dropper_worlds():
+                # Hace falta el evento de caida para saber que se estrello (Skript lo cancela).
+                lines += [f'mv gamerule set minecraft:fall_damage true {world}']
+            else:
+                lines += [f'mv gamerule set minecraft:fall_damage false {world}',
+                          f'rg flag -w {world} __global__ fall-damage deny']
+            if world in logic_worlds():
+                # Color Escape: sus command blocks (selectores ya limitados) y sus cofres y botones.
+                lines += [f'mv gamerule set minecraft:command_blocks_work true {world}',
+                          f'rg flag -w {world} __global__ chest-access allow',
+                          f'rg flag -w {world} __global__ interact allow',
+                          f'rg flag -w {world} __global__ use allow']
     lines += ['# Reiniciar una vez para cargar todo junto y evitar acumular Metaspace con recargas.',
               '# Si solo se actualizan configs con los mundos ya instalados:']
     lines += ['dm reload', 'mm reload', 'skript:skript reload astral_gameplay', 'skript:skript reload astral_minijuegos',

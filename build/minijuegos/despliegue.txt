@@ -11,6 +11,11 @@
 # Si NO existen: con servidor encendido crear SOLO mundos nuevos, sin jugadores dentro:
 mv create minecraft:parkour_spiral normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 mv create minecraft:arenas_tft normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:parkour_spiral2 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:parkour_paradise3 normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:colorescape normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:dropper_facil normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv create minecraft:dropper_h4rs normal --world-type FLAT --no-structures --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 # Apagar. Worlds > Upload SOLO en las filas nuevas parkour_spiral y arenas_tft, con su ZIP respectivo.
 # Archivos locales -> destino (editor Files; conservar las otras entradas de config.yml):
 build/menus/DeluxeMenus/gui_menus/principal.yml -> plugins/DeluxeMenus/gui_menus/principal.yml
@@ -41,8 +46,8 @@ rg flag -w parkour_spiral __global__ block-place deny
 rg flag -w parkour_spiral __global__ chest-access deny
 rg flag -w parkour_spiral __global__ mob-spawning deny
 rg flag -w parkour_spiral __global__ pvp deny
-mv gamerule set minecraft:fall_damage false parkour_spiral
 lp group default permission set mv.bypass.gamemode.parkour_spiral true
+mv gamerule set minecraft:fall_damage false parkour_spiral
 rg flag -w parkour_spiral __global__ fall-damage deny
 mv modify parkour_spiral2 set pvp false
 mv modify parkour_spiral2 set gamemode survival
@@ -57,8 +62,8 @@ rg flag -w parkour_spiral2 __global__ block-place deny
 rg flag -w parkour_spiral2 __global__ chest-access deny
 rg flag -w parkour_spiral2 __global__ mob-spawning deny
 rg flag -w parkour_spiral2 __global__ pvp deny
-mv gamerule set minecraft:fall_damage false parkour_spiral2
 lp group default permission set mv.bypass.gamemode.parkour_spiral2 true
+mv gamerule set minecraft:fall_damage false parkour_spiral2
 rg flag -w parkour_spiral2 __global__ fall-damage deny
 mv modify parkour_paradise3 set pvp false
 mv modify parkour_paradise3 set gamemode survival
@@ -73,8 +78,8 @@ rg flag -w parkour_paradise3 __global__ block-place deny
 rg flag -w parkour_paradise3 __global__ chest-access deny
 rg flag -w parkour_paradise3 __global__ mob-spawning deny
 rg flag -w parkour_paradise3 __global__ pvp deny
-mv gamerule set minecraft:fall_damage false parkour_paradise3
 lp group default permission set mv.bypass.gamemode.parkour_paradise3 true
+mv gamerule set minecraft:fall_damage false parkour_paradise3
 rg flag -w parkour_paradise3 __global__ fall-damage deny
 mv modify colorescape set pvp false
 mv modify colorescape set gamemode survival
@@ -89,9 +94,13 @@ rg flag -w colorescape __global__ block-place deny
 rg flag -w colorescape __global__ chest-access deny
 rg flag -w colorescape __global__ mob-spawning deny
 rg flag -w colorescape __global__ pvp deny
-mv gamerule set minecraft:fall_damage false colorescape
 lp group default permission set mv.bypass.gamemode.colorescape true
+mv gamerule set minecraft:fall_damage false colorescape
 rg flag -w colorescape __global__ fall-damage deny
+mv gamerule set minecraft:command_blocks_work true colorescape
+rg flag -w colorescape __global__ chest-access allow
+rg flag -w colorescape __global__ interact allow
+rg flag -w colorescape __global__ use allow
 mv modify dropper_facil set pvp false
 mv modify dropper_facil set gamemode survival
 mv gamerule set minecraft:keep_inventory true dropper_facil
@@ -105,9 +114,8 @@ rg flag -w dropper_facil __global__ block-place deny
 rg flag -w dropper_facil __global__ chest-access deny
 rg flag -w dropper_facil __global__ mob-spawning deny
 rg flag -w dropper_facil __global__ pvp deny
-mv gamerule set minecraft:fall_damage false dropper_facil
 lp group default permission set mv.bypass.gamemode.dropper_facil true
-rg flag -w dropper_facil __global__ fall-damage deny
+mv gamerule set minecraft:fall_damage true dropper_facil
 mv modify dropper_h4rs set pvp false
 mv modify dropper_h4rs set gamemode survival
 mv gamerule set minecraft:keep_inventory true dropper_h4rs
@@ -121,9 +129,8 @@ rg flag -w dropper_h4rs __global__ block-place deny
 rg flag -w dropper_h4rs __global__ chest-access deny
 rg flag -w dropper_h4rs __global__ mob-spawning deny
 rg flag -w dropper_h4rs __global__ pvp deny
-mv gamerule set minecraft:fall_damage false dropper_h4rs
 lp group default permission set mv.bypass.gamemode.dropper_h4rs true
-rg flag -w dropper_h4rs __global__ fall-damage deny
+mv gamerule set minecraft:fall_damage true dropper_h4rs
 mv modify arena set pvp true
 mv modify arena set gamemode survival
 mv gamerule set minecraft:keep_inventory true arena
