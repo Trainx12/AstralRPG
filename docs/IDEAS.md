@@ -10,10 +10,10 @@ las chicas las puede ir haciendo Claude. Lo marcado **a mano** lo hace el dueño
 | 1 | Renacimiento: reinicio de progreso, tiers VI a X, dificultad personal y deseo | Definido (faltan detalles, ver abajo) |
 | 2 | Jefe final: el dueño, para 4 jugadores | Definido (arma y armadura por ver) |
 | 3 | Final del Santuario al vencer a los 6 jefes | Por definir |
-| 4 | Bosque para motosierras (árboles que vuelven a crecer, como las Minas Astrales) | Falta el mapa |
+| 4 | Bosque para motosierras (árboles que vuelven a crecer, como las Minas Astrales) | Hecho en el repo (08/11): docs/BOSQUE.md |
 | 5 | Fragmentos: llave para renacer (entregarlos al aldeano tras matar al jefe final) | Definido (va con el 1) |
 | 6 | Pistas/acertijos al entrar a una expedición para encontrar al aldeano de la mazmorra | Definido |
-| 7 | Más mapas de parkour (mínimo 1 más de la torre espiral) | Pendiente |
+| 7 | Más mapas de parkour (mínimo 1 más de la torre espiral) | Hecho en el repo (08/11): Spiral 2, Paradise 3, 2 droppers y Color Escape |
 | 8 | Ranking de parkour por mapa (más rápidos) | Definido |
 | 9 | Premio y deseo lite al terminar la historia del Cronista | Definido |
 | 10 | Saltador (gancho viejo) y Gancho (gancho real) | Hecho y subido al server (08/11) |

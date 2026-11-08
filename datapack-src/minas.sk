@@ -150,6 +150,7 @@ function am_menu(p: player):
     set item model of slot 45 of {_inv} to "astral:viajes/info"
     set slot 53 of {_inv} to barrier named "&cCerrar"
     set item model of slot 53 of {_inv} to "astral:viajes/cerrar"
+    set slot 47 of {_inv} to spruce sapling named "&2&lBosque Astral" with lore "&7Talá árboles con hacha o motosierra." and "&7Vuelven a crecer a los 3 minutos." and "" and "&aClic para viajar."
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "menu"
 
@@ -262,6 +263,10 @@ on inventory click:
         if {_slot} is 49:
             close inventory of player
             execute console command "spawn %name of player%"
+            stop
+        if {_slot} is 47:
+            close inventory of player
+            make player execute command "/bosque"
             stop
         set {_dest} to {-am.dest::%{_slot}%}
         if {_dest} is set:

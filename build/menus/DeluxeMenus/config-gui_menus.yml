@@ -48,5 +48,9 @@ gui_menus:
     file: parkour.yml
   arenas:
     file: arenas.yml
+  dropper_facil:
+    file: dropper_facil.yml
+  dropper_h4rs:
+    file: dropper_h4rs.yml
   cosmeticos:
     file: cosmeticos.yml

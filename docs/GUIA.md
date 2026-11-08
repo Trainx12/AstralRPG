@@ -20,6 +20,7 @@ AstralRPG/
 │   ├── SERVIDOR.md           Administración: plugins, lobby, comandos, problemas conocidos
 │   ├── GUIA.md               Este archivo
 │   ├── IDEAS.md              Ideas pendientes del dueño, ordenadas por trabajo
+│   ├── BOSQUE.md             Bosque Astral: tala con árboles que vuelven a crecer
 │   └── CREDENCIALES.local.md Claves del servidor (solo en tu PC, Git lo ignora)
 ├── datapack-src/             TODO lo que se genera sale de acá
 │   ├── items.py              Materiales, armas, armaduras, talismanes, lanzas, drops, élites

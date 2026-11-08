@@ -34,7 +34,7 @@ function astral_rescue(p: player):
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "parkour_spiral":
+    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "dropper_facil" or "dropper_h4rs":
         return true
     return false
 
@@ -117,7 +117,7 @@ on mount:
 
 on death of player:
     set {_w} to name of world of victim
-    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "arena" or "arenas_tft":
+    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
         keep the inventory and experiences
         clear drops
         set {_x} to floor(x-coordinate of victim)

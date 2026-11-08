@@ -37,10 +37,10 @@
     "parkour": {
       "material": "FEATHER",
       "slot": 5,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -381,10 +381,10 @@
     "parkour_6": {
       "material": "FEATHER",
       "slot": 6,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -395,10 +395,10 @@
     "parkour_14": {
       "material": "FEATHER",
       "slot": 14,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -409,10 +409,10 @@
     "parkour_15": {
       "material": "FEATHER",
       "slot": 15,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -423,10 +423,10 @@
     "parkour_23": {
       "material": "FEATHER",
       "slot": 23,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -437,10 +437,10 @@
     "parkour_24": {
       "material": "FEATHER",
       "slot": 24,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -451,10 +451,10 @@
     "parkour_32": {
       "material": "FEATHER",
       "slot": 32,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],
@@ -465,10 +465,10 @@
     "parkour_33": {
       "material": "FEATHER",
       "slot": 33,
-      "display_name": "&d&lParkour",
+      "display_name": "&d&lMini juegos",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí tu circuito y probá tus saltos.",
+        "&7Parkour, droppers y Color Escape.",
         "",
         "&eClic para elegir."
       ],

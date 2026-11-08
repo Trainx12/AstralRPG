@@ -1,5 +1,5 @@
 {
-  "menu_title": "&8Mapas de Parkour",
+  "menu_title": "&8Mini juegos",
   "size": 36,
   "items": {
     "spiral": {
@@ -8,38 +8,87 @@
       "display_name": "&a&lSpiral Parkour Challenge",
       "lore": [
         "&7Una espiral de saltos hasta la cima.",
-        "&7Dificultad: &fProgresiva",
-        "&7Sin gancho ni dano de caida."
+        "&7Tipo: &fProgresiva",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
       ],
       "click_commands": [
         "[close]",
         "[player] parkour spiral<delay=3>"
       ]
     },
-    "proximo_11": {
-      "material": "GRAY_DYE",
+    "spiral2": {
+      "material": "PHANTOM_MEMBRANE",
       "slot": 11,
-      "display_name": "&7Proximamente"
+      "display_name": "&a&lParkour Spiral 2",
+      "lore": [
+        "&7La segunda espiral: mas alta y mas larga.",
+        "&7Tipo: &fDificil",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral2<delay=3>"
+      ]
     },
-    "proximo_12": {
-      "material": "GRAY_DYE",
+    "paradise3": {
+      "material": "SUNFLOWER",
       "slot": 12,
-      "display_name": "&7Proximamente"
+      "display_name": "&a&lParkour Paradise 3",
+      "lore": [
+        "&7Islas de saltos unidas por portales.",
+        "&7Tipo: &fMedia",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour paradise3<delay=3>"
+      ]
     },
-    "proximo_13": {
-      "material": "GRAY_DYE",
+    "colorescape": {
+      "material": "LIME_DYE",
       "slot": 13,
-      "display_name": "&7Proximamente"
+      "display_name": "&a&lColor Escape",
+      "lore": [
+        "&7Escape de colores: resolve cada sala para salir.",
+        "&7Tipo: &fPuzzle",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour colorescape<delay=3>"
+      ]
     },
-    "proximo_14": {
-      "material": "GRAY_DYE",
+    "dropper_facil": {
+      "material": "WATER_BUCKET",
       "slot": 14,
-      "display_name": "&7Proximamente"
+      "display_name": "&a&lThe Easiest Dropper",
+      "lore": [
+        "&710 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_facil"
+      ]
     },
-    "proximo_15": {
-      "material": "GRAY_DYE",
+    "dropper_h4rs": {
+      "material": "HEART_OF_THE_SEA",
       "slot": 15,
-      "display_name": "&7Proximamente"
+      "display_name": "&a&lThe Dropper (H4rs)",
+      "lore": [
+        "&710 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_h4rs"
+      ]
     },
     "proximo_16": {
       "material": "GRAY_DYE",

@@ -14,13 +14,57 @@ import zlib
 from mapas import NBT, nbt_payload, nbt_string, sanitize
 
 ROOT = Path(__file__).resolve().parent.parent
+# Version de datos de Paper 26.1.2 en el servidor (leida de world/level.dat el 08/11/2026).
+# Los mapas guardados en 26.2 (4903) solo usan bloques que ya existen en 26.1: se les baja el numero.
+SERVER_DATA_VERSION = 4790
+# Region del mundo principal: formato viejo (region/) o el de 26.x (dimensions/minecraft/overworld/region/).
+REGION = re.compile(r'(?:dimensions/minecraft/overworld/)?(region|entities)/(r\.-?\d+\.-?\d+\.mca)')
 
 
 def encode(tree):
     return bytes([tree[0]]) + nbt_string('') + nbt_payload(tree)
 
 
-def clean_region(raw):
+RANGE = 300  # bloques: alcance de los selectores de mapas que conservan sus command blocks
+
+
+def local_selectors(command):
+    """Que un command block del mapa solo toque a quien juega ahi (pedido del dueno, 08/11/2026).
+
+    - @a/@r -> @p (el jugador que piso el boton o la placa).
+    - `execute as/at @a` (chequeos repetidos para todos los del mapa) -> @a a menos de RANGE.
+    - @e -> limitado a RANGE: sin eso mata criaturas de otros mundos.
+    - Un selector que ya tiene distance= se deja como esta.
+    """
+    pattern = re.compile(r'(?P<loop>execute (?:as|at) )?@(?P<kind>[aer])(?P<args>\[[^\]]*\])?')
+
+    def fix(m):
+        loop, kind, args = m.group('loop') or '', m.group('kind'), m.group('args') or ''
+        if 'distance=' in args:
+            return m.group(0)
+        if kind == 'e' or (kind == 'a' and loop):
+            inner = args[1:-1]
+            return f"{loop}@{kind}[distance=..{RANGE}{',' + inner if inner else ''}]"
+        return f'{loop}@p{args}'
+    return pattern.sub(fix, command)
+
+
+def keep_logic(tree):
+    """Para mapas que necesitan sus command blocks: solo se reescriben los selectores."""
+    root = tree[1]
+    chunk = root['Level'][1] if 'Level' in root else root
+    changed = 0
+    for key in ('block_entities', 'TileEntities'):
+        for _, data in chunk.get(key, (9, []))[1]:
+            if 'Command' in data:
+                new = local_selectors(data['Command'][1])
+                if new != data['Command'][1]:
+                    data['Command'] = (8, new)
+                    changed += 1
+    return changed
+
+
+def clean_region(raw, keep_commands=False):
     header = bytearray(raw[:8192])
     records = []
     sector = 2
@@ -38,7 +82,13 @@ def clean_region(raw):
         elif compression != 3:
             raise ValueError(f'Compresion de region no soportada: {compression}')
         tree = NBT(payload, typed=True).root()
-        sanitize(tree)
+        if keep_commands:
+            keep_logic(tree)
+        else:
+            sanitize(tree)
+        version = tree[1].get('DataVersion')
+        if version and version[1] > SERVER_DATA_VERSION:
+            tree[1]['DataVersion'] = (3, SERVER_DATA_VERSION)
         chunk = tree[1].get('Level', tree)[1]
         # Los bloques numericos del mapa 1.12 no tienen paleta moderna.
         for _, section in chunk.get('Sections', (9, []))[1]:
@@ -64,7 +114,7 @@ def clean_region(raw):
     return bytes(header) + b''.join(records)
 
 
-def prepare(source, destination, world):
+def prepare(source, destination, world, keep_commands=False):
     """Lista permitida: level.dat y regiones; excluye jugadores, entidades y datapacks."""
     if not destination.resolve().is_relative_to((ROOT / '.local').resolve()):
         raise ValueError('Los mundos de terceros solo pueden escribirse en .local')
@@ -77,20 +127,30 @@ def prepare(source, destination, world):
         for field in ('Player', 'DataPacks', 'CustomBossEvents', 'ScheduledEvents'):
             data.pop(field, None)
         data['LevelName'] = (8, world)
+        if data.get('DataVersion', (3, 0))[1] > SERVER_DATA_VERSION:
+            data['DataVersion'] = (3, SERVER_DATA_VERSION)
+            version = data['Version'][1]
+            version['Id'] = (3, SERVER_DATA_VERSION)
+            version['Name'] = (8, '26.1.2')
         data['GameType'] = (3, 0)
         # El formato 1.21.11 usa game_rules; 1.12 requiere cadenas en GameRules.
         if 'game_rules' in data:
-            data['game_rules'][1]['minecraft:command_blocks_work'] = (1, 0)
+            data['game_rules'][1]['minecraft:command_blocks_work'] = (1, int(keep_commands))
             data['game_rules'][1]['minecraft:spawn_mobs'] = (1, 0)
             data['game_rules'][1]['minecraft:keep_inventory'] = (1, 1)
         dst.writestr(f'{world}/level.dat', gzip.compress(encode(tree), mtime=0))
         count = 0
         for name in src.namelist():
             relative = name.removeprefix(prefix)
-            if name.startswith(prefix) and re.fullmatch(r'region/r\.-?\d+\.-?\d+\.mca', relative):
+            match = REGION.fullmatch(relative) if name.startswith(prefix) else None
+            # Entidades solo en los mapas que conservan su logica (marcos, mobs del puzzle).
+            if match and (match.group(1) == 'region' or keep_commands):
                 if '..' in PurePosixPath(relative).parts:
                     raise ValueError('Ruta invalida')
-                dst.writestr(f'{world}/{relative}', clean_region(src.read(name)))
+                raw = src.read(name)
+                if match.group(1) == 'region':
+                    raw = clean_region(raw, keep_commands)
+                dst.writestr(f'{world}/{match.group(1)}/{match.group(2)}', raw)
                 count += 1
         if not count:
             raise ValueError('No se encontraron regiones')
@@ -99,8 +159,17 @@ def prepare(source, destination, world):
 
 def main():
     folder = ROOT / '.local/mapas'
-    for filename, world in [('parkour_spiral.zip', 'parkour_spiral'), ('arenapvp_3.zip', 'arenas_tft')]:
-        count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world)
+    import sys
+    maps = [('parkour_spiral.zip', 'parkour_spiral'), ('arenapvp_3.zip', 'arenas_tft'),
+            ('parkour_spiral2.zip', 'parkour_spiral2'), ('parkour_paradise3.zip', 'parkour_paradise3'),
+            ('dropper.zip', 'dropper_facil'), ('dropper_h4rs.zip', 'dropper_h4rs'),
+            ('colorescape.zip', 'colorescape')]
+    keep = {'colorescape'}  # necesita sus command blocks (selectores reescritos)
+    only = set(sys.argv[1:])
+    for filename, world in maps:
+        if only and world not in only:
+            continue
+        count = prepare(folder / filename, folder / 'subir' / (world + '.zip'), world, world in keep)
         print(f'{world}: {count} regiones preparadas en .local/mapas/subir/{world}.zip')
 
 

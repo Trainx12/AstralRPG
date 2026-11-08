@@ -79,7 +79,7 @@ def panel(kind):
     text(im,CAPTIONS[kind],(112,ty),color='#fff0cd')
     d.rectangle((24,56,199,257),fill=fill)
     if kind in ('portales','arenas'):
-        labels=('Nether','End','Parkour','Arenas') if kind=='portales' else ('Coliseo','Ruinas','Vacio','Volcan')
+        labels=('Nether','End','Juegos','Arenas') if kind=='portales' else ('Coliseo','Ruinas','Vacio','Volcan')
         for i,caption in enumerate(labels):
             x,y=31+round(i*40.5),GRID_Y
             # Tarjeta de 40x72: pintura arriba y nombre abajo, borde dorado como el concepto.

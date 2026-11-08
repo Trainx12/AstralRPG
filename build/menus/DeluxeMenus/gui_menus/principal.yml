@@ -74,9 +74,9 @@ items:
     material: FEATHER
     slot: 15
     amount: 1
-    display_name: '&a&lParkour'
+    display_name: '&a&lMini juegos'
     lore:
-    - '&7Elegi un mapa de saltos.'
+    - '&7Parkour, droppers y Color Escape.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: astral:menu/icon_parkour

@@ -35,6 +35,13 @@ class MinijuegosTests(unittest.TestCase):
             self.assertEqual(len(slots), len(set(slots)))
             self.assertTrue(all(0 <= s < data['size'] for s in slots))
             for d in maps:
+                # Los niveles de dropper estan en el menu de su dropper; Mini juegos abre ese menu.
+                if d.get('group'):
+                    self.assertEqual(data['items'][d['group']]['click_commands'], ['[openguimenu] ' + d['group']])
+                    group = yaml.safe_load(json.dumps(m.menu_data(d['group'])))
+                    self.assertEqual(group['items'][d['id']]['click_commands'],
+                                     ['[close]', f'[player] {command} {d["id"]}<delay=3>'])
+                    continue
                 self.assertEqual(data['items'][d['id']]['click_commands'],
                                  ['[close]', f'[player] {command} {d["id"]}<delay=3>'])
                 self.assertIn(f'if {{_id}} is "{kind}.{d["id"]}":', m.script())
@@ -108,11 +115,33 @@ class MinijuegosTests(unittest.TestCase):
         script = m.script()
         self.assertIn('set gamemode of {_p} to adventure', script)
         self.assertIn('set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}', script)
-        self.assertIn('if gamemode of {_p} is creative:', script)
+        # Nadie cambia de modo en un mini juego (tampoco OP en creativo).
+        self.assertIn('if gamemode of {_p} is not adventure:', script)
+        self.assertNotIn('if gamemode of {_p} is creative:', script)
         for kind, d in m.definitions():
             self.assertIn(f'less than {d["rescue_y"]}', script)
             death_guard = gameplay.script().split('on death of player:', 1)[1].split('on jump:', 1)[0]
             self.assertIn('"' + d['world'] + '"', death_guard)
+
+    def test_vanilla_inventory_and_droppers(self):
+        script = m.script()
+        self.assertIn('astral_mj_guardar({_p})', script)
+        self.assertIn('astral_mj_devolver({_p})', script)
+        self.assertIn('modifier add astral:minijuego', script)
+        for d in m.PARKOURS:
+            if d.get('group'):
+                self.assertIn(f'less than {d["finish_y"]}', script)
+        self.assertIn('if damage cause is fall:', script)
+        self.assertEqual(len([d for d in m.PARKOURS if d.get('group') == 'dropper_h4rs']), 10)
+
+    def test_logic_maps_only_touch_local_players(self):
+        from minijuegos_mapas import local_selectors as f
+        self.assertEqual(f('clear @a minecraft:lapis_lazuli'), 'clear @p minecraft:lapis_lazuli')
+        self.assertEqual(f('kill @e[type=minecraft:wither]'), 'kill @e[distance=..300,type=minecraft:wither]')
+        self.assertEqual(f('execute as @a[gamemode=creative] at @s run gamemode adventure @s'),
+                         'execute as @a[distance=..300,gamemode=creative] at @s run gamemode adventure @s')
+        self.assertEqual(f('execute at @a[distance=..4] run say x'), 'execute at @a[distance=..4] run say x')
+        self.assertEqual(f('tp @r 0 0 0'), 'tp @p 0 0 0')
 
     def test_private_zip_whitelist_and_old_blocks_sanitized(self):
         blocks = bytearray(4096)

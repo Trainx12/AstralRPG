@@ -305,7 +305,7 @@ def principal_menu():
         ('mazmorras', 'SPAWNER', '&d&lMazmorras', ['&7Viaja a las mazmorras descubiertas.'], ['[openguimenu] mazmorras']),
         ('expediciones', 'FILLED_MAP', '&a&lExpediciones Astrales', ['&7Explora y encontra a sus guardianes.'], ['[openguimenu] expediciones']),
         ('portales', 'ENDER_EYE', '&b&lPortales Astrales', ['&7Elegi tu proximo destino.'], ['[openguimenu] portales']),
-        ('parkour', 'FEATHER', '&a&lParkour', ['&7Elegi un mapa de saltos.'], ['[openguimenu] parkour']),
+        ('parkour', 'FEATHER', '&a&lMini juegos', ['&7Parkour, droppers y Color Escape.'], ['[openguimenu] parkour']),
         ('arenas', 'IRON_SWORD', '&c&lArenas PvP', ['&7Pelea sin perder tu equipo.'], ['[openguimenu] arenas']),
         ('misiones', 'WRITABLE_BOOK', '&e&lEl Cronista', ['&7Misiones, historia y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
         ('mascotas', 'BONE', '&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
@@ -333,7 +333,7 @@ def principal_menu():
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
 COMANDOS = [
     ('Aventura', 'LIME_STAINED_GLASS_PANE', [
-        ('parkour', 'FEATHER', '/parkour', ['Elegir un mapa de saltos.'], '/parkour [id]', ['[openguimenu] parkour']),
+        ('parkour', 'FEATHER', '/minijuegos', ['Parkour, droppers y Color Escape.', 'Entras sin tu inventario: se devuelve al salir.'], '/minijuegos [id]', ['[openguimenu] parkour']),
         ('arenas', 'IRON_SWORD', '/arenas', ['Arenas PvP con tu equipo.', 'Conservas todo al morir.'], '/arenas [id]', ['[openguimenu] arenas']),
         ('menu', 'COMPASS', '/menu', ['Menu principal: expediciones, mazmorras,', 'misiones, bazar, mascotas y guia.', 'Tambien con la Estrella del slot 9.'], '/menu', ['[openguimenu] principal']),
         ('mazmorras', 'NETHER_STAR', '/mazmorras', ['Viaja a las mazmorras que ya descubriste', 'hablando con su guardian.'], '/mazmorras', ['[close]', '[player] mazmorras<delay=3>']),
@@ -568,7 +568,9 @@ def main():
     lista += ['  mazmorras:\n    file: mazmorras.yml']
     lista += ['  expediciones:\n    file: expediciones.yml']
     lista += ['  portales:\n    file: portales.yml']
+    from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
+    lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]
     lista += ['  cosmeticos:\n    file: cosmeticos.yml']
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")

@@ -1,0 +1,24 @@
+# Bosque Astral (generado por datapack-src/bosque_talar.py). Ver docs/BOSQUE.md.
+# 1) Crear el mundo vacio una sola vez, desde la consola:
+mv create astral_bosque normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify astral_bosque set pvp false
+mv modify astral_bosque set hunger false
+mv modify astral_bosque set gamemode survival
+mv modify astral_bosque set allow-weather false
+mv gamerule set minecraft:spawn_mobs false astral_bosque
+mv gamerule set minecraft:keep_inventory true astral_bosque
+mv gamerule set minecraft:advance_time false astral_bosque
+mv gamerule set minecraft:random_tick_speed 0 astral_bosque
+minecraft:execute in minecraft:astral_bosque run time set noon
+rg flag -w astral_bosque __global__ chest-access deny
+rg flag -w astral_bosque __global__ pistons deny
+rg flag -w astral_bosque __global__ mob-spawning deny
+
+# 2) Subir build/bosque/astral_bosque.sk a plugins/Skript/scripts/ y el astral_minas.sk nuevo
+#    (boton Bosque en /minas). Despues:
+skript reload astral_bosque
+skript reload astral_minas
+# 3) Generar los arboles y sus moldes (unos 30 segundos):
+bosquegenerar
+# 4) Revisar parado en el spawn (-4.5 65 56.5) que esten los 64 arboles.
+#    Con /bosquereset se vuelven a copiar todos los moldes.

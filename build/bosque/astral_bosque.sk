@@ -1,0 +1,298 @@
+# AstralRPG / Bosque Astral. Generado por datapack-src/bosque_talar.py: no editar a mano.
+# Arboles con molde en Y -60; regeneran 3 min despues de talarlos (clone masked).
+# Pendientes en memoria: {-ab.pend::i_j} = fecha en que se talo.
+
+function ab_world() :: world:
+    return world "astral_bosque"
+
+function ab_spawn() :: location:
+    return location(-4.5, 65, 56.5, ab_world(), -90, 0)
+
+# Celda del arbol ("i_j") o "" si esta fuera de la grilla.
+function ab_cell(loc: location) :: text:
+    set {_i} to floor((x-coordinate of {_loc} - 0) / 14)
+    set {_j} to floor((z-coordinate of {_loc} - 0) / 14)
+    if {_i} is between 0 and 7:
+        if {_j} is between 0 and 7:
+            return "%{_i}%_%{_j}%"
+    return ""
+
+function ab_breakable(b: block) :: boolean:
+    set {_t} to "%type of {_b}%"
+    if {_t} contains "log":
+        return true
+    if {_t} contains "wood":
+        return true
+    if {_t} contains "leaves":
+        return true
+    if {_t} contains "stem":
+        return true
+    if {_t} contains "hyphae":
+        return true
+    if {_t} contains "vine":
+        return true
+    if {_t} contains "cocoa":
+        return true
+    if {_t} contains "bee nest":
+        return true
+    return false
+
+# Copia el molde de la celda sobre el arbol. Devuelve true si el tronco volvio.
+function ab_regrow(k: text) :: boolean:
+    set {_p::*} to {_k} split at "_"
+    set {_i} to {_p::1} parsed as integer
+    set {_j} to {_p::2} parsed as integer
+    set {_x} to 0 + {_i} * 14
+    set {_z} to 0 + {_j} * 14
+    set {_x2} to {_x} + 13
+    set {_z2} to {_z} + 13
+    execute console command "execute in minecraft:astral_bosque run clone %{_x}% -60 %{_z}% %{_x2}% -20 %{_z2}% %{_x}% 64 %{_z}% masked"
+    set {_c} to location({_x} + 7, 65, {_z} + 7, ab_world())
+    if block at {_c} is air:
+        return false
+    return true
+
+command /bosque:
+    executable by: players
+    trigger:
+        if name of world of player is "lobby" or "astral_minas" or "astral_bosque":
+            set velocity of player to vector(0, 0, 0)
+            teleport player to ab_spawn()
+            send "&2Bosque Astral: &7solo se talan troncos y hojas. Cada arbol vuelve a crecer a los 3 minutos." to player
+        else:
+            send "&eEl bosque se abre desde el lobby o desde las Minas Astrales (/minas)." to player
+
+on break with priority highest:
+    if name of world of event-block is not "astral_bosque":
+        stop
+    if player's gamemode is creative:
+        if player has permission "astral.minas.admin":
+            stop
+    set {_k} to ab_cell(location of event-block)
+    if {_k} is "":
+        cancel event
+        stop
+    if ab_breakable(event-block) is false:
+        cancel event
+        stop
+    if {-ab.pend::%{_k}%} is not set:
+        set {-ab.pend::%{_k}%} to now
+
+on place:
+    if name of world of event-block is "astral_bosque":
+        if player's gamemode is not creative:
+            cancel event
+
+on bucket empty:
+    if name of world of player is "astral_bosque":
+        if player's gamemode is not creative:
+            cancel event
+
+on explode:
+    if name of world of event-location is "astral_bosque":
+        cancel event
+
+# Las hojas no se caen: el arbol vuelve entero con el molde.
+on leaves decay:
+    if name of world of event-block is "astral_bosque":
+        cancel event
+
+on damage of player:
+    if name of world of victim is "astral_bosque":
+        cancel event
+
+every 1 second:
+    loop all players in ab_world():
+        if y-coordinate of loop-player < 55:
+            if loop-player's gamemode is not creative:
+                teleport loop-player to ab_spawn()
+
+# La motosierra del datapack no dispara eventos de Skript: se revisa el tronco de cada arbol.
+every 5 seconds:
+    if ab_world() is not set:
+        stop
+    loop 8 times:
+        set {_i} to loop-value-1 - 1
+        loop 8 times:
+            set {_j} to loop-value-2 - 1
+            set {_k} to "%{_i}%_%{_j}%"
+            if {-ab.pend::%{_k}%} is not set:
+                set {_x} to 0 + {_i} * 14 + 7
+                set {_z} to 0 + {_j} * 14 + 7
+                set {_live} to location({_x}, 65, {_z}, ab_world())
+                set {_mold} to location({_x}, -59, {_z}, ab_world())
+                if chunk at {_live} is loaded:
+                    if block at {_live} is air:
+                        if block at {_mold} is not air:
+                            set {-ab.pend::%{_k}%} to now
+    loop indices of {-ab.pend::*}:
+        set {_k} to loop-value
+        if difference between {-ab.pend::%{_k}%} and now >= 3 minutes:
+            if ab_regrow({_k}) is true:
+                delete {-ab.pend::%{_k}%}
+
+# ---------------------------------------------------------------- admin
+
+command /bosquegenerar:
+    permission: astral.minas.admin
+    trigger:
+        send "&eGenerando el Bosque Astral (64 arboles)..." to command sender
+        execute console command "execute in minecraft:astral_bosque run forceload add -16 -16 127 127"
+        wait 3 seconds
+        execute console command "execute in minecraft:astral_bosque run fill -8 61 -8 55 63 55 minecraft:dirt"
+        execute console command "execute in minecraft:astral_bosque run fill -8 64 -8 55 64 55 minecraft:grass_block"
+        execute console command "execute in minecraft:astral_bosque run fill -8 61 56 55 63 119 minecraft:dirt"
+        execute console command "execute in minecraft:astral_bosque run fill -8 64 56 55 64 119 minecraft:grass_block"
+        execute console command "execute in minecraft:astral_bosque run fill 56 61 -8 119 63 55 minecraft:dirt"
+        execute console command "execute in minecraft:astral_bosque run fill 56 64 -8 119 64 55 minecraft:grass_block"
+        execute console command "execute in minecraft:astral_bosque run fill 56 61 56 119 63 119 minecraft:dirt"
+        execute console command "execute in minecraft:astral_bosque run fill 56 64 56 119 64 119 minecraft:grass_block"
+        execute console command "execute in minecraft:astral_bosque run fill -7 64 53 -3 64 59 minecraft:mossy_stone_bricks"
+        execute console command "execute in minecraft:astral_bosque run fill 0 -61 0 111 -61 111 minecraft:dirt"
+        execute console command "execute in minecraft:astral_bosque run fill 0 -60 0 111 -60 111 minecraft:grass_block"
+        wait 1 second
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:dark_oak 7 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 7 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 7 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:cherry 7 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 7 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:pine 7 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 7 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:birch 7 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 21 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:fancy_oak 21 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:spruce 21 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:oak 21 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:oak 21 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:oak 21 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 21 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 21 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 35 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 35 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:birch 35 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:spruce 35 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_jungle_tree 35 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 35 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:dark_oak 35 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 35 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 49 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 49 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 49 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 49 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:super_birch_bees_0002 49 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:cherry 49 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:acacia 49 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 49 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:fancy_oak 63 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 63 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 63 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:fancy_oak 63 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:spruce 63 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 63 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 63 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 63 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 77 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:pine 77 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 77 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 77 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 77 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:cherry 77 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:jungle_tree 77 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 77 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 91 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 91 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:acacia 91 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 91 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:fancy_oak 91 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_jungle_tree 91 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:oak 91 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 91 -59 105"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:birch 105 -59 7"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 105 -59 21"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_spruce 105 -59 35"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:spruce 105 -59 49"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:super_birch_bees_0002 105 -59 63"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:dark_oak 105 -59 77"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:jungle_tree 105 -59 91"
+        wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 105 -59 105"
+        wait 2 ticks
+        wait 1 second
+        loop 8 times:
+            loop 8 times:
+                ab_regrow("%loop-value-1 - 1%_%loop-value-2 - 1%")
+                wait 2 ticks
+        execute console command "execute in minecraft:astral_bosque run forceload remove -16 -16 127 127"
+        delete {-ab.pend::*}
+        send "&aBosque generado. Revisar que no falten arboles (los que fallan quedan sin molde)." to command sender
+
+command /bosquereset:
+    permission: astral.minas.admin
+    trigger:
+        loop 8 times:
+            loop 8 times:
+                ab_regrow("%loop-value-1 - 1%_%loop-value-2 - 1%")
+        delete {-ab.pend::*}
+        send "&aArboles regenerados." to command sender

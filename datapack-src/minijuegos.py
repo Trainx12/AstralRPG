@@ -8,7 +8,36 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Challenge',
                  icon='FEATHER', description='Una espiral de saltos hasta la cima.',
-                 difficulty='Progresiva', arrival=(0.5, -11, -1.5, 0, 0), rescue_y=-20)]
+                 difficulty='Progresiva', arrival=(0.5, -11, -1.5, 0, 0), rescue_y=-20),
+            dict(id='spiral2', world='parkour_spiral2', name='Parkour Spiral 2',
+                 icon='PHANTOM_MEMBRANE', description='La segunda espiral: mas alta y mas larga.',
+                 difficulty='Dificil', arrival=(0.5, 54, -96.5, 0, 0), rescue_y=-70),
+            dict(id='paradise3', world='parkour_paradise3', name='Parkour Paradise 3',
+                 icon='SUNFLOWER', description='Islas de saltos unidas por portales.',
+                 difficulty='Media', arrival=(-33.5, 131, 766.5, 0, 0), rescue_y=-10),
+            dict(id='colorescape', world='colorescape', name='Color Escape', icon='LIME_DYE',
+                 description='Escape de colores: resolve cada sala para salir.', difficulty='Puzzle',
+                 arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True)]
+# Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
+# Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
+DROPPERS = {
+    'dropper_facil': dict(name='The Easiest Dropper', icon='WATER_BUCKET', rescue_y=-10, levels=[
+        ('Epilepsy Warning', (1009, 253, 468)), ('GLaDOS', (2000, 255, 98)), ('Gaming Rig', (1036, 169, 761)),
+        ('Small World', (560, 177, 1509)), ('Metropolis', (347, 250, -163)), ('Solar System', (150, 256, 983)),
+        ('The Nether', (310, 253, 143)), ('Pixel Art', (300, 252, -2)), ('Anatomy', (16, 254, -546)),
+        ('Rainbow', (616, 248, 14))]),
+    # H4rs tiene agua decorativa a mitad de caida (Y 196-240); el agua final esta en Y 3-6.
+    'dropper_h4rs': dict(name='The Dropper (H4rs)', icon='HEART_OF_THE_SEA', rescue_y=-70, finish_y=20, levels=[
+        (None, p) for p in [(-75, 250, -271), (-68, 250, -246), (-75, 250, -219), (-75, 243, -191),
+                            (-75, 252, -155), (-75, 250, -128), (-73, 253, -111), (-75, 251, -75),
+                            (-75, 249, -52), (-74, 251, -32)]]),
+}
+for _world, _d in DROPPERS.items():
+    for _n, (_title, (_x, _y, _z)) in enumerate(_d['levels'], 1):
+        PARKOURS.append(dict(id=f'{_world.split("_")[1]}{_n}', world=_world, group=_world,
+                             name=f'Nivel {_n}' + (f' - {_title}' if _title else ''), icon='WATER_BUCKET',
+                             description=_d['name'], difficulty='Dropper', arrival=(_x + .5, _y, _z + .5, 0, 0),
+                             rescue_y=_d['rescue_y'], finish_y=_d.get('finish_y', _y - 60)))
 # La arena existente conserva los 25 puntos verificados, sin depender de datos locales ajenos.
 ARENAS = [dict(id='clasica', world='arena', name='Arena Astral', icon='IRON_SWORD',
                description='La arena clasica de AstralRPG.', arrival=(-206.5, 73, -2371.5, 0, 0),
@@ -24,6 +53,15 @@ NPC_POSITIONS = {'parkour': (121.5, 100, 193.529), 'arena': (127.5, 100, 193.529
 
 def parkour_worlds():
     return tuple(dict.fromkeys(d['world'] for d in PARKOURS))
+
+
+def dropper_worlds():
+    return tuple(DROPPERS)
+
+
+def logic_worlds():
+    """Mapas que conservan sus command blocks (selectores reescritos en minijuegos_mapas.py)."""
+    return tuple(d['world'] for d in PARKOURS if d.get('logic'))
 
 
 def arena_worlds():
@@ -53,28 +91,39 @@ def menu_data(kind):
         # Lobby: la primera casilla muestra la barrera vanilla.
         items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
         return dict(menu_title=title('arenas'),size=54,items=items)
-    maps = PARKOURS if kind == 'parkour' else ARENAS
-    command = 'parkour' if kind == 'parkour' else 'arenas'
+    if kind == 'parkour':
+        maps = [d for d in PARKOURS if not d.get('group')]
+        maps += [dict(id=g, name=d['name'], icon=d['icon'], description=f'{len(d["levels"])} niveles de caida libre.',
+                      difficulty='Dropper', open_menu=g) for g, d in DROPPERS.items()]
+    elif kind in DROPPERS:
+        maps = [d for d in PARKOURS if d.get('group') == kind]
+    else:
+        maps = ARENAS
+    command = 'arenas' if kind == 'arena' else 'parkour'
     slots = [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
     if len(maps) > len(slots):
         raise ValueError('Ampliar el selector antes de agregar mas de 14 mapas')
     items = {}
     for slot, d in zip(slots, maps):
         lore = ['&7' + d['description']]
-        if kind == 'parkour':
-            lore += ['&7Dificultad: &f' + d['difficulty'], '&7Sin gancho ni dano de caida.']
+        if kind != 'arena':
+            lore += ['&7Tipo: &f' + d['difficulty'], '&7Sin tu inventario ni vida extra:', '&7se te devuelven al salir.']
         else:
             lore += ['&7Se pelea con tu equipo;', '&7no perdes nada al morir.']
         if d.get('needs_point'):
             lore += ['&eRequiere una llegada revisada por un OP.']
-        items[d['id']] = dict(material=d['icon'], slot=slot, display_name='&a&l' + d['name'],
-                              lore=lore, click_commands=['[close]', f'[player] {command} {d["id"]}<delay=3>'])
+        click = ['[openguimenu] ' + d['open_menu']] if d.get('open_menu') else ['[close]', f'[player] {command} {d["id"]}<delay=3>']
+        items[d['id']] = dict(material=d['icon'], slot=slot, display_name='&a&l' + d['name'], lore=lore, click_commands=click)
     for slot in slots[len(maps):]:
         items[f'proximo_{slot}'] = dict(material='GRAY_DYE', slot=slot, display_name='&7Proximamente')
-    items['lobby'] = dict(material='RED_BED', slot=30, display_name='&fVolver al lobby',
-                          click_commands=['[close]', '[player] spawn<delay=3>'])
+    if kind in DROPPERS:
+        items['volver'] = dict(material='ARROW', slot=30, display_name='&fVolver a Mini juegos', click_commands=['[openguimenu] parkour'])
+    else:
+        items['lobby'] = dict(material='RED_BED', slot=30, display_name='&fVolver al lobby',
+                              click_commands=['[close]', '[player] spawn<delay=3>'])
     items['cerrar'] = dict(material='BARRIER', slot=32, display_name='&cCerrar', click_commands=['[close]'])
-    return dict(menu_title='&8Mapas de Parkour' if kind == 'parkour' else '&8Arenas PvP', size=36, items=items)
+    titles = {'parkour': '&8Mini juegos', 'arena': '&8Arenas PvP', **{g: '&8' + d['name'] for g, d in DROPPERS.items()}}
+    return dict(menu_title=titles[kind], size=36, items=items)
 
 
 def script():
@@ -84,23 +133,77 @@ def script():
         names = ' or '.join(f'"{w}"' for w in worlds)
         lines += [f'function astral_{kind}_world(w: world) :: boolean:',
                   f'    if name of {{_w}} is {names}:', '        return true', '    return false', '']
-    lines += ['function astral_parkour_mode(p: player):',
+    dw = ' or '.join(f'"{w}"' for w in dropper_worlds())
+    lines += ['function astral_dropper_world(w: world) :: boolean:', f'    if name of {{_w}} is {dw}:',
+              '        return true', '    return false', '',
+              '# Mini juegos lo mas vanilla posible (pedido del dueno, 08/11/2026): el inventario y la vida',
+              '# extra se guardan al entrar y se devuelven al salir. Variables persistentes: sobreviven a',
+              '# desconexiones y reinicios. Arenas PvP no entran aca: se pelea con tu equipo.',
+              'function astral_mj_guardar(p: player):',
+              '    set {_u} to uuid of {_p}',
+              '    if {astral.mj.saved::%{_u}%} is set:', '        stop',
+              '    loop 41 times:',
+              '        set {_i} to loop-value - 1',
+              '        set {_it} to slot {_i} of inventory of {_p}',
+              '        if {_it} is not air:',
+              '            set {astral.mj.inv::%{_u}%::%{_i}%} to {_it}',
+              '    set {astral.mj.saved::%{_u}%} to now',
+              '    clear inventory of {_p}',
+              '    remove all potion effects from {_p}',
+              '    set {_n} to name of {_p}',
+              '    execute console command "attribute %{_n}% minecraft:max_health modifier remove astral:minijuego"',
+              '    wait 1 tick',
+              '    set {_h} to max health of {_p} * 2',
+              '    if {_h} > 20:',
+              '        set {_d} to 20 - {_h}',
+              '        execute console command "attribute %{_n}% minecraft:max_health modifier add astral:minijuego %{_d}% add_value"',
+              '    wait 1 tick',
+              '    set health of {_p} to max health of {_p}',
+              '    send "&7Tu inventario y tu vida extra quedan guardados: &fse devuelven al salir." to {_p}',
+              '',
+              'function astral_mj_devolver(p: player):',
+              '    set {_u} to uuid of {_p}',
+              '    if {astral.mj.saved::%{_u}%} is not set:', '        stop',
+              '    clear inventory of {_p}',
+              '    loop indices of {astral.mj.inv::%{_u}%::*}:',
+              '        set {_i} to loop-value parsed as integer',
+              '        set slot {_i} of inventory of {_p} to {astral.mj.inv::%{_u}%::%loop-value%}',
+              '    delete {astral.mj.inv::%{_u}%::*}',
+              '    delete {astral.mj.saved::%{_u}%}',
+              '    execute console command "attribute %name of {_p}% minecraft:max_health modifier remove astral:minijuego"',
+              '',
+              'function astral_parkour_mode(p: player):',
               '    set {_u} to uuid of {_p}',
               '    if astral_parkour_world(world of {_p}) is true:',
-              '        if {_p} is op:',
-              '            if gamemode of {_p} is creative:', '                stop',
               '        if {astral.minijuegos.mode::%{_u}%} is not set:',
               '            set {astral.minijuegos.mode::%{_u}%} to gamemode of {_p}',
-              '        set gamemode of {_p} to adventure',
+              '        # Nadie cambia de modo dentro de un mini juego (tampoco los OP).',
+              '        if gamemode of {_p} is not adventure:',
+              '            set gamemode of {_p} to adventure',
+              '        astral_mj_guardar({_p})',
               '        set food level of {_p} to 10',
               '        set saturation of {_p} to 10',
               '    else:',
+              '        astral_mj_devolver({_p})',
               '        if {astral.minijuegos.mode::%{_u}%} is set:',
-              '            if {_p} is not op:',
-              '                set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}',
-              '            else if gamemode of {_p} is not creative:',
-              '                set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}',
+              '            set gamemode of {_p} to {astral.minijuegos.mode::%{_u}%}',
               '            delete {astral.minijuegos.mode::%{_u}%}', '',
+              '# Dropper: al caer al agua bien abajo se pasa al siguiente nivel.',
+              'function astral_dropper_ganar(p: player, next: text):',
+              '    set {_u} to uuid of {_p}',
+              '    if {-astral.dropper.win::%{_u}%} is set:', '        stop',
+              '    set {-astral.dropper.win::%{_u}%} to true',
+              '    send title "&a&lNivel completado" to {_p} for 2 seconds',
+              '    play sound "entity.player.levelup" to {_p}',
+              '    wait 2 seconds',
+              '    delete {-astral.dropper.win::%{_u}%}',
+              '    if {_p} is not online:', '        stop',
+              '    if astral_dropper_world(world of {_p}) is false:', '        stop',
+              '    if {_next} is "":',
+              '        send "&6&lTerminaste todos los niveles de este dropper." to {_p}',
+              '        execute console command "spawn %name of {_p}%"',
+              '        stop',
+              '    astral_minijuego_ir({_p}, {_next})', '',
               'function astral_minijuego_ir(p: player, id: text):']
     for kind, d in definitions():
         key = kind + '.' + d['id']
@@ -130,9 +233,9 @@ def script():
                   '        set velocity of {_p} to vector(0, 0, 0)', '        set fall distance of {_p} to 0',
                   f'        execute console command "execute in minecraft:{d["world"]} run minecraft:tp %{{_name}}% %{{_x}}% %{{_y}}% %{{_z}}% %{{_yaw}}% %{{_pitch}}%"',
                   '        astral_parkour_mode({_p})', '        stop']
-    for command, kind in [('parkour', 'parkour'), ('arenas', 'arena')]:
+    for command, kind in [('parkour', 'parkour'), ('minijuegos', 'parkour'), ('arenas', 'arena')]:
         lines += ['', f'command /{command} [<text>]:', '    executable by: players', '    trigger:',
-                  '        if arg-1 is not set:', f'            execute console command "dm open {command} %name of player%"', '            stop']
+                  '        if arg-1 is not set:', f'            execute console command "dm open {'arenas' if kind == 'arena' else 'parkour'} %name of player%"', '            stop']
         for k, d in definitions():
             if k == kind:
                 lines += [f'        if arg-1 is "{d["id"]}":',
@@ -166,7 +269,12 @@ def script():
                   f'        if {{_id}} is not {keys}:', f'            set {{_id}} to "arena.{maps[0]["id"]}"',
                   '        astral_minijuego_ir(player, {_id})']
     lines += ['', 'on damage of player:', '    if astral_parkour_world(world of victim) is true:',
-              '        cancel event', '',
+              '        cancel event',
+              '        if damage cause is fall:',
+              '            if astral_dropper_world(world of victim) is true:',
+              '                if {-astral.dropper.win::%uuid of victim%} is not set:',
+              '                    send "&cTe estrellaste. &7Volves al principio del nivel." to victim',
+              '                    astral_minijuego_ir(victim, {astral.minijuegos.selected::%uuid of victim%})', '',
               'on food level change:', '    if astral_parkour_world(world of player) is true:', '        cancel event', '',
               'every 10 ticks:', '    loop all players:', '        astral_parkour_mode(loop-player)',
               '        set {_w} to name of world of loop-player',
@@ -180,8 +288,15 @@ def script():
                   f'                set {{_id}} to "{kind}.{first["id"]}"',
                   '                set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}']
         for kind, d in entries:
-            lines += [f'            if {{_id}} is "{kind}.{d["id"]}":',
-                      f'                if y-coordinate of loop-player is less than {d["rescue_y"]}:',
+            lines += [f'            if {{_id}} is "{kind}.{d["id"]}":']
+            if d.get('finish_y') is not None:
+                group = [x for x in PARKOURS if x.get('group') == d['group']]
+                pos = group.index(d)
+                nxt = f'parkour.{group[pos + 1]["id"]}' if pos + 1 < len(group) else ''
+                lines += [f'                if y-coordinate of loop-player is less than {d["finish_y"]}:',
+                          '                    if block at loop-player is water:',
+                          f'                        astral_dropper_ganar(loop-player, "{nxt}")']
+            lines += [f'                if y-coordinate of loop-player is less than {d["rescue_y"]}:',
                       '                    if gamemode of loop-player is survival or adventure:']
             if d.get('needs_point'):
                 lines += [f'                        if {{astral.punto::{kind}.{d["id"]}}} is not set:',
@@ -194,7 +309,7 @@ def script():
 
 def npc(kind):
     from portales import npc as portal_npc
-    name = '&a&lParkour' if kind == 'parkour' else '&c&lArena PvP'
+    name = '&a&lMini juegos' if kind == 'parkour' else '&c&lArena PvP'
     menu = 'parkour' if kind == 'parkour' else 'arenas'
     return portal_npc().replace('portales.py', 'minijuegos.py').replace('astral_npc_portales', 'astral_npc_' + kind).replace('&b&lGuardian de los Portales', name).replace('dm open portales', 'dm open ' + menu)
 
@@ -272,7 +387,7 @@ def generate():
                'mythicmobs/mobs/arena.yml': '# Generado por mobs/arena.py\n' + npc_block(
                    'astral_npc_arena', '&c&lArena de jugadores &7- PvP', 'ARMORER',
                    ['command{c="dm open arenas <trigger.name>"} @self ~onInteract'])}
-    for kind, filename in [('parkour', 'parkour'), ('arena', 'arenas')]:
+    for kind, filename in [('parkour', 'parkour'), ('arena', 'arenas')] + [(g, g) for g in DROPPERS]:
         outputs[f'menus/DeluxeMenus/gui_menus/{filename}.yml'] = json.dumps(menu_data(kind), ensure_ascii=False, indent=2) + '\n'
     for filename, content in outputs.items():
         path = ROOT / 'build' / filename

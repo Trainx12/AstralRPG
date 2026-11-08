@@ -14,11 +14,12 @@ items:
     material: FEATHER
     slot: 10
     amount: 1
-    display_name: '&e&l/parkour'
+    display_name: '&e&l/minijuegos'
     lore:
-    - '&7Elegir un mapa de saltos.'
+    - '&7Parkour, droppers y Color Escape.'
+    - '&7Entras sin tu inventario: se devuelve al salir.'
     - ''
-    - '&fUso: &e/parkour [id]'
+    - '&fUso: &e/minijuegos [id]'
     - '&aClic para usarlo.'
     item_flags:
     - HIDE_ATTRIBUTES

@@ -1,0 +1,192 @@
+{
+  "menu_title": "&8The Easiest Dropper",
+  "size": 36,
+  "items": {
+    "facil1": {
+      "material": "WATER_BUCKET",
+      "slot": 10,
+      "display_name": "&a&lNivel 1 - Epilepsy Warning",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil1<delay=3>"
+      ]
+    },
+    "facil2": {
+      "material": "WATER_BUCKET",
+      "slot": 11,
+      "display_name": "&a&lNivel 2 - GLaDOS",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil2<delay=3>"
+      ]
+    },
+    "facil3": {
+      "material": "WATER_BUCKET",
+      "slot": 12,
+      "display_name": "&a&lNivel 3 - Gaming Rig",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil3<delay=3>"
+      ]
+    },
+    "facil4": {
+      "material": "WATER_BUCKET",
+      "slot": 13,
+      "display_name": "&a&lNivel 4 - Small World",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil4<delay=3>"
+      ]
+    },
+    "facil5": {
+      "material": "WATER_BUCKET",
+      "slot": 14,
+      "display_name": "&a&lNivel 5 - Metropolis",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil5<delay=3>"
+      ]
+    },
+    "facil6": {
+      "material": "WATER_BUCKET",
+      "slot": 15,
+      "display_name": "&a&lNivel 6 - Solar System",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil6<delay=3>"
+      ]
+    },
+    "facil7": {
+      "material": "WATER_BUCKET",
+      "slot": 16,
+      "display_name": "&a&lNivel 7 - The Nether",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil7<delay=3>"
+      ]
+    },
+    "facil8": {
+      "material": "WATER_BUCKET",
+      "slot": 19,
+      "display_name": "&a&lNivel 8 - Pixel Art",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil8<delay=3>"
+      ]
+    },
+    "facil9": {
+      "material": "WATER_BUCKET",
+      "slot": 20,
+      "display_name": "&a&lNivel 9 - Anatomy",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil9<delay=3>"
+      ]
+    },
+    "facil10": {
+      "material": "WATER_BUCKET",
+      "slot": 21,
+      "display_name": "&a&lNivel 10 - Rainbow",
+      "lore": [
+        "&7The Easiest Dropper",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour facil10<delay=3>"
+      ]
+    },
+    "proximo_22": {
+      "material": "GRAY_DYE",
+      "slot": 22,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_23": {
+      "material": "GRAY_DYE",
+      "slot": 23,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_24": {
+      "material": "GRAY_DYE",
+      "slot": 24,
+      "display_name": "&7Proximamente"
+    },
+    "proximo_25": {
+      "material": "GRAY_DYE",
+      "slot": 25,
+      "display_name": "&7Proximamente"
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 30,
+      "display_name": "&fVolver a Mini juegos",
+      "click_commands": [
+        "[openguimenu] parkour"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 32,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

@@ -1,4 +1,30 @@
-# Parkour y Arenas PvP
+# Mini juegos (parkour, droppers, Color Escape) y Arenas PvP
+
+## Mini juegos (08/11/2026)
+
+El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, aldeano y botones de
+`/menu` y Portales). Mapas: Spiral, **Spiral 2**, **Paradise 3**, **Color Escape** y dos droppers
+(**The Easiest Dropper** y **The Dropper (H4rs)**), cada uno con un submenú de 10 niveles.
+
+- **Lo más vanilla posible:** al entrar se guardan el inventario completo (41 casillas) y la vida extra
+  (modificador `astral:minijuego` que deja la vida en 20), y se borran los efectos. Todo se devuelve al
+  salir a cualquier mundo que no sea mini juego. Variables persistentes `{astral.mj.inv::uuid::*}`:
+  sobreviven a desconexiones y reinicios. Las arenas PvP no cambian.
+- **Modo trabado:** en un mini juego todos quedan en aventura, también los OP (se fuerza cada 10 ticks).
+- **Droppers:** daño por caída = te estrellaste, volvés al inicio del nivel. Caer al agua por debajo de
+  `finish_y` = nivel completado y pasás al siguiente (el último te manda al lobby). Easiest: 60 bloques
+  bajo la salida; H4rs: Y 20 (tiene agua decorativa a mitad de caída). Las salidas salen de los command
+  blocks de cada mapa (ver `docs/IDEAS.md`). Easiest no tiene agua cerca de varias salidas: probar
+  cada nivel y ajustar `finish_y` si hace falta.
+- **Color Escape** necesita sus command blocks. `minijuegos_mapas.py` reescribe sus 372 comandos:
+  `@a`/`@r` → `@p`; `execute as/at @a` y todo `@e` → a menos de 300 bloques. Así ningún comando
+  toca otros mundos ni a otros jugadores (había `clear`, `gamemode` y `kill @e[type=wither]`).
+  Conserva cofres y entidades. Requiere `enable-command-block=true` y
+  `command_blocks_work true` solo en `colorescape`.
+- **Mapas 26.2** (Spiral 2 y Paradise 3): se revisaron todos sus bloques, block entities y entidades;
+  ninguno es nuevo de 26.2. Se baja `DataVersion` a 4790 (26.1.2) en `level.dat` y en cada chunk.
+- Los mundos preparados quedan en `.local/mapas/subir/` (no se publican).
+
 
 `datapack-src/minijuegos.py` contiene las listas `PARKOURS` y `ARENAS`. Desde
 `datapack-src`, ejecutar `python menus.py`: genera los selectores, el Skript,

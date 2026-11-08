@@ -44,6 +44,86 @@ rg flag -w parkour_spiral __global__ pvp deny
 mv gamerule set minecraft:fall_damage false parkour_spiral
 lp group default permission set mv.bypass.gamemode.parkour_spiral true
 rg flag -w parkour_spiral __global__ fall-damage deny
+mv modify parkour_spiral2 set pvp false
+mv modify parkour_spiral2 set gamemode survival
+mv gamerule set minecraft:keep_inventory true parkour_spiral2
+mv gamerule set minecraft:spawn_mobs false parkour_spiral2
+mv gamerule set minecraft:command_blocks_work false parkour_spiral2
+mv gamerule set minecraft:pvp false parkour_spiral2
+mv modify parkour_spiral2 set respawn-world parkour_spiral2
+rg flag -w parkour_spiral2 __global__ build deny
+rg flag -w parkour_spiral2 __global__ block-break deny
+rg flag -w parkour_spiral2 __global__ block-place deny
+rg flag -w parkour_spiral2 __global__ chest-access deny
+rg flag -w parkour_spiral2 __global__ mob-spawning deny
+rg flag -w parkour_spiral2 __global__ pvp deny
+mv gamerule set minecraft:fall_damage false parkour_spiral2
+lp group default permission set mv.bypass.gamemode.parkour_spiral2 true
+rg flag -w parkour_spiral2 __global__ fall-damage deny
+mv modify parkour_paradise3 set pvp false
+mv modify parkour_paradise3 set gamemode survival
+mv gamerule set minecraft:keep_inventory true parkour_paradise3
+mv gamerule set minecraft:spawn_mobs false parkour_paradise3
+mv gamerule set minecraft:command_blocks_work false parkour_paradise3
+mv gamerule set minecraft:pvp false parkour_paradise3
+mv modify parkour_paradise3 set respawn-world parkour_paradise3
+rg flag -w parkour_paradise3 __global__ build deny
+rg flag -w parkour_paradise3 __global__ block-break deny
+rg flag -w parkour_paradise3 __global__ block-place deny
+rg flag -w parkour_paradise3 __global__ chest-access deny
+rg flag -w parkour_paradise3 __global__ mob-spawning deny
+rg flag -w parkour_paradise3 __global__ pvp deny
+mv gamerule set minecraft:fall_damage false parkour_paradise3
+lp group default permission set mv.bypass.gamemode.parkour_paradise3 true
+rg flag -w parkour_paradise3 __global__ fall-damage deny
+mv modify colorescape set pvp false
+mv modify colorescape set gamemode survival
+mv gamerule set minecraft:keep_inventory true colorescape
+mv gamerule set minecraft:spawn_mobs false colorescape
+mv gamerule set minecraft:command_blocks_work false colorescape
+mv gamerule set minecraft:pvp false colorescape
+mv modify colorescape set respawn-world colorescape
+rg flag -w colorescape __global__ build deny
+rg flag -w colorescape __global__ block-break deny
+rg flag -w colorescape __global__ block-place deny
+rg flag -w colorescape __global__ chest-access deny
+rg flag -w colorescape __global__ mob-spawning deny
+rg flag -w colorescape __global__ pvp deny
+mv gamerule set minecraft:fall_damage false colorescape
+lp group default permission set mv.bypass.gamemode.colorescape true
+rg flag -w colorescape __global__ fall-damage deny
+mv modify dropper_facil set pvp false
+mv modify dropper_facil set gamemode survival
+mv gamerule set minecraft:keep_inventory true dropper_facil
+mv gamerule set minecraft:spawn_mobs false dropper_facil
+mv gamerule set minecraft:command_blocks_work false dropper_facil
+mv gamerule set minecraft:pvp false dropper_facil
+mv modify dropper_facil set respawn-world dropper_facil
+rg flag -w dropper_facil __global__ build deny
+rg flag -w dropper_facil __global__ block-break deny
+rg flag -w dropper_facil __global__ block-place deny
+rg flag -w dropper_facil __global__ chest-access deny
+rg flag -w dropper_facil __global__ mob-spawning deny
+rg flag -w dropper_facil __global__ pvp deny
+mv gamerule set minecraft:fall_damage false dropper_facil
+lp group default permission set mv.bypass.gamemode.dropper_facil true
+rg flag -w dropper_facil __global__ fall-damage deny
+mv modify dropper_h4rs set pvp false
+mv modify dropper_h4rs set gamemode survival
+mv gamerule set minecraft:keep_inventory true dropper_h4rs
+mv gamerule set minecraft:spawn_mobs false dropper_h4rs
+mv gamerule set minecraft:command_blocks_work false dropper_h4rs
+mv gamerule set minecraft:pvp false dropper_h4rs
+mv modify dropper_h4rs set respawn-world dropper_h4rs
+rg flag -w dropper_h4rs __global__ build deny
+rg flag -w dropper_h4rs __global__ block-break deny
+rg flag -w dropper_h4rs __global__ block-place deny
+rg flag -w dropper_h4rs __global__ chest-access deny
+rg flag -w dropper_h4rs __global__ mob-spawning deny
+rg flag -w dropper_h4rs __global__ pvp deny
+mv gamerule set minecraft:fall_damage false dropper_h4rs
+lp group default permission set mv.bypass.gamemode.dropper_h4rs true
+rg flag -w dropper_h4rs __global__ fall-damage deny
 mv modify arena set pvp true
 mv modify arena set gamemode survival
 mv gamerule set minecraft:keep_inventory true arena

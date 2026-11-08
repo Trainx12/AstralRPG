@@ -21,7 +21,7 @@ def menu_data():
     for key, material, slot, name, lore, commands in (
         ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
         ('end', 'END_PORTAL_FRAME', 12, '&e&lEnd', ['&7Una isla al otro lado del vacío.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales end<delay=3>']),
-        ('parkour', 'FEATHER', 14, '&d&lParkour', ['&7Elegí tu circuito y probá tus saltos.'], ['[openguimenu] parkour']),
+        ('parkour', 'FEATHER', 14, '&d&lMini juegos', ['&7Parkour, droppers y Color Escape.'], ['[openguimenu] parkour']),
         ('arenas', 'IRON_SWORD', 16, '&b&lArenas PvP', ['&7Elegí una arena para combatir.'], ['[openguimenu] arenas']),
         ('lobby', 'ENDER_PEARL', 22, '&aVolver al lobby', ['&7Volvé al punto de aparición.'], ['[close]', '[player] umbrales lobby<delay=3>']),
         ('cerrar', 'BARRIER', 26, '&cCerrar', ['&7Seguí explorando por tu cuenta.'], ['[close]']),

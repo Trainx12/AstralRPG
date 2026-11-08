@@ -1,7 +1,7 @@
 # Generado por minijuegos.py. Ubicacion en el lobby elegida por el dueno.
 astral_npc_parkour:
   Type: VILLAGER
-  Display: '&a&lParkour'
+  Display: '&a&lMini juegos'
   Health: 20
   Options:
     NoAI: true
