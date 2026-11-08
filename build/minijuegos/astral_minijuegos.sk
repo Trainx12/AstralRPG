@@ -1475,7 +1475,10 @@ on right click:
             if difference between now and {-astral.td.click::%uuid of player%} is less than 1 second:
                 stop
         set {-astral.td.click::%uuid of player%} to now
-        execute console command "execute as %name of player% at @s if items entity @s weapon.mainhand *[minecraft:custom_data~{id:""show_menu""}] run function td_game:interactions.show_menu"
+        if player's tool is not compass:
+            stop
+        send action bar "&7Abriendo menu..." to player
+        execute console command "execute as %name of player% at @s run function td_game:interactions.show_menu"
 
 on world change:
     wait 2 ticks
