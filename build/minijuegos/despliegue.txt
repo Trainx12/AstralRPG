@@ -211,6 +211,7 @@ mv gamerule set minecraft:command_blocks_work true towerdefence
 rg flag -w towerdefence __global__ chest-access allow
 rg flag -w towerdefence __global__ interact allow
 rg flag -w towerdefence __global__ use allow
+scoreboard players set #global td_game.saves.settings.night_vision 1
 rg flag -w towerdefence __global__ mob-spawning allow
 mv modify dropper_facil set pvp false
 mv modify dropper_facil set gamemode survival

@@ -534,6 +534,8 @@ def deployment():
                             bid, name, top, color = d['bossbar']
                             lines += [f'bossbar add {bid} "{name}"', f'bossbar set {bid} max {top}',
                                       f'bossbar set {bid} color {color}']
+                if world == 'towerdefence':   # su opcion propia de vision nocturna (si no, la saca)
+                    lines += ['scoreboard players set #global td_game.saves.settings.night_vision 1']
                 if world == 'colorescape':
                     # Sus acertijos piden poner y romper bloques (aventura: solo los que el mapa permite).
                     lines += [f'rg flag -w {world} __global__ build allow',
