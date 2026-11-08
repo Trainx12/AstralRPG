@@ -33,6 +33,16 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   `colorescape`, `dropper_facil` y `dropper_h4rs` creados con Multiverse; sus `region/` (y
   `entities/` de Color Escape) copiados desde `mapas-subir/` con el servidor apagado. Se cargaron
   las 5 llegadas y el bloque de abajo coincide con el mapa. Falta probar jugando.
+- **Droppers corregidos (prueba del dueño, 08/11/2026):** en el original cada nivel empezaba parado
+  sobre una placa (vidrio, piedra, lana) que quitaban sus command blocks. Los niveles que fallaban
+  salen 2 bloques debajo de la placa; se gana al caer al agua o al quedar parado bajo la Y de llegada
+  (fondos de slime o alfombra). Del fácil se sacaron Small World, Anatomy y Rainbow (sin la lógica
+  original no son droppers). Al entrar a cualquier mini juego se borran los efectos del anterior.
+- **Color Escape de a uno y con reinicio:** si alguien está jugando, el siguiente no entra. Cuando el
+  último sale, `astral_ce_clonar` copia encima la versión limpia guardada a 3000 bloques al este
+  (zona `x -32..120, y -24..4, z -28..308`, en tandas de 7 de profundidad), borra objetos tirados y
+  reinicia `colorEscape` y `advancement`. `/colorescape guardar` (una vez, con el mapa sin jugar) y
+  `/colorescape reiniciar`.
 - **Datapack propio de Spiral 2 y Paradise 3** (de Hielke Maps): sin él no hay largada, checkpoints
   ni mecanismos. `python minijuegos_datapack.py` genera en `.local/mapas/subir/<mundo>-datapack.zip`
   una copia que solo actúa en su mundo: namespaces con prefijo (`pp3_main`, `sp2_time`...), puntajes

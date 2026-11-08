@@ -131,6 +131,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:parkour_spiral run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -152,6 +154,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:parkour_spiral2 run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -173,6 +177,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:parkour_paradise3 run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -183,6 +189,12 @@ function astral_minijuego_ir(p: player, id: text):
         set {_l} to {astral.punto::parkour.colorescape}
         if {_l} is not set:
             set {_l} to location(0.5, -14, 0.5, world "colorescape", 0, 0)
+        if name of world of {_p} is not "colorescape":
+            loop all players in world "colorescape":
+                if loop-player is not {_p}:
+                    send "&eColor Escape esta ocupado: se juega de a uno. &7Proba en un rato." to {_p}
+                    stop
+        set {astral.ce.sucio} to true
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.colorescape"
@@ -194,6 +206,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:colorescape run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -203,7 +217,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil1}
         if {_l} is not set:
-            set {_l} to location(1009.5, 253, 468.5, world "dropper_facil", 0, 0)
+            set {_l} to location(1009.5, 250, 468.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil1"
@@ -215,6 +229,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -224,7 +240,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil2}
         if {_l} is not set:
-            set {_l} to location(2000.5, 255, 98.5, world "dropper_facil", 0, 0)
+            set {_l} to location(2000.5, 251, 98.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil2"
@@ -236,6 +252,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -245,7 +263,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil3}
         if {_l} is not set:
-            set {_l} to location(1036.5, 169, 761.5, world "dropper_facil", 0, 0)
+            set {_l} to location(1036.5, 157, 761.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil3"
@@ -257,6 +275,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -266,7 +286,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil4}
         if {_l} is not set:
-            set {_l} to location(560.5, 177, 1509.5, world "dropper_facil", 0, 0)
+            set {_l} to location(347.5, 250, -162.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil4"
@@ -278,6 +298,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -287,7 +309,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil5}
         if {_l} is not set:
-            set {_l} to location(347.5, 250, -162.5, world "dropper_facil", 0, 0)
+            set {_l} to location(150.5, 256, 983.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil5"
@@ -299,6 +321,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -308,7 +332,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil6}
         if {_l} is not set:
-            set {_l} to location(150.5, 256, 983.5, world "dropper_facil", 0, 0)
+            set {_l} to location(310.5, 250, 143.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil6"
@@ -320,6 +344,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -329,7 +355,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil7}
         if {_l} is not set:
-            set {_l} to location(310.5, 253, 143.5, world "dropper_facil", 0, 0)
+            set {_l} to location(300.5, 249, -1.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil7"
@@ -341,69 +367,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
-        execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
-        astral_parkour_mode({_p})
-        stop
-    if {_id} is "parkour.facil8":
-        if world "dropper_facil" is not set:
-            send "&eEse mundo todavia no esta disponible." to {_p}
-            stop
-        set {_l} to {astral.punto::parkour.facil8}
-        if {_l} is not set:
-            set {_l} to location(300.5, 252, -1.5, world "dropper_facil", 0, 0)
-        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
-            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
-        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil8"
-        set {_x} to x-coordinate of {_l}
-        set {_y} to y-coordinate of {_l}
-        set {_z} to z-coordinate of {_l}
-        set {_yaw} to yaw of {_l}
-        set {_pitch} to pitch of {_l}
-        set {_name} to name of {_p}
-        set velocity of {_p} to vector(0, 0, 0)
-        set fall distance of {_p} to 0
-        execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
-        astral_parkour_mode({_p})
-        stop
-    if {_id} is "parkour.facil9":
-        if world "dropper_facil" is not set:
-            send "&eEse mundo todavia no esta disponible." to {_p}
-            stop
-        set {_l} to {astral.punto::parkour.facil9}
-        if {_l} is not set:
-            set {_l} to location(16.5, 254, -545.5, world "dropper_facil", 0, 0)
-        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
-            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
-        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil9"
-        set {_x} to x-coordinate of {_l}
-        set {_y} to y-coordinate of {_l}
-        set {_z} to z-coordinate of {_l}
-        set {_yaw} to yaw of {_l}
-        set {_pitch} to pitch of {_l}
-        set {_name} to name of {_p}
-        set velocity of {_p} to vector(0, 0, 0)
-        set fall distance of {_p} to 0
-        execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
-        astral_parkour_mode({_p})
-        stop
-    if {_id} is "parkour.facil10":
-        if world "dropper_facil" is not set:
-            send "&eEse mundo todavia no esta disponible." to {_p}
-            stop
-        set {_l} to {astral.punto::parkour.facil10}
-        if {_l} is not set:
-            set {_l} to location(616.5, 248, 14.5, world "dropper_facil", 0, 0)
-        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
-            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
-        set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil10"
-        set {_x} to x-coordinate of {_l}
-        set {_y} to y-coordinate of {_l}
-        set {_z} to z-coordinate of {_l}
-        set {_yaw} to yaw of {_l}
-        set {_pitch} to pitch of {_l}
-        set {_name} to name of {_p}
-        set velocity of {_p} to vector(0, 0, 0)
-        set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_facil run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -413,7 +378,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs1}
         if {_l} is not set:
-            set {_l} to location(-74.5, 250, -270.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 243, -270.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs1"
@@ -425,6 +390,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -434,7 +401,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs2}
         if {_l} is not set:
-            set {_l} to location(-67.5, 250, -245.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-67.5, 247, -245.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs2"
@@ -446,6 +413,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -455,7 +424,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs3}
         if {_l} is not set:
-            set {_l} to location(-74.5, 250, -218.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 243, -218.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs3"
@@ -467,6 +436,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -488,6 +459,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -497,7 +470,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs5}
         if {_l} is not set:
-            set {_l} to location(-74.5, 252, -154.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 248, -154.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs5"
@@ -509,6 +482,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -530,6 +505,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -551,6 +528,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -572,6 +551,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -581,7 +562,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs9}
         if {_l} is not set:
-            set {_l} to location(-74.5, 249, -51.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 245, -51.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs9"
@@ -593,6 +574,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -614,6 +597,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:dropper_h4rs run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -683,6 +668,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:arena run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -702,6 +689,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -721,6 +710,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -740,6 +731,8 @@ function astral_minijuego_ir(p: player, id: text):
         set {_name} to name of {_p}
         set velocity of {_p} to vector(0, 0, 0)
         set fall distance of {_p} to 0
+        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.
+        remove all potion effects from {_p}
         execute console command "execute in minecraft:arenas_tft run minecraft:tp %{_name}% %{_x}% %{_y}% %{_z}% %{_yaw}% %{_pitch}%"
         astral_parkour_mode({_p})
         stop
@@ -782,15 +775,6 @@ command /parkour [<text>]:
             stop
         if arg-1 is "facil7":
             astral_minijuego_ir(player, "parkour.facil7")
-            stop
-        if arg-1 is "facil8":
-            astral_minijuego_ir(player, "parkour.facil8")
-            stop
-        if arg-1 is "facil9":
-            astral_minijuego_ir(player, "parkour.facil9")
-            stop
-        if arg-1 is "facil10":
-            astral_minijuego_ir(player, "parkour.facil10")
             stop
         if arg-1 is "h4rs1":
             astral_minijuego_ir(player, "parkour.h4rs1")
@@ -863,15 +847,6 @@ command /minijuegos [<text>]:
         if arg-1 is "facil7":
             astral_minijuego_ir(player, "parkour.facil7")
             stop
-        if arg-1 is "facil8":
-            astral_minijuego_ir(player, "parkour.facil8")
-            stop
-        if arg-1 is "facil9":
-            astral_minijuego_ir(player, "parkour.facil9")
-            stop
-        if arg-1 is "facil10":
-            astral_minijuego_ir(player, "parkour.facil10")
-            stop
         if arg-1 is "h4rs1":
             astral_minijuego_ir(player, "parkour.h4rs1")
             stop
@@ -924,6 +899,55 @@ command /arenas [<text>]:
             stop
         send "&eUsa /arenas para elegir un destino." to player
 
+# Color Escape: guardar = puzzle -> copia limpia; restaurar = copia limpia -> puzzle.
+function astral_ce_clonar(dir: text):
+    # Puntajes propios del mapa (no venian: el mapa se preparo sin sus datos).
+    execute console command "scoreboard objectives add colorEscape dummy"
+    execute console command "scoreboard objectives add advancement dummy"
+    execute console command "execute in minecraft:colorescape run forceload add -32 -28 120 308"
+    execute console command "execute in minecraft:colorescape run forceload add 2968 -28 3120 308"
+    wait 3 seconds
+    set {_z} to -28
+    while {_z} <= 308:
+        set {_z2} to min({_z} + 6, 308)
+        if {_dir} is "guardar":
+            execute console command "execute in minecraft:colorescape run clone -32 -24 %{_z}% 120 4 %{_z2}% 2968 -24 %{_z}% replace"
+        else:
+            execute console command "execute in minecraft:colorescape run clone 2968 -24 %{_z}% 3120 4 %{_z2}% -32 -24 %{_z}% replace"
+        wait 2 ticks
+        add 7 to {_z}
+    if {_dir} is not "guardar":
+        execute console command "execute in minecraft:colorescape run kill @e[type=item,distance=0..]"
+        execute console command "scoreboard players reset * colorEscape"
+        execute console command "scoreboard players reset * advancement"
+    execute console command "execute in minecraft:colorescape run forceload remove -32 -28 120 308"
+    execute console command "execute in minecraft:colorescape run forceload remove 2968 -28 3120 308"
+
+command /colorescape <text>:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "guardar":
+            send "&eGuardando la copia limpia de Color Escape (el mapa tiene que estar sin jugar)..." to command sender
+            astral_ce_clonar("guardar")
+            set {astral.ce.copia} to true
+        else if arg-1 is "reiniciar":
+            send "&eReiniciando Color Escape..." to command sender
+            astral_ce_clonar("restaurar")
+            delete {astral.ce.sucio}
+        else:
+            send "&eUsa /colorescape guardar o /colorescape reiniciar." to command sender
+
+# Cuando no queda nadie adentro, vuelve a como estaba.
+every 5 seconds:
+    if {astral.ce.sucio} is set:
+        if {astral.ce.copia} is set:
+            if world "colorescape" is set:
+                loop all players in world "colorescape":
+                    stop
+                delete {astral.ce.sucio}
+                astral_ce_clonar("restaurar")
+
+
 command /astralpunto <text> [<text>]:
     executable by: players
     trigger:
@@ -942,9 +966,6 @@ command /astralpunto <text> [<text>]:
             send "&eparkour facil5 &7(dropper_facil): %{astral.punto::parkour.facil5}%" to player
             send "&eparkour facil6 &7(dropper_facil): %{astral.punto::parkour.facil6}%" to player
             send "&eparkour facil7 &7(dropper_facil): %{astral.punto::parkour.facil7}%" to player
-            send "&eparkour facil8 &7(dropper_facil): %{astral.punto::parkour.facil8}%" to player
-            send "&eparkour facil9 &7(dropper_facil): %{astral.punto::parkour.facil9}%" to player
-            send "&eparkour facil10 &7(dropper_facil): %{astral.punto::parkour.facil10}%" to player
             send "&eparkour h4rs1 &7(dropper_h4rs): %{astral.punto::parkour.h4rs1}%" to player
             send "&eparkour h4rs2 &7(dropper_h4rs): %{astral.punto::parkour.h4rs2}%" to player
             send "&eparkour h4rs3 &7(dropper_h4rs): %{astral.punto::parkour.h4rs3}%" to player
@@ -1079,39 +1100,6 @@ command /astralpunto <text> [<text>]:
                     send "&cLa llegada debe quedar por encima del limite de rescate." to player
                     stop
                 set {astral.punto::parkour.facil7} to location of player
-                send "&aLlegada guardada con orientacion." to player
-                stop
-        if arg-1 is "parkour":
-            if arg-2 is "facil8":
-                if name of world of player is not "dropper_facil":
-                    send "&cPrimero entra al mundo dropper_facil." to player
-                    stop
-                if y-coordinate of player is less than -10:
-                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
-                    stop
-                set {astral.punto::parkour.facil8} to location of player
-                send "&aLlegada guardada con orientacion." to player
-                stop
-        if arg-1 is "parkour":
-            if arg-2 is "facil9":
-                if name of world of player is not "dropper_facil":
-                    send "&cPrimero entra al mundo dropper_facil." to player
-                    stop
-                if y-coordinate of player is less than -10:
-                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
-                    stop
-                set {astral.punto::parkour.facil9} to location of player
-                send "&aLlegada guardada con orientacion." to player
-                stop
-        if arg-1 is "parkour":
-            if arg-2 is "facil10":
-                if name of world of player is not "dropper_facil":
-                    send "&cPrimero entra al mundo dropper_facil." to player
-                    stop
-                if y-coordinate of player is less than -10:
-                    send "&cLa llegada debe quedar por encima del limite de rescate." to player
-                    stop
-                set {astral.punto::parkour.facil10} to location of player
                 send "&aLlegada guardada con orientacion." to player
                 stop
         if arg-1 is "parkour":
@@ -1346,12 +1334,15 @@ every 10 ticks:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
         if {_w} is "dropper_facil":
-            if {_id} is not "parkour.facil1" or "parkour.facil2" or "parkour.facil3" or "parkour.facil4" or "parkour.facil5" or "parkour.facil6" or "parkour.facil7" or "parkour.facil8" or "parkour.facil9" or "parkour.facil10":
+            if {_id} is not "parkour.facil1" or "parkour.facil2" or "parkour.facil3" or "parkour.facil4" or "parkour.facil5" or "parkour.facil6" or "parkour.facil7":
                 set {_id} to "parkour.facil1"
                 set {astral.minijuegos.selected::%uuid of loop-player%} to {_id}
             if {_id} is "parkour.facil1":
-                if y-coordinate of loop-player is less than 193:
+                if y-coordinate of loop-player is less than 6:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.facil2")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.facil2")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
@@ -1360,61 +1351,58 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 195:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.facil3")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.facil3")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil3":
-                if y-coordinate of loop-player is less than 109:
+                if y-coordinate of loop-player is less than 15:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.facil4")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.facil4")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil4":
-                if y-coordinate of loop-player is less than 117:
+                if y-coordinate of loop-player is less than 190:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.facil5")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.facil5")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil5":
-                if y-coordinate of loop-player is less than 190:
+                if y-coordinate of loop-player is less than 196:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.facil6")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.facil6")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil6":
-                if y-coordinate of loop-player is less than 196:
+                if y-coordinate of loop-player is less than 12:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.facil7")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.facil7")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.facil7":
-                if y-coordinate of loop-player is less than 193:
+                if y-coordinate of loop-player is less than 6:
                     if block at loop-player is water:
-                        astral_dropper_ganar(loop-player, "parkour.facil8")
-                if y-coordinate of loop-player is less than -10:
-                    if gamemode of loop-player is survival or adventure:
-                        astral_minijuego_ir(loop-player, {_id})
-            if {_id} is "parkour.facil8":
-                if y-coordinate of loop-player is less than 192:
-                    if block at loop-player is water:
-                        astral_dropper_ganar(loop-player, "parkour.facil9")
-                if y-coordinate of loop-player is less than -10:
-                    if gamemode of loop-player is survival or adventure:
-                        astral_minijuego_ir(loop-player, {_id})
-            if {_id} is "parkour.facil9":
-                if y-coordinate of loop-player is less than 194:
-                    if block at loop-player is water:
-                        astral_dropper_ganar(loop-player, "parkour.facil10")
-                if y-coordinate of loop-player is less than -10:
-                    if gamemode of loop-player is survival or adventure:
-                        astral_minijuego_ir(loop-player, {_id})
-            if {_id} is "parkour.facil10":
-                if y-coordinate of loop-player is less than 188:
-                    if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "")
                 if y-coordinate of loop-player is less than -10:
                     if gamemode of loop-player is survival or adventure:
@@ -1427,12 +1415,18 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.h4rs2")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs2")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.h4rs2":
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs3")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.h4rs3")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
@@ -1441,12 +1435,18 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.h4rs4")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs4")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.h4rs4":
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs5")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.h4rs5")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
@@ -1455,12 +1455,18 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.h4rs6")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs6")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.h4rs6":
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs7")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.h4rs7")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
@@ -1469,12 +1475,18 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.h4rs8")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs8")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.h4rs8":
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs9")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "parkour.h4rs9")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
@@ -1483,12 +1495,18 @@ every 10 ticks:
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
                         astral_dropper_ganar(loop-player, "parkour.h4rs10")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
+                        astral_dropper_ganar(loop-player, "parkour.h4rs10")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:
                         astral_minijuego_ir(loop-player, {_id})
             if {_id} is "parkour.h4rs10":
                 if y-coordinate of loop-player is less than 20:
                     if block at loop-player is water:
+                        astral_dropper_ganar(loop-player, "")
+                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.
+                    else if loop-player is on ground:
                         astral_dropper_ganar(loop-player, "")
                 if y-coordinate of loop-player is less than -70:
                     if gamemode of loop-player is survival or adventure:

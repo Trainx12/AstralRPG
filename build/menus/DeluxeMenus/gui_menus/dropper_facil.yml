@@ -50,7 +50,7 @@
     "facil4": {
       "material": "WATER_BUCKET",
       "slot": 13,
-      "display_name": "&a&lNivel 4 - Small World",
+      "display_name": "&a&lNivel 4 - Metropolis",
       "lore": [
         "&7The Easiest Dropper",
         "&7Tipo: &fDropper",
@@ -65,7 +65,7 @@
     "facil5": {
       "material": "WATER_BUCKET",
       "slot": 14,
-      "display_name": "&a&lNivel 5 - Metropolis",
+      "display_name": "&a&lNivel 5 - Solar System",
       "lore": [
         "&7The Easiest Dropper",
         "&7Tipo: &fDropper",
@@ -80,7 +80,7 @@
     "facil6": {
       "material": "WATER_BUCKET",
       "slot": 15,
-      "display_name": "&a&lNivel 6 - Solar System",
+      "display_name": "&a&lNivel 6 - The Nether",
       "lore": [
         "&7The Easiest Dropper",
         "&7Tipo: &fDropper",
@@ -95,7 +95,7 @@
     "facil7": {
       "material": "WATER_BUCKET",
       "slot": 16,
-      "display_name": "&a&lNivel 7 - The Nether",
+      "display_name": "&a&lNivel 7 - Pixel Art",
       "lore": [
         "&7The Easiest Dropper",
         "&7Tipo: &fDropper",
@@ -107,50 +107,20 @@
         "[player] parkour facil7<delay=3>"
       ]
     },
-    "facil8": {
-      "material": "WATER_BUCKET",
+    "proximo_19": {
+      "material": "GRAY_DYE",
       "slot": 19,
-      "display_name": "&a&lNivel 8 - Pixel Art",
-      "lore": [
-        "&7The Easiest Dropper",
-        "&7Tipo: &fDropper",
-        "&7Sin tu inventario ni vida extra:",
-        "&7se te devuelven al salir."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] parkour facil8<delay=3>"
-      ]
+      "display_name": "&7Proximamente"
     },
-    "facil9": {
-      "material": "WATER_BUCKET",
+    "proximo_20": {
+      "material": "GRAY_DYE",
       "slot": 20,
-      "display_name": "&a&lNivel 9 - Anatomy",
-      "lore": [
-        "&7The Easiest Dropper",
-        "&7Tipo: &fDropper",
-        "&7Sin tu inventario ni vida extra:",
-        "&7se te devuelven al salir."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] parkour facil9<delay=3>"
-      ]
+      "display_name": "&7Proximamente"
     },
-    "facil10": {
-      "material": "WATER_BUCKET",
+    "proximo_21": {
+      "material": "GRAY_DYE",
       "slot": 21,
-      "display_name": "&a&lNivel 10 - Rainbow",
-      "lore": [
-        "&7The Easiest Dropper",
-        "&7Tipo: &fDropper",
-        "&7Sin tu inventario ni vida extra:",
-        "&7se te devuelven al salir."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] parkour facil10<delay=3>"
-      ]
+      "display_name": "&7Proximamente"
     },
     "proximo_22": {
       "material": "GRAY_DYE",

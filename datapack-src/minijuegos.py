@@ -22,24 +22,34 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
                  arrival=(0.5, -14, 0.5, 0, 0), rescue_y=-70, logic=True)]
 # Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
 # Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
+# Cada nivel: (titulo, (x, y, z) de la salida original, Y de salida corregida, Y de llegada al fondo).
+# En el original cada nivel empezaba parado sobre una placa (vidrio, piedra...) que quitaban sus
+# command blocks: sin ellos, los que fallaban (prueba del dueno, 08/11/2026) salen 2 bloques DEBAJO
+# de la placa, ya cayendo. Se gana al caer al agua o al quedar parado bajo la Y de llegada (slime,
+# alfombra del fondo...). None = como estaba (funcionaba). Se sacaron Small World, Anatomy y Rainbow
+# del facil: sin la logica original no son droppers (Rainbow ni tiene fondo).
 DROPPERS = {
     'dropper_facil': dict(name='The Easiest Dropper', icon='WATER_BUCKET', rescue_y=-10, levels=[
-        ('Epilepsy Warning', (1009, 253, 468)), ('GLaDOS', (2000, 255, 98)), ('Gaming Rig', (1036, 169, 761)),
-        ('Small World', (560, 177, 1509)), ('Metropolis', (347, 250, -163)), ('Solar System', (150, 256, 983)),
-        ('The Nether', (310, 253, 143)), ('Pixel Art', (300, 252, -2)), ('Anatomy', (16, 254, -546)),
-        ('Rainbow', (616, 248, 14))]),
+        ('Epilepsy Warning', (1009, 253, 468), 250, 6), ('GLaDOS', (2000, 255, 98), 251, None),
+        ('Gaming Rig', (1036, 169, 761), 157, 15), ('Metropolis', (347, 250, -163), None, None),
+        ('Solar System', (150, 256, 983), None, None), ('The Nether', (310, 253, 143), 250, 12),
+        ('Pixel Art', (300, 252, -2), 249, 6)]),
     # H4rs tiene agua decorativa a mitad de caida (Y 196-240); el agua final esta en Y 3-6.
     'dropper_h4rs': dict(name='The Dropper (H4rs)', icon='HEART_OF_THE_SEA', rescue_y=-70, finish_y=20, levels=[
-        (None, p) for p in [(-75, 250, -271), (-68, 250, -246), (-75, 250, -219), (-75, 243, -191),
-                            (-75, 252, -155), (-75, 250, -128), (-73, 253, -111), (-75, 251, -75),
-                            (-75, 249, -52), (-74, 251, -32)]]),
+        (None, (-75, 250, -271), 243, None), (None, (-68, 250, -246), 247, None),
+        (None, (-75, 250, -219), 243, None), (None, (-75, 243, -191), None, None),
+        (None, (-75, 252, -155), 248, None), (None, (-75, 250, -128), None, None),
+        (None, (-73, 253, -111), None, None), (None, (-75, 251, -75), None, None),
+        (None, (-75, 249, -52), 245, None), (None, (-74, 251, -32), None, None)]),
 }
 for _world, _d in DROPPERS.items():
-    for _n, (_title, (_x, _y, _z)) in enumerate(_d['levels'], 1):
+    for _n, (_title, (_x, _y, _z), _start, _finish) in enumerate(_d['levels'], 1):
         PARKOURS.append(dict(id=f'{_world.split("_")[1]}{_n}', world=_world, group=_world,
                              name=f'Nivel {_n}' + (f' - {_title}' if _title else ''), icon='WATER_BUCKET',
-                             description=_d['name'], difficulty='Dropper', arrival=(_x + .5, _y, _z + .5, 0, 0),
-                             rescue_y=_d['rescue_y'], finish_y=_d.get('finish_y', _y - 60)))
+                             description=_d['name'], difficulty='Dropper',
+                             arrival=(_x + .5, _start if _start is not None else _y, _z + .5, 0, 0),
+                             rescue_y=_d['rescue_y'],
+                             finish_y=_finish if _finish is not None else _d.get('finish_y', _y - 60)))
 # La arena existente conserva los 25 puntos verificados, sin depender de datos locales ajenos.
 ARENAS = [dict(id='clasica', world='arena', name='Arena Astral', icon='IRON_SWORD',
                description='La arena clasica de AstralRPG.', arrival=(-206.5, 73, -2371.5, 0, 0),
@@ -51,6 +61,12 @@ ARENAS = [dict(id='clasica', world='arena', name='Arena Astral', icon='IRON_SWOR
                              (2, 'GOLDEN_SWORD', (-286.5, 139, -282.5, 0, 0)),
                              (3, 'DIAMOND_SWORD', (-286.5, 139, -14.5, 0, 0))]]
 NPC_POSITIONS = {'parkour': (121.5, 100, 193.529), 'arena': (127.5, 100, 193.529)}
+# Color Escape es un puzzle de una persona y lo que se abre queda abierto. Se juega de a uno y,
+# cuando el ultimo sale, se copia encima la version limpia guardada lejos (08/11/2026).
+# Zona del puzzle (sus command blocks, cofres y carteles: x -26..114, y -20..-1, z -22..305) con margen.
+CE_BOX = dict(x1=-32, x2=120, y1=-24, y2=4, z1=-28, z2=308)
+CE_BACKUP_DX = 3000      # copia limpia, 3000 bloques al este en el mismo mundo
+CE_SLICE = 7             # 153 x 29 x 7 = 31.059 bloques por clone (< 32.768)
 
 
 def parkour_worlds():
@@ -245,6 +261,13 @@ def script():
                 if len(points) > 1:
                     lines += [f'            if {{_n}} is {i}:']; indent += '    '
                 lines += [f'{indent}set {{_l}} to location({x}, {y}, {z}, world "{d["world"]}", {yaw}, {pitch})']
+        if d['id'] == 'colorescape':
+            lines += ['        if name of world of {_p} is not "colorescape":',
+                      '            loop all players in world "colorescape":',
+                      '                if loop-player is not {_p}:',
+                      '                    send "&eColor Escape esta ocupado: se juega de a uno. &7Proba en un rato." to {_p}',
+                      '                    stop',
+                      '        set {astral.ce.sucio} to true']
         if kind == 'parkour':
             lines += ['        if {astral.minijuegos.mode::%uuid of {_p}%} is not set:',
                       '            set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}']
@@ -253,6 +276,8 @@ def script():
                   '        set {_z} to z-coordinate of {_l}', '        set {_yaw} to yaw of {_l}',
                   '        set {_pitch} to pitch of {_l}', '        set {_name} to name of {_p}',
                   '        set velocity of {_p} to vector(0, 0, 0)', '        set fall distance of {_p} to 0',
+                  '        # Efectos de otro mini juego (vision nocturna, saturacion...) no pasan a este.',
+                  '        remove all potion effects from {_p}',
                   f'        execute console command "execute in minecraft:{d["world"]} run minecraft:tp %{{_name}}% %{{_x}}% %{{_y}}% %{{_z}}% %{{_yaw}}% %{{_pitch}}%"',
                   '        astral_parkour_mode({_p})', '        stop']
     for command, kind in [('parkour', 'parkour'), ('minijuegos', 'parkour'), ('arenas', 'arena')]:
@@ -263,6 +288,57 @@ def script():
                 lines += [f'        if arg-1 is "{d["id"]}":',
                           f'            astral_minijuego_ir(player, "{kind}.{d["id"]}")', '            stop']
         lines += [f'        send "&eUsa /{command} para elegir un destino." to player']
+    b = CE_BOX
+    span = f'{b["x1"]} {b["z1"]} {b["x2"]} {b["z2"]}'
+    back = f'{b["x1"] + CE_BACKUP_DX} {b["z1"]} {b["x2"] + CE_BACKUP_DX} {b["z2"]}'
+    lines += ['', '# Color Escape: guardar = puzzle -> copia limpia; restaurar = copia limpia -> puzzle.',
+              'function astral_ce_clonar(dir: text):',
+              '    # Puntajes propios del mapa (no venian: el mapa se preparo sin sus datos).',
+              '    execute console command "scoreboard objectives add colorEscape dummy"',
+              '    execute console command "scoreboard objectives add advancement dummy"',
+              f'    execute console command "execute in minecraft:colorescape run forceload add {span}"',
+              f'    execute console command "execute in minecraft:colorescape run forceload add {back}"',
+              '    wait 3 seconds',
+              f'    set {{_z}} to {b["z1"]}',
+              f'    while {{_z}} <= {b["z2"]}:',
+              f'        set {{_z2}} to min({{_z}} + {CE_SLICE - 1}, {b["z2"]})',
+              '        if {_dir} is "guardar":',
+              f'            execute console command "execute in minecraft:colorescape run clone {b["x1"]} {b["y1"]} %{{_z}}% {b["x2"]} {b["y2"]} %{{_z2}}% {b["x1"] + CE_BACKUP_DX} {b["y1"]} %{{_z}}% replace"',
+              '        else:',
+              f'            execute console command "execute in minecraft:colorescape run clone {b["x1"] + CE_BACKUP_DX} {b["y1"]} %{{_z}}% {b["x2"] + CE_BACKUP_DX} {b["y2"]} %{{_z2}}% {b["x1"]} {b["y1"]} %{{_z}}% replace"',
+              '        wait 2 ticks',
+              f'        add {CE_SLICE} to {{_z}}',
+              '    if {_dir} is not "guardar":',
+              '        execute console command "execute in minecraft:colorescape run kill @e[type=item,distance=0..]"',
+              '        execute console command "scoreboard players reset * colorEscape"',
+              '        execute console command "scoreboard players reset * advancement"',
+              f'    execute console command "execute in minecraft:colorescape run forceload remove {span}"',
+              f'    execute console command "execute in minecraft:colorescape run forceload remove {back}"',
+              '',
+              'command /colorescape <text>:',
+              '    permission: astral.minas.admin',
+              '    trigger:',
+              '        if arg-1 is "guardar":',
+              '            send "&eGuardando la copia limpia de Color Escape (el mapa tiene que estar sin jugar)..." to command sender',
+              '            astral_ce_clonar("guardar")',
+              '            set {astral.ce.copia} to true',
+              '        else if arg-1 is "reiniciar":',
+              '            send "&eReiniciando Color Escape..." to command sender',
+              '            astral_ce_clonar("restaurar")',
+              '            delete {astral.ce.sucio}',
+              '        else:',
+              '            send "&eUsa /colorescape guardar o /colorescape reiniciar." to command sender',
+              '',
+              '# Cuando no queda nadie adentro, vuelve a como estaba.',
+              'every 5 seconds:',
+              '    if {astral.ce.sucio} is set:',
+              '        if {astral.ce.copia} is set:',
+              '            if world "colorescape" is set:',
+              '                loop all players in world "colorescape":',
+              '                    stop',
+              '                delete {astral.ce.sucio}',
+              '                astral_ce_clonar("restaurar")',
+              '']
     lines += ['', 'command /astralpunto <text> [<text>]:', '    executable by: players', '    trigger:',
               '        if player is not op:', '            send "&cSolo OP." to player', '            stop',
               '        if arg-1 is "lista":']
@@ -323,6 +399,9 @@ def script():
                 nxt = f'parkour.{group[pos + 1]["id"]}' if pos + 1 < len(group) else ''
                 lines += [f'                if y-coordinate of loop-player is less than {d["finish_y"]}:',
                           '                    if block at loop-player is water:',
+                          f'                        astral_dropper_ganar(loop-player, "{nxt}")',
+                          '                    # Fondo sin agua (slime, alfombra): parado y vivo tambien gana.',
+                          '                    else if loop-player is on ground:',
                           f'                        astral_dropper_ganar(loop-player, "{nxt}")']
             lines += [f'                if y-coordinate of loop-player is less than {d["rescue_y"]}:',
                       '                    if gamemode of loop-player is survival or adventure:']
