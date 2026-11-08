@@ -31,3 +31,9 @@ Seguir `build/bosque/instalacion.txt`: crear el mundo con Multiverse, subir `ast
 `astral_minas.sk` nuevo, recargar y correr `bosquegenerar` desde la consola (≈30 s). Revisar parado en
 el spawn que estén los 64 árboles; los que no se pudieron colocar quedan sin molde y se ignoran.
 `/bosquereset` vuelve a copiar todos los moldes. Comandos de admin: permiso `astral.minas.admin`.
+
+## Estado en Empower (08/11/2026)
+
+Mundo creado, script cargado sin errores y `bosquegenerar` corrido: 64 copias, ninguna vacía
+(entre 220 y 889 bloques por árbol). `time set noon` falla en 26.1 ("world without world clock");
+si el bosque queda oscuro hay que resolver la hora de otra forma. Falta probar talando.

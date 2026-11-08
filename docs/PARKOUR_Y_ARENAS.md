@@ -19,8 +19,14 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
 - **Color Escape** necesita sus command blocks. `minijuegos_mapas.py` reescribe sus 372 comandos:
   `@a`/`@r` → `@p`; `execute as/at @a` y todo `@e` → a menos de 300 bloques. Así ningún comando
   toca otros mundos ni a otros jugadores (había `clear`, `gamemode` y `kill @e[type=wither]`).
-  Conserva cofres y entidades. Requiere `enable-command-block=true` y
-  `command_blocks_work true` solo en `colorescape`.
+  Conserva cofres y entidades. En 26.1 ya no existe `enable-command-block`: alcanza con
+  `command_blocks_work true` solo en `colorescape`. Además `commands.yml` tiene
+  `command-block-overrides: ['*']`: sin eso Essentials se queda con `xp`, `tp`, `clear`,
+  `gamemode`... dentro de los command blocks (en la primera prueba tiró miles de errores de `xp`).
+- **Instalado en Empower (08/11/2026):** mundos `parkour_spiral2`, `parkour_paradise3`,
+  `colorescape`, `dropper_facil` y `dropper_h4rs` creados con Multiverse; sus `region/` (y
+  `entities/` de Color Escape) copiados desde `mapas-subir/` con el servidor apagado. Se cargaron
+  las 5 llegadas y el bloque de abajo coincide con el mapa. Falta probar jugando.
 - **Mapas 26.2** (Spiral 2 y Paradise 3): se revisaron todos sus bloques, block entities y entidades;
   ninguno es nuevo de 26.2. Se baja `DataVersion` a 4790 (26.1.2) en `level.dat` y en cada chunk.
 - Los mundos preparados quedan en `.local/mapas/subir/` (no se publican).
