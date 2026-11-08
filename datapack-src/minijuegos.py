@@ -23,23 +23,22 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
 # Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
 # Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
 # Cada nivel: (titulo, (x, y, z) de la salida original, Y de salida corregida, Y de llegada al fondo).
-# En el original cada nivel empezaba parado sobre una placa (vidrio, piedra...) que quitaban sus
-# command blocks: sin ellos, los que fallaban (prueba del dueno, 08/11/2026) salen 2 bloques DEBAJO
-# de la placa, ya cayendo. Se gana al caer al agua o al quedar parado bajo la Y de llegada (slime,
+# Pedido del dueno (08/11/2026): aparecer parado justo encima de la placa de salida (ni arriba en el
+# aire ni debajo), para elegir hacia donde tirarse. La Y de salida es la de la placa + 1. Se gana al caer al agua o al quedar parado bajo la Y de llegada (slime,
 # alfombra del fondo...). None = como estaba (funcionaba). Se sacaron GLaDOS, Small World, Anatomy y
 # Rainbow del facil: sin la logica original no son droppers (Rainbow ni tiene fondo).
 DROPPERS = {
     'dropper_facil': dict(name='The Easiest Dropper', icon='WATER_BUCKET', rescue_y=-10, levels=[
-        ('Epilepsy Warning', (1009, 253, 468), 250, 6), ('Gaming Rig', (1036, 169, 761), 157, 15), ('Metropolis', (347, 250, -163), None, None),
-        ('Solar System', (150, 256, 983), None, None), ('The Nether', (310, 253, 143), 250, 12),
-        ('Pixel Art', (300, 252, -2), 249, 6)]),
+        ('Epilepsy Warning', (1009, 253, 468), None, 6), ('Gaming Rig', (1036, 169, 761), None, 15),
+        ('Metropolis', (347, 250, -163), None, None), ('Solar System', (150, 256, 983), None, None),
+        ('The Nether', (310, 253, 143), None, 12), ('Pixel Art', (300, 252, -2), None, 6)]),
     # H4rs tiene agua decorativa a mitad de caida (Y 196-240); el agua final esta en Y 3-6.
     'dropper_h4rs': dict(name='The Dropper (H4rs)', icon='HEART_OF_THE_SEA', rescue_y=-70, finish_y=20, levels=[
-        (None, (-75, 250, -271), 243, None), (None, (-68, 250, -246), 247, None),
-        (None, (-75, 250, -219), 243, None), (None, (-75, 243, -191), None, None),
-        (None, (-75, 252, -155), 248, None), (None, (-75, 250, -128), None, None),
-        (None, (-73, 253, -111), None, None), (None, (-75, 251, -75), None, None),
-        (None, (-75, 249, -52), 245, None), (None, (-74, 251, -32), None, None)]),
+        (None, (-75, 250, -271), 246, None), (None, (-68, 250, -246), 250, None),
+        (None, (-75, 250, -219), 246, None), (None, (-75, 243, -191), None, None),
+        (None, (-75, 252, -155), 251, None), (None, (-75, 250, -128), None, None),
+        (None, (-73, 253, -111), 252, None), (None, (-75, 251, -75), None, None),
+        (None, (-75, 249, -52), 248, None), (None, (-74, 251, -32), 250, None)]),
 }
 for _world, _d in DROPPERS.items():
     for _n, (_title, (_x, _y, _z), _start, _finish) in enumerate(_d['levels'], 1):

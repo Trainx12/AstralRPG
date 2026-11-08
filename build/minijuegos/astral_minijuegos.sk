@@ -217,7 +217,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil1}
         if {_l} is not set:
-            set {_l} to location(1009.5, 250, 468.5, world "dropper_facil", 0, 0)
+            set {_l} to location(1009.5, 253, 468.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil1"
@@ -240,7 +240,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil2}
         if {_l} is not set:
-            set {_l} to location(1036.5, 157, 761.5, world "dropper_facil", 0, 0)
+            set {_l} to location(1036.5, 169, 761.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil2"
@@ -309,7 +309,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil5}
         if {_l} is not set:
-            set {_l} to location(310.5, 250, 143.5, world "dropper_facil", 0, 0)
+            set {_l} to location(310.5, 253, 143.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil5"
@@ -332,7 +332,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.facil6}
         if {_l} is not set:
-            set {_l} to location(300.5, 249, -1.5, world "dropper_facil", 0, 0)
+            set {_l} to location(300.5, 252, -1.5, world "dropper_facil", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.facil6"
@@ -355,7 +355,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs1}
         if {_l} is not set:
-            set {_l} to location(-74.5, 243, -270.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 246, -270.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs1"
@@ -378,7 +378,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs2}
         if {_l} is not set:
-            set {_l} to location(-67.5, 247, -245.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-67.5, 250, -245.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs2"
@@ -401,7 +401,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs3}
         if {_l} is not set:
-            set {_l} to location(-74.5, 243, -218.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 246, -218.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs3"
@@ -447,7 +447,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs5}
         if {_l} is not set:
-            set {_l} to location(-74.5, 248, -154.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 251, -154.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs5"
@@ -493,7 +493,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs7}
         if {_l} is not set:
-            set {_l} to location(-72.5, 253, -110.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-72.5, 252, -110.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs7"
@@ -539,7 +539,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs9}
         if {_l} is not set:
-            set {_l} to location(-74.5, 245, -51.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-74.5, 248, -51.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs9"
@@ -562,7 +562,7 @@ function astral_minijuego_ir(p: player, id: text):
             stop
         set {_l} to {astral.punto::parkour.h4rs10}
         if {_l} is not set:
-            set {_l} to location(-73.5, 251, -31.5, world "dropper_h4rs", 0, 0)
+            set {_l} to location(-73.5, 250, -31.5, world "dropper_h4rs", 0, 0)
         if {astral.minijuegos.mode::%uuid of {_p}%} is not set:
             set {astral.minijuegos.mode::%uuid of {_p}%} to gamemode of {_p}
         set {astral.minijuegos.selected::%uuid of {_p}%} to "parkour.h4rs10"
