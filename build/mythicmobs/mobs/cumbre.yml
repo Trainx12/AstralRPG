@@ -88,7 +88,7 @@ astral_cumbre_arana:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -103,7 +103,7 @@ astral_cumbre_arana:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_cumbre_cara:
   Type: PHANTOM
@@ -115,7 +115,7 @@ astral_cumbre_cara:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -130,7 +130,7 @@ astral_cumbre_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_cumbre_espantapajaros:
   Type: VEX
@@ -142,7 +142,7 @@ astral_cumbre_espantapajaros:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.25
     PreventRandomEquipment: true
   Drops:
@@ -158,7 +158,7 @@ astral_cumbre_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_cumbre_yeti:
   Type: RAVAGER
@@ -204,4 +204,4 @@ astral_cumbre_yeti:
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_yeti_3_frio} @self ~onTimer:80 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer

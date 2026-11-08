@@ -7,7 +7,8 @@ sube un poco menos (5 golpes en T1 -> 4,2 en T5).
 
 - Mobs del mundo: se adaptan al arma de mayor tier del jugador mas cercano
   (86% su tier, 4% uno mas, 10% uno menos). Mazmorras: tier fijo.
-- La vida del jugador, su armadura y el dano de los mobs NO cambian.
+- La vida del jugador y su armadura NO cambian. El dano de los mobs sube x1,5 por tier
+  (pedido del dueno, 08/11/2026: un mob tier 5 casi no lastimaba a un jugador tier 3).
 - La particula de corazones al pegar es transparente (si no, salen miles) y la vida del
   mob se ve con el indicador de dano de astral_gameplay.sk.
 """
@@ -25,8 +26,8 @@ ESPADA_REAL = {1: 6.6, 2: 7.08, 3: 8.75, 4: 9.45, 5: 12.0}
 FACTOR_ARMA = {0: 1.0, **{t: DANO[t] / ESPADA_REAL[t] for t in DANO}}
 # Multiplicador REAL de vida de mobs (base vanilla 20): x25 / x120 / x575 / x2.750 / x13.125.
 VIDA_MOB = {0: 1.0, **{t: VIDA_REF[t] / 20 for t in DANO}}
-# Dano de los mobs al jugador: normal.
-DANO_MOB = {t: 1.0 for t in range(6)}
+# Dano de los mobs al jugador: x1,5 por tier (T1 x1,5 ... T5 x7,6 del dano normal del mob).
+DANO_MOB = {t: round(1.5 ** t, 2) for t in range(6)}
 # Los numeros ya son reales: lo que se ve es lo real.
 FACTOR_MOSTRADO = {t: 1.0 for t in range(6)}
 
@@ -34,8 +35,10 @@ FACTOR_MOSTRADO = {t: 1.0 for t in range(6)}
 TIER_ESPECIAL = 3
 
 # Mazmorras: tier fijo. Santuario es el epilogo (V+): tier 5 con vida extra.
-TIER_MAZMORRA = {"mina": 1, "bosque": 2, "tumba": 3, "cumbre": 4, "forja": 5, "santuario": 5}
-EXTRA_VIDA_MAZMORRA = {"santuario": 1.5}
+# Los mundos actuales de Cumbre, Forja y Santuario tienen otro nombre (cumbre_hielo...).
+TIER_MAZMORRA = {"mina": 1, "bosque": 2, "tumba": 3, "cumbre": 4, "forja": 5, "santuario": 5,
+                 "cumbre_hielo": 4, "forja_volcano": 5, "santuario_interstellar": 5}
+EXTRA_VIDA_MAZMORRA = {"santuario": 1.5, "santuario_interstellar": 1.5}
 
 # Probabilidades de tier en el mundo (en %).
 PROB_TIER_MAS = 4

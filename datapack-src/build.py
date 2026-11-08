@@ -1324,6 +1324,7 @@ fn("mob/tier_mundo", [
 for t in range(1, 6):
     fn(f"mob/t{t}", [
         f"attribute @s minecraft:max_health modifier add {NS}:tier {round(VIDA_MOB[t] - 1, 4)} add_multiplied_base",
+        f"attribute @s minecraft:attack_damage modifier add {NS}:tier {round(DANO_MOB[t] - 1, 4)} add_multiplied_base",
         f"tag @s add astral.mt{t}",
     ])
 extra_mz = []
@@ -1887,7 +1888,8 @@ fn("tool/broke", [
     "scoreboard players reset @s astral.dr",
     "scoreboard players reset @s astral.cs",
     f"execute if predicate {NS}:sneaking run return 0",
-    *[f'execute if dimension minecraft:{w} run return 0' for w in ('lobby','bosque','tumba','mina','cumbre','forja','santuario','cavernas','reino','exp_desierto','exp_hielo','exp_santuario')],
+    # Zonas protegidas: la misma lista que gameplay.py (mazmorras con sus mundos actuales).
+    *[f'execute if dimension minecraft:{w} run return 0' for w in __import__('gameplay').PROTECTED],
     "execute if score @s astral.tok matches ..0 run return 0",
     f"execute store result storage {NS}:tmp tool.x int 1 run scoreboard players get @s astral.tx",
     f"execute store result storage {NS}:tmp tool.y int 1 run scoreboard players get @s astral.ty",

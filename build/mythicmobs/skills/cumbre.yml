@@ -112,6 +112,7 @@ CUMBRE_SALA3_LIMPIA:
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=20}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=20}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/yeti"} @PlayersInRadius{r=20}'
+  - 'command{c="lp user <target.name> permission set astral.completada.cumbre true"} @PlayersInRadius{r=20}'
   - delay 40
   - 'skill{s=CUMBRE_PREMIO} @PlayersInRadius{r=20}'
   - 'skill{s=CUMBRE_PREMIO_YA} @PlayersInRadius{r=20}'

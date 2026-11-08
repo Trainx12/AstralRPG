@@ -21,7 +21,7 @@ astral_mina_minero:
   Skills:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.1'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.15'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_esqueleto:
   Type: SKELETON
@@ -43,7 +43,7 @@ astral_mina_esqueleto:
   - exp 15
   Skills:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.1'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_ahogado:
   Type: DROWNED
@@ -65,7 +65,7 @@ astral_mina_ahogado:
   Skills:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.12'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.2'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_arana:
   Type: CAVE_SPIDER
@@ -84,7 +84,7 @@ astral_mina_arana:
   - exp 15
   Skills:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15'
-  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_capataz:
   Type: DROWNED
@@ -120,7 +120,7 @@ astral_mina_capataz:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_luminica"} @self ~onDeath 0.4'
-  - 'command{c="eco give <trigger.name> 400"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 400"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_golem:
   Type: IRON_GOLEM
@@ -162,7 +162,7 @@ astral_mina_golem:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/netherita_fundida"} @self ~onDeath 0.5'
-  - 'command{c="eco give <trigger.name> 500"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 500"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_guardian:
   Type: IRON_GOLEM
@@ -210,7 +210,7 @@ astral_mina_guardian:
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0'
   - 'command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 0.5'
-  - 'command{c="eco give <trigger.name> 1500"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 1500"} @trigger ~onDeath ?~isplayer'
 
 astral_mina_control_sala1:
   Type: ARMOR_STAND

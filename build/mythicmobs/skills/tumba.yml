@@ -465,6 +465,7 @@ TUMBA_SALA3_LIMPIA:
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=64}'
+  - 'command{c="lp user <target.name> permission set astral.completada.tumba true"} @PlayersInRadius{r=64}'
   - 'remove @MobsInRadius{r=64;types=astral_tumba_cofre,astral_tumba_guia}'
   - 'summon{type=astral_tumba_cofre;amount=1;radius=0} @Location{x=0.5;y=72;z=0.5}'
   - 'summon{type=astral_tumba_guia;amount=1;radius=0} @Location{x=0.5;y=72;z=3.5}'

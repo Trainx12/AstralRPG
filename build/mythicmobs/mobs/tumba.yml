@@ -16,7 +16,7 @@ astral_tumba_s2_arana:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s2_momia:
   Type: HUSK
@@ -34,7 +34,7 @@ astral_tumba_s2_momia:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s2_esqueleto:
   Type: SKELETON
@@ -54,7 +54,7 @@ astral_tumba_s2_esqueleto:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s2_cara:
   Type: PHANTOM
@@ -75,7 +75,7 @@ astral_tumba_s2_cara:
   - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onSpawn'
   - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onLoad'
   - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s2_espantapajaros:
   Type: VEX
@@ -96,7 +96,7 @@ astral_tumba_s2_espantapajaros:
   - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onSpawn'
   - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onLoad'
   - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 30"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 30"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s2_golem:
   Type: IRON_GOLEM
@@ -123,7 +123,7 @@ astral_tumba_s2_golem:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 100"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 100"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s1_arana:
   Type: CAVE_SPIDER
@@ -141,7 +141,7 @@ astral_tumba_s1_arana:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s1_momia:
   Type: HUSK
@@ -159,7 +159,7 @@ astral_tumba_s1_momia:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s1_esqueleto:
   Type: SKELETON
@@ -179,7 +179,7 @@ astral_tumba_s1_esqueleto:
   Drops:
   - exp 15
   Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_s1_cara:
   Type: PHANTOM
@@ -200,7 +200,7 @@ astral_tumba_s1_cara:
   - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onSpawn'
   - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onLoad'
   - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?isplayer'
+  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
 
 astral_tumba_control_sala1:
   Type: ARMOR_STAND
@@ -333,7 +333,7 @@ astral_tumba_espantapajaros:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.25
     PreventRandomEquipment: true
   Drops:
@@ -349,7 +349,7 @@ astral_tumba_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_tumba_arana:
   Type: SPIDER
@@ -361,7 +361,7 @@ astral_tumba_arana:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -376,7 +376,7 @@ astral_tumba_arana:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_tumba_cara:
   Type: PHANTOM
@@ -388,7 +388,7 @@ astral_tumba_cara:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -403,7 +403,7 @@ astral_tumba_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_tumba_momia:
   Type: HUSK
@@ -447,5 +447,5 @@ astral_tumba_momia:
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..96,name='Control Trono del Rey de Arena'] add tumba.jefe.derrotado"} @self ~onDeath

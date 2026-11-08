@@ -353,7 +353,7 @@ COMANDOS = [
         ('baltop', 'GOLD_BLOCK', '/baltop', ['Los jugadores con mas oro.'], '/baltop', ['[close]', '[player] baltop']),
         ('pay', 'GOLD_NUGGET', '/pay', ['Pasale oro a otro jugador.'], '/pay <jugador> <cantidad>', None),
         ('shop', 'EMERALD', '/shop', ['Tienda del servidor: compra', 'materiales y objetos vanilla.'], '/shop', ['[close]', '[player] economyshopgui:shop<delay=3>']),
-        ('sellgui', 'CHEST', '/sellgui', ['Venta rapida: pone objetos y', 'cobralos al precio del servidor.'], '/sellgui', ['[close]', '[player] sellgui<delay=3>']),
+        ('sellgui', 'CHEST', 'Venta rapida', ['Pone objetos y cobralos', 'al precio del servidor.'], 'Clic para abrir', ['[close]', '[player] astralventa<delay=3>']),
         ('worth', 'OAK_SIGN', '/worth', ['Cuanto vale el objeto que', 'tenes en la mano.'], '/worth', ['[close]', '[player] worth']),
         ('ah', 'BELL', '/ah', ['Subastas entre jugadores.', 'Vender: objeto en la mano y /ah sell <precio>.'], '/ah', ['[close]', '[player] ah<delay=3>']),
         ('trade', 'VILLAGER_SPAWN_EGG', '/trade', ['Intercambio cara a cara con otro', 'jugador: objetos y oro, los dos confirman.'], '/trade <jugador>', None),

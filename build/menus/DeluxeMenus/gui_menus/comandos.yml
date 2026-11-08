@@ -292,19 +292,19 @@ items:
     material: CHEST
     slot: 32
     amount: 1
-    display_name: '&e&l/sellgui'
+    display_name: '&e&lVenta rapida'
     lore:
-    - '&7Venta rapida: pone objetos y'
-    - '&7cobralos al precio del servidor.'
+    - '&7Pone objetos y cobralos'
+    - '&7al precio del servidor.'
     - ''
-    - '&fUso: &e/sellgui'
+    - '&fUso: &eClic para abrir'
     - '&aClic para usarlo.'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] sellgui<delay=3>'
+    - '[player] astralventa<delay=3>'
   'cmd_worth':
     material: OAK_SIGN
     slot: 33

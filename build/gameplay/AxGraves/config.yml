@@ -57,6 +57,9 @@ disabled-worlds:
 - cumbre
 - forja
 - santuario
+- cumbre_hielo
+- forja_volcano
+- santuario_interstellar
 - cavernas
 - reino
 - exp_desierto

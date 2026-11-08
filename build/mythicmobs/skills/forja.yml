@@ -14,6 +14,7 @@ FORJA_SALA1_LIMPIA:
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/golem_forja"} @PlayersInRadius{r=36}'
+  - 'command{c="lp user <target.name> permission set astral.completada.forja true"} @PlayersInRadius{r=36}'
   - delay 40
   - 'skill{s=FORJA_PREMIO} @PlayersInRadius{r=36}'
   - 'skill{s=FORJA_PREMIO_YA} @PlayersInRadius{r=36}'

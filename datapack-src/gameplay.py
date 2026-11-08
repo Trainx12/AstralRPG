@@ -4,7 +4,9 @@ from pathlib import Path
 from minijuegos import parkour_worlds, arena_worlds
 
 ROOT=Path(__file__).resolve().parent.parent
-DUNGEONS=('bosque','tumba','mina','cumbre','forja','santuario')
+DUNGEONS=('bosque','tumba','mina','cumbre','forja','santuario',
+          # mundos actuales de Cumbre, Forja y Santuario (08/11/2026)
+          'cumbre_hielo','forja_volcano','santuario_interstellar')
 PROTECTED=('lobby',)+DUNGEONS+('cavernas','reino','exp_desierto','exp_hielo','exp_santuario')
 # Altura absoluta de rescate. Mina tiene salas bajo Y=0; no usar el mismo limite.
 RESCUE_HEIGHTS={'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
@@ -253,8 +255,18 @@ on death of player:
         set {_y} to floor(y-coordinate of victim)
         set {_z} to floor(z-coordinate of victim)
         send "&eMoriste en &f%{_w}%&e: &f%{_x}%, %{_y}%, %{_z}%&e. Conservas tus objetos." to victim
+    else:
+        # Fuera de las zonas protegidas AxGraves deja una tumba: se recuerda donde al reaparecer.
+        set {-astral.tumba::%uuid of victim%} to "&f%{_w}% &e(&f%floor(x-coordinate of victim)%, %floor(y-coordinate of victim)%, %floor(z-coordinate of victim)%&e)"
     delete {-astral.jump.used::%uuid of victim%}
     delete {-astral.launch::%uuid of victim%}
+
+on respawn:
+    if {-astral.tumba::%uuid of player%} is set:
+        wait 1 second
+        send "&6&lTus cosas quedaron en una tumba: %{-astral.tumba::%uuid of player%}%" to player
+        send "&7Volve a ese lugar y abrila con clic para recuperarlas." to player
+        delete {-astral.tumba::%uuid of player%}
 
 on jump:
     set {-astral.jump.armed::%uuid of player%} to true
@@ -302,16 +314,7 @@ every tick:
                     continue
         if astral_dungeon(world of loop-player) is true:
             if astral_builder(loop-player) is false:
-                set {_world} to name of world of loop-player
-                if loop-player is swimming:
-                    if {-astral.dry::%{_id}%::%{_world}%} is set:
-                        teleport loop-player to {-astral.dry::%{_id}%::%{_world}%}
-                    else:
-                        execute console command "spawn %name of loop-player%"
-                    continue
-                if loop-player is on ground:
-                    if block at loop-player is not water:
-                        set {-astral.dry::%{_id}%::%{_world}%} to location of loop-player
+                # Se puede nadar (pedido del dueno, 08/11/2026: el agua trababa Minas Olvidadas).
                 if chestplate of loop-player is elytra:
                     execute console command "spawn %name of loop-player%"
                     send "&cNo puedes equipar elitras dentro de una mazmorra. Conservas el objeto." to loop-player

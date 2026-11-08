@@ -56,21 +56,41 @@ command /expediciones [<text>]:
             execute console command "dm open expediciones %name of player%"
             stop
         if arg-1 is "bosque":
+            if player is not op:
+                if player does not have permission "astral.completada.mina":
+                    send "&cPrimero termina la mazmorra &fMinas Olvidadas&c." to player
+                    stop
             execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
             stop
         if arg-1 is "tumba":
+            if player is not op:
+                if player does not have permission "astral.completada.bosque":
+                    send "&cPrimero termina la mazmorra &fBosque Sombrio&c." to player
+                    stop
             execute console command "execute in minecraft:exp_desierto run minecraft:tp %name of player% 180.233 102 134.266 -124.8 0"
             stop
         if arg-1 is "mina":
             execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
             stop
         if arg-1 is "cumbre":
+            if player is not op:
+                if player does not have permission "astral.completada.tumba":
+                    send "&cPrimero termina la mazmorra &fTumba del Rey de Arena&c." to player
+                    stop
             execute console command "execute in minecraft:exp_nieve run minecraft:tp %name of player% 16.5 83 10.5 0 0"
             stop
         if arg-1 is "forja":
+            if player is not op:
+                if player does not have permission "astral.completada.cumbre":
+                    send "&cPrimero termina la mazmorra &fCumbre Helada&c." to player
+                    stop
             execute console command "execute in minecraft:forja run minecraft:tp %name of player% 1536.5 222 1900.5 0 0"
             stop
         if arg-1 is "santuario":
+            if player is not op:
+                if player does not have permission "astral.completada.forja":
+                    send "&cPrimero termina la mazmorra &fCorazon de la Forja&c." to player
+                    stop
             execute console command "execute in minecraft:exp_santuario run minecraft:tp %name of player% 26.5 103 -31.5 180 0"
             stop
         send "&eUsa /expediciones para elegir un destino." to player

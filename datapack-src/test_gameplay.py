@@ -63,8 +63,10 @@ class GameplayTests(unittest.TestCase):
     def test_escape_items_and_mobility_are_blocked_in_dungeons(self):
         text=script()
         for w in DUNGEONS:self.assertIn('"'+w+'"',text)
-        for word in ['elytra','ender pearl','chorus fruit','trapdoor','wind charge','riptide','water bucket','boat','minecart','on mount:','loop-player is swimming:']:
+        for word in ['elytra','ender pearl','chorus fruit','trapdoor','wind charge','riptide','water bucket','boat','minecart','on mount:']:
             self.assertIn(word,text)
+        # Se puede nadar en las mazmorras (08/11/2026).
+        self.assertNotIn('loop-player is swimming:',text)
         self.assertIn('on player jump key press:\n    if astral_dungeon(world of player) is true:\n        stop',text)
         self.assertNotIn('flight mode',text)
 

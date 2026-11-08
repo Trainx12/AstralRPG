@@ -421,7 +421,7 @@ def mob_block(mid, d, model=None, elite=None):
                 sk.append("- " + con_condicion(x.replace("<base>", base), f"?hastag{{tag=astral.af_{a}}}"))
     money = d.get("money") or (ELITE_MONEY if elite else MONEY.get(d["kind"]))
     if money:
-        sk.append(f"- command{{c=\"eco give <trigger.name> {money}\"}} @trigger ~onDeath ?isplayer")
+        sk.append(f"- command{{c=\"eco give <trigger.name> {money}\"}} @trigger ~onDeath ?~isplayer")
     lines.append("  Skills:")
     lines += ["  " + s for s in sk]
     return "\n".join(lines) + "\n"

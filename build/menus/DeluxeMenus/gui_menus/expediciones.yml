@@ -8,7 +8,8 @@
       "slot": 4,
       "display_name": "&b&lElige tu expedicion",
       "lore": [
-        "&7Puedes explorar cualquiera de los seis destinos.",
+        "&7Van en orden: termina una mazmorra",
+        "&7para abrir la expedicion siguiente.",
         "&7Habla con su guardian para desbloquear el viaje rapido."
       ]
     },
@@ -57,10 +58,11 @@
     "bosque": {
       "material": "PAPER",
       "slot": 9,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -75,10 +77,11 @@
     "bosque_hit_1": {
       "material": "PAPER",
       "slot": 10,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -93,10 +96,11 @@
     "bosque_hit_2": {
       "material": "PAPER",
       "slot": 11,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -111,10 +115,11 @@
     "bosque_hit_3": {
       "material": "PAPER",
       "slot": 18,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -129,10 +134,11 @@
     "bosque_hit_4": {
       "material": "PAPER",
       "slot": 19,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -147,10 +153,11 @@
     "bosque_hit_5": {
       "material": "PAPER",
       "slot": 20,
-      "display_name": "&b&l1. Bosque Sombrio",
+      "display_name": "&b&l2. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -165,10 +172,11 @@
     "tumba": {
       "material": "PAPER",
       "slot": 12,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -183,10 +191,11 @@
     "tumba_hit_1": {
       "material": "PAPER",
       "slot": 13,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -201,10 +210,11 @@
     "tumba_hit_2": {
       "material": "PAPER",
       "slot": 14,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -219,10 +229,11 @@
     "tumba_hit_3": {
       "material": "PAPER",
       "slot": 21,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -237,10 +248,11 @@
     "tumba_hit_4": {
       "material": "PAPER",
       "slot": 22,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -255,10 +267,11 @@
     "tumba_hit_5": {
       "material": "PAPER",
       "slot": 23,
-      "display_name": "&b&l2. Tumba del Rey de Arena",
+      "display_name": "&b&l3. Tumba del Rey de Arena",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -273,7 +286,7 @@
     "mina": {
       "material": "PAPER",
       "slot": 15,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -291,7 +304,7 @@
     "mina_hit_1": {
       "material": "PAPER",
       "slot": 16,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -309,7 +322,7 @@
     "mina_hit_2": {
       "material": "PAPER",
       "slot": 17,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -327,7 +340,7 @@
     "mina_hit_3": {
       "material": "PAPER",
       "slot": 24,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -345,7 +358,7 @@
     "mina_hit_4": {
       "material": "PAPER",
       "slot": 25,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -363,7 +376,7 @@
     "mina_hit_5": {
       "material": "PAPER",
       "slot": 26,
-      "display_name": "&b&l3. Minas Olvidadas",
+      "display_name": "&b&l1. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
@@ -385,6 +398,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -403,6 +417,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -421,6 +436,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -439,6 +455,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -457,6 +474,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -475,6 +493,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fTumba del Rey de Arena",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -493,6 +512,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -511,6 +531,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -529,6 +550,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -547,6 +569,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -565,6 +588,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -583,6 +607,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCumbre Helada",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -601,6 +626,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -619,6 +645,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -637,6 +664,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -655,6 +683,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -673,6 +702,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -691,6 +721,7 @@
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fCorazon de la Forja",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [

@@ -5,6 +5,9 @@ mv gamerule set minecraft:keep_inventory true mina
 mv gamerule set minecraft:keep_inventory true cumbre
 mv gamerule set minecraft:keep_inventory true forja
 mv gamerule set minecraft:keep_inventory true santuario
+mv gamerule set minecraft:keep_inventory true cumbre_hielo
+mv gamerule set minecraft:keep_inventory true forja_volcano
+mv gamerule set minecraft:keep_inventory true santuario_interstellar
 mv gamerule set minecraft:keep_inventory true cavernas
 mv gamerule set minecraft:keep_inventory true reino
 mv gamerule set minecraft:keep_inventory true exp_desierto
@@ -28,4 +31,13 @@ rg flag -w forja __global__ build deny
 rg flag -w santuario __global__ block-break deny
 rg flag -w santuario __global__ block-place deny
 rg flag -w santuario __global__ build deny
+rg flag -w cumbre_hielo __global__ block-break deny
+rg flag -w cumbre_hielo __global__ block-place deny
+rg flag -w cumbre_hielo __global__ build deny
+rg flag -w forja_volcano __global__ block-break deny
+rg flag -w forja_volcano __global__ block-place deny
+rg flag -w forja_volcano __global__ build deny
+rg flag -w santuario_interstellar __global__ block-break deny
+rg flag -w santuario_interstellar __global__ block-place deny
+rg flag -w santuario_interstellar __global__ build deny
 lp group default permission set axgraves.allowgraves true

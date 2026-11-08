@@ -6,7 +6,9 @@ from mobs.mazmorras_data import catalog
 from adventure_ui import title as adventure_title, regions
 
 ROOT=Path(__file__).resolve().parent.parent
-ORDER=('bosque','tumba','mina','cumbre','forja','santuario')
+ORDER=('bosque','tumba','mina','cumbre','forja','santuario')   # posiciones del arte del menu
+# Progreso por dificultad (tier): para la expedicion de una hay que terminar la anterior.
+PROGRESO=('mina','bosque','tumba','cumbre','forja','santuario')
 ICONS=('OAK_SAPLING','CHISELED_SANDSTONE','IRON_PICKAXE','SNOWBALL','BLAZE_POWDER','NETHER_STAR')
 EXPLORATION={
     'bosque':('cavernas',(172.5,102,89.5,0,0)),
@@ -23,6 +25,14 @@ def destinations():
     return [data[key] for key in ORDER]
 
 
+def numero(key):
+    return PROGRESO.index(key)+1
+
+
+def completada(key):
+    return f'astral.completada.{key}'
+
+
 def permission(key):
     return f'astral.descubierto.{key}'
 
@@ -34,12 +44,12 @@ def menu_data():
         req={'requirements':{'descubierta':{'type':'has permission','permission':permission(key)}}}
         where={'bosque':'Cavernas','tumba':'Desierto','mina':'Cavernas','cumbre':'Hielo','forja':'Reino','santuario':'Santuario'}[key]
         items[key]={
-            'material':icon,'slot':slot,'priority':1,'display_name':f'&a&l{index+1}. {d["name"]}',
+            'material':icon,'slot':slot,'priority':1,'display_name':f'&a&l{numero(key)}. {d["name"]}',
             'lore':['&aDestino descubierto.','&7Clic para viajar al inicio de la mazmorra.'],
             'view_requirement':req,'click_requirement':dict(req,deny_commands=['[message] &cPrimero encuentra y habla con su aldeano.']),
             'click_commands':['[close]',f'[player] mazmorras {key}']}
         items[key+'_bloqueada']={
-            'material':'GRAY_DYE','slot':slot,'priority':2,'display_name':f'&8&l{index+1}. {d["name"]}',
+            'material':'GRAY_DYE','slot':slot,'priority':2,'display_name':f'&8&l{numero(key)}. {d["name"]}',
             'lore':['&cSin descubrir.',f'&7Busca a su aldeano en {where}.','&7Habla con el al menos una vez para desbloquearla.'],
             'click_commands':['[message] &ePrimero debes encontrar y hablar con el aldeano de esta mazmorra.','[sound] ENTITY_VILLAGER_NO']}
     items['info']={'material':'COMPASS','slot':4,'display_name':'&b&lMazmorras descubiertas',
@@ -92,15 +102,17 @@ def script():
 
 def exploration_menu():
     items={}
+    names={d['key']:d['name'] for d in destinations()}
     for index,(d,icon) in enumerate(zip(destinations(),ICONS)):
         key=d['key']
         items[key]={'material':icon,'slot':(10,11,12,14,15,16)[index],
-                    'display_name':f'&b&l{index+1}. {d["name"]}',
+                    'display_name':f'&b&l{numero(key)}. {d["name"]}',
                     'lore':['&7Viaja al mapa de exploracion.','&7Busca al aldeano que guarda la entrada.',
+                            *([f'&cRequiere terminar: &f{names[PROGRESO[numero(key)-2]]}'] if numero(key)>1 else []),
                             '&eClic para comenzar la busqueda.'],
                     'click_commands':['[close]',f'[player] expediciones {key}']}
     items['info']={'material':'COMPASS','slot':4,'display_name':'&b&lElige tu expedicion',
-                   'lore':['&7Puedes explorar cualquiera de los seis destinos.','&7Habla con su guardian para desbloquear el viaje rapido.']}
+                   'lore':['&7Van en orden: termina una mazmorra','&7para abrir la expedicion siguiente.','&7Habla con su guardian para desbloquear el viaje rapido.']}
     items['lobby']={'material':'NETHER_STAR','slot':49,'display_name':'&a&lVolver al lobby',
                     'click_commands':['[close]','[player] spawn']}
     items['descubiertas']={'material':'ENDER_PEARL','slot':51,'display_name':'&d&lViaje rapido: mazmorras descubiertas',
@@ -117,9 +129,17 @@ def exploration_script():
            'command /expediciones [<text>]:','    aliases: expedicion','    executable by: players',
            '    trigger:','        if arg-1 is not set:',
            '            execute console command "dm open expediciones %name of player%"','            stop']
+    names={d['key']:d['name'] for d in destinations()}
     for key,(world,spawn) in EXPLORATION.items():
         coords=' '.join(map(str,spawn))
-        lines += [f'        if arg-1 is "{key}":',
+        lines += [f'        if arg-1 is "{key}":']
+        if numero(key)>1:
+            prev=PROGRESO[numero(key)-2]
+            lines += ['            if player is not op:',
+                      f'                if player does not have permission "{completada(prev)}":',
+                      f'                    send "&cPrimero termina la mazmorra &f{names[prev]}&c." to player',
+                      '                    stop']
+        lines += [
                   f'            execute console command "execute in minecraft:{world} run minecraft:tp %name of player% {coords}"',
                   '            stop']
     lines += ['        send "&eUsa /expediciones para elegir un destino." to player']

@@ -88,7 +88,7 @@ astral_bosque_espantapajaros:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.25
     PreventRandomEquipment: true
   Drops:
@@ -104,7 +104,7 @@ astral_bosque_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_bosque_abejorro:
   Type: VEX
@@ -116,7 +116,7 @@ astral_bosque_abejorro:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -131,7 +131,7 @@ astral_bosque_abejorro:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_bosque_cara:
   Type: PHANTOM
@@ -143,7 +143,7 @@ astral_bosque_cara:
     PreventOtherDrops: true
     Silent: false
     PreventSunburn: true
-    Despawn: true
+    Despawn: false
     MovementSpeed: 0.3
     PreventRandomEquipment: true
   Drops:
@@ -158,7 +158,7 @@ astral_bosque_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_bosque_chaman:
   Type: EVOKER
@@ -203,4 +203,4 @@ astral_bosque_chaman:
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?isplayer
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer

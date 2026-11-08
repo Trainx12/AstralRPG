@@ -140,7 +140,7 @@ def mob_yml(dungeon=None):
             m, sc, col = d["model"]
             sk = [f"skill{{s=MINA_MODELO_{mid}}} @self ~onSpawn", f"skill{{s=MINA_MODELO_{mid}}} @self ~onLoad",
                   "state{s=attack} @self ~onAttack"] + sk
-        sk.append(f'command{{c="eco give <trigger.name> {d["money"]}"}} @trigger ~onDeath ?isplayer')
+        sk.append(f'command{{c="eco give <trigger.name> {d["money"]}"}} @trigger ~onDeath ?~isplayer')
         L += ["  Skills:"] + ["  - " + q(s) for s in sk] + [""]
     # controladores de sala: armor stand invisible y quieto
     for i, s in enumerate(SALAS):
@@ -304,7 +304,9 @@ def skill_yml(dungeon=None):
                   *(["  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos_sala(s)}}}")] if s.get("require_boss_death") else []),
                   "  - " + q(f'message{{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - " + q("sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=" + str(r + 8) + "}"),
-                  "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}')]
+                  "  - " + q(f'command{{c="execute as <target.name> at @s run function astral:quest/event/{dungeon["event"]}"}} @PlayersInRadius{{r={r + 8}}}'),
+                  # Permanente: abre la expedicion de la mazmorra siguiente (viajes_mazmorras.py).
+                  "  - " + q(f'command{{c="lp user <target.name> permission set astral.completada.{dungeon["key"]} true"}} @PlayersInRadius{{r={r + 8}}}')]
             fin = s.get("final_npcs")
             if fin:
                 # Sin teletransporte: aparece un cofre (se cobra con clic) y el guia de

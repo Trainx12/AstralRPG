@@ -54,6 +54,7 @@ SANTUARIO_SALA1_LIMPIA:
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=26}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/santuario"} @PlayersInRadius{r=26}'
+  - 'command{c="lp user <target.name> permission set astral.completada.santuario true"} @PlayersInRadius{r=26}'
   - delay 40
   - 'skill{s=SANTUARIO_PREMIO} @PlayersInRadius{r=26}'
   - 'skill{s=SANTUARIO_PREMIO_YA} @PlayersInRadius{r=26}'
