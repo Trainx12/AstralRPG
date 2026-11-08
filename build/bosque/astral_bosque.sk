@@ -111,10 +111,10 @@ every 1 second:
 every 5 seconds:
     if ab_world() is not set:
         stop
-    loop 8 times:
-        set {_i} to loop-value-1 - 1
-        loop 8 times:
-            set {_j} to loop-value-2 - 1
+    set {_i} to 0
+    while {_i} < 8:
+        set {_j} to 0
+        while {_j} < 8:
             set {_k} to "%{_i}%_%{_j}%"
             if {-ab.pend::%{_k}%} is not set:
                 set {_x} to 0 + {_i} * 14 + 7
@@ -125,6 +125,8 @@ every 5 seconds:
                     if block at {_live} is air:
                         if block at {_mold} is not air:
                             set {-ab.pend::%{_k}%} to now
+            add 1 to {_j}
+        add 1 to {_i}
     loop indices of {-ab.pend::*}:
         set {_k} to loop-value
         if difference between {-ab.pend::%{_k}%} and now >= 3 minutes:
@@ -280,10 +282,14 @@ command /bosquegenerar:
         execute console command "execute in minecraft:astral_bosque run place feature minecraft:mega_pine 105 -59 105"
         wait 2 ticks
         wait 1 second
-        loop 8 times:
-            loop 8 times:
-                ab_regrow("%loop-value-1 - 1%_%loop-value-2 - 1%")
+        set {_i} to 0
+        while {_i} < 8:
+            set {_j} to 0
+            while {_j} < 8:
+                ab_regrow("%{_i}%_%{_j}%")
                 wait 2 ticks
+                add 1 to {_j}
+            add 1 to {_i}
         execute console command "execute in minecraft:astral_bosque run forceload remove -16 -16 127 127"
         delete {-ab.pend::*}
         send "&aBosque generado. Revisar que no falten arboles (los que fallan quedan sin molde)." to command sender
@@ -291,8 +297,12 @@ command /bosquegenerar:
 command /bosquereset:
     permission: astral.minas.admin
     trigger:
-        loop 8 times:
-            loop 8 times:
-                ab_regrow("%loop-value-1 - 1%_%loop-value-2 - 1%")
+        set {_i} to 0
+        while {_i} < 8:
+            set {_j} to 0
+            while {_j} < 8:
+                ab_regrow("%{_i}%_%{_j}%")
+                add 1 to {_j}
+            add 1 to {_i}
         delete {-ab.pend::*}
         send "&aArboles regenerados." to command sender

@@ -9,7 +9,6 @@ mv gamerule set minecraft:spawn_mobs false astral_bosque
 mv gamerule set minecraft:keep_inventory true astral_bosque
 mv gamerule set minecraft:advance_time false astral_bosque
 mv gamerule set minecraft:random_tick_speed 0 astral_bosque
-minecraft:execute in minecraft:astral_bosque run time set noon
 rg flag -w astral_bosque __global__ chest-access deny
 rg flag -w astral_bosque __global__ pistons deny
 rg flag -w astral_bosque __global__ mob-spawning deny
