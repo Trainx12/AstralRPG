@@ -321,14 +321,33 @@ on player jump key press:
     set {-astral.jump.used::%uuid of player%} to true
     delete {-astral.jump.armed::%uuid of player%}
     delete {-astral.jump.released::%uuid of player%}
-    set {_v} to velocity of player
-    set y component of {_v} to 0.65
+    # El server no conoce bien la velocidad lateral del jugador (la mueve el cliente): se usa
+    # cuanto se movio en el ultimo tick, asi el doble salto conserva el impulso y no frena en seco.
+    set {_v} to vector(0, 0.65, 0)
+    set {_move} to {-astral.lastmove::%uuid of player%}
+    if {_move} is set:
+        set {_vx} to x component of {_move}
+        set {_vz} to z component of {_move}
+        set {_h} to sqrt({_vx} * {_vx} + {_vz} * {_vz})
+        if {_h} > 0.6:
+            set {_vx} to {_vx} * 0.6 / {_h}
+            set {_vz} to {_vz} * 0.6 / {_h}
+        set {_v} to vector({_vx} * 1.1, 0.65, {_vz} * 1.1)
     set velocity of player to {_v}
     play sound "entity.breeze.jump" with volume 0.4 and pitch 1.4 at player
 
 every tick:
     loop all players:
         set {_id} to uuid of loop-player
+        # Movimiento del ultimo tick (posicion actual - la del tick anterior): lo usa el doble
+        # salto para saber hacia donde ibas. El cliente manda el salto antes que su posicion.
+        set {_now} to location of loop-player
+        set {_prev} to {-astral.lastpos::%{_id}%}
+        set {-astral.lastpos::%{_id}%} to {_now}
+        delete {-astral.lastmove::%{_id}%}
+        if {_prev} is set:
+            if world of {_prev} is world of {_now}:
+                set {-astral.lastmove::%{_id}%} to vector from {_prev} to {_now}
         set {_limit} to astral_rescue_height(world of loop-player)
         if {_limit} is not -10000:
             if gamemode of loop-player is survival or adventure:
@@ -389,6 +408,8 @@ on damage of player:
 __REALISTIC_HOOK__
 
 on quit:
+    delete {-astral.lastpos::%uuid of player%}
+    delete {-astral.lastmove::%uuid of player%}
     delete {-astral.jump.used::%uuid of player%}
     delete {-astral.jump.armed::%uuid of player%}
     delete {-astral.jump.released::%uuid of player%}

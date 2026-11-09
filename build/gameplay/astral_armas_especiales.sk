@@ -197,6 +197,24 @@ function asw_mobility(p: player) :: boolean:
     return true
 
 # Transmisión: muestreo desde los ojos y barrido del volumen del cuerpo cada 0,2.
+# Estela de particulas entre el origen y el destino (a la altura del pecho).
+function asw_trail(from: location, dest: location):
+    set {_dimension} to asw_dimension(world of {_from})
+    set {_x0} to x-coordinate of {_from}
+    set {_y0} to (y-coordinate of {_from}) + 1
+    set {_z0} to z-coordinate of {_from}
+    set {_ddx} to (x-coordinate of {_dest}) - {_x0}
+    set {_ddy} to (y-coordinate of {_dest}) + 1 - {_y0}
+    set {_ddz} to (z-coordinate of {_dest}) - {_z0}
+    set {_len} to distance between {_from} and {_dest}
+    set {_steps} to ceil({_len} / 0.75)
+    loop {_steps} times:
+        set {_t} to loop-number / {_steps}
+        set {_x} to round(({_x0} + {_ddx} * {_t}) * 100) / 100
+        set {_y} to round(({_y0} + {_ddy} * {_t}) * 100) / 100
+        set {_z} to round(({_z0} + {_ddz} * {_t}) * 100) / 100
+        execute console command "execute in %{_dimension}% run particle minecraft:reverse_portal %{_x}% %{_y}% %{_z}% 0.1 0.2 0.1 0.01 3"
+
 function asw_blink(p: player):
     set {_dir} to vector in direction of {_p}
     set {_origin} to location of {_p}
@@ -223,10 +241,19 @@ function asw_blink(p: player):
         stop
     if asw_pay({_p}, 17) is false:
         stop
-    set yaw of {_dest} to yaw of {_p}
-    set pitch of {_dest} to pitch of {_p}
-    teleport {_p} to {_dest}
-    if distance between location of {_p} and {_dest} > 0.5:
+    # Teletransporte RELATIVO de vanilla (~dx ~dy ~dz, sin tocar la rotacion): el cliente no
+    # recibe una camara/posicion absoluta del server, asi que no hay tiron ni giro de camara.
+    set {_dx} to round((x-coordinate of {_dest} - x-coordinate of {_origin}) * 1000) / 1000
+    set {_dy} to round((y-coordinate of {_dest} - y-coordinate of {_origin}) * 1000) / 1000
+    set {_dz} to round((z-coordinate of {_dest} - z-coordinate of {_origin}) * 1000) / 1000
+    asw_trail({_origin}, {_dest})
+    execute console command "execute as %name of {_p}% at @s run minecraft:tp @s ~%{_dx}% ~%{_dy}% ~%{_dz}%"
+    # La posicion se actualiza en el tick siguiente; si algo cancelo el viaje
+    # (p. ej. una region protegida), se devuelve el mana.
+    wait 1 tick
+    if {_p} is not online:
+        stop
+    if distance between (location of {_p}) and {_origin} < 0.5:
         execute console command "auraskills:mana add %name of {_p}% 17 true"
         stop
     set fall distance of {_p} to 0
