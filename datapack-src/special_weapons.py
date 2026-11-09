@@ -10,12 +10,16 @@ WEAPONS = {
         cost=[('c','cristal_refinado',3),('c','nucleo_eolico',1),('v','minecraft:ender_pearl',4)]),
     'hacha_terremoto': dict(name='Hacha del Sismo', base='netherite_axe', color='#dda65d', damage=11, speed=1.0,
         cost=[('c','netherita_reforzada',4),('c','gema_luminica',2),('v','minecraft:obsidian',8)]),
+    # Cura: no pega fuerte (dano 1). Modelo vanilla de palo con brillo hasta tener textura propia.
+    'varita_curacion': dict(name='Varita de Curación', base='stick', color='#7dff9a', damage=1, speed=1.6,
+        model='minecraft:stick', glint=True,
+        cost=[('c','cristal_refinado',2),('c','gema_luminica',1),('v','minecraft:ghast_tear',2)]),
     'varita_estallido': dict(name='Varita del Estallido', base='stick', color='#ff8673', damage=6, speed=1.5,
         cost=[('c','palo_reforzado',1),('c','cristal_arcano',3),('v','minecraft:blaze_powder',8)]),
 }
 
 # Números de las habilidades actuales, separados de su presentación.
-from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt, MANA_ESPECIAL, CD_DANZA, MANA_HECHIZO
+from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt, MANA_ESPECIAL, CD_DANZA, MANA_HECHIZO, CURACION
 _scale = FACTOR_ARMA[TIER_ESPECIAL]
 ABILITIES = {
     'espada_tormenta': [dict(name='Rayo de la Tormenta', trigger='AL GOLPEAR',
@@ -29,6 +33,10 @@ ABILITIES = {
         notes=['Sin recarga. No usable en mazmorras.'])],
     'hacha_terremoto': [dict(name='Onda Sísmica', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['sismo'], cooldown=6,
         description=[f'Onda de {fmt(10*_scale)} de daño hasta 5 bloques.', 'Levanta el suelo a tu alrededor.'])],
+    'varita_curacion': [dict(name='Curación', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['curacion'], cooldown=1,
+        description=[f"Cura el {CURACION['pct']}% de tu vida máxima por segundo",
+                     f"durante {CURACION['segundos']} s, a vos y a los jugadores a {CURACION['radio']} bloques."],
+        notes=['Las curaciones de varita no se acumulan. Usable en el lobby.'])],
     'varita_estallido': [dict(name='Estallido', trigger='AL GOLPEAR', mana=MANA_ESPECIAL['estallido'],
         description=[f'Explosión de {fmt(6*_scale)} de daño en radio 2.']),
         dict(name='Proyectil Explosivo', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['estallido'], cooldown=1,
@@ -44,7 +52,8 @@ def register(add_item, recipes, txt, weapon_mods):
         add_item(iid, 'minecraft:'+w['base'], w['name'], w['color'],
                  [txt('Arma especial - cualquier clase', w['color'])] +
                  [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')],
-                 {'type':'weapon', 'special':iid, 'tier':TIER_ESPECIAL}, model='astral:'+iid, kind='weapon',
+                 {'type':'weapon', 'special':iid, 'tier':TIER_ESPECIAL}, model=w.get('model','astral:'+iid),
+                 glint=w.get('glint'), kind='weapon',
                  pdc={'auraskills:ignore_interact':True},
                  extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage']*FACTOR_ARMA[TIER_ESPECIAL],w['speed'])})
         recipes.append((iid,1,w['cost'],'Especiales'))
@@ -55,6 +64,8 @@ def script_options(text):
     import re
     values={'mana_destello':MANA_ESPECIAL['destello'],'mana_danza':MANA_ESPECIAL['danza'],'cd_danza':CD_DANZA,
             'mana_sismo':MANA_ESPECIAL['sismo'],'mana_estallido':MANA_ESPECIAL['estallido'],
+            'mana_curacion':MANA_ESPECIAL['curacion'],'cura_pct':CURACION['pct'],
+            'cura_segundos':CURACION['segundos'],'cura_radio':CURACION['radio'],
             **{f'mana_baston_{t}':v for t,v in MANA_HECHIZO.items()}}
     for key,value in values.items():
         text,n=re.subn(rf'^(    {key}): .*$',rf'\g<1>: {value}',text,flags=re.M)

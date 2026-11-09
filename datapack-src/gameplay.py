@@ -28,9 +28,10 @@ def apply(files,items,version):
         lines=[]
         for iid,item in items.items():
             selector=f'*[minecraft:custom_data~{{astral:{{id:"{iid}"}}}},!minecraft:custom_data~{{astral:{{v:{version}}}}}]'
-            if item.get('ficha'):
+            if item.get('mejorable'):
+                mej='mejora_armadura' if item['kind']=='armor' else 'mejora_arma'
                 for level in range(1,11):
-                    upgraded=selector[:-1]+f',minecraft:enchantments~[{{enchantments:"astral:mejora_arma",levels:{level}}}]]'
+                    upgraded=selector[:-1]+f',minecraft:enchantments~[{{enchantments:"astral:{mej}",levels:{level}}}]]'
                     lines.append(f'execute if items entity @s {slot} {upgraded} run return run item modify entity @s {slot} astral:upgrade/{iid}/{level}')
             lines.append(f'execute if items entity @s {slot} {selector} run return run item modify entity @s {slot} astral:upgrade/{iid}')
         fn('upgrade/slot/'+slot.replace('.','_'),lines)

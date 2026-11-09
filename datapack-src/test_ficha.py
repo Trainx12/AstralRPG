@@ -29,7 +29,8 @@ class FichaTests(unittest.TestCase):
             c=self.components(iid)
             hidden=c['minecraft:tooltip_display']['hidden_components']
             self.assertNotIn('minecraft:enchantments',hidden)
-            for level in range(11):
+            # El Herrero no mejora bastones: solo tienen la ficha +0.
+            for level in ([0] if iid.startswith('baston') else range(11)):
                 with self.subTest(iid=iid,level=level):
                     mods=read(f'item_modifier/ficha/{iid}/{level}.json')
                     self.assertEqual(mods[0]['target'],'item_name')
@@ -77,5 +78,32 @@ class FichaTests(unittest.TestCase):
         self.assertLess(slot.index('astral:upgrade/espada_5/7'),slot.index('astral:upgrade/espada_5\n'))
         self.assertIn('scoreboard objectives add astraldef dummy',(PACK/'function/load.mcfunction').read_text())
         self.assertIn('store result score @s astraldef run attribute @s minecraft:armor get',(PACK/'function/loop/t10.mcfunction').read_text())
+
+    def test_armor_bow_tool_and_wand_cards(self):
+        from items import MEJORA_VIDA
+        # Armadura: stats por pieza, bono de set, tipo de pieza y (+N) de vida del Herrero.
+        lines=list(map(text,read('item_modifier/ficha/berserker_5_chestplate/7.json')[1]['lore']))
+        self.assertEqual(lines[-1],'LEGENDARIA PECHERA')
+        self.assertIn('Defensa: +8',lines)
+        self.assertTrue(any(l.startswith('Vida: +12,5%') and l.endswith(f'(+{MEJORA_VIDA[6]:g})'.replace('.',',')) for l in lines),lines)
+        self.assertIn('Bono de set (2/4)',lines); self.assertIn('Bono de set (4/4)',lines)
+        name=text(read('item_modifier/ficha/berserker_5_chestplate/7.json')[0]['name'])
+        self.assertEqual(name.count('✪'),7)
+        mago=list(map(text,self.components('mago_5_helmet')['minecraft:lore']))
+        self.assertIn('Maná: +287,5',mago)
+        # Arco: dano de flecha y disparo automatico; taladro y motosierra sin mejora.
+        arco=list(map(text,self.components('arco_5')['minecraft:lore']))
+        self.assertTrue(arco[1].startswith('Daño: +'),arco)
+        self.assertIn('Disparo automático: cada 0,4s',arco)
+        tal=list(map(text,self.components('taladro_rubi')['minecraft:lore']))
+        self.assertIn('Área de minado: 2x2',tal); self.assertEqual(tal[-1],'RARA TALADRO')
+        self.assertFalse((PACK/'item_modifier/ficha/taladro_rubi/1.json').exists())
+        saw=list(map(text,self.components('motosierra_astral')['minecraft:lore']))
+        self.assertIn('Tala por corte: el árbol entero',saw)
+        # Varita de Curacion: habilidad con costo de mana.
+        wand=list(map(text,self.components('varita_curacion')['minecraft:lore']))
+        self.assertIn('Habilidad: Curación  CLIC DERECHO',wand)
+        self.assertIn('Costo de maná: 60',wand)
+
 
 if __name__=='__main__':unittest.main()

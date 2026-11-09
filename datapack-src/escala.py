@@ -66,7 +66,9 @@ FACTOR_HECHIZO = 1.2
 HECHIZO = {t: round(DANO[t] * FACTOR_HECHIZO) for t in DANO}
 # Armas especiales: (mana, recarga en segundos). Destello = Aspect of the End (50, sin recarga);
 # Danza = Shadow Fury (sin mana, 15 s).
-MANA_ESPECIAL = {"destello": 50, "danza": 0, "sismo": 100, "estallido": 30}
+MANA_ESPECIAL = {"destello": 50, "danza": 0, "sismo": 100, "estallido": 30, "curacion": 60}
+# Varita de Curacion (Wand of Healing): % de la vida maxima por segundo, segundos y radio.
+CURACION = {"pct": 5, "segundos": 5, "radio": 7}
 CD_DANZA = 15
 
 # Colores del [T#] en el nombre de los mobs.

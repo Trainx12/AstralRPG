@@ -8,7 +8,8 @@ Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 |---|---|---:|---:|
 | Filo de la Tormenta / `espada_tormenta` | 25% por golpe cuerpo a cuerpo: rayo visual que hace el 30% del dano del golpe (minimo 1) en radio 2 | 0 | — |
 | Danza del Ender / `espada_sombras` | Clic derecho: hasta 6 enemigos a 12 bloques; salta junto a cada uno con estela, lo mira y golpea 10. Un salto cada 4 ticks (1,2 s). Se puede usar en mazmorras | 15 | 5 s |
-| Filo del Destello / `espada_destello` | Transmisión Instantánea: teletransporta hasta 12 bloques según la mirada (también vertical) y da +50% de velocidad por 3 segundos. No se puede en mazmorras; en el lobby sí | 17 | Ninguna |
+| Filo del Destello / `espada_destello` | Transmisión Instantánea: teletransporta hasta 12 bloques según la mirada (también vertical) y da +50% de velocidad por 3 segundos. No se puede en mazmorras; en el lobby sí | 50 | Ninguna |
+| Varita de Curación / `varita_curacion` | Curación: cura el 5% de la vida máxima por segundo durante 5 s, a vos y a los jugadores a 7 bloques. No se acumula (reinicia el tiempo). Anda en el lobby | 60 | 1 s |
 | Hacha del Sismo / `hacha_terremoto` | Clic derecho: onda de 5 anillos (hasta 5 bloques); cada anillo levanta el suelo y golpea 10 a lo que alcanza, con empuje hacia arriba | 10 | 6 s |
 | Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 5 por uso | Disparo: 1 s |
 

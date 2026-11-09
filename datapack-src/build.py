@@ -20,7 +20,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 12  # Mana estilo Hypixel y dano de hechizo en la escala de tiers
+ITEM_VERSION = 13  # Fichas de armaduras, arcos y herramientas; Varita de Curacion
 
 files = {}
 
@@ -103,7 +103,7 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
         comps["minecraft:enchantment_glint_override"] = glint
     if extra:
         comps.update(extra)
-    if kind == "weapon" and astral_data.get("type") in ("weapon", "staff"):
+    if kind in ("weapon", "armor") and astral_data.get("type") in ("weapon", "staff", "armor", "tool"):
         from ficha import prepare, render
         source = prepare(item_id, name, base, lore, astral_data, comps, pdc)
         FICHAS[item_id] = source
@@ -112,7 +112,8 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
         if "minecraft:attribute_modifiers" not in hidden:
             hidden.append("minecraft:attribute_modifiers")
     ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind,
-                      "ficha": item_id in FICHAS}
+                      "ficha": item_id in FICHAS,
+                      "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("staff", "drill", "saw")}
 
 
 def req_line(skill, level):
@@ -396,8 +397,11 @@ for i, s in enumerate(BOWS):
     if s.get("spd"):
         mods = [{"type": "minecraft:movement_speed", "id": f"{NS}:{iid}.spd", "amount": s["spd"] / 100,
                  "operation": "add_multiplied_base", "slot": "mainhand"}]
+    # Ficha: dano real de la flecha cargada (9 x Punteria del tier) y disparo automatico.
+    arrow = round(9 * [1.0, 1.08, 1.15, 1.22, 1.30][i] * FACTOR_ARMA[t])
     weapon_item(iid, "minecraft:bow", s["name"], ARQ, "Arco de Arquero", t, desc, "archery", s["lvl"], mods,
-                {f"{NS}:punteria": t}, {"w": "bow", "draw": s["draw"]})
+                {f"{NS}:punteria": t}, {"w": "bow", "draw": s["draw"], "arrow": arrow,
+                                        "auto": [18, 15, 12, 10, 8][i] / 20})
     ings = list(s["cost"]) if t == 1 else [("c", f"arco_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Arcos"))
 
@@ -857,7 +861,9 @@ IGNORE = ["minecraft:item", "minecraft:experience_orb", "minecraft:arrow", "mine
           "minecraft:evoker_fangs", "minecraft:eye_of_ender", "minecraft:fireball", "minecraft:small_fireball",
           "minecraft:dragon_fireball", "minecraft:wither_skull", "minecraft:shulker_bullet", "minecraft:llama_spit",
           "minecraft:wind_charge", "minecraft:breeze_wind_charge", "minecraft:lightning_bolt",
-          "minecraft:ominous_item_spawner", "#minecraft:boat"]
+          "minecraft:ominous_item_spawner", "#minecraft:boat",
+          # Aldeanos: los NPC del lobby (MythicMobs) son aldeanos; ningun golpe de area ni hechizo los toca.
+          "minecraft:villager", "minecraft:wandering_trader"]
 put(f"data/{NS}/tags/entity_type/ignore.json", {"values": IGNORE})
 put(f"data/{NS}/tags/entity_type/bosses.json", {"values": ["minecraft:wither", "minecraft:ender_dragon",
                                                            "minecraft:warden", "minecraft:elder_guardian"]})
@@ -1019,7 +1025,8 @@ fn("spell/cast", cast)
 fn("spell/ray", [
     "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
     "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
-    f"execute as @e[{MOB},distance=..1.1,tag=!astral.caster,limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
+    # nbt=!{NoAI:1b}: los NPC de MythicMobs (vendedores, gachas) estan quietos y no se pueden lastimar.
+    f"execute as @e[{MOB},distance=..1.1,tag=!astral.caster,nbt=!{{NoAI:1b}},limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
     f"execute unless block ~ ~ ~ #{NS}:passable run return run particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
     "scoreboard players add #steps astral.tmp 1",
     "execute if score #steps astral.tmp matches 50.. run return 0",
@@ -2146,8 +2153,9 @@ for L, (plata, prob, mats) in MEJORAS.items():
     if L >= 7:
         ok.append('tellraw @a ["",{"text":"(!) ","color":"gold","bold":true},{"selector":"@s","color":"yellow"},'
                   + json.dumps({"text": f" mejoro un item a +{L} con el Herrero!", "color": "gray"}) + "]")
-    ok += [f'execute if score #k astral.tmp matches 1 run data modify storage {NS}:tmp ficha.id set from entity @s SelectedItem.components."minecraft:custom_data".astral.id',
-           f'execute if score #k astral.tmp matches 1 run function {NS}:ficha/apply/{L} with storage {NS}:tmp ficha']
+    # Armas y armaduras: nombre con estrellas y (+N) en la ficha.
+    ok += [f'data modify storage {NS}:tmp ficha.id set from entity @s SelectedItem.components."minecraft:custom_data".astral.id',
+           f'function {NS}:ficha/apply/{L} with storage {NS}:tmp ficha']
     fn(f"ficha/apply/{L}", [f'$item modify entity @s weapon.mainhand astral:ficha/$(id)/{L}'])
     fn(f"mejora/ok/{L}", ok)
     hacer.append(f"execute if score @s astralmejn matches {L} run function {NS}:mejora/n/{L}")
@@ -2227,7 +2235,7 @@ from gameplay import apply as apply_gameplay
 apply_gameplay(files, ITEMS, ITEM_VERSION)
 from ficha import modifier as ficha_modifier, render as render_ficha
 for iid, source in FICHAS.items():
-    for L in range(11):
+    for L in (range(11) if ITEMS[iid]["mejorable"] else [0]):
         put(f'data/{NS}/item_modifier/ficha/{iid}/{L}.json', ficha_modifier(source, L))
         # La migración por slot conserva encantamientos, desgaste y todos los demás componentes.
         upgrade = json.loads(files[f'data/{NS}/item_modifier/upgrade/{iid}.json'])

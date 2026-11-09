@@ -8,6 +8,10 @@ options:
     cd_danza: 15
     mana_sismo: 100
     mana_estallido: 30
+    mana_curacion: 60
+    cura_pct: 5
+    cura_segundos: 5
+    cura_radio: 7
     mana_baston_1: 30
     mana_baston_2: 50
     mana_baston_3: 90
@@ -279,6 +283,22 @@ function asw_blink(p: player):
     set {_y} to y-coordinate of {_at} + 1
     execute console command "execute in %{_dimension}% run particle minecraft:portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.3 0.5 0.3 0.4 20"
 
+# Varita de Curacion: {@cura_pct}% de la vida maxima por segundo durante {@cura_segundos} s, a vos y a los
+# jugadores cerca. Volver a usarla reinicia el tiempo (no se acumula).
+function asw_heal(p: player):
+    set {_id} to uuid of {_p}
+    if {-asw.healcd::%{_id}%} is set:
+        if difference between now and {-asw.healcd::%{_id}%} is less than 1 second:
+            stop
+    if asw_pay({_p}, {@mana_curacion}) is false:
+        stop
+    set {-asw.healcd::%{_id}%} to now
+    play sound "entity.player.levelup" with volume 0.5 and pitch 1.8 at {_p}
+    loop all players in radius {@cura_radio} around {_p}:
+        if loop-player is alive:
+            set {-asw.regen::%uuid of loop-player%} to {@cura_segundos}
+            send action bar "&aCuracion: {@cura_segundos} s" to loop-player
+
 function asw_shadow(p: player):
     set {_id} to uuid of {_p}
     if {-asw.shadow::%{_id}%} is set:
@@ -489,11 +509,12 @@ on right click:
     set {-asw.click::%uuid of player%} to now
     if asw_alive(player) is false:
         stop
-    # En el lobby solo anda la Transmision Instantanea (no hace dano); el resto avisa.
+    # En el lobby solo andan la Transmision Instantanea y la Curacion (no hacen dano); el resto avisa.
     if asw_lobby(player) is true:
         if scoreboard tags of player does not contain "astral.special.espada_destello":
-            send action bar "&cLas habilidades especiales no se usan en el lobby." to player
-            stop
+            if scoreboard tags of player does not contain "astral.special.varita_curacion":
+                send action bar "&cLas habilidades especiales no se usan en el lobby." to player
+                stop
     if {-asw.busy::%uuid of player%} is true:
         stop
     asw_request(player)
@@ -502,6 +523,9 @@ on right click:
     if scoreboard tags of player contains "astral.special.espada_destello":
         if asw_mobility(player) is true:
             asw_blink(player)
+        stop
+    if scoreboard tags of player contains "astral.special.varita_curacion":
+        asw_heal(player)
         stop
     if scoreboard tags of player contains "astral.special.espada_sombras":
         asw_shadow(player)
@@ -569,10 +593,22 @@ on unload:
                 kill loop-entity
 
 on quit:
+    delete {-asw.regen::%uuid of player%}
+    delete {-asw.healcd::%uuid of player%}
     execute console command "minecraft:attribute %name of player% minecraft:movement_speed modifier remove astral:transmision"
     delete {-asw.speed::%uuid of player%}
     delete {-asw.busy::%uuid of player%}
     delete {-asw.damage::%uuid of player%}
+
+every 1 second:
+    loop all players:
+        if {-asw.regen::%uuid of loop-player%} is set:
+            if loop-player is alive:
+                heal loop-player by (max health of loop-player) * {@cura_pct} / 100
+                execute console command "execute as %name of loop-player% at @s run particle minecraft:heart ~ ~2.1 ~ 0.3 0.2 0.3 0 2"
+            subtract 1 from {-asw.regen::%uuid of loop-player%}
+            if {-asw.regen::%uuid of loop-player%} <= 0:
+                delete {-asw.regen::%uuid of loop-player%}
 
 on join:
     execute console command "minecraft:attribute %name of player% minecraft:movement_speed modifier remove astral:transmision"
