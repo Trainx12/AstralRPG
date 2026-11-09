@@ -44,7 +44,10 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
   vida ya escalada (Élite ×1,9 … Astral ×5).
 - **Nombre con vida:** `[T3] Elite Zombi ❤ 11.500`, visible sobre la cabeza sin tener que pegarle. La vida
   se actualiza cada segundo en mobs a 32 bloques de un jugador (`mob/vida`).
-- El daño de los mobs al jugador y la vida del jugador son **normales**.
+- La vida del jugador es **normal**. El **daño de los mobs sube ×1,5 por tier** (T1 ×1,5, T2 ×2,25, T3 ×3,4,
+  T4 ×5,1, T5 ×7,6 sobre su daño normal; `DANO_MOB`, modificador `attack_damage` en `mob/t#`). Pedido del dueño
+  (08/11/2026): un mob T5 casi no lastimaba a un jugador T3.
+- Tier fijo también en los mundos actuales de mazmorra: `cumbre_hielo` 4, `forja_volcano` 5, `santuario_interstellar` 5.
 - Se sacó **LevelledMobs** (subía la vida por distancia) y **DamageIndicator** (lo reemplaza el indicador).
 
 ## Servidor (Aternos)

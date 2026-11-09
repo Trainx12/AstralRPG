@@ -1,5 +1,19 @@
 # Mazmorras nuevas: preparacion y recorrido de revision
 
+Arreglos del 08/11/2026 (commit 1a7e61a):
+- Las criaturas de mazmorra usan `Despawn: false`. Con `true`, Minecraft las borraba al rato y el control
+  veia la sala vacia y pasaba de oleada. RESET y LIMPIA las quitan.
+- Pagan oro al morir: la condicion es `?~isplayer` (el que mata); con `?isplayer` no pagaba nunca.
+- Se puede nadar (antes te devolvia al ultimo lugar seco; trababa Minas Olvidadas).
+- `cumbre_hielo`, `forja_volcano` y `santuario_interstellar` estan en la lista de mazmorras: no se pierden
+  cosas al morir, sin tumba, sin romper ni poner bloques.
+- Expediciones en orden de dificultad (Mina, Bosque, Tumba, Cumbre, Forja, Santuario): la de una pide
+  `astral.completada.<anterior>`, que se da al ganar la sala final. Los OP pasan siempre. Para darsela a
+  alguien que ya la gano antes: `lp user <jugador> permission set astral.completada.<mazmorra> true`.
+  Bosque y Mina comparten el mapa de exploracion `cavernas`.
+- Forja en el server sigue con su version vieja de 3 salas (mundo `forja`); el repo la tiene como 1 sala en
+  `forja_volcano` sin controlador colocado. Solo se le aplicaron los arreglos de oro, despawn y permiso.
+
 Santuario, cambio del 04/11/2026: instalado el escenario de
 `mapa_Santuari_Mazmorra.zip` (`interstellar.litematic`) en
 `santuario_interstellar`. Llegada `34.5 180 40.5`, controlador
