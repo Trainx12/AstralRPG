@@ -163,5 +163,15 @@ class TumbaBossVictoryTests(unittest.TestCase):
         self.assertIn('delay 10', start)
 
 
+
+class EsperaCofreTests(unittest.TestCase):
+    """Sin el false explicito, el cofre le dice 'ya cobraste' a los OP."""
+
+    def test_every_dungeon_sets_cooldown_false_for_default_group(self):
+        for dungeon in [None] + catalog():
+            key = dungeon["key"] if dungeon else "mina"
+            self.assertIn(f"lp group default permission set astral.{key}.cd false", commands(dungeon))
+
+
 if __name__ == "__main__":
     unittest.main()

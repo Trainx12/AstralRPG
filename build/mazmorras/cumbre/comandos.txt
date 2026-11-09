@@ -17,6 +17,8 @@ rg flag -w cumbre_hielo __global__ pvp deny
 rg flag -w cumbre_hielo __global__ mob-spawning allow
 rg flag -w cumbre_hielo __global__ interact allow
 rg flag -w cumbre_hielo __global__ use deny
+# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
+lp group default permission set astral.cumbre.cd false
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
 # Paso de la escarcha: execute in minecraft:cumbre_hielo run minecraft:tp <jugador> 8.5 65 8.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.

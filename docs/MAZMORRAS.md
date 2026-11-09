@@ -328,3 +328,21 @@ El cofre de la Tumba aparecia pero el clic no hacia nada. Las mazmorras tenian `
 (el lobby ya tenia `interact allow`). Ahora las mazmorras y los mapas de expedicion llevan
 `interact allow` (cofres y aldeanos) y `use deny` (puertas, botones y palancas siguen bloqueados).
 Los OP no lo notan porque saltean WorldGuard: probar con un jugador sin OP.
+
+## Cofre que decia "ya cobraste" a los OP (09/11/2026)
+
+La espera de 30 minutos del cofre es el permiso temporal `astral.<mazmorra>.cd`. Un OP tiene todo permiso
+que nadie definio, asi que el cofre le decia "ya cobraste" la primera vez y no daba nada. Arreglo: ponerlo
+en `false` para el grupo `default` (le gana al OP; el permiso temporal del jugador le gana al false).
+Ya esta en los `comandos.txt` de cada mazmorra. Una vez, en la consola:
+
+```text
+lp group default permission set astral.mina.cd false
+lp group default permission set astral.bosque.cd false
+lp group default permission set astral.tumba.cd false
+lp group default permission set astral.cumbre.cd false
+lp group default permission set astral.forja.cd false
+lp group default permission set astral.santuario.cd false
+```
+
+Si un rango tiene `*`, sus jugadores siguen viendo "ya cobraste".

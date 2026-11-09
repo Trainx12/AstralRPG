@@ -17,6 +17,8 @@ rg flag -w santuario_interstellar __global__ pvp deny
 rg flag -w santuario_interstellar __global__ mob-spawning allow
 rg flag -w santuario_interstellar __global__ interact allow
 rg flag -w santuario_interstellar __global__ use deny
+# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
+lp group default permission set astral.santuario.cd false
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
 # Prueba de los cinco ecos: execute in minecraft:santuario_interstellar run minecraft:tp <jugador> 34.5 180 40.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.

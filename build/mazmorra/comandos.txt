@@ -16,6 +16,8 @@ rg flag -w mina __global__ interact allow
 rg flag -w mina __global__ use deny
 rg flag -w mina __global__ mob-spawning allow
 rg flag -w mina __global__ pvp deny
+# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
+lp group default permission set astral.mina.cd false
 # --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):
 #   subir dungeon1-endlessxl.schem a plugins/WorldEdit/schematics/
 #   /mvtp mina    /gamemode creative    //schem load dungeon1-endlessxl    //paste -o

@@ -358,6 +358,13 @@ def skill_yml(dungeon=None):
     return finish("\n".join(L) + "\n", dungeon)
 
 
+def espera_cofre(key):
+    # Un OP tiene todo permiso que nadie definio, asi que el cofre le decia "ya cobraste".
+    # El false del grupo default le gana al OP; el settemp de 30 min del jugador le gana al false.
+    return ["# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)",
+            f"lp group default permission set astral.{key}.cd false"]
+
+
 def commands(dungeon=None):
     dungeon = dungeon or MINA
     if dungeon["key"] != "mina":
@@ -382,6 +389,7 @@ def commands(dungeon=None):
          f"rg flag -w {WORLD} __global__ use deny",
          f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ pvp deny",
+         *espera_cofre("mina"),
          "# --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):",
          "#   subir dungeon1-endlessxl.schem a plugins/WorldEdit/schematics/",
          f"#   /mvtp {WORLD}    /gamemode creative    //schem load dungeon1-endlessxl    //paste -o",
@@ -435,6 +443,7 @@ def new_commands(dungeon):
              f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
              f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
              f'rg flag -w {w} __global__ interact allow', f'rg flag -w {w} __global__ use deny',
+             *espera_cofre(dungeon["key"]),
              '# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):']
     if any(s.get("group_scaling") for s in dungeon["rooms"]):
         lines += ['# Contador de jugadores para los refuerzos (una vez; si ya existe, conservarlo).',

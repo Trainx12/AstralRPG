@@ -17,6 +17,8 @@ rg flag -w forja_volcano __global__ pvp deny
 rg flag -w forja_volcano __global__ mob-spawning allow
 rg flag -w forja_volcano __global__ interact allow
 rg flag -w forja_volcano __global__ use deny
+# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
+lp group default permission set astral.forja.cd false
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
 # Nucleo de la Forja: execute in minecraft:forja_volcano run minecraft:tp <jugador> 82.5 52 -55.5
 # Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
