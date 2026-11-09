@@ -1,0 +1,10 @@
+const mc=require(process.env.MC_PROTOCOL || 'minecraft-protocol');
+const fs=require('fs');
+const c=mc.createClient({host:'127.0.0.1',port:25599,username:'PanelProbe',auth:'offline',version:'26.1.2'});
+let n=0;
+c.on('position',p=>c.write('teleport_confirm',{teleportId:p.teleportId}));
+c.on('update_health',p=>{if(p.health<=0)c.write('client_command',{actionId:0});});
+c.on('packet',(data,meta,buf)=>{ if(meta.name==='boss_bar' && data.action===3 && n++===2){ fs.writeFileSync(process.argv[2],buf); console.log('DUMP',buf.length); setTimeout(()=>c.end(),500);} });
+c.on('error',e=>console.log('ERR',e.message));
+c.on('end',()=>process.exit(0));
+setTimeout(()=>c.end(),30000);

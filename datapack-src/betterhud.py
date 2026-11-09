@@ -193,7 +193,7 @@ def panel_image():
         d.rectangle((cx - 1, cy - 1, cx + 1, cy + 1), fill=(0xE2, 0xC4, 0xFF, 255))
         img.putpixel((cx, cy), (255, 255, 255, 255))
     # Gema arriba al centro (rombo)
-    gx, gy, r = W // 2, top + 1, 6
+    gx, gy, r = W // 2, top, 6  # la punta toca la fila 0: BetterHud recorta filas vacias
     for j in range(-r, r + 1):
         span = r - abs(j)
         for i in range(-span, span + 1):
@@ -302,14 +302,16 @@ def value_texts(key, x, y):
 def text_entry(i, pattern, x, y, align, conds):
     # En BetterHud "/" escapa al caracter siguiente: una barra literal se escribe "//"
     lines = [f"      {i}:", "        name: astral_font", f"        pattern: {q(pattern.replace('/', '//'))}",
-             f"        x: {x}", f"        y: {y}", f"        align: {align}", "        outline: true",
+             # La letra sale a 16 px de alto: scale 0.5 la deja en 8 px (como en los ejemplos de BetterHud)
+             f"        x: {x}", f"        y: {y}", f"        align: {align}", "        scale: 0.5", "        outline: true",
              "        placeholder-string-format:", '          number: "#,###"']
     return lines + cond_block(conds, 8)
 
 
 def layouts_yml():
     img = ["astral_panel_fondo:", "  images:", "    1:", "      name: astral_panel_fondo",
-           "      x: 0", "      y: 0"] + cond_block([], 6)
+           # BetterHud centra las imagenes en su x: se corre medio ancho para que el borde izquierdo quede en 0
+           f"      x: {W // 2}", "      y: 0"] + cond_block([], 6)
     texts = ["astral_panel_textos:", "  texts:"]
     n = 0
     for kind, y, data in ROWS:

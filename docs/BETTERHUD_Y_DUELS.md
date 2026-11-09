@@ -46,6 +46,15 @@ el panel sale con letras corridas o cuadrados.
   BetterHud o Stellarity, revisar que siga armando ("cambio el shader de BetterHud" corta el armado).
 - Las posiciones del hud usan solo 0/50/100 (`x: 100, y: 50` = borde derecho, al medio) para que no se corra
   con la escala de la GUI.
+- **Primera versión (08/11) salió rota en el juego:** letras al doble de tamaño y fondo corrido medio ancho a la
+  izquierda. Causas: la letra de BetterHud mide 16 px (los textos llevan `scale: 0.5`) y las imágenes se
+  **centran** en su `x` (el fondo va en `x: W/2`). Además recorta las filas vacías de arriba de una imagen
+  (la punta de la gema toca la fila 0 para que no corra todo 1 px).
+- **Medir sin entrar al juego:** `tools/betterhud_paquete.cjs <salida.bin>` (bot con minecraft-protocol, variable
+  `MC_PROTOCOL` con la ruta del paquete) guarda el título que manda BetterHud y
+  `python tools/betterhud_medir.py <salida.bin> plugins/BetterHud/build` dice en qué x empieza y termina cada
+  texto respecto del fondo. Con el arreglo: etiquetas en 21, valores terminan en 144, igual que el diseño.
+  La altura de cada fila sale del `ascent` de `build/assets/betterhud/font/hud_*.json` (`((-ascent) & 8191) - 4105`).
 
 ### Rearmar el pack de BetterHud
 
