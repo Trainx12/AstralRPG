@@ -42,16 +42,27 @@ function asw_target(p: player, e: entity) :: boolean:
         return false
     return true
 
-function asw_ready(p: player) :: boolean:
+function asw_lobby(p: player) :: boolean:
+    if name of world of {_p} is "lobby" or "minecraft:lobby":
+        return true
+    return false
+
+# Vivo, sin montura y fuera de espectador (sin mirar el mundo).
+function asw_alive(p: player) :: boolean:
     if {_p} is not online:
         return false
     if {_p} is dead:
         return false
     if gamemode of {_p} is spectator:
         return false
-    if name of world of {_p} is "lobby" or "minecraft:lobby":
-        return false
     if vehicle of {_p} is set:
+        return false
+    return true
+
+function asw_ready(p: player) :: boolean:
+    if asw_alive({_p}) is false:
+        return false
+    if asw_lobby({_p}) is true:
         return false
     return true
 
@@ -397,8 +408,13 @@ on right click:
         if difference between now and {-asw.click::%uuid of player%} is less than 0.2 seconds:
             stop
     set {-asw.click::%uuid of player%} to now
-    if asw_ready(player) is false:
+    if asw_alive(player) is false:
         stop
+    # En el lobby solo anda la Transmision Instantanea (no hace dano); el resto avisa.
+    if asw_lobby(player) is true:
+        if scoreboard tags of player does not contain "astral.special.espada_destello":
+            send action bar "&cLas habilidades especiales no se usan en el lobby." to player
+            stop
     if {-asw.busy::%uuid of player%} is true:
         stop
     asw_request(player)
