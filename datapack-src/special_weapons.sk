@@ -2,6 +2,17 @@
 # escala.py: armas especiales = tier 3; sus habilidades pegan x FACTOR_ARMA[3].
 options:
     escala: 285.714
+    # Mana y recargas: los completa special_weapons.py desde escala.py (referencia Hypixel).
+    mana_destello: 50
+    mana_danza: 0
+    cd_danza: 15
+    mana_sismo: 100
+    mana_estallido: 30
+    mana_baston_1: 30
+    mana_baston_2: 50
+    mana_baston_3: 90
+    mana_baston_4: 150
+    mana_baston_5: 200
 
 function asw_identify(p: player):
     execute console command "execute as %name of {_p}% run function astral:special/identify"
@@ -239,7 +250,7 @@ function asw_blink(p: player):
     if distance between {_origin} and {_dest} < 1:
         send action bar "&cNo hay espacio libre para teletransportarte." to {_p}
         stop
-    if asw_pay({_p}, 17) is false:
+    if asw_pay({_p}, {@mana_destello}) is false:
         stop
     # Teletransporte RELATIVO de vanilla (~dx ~dy ~dz, sin tocar la rotacion): el cliente no
     # recibe una camara/posicion absoluta del server, asi que no hay tiron ni giro de camara.
@@ -254,7 +265,7 @@ function asw_blink(p: player):
     if {_p} is not online:
         stop
     if distance between (location of {_p}) and {_origin} < 0.5:
-        execute console command "auraskills:mana add %name of {_p}% 17 true"
+        execute console command "auraskills:mana add %name of {_p}% {@mana_destello} true"
         stop
     set fall distance of {_p} to 0
     execute console command "minecraft:attribute %name of {_p}% minecraft:movement_speed modifier remove astral:transmision"
@@ -271,8 +282,8 @@ function asw_blink(p: player):
 function asw_shadow(p: player):
     set {_id} to uuid of {_p}
     if {-asw.shadow::%{_id}%} is set:
-        if difference between now and {-asw.shadow::%{_id}%} is less than 5 seconds:
-            send action bar "&7Danza del Ender: recargando (5 s)." to {_p}
+        if difference between now and {-asw.shadow::%{_id}%} is less than {@cd_danza} seconds:
+            send action bar "&7Danza del Ender: recargando ({@cd_danza} s)." to {_p}
             stop
     set {_origin} to location of {_p}
     # Se eligen una vez los seis mas cercanos al origen; cada uno aparece una sola vez.
@@ -293,8 +304,10 @@ function asw_shadow(p: player):
     if size of {_targets::*} is 0:
         send action bar "&7No hay enemigos visibles a 12 bloques." to {_p}
         stop
-    if asw_pay({_p}, 15) is false:
-        stop
+    # Como Shadow Fury: sin mana, solo recarga.
+    if {@mana_danza} > 0:
+        if asw_pay({_p}, {@mana_danza}) is false:
+            stop
     set {-asw.shadow::%{_id}%} to now
     set {-asw.busy::%{_id}%} to true
     loop {_targets::*}:
@@ -354,7 +367,7 @@ function asw_quake(p: player):
         if difference between now and {-asw.quake::%{_id}%} is less than 6 seconds:
             send action bar "&7Hacha del Sismo: recargando (6 s)." to {_p}
             stop
-    if asw_pay({_p}, 10) is false:
+    if asw_pay({_p}, {@mana_sismo}) is false:
         stop
     set {-asw.quake::%{_id}%} to now
     set {-asw.busy::%{_id}%} to true
@@ -408,7 +421,7 @@ function asw_wand(p: player):
     if {-asw.wand::%{_id}%} is set:
         if difference between now and {-asw.wand::%{_id}%} is less than 1 second:
             stop
-    if asw_pay({_p}, 5) is false:
+    if asw_pay({_p}, {@mana_estallido}) is false:
         stop
     set {-asw.wand::%{_id}%} to now
     set {_point} to eye location of {_p}
@@ -425,8 +438,47 @@ function asw_wand(p: player):
                 stop
     asw_explode({_p}, {_point})
 
+# Bastones de Mago: cobra el mana y despues lanza el hechizo del datapack (astral:spell/cast).
+function asw_staff(p: player):
+    if asw_alive({_p}) is false:
+        stop
+    if scoreboard tags of {_p} contains "astral.spell.cd":
+        send action bar "&7El hechizo se esta recargando..." to {_p}
+        stop
+    set {_cost} to 0
+    loop 5 times:
+        if scoreboard tags of {_p} contains "astral.staff.t%loop-number%":
+            set {_cost} to asw_staff_cost(loop-number)
+    if {_cost} <= 0:
+        stop
+    asw_request({_p})
+    if {-asw.mana::%uuid of {_p}%} is not set:
+        wait 2 ticks
+    if asw_pay({_p}, {_cost}) is false:
+        stop
+    execute console command "execute as %name of {_p}% at @s run function astral:spell/cast"
+
+function asw_staff_cost(t: number) :: number:
+    if {_t} is 1:
+        return {@mana_baston_1}
+    if {_t} is 2:
+        return {@mana_baston_2}
+    if {_t} is 3:
+        return {@mana_baston_3}
+    if {_t} is 4:
+        return {@mana_baston_4}
+    return {@mana_baston_5}
+
 on right click:
     asw_identify(player)
+    if scoreboard tags of player contains "astral.staff":
+        cancel event
+        if {-asw.click::%uuid of player%} is set:
+            if difference between now and {-asw.click::%uuid of player%} is less than 0.2 seconds:
+                stop
+        set {-asw.click::%uuid of player%} to now
+        asw_staff(player)
+        stop
     if scoreboard tags of player does not contain "astral.special":
         stop
     cancel event
@@ -491,7 +543,7 @@ on uncancelled damage of living entity with priority monitor:
     if scoreboard tags of {_p} contains "astral.special.varita_estallido":
         asw_request({_p})
         wait 2 ticks
-        if asw_pay({_p}, 5) is true:
+        if asw_pay({_p}, {@mana_estallido}) is true:
             if asw_ready({_p}) is true:
                 if world of {_p} is world of {_center}:
                     asw_explode({_p}, {_center})

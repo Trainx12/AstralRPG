@@ -44,8 +44,30 @@ EXTRA_VIDA_MAZMORRA = {"santuario": 1.5, "santuario_interstellar": 1.5}
 PROB_TIER_MAS = 4
 PROB_TIER_MENOS = 10
 
-# Mana de los bastones (antes 20/40/70/110/180): sube, pero sin numeros locos.
-MANA_BASTON = {1: 50, 2: 100, 3: 180, 4: 300, 5: 500}
+# ---------------------------------------------------------------------------
+# MANA (referencia: Hypixel SkyBlock, 09/11/2026). Ver docs/ESCALA_TIERS.md.
+# Hypixel: 100 de base, cada Inteligencia suma 1 y se recupera el 2% del maximo por segundo.
+# ---------------------------------------------------------------------------
+# AuraSkills (plugins/AuraSkills/stats.yml): traits.max_mana.base y traits.mana_regen.base.
+# mana_regen de AuraSkills es una cantidad fija por segundo: 2 = 2% de los 100 de base, y cada
+# item que da mana suma tambien el 2% de ese mana como regeneracion (REGEN_POR_MANA).
+MANA_BASE = 100
+REGEN_BASE = 2
+REGEN_POR_MANA = 0.02
+# Mana que da el bastón en la mano (Bonzo 250-300, Spirit Sceptre 300, Hyperion 350).
+MANA_BASTON = {1: 100, 2: 180, 3: 250, 4: 300, 5: 350}
+# Mana del set completo de Mago (cada pieza da 1/4): T3 ~ Wise Dragon 350, T5 ~ Storm 1.150.
+MANA_SET_MAGO = {1: 100, 2: 200, 3: 350, 4: 600, 5: 1150}
+# Costo del hechizo de cada bastón (Frozen Scythe 50, Bonzo 90, Spirit Sceptre 200).
+MANA_HECHIZO = {1: 30, 2: 50, 3: 90, 4: 150, 5: 200}
+# Daño base del hechizo = espada del mismo tier x 1,2 (sin bonus de dano magico).
+# Cuesta mana, asi que pega un poco mas que un espadazo, como las habilidades de Mago.
+FACTOR_HECHIZO = 1.2
+HECHIZO = {t: round(DANO[t] * FACTOR_HECHIZO) for t in DANO}
+# Armas especiales: (mana, recarga en segundos). Destello = Aspect of the End (50, sin recarga);
+# Danza = Shadow Fury (sin mana, 15 s).
+MANA_ESPECIAL = {"destello": 50, "danza": 0, "sismo": 100, "estallido": 30}
+CD_DANZA = 15
 
 # Colores del [T#] en el nombre de los mobs.
 COLOR_TIER = {0: "gray", 1: "#9fe870", 2: "#4fb0ff", 3: "#c070ff", 4: "#ff8a3d", 5: "#ffd84d"}

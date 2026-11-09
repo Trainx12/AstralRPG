@@ -1,0 +1,6 @@
+plugins/AuraSkills/stats.yml (seccion traits:), despues "skills reload":
+  auraskills/max_mana:
+    base: 100
+  auraskills/mana_regen:
+    base: 2
+Sale de datapack-src/escala.py (MANA_BASE, REGEN_BASE). mana_regen = mana por segundo.

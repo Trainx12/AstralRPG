@@ -20,7 +20,7 @@ Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
    Comprobar mejora +7 y migración conservando encantamientos/desgaste.
    Comprobar Defensa con/sin armadura; XP conserva su texto sin añadir defensa.
    Destello: 12 bloques, pared, techo, lava, mirada vertical, maná insuficiente,
-   17 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
+   50 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
    región WorldGuard que cancela teleport, lobby y mazmorras bloqueados.
 
 Resource pack sin cambios: no actualizar URL ni SHA-1.

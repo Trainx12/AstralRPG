@@ -89,7 +89,8 @@ def render(source, level=0):
             label, col = traits[key]
             value = trait['auraskills:value']
             value = getattr(value,'v',value)
-            suffix = '%' if key != 'max_mana' else ''
+            # mana_regen es mana por segundo (AuraSkills), no un porcentaje.
+            suffix = {'max_mana': '', 'mana_regen': '/s'}.get(key, '%')
             lore.append(stat(label, f'+{value:g}{suffix}', col))
     lore.append(txt(''))
     ench = [f"{ENCHANTS.get(k.split(':')[-1], k.split(':')[-1].replace('_',' ').title())} {roman(v)}"
@@ -101,7 +102,8 @@ def render(source, level=0):
     abilities = WEAPONS.get(source['id'],{}).get('abilities',[])
     if source['kind']=='staff':
         abilities = [dict(name='Proyectil arcano', trigger='CLIC DERECHO',
-                          description=['Dispara un proyectil arcano.', 'Daño base sin bonus de armadura.'], cooldown=data['cd_display'])]
+                          description=['Dispara un proyectil arcano.', 'El daño de hechizo sube con la armadura de Mago.'],
+                          mana=data.get('mana_display'), cooldown=data['cd_display'])]
     elif source['id'] not in WEAPONS:
         descriptions = [s['text'] for s in original[1:] if not s['text'].startswith(('Requiere:', 'Dano:'))]
         if damage is not None:

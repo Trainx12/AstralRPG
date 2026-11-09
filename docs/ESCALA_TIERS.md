@@ -50,6 +50,25 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
 - Tier fijo también en los mundos actuales de mazmorra: `cumbre_hielo` 4, `forja_volcano` 5, `santuario_interstellar` 5.
 - Se sacó **LevelledMobs** (subía la vida por distancia) y **DamageIndicator** (lo reemplaza el indicador).
 
+## Maná y bastones (referencia Hypixel SkyBlock, 09/11/2026)
+
+Todo sale de `escala.py` (`MANA_*`, `HECHIZO`, `REGEN_*`).
+
+- **Base:** 100 de maná para todos y 2 por segundo de recuperación (en Hypixel: 100 + Inteligencia, 2% del
+  máximo por segundo). Se configura en `plugins/AuraSkills/stats.yml` (`traits.max_mana.base` y
+  `traits.mana_regen.base`, ver `build/gameplay/AuraSkills/stats-mana.txt`) y `skills reload`.
+- Cada objeto que da maná también da el **2% de ese maná por segundo** de recuperación (×(1 + mregen%) en las
+  piezas de Mago), así la recuperación queda en ~2% del máximo como en Hypixel.
+- **Set de Mago completo** T1→T5: 100 / 200 / 350 / 600 / 1.150 (T3 ≈ Wise Dragon, T5 ≈ Storm).
+- **Bastones** T1→T5: +100 / 180 / 250 / 300 / 350 de maná (Spirit Sceptre 300, Hyperion 350).
+- **Hechizo del bastón:** cuesta 30 / 50 / 90 / 150 / 200 de maná (lo cobra `special_weapons.sk` antes de
+  llamar a `astral:spell/cast`). Daño base = espada del mismo tier ×1,2 (120 / 600 / 3.000 / 15.000 / 75.000),
+  más el % de daño mágico del bastón y la armadura de Mago. Antes el hechizo no usaba la escala de tiers
+  (pegaba 5-14 a mobs de miles de vida).
+- **Armas especiales:** Transmisión Instantánea 50 (Aspect of the End), Danza del Ender sin maná y 15 s de
+  recarga (Shadow Fury), Onda Sísmica 100, Estallido 30.
+- `ITEM_VERSION = 12`: los objetos se actualizan solos.
+
 ## Servidor (Aternos)
 
 - `spigot.yml`: topes de `maxHealth` (1.000.000.000) y `attackDamage` (10.000.000) subidos: hacen falta

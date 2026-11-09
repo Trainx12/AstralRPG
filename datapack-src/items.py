@@ -3,6 +3,7 @@
 AstralRPG - definicion de materiales, armaduras, armas y recetas.
 Todo lo que se quiera balancear se cambia en este archivo y despues se corre build.py.
 """
+from escala import MANA_SET_MAGO  # mana del set completo de Mago (referencia Hypixel)
 
 # Nombres de skills de AuraSkills (id interno, nombre que ve el jugador)
 SKILLS = {
@@ -148,19 +149,19 @@ ARMOR_SETS = {
         "clase": "Mago", "color": "#b26bff", "skill": "sorcery", "dye": [0x5a2d82, 0x6f35a8, 0x8a3fd1, 0x3d2fa8, 0x1f6fd1],
         "tiers": [
             {"name": "del Aprendiz", "mat": "leather", "lvl": 8,
-             "stats": {"mana": 30, "mdmg": 5, "def": -10},
+             "stats": {"mana": MANA_SET_MAGO[1], "mdmg": 5, "def": -10},
              "cost": [("c", "cuero_tratado", 3), ("c", "fragmento_cristal", 2)]},
             {"name": "del Hechicero", "mat": "leather", "lvl": 14,
-             "stats": {"mana": 50, "mdmg": 10, "mregen": 5},
+             "stats": {"mana": MANA_SET_MAGO[2], "mdmg": 10, "mregen": 5},
              "cost": [("c", "cristal_refinado", 1), ("c", "gema_luminica", 1)]},
             {"name": "del Invocador", "mat": "leather", "lvl": 20,
-             "stats": {"mana": 80, "mdmg": 18, "mregen": 10, "hp": -10},
+             "stats": {"mana": MANA_SET_MAGO[3], "mdmg": 18, "mregen": 10, "hp": -10},
              "cost": [("c", "cristal_refinado", 2), ("c", "madera_estelar", 1)]},
             {"name": "del Archimago", "mat": "leather", "lvl": 26,
-             "stats": {"mana": 120, "mdmg": 25, "mregen": 15, "cdr": 10},
+             "stats": {"mana": MANA_SET_MAGO[4], "mdmg": 25, "mregen": 15, "cdr": 10},
              "cost": [("c", "cristal_refinado", 3), ("c", "corazon_shulker", 1)]},
             {"name": "del Sabio Astral", "mat": "leather", "lvl": 32,
-             "stats": {"mana": 180, "mdmg": 40, "mregen": 25, "def": -20},
+             "stats": {"mana": MANA_SET_MAGO[5], "mdmg": 40, "mregen": 25, "def": -20},
              "cost": [("c", "nucleo_astral", 1), ("c", "gema_luminica_perfecta", 1)]},
         ],
         "piece_names": {"helmet": "Capucha", "chestplate": "Tunica", "leggings": "Faldones", "boots": "Sandalias"},

@@ -9,7 +9,8 @@ import os
 import shutil
 import zipfile
 
-from escala import FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, fmt
+from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MANA_HECHIZO, HECHIZO,
+                    REGEN_POR_MANA, fmt)
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
                    SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, ARMOR_DURABILITY)
@@ -19,7 +20,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 11  # Fichas de armas y estrellas del Herrero
+ITEM_VERSION = 12  # Mana estilo Hypixel y dano de hechizo en la escala de tiers
 
 files = {}
 
@@ -249,8 +250,9 @@ for set_id, sdef in ARMOR_SETS.items():
             traits = []
             if "mana" in stats:
                 traits.append(("max_mana", stats["mana"] / 4, "add"))
-            if "mregen" in stats:
-                traits.append(("mana_regen", stats["mregen"] / 4, "add_percent"))
+                # Regeneracion (mana por segundo): 2% del mana de la pieza, +mregen% (escala.py).
+                regen = stats["mana"] / 4 * REGEN_POR_MANA * (1 + stats.get("mregen", 0) / 100)
+                traits.append(("mana_regen", round(regen, 3), "add"))
             if "crit" in stats:
                 traits.append(("crit_chance", stats["crit"] / 4, "add"))
             pdc = aura_pdc("armor", sdef["skill"], tier["lvl"], traits)
@@ -350,17 +352,20 @@ for i, s in enumerate(STAFFS):
     t = i + 1
     iid = f"baston_{t}"
     mana = MANA_BASTON[t]
-    traits = [("max_mana", mana, "add")]
-    if s.get("mregen"):
-        traits.append(("mana_regen", s["mregen"], "add_percent"))
+    # Regeneracion (mana por segundo): 2% del mana del baston, +mregen% (escala.py).
+    traits = [("max_mana", mana, "add"),
+              ("mana_regen", round(mana * REGEN_POR_MANA * (1 + s.get("mregen", 0) / 100), 3), "add")]
     desc = [f"+{mana} mana", f"+{s['mdmg']}% dano magico", "Click derecho: proyectil arcano"] + s["desc"]
-    spell = s["spell"] * FACTOR_ARMA[t]
-    astral = {"w": "staff", "type": "staff", "tier": t, "spell": int(spell * 100), "mdmg": s["mdmg"] * 100,
+    # Dano del hechizo en la escala de tiers (escala.HECHIZO = espada del tier x 1,2).
+    spell = HECHIZO[t]
+    astral = {"w": "staff", "type": "staff", "tier": t, "spell": spell, "mdmg": s["mdmg"] * 100,
               "cd": s["cd"], "cdr": s.get("cdr", 0) * 100}
-    # spell/cast usa el daño sin escala y suma mdmg/pierce; reflejarlo sin cambiar balance.
-    astral["spell_display"] = int(int(s['spell']*100)*(100+s['mdmg']+s.get('pierce',0))/100)/100
+    # Lo que pega spell/cast sin bonus de armadura: base x (100 + mdmg + pierce)%.
+    astral["spell_display"] = spell * (100 + s['mdmg'] + s.get('pierce', 0)) // 100
     astral["cd_display"] = (s['cd'] - int(s['cd']*s.get('cdr',0)/100))/20
-    lore_extra = [txt(f"Dano del hechizo: {fmt(spell * FACTOR_MOSTRADO[t])}", "light_purple")]
+    astral["mana_display"] = MANA_HECHIZO[t]
+    lore_extra = [txt(f"Dano del hechizo: {fmt(spell * FACTOR_MOSTRADO[t])}", "light_purple"),
+                  txt(f"Costo del hechizo: {MANA_HECHIZO[t]} mana", "aqua")]
     add_item(iid, "minecraft:carrot_on_a_stick", s["name"], MAGO,
              [txt(f"Baston de Mago {ROMAN[i]}", MAGO)] + [txt(d) for d in desc] + lore_extra + [req_line("sorcery", s["lvl"])],
              astral, pdc=aura_pdc("item", "sorcery", s["lvl"], traits), model=s["model"], glint=t >= 2,
@@ -976,7 +981,7 @@ cast = [
 for i, s in enumerate(STAFFS):
     t = i + 1
     sel = f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"baston_{t}"}}}}]'
-    cast.append(f"{sel} run scoreboard players set #base astral.tmp {int(s['spell'] * 100)}")
+    cast.append(f"{sel} run scoreboard players set #base astral.tmp {HECHIZO[t]}")
     cast.append(f"{sel} run scoreboard players add #pct astral.tmp {s['mdmg'] * 100}")
     cast.append(f"{sel} run scoreboard players set #cd astral.tmp {s['cd']}")
     if s.get("cdr"):
@@ -994,9 +999,12 @@ for ti, tier in enumerate(ARMOR_SETS["mago"]["tiers"]):
             cast.append(f"{sel} run scoreboard players add #cdr astral.tmp {int(round(st['cdr'] / 4))}")
 cast += [
     "execute if score #base astral.tmp matches ..0 run return 0",
+    # #base en puntos de vida enteros (hasta 75.000) y #pct en centesimas de %: se pasa #pct a %
+    # antes de multiplicar para no pasar el limite de los numeros del scoreboard.
+    "scoreboard players operation #pct astral.tmp /= #100 astral.const",
     "scoreboard players operation #base astral.tmp *= #pct astral.tmp",
-    "scoreboard players operation #base astral.tmp /= #10000 astral.const",
-    f"execute store result storage {NS}:tmp spell.dmg float 0.01 run scoreboard players get #base astral.tmp",
+    "scoreboard players operation #base astral.tmp /= #100 astral.const",
+    f"execute store result storage {NS}:tmp spell.dmg float 1 run scoreboard players get #base astral.tmp",
     "scoreboard players operation #cdr astral.tmp *= #cd astral.tmp",
     "scoreboard players operation #cdr astral.tmp /= #100 astral.const",
     "scoreboard players operation #cd astral.tmp -= #cdr astral.tmp",
@@ -1189,7 +1197,7 @@ fn("bow/vec2", [
 # ---------------------------------------------------------------------------
 fn("use/main", [
     "scoreboard players reset @s astral.use",
-    f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{type:"staff"}}}}] run return run function {NS}:spell/cast',
+    # Bastones: el clic lo maneja Skript (special_weapons.sk), que cobra el mana y llama a spell/cast.
     f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{type:"hook"}}}}] run return run function {NS}:grapple/use',
 ])
 

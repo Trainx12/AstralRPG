@@ -1,6 +1,7 @@
 """Verifica el contrato visible contra los componentes exportados y la migración."""
 import json
 import unittest
+from escala import HECHIZO
 from pathlib import Path
 from escala import fmt
 from items import MEJORA_DANO, STAFFS
@@ -62,7 +63,10 @@ class FichaTests(unittest.TestCase):
 
     def test_staff_uses_cast_damage_without_armor(self):
         for tier,s in enumerate(STAFFS,1):
-            damage=int(int(s['spell']*100)*(100+s['mdmg']+s.get('pierce',0))/100)/100
+            # Igual que spell/cast: #pct en %, base x pct / 100 (enteros del scoreboard).
+            pct=(10000+s['mdmg']*100+s.get('pierce',0)*100)//100
+            damage=HECHIZO[tier]*pct//100
+            self.assertLess(HECHIZO[tier]*pct,2**31-1)
             lore=list(map(text,self.components(f'baston_{tier}')['minecraft:lore']))
             self.assertIn('Daño de hechizo: +'+fmt(damage),lore)
 

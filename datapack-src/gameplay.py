@@ -71,6 +71,14 @@ def generate_action_bar(output):
         'boss_bar_income': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({percent}%) <green>(+${income})',
         'boss_bar_income_maxed': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({{ui.maxed}}) <green>(+${income})',
     }
+    from escala import MANA_BASE, REGEN_BASE
+    # Mana base y regeneracion de AuraSkills (referencia Hypixel): se editan a mano en el server.
+    (output/'AuraSkills').mkdir(parents=True,exist_ok=True)
+    (output/'AuraSkills/stats-mana.txt').write_text(
+        'plugins/AuraSkills/stats.yml (seccion traits:), despues "skills reload":\n'
+        f'  auraskills/max_mana:\n    base: {MANA_BASE}\n'
+        f'  auraskills/mana_regen:\n    base: {REGEN_BASE}\n'
+        'Sale de datapack-src/escala.py (MANA_BASE, REGEN_BASE). mana_regen = mana por segundo.\n',encoding='utf-8')
     path=output/'AuraSkills/global-action_bar.yml'
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text('action_bar:\n'+''.join(f'  {key}: '+json.dumps(value,ensure_ascii=False)+'\n' for key,value in block.items()),encoding='utf-8')

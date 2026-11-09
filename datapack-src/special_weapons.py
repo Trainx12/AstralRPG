@@ -15,23 +15,23 @@ WEAPONS = {
 }
 
 # Números de las habilidades actuales, separados de su presentación.
-from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt
+from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt, MANA_ESPECIAL, CD_DANZA, MANA_HECHIZO
 _scale = FACTOR_ARMA[TIER_ESPECIAL]
 ABILITIES = {
     'espada_tormenta': [dict(name='Rayo de la Tormenta', trigger='AL GOLPEAR',
         description=['25% de invocar un rayo.', 'Daño: 30% del golpe (mínimo 1), radio 2 bloques.'])],
-    'espada_sombras': [dict(name='Danza del Ender', trigger='CLIC DERECHO', mana=15, cooldown=5,
+    'espada_sombras': [dict(name='Danza del Ender', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['danza'], cooldown=CD_DANZA,
         description=['Salta y golpea hasta 6 enemigos a 12 bloques.',
                      f'Cada golpe causa {fmt(10*_scale)} de daño; un salto cada 4 ticks.'],
         notes=['No atraviesa paredes. Usable en mazmorras.'])],
-    'espada_destello': [dict(name='Transmisión Instantánea', trigger='CLIC DERECHO', mana=17,
+    'espada_destello': [dict(name='Transmisión Instantánea', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['destello'],
         description=['Teletransporta hasta 12 bloques hacia adelante', 'y da +50 de Velocidad por 3 segundos.'],
         notes=['Sin recarga. No usable en mazmorras.'])],
-    'hacha_terremoto': [dict(name='Onda Sísmica', trigger='CLIC DERECHO', mana=10, cooldown=6,
+    'hacha_terremoto': [dict(name='Onda Sísmica', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['sismo'], cooldown=6,
         description=[f'Onda de {fmt(10*_scale)} de daño hasta 5 bloques.', 'Levanta el suelo a tu alrededor.'])],
-    'varita_estallido': [dict(name='Estallido', trigger='AL GOLPEAR', mana=5,
+    'varita_estallido': [dict(name='Estallido', trigger='AL GOLPEAR', mana=MANA_ESPECIAL['estallido'],
         description=[f'Explosión de {fmt(6*_scale)} de daño en radio 2.']),
-        dict(name='Proyectil Explosivo', trigger='CLIC DERECHO', mana=5, cooldown=1,
+        dict(name='Proyectil Explosivo', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['estallido'], cooldown=1,
         description=['Disparo instantáneo hasta 16 bloques.', f'Explosión de {fmt(6*_scale)} de daño en radio 2.'])],
 }
 for _iid, _weapon in WEAPONS.items():
@@ -50,8 +50,26 @@ def register(add_item, recipes, txt, weapon_mods):
         recipes.append((iid,1,w['cost'],'Especiales'))
 
 
+def script_options(text):
+    """Completa en el .sk el mana y las recargas de escala.py (una sola fuente de numeros)."""
+    import re
+    values={'mana_destello':MANA_ESPECIAL['destello'],'mana_danza':MANA_ESPECIAL['danza'],'cd_danza':CD_DANZA,
+            'mana_sismo':MANA_ESPECIAL['sismo'],'mana_estallido':MANA_ESPECIAL['estallido'],
+            **{f'mana_baston_{t}':v for t,v in MANA_HECHIZO.items()}}
+    for key,value in values.items():
+        text,n=re.subn(rf'^(    {key}): .*$',rf'\g<1>: {value}',text,flags=re.M)
+        assert n==1,key
+    return text
+
+
 def generate(files):
     lines=['tag @s remove astral.special'] + [f'tag @s remove astral.special.{iid}' for iid in WEAPONS]
+    # Bastones de Mago: tier en la mano y si el hechizo esta en recarga (lo lee Skript para cobrar mana).
+    lines+=['tag @s remove astral.staff','tag @s remove astral.spell.cd']+[f'tag @s remove astral.staff.t{t}' for t in range(1,6)]
+    for t in range(1,6):
+        staff=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"baston_{t}"}}}}]'
+        lines+=[staff+' run tag @s add astral.staff',staff+f' run tag @s add astral.staff.t{t}']
+    lines.append('execute if score @s astral.cd matches 1.. run tag @s add astral.spell.cd')
     for iid in WEAPONS:
         check=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"{iid}"}}}}]'
         lines += [check+' run tag @s add astral.special', check+f' run tag @s add astral.special.{iid}']
@@ -67,7 +85,7 @@ def generate(files):
     root=Path(__file__).resolve().parent
     out=root.parent/'build/gameplay'
     out.mkdir(parents=True,exist_ok=True)
-    (out/'astral_armas_especiales.sk').write_text((root/'special_weapons.sk').read_text(encoding='utf-8'),encoding='utf-8')
+    (out/'astral_armas_especiales.sk').write_text(script_options((root/'special_weapons.sk').read_text(encoding='utf-8')),encoding='utf-8')
     (out/'fichas-despliegue.txt').write_text('''Fichas / Transmisión Instantánea / Defensa (ITEM_VERSION 11)
 Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
 
@@ -90,7 +108,7 @@ Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
    Comprobar mejora +7 y migración conservando encantamientos/desgaste.
    Comprobar Defensa con/sin armadura; XP conserva su texto sin añadir defensa.
    Destello: 12 bloques, pared, techo, lava, mirada vertical, maná insuficiente,
-   17 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
+   50 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
    región WorldGuard que cancela teleport, lobby y mazmorras bloqueados.
 
 Resource pack sin cambios: no actualizar URL ni SHA-1.
