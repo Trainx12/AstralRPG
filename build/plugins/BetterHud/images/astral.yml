@@ -1,0 +1,4 @@
+# Generado por datapack-src/betterhud.py
+astral_panel_fondo:
+  type: single
+  file: astral_panel.png

@@ -1,0 +1,7 @@
+# Cambiar solo estas claves en plugins/BetterHud/config.yml (el resto como viene)
+default-hud:
+  - astral_panel
+pack-type: folder
+enable-self-host: false
+metrics: false
+load-minecraft-default-textures: false

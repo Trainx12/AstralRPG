@@ -82,7 +82,7 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
   cada recarga: medido +2-3 MB por `skript reload all` o `mm reload`, que no se liberan hasta reiniciar.
 - **Lag:** los elites del datapack eran persistentes y se acumulaban (se mataron 115 brujas cerca del spawn); el
   rescate de caidas escribia variables de Skript a disco cada tick. Las dos cosas se corrigieron.
-- **Plugins sacados por memoria (03/11/2026):** QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers
+- **Plugins sacados por memoria (03/11/2026):** QuickShop-Hikari, Duels (volvió en Empower el 08/11/2026), SkinsRestorer, DonutOrders y AxShulkers
   (y despues LevelledMobs y DamageIndicator por la escala por tier). No reinstalarlos sin medir. En Aternos, borrar un jar hay que confirmarlo con un clic real en "Yes" y revisar
   la lista despues: si no, el jar sigue ahi y vuelve a cargar. Resultado: Non-heap al prender 421 -> 395 MB.
 - **Reglas:** despues de una sesion con muchas recargas, reiniciar. Antes de sumar un plugin, medir Non-heap antes y
@@ -96,13 +96,15 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
 | LevelledMobs | Sube el nivel de los mobs según la distancia al spawn |
 | MythicMobs 5.13.0 | Criaturas custom: fauna, hostiles, monturas, élites y jefes |
 | BetterModel 3.6.0 | Modelos 3D de esas criaturas (sin mods) |
+| BetterHud 2.0.0 | Panel dibujado de la derecha (`/sb`). Ver [BETTERHUD_Y_DUELS.md](BETTERHUD_Y_DUELS.md) |
+| Duels Optimised | Duelos 1 contra 1 en la arena `Astral` (`/duel <jugador>`), sin perder ítems |
 | ExcellentEnchants 5.4.3 + NightCore + PacketEvents | Encantamientos extra (el Taladro Infernal fue retirado; los taladros usan el area del datapack) |
 | Bolt | Protege cofres, shulkers y puertas |
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
 | AuthMe | Login con contraseña (necesario en modo no premium). Modo premium activado: los premium con `/premium` entran sin contraseña. **No instalar FastLogin**: choca con el `/premium` de AuthMe 6 |
 | AxGraves | Tumba con tus cosas al morir |
 | ClearLag++ | Limpia ítems tirados para que no haya lag |
-| TAB | Tabulador y panel lateral de stats (ver Lobby) |
+| TAB | Tabulador y panel lateral de las Minas Astrales (ver Lobby) |
 | nonchat | Filtro y formato de chat |
 | RHLeafDecay | Las hojas se caen rápido al talar |
 | LuckPerms | Permisos |
@@ -141,7 +143,8 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - **Monedas:** se empieza con 250$. Se gana vendiendo en la tienda y matando: 15$ por hostil de AstralRPG, 150$ por élite y 750$ por jefe.
 - **Archivos:** `datapack-src/lobby.py` genera `build/lobby/CrazyCrates/crates/*.yml` (premios y probabilidades), `build/mythicmobs/skills/gachas.yml` (cobro), `build/lobby/Essentials/spawn.yml` y `build/lobby/comandos.txt` (todos los comandos de consola para armarlo de nuevo). Los vendedores están en `datapack-src/mobs/mythic.py` (`NPCS`).
 - Si falta un vendedor: correr las líneas `mm mobs spawn astral_npc_...` de `comandos.txt` (con el `mob-spawning allow`/`deny` de alrededor). Para borrar uno: `mm mobs kill astral_npc_<nombre>`.
-- **Panel y tabulador (TAB):** a la derecha, panel con nombre, rango, título, vida, oro, poder, nivel, Forja/Hechicería/Arquería, bajas y mundo (`/sb` lo oculta o muestra). En el tabulador: encabezado animado, corazones de vida, título de la gacha y poder de cada jugador. Rango según el poder de AuraSkills: Novato, Aventurero (150), Veterano (400), Héroe (800), Leyenda (1500). Lo genera `datapack-src/lobby.py` en `build/lobby/TAB/` (las secciones de `config.yml` se reemplazan una por una; `groups.yml` entero; las animaciones se agregan a `animations.yml`). Después: `tab reload`. Usa las expansiones de PlaceholderAPI LuckPerms, Vault, Player, Server y Statistic.
+- **Panel de la derecha (BetterHud, desde 08/11/2026):** panel dibujado con vida, defensa, poder, oro, lugar, conectados, rango, diarias, historia y monstruos (`/sb` lo oculta o muestra). Sale de `datapack-src/betterhud.py`; ver [BETTERHUD_Y_DUELS.md](BETTERHUD_Y_DUELS.md). En las Minas Astrales se ve el panel de TAB de las minas.
+- **Tabulador (TAB):** en el tabulador: encabezado animado, corazones de vida, título de la gacha y poder de cada jugador. Rango según el poder de AuraSkills: Novato, Aventurero (150), Veterano (400), Héroe (800), Leyenda (1500). Lo genera `datapack-src/lobby.py` en `build/lobby/TAB/` (las secciones de `config.yml` se reemplazan una por una; `groups.yml` entero; las animaciones se agregan a `animations.yml`). Después: `tab reload`. Usa las expansiones de PlaceholderAPI LuckPerms, Vault, Player, Server y Statistic.
 - Los huevos de mascotas y monturas no funcionan en el lobby (ahí no aparecen mobs): hay que usarlos en el mundo.
 - Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
 - Las gachas no usan ExcellentCrates: la 7.x guarda todo en base de datos (solo se edita dentro del juego) y la 6.x no anda con el NightCore que necesita ExcellentEnchants.

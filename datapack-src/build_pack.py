@@ -342,6 +342,62 @@ def stellarity():
 
 stellarity()
 
+# Panel de BetterHud (betterhud.py). pack-source/betterhud es la carpeta build/ que arma el plugin con
+# la MISMA config que el server (si cambia la config, hay que volver a armarla: docs/BETTERHUD_Y_DUELS.md).
+# Su shader de texto (ubica el panel en pantalla) choca con el de Stellarity (colores animados):
+# se juntan en uno solo dentro del overlay de 26.1.
+OVERLAY_26_1 = "overlay_assets_26_1"
+TEXT_VSH = "assets/minecraft/shaders/core/rendertype_text.vsh"
+STELLARITY_TEXT = "assets/stellarity/shaders/include/animated_text.glsl"
+HSV_TO_RGB = """
+vec3 hsvToRgb(float h, float s, float v) {
+    vec3 rgb = clamp(abs(mod(h * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+    return v * mix(vec3(1.0), rgb, s);
+}
+"""
+
+
+def betterhud():
+    base = os.path.join(SRC, "betterhud")
+    if not os.path.isdir(base):
+        print("sin BetterHud:", base)
+        return
+    vertex, added = None, 0
+    for root, _, fs in os.walk(base):
+        for fname in fs:
+            full = os.path.join(root, fname)
+            rel = os.path.relpath(full, base).replace(os.sep, "/")
+            with open(full, "rb") as f:
+                data = f.read()
+            if rel.startswith("betterhud_26_1/"):
+                inner = rel.split("/", 1)[1]
+                if inner == TEXT_VSH:
+                    vertex = data.decode("utf-8")
+                    continue
+                files[f"{OVERLAY_26_1}/{inner}"] = data
+            elif rel.startswith("assets/") and rel not in files:
+                files[rel] = data
+            else:
+                continue
+            added += 1
+    if vertex is None:
+        raise SystemExit("BetterHud: falta betterhud_26_1/" + TEXT_VSH)
+    if STELLARITY_TEXT in files:
+        assert vertex.count("void main() {") == 1 and vertex.count(" else {}") == 1, "cambio el shader de BetterHud"
+        vertex = vertex.replace("void main() {", HSV_TO_RGB + "void main() {", 1).replace(
+            " else {}", " else {\nvec4 color = Color;\n#moj_import <stellarity:animated_text.glsl>\n"
+            "vertexColor = color * sample_lightmap(Sampler2, UV2);\n}", 1)
+    files[f"{OVERLAY_26_1}/{TEXT_VSH}"] = vertex.encode("utf-8")
+    pack = json.loads(files["pack.mcmeta"])
+    entries = pack.setdefault("overlays", {"entries": []})["entries"]
+    if not any(e.get("directory") == OVERLAY_26_1 for e in entries):
+        entries.append({"directory": OVERLAY_26_1, "min_format": RES_FORMAT, "max_format": RES_FORMAT})
+    files["pack.mcmeta"] = json.dumps(pack, indent=1).encode("utf-8")
+    print(f"BetterHud: {added} archivos (shader de texto junto con Stellarity)")
+
+
+betterhud()
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

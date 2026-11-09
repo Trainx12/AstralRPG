@@ -28,7 +28,8 @@ python mobs/build_models.py        # modelos 3D de criaturas (.bbmodel)
 python mobs/mythic.py              # MythicMobs: criaturas, monturas, jefes, vendedores
 python mobs/mazmorra.py           # Mazmorra Minas Olvidadas (salas, mobs, jefe, cofre)
 python mobs/mascotas.py           # Mascotas 3D (/mascotas, bonus, niveles)
-python lobby.py                    # gachas (CrazyCrates), cobro, panel TAB, comandos del lobby
+python lobby.py                    # gachas (CrazyCrates), cobro, TAB (tabulador + panel de minas), comandos del lobby
+python betterhud.py                # panel dibujado de la derecha (BetterHud) y /sb; rearmar pack-source/betterhud
 python menus.py                    # menus de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar
 ```
 
@@ -41,6 +42,7 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 - Spam en el chat de los OP ("Se ha cambiado la puntuación..."): en `server.properties` `broadcast-console-to-ops=false` y gamerule `log_admin_commands false`; en skills que corren seguido, filtrar a quién se aplica (`@a[scores={x=1..}]`).
 - Memoria de codigo (Metaspace): en Aternos estaba limitada a 350 MB y el 02/11 se colgo con `OutOfMemoryError: Metaspace`. En Empower no hay tope (8 GB, `-Xmx6400M`). Igual cada `mm reload`/`skript reload` deja 2-3 MB pegados: tras muchas recargas, reiniciar. Medir con spark antes y despues de sumar plugins.
 - Mobs del datapack: nunca `PersistenceRequired` en mobs que aparecen solos (los elites se acumulaban: 115 brujas). Variables de Skript que cambian cada tick: siempre `{-...}` (solo memoria).
-- Plugins sacados por memoria en Aternos el 03/11/2026: QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers. En Empower se pueden reinstalar si el dueño lo pide (sus datos viejos siguen en `plugins/`). El Bazar usa AxTrade (`/trade`) en lugar de Ordenes.
+- Plugins sacados por memoria en Aternos el 03/11/2026: QuickShop-Hikari, Duels, SkinsRestorer, DonutOrders y AxShulkers. En Empower se pueden reinstalar si el dueño lo pide (sus datos viejos siguen en `plugins/`). Duels volvió el 08/11/2026. El Bazar usa AxTrade (`/trade`) en lugar de Ordenes.
+- BetterHud (panel de la derecha, `docs/BETTERHUD_Y_DUELS.md`): sus glifos van en nuestro pack y tienen que coincidir con la config del server: si cambia `betterhud.py`, rearmar `pack-source/betterhud`. En sus textos `/` se escribe `//`. Ningún jefe puede usar barra `YELLOW` (BetterHud la vuelve invisible).
 - Escala por tier (03/11/2026): dano de armas Astral y vida de mobs REALES y enormes (x5 por tier); vida del jugador, armadura y dano de mobs normales. Todo sale de `datapack-src/escala.py` (ver `docs/ESCALA_TIERS.md`). `spigot.yml` necesita los topes de atributos subidos; PvP de arena se divide en `astral_gameplay.sk`. DamageIndicator y LevelledMobs se sacaron.
 - Minas Astrales (`docs/MINAS.md`): Skript puro, **sin skript-reflect** (se hizo asi por Aternos; en Empower ya se pueden subir `.jar`). Los schematics no van al repo (el de Hierro es de terceros).

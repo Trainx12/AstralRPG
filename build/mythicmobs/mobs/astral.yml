@@ -323,7 +323,7 @@ astral_momia:
     Enabled: true
     Title: '&e&lMomia Ancestral'
     Range: 48
-    Color: YELLOW
+    Color: RED
     Style: SEGMENTED_10
   Drops:
   - gold_ingot 3-8 1
@@ -803,7 +803,7 @@ astral_momia_ancestral:
     Enabled: true
     Title: '&6&lFarao Ancestral'
     Range: 48
-    Color: YELLOW
+    Color: RED
     Style: SEGMENTED_10
   Drops:
   - gold_ingot 3-8 1

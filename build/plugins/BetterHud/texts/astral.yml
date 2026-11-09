@@ -1,0 +1,8 @@
+# Generado por datapack-src/betterhud.py
+astral_font:
+  scale: 16
+  height: 8
+  ascent: 7
+  merge-default-bitmap: true
+  use-unifont: true
+  include: []

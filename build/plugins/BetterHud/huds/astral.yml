@@ -1,0 +1,19 @@
+# Generado por datapack-src/betterhud.py
+astral_panel:
+  layouts:
+    1:
+      name: astral_panel_fondo
+      gui:
+        x: 100
+        y: 50
+      pixel:
+        x: -156
+        y: -92
+    2:
+      name: astral_panel_textos
+      gui:
+        x: 100
+        y: 50
+      pixel:
+        x: -156
+        y: -92

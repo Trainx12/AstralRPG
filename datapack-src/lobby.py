@@ -359,6 +359,8 @@ def story_sidebar_conditions():
     return steps("historia", score("aq.state"), states)[1]
 
 
+# Ya no se muestra: el panel general es el de BetterHud (betterhud.py, /sb). En TAB solo
+# queda el panel de las Minas Astrales (minas.sidebar). Se deja para volver atras si hiciera falta.
 ASTRAL_BOARD = board("astral", ref("sidebar_world"), [
     f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
     *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
@@ -395,12 +397,12 @@ belowname-objective:
   view-distance: 10
 scoreboard:
   enabled: true
-  toggle-command: /sb
+  toggle-command: /sbtab
   remember-toggle-choice: true
   hidden-by-default: false
   delay-on-join-milliseconds: 1500
   scoreboards:
-''' + ASTRAL_BOARD + "conditions:\n" + "".join(
+''' + "conditions:\n" + "".join(
     "  rango%d:\n    conditions:\n      - \"%%auraskills_power%%>=%d\"\n    true: \"%s\"\n    false: \"%s\"\n" % (
         i, th, txt, ("%%condition:rango%d%%" % (i + 1)) if i + 1 < len(RANKS) - 1 else RANKS[-1][1])
     for i, (th, txt) in enumerate(RANKS[:-1])).replace("rango0", "rango") + r'''  titulo:

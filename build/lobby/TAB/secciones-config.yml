@@ -32,7 +32,7 @@ belowname-objective:
   view-distance: 10
 scoreboard:
   enabled: true
-  toggle-command: /sb
+  toggle-command: /sbtab
   remember-toggle-choice: true
   hidden-by-default: false
   delay-on-join-milliseconds: 1500
@@ -54,22 +54,6 @@ scoreboard:
         - "%condition:am_need%"
         - "%condition:am_pay%"
         - "%condition:am_time%"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>AstralRPG.aternos.me"
-    astral:
-      title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
-      lines:
-        - "%condition:sidebar_world%"
-        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
-        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
-        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%statistic_time_played%"
-        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
-        - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
-        - "<gradient:#5268C7:#D17AFF><bold>✎ Diarias</bold></gradient> <#AA96C5>· 00:00 ARG"
-        - "<#D6B4FF>✦ <#AA96C5>Fácil %condition:diaria0%"
-        - "<#D6B4FF>✧ <#AA96C5>Media %condition:diaria1%"
-        - "<#D6B4FF>✶ <#AA96C5>Difícil %condition:diaria2%"
-        - "<#D6B4FF>✎ <#AA96C5>Historia %condition:historia%"
         - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
         - "<#D6B4FF>AstralRPG.aternos.me"
 conditions:

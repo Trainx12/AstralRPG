@@ -82,7 +82,8 @@ MOBS = {
                                                                  "minecraft:wooded_badlands", "minecraft:jungle"])),
     # ---------------- jefes
     "astral_momia": dict(kind="jefe", type="HUSK", name="&e&lMomia Ancestral", hp=320, damage=10, speed=0.24,
-                         bar="YELLOW", drops=["gold_ingot 3-8 1", "bone 4-8 1", "exp 120"],
+                         # Barra roja, no amarilla: BetterHud usa la amarilla para el panel y la vuelve invisible
+                         bar="RED", drops=["gold_ingot 3-8 1", "bone 4-8 1", "exp 120"],
                          astral=[("alma_corrupta", 1.0), ("chispa_astral", 0.35), ("gema_luminica", 0.8), ("esencia_elite", 1.0, 3)],
                          skills=["- summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300",
                                  "- potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4",

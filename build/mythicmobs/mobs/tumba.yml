@@ -424,7 +424,7 @@ astral_tumba_momia:
     Enabled: true
     Title: '&e&lMomia Ancestral'
     Range: 48
-    Color: YELLOW
+    Color: RED
     Style: SEGMENTED_10
   Drops:
   - gold_ingot 3-8 1

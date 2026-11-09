@@ -194,7 +194,7 @@ def sidebar(original):
     for key, objective, options in (("here", "am_here", labels), ("current", "am_rank", labels),
                                      ("next", "am_rank", labels[1:] + ["—"])):
         label_tree(key, objective, options, 1, len(options))
-    return original.replace("    astral:\n", mine + "    astral:\n", 1).replace(
+    return original.replace("  scoreboards:\n", "  scoreboards:\n" + mine, 1).replace(
         "\nconditions:\n", "\nconditions:\n" + extra + "\n".join(conditions) + "\n", 1)
 
 
