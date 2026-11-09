@@ -8,7 +8,7 @@ Ninguna exige una clase ni forma parte de los kits Berserker, Arquero o Mago.
 |---|---|---:|---:|
 | Filo de la Tormenta / `espada_tormenta` | 25% por golpe cuerpo a cuerpo: rayo visual que hace el 30% del dano del golpe (minimo 1) en radio 2 | 0 | — |
 | Danza del Ender / `espada_sombras` | Clic derecho: hasta 6 enemigos a 12 bloques; salta junto a cada uno con estela, lo mira y golpea 10. Un salto cada 4 ticks (1,2 s). Se puede usar en mazmorras | 15 | 5 s |
-| Filo del Destello / `espada_destello` | Clic derecho: impulso fluido de ~3 bloques segun la mirada (velocidad, no teleport seco), con estela. No se puede en mazmorras | 10 | Ninguna |
+| Filo del Destello / `espada_destello` | Transmisión Instantánea: teletransporta hasta 12 bloques según la mirada (también vertical) y da +50% de velocidad por 3 segundos. No se puede en mazmorras ni lobby | 17 | Ninguna |
 | Hacha del Sismo / `hacha_terremoto` | Clic derecho: onda de 5 anillos (hasta 5 bloques); cada anillo levanta el suelo y golpea 10 a lo que alcanza, con empuje hacia arriba | 10 | 6 s |
 | Varita del Estallido / `varita_estallido` | Clic derecho: disparo instantaneo hasta 16 bloques; explota contra un bloque o enemigo. Tambien explota al golpear cuerpo a cuerpo. Radio 2, dano 6 | 5 por uso | Disparo: 1 s |
 
@@ -43,7 +43,14 @@ se aplica al reiniciar (el plugin no tiene comando de recarga).
   borde del mundo y peligros. El salto Ender exige linea de vision, suelo y un destino
   lateral libre; omite enemigos muertos, lejanos o inaccesibles. Cambiar de arma,
   desconectarse, morir o cambiar de mundo corta la secuencia.
-- Un teletransporte de Destello cancelado devuelve los 10 de mana.
+- Destello recorre el rayo desde los ojos en pasos de 0,2 bloques y comprueba el volumen
+  del cuerpo durante el trayecto. Se detiene antes de paredes, lava y peligros. Si queda
+  menos de un bloque libre, no cobra maná. Conserva yaw/pitch y reinicia la caída.
+- Un teletransporte de Destello cancelado devuelve los 17 de maná. El bonus de velocidad
+  usa `astral:transmision`, se renueva sin acumular y se elimina a los 60 ticks,
+  al entrar/salir y al recargar el script. El límite inferior es -63 en los mundos
+  Overworld del servidor y 1 en Nether/End; si se añaden dimensiones con otros límites,
+  ajustar `asw_blink` antes de habilitar la movilidad allí.
 - El rayo usa `strikeLightningEffect`; solo la rutina filtrada aplica dano.
   La explosion usa sonido y particulas. No hay fuego, TNT ni rotura de bloques.
 - El hacha anima `block_display`, sin colisiones ni drops. No modifica el suelo real,

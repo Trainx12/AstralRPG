@@ -26,8 +26,12 @@ def apply(files,items,version):
         files[f'data/astral/item_modifier/upgrade/{iid}.json']=json.dumps(modifier,ensure_ascii=False)
     for slot in slots:
         lines=[]
-        for iid in items:
+        for iid,item in items.items():
             selector=f'*[minecraft:custom_data~{{astral:{{id:"{iid}"}}}},!minecraft:custom_data~{{astral:{{v:{version}}}}}]'
+            if item.get('ficha'):
+                for level in range(1,11):
+                    upgraded=selector[:-1]+f',minecraft:enchantments~[{{enchantments:"astral:mejora_arma",levels:{level}}}]]'
+                    lines.append(f'execute if items entity @s {slot} {upgraded} run return run item modify entity @s {slot} astral:upgrade/{iid}/{level}')
             lines.append(f'execute if items entity @s {slot} {selector} run return run item modify entity @s {slot} astral:upgrade/{iid}')
         fn('upgrade/slot/'+slot.replace('.','_'),lines)
     fn('upgrade/check',[
@@ -41,6 +45,7 @@ def apply(files,items,version):
     hook=json.loads(files['data/astral/enchantment/gancho.json']);hook['effects']={}
     files['data/astral/enchantment/gancho.json']=json.dumps(hook)
     output=ROOT/'build/gameplay';output.mkdir(parents=True,exist_ok=True)
+    generate_action_bar(output)
     (output/'astral_gameplay.sk').write_text(script(),encoding='utf-8')
     commands=[]
     for world in PROTECTED:
@@ -51,6 +56,24 @@ def apply(files,items,version):
                      f'rg flag -w {world} __global__ build deny']
     commands += ['lp group default permission set axgraves.allowgraves true']
     (output/'comandos.txt').write_text('\n'.join(commands)+'\n',encoding='utf-8')
+
+def generate_action_bar(output):
+    # Defensa directa: evita depender de claves de mensaje adicionales en AuraSkills.
+    block = {
+        'idle': '{{action_bar.hp_display}}      <green>%objective_score_astraldef%❈ Defensa      {{action_bar.mana_display}}',
+        'hp_display': '<red>{hp}/{max_hp}❤',
+        'mana_display': '<aqua>{mana}/{max_mana}✎ Maná',
+        'xp': '{{action_bar.hp_display}}  <gold>{xp_gained} {skill} {{units.xp}} <gray>({current_xp}/{level_xp} {{units.xp}})  {{action_bar.mana_display}}',
+        'maxed': '{{action_bar.hp_display}}  <gold>{xp_gained} {skill} {{units.xp}} <gray>({{ui.maxed}})  {{action_bar.mana_display}}',
+        'ability': '{message}',
+        'boss_bar_xp': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({percent}%)',
+        'boss_bar_maxed': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({{ui.maxed}})',
+        'boss_bar_income': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({percent}%) <green>(+${income})',
+        'boss_bar_income_maxed': '<gold>{xp_gained} {skill} {{units.xp}} <gray>({{ui.maxed}}) <green>(+${income})',
+    }
+    path=output/'AuraSkills/global-action_bar.yml'
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text('action_bar:\n'+''.join(f'  {key}: '+json.dumps(value,ensure_ascii=False)+'\n' for key,value in block.items()),encoding='utf-8')
 
 def pvp():
     """Arena PvP: el dano de las armas Astral es enorme (escala.py); entre jugadores se

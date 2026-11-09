@@ -3,6 +3,34 @@
 Documento de referencia para administrar el servidor. Actualizado el 07/11/2026 (mudanza a Empower Servers).
 Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [GUIA.md](GUIA.md).
 
+## Fichas de armas y barra de Defensa (08/11/2026)
+
+La barra sobre la hotbar es de **AuraSkills**, no de `hud_rpg.py` (apagado).
+Se edita el bloque `action_bar` de `plugins/AuraSkills/messages/global.yml` y se
+recarga con `skills reload`. El bloque completo sale de `gameplay.py` en
+`build/gameplay/AuraSkills/global-action_bar.yml`; reemplazar solo ese bloque.
+Conservar `action_bar.placeholder_api: true` en `plugins/AuraSkills/config.yml`
+y la expansión ScoreboardObjectives de PlaceholderAPI. El datapack actualiza
+`astraldef` con el atributo real `minecraft:armor` cada 10 ticks. Defensa aparece
+en reposo; XP, habilidades y boss bars conservan sus formatos para evitar saturar la barra.
+Se inserta el placeholder directamente, sin depender de una clave nueva de mensajes.
+Referencia: [configuración oficial de AuraSkills](https://wiki.aurelium.dev/auraskills/main-config/).
+
+Las fichas salen de `ficha.py`; `ITEM_VERSION = 11` migra armas viejas conservando
+mejora, encantamientos añadidos y desgaste. El Herrero aplica nombre/lore de +0 a +10.
+Se dejan visibles los encantamientos nativos, además de listar los propios en azul:
+así siguen apareciendo los añadidos por yunque/mesa sin depender de addons de Skript.
+El daño mostrado es el atributo base con el multiplicador del Herrero; efectos
+condicionales, armadura y otros bonus pueden modificar el golpe. Arcos y lanzas
+sin atributo propio no anuncian un daño fijo inventado. Los bastones muestran el
+daño base efectivo de `spell/cast`, sin bonus de armadura; la ficha anterior mostraba
+una escala que esa función no aplicaba. No se cambió su balance.
+
+Instalación exacta y comprobaciones: `build/gameplay/fichas-despliegue.txt`.
+Apagar, reemplazar el ZIP dentro de `world/datapacks` y volver a iniciar.
+El script se instala como `plugins/Skript/scripts/special_weapons.sk` (una sola copia).
+Para recargarlo: `skript:skript reload special_weapons`. Resource pack sin cambios.
+
 > **Contraseñas:** este repositorio es público, así que acá no va ninguna contraseña.
 > Las claves van en `docs/CREDENCIALES.local.md`. Ese archivo existe solo
 > en la PC del dueño y Git lo ignora, así que no se sube a GitHub.

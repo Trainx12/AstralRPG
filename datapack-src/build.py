@@ -19,7 +19,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 10  # Saltador con aspecto de bola de slime; Gancho con la skin del gancho
+ITEM_VERSION = 11  # Fichas de armas y estrellas del Herrero
 
 files = {}
 
@@ -44,6 +44,7 @@ def txt(text, color="gray", **kw):
 # Helpers de items
 # ---------------------------------------------------------------------------
 ITEMS = {}      # id -> {"base":..., "components": {...}, "name":..., "kind":...}
+FICHAS = {}
 RECIPES = []    # (out_id, count, ingredients, group)
 
 
@@ -101,7 +102,16 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
         comps["minecraft:enchantment_glint_override"] = glint
     if extra:
         comps.update(extra)
-    ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind}
+    if kind == "weapon" and astral_data.get("type") in ("weapon", "staff"):
+        from ficha import prepare, render
+        source = prepare(item_id, name, base, lore, astral_data, comps, pdc)
+        FICHAS[item_id] = source
+        comps.update(render(source))
+        hidden = comps.setdefault("minecraft:tooltip_display", {}).setdefault("hidden_components", [])
+        if "minecraft:attribute_modifiers" not in hidden:
+            hidden.append("minecraft:attribute_modifiers")
+    ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind,
+                      "ficha": item_id in FICHAS}
 
 
 def req_line(skill, level):
@@ -347,6 +357,9 @@ for i, s in enumerate(STAFFS):
     spell = s["spell"] * FACTOR_ARMA[t]
     astral = {"w": "staff", "type": "staff", "tier": t, "spell": int(spell * 100), "mdmg": s["mdmg"] * 100,
               "cd": s["cd"], "cdr": s.get("cdr", 0) * 100}
+    # spell/cast usa el daño sin escala y suma mdmg/pierce; reflejarlo sin cambiar balance.
+    astral["spell_display"] = int(int(s['spell']*100)*(100+s['mdmg']+s.get('pierce',0))/100)/100
+    astral["cd_display"] = (s['cd'] - int(s['cd']*s.get('cdr',0)/100))/20
     lore_extra = [txt(f"Dano del hechizo: {fmt(spell * FACTOR_MOSTRADO[t])}", "light_purple")]
     add_item(iid, "minecraft:carrot_on_a_stick", s["name"], MAGO,
              [txt(f"Baston de Mago {ROMAN[i]}", MAGO)] + [txt(d) for d in desc] + lore_extra + [req_line("sorcery", s["lvl"])],
@@ -562,6 +575,9 @@ for iid, it in ITEMS.items():
             ench = dict(it["components"].get("minecraft:enchantments", {}))
             ench[f"{NS}:{mej}"] = L
             comps = dict(it["components"], **{"minecraft:enchantments": ench})
+            if iid in FICHAS:
+                from ficha import render
+                comps.update(render(FICHAS[iid], L))
             comps.pop("minecraft:enchantment_glint_override", None)
             argsL = ",".join(comp_arg(k, v) for k, v in comps.items())
             fn(f"upgrade/gm{L}/{iid}", [f"$give @s {it['base']}[{argsL}] $(n)"])
@@ -2122,10 +2138,14 @@ for L, (plata, prob, mats) in MEJORAS.items():
     if L >= 7:
         ok.append('tellraw @a ["",{"text":"(!) ","color":"gold","bold":true},{"selector":"@s","color":"yellow"},'
                   + json.dumps({"text": f" mejoro un item a +{L} con el Herrero!", "color": "gray"}) + "]")
+    ok += [f'execute if score #k astral.tmp matches 1 run data modify storage {NS}:tmp ficha.id set from entity @s SelectedItem.components."minecraft:custom_data".astral.id',
+           f'execute if score #k astral.tmp matches 1 run function {NS}:ficha/apply/{L} with storage {NS}:tmp ficha']
+    fn(f"ficha/apply/{L}", [f'$item modify entity @s weapon.mainhand astral:ficha/$(id)/{L}'])
     fn(f"mejora/ok/{L}", ok)
     hacer.append(f"execute if score @s astralmejn matches {L} run function {NS}:mejora/n/{L}")
 # hacer vuelve a mirar que item tenes en la mano (#k) antes de tocarlo
 fn("mejora/hacer", KIND + ["execute if score #k astral.tmp matches 0 run return 0"] + hacer)
+load.append("scoreboard objectives add astraldef dummy")
 fn("load", load)
 fn("tick", [
     "# taladros y motosierras: primero ver si rompiste el bloque apuntado, despues apuntar de nuevo",
@@ -2155,6 +2175,7 @@ fn("player/hp", [
 ])
 log_cond = " ".join([])
 t10 = [
+    "execute as @a store result score @s astraldef run attribute @s minecraft:armor get",
     f"execute as @a[scores={{astral.m_es=1..}}] at @s run function {NS}:mine/endstone",
     f"execute as @a[scores={{astral.m_ch=1..}}] at @s run function {NS}:mine/chorus",
 ]
@@ -2196,6 +2217,14 @@ from services import generate as generate_services
 generate_services(files, ITEMS)
 from gameplay import apply as apply_gameplay
 apply_gameplay(files, ITEMS, ITEM_VERSION)
+from ficha import modifier as ficha_modifier, render as render_ficha
+for iid, source in FICHAS.items():
+    for L in range(11):
+        put(f'data/{NS}/item_modifier/ficha/{iid}/{L}.json', ficha_modifier(source, L))
+        # La migración por slot conserva encantamientos, desgaste y todos los demás componentes.
+        upgrade = json.loads(files[f'data/{NS}/item_modifier/upgrade/{iid}.json'])
+        upgrade[0]['components'].update(render_ficha(source, L))
+        put(f'data/{NS}/item_modifier/upgrade/{iid}/{L}.json', upgrade)
 from estrella_menu import generate as generate_menu_star
 generate_menu_star(files)
 from special_weapons import generate as generate_special_weapons

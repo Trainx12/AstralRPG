@@ -185,26 +185,47 @@ function asw_mobility(p: player) :: boolean:
         return false
     return true
 
-# Impulso de 3 bloques: el cliente lo dibuja suave (un teleport seco se ve a saltos).
+# Transmisión: muestreo desde los ojos y barrido del volumen del cuerpo cada 0,2.
 function asw_blink(p: player):
     set {_dir} to vector in direction of {_p}
-    set {_dest} to location of {_p} offset by ({_dir} * 3)
-    if asw_clear_path({_p}, {_dest}) is false:
-        send action bar "&cNo hay espacio libre para el salto." to {_p}
+    set {_origin} to location of {_p}
+    set {_eye} to eye location of {_p}
+    set {_dest} to {_origin}
+    # Dimensiones vanilla del servidor: Overworld -64; Nether y End 0.
+    set {_floor} to -63
+    set {_dim} to asw_dimension(world of {_p})
+    if {_dim} is "minecraft:the_nether" or "minecraft:the_end":
+        set {_floor} to 1
+    loop 60 times:
+        set {_offset} to {_dir} * (loop-number * 0.2)
+        set {_ray} to {_eye} offset by {_offset}
+        if block at {_ray} is not passable:
+            exit loop
+        set {_candidate} to {_origin} offset by {_offset}
+        if y-coordinate of {_candidate} < {_floor}:
+            exit loop
+        if asw_clear_path({_p}, {_candidate}) is false:
+            exit loop
+        set {_dest} to {_candidate}
+    if distance between {_origin} and {_dest} < 1:
+        send action bar "&cNo hay espacio libre para teletransportarte." to {_p}
         stop
-    if asw_pay({_p}, 10) is false:
+    if asw_pay({_p}, 17) is false:
         stop
+    set yaw of {_dest} to yaw of {_p}
+    set pitch of {_dest} to pitch of {_p}
+    teleport {_p} to {_dest}
+    if distance between location of {_p} and {_dest} > 0.5:
+        execute console command "auraskills:mana add %name of {_p}% 17 true"
+        stop
+    set fall distance of {_p} to 0
+    execute console command "minecraft:attribute %name of {_p}% minecraft:movement_speed modifier remove astral:transmision"
+    execute console command "minecraft:attribute %name of {_p}% minecraft:movement_speed modifier add astral:transmision 0.5 add_multiplied_base"
+    set {-asw.speed::%uuid of {_p}%} to 60
     play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.8 at {_p}
     set {_dimension} to asw_dimension(world of {_p})
-    loop 3 times:
-        set {_at} to location of {_p}
-        set {_y} to y-coordinate of {_at} + 1
-        execute console command "execute in %{_dimension}% run particle minecraft:reverse_portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.2 0.4 0.2 0.02 12"
-        set velocity of {_p} to {_dir} * 1.05
-        set fall distance of {_p} to 0
-        wait 1 tick
-    set velocity of {_p} to {_dir} * 0.15
-    set fall distance of {_p} to 0
+    play sound "entity.enderman.teleport" with volume 0.5 and pitch 1.8 at {_origin}
+    execute console command "execute in %{_dimension}% run particle minecraft:portal %x-coordinate of {_origin}% %y-coordinate of {_origin}% %z-coordinate of {_origin}% 0.3 0.5 0.3 0.4 20"
     set {_at} to location of {_p}
     set {_y} to y-coordinate of {_at} + 1
     execute console command "execute in %{_dimension}% run particle minecraft:portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.3 0.5 0.3 0.4 20"
@@ -433,6 +454,9 @@ on uncancelled damage of living entity with priority monitor:
                     asw_explode({_p}, {_center})
 
 on load:
+    loop all players:
+        execute console command "minecraft:attribute %name of loop-player% minecraft:movement_speed modifier remove astral:transmision"
+    delete {-asw.speed::*}
     delete {-asw.busy::*}
     delete {-asw.damage::*}
     loop all worlds:
@@ -441,11 +465,28 @@ on load:
                 kill loop-entity
 
 on unload:
+    loop all players:
+        execute console command "minecraft:attribute %name of loop-player% minecraft:movement_speed modifier remove astral:transmision"
+    delete {-asw.speed::*}
     loop all worlds:
         loop all entities in loop-world:
             if scoreboard tags of loop-entity contains "astral.sismo":
                 kill loop-entity
 
 on quit:
+    execute console command "minecraft:attribute %name of player% minecraft:movement_speed modifier remove astral:transmision"
+    delete {-asw.speed::%uuid of player%}
     delete {-asw.busy::%uuid of player%}
     delete {-asw.damage::%uuid of player%}
+
+on join:
+    execute console command "minecraft:attribute %name of player% minecraft:movement_speed modifier remove astral:transmision"
+    delete {-asw.speed::%uuid of player%}
+
+every tick:
+    loop all players:
+        if {-asw.speed::%uuid of loop-player%} is set:
+            subtract 1 from {-asw.speed::%uuid of loop-player%}
+            if {-asw.speed::%uuid of loop-player%} <= 0:
+                execute console command "minecraft:attribute %name of loop-player% minecraft:movement_speed modifier remove astral:transmision"
+                delete {-asw.speed::%uuid of loop-player%}

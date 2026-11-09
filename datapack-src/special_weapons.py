@@ -3,28 +3,46 @@ from pathlib import Path
 
 WEAPONS = {
     'espada_tormenta': dict(name='Filo de la Tormenta', base='netherite_sword', color='#79dfff', damage=9, speed=1.6,
-        lore=['Al golpear: 25% de invocar un rayo.', 'Rayo: +30% del golpe en radio de 2 bloques.'],
         cost=[('c','shadowsteel',4),('c','gema_luminica',2),('v','minecraft:lightning_rod',1)]),
     'espada_sombras': dict(name='Danza del Ender', base='netherite_sword', color='#b174ff', damage=10, speed=1.6,
-        lore=['Click derecho: hasta 6 enemigos distintos.', '6 saltos y golpes en 1,5 segundos; alcance 12.', '15 mana | Recarga: 5 segundos.', 'No atraviesa paredes. Usable en mazmorras.'],
         cost=[('c','shadowsteel',5),('c','gema_umbria',3),('v','minecraft:ender_pearl',8)]),
     'espada_destello': dict(name='Filo del Destello', base='netherite_sword', color='#61ffe0', damage=7, speed=1.8,
-        lore=['Click derecho: avanza 3 bloques segun tu mirada.', '10 mana | Sin recarga.', 'No atraviesa paredes. No usable en mazmorras.'],
         cost=[('c','cristal_refinado',3),('c','nucleo_eolico',1),('v','minecraft:ender_pearl',4)]),
     'hacha_terremoto': dict(name='Hacha del Sismo', base='netherite_axe', color='#dda65d', damage=11, speed=1.0,
-        lore=['Click derecho: onda de 10 de dano hasta 5 bloques.', 'Levanta el suelo a tu alrededor.', '10 mana | Recarga: 6 segundos.'],
         cost=[('c','netherita_reforzada',4),('c','gema_luminica',2),('v','minecraft:obsidian',8)]),
     'varita_estallido': dict(name='Varita del Estallido', base='stick', color='#ff8673', damage=6, speed=1.5,
-        lore=['Al golpear: explosion en radio de 2 bloques.', 'Click derecho: proyectil explosivo; alcance 16.', 'Explosion: 6 de dano | 5 mana por uso.', 'Recarga del disparo: 1 segundo.'],
         cost=[('c','palo_reforzado',1),('c','cristal_arcano',3),('v','minecraft:blaze_powder',8)]),
 }
+
+# Números de las habilidades actuales, separados de su presentación.
+from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt
+_scale = FACTOR_ARMA[TIER_ESPECIAL]
+ABILITIES = {
+    'espada_tormenta': [dict(name='Rayo de la Tormenta', trigger='AL GOLPEAR',
+        description=['25% de invocar un rayo.', 'Daño: 30% del golpe (mínimo 1), radio 2 bloques.'])],
+    'espada_sombras': [dict(name='Danza del Ender', trigger='CLIC DERECHO', mana=15, cooldown=5,
+        description=['Salta y golpea hasta 6 enemigos a 12 bloques.',
+                     f'Cada golpe causa {fmt(10*_scale)} de daño; un salto cada 4 ticks.'],
+        notes=['No atraviesa paredes. Usable en mazmorras.'])],
+    'espada_destello': [dict(name='Transmisión Instantánea', trigger='CLIC DERECHO', mana=17,
+        description=['Teletransporta hasta 12 bloques hacia adelante', 'y da +50 de Velocidad por 3 segundos.'],
+        notes=['Sin recarga. No usable en mazmorras.'])],
+    'hacha_terremoto': [dict(name='Onda Sísmica', trigger='CLIC DERECHO', mana=10, cooldown=6,
+        description=[f'Onda de {fmt(10*_scale)} de daño hasta 5 bloques.', 'Levanta el suelo a tu alrededor.'])],
+    'varita_estallido': [dict(name='Estallido', trigger='AL GOLPEAR', mana=5,
+        description=[f'Explosión de {fmt(6*_scale)} de daño en radio 2.']),
+        dict(name='Proyectil Explosivo', trigger='CLIC DERECHO', mana=5, cooldown=1,
+        description=['Disparo instantáneo hasta 16 bloques.', f'Explosión de {fmt(6*_scale)} de daño en radio 2.'])],
+}
+for _iid, _weapon in WEAPONS.items():
+    _weapon['abilities'] = ABILITIES[_iid]
 
 
 def register(add_item, recipes, txt, weapon_mods):
     from escala import FACTOR_ARMA, TIER_ESPECIAL
     for iid, w in WEAPONS.items():
         add_item(iid, 'minecraft:'+w['base'], w['name'], w['color'],
-                 [txt('Arma especial - cualquier clase', w['color'])] + [txt(s) for s in w['lore']] +
+                 [txt('Arma especial - cualquier clase', w['color'])] +
                  [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')],
                  {'type':'weapon', 'special':iid, 'tier':TIER_ESPECIAL}, model='astral:'+iid, kind='weapon',
                  pdc={'auraskills:ignore_interact':True},
@@ -50,6 +68,38 @@ def generate(files):
     out=root.parent/'build/gameplay'
     out.mkdir(parents=True,exist_ok=True)
     (out/'astral_armas_especiales.sk').write_text((root/'special_weapons.sk').read_text(encoding='utf-8'),encoding='utf-8')
+    (out/'fichas-despliegue.txt').write_text('''Fichas / Transmisión Instantánea / Defensa (ITEM_VERSION 11)
+Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
+
+1. Apagar el servidor y reemplazar únicamente:
+   build/AstralRPG-Items.zip -> world/datapacks/AstralRPG-Items.zip
+   build/gameplay/astral_armas_especiales.sk -> plugins/Skript/scripts/special_weapons.sk
+   No dejar una segunda copia con otro nombre.
+2. Reemplazar solo el bloque action_bar de plugins/AuraSkills/messages/global.yml
+   por build/gameplay/AuraSkills/global-action_bar.yml. Conservar el resto del archivo.
+   Verificar action_bar.placeholder_api: true en plugins/AuraSkills/config.yml
+   y la expansión ScoreboardObjectives de PlaceholderAPI.
+3. Iniciar el servidor. El arranque carga el datapack y el script.
+   Si se cambia el script con el servidor encendido: skript:skript reload special_weapons
+   Recargar los mensajes: skills reload
+   No usar Worlds > Upload ni reemplazar ningún mundo.
+4. Revisar consola: sin errores de funciones, item modifiers ni Skript.
+   loot give <jugador> loot astral:item/espada_1
+   loot give <jugador> loot astral:item/espada_5
+   loot give <jugador> loot astral:item/espada_destello
+   Comprobar mejora +7 y migración conservando encantamientos/desgaste.
+   Comprobar Defensa con/sin armadura; XP conserva su texto sin añadir defensa.
+   Destello: 12 bloques, pared, techo, lava, mirada vertical, maná insuficiente,
+   17 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
+   región WorldGuard que cancela teleport, lobby y mazmorras bloqueados.
+
+Resource pack sin cambios: no actualizar URL ni SHA-1.
+Encantamientos nativos visibles para conservar los añadidos por yunque/mesa.
+Bastones sin estrellas: muestran el daño de spell/cast sin bonus de armadura.
+Arcos/lanzas sin attack_damage propio no inventan un daño fijo; mantienen la
+explicación de sus efectos. La mejora multiplica el daño final del encantamiento.
+Vista previa ilustrativa: build/previews/fichas-armas.png (no instalar en servidor).
+''',encoding='utf-8')
     skills=root.parent/'build/mythicmobs/skills'
     skills.mkdir(parents=True,exist_ok=True)
     (skills/'armas_especiales.yml').write_text('''# Puente sin addons para consultar el saldo real de AuraSkills.

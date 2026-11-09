@@ -1,0 +1,31 @@
+Fichas / Transmisión Instantánea / Defensa (ITEM_VERSION 11)
+Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
+
+1. Apagar el servidor y reemplazar únicamente:
+   build/AstralRPG-Items.zip -> world/datapacks/AstralRPG-Items.zip
+   build/gameplay/astral_armas_especiales.sk -> plugins/Skript/scripts/special_weapons.sk
+   No dejar una segunda copia con otro nombre.
+2. Reemplazar solo el bloque action_bar de plugins/AuraSkills/messages/global.yml
+   por build/gameplay/AuraSkills/global-action_bar.yml. Conservar el resto del archivo.
+   Verificar action_bar.placeholder_api: true en plugins/AuraSkills/config.yml
+   y la expansión ScoreboardObjectives de PlaceholderAPI.
+3. Iniciar el servidor. El arranque carga el datapack y el script.
+   Si se cambia el script con el servidor encendido: skript:skript reload special_weapons
+   Recargar los mensajes: skills reload
+   No usar Worlds > Upload ni reemplazar ningún mundo.
+4. Revisar consola: sin errores de funciones, item modifiers ni Skript.
+   loot give <jugador> loot astral:item/espada_1
+   loot give <jugador> loot astral:item/espada_5
+   loot give <jugador> loot astral:item/espada_destello
+   Comprobar mejora +7 y migración conservando encantamientos/desgaste.
+   Comprobar Defensa con/sin armadura; XP conserva su texto sin añadir defensa.
+   Destello: 12 bloques, pared, techo, lava, mirada vertical, maná insuficiente,
+   17 de maná por uso válido, +50% velocidad por 60 ticks sin acumular, reconexión,
+   región WorldGuard que cancela teleport, lobby y mazmorras bloqueados.
+
+Resource pack sin cambios: no actualizar URL ni SHA-1.
+Encantamientos nativos visibles para conservar los añadidos por yunque/mesa.
+Bastones sin estrellas: muestran el daño de spell/cast sin bonus de armadura.
+Arcos/lanzas sin attack_damage propio no inventan un daño fijo; mantienen la
+explicación de sus efectos. La mejora multiplica el daño final del encantamiento.
+Vista previa ilustrativa: build/previews/fichas-armas.png (no instalar en servidor).
