@@ -77,15 +77,20 @@ class FichaTests(unittest.TestCase):
         slot=(PACK/'function/upgrade/slot/container_0.mcfunction').read_text()
         self.assertLess(slot.index('astral:upgrade/espada_5/7'),slot.index('astral:upgrade/espada_5\n'))
         self.assertIn('scoreboard objectives add astraldef dummy',(PACK/'function/load.mcfunction').read_text())
-        self.assertIn('store result score @s astraldef run attribute @s minecraft:armor get',(PACK/'function/loop/t10.mcfunction').read_text())
+        self.assertIn('run function astral:player/def',(PACK/'function/loop/t10.mcfunction').read_text())
+        pdef=(PACK/'function/player/def.mcfunction').read_text()
+        self.assertIn('astral.def',pdef); self.assertIn('tag @s add astral.db11',pdef)
 
     def test_armor_bow_tool_and_wand_cards(self):
         from items import MEJORA_VIDA
         # Armadura: stats por pieza, bono de set, tipo de pieza y (+N) de vida del Herrero.
         lines=list(map(text,read('item_modifier/ficha/berserker_5_chestplate/7.json')[1]['lore']))
         self.assertEqual(lines[-1],'LEGENDARIA PECHERA')
-        self.assertIn('Defensa: +8',lines)
-        self.assertTrue(any(l.startswith('Vida: +12,5%') and l.endswith(f'(+{MEJORA_VIDA[6]:g})'.replace('.',',')) for l in lines),lines)
+        from escala import defensa_pieza
+        self.assertIn(f"Defensa: +{defensa_pieza(5,'chestplate',-15)}",lines)
+        from escala import VIDA_PIEZA
+        self.assertIn(f"Vida: +{fmt(VIDA_PIEZA[5])} (+{MEJORA_VIDA[6]:g}%)".replace('.5%',',5%'),lines)
+        self.assertIn('Bonif. de vida: +12,5%',lines)
         self.assertIn('Bono de set (2/4)',lines); self.assertIn('Bono de set (4/4)',lines)
         name=text(read('item_modifier/ficha/berserker_5_chestplate/7.json')[0]['name'])
         self.assertEqual(name.count('✪'),7)

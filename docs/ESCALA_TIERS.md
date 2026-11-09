@@ -50,6 +50,30 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
 - Tier fijo también en los mundos actuales de mazmorra: `cumbre_hielo` 4, `forja_volcano` 5, `santuario_interstellar` 5.
 - Se sacó **LevelledMobs** (subía la vida por distancia) y **DamageIndicator** (lo reemplaza el indicador).
 
+## Vida, defensa y daño de mobs (referencia Hypixel SkyBlock, 09/11/2026)
+
+Todo sale de `escala.py` (`VIDA_*`, `DEFENSA_SET`, `DANO_GOLPE`).
+
+| Tier | Vida con set completo | Defensa del set | Daño que frena | Golpe de un mob común de ese tier |
+|---|---|---|---|---|
+| T1 | 300 | 50 | 33% | 55 |
+| T2 | 550 | 100 | 50% | 120 |
+| T3 | 1.000 | 200 | 67% | 300 |
+| T4 | 3.000 | 350 | 78% | 700 |
+| T5 | 8.000 | 500 | 83% | 1.000 |
+
+- **Vida:** 100 de base (`player/vida_base`, una vez por jugador) + `VIDA_PIEZA` por pieza. Los % de vida de cada
+  clase siguen (Berserker más, Mago menos). El Herrero suma +0,5% … +5% de vida por pieza.
+- **Defensa:** la armadura Astral ya no da armadura vanilla; da `astral.def` (reparto 15/40/30/15%, ± el % de
+  defensa de la clase). El datapack la suma en `astraldef` (barra) y en etiquetas `astral.db0..db11` para Skript.
+  Daño recibido de golpes, flechas, explosiones y PvP = daño × 100 / (defensa + 100).
+- **Daño de mobs:** `astral_gameplay.sk` multiplica golpes, flechas y explosiones de un mob con tier por
+  `DANO_MOB` (= `DANO_GOLPE` / 2,5, el golpe de un zombi en fácil). Mobs sin tier dentro de una mazmorra
+  (jefes de MythicMobs) usan el tier de la mazmorra.
+- **Caídas, lava, ahogo, mobs sin tier y PvP:** × (vida máxima / 20): pegan lo mismo en proporción que en
+  Minecraft normal. La regeneración natural, las pociones y el robo de vida curan igual en proporción.
+- Golpes para matar a un jugador del mismo tier: T1 8, T2 9, T3 10, T4 19, T5 48. Un T5 mata a un T3 en 3-4.
+
 ## Maná y bastones (referencia Hypixel SkyBlock, 09/11/2026)
 
 Todo sale de `escala.py` (`MANA_*`, `HECHIZO`, `REGEN_*`).

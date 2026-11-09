@@ -97,6 +97,65 @@ def pvp():
     return chr(10).join(lines) + chr(10)
 
 
+def vida():
+    """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
+    from escala import DANO_MOB, TIER_MAZMORRA
+    tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
+                      for t in range(5, 0, -1))
+    mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}":\n        return {DANO_MOB[t]}'
+                       for w, t in TIER_MAZMORRA.items())
+    return r'''
+# Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.
+# - Mob con tier (astral.mt#): su golpe, flecha o explosion x DANO_MOB del tier.
+# - Mob sin tier dentro de una mazmorra (jefes de MythicMobs): x DANO_MOB del tier de la mazmorra.
+# - Todo lo demas (caidas, lava, ahogo, mobs sin tier, PvP): x (vida maxima / 20), como en vanilla.
+function astral_dano_tier(e: entity) :: number:
+__TIERS__
+    return 0
+
+function astral_dano_mundo(w: world) :: number:
+    set {_n} to name of {_w}
+__MUNDOS__
+    return 0
+
+# Defensa Astral del jugador (etiquetas astral.db0..db11 del datapack, en binario).
+function astral_defensa(p: player) :: number:
+    set {_d} to 0
+    set {_v} to 1
+    loop 12 times:
+        if scoreboard tags of {_p} contains "astral.db%loop-number - 1%":
+            add {_v} to {_d}
+        set {_v} to {_v} * 2
+    return {_d}
+
+on damage of player with priority high:
+    set {_k} to (max health of victim) / 10
+    if attacker is set:
+        if attacker is not a player:
+            set {_m} to astral_dano_tier(attacker)
+            if {_m} is 0:
+                set {_m} to astral_dano_mundo(world of victim)
+            if {_m} > 0:
+                set {_k} to {_m}
+        # Defensa (Hypixel): golpes, flechas, explosiones y PvP x 100 / (defensa + 100).
+        set {_d} to astral_defensa(victim)
+        if {_k} > 1:
+            set damage to damage * {_k}
+        if {_d} > 0:
+            set damage to damage * 100 / ({_d} + 100)
+        stop
+    if {_k} > 1:
+        set damage to damage * {_k}
+
+# Regeneracion natural, pociones y robo de vida: tambien en proporcion a la vida maxima.
+on heal of player:
+    heal reason is not custom
+    set {_k} to (max health of player) / 10
+    if {_k} > 1:
+        set heal amount to heal amount * {_k}
+'''.replace('__TIERS__', tiers).replace('__MUNDOS__', mundos)
+
+
 def indicador():
     """Numeros de dano y vida del mob (reemplaza DamageIndicator).
 
@@ -427,7 +486,8 @@ on quit:
     delete {-astral.launch::%uuid of player%}
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
-__PVP__'''.replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
+__PVP__
+__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
 
 
 def realistic_hook():

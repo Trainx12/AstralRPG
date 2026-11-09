@@ -26,8 +26,34 @@ ESPADA_REAL = {1: 6.6, 2: 7.08, 3: 8.75, 4: 9.45, 5: 12.0}
 FACTOR_ARMA = {0: 1.0, **{t: DANO[t] / ESPADA_REAL[t] for t in DANO}}
 # Multiplicador REAL de vida de mobs (base vanilla 20): x25 / x120 / x575 / x2.750 / x13.125.
 VIDA_MOB = {0: 1.0, **{t: VIDA_REF[t] / 20 for t in DANO}}
-# Dano de los mobs al jugador: x1,5 por tier (T1 x1,5 ... T5 x7,6 del dano normal del mob).
-DANO_MOB = {t: round(1.5 ** t, 2) for t in range(6)}
+# ---------------------------------------------------------------------------
+# VIDA DEL JUGADOR Y DANO DE LOS MOBS (referencia Hypixel SkyBlock, 09/11/2026)
+# ---------------------------------------------------------------------------
+# Vida base del jugador (Hypixel: 100) y vida total con el set completo de cada tier.
+VIDA_JUGADOR_BASE = 100
+VIDA_SET = {1: 300, 2: 550, 3: 1000, 4: 3000, 5: 8000}
+# Vida que da cada pieza de armadura (las 4 piezas suman VIDA_SET - base).
+VIDA_PIEZA = {t: (VIDA_SET[t] - VIDA_JUGADOR_BASE) / 4 for t in VIDA_SET}
+# Defensa como Hypixel: dano recibido = dano x 100 / (defensa + 100). La armadura Astral no da
+# armadura vanilla: da DEFENSA (set completo por tier), repartida como la armadura vanilla.
+DEFENSA_SET = {1: 50, 2: 100, 3: 200, 4: 350, 5: 500}
+DEF_REPARTO = {"helmet": 0.15, "chestplate": 0.40, "leggings": 0.30, "boots": 0.15}
+
+
+def defensa_pieza(tier, piece, def_pct=0, extra=0):
+    """Defensa de una pieza: su parte del set, +/- el % de defensa de su clase, +5 por punto de armadura extra."""
+    return round(DEFENSA_SET[tier] * DEF_REPARTO[piece] * (1 + def_pct / 100) + extra * 5)
+
+
+# Golpe de un mob comun (un zombi) de cada tier, antes de la defensa. Golpes para matar a un jugador
+# del mismo tier con el set completo: T1 8, T2 9, T3 10, T4 19, T5 48. Un T5 mata a un T3 en 3 golpes.
+DANO_GOLPE = {1: 55, 2: 120, 3: 300, 4: 700, 5: 1000}
+# Golpe de un zombi en dificultad facil (la del server); el resto de los mobs escala igual.
+GOLPE_VANILLA = 2.5
+# Multiplicador del dano de los mobs con tier (lo aplica astral_gameplay.sk a golpes, flechas y explosiones).
+DANO_MOB = {0: 1.0, **{t: round(DANO_GOLPE[t] / GOLPE_VANILLA, 3) for t in DANO_GOLPE}}
+# Caidas, lava, ahogo, mobs sin tier y PvP: se multiplican por (vida maxima / 20), asi pegan lo mismo
+# en proporcion que en Minecraft normal. La regeneracion natural y las pociones tambien.
 # Los numeros ya son reales: lo que se ve es lo real.
 FACTOR_MOSTRADO = {t: 1.0 for t in range(6)}
 

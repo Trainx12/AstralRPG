@@ -9,6 +9,7 @@ import os
 import shutil
 import zipfile
 
+from escala import VIDA_PIEZA, VIDA_JUGADOR_BASE, defensa_pieza
 from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MANA_HECHIZO, HECHIZO,
                     REGEN_POR_MANA, fmt)
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
@@ -158,7 +159,8 @@ for (out, n, ings) in MAT_RECIPES:
 # ---------------------------------------------------------------------------
 # ARMADURAS
 # ---------------------------------------------------------------------------
-def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0):
+def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0, vida=0):
+    # Sin armadura ni dureza vanilla: la proteccion es la DEFENSA de escala.py (astral.def), la aplica Skript.
     slot = PIECE_SLOT[piece]
     mods = []
 
@@ -166,10 +168,9 @@ def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0):
         mods.append({"type": f"minecraft:{attr}", "id": f"{NS}:{item_id}.{suffix}", "amount": round(amount, 4),
                      "operation": op, "slot": slot})
 
-    m("armor", ARMOR_VALUES[mat][piece] + extra_armor, "add_value", "armor")
-    t = TOUGHNESS[mat] + tough_extra
-    if t:
-        m("armor_toughness", t, "add_value", "tough")
+    if vida:
+        # Vida fija de la pieza (escala.VIDA_PIEZA); los % de vida del set van aparte.
+        m("max_health", vida, "add_value", "vida")
     if mat == "netherite":
         m("knockback_resistance", 0.1, "add_value", "kbn")
     q = 4.0
@@ -177,8 +178,6 @@ def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0):
         m("max_health", stats["hp"] / 100 / q, "add_multiplied_total", "hp")
     if "dmg" in stats:
         m("attack_damage", stats["dmg"] / 100 / q, "add_multiplied_total", "dmg")
-    if "def" in stats:
-        m("armor", stats["def"] / 100 / q, "add_multiplied_total", "def")
     if "fire" in stats:
         m("burning_time", -stats["fire"] / 100 / q, "add_multiplied_total", "fire")
     if "kb" in stats:
@@ -234,7 +233,7 @@ for set_id, sdef in ARMOR_SETS.items():
             extra = {"minecraft:max_damage": int(ARMOR_DURABILITY[ti] * {'helmet':0.8,'chestplate':1,'leggings':0.95,'boots':0.85}[piece]),
                      "minecraft:attribute_modifiers":
                      armor_attrs(iid, piece, mat, {k: v for k, v in stats.items() if k not in chest_only},
-                                 tier.get("extra_armor", 0), tier.get("tough", 0))}
+                                 tier.get("extra_armor", 0), tier.get("tough", 0), vida=VIDA_PIEZA[tnum])}
             if mat == "leather":
                 extra["minecraft:dyed_color"] = sdef["dye"][ti]
                 extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:dyed_color"]}
@@ -257,7 +256,8 @@ for set_id, sdef in ARMOR_SETS.items():
             if "crit" in stats:
                 traits.append(("crit_chance", stats["crit"] / 4, "add"))
             pdc = aura_pdc("armor", sdef["skill"], tier["lvl"], traits)
-            astral = {"type": "armor", "set": set_id, "tier": tnum, "piece": piece}
+            astral = {"type": "armor", "set": set_id, "tier": tnum, "piece": piece,
+                      "def": defensa_pieza(tnum, piece, stats.get("def", 0), tier.get("extra_armor", 0))}
             if "mdmg" in stats:
                 astral["mdmg"] = int(round(stats["mdmg"] * 100 / 4))
             if "cdr" in stats:
@@ -839,8 +839,8 @@ put(f"data/{NS}/enchantment/mejora_armadura.json", {
     "weight": 1, "max_level": 10, "min_cost": {"base": 999, "per_level_above_first": 0},
     "max_cost": {"base": 999, "per_level_above_first": 0}, "anvil_cost": 40, "slots": ["armor"],
     "effects": {"minecraft:attributes": [{"id": f"{NS}:mejora_armadura", "attribute": "minecraft:max_health",
-                                          "operation": "add_value", "amount": {
-        "type": "minecraft:lookup", "values": MEJORA_VIDA, "fallback": MEJORA_VIDA[-1]}}]}})
+                                          "operation": "add_multiplied_total", "amount": {
+        "type": "minecraft:lookup", "values": [v / 100 for v in MEJORA_VIDA], "fallback": MEJORA_VIDA[-1] / 100}}]}})
 
 ench_items = sorted({it["base"] for it in ITEMS.values() if it["kind"] in ("armor", "weapon")} | {"minecraft:carrot_on_a_stick"})
 put(f"data/{NS}/tags/item/enchantable.json", {"values": ench_items})
@@ -1309,6 +1309,30 @@ for t in range(1, 6):
 lvl += [f"tag @s remove astral.ht{t}" for t in range(6)]
 lvl += [f"execute if score @s astral.ht matches {t} run tag @s add astral.ht{t}" for t in range(6)]
 fn("player/lvl", lvl)
+# Defensa (escala.DEFENSA_SET): suma astral.def de las 4 piezas puestas. astraldef = lo que muestra la barra
+# (Defensa Astral + armadura vanilla x5); las etiquetas astral.db0..db11 son la Defensa Astral en binario
+# para que Skript calcule la reduccion de dano (Skript no lee puntajes).
+fn("player/def", [
+    "scoreboard players set #d astral.tmp 0",
+    f"data modify storage {NS}:tmp eq set value {{}}",
+    f"data modify storage {NS}:tmp eq set from entity @s equipment",
+] + [f'execute store result score #p astral.tmp run data get storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def\n'
+     f"scoreboard players operation #d astral.tmp += #p astral.tmp" for slot in ("head", "chest", "legs", "feet")] + [
+    "execute store result score #v astral.tmp run attribute @s minecraft:armor get 5",
+    "scoreboard players operation @s astraldef = #d astral.tmp",
+    "scoreboard players operation @s astraldef += #v astral.tmp",
+    "execute if score @s astral.defp = #d astral.tmp run return 0",
+    "scoreboard players operation @s astral.defp = #d astral.tmp",
+    "tag @s remove astral.db0", "tag @s remove astral.db1", "tag @s remove astral.db2", "tag @s remove astral.db3",
+    "tag @s remove astral.db4", "tag @s remove astral.db5", "tag @s remove astral.db6", "tag @s remove astral.db7",
+    "tag @s remove astral.db8", "tag @s remove astral.db9", "tag @s remove astral.db10", "tag @s remove astral.db11",
+] + ['execute if score #d astral.tmp matches 2048.. run tag @s add astral.db11', 'execute if score #d astral.tmp matches 2048.. run scoreboard players remove #d astral.tmp 2048', 'execute if score #d astral.tmp matches 1024.. run tag @s add astral.db10', 'execute if score #d astral.tmp matches 1024.. run scoreboard players remove #d astral.tmp 1024', 'execute if score #d astral.tmp matches 512.. run tag @s add astral.db9', 'execute if score #d astral.tmp matches 512.. run scoreboard players remove #d astral.tmp 512', 'execute if score #d astral.tmp matches 256.. run tag @s add astral.db8', 'execute if score #d astral.tmp matches 256.. run scoreboard players remove #d astral.tmp 256', 'execute if score #d astral.tmp matches 128.. run tag @s add astral.db7', 'execute if score #d astral.tmp matches 128.. run scoreboard players remove #d astral.tmp 128', 'execute if score #d astral.tmp matches 64.. run tag @s add astral.db6', 'execute if score #d astral.tmp matches 64.. run scoreboard players remove #d astral.tmp 64', 'execute if score #d astral.tmp matches 32.. run tag @s add astral.db5', 'execute if score #d astral.tmp matches 32.. run scoreboard players remove #d astral.tmp 32', 'execute if score #d astral.tmp matches 16.. run tag @s add astral.db4', 'execute if score #d astral.tmp matches 16.. run scoreboard players remove #d astral.tmp 16', 'execute if score #d astral.tmp matches 8.. run tag @s add astral.db3', 'execute if score #d astral.tmp matches 8.. run scoreboard players remove #d astral.tmp 8', 'execute if score #d astral.tmp matches 4.. run tag @s add astral.db2', 'execute if score #d astral.tmp matches 4.. run scoreboard players remove #d astral.tmp 4', 'execute if score #d astral.tmp matches 2.. run tag @s add astral.db1', 'execute if score #d astral.tmp matches 2.. run scoreboard players remove #d astral.tmp 2', 'execute if score #d astral.tmp matches 1.. run tag @s add astral.db0', 'execute if score #d astral.tmp matches 1.. run scoreboard players remove #d astral.tmp 1'])
+# Vida base estilo Hypixel (escala.VIDA_JUGADOR_BASE). La armadura suma VIDA_PIEZA por pieza.
+fn("player/vida_base", [
+    f"attribute @s minecraft:max_health base set {VIDA_JUGADOR_BASE}",
+    f"tag @s add astral.vida{VIDA_JUGADOR_BASE}",
+    "effect give @s minecraft:instant_health 1 6 true",
+])
 
 # ---------------------------------------------------------------------------
 # Tier de cada mob nuevo (escala.py). Mundo: se adapta a la mejor arma del jugador
@@ -1355,7 +1379,6 @@ fn("mob/tier_mundo", [
 for t in range(1, 6):
     fn(f"mob/t{t}", [
         f"attribute @s minecraft:max_health modifier add {NS}:tier {round(VIDA_MOB[t] - 1, 4)} add_multiplied_base",
-        f"attribute @s minecraft:attack_damage modifier add {NS}:tier {round(DANO_MOB[t] - 1, 4)} add_multiplied_base",
         f"tag @s add astral.mt{t}",
     ])
 extra_mz = []
@@ -2118,7 +2141,7 @@ hacer = []
 for L, (plata, prob, mats) in MEJORAS.items():
     pct = int(round(prob * 100))
     costo = ", ".join(f"{n}x {ITEMS[m]['name']}" for m, n in mats)
-    bonus = (f"+{round((MEJORA_DANO[L - 1] - 1) * 100)}% de dano (arma) o +{MEJORA_VIDA[L - 1]} de vida por pieza (armadura)")
+    bonus = (f"+{round((MEJORA_DANO[L - 1] - 1) * 100)}% de dano (arma) o +{MEJORA_VIDA[L - 1]:g}% de vida por pieza (armadura)")
     lines = ["scoreboard players set #falta astral.tmp 0",
              "tellraw @s " + json.dumps([txt("Herrero: ", "gold"), txt(f"mejora a +{L}", "yellow", bold=True),
                                          txt(f" cuesta {plata}$ y {costo}. Exito: {pct}%. ", "gray"),
@@ -2162,6 +2185,7 @@ for L, (plata, prob, mats) in MEJORAS.items():
 # hacer vuelve a mirar que item tenes en la mano (#k) antes de tocarlo
 fn("mejora/hacer", KIND + ["execute if score #k astral.tmp matches 0 run return 0"] + hacer)
 load.append("scoreboard objectives add astraldef dummy")
+load.append("scoreboard objectives add astral.defp dummy")
 fn("load", load)
 fn("tick", [
     "# taladros y motosierras: primero ver si rompiste el bloque apuntado, despues apuntar de nuevo",
@@ -2191,7 +2215,8 @@ fn("player/hp", [
 ])
 log_cond = " ".join([])
 t10 = [
-    "execute as @a store result score @s astraldef run attribute @s minecraft:armor get",
+    f"execute as @a run function {NS}:player/def",
+    f"execute as @a[tag=!astral.vida{VIDA_JUGADOR_BASE}] run function {NS}:player/vida_base",
     f"execute as @a[scores={{astral.m_es=1..}}] at @s run function {NS}:mine/endstone",
     f"execute as @a[scores={{astral.m_ch=1..}}] at @s run function {NS}:mine/chorus",
 ]

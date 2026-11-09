@@ -388,4 +388,4 @@ MEJORAS = {
     10: (10000, 0.4, [("chispa_astral", 5), ("nucleo_astral", 1)]),
 }
 MEJORA_DANO = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.32, 1.40]   # x dano del arma
-MEJORA_VIDA = [0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 3.0]          # + vida por pieza (4 piezas +10 = 6 corazones)
+MEJORA_VIDA = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]                       # % de vida por pieza (4 piezas +10 = +21%)

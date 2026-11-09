@@ -193,29 +193,23 @@ def armor_stats(source, level):
     piece = data['piece']
     q = 4  # cada pieza da 1/4 del bonus del set
     lines = []
-    vida = []
-    if 'hp' in st:
-        vida.append(txt(f"{'+' if st['hp'] >= 0 else ''}{num(st['hp'] / q)}%", 'red' if st['hp'] >= 0 else 'dark_red'))
+    from escala import VIDA_PIEZA
+    # Vida fija de la pieza; el (+N%) amarillo es la mejora del Herrero.
+    line = txt('Vida: ')
+    line['extra'] = [txt(f"+{num(VIDA_PIEZA[data['tier']])}", 'red')]
     if level:
-        extra = MEJORA_VIDA[level - 1]
-        if not vida:
-            vida.append(txt(f"+{num(extra)}", 'red'))
-        vida.append(txt(f" (+{num(extra)})", 'yellow'))
-    if vida:
-        line = txt('Vida: ')
-        line['extra'] = vida
-        lines.append(line)
-    lines.append(stat('Defensa', f"+{num(ARMOR_VALUES[tier['mat']][piece] + tier.get('extra_armor', 0))}", 'green'))
-    tough = TOUGHNESS[tier['mat']] + tier.get('tough', 0)
-    if tough:
-        lines.append(stat('Dureza', f"+{num(tough)}", 'green'))
+        line['extra'].append(txt(f" (+{num(MEJORA_VIDA[level - 1])}%)", 'yellow'))
+    lines.append(line)
+    if 'hp' in st:
+        v = st['hp'] / q
+        lines.append(stat('Bonif. de vida', f"{'+' if v >= 0 else ''}{num(v)}%", 'red'))
+    lines.append(stat('Defensa', f"+{num(data['def'])}", 'green'))
 
     def pct(label, key, color, sign=1, full=False):
         if key in st:
             v = st[key] * sign / (1 if full else q)
             lines.append(stat(label, f"{'+' if v >= 0 else ''}{num(v)}%", color if v >= 0 else 'red'))
 
-    pct('Bonif. de defensa', 'def', 'green')
     pct('Daño', 'dmg', 'red')
     if 'mana' in st:
         mana = st['mana'] / q
