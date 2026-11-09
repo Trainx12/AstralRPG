@@ -140,6 +140,9 @@ on death of player with priority lowest:
 # Estos plugins pueden vender directamente sin pasar por InventoryClickEvent.
 # Se bloquean sus comandos de venta aun con otro item seleccionado: /sell all incluye slot 9.
 on command:
+    # Venta rapida (/astralventa): vende solo el objeto del recuadro, no la estrella.
+    if {-asg.selling::%uuid of player%} is set:
+        stop
     set {_cmd} to lowercase command
     set {_parts::*} to {_cmd} split at ":"
     set {_cmd} to last element of {_parts::*}

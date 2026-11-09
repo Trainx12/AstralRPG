@@ -5406,7 +5406,11 @@ on inventory click:
             set {_amount} to item amount of {_item}
             set {_money} to balance of player
             set player's tool to {_item}
+            # La Estrella del Menu bloquea sellall (para no vender la estrella): esta venta es
+            # solo del objeto depositado y la habilita con esta marca (08/11/2026).
+            set {-asg.selling::%{_id}%} to true
             make player execute command "economyshopgui:sellall hand"
+            delete {-asg.selling::%{_id}%}
             set {_rest} to player's tool
             set player's tool to {_original}
             delete {asg.escrow::%{_id}%}
