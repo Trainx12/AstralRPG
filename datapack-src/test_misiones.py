@@ -224,7 +224,7 @@ class DailySidebar(unittest.TestCase):
             if 'Defensa' in layout:
                 self.assertIn('Rango', layout)
             else:
-                self.assertIn('%statistic_time_played%', layout)
+                self.assertIn('%condition:playtime%', layout)
         self.assertIn('date-format: "EEEE"',TAB_SECTIONS)
         self.assertIn('time-format: "HH:mm"',TAB_SECTIONS)
         self.assertIn('"miércoles": "Miércoles"',TAB_SECTIONS)

@@ -14,7 +14,7 @@ import os
 
 from minas import sidebar as mines_sidebar
 from sidebar import (MUTED, PURPLE, TEXT, board, condition, location_conditions,
-                     meter, ref, score, section, steps, bar, weekday_replacements, TITLE, DIVIDER, SERVER_ROWS)
+                     meter, ref, score, section, steps, bar, weekday_replacements, playtime_conditions, TITLE, DIVIDER, SERVER_ROWS)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "lobby")
@@ -372,9 +372,9 @@ def daily_count_conditions():
 ASTRAL_ROWS = [
     ref("sidebar_world"), DIVIDER,
     f"{section('♟ Jugador')} {TEXT}%player%",
-    f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}%statistic_time_played%",
+    f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
     f"{PURPLE}♛ {MUTED}Rango {TEXT}%condition:rango%  {PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
-    f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded% {PURPLE}⛨ {MUTED}Def {TEXT}{score('astraldef')}",
+    f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
     f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
     f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
     *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
@@ -431,7 +431,7 @@ scoreboard:
     false: "%luckperms_prefix%"
 '''
 
-TAB_SECTIONS += (location_conditions() + location_conditions(centered=True) + daily_count_conditions() + daily_sidebar_conditions() + story_sidebar_conditions()
+TAB_SECTIONS += (playtime_conditions() + location_conditions() + location_conditions(centered=True) + daily_count_conditions() + daily_sidebar_conditions() + story_sidebar_conditions()
                  + weekday_replacements()) + '''placeholders:
   date-format: "EEEE"
   time-format: "HH:mm"

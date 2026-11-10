@@ -44,7 +44,7 @@ scoreboard:
         - "%condition:am_location%"
         - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
         - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
-        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%statistic_time_played%"
+        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%condition:playtime%"
         - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
         - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
         - "<gradient:#5268C7:#D17AFF><bold>⛏ Minas</bold></gradient>"
@@ -62,9 +62,9 @@ scoreboard:
         - "%condition:sidebar_world%"
         - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
         - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
-        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%statistic_time_played%"
+        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%condition:playtime%"
         - "<#D6B4FF>♛ <#AA96C5>Rango <#F0E6FF>%condition:rango%  <#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
-        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded% <#D6B4FF>⛨ <#AA96C5>Def <#F0E6FF>%objective_score_{astraldef}%"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
         - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
         - "<gradient:#5268C7:#D17AFF><bold>✎ Diarias</bold></gradient> <#AA96C5>· 00:00 ARG"
         - "<#D6B4FF>✦ <#AA96C5>Fácil %condition:diaria0%"
@@ -494,6 +494,16 @@ conditions:
       - "%luckperms_prefix%="
     true: "<dark_gray>ninguno"
     false: "%luckperms_prefix%"
+  playtime:
+    conditions:
+      - "%statistic_days_played%>=1"
+    true: "%statistic_days_played%d %statistic_time_played:hours%h %statistic_time_played:minutes%m"
+    false: "%condition:playtime_hours%"
+  playtime_hours:
+    conditions:
+      - "%statistic_hours_played%>=1"
+    true: "%statistic_time_played:hours%h %statistic_time_played:minutes%m"
+    false: "%statistic_time_played:minutes%m"
   mundo_0:
     conditions:
       - "%world%=exp_santuario"

@@ -1,4 +1,31 @@
-# Tanda 1 + correcciones 1b: preparadas, NO desplegadas
+# Tanda 1 + correcciones 1b/1c: preparadas, NO desplegadas
+
+## Correccion 1c: solo TAB, sin despliegue en esta tarea
+
+Stats vuelve a mostrar solo vida, sin Defensa en ninguna fila del panel.
+Tiempo jugado usa `%condition:playtime%` en astral y Minas Astrales.
+Statistic entrega dias totales con `%statistic_days_played%`, horas totales con
+`%statistic_hours_played%`, y restos con `%statistic_time_played:hours%` (0-23)
+y `%statistic_time_played:minutes%` (0-59). Dos condiciones de TAB omiten unidades
+iniciales en cero: `1d 5h 56m`, `5h 56m`, `56m`; menos de un minuto da `0m`.
+Los dias no se convierten en semanas. No requiere nuevos plugins, expansiones ni Skript.
+Fuentes oficiales comprobadas:
+- https://wiki.placeholderapi.com/users/placeholder-list/minecraft/#statistic
+- https://github.com/PlaceholderAPI/Statistics-Expansion/blob/master/src/main/java/com/extendedclip/papi/expansion/mcstatistics/StatisticsExpansion.java
+- https://github.com/NEZNAMY/TAB/wiki/Feature-guide:-Conditional-placeholders
+
+Si ya estan instaladas las tandas anteriores, el UNICO archivo local de 1c es
+`build/lobby/TAB/secciones-config.yml`: fusionar `scoreboard` y `conditions` en
+`plugins/TAB/config.yml`, conservando las demas claves. Luego `tab reload`.
+No hace falta apagar ni reiniciar, ni recargar PlaceholderAPI. No subir packs ni mundos.
+Si las tandas anteriores siguen pendientes, esta correccion se incluye en la lista completa de abajo.
+
+Verificar en consola `papi parse <jugador> %statistic_time_played:hours%` y
+`papi parse <jugador> %statistic_time_played:minutes%`; luego
+`tab parse <jugador> %condition:playtime%`. Revisar consola tras `tab reload`,
+comprobar en juego ambos paneles y `/sb`. Esa prueba real sigue pendiente.
+Vistas: `build/previews/panel-tab.png` y `build/previews/panel-tab-comparacion.png`.
+La comparacion conserva solo el recorte de referencia ya publicado en Git.
 
 El dueno debe revisar primero las vistas previas `build/previews/mazmorras.png`,
 `expediciones.png` y `panel-tab.png`. Son aproximaciones; comprobar despues con cliente real.
@@ -101,8 +128,8 @@ Fuentes oficiales consultadas:
 - https://worldguard.enginehub.org/en/latest/regions/flags/
 - https://worldguard.enginehub.org/en/latest/config/
 
-El panel general recupera el estilo original (14 filas), suma rango/monstruos y usa
-`%objective_score_{astraldef}%` para Defensa Astral. BetterHud apagado queda corregido
+El panel general recupera el estilo original (14 filas), suma rango/monstruos y
+en 1c muestra solo vida en Stats. BetterHud apagado queda corregido
 con `[papi:objective_score_{astraldef}]`. ScoreboardObjectives y LocalTime deben estar
 instaladas; si faltan: `papi ecloud download ScoreboardObjectives`,
 `papi ecloud download LocalTime`, `papi reload`, `tab reload`.
@@ -123,6 +150,10 @@ SHA-1 del ZIP local regenerado: `7a99922fb1734f4f80c64cee3f363a7b4d2404cb`.
 
 ## Verificacion local realizada
 
+- Tanda 1c: pruebas del formato sin segundos, limites de minuto/hora/dia/semana
+  y uso compartido en ambos paneles; 138 pruebas de datapack-src aprobadas.
+  Comparacion semantica de TAB: solo cambian tres filas y se agregan dos condiciones.
+  Ambas vistas revisadas. Sin prueba en Paper ni despliegue.
 - Tanda 1b: TAB comparado semanticamente con HEAD; solo cambian las filas de astral.
   Minas Astrales, condiciones, tabulador y toggle se conservan.
 - Tanda 1b: vistas panel-tab.png y panel-tab-comparacion.png revisadas con colores

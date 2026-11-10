@@ -1,5 +1,6 @@
 """Regresiones de la tanda 1, sin acceso a servicios ni mapas privados."""
 from pathlib import Path
+import re
 import unittest
 import yaml
 
@@ -13,6 +14,42 @@ from viajes_mazmorras import ORDER, PROGRESO, destinations, exploration_script, 
 
 
 class Tanda1(unittest.TestCase):
+    def test_tab_playtime_without_seconds(self):
+        config = yaml.safe_load(TAB_SECTIONS)
+        conditions = config['conditions']
+
+        def render(seconds):
+            values = {
+                '%statistic_days_played%': str(seconds // 86400),
+                '%statistic_hours_played%': str(seconds // 3600),
+                '%statistic_time_played:hours%': str(seconds // 3600 % 24),
+                '%statistic_time_played:minutes%': str(seconds // 60 % 60),
+            }
+
+            def resolve(text):
+                for key, value in values.items():
+                    text = text.replace(key, value)
+                def nested(match):
+                    item = conditions[match[1]]
+                    check = resolve(item['conditions'][0])
+                    left, right = check.split('>=')
+                    return resolve(item[bool(int(left) >= int(right))])
+                return re.sub(r'%condition:([^%]+)%', nested, text)
+
+            return resolve('%condition:playtime%')
+
+        for seconds, expected in ((0, '0m'), (59, '0m'), (60, '1m'),
+                                  (3360, '56m'), (3600, '1h 0m'),
+                                  (21360, '5h 56m'), (86399, '23h 59m'),
+                                  (86400, '1d 0h 0m'), (107761, '1d 5h 56m'),
+                                  (604800, '7d 0h 0m')):
+            with self.subTest(seconds=seconds):
+                self.assertEqual(render(seconds), expected)
+        for board in config['scoreboard']['scoreboards'].values():
+            time_row = next(row for row in board['lines'] if 'Tiempo jugado' in row)
+            self.assertIn('%condition:playtime%', time_row)
+            self.assertNotIn('%statistic_time_played%', time_row)
+
     def test_order_labels_and_requirements(self):
         expected = ('bosque', 'mina', 'tumba', 'cumbre', 'forja', 'santuario')
         self.assertEqual(ORDER, expected)
@@ -64,11 +101,12 @@ class Tanda1(unittest.TestCase):
         self.assertEqual(list(config['scoreboard']['scoreboards']), ['minas', 'astral'])
         self.assertLessEqual(len(ASTRAL_ROWS), 15)
         self.assertEqual(len(ASTRAL_ROWS), 14)
-        self.assertIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))
+        self.assertNotIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))
+        self.assertEqual(ASTRAL_ROWS[5], '<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%')
         self.assertNotIn('%player_armor%', str(ASTRAL_ROWS))
         self.assertNotIn('Conectados', str(ASTRAL_ROWS))
         self.assertIn('103.106.58.173:7004', ASTRAL_ROWS[-1])
-        for label in ('Stats', 'Def', 'Poder', 'Oro', 'Rango', 'Diarias', 'Historia', 'Monstruos'):
+        for label in ('Stats', 'Poder', 'Oro', 'Rango', 'Diarias', 'Historia', 'Monstruos'):
             self.assertIn(label, str(ASTRAL_ROWS))
         import betterhud
         self.assertIn('[papi:objective_score_{astraldef}]', betterhud.layouts_yml())

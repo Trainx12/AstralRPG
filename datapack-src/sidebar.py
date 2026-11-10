@@ -42,6 +42,16 @@ def ref(name):
     return f"%condition:{name}%"
 
 
+def playtime_conditions():
+    # Statistic: days is total; :hours and :minutes are remainders (24/60).
+    # Keep zero hours after days and zero minutes, but hide leading zero units.
+    minutes = "%statistic_time_played:minutes%m"
+    hours = "%statistic_time_played:hours%h " + minutes
+    return (condition("playtime", "%statistic_days_played%>=1",
+                      "%statistic_days_played%d " + hours, ref("playtime_hours"))
+            + condition("playtime_hours", "%statistic_hours_played%>=1", hours, minutes))
+
+
 def bar(filled):
     full = GRADIENT + "■" * filled + "</gradient>" if filled else ""
     return full + "<#665477>" + "■" * (8 - filled)
@@ -117,7 +127,7 @@ def board(name, location, activity, world=None):
         location,
         DIVIDER,
         f"{section('♟ Jugador')} {TEXT}%player%",
-        f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}%statistic_time_played%",
+        f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
         f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
         f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
         *activity,

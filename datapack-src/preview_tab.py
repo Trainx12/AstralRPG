@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def preview_panel(destination):
     samples = {
         '%condition:sidebar_world%': '<#F0E6FF>Refugio Astral', '%player%': 'ByTrainx',
-        '%statistic_time_played%': '1d 5h 56m 1s',
+        '%condition:playtime%': '1d 5h 56m',
         '%player_health_rounded%': '156', '%player_max_health_rounded%': '156',
         '%objective_score_{astraldef}%': '410', '%auraskills_power%': '1455',
         '%vault_eco_balance_formatted%': '100M', '%condition:rango%': 'Héroe',
@@ -77,15 +77,17 @@ def preview_panel(destination):
             x += advance+int(bold)
     image = image.resize((image.width*3, image.height*3), Image.Resampling.NEAREST)
     image.save(destination / 'panel-tab.png')
-    reference = ROOT / '.local/coordination/ref/panel-tab-original.jpg'
+    reference = destination / 'panel-tab-comparacion.png'
     if reference.exists():
-        # Solo el panel de la captura; excluir la interfaz privada del telefono.
-        original = Image.open(reference).convert('RGBA').crop((421, 618, 738, 880))
+        # Reutilizar solo la referencia ya publicada; no acceder a archivos privados.
+        previous = Image.open(reference).convert('RGBA')
+        height = previous.height - 30
+        original = previous.crop((0, 30, round(317 * height / 262), previous.height))
         original = original.resize((round(original.width*image.height/original.height), image.height))
         comparison = Image.new('RGBA', (original.width+image.width+24, image.height+30), '#17171c')
         draw = ImageDraw.Draw(comparison)
         draw.text((8, 8), 'Original (captura)', fill='white')
-        draw.text((original.width+24, 8), 'Tanda 1b (vista aproximada)', fill='white')
+        draw.text((original.width+24, 8), 'Tanda 1c (vista aproximada)', fill='white')
         comparison.alpha_composite(original, (0, 30))
         comparison.alpha_composite(image, (original.width+24, 30))
         comparison.save(destination / 'panel-tab-comparacion.png')
