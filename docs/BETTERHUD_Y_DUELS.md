@@ -1,4 +1,12 @@
-# Panel dibujado (BetterHud) y Duels (08/11/2026)
+# Panel TAB, BetterHud y Duels
+
+## Tanda 1 preparada (10/11/2026), sin desplegar
+
+El panel general vuelve a TAB en todos los mundos; Minas Astrales conserva su tablero. Filas: Vida, Defensa (armadura vanilla, equivalente a `[armor]`), Poder, Oro, lugar segun `sidebar.world_labels()`, Conectados, Rango, Diarias, Historia, Monstruos. `/sb` controla TAB y recuerda la preferencia. BetterHud queda instalado con `default-hud: []`; retirar `astral_panel` de sesiones existentes (el Skript lo retira al entrar).
+
+Generadores: `lobby.py` (filas y condiciones TAB), `betterhud.py` (config apagada y `/sb`), `tanda1_entrega.py` (previas y despliegue). Vista: `build/previews/panel-tab.png`; lineas con colores: `build/deploy/panel-tab-lineas.txt`. Instrucciones vigentes: `build/deploy/tanda1.md`. Conservar pack BetterHud y shader combinado con Stellarity; su retirada requiere otra validacion. La seccion siguiente registra la instalacion anterior, no debe repetirse para esta tanda.
+
+## Historial: panel dibujado del 08/11
 
 ## Panel de la derecha
 
@@ -84,7 +92,7 @@ exportada con `node plugins_basicos.mjs` a `build/plugins-basicos/Duels/`.
 - El jar se baja de BuiltByBit con cuenta (lo baja el dueño). En el server quedaron los datos viejos en
   `plugins/Duels/`; si `arenas.json` está vacío, subir los de `build/plugins-basicos/Duels/`.
 
-## Despliegue en Empower
+## Despliegue historico del 08/11 (reemplazado por tanda1.md)
 
 1. Subir `BetterHud-bukkit-2.0.0.jar` (Hangar, sha256 `4ff7892b…3307b`) y el jar de Duels a `plugins/`.
    Reiniciar una vez para que BetterHud cree su carpeta.

@@ -60,7 +60,11 @@ def main():
                            for a,b in zip(old[:3], new[:3]) if old[3]) <= 20, (iid, 'retoque excesivo')
             loot = json.loads(datapack.read(f'data/astral/loot_table/item/{iid}.json'))
             components = loot['pools'][0]['entries'][0]['functions'][0]['components']
-            assert components['minecraft:item_model'] == f'astral:{iid}', iid
+            expected_model = 'minecraft:slime_ball' if iid == 'gancho' else f'astral:{iid}'
+            assert components['minecraft:item_model'] == expected_model, iid
+            if iid == 'gancho':
+                real = json.loads(datapack.read('data/astral/loot_table/item/gancho_realista.json'))
+                assert real['pools'][0]['entries'][0]['functions'][0]['components']['minecraft:item_model'] == 'astral:gancho'
         for drill in DRILLS:
             assert f"data/astral/loot_table/item/{drill['id']}.json" in datapack.namelist()
             assert f"assets/astral/items/{drill['id']}.json" in textures.namelist()

@@ -6,10 +6,10 @@ from mobs.mazmorras_data import catalog
 from adventure_ui import title as adventure_title, regions
 
 ROOT=Path(__file__).resolve().parent.parent
-ORDER=('bosque','tumba','mina','cumbre','forja','santuario')   # posiciones del arte del menu
+ORDER=('bosque','mina','tumba','cumbre','forja','santuario')   # posiciones del arte del menu
 # Progreso por dificultad (tier): para la expedicion de una hay que terminar la anterior.
-PROGRESO=('mina','bosque','tumba','cumbre','forja','santuario')
-ICONS=('OAK_SAPLING','CHISELED_SANDSTONE','IRON_PICKAXE','SNOWBALL','BLAZE_POWDER','NETHER_STAR')
+PROGRESO=('bosque','mina','tumba','cumbre','forja','santuario')
+ICONS=('OAK_SAPLING','IRON_PICKAXE','CHISELED_SANDSTONE','SNOWBALL','BLAZE_POWDER','NETHER_STAR')
 EXPLORATION={
     'bosque':('cavernas',(172.5,102,89.5,0,0)),
     'tumba':('exp_desierto',(180.233,102,134.266,-124.8,0)),
@@ -96,7 +96,7 @@ def script():
         else:
             command=f'execute in minecraft:{d["world"]} run minecraft:tp %name of player% {x} {y} {z}'
             lines += [f'            execute console command "{command}"','            stop']
-    lines += ['        send "&eDestinos: bosque, tumba, mina, cumbre, forja y santuario." to player']
+    lines += ['        send "&eDestinos: bosque, mina, tumba, cumbre, forja y santuario." to player']
     return '\n'.join(lines)+'\n'
 
 

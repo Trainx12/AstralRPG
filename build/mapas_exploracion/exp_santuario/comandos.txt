@@ -14,7 +14,10 @@ mv gamerule set minecraft:mob_griefing false exp_santuario
 mv gamerule set minecraft:keep_inventory true exp_santuario
 mv gamerule set minecraft:log_admin_commands false exp_santuario
 rg flag -w exp_santuario __global__ build deny
+rg flag -w exp_santuario __global__ enderdragon-block-damage deny
 rg flag -w exp_santuario __global__ chest-access deny
+rg flag -w exp_santuario __global__ interact allow
+rg flag -w exp_santuario __global__ use deny
 rg flag -w exp_santuario __global__ pvp deny
 # Apagar el servidor y subir SOLO .local/mapas/astral-nuevos/preparados/exp_santuario/region/*.mca
 # al NUEVO mundo world/dimensions/minecraft/exp_santuario/region.

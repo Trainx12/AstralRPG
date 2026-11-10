@@ -39,7 +39,7 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
   aparecer (`mob/roll` del datapack, cada segundo) y la etiqueta `astral.mt#`.
 - **Mundo:** tier = mejor arma Astral del inventario del jugador más cercano (128 bloques, score
   `astral.wt`): 86% ese tier, 4% uno más, 10% uno menos. Sin arma Astral: mob vanilla.
-- **Mazmorras:** tier fijo: mina 1, bosque 2, tumba 3, cumbre 4, forja 5, santuario 5 con ×1,5 de vida.
+- **Mazmorras:** tier fijo: bosque 1, mina 2, tumba 3, cumbre 4, forja 5, santuario 5 con ×1,5 de vida.
 - **Élites:** misma probabilidad que antes (6% + 5% por amenaza); en mazmorras la mitad. Multiplican la
   vida ya escalada (Élite ×1,9 … Astral ×5).
 - **Nombre con vida:** `[T3] Elite Zombi ❤ 11.500`, visible sobre la cabeza sin tener que pegarle. La vida

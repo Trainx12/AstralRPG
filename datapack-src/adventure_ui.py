@@ -20,9 +20,9 @@ FRAMES = {'expediciones': ('expediciones2', (290, 753, 1566, 2102)),
           'mazmorras': ('mazmorras2', (278, 888, 1502, 2026))}
 START, END = '\ue600', '\ue601'
 GLYPHS = {k: tuple(chr(0xe610+i*4+j) for j in range(4)) for i,k in enumerate(THEMES)}
-DESTINATIONS = ('bosque', 'tumba', 'mina', 'cumbre', 'forja', 'santuario')
-LABELS = ('BOSQUE', 'TUMBA', 'MINAS', 'CUMBRE', 'FORJA', 'SANTUARIO')
-COLORS = ('#85b777', '#dcb779', '#8eb6c5', '#adddec', '#ea9862', '#ceb0ed')
+DESTINATIONS = ('bosque', 'mina', 'tumba', 'cumbre', 'forja', 'santuario')
+LABELS = ('BOSQUE', 'MINAS', 'TUMBA', 'CUMBRE', 'FORJA', 'SANTUARIO')
+COLORS = ('#85b777', '#8eb6c5', '#dcb779', '#adddec', '#ea9862', '#ceb0ed')
 MAIN = ('expediciones', 'mazmorras', 'misiones', 'bazar', 'mascotas', 'cosmeticos', 'guia', 'spawn')
 MAIN_LABELS = ('EXPLORAR', 'MAZMORRAS', 'CRONISTA', 'BAZAR', 'MASCOTAS', 'COSMETICOS', 'GUIA', 'LOBBY')
 

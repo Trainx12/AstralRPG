@@ -510,9 +510,9 @@ function astral_dano_tier(e: entity) :: number:
 
 function astral_dano_mundo(w: world) :: number:
     set {_n} to name of {_w}
-    if {_n} is "mina" or "minecraft:mina":
-        return 22.0
     if {_n} is "bosque" or "minecraft:bosque":
+        return 22.0
+    if {_n} is "mina" or "minecraft:mina":
         return 48.0
     if {_n} is "tumba" or "minecraft:tumba":
         return 120.0

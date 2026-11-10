@@ -7,7 +7,7 @@ Arreglos del 08/11/2026 (commit 1a7e61a):
 - Se puede nadar (antes te devolvia al ultimo lugar seco; trababa Minas Olvidadas).
 - `cumbre_hielo`, `forja_volcano` y `santuario_interstellar` estan en la lista de mazmorras: no se pierden
   cosas al morir, sin tumba, sin romper ni poner bloques.
-- Expediciones en orden de dificultad (Mina, Bosque, Tumba, Cumbre, Forja, Santuario): la de una pide
+- Expediciones en orden de dificultad (Bosque, Mina, Tumba, Cumbre, Forja, Santuario): la de una pide
   `astral.completada.<anterior>`, que se da al ganar la sala final. Los OP pasan siempre. Para darsela a
   alguien que ya la gano antes: `lp user <jugador> permission set astral.completada.<mazmorra> true`.
   Bosque y Mina comparten el mapa de exploracion `cavernas`.
@@ -371,3 +371,8 @@ El Fragmento de la Marea sale del Cangrejo (no tiene mazmorra) la primera vez qu
 La historia ya no entrega fragmentos como item. Los nodos `astral.fragmento.*` van en false para el grupo
 default (`build/mazmorra/comandos.txt`), igual que la espera del cofre, para que funcione con OP.
 La tapa de los cofres (tambien los de las gachas) abria hacia abajo: era el signo de la animacion.
+
+## Tanda 1: orden y nombres de entrada
+
+Quien termino Mina antes y no Bosque se destraba con `lp user <jugador> permission set astral.completada.bosque true`.
+Los NPC de entrada tienen `AlwaysShowName: false` para esconderlos en salas secretas. Tras `mm reload`, guardar sus posiciones, quitar los existentes y volver a colocarlos; no duplicarlos. Cofre y guia finales conservan su nombre visible. Santuario queda sin desplegar.

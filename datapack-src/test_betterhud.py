@@ -56,7 +56,7 @@ class PanelTest(unittest.TestCase):
     def test_config(self):
         original = "pack-type: zip\ndefault-hud:\n- test_hud\nmetrics: true\nenable-self-host: false\n"
         result = yaml.safe_load(betterhud.config_yml(original))
-        self.assertEqual(result["default-hud"], [betterhud.HUD_ID])
+        self.assertEqual(result["default-hud"], [])
         self.assertEqual(result["pack-type"], "folder")
         self.assertFalse(result["enable-self-host"])
 
@@ -64,7 +64,7 @@ class PanelTest(unittest.TestCase):
         board = TAB_SECTIONS.split("\nscoreboard:\n", 1)[1].split("\nconditions:\n", 1)[0]
         self.assertIn("toggle-command: /sbtab", board)
         names = re.findall(r"^    (\w+):$", board, re.M)
-        self.assertEqual(names, ["minas"])
+        self.assertEqual(names, ["minas", "astral"])
 
 
 if __name__ == "__main__":

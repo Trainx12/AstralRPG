@@ -15,17 +15,17 @@ command /mazmorras [<text>]:
                 stop
             execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1440.5 103 1569.5"
             stop
-        if {_destino} is "tumba":
-            if player does not have permission "astral.descubierto.tumba":
-                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
-                stop
-            execute console command "execute in minecraft:tumba run minecraft:tp %name of player% -148.426 62 -97.473"
-            stop
         if {_destino} is "mina":
             if player does not have permission "astral.descubierto.mina":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
             execute console command "execute in minecraft:mina run minecraft:tp %name of player% 10.5 -45 -124.5"
+            stop
+        if {_destino} is "tumba":
+            if player does not have permission "astral.descubierto.tumba":
+                send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
+                stop
+            execute console command "execute in minecraft:tumba run minecraft:tp %name of player% -148.426 62 -97.473"
             stop
         if {_destino} is "cumbre":
             if player does not have permission "astral.descubierto.cumbre":
@@ -45,7 +45,7 @@ command /mazmorras [<text>]:
                 stop
             execute console command "execute in minecraft:santuario_interstellar run minecraft:tp %name of player% 34.5 180 40.5"
             stop
-        send "&eDestinos: bosque, tumba, mina, cumbre, forja y santuario." to player
+        send "&eDestinos: bosque, mina, tumba, cumbre, forja y santuario." to player
 
 # Rutas de exploracion publicas. El viaje directo a la mazmorra se controla por separado.
 command /expediciones [<text>]:
@@ -56,20 +56,20 @@ command /expediciones [<text>]:
             execute console command "dm open expediciones %name of player%"
             stop
         if arg-1 is "bosque":
-            if player is not op:
-                if player does not have permission "astral.completada.mina":
-                    send "&cPrimero termina la mazmorra &fMinas Olvidadas&c." to player
-                    stop
             execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
             stop
         if arg-1 is "tumba":
             if player is not op:
-                if player does not have permission "astral.completada.bosque":
-                    send "&cPrimero termina la mazmorra &fBosque Sombrio&c." to player
+                if player does not have permission "astral.completada.mina":
+                    send "&cPrimero termina la mazmorra &fMinas Olvidadas&c." to player
                     stop
             execute console command "execute in minecraft:exp_desierto run minecraft:tp %name of player% 180.233 102 134.266 -124.8 0"
             stop
         if arg-1 is "mina":
+            if player is not op:
+                if player does not have permission "astral.completada.bosque":
+                    send "&cPrimero termina la mazmorra &fBosque Sombrio&c." to player
+                    stop
             execute console command "execute in minecraft:cavernas run minecraft:tp %name of player% 172.5 102 89.5 0 0"
             stop
         if arg-1 is "cumbre":

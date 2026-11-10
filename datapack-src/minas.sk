@@ -243,10 +243,7 @@ command /minasventa <player>:
 command /minas:
     executable by: players
     trigger:
-        if name of world of player is "lobby" or "@WORLD@":
-            am_menu(player)
-        else:
-            send "&eLas minas se abren desde el lobby (aldeano &bMinas Astrales&e)." to player
+        am_menu(player)
 
 on inventory click:
     set {_gui} to {-am.gui::%uuid of player%}

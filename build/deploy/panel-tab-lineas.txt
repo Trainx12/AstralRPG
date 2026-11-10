@@ -1,0 +1,11 @@
+%condition:sidebar_world%
+<gradient:#5268C7:#D17AFF>────────────────</gradient>
+<#D6B4FF>Vida <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%
+<#D6B4FF>Defensa <#F0E6FF>%player_armor%
+<#D6B4FF>Poder <#F0E6FF>%auraskills_power%
+<#D6B4FF>Oro <#F0E6FF>%vault_eco_balance_formatted%
+<#D6B4FF>Conectados <#F0E6FF>%server_online%/%server_max_players%
+<#D6B4FF>Rango <#F0E6FF>%condition:rango%
+<#D6B4FF>Diarias <#F0E6FF>%condition:daily_count_0%
+<#D6B4FF>Historia %condition:historia%
+<#D6B4FF>Monstruos <#F0E6FF>%statistic_mob_kills%

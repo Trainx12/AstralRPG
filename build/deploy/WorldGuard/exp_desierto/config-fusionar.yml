@@ -1,0 +1,11 @@
+# Fusionar en config.yml del mundo, conservando sus otras claves.
+ignition:
+  block-tnt: false
+  block-tnt-block-damage: true
+mobs:
+  block-creeper-explosions: false
+  block-creeper-block-damage: true
+  block-wither-explosions: false
+  block-wither-block-damage: true
+  block-wither-skull-explosions: false
+  block-wither-skull-block-damage: true

@@ -14,7 +14,10 @@ mv gamerule set minecraft:mob_griefing false cavernas
 mv gamerule set minecraft:keep_inventory true cavernas
 mv gamerule set minecraft:log_admin_commands false cavernas
 rg flag -w cavernas __global__ build deny
+rg flag -w cavernas __global__ enderdragon-block-damage deny
 rg flag -w cavernas __global__ chest-access deny
+rg flag -w cavernas __global__ interact allow
+rg flag -w cavernas __global__ use deny
 rg flag -w cavernas __global__ pvp deny
 # Apagar el servidor y subir SOLO .local/mapas/astral-nuevos/preparados/cavernas/region/*.mca
 # al NUEVO mundo world/dimensions/minecraft/cavernas/region.

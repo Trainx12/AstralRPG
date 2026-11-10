@@ -355,7 +355,7 @@ def huds_yml():
 
 # Claves de config.yml de BetterHud que hay que cambiar (el resto queda como viene)
 CONFIG_KEYS = {
-    "default-hud": f"\n  - {HUD_ID}",
+    "default-hud": "[]",
     "pack-type": "folder",
     "enable-self-host": "false",
     "metrics": "false",
@@ -377,25 +377,26 @@ def config_yml(original):
 
 
 SKRIPT = f"""# Generado por datapack-src/betterhud.py
-# /sb prende o apaga el panel (BetterHud y, en las minas, el de TAB) y lo recuerda.
+# /sb prende o apaga el panel de TAB y lo recuerda.
 command /sb:
     trigger:
         if {{astral::panel_off::%uuid of player%}} is set:
             delete {{astral::panel_off::%uuid of player%}}
-            execute console command "hud hud add %player% {HUD_ID}"
             execute console command "tab scoreboard on %player% -s"
             send "&d✦ &fPanel encendido. &7/sb lo apaga." to player
         else:
             set {{astral::panel_off::%uuid of player%}} to true
-            execute console command "hud hud remove %player% {HUD_ID}"
             execute console command "tab scoreboard off %player% -s"
             send "&d✦ &fPanel apagado. &7/sb lo vuelve a mostrar." to player
 
 on join:
-    {{astral::panel_off::%uuid of player%}} is set
     wait 2 seconds
     player is online
     execute console command "hud hud remove %player% {HUD_ID}"
+    if {{astral::panel_off::%uuid of player%}} is set:
+        execute console command "tab scoreboard off %player% -s"
+    else:
+        execute console command "tab scoreboard on %player% -s"
 """
 
 

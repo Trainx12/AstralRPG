@@ -17,6 +17,7 @@ rg flag -w tumba __global__ pvp deny
 rg flag -w tumba __global__ mob-spawning allow
 rg flag -w tumba __global__ interact allow
 rg flag -w tumba __global__ use deny
+rg flag -w tumba __global__ enderdragon-block-damage deny
 # espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
 lp group default permission set astral.tumba.cd false
 # RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):

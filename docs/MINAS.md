@@ -96,3 +96,7 @@ venta, aldeano del lobby, script cargado sin errores, panel de TAB y moldes rell
 ## Migración al mapa común en Aternos
 
 Se copiaron los bloques de Hierro I al resto de las minas por chunks con `astral_minas_migracion.sk`. Se verificaron las esquinas de los pozos, se reconstruyeron los moldes y se reactivó la regeneración. La prueba en Hierro I clonó 19.220 bloques. La consola confirmó que las veinte minas conservan un aldeano en cada uno de los dos puntos previstos. El mundo se guardó al finalizar.
+
+## Tanda 1: acceso al menu
+
+`/minas` abre la interfaz desde cualquier mundo, incluidas mazmorras y expediciones. La restriccion anterior aparecio en `8771e8f` al quitar skript-reflect, sin motivo de combate documentado; se retiro sin agregar bloqueos de duelos. Regenerar con `python minas.py`; salida `build/minas/Skript/scripts/astral_minas.sk`.

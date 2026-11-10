@@ -75,7 +75,8 @@ class ResponsiveMovementTests(unittest.TestCase):
         self.assertNotIn('milliseconds', jump)
         self.assertNotIn('wait ', jump)
         self.assertNotIn('difference between now', jump)
-        self.assertIn('set y component of {_v} to 0.65', jump)
+        self.assertIn('set {_v} to vector(0, 0.65, 0)', jump)
+        self.assertIn('set {_v} to vector({_vx} * 1.1, 0.65, {_vz} * 1.1)', jump)
 
 
 if __name__ == '__main__':

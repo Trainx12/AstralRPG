@@ -359,14 +359,30 @@ def story_sidebar_conditions():
     return steps("historia", score("aq.state"), states)[1]
 
 
-# Ya no se muestra: el panel general es el de BetterHud (betterhud.py, /sb). En TAB solo
-# queda el panel de las Minas Astrales (minas.sidebar). Se deja para volver atras si hiciera falta.
-ASTRAL_BOARD = board("astral", ref("sidebar_world"), [
-    f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
-    *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
-      for i, (icon, label) in enumerate((("✦", "Fácil"), ("✧", "Media"), ("✶", "Difícil")))),
-    f"{PURPLE}✎ {MUTED}Historia {ref('historia')}",
-])
+# Panel general de TAB; Minas Astrales conserva su tablero especifico.
+def daily_count_conditions():
+    lines = []
+    for mask in range(8):
+        name = f"daily_count_{mask}"
+        checks = [f'{score(f"aq.done{t}")}{">=" if mask >> t & 1 else "<"}1' for t in range(3)]
+        lines.append(f"  {name}:\n    conditions:\n" + "".join(f'      - "{check}"\n' for check in checks)
+                     + f'    true: "{mask.bit_count()}/3"\n    false: "{ref(f"daily_count_{mask+1}") if mask < 7 else "0/3"}"\n')
+    return "".join(lines)
+
+ASTRAL_ROWS = [
+    ref("sidebar_world"), DIVIDER,
+    f"{PURPLE}Vida {TEXT}%player_health_rounded%/%player_max_health_rounded%",
+    f"{PURPLE}Defensa {TEXT}%player_armor%",
+    f"{PURPLE}Poder {TEXT}%auraskills_power%",
+    f"{PURPLE}Oro {TEXT}%vault_eco_balance_formatted%",
+    f"{PURPLE}Conectados {TEXT}%server_online%/%server_max_players%",
+    f"{PURPLE}Rango {TEXT}%condition:rango%",
+    f"{PURPLE}Diarias {TEXT}{ref('daily_count_0')}",
+    f"{PURPLE}Historia {ref('historia')}",
+    f"{PURPLE}Monstruos {TEXT}%statistic_mob_kills%",
+]
+ASTRAL_BOARD = (f'    astral:\n      title: "{TITLE}"\n      lines:\n'
+                + "".join(f'        - "{row}"\n' for row in ASTRAL_ROWS))
 
 
 # Los mismos colores, titulo y separadores que el panel lateral.
@@ -402,7 +418,7 @@ scoreboard:
   hidden-by-default: false
   delay-on-join-milliseconds: 1500
   scoreboards:
-''' + "conditions:\n" + "".join(
+''' + ASTRAL_BOARD + "conditions:\n" + "".join(
     "  rango%d:\n    conditions:\n      - \"%%auraskills_power%%>=%d\"\n    true: \"%s\"\n    false: \"%s\"\n" % (
         i, th, txt, ("%%condition:rango%d%%" % (i + 1)) if i + 1 < len(RANKS) - 1 else RANKS[-1][1])
     for i, (th, txt) in enumerate(RANKS[:-1])).replace("rango0", "rango") + r'''  titulo:
@@ -412,7 +428,7 @@ scoreboard:
     false: "%luckperms_prefix%"
 '''
 
-TAB_SECTIONS += (location_conditions() + location_conditions(centered=True) + daily_sidebar_conditions() + story_sidebar_conditions()
+TAB_SECTIONS += (location_conditions() + location_conditions(centered=True) + daily_count_conditions() + daily_sidebar_conditions() + story_sidebar_conditions()
                  + weekday_replacements()) + '''placeholders:
   date-format: "EEEE"
   time-format: "HH:mm"

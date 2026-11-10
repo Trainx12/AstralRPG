@@ -66,7 +66,8 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
   Las mascotas llevan la etiqueta `clearlag_exclude` para que las otras limpiezas no las toquen.
 - El datapack nuevo se toma al reiniciar: reemplazarlo en `world/datapacks` y reiniciar (o apagar, reemplazar, prender).
 - Cada vez que cambia `AstralRPG-Textures.zip`, hay que actualizar `resource-pack-sha1` en `server.properties` con el sha1 nuevo. Si no se actualiza, los jugadores no bajan la versión nueva o el pack falla al cargar.
-- **Nunca usar el botón Upload de la fila del mundo `world` en la página Worlds: reemplaza el mundo entero.** Así se perdió el mundo original el 28/10/2026 en Aternos. En Empower hay respaldos diarios (pestaña Backups), pero los términos no los garantizan: bajar el mundo de vez en cuando igual.
+- **Nunca usar Upload en la fila world de Worlds: reemplaza el mundo entero.** Asi se perdio el mundo original en Aternos el 28/10/2026.
+- **Respaldos:** El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.
 - En Paper 26.1 todos los mundos viven dentro de `world/`: `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/region`.
 
 ## Memoria y lag (revision 02/11/2026, en Aternos)
@@ -143,7 +144,7 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 - **Monedas:** se empieza con 250$. Se gana vendiendo en la tienda y matando: 15$ por hostil de AstralRPG, 150$ por élite y 750$ por jefe.
 - **Archivos:** `datapack-src/lobby.py` genera `build/lobby/CrazyCrates/crates/*.yml` (premios y probabilidades), `build/mythicmobs/skills/gachas.yml` (cobro), `build/lobby/Essentials/spawn.yml` y `build/lobby/comandos.txt` (todos los comandos de consola para armarlo de nuevo). Los vendedores están en `datapack-src/mobs/mythic.py` (`NPCS`).
 - Si falta un vendedor: correr las líneas `mm mobs spawn astral_npc_...` de `comandos.txt` (con el `mob-spawning allow`/`deny` de alrededor). Para borrar uno: `mm mobs kill astral_npc_<nombre>`.
-- **Panel de la derecha (BetterHud, desde 08/11/2026):** panel dibujado con vida, defensa, poder, oro, lugar, conectados, rango, diarias, historia y monstruos (`/sb` lo oculta o muestra). Sale de `datapack-src/betterhud.py`; ver [BETTERHUD_Y_DUELS.md](BETTERHUD_Y_DUELS.md). En las Minas Astrales se ve el panel de TAB de las minas.
+- **Panel anterior (BetterHud, 08/11/2026; reemplazado en la tanda 1 preparada por TAB):** panel dibujado con vida, defensa, poder, oro, lugar, conectados, rango, diarias, historia y monstruos (`/sb` lo oculta o muestra). Sale de `datapack-src/betterhud.py`; ver [BETTERHUD_Y_DUELS.md](BETTERHUD_Y_DUELS.md). En las Minas Astrales se ve el panel de TAB de las minas.
 - **Tabulador (TAB):** en el tabulador: encabezado animado, corazones de vida, título de la gacha y poder de cada jugador. Rango según el poder de AuraSkills: Novato, Aventurero (150), Veterano (400), Héroe (800), Leyenda (1500). Lo genera `datapack-src/lobby.py` en `build/lobby/TAB/` (las secciones de `config.yml` se reemplazan una por una; `groups.yml` entero; las animaciones se agregan a `animations.yml`). Después: `tab reload`. Usa las expansiones de PlaceholderAPI LuckPerms, Vault, Player, Server y Statistic.
 - Los huevos de mascotas y monturas no funcionan en el lobby (ahí no aparecen mobs): hay que usarlos en el mundo.
 - Si cambian los premios: subir los `.yml` a `plugins/CrazyCrates/crates/` y correr `crates reload`.
@@ -201,10 +202,10 @@ Tienen que estar antes de generar un mundo nuevo, si no, no aparecen sus estruct
 
 ## Resource pack
 
-- Se sirve desde una URL fija al commit, no desde `main`. Version actual: `https://raw.githubusercontent.com/Trainx12/AstralRPG/f23aa9a257dff7127cc93eae6a5fe0e01a9acd30/build/AstralRPG-Textures.zip`; SHA-1 `7f7a7450d600e5a6e8d9aafedf6ab850febc2482`.
+- Hosting nuevo preparado: URL fija R2 `https://pub-5e0d1c63a1554ba7b8e33b038e1a06fe.r2.dev/AstralRPG-Textures.zip`. El servidor seguia usando GitHub raw segun la comprobacion de Claude, SHA-1 `19dddebabccf78aaa1518084f166b66139277003`; no se cambio en esta tanda.
 - Es obligatorio (`require-resource-pack=true`).
 - Incluye las texturas originales del dueño (`assets/astral`, `assets/armasrpg`), las armaduras de Mago, Berserker y Arquero, las texturas CC0 (créditos en `datapack-src/pack-source/cc0/CREDITOS.txt`), los taladros y motosierras, y los modelos de BetterModel.
-- Después de cambiarlo: commit y push, comprobar la descarga desde el commit nuevo, actualizar URL y SHA-1 en `server.properties` y reiniciar.
+- Despues de cambiarlo: commit y push, `python tools/subir_pack_r2.py` (boto3 y credenciales locales), verificar descarga publica, guardar URL fija R2 y SHA-1 devuelto en `server.properties` y reiniciar. `--dry-run` calcula el hash sin subir.
 
 ## Cómo cambiar cosas
 
@@ -348,3 +349,9 @@ Instalación, ZIP privados, coordenadas por revisar y pruebas en
 [Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para el servidor:
 `build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.
+
+## Estado preparado de Tanda 1 (sin desplegar)
+
+Panel general vuelve a TAB, BetterHud apagado (`default-hud: []`); `/sb` persistente. Lista de archivos y recargas: `build/deploy/tanda1.md`.
+
+El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.

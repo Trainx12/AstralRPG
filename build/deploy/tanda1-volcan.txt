@@ -1,0 +1,22 @@
+# Diagnostico, sin modificar el mundo. Sustituir <jugador>.
+mv info forja
+# Debe existir y estar cargado como forja. Si falta, revisar worlds.yml y consola antes de importar.
+execute in minecraft:forja run forceload query 1536 1900
+# Informa carga forzada, NO confirma que el chunk tenga terreno.
+execute in minecraft:forja run forceload add 1536 1900
+# Esperar unos segundos; guardar si ya estaba forzado para no retirarlo despues.
+execute in minecraft:forja if block 1536 221 1900 minecraft:air run say FORJA: piso es aire
+execute in minecraft:forja unless block 1536 221 1900 minecraft:air run say FORJA: piso no es aire
+# Aire: no viajar en supervivencia. No aire: revisar tipo de bloque, techo y alrededores.
+execute in minecraft:forja if block 1536 222 1900 minecraft:air if block 1536 223 1900 minecraft:air run say FORJA: espacio libre
+# Sin mensaje: hay un obstaculo o fallo la dimension; revisar consola.
+# Solo si el jugador acepta y ya esta en creativo:
+execute in minecraft:forja run minecraft:tp <jugador> 1536.5 222 1900.5
+# Inspeccionar F3, terreno y bloques bajo los pies. No inferir piso solo del peso de las regiones.
+execute in minecraft:forja run forceload remove 1536 1900
+# Quitar solo si no estaba forzado antes. Retornar al lobby con spawn <jugador>.
+# El repo usa forja 1536.5 222 1900.5 y NPC 1536.5 222 1901.5.
+# La mazmorra usa forja_volcano 82.5 52 -55.5; es otro mapa, no cambiar la expedicion.
+# docs/MAZMORRAS.md conserva una llegada historica Y=224; tambien documenta piso
+# de piedra en Y=221 y aire Y=222..226. Ambas alturas sirven en ese recorte.
+# No hay evidencia en el repo de la causa actual; revisar carga y bloques reales.

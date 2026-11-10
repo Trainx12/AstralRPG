@@ -82,3 +82,7 @@ usa `%server_max_players%` en lugar del placeholder sin resolver.
   resource pack). Al lanzarlo no cambia de aspecto (la skin no tiene estado "lanzado").
 - El aspecto se fuerza en `build.py`, despues de los bucles de texturas que ponen `astral:<id>`.
 - `ITEM_VERSION` 10: los que ya tienen los objetos los ven actualizados al entrar.
+
+## Panel lateral preparado el 10/11/2026
+
+Vuelve TAB como panel general, con las diez filas de BetterHud y nombre de mundo. Minas Astrales conserva su tablero. `/sb` se recuerda mediante `astral_panel.sk`; BetterHud queda apagado por defecto. No se cambio Duels ni la barra roja de Momia. Vista `build/previews/panel-tab.png`, colores exactos `build/deploy/panel-tab-lineas.txt`, instalacion pendiente `build/deploy/tanda1.md`.

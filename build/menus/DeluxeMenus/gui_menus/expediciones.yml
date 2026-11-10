@@ -58,11 +58,10 @@
     "bosque": {
       "material": "PAPER",
       "slot": 9,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -77,11 +76,10 @@
     "bosque_hit_1": {
       "material": "PAPER",
       "slot": 10,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -96,11 +94,10 @@
     "bosque_hit_2": {
       "material": "PAPER",
       "slot": 11,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -115,11 +112,10 @@
     "bosque_hit_3": {
       "material": "PAPER",
       "slot": 18,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -134,11 +130,10 @@
     "bosque_hit_4": {
       "material": "PAPER",
       "slot": 19,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -153,11 +148,10 @@
     "bosque_hit_5": {
       "material": "PAPER",
       "slot": 20,
-      "display_name": "&b&l2. Bosque Sombrio",
+      "display_name": "&b&l1. Bosque Sombrio",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fMinas Olvidadas",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -169,127 +163,14 @@
         "HIDE_ATTRIBUTES"
       ]
     },
-    "tumba": {
-      "material": "PAPER",
-      "slot": 12,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_0",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
-    "tumba_hit_1": {
-      "material": "PAPER",
-      "slot": 13,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_1",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
-    "tumba_hit_2": {
-      "material": "PAPER",
-      "slot": 14,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_2",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
-    "tumba_hit_3": {
-      "material": "PAPER",
-      "slot": 21,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_3",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
-    "tumba_hit_4": {
-      "material": "PAPER",
-      "slot": 22,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_4",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
-    "tumba_hit_5": {
-      "material": "PAPER",
-      "slot": 23,
-      "display_name": "&b&l3. Tumba del Rey de Arena",
-      "lore": [
-        "&7Viaja al mapa de exploracion.",
-        "&7Busca al aldeano que guarda la entrada.",
-        "&cRequiere terminar: &fBosque Sombrio",
-        "&eClic para comenzar la busqueda."
-      ],
-      "click_commands": [
-        "[close]",
-        "[player] expediciones tumba"
-      ],
-      "item_model": "astral:aventuras/expediciones_tumba_5",
-      "item_flags": [
-        "HIDE_ATTRIBUTES"
-      ]
-    },
     "mina": {
       "material": "PAPER",
-      "slot": 15,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 12,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -303,11 +184,12 @@
     },
     "mina_hit_1": {
       "material": "PAPER",
-      "slot": 16,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 13,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -321,11 +203,12 @@
     },
     "mina_hit_2": {
       "material": "PAPER",
-      "slot": 17,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 14,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -339,11 +222,12 @@
     },
     "mina_hit_3": {
       "material": "PAPER",
-      "slot": 24,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 21,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -357,11 +241,12 @@
     },
     "mina_hit_4": {
       "material": "PAPER",
-      "slot": 25,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 22,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -375,11 +260,12 @@
     },
     "mina_hit_5": {
       "material": "PAPER",
-      "slot": 26,
-      "display_name": "&b&l1. Minas Olvidadas",
+      "slot": 23,
+      "display_name": "&b&l2. Minas Olvidadas",
       "lore": [
         "&7Viaja al mapa de exploracion.",
         "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fBosque Sombrio",
         "&eClic para comenzar la busqueda."
       ],
       "click_commands": [
@@ -387,6 +273,120 @@
         "[player] expediciones mina"
       ],
       "item_model": "astral:aventuras/expediciones_mina_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba": {
+      "material": "PAPER",
+      "slot": 15,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_1": {
+      "material": "PAPER",
+      "slot": 16,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_2": {
+      "material": "PAPER",
+      "slot": 17,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_3": {
+      "material": "PAPER",
+      "slot": 24,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_4": {
+      "material": "PAPER",
+      "slot": 25,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "tumba_hit_5": {
+      "material": "PAPER",
+      "slot": 26,
+      "display_name": "&b&l3. Tumba del Rey de Arena",
+      "lore": [
+        "&7Viaja al mapa de exploracion.",
+        "&7Busca al aldeano que guarda la entrada.",
+        "&cRequiere terminar: &fMinas Olvidadas",
+        "&eClic para comenzar la busqueda."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] expediciones tumba"
+      ],
+      "item_model": "astral:aventuras/expediciones_tumba_5",
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ]

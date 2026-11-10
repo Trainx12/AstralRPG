@@ -1,0 +1,13 @@
+# Solo el flag que no anula dano a entidades. Ver tanda1.md para los demas.
+rg flag -w mina __global__ enderdragon-block-damage deny
+rg flag -w bosque __global__ enderdragon-block-damage deny
+rg flag -w tumba __global__ enderdragon-block-damage deny
+rg flag -w cumbre __global__ enderdragon-block-damage deny
+rg flag -w cumbre_hielo __global__ enderdragon-block-damage deny
+rg flag -w forja __global__ enderdragon-block-damage deny
+rg flag -w forja_volcano __global__ enderdragon-block-damage deny
+rg flag -w cavernas __global__ enderdragon-block-damage deny
+rg flag -w exp_desierto __global__ enderdragon-block-damage deny
+rg flag -w exp_hielo __global__ enderdragon-block-damage deny
+rg flag -w exp_nieve __global__ enderdragon-block-damage deny
+rg flag -w exp_santuario __global__ enderdragon-block-damage deny

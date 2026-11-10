@@ -76,7 +76,7 @@ astral_npc_santuario:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: MASON
     VillagerType: PLAINS
   Skills:

@@ -313,7 +313,7 @@ astral_npc_tumba:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: MASON
     VillagerType: PLAINS
   Skills:

@@ -11,6 +11,7 @@ mv gamerule set minecraft:random_tick_speed 0 mina
 mv gamerule set minecraft:advance_time false mina
 execute in minecraft:mina run time set midnight
 rg flag -w mina __global__ build deny
+rg flag -w mina __global__ enderdragon-block-damage deny
 rg flag -w mina __global__ chest-access deny
 rg flag -w mina __global__ interact allow
 rg flag -w mina __global__ use deny

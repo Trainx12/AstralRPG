@@ -1,3 +1,4 @@
+from explosion_protection import commands as explosion_commands
 """Preparar Reino y Cavernas para explorar, conservando los chunks originales.
 
 Los ZIP de terceros y resultados permanecen en .local, fuera del repositorio.
@@ -271,6 +272,7 @@ mv gamerule set minecraft:mob_griefing false {key}
 mv gamerule set minecraft:keep_inventory true {key}
 mv gamerule set minecraft:log_admin_commands false {key}
 rg flag -w {key} __global__ build deny
+{chr(10).join(explosion_commands(key))}
 rg flag -w {key} __global__ chest-access deny
 rg flag -w {key} __global__ interact allow
 rg flag -w {key} __global__ use deny

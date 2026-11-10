@@ -221,8 +221,10 @@ class DailySidebar(unittest.TestCase):
         board=TAB_SECTIONS.split('scoreboards:\n',1)[1].split('\nconditions:',1)[0]
         for layout in re.split(r'^    \w+:\n', board, flags=re.M)[1:]:
             self.assertLessEqual(len(re.findall(r'^        - ',layout,re.M)),15)
-            self.assertNotIn('Rango', layout)
-            self.assertIn('%statistic_time_played%', layout)
+            if 'Defensa' in layout:
+                self.assertIn('Rango', layout)
+            else:
+                self.assertIn('%statistic_time_played%', layout)
         self.assertIn('date-format: "EEEE"',TAB_SECTIONS)
         self.assertIn('time-format: "HH:mm"',TAB_SECTIONS)
         self.assertIn('"miércoles": "Miércoles"',TAB_SECTIONS)

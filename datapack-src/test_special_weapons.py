@@ -23,10 +23,12 @@ class SpecialWeaponTests(unittest.TestCase):
                 for iid in WEAPONS:self.assertNotIn('astral:item/'+iid+'"',data)
 
     def test_every_weapon_has_a_resolved_animated_model(self):
-        self.assertEqual(set(WEAPONS),{w.iid for w in MODELS})
+        self.assertEqual({iid for iid, w in WEAPONS.items() if not w.get('model', '').startswith('minecraft:')}, {w.iid for w in MODELS})
         self.assertEqual(check(MODELS),[])
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as z:
-            for iid in WEAPONS:
+            for iid, weapon in WEAPONS.items():
+                if weapon.get('model', '').startswith('minecraft:'):
+                    continue
                 item=json.loads(z.read(f'assets/astral/items/{iid}.json'))
                 model=item['model']['model'].replace('astral:','assets/astral/models/')+'.json'
                 self.assertTrue(json.loads(z.read(model))['elements'])
@@ -37,7 +39,7 @@ class SpecialWeaponTests(unittest.TestCase):
             for iid,w in WEAPONS.items():
                 loot=json.loads(z.read(f'data/astral/loot_table/item/{iid}.json'))
                 comp=next(f['components'] for f in loot['pools'][0]['entries'][0]['functions'] if f['function']=='minecraft:set_components')
-                self.assertEqual(comp['minecraft:item_model'],'astral:'+iid)
+                self.assertEqual(comp['minecraft:item_model'],w.get('model', 'astral:'+iid))
                 self.assertIn('"auraskills:ignore_interact":1b',comp['minecraft:custom_data'])
                 self.assertNotIn('requirements',comp['minecraft:custom_data'])
                 damage=next(m for m in comp['minecraft:attribute_modifiers'] if m['type']=='minecraft:attack_damage')

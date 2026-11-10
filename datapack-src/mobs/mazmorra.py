@@ -16,6 +16,9 @@ Como funciona:
 Salida: ../../build/mythicmobs/{mobs,skills}/mazmorra.yml y ../../build/mazmorra/comandos.txt
 """
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from explosion_protection import commands as explosion_commands
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "..", "build")
@@ -177,10 +180,11 @@ def mob_yml(dungeon=None):
               "  Health: 100", "  Options:"] + quieto + ["    Profession: CARTOGRAPHER", "    VillagerType: PLAINS",
               "  Skills:", "  - cancelevent @self ~onInteract",
               "  - " + q('command{c="dm open expediciones <trigger.name>"} @self ~onInteract'), ""]
+    # Entradas escondidas en salas secretas: no mostrar el nombre tras paredes.
     # vendedor del lobby
     L += [f"{LOBBY_NPC}:", "  Type: VILLAGER", f"  Display: {q('&8&lMazmorra: &7Minas Olvidadas')}", "  Health: 100", "  Options:",
           "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
-          "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: true",
+          "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: false",
           "    Profession: MASON", "    VillagerType: PLAINS", "  Skills:", "  - cancelevent @self ~onInteract",
           "  - " + q(f'command{{c="lp user <trigger.name> permission set astral.descubierto.{dungeon["key"]} true"}} @self ~onInteract ?~!haspermission{{p=astral.descubierto.{dungeon["key"]}}}'),
           "  - " + q('message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'),
@@ -391,6 +395,7 @@ def commands(dungeon=None):
          f"mv gamerule set minecraft:advance_time false {WORLD}",
          f"execute in minecraft:{WORLD} run time set midnight",
          f"rg flag -w {WORLD} __global__ build deny",
+         *explosion_commands(WORLD),
          f"rg flag -w {WORLD} __global__ chest-access deny",
          # clic en cofres y aldeanos de MythicMobs (build deny los bloquea); puertas y botones siguen bloqueados
          f"rg flag -w {WORLD} __global__ interact allow",
@@ -453,6 +458,7 @@ def new_commands(dungeon):
              f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
              f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
              f'rg flag -w {w} __global__ interact allow', f'rg flag -w {w} __global__ use deny',
+             *(explosion_commands(w) if dungeon['key'] != 'santuario' else []),
              *espera_cofre(dungeon["key"]),
              '# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):']
     if any(s.get("group_scaling") for s in dungeon["rooms"]):

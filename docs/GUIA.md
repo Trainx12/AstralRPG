@@ -44,7 +44,7 @@ AstralRPG/
 │       └── bettermodel_config.yml  Config de BetterModel usada en el server
 └── build/                    SALIDA (se sube al servidor; no se edita a mano)
     ├── AstralRPG-Items.zip         datapack → world/datapacks
-    ├── AstralRPG-Textures.zip      resource pack (el servidor lo baja de GitHub)
+    ├── AstralRPG-Textures.zip      resource pack (el servidor lo baja de R2)
     ├── models/*.bbmodel            → plugins/BetterModel/models/
     ├── mythicmobs/mobs/astral.yml  → plugins/MythicMobs/mobs/
     ├── mythicmobs/skills/astral.yml, gachas.yml → plugins/MythicMobs/skills/
@@ -85,7 +85,7 @@ AstralRPG/
 | Mascotas: bonus, niveles, cómo se consiguen | `mobs/mascotas.py` (`MASCOTAS`); modelos en `mobs/creatures.py` | `python mobs/mascotas.py` (+ `build_models.py` y resource pack si cambia un modelo) | `plugins/MythicMobs/{mobs,skills}/mascotas.yml` + `mm reload` |
 | Un menú de cofre (/menu, /mascotas, gachas, bazar) | `menus.py` (funciones `*_menu`) | `python menus.py` | `plugins/DeluxeMenus/gui_menus/` (y la lista en `config.yml`) + `dm reload` |
 | Look de ventanas (piedra y oro) o del HUD (barra de ítems, corazones, comida, armadura, barras) | ventanas: `gui_textures.py` (recolorea las de Minecraft, necesita la carpeta `textures/gui` sacada del client.jar como argumento); HUD: `hud_rpg.py` (dibujado de cero, a 4x; **apagado** con `HUD_RPG = False` porque en el juego la barra de ítems salió rosa/negra) | `python gui_textures.py <carpeta gui>` → queda en `pack-source/gui/`, después `python build_pack.py pack-source` | resource pack |
-| Panel de la derecha (stats dibujados, `/sb`) | `betterhud.py` (filas, íconos, colores, tamaño) | `python betterhud.py` → `build/plugins/BetterHud/`; rearmar `pack-source/betterhud` en el Paper local y `python build_pack.py pack-source` (ver `docs/BETTERHUD_Y_DUELS.md`) | BetterHud + resource pack |
+| Panel de la derecha y `/sb` | `lobby.py` (TAB); `betterhud.py` (apagado y toggle) | `python lobby.py`, `python betterhud.py` | TAB y `astral_panel.sk`; ver `build/deploy/tanda1.md` |
 | Un título nuevo para la gacha | `lobby.py` (`TITLES`) | `python lobby.py` | igual que arriba |
 | Una línea del panel lateral o del tabulador | `lobby.py` (`TAB_SECTIONS`) | `python lobby.py` | `plugins/TAB/config.yml` (reemplazar esa sección) + `tab reload` |
 | Rangos (Novato...Leyenda) | `lobby.py` (`RANKS`) | `python lobby.py` | igual que arriba |
@@ -128,7 +128,7 @@ AstralRPG/
 Desde el 07/11/2026 el servidor está en Empower Servers (`103.106.58.173:7004`). Datos y trampas del panel en [SERVIDOR.md](SERVIDOR.md#empower-lo-que-hay-que-saber-07112026).
 
 ### Lo básico
-1. Regenerar con Python, commit y push a `main` (el resource pack se lee de GitHub).
+1. Regenerar con Python, commit y push a `main` (el resource pack se publica aparte en R2).
 2. Entrar al panel https://gp.empowerservers.com/server/44d1ad66 (el dueño inicia sesión).
 3. Subir o editar los archivos en Files (ver abajo).
 4. Recargar el plugin o reiniciar, y mirar la consola por errores.
@@ -157,8 +157,8 @@ Desde el 07/11/2026 el servidor está en Empower Servers (`103.106.58.173:7004`)
 ### Resource pack
 Cada vez que cambia `build/AstralRPG-Textures.zip`:
 1. Commit y push.
-2. Usar una URL fija al commit publicado: `https://raw.githubusercontent.com/Trainx12/AstralRPG/<SHA-completo-del-commit>/build/AstralRPG-Textures.zip`. Descargarla y comprobar su SHA-1.
-3. Guardar esa URL en `server.properties` → `resource-pack` y su hash en `resource-pack-sha1`. Guardar ambos campos en el servidor (Files → `server.properties`). No usar `main`: cambiarlo mientras un servidor sigue con el hash anterior puede romper las descargas.
+2. Ejecutar `python tools/subir_pack_r2.py build/AstralRPG-Textures.zip` (boto3). Sube a R2 y compara el SHA-1 de la descarga publica; imprime solo URL + SHA-1. `--dry-run` no usa red ni claves.
+3. Guardar la URL fija `https://pub-5e0d1c63a1554ba7b8e33b038e1a06fe.r2.dev/AstralRPG-Textures.zip` en `resource-pack` y el hash verificado en `resource-pack-sha1` de `server.properties`. Mantener el servidor apagado durante la actualizacion del pack y las propiedades.
 4. Reiniciar.
 
 ---
@@ -203,7 +203,7 @@ Sirve para probar MythicMobs, BetterModel y el datapack sin tocar el servidor (s
 ## 7. Cosas importantes que no hay que olvidar
 
 - **El repo es público.** Nunca commitear contraseñas; van en `docs/CREDENCIALES.local.md` (ignorado por Git). Tampoco subir mapas de terceros al repo.
-- **Respaldos:** Empower hace uno por día (pestaña Backups), pero no los garantiza. Bajar el mundo de vez en cuando.
+- **Respaldos:** El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.
 - **El servidor está prendido 24/7** en Empower. Si no conecta, mirar en el panel que diga Running y revisar la consola.
 - **AuraSkills necesita el preset `legacy.zip`** para que existan Forja y Hechicería.
 - **Versiones fijas:** Paper 26.1.2, Stellarity 5.4.2 (la 6.x crashea), ExcellentEnchants 5.4.3 con NightCore 2.16.7. No usar ExcellentCrates (la 7.x no se puede configurar por archivo y la 6.x no anda con este NightCore).
@@ -255,3 +255,5 @@ Instalación, ZIP privados, coordenadas por revisar y pruebas en
 [Parkour y Arenas](PARKOUR_Y_ARENAS.md). Lista exacta para el servidor:
 `build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.
+
+Panel lateral actual: TAB (`lobby.py`), BetterHud apagado por defecto; `/sb` en `betterhud.py` controla TAB. Ver `build/deploy/tanda1.md`.
