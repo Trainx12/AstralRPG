@@ -87,6 +87,10 @@ class Tanda3bTests(unittest.TestCase):
                     png=z.read('assets/bettermodel/textures/item/'+name+'_'+name+'.png')
                     converted=Image.open(io.BytesIO(png))
                     self.assertTrue(any(0<a<255 for a in converted.getchannel('A').get_flattened_data()))
+                    self.assertEqual(im.convert('RGBA').tobytes(),converted.convert('RGBA').tobytes())
+                    alpha=Counter(im.getchannel('A').get_flattened_data())
+                    visible=sum(n for a,n in alpha.items() if a)
+                    self.assertGreater(sum(n for a,n in alpha.items() if 115<=a<=153)/visible,.65)
 
     def test_combat_and_ghost_boundaries(self):
         for kind,hp in ((k,26 if k=='guardian' else 20) for k in WEIGHTS):
@@ -94,11 +98,13 @@ class Tanda3bTests(unittest.TestCase):
             self.assertEqual(m['Health'],hp); self.assertTrue(m['Options']['Glowing'])
             self.assertTrue(any('meleeattack' in s for s in m['AIGoalSelectors']) or kind in ('arquero','nigromante'))
         ghost=self.mobs['astral_creeper_fantasma']
-        self.assertEqual(ghost['Options']['ExplosionRadius'],12)
+        self.assertEqual(ghost['Options']['ExplosionRadius'],6)
         self.assertFalse(ghost['Options']['Glowing'])
         sk=script(); self.assertIn('spawn reason is natural',sk)
         self.assertIn('name of world of event-entity is "world"',sk)
-        self.assertIn('chance of 30%',sk); self.assertIn('damage * 4',sk)
+        self.assertIn('chance of 30%',sk); self.assertIn('damage * 2',sk)
+        self.assertIn('brightness{b=15;s=15} @self',self.skills['AST_GHOST_MODELO']['Skills'])
+        self.assertTrue(any('particles{p=dust;color=#5fb6ff;' in s for s in ghost['Skills']))
         self.assertIn('priority low',sk); self.assertIn('angle',sk)
         self.assertFalse(any('mm ' in v for p,v in self.files.items() if p.endswith('.mcfunction')))
         for d in catalog():

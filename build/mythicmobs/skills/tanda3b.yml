@@ -3,32 +3,33 @@ AST_ESQ_MODELO_arquero:
   Skills:
   - model{m=astral_esq_arquero} @self
   - addtag{tag=ad.esq.arquero} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.00703"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.604218"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.06633"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.639798"} @self
 AST_ESQ_MODELO_escudero:
   Skills:
   - model{m=astral_esq_escudero} @self
   - addtag{tag=ad.esq.escudero} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.025874"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.615524"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.028853"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.617312"} @self
 AST_ESQ_MODELO_nigromante:
   Skills:
   - model{m=astral_esq_nigromante} @self
   - addtag{tag=ad.esq.nigromante} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.164009"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.698405"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.169081"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.701449"} @self
+  - brightness{pid=orb;b=15;s=15} @self
 AST_ESQ_MODELO_espadachin:
   Skills:
   - model{m=astral_esq_espadachin} @self
   - addtag{tag=ad.esq.espadachin} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.00703"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.604218"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.010008"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.606005"} @self
 AST_ESQ_MODELO_guardian:
   Skills:
   - model{m=astral_esq_guardian} @self
   - addtag{tag=ad.esq.guardian} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.032156"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.619294"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.117045"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.670227"} @self
 AST_ESQ_HECHIZO:
   Conditions:
   - targetwithin{d=16} true
@@ -350,3 +351,7 @@ AST_ESQ_CONVIERTE_cumbre_sala2:
   - removetag{tag=ad.esq.cumbre.sala2;sync=true}
   - randomskill{s=AST_ESQ_cumbre_sala2_arquero 30,AST_ESQ_cumbre_sala2_escudero 20,AST_ESQ_cumbre_sala2_nigromante 15,AST_ESQ_cumbre_sala2_espadachin 20,AST_ESQ_cumbre_sala2_guardian 15;sync=true}
   - remove{sync=true}
+AST_GHOST_MODELO:
+  Skills:
+  - model{m=astral_creeper_fantasma} @self
+  - brightness{b=15;s=15} @self

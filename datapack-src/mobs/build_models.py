@@ -56,7 +56,7 @@ FACE_GEOM = {
 }
 
 
-def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255)):
+def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255), translucent=False):
     """Vista 3D ortografica con z-buffer (sin numpy). yaw>0 muestra el frente y el costado +X."""
     import math
     data = model.export()[0]
@@ -121,6 +121,7 @@ def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255
     out = Image.new("RGBA", (W, H), background)
     px = out.load()
     tex = img.load()
+    fragments = {} if translucent else None
     for (O, U, V, uv) in faces:
         u0, v0, u1, v1 = uv
         tw, th = u1 - u0, v1 - v0
@@ -140,13 +141,25 @@ def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255
                 if not (0 <= s < 1 and 0 <= t < 1):
                     continue
                 d = O[2] + s * U[2] + t * V[2]
-                if d >= zbuf[Y][X]:
+                if not translucent and d >= zbuf[Y][X]:
                     continue
                 c = tex[min(u1 - 1, int(u0 + s * tw)), min(v1 - 1, int(v0 + t * th))]
                 if c[3] == 0:
                     continue
+                if translucent:
+                    fragments.setdefault((X,Y), []).append((d,c))
+                    continue
                 zbuf[Y][X] = d
                 px[X, Y] = c
+    if translucent:
+        # Aproximacion CPU del blending; no certifica el render de Minecraft.
+        for (X,Y), layers in fragments.items():
+            rgb = background[:3]
+            for _, c in sorted(layers, key=lambda v: -v[0]):
+                alpha = c[3]/255
+                rgb = tuple(round(c[i]*alpha+rgb[i]*(1-alpha)) for i in range(3))
+            px[X,Y] = (*rgb,255)
+        return out
     o2 = out.copy()
     p2 = o2.load()
     for Y in range(1, H - 1):

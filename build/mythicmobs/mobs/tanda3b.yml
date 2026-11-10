@@ -1692,12 +1692,13 @@ astral_creeper_fantasma:
   Health: 20
   Options:
     Glowing: false
-    ExplosionRadius: 12
+    ExplosionRadius: 6
     PreventOtherDrops: true
     Despawn: true
   Skills:
   - addtag{tag=astral.ghost} @self ~onSpawn
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
-  - model{m=astral_creeper_fantasma} @self ~onSpawn
-  - model{m=astral_creeper_fantasma} @self ~onLoad
+  - skill{s=AST_GHOST_MODELO} @self ~onSpawn
+  - skill{s=AST_GHOST_MODELO} @self ~onLoad
+  - particles{p=dust;color=#5fb6ff;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12
   - state{s=swell} @self ~onPrime

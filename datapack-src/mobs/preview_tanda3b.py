@@ -19,14 +19,14 @@ def main():
         m=fn(); tex=save(m,ROOT/'build/models'/f'{m.name}.bbmodel')
         ref=source.crop(crops[i]) if i<5 else Image.open(ROOT/'.local/coordination/ref/creeper-fantasma-referencia.png').convert('RGBA')
         ref.thumbnail((350,410))
-        views=[preview3d(m,tex,yaw,pitch,10,background=BG) for yaw,pitch in ((0,0),(90,0),(35,12),(-24,15))]
+        views=[preview3d(m,tex,yaw,pitch,10,background=BG,translucent=i==5) for yaw,pitch in ((0,0),(90,0),(35,12),(-24,15))]
         image=Image.new('RGBA',(365+sum(v.width+20 for v in views),480),BG)
         text(image,(8,10),'Referencia (solo local)',16); image.paste(ref,(8,55),ref)
         x=365
         for title,v in zip(('Frente','Costado','3/4','Angulo foto'),views):
             text(image,(x,10),title,16); image.paste(v,(x,55),v); x+=v.width+20
         image.save(OUT/f'{m.name}-comparacion.png')
-        v=preview3d(m,tex,0,0,5,background=BG); figures.append((v,m.name.replace('astral_','')))
+        v=preview3d(m,tex,0,0,5,background=BG,translucent=i==5); figures.append((v,m.name.replace('astral_','')))
     p=player(); figures.insert(0,(preview3d(p,p.export()[1],0,0,5,background=BG),'Jugador 1,8 bloques'))
     sheet=Image.new('RGBA',(sum(max(180,v.width)+15 for v,_ in figures),250),BG)
     x=8

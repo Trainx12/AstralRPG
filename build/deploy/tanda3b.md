@@ -22,7 +22,11 @@ Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |
 | `build/AstralRPG-Textures.zip` | R2: objeto `AstralRPG-Textures.zip` |
 
-Pack: 17662083 bytes. SHA-1: **`a088d39deb5d63fe375b20d7b199661a111c9442`**.
+Pack: 17705571 bytes. SHA-1: **`d35a026942e85bd056b1682b9c409500cd594a95`**.
+
+## Actualizacion v2 sobre 3b ya instalada
+
+De la tabla anterior, reemplazar solamente los seis `.bbmodel`, los dos `tanda3b.yml`, `astral_tanda3b.sk` y el resource pack. Actualizar `resource-pack-sha1` y reiniciar. No requiere cambiar datapack, archivos de mazmorras ni recrear controladores. La lista completa y los controladores siguientes aplican si 3b aun no fue instalada.
 
 ## Instalacion por el responsable del navegador
 
@@ -32,7 +36,7 @@ Pack: 17662083 bytes. SHA-1: **`a088d39deb5d63fe375b20d7b199661a111c9442`**.
 4. Subir el pack con `python tools/subir_pack_r2.py build/AstralRPG-Textures.zip`; verificar la descarga publica y su SHA-1. En `server.properties`, conservar la URL fija R2 y poner el SHA-1 de esta entrega en `resource-pack-sha1`.
 5. Iniciar. El reinicio carga el datapack, modelos y MythicMobs. Comprobar consola. Si se ajusta durante una prueba: `bettermodel reload`, `mm reload`, `skript:skript reload astral_tanda3b`. El cambio de propiedades/pack y esta instalacion requieren reinicio.
 6. Recrear los controladores siguientes con las salas vacias. Evita retener skills antiguas. Los comandos borran entidades etiquetadas de esas salas, incluida una instancia de jefe: nunca ejecutarlos durante una partida.
-7. Reconectar un jugador, aceptar pack y probar cada clase, oleadas completas, spawn natural y creeper. Comprobar protecciones de explosion existentes de Tanda 2; potencia 12 rompe mucho terreno en survival.
+7. Reconectar un jugador, aceptar pack y probar cada clase, oleadas completas, spawn natural y creeper. Comprobar protecciones de explosion existentes de Tanda 2; potencia 6 y multiplicador de dano x2.
 
 ## Controladores (solo salas vacias)
 
@@ -89,17 +93,17 @@ No recrear controladores de Santuario ni Forja. No subir configs de prueba compl
 
 | Modelo | s | Modelo ancho x alto x fondo (b) | scale entidad |
 |---|---:|---|---:|
-| `astral_esq_arquero` | 1 | 1.386 x 2.004 x 0.648 | 1.00703 |
-| `astral_esq_escudero` | 1 | 1.389 x 2.041 x 0.562 | 1.025874 |
-| `astral_esq_nigromante` | 1 | 2.202 x 2.316 x 0.613 | 1.164009 |
-| `astral_esq_espadachin` | 1 | 1.125 x 2.004 x 0.522 | 1.00703 |
-| `astral_esq_guardian` | 1 | 1.603 x 2.054 x 0.569 | 1.032156 |
+| `astral_esq_arquero` | 1 | 1.553 x 2.122 x 1.182 | 1.06633 |
+| `astral_esq_escudero` | 1 | 1.669 x 2.047 x 0.759 | 1.028853 |
+| `astral_esq_nigromante` | 1 | 2.540 x 2.326 x 0.656 | 1.169081 |
+| `astral_esq_espadachin` | 1 | 2.073 x 2.010 x 0.576 | 1.010008 |
+| `astral_esq_guardian` | 1 | 1.945 x 2.223 x 0.674 | 1.117045 |
 | `astral_creeper_fantasma` | 1 | 0.500 x 1.625 x 0.625 | 1 |
 
 ## Reproduccion y pendientes
 
-Desde `datapack-src`: `python mobs/build_models.py`, `python mobs/mythic.py`, `python mobs/mazmorra.py`, `python build.py`, `python mobs/preview_tanda3b.py`. Convertir los seis modelos con BetterModel 3.6.0 local (docs/GUIA.md seccion 4), copiar sus 97 assets de `plugins/BetterModel/build/assets` a `pack-source/bettermodel/assets`, conservando los demas. `python build_pack.py pack-source`; `python -m mobs.entrega_tanda3b`.
+Desde `datapack-src`: `python mobs/build_models.py`, `python mobs/mythic.py`, `python mobs/mazmorra.py`, `python build.py`, `python mobs/preview_tanda3b.py`. Convertir los seis modelos con BetterModel 3.6.0 local (docs/GUIA.md seccion 4), copiar los assets de estos seis modelos de `plugins/BetterModel/build/assets` a `pack-source/bettermodel/assets`, conservando los demas. `python build_pack.py pack-source`; `python -m mobs.entrega_tanda3b`.
 
 Validacion: `python -m unittest discover -p "test_*.py"` y `python verify.py`. Las pruebas reales y sus limites, el detalle por modelo, paleta y diferencias finales estan en `docs/TANDA3B.md`.
 
-Pendientes: revision visual del dueno; cliente Minecraft para transparencia/animaciones y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. El alfa parcial sobrevivio la conversion de BetterModel; esto no certifica el render del cliente.
+Pendientes: revision visual del dueno; prueba visual en cliente Minecraft 26.1.2 de transparencia/animaciones y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. Se conserva el fantasma: Minecraft 26.1 soporta translucidez en modelos de item y BetterModel usa item_display (fuentes en docs/TANDA3B.md). Alfa 115-153 en el hielo, destellos blancos opacos, brillo 15/15 y polvo celeste. Esto confirma la viabilidad tecnica; no reemplaza la comprobacion visual en cliente. No se regenero el datapack ni cambiaron controladores en v2: los de la tabla corresponden a la instalacion completa sobre tandas 2/3a. Si ya esta instalada 3b, actualizar solo seis modelos, mobs/skills tanda3b.yml, astral_tanda3b.sk, pack y SHA-1; no recrear controladores.

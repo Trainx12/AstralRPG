@@ -21,10 +21,11 @@ class DungeonModel(Model):
                     for xx in range(w):
                         v = rng.random()
                         c = im.getpixel((x+xx, y+yy))
-                        if v < .12: c = (58,134,217,180)
-                        elif v < .26: c = (127,200,255,155)
-                        elif v < .32: c = (234,246,255,235)
-                        else: c = c[:3]+(110 if (xx+yy+i)%5 else 160,)
+                        if v < .20: c = (47,141,255,125)
+                        elif v < .42: c = (95,182,255,140)
+                        elif v < .51: c = (168,227,255,153)
+                        elif v < .55: c = (240,251,255,255)
+                        else: c = (95,182,255,115 if (xx+yy+i)%5 else 145)
                         im.putpixel((x+xx,y+yy),c)
                 for _ in range(max(1,w*h//30)):
                     xx,yy=rng.randrange(w),rng.randrange(h)
@@ -64,13 +65,18 @@ def skeleton(kind):
     box('body',(-3.5,12,-1.6),(3.5,14,1.6))
     box('body',(-4,13,-2),(4,14.5,2),leather,'wrap')
     for b,x in (('leg_l',-2.3),('leg_r',2.3)):
-        m.bone(b,(x,13,0),'body',rotation=(0,0,5 if x<0 else -5))
+        m.bone(b,(x,13,0),'body',rotation=(8 if x<0 else -10,0,10 if x<0 else -10))
         box(b,(x-.85,1,-.85),(x+.85,13,.85))
         box(b,(x-1.1,6,-1.1),(x+1.1,7.8,1.1),joint)
         for y in (1,4,9,11): box(b,(x-1.15,y,-1.2),(x+1.15,y+1.2,1.2),cloth,'wrap')
         box(b,(x-1.3,0,-1.9),(x+1.3,1.8,1.4),leather,'cloth')
     for b,x in (('arm_l',-5),('arm_r',5)):
-        m.bone(b,(x,23,0),'body',rotation=(-16 if kind=='arquero' else 0,0,-100 if kind=='nigromante' and x<0 else -9 if x<0 else 9))
+        poses={'arquero':((-68,-15,-22),(-78,20,14)),
+               'escudero':((-30,0,-22),(12,0,18)),
+               'nigromante':((0,0,-112),(0,0,12)),
+               'espadachin':((-15,0,-24),(-30,0,92)),
+               'guardian':((-22,-12,-25),(0,-10,172))}
+        m.bone(b,(x,23,0),'body',rotation=poses[kind][0 if x<0 else 1])
         box(b,(x-.85,11,-.85),(x+.85,23,.85))
         box(b,(x-1,16,-1),(x+1,18,1),joint)
         for y in (12,15,20): box(b,(x-1.25,y,-1.2),(x+1.25,y+1.3,1.2),cloth,'wrap')
@@ -80,6 +86,24 @@ def skeleton(kind):
     # Dientes separados y mandibula, no una banda blanca sobre la cara.
     for x in (-2.7,-1.3,.1,1.5): box('head',(x,24,-4.35),(x+.9,25.5,-4.02),bone)
     box('head',(-3.2,23.5,-3.7),(3.2,24.2,2),'#b9b28f')
+    # Arcos supraorbitales, sienes y pomulos sobresalen del craneo.
+    for x in (-3.8,.6):
+        box('head',(x,29.5,-4.6),(x+3.2,30.4,-3.8),joint)
+    for x in (-4,2.6):
+        box('head',(x,25.6,-4.6),(x+1.4,27.3,-3.5),bone)
+    box('head',(-2.7,23.1,-4.1),(2.7,24,-2.3),joint)
+    # Vertebras, esternon y pelvis abierta, con costillas en capas.
+    for y in range(14,24,2):
+        box('body',(-1.1,y,.4),(1.1,y+.8,1.4),joint)
+    box('body',(-.5,17,-2),(.5,23,-1.3),bone)
+    for x in (-3.9,2):
+        box('body',(x,11,-1.9),(x+1.9,13.2,1.8),joint)
+    # Hilos cosidos y flecos independientes sobre las vendas.
+    for b,x in (('leg_l',-2.3),('leg_r',2.3),('arm_l',-5),('arm_r',5)):
+        y=9 if b.startswith('leg') else 15
+        for j in range(3):
+            box(b,(x-.9+j*.65,y,-1.35),(x-.65+j*.65,y+.45,-1.18),'#a89b70','wrap')
+        box(b,(x+.8,y-1.8,-1.25),(x+1.3,y+.2,-.95),cloth,'cloth')
     if kind in ('escudero','guardian'):
         box('head',(-4.5,30,-4.4),(4.5,32.6,4.4),metal,'rust')
         for x in (-4.5,3.6): box('head',(x,26,-3.8),(x+.9,31,4.4),metal,'rust')
@@ -90,7 +114,11 @@ def skeleton(kind):
             box(b,(x-2,21,-2.4),(x+2,24.7,2.4),metal,'rust')
             for dx in (-1.3,1.3): box(b,(x+dx-.25,22,-2.7),(x+dx+.25,22.5,-2.4),'#c8d1b6')
         if kind=='escudero':
-            box('body',(-4.3,18,-2.3),(4.3,23,2.2),metal,'rust')
+            # Anneaux de cota: pequenas piezas alternadas, con huecos de hueso.
+            for row in range(5):
+                for col in range(7):
+                    x=-3.8+col*1.1+(row%2)*.3; y=17+row*1.2
+                    box('body',(x,y,-2.4),(x+.72,y+.8,-1.8),metal if (row+col)%2 else '#a2afa0','rust')
             box('body',(-4,18,-2.6),(4,18.7,-2.3),'#a4b3a0','rust')
         else:
             box('body',(-3.8,17,-2.1),(3.8,22.5,1.8),leather,'cloth')
@@ -98,63 +126,122 @@ def skeleton(kind):
         # Escudos con tablones, borde y remaches, en brazo izquierdo.
         if kind!='espadachin':
             green=kind=='guardian'; wood='#586739' if green else '#c8c28a'
-            edge='#85b6ad' if green else '#888969'
+            edge='#73c5cc' if green else '#888969'
             box('arm_l',(-12,9,-3.3),(-3,21,-1.5),edge,'rust')
-            for j in range(4): box('arm_l',(-11.3+j*2,9.7,-3.6),(-9.45+j*2,20.3,-3.3),wood,'wood')
+            for j in range(4): box('arm_l',(-10.8+j*1.7,10.2,-3.6),(-9.25+j*1.7,19.8,-3.3),wood,'wood')
+            if green:
+                box('arm_l',(-8.3,12,-4),(-7.3,18,-3.5),'#87a866','wrap')
+                box('arm_l',(-10,14.5,-4),(-5.6,15.5,-3.5),'#87a866','wrap')
             for x in (-11.5,-3.9):
                 for y in (10,19.8): box('arm_l',(x,y,-3.85),(x+.6,y+.6,-3.6),'#d6d7ac')
         # Espadas: recta larga o cimitarra escalonada, filo y guarda.
         if kind!='escudero':
-            offset=3 if kind=='guardian' else 0
+            sword_start=len(m.cubes)
+            offset=0
             box('arm_r',(4.5,10,-1.7),(5.5+offset,12,-.7),leather,'wrap')
             box('arm_r',(4.5+offset,10,-1.7),(5.5+offset,15,-.7),leather,'wrap')
             box('arm_r',(2.8+offset,14,-1.7),(7.2+offset,15,-.7),'#9e8b59','rust')
-            for j in range(6):
-                x=4.5+offset+(j*j*.11 if kind=='espadachin' else 0)
-                width=2.7 if kind=='espadachin' else 1.7
+            for j in range(8):
+                x=4.5+offset-(j*j*.12 if kind=='espadachin' else 0)
+                width=(3.4-j*.15) if kind=='espadachin' else 1.7
                 box('arm_r',(x,15+j*2,-1.6),(x+width,17+j*2,-.8),'#c6c8a5')
                 box('arm_r',(x+width-.2,15+j*2,-1.7),(x+width+.3,17+j*2,-.7),'#edf0ce')
+            # El equipo tiene su propio pivote: la hoja no gira hacia el pecho.
+            m.bone('weapon',(5,12,-1),'body',rotation=(0,0,-72 if kind=='espadachin' else -14))
+            for c in m.cubes[sword_start:]:
+                c['bone']='weapon'
+                if kind=='guardian':
+                    c['from'][1]+=5; c['to'][1]+=5
     if kind=='arquero':
         for x,b in ((-5,'arm_l'),(5,'arm_r')):
             box(b,(x-1.6,21,-1.7),(x+1.6,24.2,2),'#718e8b','cloth')
+            for j in range(5):
+                box(b,(x-2+j*.8,20.4-j%2*.8,-2),(x-1.4+j*.8,23.5,2),'#94a8a1','fur')
         for j in range(5): box('body',(-4+j*1.5,10-j%2,-2.3),(-2.7+j*1.5,15,2.3),'#344d4b','cloth')
         vine(m,'body',[(-4,23,-2.4),(0,18,-2.5),(4,14,-2.4)],1.1,'#99b2a2')
-        bow=[(7,8,-4),(9,11,-4),(10,16,-4),(9,22,-4),(7,27,-4)]
-        vine(m,'arm_r',bow,1.3,'#3d4222')
-        vine(m,'arm_r',[bow[0],(6.7,17,-4),bow[-1]],.22,'#d6d7ac')
-        vine(m,'arm_r',[(0,17,-4.1),(12,17,-4.1)],.35,'#b9b28f')
-        box('arm_r',(11.5,16.5,-4.7),(13,17.5,-3.6),'#b8e0d7')
+        for b,x,y,z in (('head',-3,31,-3),('head',2,30,1),('arm_l',-5,18,-1.5),('arm_r',5,22,-1.5)):
+            for j in range(3):
+                box(b,(x+j*.7,y,z),(x+.4+j*.7,y+2.8-j*.7,z+.6),'#a8e3ff',rotation=(0,0,18-j*15))
+        bow=[(6,3,-4),(9,7,-4),(11,14,-4),(11,21,-4),(9,28,-4),(6,32,-4)]
+        m.bone('bow',(7,17,-4),'body',rotation=(0,-12,-12))
+        vine(m,'bow',bow,1.3,'#3d4222')
+        vine(m,'bow',[bow[0],(4,17,-4),bow[-1]],.22,'#d6d7ac')
+        vine(m,'bow',[(-3,17,-4.1),(12,17,-4.1)],.35,'#b9b28f')
+        box('bow',(11.5,16.5,-4.7),(13,17.5,-3.6),'#b8e0d7')
+        for y in (4,29): box('bow',(5.7,y,-4.4),(6.7,y+1.2,-3.5),'#9aa57c','wrap')
         box('body',(-4.4,15,2),(-1,25,4.6),leather,'wood')
-        for x in (-4,-2.8,-1.7): box('body',(x,23,3),(x+.3,29,3.3),'#b9b28f')
+        for x in (-4,-2.8,-1.7):
+            box('body',(x,23,3),(x+.3,29,3.3),'#b9b28f')
+            box('body',(x-.3,27.5,2.8),(x+.6,29,3.5),'#d4e8dc','feather')
     if kind=='nigromante':
         # Capucha abierta: techo, laterales, espalda y cavidad frontal.
         box('head',(-5,31,-4.8),(5,33,4.8),cloth,'cloth')
         box('head',(-4,30.3,-4.65),(4,31,-4.1),'#292718','cloth')
         for x in (-5,4): box('head',(x,23,-4.8),(x+1,32,4.8),cloth,'cloth')
         box('head',(-5,23,4),(5,32,5),cloth,'cloth')
+        # Viseras de tela hunden el rostro; ojos luminosos en la sombra.
+        box('head',(-4.1,25,-4.35),(4.1,30.5,-4.05),'#1b2119','cloth')
+        for x in (-2.8,1.3): box('head',(x,27.8,-4.55),(x+1.5,28.5,-4.3),'#e7f5ad')
+        for x in (-4.7,3.8): box('head',(x,23.8,-5.5),(x+.9,32,-4.5),'#39361b','cloth')
         box('body',(-4.3,10,-2.5),(4.3,24,2.5),cloth,'cloth')
         for j in range(7):
             x=-5+j*1.4
             box('body',(x,2+j%3*1.4,-2.8),(x+1.25,13,2.8),cloth,'cloth')
+            for k in range(2):
+                box('body',(x+k*.6,1+j%3*1.4-k*.4,-2.9),(x+k*.6+.35,5+j%3,-2.45),'#39331c','cloth')
+        vine(m,'body',[(-4.4,13.5,-2.9),(0,13,-3.1),(4.4,13.5,-2.9)],.55,'#9a8954')
+        vine(m,'body',[(1,13,-3.2),(1.6,10,-3.3),(.8,7,-3.3)],.4,'#9a8954')
         for x,b in ((-5,'arm_l'),(5,'arm_r')): box(b,(x-1.6,15,-1.6),(x+1.6,24,1.6),cloth,'cloth')
         vine(m,'arm_r',[(9,0,-2),(9,25,-2),(10,32,-2),(9,35,-2),(6,36,-2),(5,34,-2)],1.2,'#765c2c')
         for b,x,y,z in (('arm_r',8,33.5,-2),('body',0,19,-2.8)):
             box(b,(x-1,y-1,z-.7),(x+1,y+1,z+.7),'#c8392e')
             box(b,(x-.5,y-.4,z-.85),(x+.2,y+.6,z-.7),'#ffad77')
         m.bone('orb',(-5,9,-2),'arm_l')
-        box('orb',(-7,7,-3),(-3,11,1),'#fff19a')
-        box('orb',(-6,8,-3.5),(-4,10,-3),'#ffffff')
-        for j,(dx,dy) in enumerate(((-3,0),(3,0),(0,3),(0,-3))):
-            box('orb',(-5+dx-.3,9+dy-.3,-1),(-5+dx+.3,9+dy+.3,0),'#ffe15a')
+        m.blob('orb',(-5,8,-1),(3.8,4.3,3.3),'#ffe964')
+        m.blob('orb',(-5,8,-3.7),(2.4,2.8,1),'#fffbd0')
+        box('orb',(-6,7,-4.8),(-4,9,-4.5),'#ffffff')
+        for j in range(8):
+            a=j*math.pi/4; dx,dy=math.cos(a),math.sin(a)
+            vine(m,'orb',[(-5+dx*5,8+dy*5,-1),(-5+dx*(7+j%2),8+dy*(7+j%2),-1)],.45,'#ffe75b')
+        vine(m,'arm_r',[(6,36,-2),(4,35,-2),(4,32,-2),(6,31,-2),(7,32,-2)],.8,'#917336')
+    if kind=='espadachin':
+        for y in (24.5,25.4): box('head',(-4.15,y,-4.7),(4.15,y+.65,4.1),'#a2a284','wrap')
+        for x in (-3,1.8):
+            box('body',(x,11,-3.2),(x+1.8,14,-2),'#67502a','cloth')
+            box('body',(x+.6,12.5,-3.5),(x+1.1,13.3,-3.2),'#c2a365','rust')
     if kind=='guardian':
+        box('head',(-.6,31.8,-4.5),(.6,34,3.8),'#819e7b','rust')
         for b,a,c in [('head',(-4.7,30,-4.7),(-1,32.8,-4.4)),('body',(1,18,-2.5),(3.6,22,-2.1)),('leg_l',(-3.5,7,-1.5),(-1.5,10,-1.2))]:
             box(b,a,c,'#65723b','wrap')
+        for b,x,y,z in (('head',2,30,-4.5),('arm_l',-5.5,23,-2.5),('arm_r',4,22,-2.5),('leg_r',2,5,-1.5)):
+            for j in range(4):
+                box(b,(x+j*.55,y-j%2*.7,z),(x+.8+j*.55,y+.7,z+.4),'#56733c' if j%2 else '#839454','wrap')
+        # Escudo cuadrado, ensanchar sin adelgazar el marco turquesa.
+        for c in m.cubes:
+            if c['bone']=='arm_l' and c['from'][2] < -3:
+                for k in ('from','to'):
+                    c[k][0]=-7.5+(c[k][0]+7.5)*1.3
+    if kind in ('guardian','espadachin'):
+        # Codo flexionado y mano sobre la empunadura, sin segundo hueso alzado.
+        m.cubes=[c for c in m.cubes if c['bone']!='arm_r']
+        m.bones['arm_r']['rotation']=[0,0,0]
+        hand=(6.3,17.8,-1.1) if kind=='guardian' else (4.6,11.8,-1.1)
+        elbow=(7,19,0) if kind=='guardian' else (7,17,0)
+        vine(m,'arm_r',[(5,23,0),elbow,hand],1.5,bone)
+        for x,y,z in (elbow,hand):
+            box('arm_r',(x-.9,y-.7,z-1),(x+.9,y+.7,z+1),joint)
+        if kind=='guardian':
+            box('arm_r',(3,21,-2.4),(7,24.7,2.4),metal,'rust')
+            for x in (3.5,6): box('arm_r',(x,22,-2.7),(x+.5,22.5,-2.4),'#c8d1b6')
+        for y in (14,16):
+            if kind=='espadachin': box('arm_r',(4.9,y,-1.3),(6.8,y+.7,1),cloth,'wrap')
     m.anim('idle',3,{'body':{'position':(0,swing(.18,1/3),0)},'head':{'rotation':(0,swing(3,1/3),0)}})
     m.anim('walk',1,{b:{'rotation':(swing(a),0,0)} for b,a in [('leg_l',24),('leg_r',-24),('arm_l',-14),('arm_r',14)]})
     if kind=='arquero':
         attack={'arm_r':{'rotation':(swing(-55,1/1.3),0,0)},
                 'arm_l':{'rotation':(swing(-70,1/1.3),swing(18,1/1.3),0),
                          'position':(swing(-2,1/1.3),0,swing(-2,1/1.3))}}
+        attack['bow']={'rotation':(0,swing(-7,1/1.3),swing(5,1/1.3))}
     elif kind=='nigromante':
         attack={'arm_r':{'rotation':(swing(-25,1/1.3),0,0)},
                 'orb':{'scale':('1+math.sin(q.anim_time*276.923)*0.35',)*3},
@@ -162,6 +249,8 @@ def skeleton(kind):
     else:
         attack={'arm_r':{'rotation':(swing(-70,1/1.3),0,swing(-12,1/1.3))},
                 'arm_l':{'rotation':(swing(-20 if kind=='escudero' else -35,1/1.3),0,0)}}
+        if kind in ('guardian','espadachin'):
+            attack['weapon']={'rotation':(swing(-45,1/1.3),0,swing(-22,1/1.3))}
     m.anim('attack',.65,attack,loop='once')
     return m
 

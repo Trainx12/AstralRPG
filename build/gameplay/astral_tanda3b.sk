@@ -12,7 +12,7 @@ on damage with priority low:
     if attacker is set:
         if scoreboard tags of attacker contains "astral.ghost":
             damage cause is entity explosion
-            set damage to damage * 4
+            set damage to damage * 2
         if scoreboard tags of attacker contains "ad.esq.arquero":
             damage cause is projectile
             apply slowness 1 to victim for 2 seconds

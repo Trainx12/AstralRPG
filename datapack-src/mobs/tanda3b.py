@@ -7,8 +7,8 @@ from mobs.tamanos import skills as size_skills
 ROOT=Path(__file__).resolve().parents[2]
 WEIGHTS={'arquero':30,'escudero':20,'nigromante':15,'espadachin':20,'guardian':15}
 GHOST_CHANCE=30
-GHOST_DAMAGE=4
-GHOST_POWER=4
+GHOST_DAMAGE=2
+GHOST_POWER=2
 NORMAL_POWER=3
 
 
@@ -32,6 +32,8 @@ def definitions():
             'AIGoalSelectors':goals,'AITargetSelectors':['clear','players'],'Skills':sk}
         skills['AST_ESQ_MODELO_'+kind]={'Skills':[f'model{{m={mid}}} @self',f'addtag{{tag=ad.esq.{kind}}} @self',
             *size_skills(mid,1,'SKELETON',protect_sanctuary=False)]}
+        if kind=='nigromante':
+            skills['AST_ESQ_MODELO_'+kind]['Skills'].append('brightness{pid=orb;b=15;s=15} @self')
     skills.update({
         'AST_ESQ_HECHIZO':{'Conditions':['targetwithin{d=16} true','targetwithin{d=4} false'],
             'Skills':['state{s=attack} @self','projectile{onTick=AST_ESQ_LUZ;onHit=AST_ESQ_IMPACTO;v=9;i=1;hR=0.5;vR=0.5;mr=16} @target']},
@@ -65,8 +67,10 @@ def definitions():
         'Options':dict(Glowing=False,ExplosionRadius=NORMAL_POWER*GHOST_POWER,PreventOtherDrops=True,Despawn=True),
         'Skills':['addtag{tag=astral.ghost} @self ~onSpawn',
             'command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn',
-            'model{m=astral_creeper_fantasma} @self ~onSpawn','model{m=astral_creeper_fantasma} @self ~onLoad',
+            'skill{s=AST_GHOST_MODELO} @self ~onSpawn','skill{s=AST_GHOST_MODELO} @self ~onLoad',
+            'particles{p=dust;color=#5fb6ff;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12',
             'state{s=swell} @self ~onPrime']}
+    skills['AST_GHOST_MODELO']={'Skills':['model{m=astral_creeper_fantasma} @self','brightness{b=15;s=15} @self']}
     return mobs,skills
 
 
