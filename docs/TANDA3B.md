@@ -1,98 +1,78 @@
-# Tanda 3b v3: Creeper Nuclear y esqueletos de alta densidad
+# Tanda 3b v4: esqueletos anteriores y Creeper Nuclear conservado
 
-Implementacion sobre `315ab9d`, sin desplegar. Generadores propios:
-`datapack-src/mobs/creatures_tanda3b.py`, `tanda3b.py`, `preview_tanda3b.py`,
-`entrega_tanda3b.py`. Instalacion: [manifiesto](../build/deploy/tanda3b.md).
-Santuario, Forja, controladores, cantidades y pesos de oleadas conservados.
+Entrega sin desplegar. Los cinco esqueletos vuelven exactamente a `315ab9d` (16 texeles/bloque).
+El Creeper Nuclear conserva la version de `1008f75` (32 texeles/bloque).
+Instalacion y archivos exactos: [manifiesto](../build/deploy/tanda3b.md).
+Santuario, Forja, controladores, cantidades y pesos de oleadas no cambian.
 
-## Diferencias iniciales contra las referencias
+## Restauracion e identidad
 
-- Creeper: el hielo no corresponde al pedido. Faltaban camuflaje oliva/marron,
-  rostro amarillo con fondo rojo, franjas de peligro y simbolo nuclear posterior.
-- Todos los esqueletos: craneo chico respecto del cuerpo, huesos poco separados,
-  poca superficie para fisuras, costuras y desgaste a 16 texeles/bloque.
-- Arquero: empunadura del arco insuficientemente envuelta; escarcha y flecos poco legibles.
-- Escudero: costillas demasiado continuas; hebilla sin hueco y cuencas poco profundas.
-- Nigromante: faltaban espiral alrededor del baston y brillo separado en su gema.
-- Espadachin: mango sin vendas individuales suficientes y correa cruzada incompleta.
-- Guardian: faltaban mas costuras, articulaciones y contraste de los ojos bajo el casco.
+`creatures_tanda3b.py` restaura la geometria, pintura, proporciones, UV y animaciones de los
+cinco esqueletos de `315ab9d`. `DungeonModel` mantiene la densidad anterior; `NuclearModel`
+aisla la pintura y densidad de v3 para que el creeper no cambie. Se restaura la escala vanilla
+y el step_height de cada esqueleto en MythicMobs; se retira la luz `pid=gem` que no existia
+antes. El orbe del nigromante conserva su brillo original.
 
-## Tres vueltas de render y correccion
+Se regeneraron los seis bbmodel desde el generador y se compararon byte a byte mediante
+`git show`: cinco modelos y 122 assets BetterModel identicos a `315ab9d`; modelo nuclear
+y 15 assets identicos a `1008f75`. Los assets son las conversiones ya versionadas, restauradas
+sin una nueva conversion. Se retiraron los 42 assets de esqueletos agregados por v3, incluida
+la gema y las piezas adicionales de torso y baston. Las definiciones completas de mobs y
+skills de esqueletos coinciden con `315ab9d`; las nucleares coinciden con `1008f75`.
+El Skript nuclear no cambia. No reaparecen el modelo ni los assets del creeper fantasma.
 
-1. Texturas a **32 texeles/bloque como minimo** (caras redondeadas hacia arriba a texeles enteros),
-   craneo 20% mayor, tronco/extremidades 10% mas compactos. Costillas delanteras y traseras
-   separadas, hebilla hueca, correas cruzadas, costuras, nudos y vendas de empunaduras.
-   Creeper opaco nuevo con sus cuatro patas cortas, luz facial y camuflaje original.
-   Revision: franjas demasiado altas, paleta clara y placa de radiacion demasiado ancha.
-2. Franjas limitadas al tercio central de cada pata, camuflaje mas oscuro, disco de radiacion
-   integrado en la espalda y fisuras finas en el craneo. Revision: las cejas tapaban parte
-   de las cuencas; faltaba ver la espalda en las comparaciones.
-3. Cuencas profundas de geometria oscura bajo las cejas; vista trasera en cada comparacion.
-   Baston con espiral de relieve y gema con hueso propio a brillo 15/15. Orbe conserva rayos,
-   nucleo blanco y animacion de pulsacion. Render final revisado con escala de jugador.
+SHA-256 de los modelos (incluyen texturas embebidas y animaciones):
 
-Se conservaron las laminas de las vueltas 1 y 2 en `.local/coordination/`;
-la tercera es `build/previews/tanda3b.png`. Las seis comparaciones nuevas estan en
-`build/previews/<modelo>-comparacion.png`, con referencia, frente, costado, 3/4,
-angulo de la foto y espalda. Contienen referencias ajenas: quedan locales e ignoradas.
-Solo se publica la lamina conjunta de modelos propios y jugador de 1,8 bloques.
+| Modelo | SHA-256 |
+|---|---|
+| `astral_creeper_nuclear` | `a941d593d3a803df66c174f20173290bd32da12193d51d21bc0d9afe8204439d` |
+| `astral_esq_arquero` | `b7c59f4671b56331849698c5c0ea88a61502340da2b1dc3c7385ffb22a8502d9` |
+| `astral_esq_escudero` | `0397cffc90bd3a1682fc1a921744606c404baab6080fdd6ea43874b13624764b` |
+| `astral_esq_espadachin` | `ae5cbf811631a3e137260df7ad09fca6c8f75c13b50e8fd18ddf5e7f3ae8aa3b` |
+| `astral_esq_guardian` | `cab9c7f20ff1200196169e5bf3dc0516638cfeb97940765f3304cbe27b73b182` |
+| `astral_esq_nigromante` | `2b1c5e05b2a23dd550f174b6c9bf1807f53e93b065960078e4a47d71e767608e` |
 
-## Paleta y detalle final
+## Vistas y pack
 
-Se miraron ambas referencias y sus zonas de hueso, metal, tela y camuflaje.
-Muestreo del craneo azul cuantizado de la referencia: `#81c2a9`, `#64a287`,
-`#49806c` (luces y sombras); se adaptaron a un tono mas frio para la escarcha.
-La paleta nuclear pedida se mantiene como base: `#2f4a1c`, `#4c6b25`, `#6f8a2f`,
-`#5a3d1a`, `#c9a227`; ruido por pixel y manchas propias, sin copiar el patron de la foto.
-Rostro `#ffd21f`/`#ffe866` sobre `#7a1010`, peligro amarillo/negro y radiacion amarilla
-sobre disco negro. Craneo base `#d8d2b4`, articulaciones `#b9b28f`, sombra `#7f8a7c`,
-arquero azul `#8bbcc1`, guardian verdoso `#aab99a`, metal `#6d8582`, cuero `#43351f`.
+Se rehizo `build/previews/tanda3b.png` con los modelos propios a escala compartida con un
+jugador de 1,8 bloques. Se regeneraron las seis comparaciones de frente, costado, 3/4,
+angulo de referencia y espalda. Esas comparaciones incluyen referencias de terceros:
+permanecen locales e ignoradas; no se publican. La lamina conjunta fue inspeccionada.
 
-| Modelo | Resultado | Diferencias finales contra la foto |
-|---|---|---|
-| Arquero | Craneo cuadrado grande, cuencas, dientes separados, fisuras, escarcha, tiras con flecos, carcaj, arco largo tensado con vendas y puntas | Arco y pose tienen curvas propias; el render no aplica luz ambiental ni shader de la foto. |
-| Escudero | Casco y hombreras con remaches, cota en piezas, costillas separadas, hebilla hueca, escudo de tablones con clavos y marco metalico | Casco mas cerrado y escudo inclinado en otra pose; las abolladuras son desgaste pixelado y relieves cubicos. |
-| Nigromante | Capucha profunda, dientes, tunica en capas rasgadas, cuerda y hebilla, baston espiral con gema luminosa, orbe grande y rayos | Orbe redondeado por cubos, no llamarada de shader; capucha propia y baston de otra curvatura. |
-| Espadachin | Craneo grande, correas cruzadas, hombrera, bolsas, cimitarra curva con filo separado, guarda y mango envuelto | Cimitarra escalonada y pose abierta diferentes; no reproduce el sombreado fotografico. |
-| Guardian | Huesos con musgo, casco, articulaciones, espada larga, escudo ancho con tablones, relieve, clavos y borde turquesa | Relieve en cruz propio; musgo cubico, sin vegetacion de shader. |
-| Creeper Nuclear | Silueta vanilla, camuflaje oliva, cara amarilla sobre rojo oscuro, cuatro patas con chevron central, trebol nuclear atras | Manchas y ojos propios a mayor densidad; trebol simplificado al ancho del torso, franjas mas finas que la referencia. |
+Pack: **17,716,907 bytes**. SHA-1: **`940383c3591d889686273c33edacfc4ca940620e`**.
 
-La densidad duplicada usa atlas 256x256 para cada esqueleto y 128x128 para el creeper.
-Pack: **17.950.733 bytes** (17,12 MiB), frente a 17.705.571 bytes de v2: +245.162 bytes.
-SHA-1: `a10a8bd6bbd4cbfd2f05a0cb007f4161aa833c61`. No cambia el formato de BetterModel.
+## Creeper Nuclear (sin cambios respecto de 1008f75)
 
-## Comportamiento y migracion
+Modelo opaco con silueta vanilla, camuflaje oliva/marron original, rostro amarillo
+sobre fondo rojo oscuro, cuatro patas con franjas de peligro y trebol nuclear posterior.
+Paleta: `#2f4a1c`, `#4c6b25`, `#6f8a2f`, `#5a3d1a`, `#c9a227`; rostro
+`#ffd21f`/`#ffe866` sobre `#7a1010`. Atlas 128x128.
 
-ID activo `astral_creeper_nuclear`, nombre `&e&lCreeper Nuclear`.
+ID `astral_creeper_nuclear`, nombre `&e&lCreeper Nuclear`.
 `NUCLEAR_CHANCE=30`, `NUCLEAR_DAMAGE=2`, `NUCLEAR_POWER=2`, `NORMAL_POWER=3`.
-Solo spawns NATURAL en el mundo Bukkit `world`. Potencia 6; multiplicador de dano x2
-antes del tier y la defensa. Cara 15/15 en reposo; cuerpo con luz ambiental, 15/15 al
-hincharse. Particulas verdes y amarillas suaves y refuerzo al preparar la explosion.
+Reemplaza el 30% de apariciones NATURAL solo en el mundo Bukkit `world`.
+Potencia 6 y dano x2 antes del tier y la defensa, etiqueta `astral.nuclear`.
+Cara 15/15 en reposo; cuerpo con luz ambiental, 15/15 al hincharse.
+Particulas verdes y amarillas suaves; refuerzo al preparar la explosion.
 
-Se sustituyeron ID, etiqueta y skills en MythicMobs, Skript, tests, vistas y manifiesto.
-El antiguo modelo de hielo y sus assets se retiran del pack. En una instalacion anterior
-hay que retirar solo `plugins/BetterModel/models/astral_creeper_fantasma.bbmodel`.
-El datapack se inspecciona sin modificarlo: no contiene el ID ni la etiqueta sustituidos.
-Con 3b ya instalada no cambia el datapack ni se recrean controladores.
+Si se viene de v2, retirar solamente `plugins/BetterModel/models/astral_creeper_fantasma.bbmodel`
+y aplicar la migracion de mobs, skills y Skript del manifiesto. El datapack no cambia.
+Si v3 ya esta instalada, solo subir cinco modelos de esqueletos, skills `tanda3b.yml`, pack
+y SHA-1; apagar para reemplazar y reiniciar. No recrear controladores ni sustituir mundos.
 
 ## Verificaciones y pendientes
 
-Pasaron **163 pruebas en 53,226 s**, `python verify.py` y `git diff --check`.
-Texturas de los seis modelos identicas pixel por pixel a sus bbmodel, 127 referencias
-a submodelos resueltas en el ZIP y ningun asset del modelo retirado. Se copiaron 175
-archivos de los seis modelos desde el convertidor local.
+Pasaron **164 pruebas** (53,349 s), `python verify.py` y `git diff --check`.
+ZIP integro: 137 assets identicos a sus fuentes; todas las referencias de modelos
+resueltas; todo el contenido ajeno a los esqueletos identico al pack de `1008f75`. La prueba de identidad
+fija SHA-256 de los seis modelos; se conservan las pruebas nucleares, de probabilidades,
+oleadas, limites de mundo, potencia 6, dano x2, animaciones y ausencia de assets fantasma.
+Se verifica que cada asset del pack coincida con la fuente y sus referencias se resuelvan.
 
-Pruebas automatizadas: pesos, cantidades/plazas por oleada, identidad de sala, limites de mundo,
-potencia 6, dano x2, animaciones, densidad UV y ausencia del modelo retirado en el pack.
-Conversion real con Paper 26.1.2, BetterModel 3.6.0, MythicMobs 5.13.0 y Skript 2.17.1,
-recarga de Skript y spawn de las seis variantes. Consulta NBT: `ExplosionRadius: 6b`,
-etiqueta `astral.nuclear`. Servidor de prueba solo en `127.0.0.1:25589`, detenido con `stop`.
+En v4 no se inicio un servidor de prueba ni un cliente. La conversion y prueba real con
+Paper 26.1.2, BetterModel 3.6.0, MythicMobs 5.13.0 y Skript 2.17.1 fueron realizadas para
+v3 segun el registro anterior; no son una nueva prueba de esta restauracion.
 
-El entorno local no tiene ExcellentEnchants: hay errores de sus modificadores de items,
-sin relacion con esta tarea. MythicMobs emite avisos de ejemplos y al apagar puede intentar
-registrar una tarea estando deshabilitado; se comprueba guardado y cierre completo.
-Estos limites impiden afirmar que la consola completa este libre de errores.
-
-Pendientes: revision visual del dueno, aspecto nocturno, animaciones y combate en cliente,
-reemplazo natural real y protecciones de explosion en produccion; subida R2, instalacion,
-reinicio y revision de consola. No desplegado en Empower ni Aternos.
+Pendientes: revision visual del dueno, cliente Minecraft (animaciones, aspecto nocturno y
+combate), reemplazo natural real y protecciones de explosion en produccion, subida R2,
+instalacion, reinicio y revision de consola. No desplegado en Empower ni Aternos.

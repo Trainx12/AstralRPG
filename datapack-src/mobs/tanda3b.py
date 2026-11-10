@@ -34,7 +34,6 @@ def definitions():
             *size_skills(mid,1,'SKELETON',protect_sanctuary=False)]}
         if kind=='nigromante':
             skills['AST_ESQ_MODELO_'+kind]['Skills'].append('brightness{pid=orb;b=15;s=15} @self')
-            skills['AST_ESQ_MODELO_'+kind]['Skills'].append('brightness{pid=gem;b=15;s=15} @self')
     skills.update({
         'AST_ESQ_HECHIZO':{'Conditions':['targetwithin{d=16} true','targetwithin{d=4} false'],
             'Skills':['state{s=attack} @self','projectile{onTick=AST_ESQ_LUZ;onHit=AST_ESQ_IMPACTO;v=9;i=1;hR=0.5;vR=0.5;mr=16} @target']},

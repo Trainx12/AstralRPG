@@ -11,7 +11,7 @@ def main():
     pack=ROOT/'build/AstralRPG-Textures.zip'
     digest=hashlib.sha1(pack.read_bytes()).hexdigest()
     names=['astral_esq_'+k for k in WEIGHTS]+['astral_creeper_nuclear']
-    rows=['# Tanda 3b: entrega sin desplegar','',
+    rows=['# Tanda 3b v4: entrega sin desplegar','',
         'Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas 2 y 3a compatibles.','',
         '## Archivos exactos','', '| Archivo local | Destino |','|---|---|']
     for name in names:
@@ -24,11 +24,14 @@ def main():
         '| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |',
         '| `build/AstralRPG-Textures.zip` | R2: objeto `AstralRPG-Textures.zip` |','',
         f'Pack: {pack.stat().st_size} bytes. SHA-1: **`{digest}`**.','',
-        '## Actualizacion v3 sobre 3b ya instalada','',
-        'De la tabla anterior, reemplazar solamente los seis `.bbmodel`, los dos `tanda3b.yml`, '
-        '`astral_tanda3b.sk` y el resource pack. Actualizar `resource-pack-sha1` y reiniciar. '
-        'Con el servidor apagado, retirar plugins/BetterModel/models/astral_creeper_fantasma.bbmodel (solo ese modelo obsoleto). No requiere cambiar datapack, archivos de mazmorras ni recrear controladores. '
-        'La lista completa y los controladores siguientes aplican si 3b aun no fue instalada.','',
+        '## Actualizacion v4 sobre v3 (1008f75) ya instalada','',
+        'Reemplazar solo los cinco `build/models/astral_esq_*.bbmodel` en sus destinos de la tabla, '
+        '`build/mythicmobs/skills/tanda3b.yml` y el resource pack. Actualizar `resource-pack-sha1`. '
+        'Apagar antes de reemplazar archivos/propiedades, luego iniciar y revisar consola. '
+        'No cambiar el Creeper Nuclear, mobs, Skript, datapack ni controladores de v3. '
+        'La tabla completa y la instalacion siguiente aplican solo si 3b aun no fue instalada. '
+        'Si se viene de v2 (315ab9d), aplicar tambien la migracion nuclear: seis modelos, mobs/skills '
+        'tanda3b.yml y astral_tanda3b.sk; retirar solo el modelo obsoleto astral_creeper_fantasma.bbmodel.','',
         '## Instalacion por el responsable del navegador','',
         '1. Revisar `docs/TANDA3B.md` y vistas previas. Salas de Bosque/Minas/Tumba/Cumbre vacias y sin combate.',
         '2. Respaldar los archivos de la tabla. Apagar para reemplazar el datapack. No reemplazar mundos ni usar Worlds > Upload.',
@@ -69,9 +72,11 @@ def main():
         'Pendientes: revision visual del dueno; prueba en cliente Minecraft 26.1.2 de animaciones, brillo y combate; '
         'subida R2, instalacion y consola de produccion. No se afirma despliegue. '
         'Nuclear opaco: cara 15/15; cuerpo a luz ambiental, 15/15 al hincharse. '
-        'El datapack fue inspeccionado: no contenia ID ni etiqueta del modelo sustituido; no necesita regeneracion en v3. '
-        'Si ya esta instalada 3b, actualizar solo los seis modelos, retirar el modelo obsoleto, reemplazar mobs/skills tanda3b.yml, '
-        'astral_tanda3b.sk, pack y SHA-1; no recrear controladores.']
+        'El datapack no cambia en v4. '
+        'Identidad verificada: cinco modelos y 122 assets de esqueletos iguales byte a byte a 315ab9d; '
+        'modelo nuclear y 15 assets iguales a 1008f75. MythicMobs conserva exactamente las definiciones '
+        'de esqueletos de 315ab9d y las nucleares de 1008f75. Assets restaurados de conversiones ya versionadas; '
+        'no se ejecuto una nueva conversion ni servidor local en v4.']
     out=ROOT/'build/deploy/tanda3b.md'; out.write_text('\n'.join(rows)+'\n',encoding='utf8')
     print(out,digest)
 

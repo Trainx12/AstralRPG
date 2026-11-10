@@ -1,4 +1,4 @@
-# Tanda 3b: entrega sin desplegar
+# Tanda 3b v4: entrega sin desplegar
 
 Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas 2 y 3a compatibles.
 
@@ -22,11 +22,11 @@ Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |
 | `build/AstralRPG-Textures.zip` | R2: objeto `AstralRPG-Textures.zip` |
 
-Pack: 17950733 bytes. SHA-1: **`a10a8bd6bbd4cbfd2f05a0cb007f4161aa833c61`**.
+Pack: 17716907 bytes. SHA-1: **`940383c3591d889686273c33edacfc4ca940620e`**.
 
-## Actualizacion v3 sobre 3b ya instalada
+## Actualizacion v4 sobre v3 (1008f75) ya instalada
 
-De la tabla anterior, reemplazar solamente los seis `.bbmodel`, los dos `tanda3b.yml`, `astral_tanda3b.sk` y el resource pack. Actualizar `resource-pack-sha1` y reiniciar. Con el servidor apagado, retirar plugins/BetterModel/models/astral_creeper_fantasma.bbmodel (solo ese modelo obsoleto). No requiere cambiar datapack, archivos de mazmorras ni recrear controladores. La lista completa y los controladores siguientes aplican si 3b aun no fue instalada.
+Reemplazar solo los cinco `build/models/astral_esq_*.bbmodel` en sus destinos de la tabla, `build/mythicmobs/skills/tanda3b.yml` y el resource pack. Actualizar `resource-pack-sha1`. Apagar antes de reemplazar archivos/propiedades, luego iniciar y revisar consola. No cambiar el Creeper Nuclear, mobs, Skript, datapack ni controladores de v3. La tabla completa y la instalacion siguiente aplican solo si 3b aun no fue instalada. Si se viene de v2 (315ab9d), aplicar tambien la migracion nuclear: seis modelos, mobs/skills tanda3b.yml y astral_tanda3b.sk; retirar solo el modelo obsoleto astral_creeper_fantasma.bbmodel.
 
 ## Instalacion por el responsable del navegador
 
@@ -93,11 +93,11 @@ No recrear controladores de Santuario ni Forja. No subir configs de prueba compl
 
 | Modelo | s | Modelo ancho x alto x fondo (b) | scale entidad |
 |---|---:|---|---:|
-| `astral_esq_arquero` | 1 | 1.502 x 2.097 x 1.088 | 1.0537 |
-| `astral_esq_escudero` | 1 | 1.616 x 2.007 x 0.776 | 1.008727 |
-| `astral_esq_nigromante` | 1 | 2.691 x 2.166 x 0.787 | 1.088652 |
-| `astral_esq_espadachin` | 1 | 1.928 x 1.962 x 0.660 | 0.986114 |
-| `astral_esq_guardian` | 1 | 1.868 x 2.112 x 0.703 | 1.061491 |
+| `astral_esq_arquero` | 1 | 1.553 x 2.122 x 1.182 | 1.06633 |
+| `astral_esq_escudero` | 1 | 1.669 x 2.047 x 0.759 | 1.028853 |
+| `astral_esq_nigromante` | 1 | 2.540 x 2.326 x 0.656 | 1.169081 |
+| `astral_esq_espadachin` | 1 | 2.073 x 2.010 x 0.576 | 1.010008 |
+| `astral_esq_guardian` | 1 | 1.945 x 2.223 x 0.674 | 1.117045 |
 | `astral_creeper_nuclear` | 1 | 0.500 x 1.625 x 0.625 | 1 |
 
 ## Reproduccion y pendientes
@@ -106,4 +106,4 @@ Desde `datapack-src`: `python mobs/build_models.py`, `python mobs/mythic.py`, `p
 
 Validacion: `python -m unittest discover -p "test_*.py"` y `python verify.py`. Las pruebas reales y sus limites, el detalle por modelo, paleta y diferencias finales estan en `docs/TANDA3B.md`.
 
-Pendientes: revision visual del dueno; prueba en cliente Minecraft 26.1.2 de animaciones, brillo y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. Nuclear opaco: cara 15/15; cuerpo a luz ambiental, 15/15 al hincharse. El datapack fue inspeccionado: no contenia ID ni etiqueta del modelo sustituido; no necesita regeneracion en v3. Si ya esta instalada 3b, actualizar solo los seis modelos, retirar el modelo obsoleto, reemplazar mobs/skills tanda3b.yml, astral_tanda3b.sk, pack y SHA-1; no recrear controladores.
+Pendientes: revision visual del dueno; prueba en cliente Minecraft 26.1.2 de animaciones, brillo y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. Nuclear opaco: cara 15/15; cuerpo a luz ambiental, 15/15 al hincharse. El datapack no cambia en v4. Identidad verificada: cinco modelos y 122 assets de esqueletos iguales byte a byte a 315ab9d; modelo nuclear y 15 assets iguales a 1008f75. MythicMobs conserva exactamente las definiciones de esqueletos de 315ab9d y las nucleares de 1008f75. Assets restaurados de conversiones ya versionadas; no se ejecuto una nueva conversion ni servidor local en v4.

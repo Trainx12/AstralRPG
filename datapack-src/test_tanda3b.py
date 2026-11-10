@@ -67,6 +67,14 @@ class Tanda3bTests(unittest.TestCase):
                         got=Counter(e['type'] for e in vm.spawned if any(t.endswith('.wave') for t in e['tags']))
                         self.assertEqual(got,Counter(expanded(wave,players)))
 
+    def test_model_identity_v4(self):
+        # SHA-256: esqueletos de 315ab9d; nuclear de 1008f75. Incluye textura y animaciones.
+        import hashlib
+        expected={'astral_creeper_nuclear': 'a941d593d3a803df66c174f20173290bd32da12193d51d21bc0d9afe8204439d', 'astral_esq_arquero': 'b7c59f4671b56331849698c5c0ea88a61502340da2b1dc3c7385ffb22a8502d9', 'astral_esq_escudero': '0397cffc90bd3a1682fc1a921744606c404baab6080fdd6ea43874b13624764b', 'astral_esq_espadachin': 'ae5cbf811631a3e137260df7ad09fca6c8f75c13b50e8fd18ddf5e7f3ae8aa3b', 'astral_esq_guardian': 'cab9c7f20ff1200196169e5bf3dc0516638cfeb97940765f3304cbe27b73b182', 'astral_esq_nigromante': '2b1c5e05b2a23dd550f174b6c9bf1807f53e93b065960078e4a47d71e767608e'}
+        for name,digest in expected.items():
+            with self.subTest(model=name):
+                self.assertEqual(hashlib.sha256((ROOT/"build/models"/(name+".bbmodel")).read_bytes()).hexdigest(),digest)
+
     def test_models_texture_density_and_pack(self):
         from mobs.tamanos import dimensions, scale
         import base64,io,zipfile
@@ -79,10 +87,11 @@ class Tanda3bTests(unittest.TestCase):
                 anim={a['name'] for a in data['animations']}
                 self.assertTrue({'idle','walk','swell' if 'creeper' in name else 'attack'}<=anim)
                 self.assertTrue(any(name in p for p in z.namelist()))
-                # Una cara de 16 unidades necesita al menos 32 texeles.
+                # Esqueletos a 16 px/bloque; nuclear conserva 32 px/bloque.
+                density=2 if "creeper" in name else 1
                 for e in data['elements']:
                     uv=e['faces']['north']['uv']
-                    self.assertGreaterEqual(uv[2]-uv[0],2*(e['to'][0]-e['from'][0])-.01)
+                    self.assertGreaterEqual(uv[2]-uv[0],density*(e['to'][0]-e['from'][0])-.01)
                 if 'creeper' not in name:
                     self.assertGreater(dimensions(name,1)[1],1.9)
                     self.assertLess(scale(name,1,'SKELETON'),1.3)
