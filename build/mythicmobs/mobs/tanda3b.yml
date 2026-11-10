@@ -1686,9 +1686,9 @@ astral_esq_guardian_cumbre_sala2:
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
   - state{s=attack} @self ~onAttack
-astral_creeper_fantasma:
+astral_creeper_nuclear:
   Type: CREEPER
-  Display: '&bCreeper fantasma'
+  Display: '&e&lCreeper Nuclear'
   Health: 20
   Options:
     Glowing: false
@@ -1696,9 +1696,10 @@ astral_creeper_fantasma:
     PreventOtherDrops: true
     Despawn: true
   Skills:
-  - addtag{tag=astral.ghost} @self ~onSpawn
+  - addtag{tag=astral.nuclear} @self ~onSpawn
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
-  - skill{s=AST_GHOST_MODELO} @self ~onSpawn
-  - skill{s=AST_GHOST_MODELO} @self ~onLoad
-  - particles{p=dust;color=#5fb6ff;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12
-  - state{s=swell} @self ~onPrime
+  - skill{s=AST_NUCLEAR_MODELO} @self ~onSpawn
+  - skill{s=AST_NUCLEAR_MODELO} @self ~onLoad
+  - particles{p=dust;color=#6f8a2f;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12
+  - particles{p=dust;color=#ffd21f;size=0.5;amount=1;hS=0.3;vS=0.5;speed=0} @self ~onTimer:30
+  - skill{s=AST_NUCLEAR_HINCHAR} @self ~onPrime

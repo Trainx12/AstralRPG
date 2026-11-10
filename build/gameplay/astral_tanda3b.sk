@@ -5,12 +5,12 @@ on spawn of creeper:
     chance of 30%:
         set {_loc} to location of event-entity
         cancel event
-        execute console command "mm mobs spawn astral_creeper_fantasma 1 world,%x-coordinate of {_loc}%,%y-coordinate of {_loc}%,%z-coordinate of {_loc}%"
+        execute console command "mm mobs spawn astral_creeper_nuclear 1 world,%x-coordinate of {_loc}%,%y-coordinate of {_loc}%,%z-coordinate of {_loc}%"
 
 # LOW antes de la escala de tier y defensa HIGH de astral_gameplay.
 on damage with priority low:
     if attacker is set:
-        if scoreboard tags of attacker contains "astral.ghost":
+        if scoreboard tags of attacker contains "astral.nuclear":
             damage cause is entity explosion
             set damage to damage * 2
         if scoreboard tags of attacker contains "ad.esq.arquero":

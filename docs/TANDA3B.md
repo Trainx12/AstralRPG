@@ -1,118 +1,98 @@
-# Tanda 3b v2: esqueletos detallados y creeper fantasma
+# Tanda 3b v3: Creeper Nuclear y esqueletos de alta densidad
 
-Implementacion sobre `5978cde`, sin desplegar. Fuentes: `datapack-src/mobs/creatures_tanda3b.py`,
-`tanda3b.py`, `preview_tanda3b.py` y `entrega_tanda3b.py`. Instalacion exacta:
-[build/deploy/tanda3b.md](../build/deploy/tanda3b.md).
+Implementacion sobre `315ab9d`, sin desplegar. Generadores propios:
+`datapack-src/mobs/creatures_tanda3b.py`, `tanda3b.py`, `preview_tanda3b.py`,
+`entrega_tanda3b.py`. Instalacion: [manifiesto](../build/deploy/tanda3b.md).
+Santuario, Forja, controladores, cantidades y pesos de oleadas conservados.
 
-## Decision tecnica: fantasma, sin variante nuclear
+## Diferencias iniciales contra las referencias
 
-Minecraft Java 26.1 admite translucidez en modelos: selecciona la pasada segun el alfa del sprite.
-La documentacion de migracion de NeoForged precisa que los items usan `Sheets#translucentItemSheet`
-cuando hay pixeles parcialmente transparentes en el area UV de la cara. BetterModel usa paquetes
-`item_display` y conserva esos pixeles al convertir nuestros modelos. Por eso se implemento el
-paso A; no hace falta recurrir al nuclear ni agregar shaders.
+- Creeper: el hielo no corresponde al pedido. Faltaban camuflaje oliva/marron,
+  rostro amarillo con fondo rojo, franjas de peligro y simbolo nuclear posterior.
+- Todos los esqueletos: craneo chico respecto del cuerpo, huesos poco separados,
+  poca superficie para fisuras, costuras y desgaste a 16 texeles/bloque.
+- Arquero: empunadura del arco insuficientemente envuelta; escarcha y flecos poco legibles.
+- Escudero: costillas demasiado continuas; hebilla sin hueco y cuencas poco profundas.
+- Nigromante: faltaban espiral alrededor del baston y brillo separado en su gema.
+- Espadachin: mango sin vendas individuales suficientes y correa cruzada incompleta.
+- Guardian: faltaban mas costuras, articulaciones y contraste de los ojos bajo el casco.
 
-Fuentes primarias consultadas para esta revision:
+## Tres vueltas de render y correccion
 
-- [Mojang, Minecraft Java 26.1, Block Model Format](https://www.minecraft.net/en-us/article/minecraft-java-edition-26-1).
-- [NeoForged, cambios vanilla de materiales y seleccion de capas en 26.1](https://docs.neoforged.net/primer/docs/26.1/#materials-and-dynamic-layer-selection).
-- [BetterModel, descripcion oficial del motor basado en item-display](https://github.com/toxicity188/BetterModel).
-- [BetterModel, mecanicas MythicMobs compatibles, incluida brightness](https://github.com/toxicity188/BetterModel/wiki/MythicMobs-Compatibility).
+1. Texturas a **32 texeles/bloque como minimo** (caras redondeadas hacia arriba a texeles enteros),
+   craneo 20% mayor, tronco/extremidades 10% mas compactos. Costillas delanteras y traseras
+   separadas, hebilla hueca, correas cruzadas, costuras, nudos y vendas de empunaduras.
+   Creeper opaco nuevo con sus cuatro patas cortas, luz facial y camuflaje original.
+   Revision: franjas demasiado altas, paleta clara y placa de radiacion demasiado ancha.
+2. Franjas limitadas al tercio central de cada pata, camuflaje mas oscuro, disco de radiacion
+   integrado en la espalda y fisuras finas en el craneo. Revision: las cejas tapaban parte
+   de las cuencas; faltaba ver la espalda en las comparaciones.
+3. Cuencas profundas de geometria oscura bajo las cejas; vista trasera en cada comparacion.
+   Baston con espiral de relieve y gema con hueso propio a brillo 15/15. Orbe conserva rayos,
+   nucleo blanco y animacion de pulsacion. Render final revisado con escala de jugador.
 
-Se comprobo tambien `BrightnessMechanic` del jar 3.6.0 local: admite `b`/`block`, `s`/`sky`
-y filtro de parte `pid`. Creeper: brillo 15/15 tras crear el modelo tanto en spawn como en load.
-Nigromante: brillo 15/15 solo en `orb`. Esto mantiene visibles esas partes en oscuridad;
-no emite luz sobre los bloques ni produce bloom.
+Se conservaron las laminas de las vueltas 1 y 2 en `.local/coordination/`;
+la tercera es `build/previews/tanda3b.png`. Las seis comparaciones nuevas estan en
+`build/previews/<modelo>-comparacion.png`, con referencia, frente, costado, 3/4,
+angulo de la foto y espalda. Contienen referencias ajenas: quedan locales e ignoradas.
+Solo se publica la lamina conjunta de modelos propios y jugador de 1,8 bloques.
 
-Hielo con azul neon `#2f8dff`, `#5fb6ff`, `#a8e3ff`, alfa 115/125/140/145/153
-(45-60%) y destellos blancos opacos. Polvo celeste de tres particulas cada 12 ticks.
-Se conserva `astral_creeper_fantasma`. El soporte tecnico esta documentado y el alfa convertido
-esta comprobado; falta la inspeccion visual en un cliente Minecraft 26.1.2 con el pack instalado.
-La vista CPU aproxima la mezcla sobre el fondo, sin simular shaders ni certificar el cliente.
+## Paleta y detalle final
 
-## Referencias, diferencias iniciales y tres rondas
+Se miraron ambas referencias y sus zonas de hueso, metal, tela y camuflaje.
+Muestreo del craneo azul cuantizado de la referencia: `#81c2a9`, `#64a287`,
+`#49806c` (luces y sombras); se adaptaron a un tono mas frio para la escarcha.
+La paleta nuclear pedida se mantiene como base: `#2f4a1c`, `#4c6b25`, `#6f8a2f`,
+`#5a3d1a`, `#c9a227`; ruido por pixel y manchas propias, sin copiar el patron de la foto.
+Rostro `#ffd21f`/`#ffe866` sobre `#7a1010`, peligro amarillo/negro y radiacion amarilla
+sobre disco negro. Craneo base `#d8d2b4`, articulaciones `#b9b28f`, sombra `#7f8a7c`,
+arquero azul `#8bbcc1`, guardian verdoso `#aab99a`, metal `#6d8582`, cuero `#43351f`.
 
-Se observaron las referencias locales antes de editar. Diferencias iniciales: craneos planos,
-armas y brazos de reposo, escarcha sin cristales, casco y torso sin suficiente relieve,
-orbe pequeno, tunica regular, sable poco expresivo, escudo musgoso angosto y fantasma palido.
-Las texturas y la geometria nuevas son originales. No se copiaron pixeles de las referencias.
-
-Paleta orientada por las muestras del trabajo anterior: hueso `#d0d89c` (270,117),
-sombra fria `#317776` (89,59), tunica `#47411d` (443,189), musgo `#4e7033` (750,197).
-Se conservan hueso `#d8d2b4`/`#b9b28f`, sombra `#7f8a7c`, tela marron y metal gris azulado;
-el azul neon es el solicitado en v2. Las muestras son de la referencia local de esqueletos.
-
-1. Ronda 1: se agregaron cejas, pomulos, mandibula escalonada, vertebras, esternon,
-   pelvis, costuras y flecos; piernas asimetricas y brazos en accion. Al renderizar,
-   el arco rotaba acostado con el brazo y las espadas no conservaban una pose legible.
-2. Ronda 2: pivote propio para el arco vertical grande con cuerda tensa y flecha;
-   cristales y pelo en hombros, cota en anillos separados, capucha profunda,
-   orbe grande escalonado con nucleo blanco y ocho rayos, cuerda y faldones rasgados,
-   espiral del baston, bolsitas y cresta/musgo. El render mostro que faltaba separar
-   la orientacion de las hojas de la del brazo y ensanchar el escudo del guardian.
-3. Ronda 3: pivotes de armas y canales de ataque, cimitarra a la cintura con punta
-   curva hacia arriba, espada del guardian elevada, codo/mano ajustados a la empunadura,
-   una sola hombrera del espadachin y escudo cuadrado con marco turquesa grueso y relieve.
-   Se corrigio un hueso alzado que competia visualmente con la espada; se volvieron a
-   generar frente, costado, 3/4 y aproximacion al angulo de foto para los seis modelos.
-
-## Detalles y diferencias finales
-
-| Modelo | Implementado | Diferencias restantes frente a la referencia |
+| Modelo | Resultado | Diferencias finales contra la foto |
 |---|---|---|
-| Arquero | Craneo frio con cejas/pomulos, cristales en cabeza/brazos, hombros con pelo por mechones, arco largo curvo oscuro tensado, flecha, carcaj con tres flechas y plumas, tiras y desgaste | Brazos mas frontales y arco al lado derecho del render; la flecha no toma toda la diagonal de la foto. Cristales y pelo son escalonados. |
-| Escudero | Casco con borde y laterales, hombreras remachadas, cota de anillos, escudo claro de tablas/clavos con marco de metal adelantado | Cota con anillos cuadrados propios; el casco cubre mas coronilla. Escudo mas bajo y menos girado que en la foto. |
-| Nigromante | Capucha profunda oscura y ojos claros, faldones con jirones finos, cinturon de cuerda anudado, baston con espiral y gemas rojas, gran orbe dorado con nucleo blanco y ocho rayos | Baston y orbe espejados respecto de la referencia. Orbe redondeado escalonado, sin bloom; la gema roja lleva reflejos pintados. |
-| Espadachin | Vendas/panuelo, cuero con costuras, bolsas y cierres, una hombrera, cimitarra curva ancha con filo claro y mango envuelto, ataque de corte | Curva construida por segmentos de cubos, mas angular que la foto; postura menos abierta y panuelo mas corto. |
-| Guardian | Musgo en craneo, hombros y piernas, casco con cresta, espada recta elevada, escudo cuadrado verde de marco turquesa grueso con relieve central y clavos | Escudo lleva relieve propio en cruz y una inclinacion menor; espada al otro lado del render. Musgo hecho de parches en relieve. |
-| Fantasma | Forma vanilla sin rostro marcado, hielo azul neon con alfa parcial, luces blancas, brillo maximo y polvo celeste suave | No reproduce el shader, la refraccion ni el bloom de la captura. Falta aceptar el aspecto final en cliente. |
+| Arquero | Craneo cuadrado grande, cuencas, dientes separados, fisuras, escarcha, tiras con flecos, carcaj, arco largo tensado con vendas y puntas | Arco y pose tienen curvas propias; el render no aplica luz ambiental ni shader de la foto. |
+| Escudero | Casco y hombreras con remaches, cota en piezas, costillas separadas, hebilla hueca, escudo de tablones con clavos y marco metalico | Casco mas cerrado y escudo inclinado en otra pose; las abolladuras son desgaste pixelado y relieves cubicos. |
+| Nigromante | Capucha profunda, dientes, tunica en capas rasgadas, cuerda y hebilla, baston espiral con gema luminosa, orbe grande y rayos | Orbe redondeado por cubos, no llamarada de shader; capucha propia y baston de otra curvatura. |
+| Espadachin | Craneo grande, correas cruzadas, hombrera, bolsas, cimitarra curva con filo separado, guarda y mango envuelto | Cimitarra escalonada y pose abierta diferentes; no reproduce el sombreado fotografico. |
+| Guardian | Huesos con musgo, casco, articulaciones, espada larga, escudo ancho con tablones, relieve, clavos y borde turquesa | Relieve en cruz propio; musgo cubico, sin vegetacion de shader. |
+| Creeper Nuclear | Silueta vanilla, camuflaje oliva, cara amarilla sobre rojo oscuro, cuatro patas con chevron central, trebol nuclear atras | Manchas y ojos propios a mayor densidad; trebol simplificado al ancho del torso, franjas mas finas que la referencia. |
 
-Desgaste determinista por cara: grietas de hueso, luces superiores, sombras de borde,
-puntadas de tela, flecos independientes, madera con vetas y metal con oxido/remaches.
-Animaciones `idle`, `walk`, `attack`; creeper `idle`, `walk`, `swell`.
+La densidad duplicada usa atlas 256x256 para cada esqueleto y 128x128 para el creeper.
+Pack: **17.950.733 bytes** (17,12 MiB), frente a 17.705.571 bytes de v2: +245.162 bytes.
+SHA-1: `a10a8bd6bbd4cbfd2f05a0cb007f4161aa833c61`. No cambia el formato de BetterModel.
 
-Vista publica propia: `build/previews/tanda3b.png`, escala comun 80 px/bloque y jugador de 1,8 bloques.
-Comparaciones con referencias de terceros solo locales e ignoradas por Git:
-`build/previews/astral_esq_<variante>-comparacion.png` y
-`build/previews/astral_creeper_fantasma-comparacion.png`. No publicar esas referencias.
+## Comportamiento y migracion
 
-## Combate e integracion
+ID activo `astral_creeper_nuclear`, nombre `&e&lCreeper Nuclear`.
+`NUCLEAR_CHANCE=30`, `NUCLEAR_DAMAGE=2`, `NUCLEAR_POWER=2`, `NORMAL_POWER=3`.
+Solo spawns NATURAL en el mundo Bukkit `world`. Potencia 6; multiplicador de dano x2
+antes del tier y la defensa. Cara 15/15 en reposo; cuerpo con luz ambiental, 15/15 al
+hincharse. Particulas verdes y amarillas suaves y refuerzo al preparar la explosion.
 
-Valores v2: `GHOST_CHANCE=30`, `GHOST_DAMAGE=2`, `GHOST_POWER=2`, `NORMAL_POWER=3`.
-Potencia nativa **6** y multiplicador de dano **x2**, antes de la escala/defensa HIGH del
-Skript de gameplay. La potencia tambien afecta el radio y el dano vanilla: el dano final
-a cada distancia no equivale a exactamente dos veces el creeper de potencia 3.
-Solo reemplaza creepers NATURAL en `world`; excluye el resto de mundos y no repite CUSTOM.
-
-Se conservan los pesos de esqueletos 30/20/15/20/15, el relevo de reservas, las plazas de oleadas,
-los ayudantes y las etiquetas de sala. Vida base 20, guardian 26, tirada de tier 87/3/10.
-Arquero aplica lentitud corta; nigromante lanza hechizo sin invocar; escudero recibe 45% del dano
-por delante, espadachin rapido y guardian normal. Hitbox uniforme por alto del modelo/equipo:
-el ancho de la caja vanilla no coincide exactamente con escudos y armas. Creeper con caja vanilla.
-
-No se modificaron Santuario, Forja, controladores, datapack ni mundos en esta revision.
-Para instalacion completa de 3b se conserva el manifiesto anterior de archivos/controladores;
-para actualizar 3b ya instalada alcanza con seis modelos, mobs/skills tanda3b.yml, Skript,
-resource pack y SHA-1. Requiere reinicio por cambio del pack en propiedades.
+Se sustituyeron ID, etiqueta y skills en MythicMobs, Skript, tests, vistas y manifiesto.
+El antiguo modelo de hielo y sus assets se retiran del pack. En una instalacion anterior
+hay que retirar solo `plugins/BetterModel/models/astral_creeper_fantasma.bbmodel`.
+El datapack se inspecciona sin modificarlo: no contiene el ID ni la etiqueta sustituidos.
+Con 3b ya instalada no cambia el datapack ni se recrean controladores.
 
 ## Verificaciones y pendientes
 
-Pasaron 163 pruebas en 48,758 s (`python -m unittest discover -p "test_*.py"`),
-`python verify.py` y `git diff --check`. Los tests cubren pesos, plazas/topes con 1/2/5 jugadores,
-identidad de sala, limites del spawn, potencia 6, multiplicador x2, animaciones y alfa convertido.
-Comprobacion adicional del pack: las seis texturas convertidas coinciden pixel por pixel con
-sus bbmodel y todas las referencias de submodelos de los seis mobs existen.
+Pasaron **163 pruebas en 53,226 s**, `python verify.py` y `git diff --check`.
+Texturas de los seis modelos identicas pixel por pixel a sus bbmodel, 127 referencias
+a submodelos resueltas en el ZIP y ningun asset del modelo retirado. Se copiaron 175
+archivos de los seis modelos desde el convertidor local.
 
-Carga local v2: 34 modelos convertidos; 176 mobs y 433 skills cargados en la instancia completa
-de prueba; Skript recargado correctamente. Se invocaron nigromante, espadachin y fantasma con
-las nuevas skills sin errores de esas mecanicas. Consulta NBT real: `ExplosionRadius: 6b`.
-131 archivos de los seis modelos copiados del convertidor al arbol fuente del pack.
-El servidor aislado usa Paper 26.1.2, BetterModel 3.6.0, MythicMobs 5.13.0 y Skript 2.17.1. No tiene
-ExcellentEnchants: los errores de referencias a sus encantamientos en el datapack son una
-limitacion conocida del entorno de prueba, ajena a los cambios de esta tarea. Al apagar tras
-recargas, MythicMobs emitio `Plugin attempted to register task while disabled`; el servidor
-termino de guardar y cerrar. `verify.py` emite un aviso de depreciacion de Pillow sin fallar.
+Pruebas automatizadas: pesos, cantidades/plazas por oleada, identidad de sala, limites de mundo,
+potencia 6, dano x2, animaciones, densidad UV y ausencia del modelo retirado en el pack.
+Conversion real con Paper 26.1.2, BetterModel 3.6.0, MythicMobs 5.13.0 y Skript 2.17.1,
+recarga de Skript y spawn de las seis variantes. Consulta NBT: `ExplosionRadius: 6b`,
+etiqueta `astral.nuclear`. Servidor de prueba solo en `127.0.0.1:25589`, detenido con `stop`.
 
-Pendientes: revision visual del dueno, cliente para mezcla alfa y animaciones, combate real con
-defensa/tier, subir a R2, actualizar archivos y propiedades del servidor, reiniciar y revisar consola.
-No se desplego en Empower ni Aternos.
+El entorno local no tiene ExcellentEnchants: hay errores de sus modificadores de items,
+sin relacion con esta tarea. MythicMobs emite avisos de ejemplos y al apagar puede intentar
+registrar una tarea estando deshabilitado; se comprueba guardado y cierre completo.
+Estos limites impiden afirmar que la consola completa este libre de errores.
+
+Pendientes: revision visual del dueno, aspecto nocturno, animaciones y combate en cliente,
+reemplazo natural real y protecciones de explosion en produccion; subida R2, instalacion,
+reinicio y revision de consola. No desplegado en Empower ni Aternos.

@@ -67,44 +67,51 @@ class Tanda3bTests(unittest.TestCase):
                         got=Counter(e['type'] for e in vm.spawned if any(t.endswith('.wave') for t in e['tags']))
                         self.assertEqual(got,Counter(expanded(wave,players)))
 
-    def test_models_textures_alpha_and_pack(self):
+    def test_models_texture_density_and_pack(self):
         from mobs.tamanos import dimensions, scale
         import base64,io,zipfile
         from PIL import Image
-        names=['astral_esq_'+k for k in WEIGHTS]+['astral_creeper_fantasma']
+        names=['astral_esq_'+k for k in WEIGHTS]+['astral_creeper_nuclear']
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as z:
+            self.assertFalse(any('creeper_fantasma' in p for p in z.namelist()))
             for name in names:
                 data=json.loads((ROOT/'build/models'/f'{name}.bbmodel').read_text())
                 anim={a['name'] for a in data['animations']}
                 self.assertTrue({'idle','walk','swell' if 'creeper' in name else 'attack'}<=anim)
                 self.assertTrue(any(name in p for p in z.namelist()))
+                # Una cara de 16 unidades necesita al menos 32 texeles.
+                for e in data['elements']:
+                    uv=e['faces']['north']['uv']
+                    self.assertGreaterEqual(uv[2]-uv[0],2*(e['to'][0]-e['from'][0])-.01)
                 if 'creeper' not in name:
                     self.assertGreater(dimensions(name,1)[1],1.9)
                     self.assertLess(scale(name,1,'SKELETON'),1.3)
                 else:
                     im=Image.open(io.BytesIO(base64.b64decode(data['textures'][0]['source'].split(',')[1])))
-                    self.assertTrue(any(0<a<255 for a in im.getchannel('A').get_flattened_data()))
+                    self.assertFalse(any(0<a<255 for a in im.getchannel('A').get_flattened_data()))
                     png=z.read('assets/bettermodel/textures/item/'+name+'_'+name+'.png')
                     converted=Image.open(io.BytesIO(png))
-                    self.assertTrue(any(0<a<255 for a in converted.getchannel('A').get_flattened_data()))
                     self.assertEqual(im.convert('RGBA').tobytes(),converted.convert('RGBA').tobytes())
-                    alpha=Counter(im.getchannel('A').get_flattened_data())
-                    visible=sum(n for a,n in alpha.items() if a)
-                    self.assertGreater(sum(n for a,n in alpha.items() if 115<=a<=153)/visible,.65)
+                    groups={g['name'] for g in data['groups']}
+                    self.assertTrue({'face','head','body','leg0','leg1','leg2','leg3'}<=groups)
 
-    def test_combat_and_ghost_boundaries(self):
+    def test_combat_and_nuclear_boundaries(self):
         for kind,hp in ((k,26 if k=='guardian' else 20) for k in WEIGHTS):
             m=self.mobs['astral_esq_'+kind]
             self.assertEqual(m['Health'],hp); self.assertTrue(m['Options']['Glowing'])
             self.assertTrue(any('meleeattack' in s for s in m['AIGoalSelectors']) or kind in ('arquero','nigromante'))
-        ghost=self.mobs['astral_creeper_fantasma']
-        self.assertEqual(ghost['Options']['ExplosionRadius'],6)
-        self.assertFalse(ghost['Options']['Glowing'])
+        nuclear=self.mobs['astral_creeper_nuclear']
+        self.assertEqual(nuclear['Display'],'&e&lCreeper Nuclear')
+        self.assertEqual(nuclear['Options']['ExplosionRadius'],6)
+        self.assertFalse(nuclear['Options']['Glowing'])
+        self.assertNotIn('astral_creeper_fantasma',self.mobs)
         sk=script(); self.assertIn('spawn reason is natural',sk)
         self.assertIn('name of world of event-entity is "world"',sk)
         self.assertIn('chance of 30%',sk); self.assertIn('damage * 2',sk)
-        self.assertIn('brightness{b=15;s=15} @self',self.skills['AST_GHOST_MODELO']['Skills'])
-        self.assertTrue(any('particles{p=dust;color=#5fb6ff;' in s for s in ghost['Skills']))
+        self.assertIn('brightness{pid=face;b=15;s=15} @self',self.skills['AST_NUCLEAR_MODELO']['Skills'])
+        self.assertIn('brightness{b=15;s=15} @self',self.skills['AST_NUCLEAR_HINCHAR']['Skills'])
+        self.assertTrue(any('particles{p=dust;color=#6f8a2f;' in s for s in nuclear['Skills']))
+        self.assertIn('astral.nuclear',sk)
         self.assertIn('priority low',sk); self.assertIn('angle',sk)
         self.assertFalse(any('mm ' in v for p,v in self.files.items() if p.endswith('.mcfunction')))
         for d in catalog():

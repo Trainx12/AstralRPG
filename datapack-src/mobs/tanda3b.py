@@ -6,9 +6,9 @@ from mobs.tamanos import skills as size_skills
 
 ROOT=Path(__file__).resolve().parents[2]
 WEIGHTS={'arquero':30,'escudero':20,'nigromante':15,'espadachin':20,'guardian':15}
-GHOST_CHANCE=30
-GHOST_DAMAGE=2
-GHOST_POWER=2
+NUCLEAR_CHANCE=30
+NUCLEAR_DAMAGE=2
+NUCLEAR_POWER=2
 NORMAL_POWER=3
 
 
@@ -34,6 +34,7 @@ def definitions():
             *size_skills(mid,1,'SKELETON',protect_sanctuary=False)]}
         if kind=='nigromante':
             skills['AST_ESQ_MODELO_'+kind]['Skills'].append('brightness{pid=orb;b=15;s=15} @self')
+            skills['AST_ESQ_MODELO_'+kind]['Skills'].append('brightness{pid=gem;b=15;s=15} @self')
     skills.update({
         'AST_ESQ_HECHIZO':{'Conditions':['targetwithin{d=16} true','targetwithin{d=4} false'],
             'Skills':['state{s=attack} @self','projectile{onTick=AST_ESQ_LUZ;onHit=AST_ESQ_IMPACTO;v=9;i=1;hR=0.5;vR=0.5;mr=16} @target']},
@@ -62,15 +63,17 @@ def definitions():
                 'addtag{tag=ad.vanilla} @self','command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self']}
             skills[f'AST_ESQ_CONVIERTE_{key}_{room}']={'TargetConditions':[f'hastag{{tag=ad.esq.{key}.{room}}} true'],
                 'Skills':[f'removetag{{tag=ad.esq.{key}.{room};sync=true}}','randomskill{s='+','.join(choices)+';sync=true}','remove{sync=true}']}
-    mid='astral_creeper_fantasma'
-    mobs[mid]={'Type':'CREEPER','Display':'&bCreeper fantasma','Health':20,
-        'Options':dict(Glowing=False,ExplosionRadius=NORMAL_POWER*GHOST_POWER,PreventOtherDrops=True,Despawn=True),
-        'Skills':['addtag{tag=astral.ghost} @self ~onSpawn',
+    mid='astral_creeper_nuclear'
+    mobs[mid]={'Type':'CREEPER','Display':'&e&lCreeper Nuclear','Health':20,
+        'Options':dict(Glowing=False,ExplosionRadius=NORMAL_POWER*NUCLEAR_POWER,PreventOtherDrops=True,Despawn=True),
+        'Skills':['addtag{tag=astral.nuclear} @self ~onSpawn',
             'command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn',
-            'skill{s=AST_GHOST_MODELO} @self ~onSpawn','skill{s=AST_GHOST_MODELO} @self ~onLoad',
-            'particles{p=dust;color=#5fb6ff;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12',
-            'state{s=swell} @self ~onPrime']}
-    skills['AST_GHOST_MODELO']={'Skills':['model{m=astral_creeper_fantasma} @self','brightness{b=15;s=15} @self']}
+            'skill{s=AST_NUCLEAR_MODELO} @self ~onSpawn','skill{s=AST_NUCLEAR_MODELO} @self ~onLoad',
+            'particles{p=dust;color=#6f8a2f;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12',
+            'particles{p=dust;color=#ffd21f;size=0.5;amount=1;hS=0.3;vS=0.5;speed=0} @self ~onTimer:30',
+            'skill{s=AST_NUCLEAR_HINCHAR} @self ~onPrime']}
+    skills['AST_NUCLEAR_MODELO']={'Skills':['model{m=astral_creeper_nuclear} @self','brightness{pid=face;b=15;s=15} @self']}
+    skills['AST_NUCLEAR_HINCHAR']={'Skills':['state{s=swell} @self','brightness{b=15;s=15} @self','particles{p=dust;color=#ffd21f;size=0.7;amount=12;hS=0.4;vS=0.6} @self']}
     return mobs,skills
 
 
@@ -81,17 +84,17 @@ def script():
 on spawn of creeper:
     spawn reason is natural
     name of world of event-entity is "world"
-    chance of {GHOST_CHANCE}%:
+    chance of {NUCLEAR_CHANCE}%:
         set {{_loc}} to location of event-entity
         cancel event
-        execute console command "mm mobs spawn astral_creeper_fantasma 1 world,%x-coordinate of {{_loc}}%,%y-coordinate of {{_loc}}%,%z-coordinate of {{_loc}}%"
+        execute console command "mm mobs spawn astral_creeper_nuclear 1 world,%x-coordinate of {{_loc}}%,%y-coordinate of {{_loc}}%,%z-coordinate of {{_loc}}%"
 
 # LOW antes de la escala de tier y defensa HIGH de astral_gameplay.
 on damage with priority low:
     if attacker is set:
-        if scoreboard tags of attacker contains "astral.ghost":
+        if scoreboard tags of attacker contains "astral.nuclear":
             damage cause is entity explosion
-            set damage to damage * {GHOST_DAMAGE}
+            set damage to damage * {NUCLEAR_DAMAGE}
         if scoreboard tags of attacker contains "ad.esq.arquero":
             damage cause is projectile
             apply slowness 1 to victim for 2 seconds

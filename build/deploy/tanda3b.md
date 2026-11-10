@@ -11,7 +11,7 @@ Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas
 | `build/models/astral_esq_nigromante.bbmodel` | `plugins/BetterModel/models/astral_esq_nigromante.bbmodel` |
 | `build/models/astral_esq_espadachin.bbmodel` | `plugins/BetterModel/models/astral_esq_espadachin.bbmodel` |
 | `build/models/astral_esq_guardian.bbmodel` | `plugins/BetterModel/models/astral_esq_guardian.bbmodel` |
-| `build/models/astral_creeper_fantasma.bbmodel` | `plugins/BetterModel/models/astral_creeper_fantasma.bbmodel` |
+| `build/models/astral_creeper_nuclear.bbmodel` | `plugins/BetterModel/models/astral_creeper_nuclear.bbmodel` |
 | `build/mythicmobs/mobs/mazmorra.yml` | `plugins/MythicMobs/mobs/mazmorra.yml` |
 | `build/mythicmobs/mobs/bosque.yml` | `plugins/MythicMobs/mobs/bosque.yml` |
 | `build/mythicmobs/mobs/tumba.yml` | `plugins/MythicMobs/mobs/tumba.yml` |
@@ -22,11 +22,11 @@ Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |
 | `build/AstralRPG-Textures.zip` | R2: objeto `AstralRPG-Textures.zip` |
 
-Pack: 17705571 bytes. SHA-1: **`d35a026942e85bd056b1682b9c409500cd594a95`**.
+Pack: 17950733 bytes. SHA-1: **`a10a8bd6bbd4cbfd2f05a0cb007f4161aa833c61`**.
 
-## Actualizacion v2 sobre 3b ya instalada
+## Actualizacion v3 sobre 3b ya instalada
 
-De la tabla anterior, reemplazar solamente los seis `.bbmodel`, los dos `tanda3b.yml`, `astral_tanda3b.sk` y el resource pack. Actualizar `resource-pack-sha1` y reiniciar. No requiere cambiar datapack, archivos de mazmorras ni recrear controladores. La lista completa y los controladores siguientes aplican si 3b aun no fue instalada.
+De la tabla anterior, reemplazar solamente los seis `.bbmodel`, los dos `tanda3b.yml`, `astral_tanda3b.sk` y el resource pack. Actualizar `resource-pack-sha1` y reiniciar. Con el servidor apagado, retirar plugins/BetterModel/models/astral_creeper_fantasma.bbmodel (solo ese modelo obsoleto). No requiere cambiar datapack, archivos de mazmorras ni recrear controladores. La lista completa y los controladores siguientes aplican si 3b aun no fue instalada.
 
 ## Instalacion por el responsable del navegador
 
@@ -93,12 +93,12 @@ No recrear controladores de Santuario ni Forja. No subir configs de prueba compl
 
 | Modelo | s | Modelo ancho x alto x fondo (b) | scale entidad |
 |---|---:|---|---:|
-| `astral_esq_arquero` | 1 | 1.553 x 2.122 x 1.182 | 1.06633 |
-| `astral_esq_escudero` | 1 | 1.669 x 2.047 x 0.759 | 1.028853 |
-| `astral_esq_nigromante` | 1 | 2.540 x 2.326 x 0.656 | 1.169081 |
-| `astral_esq_espadachin` | 1 | 2.073 x 2.010 x 0.576 | 1.010008 |
-| `astral_esq_guardian` | 1 | 1.945 x 2.223 x 0.674 | 1.117045 |
-| `astral_creeper_fantasma` | 1 | 0.500 x 1.625 x 0.625 | 1 |
+| `astral_esq_arquero` | 1 | 1.502 x 2.097 x 1.088 | 1.0537 |
+| `astral_esq_escudero` | 1 | 1.616 x 2.007 x 0.776 | 1.008727 |
+| `astral_esq_nigromante` | 1 | 2.691 x 2.166 x 0.787 | 1.088652 |
+| `astral_esq_espadachin` | 1 | 1.928 x 1.962 x 0.660 | 0.986114 |
+| `astral_esq_guardian` | 1 | 1.868 x 2.112 x 0.703 | 1.061491 |
+| `astral_creeper_nuclear` | 1 | 0.500 x 1.625 x 0.625 | 1 |
 
 ## Reproduccion y pendientes
 
@@ -106,4 +106,4 @@ Desde `datapack-src`: `python mobs/build_models.py`, `python mobs/mythic.py`, `p
 
 Validacion: `python -m unittest discover -p "test_*.py"` y `python verify.py`. Las pruebas reales y sus limites, el detalle por modelo, paleta y diferencias finales estan en `docs/TANDA3B.md`.
 
-Pendientes: revision visual del dueno; prueba visual en cliente Minecraft 26.1.2 de transparencia/animaciones y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. Se conserva el fantasma: Minecraft 26.1 soporta translucidez en modelos de item y BetterModel usa item_display (fuentes en docs/TANDA3B.md). Alfa 115-153 en el hielo, destellos blancos opacos, brillo 15/15 y polvo celeste. Esto confirma la viabilidad tecnica; no reemplaza la comprobacion visual en cliente. No se regenero el datapack ni cambiaron controladores en v2: los de la tabla corresponden a la instalacion completa sobre tandas 2/3a. Si ya esta instalada 3b, actualizar solo seis modelos, mobs/skills tanda3b.yml, astral_tanda3b.sk, pack y SHA-1; no recrear controladores.
+Pendientes: revision visual del dueno; prueba en cliente Minecraft 26.1.2 de animaciones, brillo y combate; subida R2, instalacion y consola de produccion. No se afirma despliegue. Nuclear opaco: cara 15/15; cuerpo a luz ambiental, 15/15 al hincharse. El datapack fue inspeccionado: no contenia ID ni etiqueta del modelo sustituido; no necesita regeneracion en v3. Si ya esta instalada 3b, actualizar solo los seis modelos, retirar el modelo obsoleto, reemplazar mobs/skills tanda3b.yml, astral_tanda3b.sk, pack y SHA-1; no recrear controladores.

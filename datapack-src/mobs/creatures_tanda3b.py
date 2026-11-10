@@ -1,4 +1,4 @@
-"""Esqueletos e hielo originales: geometria y pixel art propios, 16 unidades/bloque."""
+"""Esqueletos y creeper nuclear originales, 32 texeles por bloque."""
 import math
 import random
 from PIL import ImageDraw
@@ -9,29 +9,51 @@ VARIANTS = ('arquero', 'escudero', 'nigromante', 'espadachin', 'guardian')
 
 
 class DungeonModel(Model):
+    def _face_size(self, c, face):
+        w,h=super()._face_size(c,face)
+        return w*2,h*2
+
     def _paint(self, size, pos):
-        im = super()._paint(size, pos)
+        # Los calcos se expresan en unidades de modelo; duplicar tambien su UV.
+        originals=[c['decals'] for c in self.cubes]
+        for c in self.cubes:
+            c['decals']={f:[(x*2,y*2,w*2,h*2,col) for x,y,w,h,col in ds] for f,ds in c['decals'].items()}
+        try:
+            im = super()._paint(size, pos)
+        finally:
+            for c,decals in zip(self.cubes,originals): c['decals']=decals
         draw = ImageDraw.Draw(im)
         for (i, face), (x, y, w, h) in pos.items():
             mat = self.cubes[i]['pat']
             rng = random.Random(f'{self.name}/{i}/{face}')
-            if mat == 'ice':
-                # Vetas conectadas irregulares, luces y huecos de alpha reales.
+            if mat in ('camo','hazard'):
+                palette=['#2f4a1c','#4c6b25','#6f8a2f','#5a3d1a','#c9a227']
+                patches={}
                 for yy in range(h):
                     for xx in range(w):
-                        v = rng.random()
-                        c = im.getpixel((x+xx, y+yy))
-                        if v < .20: c = (47,141,255,125)
-                        elif v < .42: c = (95,182,255,140)
-                        elif v < .51: c = (168,227,255,153)
-                        elif v < .55: c = (240,251,255,255)
-                        else: c = (95,182,255,115 if (xx+yy+i)%5 else 145)
-                        im.putpixel((x+xx,y+yy),c)
-                for _ in range(max(1,w*h//30)):
-                    xx,yy=rng.randrange(w),rng.randrange(h)
-                    draw.line((x+xx,y+yy,x+min(w-1,xx+2),y+min(h-1,yy+3)),fill='#eaf6ff')
+                        key=(xx//3,yy//3)
+                        if key not in patches: patches[key]=rng.choices(palette,[44,25,15,10,6])[0]
+                        col=hexc(patches[key]); k=rng.uniform(.78,1.05)
+                        if mat=='hazard' and face not in ('up','down') and h//3<=yy<2*h//3:
+                            col=hexc('#ffd21f' if (xx+abs(yy-h//2))%10<5 else '#11160c'); k=1
+                        im.putpixel((x+xx,y+yy),tuple(min(255,int(v*k)) for v in col)+(255,))
+                if mat=='camo' and self.cubes[i]['bone']=='body' and face=='south':
+                    # Disco negro y tres sectores amarillos separados por 60 grados.
+                    cx,cy=x+w/2,y+h/2
+                    r=min(w,h)/2-.3
+                    for yy in range(h):
+                        for xx in range(w):
+                            dx,dy=x+xx+.5-cx,y+yy+.5-cy
+                            d=math.hypot(dx,dy)
+                            if d<=r:
+                                angle=(math.degrees(math.atan2(dy,dx))+90)%120
+                                col='#ffd21f' if d<r*.18 or (r*.35<d<r*.88 and angle<60) else '#11160c'
+                                draw.point((x+xx,y+yy),fill=col)
             elif mat in ('bone','rust','cloth','wood','wrap'):
                 if self.cubes[i].get('decals',{}).get(face):
+                    # Fisuras en la frente y sien: no atraviesan los ojos.
+                    for pts in (((2,0),(3,2),(2,4)),((w-3,1),(w-4,3),(w-3,5))):
+                        draw.line([(x+xx,y+yy) for xx,yy in pts],fill='#7f8a7c')
                     continue  # Preservar ojos/nariz y dientes, el motor ya agrega ruido.
                 base=hexc(self.cubes[i]['color'])
                 dark=tuple(int(v*.62) for v in base)+(255,)
@@ -59,7 +81,10 @@ def skeleton(kind):
     m.bone('body',(0,18,0))
     box('body',(-.8,12,-.8),(.8,24,.8))
     for y,w in ((16,3),(19,3.7),(22,4)):
-        box('body',(-w,y,-1.7),(w,y+1.2,1.6))
+        for side in (-1,1):
+            lo,hi=sorted((side*.65,side*w))
+            box('body',(lo,y,-1.7),(hi,y+1.05,-.7))
+            box('body',(lo,y,.65),(hi,y+1.05,1.6))
         box('body',(-w,y+1,-1.7),(-w+.9,y+2,1.6),'#7f8a7c')
         box('body',(w-.9,y+1,-1.7),(w,y+2,1.6),'#b9b28f')
     box('body',(-3.5,12,-1.6),(3.5,14,1.6))
@@ -89,6 +114,9 @@ def skeleton(kind):
     # Arcos supraorbitales, sienes y pomulos sobresalen del craneo.
     for x in (-3.8,.6):
         box('head',(x,29.5,-4.6),(x+3.2,30.4,-3.8),joint)
+    for x in (-3.25,.85):
+        box('head',(x-.2,27.1,-4.12),(x+2.6,29.5,-4.01),'#626d5c')
+        box('head',(x,27.4,-4.22),(x+2.4,29.3,-4.13),'#171d18',pat=None)
     for x in (-4,2.6):
         box('head',(x,25.6,-4.6),(x+1.4,27.3,-3.5),bone)
     box('head',(-2.7,23.1,-4.1),(2.7,24,-2.3),joint)
@@ -193,7 +221,10 @@ def skeleton(kind):
         vine(m,'body',[(1,13,-3.2),(1.6,10,-3.3),(.8,7,-3.3)],.4,'#9a8954')
         for x,b in ((-5,'arm_l'),(5,'arm_r')): box(b,(x-1.6,15,-1.6),(x+1.6,24,1.6),cloth,'cloth')
         vine(m,'arm_r',[(9,0,-2),(9,25,-2),(10,32,-2),(9,35,-2),(6,36,-2),(5,34,-2)],1.2,'#765c2c')
-        for b,x,y,z in (('arm_r',8,33.5,-2),('body',0,19,-2.8)):
+        spiral=[(9+math.cos(j*.9)*.85,5+j*.65,-2+math.sin(j*.9)*.85) for j in range(33)]
+        vine(m,'arm_r',spiral,.35,'#b49b59')
+        m.bone('gem',(8,33.5,-2),'arm_r')
+        for b,x,y,z in (('gem',8,33.5,-2),('body',0,19,-2.8)):
             box(b,(x-1,y-1,z-.7),(x+1,y+1,z+.7),'#c8392e')
             box(b,(x-.5,y-.4,z-.85),(x+.2,y+.6,z-.7),'#ffad77')
         m.bone('orb',(-5,9,-2),'arm_l')
@@ -235,6 +266,30 @@ def skeleton(kind):
             for x in (3.5,6): box('arm_r',(x,22,-2.7),(x+.5,22.5,-2.4),'#c8d1b6')
         for y in (14,16):
             if kind=='espadachin': box('arm_r',(4.9,y,-1.3),(6.8,y+.7,1),cloth,'wrap')
+    # Hebilla hueca, correas cruzadas y remaches con volumen.
+    for a,c in [((-.9,12.8,-2.6),(.9,13.15,-2.3)),((-.9,14.1,-2.6),(.9,14.45,-2.3)),
+                ((-.9,13,-2.6),(-.55,14.2,-2.3)),((.55,13,-2.6),(.9,14.2,-2.3))]:
+        box('body',a,c,'#c9ac64','rust')
+    if kind!='nigromante':
+        vine(m,'body',[(3.7,23,-2.85),(0,19,-2.9),(-3.7,15,-2.85)],.65,leather)
+    for b,x in (('leg_l',-2.3),('leg_r',2.3),('arm_l',-5)):
+        y=7 if b.startswith('leg') else 17
+        box(b,(x-.65,y,-1.2),(x+.65,y+.6,-.9),joint)
+        for j in range(4):
+            box(b,(x-.9+j*.5,y-3,-1.35),(x-.7+j*.5,y-2.7,-1.2),'#b7a77d','wrap')
+    if kind=='arquero':
+        for j in range(7): box('bow',(9.8,14+j*.55,-4.85),(11.9,14.25+j*.55,-3.2),'#aaa07b','wrap')
+    if kind in ('guardian','espadachin'):
+        for j in range(7): box('weapon',(4.3,10.2+j*.55,-1.85),(5.7,10.45+j*.55,-.55),'#b7a77d','wrap')
+    # Craneo 20% mayor; tronco y extremidades 10% mas compactos.
+    for c in m.cubes:
+        if c['bone']=='head':
+            for key in ('from','to'):
+                c[key]=[c[key][0]*1.2,24+(c[key][1]-24)*1.2,c[key][2]*1.2]
+        else:
+            for key in ('from','to'): c[key][1]=24+(c[key][1]-24)*.9
+    for b,info in m.bones.items():
+        if b!='head': info['origin'][1]=24+(info['origin'][1]-24)*.9
     m.anim('idle',3,{'body':{'position':(0,swing(.18,1/3),0)},'head':{'rotation':(0,swing(3,1/3),0)}})
     m.anim('walk',1,{b:{'rotation':(swing(a),0,0)} for b,a in [('leg_l',24),('leg_r',-24),('arm_l',-14),('arm_r',14)]})
     if kind=='arquero':
@@ -256,13 +311,19 @@ def skeleton(kind):
 
 
 def creeper():
-    m=DungeonModel('astral_creeper_fantasma'); m.bone('body',(0,12,0))
-    m.cube('body',(-3,6,-2),(3,18,2),'#7fc8ff',pat='ice')
+    m=DungeonModel('astral_creeper_nuclear'); m.bone('body',(0,12,0))
+    m.cube('body',(-3,6,-2),(3,18,2),'#4c6b25',pat='camo')
     m.bone('head',(0,18,0),'body')
-    m.cube('head',(-4,18,-4),(4,26,4),'#7fc8ff',pat='ice')
+    m.cube('head',(-4,18,-4),(4,26,4),'#4c6b25',pat='camo')
+    # Cavidades oscuras y luz separadas: solo la cara se ilumina a 15/15.
+    m.bone('face',(0,22,-4),'head')
+    for x,y,w,h in ((-3,22,2,2),(1,22,2,2),(-1,20,2,2),(-2,19,4,2),(-2,18,1,2),(1,18,1,2)):
+        m.cube('head',(x-.15,y-.15,-4.08),(x+w+.15,y+h+.15,-4.01),'#7a1010')
+        m.cube('face',(x,y,-4.16),(x+w,y+h,-4.09),'#ffd21f',decals={'north':[(0,0,w,.3,'#ffe866')]})
+    # Cuatro patas, formando dos bloques de pies al verlos de frente.
     for i,(x,z) in enumerate(((-2,-3),(2,-3),(-2,3),(2,3))):
         b='leg'+str(i); m.bone(b,(x,6,z),'body')
-        m.cube(b,(x-2,0,z-2),(x+2,6,z+2),'#7fc8ff',pat='ice')
+        m.cube(b,(x-2,0,z-2),(x+2,6,z+2),'#4c6b25',pat='hazard')
     m.anim('idle',2,{'head':{'rotation':(0,swing(2,.5),0)}})
     m.anim('walk',1,{f'leg{i}':{'rotation':(swing(18 if i in (0,3) else -18),0,0)} for i in range(4)})
     m.anim('swell',1.5,{'body':{'scale':('1+q.anim_time*0.12','1+q.anim_time*0.06','1+q.anim_time*0.12')}},loop='once')
