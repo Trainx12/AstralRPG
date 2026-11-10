@@ -101,11 +101,12 @@ class TravelUI(unittest.TestCase):
             panel=ui.panel(kind)
             y=179-(6-ui.ROWS[kind])*18
             self.assertEqual(panel.getpixel((64,(y+1)*2))[3],0)
-        # El bloque de calculo, exclusiones y cobro sigue intacto.
-        import subprocess
-        previous=subprocess.check_output(['git','show','HEAD:datapack-src/minas.sk'],cwd=ROOT).decode('utf-8')
-        for begin,end in [('function am_sell_value','function am_sale_menu'),('function am_sell(p:', '# Comandos que usan')]:
-            self.assertEqual(script[script.index(begin):script.index(end)],previous[previous.index(begin):previous.index(end)])
+        # La venta compartida conserva exclusiones y el cobro de Minas.
+        for snippet in ('if name of {_it} is not set:', 'if lore of {_it} is not set:',
+                        'set {_price} to {-am.price::%type of {_it}%}',
+                        'set {_price} to {-ab.price::%type of {_it}%}',
+                        "set slot {_slot} of {_p}'s inventory to air", "add {_total} to {_p}'s balance"):
+            self.assertIn(snippet, script)
 
     def test_previous_sidebar_is_complete(self):
         from lobby import TAB_SECTIONS

@@ -72,9 +72,6 @@ class VM:
         if m:
             tags=json.loads(re.search(r'Tags:(\[[^]]*\])',m[2])[1])
             entity={'type':m[1].upper(),'tags':tags}; self.alive.append(entity); self.spawned.append(entity); return False
-        if line.startswith('mm mobs spawn tanda2_forja_'):
-            room=re.search(r'tanda2_forja_(sala\d+)_',line)[1]; t='ad.forja.'+room
-            e={'type':'MAGMA_CUBE','tags':[t,t+'.wave','ad.vanilla']}; self.alive.append(e); self.spawned.append(e); return False
         if line.startswith('tag @s '):
             _,_,op,t=line.split(); self.tags.add(t) if op=='add' else self.tags.discard(t); return False
         if line.startswith('effect '): return False

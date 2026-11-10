@@ -1,3 +1,84 @@
+on load:
+    delete {-ab.price::*}
+    set {_t} to "minecraft:oak_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_oak_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:oak_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_oak_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:oak_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:spruce_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_spruce_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:spruce_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_spruce_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:spruce_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:birch_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_birch_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:birch_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_birch_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:birch_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:jungle_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_jungle_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:jungle_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_jungle_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:jungle_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:acacia_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_acacia_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:acacia_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_acacia_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:acacia_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:dark_oak_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:stripped_dark_oak_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.79
+    set {_t} to "minecraft:dark_oak_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:stripped_dark_oak_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.11
+    set {_t} to "minecraft:dark_oak_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 1.12
+    set {_t} to "minecraft:cherry_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:cherry_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:cherry_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 0.8
+    set {_t} to "minecraft:mangrove_log" parsed as item type
+    set {-ab.price::%{_t}%} to 0.75
+    set {_t} to "minecraft:mangrove_wood" parsed as item type
+    set {-ab.price::%{_t}%} to 1.05
+    set {_t} to "minecraft:mangrove_planks" parsed as item type
+    set {-ab.price::%{_t}%} to 0.8
+
+command /bosqueventa <player>:
+    executable by: console
+    trigger:
+        if name of world of arg-1 is "astral_bosque":
+            am_sale_menu(arg-1)
+
 # AstralRPG / Bosque Astral. Generado por datapack-src/bosque_talar.py: no editar a mano.
 # Arboles con molde en Y -60; regeneran 3 min despues de talarlos (clone masked).
 # Pendientes en memoria: {-ab.pend::i_j} = fecha en que se talo.
@@ -77,6 +158,31 @@ on break with priority highest:
         stop
     if {-ab.pend::%{_k}%} is not set:
         set {-ab.pend::%{_k}%} to now
+
+on uncancelled break with priority monitor:
+    if name of world of event-block is not "astral_bosque":
+        stop
+    if player's gamemode is not survival:
+        stop
+    set {_d::*} to drops of event-block using player's tool
+    clear drops
+    am_give(player, {_d::*})
+
+# Solo loot de motosierra marcado por el datapack; no drops manuales.
+every 2 ticks:
+    loop all players in ab_world():
+        set {_p} to loop-player
+        loop all dropped items in radius 48 around {_p}:
+            if "ab.saw" is in scoreboard tags of loop-entity:
+                execute console command "minecraft:data remove entity %uuid of loop-entity% Item.components.minecraft:custom_data"
+                set {_it} to item of loop-entity
+                if {_p}'s inventory has enough space for {_it}:
+                    give {_it} to {_p}
+                    delete loop-entity
+                else:
+                    teleport loop-entity to {_p}
+                    execute console command "minecraft:tag %uuid of loop-entity% remove ab.saw"
+                    execute console command "minecraft:data merge entity %uuid of loop-entity% {PickupDelay:10s}"
 
 on place:
     if name of world of event-block is "astral_bosque":

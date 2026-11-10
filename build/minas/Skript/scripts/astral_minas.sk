@@ -842,6 +842,8 @@ function am_sell_value(p: player, sell: boolean) :: number:
             if name of {_it} is not set:
                 if lore of {_it} is not set:
                     set {_price} to {-am.price::%type of {_it}%}
+                    if name of world of {_p} is "astral_bosque":
+                        set {_price} to {-ab.price::%type of {_it}%}
                     if {_price} is set:
                         add item amount of {_it} * {_price} to {_total}
                         if {_sell} is true:
@@ -850,16 +852,27 @@ function am_sell_value(p: player, sell: boolean) :: number:
 
 function am_sale_menu(p: player):
     set {_value} to am_sell_value({_p}, false)
+    set {_goods} to "minerales"
+    set {_description} to "piedra, roca y minerales"
+    if name of world of {_p} is "astral_bosque":
+        set {_goods} to "maderas"
+        set {_description} to "troncos, madera y tablones"
     set {_inv} to chest inventory with 5 rows named "&f"
     loop 7 times:
         set {_s} to 27 + loop-number
-        set slot {_s} of {_inv} to paper named "&aVender todos mis minerales - Recibis: &6%{_value}% oro" with lore "&7Vende piedra, roca y minerales" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
+        set slot {_s} of {_inv} to paper named "&aVender todos mis %{_goods}% - Recibis: &6%{_value}% oro" with lore "&7Vende %{_description}%" and "&7de tu inventario. El equipo y los" and "&7objetos con nombre no se tocan." and "" and "&7Ahora te pagan: &6%{_value}% oro"
         set item model of slot {_s} of {_inv} to "astral:viajes/blank"
     set slot 1 of {_inv} to coal named "&fCarbón" with lore "&7Se vende en la Venta rápida."
     set slot 2 of {_inv} to iron ingot named "&fHierro" with lore "&7Se vende en la Venta rápida."
     set slot 3 of {_inv} to gold ingot named "&fOro" with lore "&7Se vende en la Venta rápida."
     set slot 4 of {_inv} to emerald named "&fEsmeralda" with lore "&7Se vende en la Venta rápida."
     set slot 5 of {_inv} to diamond named "&fDiamante" with lore "&7Se vende en la Venta rápida."
+    if name of world of {_p} is "astral_bosque":
+        set slot 1 of {_inv} to oak log named "&fTroncos"
+        set slot 2 of {_inv} to stripped oak log named "&fTroncos sin corteza"
+        set slot 3 of {_inv} to oak wood named "&fMadera de seis caras"
+        set slot 4 of {_inv} to stripped oak wood named "&fMadera sin corteza"
+        set slot 5 of {_inv} to oak planks named "&fTablones"
     set slot 35 of {_inv} to paper named "&cCerrar"
     set item model of slot 35 of {_inv} to "astral:viajes/blank"
     open {_inv} to {_p}
@@ -867,11 +880,14 @@ function am_sale_menu(p: player):
 
 function am_sell(p: player):
     set {_total} to am_sell_value({_p}, true)
+    set {_goods} to "minerales"
+    if name of world of {_p} is "astral_bosque":
+        set {_goods} to "maderas"
     if {_total} <= 0:
-        send "&eNo tenés minerales para vender." to {_p}
+        send "&eNo tenés %{_goods}% para vender." to {_p}
         stop
     add {_total} to {_p}'s balance
-    send "&aVendiste tus minerales por &6%{_total}% oro&a." to {_p}
+    send "&aVendiste tus %{_goods}% por &6%{_total}% oro&a." to {_p}
     play sound "entity.experience_orb.pickup" to {_p}
 
 # Comandos que usan los aldeanos de MythicMobs (corren desde la consola).

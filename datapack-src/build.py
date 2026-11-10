@@ -1996,9 +1996,18 @@ fn("tool/drill", [
     f"execute unless entity @s[y_rotation=-135..135] run function {NS}:tool/d/n",
     "playsound minecraft:block.stone.break block @a ~ ~ ~ 0.8 0.8",
 ])
+# Mark only entities created by this synchronous loot command, never player drops.
+fn("tool/bosque_loot", [
+    'tag @e[type=minecraft:item,distance=..2] add ab.older',
+    'loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand',
+    'tag @e[type=minecraft:item,distance=..2,tag=!ab.older] add ab.saw',
+    'execute as @e[type=minecraft:item,distance=..2,tag=ab.saw,tag=!ab.older] run data merge entity @s {PickupDelay:32767s,Item:{components:{"minecraft:custom_data":{ab_saw:1b}}}}',
+    'tag @e[type=minecraft:item,distance=..2,tag=ab.older] remove ab.older',
+])
 fn("tool/mine", [
     f"execute unless block ~ ~ ~ #{NS}:drillable unless block ~ ~ ~ #{NS}:tree_logs run return 0",
-    "loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand",
+    'execute if dimension minecraft:astral_bosque run function astral:tool/bosque_loot',
+    'execute unless dimension minecraft:astral_bosque run loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand',
     "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
     "setblock ~ ~ ~ minecraft:air",
 ])

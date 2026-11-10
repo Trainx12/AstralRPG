@@ -174,13 +174,6 @@ def transform(text,d,kind):
             sk[:]=[s.replace('skill{s=AST_FASE_',f'skill{{s=TANDA2_{key}_AST_FASE_') for s in sk]
             if room.get('boss_yaw') is not None:
                 sk += [f'command{{c="execute as <caster.uuid> at @s run minecraft:tp @s ~ ~ ~ {room["boss_yaw"]} 0"}} @self ~onSpawn']
-        if key=='forja':
-            for room in d['rooms'][:-1]:
-                t=tag(d,room); mid=f'tanda2_forja_{room["id"]}_magma'
-                data[mid]={'Type':'MAGMA_CUBE','Health':16,'Options':{'Size':4,'PreventSlimeSplit':True,
-                    'Glowing':True,'Despawn':False,'PreventOtherDrops':True},
-                    'Skills':[f'addtag{{tag={v}}} @self ~onSpawn' for v in (t,t+'.wave','ad.vanilla')]+
-                    [cmd('mob/roll')+' ~onSpawn','potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn']}
     else:
         from mobs import mythic
         source={'bosque':'chaman','tumba':'momia','cumbre':'yeti','forja':'golem_forja'}.get(key)
@@ -220,15 +213,15 @@ def generate(files):
                 nbt='Tags:'+json.dumps(tags)+',Glowing:1b,PersistenceRequired:1b'
                 if m in ('ZOMBIE','HUSK'): nbt+=',IsBaby:0b'
                 if m in ('PIGLIN_BRUTE','HOGLIN'): nbt+=',IsImmuneToZombification:1b'
-                if m=='MAGMA_CUBE': nbt+=',Size:3'
+                if m=='MAGMA_CUBE':
+                    # Size 0 never splits; scale restores the large cube hitbox.
+                    nbt+=',Size:0,Health:16f,attributes:[{id:"minecraft:max_health",base:16},{id:"minecraft:attack_damage",base:6},{id:"minecraft:scale",base:4}]'
                 if m in ('SKELETON','STRAY'): nbt+=',equipment:{mainhand:{id:"minecraft:bow",count:1}}'
                 if m=='WITHER_SKELETON': nbt+=',equipment:{mainhand:{id:"minecraft:stone_sword",count:1}}'
                 if m=='VINDICATOR': nbt+=',equipment:{mainhand:{id:"minecraft:iron_axe",count:1}}'
                 lines=[f'summon minecraft:{m.lower()} {x} {y} {z} {{{nbt}}}',
                        f'execute as @e[tag={t},tag=!astral.seen] at @s run function astral:mob/roll']
                 if key=='forja': lines += [f'effect give @e[tag={t}] minecraft:fire_resistance infinite 0 true']
-                if m=='MAGMA_CUBE' and key=='forja':
-                    lines=[f'mm mobs spawn tanda2_forja_{r["id"]}_magma 1 {d["world"]},{x},{y},{z}']
                 return lines
             arrival='HUSK' if key=='tumba' else 'ZOMBIE'
             fn(p+'/arrival', [line for i in range(LLEGADA_MOBS) for line in spawn(arrival,r['spawn_points'][i%len(r['spawn_points'])],'arrival')])

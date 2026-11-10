@@ -21,3 +21,15 @@ skript reload astral_minas
 bosquegenerar
 # 4) Revisar parado en el spawn (-4.5 65 56.5) que esten los 64 arboles.
 #    Con /bosquereset se vuelven a copiar todos los moldes.
+
+# Actualizacion: no regenerar el mundo ni los arboles existentes.
+# Subir tambien build/mythicmobs/mobs/astral.yml y recargar:
+mm reload
+rg flag -w astral_bosque __global__ mob-spawning allow
+mm mobs kill astral_npc_bosque_venta
+mm mobs spawn astral_npc_bosque_venta 1 astral_bosque,-1.5,65,56.5,90,0
+mm mobs kill astral_npc_bosque_viaje
+mm mobs spawn astral_npc_bosque_viaje 1 astral_bosque,-7.5,65,56.5,-90,0
+rg flag -w astral_bosque __global__ mob-spawning deny
+# Precios sin referencia fija en services_catalog.json (pendientes; no se venden):
+# stripped_cherry_log, stripped_cherry_wood, stripped_mangrove_log, stripped_mangrove_wood

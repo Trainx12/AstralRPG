@@ -6,6 +6,7 @@ Los arboles los genera Minecraft con `place feature` (formas naturales): no hay 
 terceros. Cada arbol tiene un molde identico debajo (Y -60) en los mismos chunks; regenerar
 es un `clone ... masked` del molde a su lugar, 3 minutos despues de talarlo.
 """
+import json
 import random
 from pathlib import Path
 
@@ -24,6 +25,34 @@ REGROW_MIN = 3       # minutos hasta que vuelve a crecer
 FALL_Y = 55
 SPAWN = (X0 - 4.5, GROUND + 1, Z0 + GRID * CELL / 2 + 0.5, -90)
 SEED = 87
+# Pasto dentro del piso -8..119; fuera de la plataforma de piedra (-7..-3, 53..59).
+VENDOR = (-1.5, 65, 56.5, 90)
+TRAVEL = (-7.5, 65, 56.5, -90)
+WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak', 'cherry', 'mangrove')
+
+
+def wood_prices():
+    catalog = json.loads((ROOT / 'datapack-src/services_catalog.json').read_text())
+    prices, missing = {}, []
+    for wood in WOODS:
+        for material in (f'{wood}_log', f'stripped_{wood}_log', f'{wood}_wood', f'stripped_{wood}_wood', f'{wood}_planks'):
+            entry = catalog.get(material.upper())
+            if entry is None or entry['min'] != entry['max']:
+                missing.append(material)
+            else:
+                prices[material] = entry['min']
+    return prices, missing
+
+
+def services():
+    lines = ['on load:', '    delete {-ab.price::*}']
+    for material, price in wood_prices()[0].items():
+        lines += [f'    set {{_t}} to "minecraft:{material}" parsed as item type',
+                  f'    set {{-ab.price::%{{_t}}%}} to {price}']
+    lines += ['','command /bosqueventa <player>:', '    executable by: console', '    trigger:',
+              f'        if name of world of arg-1 is "{WORLD}":', '            am_sale_menu(arg-1)', '']
+    return '\n'.join(lines) + '\n'
+
 
 # Pedido del dueno: muchos tipos, y los abetos gigantes son los que mas hay.
 TREES = [("mega_spruce", 22), ("mega_pine", 12), ("spruce", 4), ("pine", 2), ("oak", 4),
@@ -116,6 +145,31 @@ def script():
         "        stop",
         "    if {-ab.pend::%{_k}%} is not set:",
         "        set {-ab.pend::%{_k}%} to now",
+        "",
+        "on uncancelled break with priority monitor:",
+        f'    if name of world of event-block is not "{WORLD}":',
+        "        stop",
+        "    if player's gamemode is not survival:",
+        "        stop",
+        "    set {_d::*} to drops of event-block using player's tool",
+        "    clear drops",
+        "    am_give(player, {_d::*})",
+        "",
+        "# Solo loot de motosierra marcado por el datapack; no drops manuales.",
+        "every 2 ticks:",
+        "    loop all players in ab_world():",
+        "        set {_p} to loop-player",
+        "        loop all dropped items in radius 48 around {_p}:",
+        '            if "ab.saw" is in scoreboard tags of loop-entity:',
+        '                execute console command "minecraft:data remove entity %uuid of loop-entity% Item.components.minecraft:custom_data"',
+        "                set {_it} to item of loop-entity",
+        "                if {_p}'s inventory has enough space for {_it}:",
+        "                    give {_it} to {_p}",
+        "                    delete loop-entity",
+        "                else:",
+        "                    teleport loop-entity to {_p}",
+        '                    execute console command "minecraft:tag %uuid of loop-entity% remove ab.saw"',
+        '                    execute console command "minecraft:data merge entity %uuid of loop-entity% {PickupDelay:10s}"',
         "",
         "on place:",
         f'    if name of world of event-block is "{WORLD}":',
@@ -224,7 +278,7 @@ def script():
               "            add 1 to {_i}",
               "        delete {-ab.pend::*}",
               '        send "&aArboles regenerados." to command sender']
-    return "\n".join(lines) + "\n"
+    return services() + "\n".join(lines) + "\n"
 
 
 def install():
@@ -253,6 +307,16 @@ def install():
         f"# 4) Revisar parado en el spawn ({SPAWN[0]} {SPAWN[1]} {SPAWN[2]}) que esten los {GRID * GRID} arboles.",
         "#    Con /bosquereset se vuelven a copiar todos los moldes.",
     ]
+    lines += ["", "# Actualizacion: no regenerar el mundo ni los arboles existentes.",
+              "# Subir tambien build/mythicmobs/mobs/astral.yml y recargar:", "mm reload",
+              f"rg flag -w {WORLD} __global__ mob-spawning allow"]
+    for name, pos in (("venta", VENDOR), ("viaje", TRAVEL)):
+        x, y, z, yaw = pos
+        lines += [f"mm mobs kill astral_npc_bosque_{name}",
+                  f"mm mobs spawn astral_npc_bosque_{name} 1 {WORLD},{x},{y},{z},{yaw},0"]
+    lines += [f"rg flag -w {WORLD} __global__ mob-spawning deny",
+              "# Precios sin referencia fija en services_catalog.json (pendientes; no se venden):",
+              "# " + ", ".join(wood_prices()[1])]
     return "\n".join(lines) + "\n"
 
 

@@ -27,6 +27,8 @@ def main():
             if name.endswith(".json"):json.loads(pack.read(name))
             if not name.endswith(".mcfunction"):continue
             text=pack.read(name).decode("utf-8")
+            from minecraft_commands import validate
+            validate(text, name)
             for ref in re.findall(r"\bfunction (astral:[a-z0-9_./-]+)",text):
                 if "$" in ref:continue
                 target="data/astral/function/"+ref.split(":",1)[1]+".mcfunction"

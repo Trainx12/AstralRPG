@@ -21,7 +21,29 @@ gigantes, que vuelven a crecer **3 minutos** después de talarlos. Todo sale de
 - **Protección:** solo se rompen troncos, madera, hojas, enredaderas, cacao y colmenas, y solo dentro de
   la grilla. No se puede poner bloques, vaciar baldes ni recibir daño; las hojas no se caen; las
   explosiones no rompen nada. Si alguien cae bajo Y 55 vuelve al spawn (`-4.5 65 56.5`).
-- **Pago:** la madera se vende en la tienda como cualquier tronco (lo que paga cada árbol).
+- **Venta rápida:** `astral_npc_bosque_venta` («Venta rapida - maderas») reutiliza
+  `am_sale_menu`, la interfaz `minas-venta` y el cobro de Minas. Vende troncos, troncos
+  sin corteza, madera de seis caras con/sin corteza y tablones de roble, abeto, abedul,
+  jungla, acacia, roble oscuro, cerezo y mangle. Excluye Nether y objetos con nombre o
+  lore. Usa precios fijos de `services_catalog.json`, catálogo de EconomyShopGUI.
+  Minas conserva sus precios de `minas.py`. Actualizar el catálogo y regenerar si cambia la tienda.
+- **Precios pendientes:** faltan `stripped_cherry_log`, `stripped_cherry_wood`,
+  `stripped_mangrove_log` y `stripped_mangrove_wood` en el catálogo. Estas cuatro
+  variantes permanecen en el inventario: no se inventa su precio ni se venden aún.
+- **Viajes:** `astral_npc_bosque_viaje` («Viajes - minas y lobby») abre el mismo
+  `/minas` mediante `minasmenu`; incluye el botón Lobby. Constantes del generador:
+  `VENDOR=(-1.5,65,56.5,90)` y `TRAVEL=(-7.5,65,56.5,-90)`, a tres bloques del
+  spawn mirando hacia él. Piso de pasto Y 64 fuera de la plataforma de piedra.
+- **Recolección:** romper normalmente usa los drops de la herramienta (incluida
+  Fortuna), `clear drops` y `am_give`, igual que Minas; sin espacio caen a los pies.
+  La motosierra usa `tool/bosque_loot`: marca solo entidades creadas por su comando
+  de loot, excluyendo todas las que ya estaban allí. Un componente temporal evita
+  mezclarlas con drops manuales; el retraso de recogida evita recoger esa marca.
+  Cada dos ticks el Skript retira el componente y entrega las pilas marcadas a un
+  jugador a hasta 48 bloques (incluye las copas altas). Entregar y eliminar la
+  entidad ocurre sin esperas, para impedir doble cobro. Si no entra la pila completa,
+  retira la marca y deja el objeto a los pies para recogida normal. No hace falta
+  seguir sosteniendo la motosierra después del corte.
 - Las motosierras funcionan normal: `astral_bosque` no está en la lista de mundos bloqueados del datapack
   y el jugador pierde la marca `astral.mines` al salir de las minas.
 
@@ -37,3 +59,13 @@ el spawn que estén los 64 árboles; los que no se pudieron colocar quedan sin m
 Mundo creado, script cargado sin errores y `bosquegenerar` corrido: 64 copias, ninguna vacía
 (entre 220 y 889 bloques por árbol). `time set noon` falla en 26.1 ("world without world clock");
 si el bosque queda oscuro hay que resolver la hora de otra forma. Falta probar talando.
+
+## Actualización Tanda 2c (preparada, sin desplegar)
+
+Lista exacta: `build/deploy/tanda2c.md`. Apagar para reemplazar el datapack, subir los
+scripts de Minas/Bosque y los mobs MythicMobs indicados, iniciar y revisar consola.
+Cargar Minas antes del Bosque: el Bosque comparte sus funciones. Para esta actualización
+no ejecutar `bosquegenerar`, no recrear mundos ni reemplazar moldes. Los comandos para
+los dos aldeanos están al final de `build/bosque/instalacion.txt`, rodeados de
+`mob-spawning allow` y `deny`. Falta confirmar en Paper la carga de Skript, ventas,
+Fortuna, inventario lleno, drops manuales y tala de dos jugadores a la vez.
