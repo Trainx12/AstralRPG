@@ -48,17 +48,28 @@ def upgrade_commands(d):
     return '\n'.join(lines)+'\n'
 
 def collision(world,point,entity,sc):
-    from mobs.terreno import get,AIR
+    from mobs.terreno import get,AIR,solid
     x,y,z=point; width,height=VANILLA[entity]; width*=sc; height*=sc
-    found=[]; count=0
+    found=[]; count=0; solids=0; types={}
     for xx in range(math.floor(x-width/2),math.ceil(x+width/2)):
         for zz in range(math.floor(z-width/2),math.ceil(z+width/2)):
             for yy in range(math.floor(y),math.ceil(y+height)):
                 block=get(world,xx,yy,zz)
                 if block not in AIR:
                     count+=1
+                    solids+=int(solid(block))
+                    types[block]=types.get(block,0)+1
                     if len(found)<8: found.append([xx,yy,zz,block])
-    return dict(ancho=round(width,3),alto=round(height,3),bloques_no_aire=count,ejemplos=found)
+    return dict(ancho=round(width,3),alto=round(height,3),bloques_no_aire=count,
+                bloques_solidos=solids,tipos=types,ejemplos=found)
+
+
+def movement(world,point,entity,sc):
+    """Muestrea trayectos cortos, sin inferir la IA ni cambiar el punto pedido."""
+    x,y,z=point
+    return {name:[dict(distancia=distance,**collision(world,(x+dx*distance,y,z+dz*distance),entity,sc))
+                  for distance in (.25,.5,.75,1)]
+            for name,dx,dz in [('este',1,0),('oeste',-1,0),('sur',0,1),('norte',0,-1)]}
 
 def generate():
     from mobs.mazmorra import MINA
@@ -83,9 +94,9 @@ def generate():
          'Se prioriza el alto: una sola escala no puede igualar proporciones distintas entre modelo y entidad. '+\
          'El ancho puede diferir. Las animaciones tampoco tienen una caja dinamica. '+\
          'Mascotas, monturas, NPC y estatuas quedan excluidos.\n\n'+'\n'.join(size_rows)+'\n\n'+\
-         '**Limite detectado:** Yeti de Cumbre: modelo de 32 × 56 × 17,6 bloques; '+\
-         'la caja RAVAGER alcanza 31,2 × 35,2 con `scale=16`. No es posible igualar el alto con este atributo. '+\
-         'Se conserva `s=16` y se informa la diferencia. Golem de Forja: modelo 12,9 × 24,25 × 12,9; '+\
+         'Yeti de Cumbre: modelo de 16 x 28 x 8,8 bloques (`s=8`, cuatro veces el normal y el Ancestral). '+\
+         'Caja RAVAGER de 24,818 x 28 con `scale=12,727273`, por debajo del tope 16; coincide el alto, no el ancho. '+\
+         'Golem de Forja: modelo 12,9 x 24,25 x 12,9; '+\
          '`scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.\n'
     doc.write_text(text,encoding='utf-8')
     pack=ROOT/'build/AstralRPG-Textures.zip'; sha=hashlib.sha1(pack.read_bytes()).hexdigest()
@@ -93,6 +104,15 @@ def generate():
             'NO desplegado. El dueno debe ver `build/previews/tamanos-jefes.png` antes de subir.',
             'Servidor actual: Empower (Aternos es copia). No se uso navegador, API ni red para desplegar.',
             'No subir mundos, regiones, mapas, `.local`, logs ni carpetas enteras.', '',
+            '## Correccion Tanda 2b', '',
+            'Si Tanda 2 ya esta instalada: reemplazar solo `build/mythicmobs/skills/astral.yml` → '+
+            '`plugins/MythicMobs/skills/astral.yml`, con Cumbre vacia; ejecutar `mm reload`. '+
+            'No requiere apagar ni reiniciar para esta correccion. El siguiente Yeti usa el tamano nuevo; '+
+            'un Yeti existente requiere recargar su chunk para aplicar onLoad (comprobar modelo y atributo), '+
+            'o completar la partida antes de actualizar. No matar al jefe durante una partida.',
+            'Verificar `attribute <UUID> minecraft:scale get` (12.727273), '+
+            '`attribute <UUID> minecraft:max_health get` (2475000), ataques, movimiento corto y consola. '+
+            'Si Tanda 2 aun no esta instalada, seguir la lista completa y el reinicio indicados abajo.', '',
             '## Archivos locales → destino', '',
             '| Local | Destino |','|---|---|',
             '| build/AstralRPG-Items.zip | world/datapacks/AstralRPG-Items.zip |',
@@ -104,7 +124,7 @@ def generate():
     report += ['', 'Resource pack y modelos sin cambios; NO subirlos en esta tanda.',
                f'SHA-1 del pack conservado: `{sha}`. URL fija R2 documentada en SERVIDOR.md.', '',
                '## Orden', '',
-               '1. Mostrar la vista previa al dueno. Resolver el limite de hitbox del Yeti antes de habilitar Cumbre al publico.',
+               '1. Mostrar la vista previa al dueno. Comprobar colisiones y movimiento del Yeti en Paper antes de habilitar Cumbre al publico.',
                '2. Mazmorras vacias: respaldar los archivos que se reemplazan y spigot.yml. Apagar el servidor.',
                '3. Comprobar `settings.attribute.maxHealth.max`: minimo 13125000; conservar o poner 1000000000. '+
                'La copia local fichas-paper tiene 1000000000, pero asw-native conserva 1024; el valor del servidor actual NO esta verificado. '+
@@ -121,19 +141,26 @@ def generate():
     audit={}
     for d in ds:
         key=d['key']; model,s,entity={'bosque':('astral_chaman',2,'EVOKER'),'mina':('astral_golem_forja',2,'IRON_GOLEM'),
-                                    'tumba':('astral_momia',2,'HUSK'),'cumbre':('astral_yeti',16,'RAVAGER'),'forja':('astral_golem_forja',8,'IRON_GOLEM')}[key]
+                                    'tumba':('astral_momia',2,'HUSK'),'cumbre':('astral_yeti',8,'RAVAGER'),'forja':('astral_golem_forja',8,'IRON_GOLEM')}[key]
         report += [f'| {key} | '+', '.join(str(len(r['oleadas'])) for r in d['rooms'][:-1])+' | '+
                    ', '.join(f'{r["id"]}: {len(r["spawn_points"])}' for r in d['rooms'])+f' | {d["rooms"][-1]["centro"]} / {fmt(VIDA_JEFE[key])} | {s} / {scale(model,s,entity)} |']
         audit[key]={r['id']:{k:r[k] for k in ('centro','llegada','spawn_points','spawn_bounds','golem_points') if k in r} for r in d['rooms']}
     report += ['', 'Puntos exactos y selecciones: `build/deploy/tanda2-puntos.json`. Leidos de los mapas locales del servidor, sin modificarlos.', '', '## Limites de tamano comprobados', '']
-    for key,entity,model,s in [('cumbre','RAVAGER','astral_yeti',16),('forja','IRON_GOLEM','astral_golem_forja',8)]:
+    for key,entity,model,s in [('cumbre','RAVAGER','astral_yeti',8),('forja','IRON_GOLEM','astral_golem_forja',8)]:
         d=next(d for d in ds if d['key']==key); measure=collision(d['world'],d['rooms'][-1]['centro'],entity,scale(model,s,entity))
         audit[key]['caja_jefe']=measure
+        if key=='cumbre':
+            audit[key]['movimiento_jefe']=movement(d['world'],d['rooms'][-1]['centro'],entity,scale(model,s,entity))
         report += [f'- {key}: caja vanilla {measure["ancho"]} × {measure["alto"]} bloques; '+
                    f'{measure["bloques_no_aire"]} bloques no aire intersectan su volumen en el punto pedido. '+
                    'Ejemplos y medidas en el JSON. Esta lectura estatica detecta interferencias; falta validar colisiones/IA en Paper.']
-    report += ['', 'Yeti: el modelo de 56 bloques excede el alto maximo de la caja (35,2). Se conserva el tamano pedido; '+
-               'Cumbre queda para prueba privada hasta que el dueno decida como resolver esa limitacion. El Golem conserva persecucion y step_height alto.', '',
+        if key=='cumbre':
+            report += [f'  Solidos de bloque completo (criterio conservador de terreno.py): {measure["bloques_solidos"]}. '+
+                       'Los no aire incluyen bloques parciales, cuyo estado de colision debe comprobar Paper.']
+            for direction,samples in audit[key]['movimiento_jefe'].items():
+                report += [f'  - {direction}: '+', '.join(f'{p["distancia"]:g} b: {p["bloques_no_aire"]} no aire / {p["bloques_solidos"]} solidos' for p in samples)+'.']
+    report += ['', 'Yeti: modelo y caja de 28 bloques de alto; conserva punto, vida, ataques y movimiento casi quieto. '+
+               'El ancho vanilla difiere del modelo. El Golem conserva persecucion y step_height alto.', '',
                '## Comandos de actualizacion (sin /)', '']
     for d in ds: report += [f'### {d["key"]}', '', '```text',upgrade_commands(d).rstrip(),'```','']
     (folder/'tanda2.md').write_text('\n'.join(report).rstrip()+'\n',encoding='utf-8')

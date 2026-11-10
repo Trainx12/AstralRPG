@@ -4,6 +4,11 @@ NO desplegado. El dueno debe ver `build/previews/tamanos-jefes.png` antes de sub
 Servidor actual: Empower (Aternos es copia). No se uso navegador, API ni red para desplegar.
 No subir mundos, regiones, mapas, `.local`, logs ni carpetas enteras.
 
+## Correccion Tanda 2b
+
+Si Tanda 2 ya esta instalada: reemplazar solo `build/mythicmobs/skills/astral.yml` → `plugins/MythicMobs/skills/astral.yml`, con Cumbre vacia; ejecutar `mm reload`. No requiere apagar ni reiniciar para esta correccion. El siguiente Yeti usa el tamano nuevo; un Yeti existente requiere recargar su chunk para aplicar onLoad (comprobar modelo y atributo), o completar la partida antes de actualizar. No matar al jefe durante una partida.
+Verificar `attribute <UUID> minecraft:scale get` (12.727273), `attribute <UUID> minecraft:max_health get` (2475000), ataques, movimiento corto y consola. Si Tanda 2 aun no esta instalada, seguir la lista completa y el reinicio indicados abajo.
+
 ## Archivos locales → destino
 
 | Local | Destino |
@@ -28,7 +33,7 @@ SHA-1 del pack conservado: `7a99922fb1734f4f80c64cee3f363a7b4d2404cb`. URL fija 
 
 ## Orden
 
-1. Mostrar la vista previa al dueno. Resolver el limite de hitbox del Yeti antes de habilitar Cumbre al publico.
+1. Mostrar la vista previa al dueno. Comprobar colisiones y movimiento del Yeti en Paper antes de habilitar Cumbre al publico.
 2. Mazmorras vacias: respaldar los archivos que se reemplazan y spigot.yml. Apagar el servidor.
 3. Comprobar `settings.attribute.maxHealth.max`: minimo 13125000; conservar o poner 1000000000. La copia local fichas-paper tiene 1000000000, pero asw-native conserva 1024; el valor del servidor actual NO esta verificado. No subir esas configs locales enteras. Editar solo ese valor si hace falta.
 4. Reemplazar los 13 archivos completos listados y editar las 8 condiciones de TAB. No tocar Santuario ni el mundo forja de expedicion.
@@ -43,17 +48,22 @@ SHA-1 del pack conservado: `7a99922fb1734f4f80c64cee3f363a7b4d2404cb`. URL fija 
 | mina | 2, 2, 2 | sala1: 24, sala2: 1, sala3: 24, sala4: 24 | (36.5, 24, -248.5) / 72.000 | 2 / 2.24537 |
 | bosque | 3 | sala1: 24, sala2: 24 | (1604.5, 101, 1382.5) / 12.500 | 2 / 2.628205 |
 | tumba | 2, 3 | sala1: 10, sala2: 12, sala3: 12 | (0.568, 72, 0.512) / 460.000 | 2 / 2.102564 |
-| cumbre | 4 | sala1: 24, sala2: 24 | (-101.8, 30, 56.9) / 2.475.000 | 16 / 16 |
+| cumbre | 4 | sala1: 24, sala2: 24 | (-101.8, 30, 56.9) / 2.475.000 | 8 / 12.727273 |
 | forja | 2, 2 | sala1: 24, sala2: 24, sala3: 24 | (-7.9, 47, -21.1) / 13.125.000 | 8 / 8.981481 |
 
 Puntos exactos y selecciones: `build/deploy/tanda2-puntos.json`. Leidos de los mapas locales del servidor, sin modificarlos.
 
 ## Limites de tamano comprobados
 
-- cumbre: caja vanilla 31.2 × 35.2 bloques; 396 bloques no aire intersectan su volumen en el punto pedido. Ejemplos y medidas en el JSON. Esta lectura estatica detecta interferencias; falta validar colisiones/IA en Paper.
+- cumbre: caja vanilla 24.818 × 28.0 bloques; 0 bloques no aire intersectan su volumen en el punto pedido. Ejemplos y medidas en el JSON. Esta lectura estatica detecta interferencias; falta validar colisiones/IA en Paper.
+  Solidos de bloque completo (criterio conservador de terreno.py): 0. Los no aire incluyen bloques parciales, cuyo estado de colision debe comprobar Paper.
+  - este: 0.25 b: 0 no aire / 0 solidos, 0.5 b: 0 no aire / 0 solidos, 0.75 b: 0 no aire / 0 solidos, 1 b: 0 no aire / 0 solidos.
+  - oeste: 0.25 b: 0 no aire / 0 solidos, 0.5 b: 0 no aire / 0 solidos, 0.75 b: 0 no aire / 0 solidos, 1 b: 29 no aire / 29 solidos.
+  - sur: 0.25 b: 0 no aire / 0 solidos, 0.5 b: 0 no aire / 0 solidos, 0.75 b: 29 no aire / 29 solidos, 1 b: 29 no aire / 29 solidos.
+  - norte: 0.25 b: 0 no aire / 0 solidos, 0.5 b: 0 no aire / 0 solidos, 0.75 b: 0 no aire / 0 solidos, 1 b: 0 no aire / 0 solidos.
 - forja: caja vanilla 12.574 × 24.25 bloques; 0 bloques no aire intersectan su volumen en el punto pedido. Ejemplos y medidas en el JSON. Esta lectura estatica detecta interferencias; falta validar colisiones/IA en Paper.
 
-Yeti: el modelo de 56 bloques excede el alto maximo de la caja (35,2). Se conserva el tamano pedido; Cumbre queda para prueba privada hasta que el dueno decida como resolver esa limitacion. El Golem conserva persecucion y step_height alto.
+Yeti: modelo y caja de 28 bloques de alto; conserva punto, vida, ataques y movimiento casi quieto. El ancho vanilla difiere del modelo. El Golem conserva persecucion y step_height alto.
 
 ## Comandos de actualizacion (sin /)
 

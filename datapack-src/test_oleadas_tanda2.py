@@ -183,6 +183,16 @@ class OleadasTests(unittest.TestCase):
             self.assertEqual(result[tier],87 if 1<tier<5 else 97 if tier==1 else 90)
 
 class ModelSizeTests(unittest.TestCase):
+    def test_cumbre_corrected_box_has_room_for_short_movement(self):
+        from mobs.entrega_tanda2 import collision,movement
+        from mobs.tamanos import SPECIAL,scale
+        model,s=SPECIAL['astral_yeti_cumbre']
+        self.assertEqual(s,8)
+        sc=scale(model,s,'RAVAGER'); point=(-101.8,30,56.9)
+        self.assertEqual(collision('cumbre_hielo',point,'RAVAGER',sc)['bloques_no_aire'],0)
+        for samples in movement('cumbre_hielo',point,'RAVAGER',sc).values():
+            self.assertTrue(all(p['bloques_no_aire']==0 for p in samples[:2]))
+
     def test_models_scale_height_and_spawn_load(self):
         from mobs.tamanos import rows,dimensions,scale,VANILLA
         skills=yaml.safe_load(__import__('mobs.mythic',fromlist=['metaskills']).metaskills())
@@ -191,8 +201,9 @@ class ModelSizeTests(unittest.TestCase):
             self.assertGreater(sc,0); self.assertLessEqual(sc,16)
             self.assertAlmostEqual(sc,min(16,dimensions(model,s)[1]/VANILLA[entity][1]),places=5)
             if mid!='astral_mina_guardian': self.assertTrue(any('minecraft:scale base set '+str(sc) in v for v in skills['AST_MODEL_'+mid]['Skills']))
-        self.assertEqual(dimensions('astral_yeti',16)[1],56)
-        self.assertEqual(scale('astral_yeti',16,'RAVAGER'),16)
+        self.assertEqual(dimensions('astral_yeti',8)[1],28)
+        self.assertEqual(scale('astral_yeti',8,'RAVAGER'),12.727273)
+        self.assertAlmostEqual(VANILLA['RAVAGER'][1]*scale('astral_yeti',8,'RAVAGER'),28,places=5)
 
 
 class SantuarioSinCambiosTests(unittest.TestCase):

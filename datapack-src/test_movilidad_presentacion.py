@@ -44,9 +44,9 @@ class BossScaleTests(unittest.TestCase):
                 self.assertIn(f'model{{m={mid};s=2.0}} @self', skills['AST_MODEL_'+mid]['Skills'])
         for mid in mythic.ANCESTRALES:
             self.assertIn(f'model{{m={mid};s=2.0}} @self', skills['AST_MODEL_'+mid+'_ancestral']['Skills'])
-        self.assertIn('model{m=astral_yeti;s=16.0} @self', skills['AST_MODEL_astral_yeti_cumbre']['Skills'])
+        self.assertIn('model{m=astral_yeti;s=8.0} @self', skills['AST_MODEL_astral_yeti_cumbre']['Skills'])
 
-    def test_only_cumbre_yeti_gets_the_sixteen_override(self):
+    def test_only_cumbre_yeti_gets_the_eight_override(self):
         for key in ('cumbre', 'santuario', 'otra'):
             _, text, _ = variant(key, 'yeti', boss=True)
             self.assertEqual('AST_MODEL_astral_yeti_cumbre' in text, key == 'cumbre')

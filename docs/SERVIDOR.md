@@ -358,6 +358,6 @@ El resource pack se sirve desde R2: `https://pub-5e0d1c63a1554ba7b8e33b038e1a06f
 
 La Galeria de Expediciones de la terraza fue borrada a pedido del dueno (3 aldeanos y 8 rotulos). `ambiente.py` ya no la recrea; se conservan los modulos de Expediciones, Bazar, Subastas y Herrero.
 
-Tanda 2 preparada localmente, sin desplegar: `build/deploy/tanda2.md`. Requiere apagar para cambiar el datapack y comprobar el tope `settings.attribute.maxHealth.max` de `spigot.yml` (recomendado 1.000.000.000, minimo 13.125.000). No usar configs de servidores de prueba completas. El Yeti solicitado supera el alto maximo de su caja vanilla: ver `docs/ESCALA_TIERS.md`.
+Tanda 2 preparada localmente, sin desplegar: `build/deploy/tanda2.md`. Requiere apagar para cambiar el datapack y comprobar el tope `settings.attribute.maxHealth.max` de `spigot.yml` (recomendado 1.000.000.000, minimo 13.125.000). No usar configs de servidores de prueba completas. Yeti de Cumbre corregido a 28 bloques de alto (`s=8`, `scale=12,727273`); chequeo de terreno en `build/deploy/tanda2.md`.
 
 El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.

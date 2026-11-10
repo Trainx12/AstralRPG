@@ -447,8 +447,10 @@ def metaskills():
                     "  - skill{s=AST_SILLA_VER} @self"]
             if d.get("jump"):
                 out += [f"  - command{{c=\"attribute <caster.uuid> minecraft:jump_strength base set {d['jump']}\"}} @self"]
+    from mobs.tamanos import SPECIAL
+    yeti_model,yeti_size=SPECIAL['astral_yeti_cumbre']
     out += ['AST_MODEL_astral_yeti_cumbre:', '  Skills:',
-            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_yeti;s=4.0} @self']
+            '  - addtag{tag=astral.seen} @self', f'  - model{{m={yeti_model};s={yeti_size}}} @self']
     # la silla se ve solo si el jugador le puso una montura
     out += ["AST_SILLA_VER:", "  Skills:", "  - delay 3",
             "  - partvisibility{p=silla;v=false} @self ?!hastag{tag=astral.ensillado}",
@@ -490,7 +492,6 @@ def metaskills():
     from mobs.tamanos import skills as size_skills, SPECIAL
     out += ['AST_MODEL_astral_golem_forja_mazmorra:', '  Skills:',
             '  - addtag{tag=astral.seen} @self', '  - model{m=astral_golem_forja;s=8.0} @self']
-    out = [line.replace('model{m=astral_yeti;s=4.0}', 'model{m=astral_yeti;s=16.0}') for line in out]
     sized=[]
     for line in out:
         sized.append(line)

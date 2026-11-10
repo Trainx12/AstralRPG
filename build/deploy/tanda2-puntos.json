@@ -1224,58 +1224,321 @@
       ]
     },
     "caja_jefe": {
-      "ancho": 31.2,
-      "alto": 35.2,
-      "bloques_no_aire": 396,
-      "ejemplos": [
-        [
-          -118,
-          30,
-          67,
-          "minecraft:light_blue_stained_glass"
-        ],
-        [
-          -118,
-          31,
-          67,
-          "minecraft:light_blue_stained_glass"
-        ],
-        [
-          -118,
-          32,
-          67,
-          "minecraft:cyan_stained_glass"
-        ],
-        [
-          -118,
-          33,
-          67,
-          "minecraft:cyan_stained_glass"
-        ],
-        [
-          -118,
-          34,
-          67,
-          "minecraft:cyan_stained_glass"
-        ],
-        [
-          -118,
-          35,
-          67,
-          "minecraft:cyan_stained_glass"
-        ],
-        [
-          -118,
-          36,
-          67,
-          "minecraft:cyan_stained_glass"
-        ],
-        [
-          -118,
-          37,
-          67,
-          "minecraft:cyan_stained_glass"
-        ]
+      "ancho": 24.818,
+      "alto": 28.0,
+      "bloques_no_aire": 0,
+      "bloques_solidos": 0,
+      "tipos": {},
+      "ejemplos": []
+    },
+    "movimiento_jefe": {
+      "este": [
+        {
+          "distancia": 0.25,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.5,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.75,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 1,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        }
+      ],
+      "oeste": [
+        {
+          "distancia": 0.25,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.5,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.75,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 1,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 29,
+          "bloques_solidos": 29,
+          "tipos": {
+            "minecraft:cyan_stained_glass": 16,
+            "minecraft:light_blue_stained_glass": 13
+          },
+          "ejemplos": [
+            [
+              -116,
+              30,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              31,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              32,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              33,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              34,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              35,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              36,
+              69,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -116,
+              37,
+              69,
+              "minecraft:cyan_stained_glass"
+            ]
+          ]
+        }
+      ],
+      "sur": [
+        {
+          "distancia": 0.25,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.5,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.75,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 29,
+          "bloques_solidos": 29,
+          "tipos": {
+            "minecraft:cyan_stained_glass": 13,
+            "minecraft:light_blue_stained_glass": 16
+          },
+          "ejemplos": [
+            [
+              -115,
+              30,
+              70,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -115,
+              31,
+              70,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -115,
+              32,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              33,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              34,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              35,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              36,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              37,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ]
+          ]
+        },
+        {
+          "distancia": 1,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 29,
+          "bloques_solidos": 29,
+          "tipos": {
+            "minecraft:cyan_stained_glass": 13,
+            "minecraft:light_blue_stained_glass": 16
+          },
+          "ejemplos": [
+            [
+              -115,
+              30,
+              70,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -115,
+              31,
+              70,
+              "minecraft:cyan_stained_glass"
+            ],
+            [
+              -115,
+              32,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              33,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              34,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              35,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              36,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ],
+            [
+              -115,
+              37,
+              70,
+              "minecraft:light_blue_stained_glass"
+            ]
+          ]
+        }
+      ],
+      "norte": [
+        {
+          "distancia": 0.25,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.5,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 0.75,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        },
+        {
+          "distancia": 1,
+          "ancho": 24.818,
+          "alto": 28.0,
+          "bloques_no_aire": 0,
+          "bloques_solidos": 0,
+          "tipos": {},
+          "ejemplos": []
+        }
       ]
     }
   },
@@ -1710,6 +1973,8 @@
       "ancho": 12.574,
       "alto": 24.25,
       "bloques_no_aire": 0,
+      "bloques_solidos": 0,
+      "tipos": {},
       "ejemplos": []
     }
   }

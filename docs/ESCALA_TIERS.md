@@ -131,8 +131,8 @@ Medicion de todas las esquinas de los cubos existentes, con rotaciones, en pose 
 | astral_cangrejo_ancestral | 2 | 2.825 | 3.13889 | 2.825 |
 | astral_chaman | 2 | 5.125 | 2.6282 | 5.125 |
 | astral_chaman_ancestral | 2 | 5.125 | 2.6282 | 5.125 |
-| astral_yeti_cumbre | 16 | 56.000 | 16 | 35.200 |
+| astral_yeti_cumbre | 8 | 28.000 | 12.7273 | 28.000 |
 | astral_golem_forja_mazmorra | 8 | 24.250 | 8.98148 | 24.250 |
 | astral_mina_guardian | 2 | 6.062 | 2.24537 | 6.062 |
 
-**Limite detectado:** Yeti de Cumbre: modelo de 32 × 56 × 17,6 bloques; la caja RAVAGER alcanza 31,2 × 35,2 con `scale=16`. No es posible igualar el alto con este atributo. Se conserva `s=16` y se informa la diferencia. Golem de Forja: modelo 12,9 × 24,25 × 12,9; `scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.
+Yeti de Cumbre: modelo de 16 x 28 x 8,8 bloques (`s=8`, cuatro veces el normal y el Ancestral). Caja RAVAGER de 24,818 x 28 con `scale=12,727273`, por debajo del tope 16; coincide el alto, no el ancho. Golem de Forja: modelo 12,9 x 24,25 x 12,9; `scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.

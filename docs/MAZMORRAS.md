@@ -388,7 +388,7 @@ El viejo mundo `forja` de expedicion no cambia.
 | Bosque | 1 | 3 oleadas en una sala + jefe | Chaman | 12.500 | 2 / 2,628205 |
 | Minas | 2 | 2+2+2 oleadas + jefe, mismas salas | Guardian actual | 72.000 | 2 / 2,245370 |
 | Tumba | 3 | 2+3 oleadas + jefe, mismas posiciones | Momia | 460.000 | 2 / 2,102564 |
-| Cumbre | 4 | 4 oleadas en la plaza + jefe | Yeti | 2.475.000 | 16 / 16 (limitado) |
+| Cumbre | 4 | 4 oleadas en la plaza + jefe | Yeti | 2.475.000 | 8 / 12,727273 |
 | Forja | 5 | 2+2 oleadas + jefe | Golem de Forja | 13.125.000 | 8 / 8,981481 |
 
 Las listas exactas estan en `WAVES`; puntos, selecciones y medidas en
@@ -414,9 +414,11 @@ y sus piglins/hoglins son inmunes a zombificacion.
 Cumbre conserva la llegada elegida por el dueno tambien para el combate final.
 El segundo controlador se desbloquea al limpiar la plaza: no se activan ambos al entrar.
 No se invento otra llegada al Yeti. El Yeti queda casi quieto y usa pisoton, empujon y
-proyectiles. Su modelo mide 56 bloques de alto: `scale=16` solo da una caja de 35,2.
-Las interferencias con el mapa quedan medidas en la entrega. No habilitar Cumbre al
-publico hasta revisar ese limite con el dueno. No se redujo el modelo.
+proyectiles. Su modelo mide 28 bloques de alto (`s=8`), cuatro veces el Yeti normal
+y el Ancestral (ambos `s=2`, 7 bloques). `scale=12,727273` da una caja de 28
+bloques de alto y 24,818 de ancho; el alto coincide, el ancho vanilla difiere.
+Las interferencias y pequenos desplazamientos en el mapa se miden en la entrega;
+falta validar colisiones e IA en Paper antes de habilitar Cumbre al publico.
 
 Instalacion exacta y comandos de reemplazo de controladores: `build/deploy/tanda2.md`.
 Los `comandos.txt` de esta tanda actualizan mundos existentes: no crear ni subir mundos.

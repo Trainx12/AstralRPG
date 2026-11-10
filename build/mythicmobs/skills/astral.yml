@@ -131,9 +131,9 @@ AST_MODEL_astral_chaman:
 AST_MODEL_astral_yeti_cumbre:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti;s=16.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 16"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 8.000000"} @self
+  - model{m=astral_yeti;s=8.0} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 12.727273"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 7.636364"} @self
 AST_SILLA_VER:
   Skills:
   - delay 3
