@@ -63,9 +63,18 @@ class Tanda1(unittest.TestCase):
         config = yaml.safe_load(TAB_SECTIONS)
         self.assertEqual(list(config['scoreboard']['scoreboards']), ['minas', 'astral'])
         self.assertLessEqual(len(ASTRAL_ROWS), 15)
-        for label in ('Vida', 'Defensa', 'Poder', 'Oro', 'Conectados', 'Rango', 'Diarias', 'Historia', 'Monstruos'):
+        self.assertEqual(len(ASTRAL_ROWS), 14)
+        self.assertIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))
+        self.assertNotIn('%player_armor%', str(ASTRAL_ROWS))
+        self.assertNotIn('Conectados', str(ASTRAL_ROWS))
+        self.assertIn('103.106.58.173:7004', ASTRAL_ROWS[-1])
+        for label in ('Stats', 'Def', 'Poder', 'Oro', 'Rango', 'Diarias', 'Historia', 'Monstruos'):
             self.assertIn(label, str(ASTRAL_ROWS))
         import betterhud
+        self.assertIn('[papi:objective_score_{astraldef}]', betterhud.layouts_yml())
+        from explosion_protection import BLOCK_CONFIG
+        self.assertEqual(yaml.safe_load(BLOCK_CONFIG)['mobs']['block-fireball-block-damage'], True)
+        self.assertEqual(yaml.safe_load(BLOCK_CONFIG)['mobs']['block-fireball-explosions'], False)
         self.assertEqual(yaml.safe_load(betterhud.config_yml('default-hud: []\n'))['default-hud'], [])
         self.assertNotIn('hud hud add', betterhud.SKRIPT)
         self.assertIn('tab scoreboard on', betterhud.SKRIPT)

@@ -1,4 +1,4 @@
-# Tanda 1: preparada, NO desplegada
+# Tanda 1 + correcciones 1b: preparadas, NO desplegadas
 
 El dueno debe revisar primero las vistas previas `build/previews/mazmorras.png`,
 `expediciones.png` y `panel-tab.png`. Son aproximaciones; comprobar despues con cliente real.
@@ -32,6 +32,16 @@ No subir archivos privados, logs, mapas ni mundos. Santuario queda en espera.
   `build/deploy/WorldGuard/<mundo>/config-fusionar.yml` en
   `plugins/WorldGuard/worlds/<mundo>/config.yml`, sin reemplazar el archivo entero.
   No cambiar santuario ni santuario_interstellar.
+
+## Alcance de la correccion 1b
+
+Esta correccion NO regenera datapack ni resource pack y NO sube nada al servidor/R2.
+Si la tanda 1 ya fue instalada: fusionar solo scoreboard/conditions de TAB y los 12
+config-fusionar.yml de WorldGuard; `tab reload` y `wg reload`, revisar consola.
+No hace falta apagar ni reiniciar solo por 1b. BetterHud sigue apagado; su texto
+corregido `build/plugins/BetterHud/layouts/astral.yml` corresponde a
+`plugins/BetterHud/layouts/astral.yml` SOLO si se reactiva en otra tarea.
+Si tanda 1 sigue pendiente, aplicar la lista completa y el arranque siguiente.
 
 ## Resource pack y arranque
 
@@ -80,31 +90,46 @@ WorldGuard documenta que `creeper-explosion`, `other-explosion`, `ghast-fireball
 `regions.explosion-flags-block-entity-damage` vale true por defecto. Por la condicion
 expresa del plan, NO se generan esos cinco flags deny. Solo `enderdragon-block-damage`
 es seguro directamente. Las configuraciones por mundo propuestas bloquean dano a bloques
-de TNT, creepers, wither y calaveras conservando sus explosiones. Quedan pendientes la
-proteccion de otras explosiones y bolas de ghast hasta validar configuracion y comportamiento
-en el servidor. No se aplico ningun cambio al servidor.
+de TNT, creepers, wither, calaveras y bolas de fuego conservando sus explosiones.
+Se agregan mobs.block-fireball-explosions: false y mobs.block-fireball-block-damage: true.
+WorldGuard 7 no ofrece claves separadas de dano a bloques para camas, anclas de
+reaparicion ni cristales del End: quedan pendientes. other-explosion y
+block-other-explosions pueden cancelar tambien dano; no se usan para resolverlo.
+Probar impacto y fuego de ghast/blaze en cliente real: esto no bloquea propagacion de fuego. No se aplico ningun cambio al servidor.
 
 Fuentes oficiales consultadas:
 - https://worldguard.enginehub.org/en/latest/regions/flags/
 - https://worldguard.enginehub.org/en/latest/config/
 
-El panel general usa `%player_armor%` como equivalente al `[armor]` de BetterHud;
-esta fila muestra armadura vanilla. Confirmar con el dueno si quiere en otra tanda
-la defensa RPG, que es una magnitud diferente y necesita su propio placeholder.
+El panel general recupera el estilo original (14 filas), suma rango/monstruos y usa
+`%objective_score_{astraldef}%` para Defensa Astral. BetterHud apagado queda corregido
+con `[papi:objective_score_{astraldef}]`. ScoreboardObjectives y LocalTime deben estar
+instaladas; si faltan: `papi ecloud download ScoreboardObjectives`,
+`papi ecloud download LocalTime`, `papi reload`, `tab reload`.
+Comparacion visual: `build/previews/panel-tab-comparacion.png`.
+
 No se cambiaron balance, oleadas, jefes, Duels ni barra roja de la Momia.
 Retirar BetterHud del pack puede ahorrar fuentes, pero requiere separar y validar
 el shader combinado con Stellarity; se propone para otra tanda, no se hizo ahora.
 
 Herramienta opcional: `tools/empower_api.py` simula por defecto; `--yes` ejecuta.
 Operaciones: `list /carpeta`, `read /archivo`, `write local /archivo`,
-`upload local /carpeta`, `command "comando"`, `restart`. No se uso contra el servidor.
+`upload local /carpeta`, `command "comando"`, `restart`. Todos los pedidos incluyen User-Agent: Mozilla/5.0 AstralRPG-deploy.
+En tanda 1b la prueba GET /api/client/servers/44d1ad66 quedo bloqueada antes de
+contactar la red: falta completar el campo Clave de la seccion Clave de API del panel
+en las credenciales locales. No se escribio ni se mandaron comandos al servidor.
 
 SHA-1 del ZIP local regenerado: `7a99922fb1734f4f80c64cee3f363a7b4d2404cb`.
 
 ## Verificacion local realizada
 
+- Tanda 1b: TAB comparado semanticamente con HEAD; solo cambian las filas de astral.
+  Minas Astrales, condiciones, tabulador y toggle se conservan.
+- Tanda 1b: vistas panel-tab.png y panel-tab-comparacion.png revisadas con colores
+  por tramo y degradados. La referencia se recorta al panel, sin interfaz del telefono.
+- Tanda 1b: pruebas de User-Agent cubren API y subida firmada sin acceder a la red.
 - `python -m unittest discover` desde datapack-src: 137 pruebas aprobadas.
-- `python -m unittest discover -s tools -p test_tanda1_tools.py`: 5 aprobadas.
+- `python -m unittest discover -s tools -p test_tanda1_tools.py`: 7 aprobadas.
 - `python datapack-src/verify.py`: JSON, referencias, arte y mazmorras correctos.
 - R2 `--dry-run` y Empower simulacion: correctos, sin contactar servicios.
 - Revisadas visualmente las previas de expediciones, mazmorras y panel TAB.

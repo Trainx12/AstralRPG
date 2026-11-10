@@ -75,7 +75,7 @@ astral_panel_textos:
             operation: '!='
       5:
         name: astral_font
-        pattern: "<#F0E6FF>[armor]"
+        pattern: "<#F0E6FF>[papi:objective_score_{astraldef}]"
         x: 144
         y: 53
         align: right

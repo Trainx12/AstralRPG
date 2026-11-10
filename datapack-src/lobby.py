@@ -371,16 +371,19 @@ def daily_count_conditions():
 
 ASTRAL_ROWS = [
     ref("sidebar_world"), DIVIDER,
-    f"{PURPLE}Vida {TEXT}%player_health_rounded%/%player_max_health_rounded%",
-    f"{PURPLE}Defensa {TEXT}%player_armor%",
-    f"{PURPLE}Poder {TEXT}%auraskills_power%",
-    f"{PURPLE}Oro {TEXT}%vault_eco_balance_formatted%",
-    f"{PURPLE}Conectados {TEXT}%server_online%/%server_max_players%",
-    f"{PURPLE}Rango {TEXT}%condition:rango%",
-    f"{PURPLE}Diarias {TEXT}{ref('daily_count_0')}",
-    f"{PURPLE}Historia {ref('historia')}",
-    f"{PURPLE}Monstruos {TEXT}%statistic_mob_kills%",
+    f"{section('♟ Jugador')} {TEXT}%player%",
+    f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}%statistic_time_played%",
+    f"{PURPLE}♛ {MUTED}Rango {TEXT}%condition:rango%  {PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
+    f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded% {PURPLE}⛨ {MUTED}Def {TEXT}{score('astraldef')}",
+    f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
+    f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
+    *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
+      for i, (icon, label) in enumerate((("✦", "Fácil"), ("✧", "Media"), ("✶", "Difícil")))),
+    f"{PURPLE}✎ {MUTED}Historia {ref('historia')}",
+    SERVER_ROWS[0],
+    f"{PURPLE}103.106.58.173:7004",
 ]
+assert len(ASTRAL_ROWS) <= 15
 ASTRAL_BOARD = (f'    astral:\n      title: "{TITLE}"\n      lines:\n'
                 + "".join(f'        - "{row}"\n' for row in ASTRAL_ROWS))
 

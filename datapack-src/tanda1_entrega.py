@@ -1,11 +1,8 @@
 """Regenera las vistas previas y las instrucciones de entrega de la tanda 1."""
 from pathlib import Path
-import re
 import hashlib
 
-from PIL import Image
 from adventure_ui import previews
-from escape_menu import text
 from explosion_protection import WORLDS, commands, BLOCK_CONFIG
 from lobby import ASTRAL_ROWS
 from mapas_exploracion import DEFINITIONS, installation_commands
@@ -18,23 +15,8 @@ def generate():
     out.mkdir(parents=True, exist_ok=True)
     preview_dir = ROOT / 'build/previews'
     previews(preview_dir)
-    samples = {
-        '%condition:sidebar_world%': 'Tumba del Rey de Arena',
-        '%player_health_rounded%': '550', '%player_max_health_rounded%': '550',
-        '%player_armor%': '100', '%auraskills_power%': '412',
-        '%vault_eco_balance_formatted%': '15,230', '%server_online%': '7',
-        '%server_max_players%': '50', '%condition:rango%': 'Veterano',
-        '%condition:daily_count_0%': '2/3', '%condition:historia%': '4/9',
-        '%statistic_mob_kills%': '1,284',
-    }
-    image = Image.new('RGBA', (220, 156), '#24252c')
-    text(image, 'ASTRAL RPG', (110, 8), color='#D6B4FF')
-    for i, row in enumerate(ASTRAL_ROWS):
-        for placeholder, value in samples.items():
-            row = row.replace(placeholder, value)
-        row = re.sub('<[^>]+>', '', row).strip().replace('─', '-')
-        text(image, row, (110, 24 + i * 11), color='#F0E6FF')
-    image.resize((880, 624), Image.Resampling.NEAREST).save(preview_dir / 'panel-tab.png')
+    from preview_tab import preview_panel
+    preview_panel(preview_dir)
     (out / 'panel-tab-lineas.txt').write_text('\n'.join(ASTRAL_ROWS) + '\n', encoding='utf-8')
     (out / 'tanda1-explosiones.txt').write_text(
         '# Solo el flag que no anula dano a entidades. Ver tanda1.md para los demas.\n'
@@ -82,7 +64,7 @@ execute in minecraft:forja run forceload remove 1536 1900
     ]
     files += [(f'build/mythicmobs/mobs/{key}.yml', f'plugins/MythicMobs/mobs/{key}.yml')
               for key in ('mazmorra', 'bosque', 'tumba', 'cumbre', 'forja')]
-    body = '''# Tanda 1: preparada, NO desplegada
+    body = '''# Tanda 1 + correcciones 1b: preparadas, NO desplegadas
 
 El dueno debe revisar primero las vistas previas `build/previews/mazmorras.png`,
 `expediciones.png` y `panel-tab.png`. Son aproximaciones; comprobar despues con cliente real.
@@ -106,6 +88,16 @@ No subir archivos privados, logs, mapas ni mundos. Santuario queda en espera.
   `build/deploy/WorldGuard/<mundo>/config-fusionar.yml` en
   `plugins/WorldGuard/worlds/<mundo>/config.yml`, sin reemplazar el archivo entero.
   No cambiar santuario ni santuario_interstellar.
+
+## Alcance de la correccion 1b
+
+Esta correccion NO regenera datapack ni resource pack y NO sube nada al servidor/R2.
+Si la tanda 1 ya fue instalada: fusionar solo scoreboard/conditions de TAB y los 12
+config-fusionar.yml de WorldGuard; `tab reload` y `wg reload`, revisar consola.
+No hace falta apagar ni reiniciar solo por 1b. BetterHud sigue apagado; su texto
+corregido `build/plugins/BetterHud/layouts/astral.yml` corresponde a
+`plugins/BetterHud/layouts/astral.yml` SOLO si se reactiva en otra tarea.
+Si tanda 1 sigue pendiente, aplicar la lista completa y el arranque siguiente.
 
 ## Resource pack y arranque
 
@@ -154,32 +146,47 @@ WorldGuard documenta que `creeper-explosion`, `other-explosion`, `ghast-fireball
 `regions.explosion-flags-block-entity-damage` vale true por defecto. Por la condicion
 expresa del plan, NO se generan esos cinco flags deny. Solo `enderdragon-block-damage`
 es seguro directamente. Las configuraciones por mundo propuestas bloquean dano a bloques
-de TNT, creepers, wither y calaveras conservando sus explosiones. Quedan pendientes la
-proteccion de otras explosiones y bolas de ghast hasta validar configuracion y comportamiento
-en el servidor. No se aplico ningun cambio al servidor.
+de TNT, creepers, wither, calaveras y bolas de fuego conservando sus explosiones.
+Se agregan mobs.block-fireball-explosions: false y mobs.block-fireball-block-damage: true.
+WorldGuard 7 no ofrece claves separadas de dano a bloques para camas, anclas de
+reaparicion ni cristales del End: quedan pendientes. other-explosion y
+block-other-explosions pueden cancelar tambien dano; no se usan para resolverlo.
+Probar impacto y fuego de ghast/blaze en cliente real: esto no bloquea propagacion de fuego. No se aplico ningun cambio al servidor.
 
 Fuentes oficiales consultadas:
 - https://worldguard.enginehub.org/en/latest/regions/flags/
 - https://worldguard.enginehub.org/en/latest/config/
 
-El panel general usa `%player_armor%` como equivalente al `[armor]` de BetterHud;
-esta fila muestra armadura vanilla. Confirmar con el dueno si quiere en otra tanda
-la defensa RPG, que es una magnitud diferente y necesita su propio placeholder.
+El panel general recupera el estilo original (14 filas), suma rango/monstruos y usa
+`%objective_score_{astraldef}%` para Defensa Astral. BetterHud apagado queda corregido
+con `[papi:objective_score_{astraldef}]`. ScoreboardObjectives y LocalTime deben estar
+instaladas; si faltan: `papi ecloud download ScoreboardObjectives`,
+`papi ecloud download LocalTime`, `papi reload`, `tab reload`.
+Comparacion visual: `build/previews/panel-tab-comparacion.png`.
+
 No se cambiaron balance, oleadas, jefes, Duels ni barra roja de la Momia.
 Retirar BetterHud del pack puede ahorrar fuentes, pero requiere separar y validar
 el shader combinado con Stellarity; se propone para otra tanda, no se hizo ahora.
 
 Herramienta opcional: `tools/empower_api.py` simula por defecto; `--yes` ejecuta.
 Operaciones: `list /carpeta`, `read /archivo`, `write local /archivo`,
-`upload local /carpeta`, `command "comando"`, `restart`. No se uso contra el servidor.
+`upload local /carpeta`, `command "comando"`, `restart`. Todos los pedidos incluyen User-Agent: Mozilla/5.0 AstralRPG-deploy.
+En tanda 1b la prueba GET /api/client/servers/44d1ad66 quedo bloqueada antes de
+contactar la red: falta completar el campo Clave de la seccion Clave de API del panel
+en las credenciales locales. No se escribio ni se mandaron comandos al servidor.
 '''
     digest = hashlib.sha1((ROOT / 'build/AstralRPG-Textures.zip').read_bytes()).hexdigest()
     body += f'\nSHA-1 del ZIP local regenerado: `{digest}`.\n'
     body += '''
 ## Verificacion local realizada
 
+- Tanda 1b: TAB comparado semanticamente con HEAD; solo cambian las filas de astral.
+  Minas Astrales, condiciones, tabulador y toggle se conservan.
+- Tanda 1b: vistas panel-tab.png y panel-tab-comparacion.png revisadas con colores
+  por tramo y degradados. La referencia se recorta al panel, sin interfaz del telefono.
+- Tanda 1b: pruebas de User-Agent cubren API y subida firmada sin acceder a la red.
 - `python -m unittest discover` desde datapack-src: 137 pruebas aprobadas.
-- `python -m unittest discover -s tools -p test_tanda1_tools.py`: 5 aprobadas.
+- `python -m unittest discover -s tools -p test_tanda1_tools.py`: 7 aprobadas.
 - `python datapack-src/verify.py`: JSON, referencias, arte y mazmorras correctos.
 - R2 `--dry-run` y Empower simulacion: correctos, sin contactar servicios.
 - Revisadas visualmente las previas de expediciones, mazmorras y panel TAB.

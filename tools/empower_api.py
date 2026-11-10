@@ -9,6 +9,7 @@ import uuid
 
 from credenciales_locales import fields, require, LocalError
 
+USER_AGENT = 'Mozilla/5.0 AstralRPG-deploy'
 BASE = 'https://gp.empowerservers.com/api/client/servers/44d1ad66'
 
 
@@ -19,6 +20,7 @@ class Client:
     def request(self, method, route, data=None, content_type='application/json'):
         request = Request(BASE + route, data=data, method=method, headers={
             'Authorization': 'Bearer ' + self.key,
+            'User-Agent': USER_AGENT,
             'Accept': 'application/vnd.pterodactyl.v1+json', 'Content-Type': content_type})
         with urlopen(request, timeout=120) as response:
             return response.read()
@@ -37,6 +39,7 @@ class Client:
         connection = http.client.HTTPSConnection(url.hostname, url.port, timeout=300)
         try:
             connection.putrequest('POST', url.path + '?' + query)
+            connection.putheader('User-Agent', USER_AGENT)
             connection.putheader('Content-Type', 'multipart/form-data; boundary=' + boundary)
             connection.putheader('Content-Length', str(len(head) + local.stat().st_size + len(tail)))
             connection.endheaders()

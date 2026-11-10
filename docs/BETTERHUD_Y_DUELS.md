@@ -2,7 +2,7 @@
 
 ## Tanda 1 preparada (10/11/2026), sin desplegar
 
-El panel general vuelve a TAB en todos los mundos; Minas Astrales conserva su tablero. Filas: Vida, Defensa (armadura vanilla, equivalente a `[armor]`), Poder, Oro, lugar segun `sidebar.world_labels()`, Conectados, Rango, Diarias, Historia, Monstruos. `/sb` controla TAB y recuerda la preferencia. BetterHud queda instalado con `default-hud: []`; retirar `astral_panel` de sesiones existentes (el Skript lo retira al entrar).
+El panel general vuelve a TAB en todos los mundos; Minas Astrales conserva su tablero. Tanda 1b restaura el estilo original: mundo, Jugador, Tiempo jugado, Rango/Monstruos, Stats (vida y Defensa Astral), Oro/Poder, tres diarias, Historia, fecha/hora e IP Empower; 14 filas. Defensa usa `%objective_score_{astraldef}%`, el mismo objetivo de la barra del datapack. `/sb` controla TAB y recuerda la preferencia. BetterHud queda instalado con `default-hud: []`; retirar `astral_panel` de sesiones existentes (el Skript lo retira al entrar).
 
 Generadores: `lobby.py` (filas y condiciones TAB), `betterhud.py` (config apagada y `/sb`), `tanda1_entrega.py` (previas y despliegue). Vista: `build/previews/panel-tab.png`; lineas con colores: `build/deploy/panel-tab-lineas.txt`. Instrucciones vigentes: `build/deploy/tanda1.md`. Conservar pack BetterHud y shader combinado con Stellarity; su retirada requiere otra validacion. La seccion siguiente registra la instalacion anterior, no debe repetirse para esta tanda.
 
@@ -16,7 +16,7 @@ y los colores Astral (azul → violeta). Vista previa: `build/previews/panel-bet
 
 | Sección | Filas | De dónde sale |
 |---|---|---|
-| Jugador | Vida, Defensa, Poder, Oro | `[health]/[max_health]`, `[armor]`, `%auraskills_power%`, `%vault_eco_balance_formatted%` |
+| Jugador | Vida, Defensa, Poder, Oro | `[health]/[max_health]`, `[papi:objective_score_{astraldef}]`, `%auraskills_power%`, `%vault_eco_balance_formatted%` |
 | Mundo | Lugar, Conectados | nombre de `sidebar.world_labels()` según el mundo; `%server_online%/%server_max_players%` |
 | Progreso | Rango, Diarias, Historia, Monstruos | rango por poder (mismos umbrales que TAB); `aq.done0..2`; `aq.state`; `%statistic_mob_kills%` |
 

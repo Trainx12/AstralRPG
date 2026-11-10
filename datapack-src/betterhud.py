@@ -256,7 +256,7 @@ def value_texts(key, x, y):
     v = f"<{TEXT}>"
     simple = {
         "health": f"{v}[health] <{MUTED}>/ {v}[max_health]",
-        "defense": f"{v}[armor]",
+        "defense": f"{v}[papi:objective_score_{{astraldef}}]",
         "power": f"{v}[papi:auraskills_power]",
         "gold": f"{v}[papi:vault_eco_balance_formatted]",
         "online": f"{v}[papi:server_online]<{MUTED}>/{v}[papi:server_max_players]",

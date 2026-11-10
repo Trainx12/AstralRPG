@@ -14,6 +14,22 @@ import subir_pack_r2
 
 
 class ToolsTest(unittest.TestCase):
+    def test_empower_identifies_api_requests(self):
+        with patch.object(empower_api, 'urlopen', return_value=io.BytesIO(b'{}')) as request:
+            empower_api.Client('fake').request('GET', '')
+        self.assertEqual(request.call_args.args[0].get_header('User-agent'), empower_api.USER_AGENT)
+
+    def test_empower_identifies_signed_upload(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'file.yml'
+            path.write_bytes(b'test')
+            connection = Mock()
+            connection.getresponse.return_value.status = 204
+            with patch.object(empower_api.Client, 'request', return_value=b'{"attributes":{"url":"https://example.invalid/upload?signature=fake"}}'), \
+                 patch.object(empower_api.http.client, 'HTTPSConnection', return_value=connection):
+                empower_api.Client('fake').upload(path, '/')
+            connection.putheader.assert_any_call('User-Agent', empower_api.USER_AGENT)
+
     def test_parser_limits_section_and_rejects_empty(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'test.md'

@@ -16,6 +16,8 @@ ignition:
   block-tnt: false
   block-tnt-block-damage: true
 mobs:
+  block-fireball-explosions: false
+  block-fireball-block-damage: true
   block-creeper-explosions: false
   block-creeper-block-damage: true
   block-wither-explosions: false
