@@ -11,7 +11,8 @@ def main():
     pack=ROOT/'build/AstralRPG-Textures.zip'
     digest=hashlib.sha1(pack.read_bytes()).hexdigest()
     lines=['# Tanda 3a: Coloso, planta y cinco estatuas', '',
-        '**Estado: preparacion local. No desplegado.** Aprobar las vistas antes de publicar/subir.', '',
+        '**Estado: tanda 3a v2 preparada, publicacion en GitHub autorizada. No desplegado.** '
+        'El dueno revisa las vistas antes de instalar en el servidor.', '',
         '## Archivos y destinos exactos', '',
         '| Archivo local | Destino en el servidor |', '|---|---|']
     for name in ('astral_coloso_musgoso','astral_bosque_planta'):
@@ -20,10 +21,11 @@ def main():
         lines.append(f'| `build/mythicmobs/{sub}/{name}.yml` | `plugins/MythicMobs/{sub}/{name}.yml` |')
     lines += ['| `build/AstralRPG-Textures.zip` | R2, objeto `AstralRPG-Textures.zip` |','',
         f'Pack: **{pack.stat().st_size:,} bytes**, SHA-1 **`{digest}`**.',
-        'Comparado con HEAD inicial: +33 archivos, ninguno quitado ni modificado; +77.852 bytes.', '',
+        'Assets reconvertidos con BetterModel 3.6.0; el pack incluye la geometria y texturas v2. '
+        'No subir solamente los bbmodels conservando el pack v1.', '',
         'Las estatuas usan los bbmodels existentes: `astral_cangrejo`, `astral_chaman`, `astral_momia`, '
         '`astral_yeti`, `astral_golem_forja`, todos a s=2.0. Conservar esos cinco en BetterModel.',
-        '**Datapack:** se regenero y se compararon todas las entradas del ZIP con HEAD: contenido identico. '
+        '**Datapack:** no cambia la logica respecto de f82a741. '
         'No requiere reemplazar `AstralRPG-Items.zip`.', '',
         '## Instalacion por Claude, tras la aprobacion visual', '',
         '1. Usar el servidor vigente de docs/SERVIDOR.md (Empower; Aternos es copia). Respaldar los archivos a reemplazar.',
@@ -65,18 +67,33 @@ def main():
         lines.append(f'| `{model}` | {s} | '+ ' × '.join(f'{v:.3f}' for v in dims)+
                      f' | {sc} | {VANILLA[entity][0]*sc:.3f} × {VANILLA[entity][1]*sc:.3f} |')
     lines += ['', '## Revision visual y autoria', '',
-        '- Coloso: bloques claros con juntas originales y marcos labrados; torso ancho y pies cuadrados; '
-        'corona asimetrica abierta y gema vertical turquesa, un ojo turquesa con brillo claro; musgo en hombros, '
-        'pecho y cintura, raices marrones colgantes y enroscadas en brazo levantado, cuatro flores amarillas '
-        'frontales y una en cada brazo. Animaciones idle, walk y golpe de ambos brazos.',
-        '- Planta: base de cuatro raices con flores rosas, tallo oliva escalonado inclinado, boca verde '
-        'con mandibula abierta, dientes intercalados, cavidad y lengua rojas, tres capullos magenta con '
-        'espirales originales en relieve y cuatro hojas turquesa con nervaduras. Balanceo, mordida y escupida.',
+        '- Coloso: bajo y ancho, piernas cortas, cabeza hundida con mejillas labradas y nariz en bloque; '
+        'dos marcos huecos, placa y gema vertical, un ojo turquesa y otro oscuro. Brazo derecho alto y doblado '
+        'con raices gruesas; izquierdo colgante con tres bandas. Pecho con runas, cinturon, musgo irregular '
+        'en hombros, cintura y piernas, flores de formas y tamanos variados. Idle, marcha pesada y martillazo derecho.',
+        '- Planta: base cuadrada verde con enredadera magenta y flores rosas; tallo grueso diagonal con '
+        'nervaduras y espinas rosas. Boca mayor ladeada con cavidad roja, dientes y tiras verdes, dos capullos '
+        'cubicos magenta en angulos distintos y tres hojas turquesa anchas. Balanceo, mordida y escupida.',
         '- Estatuas: se reutiliza sin modificar cada modelo original del proyecto, con idle, sin IA, '
         'invulnerable, sin gravedad, colision, drops, BossBar ni habilidades de combate.',
-        '- No se importaron texturas ni geometria de las referencias. Se compararon frente, costado y 3/4. '
-        'La planta tiene una disposicion mas simetrica que la referencia; el Coloso tiene relieves propios. '
-        'La aprobacion de parecido corresponde al dueno.', '',
+        '- Texturas propias: bordes oscuros, luces superiores, ruido por pixel y cara, grietas y nervaduras. '
+        'Los parches y flores no se copian como stickers. Las referencias se usan solo para revision y cuentagotas; '
+        'no se importaron sus texturas ni geometria.', '',
+        '### Tres vueltas de comparacion y comprobacion final', '',
+        '1. Render inicial contra la referencia: musgo demasiado fino y repetitivo, raices poco visibles, '
+        'boca frontal y hojas superiores parejas. Correccion: cortina de anchos y largos variados con bordes '
+        'escalonados, raices mas gruesas, mandibula inclinada y hoja derecha mas corta.',
+        '2. Segundo render: rostro demasiado plano y paleta sin muestreo documentado. Correccion: mejillas '
+        'hundidas y bordes claros; cuentagotas local incorporado al musgo, raices, tallo, boca, capullos y hojas.',
+        '3. Tercer render: puño aun demasiado descubierto y hoja inferior larga. Correccion: raiz cruzando '
+        'el puño y hoja inferior mas corta y ancha. Se renderizaron otra vez las cuatro vistas para comprobarlo.', '',
+        'Diferencias restantes de la ultima vuelta: las runas, grietas, espirales y recorridos de raices son '
+        'disenos propios; la iluminacion ortografica local no reproduce el sol, perspectiva y shader de la foto. '
+        'No se detectaron faltantes estructurales de la lista visual. Falta aprobacion visual del dueno y ver '
+        'las animaciones desde un cliente Minecraft.', '',
+        'Muestreo sobre referencias locales (x,y; RGB): Coloso musgo (342,485) `#51561c`, raiz (413,81) '
+        '`#5b4238`; planta tallo (194,429) `#978725`, oliva (327,282) `#4c501e`, rojo (291,345) `#af1f1f`, '
+        'capullo (208,316) `#b43773`, hoja (199,199) `#377b7d`. Se combinan con los tonos y luces indicados en el plan.', '',
         'Vistas: `build/previews/coloso-musgoso-comparacion.png`, `planta-carnivora-comparacion.png` '
         '(ambas solo locales e ignoradas: contienen la referencia de terceros); '
         '`build/previews/estatua-<jefe>-comparacion.png` y `build/previews/tanda3a.png` '
@@ -86,14 +103,15 @@ def main():
         'copiar assets propios a `pack-source/bettermodel/assets`, `python build_pack.py pack-source`, '
         '`python -m mobs.entrega_tanda3a` desde datapack-src.', '',
         '## Verificacion y pendientes', '',
-        'Pasaron **158 pruebas** (`python -m unittest discover -p "test_*.py"`) y `python verify.py`. '
+        'Pasaron **159 pruebas** (`python -m unittest discover -p "test_*.py"`), incluidas las **6 pruebas** '
+        'de `test_tanda3a` con la regresion adicional de dimensiones/animaciones v2, y `python verify.py`. '
         'Ademas, carga real en Paper 26.1.2 con BetterModel 3.6.0 (28 modelos) y MythicMobs 5.13.0 '
-        '(114 mobs y 347 skills). Escala real comprobada por consola: planta 0.918889, Coloso 2.222222; '
+        '(114 mobs y 347 skills). Las escalas actualizadas se calculan de los modelos y figuran en la tabla anterior; '
         'vida del Coloso 72.000 con el tope de produccion. La planta conserva NoAI, NoGravity y velocidad 0. '
         'Validar en juego las mordidas/proyectiles con un jugador, dano por tier con el Skript de produccion, '
-        'render y animaciones desde un cliente, y las oleadas completas. La consola local sin '
-        'ExcellentEnchants informa errores de recetas ajenas a esta tanda; no es una prueba completa del servidor.', '',
-        'Pendientes: aprobacion visual, publicacion segun aprobacion y acceso de red, subida R2, '
+        'render y animaciones desde un cliente, y las oleadas completas. La instancia aislada no incluye '
+        'todos los plugins de produccion; no es una prueba completa del servidor.', '',
+        'Pendientes: aprobacion visual, subida R2, '
         'instalacion en el servidor y comprobacion de consola/juego. No se reemplaza ningun mundo.']
     dest=ROOT/'build/deploy/tanda3a.md'
     dest.write_text('\n'.join(lines)+'\n',encoding='utf-8')

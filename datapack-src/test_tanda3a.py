@@ -102,5 +102,16 @@ class Tanda3aTests(unittest.TestCase):
                     for key in channel['keyframes']:
                         self.assertNotRegex(str(key['data_points']),r'\d\.\d{8,}')
 
+    def test_v2_dimensions_and_attack_bones(self):
+        width,height,_=dimensions('astral_coloso_musgoso',2)
+        self.assertGreater(width/height,.95)
+        self.assertGreaterEqual(dimensions('astral_bosque_planta',1)[1],2.2)
+        self.assertLessEqual(dimensions('astral_bosque_planta',1)[1],2.5)
+        for model,bone in (('astral_coloso_musgoso','arm_r'),('astral_bosque_planta','jaw')):
+            data=json.loads((ROOT/'build/models'/f'{model}.bbmodel').read_text())
+            attack=next(a for a in data['animations'] if a['name']=='attack')
+            self.assertEqual(attack['loop'],'once')
+            self.assertIn(bone,{a['name'] for a in attack['animators'].values()})
+
 
 if __name__=='__main__': unittest.main()

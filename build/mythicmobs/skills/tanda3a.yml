@@ -9,8 +9,8 @@ AST_PLANTA_INICIO:
 AST_PLANTA_MODELO:
   Skills:
   - model{m=astral_bosque_planta} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 0.918889"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.600000"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.255412"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.753247"} @self
 AST_PLANTA_MORDIDA:
   Skills:
   - state{s=attack} @self

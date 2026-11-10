@@ -1,143 +1,205 @@
-"""Geometria y texturas originales: piedra labrada y flora del Bosque."""
-from bbmodel import Model, swing as _swing
+"""Escultura propia a 16 texeles/bloque, sin importar arte de las referencias."""
+import math
+import random
+from PIL import ImageDraw
+from bbmodel import Model, hexc, swing as _swing
 
 
 def swing(amp, speed=1, phase=0):
-    # BetterModel rechaza literales Molang con demasiados decimales.
     return _swing(amp, round(speed, 4), phase)
 
 
-def flor(m, bone, x, y, z, color):
-    for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-        m.cube(bone, (x+dx-.5, y+dy-.5, z-.4), (x+dx+.5, y+dy+.5, z), color)
-    m.cube(bone, (x-.4, y-.4, z-.6), (x+.4, y+.4, z-.3), '#F4CE51')
+class FloraModel(Model):
+    """Grietas y nervaduras distintas por cara, sobre el sombreado del motor."""
+    def _paint(self, size, pos):
+        im = super()._paint(size, pos)
+        draw = ImageDraw.Draw(im)
+        for (i, face), (x, y, w, h) in pos.items():
+            cube = self.cubes[i]; mat = cube.get('pat')
+            rng = random.Random(f'{self.name}/{i}/{face}')
+            if mat not in ('rock', 'moss', 'bark', 'leaf', 'bud'): continue
+            base = hexc(cube['color'])
+            def color(k): return tuple(min(255, int(c*k)) for c in base)+(255,)
+            for _ in range(max(1, w*h//(100 if mat=='leaf' else 35))):
+                xx, yy = rng.randrange(w), rng.randrange(h)
+                for step in range(rng.randint(2, max(3, h//2))):
+                    if 0 <= xx < w and 0 <= yy < h:
+                        draw.point((x+xx,y+yy), fill=color(.56 if mat=='rock' else .72))
+                        if xx+1 < w: draw.point((x+xx+1,y+yy),fill=color(1.12))
+                    xx += rng.choice((-1,0,0,1)); yy += 1
+            if mat=='moss':
+                for _ in range(w*h//8):
+                    xx,yy=rng.randrange(w),rng.randrange(h)
+                    draw.point((x+xx,y+yy),fill=rng.choice(('#8ea33a','#4f6620','#6f8a28')))
+            if mat in ('leaf','bark') and w>3:
+                for yy in range(h):
+                    draw.point((x+min(w-1,w//2+yy//4%2),y+yy),fill=color(.63))
+            if mat=='bud' and w>=6 and h>=6:
+                for yy in range(h):
+                    for xx in range(w):
+                        if yy in (1,h-2) or (xx+i)%7==0:
+                            old=im.getpixel((x+xx,y+yy))
+                            draw.point((x+xx,y+yy),fill=(min(255,old[0]+18),old[1]+5,min(255,old[2]+3),255))
+                left,top,right,bottom=x+1,y+1,x+w-2,y+h-2
+                draw.line([(left,bottom),(left,top),(right,top),(right,bottom),
+                           (left+2,bottom),(left+2,top+2),(right-2,top+2)],fill=color(.55),width=1)
+        return im
+
+
+def flower(m,b,x,y,z,seed,pink=False):
+    rng=random.Random(seed)
+    petal=rng.choice(('#c03d7e','#d9578b','#e76895') if pink else ('#f2c230','#e8902a','#d9ad26'))
+    r=rng.uniform(.45,.8)
+    for dx,dy in rng.sample([(-1,0),(1,0),(0,-1),(0,1)],rng.randint(3,4)):
+        m.cube(b,(x+dx*r-r*.6,y+dy*r-r*.6,z-.3),(x+dx*r+r*.6,y+dy*r+r*.6,z),petal)
+    m.cube(b,(x-.25,y-.25,z-.5),(x+.25,y+.25,z-.3),'#f6d66a')
+
+
+def vine(m,b,pts,width=.65,color='#4a2e1c'):
+    for a,c in zip(pts,pts[1:]):
+        dx,dy,dz=[c[k]-a[k] for k in range(3)]
+        length=math.sqrt(dx*dx+dy*dy+dz*dz)
+        mid=tuple((a[k]+c[k])/2 for k in range(3))
+        m.cube(b,(mid[0]-width/2,mid[1]-length/2,mid[2]-width/2),
+               (mid[0]+width/2,mid[1]+length/2,mid[2]+width/2),color,
+               rotation=(0,-math.degrees(math.atan2(dz,dx)), -math.degrees(math.atan2(math.hypot(dx,dz),dy))),
+               origin=mid,pat='bark')
 
 
 def coloso():
-    m = Model('astral_coloso_musgoso')
-    m.bone('body', (0, 20, 0))
-    stone, edge, dark = '#B5BAB6', '#D2D4C6', '#5E686C'
-
-    def slab(b, a, c):
-        m.cube(b, a, c, stone, pat='brick')
-        # Marco labrado y recuadro hundido, con juntas propias.
-        x,y,z = a; X,Y,Z = c
-        m.cube(b, (x+.8,y+.8,z-.25), (X-.8,Y-.8,z), dark, pat='stone')
-        m.cube(b, (x+1.6,y+1.6,z-.5), (X-1.6,Y-1.6,z-.25), stone, pat='brick')
-        m.cube(b, (x,y,z-.65), (X,y+.8,z), edge)
-        m.cube(b, (x,Y-.8,z-.65), (X,Y,z), edge)
-
-    slab('body', (-10,16,-6), (10,31,6))
-    slab('body', (-11,12,-6.5), (11,17,6.5))
-    for name, x in (('leg_l',-6),('leg_r',6)):
-        m.bone(name,(x,13,0),'body')
-        slab(name,(x-4,1,-5),(x+4,13,5))
-        m.cube(name,(x-4.7,0,-6),(x+4.7,2,5.5),edge,pat='stone')
-    m.bone('head',(0,30,0),'body')
-    slab('head',(-7,30,-6),(7,39,5))
-    # Una sola cuenca iluminada y gema vertical en la frente.
-    m.cube('head',(-5.7,34,-6.7),(5.7,36,-6.1),dark)
-    m.cube('head',(2,34,-7),(4.7,36,-6.6),'#3FD9C2')
-    m.cube('head',(2.5,35,-7.2),(3.3,35.8,-7),'#ACFFF0')
-    slab('head',(-2.7,37,-7),(2.7,46,-2))
-    m.cube('head',(-1.2,39,-7.6),(1.2,44.5,-7),'#3FD9C2')
-    m.cube('head',(-.9,40,-7.8),(-.3,44,-7.6),'#A3F7D8')
-    # Corona asimetrica, puntas altas, hueco entre los dos brazos de piedra.
-    for x,h in ((-7,46),(5,48)):
-        slab('head',(x,38,-1),(x+2,h,3))
-    m.cube('head',(-7,45,-1),(0,47,3),stone,pat='brick')
-    m.cube('head',(5,46,-1),(10,48,3),stone,pat='brick')
-    for name,x,raised in (('arm_l',-15,True),('arm_r',15,False)):
-        m.bone(name,(x,29,0),'body')
-        lo,hi=(27,42) if raised else (14,29)
-        slab(name,(x-4,lo,-4.5),(x+4,hi,4.5))
-        slab(name,(x-4.5,lo-5,-5),(x+4.5,lo,5))
-        for yy in (lo,lo+5,hi-1):
-            m.cube(name,(x-4.4,yy,-5),(x+4.4,yy+1,5),edge)
-        # Raiz enroscada: tramos que recorren frente, lateral y dorso.
-        for j in range(7):
-            yy=lo+j*2
-            side=(-1 if j%2 else 1)
-            m.cube(name,(x-4,yy,-5.7),(x+2,yy+1.4,-4.8),'#705139',pat='wood')
-            xx=x+side*3.6
-            m.cube(name,(xx,yy, -4.8),(xx+1,yy+3,4.7),'#705139',pat='wood')
-        m.cube(name,(x-4.8,hi-3,-5.5),(x+4.8,hi+1,4),'#657627',pat='stone')
-        flor(m,name,x+1,lo+2,-5.8,'#EFCB36')
-    # Musgo de volumen irregular y lianas independientes sobre pecho/cintura.
-    for i,(x,y,w,h) in enumerate(((-10,28,7,4),(4,28,7,4),(-9,23,4,6),(5,18,5,5),
-                                  (-10,12,7,6),(3,10,7,8),(-8,6,3,5),(7,4,3,5))):
-        bone='body' if y>=10 else ('leg_l' if x<0 else 'leg_r')
-        m.cube(bone,(x,y,-7.4),(x+w,y+h,-6.4),['#68792B','#7B8A32','#536326'][i%3],pat='stone')
-        for j in range(2):
-            xx=x+1+j*2
-            m.cube(bone,(xx,y-3-j,-7.8),(xx+.9,y+2,-7.1),'#82702F',pat='wood')
-            m.cube(bone,(xx+.4,y-1-j,-8),(xx+1.8,y+.2-j,-7.6),'#6B8235')
-    for x,y,z in ((-7,28,-8),(7,21,-8),(5,14,-8),(-9,11,-8)):
-        flor(m,'body',x,y,z,'#F0CC38')
-    # Raices marrones de la corona, hombros y espalda.
-    for x,y,z in ((-5,39,3),(6,41,3),(-10,28,5),(8,25,6),(-8,16,6),(8,14,6)):
-        b='head' if y>35 else 'body'
-        m.cube(b,(x,y-8,z),(x+1.2,y+2,z+1.2),'#70513B',pat='wood')
-        m.cube(b,(x-1,y-4,z-.3),(x+2,y-2,z+1.5),'#748039',pat='stone')
-    m.anim('idle',3,{'body':{'position':(0,swing(.25,1/3),0)}})
-    m.anim('walk',1.4,{b:{'rotation':(swing(a,1/1.4),0,0)} for b,a in
-                      (('leg_l',18),('leg_r',-18),('arm_l',-10),('arm_r',10))})
-    m.anim('attack',.8,{'arm_l':{'rotation':(swing(-65,.625),0,0)},
-                          'arm_r':{'rotation':(swing(-75,.625),0,0)},
-                          'body':{'rotation':(swing(12,.625),0,0)}},loop='once')
+    m=FloraModel('astral_coloso_musgoso')
+    stone,light,dark='#a9acb0','#d2d4d6','#6b6f74'
+    m.bone('body',(0,18,0))
+    def rock(b,a,c,col=stone): m.cube(b,a,c,col,pat='rock')
+    rock('body',(-12,12,-6),(12,28,7))
+    rock('body',(-13,10,-7),(13,14,7),dark)
+    rock('body',(-13,12,-7.4),(13,14,-6.8),light)
+    for x,y,z,w,h in [(-10,18,-6.3,1,5),(-10,18,-6.3,5,1),(-6,18,-6.3,1,3),
+                       (-2,17,-6.3,1,7),(-2,17,-6.3,5,1),(2,17,-6.3,1,4),
+                       (6,20,-6.3,1,5),(6,20,-6.3,4,1)]:
+        rock('body',(x,y,z),(x+w,y+h,z+.4),dark)
+    for b,x in [('leg_l',-7),('leg_r',7)]:
+        m.bone(b,(x,11,0),'body')
+        rock(b,(x-4.8,1,-5),(x+4.8,11,5))
+        rock(b,(x-5.3,0,-7),(x+5.3,2,5),light)
+        rock(b,(x-4,2,-7.2),(x+3.5,3,-6.8),dark)
+    m.bone('head',(0,27,-2),'body',rotation=(0,-6,0))
+    rock('head',(-9,25,-9),(9,35,3))
+    rock('head',(-10,33,-10),(10,35.5,3))
+    rock('head',(-10,33,-10.2),(10,33.6,-9.8),'#69707e')
+    rock('head',(-8,29,-9.4),(8,32,-9),dark)
+    rock('head',(3,29,-9.8),(6.2,31.8,-9.4),'#3fd9c2')
+    rock('head',(3.5,30,-10),(4.3,31.7,-9.8),'#9ff5ea')
+    rock('head',(-3,26,-12),(2.8,31,-9),light)
+    rock('head',(-6,25,-9.6),(6,26,-9.2),dark)
+    # Mejillas labradas y hundidas: el rostro no queda como una cara plana.
+    for x in (-8,5):
+        rock('head',(x,25,-10.1),(x+3,29,-9.6),'#687078')
+        rock('head',(x,25,-10.5),(x+3,25.8,-10.1),light)
+    rock('head',(-8,26,-10.5),(-7.2,29,-10.1),light)
+    rock('head',(7.2,26,-10.5),(8,29,-10.1),light)
+    # Dos marcos abiertos y una placa con gema vertical larga.
+    for x,y,z,w,h in [(-10,34,0,7,10),(-6,34,4,6,8)]:
+        for a,c in [((x,y,z),(x+1.5,y+h,z+2)),((x+w-1.5,y,z),(x+w,y+h,z+2)),
+                    ((x,y+h-1.5,z),(x+w,y+h,z+2))]: rock('head',a,c)
+    rock('head',(-3,34,-8),(4,44,-4))
+    rock('head',(-1.8,35,-8.5),(2.5,42.8,-8),dark)
+    rock('head',(-.8,35.5,-8.8),(1.5,42,-8.5),'#3fd9c2')
+    rock('head',(-.6,36,-9),(.1,41.6,-8.8),'#9ff5ea')
+    m.bone('arm_r',(14,27,1),'body')
+    rock('arm_r',(11,24,-4),(19,31,6))
+    rock('arm_r',(16,28,-3),(23,35,6))
+    rock('arm_r',(18,33,-3),(25,43,5))
+    rock('arm_r',(14,40,-5),(25,46,6))
+    pts=[]
+    for j in range(23):
+        t=j*math.pi/3
+        pts.append((21.3+4.2*math.cos(t),29+j*.7,1+5*math.sin(t)))
+    vine(m,'arm_r',pts,1.8)
+    vine(m,'arm_r',[(15,27,-4.3),(18,30,-4.5),(19,35,-4.4),
+                       (23,38,-4.4),(22,43,-5.7)],1.5,'#6b4428')
+    vine(m,'arm_r',[(14.5,44,-5.8),(18,43,-5.9),(20,44,-5.9),
+                       (20,46,-5.8)],1.8,'#5b4238')
+    for x,y,z,w,h in [(17,31,-4,3,3),(22,36,-4,3,4),(16,42,-5.6,4,2)]:
+        m.cube('arm_r',(x,y,z),(x+w,y+h,z+.7),'#6f8a28',pat='moss')
+    m.bone('arm_l',(-15,27,1),'body',rotation=(0,0,-10))
+    rock('arm_l',(-20,18,-4),(-12,29,5))
+    rock('arm_l',(-22,8,-6),(-11,20,6))
+    for y in (9,13,18):
+        rock('arm_l',(-22.6,y,-6.5),(-10.4,y+1.5,6.5),dark)
+        rock('arm_l',(-22.8,y+1.2,-6.7),(-10.2,y+1.8,6.7),light)
+    rng=random.Random('cortina-coloso')
+    for b,x0,x1,top,z in [('body',-13,14,29,-6.8),('body',-13,14,14,-7.8),
+                          ('body',-12,13,28,7),('arm_l',-21,-11,24,-6.9),
+                          ('leg_l',-11,-3,10,-5.8),('leg_r',3,12,10,-5.8)]:
+        x=x0
+        while x<x1:
+            w=rng.uniform(2.2,4.2); low=top-rng.uniform(2.5,6)
+            m.cube(b,(x,low,z),(min(x1,x+w),top+rng.uniform(0,.8),z+.8),rng.choice(('#6f8a28','#8ea33a','#4f6620')),pat='moss')
+            # Largos y anchos diferentes, con un segundo escalon en el borde.
+            if rng.random()<.7:
+                m.cube(b,(x+.3,low-rng.uniform(.5,1.7),z-.1),
+                       (min(x1,x+w-.3),low+.6,z+.9),'#6f8a28',pat='moss')
+            if rng.random()<.35:
+                vine(m,b,[(x+.6,top,z-.2),(x+.5,low+2,z-.3),(x+1.2,low-.7,z-.4)],.55)
+            x+=w-.15
+    for x in (-14,8): m.cube('body',(x,28,-4),(x+6,30.5,7),'#6f8a28',pat='moss')
+    # El faldon forma masas asimetricas; los flecos salen de estas placas.
+    for x,y,w,h in [(3,8,9,7),(6,5,5,5),(-12,10,5,4),(-12,23,5,6),(8,24,6,5)]:
+        # Cuentagotas: musgo (342,485), raiz (413,81) de jefe-mina-referencia.
+        m.cube('body',(x,y,-8.2),(x+w,y+h,-7.5),'#51561c',pat='moss')
+        vine(m,'body',[(x+1,y+h,-8.5),(x+2,y+2,-8.6),(x+4,y,-8.5)],.8,'#5b4238')
+    for i,(b,x,y,z) in enumerate([('arm_l',-20,17,-7),('arm_l',-12,12,-7),
+                                   ('body',-10,28,-7.5),('body',8,12,-8.4),('body',10,27,-7.5)]):
+        flower(m,b,x,y,z,i)
+    m.anim('idle',3,{'body':{'position':(0,swing(.22,1/3),0)},'arm_r':{'rotation':(swing(2,1/3),0,swing(1,1/3))}})
+    m.anim('walk',1.6,{b:{'rotation':(swing(a,1/1.6),0,0)} for b,a in [('leg_l',12),('leg_r',-12),('arm_l',8),('arm_r',-5)]})
+    m.anim('attack',.9,{'arm_r':{'rotation':(swing(-85,1/1.8),0,swing(-12,1/1.8))},'body':{'rotation':(swing(10,1/1.8),0,0)}},loop='once')
     return m
 
 
 def planta():
-    m=Model('astral_bosque_planta')
-    m.bone('root',(0,0,0))
-    m.cube('root',(-4,0,-4),(4,5,4),'#425022',pat='wood')
-    for x,z,rot in ((-5,0,0),(4,1,0),(0,-5,90),(1,4,90)):
-        m.cube('root',(x-2,0,z-1),(x+2,2,z+1),'#5E6430',rotation=(0,rot,0),pat='wood')
-        flor(m,'root',x,2,z-1.4,'#CD4A8A')
-    m.bone('stem',(0,4,0),'root')
-    for x,y,z in ((0,3,0),(-1,8,0),(-2,13,0)):
-        m.cube('stem',(x-2,y,z-2),(x+2,y+6,z+2),'#8D952F',pat='wood')
-        m.cube('stem',(x-2.3,y+1,z-2.3),(x-1.3,y+5,z-2),'#59651E')
-    m.bone('head',(-2,18,0),'stem')
-    # Paladar abierto: volumen verde arriba, cavidad roja y lengua adelantada abajo.
-    m.cube('head',(-7,18,-6),(5,21,3),'#4B601E',pat='scale')
-    m.cube('head',(-6.5,17.6,-6),(4.5,18,1),'#731E28')
-    m.cube('head',(-7.5,20.5,-6.5),(5.5,22,3.5),'#67762A',pat='scale')
-    m.bone('jaw',(-2,16,2),'head',rotation=(-28,0,0))
-    m.cube('jaw',(-7,13,-7),(5,15,3),'#4A5B1F',pat='scale')
-    m.cube('jaw',(-6,15,-6),(4,15.6,2),'#BA303C')
-    m.cube('jaw',(-3,15.6,-7),(.5,16.2,-1),'#F14A59')
-    # Dientes intercalados arriba y abajo, sin tapar la apertura.
-    for x in (-6,-3,0,3):
-        m.cube('head',(x,15.4,-6),(x+1.2,18,-4.8),'#ABB849')
-        m.cube('jaw',(x+.5,15,-6),(x+1.6,17,-5),'#B8BE52')
-    for x in (-6.7,3.7):
-        for z in (-2,1): m.cube('head',(x,16,z),(x+1.1,18.2,z+1),'#9BA936')
-    # Dos capullos laterales y uno alto, cada uno con espiral original en relieve.
-    for i,(x,y,z,sz) in enumerate(((-8,18,2,3.3),(1,24,3,3.5),(4,16,4,2.5))):
-        b=f'bud{i}'; m.bone(b,(x,y-3,z),'stem')
-        m.cube(b,(x-1,y-5,z-1),(x+1,y,z+1),'#62752D')
-        m.cube(b,(x-sz,y-3,z-2),(x+sz,y+3,z+2),'#A32B71',pat='cloth')
-        m.cube(b,(x-sz-.3,y+2.5,z-2.4),(x+sz+.3,y+3.3,z+2.3),'#DA528E')
-        # Espiral cuadrada: contorno abierto hacia el centro, no textura copiada.
-        for a,c in (((x-2.5,y-2,z-2.5),(x-1.5,y+2,z-2)),
-                    ((x-2.5,y+1,z-2.5),(x+2,y+2,z-2)),
-                    ((x+1,y-1.5,z-2.5),(x+2,y+2,z-2)),
-                    ((x-.5,y-1.5,z-2.5),(x+2,y-.5,z-2)),
-                    ((x-.5,y-1.5,z-2.5),(x+.5,y+.5,z-2))):
-            m.cube(b,a,c,'#662151')
-    # Hojas turquesa grandes, escalonadas y con nervadura clara.
-    for i,(x,y,z,angle) in enumerate(((-7,24,4,-35),(6,24,5,35),(-6,12,-1,-50),(5,13,2,50))):
-        b='stem'; org=(x,y,z)
-        m.cube(b,(x-2,y-4,z),(x+2,y+4,z+1),'#339B96',rotation=(0,0,angle),origin=org,pat='scale')
-        m.cube(b,(x-1,y-5,z),(x+1,y+5,z+1),'#56B8AC',rotation=(0,0,angle),origin=org)
-        m.cube(b,(x-.3,y-4,z-.3),(x+.3,y+4,z),'#257D7D',rotation=(0,0,angle),origin=org)
-    m.anim('idle',3,{'stem':{'rotation':(0,0,swing(4,1/3))},
-                     'head':{'rotation':(swing(3,1/3),0,0)}})
-    m.anim('attack',.6,{'head':{'position':(0,0,swing(-3,1/.6)),
-                                     'rotation':(swing(18,1/.6),0,0)},
-                         'jaw':{'rotation':(swing(30,1/1.2),0,0)}},loop='once')
-    m.anim('spit',.8,{'head':{'rotation':(swing(-20,1/.8),0,0)},
-                      'stem':{'rotation':(swing(-8,1/.8),0,0)}},loop='once')
+    m=FloraModel('astral_bosque_planta'); m.bone('root',(0,0,0))
+    m.cube('root',(-4.5,0,-4.5),(4.5,6,4.5),'#394b20',pat='bark')
+    vine(m,'root',[(-5,1,-5),(0,.6,-6),(5,1,-5),(6,1,0),(5,.6,5),(0,1,6),(-5,1,5),(-6,1,0),(-5,1,-5)],.8,'#b04073')
+    for i,(x,z) in enumerate([(-5,-4),(4,-5),(5,3),(-4,5)]): flower(m,'root',x,2,z,i+30,True)
+    m.bone('stem',(0,4,0),'root',rotation=(0,0,15))
+    # Cuentagotas planta: tallo (194,429), oliva (327,282), rojo (291,345).
+    m.cube('stem',(-3,4,-2.5),(3,24,3),'#978725',pat='bark')
+    for x in (-2.6,0,2): m.cube('stem',(x,5,-2.8),(x+.65,23,-2.5),'#657423',pat='bark')
+    for y in (10,17):
+        m.cube('stem',(2.5,y,-1),(5,y+1.6,1),'#cb4384',rotation=(0,0,25),pat='bud')
+    m.bone('head',(0,25,0),'stem',rotation=(0,-12,-16))
+    m.cube('head',(0,25,-7),(17,30,4),'#4c501e',pat='leaf')
+    m.cube('head',(-.7,29.5,-7.5),(17.7,31,4.5),'#747b2d',pat='leaf')
+    for x in (1,5,9,13):
+        m.cube('head',(x,25,-7.3),(x+1.8,28.3,-7),'#4a4e21',pat='leaf')
+    m.cube('head',(.7,24.5,-6.6),(16.3,25,3),'#a92530',pat='leaf')
+    m.cube('head',(1,19,2.5),(16,25,4),'#af1f1f',pat='leaf')
+    m.bone('jaw',(8,23,3),'head',rotation=(-38,0,-9))
+    m.cube('jaw',(0,20,-9),(17,22,3),'#4e6121',pat='leaf')
+    m.cube('jaw',(1,22,-8.3),(16,22.6,2.7),'#d82d2b',pat='leaf')
+    m.cube('jaw',(6,22.6,-8.8),(10.5,23.1,-1),'#f34c59',pat='leaf')
+    for i,x in enumerate((1,4.5,8,11.5,15)):
+        m.cube('head',(x,21-i%2,-7.3),(x+1.1,25,-6.2),'#a5b638',pat='leaf')
+        m.cube('jaw',(x+.3,22.4,-7.7),(x+1.3,24,-6.6),'#ced471',pat='leaf')
+    for i,(x,y,z,r,rot) in enumerate([(-6,26,-1,5.4,(5,-12,-8)),(1,32,6,5,(0,16,-20))]):
+        b=f'bud{i}'; m.bone(b,(x,y,z),'head',rotation=rot)
+        m.cube(b,(x-r,y-r,z-r),(x+r,y+r,z+r),'#b43773',pat='bud')
+        m.cube(b,(x-r-.3,y+r-.6,z-r-.3),(x+r+.3,y+r+.4,z+r+.3),'#da588b',pat='bud')
+    for i,(x,y,z,w,h,angle) in enumerate([(-9,32,7,7,15,38),(13,30,8,8,10,-43),(-8,18,-1,9,10,-45)]):
+        b=f'leaf{i}'; m.bone(b,(x,y,z),'head' if i<2 else 'stem',rotation=(0,-10,angle))
+        m.cube(b,(x-w/2,y-h/2,z),(x+w/2,y+h/2,z+.7),'#377b7d',pat='leaf')
+        # Extremos separados: evita caras coplanares que parpadean en el cliente.
+        for ya,yb in ((y-h/2-1.5,y-h/2),(y+h/2,y+h/2+1.5)):
+            m.cube(b,(x-w/2+1,ya,z),(x+w/2-1,yb,z+.7),'#45aba0',pat='leaf')
+        m.cube(b,(x-.6,y-h/2,z-.25),(x+.6,y+h/2,z),'#246e70',pat='leaf')
+    m.anim('idle',3,{'stem':{'rotation':(0,0,swing(3,1/3))},'head':{'rotation':(swing(2,1/3),0,0)}})
+    m.anim('attack',.6,{'head':{'position':(0,0,swing(-4,1/1.2))},'jaw':{'rotation':(swing(32,1/1.2),0,0)}},loop='once')
+    m.anim('spit',.8,{'head':{'rotation':(swing(-22,1/1.6),0,0)},'jaw':{'rotation':(swing(-18,1/1.6),0,0)}},loop='once')
+    # Alto maximo 2,45 bloques incluyendo las hojas inclinadas.
+    for cube in m.cubes:
+        for key in ('from','to','origin'):
+            if cube.get(key): cube[key]=[v*.976 for v in cube[key]]
+    for bone in m.bones.values(): bone['origin']=[v*.976 for v in bone['origin']]
     return m

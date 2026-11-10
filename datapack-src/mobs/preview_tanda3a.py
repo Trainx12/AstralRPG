@@ -26,14 +26,15 @@ def player():
 
 def comparison(model,reference,name):
     data,tex=model.export()
-    renders=[preview3d(model,tex,yaw,12,8,background=BG) for yaw in (0,90,35)]
+    renders=[preview3d(model,tex,yaw,pitch,9,background=BG)
+             for yaw,pitch in ((0,0),(90,0),(35,12),(-24,15))]
     ref=Image.open(reference).convert('RGBA'); ref.thumbnail((400,600))
     h=max(650,max(im.height for im in renders)+80)
     im=Image.new('RGBA',(430+sum(v.width+15 for v in renders),h),BG)
     im.paste(ref,((420-ref.width)//2,50),ref)
     text(im,(12,12),'Referencia de tercero (solo revision local)',16)
     x=430
-    for label,v in zip(('Frente propio','Costado propio','Tres cuartos propio'),renders):
+    for label,v in zip(('Frente propio','Costado propio','Tres cuartos propio','Angulo de referencia'),renders):
         text(im,(x,15),label,16); im.paste(v,(x,65),v); x+=v.width+15
     im.save(OUT/f'{name}-comparacion.png')
 

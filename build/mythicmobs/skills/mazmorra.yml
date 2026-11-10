@@ -3,8 +3,8 @@ MINA_MODELO_astral_mina_guardian:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_coloso_musgoso;s=2.0} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 2.222222"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 1.333333"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 2.13171"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 1.279026"} @self
 MINA_ONDA_GOLEM:
   Skills:
   - particles{p=cloud;amount=60;hS=5;vS=0.2;speed=0} @self
