@@ -1,210 +1,7 @@
-# Mazmorra Tumba del Rey de Arena (generado por datapack-src/mobs/mazmorra.py)
-
-astral_tumba_s2_arana:
-  Type: CAVE_SPIDER
-  Display: '&2Arana Venenosa'
-  Health: 32
-  Damage: 6
-  Options:
-    MovementSpeed: 0.3
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s2_momia:
-  Type: HUSK
-  Display: '&eMomia del Pasaje'
-  Health: 60
-  Damage: 9
-  Options:
-    MovementSpeed: 0.24
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s2_esqueleto:
-  Type: SKELETON
-  Display: '&fEsqueleto del Pasaje'
-  Health: 40
-  Damage: 7
-  Options:
-    MovementSpeed: 0.25
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Equipment:
-  - bow HAND
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s2_cara:
-  Type: PHANTOM
-  Display: '&cCara Voladora del Pasaje'
-  Health: 36
-  Damage: 7
-  Options:
-    MovementSpeed: 0.3
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onSpawn'
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_cara} @self ~onLoad'
-  - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s2_espantapajaros:
-  Type: VEX
-  Display: '&6Espantapajaros del Pasaje'
-  Health: 70
-  Damage: 10
-  Options:
-    MovementSpeed: 0.25
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onSpawn'
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s2_espantapajaros} @self ~onLoad'
-  - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 30"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s2_golem:
-  Type: IRON_GOLEM
-  Display: '&6&lGolem Agresivo de Arena'
-  Health: 380
-  Damage: 16
-  Options:
-    MovementSpeed: 0.24
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  - lookatplayers
-  AITargetSelectors:
-  - clear
-  - attacker
-  - players
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 100"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s1_arana:
-  Type: CAVE_SPIDER
-  Display: '&2Arana Venenosa'
-  Health: 32
-  Damage: 6
-  Options:
-    MovementSpeed: 0.3
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s1_momia:
-  Type: HUSK
-  Display: '&eMomia del Patio'
-  Health: 60
-  Damage: 9
-  Options:
-    MovementSpeed: 0.24
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s1_esqueleto:
-  Type: SKELETON
-  Display: '&fEsqueleto del Patio'
-  Health: 40
-  Damage: 7
-  Options:
-    MovementSpeed: 0.25
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Equipment:
-  - bow HAND
-  Drops:
-  - exp 15
-  Skills:
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
-astral_tumba_s1_cara:
-  Type: PHANTOM
-  Display: '&cCara Voladora del Patio'
-  Health: 36
-  Damage: 7
-  Options:
-    MovementSpeed: 0.3
-    PreventOtherDrops: true
-    PreventSunburn: true
-    PreventRandomEquipment: true
-    Despawn: false
-    FollowRange: 32
-    Glowing: true
-  Drops:
-  - exp 15
-  Skills:
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onSpawn'
-  - 'skill{s=TUMBA_MODELO_astral_tumba_s1_cara} @self ~onLoad'
-  - 'state{s=attack} @self ~onAttack'
-  - 'command{c="eco give <trigger.name> 20"} @trigger ~onDeath ?~isplayer'
-
+# Generado por mobs/mazmorra.py + mobs/tanda2.py
 astral_tumba_control_sala1:
   Type: ARMOR_STAND
-  Display: 'Control Patio de los olvidados'
+  Display: Control Patio de los olvidados
   Health: 100
   Options:
     Invisible: true
@@ -216,14 +13,14 @@ astral_tumba_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s1_arana,astral_tumba_s1_cara,astral_tumba_s1_esqueleto,astral_tumba_s1_momia;a=0;r=36}'
-  - 'skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s1_arana,astral_tumba_s1_cara,astral_tumba_s1_esqueleto,astral_tumba_s1_momia;a=0;r=36}'
-  - 'skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}'
-
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala1/tick"} @self ~onTimer:20
+  - skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
+  - skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
+  - skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}
 astral_tumba_control_sala2:
   Type: ARMOR_STAND
-  Display: 'Control Pasaje de los sellos'
+  Display: Control Pasaje de los sellos
   Health: 100
   Options:
     Invisible: true
@@ -235,15 +32,15 @@ astral_tumba_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
-  - 'skill{s=TUMBA_SALA2_OLA3} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.ola3} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
-  - 'skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola3} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?mobsinradius{types=astral_tumba_s2_arana,astral_tumba_s2_cara,astral_tumba_s2_espantapajaros,astral_tumba_s2_esqueleto,astral_tumba_s2_golem,astral_tumba_s2_momia;a=0;r=44}'
-  - 'skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=44}'
-
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala2/tick"} @self ~onTimer:20
+  - skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
+  - skill{s=TUMBA_SALA2_OLA3} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.ola3} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
+  - skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola3} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
+  - skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=44}
 astral_tumba_control_sala3:
   Type: ARMOR_STAND
-  Display: 'Control Trono del Rey de Arena'
+  Display: Control Trono del Rey de Arena
   Health: 100
   Options:
     Invisible: true
@@ -255,10 +52,10 @@ astral_tumba_control_sala3:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on}'
-  - 'skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?hastag{tag=tumba.jefe.derrotado}'
-  - 'skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=64}'
-
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/tick"} @self ~onTimer:20
+  - skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?hastag{tag=tumba.jefe.derrotado} ?!hastag{tag=tumba.sala3.busy}
+  - skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=64}
 astral_tumba_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Tumba del Rey de Arena &7(clic)'
@@ -278,8 +75,7 @@ astral_tumba_cofre:
   - model{m=astral_cofre_rpg} @self ~onSpawn
   - model{m=astral_cofre_rpg} @self ~onLoad
   - state{s=open} @self ~onInteract
-  - 'command{c="dm open cofre_tumba <trigger.name>"} @self ~onInteract'
-
+  - command{c="dm open cofre_tumba <trigger.name>"} @self ~onInteract
 astral_tumba_guia:
   Type: VILLAGER
   Display: '&b&lExpediciones Astrales &7- elegir destino'
@@ -298,8 +94,7 @@ astral_tumba_guia:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
-
+  - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
 astral_npc_tumba:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Tumba del Rey de Arena'
@@ -318,96 +113,13 @@ astral_npc_tumba:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="lp user <trigger.name> permission set astral.descubierto.tumba true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.tumba}'
-  - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
-  - 'skill{s=TUMBA_ENTRAR} @trigger ~onInteract'
-
-astral_tumba_espantapajaros:
-  Type: VEX
-  Display: '&6Espantapajaros Maldito'
-  Health: 34
-  Damage: 6
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.25
-    PreventRandomEquipment: true
-  Drops:
-  - pumpkin 1 0.5
-  - wheat 1-4 0.8
-  - string 1-2 0.5
-  - exp 8
-  Skills:
-  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
-astral_tumba_arana:
-  Type: SPIDER
-  Display: '&5Arana Amatista'
-  Health: 26
-  Damage: 5
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.3
-    PreventRandomEquipment: true
-  Drops:
-  - string 1-3 0.9
-  - spider_eye 1 0.5
-  - amethyst_shard 1-2 0.5
-  - exp 8
-  Skills:
-  - skill{s=AST_MODEL_astral_arana} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_arana} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
-astral_tumba_cara:
-  Type: PHANTOM
-  Display: '&cCara Voladora'
-  Health: 22
-  Damage: 6
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.3
-    PreventRandomEquipment: true
-  Drops:
-  - phantom_membrane 1 0.6
-  - rotten_flesh 1-2 0.6
-  - exp 10
-  Skills:
-  - skill{s=AST_MODEL_astral_cara} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_cara} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
+  - command{c="lp user <trigger.name> permission set astral.descubierto.tumba true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.tumba}
+  - message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract
+  - skill{s=TUMBA_ENTRAR} @trigger ~onInteract
 astral_tumba_momia:
   Type: HUSK
   Display: '&e&lMomia Ancestral'
-  Health: 320
+  Health: 460000
   Damage: 10
   Options:
     Glowing: true
@@ -439,12 +151,14 @@ astral_tumba_momia:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
-  - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/helpers"} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
-  - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
-  - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
-  - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - skill{s=AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
+  - skill{s=TANDA2_tumba_AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
+  - skill{s=TANDA2_tumba_AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
+  - skill{s=TANDA2_tumba_AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
+  - skill{s=TANDA2_tumba_AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..96,name='Control Trono del Rey de Arena'] add tumba.jefe.derrotado"} @self ~onDeath
+  - addtag{tag=ad.tumba.sala3} @self ~onSpawn
+  - addtag{tag=ad.tumba.sala3} @self ~onLoad

@@ -350,8 +350,14 @@ Instalación, ZIP privados, coordenadas por revisar y pruebas en
 `build/minijuegos/despliegue.txt`. Los mundos se instalan como destinos nuevos;
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.
 
-## Estado preparado de Tanda 1 (sin desplegar)
+## Tanda 1 instalada (10/11/2026)
 
-Panel general vuelve a TAB, BetterHud apagado (`default-hud: []`); `/sb` persistente. Lista de archivos y recargas: `build/deploy/tanda1.md`.
+Tanda 1 instalada por el responsable del despliegue, commit `0c4bb1b` (estado comunicado en el plan de Claude). Panel general en TAB, BetterHud apagado (`default-hud: []`); `/sb` persistente. Copias locales: `.local/deploy-backups/tanda1-20261110-1422/`. Lista: `build/deploy/tanda1.md`.
+
+El resource pack se sirve desde R2: `https://pub-5e0d1c63a1554ba7b8e33b038e1a06fe.r2.dev/AstralRPG-Textures.zip`. SHA-1 instalado: `7a99922fb1734f4f80c64cee3f363a7b4d2404cb`.
+
+La Galeria de Expediciones de la terraza fue borrada a pedido del dueno (3 aldeanos y 8 rotulos). `ambiente.py` ya no la recrea; se conservan los modulos de Expediciones, Bazar, Subastas y Herrero.
+
+Tanda 2 preparada localmente, sin desplegar: `build/deploy/tanda2.md`. Requiere apagar para cambiar el datapack y comprobar el tope `settings.attribute.maxHealth.max` de `spigot.yml` (recomendado 1.000.000.000, minimo 13.125.000). No usar configs de servidores de prueba completas. El Yeti solicitado supera el alto maximo de su caja vanilla: ver `docs/ESCALA_TIERS.md`.
 
 El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.

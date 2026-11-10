@@ -3,6 +3,7 @@ import argparse
 import hashlib
 from pathlib import Path
 from urllib.request import Request, urlopen
+from time import sleep, time_ns
 
 from credenciales_locales import fields, require, LocalError
 
@@ -31,12 +32,30 @@ def upload(path, dry_run=False):
                               aws_secret_access_key=require(data, 'Secret Access Key'), region_name='auto')
         client.upload_file(str(path), 'astralrpg-pack', 'AstralRPG-Textures.zip',
                            ExtraArgs={'ContentType': 'application/zip'})
-        request = Request(PUBLIC_URL + '?sha1=' + expected, headers={'Cache-Control': 'no-cache'})
-        with urlopen(request, timeout=120) as stream:
-            actual = sha1_stream(stream)
-        if actual != expected:
+        # r2.dev puede conservar una respuesta anterior o rechazar el agente por defecto.
+        # Cada intento evita cache; solo aceptar bytes con el mismo SHA-1.
+        verified = False
+        for attempt in range(3):
+            request = public_request(expected, time_ns())
+            try:
+                with urlopen(request, timeout=120) as stream:
+                    verified = sha1_stream(stream) == expected
+            except OSError:
+                verified = False
+            if verified:
+                break
+            if attempt < 2:
+                sleep(2)
+        if not verified:
             raise LocalError('El SHA-1 publico no coincide; no actualizar el servidor.')
     return expected
+
+
+def public_request(expected, nonce):
+    return Request(PUBLIC_URL + '?sha1=' + expected + '&verify=' + str(nonce),
+                   headers={'User-Agent': 'AstralRPG-pack-verifier/1.0',
+                            'Cache-Control': 'no-cache, no-store', 'Pragma': 'no-cache',
+                            'Accept-Encoding': 'identity'})
 
 
 def main():

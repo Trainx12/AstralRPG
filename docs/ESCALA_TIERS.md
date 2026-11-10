@@ -99,3 +99,40 @@ Todo sale de `escala.py` (`MANA_*`, `HECHIZO`, `REGEN_*`).
   para la vida real enorme. `log-named-deaths: false` porque ahora casi todos los mobs tienen nombre.
 - Datapack con `ITEM_VERSION = 8`: los objetos se actualizan solos conservando mejoras.
 - Resource pack nuevo (partícula transparente): actualizar URL y SHA-1 en `server.properties`.
+
+## Tanda 2: cajas medidas y vida de jefes
+
+Vida: Bosque 12.500; Minas 72.000; Tumba 460.000; Cumbre 2.475.000; Forja 13.125.000. Se genera desde `EZ_JEFE × VIDA_REF` en `escala.py`.
+
+Oleadas: 87% tier de la mazmorra, 3% uno mas y 10% uno menos (limites 1–5). Mundo abierto conserva 86/4/10. Jefes del mundo y Ancestrales fuera del Santuario: 25 EZ del tier calculado por `mob/tier_mundo` al aparecer; sin arma o sin jugador cercano, T1. No se vuelven a curar al cargar chunks. Santuario conserva sus atributos previos.
+
+Medicion de todas las esquinas de los cubos existentes, con rotaciones, en pose de reposo. Se prioriza el alto: una sola escala no puede igualar proporciones distintas entre modelo y entidad. El ancho puede diferir. Las animaciones tampoco tienen una caja dinamica. Mascotas, monturas, NPC y estatuas quedan excluidos.
+
+| Mob | s | Alto modelo (bloques) | scale | Alto caja vanilla |
+|---|---:|---:|---:|---:|
+| astral_mapache | 1 | 1.006 | 1.4375 | 1.006 |
+| astral_pinguino | 1 | 1.556 | 2.22321 | 1.556 |
+| astral_espantapajaros | 1 | 2.062 | 2.57812 | 2.062 |
+| astral_espantapajaros_elite | 1.35 | 2.784 | 3.48047 | 2.784 |
+| astral_abejorro | 1 | 1.038 | 1.29688 | 1.038 |
+| astral_abejorro_elite | 1.35 | 1.401 | 1.75078 | 1.401 |
+| astral_arana | 1 | 0.975 | 1.08333 | 0.975 |
+| astral_arana_elite | 1.35 | 1.316 | 1.4625 | 1.316 |
+| astral_cara | 1 | 1.675 | 3.35 | 1.675 |
+| astral_cara_elite | 1.35 | 2.261 | 4.5225 | 2.261 |
+| astral_momia | 2 | 4.100 | 2.10256 | 4.100 |
+| astral_momia_ancestral | 2 | 4.100 | 2.10256 | 4.100 |
+| astral_yeti | 2 | 7.000 | 3.18182 | 7.000 |
+| astral_yeti_ancestral | 2 | 7.000 | 3.18182 | 7.000 |
+| astral_golem_forja | 2 | 6.062 | 2.24537 | 6.062 |
+| astral_golem_forja_ancestral | 2 | 6.062 | 2.24537 | 6.062 |
+| astral_cangrejo | 2 | 2.825 | 3.13889 | 2.825 |
+| astral_cangrejo_elite | 1.35 | 1.907 | 2.11875 | 1.907 |
+| astral_cangrejo_ancestral | 2 | 2.825 | 3.13889 | 2.825 |
+| astral_chaman | 2 | 5.125 | 2.6282 | 5.125 |
+| astral_chaman_ancestral | 2 | 5.125 | 2.6282 | 5.125 |
+| astral_yeti_cumbre | 16 | 56.000 | 16 | 35.200 |
+| astral_golem_forja_mazmorra | 8 | 24.250 | 8.98148 | 24.250 |
+| astral_mina_guardian | 2 | 6.062 | 2.24537 | 6.062 |
+
+**Limite detectado:** Yeti de Cumbre: modelo de 32 × 56 × 17,6 bloques; la caja RAVAGER alcanza 31,2 × 35,2 con `scale=16`. No es posible igualar el alto con este atributo. Se conserva `s=16` y se informa la diferencia. Golem de Forja: modelo 12,9 × 24,25 × 12,9; `scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.

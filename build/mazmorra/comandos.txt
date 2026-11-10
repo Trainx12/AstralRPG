@@ -1,25 +1,61 @@
-# Mazmorra Minas Olvidadas: comandos de consola (sin /). Generado por datapack-src/mobs/mazmorra.py
-# --- 1) mundo vacio (una sola vez)
-mv create mina normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-mv modify mina set difficulty hard
-mv modify mina set gamemode survival
-mv modify mina set pvp false
-mv modify mina set allow-weather false
-mv gamerule set minecraft:spawn_mobs false mina
-mv gamerule set minecraft:keep_inventory true mina
-mv gamerule set minecraft:random_tick_speed 0 mina
-mv gamerule set minecraft:advance_time false mina
-execute in minecraft:mina run time set midnight
-rg flag -w mina __global__ build deny
+# Actualizacion Tanda 2. Mazmorra VACIA. No crear/importar/reemplazar mundos.
+# Respaldar archivos del servidor; apagar para instalar el datapack y YAML, luego iniciar.
+# El arranque carga MythicMobs; si se ajusto despues: mm reload.
+# Cargar y retirar cada controlador anterior.
+execute in minecraft:mina run forceload add 10 -125
+mm mobs kill astral_mina_control_sala1
+execute in minecraft:mina run forceload remove 10 -125
+execute in minecraft:mina run forceload add 19 -159
+mm mobs kill astral_mina_control_sala2
+execute in minecraft:mina run forceload remove 19 -159
+execute in minecraft:mina run forceload add 43 -202
+mm mobs kill astral_mina_control_sala3
+execute in minecraft:mina run forceload remove 43 -202
+execute in minecraft:mina run forceload add 36 -249
+mm mobs kill astral_mina_control_sala4
+execute in minecraft:mina run forceload remove 36 -249
+execute in minecraft:mina run forceload add 10 -125
+mm mobs kill astral_mina_control_sala1
+execute in minecraft:mina run function astral:tanda2/mina/sala1/cleanup
+execute in minecraft:mina run forceload remove 10 -125
+execute in minecraft:mina run forceload add 19 -159
+mm mobs kill astral_mina_control_sala2
+execute in minecraft:mina run function astral:tanda2/mina/sala2/cleanup
+execute in minecraft:mina run forceload remove 19 -159
+execute in minecraft:mina run forceload add 43 -202
+mm mobs kill astral_mina_control_sala3
+execute in minecraft:mina run function astral:tanda2/mina/sala3/cleanup
+execute in minecraft:mina run forceload remove 43 -202
+execute in minecraft:mina run forceload add 36 -249
+mm mobs kill astral_mina_control_sala4
+execute in minecraft:mina run function astral:tanda2/mina/sala4/cleanup
+execute in minecraft:mina run forceload remove 36 -249
+# Limpiar restos de la version anterior (solo IDs de ESTA mazmorra).
+mm mobs kill astral_mina_minero
+mm mobs kill astral_mina_esqueleto
+mm mobs kill astral_mina_ahogado
+mm mobs kill astral_mina_arana
+mm mobs kill astral_mina_capataz
+mm mobs kill astral_mina_golem
+mm mobs kill astral_mina_guardian
+# Crear exactamente un controlador en cada punto nuevo.
+execute in minecraft:mina run forceload add 10 -125
+mm mobs spawn astral_mina_control_sala1 1 mina,10.5,-45,-124.5
+execute in minecraft:mina run forceload remove 10 -125
+execute in minecraft:mina run forceload add 19 -159
+mm mobs spawn astral_mina_control_sala2 1 mina,19.5,-39,-158.5
+execute in minecraft:mina run forceload remove 19 -159
+execute in minecraft:mina run forceload add 43 -202
+mm mobs spawn astral_mina_control_sala3 1 mina,43.5,-24,-201.5
+execute in minecraft:mina run forceload remove 43 -202
+execute in minecraft:mina run forceload add 36 -249
+mm mobs spawn astral_mina_control_sala4 1 mina,36.5,24,-248.5
+execute in minecraft:mina run forceload remove 36 -249
+# Conservar NPC, protecciones y permisos existentes. No ejecutar mv create ni pegar mapas.
 rg flag -w mina __global__ enderdragon-block-damage deny
-rg flag -w mina __global__ chest-access deny
-rg flag -w mina __global__ interact allow
-rg flag -w mina __global__ use deny
-rg flag -w mina __global__ mob-spawning allow
-rg flag -w mina __global__ pvp deny
+
 # espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
 lp group default permission set astral.mina.cd false
-# coleccion de Fragmentos Astrales (/fragmentos): false para todos, igual que la espera
 lp group default permission set astral.fragmento.marea false
 lp group default permission set astral.fragmento.pantano false
 lp group default permission set astral.fragmento.arena false
@@ -27,17 +63,3 @@ lp group default permission set astral.fragmento.lampara false
 lp group default permission set astral.fragmento.hielo false
 lp group default permission set astral.fragmento.fuego false
 lp group default permission set astral.fragmento.corazon false
-# --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):
-#   subir dungeon1-endlessxl.schem a plugins/WorldEdit/schematics/
-#   /mvtp mina    /gamemode creative    //schem load dungeon1-endlessxl    //paste -o
-#   (con -o el mapa cae siempre en el mismo lugar: esquina -73 -55 -290)
-# --- 3) controladores de las salas (una sola vez, despues de pegar el mapa)
-execute in minecraft:mina run forceload add -80 -300 160 -60
-mm mobs spawn astral_mina_control_sala1 1 mina,10.5,-45,-124.5
-mm mobs spawn astral_mina_control_sala2 1 mina,19.5,-39,-158.5
-mm mobs spawn astral_mina_control_sala3 1 mina,43.5,-24,-201.5
-mm mobs spawn astral_mina_control_sala4 1 mina,36.5,24,-248.5
-execute in minecraft:mina run forceload remove -80 -300 160 -60
-# --- 4) vendedor de la entrada: parate en el lobby donde lo quieras y (con mob-spawning allow en el lobby):
-#   /mm mobs spawn astral_npc_mina
-# --- para reiniciar una sala trabada: mm mobs kill astral_mina_control_salaN y volver a spawnearla

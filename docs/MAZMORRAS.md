@@ -376,3 +376,49 @@ La tapa de los cofres (tambien los de las gachas) abria hacia abajo: era el sign
 
 Quien termino Mina antes y no Bosque se destraba con `lp user <jugador> permission set astral.completada.bosque true`.
 Los NPC de entrada tienen `AlwaysShowName: false` para esconderlos en salas secretas. Tras `mm reload`, guardar sus posiciones, quitar los existentes y volver a colocarlos; no duplicarlos. Cofre y guia finales conservan su nombre visible. Santuario queda sin desplegar.
+
+## Tanda 2: oleadas y combate (preparada, sin desplegar)
+
+Los datos vigentes salen de `mobs/tanda2.py`, `escala.py` y los mapas locales de solo lectura.
+El motor anterior sigue aislado para el Santuario, que conserva sus salidas y atributos.
+El viejo mundo `forja` de expedicion no cambia.
+
+| Mazmorra | Tier | Salas / oleadas | Jefe | Vida | Modelo s / scale |
+|---|---:|---|---|---:|---|
+| Bosque | 1 | 3 oleadas en una sala + jefe | Chaman | 12.500 | 2 / 2,628205 |
+| Minas | 2 | 2+2+2 oleadas + jefe, mismas salas | Guardian actual | 72.000 | 2 / 2,245370 |
+| Tumba | 3 | 2+3 oleadas + jefe, mismas posiciones | Momia | 460.000 | 2 / 2,102564 |
+| Cumbre | 4 | 4 oleadas en la plaza + jefe | Yeti | 2.475.000 | 16 / 16 (limitado) |
+| Forja | 5 | 2+2 oleadas + jefe | Golem de Forja | 13.125.000 | 8 / 8,981481 |
+
+Las listas exactas estan en `WAVES`; puntos, selecciones y medidas en
+`build/deploy/tanda2-puntos.json`. Cada sala agrega 4 enemigos de llegada, ademas de
+los companeros del jefe (3 zombis en Bosque, 4 husks en Tumba, 4 esqueletos wither
+ en Forja y 4 zombis en Minas/Cumbre). La Momia sigue invocando 2 husks cada 15 segundos.
+Los dos puntos de devastadores de Tumba se conservan: el soporte 3x3 contiene algunas
+escaleras de purpur, con tres bloques de aire arriba; no es una losa completamente plana.
+
+La cola arranca con hasta 6 enemigos (9 en Forja) y repone hasta 2 cada 5 segundos,
+respetando ese tope. Los 4 de llegada no ocupan el cupo, pero deben morir para limpiar.
+Con 1 o 2 jugadores se conserva la base; cada jugador adicional suma 40% del total,
+redondeado arriba. Los extras siguen la composicion de la lista base, ciclicamente.
+Cada controlador mantiene cola y contador independientes; abandono borra enemigos y cola.
+Ningun jefe concede victoria por desaparecer: debe confirmar su muerte y no quedar ayudantes.
+
+Solo se usan tipos vanilla con brillo. Los cubos de magma grandes usan una plantilla
+MythicMobs sin modelo (`tanda2_forja_salaN_magma`) para impedir su division y respetar el cupo.
+Los esqueletos se centralizan en `ESQUELETOS` para la tanda 3. No se agrego la planta,
+pero Bosque reserva su ID para incorporarla despues. Forja tiene resistencia al fuego,
+y sus piglins/hoglins son inmunes a zombificacion.
+
+Cumbre conserva la llegada elegida por el dueno tambien para el combate final.
+El segundo controlador se desbloquea al limpiar la plaza: no se activan ambos al entrar.
+No se invento otra llegada al Yeti. El Yeti queda casi quieto y usa pisoton, empujon y
+proyectiles. Su modelo mide 56 bloques de alto: `scale=16` solo da una caja de 35,2.
+Las interferencias con el mapa quedan medidas en la entrega. No habilitar Cumbre al
+publico hasta revisar ese limite con el dueno. No se redujo el modelo.
+
+Instalacion exacta y comandos de reemplazo de controladores: `build/deploy/tanda2.md`.
+Los `comandos.txt` de esta tanda actualizan mundos existentes: no crear ni subir mundos.
+Vista previa obligatoria antes de instalar: `build/previews/tamanos-jefes.png`.
+Las pruebas locales interpretan la cola generada; faltan combate y consola reales de Paper.

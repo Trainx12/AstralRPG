@@ -69,6 +69,16 @@ EXTRA_VIDA_MAZMORRA = {"santuario": 1.5, "santuario_interstellar": 1.5}
 # Probabilidades de tier en el mundo (en %).
 PROB_TIER_MAS = 4
 PROB_TIER_MENOS = 10
+PROB_MAZ_MAS = 3
+PROB_MAZ_MENOS = 10
+EZ_JEFE = {"bosque": 25, "mina": 30, "tumba": 40, "cumbre": 45, "forja": 50}
+VIDA_JEFE = {k: ez * VIDA_REF[TIER_MAZMORRA[k]] for k, ez in EZ_JEFE.items()}
+OLEADA_TOPE = 6
+OLEADA_TOPE_FORJA = 9
+OLEADA_TANDA = 2
+OLEADA_INTERVALO = 100  # ticks: cinco segundos
+LLEGADA_MOBS = 4
+EXTRA_JUGADOR_PCT = 40
 
 # ---------------------------------------------------------------------------
 # MANA (referencia: Hypixel SkyBlock, 09/11/2026). Ver docs/ESCALA_TIERS.md.

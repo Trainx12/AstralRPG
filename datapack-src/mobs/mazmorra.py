@@ -99,6 +99,9 @@ MINA = dict(key="mina", name="Minas Olvidadas", world=WORLD, mobs=MOBS, rooms=SA
             npc=LOBBY_NPC, reward=PREMIO, money=PREMIO_PLATA, cooldown=COOLDOWN,
             event="mina", enabled=True)
 
+from mobs.tanda2 import configure, transform
+configure(MINA)
+
 
 def finish(text, dungeon):
     """Solo cambia los identificadores propios del motor; las Minas conservan sus IDs."""
@@ -189,7 +192,7 @@ def mob_yml(dungeon=None):
           "  - " + q(f'command{{c="lp user <trigger.name> permission set astral.descubierto.{dungeon["key"]} true"}} @self ~onInteract ?~!haspermission{{p=astral.descubierto.{dungeon["key"]}}}'),
           "  - " + q('message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'),
           "  - " + q("skill{s=MINA_ENTRAR} @trigger ~onInteract"), ""]
-    return finish("\n".join(L) + "\n", dungeon) + dungeon.get("mob_blocks", "")
+    return transform(finish("\n".join(L) + "\n", dungeon) + dungeon.get("mob_blocks", ""), dungeon, 'mobs')
 
 
 def tp(x, y, z, who="<target.name>", world=WORLD):
@@ -238,6 +241,9 @@ def skill_yml(dungeon=None):
             m, sc, col = d["model"]
             L += [f"MINA_MODELO_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={m};s={sc}}} @self",
                   "  - delay 2", f"  - tint{{c={col}}} @self", ""]
+            if dungeon.get('tanda2'):
+                from mobs.tamanos import skills as size_skills
+                L[-1:-1] = ['  - '+x for x in size_skills(m,sc,d['type'])]
     model_skills = L[:]
     # ondas con aviso (1 segundo para alejarse)
     for nombre, dano, radio in (("GOLEM", 7, 5), ("GUARDIAN", 9, 6)):
@@ -262,6 +268,8 @@ def skill_yml(dungeon=None):
         sig = SALAS[i + 1] if i + 1 < len(SALAS) else None
 
         def ola(k):
+            if dungeon.get('tanda2'):
+                return []  # tanda2.transform agrega la cola vanilla y el jefe exacto
             out = []
             spawn_radius = s.get("spawn_radius", 4)
             index = 0
@@ -367,7 +375,7 @@ def skill_yml(dungeon=None):
     L += ["  Skills:",
           "  - " + q(f'message{{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8({len(SALAS)} salas. Para salir: /spawn)"}}'),
           "  - " + q(tp(*s1["llegada"], who="<trigger.name>", world=WORLD)), ""]
-    return finish("\n".join(L) + "\n", dungeon)
+    return transform(finish("\n".join(L) + "\n", dungeon), dungeon, 'skills')
 
 
 def espera_cofre(key):
@@ -379,6 +387,9 @@ def espera_cofre(key):
 
 def commands(dungeon=None):
     dungeon = dungeon or MINA
+    if dungeon.get('tanda2'):
+        from mobs.entrega_tanda2 import upgrade_commands
+        return upgrade_commands(dungeon) + '\n' + '\n'.join(espera_cofre(dungeon['key'])) + '\n' + ('\n'.join(__import__('cofre_mazmorra').lp_defaults())+'\n' if dungeon['key']=='mina' else '')
     if dungeon["key"] != "mina":
         return new_commands(dungeon)
     C = ["# Mazmorra Minas Olvidadas: comandos de consola (sin /). Generado por datapack-src/mobs/mazmorra.py",

@@ -375,6 +375,8 @@ def mob_block(mid, d, model=None, elite=None):
     # habilidades
     model_skill = d.get('model_skill', f'AST_MODEL_{(elite and mid) or model}')
     sk = [f"- skill{{s={model_skill}}} @self ~onSpawn", f"- skill{{s={model_skill}}} @self ~onLoad"]
+    if d['kind'] == 'jefe' and not d.get('suppress_quest'):
+        sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn']
     if d["kind"] == "montura":
         mode = "flying" if d.get("fly") else "walking"
         sk += [f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
@@ -414,7 +416,7 @@ def mob_block(mid, d, model=None, elite=None):
             sk.append('- command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}')
     if elite and d["kind"] == "hostil":
         sk.append('- command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer')
-    if d["kind"] == "jefe" and (not elite or d.get("ancestral")):
+    if d["kind"] == "jefe" and (not elite or d.get("ancestral")) and not d.get('stationary'):
         for n, (pct, _, _, timers) in enumerate(FASES.get(base, []), start=2):
             sk.append(f"- skill{{s=AST_FASE_{base}_{n}}} @self ~onDamaged ?healthpercent{{p=<{pct / 100}}} ?!hastag{{tag=astral.fase{n}}}")
             for tname, (_, every) in timers.items():
@@ -484,6 +486,24 @@ def metaskills():
         out += [f"AST_MODEL_{mid}_elite:", "  Skills:", "  - addtag{tag=astral.seen} @self",
                 f"  - model{{m={mid};s=1.35}} @self", "  - delay 2",
                 f"  - tint{{c={color}}} @self"]
+    # Atributos junto al mismo modelo: los eventos spawn/load llaman esta skill.
+    from mobs.tamanos import skills as size_skills, SPECIAL
+    out += ['AST_MODEL_astral_golem_forja_mazmorra:', '  Skills:',
+            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_golem_forja;s=8.0} @self']
+    out = [line.replace('model{m=astral_yeti;s=4.0}', 'model{m=astral_yeti;s=16.0}') for line in out]
+    sized=[]
+    for line in out:
+        sized.append(line)
+        import re
+        match=re.fullmatch(r'  - model\{m=([^;}]+)(?:;s=([^}]+))?\} @self',line)
+        if match and MOBS[match[1]]['kind'] != 'montura':
+            sized += ['  - '+x for x in size_skills(match[1],float(match[2] or 1),MOBS[match[1]]['type'])]
+    out=sized
+    out += ['AST_YETI_PISOTON:', '  Skills:',
+            '  - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self', '  - delay 20',
+            '  - damage{a=12} @PlayersInRadius{r=20}', '  - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}',
+            'AST_YETI_HIELO:', '  Skills:', '  - damage{a=8} @PlayersNearOrigin{r=3}',
+            '  - potion{type=SLOWNESS;duration=60;level=1} @PlayersNearOrigin{r=3}']
     return "\n".join(out) + "\n"
 
 

@@ -1,43 +1,57 @@
-# Tumba del Rey de Arena - ubicaciones propuestas, revisar en creativo antes de habilitar.
-# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
-# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
-mv create tumba normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/tumba/region.
-# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
-mv modify tumba set difficulty hard
-mv modify tumba set gamemode survival
-mv modify tumba set pvp false
-mv modify tumba set allow-weather false
-mv gamerule set minecraft:spawn_mobs false tumba
-mv gamerule set minecraft:keep_inventory true tumba
-mv gamerule set minecraft:random_tick_speed 0 tumba
-rg flag -w tumba __global__ build deny
-rg flag -w tumba __global__ chest-access deny
-rg flag -w tumba __global__ pvp deny
-rg flag -w tumba __global__ mob-spawning allow
-rg flag -w tumba __global__ interact allow
-rg flag -w tumba __global__ use deny
+# Actualizacion Tanda 2. Mazmorra VACIA. No crear/importar/reemplazar mundos.
+# Respaldar archivos del servidor; apagar para instalar el datapack y YAML, luego iniciar.
+# El arranque carga MythicMobs; si se ajusto despues: mm reload.
+# Cargar y retirar cada controlador anterior.
+execute in minecraft:tumba run forceload add -149 -99
+mm mobs kill astral_tumba_control_sala1
+execute in minecraft:tumba run forceload remove -149 -99
+execute in minecraft:tumba run forceload add -176 203
+mm mobs kill astral_tumba_control_sala2
+execute in minecraft:tumba run forceload remove -176 203
+execute in minecraft:tumba run forceload add 0 0
+mm mobs kill astral_tumba_control_sala3
+execute in minecraft:tumba run forceload remove 0 0
+execute in minecraft:tumba run forceload add -149 -99
+mm mobs kill astral_tumba_control_sala1
+execute in minecraft:tumba run function astral:tanda2/tumba/sala1/cleanup
+execute in minecraft:tumba run forceload remove -149 -99
+execute in minecraft:tumba run forceload add -176 203
+mm mobs kill astral_tumba_control_sala2
+execute in minecraft:tumba run function astral:tanda2/tumba/sala2/cleanup
+execute in minecraft:tumba run forceload remove -176 203
+execute in minecraft:tumba run forceload add 0 0
+mm mobs kill astral_tumba_control_sala3
+execute in minecraft:tumba run function astral:tanda2/tumba/sala3/cleanup
+execute in minecraft:tumba run forceload remove 0 0
+# Limpiar restos de la version anterior (solo IDs de ESTA mazmorra).
+mm mobs kill astral_tumba_espantapajaros
+mm mobs kill astral_tumba_arana
+mm mobs kill astral_tumba_cara
+mm mobs kill astral_tumba_momia
+mm mobs kill astral_tumba_s1_arana
+mm mobs kill astral_tumba_s1_momia
+mm mobs kill astral_tumba_s1_esqueleto
+mm mobs kill astral_tumba_s1_cara
+mm mobs kill astral_tumba_s1_espantapajaros
+mm mobs kill astral_tumba_s1_golem
+mm mobs kill astral_tumba_s2_arana
+mm mobs kill astral_tumba_s2_momia
+mm mobs kill astral_tumba_s2_esqueleto
+mm mobs kill astral_tumba_s2_cara
+mm mobs kill astral_tumba_s2_espantapajaros
+mm mobs kill astral_tumba_s2_golem
+# Crear exactamente un controlador en cada punto nuevo.
+execute in minecraft:tumba run forceload add -149 -99
+mm mobs spawn astral_tumba_control_sala1 1 tumba,-148.5,60,-98.5
+execute in minecraft:tumba run forceload remove -149 -99
+execute in minecraft:tumba run forceload add -176 203
+mm mobs spawn astral_tumba_control_sala2 1 tumba,-175.5,88,203.5
+execute in minecraft:tumba run forceload remove -176 203
+execute in minecraft:tumba run forceload add 0 0
+mm mobs spawn astral_tumba_control_sala3 1 tumba,0.568,72,0.512
+execute in minecraft:tumba run forceload remove 0 0
+# Conservar NPC, protecciones y permisos existentes. No ejecutar mv create ni pegar mapas.
 rg flag -w tumba __global__ enderdragon-block-damage deny
+
 # espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
 lp group default permission set astral.tumba.cd false
-# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Contador de jugadores para los refuerzos (una vez; si ya existe, conservarlo).
-scoreboard objectives add ad.party dummy
-# Patio de los olvidados: execute in minecraft:tumba run minecraft:tp <jugador> -148.426 62 -97.473
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Pasaje de los sellos: execute in minecraft:tumba run minecraft:tp <jugador> -203.163 88 203.533
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Trono del Rey de Arena: execute in minecraft:tumba run minecraft:tp <jugador> 0.368 73 -44.104
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:tumba run forceload add -148 -98
-# mm mobs spawn astral_tumba_control_sala1 1 tumba,-148.5,60,-98.5
-# execute in minecraft:tumba run forceload remove -148 -98
-# execute in minecraft:tumba run forceload add -175 203
-# mm mobs spawn astral_tumba_control_sala2 1 tumba,-175.5,88,203.5
-# execute in minecraft:tumba run forceload remove -175 203
-# execute in minecraft:tumba run forceload add 0 0
-# mm mobs spawn astral_tumba_control_sala3 1 tumba,0.568,72,0.512
-# execute in minecraft:tumba run forceload remove 0 0
-# NPC de entrada (en el lobby): mm mobs spawn astral_npc_tumba
-# Los jefes y mobs del mundo normal conservan sus apariciones.

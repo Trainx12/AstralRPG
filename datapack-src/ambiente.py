@@ -17,8 +17,7 @@ SERVICES = {
     "subastas": ("Casa de Subastas", "dark_oak_log", "purple_wool", "dark_oak_planks", "gold_block", "gold"),
     "herrero": ("Herreria Astral - mejoras", "polished_basalt", "polished_blackstone_bricks", "deepslate_tiles", "copper_block", "gold"),
 }
-HUB = [("bosque",156,278,True),("tumba",180,278,True),("mina",204,278,True),
-       ("cumbre",150,298,False),("forja",170,298,False),("santuario",190,298,False),("arena",210,298,False)]
+HUB = []  # Galeria de la terraza retirada por el dueno (10/11/2026).
 
 
 def generate(files):
@@ -93,22 +92,8 @@ def generate(files):
     for key,theme in THEMES.items():module(key,theme);module(key,theme,reverse=True)
     for key,theme in SERVICES.items():module(key,theme,service=True)
     fn("ocupado",['tellraw @s {"text":"No hay espacio libre: hace falta una zona de 7 de ancho, 5 de fondo y 6 de alto. El frente mira al norte.","color":"yellow"}',"return 0"])
-    terrace=["execute if entity @e[type=minecraft:marker,tag=astral.amb.terraza,distance=..1] run return 0",
-             "fill ~-36 ~-1 ~-18 ~36 ~-1 ~18 minecraft:polished_deepslate keep",
-             "fill ~-34 ~-2 ~-16 ~34 ~-2 ~16 minecraft:deepslate_bricks keep",
-             "fill ~-30 ~-3 ~-12 ~30 ~-3 ~12 minecraft:deepslate_tiles keep",
-             "fill ~-22 ~-4 ~-6 ~22 ~-4 ~6 minecraft:deepslate_bricks keep",
-             "summon minecraft:marker ~ ~ ~ {Tags:[\"astral.amb.terraza\"]}"]
-    for x in range(-36,37):
-        for z in (-18,18):terrace.append(f"setblock ~{x} ~ ~{z} minecraft:dark_oak_fence keep")
-    for z in range(-17,18):
-        for x in (-36,36):terrace.append(f"setblock ~{x} ~ ~{z} minecraft:dark_oak_fence keep")
-    for x in (-34,-12,12,34):
-        for z in (-16,16):
-            terrace += [f"setblock ~{x} ~ ~{z} minecraft:chiseled_deepslate keep",f"setblock ~{x} ~1 ~{z} minecraft:lantern keep"]
-    terrace.append(title("Galeria de Expediciones","light_purple","astral.amb.rotulo_hub",y=5,z=0.5));fn("terraza",terrace)
-    setup=["execute in minecraft:lobby positioned 180 100 288 run function astral:ambiente/terraza"]
-    for key,x,z,reverse in HUB:setup.append(f'execute in minecraft:lobby positioned {x} 100 {z} run function astral:ambiente/{key}{"_sur" if reverse else ""}')
+    fn("terraza", ["# Galeria retirada: no recrear construcciones ni rotulos.", "return 0"])
+    setup=[]
     for key,x,z in [("expediciones",172,214),("bazar",166,187),("subastas",190,187),("herrero",180,202)]:
         setup.append(f"execute in minecraft:lobby positioned {x} 100 {z} run function astral:ambiente/{key}")
     fn("lobby",setup)

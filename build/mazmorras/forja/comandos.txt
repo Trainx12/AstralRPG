@@ -1,31 +1,39 @@
-# Corazon de la Forja - ubicaciones propuestas, revisar en creativo antes de habilitar.
-# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
-# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
-mv create forja_volcano normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/forja_volcano/region.
-# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
-mv modify forja_volcano set difficulty hard
-mv modify forja_volcano set gamemode survival
-mv modify forja_volcano set pvp false
-mv modify forja_volcano set allow-weather false
-mv gamerule set minecraft:spawn_mobs false forja_volcano
-mv gamerule set minecraft:keep_inventory true forja_volcano
-mv gamerule set minecraft:random_tick_speed 0 forja_volcano
-rg flag -w forja_volcano __global__ build deny
-rg flag -w forja_volcano __global__ chest-access deny
-rg flag -w forja_volcano __global__ pvp deny
-rg flag -w forja_volcano __global__ mob-spawning allow
-rg flag -w forja_volcano __global__ interact allow
-rg flag -w forja_volcano __global__ use deny
+# Actualizacion Tanda 2. Mazmorra VACIA. No crear/importar/reemplazar mundos.
+# Respaldar archivos del servidor; apagar para instalar el datapack y YAML, luego iniciar.
+# El arranque carga MythicMobs; si se ajusto despues: mm reload.
+# Cargar y retirar cada controlador anterior.
+execute in minecraft:forja_volcano run forceload add 82 -56
+mm mobs kill astral_forja_control_sala1
+execute in minecraft:forja_volcano run forceload remove 82 -56
+execute in minecraft:forja_volcano run forceload add 23 -160
+mm mobs kill astral_forja_control_sala1
+execute in minecraft:forja_volcano run function astral:tanda2/forja/sala1/cleanup
+execute in minecraft:forja_volcano run forceload remove 23 -160
+execute in minecraft:forja_volcano run forceload add -126 -126
+mm mobs kill astral_forja_control_sala2
+execute in minecraft:forja_volcano run function astral:tanda2/forja/sala2/cleanup
+execute in minecraft:forja_volcano run forceload remove -126 -126
+execute in minecraft:forja_volcano run forceload add -8 -22
+mm mobs kill astral_forja_control_sala3
+execute in minecraft:forja_volcano run function astral:tanda2/forja/sala3/cleanup
+execute in minecraft:forja_volcano run forceload remove -8 -22
+# Limpiar restos de la version anterior (solo IDs de ESTA mazmorra).
+mm mobs kill astral_forja_espantapajaros
+mm mobs kill astral_forja_arana
+mm mobs kill astral_forja_cara
+mm mobs kill astral_forja_golem_forja
+# Crear exactamente un controlador en cada punto nuevo.
+execute in minecraft:forja_volcano run forceload add 23 -160
+mm mobs spawn astral_forja_control_sala1 1 forja_volcano,23.2,13,-159.4
+execute in minecraft:forja_volcano run forceload remove 23 -160
+execute in minecraft:forja_volcano run forceload add -126 -126
+mm mobs spawn astral_forja_control_sala2 1 forja_volcano,-125.5,13,-125.7
+execute in minecraft:forja_volcano run forceload remove -126 -126
+execute in minecraft:forja_volcano run forceload add -8 -22
+mm mobs spawn astral_forja_control_sala3 1 forja_volcano,-7.9,47,-21.1
+execute in minecraft:forja_volcano run forceload remove -8 -22
+# Conservar NPC, protecciones y permisos existentes. No ejecutar mv create ni pegar mapas.
 rg flag -w forja_volcano __global__ enderdragon-block-damage deny
+
 # espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
 lp group default permission set astral.forja.cd false
-# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Nucleo de la Forja: execute in minecraft:forja_volcano run minecraft:tp <jugador> 82.5 52 -55.5
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:forja_volcano run forceload add 82 -55
-# mm mobs spawn astral_forja_control_sala1 1 forja_volcano,82.5,52,-55.5
-# execute in minecraft:forja_volcano run forceload remove 82 -55
-# NPC de entrada (en el lobby): mm mobs spawn astral_npc_forja
-# Los jefes y mobs del mundo normal conservan sus apariciones.

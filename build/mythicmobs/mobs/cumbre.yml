@@ -1,8 +1,7 @@
-# Mazmorra Cumbre Helada (generado por datapack-src/mobs/mazmorra.py)
-
+# Generado por mobs/mazmorra.py + mobs/tanda2.py
 astral_cumbre_control_sala1:
   Type: ARMOR_STAND
-  Display: 'Control Paso de la escarcha'
+  Display: Control Plaza de la fuente
   Health: 100
   Options:
     Invisible: true
@@ -14,14 +13,16 @@ astral_cumbre_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=CUMBRE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=14} ?!hastag{tag=cumbre.on}'
-  - 'skill{s=CUMBRE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=astral_cumbre_arana,astral_cumbre_cara;a=0;r=22}'
-  - 'skill{s=CUMBRE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=astral_cumbre_arana,astral_cumbre_cara;a=0;r=22}'
-  - 'skill{s=CUMBRE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=22}'
-
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala1/tick"} @self ~onTimer:20
+  - skill{s=CUMBRE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=34} ?!hastag{tag=cumbre.on}
+  - skill{s=CUMBRE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
+  - skill{s=CUMBRE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.ola3} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
+  - skill{s=CUMBRE_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=cumbre.ola3} ?!hastag{tag=cumbre.ola4} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
+  - skill{s=CUMBRE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola4} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
+  - skill{s=CUMBRE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=42}
 astral_cumbre_control_sala2:
   Type: ARMOR_STAND
-  Display: 'Control Ascenso blanco'
+  Display: Control Trono del Yeti
   Health: 100
   Options:
     Invisible: true
@@ -33,29 +34,10 @@ astral_cumbre_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - 'skill{s=CUMBRE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=14} ?!hastag{tag=cumbre.on}'
-  - 'skill{s=CUMBRE_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=astral_cumbre_cara,astral_cumbre_espantapajaros;a=0;r=22}'
-  - 'skill{s=CUMBRE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=astral_cumbre_cara,astral_cumbre_espantapajaros;a=0;r=22}'
-  - 'skill{s=CUMBRE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=22}'
-
-astral_cumbre_control_sala3:
-  Type: ARMOR_STAND
-  Display: 'Control Trono del Yeti'
-  Health: 100
-  Options:
-    Invisible: true
-    Marker: true
-    Invincible: true
-    Silent: true
-    NoGravity: true
-    Despawn: false
-    Persistent: true
-    Collidable: false
-  Skills:
-  - 'skill{s=CUMBRE_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=12} ?!hastag{tag=cumbre.on}'
-  - 'skill{s=CUMBRE_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=STRAY,astral_cumbre_yeti;a=0;r=20}'
-  - 'skill{s=CUMBRE_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=20}'
-
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala2/tick"} @self ~onTimer:20
+  - skill{s=CUMBRE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=128} ?!hastag{tag=cumbre.on} ?hastag{tag=cumbre.unlocked}
+  - skill{s=CUMBRE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala2.busy} ?hastag{tag=cumbre.jefe.derrotado}
+  - skill{s=CUMBRE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=136}
 astral_cumbre_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Cumbre Helada &7(clic)'
@@ -75,8 +57,7 @@ astral_cumbre_cofre:
   - model{m=astral_cofre_rpg} @self ~onSpawn
   - model{m=astral_cofre_rpg} @self ~onLoad
   - state{s=open} @self ~onInteract
-  - 'command{c="dm open cofre_cumbre <trigger.name>"} @self ~onInteract'
-
+  - command{c="dm open cofre_cumbre <trigger.name>"} @self ~onInteract
 astral_cumbre_guia:
   Type: VILLAGER
   Display: '&b&lExpediciones Astrales &7- elegir destino'
@@ -95,8 +76,7 @@ astral_cumbre_guia:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
-
+  - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
 astral_npc_cumbre:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Cumbre Helada'
@@ -115,96 +95,13 @@ astral_npc_cumbre:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
-  - 'command{c="lp user <trigger.name> permission set astral.descubierto.cumbre true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.cumbre}'
-  - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
-  - 'skill{s=CUMBRE_ENTRAR} @trigger ~onInteract'
-
-astral_cumbre_arana:
-  Type: SPIDER
-  Display: '&5Arana Amatista'
-  Health: 26
-  Damage: 5
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.3
-    PreventRandomEquipment: true
-  Drops:
-  - string 1-3 0.9
-  - spider_eye 1 0.5
-  - amethyst_shard 1-2 0.5
-  - exp 8
-  Skills:
-  - skill{s=AST_MODEL_astral_arana} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_arana} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
-astral_cumbre_cara:
-  Type: PHANTOM
-  Display: '&cCara Voladora'
-  Health: 22
-  Damage: 6
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.3
-    PreventRandomEquipment: true
-  Drops:
-  - phantom_membrane 1 0.6
-  - rotten_flesh 1-2 0.6
-  - exp 10
-  Skills:
-  - skill{s=AST_MODEL_astral_cara} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_cara} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
-astral_cumbre_espantapajaros:
-  Type: VEX
-  Display: '&6Espantapajaros Maldito'
-  Health: 34
-  Damage: 6
-  Options:
-    Glowing: true
-    PreventOtherDrops: true
-    Silent: false
-    PreventSunburn: true
-    Despawn: false
-    MovementSpeed: 0.25
-    PreventRandomEquipment: true
-  Drops:
-  - pumpkin 1 0.5
-  - wheat 1-4 0.8
-  - string 1-2 0.5
-  - exp 8
-  Skills:
-  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_espantapajaros} @self ~onLoad
-  - state{s=attack} @self ~onAttack
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
-  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
-  - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
-
+  - command{c="lp user <trigger.name> permission set astral.descubierto.cumbre true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.cumbre}
+  - message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract
+  - skill{s=CUMBRE_ENTRAR} @trigger ~onInteract
 astral_cumbre_yeti:
   Type: RAVAGER
   Display: '&f&lYeti de las Cumbres'
-  Health: 450
+  Health: 2475000
   Damage: 14
   Options:
     Glowing: true
@@ -212,7 +109,7 @@ astral_cumbre_yeti:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.28
+    MovementSpeed: 0.005
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
@@ -238,11 +135,12 @@ astral_cumbre_yeti:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
-  - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
-  - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
-  - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
-  - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - skill{s=AST_FASE_astral_yeti_3_frio} @self ~onTimer:80 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
+  - skill{s=AST_YETI_PISOTON} @self ~onTimer:160
+  - projectile{onHit=AST_YETI_HIELO;v=14;i=1;hR=2;vR=2;mr=120;bulletType=ITEM;material=SNOWBALL} @PlayersInRadius{r=120} ~onTimer:100
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Trono del Yeti'] add cumbre.jefe.derrotado"} @self ~onDeath
+  - addtag{tag=ad.cumbre.sala2} @self ~onSpawn
+  - addtag{tag=ad.cumbre.sala2} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run minecraft:tp @s ~ ~ ~ -138.9 0"} @self ~onSpawn

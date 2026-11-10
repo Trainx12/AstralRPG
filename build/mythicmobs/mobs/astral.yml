@@ -332,6 +332,7 @@ astral_momia:
   Skills:
   - skill{s=AST_MODEL_astral_momia} @self ~onSpawn
   - skill{s=AST_MODEL_astral_momia} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.35
@@ -376,6 +377,7 @@ astral_yeti:
   Skills:
   - skill{s=AST_MODEL_astral_yeti} @self ~onSpawn
   - skill{s=AST_MODEL_astral_yeti} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -432,6 +434,7 @@ astral_golem_forja:
   Skills:
   - skill{s=AST_MODEL_astral_golem_forja} @self ~onSpawn
   - skill{s=AST_MODEL_astral_golem_forja} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
@@ -477,6 +480,7 @@ astral_cangrejo:
   Skills:
   - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.8
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.3
@@ -520,6 +524,7 @@ astral_chaman:
   Skills:
   - skill{s=AST_MODEL_astral_chaman} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chaman} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -760,6 +765,7 @@ astral_cangrejo_elite:
   Skills:
   - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -818,6 +824,7 @@ astral_momia_ancestral:
   Skills:
   - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -894,6 +901,7 @@ astral_yeti_ancestral:
   Skills:
   - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -982,6 +990,7 @@ astral_golem_forja_ancestral:
   Skills:
   - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
@@ -1059,6 +1068,7 @@ astral_cangrejo_ancestral:
   Skills:
   - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -1133,6 +1143,7 @@ astral_chaman_ancestral:
   Skills:
   - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0

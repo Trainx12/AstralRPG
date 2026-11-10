@@ -1,41 +1,38 @@
-# Cumbre Helada - ubicaciones propuestas, revisar en creativo antes de habilitar.
-# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
-# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
-mv create cumbre_hielo normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/cumbre_hielo/region.
-# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
-mv modify cumbre_hielo set difficulty hard
-mv modify cumbre_hielo set gamemode survival
-mv modify cumbre_hielo set pvp false
-mv modify cumbre_hielo set allow-weather false
-mv gamerule set minecraft:spawn_mobs false cumbre_hielo
-mv gamerule set minecraft:keep_inventory true cumbre_hielo
-mv gamerule set minecraft:random_tick_speed 0 cumbre_hielo
-rg flag -w cumbre_hielo __global__ build deny
-rg flag -w cumbre_hielo __global__ chest-access deny
-rg flag -w cumbre_hielo __global__ pvp deny
-rg flag -w cumbre_hielo __global__ mob-spawning allow
-rg flag -w cumbre_hielo __global__ interact allow
-rg flag -w cumbre_hielo __global__ use deny
+# Actualizacion Tanda 2. Mazmorra VACIA. No crear/importar/reemplazar mundos.
+# Respaldar archivos del servidor; apagar para instalar el datapack y YAML, luego iniciar.
+# El arranque carga MythicMobs; si se ajusto despues: mm reload.
+# Cargar y retirar cada controlador anterior.
+execute in minecraft:cumbre_hielo run forceload add 16 18
+mm mobs kill astral_cumbre_control_sala1
+execute in minecraft:cumbre_hielo run forceload remove 16 18
+execute in minecraft:cumbre_hielo run forceload add 24 -2
+mm mobs kill astral_cumbre_control_sala2
+execute in minecraft:cumbre_hielo run forceload remove 24 -2
+execute in minecraft:cumbre_hielo run forceload add 6 32
+mm mobs kill astral_cumbre_control_sala3
+execute in minecraft:cumbre_hielo run forceload remove 6 32
+execute in minecraft:cumbre_hielo run forceload add -26 -24
+mm mobs kill astral_cumbre_control_sala1
+execute in minecraft:cumbre_hielo run function astral:tanda2/cumbre/sala1/cleanup
+execute in minecraft:cumbre_hielo run forceload remove -26 -24
+execute in minecraft:cumbre_hielo run forceload add -102 56
+mm mobs kill astral_cumbre_control_sala2
+execute in minecraft:cumbre_hielo run function astral:tanda2/cumbre/sala2/cleanup
+execute in minecraft:cumbre_hielo run forceload remove -102 56
+# Limpiar restos de la version anterior (solo IDs de ESTA mazmorra).
+mm mobs kill astral_cumbre_arana
+mm mobs kill astral_cumbre_cara
+mm mobs kill astral_cumbre_espantapajaros
+mm mobs kill astral_cumbre_yeti
+# Crear exactamente un controlador en cada punto nuevo.
+execute in minecraft:cumbre_hielo run forceload add -26 -24
+mm mobs spawn astral_cumbre_control_sala1 1 cumbre_hielo,-25.6,33,-23.4
+execute in minecraft:cumbre_hielo run forceload remove -26 -24
+execute in minecraft:cumbre_hielo run forceload add -102 56
+mm mobs spawn astral_cumbre_control_sala2 1 cumbre_hielo,-101.8,30,56.9
+execute in minecraft:cumbre_hielo run forceload remove -102 56
+# Conservar NPC, protecciones y permisos existentes. No ejecutar mv create ni pegar mapas.
 rg flag -w cumbre_hielo __global__ enderdragon-block-damage deny
+
 # espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
 lp group default permission set astral.cumbre.cd false
-# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Paso de la escarcha: execute in minecraft:cumbre_hielo run minecraft:tp <jugador> 8.5 65 8.5
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Ascenso blanco: execute in minecraft:cumbre_hielo run minecraft:tp <jugador> 24.5 66 -1.5
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# Trono del Yeti: execute in minecraft:cumbre_hielo run minecraft:tp <jugador> 6.5 63 32.5
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:cumbre_hielo run forceload add 16 18
-# mm mobs spawn astral_cumbre_control_sala1 1 cumbre_hielo,16.5,64,18.5
-# execute in minecraft:cumbre_hielo run forceload remove 16 18
-# execute in minecraft:cumbre_hielo run forceload add 24 -1
-# mm mobs spawn astral_cumbre_control_sala2 1 cumbre_hielo,24.5,66,-1.5
-# execute in minecraft:cumbre_hielo run forceload remove 24 -1
-# execute in minecraft:cumbre_hielo run forceload add 6 32
-# mm mobs spawn astral_cumbre_control_sala3 1 cumbre_hielo,6.5,63,32.5
-# execute in minecraft:cumbre_hielo run forceload remove 6 32
-# NPC de entrada (en el lobby): mm mobs spawn astral_npc_cumbre
-# Los jefes y mobs del mundo normal conservan sus apariciones.

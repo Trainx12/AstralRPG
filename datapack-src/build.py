@@ -1340,7 +1340,7 @@ fn("player/vida_base", [
 # Despues puede salir elite (en mazmorras con la mitad de chance).
 # ---------------------------------------------------------------------------
 from escala import (VIDA_MOB, DANO_MOB, TIER_MAZMORRA, EXTRA_VIDA_MAZMORRA, PROB_TIER_MAS,
-                    PROB_TIER_MENOS, COLOR_TIER)
+                    PROB_TIER_MENOS, COLOR_TIER, PROB_MAZ_MAS, PROB_MAZ_MENOS, VIDA_REF)
 # Ademas de los hostiles vanilla: criaturas de MythicMobs con tipos neutrales.
 put(f"data/{NS}/tags/entity_type/escalable.json",
     {"values": [f"#{NS}:hostile", "minecraft:iron_golem", "minecraft:vex"]})
@@ -1360,6 +1360,7 @@ for w, t in TIER_MAZMORRA.items():
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 1")
 mob_roll += [
+    f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
 ] + [f"execute if score #mt astral.tmp matches {t} run function {NS}:mob/t{t}" for t in range(1, 6)] + [
     f"execute if score #dg astral.tmp matches 1 run function {NS}:mob/extra_mazmorra",
@@ -1375,6 +1376,24 @@ fn("mob/tier_mundo", [
     "execute store result score #r astral.tmp run random value 1..100",
     f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS} if score #mt astral.tmp matches ..4 run return run scoreboard players add #mt astral.tmp 1",
     f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS + PROB_TIER_MENOS} run scoreboard players remove #mt astral.tmp 1",
+])
+fn('mob/tier_mazmorra', [
+    'execute store result score #r astral.tmp run random value 1..100',
+    f'execute if score #r astral.tmp matches ..{PROB_MAZ_MAS} if score #mt astral.tmp matches ..4 run return run scoreboard players add #mt astral.tmp 1',
+    f'execute if score #r astral.tmp matches {PROB_MAZ_MAS+1}..{PROB_MAZ_MAS+PROB_MAZ_MENOS} if score #mt astral.tmp matches 2.. run scoreboard players remove #mt astral.tmp 1',
+])
+fn('mob/jefe_mundo', [
+    'execute if entity @s[tag=ad.boss.scaled] run return 0',
+    # Santuario conserva su balance: no adaptar Ancestrales de esa prueba.
+    'execute if dimension minecraft:santuario run return 0',
+    'execute if dimension minecraft:santuario_interstellar run return 0',
+    'scoreboard players set #mt astral.tmp 1',
+    f'execute if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo',
+    'execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1',
+    *[f'execute if score #mt astral.tmp matches {t} run attribute @s minecraft:max_health base set {25*VIDA_REF[t]}' for t in range(1,6)],
+    'data modify entity @s Health set value 1.0E9f',
+    'scoreboard players operation @s astral.mt = #mt astral.tmp',
+    'tag @s add ad.boss.scaled',
 ])
 for t in range(1, 6):
     fn(f"mob/t{t}", [
@@ -2270,6 +2289,8 @@ from estrella_menu import generate as generate_menu_star
 generate_menu_star(files)
 from special_weapons import generate as generate_special_weapons
 generate_special_weapons(files)
+from mobs.tanda2 import generate as generate_dungeon_waves
+generate_dungeon_waves(files)
 
 # ---------------------------------------------------------------------------
 # Escribir

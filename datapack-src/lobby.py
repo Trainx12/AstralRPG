@@ -365,7 +365,7 @@ def daily_count_conditions():
     for mask in range(8):
         name = f"daily_count_{mask}"
         checks = [f'{score(f"aq.done{t}")}{">=" if mask >> t & 1 else "<"}1' for t in range(3)]
-        lines.append(f"  {name}:\n    conditions:\n" + "".join(f'      - "{check}"\n' for check in checks)
+        lines.append(f"  {name}:\n    type: AND\n    conditions:\n" + "".join(f'      - "{check}"\n' for check in checks)
                      + f'    true: "{mask.bit_count()}/3"\n    false: "{ref(f"daily_count_{mask+1}") if mask < 7 else "0/3"}"\n')
     return "".join(lines)
 

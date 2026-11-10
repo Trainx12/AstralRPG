@@ -59,6 +59,22 @@ def variant(key, source, ancestral=False, boss=False):
     base = "astral_" + source
     mid = f"astral_{key}_{source}" + ("_eco" if ancestral else "")
     data = deepcopy(mythic.ancestral_def(base) if ancestral else mythic.MOBS[base])
+    if boss and key in ('bosque','tumba','cumbre','forja'):
+        from escala import VIDA_JEFE
+        data['hp'] = VIDA_JEFE[key]
+        data['dungeon'] = key
+        if key == 'bosque':
+            # clear borra los goals vanilla de hechizos (incluido invocar vex).
+            data['hostile_ai'] = True
+        if key == 'cumbre':
+            data['speed'] = 0.005
+            data['stationary'] = True
+            data['skills'] = [s for s in data.get('skills', []) if 'leap{' not in s]
+            data['skills'] += ['- skill{s=AST_YETI_PISOTON} @self ~onTimer:160',
+                               '- projectile{onHit=AST_YETI_HIELO;v=14;i=1;hR=2;vR=2;mr=120;bulletType=ITEM;material=SNOWBALL} @PlayersInRadius{r=120} ~onTimer:100']
+        if key == 'forja':
+            data['model_skill'] = 'AST_MODEL_astral_golem_forja_mazmorra'
+            data['skills'] = list(data.get('skills', [])) + ['- potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn']
     if key == 'cumbre' and source == 'yeti' and boss:
         data['model_skill'] = 'AST_MODEL_astral_yeti_cumbre'
     if boss: data["suppress_quest"] = True  # credito compartido al terminar la sala
@@ -136,7 +152,8 @@ def catalog():
         else:
             # Cofre del jefe donde llegan a la sala final (piso comprobado: es la llegada).
             dungeon["rooms"][-1]["final_npcs"] = {"cofre": dungeon["rooms"][-1]["llegada"]}
-        out.append(dungeon)
+        from mobs.tanda2 import configure
+        out.append(configure(dungeon))
     return out
 
 

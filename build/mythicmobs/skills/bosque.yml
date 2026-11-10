@@ -1,153 +1,121 @@
-# Mazmorra Bosque Sombrio (generada por mazmorra.py)
-
+# Generado por mobs/mazmorra.py + mobs/tanda2.py
 BOSQUE_SALA1_INICIO:
   Skills:
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
-  - 'message{m="&8[&7Bosque Sombrio&8] &fSendero de las raices &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
-  - 'summon{type=astral_bosque_espantapajaros;amount=4;radius=4} @self'
-  - 'summon{type=astral_bosque_espantapajaros;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
-
+  - message{m="&8[&7Bosque Sombrio&8] &fClaro de las raices &7- sala 1/2. &cAhi vienen!"} @PlayersInRadius{r=48}
+  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=48}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave1"} @self
 BOSQUE_SALA1_OLA2:
   Skills:
   - addtag{tag=bosque.ola2} @self
   - addtag{tag=bosque.espera} @self
-  - 'message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
-  - delay 40
-  - 'summon{type=astral_bosque_espantapajaros;amount=2;radius=4} @self'
-  - 'summon{type=astral_bosque_espantapajaros;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
-  - 'summon{type=astral_bosque_abejorro;amount=3;radius=4} @self'
-  - 'summon{type=astral_bosque_abejorro;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
-  - delay 10
-  - removetag{tag=bosque.espera} @self
-
+  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/3..."} @PlayersInRadius{r=48}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave2"} @self
+BOSQUE_SALA1_OLA3:
+  Skills:
+  - addtag{tag=bosque.ola3} @self
+  - addtag{tag=bosque.espera} @self
+  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 3/3..."} @PlayersInRadius{r=48}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave3"} @self
 BOSQUE_SALA1_LIMPIA:
   Skills:
   - addtag{tag=bosque.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fClaro corrompido"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAltar del Chaman"} @PlayersInRadius{r=48}'
+  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=48}
   - delay 100
-  - 'skill{s=BOSQUE_IR_SALA2} @PlayersInRadius{r=26}'
+  - skill{s=BOSQUE_IR_SALA2} @PlayersInRadius{r=48}
   - delay 20
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.ola1} @self
   - removetag{tag=bosque.ola2} @self
-
+  - removetag{tag=bosque.ola3} @self
 BOSQUE_IR_SALA2:
   Skills:
-  - 'command{c="execute in minecraft:bosque run minecraft:tp <target.name> 1504.5 107 1504.5"}'
-  - 'sound{s=entity.enderman.teleport}'
-
+  - command{c="execute in minecraft:bosque run minecraft:tp <target.name> 1603.7 100 1413.4 -177.9 0"}
+  - sound{s=entity.enderman.teleport}
 BOSQUE_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_bosque_abejorro,astral_bosque_espantapajaros}'
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/reset"} @self
+  - remove @MobsInRadius{r=48;types=SKELETON,SPIDER,WITCH,ZOMBIE}
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self
   - removetag{tag=bosque.ola1} @self
   - removetag{tag=bosque.ola2} @self
-
+  - removetag{tag=bosque.ola3} @self
 BOSQUE_SALA2_INICIO:
   Skills:
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
-  - 'message{m="&8[&7Bosque Sombrio&8] &fClaro corrompido &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=26}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=26}'
-  - 'summon{type=astral_bosque_abejorro;amount=5;radius=4} @self'
-  - 'summon{type=astral_bosque_abejorro;amount=2;radius=4} @self ?playersinradius{r=18;a=>1}'
-
-BOSQUE_SALA2_OLA2:
-  Skills:
-  - addtag{tag=bosque.ola2} @self
-  - addtag{tag=bosque.espera} @self
-  - 'message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/2..."} @PlayersInRadius{r=26}'
-  - delay 40
-  - 'summon{type=astral_bosque_abejorro;amount=2;radius=4} @self'
-  - 'summon{type=astral_bosque_abejorro;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
-  - 'summon{type=astral_bosque_cara;amount=3;radius=4} @self'
-  - 'summon{type=astral_bosque_cara;amount=1;radius=4} @self ?playersinradius{r=18;a=>1}'
+  - message{m="&8[&7Bosque Sombrio&8] &fAltar del Chaman &7- sala 2/2. &cAhi vienen!"} @PlayersInRadius{r=48}
+  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=48}
+  - removetag{tag=bosque.jefe.derrotado} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/arrival"} @self
+  - summon{type=astral_bosque_chaman;amount=1;radius=0} @Location{x=1604.5;y=101;z=1382.5}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/companions"} @self
   - delay 10
   - removetag{tag=bosque.espera} @self
-
 BOSQUE_SALA2_LIMPIA:
   Skills:
   - addtag{tag=bosque.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAltar del Chaman"} @PlayersInRadius{r=26}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=26}'
-  - delay 100
-  - 'skill{s=BOSQUE_IR_SALA3} @PlayersInRadius{r=26}'
+  - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=48}
+  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=48}
+  - command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=48}
+  - command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=48}
+  - remove @MobsInRadius{r=48;types=astral_bosque_cofre,astral_bosque_guia}
+  - summon{type=astral_bosque_cofre;amount=1;radius=0} @Location{x=1603.7;y=100;z=1413.4}
   - delay 20
-  - removetag{tag=bosque.on} @self
-  - removetag{tag=bosque.fin} @self
-  - removetag{tag=bosque.ola1} @self
-  - removetag{tag=bosque.ola2} @self
-
-BOSQUE_IR_SALA3:
-  Skills:
-  - 'command{c="execute in minecraft:bosque run minecraft:tp <target.name> 1600.5 97 1440.5"}'
-  - 'sound{s=entity.enderman.teleport}'
-
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=48}'
+  Conditions:
+  - hastag{tag=bosque.jefe.derrotado} true
+  - hastag{tag=bosque.fin} false
 BOSQUE_SALA2_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=26;types=astral_bosque_abejorro,astral_bosque_cara}'
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/reset"} @self
+  - remove @MobsInRadius{r=48;types=astral_bosque_chaman,astral_bosque_cofre,astral_bosque_guia}
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self
   - removetag{tag=bosque.ola1} @self
-  - removetag{tag=bosque.ola2} @self
-
-BOSQUE_SALA3_INICIO:
-  Skills:
-  - addtag{tag=bosque.on} @self
-  - addtag{tag=bosque.ola1} @self
-  - 'message{m="&8[&7Bosque Sombrio&8] &fAltar del Chaman &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=36}'
-  - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=36}'
-  - 'summon{type=astral_bosque_chaman;amount=1;radius=4} @self'
-
-BOSQUE_SALA3_LIMPIA:
-  Skills:
-  - addtag{tag=bosque.fin} @self
-  - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=36}'
-  - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
-  - 'command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=36}'
-  - 'command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=36}'
-  - 'remove @MobsInRadius{r=36;types=astral_bosque_cofre,astral_bosque_guia}'
-  - 'summon{type=astral_bosque_cofre;amount=1;radius=0} @Location{x=1600.5;y=97;z=1440.5}'
-  - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=36}'
-
-BOSQUE_SALA3_RESET:
-  Skills:
-  - 'remove @MobsInRadius{r=36;types=VEX,WITCH,astral_bosque_chaman,astral_bosque_cofre,astral_bosque_guia}'
-  - removetag{tag=bosque.on} @self
-  - removetag{tag=bosque.fin} @self
-  - removetag{tag=bosque.espera} @self
-  - removetag{tag=bosque.ola1} @self
-
+  - removetag{tag=bosque.jefe.derrotado} @self
 BOSQUE_PREMIO:
   TargetConditions:
   - haspermission{p=astral.bosque.cd} false
   Skills:
-  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
-  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
-  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
-  - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
-  - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
-  - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
-  - 'command{c="eco give <target.name> 1500"}'
-  - 'command{c="lp user <target.name> permission settemp astral.bosque.cd true 30m"}'
+  - command{c="loot give <target.name> loot astral:item/esencia_elite"}
+  - command{c="loot give <target.name> loot astral:item/esencia_elite"}
+  - command{c="loot give <target.name> loot astral:item/esencia_elite"}
+  - command{c="loot give <target.name> loot astral:item/esencia_elite"}
+  - command{c="loot give <target.name> loot astral:item/alma_corrupta"}
+  - command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25
+  - command{c="eco give <target.name> 1500"}
+  - command{c="lp user <target.name> permission settemp astral.bosque.cd true 30m"}
   - 'message{m="&6Cofre de Bosque Sombrio: &fmateriales de elite y &e1500$&f. &7(el proximo cofre en 30 minutos)"}'
-
 BOSQUE_PREMIO_YA:
   TargetConditions:
   - haspermission{p=astral.bosque.cd} true
   Skills:
-  - 'message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}'
-
+  - message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}
 BOSQUE_ENTRAR:
   Skills:
-  - 'message{m="&8[&7Bosque Sombrio&8] &7Bajando a las &fBosque Sombrio&7... &8(3 salas. Para salir: /spawn)"}'
-  - 'command{c="execute in minecraft:bosque run minecraft:tp <trigger.name> 1440.5 103 1569.5"}'
-
+  - 'message{m="&8[&7Bosque Sombrio&8] &7Bajando a las &fBosque Sombrio&7... &8(2 salas. Para salir: /spawn)"}'
+  - command{c="execute in minecraft:bosque run minecraft:tp <trigger.name> 1468.5 101 1570.5"}
+TANDA2_bosque_AST_FASE_astral_chaman_2:
+  Skills:
+  - addtag{tag=astral.fase2} @self
+  - message{m="&2El Chaman invoca espiritus del pantano!"} @PlayersInRadius{r=40}
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self
+TANDA2_bosque_AST_FASE_astral_chaman_2_veneno:
+  Skills:
+  - potion{type=POISON;duration=60;level=1} @PlayersInRadius{r=6}
+  - particles{p=witch;amount=60;hS=5;vS=0.5} @self
+TANDA2_bosque_AST_FASE_astral_chaman_3:
+  Skills:
+  - addtag{tag=astral.fase3} @self
+  - message{m="&a&lEl Chaman bebe una pocion y se cura!"} @PlayersInRadius{r=40}
+  - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
+  - heal{a=60} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self
