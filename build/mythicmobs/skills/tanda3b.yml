@@ -1,0 +1,352 @@
+# Generado por mobs/tanda3b.py
+AST_ESQ_MODELO_arquero:
+  Skills:
+  - model{m=astral_esq_arquero} @self
+  - addtag{tag=ad.esq.arquero} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.00703"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.604218"} @self
+AST_ESQ_MODELO_escudero:
+  Skills:
+  - model{m=astral_esq_escudero} @self
+  - addtag{tag=ad.esq.escudero} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.025874"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.615524"} @self
+AST_ESQ_MODELO_nigromante:
+  Skills:
+  - model{m=astral_esq_nigromante} @self
+  - addtag{tag=ad.esq.nigromante} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.164009"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.698405"} @self
+AST_ESQ_MODELO_espadachin:
+  Skills:
+  - model{m=astral_esq_espadachin} @self
+  - addtag{tag=ad.esq.espadachin} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.00703"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.604218"} @self
+AST_ESQ_MODELO_guardian:
+  Skills:
+  - model{m=astral_esq_guardian} @self
+  - addtag{tag=ad.esq.guardian} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.032156"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.619294"} @self
+AST_ESQ_HECHIZO:
+  Conditions:
+  - targetwithin{d=16} true
+  - targetwithin{d=4} false
+  Skills:
+  - state{s=attack} @self
+  - projectile{onTick=AST_ESQ_LUZ;onHit=AST_ESQ_IMPACTO;v=9;i=1;hR=0.5;vR=0.5;mr=16} @target
+AST_ESQ_LUZ:
+  Skills:
+  - particles{p=flame;amount=3;hS=0.1;vS=0.1} @origin
+AST_ESQ_IMPACTO:
+  Skills:
+  - damage{a=5;pkb=false} @PlayersNearOrigin{r=1}
+AST_ESQ_mina_sala1_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala1_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala1_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala1_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala1_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala1_INICIO:
+  Skills:
+  - addtag{tag=ad.mina.sala1} @self
+  - addtag{tag=ad.mina.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_mina_sala1:
+  TargetConditions:
+  - hastag{tag=ad.esq.mina.sala1} true
+  Skills:
+  - removetag{tag=ad.esq.mina.sala1;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala1_arquero 30,AST_ESQ_mina_sala1_escudero 20,AST_ESQ_mina_sala1_nigromante 15,AST_ESQ_mina_sala1_espadachin 20,AST_ESQ_mina_sala1_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_mina_sala2_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala2_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala2_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala2_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala2_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala2_INICIO:
+  Skills:
+  - addtag{tag=ad.mina.sala2} @self
+  - addtag{tag=ad.mina.sala2.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_mina_sala2:
+  TargetConditions:
+  - hastag{tag=ad.esq.mina.sala2} true
+  Skills:
+  - removetag{tag=ad.esq.mina.sala2;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala2_arquero 30,AST_ESQ_mina_sala2_escudero 20,AST_ESQ_mina_sala2_nigromante 15,AST_ESQ_mina_sala2_espadachin 20,AST_ESQ_mina_sala2_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_mina_sala3_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala3_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala3_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala3_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala3_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala3_INICIO:
+  Skills:
+  - addtag{tag=ad.mina.sala3} @self
+  - addtag{tag=ad.mina.sala3.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_mina_sala3:
+  TargetConditions:
+  - hastag{tag=ad.esq.mina.sala3} true
+  Skills:
+  - removetag{tag=ad.esq.mina.sala3;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala3_arquero 30,AST_ESQ_mina_sala3_escudero 20,AST_ESQ_mina_sala3_nigromante 15,AST_ESQ_mina_sala3_espadachin 20,AST_ESQ_mina_sala3_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_mina_sala4_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala4_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala4_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala4_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala4_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_mina_sala4_INICIO:
+  Skills:
+  - addtag{tag=ad.mina.sala4} @self
+  - addtag{tag=ad.mina.sala4.companion} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_mina_sala4:
+  TargetConditions:
+  - hastag{tag=ad.esq.mina.sala4} true
+  Skills:
+  - removetag{tag=ad.esq.mina.sala4;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala4_arquero 30,AST_ESQ_mina_sala4_escudero 20,AST_ESQ_mina_sala4_nigromante 15,AST_ESQ_mina_sala4_espadachin 20,AST_ESQ_mina_sala4_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_bosque_sala1_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala1_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala1_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala1_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala1_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala1_INICIO:
+  Skills:
+  - addtag{tag=ad.bosque.sala1} @self
+  - addtag{tag=ad.bosque.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_bosque_sala1:
+  TargetConditions:
+  - hastag{tag=ad.esq.bosque.sala1} true
+  Skills:
+  - removetag{tag=ad.esq.bosque.sala1;sync=true}
+  - randomskill{s=AST_ESQ_bosque_sala1_arquero 30,AST_ESQ_bosque_sala1_escudero 20,AST_ESQ_bosque_sala1_nigromante 15,AST_ESQ_bosque_sala1_espadachin 20,AST_ESQ_bosque_sala1_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_bosque_sala2_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala2_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala2_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala2_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala2_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_bosque_sala2_INICIO:
+  Skills:
+  - addtag{tag=ad.bosque.sala2} @self
+  - addtag{tag=ad.bosque.sala2.companion} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_bosque_sala2:
+  TargetConditions:
+  - hastag{tag=ad.esq.bosque.sala2} true
+  Skills:
+  - removetag{tag=ad.esq.bosque.sala2;sync=true}
+  - randomskill{s=AST_ESQ_bosque_sala2_arquero 30,AST_ESQ_bosque_sala2_escudero 20,AST_ESQ_bosque_sala2_nigromante 15,AST_ESQ_bosque_sala2_espadachin 20,AST_ESQ_bosque_sala2_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_tumba_sala1_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala1_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala1_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala1_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala1_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala1_INICIO:
+  Skills:
+  - addtag{tag=ad.tumba.sala1} @self
+  - addtag{tag=ad.tumba.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_tumba_sala1:
+  TargetConditions:
+  - hastag{tag=ad.esq.tumba.sala1} true
+  Skills:
+  - removetag{tag=ad.esq.tumba.sala1;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala1_arquero 30,AST_ESQ_tumba_sala1_escudero 20,AST_ESQ_tumba_sala1_nigromante 15,AST_ESQ_tumba_sala1_espadachin 20,AST_ESQ_tumba_sala1_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_tumba_sala2_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala2_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala2_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala2_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala2_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala2_INICIO:
+  Skills:
+  - addtag{tag=ad.tumba.sala2} @self
+  - addtag{tag=ad.tumba.sala2.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_tumba_sala2:
+  TargetConditions:
+  - hastag{tag=ad.esq.tumba.sala2} true
+  Skills:
+  - removetag{tag=ad.esq.tumba.sala2;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala2_arquero 30,AST_ESQ_tumba_sala2_escudero 20,AST_ESQ_tumba_sala2_nigromante 15,AST_ESQ_tumba_sala2_espadachin 20,AST_ESQ_tumba_sala2_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_tumba_sala3_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala3_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala3_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala3_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala3_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_tumba_sala3_INICIO:
+  Skills:
+  - addtag{tag=ad.tumba.sala3} @self
+  - addtag{tag=ad.tumba.sala3.companion} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_tumba_sala3:
+  TargetConditions:
+  - hastag{tag=ad.esq.tumba.sala3} true
+  Skills:
+  - removetag{tag=ad.esq.tumba.sala3;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala3_arquero 30,AST_ESQ_tumba_sala3_escudero 20,AST_ESQ_tumba_sala3_nigromante 15,AST_ESQ_tumba_sala3_espadachin 20,AST_ESQ_tumba_sala3_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_cumbre_sala1_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala1_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala1_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala1_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala1_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala1_INICIO:
+  Skills:
+  - addtag{tag=ad.cumbre.sala1} @self
+  - addtag{tag=ad.cumbre.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_cumbre_sala1:
+  TargetConditions:
+  - hastag{tag=ad.esq.cumbre.sala1} true
+  Skills:
+  - removetag{tag=ad.esq.cumbre.sala1;sync=true}
+  - randomskill{s=AST_ESQ_cumbre_sala1_arquero 30,AST_ESQ_cumbre_sala1_escudero 20,AST_ESQ_cumbre_sala1_nigromante 15,AST_ESQ_cumbre_sala1_espadachin 20,AST_ESQ_cumbre_sala1_guardian 15;sync=true}
+  - remove{sync=true}
+AST_ESQ_cumbre_sala2_arquero:
+  Skills:
+  - summon{type=astral_esq_arquero_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala2_escudero:
+  Skills:
+  - summon{type=astral_esq_escudero_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala2_nigromante:
+  Skills:
+  - summon{type=astral_esq_nigromante_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala2_espadachin:
+  Skills:
+  - summon{type=astral_esq_espadachin_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala2_guardian:
+  Skills:
+  - summon{type=astral_esq_guardian_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
+AST_ESQ_cumbre_sala2_INICIO:
+  Skills:
+  - addtag{tag=ad.cumbre.sala2} @self
+  - addtag{tag=ad.cumbre.sala2.companion} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_ESQ_CONVIERTE_cumbre_sala2:
+  TargetConditions:
+  - hastag{tag=ad.esq.cumbre.sala2} true
+  Skills:
+  - removetag{tag=ad.esq.cumbre.sala2;sync=true}
+  - randomskill{s=AST_ESQ_cumbre_sala2_arquero 30,AST_ESQ_cumbre_sala2_escudero 20,AST_ESQ_cumbre_sala2_nigromante 15,AST_ESQ_cumbre_sala2_espadachin 20,AST_ESQ_cumbre_sala2_guardian 15;sync=true}
+  - remove{sync=true}

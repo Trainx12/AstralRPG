@@ -1202,6 +1202,8 @@ ALL = [mapache, pinguino, espantapajaros, abejorro, arana, cara, lagarto, escara
 ALL += MASCOTAS
 from creatures_tanda3a import coloso, planta
 ALL += [coloso, planta]
+from creatures_tanda3b import ALL as TANDA3B
+ALL += TANDA3B
 
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

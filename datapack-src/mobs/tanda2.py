@@ -12,6 +12,8 @@ from escala import (VIDA_JEFE, OLEADA_TOPE, OLEADA_TOPE_FORJA, OLEADA_TANDA,
 
 # Punto unico para reemplazar esqueletos por las variantes de la tanda 3.
 ESQUELETOS = {'normal': 'SKELETON', 'hielo': 'STRAY', 'forja': 'WITHER_SKELETON'}
+# Estos tipos reservan una plaza; el controlador los convierte en MythicMobs.
+ESQUELETOS_VARIANTES = frozenset((ESQUELETOS['normal'], ESQUELETOS['hielo']))
 WAVES = {
  'bosque': [[ [('ZOMBIE',6),('SPIDER',3)], [('ZOMBIE',6),('SKELETON',4),('SPIDER',3)],
                [('ZOMBIE',5),('SKELETON',4),('SPIDER',3),('WITCH',2)] ]],
@@ -105,6 +107,8 @@ def transform(text,d,kind):
         if kind=='mobs':
             control=data[f'astral_{key}_control_{room["id"]}']
             sk=control['Skills']
+            if key != 'forja':
+                sk.insert(0,f'foreach{{s=AST_ESQ_CONVIERTE_{key}_{room["id"]};sync=true}} @EntitiesInRadius{{r={room["r"]+32}}} ~onTimer:5 ?hastag{{tag={key}.on}}')
             sk.insert(0,cmd(p+'/tick')+' ~onTimer:20')
             for i,line in enumerate(sk):
                 line=re.sub(r'\?mobsinradius\{[^}]+\}',f'?!hastag{{tag={busy}}}',line)
@@ -213,6 +217,9 @@ def generate(files):
             def spawn(m,pt,suffix):
                 x,y,z=pt; tags=[t,t+'.'+suffix,'ad.vanilla']
                 nbt='Tags:'+json.dumps(tags)+',Glowing:1b,PersistenceRequired:1b'
+                if m in ESQUELETOS_VARIANTES:
+                    tags.append(f'ad.esq.{key}.{r["id"]}')
+                    nbt='Tags:'+json.dumps(tags)+',NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b,active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:2147483647,show_particles:0b}]'
                 if m in ('ZOMBIE','HUSK'): nbt+=',IsBaby:0b'
                 if m in ('PIGLIN_BRUTE','HOGLIN'): nbt+=',IsImmuneToZombification:1b'
                 if m=='MAGMA_CUBE':

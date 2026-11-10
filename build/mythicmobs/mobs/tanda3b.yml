@@ -1,0 +1,1703 @@
+# Generado por mobs/tanda3b.py
+astral_esq_arquero:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_mina_sala1:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_mina_sala1:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_mina_sala1:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_mina_sala1:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_mina_sala1:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_mina_sala2:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_mina_sala2:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_mina_sala2:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_mina_sala2:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_mina_sala2:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_mina_sala3:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_mina_sala3:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_mina_sala3:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_mina_sala3:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_mina_sala3:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_mina_sala4:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_mina_sala4:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_mina_sala4:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_mina_sala4:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_mina_sala4:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_bosque_sala1:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_bosque_sala1:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_bosque_sala1:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_bosque_sala1:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_bosque_sala1:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_bosque_sala2:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_bosque_sala2:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_bosque_sala2:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_bosque_sala2:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_bosque_sala2:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_tumba_sala1:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_tumba_sala1:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_tumba_sala1:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_tumba_sala1:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_tumba_sala1:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_tumba_sala2:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_tumba_sala2:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_tumba_sala2:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_tumba_sala2:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_tumba_sala2:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_tumba_sala3:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_tumba_sala3:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_tumba_sala3:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_tumba_sala3:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_tumba_sala3:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_cumbre_sala1:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_cumbre_sala1:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_cumbre_sala1:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_cumbre_sala1:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_cumbre_sala1:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_arquero_cumbre_sala2:
+  Type: SKELETON
+  Display: '&7Arquero de escarcha'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - BOW HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - bowattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - state{s=attack} @self ~onShoot
+astral_esq_escudero_cumbre_sala2:
+  Type: SKELETON
+  Display: '&7Escudero'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.19
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_nigromante_cumbre_sala2:
+  Type: SKELETON
+  Display: '&7Nigromante'
+  Health: 20
+  Damage: 3
+  Equipment: []
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - fleeplayers{d=4;s=1.2;ss=1.2}
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
+astral_esq_espadachin_cumbre_sala2:
+  Type: SKELETON
+  Display: '&7Espadachin'
+  Health: 20
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_esq_guardian_cumbre_sala2:
+  Type: SKELETON
+  Display: '&7Guardian musgoso'
+  Health: 26
+  Damage: 3
+  Equipment:
+  - IRON_SWORD HAND
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Silent: true
+    Despawn: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
+  - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+astral_creeper_fantasma:
+  Type: CREEPER
+  Display: '&bCreeper fantasma'
+  Health: 20
+  Options:
+    Glowing: false
+    ExplosionRadius: 12
+    PreventOtherDrops: true
+    Despawn: true
+  Skills:
+  - addtag{tag=astral.ghost} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - model{m=astral_creeper_fantasma} @self ~onSpawn
+  - model{m=astral_creeper_fantasma} @self ~onLoad
+  - state{s=swell} @self ~onPrime

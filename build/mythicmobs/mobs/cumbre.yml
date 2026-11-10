@@ -14,6 +14,7 @@ astral_cumbre_control_sala1:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala1/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_cumbre_sala1;sync=true} @EntitiesInRadius{r=66} ~onTimer:5 ?hastag{tag=cumbre.on}
   - skill{s=CUMBRE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=34} ?!hastag{tag=cumbre.on}
   - skill{s=CUMBRE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
   - skill{s=CUMBRE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.ola3} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
@@ -35,6 +36,7 @@ astral_cumbre_control_sala2:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala2/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_cumbre_sala2;sync=true} @EntitiesInRadius{r=160} ~onTimer:5 ?hastag{tag=cumbre.on}
   - skill{s=CUMBRE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=128} ?!hastag{tag=cumbre.on} ?hastag{tag=cumbre.unlocked}
   - skill{s=CUMBRE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala2.busy} ?hastag{tag=cumbre.jefe.derrotado}
   - skill{s=CUMBRE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=136}

@@ -557,6 +557,8 @@ def main():
     print(len(mobs), "mobs de MythicMobs generados")
     from mobs.tanda3a import generate
     generate()
+    from mobs.tanda3b import generate as generate_tanda3b
+    generate_tanda3b()
 
 
 if __name__ == "__main__":

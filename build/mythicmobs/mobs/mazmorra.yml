@@ -64,6 +64,7 @@ astral_mina_control_sala1:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala1/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_mina_sala1;sync=true} @EntitiesInRadius{r=48} ~onTimer:5 ?hastag{tag=mina.on}
   - skill{s=MINA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=16} ?!hastag{tag=mina.on}
   - skill{s=MINA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala1.busy}
   - skill{s=MINA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala1.busy}
@@ -83,6 +84,7 @@ astral_mina_control_sala2:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala2/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_mina_sala2;sync=true} @EntitiesInRadius{r=54} ~onTimer:5 ?hastag{tag=mina.on}
   - skill{s=MINA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=22} ?!hastag{tag=mina.on}
   - skill{s=MINA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala2.busy}
   - skill{s=MINA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala2.busy}
@@ -102,6 +104,7 @@ astral_mina_control_sala3:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala3/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_mina_sala3;sync=true} @EntitiesInRadius{r=48} ~onTimer:5 ?hastag{tag=mina.on}
   - skill{s=MINA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=16} ?!hastag{tag=mina.on}
   - skill{s=MINA_SALA3_OLA2} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.ola2} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala3.busy}
   - skill{s=MINA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola2} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala3.busy}
@@ -121,6 +124,7 @@ astral_mina_control_sala4:
     Collidable: false
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala4/tick"} @self ~onTimer:20
+  - foreach{s=AST_ESQ_CONVIERTE_mina_sala4;sync=true} @EntitiesInRadius{r=67} ~onTimer:5 ?hastag{tag=mina.on}
   - skill{s=MINA_SALA4_INICIO} @self ~onTimer:20 ?playerwithin{d=35} ?!hastag{tag=mina.on}
   - skill{s=MINA_SALA4_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?!hastag{tag=mina.sala4.busy} ?hastag{tag=mina.jefe.derrotado}
   - skill{s=MINA_SALA4_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=43}
