@@ -555,6 +555,8 @@ def main():
     with open(os.path.join(OUT, "randomspawns", "astral.yml"), "w", encoding="utf-8") as f:
         f.write(spawns())
     print(len(mobs), "mobs de MythicMobs generados")
+    from mobs.tanda3a import generate
+    generate()
 
 
 if __name__ == "__main__":

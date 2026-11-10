@@ -53,7 +53,7 @@ class BossScaleTests(unittest.TestCase):
         mobs = yaml.safe_load(mob_yml())
         for mid in ('astral_mina_capataz','astral_mina_golem'):
             self.assertNotIn(mid, mobs)
-        self.assertIn('model{m=astral_golem_forja;s=2.0} @self',
+        self.assertIn('model{m=astral_coloso_musgoso;s=2.0} @self',
                       yaml.safe_load(skill_yml())['MINA_MODELO_astral_mina_guardian']['Skills'])
 
 

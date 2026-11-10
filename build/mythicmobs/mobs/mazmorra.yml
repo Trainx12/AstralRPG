@@ -1,7 +1,7 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 astral_mina_guardian:
   Type: IRON_GOLEM
-  Display: '&8&lGuardian de las Profundidades'
+  Display: '&2&lColoso Musgoso de las Profundidades'
   Health: 72000
   Damage: 16
   Options:
@@ -15,7 +15,7 @@ astral_mina_guardian:
     KnockbackResistance: 0.8
   BossBar:
     Enabled: true
-    Title: '&8&lGuardian de las Profundidades'
+    Title: '&2&lColoso Musgoso de las Profundidades'
     Range: 48
     Color: PURPLE
     Style: SEGMENTED_10

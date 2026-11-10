@@ -193,6 +193,8 @@ class ModelSizeTests(unittest.TestCase):
     def test_models_scale_height_and_spawn_load(self):
         from mobs.tamanos import rows,dimensions,scale,VANILLA
         skills=yaml.safe_load(__import__('mobs.mythic',fromlist=['metaskills']).metaskills())
+        from mobs.tanda3a import plant_skills
+        skills['AST_MODEL_astral_bosque_planta']=plant_skills()['AST_PLANTA_MODELO']
         for mid,model,s,entity in rows():
             sc=scale(model,s,entity)
             self.assertGreater(sc,0); self.assertLessEqual(sc,16)

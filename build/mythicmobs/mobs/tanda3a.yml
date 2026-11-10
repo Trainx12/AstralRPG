@@ -1,0 +1,134 @@
+# Generado por mobs/tanda3a.py (mythic.py)
+astral_bosque_planta:
+  Type: HUSK
+  Display: '&dPlanta carnivora'
+  Health: 40
+  Damage: 6
+  Options:
+    NoAI: true
+    NoGravity: true
+    MovementSpeed: 0
+    KnockbackResistance: 1
+    Collidable: false
+    Glowing: true
+    Silent: true
+    Despawn: false
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+  Skills:
+  - skill{s=AST_PLANTA_INICIO} @self ~onSpawn
+  - skill{s=AST_PLANTA_MODELO} @self ~onLoad
+  - skill{s=AST_PLANTA_MORDIDA} @self ~onTimer:30 ?playerwithin{d=3}
+  - skill{s=AST_PLANTA_ESCUPIR} @self ~onTimer:80 ?playerwithin{d=12}
+astral_estatua_cangrejo:
+  Type: SPIDER
+  Display: '&6&lCangrejo Ermitano Gigante &7- Guardian derrotado'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    AlwaysShowName: true
+  Skills:
+  - model{m=astral_cangrejo;s=2.0} @self ~onSpawn
+  - model{m=astral_cangrejo;s=2.0} @self ~onLoad
+  - cancelevent @self ~onDamaged
+  - cancelevent @self ~onInteract
+astral_estatua_chaman:
+  Type: EVOKER
+  Display: '&6&lChaman del Pantano &7- Guardian derrotado'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    AlwaysShowName: true
+  Skills:
+  - model{m=astral_chaman;s=2.0} @self ~onSpawn
+  - model{m=astral_chaman;s=2.0} @self ~onLoad
+  - cancelevent @self ~onDamaged
+  - cancelevent @self ~onInteract
+astral_estatua_momia:
+  Type: HUSK
+  Display: '&6&lMomia Ancestral &7- Guardian derrotado'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    AlwaysShowName: true
+  Skills:
+  - model{m=astral_momia;s=2.0} @self ~onSpawn
+  - model{m=astral_momia;s=2.0} @self ~onLoad
+  - cancelevent @self ~onDamaged
+  - cancelevent @self ~onInteract
+astral_estatua_yeti:
+  Type: RAVAGER
+  Display: '&6&lYeti de las Cumbres &7- Guardian derrotado'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    AlwaysShowName: true
+  Skills:
+  - model{m=astral_yeti;s=2.0} @self ~onSpawn
+  - model{m=astral_yeti;s=2.0} @self ~onLoad
+  - cancelevent @self ~onDamaged
+  - cancelevent @self ~onInteract
+astral_estatua_golem_forja:
+  Type: IRON_GOLEM
+  Display: '&6&lGolem de la Forja &7- Guardian derrotado'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    AlwaysShowName: true
+  Skills:
+  - model{m=astral_golem_forja;s=2.0} @self ~onSpawn
+  - model{m=astral_golem_forja;s=2.0} @self ~onLoad
+  - cancelevent @self ~onDamaged
+  - cancelevent @self ~onInteract

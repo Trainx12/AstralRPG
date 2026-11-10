@@ -11,12 +11,14 @@ BOSQUE_SALA1_OLA2:
   - addtag{tag=bosque.ola2} @self
   - addtag{tag=bosque.espera} @self
   - message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/3..."} @PlayersInRadius{r=48}
+  - skill{s=AST_PLANTAS_OLA2} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave2"} @self
 BOSQUE_SALA1_OLA3:
   Skills:
   - addtag{tag=bosque.ola3} @self
   - addtag{tag=bosque.espera} @self
   - message{m="&8[&7Bosque Sombrio&8] &7Oleada 3/3..."} @PlayersInRadius{r=48}
+  - skill{s=AST_PLANTAS_OLA3} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave3"} @self
 BOSQUE_SALA1_LIMPIA:
   Skills:

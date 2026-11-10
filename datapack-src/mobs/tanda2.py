@@ -56,8 +56,6 @@ def configure(dungeon):
                   spawn_points=pts,spawn_bounds=((1425,97,1550),(1482,102,1583)))]
         boss.update(id='sala2',centro=(1604.5,101,1382.5),llegada=(1603.7,100,1413.4),yaw=-177.9,r=40)
         boss['final_npcs']={'cofre':boss['llegada']}
-        # Reserva de configuracion para la planta de la tanda 3 (sin invocarla).
-        old[0]['reserved_mobs']=['astral_bosque_planta']
     elif key=='cumbre':
         arrival=(-25.6,33,-23.4)
         pts=points(world,((-51,25,-49),(0,40,2)),white=True,origin=arrival)
@@ -136,6 +134,10 @@ def transform(text,d,kind):
                               cmd(p+'/arrival'),f'summon{{type={mob};amount=1;radius=0}} @Location{{x={x};y={y};z={z}}}',
                               cmd(p+'/companions'),'delay 10',f'removetag{{tag={key}.espera}} @self']
                 else:
+                    if key=='bosque' and n in (2,3):
+                        # Primero las plantas fijas: sus tags .wave ocupan plazas
+                        # del mismo tope que usa la cola vanilla.
+                        skill += [f'skill{{s=AST_PLANTAS_OLA{n}}} @self']
                     skill += [cmd(p+f'/wave{n}')]
             reset=data[S+'_RESET']['Skills']
             reset.insert(0,cmd(p+'/reset'))

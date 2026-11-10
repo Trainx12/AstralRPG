@@ -47,9 +47,10 @@ def dimensions(model,s):
 def scale(model,s,entity):
     return round(min(16,dimensions(model,s)[1]/VANILLA[entity][1]),6)
 
-def skills(model,s,entity):
+def skills(model,s,entity,protect_sanctuary=True):
     sc=scale(model,s,entity)
-    guard='execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run '
+    guard=('execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run '
+           if protect_sanctuary else '')
     return [f'command{{c="execute at <caster.uuid> run {guard}attribute <caster.uuid> minecraft:scale base set {sc}"}} @self',
             f'command{{c="execute at <caster.uuid> run {guard}attribute <caster.uuid> minecraft:step_height base set {max(.6,min(8,sc*.6)):.6f}"}} @self']
 
@@ -63,7 +64,8 @@ def rows():
         if mid in ELITES: out.append((mid+'_elite',mid,1.35,d['type']))
         if mid in ANCESTRALES: out.append((mid+'_ancestral',mid,2.0,d['type']))
     out.extend((mid,model,s,MOBS[model]['type']) for mid,(model,s) in SPECIAL.items())
-    out.append(('astral_mina_guardian','astral_golem_forja',2.0,'IRON_GOLEM'))
+    out.append(('astral_mina_guardian','astral_coloso_musgoso',2.0,'IRON_GOLEM'))
+    out.append(('astral_bosque_planta','astral_bosque_planta',1.0,'HUSK'))
     return out
 
 def preview():

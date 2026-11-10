@@ -1,0 +1,37 @@
+# Generado por mobs/tanda3a.py (mythic.py)
+AST_PLANTA_INICIO:
+  Skills:
+  - addtag{tag=ad.bosque.sala1} @self
+  - addtag{tag=ad.bosque.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+  - skill{s=AST_PLANTA_MODELO} @self
+AST_PLANTA_MODELO:
+  Skills:
+  - model{m=astral_bosque_planta} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 0.918889"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.600000"} @self
+AST_PLANTA_MORDIDA:
+  Skills:
+  - state{s=attack} @self
+  - damage{a=6;pkb=false} @PlayersInRadius{r=3}
+AST_PLANTA_ESCUPIR:
+  Skills:
+  - state{s=spit} @self
+  - projectile{onTick=AST_PLANTA_VENENO_TRAZA;onHit=AST_PLANTA_VENENO;v=7;i=1;hR=0.5;vR=0.5;mr=12;g=0.02} @PlayersInRadius{r=12}
+AST_PLANTA_VENENO_TRAZA:
+  Skills:
+  - particles{p=slime;amount=3;hS=0.1;vS=0.1} @origin
+AST_PLANTA_VENENO:
+  Skills:
+  - damage{a=6;pkb=false} @PlayersNearOrigin{r=1}
+  - potion{type=POISON;duration=60;level=0} @PlayersNearOrigin{r=1}
+AST_PLANTAS_OLA2:
+  Skills:
+  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1448.5;y=102;z=1564.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1478.5;y=102;z=1561.5}
+AST_PLANTAS_OLA3:
+  Skills:
+  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1448.5;y=102;z=1564.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1478.5;y=102;z=1561.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1457.5;y=97;z=1579.5}

@@ -7,3 +7,6 @@ __pycache__/
 
 # Pruebas, recortes y vistas previas de mapas ajenos (no publicar)
 .local/
+# Comparaciones con referencias de terceros: solo revision local.
+build/previews/coloso-musgoso-comparacion.png
+build/previews/planta-carnivora-comparacion.png

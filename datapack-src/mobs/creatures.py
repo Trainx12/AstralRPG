@@ -1200,6 +1200,8 @@ def cofre_cosmeticos():
 ALL = [mapache, pinguino, espantapajaros, abejorro, arana, cara, lagarto, escarabajo, chocobo, grillo, ave,
        pterodactilo, momia, yeti, golem_forja, cangrejo, chaman, cofre_rpg, cofre_monturas, cofre_cosmeticos]
 ALL += MASCOTAS
+from creatures_tanda3a import coloso, planta
+ALL += [coloso, planta]
 
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

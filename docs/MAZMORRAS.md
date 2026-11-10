@@ -424,3 +424,31 @@ Instalacion exacta y comandos de reemplazo de controladores: `build/deploy/tanda
 Los `comandos.txt` de esta tanda actualizan mundos existentes: no crear ni subir mundos.
 Vista previa obligatoria antes de instalar: `build/previews/tamanos-jefes.png`.
 Las pruebas locales interpretan la cola generada; faltan combate y consola reales de Paper.
+## Estatuas de los jefes (Tanda 3a)
+
+Se generan cinco estatuas; no se colocan y el Santuario sigue en espera. Son
+`astral_estatua_cangrejo`, `astral_estatua_chaman`, `astral_estatua_momia`,
+`astral_estatua_yeti` y `astral_estatua_golem_forja`. Reutilizan el tipo y modelo
+del jefe, con modelo a `s=2.0`, pose idle, sin IA, dano, gravedad, colision,
+BossBar ni drops. No llevan las etiquetas de las salas: RESET y las limpiezas
+de mazmorra no las incluyen. `mob/roll` excluye las entidades invulnerables.
+
+Tras instalar `plugins/MythicMobs/{mobs,skills}/tanda3a.yml` y recargar MythicMobs,
+parado en el pedestal: `/mm mobs spawn astral_estatua_<jefe>`.
+Para girar, primero identificar la entidad de esa estatua con F3+I y usar su UUID:
+`/execute as <UUID> at @s run minecraft:tp @s ~ ~ ~ <yaw> 0`.
+Para retirar solo esa instancia: `/minecraft:kill <UUID>` como administrador;
+para retirar todas las estatuas de ese jefe: `/mm mobs kill astral_estatua_<jefe>`.
+No ejecutar limpiezas globales por tipo vanilla: afectarian entidades ajenas.
+Si ClearLag usa limpiezas generales, comprobar que respete entidades persistentes
+de MythicMobs o excluir estos cinco IDs antes de colocarlas; esa configuracion
+vive en el servidor y no se verifico en esta entrega local.
+
+El Coloso conserva `astral_mina_guardian`, 72.000 de vida y sus fases. La planta
+`astral_bosque_planta` aparece solo en las oleadas 2 (dos) y 3 (tres) del Bosque.
+Permanece quieta, cuenta dentro del tope de seis vivos y hay que matarla para
+avanzar. La mordida usa radio 3 cada 30 ticks y el veneno radio 12 cada 80 ticks,
+con proyectil de velocidad 7 y poison de 60 ticks; dano base 6 escalado por el
+Skript de gameplay y vida base 40 por `mob/roll`. No aparece en el mundo abierto.
+
+Tabla de tamanos, vistas y archivos exactos: [entrega Tanda 3a](../build/deploy/tanda3a.md).

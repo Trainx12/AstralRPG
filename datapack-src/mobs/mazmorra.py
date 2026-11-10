@@ -61,9 +61,9 @@ MOBS = {
                               skills=["skill{s=PET_GANAR_GOLEM} @trigger ~onDeath 0.15",      # mascota (mascotas.py)
                                       "throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
                                       "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140"]),
-    # jefe final (modelo del Golem de la Forja, mas grande y gris piedra)
-    "astral_mina_guardian": dict(type="IRON_GOLEM", name="&8&lGuardian de las Profundidades", hp=1000, dmg=16, speed=0.24,
-                                 boss="PURPLE", hostile=True, model=("astral_golem_forja", 2.0, "8A93A6"), money=1500,
+    # Jefe final con geometria propia; conserva ID, fases y balance de la Tanda 2.
+    "astral_mina_guardian": dict(type="IRON_GOLEM", name="&2&lColoso Musgoso de las Profundidades", hp=1000, dmg=16, speed=0.24,
+                                 boss="PURPLE", hostile=True, model=("astral_coloso_musgoso", 2.0, None), money=1500,
                                  drops=drop("chispa_astral", 1.0, 2) + drop("alma_corrupta", 1.0, 2) + drop("nucleo_furia", 0.5),
                                  skills=["potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200",
                                          "throw{velocity=8;velocityY=3} @target ~onAttack 0.35",
@@ -240,10 +240,10 @@ def skill_yml(dungeon=None):
         if d.get("model"):
             m, sc, col = d["model"]
             L += [f"MINA_MODELO_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={m};s={sc}}} @self",
-                  "  - delay 2", f"  - tint{{c={col}}} @self", ""]
+                  *(["  - delay 2", f"  - tint{{c={col}}} @self"] if col else []), ""]
             if dungeon.get('tanda2'):
                 from mobs.tamanos import skills as size_skills
-                L[-1:-1] = ['  - '+x for x in size_skills(m,sc,d['type'])]
+                L[-1:-1] = ['  - '+x for x in size_skills(m,sc,d['type'],protect_sanctuary=(mid!='astral_mina_guardian'))]
     model_skills = L[:]
     # ondas con aviso (1 segundo para alejarse)
     for nombre, dano, radio in (("GOLEM", 7, 5), ("GUARDIAN", 9, 6)):
