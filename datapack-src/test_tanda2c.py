@@ -71,8 +71,8 @@ class Tanda2c(unittest.TestCase):
     def test_drops_use_shared_fortune_and_single_transfer(self):
         script = bosque.script()
         for value in ("drops of event-block using player's tool", 'clear drops', 'am_give(player, {_d::*})',
-                      'every 2 ticks:', '"ab.saw" is in scoreboard tags', 'delete loop-entity',
-                      'inventory has enough space', 'teleport loop-entity to {_p}'):
+                      'every 2 ticks:', 'scoreboard tags of loop-dropped item contains "ab.saw"', 'delete loop-dropped item',
+                      'inventory has enough space', 'teleport loop-dropped item to {_p}'):
             self.assertIn(value, script)
         self.assertNotIn('wait ', script[script.index('every 2 ticks:'):script.index('on place:')])
         # The producer snapshots existing drops before spawning; only fresh loot gets marked.
@@ -81,7 +81,7 @@ class Tanda2c(unittest.TestCase):
         self.assertLess(text.index('loot spawn'), text.index('tag=!ab.older'))
         self.assertIn('ab_saw:1b', text)  # component prevents merging with player drops
         self.assertIn('PickupDelay:32767s', text)
-        self.assertLess(script.index('give {_it} to {_p}'), script.index('delete loop-entity'))
+        self.assertLess(script.index('give {_it} to {_p}'), script.index('delete loop-dropped item'))
         self.assertIn('remove ab.saw', script)
 
 
