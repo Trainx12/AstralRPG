@@ -1,0 +1,315 @@
+{
+  "menu_title": "&f",
+  "open_command": "fragmentos",
+  "register_command": true,
+  "size": 54,
+  "update_interval": 1,
+  "items": {
+    "marea": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_marea",
+      "slot": 19,
+      "priority": 1,
+      "display_name": "&b&lFragmento de la Marea",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.marea"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "marea_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/marea_apagado",
+      "slot": 19,
+      "priority": 2,
+      "display_name": "&8&lFragmento de la Marea",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el Cangrejo de las playas."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "pantano": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_pantano",
+      "slot": 20,
+      "priority": 1,
+      "display_name": "&b&lFragmento del Pantano",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.pantano"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "pantano_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/pantano_apagado",
+      "slot": 20,
+      "priority": 2,
+      "display_name": "&8&lFragmento del Pantano",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre del Bosque Sombrio."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "arena": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_arena",
+      "slot": 21,
+      "priority": 1,
+      "display_name": "&b&lFragmento de la Arena",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.arena"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "arena_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/arena_apagado",
+      "slot": 21,
+      "priority": 2,
+      "display_name": "&8&lFragmento de la Arena",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre de la Tumba del Rey de Arena."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "lampara": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/lampara",
+      "slot": 22,
+      "priority": 1,
+      "display_name": "&b&lLampara del Minero",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.lampara"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "lampara_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/lampara_apagado",
+      "slot": 22,
+      "priority": 2,
+      "display_name": "&8&lLampara del Minero",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre de las Minas Olvidadas."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "hielo": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_hielo",
+      "slot": 23,
+      "priority": 1,
+      "display_name": "&b&lFragmento de Hielo",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "hielo_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/hielo_apagado",
+      "slot": 23,
+      "priority": 2,
+      "display_name": "&8&lFragmento de Hielo",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre de la Cumbre Helada."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "fuego": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_fuego",
+      "slot": 24,
+      "priority": 1,
+      "display_name": "&b&lFragmento de Fuego",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.fuego"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "fuego_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/fuego_apagado",
+      "slot": 24,
+      "priority": 2,
+      "display_name": "&8&lFragmento de Fuego",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre del Corazon de la Forja."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "corazon": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/corazon",
+      "slot": 25,
+      "priority": 1,
+      "display_name": "&b&lCorazon Astral",
+      "lore": [
+        "&aGuardado.",
+        "&7No se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "has permission",
+            "permission": "astral.fragmento.corazon"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "corazon_falta": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/corazon_apagado",
+      "slot": 25,
+      "priority": 2,
+      "display_name": "&8&lCorazon Astral",
+      "lore": [
+        "&cTodavia no lo tienes.",
+        "&7Se consigue en el cofre del Santuario Celestial."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "info": {
+      "material": "NETHER_STAR",
+      "slot": 49,
+      "display_name": "&b&lFragmentos Astrales",
+      "lore": [
+        "&7Cada jefe da su fragmento la primera vez.",
+        "&7Quedan guardados aca para siempre.",
+        "&7Con todos se podra renacer."
+      ]
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 45,
+      "display_name": "&fVolver al menu",
+      "click_commands": [
+        "[openguimenu] principal"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

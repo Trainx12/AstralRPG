@@ -85,7 +85,8 @@ SALAS = [
          oleadas=[[("astral_mina_arana", 6, 2), ("astral_mina_esqueleto", 2, 1)],
                   [("astral_mina_golem", 1, 0)]]),
     dict(id="sala4", name="Salon del Guardian", centro=(36.5, 24, -248.5), llegada=(40.5, 24, -225.5), r=35,
-         oleadas=[[("astral_mina_guardian", 1, 0)]], extra=["astral_mina_minero"]),
+         oleadas=[[("astral_mina_guardian", 1, 0)]], extra=["astral_mina_minero"],
+         final_npcs={"cofre": (40.5, 24, -225.5)}),  # cofre donde llegan a la sala
 ]
 LOBBY_NPC = "astral_npc_mina"
 PREMIO = [("esencia_elite", 4), ("alma_corrupta", 2), ("gema_luminica", 1), ("cristal_refinado", 1)]
@@ -170,8 +171,8 @@ def mob_yml(dungeon=None):
               "  Options:"] + quieto + ["  Skills:", "  - cancelevent @self ~onInteract",
               "  - model{m=astral_cofre_rpg} @self ~onSpawn", "  - model{m=astral_cofre_rpg} @self ~onLoad",
               "  - state{s=open} @self ~onInteract",
-              "  - " + q("skill{s=MINA_PREMIO_YA} @trigger ~onInteract"),
-              "  - " + q("skill{s=MINA_PREMIO} @trigger ~onInteract"), ""]
+              # El botin se ve y se cobra en la ventana del cofre (cofre_mazmorra.py).
+              "  - " + q(f'command{{c="dm open cofre_{dungeon['key']} <trigger.name>"}} @self ~onInteract'), ""]
         L += ["astral_mina_guia:", "  Type: VILLAGER", f"  Display: {q('&b&lExpediciones Astrales &7- elegir destino')}",
               "  Health: 100", "  Options:"] + quieto + ["    Profession: CARTOGRAPHER", "    VillagerType: PLAINS",
               "  Skills:", "  - cancelevent @self ~onInteract",
@@ -312,11 +313,15 @@ def skill_yml(dungeon=None):
                 # Sin teletransporte: aparece un cofre (se cobra con clic) y el guia de
                 # Expediciones, que los lleva a donde quieran. RESET los quita cuando se van.
                 L += ["  - " + q(f"remove @MobsInRadius{{r={r + 8};types=astral_mina_cofre,astral_mina_guia}}"),
-                      "  - " + q("summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["cofre"]),
-                      "  - " + q("summon{type=astral_mina_guia;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["guia"]),
-                      "  - delay 20",
-                      "  - " + q(f'message{{m="&eEl cofre aparecio en la base de oro: &fclic para abrirlo&e. '
-                                 f'&7El guia de Expediciones los lleva a donde quieran."}} @PlayersInRadius{{r={r + 8}}}'), ""]
+                      "  - " + q("summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["cofre"])]
+                if fin.get("guia"):
+                    L += ["  - " + q("summon{type=astral_mina_guia;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["guia"])]
+                if dungeon["key"] == "mina":
+                    # La mascota Golem sigue saliendo al 5% al ganar (antes venia con el cofre).
+                    L += ["  - " + q(f"skill{{s=MINA_MASCOTA}} @PlayersInRadius{{r={r + 8}}}")]
+                guia = "&7El guia de Expediciones los lleva a donde quieran." if fin.get("guia") else "&7Desde el cofre pueden volver al lobby."
+                L += ["  - delay 20",
+                      "  - " + q(f'message{{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. {guia}"}} @PlayersInRadius{{r={r + 8}}}'), ""]
             else:
                 L += ["  - delay 40",
                       "  - " + q(f"skill{{s=MINA_PREMIO}} @PlayersInRadius{{r={r + 8}}}"),
@@ -346,6 +351,9 @@ def skill_yml(dungeon=None):
           "",
           "MINA_PREMIO_YA:", "  TargetConditions:", "  - haspermission{p=astral.mina.cd} true", "  Skills:",
           "  - " + q('message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}'), ""]
+    if dungeon["key"] == "mina":
+        L += ["MINA_MASCOTA:", "  TargetConditions:", "  - haspermission{p=astral.mina.cd} false", "  Skills:",
+              "  - " + q("skill{s=PET_GANAR_GOLEM} 0.05"), ""]
     # entrada desde el lobby
     s1 = SALAS[0]
     if not dungeon.get("enabled", False):
@@ -390,6 +398,8 @@ def commands(dungeon=None):
          f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ pvp deny",
          *espera_cofre("mina"),
+         "# coleccion de Fragmentos Astrales (/fragmentos): false para todos, igual que la espera",
+         *__import__("cofre_mazmorra").lp_defaults(),
          "# --- 2) pegar el mapa (lo hace un jugador con OP, en el juego):",
          "#   subir dungeon1-endlessxl.schem a plugins/WorldEdit/schematics/",
          f"#   /mvtp {WORLD}    /gamemode creative    //schem load dungeon1-endlessxl    //paste -o",

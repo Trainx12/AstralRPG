@@ -278,8 +278,7 @@ astral_tumba_cofre:
   - model{m=astral_cofre_rpg} @self ~onSpawn
   - model{m=astral_cofre_rpg} @self ~onLoad
   - state{s=open} @self ~onInteract
-  - 'skill{s=TUMBA_PREMIO_YA} @trigger ~onInteract'
-  - 'skill{s=TUMBA_PREMIO} @trigger ~onInteract'
+  - 'command{c="dm open cofre_tumba <trigger.name>"} @self ~onInteract'
 
 astral_tumba_guia:
   Type: VILLAGER

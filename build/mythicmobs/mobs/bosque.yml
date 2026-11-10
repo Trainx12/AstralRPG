@@ -56,6 +56,47 @@ astral_bosque_control_sala3:
   - 'skill{s=BOSQUE_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?mobsinradius{types=VEX,WITCH,astral_bosque_chaman;a=0;r=36}'
   - 'skill{s=BOSQUE_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=36}'
 
+astral_bosque_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Bosque Sombrio &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - 'command{c="dm open cofre_bosque <trigger.name>"} @self ~onInteract'
+
+astral_bosque_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
 astral_npc_bosque:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Bosque Sombrio'

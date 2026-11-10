@@ -485,6 +485,8 @@ astral_cangrejo:
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
+  - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
+  - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
@@ -772,6 +774,8 @@ astral_cangrejo_elite:
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
+  - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
+  - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
   - randomskill{skills=AST_AFIJO_astral_cangrejo_elite_vamp,AST_AFIJO_astral_cangrejo_elite_expl,AST_AFIJO_astral_cangrejo_elite_blind,AST_AFIJO_astral_cangrejo_elite_veloz,AST_AFIJO_astral_cangrejo_elite_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
@@ -1081,6 +1085,8 @@ astral_cangrejo_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_cangrejo} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
+  - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
+  - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}

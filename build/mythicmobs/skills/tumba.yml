@@ -470,7 +470,7 @@ TUMBA_SALA3_LIMPIA:
   - 'summon{type=astral_tumba_cofre;amount=1;radius=0} @Location{x=0.5;y=72;z=0.5}'
   - 'summon{type=astral_tumba_guia;amount=1;radius=0} @Location{x=0.5;y=72;z=3.5}'
   - delay 20
-  - 'message{m="&eEl cofre aparecio en la base de oro: &fclic para abrirlo&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
 
 TUMBA_SALA3_RESET:
   Skills:

@@ -1154,8 +1154,9 @@ def _cofre(name, wood, band, gem, inner, emblem):
     m.rcube("gema", (-1.5, 15.6, -1.5), (1.5, 18.6, 1.5), gem, r=0.6)
     box(m, "gema", (-0.6, 18.6, -0.6), (0.6, 19.4, 0.6), gem)
     m.anim("idle", 2, {"gema": {"position": (0, swing(0.6, 0.5), 0), "rotation": (0, "q.anim_time * 90", 0)},
-                       "tapa": {"rotation": (swing(-1.5, 0.5), 0, 0)}})
-    m.anim("open", 1.6, {"tapa": {"rotation": ("-math.sin(math.min(q.anim_time, 1.6) * 112.5) * 75", 0, 0)},
+                       "tapa": {"rotation": (swing(1.5, 0.5), 0, 0)}})
+    # Positivo = la tapa sube (con el signo negativo se abria hacia abajo, 09/11/2026).
+    m.anim("open", 1.6, {"tapa": {"rotation": ("math.sin(math.min(q.anim_time, 1.6) * 112.5) * 75", 0, 0)},
                          "gema": {"position": (0, "math.sin(math.min(q.anim_time, 1.6) * 112.5) * 3", 0),
                                   "rotation": (0, "q.anim_time * 540", 0)}}, loop="once")
     return m

@@ -18,6 +18,47 @@ astral_forja_control_sala1:
   - 'skill{s=FORJA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=forja.ola1} ?!hastag{tag=forja.fin} ?!hastag{tag=forja.espera} ?mobsinradius{types=astral_forja_golem_forja;a=0;r=36}'
   - 'skill{s=FORJA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=36}'
 
+astral_forja_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Corazon de la Forja &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - 'command{c="dm open cofre_forja <trigger.name>"} @self ~onInteract'
+
+astral_forja_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
 astral_npc_forja:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Corazon de la Forja'

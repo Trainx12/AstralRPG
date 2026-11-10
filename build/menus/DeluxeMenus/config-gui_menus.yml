@@ -40,6 +40,20 @@ gui_menus:
     file: mascota_fenix.yml
   mazmorras:
     file: mazmorras.yml
+  cofre_mina:
+    file: cofre_mina.yml
+  cofre_bosque:
+    file: cofre_bosque.yml
+  cofre_tumba:
+    file: cofre_tumba.yml
+  cofre_cumbre:
+    file: cofre_cumbre.yml
+  cofre_forja:
+    file: cofre_forja.yml
+  cofre_santuario:
+    file: cofre_santuario.yml
+  fragmentos:
+    file: fragmentos.yml
   expediciones:
     file: expediciones.yml
   portales:

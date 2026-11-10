@@ -198,20 +198,15 @@ MINA_SALA4_LIMPIA:
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=43}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/mina"} @PlayersInRadius{r=43}'
   - 'command{c="lp user <target.name> permission set astral.completada.mina true"} @PlayersInRadius{r=43}'
-  - delay 40
-  - 'skill{s=MINA_PREMIO} @PlayersInRadius{r=43}'
-  - 'skill{s=MINA_PREMIO_YA} @PlayersInRadius{r=43}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=43}'
-  - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=43}'
+  - 'remove @MobsInRadius{r=43;types=astral_mina_cofre,astral_mina_guia}'
+  - 'summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=40.5;y=24;z=-225.5}'
+  - 'skill{s=MINA_MASCOTA} @PlayersInRadius{r=43}'
   - delay 20
-  - removetag{tag=mina.on} @self
-  - removetag{tag=mina.fin} @self
-  - removetag{tag=mina.ola1} @self
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=43}'
 
 MINA_SALA4_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=43;types=astral_mina_guardian,astral_mina_minero}'
+  - 'remove @MobsInRadius{r=43;types=astral_mina_guardian,astral_mina_minero,astral_mina_cofre,astral_mina_guia}'
   - removetag{tag=mina.on} @self
   - removetag{tag=mina.fin} @self
   - removetag{tag=mina.espera} @self
@@ -240,6 +235,12 @@ MINA_PREMIO_YA:
   - haspermission{p=astral.mina.cd} true
   Skills:
   - 'message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}'
+
+MINA_MASCOTA:
+  TargetConditions:
+  - haspermission{p=astral.mina.cd} false
+  Skills:
+  - 'skill{s=PET_GANAR_GOLEM} 0.05'
 
 MINA_ENTRAR:
   Skills:

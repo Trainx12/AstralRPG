@@ -1,0 +1,593 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "update_interval": 1,
+  "items": {
+    "fragmento": {
+      "material": "PAPER",
+      "item_model": "astral:fragmento_hielo",
+      "slot": 19,
+      "priority": 1,
+      "display_name": "&b&lFragmento de Hielo",
+      "lore": [
+        "&aSe consigue la primera vez.",
+        "&7Se guarda en tus &bFragmentos Astrales&7:",
+        "&7no ocupa lugar y no se puede perder."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "enchantments": [
+        "unbreaking;1"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ENCHANTS"
+      ]
+    },
+    "fragmento_apagado": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/hielo_apagado",
+      "slot": 19,
+      "priority": 2,
+      "display_name": "&8&lFragmento de Hielo",
+      "lore": [
+        "&cYa reclamado.",
+        "&7Solo se puede reclamar la primera vez.",
+        "&7Lo tienes en &f/fragmentos&7."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "plata": {
+      "material": "GOLD_INGOT",
+      "slot": 21,
+      "display_name": "&e&l2500$",
+      "lore": [
+        "&7Cada vez que cobras el cofre."
+      ]
+    },
+    "astral": {
+      "material": "PAPER",
+      "item_model": "astral:gema_luminica",
+      "slot": 23,
+      "amount": 2,
+      "display_name": "&d&l2x Gema Luminica",
+      "lore": [
+        "&7Item Astral de esta mazmorra.",
+        "&7Cada vez que cobras el cofre."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "materiales": {
+      "material": "PAPER",
+      "item_model": "astral:alma_corrupta",
+      "slot": 25,
+      "display_name": "&a&lMateriales de elite",
+      "lore": [
+        "&f4x Esencia de Elite",
+        "&f1x Alma Corrupta",
+        "&e25% &fChispa Astral",
+        "&7Cada vez que cobras el cofre."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_0": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 1,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&bY guarda el Fragmento de Hielo."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] lp user %player_name% permission set astral.fragmento.hielo true",
+        "[message] &b&lNuevo fragmento: &fFragmento de Hielo&7. Quedo guardado en &f/fragmentos&7.",
+        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 38,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_0": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 38,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_1": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 1,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&bY guarda el Fragmento de Hielo."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] lp user %player_name% permission set astral.fragmento.hielo true",
+        "[message] &b&lNuevo fragmento: &fFragmento de Hielo&7. Quedo guardado en &f/fragmentos&7.",
+        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 39,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_1": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 39,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_2": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 1,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&bY guarda el Fragmento de Hielo."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] lp user %player_name% permission set astral.fragmento.hielo true",
+        "[message] &b&lNuevo fragmento: &fFragmento de Hielo&7. Quedo guardado en &f/fragmentos&7.",
+        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 40,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_2": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 40,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_3": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 1,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&bY guarda el Fragmento de Hielo."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] lp user %player_name% permission set astral.fragmento.hielo true",
+        "[message] &b&lNuevo fragmento: &fFragmento de Hielo&7. Quedo guardado en &f/fragmentos&7.",
+        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 41,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_3": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 41,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_4": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 1,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&bY guarda el Fragmento de Hielo."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "r": {
+            "type": "!has permission",
+            "permission": "astral.fragmento.hielo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] lp user %player_name% permission set astral.fragmento.hielo true",
+        "[message] &b&lNuevo fragmento: &fFragmento de Hielo&7. Quedo guardado en &f/fragmentos&7.",
+        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 42,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_4": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Cobra plata, item Astral y materiales.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.cumbre.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] eco give %player_name% 2500",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/esencia_elite",
+        "[console] loot give %player_name% loot astral:item/alma_corrupta",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/gema_luminica",
+        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
+        "[console] lp user %player_name% permission settemp astral.cumbre.cd true 30m",
+        "[message] &6Cofre de Cumbre Helada: &e2500$&f, 2x Gema Luminica y materiales de elite.",
+        "[sound] ENTITY_PLAYER_LEVELUP"
+      ],
+      "material": "PAPER",
+      "slot": 42,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "coleccion": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/corazon",
+      "slot": 49,
+      "display_name": "&b&lFragmentos Astrales",
+      "lore": [
+        "&7Mira los fragmentos que ya guardaste."
+      ],
+      "click_commands": [
+        "[openguimenu] fragmentos"
+      ]
+    },
+    "lobby": {
+      "material": "NETHER_STAR",
+      "slot": 45,
+      "display_name": "&a&lVolver al lobby",
+      "lore": [
+        "&7Sales de la mazmorra."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] spawn"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

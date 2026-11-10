@@ -408,6 +408,10 @@ def mob_block(mid, d, model=None, elite=None):
         if _event not in ("espantapajaros", "abejorro", "arana", "cara", "cangrejo", "chaman", "momia", "yeti", "golem_forja"):
             _event = "hostil"
         sk.append(f'- command{{c="execute as <trigger.name> at @s run function astral:quest/event/{_event}"}} @self ~onDeath ?~isplayer')
+        if _event == "cangrejo":
+            # Sin mazmorra: su fragmento va a /fragmentos la primera vez que lo matas (cofre_mazmorra.py).
+            sk.append("- 'message{m=\"&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7.\"} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'")
+            sk.append('- command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}')
     if elite and d["kind"] == "hostil":
         sk.append('- command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer')
     if d["kind"] == "jefe" and (not elite or d.get("ancestral")):

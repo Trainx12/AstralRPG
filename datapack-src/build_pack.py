@@ -240,6 +240,10 @@ from adventure_ui import assets as adventure_assets
 adventure_files, adventure_providers = adventure_assets()
 files.update(adventure_files)
 default_font['providers'] = adventure_providers + default_font['providers']
+from cofre_mazmorra import assets as cofre_assets
+cofre_files, cofre_providers = cofre_assets()
+files.update(cofre_files)
+default_font['providers'] = cofre_providers + default_font['providers']
 from cosmeticos_ui import assets as cosmetic_assets
 cosmetic_files, cosmetic_providers = cosmetic_assets()
 files.update(cosmetic_files)

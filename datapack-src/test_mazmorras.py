@@ -155,7 +155,7 @@ class TumbaBossVictoryTests(unittest.TestCase):
         self.assertTrue(any(s.startswith('summon{type=astral_tumba_cofre') for s in fin))
         self.assertTrue(any(s.startswith('summon{type=astral_tumba_guia') for s in fin))
         cofre = mobs['astral_tumba_cofre']['Skills']
-        self.assertIn('skill{s=TUMBA_PREMIO} @trigger ~onInteract', cofre)
+        self.assertIn('command{c="dm open cofre_tumba <trigger.name>"} @self ~onInteract', cofre)
         self.assertIn('command{c="dm open expediciones <trigger.name>"} @self ~onInteract', mobs['astral_tumba_guia']['Skills'])
         self.assertIn('astral_tumba_cofre', skills['TUMBA_SALA3_RESET']['Skills'][0])
         start = skills['TUMBA_SALA3_INICIO']['Skills']
@@ -171,6 +171,50 @@ class EsperaCofreTests(unittest.TestCase):
         for dungeon in [None] + catalog():
             key = dungeon["key"] if dungeon else "mina"
             self.assertIn(f"lp group default permission set astral.{key}.cd false", commands(dungeon))
+
+
+class CofreMenuTests(unittest.TestCase):
+    """El cofre abre su ventana; el fragmento se guarda solo la primera vez."""
+
+    def test_every_dungeon_spawns_a_chest_that_opens_its_window(self):
+        for dungeon in [None] + catalog():
+            key = dungeon["key"] if dungeon else "mina"
+            mobs = yaml.safe_load(mob_yml(dungeon))
+            skills = yaml.safe_load(skill_yml(dungeon))
+            P = key.upper()
+            self.assertIn(f'command{{c="dm open cofre_{key} <trigger.name>"}} @self ~onInteract',
+                          mobs[f"astral_{key}_cofre"]["Skills"])
+            final = [k for k in skills if k.endswith("_LIMPIA")][-1]
+            fin = skills[final]["Skills"]
+            self.assertTrue(any(s.startswith(f"summon{{type=astral_{key}_cofre") for s in fin))
+            self.assertFalse(any("spawn <target.name>" in s for s in fin))
+            self.assertFalse(any(f"{P}_PREMIO}}" in s for s in fin))
+
+    def test_window_gives_fragment_only_first_time(self):
+        from cofre_mazmorra import cofre_menu, PREMIOS, permiso, espera
+        for dungeon in [None] + catalog():
+            from mobs.mazmorra import MINA
+            dungeon = dungeon or MINA
+            key = dungeon["key"]
+            frag = PREMIOS[key][0]
+            items = cofre_menu(dungeon)["items"]
+            primera, despues = items["reclamar_0"], items["reclamar_ya_0"]
+            set_frag = f"[console] lp user %player_name% permission set {permiso(frag)} true"
+            self.assertIn(set_frag, primera["click_commands"])
+            self.assertNotIn(set_frag, despues["click_commands"])
+            self.assertEqual(primera["view_requirement"]["requirements"]["r"]["type"], "!has permission")
+            self.assertLess(primera["priority"], despues["priority"])
+            for boton in (primera, despues):
+                self.assertEqual(boton["click_commands"][0], "[close]")
+                self.assertEqual(boton["click_requirement"]["requirements"]["libre"]["permission"], espera(key))
+                self.assertTrue(any(f"settemp {espera(key)} true 30m" in c for c in boton["click_commands"]))
+            self.assertIn("&7Solo se puede reclamar la primera vez.", items["fragmento_apagado"]["lore"])
+
+    def test_collection_permissions_default_to_false(self):
+        from cofre_mazmorra import FRAGMENTOS
+        texto = commands()
+        for frag, *_ in FRAGMENTOS:
+            self.assertIn(f"lp group default permission set astral.fragmento.{frag} false", texto)
 
 
 if __name__ == "__main__":

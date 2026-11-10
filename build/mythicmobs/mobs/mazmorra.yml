@@ -287,6 +287,47 @@ astral_mina_control_sala4:
   - 'skill{s=MINA_SALA4_LIMPIA} @self ~onTimer:20 ?hastag{tag=mina.ola1} ?!hastag{tag=mina.fin} ?!hastag{tag=mina.espera} ?mobsinradius{types=astral_mina_guardian,astral_mina_minero;a=0;r=43}'
   - 'skill{s=MINA_SALA4_RESET} @self ~onTimer:200 ?hastag{tag=mina.on} ?!playerwithin{d=43}'
 
+astral_mina_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Minas Olvidadas &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - 'command{c="dm open cofre_mina <trigger.name>"} @self ~onInteract'
+
+astral_mina_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
 astral_npc_mina:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Minas Olvidadas'

@@ -22,6 +22,47 @@ astral_santuario_control_sala1:
   - 'skill{s=SANTUARIO_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=santuario.ola5} ?!hastag{tag=santuario.fin} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=26}'
   - 'skill{s=SANTUARIO_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=santuario.on} ?!playerwithin{d=26}'
 
+astral_santuario_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Santuario Celestial &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - 'command{c="dm open cofre_santuario <trigger.name>"} @self ~onInteract'
+
+astral_santuario_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
 astral_npc_santuario:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Santuario Celestial'

@@ -56,6 +56,47 @@ astral_cumbre_control_sala3:
   - 'skill{s=CUMBRE_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?mobsinradius{types=STRAY,astral_cumbre_yeti;a=0;r=20}'
   - 'skill{s=CUMBRE_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=20}'
 
+astral_cumbre_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Cumbre Helada &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - 'command{c="dm open cofre_cumbre <trigger.name>"} @self ~onInteract'
+
+astral_cumbre_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
+
 astral_npc_cumbre:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Cumbre Helada'

@@ -113,20 +113,14 @@ BOSQUE_SALA3_LIMPIA:
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=36}'
   - 'command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=36}'
-  - delay 40
-  - 'skill{s=BOSQUE_PREMIO} @PlayersInRadius{r=36}'
-  - 'skill{s=BOSQUE_PREMIO_YA} @PlayersInRadius{r=36}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
-  - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - 'remove @MobsInRadius{r=36;types=astral_bosque_cofre,astral_bosque_guia}'
+  - 'summon{type=astral_bosque_cofre;amount=1;radius=0} @Location{x=1600.5;y=97;z=1440.5}'
   - delay 20
-  - removetag{tag=bosque.on} @self
-  - removetag{tag=bosque.fin} @self
-  - removetag{tag=bosque.ola1} @self
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=36}'
 
 BOSQUE_SALA3_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=36;types=VEX,WITCH,astral_bosque_chaman}'
+  - 'remove @MobsInRadius{r=36;types=VEX,WITCH,astral_bosque_chaman,astral_bosque_cofre,astral_bosque_guia}'
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self

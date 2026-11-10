@@ -171,8 +171,8 @@ def generate(files, items):
     for boss, (state, flag, item) in STORY.items():
         event(boss, [inc("mine" if boss == "mina" else "boss"),
                      f"execute if score @s aq.accepted matches 1 if score @s aq.state matches {state} if score @s aq.f{flag} matches 0 run " + call(f"fragment/{flag}")])
+        # El fragmento no se entrega como item: lo guarda el cofre (o el Cangrejo) en /fragmentos.
         fn(f"fragment/{flag}", [f"scoreboard players set @s aq.f{flag} 1",
-                               f"loot give @s loot astral:item/{item}",
                                msg("Una parte de la estrella te reconoce. Volve con el Cronista.", "aqua")])
 
     # Solo cuenta mobs (nunca jugadores). Se revoca para volver a dispararse.

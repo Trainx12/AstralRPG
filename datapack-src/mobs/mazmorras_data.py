@@ -133,6 +133,9 @@ def catalog():
             dungeon["rooms"][-1]["final_npcs"] = {"cofre": (0.5, 72, 0.5), "guia": (0.5, 72, 3.5)}
             configure_tumba_sala2(dungeon)
             configure_tumba_sala1(dungeon)
+        else:
+            # Cofre del jefe donde llegan a la sala final (piso comprobado: es la llegada).
+            dungeon["rooms"][-1]["final_npcs"] = {"cofre": dungeon["rooms"][-1]["llegada"]}
         out.append(dungeon)
     return out
 

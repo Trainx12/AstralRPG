@@ -346,3 +346,28 @@ lp group default permission set astral.santuario.cd false
 ```
 
 Si un rango tiene `*`, sus jugadores siguen viendo "ya cobraste".
+
+## Cofre del jefe y Fragmentos Astrales (09/11/2026)
+
+Generador: `datapack-src/cofre_mazmorra.py` (lo llaman `menus.py` y `build_pack.py`).
+- Todas las mazmorras terminan con el cofre (antes solo la Tumba). Aparece donde se llega a la sala final
+  (Tumba: base de oro, con el guia). Ya no se manda al lobby solo: el menu tiene "Volver al lobby".
+- Al tocarlo abre `cofre_<mazmorra>` (DeluxeMenus, marco de Mazmorras): fragmento del jefe, plata,
+  item Astral y materiales de elite. El boton RECLAMAR cobra todo cada 30 minutos (`astral.<mazmorra>.cd`).
+- El fragmento se da solo la primera vez: despues se ve apagado y dice "Solo se puede reclamar la primera vez".
+  No es un item: queda en `/fragmentos` (permiso `astral.fragmento.<id>`), asi no se pierde.
+  Seran la llave del renacimiento.
+
+| Mazmorra | Primera vez | Item Astral (cada cobro) | Plata |
+|---|---|---|---|
+| Minas Olvidadas | Lampara del Minero | 1 Cristal Arcano Refinado | 2500$ |
+| Bosque Sombrio | Fragmento del Pantano | 1 Cristal Arcano Refinado | 1500$ |
+| Tumba del Rey de Arena | Fragmento de la Arena | 1 Gema Luminica | 2000$ |
+| Cumbre Helada | Fragmento de Hielo | 2 Gemas Luminicas | 2500$ |
+| Corazon de la Forja | Fragmento de Fuego | 1 Chispa Astral | 3000$ |
+| Santuario Celestial | Corazon Astral | 2 Chispas Astrales | 5000$ |
+
+El Fragmento de la Marea sale del Cangrejo (no tiene mazmorra) la primera vez que se lo mata.
+La historia ya no entrega fragmentos como item. Los nodos `astral.fragmento.*` van en false para el grupo
+default (`build/mazmorra/comandos.txt`), igual que la espera del cofre, para que funcione con OP.
+La tapa de los cofres (tambien los de las gachas) abria hacia abajo: era el signo de la animacion.

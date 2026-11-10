@@ -15,20 +15,14 @@ FORJA_SALA1_LIMPIA:
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=36}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/golem_forja"} @PlayersInRadius{r=36}'
   - 'command{c="lp user <target.name> permission set astral.completada.forja true"} @PlayersInRadius{r=36}'
-  - delay 40
-  - 'skill{s=FORJA_PREMIO} @PlayersInRadius{r=36}'
-  - 'skill{s=FORJA_PREMIO_YA} @PlayersInRadius{r=36}'
-  - 'message{m="&7En 15 segundos vuelven al lobby."} @PlayersInRadius{r=36}'
-  - delay 300
-  - 'command{c="spawn <target.name>"} @PlayersInRadius{r=36}'
+  - 'remove @MobsInRadius{r=36;types=astral_forja_cofre,astral_forja_guia}'
+  - 'summon{type=astral_forja_cofre;amount=1;radius=0} @Location{x=82.5;y=52;z=-55.5}'
   - delay 20
-  - removetag{tag=forja.on} @self
-  - removetag{tag=forja.fin} @self
-  - removetag{tag=forja.ola1} @self
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=36}'
 
 FORJA_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=36;types=astral_forja_golem_forja}'
+  - 'remove @MobsInRadius{r=36;types=astral_forja_golem_forja,astral_forja_cofre,astral_forja_guia}'
   - removetag{tag=forja.on} @self
   - removetag{tag=forja.fin} @self
   - removetag{tag=forja.espera} @self

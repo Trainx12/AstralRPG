@@ -566,6 +566,8 @@ def main():
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]
     lista += [f"  {k}:\n    file: {k}.yml" for k in menus]
     lista += ['  mazmorras:\n    file: mazmorras.yml']
+    from cofre_mazmorra import generate as generate_cofres
+    lista += [f'  {k}:\n    file: {k}.yml' for k in generate_cofres()]
     lista += ['  expediciones:\n    file: expediciones.yml']
     lista += ['  portales:\n    file: portales.yml']
     from minijuegos import DROPPERS
