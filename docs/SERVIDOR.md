@@ -152,14 +152,14 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 
 ## Mascotas
 
-6 mascotas 3D que siguen al jugador, tambien entre mundos y en el lobby o la arena. Una a la vez.
+23 mascotas 3D que siguen al jugador, tambien entre mundos y en el lobby o la arena. Una a la vez.
 Sus efectos solo se activan en mina, bosque, tumba, cumbre, forja y santuario. Al salir, los efectos
 ya aplicados caducan naturalmente: hasta 3,5 segundos, o 20 segundos para la absorcion del Fenix.
 En lobby y arena se permiten invocaciones con WorldGuard; `spawn_mobs=false` impide apariciones naturales.
 
 | Mascota | Nivel 1 | Nivel 10 | Nivel 20 | Cómo se consigue |
 |---|---|---|---|---|
-| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | 3% al matar Espantapájaros o Abejorros |
+| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | 3% al matar Espantapájaros o Armored Grubs |
 | Cuervo Arcano | Visión nocturna, marca a los mobs cerca | + Suerte | + Velocidad I | Gacha de Monturas (raro) |
 | Gólem de Piedra | Resistencia I | + Regeneración I | + Absorción | Mazmorra: 15% el Gólem Antiguo, 5% el cofre |
 | Zorro Espectral | Velocidad I | + Salto I | Velocidad II | 20% el Yeti, 2% las Caras Voladoras |
@@ -256,7 +256,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 | `trigger astral.guia` | Abre la guía (también Esc → Guía AstralRPG) |
 | `mm mobs spawn astral_<id>` | Spawnear una criatura (ej. `astral_chocobo`, `astral_yeti`) |
 | `mm mobs list` | Lista de criaturas cargadas (tienen que ser 34: 27 criaturas + 7 vendedores) |
-| `bettermodel reload` | Recargar modelos (tienen que ser 26: 17 criaturas, 3 cofres y 6 mascotas) |
+| `bettermodel reload` | Recargar modelos (catalogo propio mas modelos privados; ver docs/TERCEROS.md) |
 | `bolt edit add <amigo>` y clic en la caja | Compartir un cofre o shulker protegido |
 | `bolt trust` | Confiar todas tus protecciones a un amigo |
 | `bolt info` y clic | Ver de quién es una protección |
@@ -269,7 +269,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - **Élites:** la dificultad sube con tu equipo y con los días (ver `BALANCE.md`).
 - **Criaturas (MythicMobs):**
   - Fauna: mapache y pingüino.
-  - Hostiles: espantapájaros, abejorro, araña y cara voladora.
+  - Hostiles: espantapájaros, Armored Grub, araña y cara voladora.
   - Monturas, que nacen sin silla y se ensillan: chocobo, grillo, escarabajo, lagarto, ave y pterodáctilo.
   - Jefes: momia, yeti, gólem de forja, cangrejo y chamán.
   - Hay élites de 5 hostiles, con 2,5 veces la vida.
@@ -361,3 +361,5 @@ La Galeria de Expediciones de la terraza fue borrada a pedido del dueno (3 aldea
 Tanda 2 preparada localmente, sin desplegar: `build/deploy/tanda2.md`. Requiere apagar para cambiar el datapack y comprobar el tope `settings.attribute.maxHealth.max` de `spigot.yml` (recomendado 1.000.000.000, minimo 13.125.000). No usar configs de servidores de prueba completas. Yeti de Cumbre corregido a 28 bloques de alto (`s=8`, `scale=12,727273`); chequeo de terreno en `build/deploy/tanda2.md`.
 
 El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.
+
+Tanda 4a preparada, sin desplegar: [circuito privado y catalogo de las 17 mascotas nuevas](TERCEROS.md). Lista exacta de archivos, reinicio y reposicion de vendedores en `build/deploy/tanda4a.md`. El pack FINAL se toma del repositorio privado; no reemplazarlo por el ZIP publico al subir a R2.

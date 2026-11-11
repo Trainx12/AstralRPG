@@ -48,3 +48,7 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 - Minas Astrales (`docs/MINAS.md`): Skript puro, **sin skript-reflect** (se hizo asi por Aternos; en Empower ya se pueden subir `.jar`). Los schematics no van al repo (el de Hierro es de terceros).
 
 Tanda 1 (10/11): panel general de TAB con `/sb` persistente; BetterHud `default-hud: []`. Conservar fuentes y shader combinado con Stellarity. Entrega sin desplegar: `build/deploy/tanda1.md`.
+
+## Assets privados (tanda 4a)
+
+Leer `docs/TERCEROS.md`. `ASTRAL_PRIVADO` (por defecto `.local/terceros/AstralRPG-privado`) guarda originales y derivados. `build/AstralRPG-Textures.zip` publico nunca contiene ese arte; el pack FINAL esta en el build privado. No copiar assets de BetterModel privados a `pack-source`. Subir a R2 pasando el ZIP FINAL a `tools/subir_pack_r2.py`; auditar con `tools/verificar_terceros.py` antes del commit publico. Entrega: `build/deploy/tanda4a.md`.

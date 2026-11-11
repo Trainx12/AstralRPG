@@ -1,0 +1,152 @@
+menu_title: '&8Mascotas - pagina 3/3'
+open_command: astralmascotas_3
+size: 54
+update_interval: 1
+items:
+  'jungla':
+    material: JUNGLE_SAPLING
+    slot: 10
+    amount: 1
+    display_name: '&#65AD57Cubito de la Jungla'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_jungla}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fSalto I'
+    - '&7Nv. 10: &f+ Velocidad I'
+    - '&7Nv. 20: &f+ Fuerza I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_jungla'
+  'frondoso':
+    material: MOSS_BLOCK
+    slot: 11
+    amount: 1
+    display_name: '&#91D677Cubito Frondoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_frondoso}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Prisa I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_frondoso'
+  'micelio':
+    material: MYCELIUM
+    slot: 12
+    amount: 1
+    display_name: '&#BB8DAFCubito de Micelio'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_micelio}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Suerte'
+    - '&7Nv. 20: &f+ 2 corazones de absorcion'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_micelio'
+  'pradera':
+    material: WHEAT
+    slot: 13
+    amount: 1
+    display_name: '&#9ACD61Cubito de Pradera'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_pradera}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fVelocidad I'
+    - '&7Nv. 10: &f+ Suerte'
+    - '&7Nv. 20: &f+ Regeneracion I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_pradera'
+  'sabana':
+    material: ACACIA_SAPLING
+    slot: 14
+    amount: 1
+    display_name: '&#DCAB61Cubito de Sabana'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_sabana}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fPrisa I'
+    - '&7Nv. 10: &f+ Resistencia al fuego'
+    - '&7Nv. 20: &f+ Velocidad I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_sabana'
+  'nieve':
+    material: SNOWBALL
+    slot: 15
+    amount: 1
+    display_name: '&#C4E7F7Cubito de Nieve'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_nieve}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fVelocidad I'
+    - '&7Nv. 10: &f+ Resistencia I'
+    - '&7Nv. 20: &f+ Suerte'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_nieve'
+  'pantano':
+    material: LILY_PAD
+    slot: 16
+    amount: 1
+    display_name: '&#78975BCubito de Pantano'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_pantano}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fRespiracion acuatica'
+    - '&7Nv. 10: &f+ Regeneracion I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_pantano'
+  'honguito':
+    material: RED_MUSHROOM
+    slot: 17
+    amount: 1
+    display_name: '&#E6AD79Honguito Errante'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_honguito}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Resistencia I'
+    - '&7Nv. 20: &f+ Prisa I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_honguito'
+  'anterior':
+    material: ARROW
+    slot: 45
+    amount: 1
+    display_name: '&eAnterior'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas_2'
+  'guardar':
+    material: CHEST
+    slot: 49
+    amount: 1
+    display_name: '&aGuardar mascota'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'

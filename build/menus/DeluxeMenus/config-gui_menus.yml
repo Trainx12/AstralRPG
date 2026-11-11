@@ -38,6 +38,44 @@ gui_menus:
     file: mascota_dragon.yml
   mascota_fenix:
     file: mascota_fenix.yml
+  mascota_ghastito:
+    file: mascota_ghastito.yml
+  mascota_bombardero:
+    file: mascota_bombardero.yml
+  mascota_canonero:
+    file: mascota_canonero.yml
+  mascota_encapuchado:
+    file: mascota_encapuchado.yml
+  mascota_llamita:
+    file: mascota_llamita.yml
+  mascota_hondero:
+    file: mascota_hondero.yml
+  mascota_saqueador:
+    file: mascota_saqueador.yml
+  mascota_brujita:
+    file: mascota_brujita.yml
+  mascota_desierto:
+    file: mascota_desierto.yml
+  mascota_jungla:
+    file: mascota_jungla.yml
+  mascota_frondoso:
+    file: mascota_frondoso.yml
+  mascota_micelio:
+    file: mascota_micelio.yml
+  mascota_pradera:
+    file: mascota_pradera.yml
+  mascota_sabana:
+    file: mascota_sabana.yml
+  mascota_nieve:
+    file: mascota_nieve.yml
+  mascota_pantano:
+    file: mascota_pantano.yml
+  mascota_honguito:
+    file: mascota_honguito.yml
+  mascotas_2:
+    file: mascotas_2.yml
+  mascotas_3:
+    file: mascotas_3.yml
   mazmorras:
     file: mazmorras.yml
   cofre_mina:

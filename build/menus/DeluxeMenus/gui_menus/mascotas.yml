@@ -180,7 +180,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -353,7 +353,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -526,7 +526,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -699,7 +699,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -872,7 +872,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -1045,7 +1045,7 @@ items:
     - ''
     - '&8Los bonus solo se activan en mazmorras.'
     - ''
-    - '&7Se consigue en: &fEspantapajaros y Abejorros (raro)'
+    - '&7Se consigue en: &fEspantapajaros y Armored Grubs (raro)'
     - ''
     - '&7Desbloqueala para invocarla desde el santuario.'
     item_flags:
@@ -6344,3 +6344,12 @@ items:
     item_model: 'astral:mascotas/nav_close'
     click_commands:
     - '[close]'
+  'mas_companeros':
+    material: ARROW
+    slot: 46
+    amount: 1
+    display_name: '&eMas companeros'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas_2'

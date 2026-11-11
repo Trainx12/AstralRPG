@@ -339,6 +339,12 @@ for i, s in enumerate(SWORDS):
     ings = list(s["cost"]) if t == 1 else [("c", f"espada_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Armas Berserker"))
 
+weapon_item("espada_heroe_errante", "minecraft:diamond_sword", "Espada del Heroe Errante", BERS,
+            "Espada Berserker", 3, ["Solo disponible por administracion"], "fighting", SWORDS[2]["lvl"],
+            weapon_mods("espada_heroe_errante", SWORDS[2]["dmg"] * (1 + SWORDS[2]["bonus"] / 100) * FACTOR_ARMA[3], 1.6),
+            {}, {"w": "sword"})
+ITEMS["espada_heroe_errante"]["components"]["minecraft:item_model"] = "astral:espada_heroe_errante"
+
 for i, s in enumerate(AXES):
     t = i + 1
     iid = f"hacha_{t}"
@@ -1899,7 +1905,7 @@ KITS = [
     ("arquero", "Armaduras Arquero", "green", "minecraft:lime_shulker_box",
      [i for i in ITEMS if i.startswith("arquero_")]),
     ("armas", "Armas de clase", "gold", "minecraft:orange_shulker_box",
-     [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and i[-1].isdigit()]),
+     [i for i in ITEMS if i.split("_")[0] in ("espada", "hacha", "baston", "guadana", "arco") and (i[-1].isdigit() or i == "espada_heroe_errante")]),
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
      [i for i in ITEMS if i in SPECIAL_WEAPONS or i.startswith(("lanza_", "talisman_")) or i in
       ("gancho", "gancho_realista", "guadana_umbria", "guantes_meteoro")]),

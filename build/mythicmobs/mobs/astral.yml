@@ -67,9 +67,39 @@ astral_espantapajaros:
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
+astral_goblin:
+  Type: ZOMBIE
+  Display: '&2Goblin'
+  Health: 16
+  Damage: 3
+  Options:
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: true
+    MovementSpeed: 0.34
+    PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Drops:
+  - exp 5
+  Skills:
+  - skill{s=AST_MODEL_astral_goblin} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_goblin} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
+  - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+
 astral_abejorro:
   Type: VEX
-  Display: '&8Abejorro Sombrio'
+  Display: '&8Armored Grub'
   Health: 20
   Damage: 5
   Options:
@@ -593,7 +623,7 @@ astral_espantapajaros_elite:
 
 astral_abejorro_elite:
   Type: VEX
-  Display: '&6Abejorro Reina'
+  Display: '&6Armored Grub Reina'
   Health: 50
   Damage: 8.0
   Armor: 6

@@ -16,6 +16,10 @@ AST_MODEL_astral_espantapajaros:
   - model{m=astral_espantapajaros} @self
   - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.578125"} @self
   - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.546875"} @self
+AST_MODEL_astral_goblin:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - delay 1
 AST_MODEL_astral_abejorro:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -283,29 +287,29 @@ AST_AFIJO_astral_espantapajaros_elite_mald:
 AST_AFIJO_astral_abejorro_elite_vamp:
   Skills:
   - addtag{tag=astral.af_vamp} @self
-  - 'setname{name="&6Abejorro Reina &4Vampirico"} @self'
+  - 'setname{name="&6Armored Grub Reina &4Vampirico"} @self'
 AST_AFIJO_astral_abejorro_elite_expl:
   Skills:
   - addtag{tag=astral.af_expl} @self
-  - 'setname{name="&6Abejorro Reina &cExplosivo"} @self'
+  - 'setname{name="&6Armored Grub Reina &cExplosivo"} @self'
 AST_AFIJO_astral_abejorro_elite_blind:
   Skills:
   - addtag{tag=astral.af_blind} @self
-  - 'setname{name="&6Abejorro Reina &7Blindado"} @self'
+  - 'setname{name="&6Armored Grub Reina &7Blindado"} @self'
   - potion{type=RESISTANCE;duration=240;level=0} @self
 AST_AFIJO_astral_abejorro_elite_veloz:
   Skills:
   - addtag{tag=astral.af_veloz} @self
-  - 'setname{name="&6Abejorro Reina &bVeloz"} @self'
+  - 'setname{name="&6Armored Grub Reina &bVeloz"} @self'
   - potion{type=SPEED;duration=240;level=1} @self
 AST_AFIJO_astral_abejorro_elite_invoc:
   Skills:
   - addtag{tag=astral.af_invoc} @self
-  - 'setname{name="&6Abejorro Reina &5Invocador"} @self'
+  - 'setname{name="&6Armored Grub Reina &5Invocador"} @self'
 AST_AFIJO_astral_abejorro_elite_mald:
   Skills:
   - addtag{tag=astral.af_mald} @self
-  - 'setname{name="&6Abejorro Reina &8Maldito"} @self'
+  - 'setname{name="&6Armored Grub Reina &8Maldito"} @self'
 AST_AFIJO_astral_arana_elite_vamp:
   Skills:
   - addtag{tag=astral.af_vamp} @self

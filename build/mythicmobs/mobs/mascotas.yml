@@ -208,6 +208,584 @@ astral_pet_fenix:
   - 'skill{s=PET_fenix_RESCATE2} @owner ~onTimer:10 ?!hastag{tag=pet.rescate}'
   - 'skill{s=PET_fenix_RESCATE3} @owner ~onTimer:10 ?!hastag{tag=pet.rescate}'
 
+astral_pet_ghastito:
+  Type: PIG
+  Display: '&fGhastito de Nube'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_ghastito} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_ghastito} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_ghastito_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_ghastito_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_ghastito_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_ghastito_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_ghastito_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_bombardero:
+  Type: PIG
+  Display: '&fBombardero Musgoso'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_bombardero} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_bombardero} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_bombardero_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_bombardero_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_bombardero_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_bombardero_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_bombardero_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_canonero:
+  Type: PIG
+  Display: '&fCanonero de Bolsillo'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_canonero} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_canonero} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_canonero_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_canonero_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_canonero_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_canonero_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_canonero_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_encapuchado:
+  Type: PIG
+  Display: '&fZorro Encapuchado'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_encapuchado} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_encapuchado} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_encapuchado_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_encapuchado_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_encapuchado_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_encapuchado_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_encapuchado_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_llamita:
+  Type: PIG
+  Display: '&fLlamita Viajera'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_llamita} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_llamita} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_llamita_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_llamita_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_llamita_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_llamita_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_llamita_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_hondero:
+  Type: PIG
+  Display: '&fPequeno Hondero'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_hondero} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_hondero} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_hondero_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_hondero_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_hondero_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_hondero_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_hondero_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_saqueador:
+  Type: PIG
+  Display: '&fSaqueador Elegante'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_saqueador} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_saqueador} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_saqueador_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_saqueador_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_saqueador_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_saqueador_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_saqueador_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_brujita:
+  Type: PIG
+  Display: '&fBrujita Estelar'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_brujita} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_brujita} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_brujita_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_brujita_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_brujita_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_brujita_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_brujita_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_desierto:
+  Type: PIG
+  Display: '&fCubito del Desierto'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_desierto} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_desierto} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_desierto_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_desierto_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_desierto_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_desierto_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_desierto_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_jungla:
+  Type: PIG
+  Display: '&fCubito de la Jungla'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_jungla} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_jungla} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_jungla_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_jungla_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_jungla_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_jungla_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_jungla_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_frondoso:
+  Type: PIG
+  Display: '&fCubito Frondoso'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_frondoso} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_frondoso} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_frondoso_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_frondoso_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_frondoso_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_frondoso_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_frondoso_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_micelio:
+  Type: PIG
+  Display: '&fCubito de Micelio'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_micelio} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_micelio} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_micelio_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_micelio_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_micelio_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_micelio_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_micelio_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_pradera:
+  Type: PIG
+  Display: '&fCubito de Pradera'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_pradera} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_pradera} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_pradera_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_pradera_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_pradera_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_pradera_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_pradera_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_sabana:
+  Type: PIG
+  Display: '&fCubito de Sabana'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_sabana} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_sabana} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_sabana_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_sabana_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_sabana_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_sabana_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_sabana_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_nieve:
+  Type: PIG
+  Display: '&fCubito de Nieve'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_nieve} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_nieve} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_nieve_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_nieve_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_nieve_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_nieve_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_nieve_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_pantano:
+  Type: PIG
+  Display: '&fCubito de Pantano'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_pantano} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_pantano} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_pantano_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_pantano_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_pantano_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_pantano_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_pantano_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
+astral_pet_honguito:
+  Type: PIG
+  Display: '&fHonguito Errante'
+  Health: 40
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    FollowRange: 48
+  AIGoalSelectors:
+  - clear
+  - float
+  - goToOwner{followrange=4;minrange=2;speed=1.5;teleporttoworld=true}
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Skills:
+  - 'skill{s=PET_MODELO_honguito} @self ~onSpawn'
+  - 'skill{s=PET_MODELO_honguito} @self ~onLoad'
+  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
+  - 'remove @self ~onTimer:40 ?!hasowner'
+  - 'remove @self ~onTimer:20 ?!ownerIsOnline'
+  - 'skill{s=PET_honguito_CHEQUEO} @owner ~onTimer:20'
+  - 'skill{s=PET_honguito_BONUS1} @owner ~onTimer:40'
+  - 'skill{s=PET_honguito_BONUS2} @owner ~onTimer:40'
+  - 'skill{s=PET_honguito_BONUS3} @owner ~onTimer:40'
+  - 'skill{s=PET_honguito_EVOLUCION} @owner ~onTimer:100'
+  - 'teleport @owner ~onTimer:40 ?!playerwithin{d=20}'
+
 astral_mascotas_control:
   Type: ARMOR_STAND
   Display: 'Control de mascotas'
@@ -237,4 +815,38 @@ astral_mascotas_control:
   - 'skill{s=MASC_NOTIENE_dragon} @PlayersOnServer ~onTimer:5'
   - 'skill{s=MASC_INVOCAR_fenix} @PlayersOnServer ~onTimer:5'
   - 'skill{s=MASC_NOTIENE_fenix} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_ghastito} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_ghastito} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_bombardero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_bombardero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_canonero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_canonero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_encapuchado} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_encapuchado} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_llamita} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_llamita} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_hondero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_hondero} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_saqueador} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_saqueador} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_brujita} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_brujita} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_desierto} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_desierto} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_jungla} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_jungla} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_frondoso} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_frondoso} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_micelio} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_micelio} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_pradera} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_pradera} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_sabana} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_sabana} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_nieve} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_nieve} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_pantano} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_pantano} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_INVOCAR_honguito} @PlayersOnServer ~onTimer:5'
+  - 'skill{s=MASC_NOTIENE_honguito} @PlayersOnServer ~onTimer:5'
 

@@ -402,6 +402,10 @@ def betterhud():
 
 betterhud()
 
+# Fallback vanilla propio; el pack final privado reemplaza esta definicion.
+put_json('assets/astral/items/espada_heroe_errante.json',
+         {'model': model_ref('minecraft:item/diamond_sword')})
+
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

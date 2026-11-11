@@ -42,7 +42,10 @@ MOBS = {
                                   skills=["- skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03"],
                                   spawn=dict(chance=0.05, night=True, biomes=["minecraft:plains", "minecraft:sunflower_plains",
                                                                                "minecraft:savanna", "minecraft:meadow"])),
-    "astral_abejorro": dict(kind="hostil", type="VEX", name="&8Abejorro Sombrio", hp=20, damage=5, speed=0.3,
+    "astral_goblin": dict(kind="hostil", type="ZOMBIE", name="&2Goblin", hp=16, damage=3, speed=0.34,
+                           hostile_ai=True, attack_animation=None, drops=["exp 5"], skills=[
+                               '- command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn']),
+    "astral_abejorro": dict(kind="hostil", type="VEX", name="&8Armored Grub", hp=20, damage=5, speed=0.3,
                             drops=["honeycomb 1-2 0.4", "string 1 0.4", "exp 8"],
                             astral=[("gema_umbria_fragmentada", 0.08), ("esencia_elite", 0.06)],
                             skills=["- skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03"],
@@ -125,7 +128,7 @@ MOBS = {
 # Elites: versiones modificadas (mas grandes, con otro color) que dan mas cosas
 ELITES = {
     "astral_espantapajaros": ("FF3A3A", "&4Espantapajaros Infernal"),
-    "astral_abejorro": ("FFC020", "&6Abejorro Reina"),
+    "astral_abejorro": ("FFC020", "&6Armored Grub Reina"),
     "astral_arana": ("40FFD0", "&3Arana de Cristal Vivo"),
     "astral_cara": ("A040FF", "&5Cara del Abismo"),
     "astral_cangrejo": ("60A0FF", "&9Cangrejo Abisal"),
@@ -394,7 +397,8 @@ def mob_block(mid, d, model=None, elite=None):
                "- setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger",
                "- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}"]
     elif d["kind"] in ("hostil", "jefe") or elite:
-        sk.append("- state{s=attack} @self ~onAttack")
+        if d.get('attack_animation', 'attack'):
+            sk.append(f"- state{{s={d.get('attack_animation', 'attack')}}} @self ~onAttack")
     for a in d.get("astral", []):
         item, ch = a[0], a[1]
         amount = a[2] if len(a) > 2 else 1
@@ -443,6 +447,8 @@ def metaskills():
     for mid, d in MOBS.items():
         scale = ';s=2.0' if d['kind'] == 'jefe' else ''
         out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}{scale}}} @self"]
+        if mid == "astral_goblin":
+            out[-1] = "  - delay 1"
         if d["kind"] == "montura":
             # BetterModel mueve la montura con la velocidad de movimiento y salta con jump_strength
             out += [f"AST_MOUNT_{mid}:", "  Skills:", "  - delay 2",

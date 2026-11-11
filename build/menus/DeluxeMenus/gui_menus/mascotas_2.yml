@@ -1,0 +1,174 @@
+menu_title: '&8Mascotas - pagina 2/3'
+open_command: astralmascotas_2
+size: 54
+update_interval: 1
+items:
+  'ghastito':
+    material: GHAST_SPAWN_EGG
+    slot: 10
+    amount: 1
+    display_name: '&#EEF3F8Ghastito de Nube'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_ghastito}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fCaida lenta'
+    - '&7Nv. 10: &f+ Regeneracion I'
+    - '&7Nv. 20: &f+ Suerte'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_ghastito'
+  'bombardero':
+    material: CREEPER_SPAWN_EGG
+    slot: 11
+    amount: 1
+    display_name: '&#71AE45Bombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fResistencia I'
+    - '&7Nv. 10: &f+ Fuerza I'
+    - '&7Nv. 20: &f+ Prisa I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_bombardero'
+  'canonero':
+    material: FIRE_CHARGE
+    slot: 12
+    amount: 1
+    display_name: '&#7A8A99Canonero de Bolsillo'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_canonero}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fFuerza I'
+    - '&7Nv. 10: &f+ Prisa I'
+    - '&7Nv. 20: &f+ Suerte'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_canonero'
+  'encapuchado':
+    material: FOX_SPAWN_EGG
+    slot: 13
+    amount: 1
+    display_name: '&#ED994CZorro Encapuchado'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_encapuchado}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fVelocidad I'
+    - '&7Nv. 10: &f+ Vision nocturna'
+    - '&7Nv. 20: &f+ Fuerza I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_encapuchado'
+  'llamita':
+    material: LLAMA_SPAWN_EGG
+    slot: 14
+    amount: 1
+    display_name: '&#EACF9ALlamita Viajera'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_llamita}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fSalto I'
+    - '&7Nv. 10: &f+ Suerte'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_llamita'
+  'hondero':
+    material: SLIME_BALL
+    slot: 15
+    amount: 1
+    display_name: '&#CFA272Pequeno Hondero'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_hondero}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fPrisa I'
+    - '&7Nv. 10: &f+ Velocidad I'
+    - '&7Nv. 20: &f+ Suerte'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_hondero'
+  'saqueador':
+    material: PILLAGER_SPAWN_EGG
+    slot: 16
+    amount: 1
+    display_name: '&#9EA882Saqueador Elegante'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_saqueador}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fSuerte'
+    - '&7Nv. 10: &f+ Fuerza I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_saqueador'
+  'brujita':
+    material: WITCH_SPAWN_EGG
+    slot: 17
+    amount: 1
+    display_name: '&#CC86F1Brujita Estelar'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_brujita}%&7/30'
+    - '&7Gacha de Monturas'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Resistencia al fuego'
+    - '&7Nv. 20: &f+ Suerte'
+    - '&eClic: ver estado e invocar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_brujita'
+  'desierto':
+    material: SAND
+    slot: 22
+    amount: 1
+    display_name: '&#E6C076Cubito del Desierto'
+    lore:
+    - '&7Nv. 1: &fResistencia al fuego'
+    - '&7Nv. 10: &f+ Prisa I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascota_desierto'
+  'anterior':
+    material: ARROW
+    slot: 45
+    amount: 1
+    display_name: '&eAnterior'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas'
+  'siguiente':
+    material: ARROW
+    slot: 53
+    amount: 1
+    display_name: '&eSiguiente'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas_3'
+  'guardar':
+    material: CHEST
+    slot: 49
+    amount: 1
+    display_name: '&aGuardar mascota'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'

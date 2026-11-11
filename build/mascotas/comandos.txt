@@ -21,6 +21,57 @@ scoreboard objectives add pmod_dragon dummy
 scoreboard objectives add pxp_fenix dummy
 scoreboard objectives add plv_fenix dummy
 scoreboard objectives add pmod_fenix dummy
+scoreboard objectives add pxp_ghastito dummy
+scoreboard objectives add plv_ghastito dummy
+scoreboard objectives add pmod_ghastito dummy
+scoreboard objectives add pxp_bombardero dummy
+scoreboard objectives add plv_bombardero dummy
+scoreboard objectives add pmod_bombardero dummy
+scoreboard objectives add pxp_canonero dummy
+scoreboard objectives add plv_canonero dummy
+scoreboard objectives add pmod_canonero dummy
+scoreboard objectives add pxp_encapuchado dummy
+scoreboard objectives add plv_encapuchado dummy
+scoreboard objectives add pmod_encapuchado dummy
+scoreboard objectives add pxp_llamita dummy
+scoreboard objectives add plv_llamita dummy
+scoreboard objectives add pmod_llamita dummy
+scoreboard objectives add pxp_hondero dummy
+scoreboard objectives add plv_hondero dummy
+scoreboard objectives add pmod_hondero dummy
+scoreboard objectives add pxp_saqueador dummy
+scoreboard objectives add plv_saqueador dummy
+scoreboard objectives add pmod_saqueador dummy
+scoreboard objectives add pxp_brujita dummy
+scoreboard objectives add plv_brujita dummy
+scoreboard objectives add pmod_brujita dummy
+scoreboard objectives add pxp_desierto dummy
+scoreboard objectives add plv_desierto dummy
+scoreboard objectives add pmod_desierto dummy
+scoreboard objectives add pxp_jungla dummy
+scoreboard objectives add plv_jungla dummy
+scoreboard objectives add pmod_jungla dummy
+scoreboard objectives add pxp_frondoso dummy
+scoreboard objectives add plv_frondoso dummy
+scoreboard objectives add pmod_frondoso dummy
+scoreboard objectives add pxp_micelio dummy
+scoreboard objectives add plv_micelio dummy
+scoreboard objectives add pmod_micelio dummy
+scoreboard objectives add pxp_pradera dummy
+scoreboard objectives add plv_pradera dummy
+scoreboard objectives add pmod_pradera dummy
+scoreboard objectives add pxp_sabana dummy
+scoreboard objectives add plv_sabana dummy
+scoreboard objectives add pmod_sabana dummy
+scoreboard objectives add pxp_nieve dummy
+scoreboard objectives add plv_nieve dummy
+scoreboard objectives add pmod_nieve dummy
+scoreboard objectives add pxp_pantano dummy
+scoreboard objectives add plv_pantano dummy
+scoreboard objectives add pmod_pantano dummy
+scoreboard objectives add pxp_honguito dummy
+scoreboard objectives add plv_honguito dummy
+scoreboard objectives add pmod_honguito dummy
 # controlador (en un chunk del lobby que queda siempre cargado)
 execute in minecraft:lobby run forceload add 180 190
 rg flag -w lobby __global__ mob-spawning allow
@@ -34,4 +85,4 @@ rg flag -w lobby __global__ mob-spawning allow
 #   mascotas:
 #   - minecraft:trigger mascota set 99
 # despues: reiniciar (los alias se cargan al arrancar)
-# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix> true
+# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<id> true

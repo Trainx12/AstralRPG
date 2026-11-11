@@ -59,7 +59,7 @@ MASC_NOTIENE_lobo:
   - haspermission{p=astral.mascota.lobo} false
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'message{m="&cTodavia no tenes al Lobo del Bosque. &7Se consigue en: Espantapajaros y Abejorros (raro)."}'
+  - 'message{m="&cTodavia no tenes al Lobo del Bosque. &7Se consigue en: Espantapajaros y Armored Grubs (raro)."}'
 
 PET_GANAR_LOBO:
   TargetConditions:
@@ -486,6 +486,1213 @@ PET_GANAR_FENIX:
   - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Fenix'',color:''#FF7A2A'',bold:true}]"}'
   - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
 
+PET_MODELO_ghastito:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_ghastito_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=7} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_ghastito_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=slow_falling;duration=70;level=0;hasParticles=false}'
+
+PET_ghastito_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_ghastito;v=10to30} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_ghastito_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_ghastito;v=20to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_ghastito_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_ghastito;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_ghastito:
+  TargetConditions:
+  - score{o=mascota;v=7} true
+  - haspermission{p=astral.mascota.ghastito} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 7"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_ghastito;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fGhastito de Nube&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_ghastito:
+  TargetConditions:
+  - score{o=mascota;v=7} true
+  - haspermission{p=astral.mascota.ghastito} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Ghastito de Nube. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_GHASTITO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.ghastito} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.ghastito true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Ghastito de Nube'',color:''#EEF3F8'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_bombardero:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_bombardero_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=8} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_bombardero_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_bombardero_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_bombardero;v=10to30} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_bombardero_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_bombardero;v=20to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_bombardero_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_bombardero;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_bombardero:
+  TargetConditions:
+  - score{o=mascota;v=8} true
+  - haspermission{p=astral.mascota.bombardero} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 8"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_bombardero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fBombardero Musgoso&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_bombardero:
+  TargetConditions:
+  - score{o=mascota;v=8} true
+  - haspermission{p=astral.mascota.bombardero} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Bombardero Musgoso. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_BOMBARDERO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.bombardero} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.bombardero true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Bombardero Musgoso'',color:''#71AE45'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_canonero:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_canonero_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=9} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_canonero_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_canonero_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_canonero;v=10to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_canonero_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_canonero;v=20to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_canonero_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_canonero;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_canonero:
+  TargetConditions:
+  - score{o=mascota;v=9} true
+  - haspermission{p=astral.mascota.canonero} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 9"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_canonero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCanonero de Bolsillo&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_canonero:
+  TargetConditions:
+  - score{o=mascota;v=9} true
+  - haspermission{p=astral.mascota.canonero} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Canonero de Bolsillo. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_CANONERO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.canonero} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.canonero true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Canonero de Bolsillo'',color:''#7A8A99'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_encapuchado:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_encapuchado_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=10} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_encapuchado_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_encapuchado_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_encapuchado;v=10to30} true
+  Skills:
+  - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
+
+PET_encapuchado_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_encapuchado;v=20to30} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_encapuchado_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_encapuchado;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_encapuchado:
+  TargetConditions:
+  - score{o=mascota;v=10} true
+  - haspermission{p=astral.mascota.encapuchado} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 10"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_encapuchado;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fZorro Encapuchado&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_encapuchado:
+  TargetConditions:
+  - score{o=mascota;v=10} true
+  - haspermission{p=astral.mascota.encapuchado} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Zorro Encapuchado. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_ENCAPUCHADO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.encapuchado} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.encapuchado true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Zorro Encapuchado'',color:''#ED994C'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_llamita:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_llamita_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=11} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_llamita_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
+
+PET_llamita_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_llamita;v=10to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_llamita_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_llamita;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_llamita_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_llamita;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_llamita:
+  TargetConditions:
+  - score{o=mascota;v=11} true
+  - haspermission{p=astral.mascota.llamita} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 11"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_llamita;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fLlamita Viajera&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_llamita:
+  TargetConditions:
+  - score{o=mascota;v=11} true
+  - haspermission{p=astral.mascota.llamita} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Llamita Viajera. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_LLAMITA:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.llamita} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.llamita true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Llamita Viajera'',color:''#EACF9A'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_hondero:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_hondero_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=12} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_hondero_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_hondero_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_hondero;v=10to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_hondero_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_hondero;v=20to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_hondero_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_hondero;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_hondero:
+  TargetConditions:
+  - score{o=mascota;v=12} true
+  - haspermission{p=astral.mascota.hondero} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 12"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_hondero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fPequeno Hondero&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_hondero:
+  TargetConditions:
+  - score{o=mascota;v=12} true
+  - haspermission{p=astral.mascota.hondero} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Pequeno Hondero. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_HONDERO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.hondero} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.hondero true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Pequeno Hondero'',color:''#CFA272'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_saqueador:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_saqueador_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=13} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_saqueador_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_saqueador_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_saqueador;v=10to30} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_saqueador_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_saqueador;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_saqueador_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_saqueador;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_saqueador:
+  TargetConditions:
+  - score{o=mascota;v=13} true
+  - haspermission{p=astral.mascota.saqueador} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 13"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_saqueador;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fSaqueador Elegante&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_saqueador:
+  TargetConditions:
+  - score{o=mascota;v=13} true
+  - haspermission{p=astral.mascota.saqueador} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Saqueador Elegante. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_SAQUEADOR:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.saqueador} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.saqueador true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Saqueador Elegante'',color:''#9EA882'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_brujita:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_brujita_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=14} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_brujita_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_brujita_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_brujita;v=10to30} true
+  Skills:
+  - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
+
+PET_brujita_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_brujita;v=20to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_brujita_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_brujita;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_brujita:
+  TargetConditions:
+  - score{o=mascota;v=14} true
+  - haspermission{p=astral.mascota.brujita} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 14"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_brujita;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fBrujita Estelar&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_brujita:
+  TargetConditions:
+  - score{o=mascota;v=14} true
+  - haspermission{p=astral.mascota.brujita} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Brujita Estelar. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_BRUJITA:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.brujita} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.brujita true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Brujita Estelar'',color:''#CC86F1'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_desierto:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_desierto_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=15} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_desierto_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
+
+PET_desierto_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_desierto;v=10to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_desierto_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_desierto;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_desierto_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_desierto;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_desierto:
+  TargetConditions:
+  - score{o=mascota;v=15} true
+  - haspermission{p=astral.mascota.desierto} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 15"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_desierto;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito del Desierto&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_desierto:
+  TargetConditions:
+  - score{o=mascota;v=15} true
+  - haspermission{p=astral.mascota.desierto} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito del Desierto. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_DESIERTO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.desierto} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.desierto true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito del Desierto'',color:''#E6C076'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_jungla:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_jungla_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=16} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_jungla_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
+
+PET_jungla_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_jungla;v=10to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_jungla_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_jungla;v=20to30} true
+  Skills:
+  - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
+
+PET_jungla_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_jungla;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_jungla:
+  TargetConditions:
+  - score{o=mascota;v=16} true
+  - haspermission{p=astral.mascota.jungla} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 16"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_jungla;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de la Jungla&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_jungla:
+  TargetConditions:
+  - score{o=mascota;v=16} true
+  - haspermission{p=astral.mascota.jungla} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de la Jungla. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_JUNGLA:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.jungla} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.jungla true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de la Jungla'',color:''#65AD57'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_frondoso:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_frondoso_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=17} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_frondoso_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_frondoso_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_frondoso;v=10to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_frondoso_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_frondoso;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_frondoso_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_frondoso;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_frondoso:
+  TargetConditions:
+  - score{o=mascota;v=17} true
+  - haspermission{p=astral.mascota.frondoso} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 17"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_frondoso;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito Frondoso&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_frondoso:
+  TargetConditions:
+  - score{o=mascota;v=17} true
+  - haspermission{p=astral.mascota.frondoso} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito Frondoso. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_FRONDOSO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.frondoso} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.frondoso true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito Frondoso'',color:''#91D677'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_micelio:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_micelio_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=18} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_micelio_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_micelio_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_micelio;v=10to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_micelio_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_micelio;v=20to30} true
+  Skills:
+  - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
+
+PET_micelio_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_micelio;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_micelio:
+  TargetConditions:
+  - score{o=mascota;v=18} true
+  - haspermission{p=astral.mascota.micelio} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 18"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_micelio;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de Micelio&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_micelio:
+  TargetConditions:
+  - score{o=mascota;v=18} true
+  - haspermission{p=astral.mascota.micelio} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de Micelio. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_MICELIO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.micelio} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.micelio true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de Micelio'',color:''#BB8DAF'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_pradera:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_pradera_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=19} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_pradera_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_pradera_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_pradera;v=10to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_pradera_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_pradera;v=20to30} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_pradera_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_pradera;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_pradera:
+  TargetConditions:
+  - score{o=mascota;v=19} true
+  - haspermission{p=astral.mascota.pradera} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 19"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_pradera;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de Pradera&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_pradera:
+  TargetConditions:
+  - score{o=mascota;v=19} true
+  - haspermission{p=astral.mascota.pradera} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de Pradera. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_PRADERA:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.pradera} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.pradera true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de Pradera'',color:''#9ACD61'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_sabana:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_sabana_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=20} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_sabana_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_sabana_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_sabana;v=10to30} true
+  Skills:
+  - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
+
+PET_sabana_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_sabana;v=20to30} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_sabana_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_sabana;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_sabana:
+  TargetConditions:
+  - score{o=mascota;v=20} true
+  - haspermission{p=astral.mascota.sabana} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 20"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_sabana;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de Sabana&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_sabana:
+  TargetConditions:
+  - score{o=mascota;v=20} true
+  - haspermission{p=astral.mascota.sabana} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de Sabana. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_SABANA:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.sabana} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.sabana true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de Sabana'',color:''#DCAB61'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_nieve:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_nieve_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=21} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_nieve_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
+
+PET_nieve_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_nieve;v=10to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_nieve_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_nieve;v=20to30} true
+  Skills:
+  - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
+
+PET_nieve_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_nieve;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_nieve:
+  TargetConditions:
+  - score{o=mascota;v=21} true
+  - haspermission{p=astral.mascota.nieve} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 21"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_nieve;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de Nieve&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_nieve:
+  TargetConditions:
+  - score{o=mascota;v=21} true
+  - haspermission{p=astral.mascota.nieve} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de Nieve. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_NIEVE:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.nieve} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.nieve true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de Nieve'',color:''#C4E7F7'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_pantano:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_pantano_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=22} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_pantano_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=water_breathing;duration=70;level=0;hasParticles=false}'
+
+PET_pantano_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_pantano;v=10to30} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_pantano_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_pantano;v=20to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_pantano_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_pantano;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_pantano:
+  TargetConditions:
+  - score{o=mascota;v=22} true
+  - haspermission{p=astral.mascota.pantano} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 22"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_pantano;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fCubito de Pantano&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_pantano:
+  TargetConditions:
+  - score{o=mascota;v=22} true
+  - haspermission{p=astral.mascota.pantano} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Cubito de Pantano. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_PANTANO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.pantano} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.pantano true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Cubito de Pantano'',color:''#78975B'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
+PET_MODELO_honguito:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - addtag{tag=clearlag_exclude} @self
+  - model{m=astral_pet_lobo} @self
+
+PET_honguito_CHEQUEO:
+  TargetConditions:
+  - score{o=petsel;v=23} false
+  Skills:
+  - 'particles{p=poof;amount=12;hS=0.4;vS=0.4} @self'
+  - 'remove @self'
+
+PET_honguito_BONUS1:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  Skills:
+  - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
+
+PET_honguito_BONUS2:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_honguito;v=10to30} true
+  Skills:
+  - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
+
+PET_honguito_BONUS3:
+  TargetConditions:
+  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - score{o=plv_honguito;v=20to30} true
+  Skills:
+  - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
+
+PET_honguito_EVOLUCION:
+  TargetConditions:
+  - score{o=plv_honguito;v=30to30} true
+  Skills:
+  - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
+
+MASC_INVOCAR_honguito:
+  TargetConditions:
+  - score{o=mascota;v=23} true
+  - haspermission{p=astral.mascota.honguito} true
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'command{c="scoreboard players set <target.name> petsel 23"}'
+  - 'delay 25'
+  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
+  - 'summon{type=astral_pet_honguito;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
+  - 'message{m="&7Invocaste a tu &fHonguito Errante&7. &8(/mascotas para guardarla)"}'
+
+MASC_NOTIENE_honguito:
+  TargetConditions:
+  - score{o=mascota;v=23} true
+  - haspermission{p=astral.mascota.honguito} false
+  Skills:
+  - 'command{c="scoreboard players set <target.name> mascota 0"}'
+  - 'message{m="&cTodavia no tenes al Honguito Errante. &7Se consigue en: Gacha de Monturas."}'
+
+PET_GANAR_HONGUITO:
+  TargetConditions:
+  - isplayer true
+  - haspermission{p=astral.mascota.honguito} false
+  Skills:
+  - 'command{c="lp user <target.name> permission set astral.mascota.honguito true"}'
+  - 'sound{s=ui.toast.challenge_complete}'
+  - 'command{c="tellraw @a ['''',{text:''(!) '',color:''gold'',bold:true},{text:''<target.name>'',color:''yellow''},{text:'' consiguio la mascota '',color:''gray''},{text:''Honguito Errante'',color:''#E6AD79'',bold:true}]"}'
+  - 'message{m="&7Escribi &f/mascotas &7para invocarla."}'
+
 MASC_MENU:
   TargetConditions:
   - score{o=mascota;v=99} true
@@ -499,6 +1706,23 @@ MASC_MENU:
   - 'skill{s=MASC_MENU_zorro}'
   - 'skill{s=MASC_MENU_dragon}'
   - 'skill{s=MASC_MENU_fenix}'
+  - 'skill{s=MASC_MENU_ghastito}'
+  - 'skill{s=MASC_MENU_bombardero}'
+  - 'skill{s=MASC_MENU_canonero}'
+  - 'skill{s=MASC_MENU_encapuchado}'
+  - 'skill{s=MASC_MENU_llamita}'
+  - 'skill{s=MASC_MENU_hondero}'
+  - 'skill{s=MASC_MENU_saqueador}'
+  - 'skill{s=MASC_MENU_brujita}'
+  - 'skill{s=MASC_MENU_desierto}'
+  - 'skill{s=MASC_MENU_jungla}'
+  - 'skill{s=MASC_MENU_frondoso}'
+  - 'skill{s=MASC_MENU_micelio}'
+  - 'skill{s=MASC_MENU_pradera}'
+  - 'skill{s=MASC_MENU_sabana}'
+  - 'skill{s=MASC_MENU_nieve}'
+  - 'skill{s=MASC_MENU_pantano}'
+  - 'skill{s=MASC_MENU_honguito}'
   - 'command{c="tellraw <target.name> {text:''[Guardar mascota]'',color:''gray'',click_event:{action:''run_command'',command:''/trigger mascota set 98''}}"}'
 
 MASC_MENU_NINGUNA:
@@ -509,6 +1733,23 @@ MASC_MENU_NINGUNA:
   - haspermission{p=astral.mascota.zorro} false
   - haspermission{p=astral.mascota.dragon} false
   - haspermission{p=astral.mascota.fenix} false
+  - haspermission{p=astral.mascota.ghastito} false
+  - haspermission{p=astral.mascota.bombardero} false
+  - haspermission{p=astral.mascota.canonero} false
+  - haspermission{p=astral.mascota.encapuchado} false
+  - haspermission{p=astral.mascota.llamita} false
+  - haspermission{p=astral.mascota.hondero} false
+  - haspermission{p=astral.mascota.saqueador} false
+  - haspermission{p=astral.mascota.brujita} false
+  - haspermission{p=astral.mascota.desierto} false
+  - haspermission{p=astral.mascota.jungla} false
+  - haspermission{p=astral.mascota.frondoso} false
+  - haspermission{p=astral.mascota.micelio} false
+  - haspermission{p=astral.mascota.pradera} false
+  - haspermission{p=astral.mascota.sabana} false
+  - haspermission{p=astral.mascota.nieve} false
+  - haspermission{p=astral.mascota.pantano} false
+  - haspermission{p=astral.mascota.honguito} false
   Skills:
   - 'message{m="&7Todavia no tenes mascotas. &8Algunas caen de mobs raros, otras de la mazmorra o la Gacha de Monturas."}'
 
@@ -547,6 +1788,108 @@ MASC_MENU_fenix:
   - haspermission{p=astral.mascota.fenix} true
   Skills:
   - 'command{c="tellraw <target.name> ['''',{text:'' Fenix '',color:''#FF7A2A'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_fenix''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 6''},hover_event:{action:''show_text'',value:''Te salva con poca vida (cada 10 min) / cada 7 min / cada 5 min (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_ghastito:
+  TargetConditions:
+  - haspermission{p=astral.mascota.ghastito} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Ghastito de Nube '',color:''#EEF3F8'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_ghastito''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 7''},hover_event:{action:''show_text'',value:''Caida lenta / + Regeneracion I / + Suerte (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_bombardero:
+  TargetConditions:
+  - haspermission{p=astral.mascota.bombardero} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Bombardero Musgoso '',color:''#71AE45'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_bombardero''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 8''},hover_event:{action:''show_text'',value:''Resistencia I / + Fuerza I / + Prisa I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_canonero:
+  TargetConditions:
+  - haspermission{p=astral.mascota.canonero} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Canonero de Bolsillo '',color:''#7A8A99'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_canonero''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 9''},hover_event:{action:''show_text'',value:''Fuerza I / + Prisa I / + Suerte (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_encapuchado:
+  TargetConditions:
+  - haspermission{p=astral.mascota.encapuchado} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Zorro Encapuchado '',color:''#ED994C'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_encapuchado''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 10''},hover_event:{action:''show_text'',value:''Velocidad I / + Vision nocturna / + Fuerza I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_llamita:
+  TargetConditions:
+  - haspermission{p=astral.mascota.llamita} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Llamita Viajera '',color:''#EACF9A'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_llamita''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 11''},hover_event:{action:''show_text'',value:''Salto I / + Suerte / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_hondero:
+  TargetConditions:
+  - haspermission{p=astral.mascota.hondero} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Pequeno Hondero '',color:''#CFA272'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_hondero''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 12''},hover_event:{action:''show_text'',value:''Prisa I / + Velocidad I / + Suerte (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_saqueador:
+  TargetConditions:
+  - haspermission{p=astral.mascota.saqueador} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Saqueador Elegante '',color:''#9EA882'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_saqueador''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 13''},hover_event:{action:''show_text'',value:''Suerte / + Fuerza I / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_brujita:
+  TargetConditions:
+  - haspermission{p=astral.mascota.brujita} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Brujita Estelar '',color:''#CC86F1'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_brujita''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 14''},hover_event:{action:''show_text'',value:''Regeneracion I / + Resistencia al fuego / + Suerte (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_desierto:
+  TargetConditions:
+  - haspermission{p=astral.mascota.desierto} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito del Desierto '',color:''#E6C076'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_desierto''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 15''},hover_event:{action:''show_text'',value:''Resistencia al fuego / + Prisa I / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_jungla:
+  TargetConditions:
+  - haspermission{p=astral.mascota.jungla} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de la Jungla '',color:''#65AD57'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_jungla''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 16''},hover_event:{action:''show_text'',value:''Salto I / + Velocidad I / + Fuerza I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_frondoso:
+  TargetConditions:
+  - haspermission{p=astral.mascota.frondoso} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito Frondoso '',color:''#91D677'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_frondoso''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 17''},hover_event:{action:''show_text'',value:''Regeneracion I / + Prisa I / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_micelio:
+  TargetConditions:
+  - haspermission{p=astral.mascota.micelio} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de Micelio '',color:''#BB8DAF'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_micelio''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 18''},hover_event:{action:''show_text'',value:''Regeneracion I / + Suerte / + 2 corazones de absorcion (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_pradera:
+  TargetConditions:
+  - haspermission{p=astral.mascota.pradera} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de Pradera '',color:''#9ACD61'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_pradera''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 19''},hover_event:{action:''show_text'',value:''Velocidad I / + Suerte / + Regeneracion I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_sabana:
+  TargetConditions:
+  - haspermission{p=astral.mascota.sabana} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de Sabana '',color:''#DCAB61'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_sabana''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 20''},hover_event:{action:''show_text'',value:''Prisa I / + Resistencia al fuego / + Velocidad I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_nieve:
+  TargetConditions:
+  - haspermission{p=astral.mascota.nieve} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de Nieve '',color:''#C4E7F7'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_nieve''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 21''},hover_event:{action:''show_text'',value:''Velocidad I / + Resistencia I / + Suerte (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_pantano:
+  TargetConditions:
+  - haspermission{p=astral.mascota.pantano} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Cubito de Pantano '',color:''#78975B'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_pantano''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 22''},hover_event:{action:''show_text'',value:''Respiracion acuatica / + Regeneracion I / + Resistencia I (nivel 1 / 10 / 20)''}}]"}'
+
+MASC_MENU_honguito:
+  TargetConditions:
+  - haspermission{p=astral.mascota.honguito} true
+  Skills:
+  - 'command{c="tellraw <target.name> ['''',{text:'' Honguito Errante '',color:''#E6AD79'',bold:true},{text:''nivel '',color:''gray''},{score:{name:''<target.name>'',objective:''plv_honguito''},color:''yellow''},{text:''  '',color:''gray''},{text:''[Invocar]'',color:''green'',click_event:{action:''run_command'',command:''/trigger mascota set 23''},hover_event:{action:''show_text'',value:''Regeneracion I / + Resistencia I / + Prisa I (nivel 1 / 10 / 20)''}}]"}'
 
 MASC_GUARDAR:
   TargetConditions:
@@ -608,6 +1951,125 @@ MASC_NIVELES:
   - 'command{c="execute as @a[scores={plv_fenix=31..}] run scoreboard players set @s plv_fenix 30"} @self'
   - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players operation @s pmod_fenix = @s pxp_fenix"} @self'
   - 'command{c="execute as @a[scores={petsel=6}] run scoreboard players operation @s pmod_fenix %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=7,petkills=1..}] run scoreboard players operation @s pxp_ghastito += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=7}] run scoreboard players operation @s plv_ghastito = @s pxp_ghastito"} @self'
+  - 'command{c="execute as @a[scores={petsel=7}] run scoreboard players operation @s plv_ghastito /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=7}] run scoreboard players add @s plv_ghastito 1"} @self'
+  - 'command{c="execute as @a[scores={plv_ghastito=31..}] run scoreboard players set @s plv_ghastito 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=7}] run scoreboard players operation @s pmod_ghastito = @s pxp_ghastito"} @self'
+  - 'command{c="execute as @a[scores={petsel=7}] run scoreboard players operation @s pmod_ghastito %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=8,petkills=1..}] run scoreboard players operation @s pxp_bombardero += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=8}] run scoreboard players operation @s plv_bombardero = @s pxp_bombardero"} @self'
+  - 'command{c="execute as @a[scores={petsel=8}] run scoreboard players operation @s plv_bombardero /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=8}] run scoreboard players add @s plv_bombardero 1"} @self'
+  - 'command{c="execute as @a[scores={plv_bombardero=31..}] run scoreboard players set @s plv_bombardero 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=8}] run scoreboard players operation @s pmod_bombardero = @s pxp_bombardero"} @self'
+  - 'command{c="execute as @a[scores={petsel=8}] run scoreboard players operation @s pmod_bombardero %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=9,petkills=1..}] run scoreboard players operation @s pxp_canonero += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=9}] run scoreboard players operation @s plv_canonero = @s pxp_canonero"} @self'
+  - 'command{c="execute as @a[scores={petsel=9}] run scoreboard players operation @s plv_canonero /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=9}] run scoreboard players add @s plv_canonero 1"} @self'
+  - 'command{c="execute as @a[scores={plv_canonero=31..}] run scoreboard players set @s plv_canonero 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=9}] run scoreboard players operation @s pmod_canonero = @s pxp_canonero"} @self'
+  - 'command{c="execute as @a[scores={petsel=9}] run scoreboard players operation @s pmod_canonero %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=10,petkills=1..}] run scoreboard players operation @s pxp_encapuchado += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=10}] run scoreboard players operation @s plv_encapuchado = @s pxp_encapuchado"} @self'
+  - 'command{c="execute as @a[scores={petsel=10}] run scoreboard players operation @s plv_encapuchado /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=10}] run scoreboard players add @s plv_encapuchado 1"} @self'
+  - 'command{c="execute as @a[scores={plv_encapuchado=31..}] run scoreboard players set @s plv_encapuchado 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=10}] run scoreboard players operation @s pmod_encapuchado = @s pxp_encapuchado"} @self'
+  - 'command{c="execute as @a[scores={petsel=10}] run scoreboard players operation @s pmod_encapuchado %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=11,petkills=1..}] run scoreboard players operation @s pxp_llamita += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=11}] run scoreboard players operation @s plv_llamita = @s pxp_llamita"} @self'
+  - 'command{c="execute as @a[scores={petsel=11}] run scoreboard players operation @s plv_llamita /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=11}] run scoreboard players add @s plv_llamita 1"} @self'
+  - 'command{c="execute as @a[scores={plv_llamita=31..}] run scoreboard players set @s plv_llamita 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=11}] run scoreboard players operation @s pmod_llamita = @s pxp_llamita"} @self'
+  - 'command{c="execute as @a[scores={petsel=11}] run scoreboard players operation @s pmod_llamita %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=12,petkills=1..}] run scoreboard players operation @s pxp_hondero += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=12}] run scoreboard players operation @s plv_hondero = @s pxp_hondero"} @self'
+  - 'command{c="execute as @a[scores={petsel=12}] run scoreboard players operation @s plv_hondero /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=12}] run scoreboard players add @s plv_hondero 1"} @self'
+  - 'command{c="execute as @a[scores={plv_hondero=31..}] run scoreboard players set @s plv_hondero 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=12}] run scoreboard players operation @s pmod_hondero = @s pxp_hondero"} @self'
+  - 'command{c="execute as @a[scores={petsel=12}] run scoreboard players operation @s pmod_hondero %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=13,petkills=1..}] run scoreboard players operation @s pxp_saqueador += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=13}] run scoreboard players operation @s plv_saqueador = @s pxp_saqueador"} @self'
+  - 'command{c="execute as @a[scores={petsel=13}] run scoreboard players operation @s plv_saqueador /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=13}] run scoreboard players add @s plv_saqueador 1"} @self'
+  - 'command{c="execute as @a[scores={plv_saqueador=31..}] run scoreboard players set @s plv_saqueador 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=13}] run scoreboard players operation @s pmod_saqueador = @s pxp_saqueador"} @self'
+  - 'command{c="execute as @a[scores={petsel=13}] run scoreboard players operation @s pmod_saqueador %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=14,petkills=1..}] run scoreboard players operation @s pxp_brujita += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=14}] run scoreboard players operation @s plv_brujita = @s pxp_brujita"} @self'
+  - 'command{c="execute as @a[scores={petsel=14}] run scoreboard players operation @s plv_brujita /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=14}] run scoreboard players add @s plv_brujita 1"} @self'
+  - 'command{c="execute as @a[scores={plv_brujita=31..}] run scoreboard players set @s plv_brujita 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=14}] run scoreboard players operation @s pmod_brujita = @s pxp_brujita"} @self'
+  - 'command{c="execute as @a[scores={petsel=14}] run scoreboard players operation @s pmod_brujita %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=15,petkills=1..}] run scoreboard players operation @s pxp_desierto += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=15}] run scoreboard players operation @s plv_desierto = @s pxp_desierto"} @self'
+  - 'command{c="execute as @a[scores={petsel=15}] run scoreboard players operation @s plv_desierto /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=15}] run scoreboard players add @s plv_desierto 1"} @self'
+  - 'command{c="execute as @a[scores={plv_desierto=31..}] run scoreboard players set @s plv_desierto 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=15}] run scoreboard players operation @s pmod_desierto = @s pxp_desierto"} @self'
+  - 'command{c="execute as @a[scores={petsel=15}] run scoreboard players operation @s pmod_desierto %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=16,petkills=1..}] run scoreboard players operation @s pxp_jungla += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=16}] run scoreboard players operation @s plv_jungla = @s pxp_jungla"} @self'
+  - 'command{c="execute as @a[scores={petsel=16}] run scoreboard players operation @s plv_jungla /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=16}] run scoreboard players add @s plv_jungla 1"} @self'
+  - 'command{c="execute as @a[scores={plv_jungla=31..}] run scoreboard players set @s plv_jungla 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=16}] run scoreboard players operation @s pmod_jungla = @s pxp_jungla"} @self'
+  - 'command{c="execute as @a[scores={petsel=16}] run scoreboard players operation @s pmod_jungla %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=17,petkills=1..}] run scoreboard players operation @s pxp_frondoso += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=17}] run scoreboard players operation @s plv_frondoso = @s pxp_frondoso"} @self'
+  - 'command{c="execute as @a[scores={petsel=17}] run scoreboard players operation @s plv_frondoso /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=17}] run scoreboard players add @s plv_frondoso 1"} @self'
+  - 'command{c="execute as @a[scores={plv_frondoso=31..}] run scoreboard players set @s plv_frondoso 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=17}] run scoreboard players operation @s pmod_frondoso = @s pxp_frondoso"} @self'
+  - 'command{c="execute as @a[scores={petsel=17}] run scoreboard players operation @s pmod_frondoso %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=18,petkills=1..}] run scoreboard players operation @s pxp_micelio += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=18}] run scoreboard players operation @s plv_micelio = @s pxp_micelio"} @self'
+  - 'command{c="execute as @a[scores={petsel=18}] run scoreboard players operation @s plv_micelio /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=18}] run scoreboard players add @s plv_micelio 1"} @self'
+  - 'command{c="execute as @a[scores={plv_micelio=31..}] run scoreboard players set @s plv_micelio 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=18}] run scoreboard players operation @s pmod_micelio = @s pxp_micelio"} @self'
+  - 'command{c="execute as @a[scores={petsel=18}] run scoreboard players operation @s pmod_micelio %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=19,petkills=1..}] run scoreboard players operation @s pxp_pradera += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=19}] run scoreboard players operation @s plv_pradera = @s pxp_pradera"} @self'
+  - 'command{c="execute as @a[scores={petsel=19}] run scoreboard players operation @s plv_pradera /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=19}] run scoreboard players add @s plv_pradera 1"} @self'
+  - 'command{c="execute as @a[scores={plv_pradera=31..}] run scoreboard players set @s plv_pradera 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=19}] run scoreboard players operation @s pmod_pradera = @s pxp_pradera"} @self'
+  - 'command{c="execute as @a[scores={petsel=19}] run scoreboard players operation @s pmod_pradera %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=20,petkills=1..}] run scoreboard players operation @s pxp_sabana += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=20}] run scoreboard players operation @s plv_sabana = @s pxp_sabana"} @self'
+  - 'command{c="execute as @a[scores={petsel=20}] run scoreboard players operation @s plv_sabana /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=20}] run scoreboard players add @s plv_sabana 1"} @self'
+  - 'command{c="execute as @a[scores={plv_sabana=31..}] run scoreboard players set @s plv_sabana 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=20}] run scoreboard players operation @s pmod_sabana = @s pxp_sabana"} @self'
+  - 'command{c="execute as @a[scores={petsel=20}] run scoreboard players operation @s pmod_sabana %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=21,petkills=1..}] run scoreboard players operation @s pxp_nieve += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=21}] run scoreboard players operation @s plv_nieve = @s pxp_nieve"} @self'
+  - 'command{c="execute as @a[scores={petsel=21}] run scoreboard players operation @s plv_nieve /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=21}] run scoreboard players add @s plv_nieve 1"} @self'
+  - 'command{c="execute as @a[scores={plv_nieve=31..}] run scoreboard players set @s plv_nieve 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=21}] run scoreboard players operation @s pmod_nieve = @s pxp_nieve"} @self'
+  - 'command{c="execute as @a[scores={petsel=21}] run scoreboard players operation @s pmod_nieve %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=22,petkills=1..}] run scoreboard players operation @s pxp_pantano += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=22}] run scoreboard players operation @s plv_pantano = @s pxp_pantano"} @self'
+  - 'command{c="execute as @a[scores={petsel=22}] run scoreboard players operation @s plv_pantano /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=22}] run scoreboard players add @s plv_pantano 1"} @self'
+  - 'command{c="execute as @a[scores={plv_pantano=31..}] run scoreboard players set @s plv_pantano 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=22}] run scoreboard players operation @s pmod_pantano = @s pxp_pantano"} @self'
+  - 'command{c="execute as @a[scores={petsel=22}] run scoreboard players operation @s pmod_pantano %= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=23,petkills=1..}] run scoreboard players operation @s pxp_honguito += @s petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=23}] run scoreboard players operation @s plv_honguito = @s pxp_honguito"} @self'
+  - 'command{c="execute as @a[scores={petsel=23}] run scoreboard players operation @s plv_honguito /= #nivel petkills"} @self'
+  - 'command{c="execute as @a[scores={petsel=23}] run scoreboard players add @s plv_honguito 1"} @self'
+  - 'command{c="execute as @a[scores={plv_honguito=31..}] run scoreboard players set @s plv_honguito 30"} @self'
+  - 'command{c="execute as @a[scores={petsel=23}] run scoreboard players operation @s pmod_honguito = @s pxp_honguito"} @self'
+  - 'command{c="execute as @a[scores={petsel=23}] run scoreboard players operation @s pmod_honguito %= #nivel petkills"} @self'
   - 'command{c="execute as @a[scores={petkills=1..}] run scoreboard players set @s petkills 0"} @self'
   - 'command{c="execute if entity @a run scoreboard players enable @a mascota"} @self'
 

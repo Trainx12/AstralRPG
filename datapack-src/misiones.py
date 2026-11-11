@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 NS = "astral"
 CHAPTERS = [
     "Llegar al Refugio: habla con el Herrero y forja una pieza de tier I.",
-    "Los campos: mata 10 Espantapajaros, 10 Abejorros y 1 elite; entrega 3 Esencias al Cronista.",
+    "Los campos: mata 10 Espantapajaros, 10 Armored Grubs y 1 elite; entrega 3 Esencias al Cronista.",
     "La marea: derrota al Cangrejo en las playas y volve con el Cronista.",
     "El bosque: mata 15 Caras Voladoras y derrota al Chaman.",
     "Arena con memoria: derrota a la Momia.",
@@ -233,7 +233,7 @@ def generate(files, items):
     fn("chapter/2", [f"execute store result score #have aq.tmp run clear @s {pred} 0",
                      "execute if score @s aq.scare matches 10.. if score @s aq.bee matches 10.. if score @s aq.helite matches 1.. if score #have aq.tmp matches 3.. run return run " + call("fields_done"),
                      msg(CHAPTERS[1]),
-                     'tellraw @s [{"text":"Espantapajaros: "},{"score":{"name":"@s","objective":"aq.scare"}},{"text":"/10 | Abejorros: "},{"score":{"name":"@s","objective":"aq.bee"}},{"text":"/10 | Elites: "},{"score":{"name":"@s","objective":"aq.helite"}},{"text":"/1"}]'])
+                     'tellraw @s [{"text":"Espantapajaros: "},{"score":{"name":"@s","objective":"aq.scare"}},{"text":"/10 | Armored Grubs: "},{"score":{"name":"@s","objective":"aq.bee"}},{"text":"/10 | Elites: "},{"score":{"name":"@s","objective":"aq.helite"}},{"text":"/1"}]'])
     fn("fields_done", [f"clear @s {pred} 3", call("complete/2")])
     for boss, (state, flag, _) in STORY.items():
         cond = f"if score @s aq.f{flag} matches 1"

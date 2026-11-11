@@ -11,7 +11,8 @@ from escape_menu import text
 from services_ui import png, SPLIT, outlined, header, tall, glyph_parts, illustration
 from market_ui import band_color
 from adventure_ui import label
-from mobs.mascotas import MASCOTAS
+from mobs.mascotas import MASCOTAS as ALL_PETS
+MASCOTAS = {pid: d for pid, d in ALL_PETS.items() if d["n"] <= 6}
 
 ROOT = Path(__file__).resolve().parent
 E = 88                          # ancho extra a la izquierda para el retrato

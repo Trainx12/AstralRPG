@@ -257,3 +257,7 @@ Instalación, ZIP privados, coordenadas por revisar y pruebas en
 jamás se reemplaza `world`. Las arenas TFT requieren fijar su punto con OP antes de viajar.
 
 Panel lateral actual: TAB (`lobby.py`), BetterHud apagado por defecto; `/sb` en `betterhud.py` controla TAB. Ver `build/deploy/tanda1.md`.
+
+## Circuito de assets privados y dos packs
+
+La tanda 4a incorpora un circuito separado: [pasos completos y tabla de mascotas](TERCEROS.md). El pack publico se regenera como siempre, sin arte privado. Preparar modelos con `python datapack-src/build_privado.py --prepare`, convertir TODOS los modelos en BetterModel local y combinar con `--assets <build/assets>`. El pack FINAL sale en `<ASTRAL_PRIVADO>/build/AstralRPG-Textures.zip`; ese es el que se pasa a `tools/subir_pack_r2.py` para el servidor. El publico sigue siendo reproducible sin el clon privado. Auditar los archivos versionados con `python tools/verificar_terceros.py` antes de publicar codigo. No copiar estos assets a pack-source ni commitearlos en el repo publico.

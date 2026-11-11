@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 VANILLA={'SKELETON':(.6,1.99),'CREEPER':(.6,1.7),'FOX':(.6,.7),'CHICKEN':(.4,.7),'VEX':(.4,.8),'SPIDER':(1.4,.9),
-         'PHANTOM':(.9,.5),'HUSK':(.6,1.95),'RAVAGER':(1.95,2.2),'IRON_GOLEM':(1.4,2.7),'EVOKER':(.6,1.95)}
+         'ZOMBIE':(.6,1.95),'PHANTOM':(.9,.5),'HUSK':(.6,1.95),'RAVAGER':(1.95,2.2),'IRON_GOLEM':(1.4,2.7),'EVOKER':(.6,1.95)}
 SPECIAL={'astral_yeti_cumbre':('astral_yeti',8.0),
          'astral_golem_forja_mazmorra':('astral_golem_forja',8.0)}
 
@@ -23,6 +23,10 @@ def rotate(p, origin, angles):
 @lru_cache(maxsize=None)
 def bounds(model):
     d=json.loads((ROOT/'build/models'/f'{model}.bbmodel').read_text(encoding='utf-8'))
+    return bounds_data(d)
+
+
+def bounds_data(d):
     elements={e['uuid']:e for e in d['elements'] if e.get('type','cube')=='cube'}
     groups={g['uuid']:g for g in d.get('groups',[])}
     points=[]
@@ -58,7 +62,7 @@ def rows():
     from mobs.mythic import MOBS,ELITES,ANCESTRALES
     out=[]
     for mid,d in MOBS.items():
-        if d['kind']=='montura': continue
+        if d['kind']=='montura' or mid == 'astral_goblin': continue
         s=2.0 if d['kind']=='jefe' else 1.0
         out.append((mid,mid,s,d['type']))
         if mid in ELITES: out.append((mid+'_elite',mid,1.35,d['type']))

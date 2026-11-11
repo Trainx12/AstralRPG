@@ -1,0 +1,90 @@
+menu_title: '&8Cubito Frondoso'
+open_command: mascota_frondoso
+size: 54
+update_interval: 1
+items:
+  'info':
+    material: MOSS_BLOCK
+    slot: 13
+    amount: 1
+    display_name: '&#91D677Cubito Frondoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_frondoso}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_frondoso}%&7/25'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Prisa I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - '&8Bonus solo en mazmorras'
+    - '&7Se consigue en la Gacha de Monturas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
+  'invocar':
+    material: LIME_DYE
+    slot: 29
+    amount: 1
+    display_name: '&aInvocar'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_frondoso}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_frondoso}%&7/25'
+    - '&7Nv. 1: &fRegeneracion I'
+    - '&7Nv. 10: &f+ Prisa I'
+    - '&7Nv. 20: &f+ Resistencia I'
+    - '&7Nivel 30: evolucion visual'
+    - '&8Bonus solo en mazmorras'
+    - '&7Se consigue en la Gacha de Monturas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.frondoso
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 17'
+  'estado':
+    material: BARRIER
+    slot: 31
+    amount: 1
+    display_name: '&cBloqueada'
+    lore:
+    - '&7Ganala en la Gacha de Monturas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+  'estado_si':
+    material: EMERALD
+    slot: 31
+    amount: 1
+    display_name: '&aDesbloqueada'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    view_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.frondoso
+  'guardar':
+    material: CHEST
+    slot: 33
+    amount: 1
+    display_name: '&aGuardar mascota'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'coleccion':
+    material: ARROW
+    slot: 45
+    amount: 1
+    display_name: '&eVolver a la coleccion'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] mascotas_3'

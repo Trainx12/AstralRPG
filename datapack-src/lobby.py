@@ -107,7 +107,8 @@ def mount_rewards():
         if saddle:
             c.append("give %player% minecraft:saddle 1")
         return c
-    return [
+    from terceros import PETS
+    return [(rarity, 6, "Mascota 3D: " + name, mascota(pid)) for pid, name, rarity, *_ in PETS] + [
         ("common", 20, "Mascota: Mapache", egg("astral_mapache", False)),
         ("common", 20, "Mascota: Pinguino de Cristal", egg("astral_pinguino", False)),
         ("common", 10, "Montura extra (silla)", ["give %player% minecraft:saddle 2"]),

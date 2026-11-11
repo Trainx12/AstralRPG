@@ -7,7 +7,7 @@ Como funciona:
     o en la Gacha de Monturas (PET_GANAR_<ID>).
   - /mascotas (alias en commands.yml) hace '/trigger mascota set 99'. Un controlador invisible en el lobby
     (astral_mascotas_control, en un chunk siempre cargado) mira a todos los jugadores cada 1/4 de segundo:
-      99 = mostrar el menu (botones Invocar / Guardar), 1..6 = invocar esa mascota, 98 = guardar.
+      99 = mostrar el menu (botones Invocar / Guardar), 1..23 = invocar esa mascota, 98 = guardar.
   - La mascota sigue a su dueno (goToOwner, tambien entre mundos) y cada 2 segundos le da sus efectos.
     Si el dueno guarda, cambia de mascota o se desconecta, la mascota desaparece.
   - Nivel: suben con los mobs que mata el dueno mientras la mascota esta afuera (1 nivel cada 25, hasta 30).
@@ -17,8 +17,10 @@ Como funciona:
 Salida: ../../build/mythicmobs/{mobs,skills}/mascotas.yml y ../../build/mascotas/comandos.txt
 """
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
 OUT = os.path.join(HERE, "..", "..", "build")
 KILLS_POR_NIVEL = 25
 NIVEL_MAX = 30
@@ -31,7 +33,7 @@ def condicion_mazmorra():
 # id: numero del boton, nombre, color, como se consigue, efectos por nivel (desde 1, desde 10, desde 20)
 #   efecto = (efecto de pocion, nivel 0 = I)
 MASCOTAS = {
-    "lobo": dict(n=1, nombre="Lobo del Bosque", color="#9AA0A8", fuente="Espantapajaros y Abejorros (raro)",
+    "lobo": dict(n=1, nombre="Lobo del Bosque", color="#9AA0A8", fuente="Espantapajaros y Armored Grubs (raro)",
                  efectos=[[("strength", 0)], [("speed", 0)], [("resistance", 0)]],
                  texto=["Fuerza I", "+ Velocidad I", "+ Resistencia I"]),
     "cuervo": dict(n=2, nombre="Cuervo Arcano", color="#B07CFF", fuente="Gacha de Monturas",
@@ -50,6 +52,9 @@ MASCOTAS = {
                   efectos=[[], [], []], rescate=[600, 420, 300],
                   texto=["Te salva con poca vida (cada 10 min)", "cada 7 min", "cada 5 min"]),
 }
+from terceros import pet_definitions, EFFECT_NAMES
+MASCOTAS.update(pet_definitions())
+
 CONTROL = (180.5, 92, 190.5)        # debajo de la plaza del lobby (chunk siempre cargado con forceload)
 
 
@@ -59,7 +64,7 @@ def beneficios_actuales(pid, nivel):
     tier = 2 if nivel >= 20 else (1 if nivel >= 10 else 0)
     if d.get('rescate'):
         return [f"Rescate con poca vida (cada {d['rescate'][tier] // 60} min)"]
-    nombres = {'strength': 'Fuerza', 'speed': 'Velocidad', 'resistance': 'Resistencia',
+    nombres = {**{k: v.removesuffix(' I') for k, v in EFFECT_NAMES.items()}, 'strength': 'Fuerza', 'speed': 'Velocidad', 'resistance': 'Resistencia',
                'night_vision': 'Vision nocturna', 'luck': 'Suerte', 'regeneration': 'Regeneracion',
                'absorption': '2 corazones de absorcion', 'jump_boost': 'Salto',
                'fire_resistance': 'Resistencia al fuego', 'haste': 'Prisa'}
@@ -127,9 +132,10 @@ def skill_yml():
     for pid, d in MASCOTAS.items():
         n = d["n"]
         lv = f"plv_{pid}"
+        model = d.get('modelo', f'astral_pet_{pid}')
         # clearlag_exclude: ClearLag no la limpia ni la despawnea por distancia.
         L += [f"PET_MODELO_{pid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", "  - addtag{tag=clearlag_exclude} @self",
-              f"  - model{{m=astral_pet_{pid}}} @self", ""]
+              f"  - model{{m={model}}} @self", ""]
         # chequeo: si el dueno ya no la tiene elegida, la mascota se va
         L += [f"PET_{pid}_CHEQUEO:", "  TargetConditions:", f"  - score{{o=petsel;v={n}}} false", "  Skills:",
               sk("particles{p=poof;amount=12;hS=0.4;vS=0.4} @self"), sk("remove @self"), ""]
@@ -144,7 +150,7 @@ def skill_yml():
             L += [f"PET_{pid}_BONUS{t + 1}:"] + cond + ["  Skills:"] + lines + [""]
         # nivel 30: mas grande y con particulas
         L += [f"PET_{pid}_EVOLUCION:", "  TargetConditions:", f"  - score{{o={lv};v={NIVEL_MAX}to{NIVEL_MAX}}} true", "  Skills:",
-              sk(f"model{{m=astral_pet_{pid};s=1.35}} @self"),
+              sk(f"model{{m={model};s=1.35}} @self"),
               sk("particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self"), ""]
         if d.get("brillo"):
             L += [f"PET_{pid}_MARCA:", "  TargetConditions:", condicion_mazmorra(), "  Skills:", sk(f"skill{{s=PET_{pid}_MARCA_UNO}} @LivingInRadius{{r=14}}"), "",
@@ -252,7 +258,7 @@ def commands():
           "#   mascotas:",
           "#   - minecraft:trigger mascota set 99",
           "# despues: reiniciar (los alias se cargan al arrancar)",
-          "# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix> true"]
+          "# para dar una mascota a mano: lp user <jugador> permission set astral.mascota.<id> true"]
     return "\n".join(C) + "\n"
 
 

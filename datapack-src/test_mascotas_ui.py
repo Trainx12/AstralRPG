@@ -60,7 +60,7 @@ class PetsUITests(unittest.TestCase):
             image=Image.open(io.BytesIO(self.files[f'assets/astral/textures/{texture}.png']))
             self.assertEqual(image.size,(18,18))
             self.assertTrue(definition['oversized_in_gui'])
-        for pid in MASCOTAS:
+        for pid in (pid for pid, d in MASCOTAS.items() if d["n"] <= 6):
             self.assertIsNotNone(portrait(pid).getbbox())
             self.assertLessEqual(portrait(pid).width,46)
             self.assertLessEqual(portrait(pid).height,22)
@@ -91,7 +91,7 @@ class PetDetailTests(unittest.TestCase):
         from menus import mascota_detalle_menu
         from companero_ui import title as detail_title, LEVEL_SLOTS, XP_SLOTS, PERK_ROWS, PERK_LEVELS, assets as companero_assets
         files, _ = companero_assets()
-        for pid in MASCOTAS:
+        for pid in (pid for pid, d in MASCOTAS.items() if d["n"] <= 6):
             data = yaml.safe_load(mascota_detalle_menu(pid))
             items = data['items']
             self.assertEqual(data['menu_title'], detail_title(pid))

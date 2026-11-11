@@ -206,11 +206,62 @@ def mascotas_menu():
                   extra={'item_model': q('astral:mascotas/nav_back'), 'click_commands': ['[openguimenu] principal']})
     items += item('cerrar', 'PAPER', 53, '&cCerrar',
                   extra={'item_model': q('astral:mascotas/nav_close'), 'click_commands': ['[close]']})
+    items += item('mas_companeros', 'ARROW', 46, '&eMas companeros',
+                  extra={'click_commands': ['[openguimenu] mascotas_2']})
     return menu(title(), 'mascotas', 54, items, update=True)
+
+
+def mascotas_extra_menu(page):
+    """Paginas nuevas sin retratos licenciados: iconos vanilla y datos propios."""
+    pets = [(pid, d) for pid, d in MASCOTAS.items() if d['n'] > 6]
+    lines = []
+    for slot, (pid, d) in zip(range(10, 18), pets[(page - 2) * 9:(page - 2) * 9 + 8]):
+        lines += item(pid, d['icono'], slot, hexc(d['color']) + d['nombre'],
+                      [f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", '&7Gacha de Monturas',
+                       *[f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
+                       '&eClic: ver estado e invocar'],
+                      extra={'click_commands': [f'[openguimenu] mascota_{pid}']})
+    # Nueve tarjetas por pagina; una segunda fila deja espacio para la novena.
+    subset = pets[(page - 2) * 9:(page - 2) * 9 + 9]
+    if len(subset) == 9:
+        pid, d = subset[-1]
+        lines += item(pid, d['icono'], 22, hexc(d['color']) + d['nombre'],
+                      [f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
+                      extra={'click_commands': [f'[openguimenu] mascota_{pid}']})
+    lines += item('anterior', 'ARROW', 45, '&eAnterior', extra={'click_commands': [
+        '[openguimenu] ' + ('mascotas' if page == 2 else 'mascotas_2')]})
+    if page == 2:
+        lines += item('siguiente', 'ARROW', 53, '&eSiguiente', extra={'click_commands': ['[openguimenu] mascotas_3']})
+    lines += item('guardar', 'CHEST', 49, '&aGuardar mascota', extra={'click_commands': [
+        '[close]', '[console] scoreboard players set %player_name% mascota 98']})
+    return menu(f'&8Mascotas - pagina {page}/3', f'astralmascotas_{page}', 54, lines, update=True)
+
+
+def mascota_nueva_detalle(pid):
+    d = MASCOTAS[pid]
+    permission = f'astral.mascota.{pid}'
+    requirement = '\n      requirements:\n        tiene:\n          type: has permission\n          permission: ' + permission
+    lore = [f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30",
+            f"&7Experiencia: &e{SCORE.format('pmod_' + pid)}&7/25",
+            *[f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
+            '&7Nivel 30: evolucion visual', '&8Bonus solo en mazmorras', '&7Se consigue en la Gacha de Monturas']
+    lines = item('info', d['icono'], 13, hexc(d['color']) + d['nombre'], lore, extra={'update': 'true'})
+    lines += item('invocar', 'LIME_DYE', 29, '&aInvocar', lore, extra={
+        'click_requirement': requirement + "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'",
+        'click_commands': ['[close]', f"[console] scoreboard players set %player_name% mascota {d['n']}"]})
+    lines += item('estado', 'BARRIER', 31, '&cBloqueada', ['&7Ganala en la Gacha de Monturas'], extra={'priority': 2})
+    lines += item('estado_si', 'EMERALD', 31, '&aDesbloqueada', extra={'priority': 1, 'view_requirement': requirement})
+    lines += item('guardar', 'CHEST', 33, '&aGuardar mascota', extra={'click_commands': [
+        '[close]', '[console] scoreboard players set %player_name% mascota 98']})
+    lines += item('coleccion', 'ARROW', 45, '&eVolver a la coleccion', extra={'click_commands': [
+        f"[openguimenu] mascotas_{2 + (d['n'] - 7) // 9}"]})
+    return menu('&8' + d['nombre'], 'mascota_' + pid, 54, lines, update=True)
 
 
 def mascota_detalle_menu(pid):
     """Mi companero (companero_ui.py): cartel de nivel, barra de experiencia y mejoras con su estado real."""
+    if MASCOTAS[pid]["n"] > 6:
+        return mascota_nueva_detalle(pid)
     from companero_ui import title, LEVEL_SLOTS, XP_SLOTS, PERK_ROWS, PERK_LEVELS, INVOKE_SLOTS, REST_SLOTS
     P = "%player_name%"
     d = MASCOTAS[pid]
@@ -457,7 +508,7 @@ def misiones_menu(current_page=0):
     rewards = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
     progress = {
         1: ['&7Herrero: &f' + SCORE.format('aq.herrero') + '/1', '&7Forja tier I: &f' + SCORE.format('aq.forge1') + '/1'],
-        2: ['&7Espantapajaros: &f' + SCORE.format('aq.scare') + '/10', '&7Abejorros: &f' + SCORE.format('aq.bee') + '/10', '&7Elites: &f' + SCORE.format('aq.helite') + '/1'],
+        2: ['&7Espantapajaros: &f' + SCORE.format('aq.scare') + '/10', '&7Armored Grubs: &f' + SCORE.format('aq.bee') + '/10', '&7Elites: &f' + SCORE.format('aq.helite') + '/1'],
         3: ['&7Cangrejo: &f' + SCORE.format('aq.f1') + '/1'],
         4: ['&7Caras: &f' + SCORE.format('aq.face') + '/15', '&7Chaman: &f' + SCORE.format('aq.f2') + '/1'],
         5: ['&7Momia: &f' + SCORE.format('aq.f3') + '/1'], 6: ['&7Minas: &f' + SCORE.format('aq.f4') + '/1'],
@@ -561,6 +612,7 @@ def main():
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
+    menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in (2, 3)})
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]
