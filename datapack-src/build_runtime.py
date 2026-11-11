@@ -4,6 +4,7 @@ import os
 from pathlib import Path
 import subprocess
 import zipfile
+import yaml
 
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -11,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def build(jdk,server):
     target=ROOT/'.local/tanda4b-classes'
     target.mkdir(parents=True,exist_ok=True)
-    jars=list((server/'libraries').rglob('*.jar'))
+    jars=list((server/'libraries').rglob('*.jar')) + [server/'plugins/bettermodel.jar',server/'plugins/mythicmobs.jar']
     if not jars:
         raise FileNotFoundError('Faltan dependencias Paper locales')
     compiler = [str(jdk/('java.exe' if os.name=='nt' else 'java')), '-m','jdk.compiler/com.sun.tools.javac.Main']
@@ -21,7 +22,19 @@ def build(jdk,server):
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralDecor*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(),(2026,11,10,0,0,0)),p.read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.0.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, Vault, EconomyShopGUI]\n')
+        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.1.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI]\n')
+        from mobs.tanda3c import NPC_MODELOS, MAQUINAS, MAZMORRAS
+        models={mid:'astral_npc_'+name for mid,name in NPC_MODELOS.items()}
+        skills={mid:'AST_NPC_'+name for mid,name in NPC_MODELOS.items()}
+        for mid in MAQUINAS:
+            models[mid]=mid; skills[mid]='AST_MODELO_'+mid
+        for suffix in ('venta','mina_venta','bosque_venta'):
+            mid='astral_npc_'+suffix; models[mid]='astral_vendedor'; skills[mid]='AST_VENDEDOR_PRIVADO'
+        for dungeon in MAZMORRAS:
+            for mid,name in [('astral_npc_'+dungeon,'bruja'),('astral_'+dungeon+'_guia','mago')]:
+                models[mid]='astral_npc_'+name; skills[mid]='AST_NPC_'+name
+        config={'npc-models':models,'npc-skills':skills,'hidden-npcs':['astral_npc_'+d for d in MAZMORRAS]}
+        z.writestr(zipfile.ZipInfo('config.yml',(2026,11,10,0,0,0)),yaml.safe_dump(config,sort_keys=False))
     print(dest)
 
 

@@ -78,7 +78,7 @@ ARENAS = [dict(id='clasica', world='arena', name='Arena Astral', icon='IRON_SWOR
     for i, icon, arrival in [(1, 'STONE_SWORD', (-286.5, 143, -550.5, 0, 0)),
                              (2, 'GOLDEN_SWORD', (-286.5, 139, -282.5, 0, 0)),
                              (3, 'DIAMOND_SWORD', (-286.5, 139, -14.5, 0, 0))]]
-NPC_POSITIONS = {'parkour': (121.5, 100, 193.529), 'arena': (127.5, 100, 193.529)}
+NPC_POSITIONS = {'parkour': (121.5, 100, 193.529), 'arena': (167.548, 102, 218.504, -89.6, 0)}
 # Color Escape es un puzzle de una persona y lo que se abre queda abierto. Se juega de a uno y,
 # cuando el ultimo sale, se copia encima la version limpia guardada lejos (08/11/2026).
 # Zona del puzzle (sus command blocks, cofres y carteles: x -26..114, y -20..-1, z -22..305) con margen.
@@ -549,7 +549,7 @@ def deployment():
               'rg flag -w lobby __global__ mob-spawning allow']
     for kind, position in NPC_POSITIONS.items():
         lines += [f'mm mobs kill astral_npc_{kind}',
-                  f'mm mobs spawn astral_npc_{kind} 1 lobby,{position[0]},{position[1]},{position[2]}']
+                  f'mm mobs spawn astral_npc_{kind} 1 lobby,' + ','.join(map(str,position))]
     lines += ['rg flag -w lobby __global__ mob-spawning deny',
               '# TFT: llegadas verificadas por defecto, rescate bajo Y=120. No requieren fijar punto OP.',
               '# Opcional: /astralpunto arena tft1 (o tft2/tft3) sobrescribe la llegada. /astralpunto lista muestra puntos guardados.',

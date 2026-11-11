@@ -16,6 +16,9 @@ import org.bukkit.inventory.*;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.joml.Vector3f;
+import org.joml.Quaternionf;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import kr.toxicity.model.api.BetterModel;
 import org.bukkit.util.Transformation;
 import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
@@ -69,9 +72,11 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private static final Map<String,Integer> PLANTS = Map.of("swamp",65,"mangrove_swamp",65,"jungle",70,"sparse_jungle",50,"bamboo_jungle",65,"dark_forest",35,"forest",8,"flower_forest",8,"birch_forest",8);
     public void onEnable() {
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
+        saveDefaultConfig();
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getScheduler().runTaskTimer(this,this::wings,1,2);
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
+        getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
         getLogger().info("Tanda 4b: peluches, alas, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
     public void onDisable() { wings.values().forEach(Entity::remove); wings.clear(); }
@@ -95,6 +100,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             Class<?> adapter = Class.forName("com.sk89q.worldedit.bukkit.BukkitAdapter",true,loader);
             Object location = adapter.getMethod("adapt",Location.class).invoke(null,loc);
             Object player = wgPlugin.getClass().getMethod("wrapPlayer",Player.class).invoke(wgPlugin,p);
+            Object sessions = platform.getClass().getMethod("getSessionManager").invoke(platform);
+            Object world = adapter.getMethod("adapt",World.class).invoke(null,loc.getWorld());
+            for(var m:sessions.getClass().getMethods()) if(m.getName().equals("hasBypass") && m.getParameterCount()==2)
+                if((boolean)m.invoke(sessions,player,world)) return true;
             Class<?> flag = Class.forName("com.sk89q.worldguard.protection.flags.StateFlag",true,loader);
             Object flags = Array.newInstance(flag,0);
             for(var m:query.getClass().getMethods()) if(m.getName().equals("testBuild") && m.getParameterCount()==3 && m.getParameterTypes()[2].isArray())
@@ -104,14 +113,31 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     @EventHandler(priority=EventPriority.HIGHEST)
     public void place(PlayerInteractEvent e) {
-        if(e.getAction()!=Action.RIGHT_CLICK_BLOCK || e.getHand()!=EquipmentSlot.HAND || e.useInteractedBlock()==Event.Result.DENY || e.useItemInHand()==Event.Result.DENY) return;
+        if(e.getAction()!=Action.RIGHT_CLICK_BLOCK || e.getHand()!=EquipmentSlot.HAND) return;
         String id = id(e.getItem());
         if(!id.startsWith("peluche_") || !PLUSH.contains(id.substring(8))) return;
+        Player p = e.getPlayer();
+        // No ignorar DENY ajenos: puede ser una proteccion de Bolt u otro plugin.
+        if(e.useInteractedBlock()==Event.Result.DENY || e.useItemInHand()==Event.Result.DENY) {
+            p.sendMessage("Aca no se pueden poner peluches: otro plugin bloqueo el clic."); return;
+        }
         e.setCancelled(true);
-        Player p = e.getPlayer(); Block target = e.getClickedBlock().getRelative(e.getBlockFace());
-        if(!target.getType().isAir() || !target.getRelative(BlockFace.UP).getType().isAir() || !target.getRelative(BlockFace.DOWN).getType().isSolid() || !build(p,target.getLocation())) return;
-        Location loc = target.getLocation().add(.5,0,.5); loc.setYaw(p.getLocation().getYaw()+180);
-        if(!loc.getWorld().getNearbyEntities(loc,.45,.7,.45,x->x instanceof Interaction).isEmpty()) return;
+        Block support = e.getClickedBlock();
+        if(e.getBlockFace()!=BlockFace.UP) support=support.getRelative(e.getBlockFace()).getRelative(BlockFace.DOWN);
+        var shape=support.getCollisionShape().getBoundingBoxes();
+        if(shape.isEmpty()) { p.sendMessage("El peluche necesita una superficie firme."); return; }
+        double top=shape.stream().filter(b->b.getMinX()<=.5 && b.getMaxX()>=.5 && b.getMinZ()<=.5 && b.getMaxZ()>=.5)
+            .mapToDouble(b->b.getMaxY()).max().orElse(0);
+        if(top<=0) { p.sendMessage("El peluche necesita apoyo en el centro del bloque."); return; }
+        Location loc=support.getLocation().add(.5,top,.5); loc.setYaw(p.getLocation().getYaw()+180);
+        if(!build(p,support.getLocation()) || !build(p,loc)) { p.sendMessage("Aca no se pueden poner peluches: no tenes permiso para construir."); return; }
+        var occupied=new org.bukkit.util.BoundingBox(loc.getX()-.4,loc.getY()+.01,loc.getZ()-.4,loc.getX()+.4,loc.getY()+.9,loc.getZ()+.4);
+        for(int y=loc.getBlockY();y<=Math.floor(loc.getY()+.9);y++) {
+            Block b=loc.getWorld().getBlockAt(loc.getBlockX(),y,loc.getBlockZ());
+            for(var part:b.getCollisionShape().getBoundingBoxes())
+                if(part.clone().shift(b.getX(),b.getY(),b.getZ()).overlaps(occupied)) { p.sendMessage("No hay espacio libre para el peluche."); return; }
+        }
+        if(!loc.getWorld().getNearbyEntities(loc,.8,1,.8,x->x instanceof Interaction).isEmpty()) { p.sendMessage("Ya hay un peluche demasiado cerca."); return; }
         ItemStack item = e.getItem().clone(); item.setAmount(1);
         ItemDisplay visual = null; Interaction hitbox = null;
         try {
@@ -136,7 +162,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         if(bytes==null) return;
         e.setCancelled(true);
         Player p = e.getPlayer();
-        if(entity.getLocation().distanceSquared(p.getLocation())>36 || !build(p,entity.getLocation())) return;
+        if(entity.getLocation().distanceSquared(p.getLocation())>36 || !build(p,entity.getLocation())) { p.sendMessage("Aca no podes recoger peluches."); return; }
         ItemStack item = ItemStack.deserializeBytes(bytes);
         String uuid = entity.getPersistentDataContainer().get(display,PersistentDataType.STRING);
         // Retirar el derecho a devolver antes de emitir items: dos clics nunca cobran dos veces.
@@ -148,15 +174,59 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private void wings() {
         Set<UUID> active = new HashSet<>();
         for(Player p:Bukkit.getOnlinePlayers()) {
-            String id=id(p.getInventory().getChestplate());
+            // Segunda mano: inventario vanilla se encarga de muerte, tumbas y desconexion.
+            ItemStack cosmetic=p.getInventory().getItemInOffHand();
+            String id=id(cosmetic);
             if(!Set.of("carnivora_alas","asura_alas").contains(id) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR) continue;
             active.add(p.getUniqueId());
-            Location loc=p.getLocation().add(0,1.1,0); loc.setPitch(0);
+            Location loc=p.getLocation(); loc.setYaw(0); loc.setPitch(0);
             ItemDisplay v=wings.get(p.getUniqueId());
-            if(v==null || !v.isValid()) { v=p.getWorld().spawn(loc,ItemDisplay.class); v.setPersistent(false); v.addScoreboardTag("astral.wings"); wings.put(p.getUniqueId(),v); }
-            v.setItemStack(p.getInventory().getChestplate()); v.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED); v.teleport(loc);
+            if(v!=null && !v.getWorld().equals(p.getWorld())) { v.remove(); v=null; }
+            if(v==null || !v.isValid()) {
+                v=p.getWorld().spawn(loc,ItemDisplay.class); v.setPersistent(false); v.addScoreboardTag("astral.wings");
+                v.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
+                v.setInterpolationDuration(2); v.setTeleportDuration(2); wings.put(p.getUniqueId(),v);
+            }
+            if(!cosmetic.equals(v.getItemStack())) v.setItemStack(cosmetic.clone());
+            if(v.getVehicle()!=p && !p.addPassenger(v)) { v.remove(); continue; }
+            // El pasajero recibe la traslacion del cliente. Rotar tambien el offset local hacia la espalda.
+            float yaw=(float)Math.toRadians(-p.getBodyYaw());
+            Quaternionf rotation=new Quaternionf().rotationY(yaw);
+            // El anclaje PASSENGER vanilla esta a getHeight(): compensar el cambio de pose una sola vez.
+            float shoulder=(p.isSneaking()?1.2f:1.45f)-(float)p.getHeight();
+            Vector3f offset=new Vector3f(0,shoulder,-.32f).rotate(rotation);
+            v.setInterpolationDelay(0);
+            v.setTransformation(new Transformation(offset,rotation,new Vector3f(1),new Quaternionf()));
         }
         wings.entrySet().removeIf(e->{if(active.contains(e.getKey())) return false; e.getValue().remove(); return true;});
+    }
+    private void npcs() {
+        if(!getServer().getPluginManager().isPluginEnabled("MythicMobs") || !getServer().getPluginManager().isPluginEnabled("BetterModel")) return;
+        var models=getConfig().getConfigurationSection("npc-models");
+        if(models==null) return;
+        for(var mob:MythicBukkit.inst().getMobManager().getActiveMobs()) {
+            String mid=mob.getType().getInternalName(), model=models.getString(mid);
+            if(model==null) continue;
+            Entity entity=mob.getEntity().getBukkitEntity();
+            if(!entity.isValid() || entity.isDead()) continue;
+            var renderer=BetterModel.modelOrNull(model);
+            if(renderer==null) continue; // BetterModel puede seguir armando su catalogo.
+            var registry=BetterModel.registryOrNull(entity.getUniqueId());
+            if(registry==null || registry.tracker(model)==null) {
+                if(registry!=null) registry.close(); // Reemplazar un tracker obsoleto, nunca apilar modelos.
+                MythicBukkit.inst().getAPIHelper().castSkill(entity, getConfig().getString("npc-skills."+mid));
+            }
+            registry=BetterModel.registryOrNull(entity.getUniqueId());
+            if(registry==null) continue;
+            var tracker=registry.tracker(model);
+            if(tracker==null) continue;
+            boolean visible=!getConfig().getStringList("hidden-npcs").contains(mid);
+            for(var bone:tracker.bones()) if(bone.getNametag()!=null) {
+                // BetterModel usa su propio flag, separado de CustomNameVisible de Bukkit.
+                bone.getNametag().alwaysVisible(visible);
+                if(!visible) bone.getNametag().component(net.kyori.adventure.text.Component.empty());
+            }
+        }
     }
     private void plants() {
         Set<String> visited=new HashSet<>();

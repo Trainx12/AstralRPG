@@ -16,12 +16,13 @@ NPC_MODELOS = {
     'astral_npc_cronista': 'cronista',
     'astral_npc_minas': 'minero', 'astral_npc_mina_viaje': 'minero', 'astral_npc_bosque_viaje': 'minero',
     'astral_npc_arena': 'caballero', 'astral_npc_portales': 'hechicero',
+    'astral_npc_tienda': 'comerciante',
 }
 # Mazmorras: la entrada escondida usa la bruja y el guia del final el mago. Santuario queda en espera.
 MAZMORRAS = ('mina', 'bosque', 'tumba', 'cumbre', 'forja')
 LUCES = {'mago': ('cristal',), 'bazar': ('farol',), 'minero': ('lampara', 'farol', 'oro'), 'hechicero': ('gema',),
-         'bruja': ('gema',)}
-PERSONAJES = ('mago', 'herrero', 'subastas', 'bazar', 'cronista', 'minero', 'caballero', 'hechicero', 'bruja')
+         'bruja': ('gema',), 'comerciante': ('lentes',)}
+PERSONAJES = ('mago', 'herrero', 'subastas', 'bazar', 'cronista', 'minero', 'caballero', 'hechicero', 'bruja', 'comerciante')
 
 
 def npc_skills(mid, dungeon=None):

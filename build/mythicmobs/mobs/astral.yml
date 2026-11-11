@@ -1421,6 +1421,9 @@ astral_npc_tienda:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_comerciante} @self ~onSpawn
+  - skill{s=AST_NPC_comerciante} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'skill{s=AQ_TIENDA} @trigger ~onInteract'
   - 'command{c="sudo <trigger.name> economyshopgui:shop"} @self ~onInteract'
 

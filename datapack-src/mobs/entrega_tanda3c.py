@@ -24,12 +24,15 @@ def spawns():
 
 def text():
     pack = ROOT / '.local/terceros/AstralRPG-privado/build/AstralRPG-Textures.zip'
+    tienda = ROOT / '.local/terceros/AstralRPG-privado/build/entregas/tienda-modelo/AstralRPG-Textures.zip'
+    if tienda.exists():
+        pack = tienda
     sha = hashlib.sha1(pack.read_bytes()).hexdigest() if pack.exists() else '(armar el pack FINAL)'
     modelos = list(MAQUINAS) + ['astral_npc_' + p for p in PERSONAJES] + list(MEJORADOS)
     L = ['# Tanda 3c: maquinas de Mini juegos, NPC en 3D y mejoras de jefes', '',
          'Generado por `datapack-src/mobs/entrega_tanda3c.py`. Nada de esto se instala solo.', '',
          '## Archivos', '',
-         '- Pack FINAL (privado) a R2: `python tools/subir_pack_r2.py .local/terceros/AstralRPG-privado/build/AstralRPG-Textures.zip`',
+         f'- Pack FINAL (privado) a R2: `python tools/subir_pack_r2.py {pack.relative_to(ROOT).as_posix()}`',
          f'- `resource-pack-sha1={sha}` en `server.properties` (comprobar antes la descarga publica).',
          '- `plugins/BetterModel/models/`: ' + ', '.join(f'`{m}.bbmodel`' for m in modelos)
          + ' desde `build/models/`, y `astral_vendedor.bbmodel` desde el build privado (ahora con el hueso del nombre).',
@@ -37,13 +40,13 @@ def text():
          ' desde `build/mythicmobs/mobs/`; `astral.yml` desde el build PRIVADO (conserva los vendedores).',
          '- `plugins/MythicMobs/skills/`: `tanda3c.yml` publico y `astral.yml` del build PRIVADO.',
          '- `plugins/Skript/scripts/astral_minijuegos.sk` (usa `minecraft:kill`).',
-         '- Santuario no se toca. La Tienda sigue como aldeano.', '',
+         '- Santuario no se toca. Tienda usa `astral_npc_comerciante.bbmodel`; instalar tambien `AstralDecor.jar` de la entrega Tienda.', '',
          '## Orden', '',
          '1. `list` (sin jugadores), respaldo en `.local/deploy-backups/tanda3c-<fecha>/`, apagar.',
          '2. Subir pack a R2, verificar SHA-1 publico, actualizar `server.properties`, subir archivos y comparar tamanos.',
          '3. Encender, esperar `Done (` y revisar el log (modelos cargados, sin errores de MythicMobs).', '',
          '## NPC', '',
-         'Cada NPC conserva su aldeano, nombre y clics; el modelo se pone solo al cargar (`~onLoad`). Si alguno sigue viendose como aldeano,',
+         'Cada NPC conserva nombre y clics. AstralDecor recupera trackers faltantes cuando BetterModel esta listo y fuerza `ModelNametag.alwaysVisible`.',
          'rehacerlo en su lugar con estas lineas (primero `forceload add` alrededor en `astral_minas` y `astral_bosque`):', '', '```',
          'rg flag -w lobby __global__ mob-spawning allow', 'rg flag -w astral_bosque __global__ mob-spawning allow']
     for mid, lines in spawns().items():

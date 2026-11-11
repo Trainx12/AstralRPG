@@ -178,7 +178,8 @@ def private_configs(models):
         mobs = yaml.safe_load((ROOT / 'build/mythicmobs/mobs/astral.yml').read_text(encoding='utf-8'))
         for mid in ('astral_abejorro', 'astral_abejorro_elite'):
             mobs[mid]['Skills'] = [s for s in mobs[mid]['Skills'] if not s.startswith('state{s=attack}')]
-        for mid in ('venta', 'mina_venta', 'bosque_venta'):  # la Tienda conserva su aldeano
+        skills['AST_VENDEDOR_PRIVADO'] = {'Skills': ['model{m=astral_vendedor} @self']}
+        for mid in ('venta', 'mina_venta', 'bosque_venta'):  # Tienda usa el comerciante propio.
             mob = mobs['astral_npc_' + mid]
             # VILLAGER adulto: 0,6 x 1,95, aproximadamente jugador. No se escala la entidad.
             mob['Skills'] += ['model{m=astral_vendedor} @self ~onSpawn', 'model{m=astral_vendedor} @self ~onLoad']
@@ -194,7 +195,7 @@ def private_configs(models):
         bounds.cache_clear()
 
 
-def preview(models, name='tanda4a', include_sword=True, gui=False):
+def preview(models, name='tanda4a', include_sword=True, gui=False, angles=None):
     """Render CPU local con texturas originales, exclusivamente en el repo privado."""
     from PIL import Image, ImageDraw, ImageOps
     from mobs.build_models import preview3d
@@ -257,7 +258,8 @@ def preview(models, name='tanda4a', include_sword=True, gui=False):
         data['elements'] = elements
         model = SimpleNamespace(export=lambda: (data, atlas), bones=bones,
                                 cubes=[dict(bone=parents.get(e['uuid'])) for e in elements])
-        im = preview3d(model, atlas, yaw=0 if gui else 35, pitch=0 if gui else 25,
+        yaw,pitch=(angles or {}).get(mid,(0,0) if gui else (35,25))
+        im = preview3d(model, atlas, yaw=yaw, pitch=pitch,
                        scale=3, background=(0, 0, 0, 0))
         if mid.startswith('astral_pet_'):
             pid=mid.removeprefix('astral_pet_')

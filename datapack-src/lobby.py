@@ -28,7 +28,7 @@ NPC_POS = {
     "astral_npc_bazar": (178.637, 101, 152.678, -1.7),
     "astral_npc_subastas": (205.466, 100, 175.476, 2.7),
     "astral_npc_herrero": (198.657, 100, 181.429, 92.1),
-    "astral_npc_expediciones": (178.636, 100, 225.735, 180),
+    "astral_npc_expediciones": (178.492, 103, 237.476, 180.4),
     "astral_npc_tienda": (182.5, 101, 152.678, 0),        # edificio grande del norte
     "astral_npc_venta": (174.5, 101, 152.678, 0),       # noroeste
     # gachas: cofres sobre los 3 cristales celestes del lado este (los cristales se sacan, ver commands())
@@ -36,8 +36,10 @@ NPC_POS = {
     "astral_npc_gacha_monturas": (208.5, 101, 185.5, 90),     # el del norte
     "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
     "astral_npc_viajero": (178.0, 98, 190.0, 180),      # union de los cuatro bloques marcados
-    "astral_npc_cronista": (181.636, 100, 225.735, 180),
-    "astral_npc_minas": (174.636, 100, 225.735, 180),    # 4 bloques al oeste de Expediciones
+    "astral_npc_cronista": (189.454, 102, 218.495, 90.7),
+    "astral_npc_minas": (146.511, 102, 237.506, 270.1),
+    "astral_npc_arena": (167.548, 102, 218.504, -89.6),
+    "astral_npc_portales": (211.434, 105, 237.492, 90.0),
 }
 
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}

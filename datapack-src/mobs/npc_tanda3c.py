@@ -792,7 +792,79 @@ def bruja():
     return m
 
 
-NPCS = [mago, herrero, subastas, bazar, cronista, minero, caballero, hechicero, bruja]
+def comerciante():
+    """Tienda: calvo, antiparras turquesa, bigote caido y abrigo terracota abierto."""
+    m = rig('astral_npc_comerciante', arm_r=(0, 0, 0), arm_l=(0, 0, 0))
+    # Paleta medida sobre tienda.png: piel e5bf92, abrigo 9a483c, chaleco 335e4d.
+    coat = cloth('#9a483c', '#b75d43', '#853e46', seed=31, blobs=24)
+    green = cloth('#335e4d', '#477760', '#284d43', seed=32, blobs=22)
+    brown = cloth('#603e34', '#7c5440', '#49302c', seed=33, blobs=22)
+    gold = '#e8b162'; gold_hi = '#f6ce82'
+    legs(m, cloth('#584039', '#725044', '#43302e'), brown, boot_h=2.8, y1=6)
+    # Chaleco oscuro y sus cierres; parte central siempre legible entre las solapas.
+    vest = seq(green, col_(5, '#233b35'), px('north', [(4, 1), (4, 4), (4, 7)], gold))
+    box(m, 'body', (-5, 5, -3), (5, 15.5, 3), vest)
+    belt3d(m, 6.4, '#66463b', gold, hw=5.1, hd=3.2, h=1.5)
+    # Hebilla ancha tostada, casi redonda como la referencia, con centro dorado.
+    box(m,'body',(-2.3,6,-4.2),(2.3,8.2,-3.6),brown)
+    box(m,'body',(-1.6,5.5,-4.3),(1.6,8.7,-3.7),brown)
+    box(m,'body',(-.8,6.3,-4.5),(.8,7.7,-4),flat(gold))
+    # Bajo el cinturon asoma el chaleco en punta entre los dos faldones.
+    box(m,'body',(-3.1,4.1,-3.5),(3.1,6.3,-3),seq(green,row(-1,gold)))
+    box(m,'body',(-1.8,3.1,-3.55),(1.8,4.3,-3),seq(green,row(-1,gold)))
+    # Espalda del abrigo, faldones abiertos y ribete inferior completo.
+    box(m, 'body', (-5.5, 2.8, 2.8), (5.5, 15, 4.1), seq(coat, row(-1, gold),col_(5,'#853e46',faces=('south',))))
+    for side in (-1, 1):
+        a,b = ((3.5, 6.2) if side>0 else (-6.2, -3.5))
+        box(m, 'body', (a, 2.8, -3.7), (b, 14.8, 3.4), seq(coat, row(-1, gold)))
+        x0,x1 = ((4.4, 6.8) if side>0 else (-6.8, -4.4))
+        box(m, 'body', (x0, 2.4, -4.1), (x1, 7, 3.8), seq(coat, row(-1, gold), row(-2, gold_hi)))
+        # Solapas largas con borde luminoso; cada escalon tiene volumen propio.
+        for y,x,w in ((12.2,3.1,1.4),(9,3.7,1.3),(5.4,4.3,1.2),(2.8,4.5,1.2)):
+            lo,hi = (x,x+w) if side>0 else (-x-w,-x)
+            box(m, 'body', (lo,y,-4.25), (hi,y+3.2,-3.6), seq(coat, col_(0,gold)))
+        # Manga verde, hombrera rojiza y guantes recogidos hacia el centro.
+        lo,hi = (5.2,8.5) if side>0 else (-8.5,-5.2)
+        bone='arm_r' if side>0 else 'arm_l'
+        box(m, bone, (lo,8,-2), (hi,14,2), green)
+        box(m, bone, (lo-.5,13,-2.6), (hi+.5,16,2.6), seq(coat,row(-1,gold)))
+        box(m, bone, (lo-.3,7.3,-2.4), (hi+.3,9.3,2.4), seq(coat,row(0,gold)))
+        # Cuello y solapas altas, abiertos adelante, ribete de un pixel.
+        lc,hc=(3.5,5.5) if side>0 else (-5.5,-3.5)
+        box(m,'body',(lc,14,-3.5),(hc,17,1.6),seq(coat,row(0,gold)))
+        lo2,hi2 = (.1,3.1) if side>0 else (-3.1,-.1)
+        box(m, 'body', (lo2,9,-5.5), (hi2,11.3,-3), brown, rotation=(0,0,side*8),origin=(side*2.8,10,-3))
+        lo3,hi3 = (2.7,7.8) if side>0 else (-7.8,-2.7)
+        box(m, 'body', (lo3,8.3,-4.5), (hi3,10.2,-2), green, rotation=(0,0,side*15),origin=(side*6.5,9.2,-2))
+    # Calva de piel clara: no pintar pelo sobre la tapa.
+    skin = '#e5bf92'
+    head(m, ['SSSSSSSSSS']*10, face_pal(), skin=skin)
+    ears(m, y=18.1, colr=skin)
+    hair=cloth('#603e34','#7d5340','#49302c',seed=34,blobs=20)
+    for x in (4.5,-5.7):
+        box(m,'head',(x,18,-3.6),(x+1.2,23.2,3.2),hair)
+    nose(m,17.6,z=-6.1,colr='#d5a790',w=2.4,h=2.5)
+    # Antiparras muy grandes, doradas, lentes turquesa con reflejos anchos.
+    m.bone('lentes',(0,20,-5.5),'head')
+    lens=['ggggg','guUUg','guuUg','gvvug','ggggg']
+    pal={'g':gold,'u':'#62ddcc','U':'#d4fff0','v':'#54b9a7'}
+    for x in (.4,-5.4):
+        box(m,'lentes',(x,17.9,-6.1),(x+5,22.9,-5),flat(gold),north=lambda f:f.rows(lens,pal))
+        box(m,'head',(x,22.6,-6.3),(x+4.8,23.5,-5.3),hair)
+    box(m,'lentes',(-.6,20.2,-5.9),(.6,21.2,-5.3),flat(gold))
+    # Bigote enorme en alas descendentes, mas ancho que la cara y puntas hasta el pecho.
+    box(m,'head',(-1.4,16.5,-6.5),(1.4,17.6,-5.3),hair)
+    for side in (-1,1):
+        for x,w,y,h,z in ((1.2,3.2,16,2.8,-6.7),(4.1,2.4,14.6,3,-6.5),(6,1.6,12.9,2.7,-6.1),(6.6,.8,12,1.5,-5.7)):
+            lo,hi=(x,x+w) if side>0 else (-x-w,-x)
+            box(m,'head',(lo,y,z),(hi,y+h,z+1.6),hair,rotation=(0,0,-side*15),origin=(side*x,y+h,z))
+    m.lit=('lentes',)
+    # Las manos juntas siguen el body; no se separan con el idle de los brazos.
+    return m
+
+
+NPCS = [mago, herrero, subastas, bazar, cronista, minero, caballero, hechicero, bruja, comerciante]
 REFS = {'astral_npc_mago': 'expediciones', 'astral_npc_herrero': 'herrero', 'astral_npc_subastas': 'subastas',
         'astral_npc_bazar': 'bazar', 'astral_npc_cronista': 'cronista', 'astral_npc_minero': 'minas_astrales',
-        'astral_npc_caballero': 'arenas_pvp', 'astral_npc_hechicero': 'portales', 'astral_npc_bruja': 'guia_mazmorras'}
+        'astral_npc_caballero': 'arenas_pvp', 'astral_npc_hechicero': 'portales', 'astral_npc_bruja': 'guia_mazmorras',
+        'astral_npc_comerciante': 'tienda'}

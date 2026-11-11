@@ -10,7 +10,7 @@ ARRIVALS = {'end': (146.5, 84, 68.5, 180, 0),
             'nether': (-2191.114, 81, 179.263, 179, -1.8)}
 END_PASTE = (146, 82, 78)
 RESCUE_Y = 50  # la isla del End empieza en Y=64 y la base del Nether en Y=79
-NPC_POSITION = (124.472, 100, 193.529)
+NPC_POSITION = (211.434, 105, 237.492, 90.0, 0)
 # Copias del aldeano 2 bloques al este de cada llegada (mismo mob astral_npc_portales).
 NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2189.114, 81, 179.263)}
 

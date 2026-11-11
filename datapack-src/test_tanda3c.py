@@ -52,8 +52,8 @@ class Tanda3cTests(unittest.TestCase):
         for key in MAZMORRAS:
             self.assertIn('skill{s=AST_NPC_bruja} @self ~onSpawn', mobs['astral_npc_' + key]['Skills'])
             self.assertIs(mobs['astral_npc_' + key]['Options']['AlwaysShowName'], False)
-        # Santuario en espera, Tienda, gachas, vendedores y el aldeano viejo de Mini juegos no cambian.
-        for mid in ('astral_npc_santuario', 'astral_npc_tienda', 'astral_npc_venta', 'astral_npc_gacha_rpg', 'astral_npc_parkour'):
+        # Tienda usa el comerciante propio; Venta sigue con su modelo privado.
+        for mid in ('astral_npc_santuario', 'astral_npc_venta', 'astral_npc_gacha_rpg', 'astral_npc_parkour'):
             self.assertFalse(any('AST_NPC_' in s for s in mobs[mid]['Skills']), mid)
         self.assertEqual(npc_skills('entrada', 'santuario'), [])
 

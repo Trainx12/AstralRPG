@@ -46,3 +46,7 @@ AST_NPC_bruja:
   Skills:
   - model{m=astral_npc_bruja} @self
   - brightness{pid=gema;b=15;s=15} @self
+AST_NPC_comerciante:
+  Skills:
+  - model{m=astral_npc_comerciante} @self
+  - brightness{pid=lentes;b=15;s=15} @self

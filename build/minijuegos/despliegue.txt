@@ -261,7 +261,7 @@ rg flag -w lobby __global__ mob-spawning allow
 mm mobs kill astral_npc_parkour
 mm mobs spawn astral_npc_parkour 1 lobby,121.5,100,193.529
 mm mobs kill astral_npc_arena
-mm mobs spawn astral_npc_arena 1 lobby,127.5,100,193.529
+mm mobs spawn astral_npc_arena 1 lobby,167.548,102,218.504,-89.6,0
 rg flag -w lobby __global__ mob-spawning deny
 # TFT: llegadas verificadas por defecto, rescate bajo Y=120. No requieren fijar punto OP.
 # Opcional: /astralpunto arena tft1 (o tft2/tft3) sobrescribe la llegada. /astralpunto lista muestra puntos guardados.

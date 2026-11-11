@@ -1,8 +1,42 @@
 """Importar modelos Java originales solo en el repositorio privado."""
 import json
 import shutil
+import math
+import itertools
 from terceros import privado
 from tanda4b import CLONES, PLUSHIES, COINS
+
+
+def rotate(point, origin, axis, angle):
+    p=[point[i]-origin[i] for i in range(3)]
+    a,b={'x':(1,2),'y':(2,0),'z':(0,1)}[axis]
+    c,s=math.cos(math.radians(angle)),math.sin(math.radians(angle))
+    p[a],p[b]=p[a]*c-p[b]*s,p[a]*s+p[b]*c
+    return [p[i]+origin[i] for i in range(3)]
+
+
+def wing_components(iid, raw):
+    """Wrapper propio: raiz en hombros, toda la geometria detras; original intacto."""
+    asura=iid=='asura_alas'
+    ref='asura:asura_wings' if asura else 'elitecreatures:carnivoret_weapon_set/wing'
+    scale=1 if asura else .9
+    yaw=0 if asura else 90
+    vertices=[]
+    for e in raw['elements']:
+        for p in itertools.product(*zip(e['from'],e['to'])):
+            if rot:=e.get('rotation'):
+                p=rotate(p,rot['origin'],rot['axis'],rot['angle'])
+            vertices.append(rotate([(v-8)*scale for v in p],[0,0,0],'y',yaw))
+    # Fijar el punto mas alto a la altura de hombros y el mas delantero al plano de espalda.
+    tx=-(max(p[0] for p in vertices)+min(p[0] for p in vertices))/2
+    translation=[round(tx,5),round(-max(p[1] for p in vertices),5),round(-max(p[2] for p in vertices),5)]
+    wrapper={'parent':ref,'display':{'fixed':{'rotation':[0,yaw,0],'translation':translation,'scale':[scale]*3}}}
+    tree={'type':'minecraft:select','property':'minecraft:display_context','cases':[
+        {'when':['firstperson_lefthand','firstperson_righthand','thirdperson_lefthand','thirdperson_righthand'],
+         'model':{'type':'minecraft:empty'}},
+        {'when':'fixed','model':{'type':'minecraft:model','model':'astral:cosmetics/'+iid}}],
+        'fallback':{'type':'minecraft:model','model':ref}}
+    return tree,wrapper
 
 
 def prepare(base):
@@ -66,6 +100,10 @@ def prepare(base):
         mappings[iid] = model('asura:' + m)
     for k in PLUSHIES:
         mappings['peluche_' + k] = model('nogs_menagerie:plushies/nm_plushie_' + k)
+    for iid in ('carnivora_alas','asura_alas'):
+        ns,name=mappings[iid]['model'].split(':')
+        mappings[iid],wrapper=wing_components(iid,json.loads((out/ns/'models'/f'{name}.json').read_text(encoding='utf8')))
+        put('astral/models/cosmetics/'+iid+'.json',wrapper)
     for iid, tree in mappings.items():
         put('astral/items/' + iid + '.json', {'model':tree})
     for layer, part in ((1,'humanoid'),(2,'humanoid_leggings')):
@@ -74,6 +112,5 @@ def prepare(base):
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source,dest)
     put('astral/equipment/carnivora.json', {'layers':{k:[{'texture':'astral:carnivora'}] for k in ('humanoid','humanoid_leggings')}})
-    # Alas: equipo de pecho + player equipment model no admite geometria Java arbitraria.
-    # El runtime dibuja el item_display sujeto al jugador; el item equipa en pecho.
+    # Alas: segunda mano, sin proteccion ni vuelo. AstralDecor monta el display.
     print('Tanda4b: modelos, estados y capas preparados exclusivamente en build privado.')

@@ -1,5 +1,10 @@
 # Guía para agregar cosas a AstralRPG
 
+NPC Tienda y decoracion: `deploy_tienda.py` prepara la entrega aislada sobre el pack
+instalado, `preview_decor.py` renderiza las alas con pechera solo en privado y
+`tools/probar_decor_paper.py` prueba AstralDecor con WorldGuard y reinicio local.
+Ver [tienda-modelo.md](../build/deploy/tienda-modelo.md); no instalar el plugin de prueba en remoto.
+
 Mapa de dónde está cada cosa, cómo se agrega algo nuevo y cómo se sube al servidor (Empower Servers).
 La parte de administración (plugins, comandos, problemas conocidos) está en [SERVIDOR.md](SERVIDOR.md).
 

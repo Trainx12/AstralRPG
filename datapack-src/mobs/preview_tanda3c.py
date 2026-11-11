@@ -51,6 +51,8 @@ def npcs(only=None, scale=9):
             continue
         tex = save(m, ROOT / 'build/models' / f'{m.name}.bbmodel')
         short = m.name.replace('astral_npc_', '')
+        if short == 'comerciante':
+            short = 'tienda'
         ref = Image.open(ROOT / '.local/coordination/ref/npc' / (N.REFS[m.name] + '.png')).convert('RGBA')
         k = min(430 / ref.width, 470 / ref.height)
         ref = ref.resize((int(ref.width * k), int(ref.height * k)), Image.LANCZOS)

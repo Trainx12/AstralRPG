@@ -62,12 +62,11 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
             data['tier'] = 4 if iid.startswith('asura_') else 3
         extra = {}
         if iid.endswith('_alas'):
-            extra['minecraft:equippable'] = {'slot': 'chest', 'asset_id': 'astral:' + iid, 'dispensable': False}
             extra['minecraft:max_stack_size'] = 1
         if iid in ('carnivora_pico', 'carnivora_pala', 'carnivora_azada'):
             extra['minecraft:enchantments'] = {'minecraft:efficiency': 3, 'minecraft:unbreaking': 2}
         add_item(iid, 'minecraft:' + base, name, '#bff05a' if 'carnivor' in iid else 'gold',
-                 [txt('Cosmetico de espalda; no permite volar.' if iid.endswith('_alas') else
+                 [txt('Segunda mano: alas cosmeticas; compatible con pechera.' if iid.endswith('_alas') else
                       'Clic derecho en bloque: colocar. Clic izquierdo: recoger.' if iid.startswith('peluche_') else 'Material de forja.' if material else 'Equipo Carnivoro III')],
                  data, extra=extra, model='astral:' + iid, kind='material' if material else 'item')
     for iid in list(CLONES) + ['carnivora_' + p for p in ('helmet','chestplate','leggings','boots')] + [i for i in SIMPLE if i.startswith('carnivora_')]:

@@ -1,5 +1,12 @@
 # AstralRPG: cómo está armado el servidor
 
+Entrega Tienda y decoracion del 11/11 preparada, **sin desplegar**:
+[archivos, SHA-1, reinicio y comprobaciones](../build/deploy/tienda-modelo.md).
+AstralDecor 1.1 recupera los modelos de NPC al terminar de cargar BetterModel y
+activa su indicador propio de nombre siempre visible. Guardianes escondidos sin nombre.
+Alas en segunda mano con cualquier pechera; peluches con mensajes y bypass oficial de WorldGuard.
+La entrega privada esta aislada para conservar los derivados previos sin publicar.
+
 Documento de referencia para administrar el servidor. Actualizado el 07/11/2026 (mudanza a Empower Servers).
 Para saber dónde está cada cosa en el repo y cómo agregar cosas nuevas, ver [GUIA.md](GUIA.md).
 

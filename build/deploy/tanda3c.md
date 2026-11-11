@@ -4,13 +4,13 @@ Generado por `datapack-src/mobs/entrega_tanda3c.py`. Nada de esto se instala sol
 
 ## Archivos
 
-- Pack FINAL (privado) a R2: `python tools/subir_pack_r2.py .local/terceros/AstralRPG-privado/build/AstralRPG-Textures.zip`
-- `resource-pack-sha1=a18b694f5002cef979fe72ad6caf24134550db03` en `server.properties` (comprobar antes la descarga publica).
-- `plugins/BetterModel/models/`: `astral_maquina_arcade.bbmodel`, `astral_maquina_capsulas.bbmodel`, `astral_npc_mago.bbmodel`, `astral_npc_herrero.bbmodel`, `astral_npc_subastas.bbmodel`, `astral_npc_bazar.bbmodel`, `astral_npc_cronista.bbmodel`, `astral_npc_minero.bbmodel`, `astral_npc_caballero.bbmodel`, `astral_npc_hechicero.bbmodel`, `astral_npc_bruja.bbmodel`, `astral_coloso_musgoso.bbmodel`, `astral_bosque_planta.bbmodel`, `astral_momia.bbmodel`, `astral_yeti.bbmodel`, `astral_golem_forja.bbmodel`, `astral_cangrejo.bbmodel`, `astral_chaman.bbmodel`, `astral_chocobo.bbmodel`, `astral_ave.bbmodel`, `astral_pterodactilo.bbmodel` desde `build/models/`, y `astral_vendedor.bbmodel` desde el build privado (ahora con el hueso del nombre).
+- Pack FINAL (privado) a R2: `python tools/subir_pack_r2.py .local/terceros/AstralRPG-privado/build/entregas/tienda-modelo/AstralRPG-Textures.zip`
+- `resource-pack-sha1=18107d6003a7f9f190d604e67a9cdf6b6096e02f` en `server.properties` (comprobar antes la descarga publica).
+- `plugins/BetterModel/models/`: `astral_maquina_arcade.bbmodel`, `astral_maquina_capsulas.bbmodel`, `astral_npc_mago.bbmodel`, `astral_npc_herrero.bbmodel`, `astral_npc_subastas.bbmodel`, `astral_npc_bazar.bbmodel`, `astral_npc_cronista.bbmodel`, `astral_npc_minero.bbmodel`, `astral_npc_caballero.bbmodel`, `astral_npc_hechicero.bbmodel`, `astral_npc_bruja.bbmodel`, `astral_npc_comerciante.bbmodel`, `astral_coloso_musgoso.bbmodel`, `astral_bosque_planta.bbmodel`, `astral_momia.bbmodel`, `astral_yeti.bbmodel`, `astral_golem_forja.bbmodel`, `astral_cangrejo.bbmodel`, `astral_chaman.bbmodel`, `astral_chocobo.bbmodel`, `astral_ave.bbmodel`, `astral_pterodactilo.bbmodel` desde `build/models/`, y `astral_vendedor.bbmodel` desde el build privado (ahora con el hueso del nombre).
 - `plugins/MythicMobs/mobs/`: `tanda3c.yml`, `arena.yml`, `portales.yml`, `mazmorra.yml`, `bosque.yml`, `tumba.yml`, `cumbre.yml`, `forja.yml` desde `build/mythicmobs/mobs/`; `astral.yml` desde el build PRIVADO (conserva los vendedores).
 - `plugins/MythicMobs/skills/`: `tanda3c.yml` publico y `astral.yml` del build PRIVADO.
 - `plugins/Skript/scripts/astral_minijuegos.sk` (usa `minecraft:kill`).
-- Santuario no se toca. La Tienda sigue como aldeano.
+- Santuario no se toca. Tienda usa `astral_npc_comerciante.bbmodel`; instalar tambien `AstralDecor.jar` de la entrega Tienda.
 
 ## Orden
 
@@ -20,7 +20,7 @@ Generado por `datapack-src/mobs/entrega_tanda3c.py`. Nada de esto se instala sol
 
 ## NPC
 
-Cada NPC conserva su aldeano, nombre y clics; el modelo se pone solo al cargar (`~onLoad`). Si alguno sigue viendose como aldeano,
+Cada NPC conserva nombre y clics. AstralDecor recupera trackers faltantes cuando BetterModel esta listo y fuerza `ModelNametag.alwaysVisible`.
 rehacerlo en su lugar con estas lineas (primero `forceload add` alrededor en `astral_minas` y `astral_bosque`):
 
 ```
@@ -33,13 +33,20 @@ mm mobs spawn astral_npc_subastas 1 lobby,205.466,100,175.476,2.7,0
 mm mobs kill astral_npc_herrero
 mm mobs spawn astral_npc_herrero 1 lobby,198.657,100,181.429,92.1,0
 mm mobs kill astral_npc_expediciones
-mm mobs spawn astral_npc_expediciones 1 lobby,178.636,100,225.735,180,0
+mm mobs spawn astral_npc_expediciones 1 lobby,178.492,103,237.476,180.4,0
+mm mobs kill astral_npc_tienda
+mm mobs spawn astral_npc_tienda 1 lobby,182.5,101,152.678,0,0
 mm mobs kill astral_npc_viajero
 mm mobs spawn astral_npc_viajero 1 lobby,178.0,98,190.0,180,0
 mm mobs kill astral_npc_cronista
-mm mobs spawn astral_npc_cronista 1 lobby,181.636,100,225.735,180,0
+mm mobs spawn astral_npc_cronista 1 lobby,189.454,102,218.495,90.7,0
 mm mobs kill astral_npc_minas
+mm mobs spawn astral_npc_minas 1 lobby,146.511,102,237.506,270.1,0
 mm mobs spawn astral_npc_minas 1 lobby,174.636,100,225.735,180,0
+mm mobs kill astral_npc_arena
+mm mobs spawn astral_npc_arena 1 lobby,167.548,102,218.504,-89.6,0
+mm mobs kill astral_npc_portales
+mm mobs spawn astral_npc_portales 1 lobby,211.434,105,237.492,90.0,0
 mm mobs kill astral_npc_mina_viaje
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,84.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,596.5,93,70.5,0,0
@@ -63,8 +70,6 @@ mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9300.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9812.5,93,70.5,0,0
 mm mobs kill astral_npc_bosque_viaje
 mm mobs spawn astral_npc_bosque_viaje 1 astral_bosque,-7.5,65,56.5,-90,0
-mm mobs kill astral_npc_arena
-mm mobs spawn astral_npc_arena 1 lobby,127.5,100,193.529
 rg flag -w lobby __global__ mob-spawning deny
 rg flag -w astral_bosque __global__ mob-spawning deny
 ```
