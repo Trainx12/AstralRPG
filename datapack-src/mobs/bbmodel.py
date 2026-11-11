@@ -312,4 +312,5 @@ def pattern(pat, x, y, w, h, face, rnd, cols):
 
 # ---------------------------------------------------------------- ayudas de animacion
 def swing(amp, speed=1.0, phase=0):
-    return f"math.sin(q.anim_time * 360 * {speed} + {phase}) * {amp}"
+    # BetterModel no puede leer numeros con muchos decimales (ej. 1/1.4): se redondea la velocidad.
+    return f"math.sin(q.anim_time * 360 * {round(speed, 4)} + {phase}) * {amp}"

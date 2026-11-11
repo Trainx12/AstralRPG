@@ -82,6 +82,13 @@ def adapted(data, mid):
         if 'groups' in data:
             data['groups'].append(group)
         data['outliner'].append(group)
+    if mid == 'astral_vendedor':
+        # Hueso 'mtag_' de BetterModel 3.6.0: dibuja el nombre del mob encima del modelo.
+        tag = dict(name='mtag_nombre', uuid=str(uuid.uuid5(uuid.NAMESPACE_URL, mid + '/mtag/group')),
+                   origin=[0, 33, 0], rotation=[0, 0, 0], children=[])
+        if 'groups' in data:
+            data['groups'].append(tag)
+        data['outliner'].append(tag)
     # El resto conserva las animaciones originales, incluida idle del Grub.
     return data
 
@@ -165,7 +172,7 @@ def private_configs(models):
         mobs = yaml.safe_load((ROOT / 'build/mythicmobs/mobs/astral.yml').read_text(encoding='utf-8'))
         for mid in ('astral_abejorro', 'astral_abejorro_elite'):
             mobs[mid]['Skills'] = [s for s in mobs[mid]['Skills'] if not s.startswith('state{s=attack}')]
-        for mid in ('venta', 'mina_venta', 'tienda', 'bosque_venta'):
+        for mid in ('venta', 'mina_venta', 'bosque_venta'):  # la Tienda conserva su aldeano
             mob = mobs['astral_npc_' + mid]
             # VILLAGER adulto: 0,6 x 1,95, aproximadamente jugador. No se escala la entidad.
             mob['Skills'] += ['model{m=astral_vendedor} @self ~onSpawn', 'model{m=astral_vendedor} @self ~onLoad']

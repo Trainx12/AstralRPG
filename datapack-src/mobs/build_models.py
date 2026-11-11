@@ -18,7 +18,7 @@ def preview(model, img, scale=4):
     views = []
     # norte visto de frente (+X a la izquierda); este visto desde el costado (+Z a la izquierda)
     for face, axis_u, axis_depth, flip in (("north", 0, 2, True), ("east", 2, 0, True)):
-        els = data["elements"]
+        els = [e for e in data["elements"] if e.get("name") != "astral_hitbox"]
         xs = [v for e in els for v in (e["from"][axis_u], e["to"][axis_u])]
         ys = [v for e in els for v in (e["from"][1], e["to"][1])]
         w = int((max(xs) - min(xs) + 4) * scale)
@@ -92,6 +92,8 @@ def preview3d(model, img, yaw=35, pitch=25, scale=4, background=(50, 50, 60, 255
 
     faces = []
     for i, e in enumerate(data["elements"]):
+        if e.get("name") == "astral_hitbox":   # caja de clic de BetterModel: no se dibuja
+            continue
         a, b = e["from"], e["to"]
         bone = model.cubes[i]["bone"]
         er = e.get("rotation")

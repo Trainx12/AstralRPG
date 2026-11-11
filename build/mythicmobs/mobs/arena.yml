@@ -17,4 +17,7 @@ astral_npc_arena:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_caballero} @self ~onSpawn
+  - skill{s=AST_NPC_caballero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open arenas <trigger.name>"} @self ~onInteract'

@@ -53,7 +53,7 @@ def main():
         for r in d['rooms']:
             room=r['id']; x,y,z=r['centro']
             rows += [f'mm mobs kill astral_{key}_control_{room}',
-                f'execute in minecraft:{world} run kill @e[tag=ad.{key}.{room}]',
+                f'execute in minecraft:{world} run minecraft:kill @e[tag=ad.{key}.{room}]',
                 f'data remove storage astral:tanda2/{key}/{room} queue',
                 f'mm mobs spawn astral_{key}_control_{room} 1 {world},{x},{y},{z}']
     rows += ['```','', 'No recrear controladores de Santuario ni Forja. No subir configs de prueba completas.','',

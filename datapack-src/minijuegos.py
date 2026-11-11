@@ -356,7 +356,7 @@ def script():
               '        wait 2 ticks',
               f'        add {CE_SLICE} to {{_z}}',
               '    if {_dir} is not "guardar":',
-              '        execute console command "execute in minecraft:colorescape run kill @e[type=item,distance=0..]"',
+              '        execute console command "execute in minecraft:colorescape run minecraft:kill @e[type=item,distance=0..]"',
               '        execute console command "scoreboard players reset * colorEscape"',
               '        execute console command "scoreboard players reset * advancement"',
               f'    execute console command "execute in minecraft:colorescape run forceload remove {span}"',
@@ -465,7 +465,7 @@ def npc(kind):
     from portales import npc as portal_npc
     name = '&a&lMini juegos' if kind == 'parkour' else '&c&lArena PvP'
     menu = 'parkour' if kind == 'parkour' else 'arenas'
-    return portal_npc().replace('portales.py', 'minijuegos.py').replace('astral_npc_portales', 'astral_npc_' + kind).replace('&b&lGuardian de los Portales', name).replace('dm open portales', 'dm open ' + menu)
+    return portal_npc(modelo=False).replace('portales.py', 'minijuegos.py').replace('astral_npc_portales', 'astral_npc_' + kind).replace('&b&lGuardian de los Portales', name).replace('dm open portales', 'dm open ' + menu)
 
 
 def deployment():

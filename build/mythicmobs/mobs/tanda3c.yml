@@ -1,0 +1,51 @@
+# Generado por mobs/tanda3c.py
+astral_maquina_arcade:
+  Type: VILLAGER
+  Display: '&a&lMini juegos'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Profession: NITWIT
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - cancelevent @self ~onDamaged
+  - skill{s=AST_MODELO_astral_maquina_arcade} @self ~onSpawn
+  - skill{s=AST_MODELO_astral_maquina_arcade} @self ~onLoad
+  - command{c="dm open parkour <trigger.name>"} @self ~onInteract
+astral_maquina_capsulas:
+  Type: VILLAGER
+  Display: '&a&lMini juegos'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    NoGravity: true
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventSunburn: true
+    AlwaysShowName: true
+    Profession: NITWIT
+    VillagerType: PLAINS
+  Skills:
+  - cancelevent @self ~onInteract
+  - cancelevent @self ~onDamaged
+  - skill{s=AST_MODELO_astral_maquina_capsulas} @self ~onSpawn
+  - skill{s=AST_MODELO_astral_maquina_capsulas} @self ~onLoad
+  - command{c="dm open parkour <trigger.name>"} @self ~onInteract

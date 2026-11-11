@@ -1,3 +1,4 @@
+import random
 # -*- coding: utf-8 -*-
 """
 Las 17 criaturas de AstralRPG, copiadas de las imagenes de referencia.
@@ -18,6 +19,43 @@ from bbmodel import Model, swing
 
 
 # ------------------------------------------------------------------ ayudas
+class FurModel(Model):
+    """Pelo largo y liso: mechones verticales con sombra azulada hacia la punta, sin ruido de pixeles."""
+    def _paint(self, size, pos):
+        import random as _r
+        img = super()._paint(size, pos)
+        px = img.load()
+        pals = {"pelo": ((246, 249, 252), (232, 238, 245), (212, 222, 234), (188, 202, 220), (166, 183, 206)),
+                # plumaje amarillo liso del chocobo: del crema al dorado tostado
+                "pluma": ((255, 240, 150), (252, 224, 104), (244, 204, 72), (226, 176, 50), (198, 142, 38))}
+        for (i, face), (x0, y0, w, h) in pos.items():
+            pal = pals.get(self.cubes[i].get("pat"))
+            if not pal:
+                continue
+            lum = sum(int(self.cubes[i]["color"].lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
+            base = 0 if lum > 620 else (1 if lum > 520 else 2)       # las piezas mas oscuras arrancan un tono abajo
+            rnd = _r.Random(f"{self.name}/{i}/{face}")
+            if face in ("up", "down"):
+                for yy in range(h):
+                    for xx in range(w):
+                        px[x0 + xx, y0 + yy] = pal[min(4, base + (0 if face == "up" else 2))] + (255,)
+                continue
+            tone = 0
+            cols = []
+            for xx in range(w):                       # cada mechon ocupa 1 o 2 columnas
+                if xx % 2 == 0 or rnd.random() < 0.3:
+                    tone = rnd.choice((0, 0, 0, 1, 1, 2))
+                cols.append((tone, rnd.random() < 0.28, rnd.randint(1, max(1, h // 2))))
+            for xx in range(w):
+                tone, gap, start = cols[xx]
+                for yy in range(h):
+                    t = (tone if base == 0 else min(tone, 1)) + base + (1 if h > 5 and yy >= h * 0.72 else 0) + (1 if h > 3 and yy == h - 1 else 0)
+                    if gap and yy >= start:            # separacion entre mechones: linea mas oscura
+                        t += 1
+                    px[x0 + xx, y0 + yy] = pal[min(4, t)] + (255,)
+        return img
+
+
 def merge(*dicts):
     out = {}
     for d in dicts:
@@ -590,45 +628,45 @@ def escarabajo():
 
 # ------------------------------------------------------------------ 9 chocobo (montura rapida)
 def chocobo():
-    m = Model("astral_chocobo")
+    m = FurModel("astral_chocobo")
     m.bone("body", (0, 18, 0))
-    m.blob("body", (0, 19.2, 1), (6.3, 6, 8.4), "#f4d24a", pat="feather", axis=2, levels=4)                # cuerpo de huevo
-    m.blob("body", (0, 18.6, -5.6), (5.2, 5, 3.6), "#fae070", pat="feather", levels=3)                      # pechuga inflada
+    m.blob("body", (0, 19.2, 1), (6.3, 6, 8.4), "#f4d24a", pat="pluma", axis=2, levels=4)                # cuerpo de huevo
+    m.blob("body", (0, 18.6, -5.6), (5.2, 5, 3.6), "#fae070", pat="pluma", levels=3)                      # pechuga inflada
     for row, (y, z) in enumerate(((21, -9.6), (18, -9.4), (15, -9.2))):                                     # plumas del pecho en capas
-        box(m, "body", (-4.5 + row * 0.5, y, z), (4.5 - row * 0.5, y + 2, z + 0.6), "#fff0a0", pat="feather")
+        box(m, "body", (-4.5 + row * 0.5, y, z), (4.5 - row * 0.5, y + 2, z + 0.6), "#fff0a0", pat="pluma")
         for k in range(4 - row % 2):
             x = -4 + row * 0.5 + k * 2.4 + (row % 2) * 1.2
             box(m, "body", (x, y - 1, z), (x + 1.2, y, z + 0.6), "#f8e080")
     for x, z in ((-4, 0), (2, -3), (-1, 5), (3, 3)):                                                         # plumas del lomo
-        box(m, "body", (x, 25, z), (x + 2, 25.8, z + 2), "#f0c83a", pat="feather")
+        box(m, "body", (x, 25, z), (x + 2, 25.8, z + 2), "#f0c83a", pat="pluma")
     for k, (x, y) in enumerate(((-3, 20), (0, 22), (3, 20), (-1.5, 18), (1.5, 18))):                       # cola de plumas
-        box(m, "body", (x - 1.5, y, 9), (x + 1.5, y + 6, 14 + k % 2 * 2), "#f0c83a", {"south": [(0, 0, 3, 1, "#d8a830")]}, pat="feather")
+        box(m, "body", (x - 1.5, y, 9), (x + 1.5, y + 6, 14 + k % 2 * 2), "#f0c83a", {"south": [(0, 0, 3, 1, "#d8a830")]}, pat="pluma")
         box(m, "body", (x - 1, y + 5, 14 + k % 2 * 2), (x + 1, y + 7, 15.5 + k % 2 * 2), "#d8a830")
     for n, s in (("wing_l", 1), ("wing_r", -1)):
         m.bone(n, (6 * s, 23, -2), "body")
         a, b = sorted((6 * s, 7.5 * s))
-        m.cube(n, (a, 15, -4), (b, 23.5, 7), "#e8c040", pat="feather")
+        m.cube(n, (a, 15, -4), (b, 23.5, 7), "#e8c040", pat="pluma")
         for k, z in enumerate(range(-3, 7, 2)):                                                             # puntas de las plumas
             a, b = sorted((6.3 * s, 7.8 * s))
             m.cube(n, (a, 13.5 - (k % 2), z), (b, 15, z + 1.6), "#d8a830")
         a, b = sorted((7.5 * s, 8 * s))
-        m.cube(n, (a, 18, -3), (b, 23, 6), "#f4d24a", pat="feather")                                      # capa de arriba
+        m.cube(n, (a, 18, -3), (b, 23, 6), "#f4d24a", pat="pluma")                                      # capa de arriba
     m.bone("head", (0, 24, -6), "body")
     taper(m, "head", [((0, 24.5, -6.4), 3.4, 2.9, 3), ((0, 27, -7.2), 3.0, 2.6, 3), ((0, 29.5, -7.8), 2.8, 2.5, 3),
-                      ((0, 31.5, -8.6), 2.9, 2.6, 2.4)], "#f4d24a", pat="feather", axis=1)                    # cuello curvo
+                      ((0, 31.5, -8.6), 2.9, 2.6, 2.4)], "#f4d24a", pat="pluma", axis=1)                    # cuello curvo
     for y, z in ((24, -9.6), (27, -10.2)):                                                                 # plumas del cuello
-        rbox(m, "head", (-2.8, y, z), (2.8, y + 1.6, z + 1.4), "#fae070", pat="feather", r=0.5)
-    m.rcube("head", (-4, 30, -14), (4, 37, -5), "#f8dc5c", r=2, pat="feather")
-    m.blob("head", (0, 33.6, -9.4), (4.3, 3.4, 4.2), "#f8dc5c", pat="feather", levels=2)                    # cabeza redonda
+        rbox(m, "head", (-2.8, y, z), (2.8, y + 1.6, z + 1.4), "#fae070", pat="pluma", r=0.5)
+    m.rcube("head", (-4, 30, -14), (4, 37, -5), "#f8dc5c", r=2, pat="pluma")
+    m.blob("head", (0, 33.6, -9.4), (4.3, 3.4, 4.2), "#f8dc5c", pat="pluma", levels=2)                    # cabeza redonda
     eye_side(m, "head", 4, 33.3, 35.7, -10.2, -7.6, "#3a7ad8", white="#ffffff")
     mirror(m, "head", (3.8, 36, -11), (4.6, 36.8, -7), "#d8a830")                                           # ceja
-    box(m, "head", (-2, 34, -5), (2, 37, -3.5), "#f0c83a", pat="feather")                                  # plumas de la nuca
+    box(m, "head", (-2, 34, -5), (2, 37, -3.5), "#f0c83a", pat="pluma")                                  # plumas de la nuca
     m.rcube("head", (-2, 31.5, -18), (2, 34.2, -13.5), "#9a6a3a", r=0.7)
     m.rcube("head", (-1.5, 30.4, -17), (1.5, 31.7, -13.5), "#7a4a22", r=0.4)                                # pico abajo
     m.cube("head", (-1, 30.5, -19), (1, 33.5, -18), "#5a3418")                                              # gancho
     mirror(m, "head", (0.6, 33.2, -17.2), (1.2, 33.8, -16.4), "#3a2010")                                    # fosas
     for k, (z, h) in enumerate(((-11, 4), (-9, 5), (-7, 3.5), (-5.5, 2.5))):                               # cresta
-        box(m, "head", (-1 + k * 0.2, 37, z), (1 - k * 0.2, 37 + h, z + 1.5), "#f0c83a", pat="feather")
+        box(m, "head", (-1 + k * 0.2, 37, z), (1 - k * 0.2, 37 + h, z + 1.5), "#f0c83a", pat="pluma")
         box(m, "head", (-0.6 + k * 0.2, 36.5 + h, z + 0.4), (0.6 - k * 0.2, 37.3 + h, z + 1.5), "#fff0a0")
     reins(m, "head", 2.2, 32.5, -16, -5)
     for n, x in (("leg_l", 3), ("leg_r", -3)):
@@ -643,6 +681,31 @@ def chocobo():
             m.cube(n, (x + dx, 0, -ln), (x + dx + 0.9, 1, 1), "#e8e0d0")
             m.cube(n, (x + dx + 0.1, 0, -ln - 0.7), (x + dx + 0.8, 0.7, -ln), "#3a3a3a")
         m.cube(n, (x - 0.5, 0, 2), (x + 0.5, 1, 3.5), "#e8e0d0")
+    # --- mejora 3c: mejillas, cola en abanico, flecos de la panza, plumon del lomo y pies grandes
+    for sx in (1, -1):
+        a, b = sorted((3.6 * sx, 5 * sx))
+        m.cube("head", (a, 31, -9.5), (b, 34, -6.5), "#fae070", pat="pluma")
+        a, b = sorted((4.4 * sx, 5.4 * sx))
+        m.cube("head", (a, 30, -8.4), (b, 32, -6.2), "#f0c83a")
+    for (x, y, ln) in ((-4.6, 23, 7), (-2.4, 25.5, 9), (0, 26.5, 10), (2.4, 25.5, 9), (4.6, 23, 7), (-3.4, 19, 6), (3.4, 19, 6)):
+        box(m, "body", (x - 1.2, y - 1, 8.5), (x + 1.2, y + 1.6, 9 + ln), "#f4d24a", pat="pluma")
+        box(m, "body", (x - 0.8, y - 0.4, 9 + ln), (x + 0.8, y + 2.4, 10.6 + ln), "#d8a830")
+        box(m, "body", (x - 0.4, y + 1.6, 10.4 + ln), (x + 0.4, y + 3.4, 11.4 + ln), "#fff0a0")
+    for k in range(6):
+        z = -7 + k * 2.6
+        mirror(m, "body", (3.2, 12.2 - (k % 2), z), (5.6, 14.6, z + 2), "#fae070", pat="pluma")
+        box(m, "body", (-1.6, 11.8 - (k % 2) * 0.8, z), (1.6, 13.6, z + 2), "#fff0a0", pat="pluma")
+    for row, y in enumerate((24.4, 22.6)):
+        for k in range(4):
+            x = -4.4 + k * 2.4 + row * 0.9
+            box(m, "body", (x, y, 6.4 + row * 1.2), (x + 1.8, y + 1.6, 8.4 + row * 1.2), "#f0c83a" if (k + row) % 2 else "#fae070", pat="pluma")
+    for n, x in (("leg_l", 3), ("leg_r", -3)):
+        m.cube(n, (x - 2, 0, -2.6), (x + 2, 1.5, 1.6), "#f4f0e6")
+        m.cube(n, (x - 2.6, 6.4, -2.2), (x + 2.6, 9, 4.2), "#9a7b58", pat="fur")
+    for (x, y, z, ln) in ((-5.6, 21, 5, 4), (5, 21, 5, 4), (-5.8, 17.5, 3, 3.4), (5.2, 17.5, 3, 3.4), (-3, 26, 8, 3.6), (2.2, 26, 8, 3.6),
+                          (-5.4, 23.5, 8.6, 3), (4.8, 23.5, 8.6, 3)):                                      # plumas sueltas en punta hacia atras
+        box(m, "body", (x, y, z), (x + 0.9, y + 1.8, z + ln), "#f4d24a", pat="pluma")
+        box(m, "body", (x + 0.15, y + 0.5, z + ln), (x + 0.75, y + 1.4, z + ln + 1.4), "#f0c83a", pat="pluma")
     saddle(m, "body", 0, 25.3, -3, 6, 10, strap=8)
     m.anim("walk", 1, {"leg_l": {"rotation": (swing(40, 2.5), 0, 0)}, "leg_r": {"rotation": (swing(-40, 2.5), 0, 0)},
                        "head": {"rotation": (swing(6, 2.5), 0, 0)}, "wing_l": {"rotation": (0, 0, swing(8, 2.5))},
@@ -781,6 +844,17 @@ def ave():
         for dx in (-1.5, -0.4, 0.7):
             box(m, "body", (x + dx, 9, -2.5), (x + dx + 0.8, 10, 0.5), "#c8a050")
             box(m, "body", (x + dx, 8.4, -3), (x + dx + 0.8, 9.2, -2.2), "#2a2a2a")
+    for n, s in (("wing_l", 1), ("wing_r", -1)):                                                           # mejora 3c: plumas en capas
+        for k in range(7):
+            xx = 6.5 + k * 1.95
+            a, b = sorted((xx * s, (xx + 1.7) * s))
+            m.cube(n, (a, 24.4, 2 + (k % 2)), (b, 25.1, 9.5 + (k % 2) * 1.2), "#e8a890")
+            m.cube(n, (a, 27, -1), (b, 27.5, 3.5 + (k % 2)), "#8a5a34", pat="feather")
+        for k in range(6):
+            xx = 20.3 + k * 1.95
+            a, b = sorted((xx * s, (xx + 1.7) * s))
+            m.cube(n + "2", (a, 24.6, 1.5 + (k % 2)), (b, 25.3, 8.4 + (k % 2) * 1.2), "#e8a890")
+            m.cube(n + "2", (a, 26.8, -1), (b, 27.2, 3 + (k % 2)), "#8a5a34", pat="feather")
     saddle(m, "body", 0, 28.6, -5, 4, 10, strap=8, col="#c03a2a", trim="#6a1a12")
     reins(m, "head", 3.5, 30, -15, -5, col="#c03a2a")
     fly = {"wing_l": {"rotation": (0, 0, swing(30, 1.2))}, "wing_r": {"rotation": (0, 0, swing(-30, 1.2))},
@@ -837,10 +911,14 @@ def pterodactilo():
         a, b = sorted((16 * s, 18 * s))
         m.cube(n, (a, 24.7, -5.3), (b, 27.3, -2.7), "#2a4a90")                                             # codo
         a, b = sorted((5 * s, 30 * s))
-        m.cube(n, (a, 25.3, -3), (b, 26.5, 10), "#e07a2a", pat="membrane")
+        m.cube(n, (a, 25.3, -3), (b, 26.5, 10), "#d8a850", pat="membrane")
+        for k in range(6):                                                                                 # borde ondulado (mejora 3c)
+            xx = 6 + k * 4
+            a, b = sorted((xx * s, (xx + 3) * s))
+            m.cube(n, (a, 25.5, 10), (b, 26.3, 11.5 + (k % 2)), "#c8943c", pat="membrane")
         for xx, z1 in ((12, 9), (19, 10), (26, 8)):                                                         # dedos del ala en relieve
             a, b = sorted((xx * s, (xx + 0.7) * s))
-            m.cube(n, (a, 26.5, -3), (b, 27, z1), "#b8561a")
+            m.cube(n, (a, 26.5, -3), (b, 27, z1), "#a87830")
         a, b = sorted((30 * s, 32 * s))
         m.cube(n, (a, 24, -6), (b, 26, -4), "#f2d24a")                                                     # garritas
         a, b = sorted((31 * s, 32.5 * s))
@@ -909,14 +987,37 @@ def momia():
                                                         "up": [(2, 2, 4, 4, "#c8b890")]}, r=1.2, pat="wrap")
     for y in (25, 28.6, 30.6):
         ring(m, "head", -4, 4, -4, 4, y, 0.9, "#c8b890")
-    box(m, "head", (1, 27.4, -4.6), (3, 28.6, -4), "#1a1a1a")                                               # cuenca
-    box(m, "head", (1.5, 27.6, -4.8), (2.5, 28.4, -4.6), "#3aff6a")                                         # ojo verde
-    box(m, "head", (-3, 27.4, -4.4), (-1, 28.6, -4), "#1a1a1a")
+    box(m, "head", (0.4, 26.4, -4.7), (3.6, 29.2, -4), "#1a1a1a")                                           # cuenca del unico ojo
+    box(m, "head", (1, 26.9, -5), (3, 28.7, -4.7), "#3aff6a", {"north": [(0, 0, 1, 1, "#c8ffd0"), (1, 1, 1, 1, "#0a5a20")]})      # ojo verde
+    for k, yv in enumerate((28.6, 27.5, 26.4)):                                                            # el otro ojo, tapado por vendas cruzadas
+        box(m, "head", (-4.3 + k * 0.5, yv, -4.75 - (k % 2) * 0.15), (0.2 + k * 0.4, yv + 1, -4), "#d8c8a0" if k % 2 else "#c8b890", pat="wrap")
+    box(m, "head", (-2.4, 24.8, -4.6), (-1.4, 26.6, -4.1), "#b8a880", pat="wrap")                           # punta de venda suelta
     box(m, "head", (-1, 32, -1), (1, 32.8, 1), "#3aff6a")                                                   # gema de la coronilla
     strips(m, "body", [(-3.5, 13, -2.6, 4), (1.5, 14, -2.6, 3), (-1, 12.5, 2.2, 5), (2.5, 13, 2.2, 3)])
     strips(m, "head", [(3.6, 30, -1, 5), (-4.6, 29, 1, 4), (-2, 25, -4.5, 3)])
     for n, x in (("arm_l", 6), ("arm_r", -6)):
         strips(m, n, [(x - 0.5, 12, 2.2, 5), (x - 1.5, 15, -2.6, 3)])
+    # --- mejora 3c: oro y lapislazuli de faraon
+    gold, lapis = "#e8b83a", "#2f6fd0"
+    m.cube("body", (-4.7, 21.6, -2.7), (4.7, 23.2, 2.7), gold, {"north": [(k, 1, 1, 1, lapis if k % 4 == 1 else "#d84a3a") for k in range(1, 9, 2)]})
+    m.cube("body", (-3.4, 20.7, -2.75), (3.4, 21.6, -2.3), gold, {"north": [(1, 0, 1, 1, lapis), (5, 0, 1, 1, lapis)]})
+    for a, b in (((-2.2, 17.2, -3), (2.2, 17.8, -2.4)), ((-2.2, 20.2, -3), (2.2, 20.8, -2.4)),
+                 ((-2.2, 17.2, -3), (-1.6, 20.8, -2.4)), ((1.6, 17.2, -3), (2.2, 20.8, -2.4))):
+        m.cube("body", a, b, gold)                                                                          # marco del escarabajo
+    m.cube("body", (-2.4, 6.5, -2.75), (2.4, 12.4, -2.2), "#8a7a50", {"north": [(0, 4, 5, 1, gold), (2, 0, 1, 4, lapis)]}, pat="cloth")  # taparrabo
+    m.cube("body", (-2.4, 7.5, 2.2), (2.4, 12.4, 2.75), "#8a7a50", pat="cloth")
+    for n, x in (("arm_l", 6), ("arm_r", -6)):
+        m.cube(n, (x - 2.35, 10.6, -2.35), (x + 2.35, 11.8, 2.35), gold, {"north": [(2, 0, 1, 1, lapis)]})  # brazaletes
+    m.cube("head", (-4.4, 29.4, -4.4), (4.4, 30.4, 4.4), gold)                                              # diadema
+    m.cube("head", (-0.7, 30.2, -5), (0.7, 32.2, -4.3), gold, {"north": [(0, 0, 1, 1, "#3aff6a")]})          # cobra
+    mirror(m, "head", (4.1, 24.4, -2), (4.8, 29.4, 3.4), "#c8b890", pat="wrap")                              # vendas sueltas a los lados
+    for n, x in (("arm_l", 6), ("arm_r", -6)):                                                             # jirones largos colgando de los brazos
+        for k, (dx, y, ln) in enumerate(((-2.6, 20, 9), (-1.2, 17, 11), (0.4, 14, 8), (1.8, 12, 10))):
+            m.cube(n, (x + dx, y - 0.5, 2 + ln * 0.0), (x + dx + 1.1, y, 2 + ln), "#d8c8a0" if k % 2 else "#b8a880", pat="wrap")
+        m.cube(n, (x - 2.2, 12, 2), (x + 2.2, 22, 2.6), "#b8a880", pat="wrap")
+    for n, x in (("leg_l", 2), ("leg_r", -2)):
+        m.cube(n, (x - 2.25, 0, -2.25), (x + 2.25, 5, 2.25), "#8a7a50", pat="wrap")                        # piernas vendadas mas oscuras
+        m.cube(n, (x - 2.3, 3.4, -2.3), (x + 2.3, 4.2, 2.3), "#c8b890", pat="wrap")
     m.anim("idle", 3, {"arm_l": {"rotation": (75, 0, swing(4, 0.33))}, "arm_r": {"rotation": (75, 0, swing(-4, 0.33))},
                        "head": {"rotation": (swing(4, 0.33), 0, swing(3, 0.2))}})
     m.anim("walk", 1.4, {"leg_l": {"rotation": (swing(25, 1.2), 0, 0)}, "leg_r": {"rotation": (swing(-25, 1.2), 0, 0)},
@@ -926,47 +1027,107 @@ def momia():
 
 
 def yeti():
-    m = Model("astral_yeti")
-    s = 1.6
-    biped(m, "#e0e8f0", "#e8eef4", s, pat="shag")
-    m.rcube("body", (-7 * s, 9 * s, -3.5 * s), (7 * s, 25 * s, 3.5 * s), "#f0f4f8", r=2.5, pat="shag")
-    m.blob("body", (0, 19 * s, 0.6 * s), (7.4 * s, 6.4 * s, 4.4 * s), "#f0f4f8", pat="shag", levels=3)        # pecho y lomo abultados
-    for k in range(7):                                                                                     # pelo largo que cuelga
-        x = -7 * s + k * 2 * s
-        ln = 5 + (k % 3)
-        m.cube("body", (x, (10 - ln) * s, -3.9 * s), (x + 1.8 * s, 10 * s, -3.4 * s), "#e8eef4", pat="shag")
-        m.cube("body", (x, (10 - ln) * s, 3.4 * s), (x + 1.8 * s, 10 * s, 3.9 * s), "#e8eef4", pat="shag")
-    for x0, y0, z0 in ((-6, 18, -4.1), (-2, 21, -4.1), (2.5, 17, -4.1), (-4, 13, -4.1), (3, 12, -4.1)):    # mechones del pecho
-        m.cube("body", (x0 * s, y0 * s, z0 * s), ((x0 + 2.5) * s, (y0 + 3) * s, (z0 + 0.6) * s), "#ffffff", pat="shag")
-    rmirror(m, "body", (6.5 * s, 21.5 * s, -3.2 * s), (9 * s, 26 * s, 3.2 * s), "#f0f4f8", pat="shag", r=2)  # hombros peludos
-    m.rcube("head", (-5 * s, 24 * s, -5 * s), (5 * s, 33 * s, 4 * s), "#e8eef4", r=2.5, pat="shag")
-    m.blob("head", (0, 29.5 * s, -0.2 * s), (5.3 * s, 4.2 * s, 4.4 * s), "#e8eef4", pat="shag", levels=2)
-    m.cube("head", (-3.8 * s, 24.8 * s, -5.3 * s), (3.8 * s, 30.5 * s, -5 * s), "#3a4a6a")                  # cara oscura
-    eye_front(m, "head", 1.0 * s, 3.0 * s, 28 * s, 29.2 * s, -5.3 * s, "#6af0ff", pupil=None, glow="#ffffff")
-    m.cube("head", (-4.5 * s, 29.5 * s, -6 * s), (4.5 * s, 31 * s, -5 * s), "#ffffff", pat="shag")           # cejas peludas
-    m.cube("head", (-1 * s, 26.6 * s, -5.6 * s), (1 * s, 27.6 * s, -5.3 * s), "#2a3a5a")                    # nariz
-    mirror(m, "head", (1.2 * s, 25 * s, -5.6 * s), (1.9 * s, 26.4 * s, -5.3 * s), "#ffffff")                 # colmillos
-    for x in (-3.2, -1.6, 0, 1.6):                                                                         # mechones de la cabeza
-        m.cube("head", (x * s, 33 * s, -3 * s), ((x + 1.5) * s, 35 * s, 1 * s), "#f0f4f8", pat="shag")
-    mirror(m, "head", (5 * s, 25 * s, -3 * s), (5.6 * s, 30 * s, 2 * s), "#f0f4f8", pat="shag")              # patillas
-    for sx in (1, -1):                                                                                     # cuernos de carnero en espiral
-        for (a0, a1, y0, y1, z0, z1, col) in ((4.5, 7, 31, 34, -2, 2, "#7a5030"), (7, 9, 30, 34, -1, 3, "#8a5a38"),
-                                             (8, 10, 27, 31, 0, 3.5, "#7a5030"), (7, 9.5, 25.5, 28, -2.5, 1, "#6a4428"),
-                                             (6.5, 8.5, 26, 28.5, -4, -2, "#5a3a20"), (7.2, 8, 27, 28, -4.6, -4, "#d8c0a0")):
-            a, b = sorted((a0 * s * sx, a1 * s * sx))
-            m.cube("head", (a, y0 * s, z0 * s), (b, y1 * s, z1 * s), col, {"up": [(0, 1, 3, 1, "#5a3a20")]})
-        for y in (31.5, 32.8):                                                                             # estrias del cuerno
-            a, b = sorted((7.4 * s * sx, 7.8 * s * sx))
-            m.cube("head", (a, y * s, -1.2 * s), (b, (y + 0.4) * s, 3.2 * s), "#5a3a20")
-    for n, x in (("arm_l", 6), ("arm_r", -6)):                                                             # manos oscuras con garras
-        a, b = sorted(((x - 2) * s, (x + 2) * s))
-        m.cube(n, (a, 8 * s, -2 * s), (b, 10 * s, 2 * s), "#3a4a6a")
-        for dx in (-1.6, -0.4, 0.8):
-            m.cube(n, ((x + dx) * s, 7 * s, -2.4 * s), ((x + dx + 0.6) * s, 8 * s, -1.8 * s), "#ffffff")
-        m.cube(n, (a - 0.4, 18 * s, -2.4 * s), (b + 0.4, 22 * s, 2.4 * s), "#f0f4f8", pat="shag")         # pelo del brazo
-    for n, x in (("leg_l", 2), ("leg_r", -2)):
-        for dx in (-1.6, -0.4, 0.8):
-            m.cube(n, ((x + dx) * s, 0, -2.6 * s), ((x + dx + 0.6) * s, 0.6 * s, -2 * s), "#3a4a6a")
+    """Yeti de la Cumbre: mole de pelo blanco, mas ancha que alta, con el pelo colgando en mechones."""
+    m = FurModel("astral_yeti")
+    fur, fur_d, fur_s, skin = "#eef2f6", "#d4dde8", "#c2cee0", "#46546e"
+    ice, ice_h = "#8fdcf5", "#e6fbff"
+    m.bone("body", (0, 14, 0))
+    m.rcube("body", (-15, 12, -9), (15, 38, 10), fur, r=3, pat="pelo")
+    m.blob("body", (0, 27, 1), (15.6, 11, 11.2), fur, pat="pelo", levels=3)                                 # lomo abultado
+    m.rcube("body", (-12, 36, -7), (12, 43, 9), fur, r=2.5, pat="pelo")                                     # joroba
+    rng = random.Random("yeti-mechones")
+
+    def tuft(bone, x, z, w, top, ln, axis="x", d=0.8):
+        """Mechon que cuelga y termina en punta: tres tramos cada vez mas angostos."""
+        for k, (f0, f1, inset) in enumerate(((0, 0.5, 0), (0.5, 0.8, 0.5), (0.8, 1, 1.0))):
+            ww = w - 2 * inset
+            if ww < 0.6:
+                continue
+            y1, y0 = top - ln * f0, top - ln * f1
+            if axis == "x":
+                m.cube(bone, (x + inset, y0, z), (x + inset + ww, y1 + 0.2, z + d), fur, pat="pelo")
+            else:
+                m.cube(bone, (x, y0, z + inset), (x + d, y1 + 0.2, z + inset + ww), fur, pat="pelo")
+    for tier, (top, lo, hi, zf, zb, xl, xr) in enumerate(((14.5, 6, 11, -9.9, 10.1, -15.9, 15.1), (27, 4, 7.5, -10.5, 10.7, -16.5, 15.7))):
+        x = -15.5 - tier * 0.5                                                                              # dos capas de pelo: falda y capa
+        while x < 15:
+            w = rng.choice((2.5, 3, 3.5))
+            tuft("body", x, zf, w, top, rng.uniform(lo, hi))
+            tuft("body", x, zb, w, top, rng.uniform(lo, hi))
+            x += w
+        z = -9.5
+        while z < 10:
+            w = rng.choice((2.5, 3, 3.5))
+            tuft("body", xl, z, w, top, rng.uniform(lo, hi), axis="z")
+            tuft("body", xr, z, w, top, rng.uniform(lo, hi), axis="z")
+            z += w
+    m.rcube("body", (-16, 26, -10.3), (16, 38.6, 10.8), fur, r=3, pat="pelo")                               # capa de arriba, mas ancha
+    # piernas cortas y gruesas
+    for n, x in (("leg_l", 8), ("leg_r", -8)):
+        m.bone(n, (x, 13, 0), "body")
+        m.rcube(n, (x - 5.5, 2, -5.5), (x + 5.5, 14, 5.5), fur, r=2, pat="pelo")
+        m.cube(n, (x - 5, 0, -7), (x + 5, 2.6, 5), skin)
+        for dx in (-4.4, -1.2, 2):
+            m.cube(n, (x + dx, 0, -8.4), (x + dx + 2.2, 1.6, -7), ice, {"up": [(0, 0, 1, 1, ice_h)]})       # unas
+        for dx in (-5.6, -2.6, 0.4, 3.2):
+            tuft(n, x + dx, -6.1, 2.6, 9, rng.uniform(5, 7.5))
+            tuft(n, x + dx, 5.4, 2.6, 9, rng.uniform(5, 7.5))
+    # brazos de gorila que llegan casi al piso
+    for n, sx in (("arm_l", 1), ("arm_r", -1)):
+        m.bone(n, (17 * sx, 34, 0), "body")
+
+        def bx(a, b, col, dec=None, pat=None, r=None, n=n, sx=sx):
+            x0, x1 = sorted((a[0] * sx, b[0] * sx))
+            if r:
+                m.rcube(n, (x0, a[1], a[2]), (x1, b[1], b[2]), col, dec, r=r, pat=pat)
+            else:
+                m.cube(n, (x0, a[1], a[2]), (x1, b[1], b[2]), col, dec or {}, pat=pat)
+        bx((14, 27, -6.5), (23.5, 39, 7.5), fur, pat="pelo", r=2.5)                                         # hombro
+        bx((15.5, 9, -6), (24.5, 28, 6.5), fur, pat="pelo", r=2)                                            # antebrazo
+        for k, z in enumerate((-6.2, -3, 0.2, 3.4)):                                                       # pelo colgando del brazo
+            tuft(n, (24.4 if sx > 0 else -25.2), z, 3, 16, 7 + (k % 2) * 3, axis="z")
+            tuft(n, (15.4 + k * 2.2) if sx > 0 else (-18.2 - k * 2.2), -6.8, 2.8, 14, 6 + (k % 3) * 1.5)
+        bx((16.5, 4, -5.5), (23.5, 9.4, 5.5), skin)                                                         # mano oscura
+        for z in (-5.2, -1.4, 2.4):
+            bx((17.6, 1.4, z), (19.8, 4.4, z + 2.4), ice, {"up": [(0, 0, 1, 1, ice_h)]})                    # garras de hielo
+        bx((15, 38.6, -5), (23, 39.8, 6), "#ffffff")                                                        # nieve en el hombro
+    # cabeza hundida entre los hombros, con la cara chica y oscura
+    m.bone("head", (0, 36, -8), "body")
+    m.rcube("head", (-8.5, 29, -15), (8.5, 44, -3), fur, r=2.5, pat="pelo")
+    m.blob("head", (0, 40, -8), (9.2, 6, 7), fur, pat="pelo", levels=2)                                     # melena
+    m.cube("head", (-5.6, 31, -15.6), (5.6, 39.6, -15), skin, {"north": [(0, 0, 11, 1, "#38445c"), (0, 8, 11, 1, "#38445c")]})   # cara
+    for x in (1.6, -4.6):                                                                                  # ojos celestes que brillan
+        m.cube("head", (x, 35.4, -16), (x + 3, 37.6, -15.6), "#6af0ff", {"north": [(0, 0, 1, 1, "#ffffff"), (1, 1, 2, 1, "#3ac8f0")]})
+    m.cube("head", (-7.4, 38.6, -16.6), (7.4, 41.4, -15), "#ffffff", pat="pelo")                            # cejas peludas
+    m.cube("head", (-1.4, 33.2, -16.2), (1.4, 34.8, -15.6), "#2a3448")                                      # nariz
+    m.cube("head", (-3.4, 31, -15.9), (3.4, 32.6, -15.6), "#141a2e")                                        # boca
+    for x in (-3.2, -1.4, 0.6, 2.4):
+        m.cube("head", (x, 31.6 if x in (-3.2, 2.4) else 32, -16.2), (x + 0.9, 32.9, -15.9), "#ffffff")     # colmillos
+    for x in (-7.5, -4.5, -1.5, 1.5, 4.5):                                                                 # barba en puntas
+        tuft("head", x, -15.7, 3, 31.4, 4.5 + (int(x) % 3))
+    for x in (-5, -1.6, 2):
+        m.cube("head", (x, 44, -11), (x + 3, 46.4, -5), fur, pat="pelo")                                    # mechones arriba
+    m.cube("head", (-6, 44, -12), (6, 45, -4), "#ffffff")                                                   # nieve
+    # cuernos de carnero en espiral
+    h1, h2, h3, tip = "#7a5030", "#8a5a38", "#5f3d22", "#e0cba8"
+    stripes = [(0, y, 9, 1, h3) for y in (1, 4, 7)]
+    for sx in (1, -1):
+        for (a0, a1, y0, y1, z0, z1, col) in ((7.5, 13, 39, 45, -10, -4, h1), (12, 18.5, 37, 46, -9, -1, h2), (15, 20.5, 30, 39, -12, -4, h1),
+                                              (13.5, 19.5, 25.5, 32, -18, -10, h3), (13.8, 18, 28, 33.5, -21.5, -17, h2),
+                                              (14.4, 17, 32.5, 36, -22.6, -20, tip)):
+            a, b = sorted((a0 * sx, a1 * sx))
+            m.cube("head", (a, y0, z0), (b, y1, z1), col, {"north": stripes, "east": stripes, "west": stripes, "up": [(0, 1, 9, 1, h3), (0, 5, 9, 1, h3)]})
+    # cristales de hielo en el lomo
+    for (x, y, z, h, w) in ((-7, 41, 4, 9, 2.2), (0, 42, 5, 14, 2.8), (7, 41, 4, 8, 2), (-4, 36, 9.5, 6, 1.8), (5, 34, 9.8, 5, 1.6)):
+        m.cube("body", (x - w, y, z), (x + w, y + h * 0.7, z + 2 * w), ice, {"up": [(0, 0, 1, 1, ice_h)], "south": [(0, 0, 1, 2, ice_h)]})
+        m.cube("body", (x - w * 0.5, y + h * 0.7, z + w * 0.5), (x + w * 0.5, y + h, z + w * 1.5), ice_h)
+    m.anim("idle", 3, {"body": {"scale": (1, "1+math.sin(q.anim_time*120)*0.015", 1)}, "head": {"rotation": (swing(3, 0.33), swing(4, 0.33, 60), 0)},
+                       "arm_l": {"rotation": (swing(3, 0.33), 0, 0)}, "arm_r": {"rotation": (swing(-3, 0.33), 0, 0)}})
+    m.anim("walk", 1.4, {"leg_l": {"rotation": (swing(24, 1 / 1.4), 0, 0)}, "leg_r": {"rotation": (swing(-24, 1 / 1.4), 0, 0)},
+                         "arm_l": {"rotation": (swing(-20, 1 / 1.4), 0, 0)}, "arm_r": {"rotation": (swing(20, 1 / 1.4), 0, 0)},
+                         "body": {"rotation": (0, 0, swing(3, 1 / 1.4))}})
+    m.anim("attack", 0.7, {"arm_l": {"rotation": (swing(-85, 1 / 1.4), 0, 0)}, "arm_r": {"rotation": (swing(-85, 1 / 1.4), 0, 0)},
+                           "body": {"rotation": (swing(8, 1 / 1.4), 0, 0)}}, loop="once")
     return m
 
 
@@ -1011,8 +1172,51 @@ def golem_forja():
         for dx, dz in ((-4.8, -2), (3.2, -4.9), (-2, 3.4), (3.4, 2)):                                       # bultos carmesi
             m.cube(n, (x + dx, 0, z + dz), (x + dx + 1.6, 1.8, z + dz + 1.5), "#c84a3a", {"up": [(0, 0, 1, 1, "#ff6a3a")]})
         legs.append(n)
+    # --- mejora 3c (segun la referencia): ojo de fuego con marco dorado, marco claro del horno, mas guardas y chimenea ladeada
+    gold = "#e8a83a"
+    for a, b in (((-4.6, 43, -6.4), (4.6, 44.2, -5.2)), ((-4.6, 36, -6.4), (4.6, 37.2, -5.2)), ((-5.6, 37.6, -6.4), (-4.2, 43.4, -5.2)),
+                 ((4.2, 37.6, -6.4), (5.6, 43.4, -5.2)), ((-1, 44.2, -6.4), (1, 45.2, -5.4)), ((-1, 35, -6.4), (1, 36, -5.4))):
+        box(m, "head", a, b, gold, {"north": [(0, 0, 1, 1, "#ffe08a")]})
+    box(m, "head", (-0.8, 38.4, -6.2), (0.8, 42, -5.8), "#fff0a0")                                           # llama del ojo
+    box(m, "head", (-1.6, 39.2, -6), (1.6, 40.8, -5.7), "#ffb030")
+    frame = "#b8a890"
+    for a, b in (((-6.8, 22.4, -9.5), (6.8, 23.6, -8.4)), ((-6.8, 11.4, -9.5), (6.8, 12.6, -8.4)), ((-6.8, 11.4, -9.5), (-5.6, 23.6, -8.4)),
+                 ((5.6, 11.4, -9.5), (6.8, 23.6, -8.4))):
+        box(m, "body", a, b, frame, {"north": [(0, 0, 1, 1, "#d8cdb8")]}, pat="stone")                      # marco claro del horno
+    zig2 = [(k, 1 + (k % 4 if k % 4 < 2 else 3 - k % 4), 1, 1, "#e8c8a8") for k in range(11)]
+    m.cube("head", (-5.3, 34.6, -5.3), (5.3, 36.6, 5.3), "#7a2222", {f: zig2 for f in ("south", "east", "west")})        # guarda de la chimenea
+    m.cube("body", (-8.3, 14, -8.3), (8.3, 16, 8.3), "#7a2222", {f: zig for f in ("south", "east", "west")})            # guarda baja
+    vent = [(1, 1, 1, 4, "#ff7a10"), (3, 1, 1, 4, "#ffb030"), (5, 1, 1, 4, "#ff7a10")]
+    mirror(m, "body", (8.3, 17, -3.5), (8.9, 22.6, 3.5), "#1e1210", {"east": vent, "west": vent})           # rejillas laterales
+    m.cube("head", (-3.6, 46.2, -3.6), (3.6, 47.2, 3.6), "#ff7a10", {"up": [(2, 2, 3, 3, "#fff0a0")]})      # brasas en la chimenea
+    for n in legs:                                                                                         # garras carmesi en las patas
+        ox, _, oz = m.bones[n]["origin"]
+        for dx in (-3.6, -0.8, 2):
+            z0 = oz - 6.2 if oz < 0 else oz + 4.5
+            m.cube(n, (ox + dx, 0, z0), (ox + dx + 1.7, 1.6, z0 + 1.7), "#c84a3a", {"up": [(0, 0, 1, 1, "#ff6a3a")]})
+    for x, z in ((-8.8, -8.8), (6.8, -8.8), (-8.8, 6.8), (6.8, 6.8)):                                       # pilares en las esquinas
+        m.cube("body", (x, 11, z), (x + 2, 23.5, z + 2), "#5a1a1a", pat="brick")
+        m.cube("body", (x - 0.2, 22.3, z - 0.2), (x + 2.2, 23.5, z + 2.2), "#e8c8a8")
+    for yv in (30, 40.5):                                                                                   # aros de hierro con remaches en la chimenea
+        m.cube("head", (-5.5, yv, -5.5), (5.5, yv + 1.1, 5.5), "#3a3a40",
+               {f: [(k, 0, 1, 1, "#8a8a92") for k in range(1, 11, 3)] for f in ("north", "south", "east", "west")})
+    for a, b in (((-7.4, 19.5, -9.8), (-6.4, 21.5, -9.3)), ((-7.4, 13.5, -9.8), (-6.4, 15.5, -9.3))):
+        box(m, "body", a, b, "#3a3a40", {"north": [(0, 0, 1, 1, "#8a8a92")]})                               # bisagras
+    box(m, "body", (5.9, 16.4, -10.1), (6.9, 18.8, -9.4), "#e8a83a")                                        # manija
+    for x in (-3, 0.4, 2.6):
+        box(m, "body", (x, 10 - (1.4 if x else 2.4), -9.2), (x + 0.8, 11.5, -8.5), "#ff7a10", {"north": [(0, 0, 1, 1, "#ffd060")]})   # gotas de lava
+    crack = [(2, 2, 1, 3, "#ff7a10"), (3, 4, 2, 1, "#ffb030"), (11, 6, 1, 4, "#ff7a10"), (10, 9, 2, 1, "#ffb030")]
+    m.cube("body", (-7.6, 11.2, 8), (7.6, 23, 8.3), "#8a2a2a", {"south": crack}, pat="brick")               # grietas con brasa atras
+    for n in legs:
+        ox, _, oz = m.bones[n]["origin"]
+        m.cube(n, (ox - 4.6, 4.6, oz - 4.6), (ox + 4.6, 6, oz + 4.6), "#4a4450", {f: [(2, 0, 1, 1, "#ff7a10"), (6, 0, 1, 1, "#ff7a10")] for f in ("north", "south", "east", "west")})
+    m.bone("brasas", (0, 48, 0), "head")                                                                    # chispas que flotan sobre la chimenea
+    for (x, yv, z, c) in ((-1.5, 49, -1, "#ffb030"), (1.2, 51, 0.6, "#ff7a10"), (-0.4, 53.5, -0.6, "#fff0a0"), (2, 54.5, -1.6, "#ff7a10")):
+        m.cube("brasas", (x, yv, z), (x + 0.9, yv + 0.9, z + 0.9), c)
+    m.bones["head"]["rotation"] = [0, 0, -4]
     m.anim("walk", 1.5, walk4(legs, 15, 1))
-    m.anim("idle", 2, {"head": {"rotation": (0, swing(5, 0.5), 0)}})
+    m.anim("idle", 2, {"head": {"rotation": (0, swing(5, 0.5), 0)},
+                       "brasas": {"position": (swing(0.6, 1), "math.mod(q.anim_time, 2) * 2", 0), "scale": ("1 - math.mod(q.anim_time, 2) * 0.35",) * 3}})
     m.anim("attack", 0.8, {"head": {"rotation": (swing(-15, 1.2), 0, 0)}, "body": {"rotation": (swing(-6, 1.2), 0, 0)}}, loop="once")
     return m
 
@@ -1050,6 +1254,19 @@ def cangrejo():
         for k in range(3):                                                                                  # bultitos de la pinza
             a, b = sorted(((4.5 + k * 1.6) * sz * s, (5.3 + k * 1.6) * sz * s))
             m.cube(n, (a, 3 + 5 * sz, -8 - 4 * sz + k), (b, 3.6 + 5 * sz, -7.2 - 4 * sz + k), "#f07a4a")
+    # --- mejora 3c: percebes, estrella de mar, algas largas, boca y dientes en las pinzas
+    for (x, y, z) in ((-4.5, 15, -4.6), (4, 16.5, -4.6), (-2, 17.5, 9), (2.5, 10, 9), (-5, 9.5, 9)):
+        box(m, "body", (x, y, z), (x + 1.6, y + 1.6, z + 0.6), "#e8e0d0", {"north": [(0, 0, 1, 1, "#6a5a4a")], "south": [(0, 0, 1, 1, "#6a5a4a")]})
+    for a, b in (((-1.2, 19.6, 3.4), (3.2, 20.3, 4.6)), ((0.4, 19.6, 1.8), (1.6, 20.3, 6.2))):
+        box(m, "body", a, b, "#f08a3a", {"up": [(0, 0, 1, 1, "#ffd0a0")]})                                   # estrella de mar
+    for (x, z, ln) in ((-7, 4, 6), (6.4, 6, 5), (-7, 7.2, 4), (6.4, 2, 3.5)):
+        m.cube("body", (x, 18.6 - ln, z), (x + 0.6, 18.6, z + 1.2), "#3f7a2a")                               # algas colgando
+    box(m, "body", (-1.6, 2.6, -7.9), (1.6, 4.4, -7.5), "#7a2a12")                                           # boca
+    mirror(m, "body", (0.3, 2.2, -8.2), (1.2, 3.4, -7.8), "#f2e6c8")
+    for (bn, xs, z, ys) in (("claw_l", (6.2, 8.2, 10.2), -16.5, (3.5, 5.6)), ("claw_r", (-9.4, -7.4), -14.5, (3.5, 4.4))):
+        for x in xs:
+            for y in ys:
+                m.cube(bn, (x, y, z), (x + 0.8, y + 0.7, z + 0.6), "#f2e6c8")                                # dientes de la pinza
     legs = []
     for i, z in enumerate((-4, -1, 2)):
         for s, side in ((1, "l"), (-1, "r")):
@@ -1120,6 +1337,45 @@ def chaman():
     m.cube("arm_r", (-8.5, 38, -6), (-7.5, 41, -5), "#e8e8e0")
     m.cube("arm_r", (-12.5, 40, -6), (-11.5, 41, -5), "#e8e8e0")
     m.cube("arm_r", (-7.5, 40, -6), (-6.5, 41, -5), "#e8e8e0")
+    # --- mejora 3c: manto de hojas, hongos, amuletos, pintura de guerra, astas con mas puntas y orbe
+    leaf = ("#7fa03a", "#5a8a2a", "#93b84a")
+    for k in range(8):
+        x = -7.4 + k * 1.9
+        m.cube("body", (x, 21.6 - (k % 2) * 0.8, -4.9), (x + 1.7, 23.4, -4.3), leaf[k % 3], pat="cloth")
+        m.cube("body", (x, 19.5 - ((k + 1) % 2) * 1.2, 5.3), (x + 1.7, 23.4, 5.9), leaf[(k + 1) % 3], pat="cloth")
+    mirror(m, "body", (6.6, 19, -3.6), (7.4, 23.4, 4.6), "#7fa03a", pat="cloth")
+    for x in (-7, 5.6):                                                                                    # hongos en los hombros
+        box(m, "body", (x + 0.4, 23.4, 0), (x + 1.1, 24.6, 0.7), "#e8e0d0")
+        box(m, "body", (x - 0.3, 24.6, -0.7), (x + 1.8, 25.5, 1.4), "#d83a3a", {"up": [(0, 0, 1, 1, "#ffffff")], "north": [(1, 0, 1, 1, "#ffffff")]})
+    for (x, ln, col) in ((2, 3, "#e8e8e0"), (3.6, 4.2, "#4ae8a8"), (5, 2.6, "#e84a4a")):                  # amuletos del cinturon
+        box(m, "body", (x, 15 - ln, -4.85), (x + 0.7, 15, -4.3), col)
+    mirror(m, "head", (1.6, 26.3, -6.6), (2.9, 26.9, -6.4), "#d83a3a")                                      # pintura en la mascara
+    for s in (1, -1):
+        for (a0, a1, y0, y1) in ((5.4, 6.4, 38.5, 40.5), (2, 3, 35.5, 36.6), (6, 7.4, 36, 37)):
+            a, b = sorted((a0 * s, a1 * s))
+            m.cube("head", (a, y0, -4), (b, y1, -3), "#e8e8e0")
+    m.cube("arm_r", (-10.3, 41.4, -6.3), (-8.7, 43, -4.7), "#b04aff", {"north": [(0, 0, 1, 1, "#f0d0ff")]})  # orbe del baston
+    for y in (3, 12, 22):
+        m.cube("arm_r", (-10.4, y, -6.4), (-8.6, y + 0.6, -4.6), "#5a9a3a")                                 # enredadera
+    m.blob("body", (0, 21, 4.6), (5.6, 4.4, 3.2), "#5a7a30", pat="cloth", levels=2)                          # joroba
+    m.bones["body"]["rotation"] = [-16, 0, 0]                                                               # encorvado hacia adelante
+    m.bones["head"]["rotation"] = [-8, 0, 0]
+    m.bones["head"]["origin"] = [0, 23, -3]
+    for n in ("leg_l", "leg_r"):
+        m.bones[n]["rotation"] = [16, 0, 0]
+    m.bones["arm_r"]["rotation"] = [16, 0, 0]                                                               # el baston queda derecho
+    box(m, "body", (-3.6, 8.6, -5), (3.6, 13.4, -4.3), "#141c0e")                                           # hueco oscuro de la tunica
+    for k, x in enumerate((-3.2, -1.8, -0.4, 1, 2.4)):
+        box(m, "body", (x, 12 - (k % 2) * 0.8, -5.3), (x + 0.9, 13.4, -4.9), "#f0f0e8")                    # colmillos de arriba
+        box(m, "body", (x + 0.5, 8.6, -5.3), (x + 1.3, 9.6 + (k % 2) * 0.7, -4.9), "#f0f0e8")              # y de abajo
+    for sx in (1, -1):                                                                                     # mangas anchas con franja violeta
+        a, b = sorted((6.2 * sx, 9.4 * sx))
+        m.cube("arm_l" if sx > 0 else "arm_r", (a, 9.5, -3.2), (b, 22, 3.4), "#6a8a3a",
+               {f: [(0, 8, 7, 1, "#8a5aa8"), (0, 10, 7, 1, "#b88ad8")] for f in ("north", "south", "east", "west")}, pat="cloth")
+        a, b = sorted((6.6 * sx, 9 * sx))
+        m.cube("arm_l" if sx > 0 else "arm_r", (a, 9.1, -2.8), (b, 9.6, 3), "#141c0e")
+    for a, b in (((-10, 36, -6), (-9, 39, -5)), ((-13.5, 38.6, -6), (-9, 39.6, -5)), ((-13.5, 35.6, -6), (-12.5, 38.6, -5))):
+        m.cube("arm_r", a, b, "#8a6a3a", pat="wood")                                                        # gancho del baston
     m.anim("idle", 3, {"head": {"rotation": (swing(3, 0.33), 0, 0)}, "arm_l": {"rotation": (swing(-10, 0.33), 0, swing(4, 0.33))},
                        "arm_r": {"rotation": (-10, 0, swing(-3, 0.33))}})
     m.anim("attack", 0.8, {"arm_r": {"rotation": (swing(-50, 1.2), 0, 0)}, "arm_l": {"rotation": (-90, 0, swing(20, 2))}}, loop="once")
@@ -1204,6 +1460,8 @@ from creatures_tanda3a import coloso, planta
 ALL += [coloso, planta]
 from creatures_tanda3b import ALL as TANDA3B
 ALL += TANDA3B
+from creatures_tanda3c import ALL as TANDA3C
+ALL += TANDA3C
 
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

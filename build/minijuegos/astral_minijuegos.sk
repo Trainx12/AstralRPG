@@ -1069,7 +1069,7 @@ function astral_ce_clonar(dir: text):
         wait 2 ticks
         add 7 to {_z}
     if {_dir} is not "guardar":
-        execute console command "execute in minecraft:colorescape run kill @e[type=item,distance=0..]"
+        execute console command "execute in minecraft:colorescape run minecraft:kill @e[type=item,distance=0..]"
         execute console command "scoreboard players reset * colorEscape"
         execute console command "scoreboard players reset * advancement"
     execute console command "execute in minecraft:colorescape run forceload remove -32 -28 120 308"

@@ -1238,6 +1238,9 @@ astral_npc_expediciones:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
 
 astral_npc_guia_reino:
@@ -1258,6 +1261,9 @@ astral_npc_guia_reino:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
 
 astral_npc_guia_cavernas:
@@ -1278,6 +1284,9 @@ astral_npc_guia_cavernas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
 
 astral_npc_guia_expediciones:
@@ -1298,6 +1307,9 @@ astral_npc_guia_expediciones:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open expediciones <trigger.name>"} @self ~onInteract'
 
 astral_npc_bazar:
@@ -1318,6 +1330,9 @@ astral_npc_bazar:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_bazar} @self ~onSpawn
+  - skill{s=AST_NPC_bazar} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'skill{s=AQ_BAZAR} @trigger ~onInteract'
   - 'command{c="dm open bazar <trigger.name>"} @self ~onInteract'
 
@@ -1339,6 +1354,9 @@ astral_npc_subastas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_subastas} @self ~onSpawn
+  - skill{s=AST_NPC_subastas} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="dm open subastas <trigger.name>"} @self ~onInteract'
 
 astral_npc_herrero:
@@ -1359,6 +1377,9 @@ astral_npc_herrero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_herrero} @self ~onSpawn
+  - skill{s=AST_NPC_herrero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'skill{s=AQ_HERRERO} @trigger ~onInteract'
   - 'command{c="astralherrero <trigger.name>"} @self ~onInteract'
 
@@ -1487,6 +1508,9 @@ astral_npc_viajero:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="mvtp <trigger.name> w:world"} @self ~onInteract'
 
 astral_npc_minas:
@@ -1507,6 +1531,9 @@ astral_npc_minas:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_minero} @self ~onSpawn
+  - skill{s=AST_NPC_minero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="minasmenu <trigger.name>"} @self ~onInteract'
 
 astral_npc_mina_venta:
@@ -1547,6 +1574,9 @@ astral_npc_mina_viaje:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_minero} @self ~onSpawn
+  - skill{s=AST_NPC_minero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="minasmenu <trigger.name>"} @self ~onInteract'
 
 astral_npc_bosque_venta:
@@ -1587,6 +1617,9 @@ astral_npc_bosque_viaje:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_minero} @self ~onSpawn
+  - skill{s=AST_NPC_minero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'command{c="minasmenu <trigger.name>"} @self ~onInteract'
 
 astral_npc_cronista:
@@ -1607,6 +1640,9 @@ astral_npc_cronista:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_cronista} @self ~onSpawn
+  - skill{s=AST_NPC_cronista} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - 'skill{s=AQ_CRONISTA} @trigger ~onInteract'
   - 'skill{s=AQ_CLOCK} @self ~onTimer:200'
   - 'skill{s=AQ_CLOCK} @self ~onSpawn'

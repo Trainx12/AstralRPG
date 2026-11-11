@@ -43,7 +43,7 @@ def main():
         'Hacerlo con la sala vacia; si quedaran plantas de una prueba previa, retirarlas primero:', '',
         '```text', 'mm mobs kill astral_bosque_planta',
         'mm mobs kill astral_bosque_control_sala1',
-        'execute in minecraft:bosque run kill @e[tag=ad.bosque.sala1]',
+        'execute in minecraft:bosque run minecraft:kill @e[tag=ad.bosque.sala1]',
         'data remove storage astral:tanda2/bosque/sala1 queue',
         'mm mobs spawn astral_bosque_control_sala1 1 bosque,1468.5,101,1570.5', '```', '',
         'No recrear controladores de Santuario. El controlador de Minas no cambia: el proximo '

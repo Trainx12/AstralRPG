@@ -97,6 +97,9 @@ astral_tumba_guia:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
 astral_npc_tumba:
   Type: VILLAGER
@@ -116,6 +119,9 @@ astral_npc_tumba:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_bruja} @self ~onSpawn
+  - skill{s=AST_NPC_bruja} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - command{c="lp user <trigger.name> permission set astral.descubierto.tumba true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.tumba}
   - message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract
   - skill{s=TUMBA_ENTRAR} @trigger ~onInteract

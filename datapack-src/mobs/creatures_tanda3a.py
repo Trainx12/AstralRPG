@@ -68,7 +68,7 @@ def vine(m,b,pts,width=.65,color='#4a2e1c'):
 
 def coloso():
     m=FloraModel('astral_coloso_musgoso')
-    stone,light,dark='#a9acb0','#d2d4d6','#6b6f74'
+    stone,light,dark='#9aa0aa','#c4c9d1','#5f6672'   # piedra mas azulada, como la referencia
     m.bone('body',(0,18,0))
     def rock(b,a,c,col=stone): m.cube(b,a,c,col,pat='rock')
     rock('body',(-12,12,-6),(12,28,7))
@@ -144,6 +144,12 @@ def coloso():
                 vine(m,b,[(x+.6,top,z-.2),(x+.5,low+2,z-.3),(x+1.2,low-.7,z-.4)],.55)
             x+=w-.15
     for x in (-14,8): m.cube('body',(x,28,-4),(x+6,30.5,7),'#6f8a28',pat='moss')
+    # Manchas grandes de musgo sobre el pecho, la pierna y la cabeza (mejora 3c).
+    for b,a,c,col in [('body',(4,18,-7.1),(11.5,26,-6.5),'#5f7a22'),('body',(-11.5,14.5,-7.1),(-6,19,-6.5),'#6f8a28'),
+                      ('leg_r',(2.6,3,-5.7),(8,9,-5.1),'#5f7a22'),('head',(-9.3,31,-9.6),(-4,35.8,-3),'#6f8a28'),
+                      ('head',(5,34.6,-6),(10.3,36.1,2),'#8ea33a'),('arm_l',(-22.4,20,-6.4),(-14,23,-5.8),'#6f8a28')]:
+        m.cube(b,a,c,col,pat='moss')
+    vine(m,'body',[(5,26,-7.4),(7,22,-7.5),(6,18,-7.4),(9,15,-7.5)],.8,'#5b4238')
     # El faldon forma masas asimetricas; los flecos salen de estas placas.
     for x,y,w,h in [(3,8,9,7),(6,5,5,5),(-12,10,5,4),(-12,23,5,6),(8,24,6,5)]:
         # Cuentagotas: musgo (342,485), raiz (413,81) de jefe-mina-referencia.
@@ -183,6 +189,11 @@ def planta():
     for i,x in enumerate((1,4.5,8,11.5,15)):
         m.cube('head',(x,21-i%2,-7.3),(x+1.1,25,-6.2),'#a5b638',pat='leaf')
         m.cube('jaw',(x+.3,22.4,-7.7),(x+1.3,24,-6.6),'#ced471',pat='leaf')
+    for x in (2.5,6.5,10.5,14.5):   # franjas oscuras de la mandibula superior (mejora 3c)
+        m.cube('head',(x,30.9,-7.5),(x+1.6,31.3,4.5),'#3a3e17',pat='leaf')
+    for y in (8,13,19):             # espinas del tallo
+        m.cube('stem',(-3.7,y,-.5),(-3,y+.9,.5),'#d9d67a')
+        m.cube('stem',(3,y+2,-.5),(3.7,y+2.9,.5),'#d9d67a')
     for i,(x,y,z,r,rot) in enumerate([(-6,26,-1,5.4,(5,-12,-8)),(1,32,6,5,(0,16,-20))]):
         b=f'bud{i}'; m.bone(b,(x,y,z),'head',rotation=rot)
         m.cube(b,(x-r,y-r,z-r),(x+r,y+r,z+r),'#b43773',pat='bud')

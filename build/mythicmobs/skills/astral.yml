@@ -118,8 +118,8 @@ AST_MODEL_astral_golem_forja:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.24537"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.347222"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.555266"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.533160"} @self
 AST_MODEL_astral_cangrejo:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -130,8 +130,8 @@ AST_MODEL_astral_chaman:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_chaman;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.628205"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.576923"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.788358"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.673015"} @self
 AST_MODEL_astral_yeti_cumbre:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -522,8 +522,8 @@ AST_MODEL_astral_golem_forja_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.24537"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.347222"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.555266"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.533160"} @self
   - delay 2
   - tint{c=FF6A2A} @self
 AST_ANCESTRAL_SEVA_astral_golem_forja:
@@ -546,8 +546,8 @@ AST_MODEL_astral_chaman_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_chaman;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.628205"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.576923"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.788358"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.673015"} @self
   - delay 2
   - tint{c=7CFF6A} @self
 AST_ANCESTRAL_SEVA_astral_chaman:
@@ -598,8 +598,8 @@ AST_MODEL_astral_golem_forja_mazmorra:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=8.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 8.981481"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 5.388889"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 10.221063"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 6.132638"} @self
 AST_YETI_PISOTON:
   Skills:
   - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self

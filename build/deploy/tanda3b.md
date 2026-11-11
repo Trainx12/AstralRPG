@@ -22,7 +22,7 @@ Servidor vigente: Empower (Aternos es copia). No desplegado. Requiere las tandas
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |
 | `build/AstralRPG-Textures.zip` | R2: objeto `AstralRPG-Textures.zip` |
 
-Pack: 17716907 bytes. SHA-1: **`940383c3591d889686273c33edacfc4ca940620e`**.
+Pack: 17726533 bytes. SHA-1: **`9034a25e41f9ee8715240420f3f034186ebbf77f`**.
 
 ## Actualizacion v4 sobre v3 (1008f75) ya instalada
 
@@ -42,47 +42,47 @@ Reemplazar solo los cinco `build/models/astral_esq_*.bbmodel` en sus destinos de
 
 ```text
 mm mobs kill astral_mina_control_sala1
-execute in minecraft:mina run kill @e[tag=ad.mina.sala1]
+execute in minecraft:mina run minecraft:kill @e[tag=ad.mina.sala1]
 data remove storage astral:tanda2/mina/sala1 queue
 mm mobs spawn astral_mina_control_sala1 1 mina,10.5,-45,-124.5
 mm mobs kill astral_mina_control_sala2
-execute in minecraft:mina run kill @e[tag=ad.mina.sala2]
+execute in minecraft:mina run minecraft:kill @e[tag=ad.mina.sala2]
 data remove storage astral:tanda2/mina/sala2 queue
 mm mobs spawn astral_mina_control_sala2 1 mina,19.5,-39,-158.5
 mm mobs kill astral_mina_control_sala3
-execute in minecraft:mina run kill @e[tag=ad.mina.sala3]
+execute in minecraft:mina run minecraft:kill @e[tag=ad.mina.sala3]
 data remove storage astral:tanda2/mina/sala3 queue
 mm mobs spawn astral_mina_control_sala3 1 mina,43.5,-24,-201.5
 mm mobs kill astral_mina_control_sala4
-execute in minecraft:mina run kill @e[tag=ad.mina.sala4]
+execute in minecraft:mina run minecraft:kill @e[tag=ad.mina.sala4]
 data remove storage astral:tanda2/mina/sala4 queue
 mm mobs spawn astral_mina_control_sala4 1 mina,36.5,24,-248.5
 mm mobs kill astral_bosque_control_sala1
-execute in minecraft:bosque run kill @e[tag=ad.bosque.sala1]
+execute in minecraft:bosque run minecraft:kill @e[tag=ad.bosque.sala1]
 data remove storage astral:tanda2/bosque/sala1 queue
 mm mobs spawn astral_bosque_control_sala1 1 bosque,1468.5,101,1570.5
 mm mobs kill astral_bosque_control_sala2
-execute in minecraft:bosque run kill @e[tag=ad.bosque.sala2]
+execute in minecraft:bosque run minecraft:kill @e[tag=ad.bosque.sala2]
 data remove storage astral:tanda2/bosque/sala2 queue
 mm mobs spawn astral_bosque_control_sala2 1 bosque,1604.5,101,1382.5
 mm mobs kill astral_tumba_control_sala1
-execute in minecraft:tumba run kill @e[tag=ad.tumba.sala1]
+execute in minecraft:tumba run minecraft:kill @e[tag=ad.tumba.sala1]
 data remove storage astral:tanda2/tumba/sala1 queue
 mm mobs spawn astral_tumba_control_sala1 1 tumba,-148.5,60,-98.5
 mm mobs kill astral_tumba_control_sala2
-execute in minecraft:tumba run kill @e[tag=ad.tumba.sala2]
+execute in minecraft:tumba run minecraft:kill @e[tag=ad.tumba.sala2]
 data remove storage astral:tanda2/tumba/sala2 queue
 mm mobs spawn astral_tumba_control_sala2 1 tumba,-175.5,88,203.5
 mm mobs kill astral_tumba_control_sala3
-execute in minecraft:tumba run kill @e[tag=ad.tumba.sala3]
+execute in minecraft:tumba run minecraft:kill @e[tag=ad.tumba.sala3]
 data remove storage astral:tanda2/tumba/sala3 queue
 mm mobs spawn astral_tumba_control_sala3 1 tumba,0.568,72,0.512
 mm mobs kill astral_cumbre_control_sala1
-execute in minecraft:cumbre_hielo run kill @e[tag=ad.cumbre.sala1]
+execute in minecraft:cumbre_hielo run minecraft:kill @e[tag=ad.cumbre.sala1]
 data remove storage astral:tanda2/cumbre/sala1 queue
 mm mobs spawn astral_cumbre_control_sala1 1 cumbre_hielo,-25.6,33,-23.4
 mm mobs kill astral_cumbre_control_sala2
-execute in minecraft:cumbre_hielo run kill @e[tag=ad.cumbre.sala2]
+execute in minecraft:cumbre_hielo run minecraft:kill @e[tag=ad.cumbre.sala2]
 data remove storage astral:tanda2/cumbre/sala2 queue
 mm mobs spawn astral_cumbre_control_sala2 1 cumbre_hielo,-101.8,30,56.9
 ```

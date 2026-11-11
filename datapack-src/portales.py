@@ -70,7 +70,9 @@ def script():
     return '\n'.join(lines) + '\n'
 
 
-def npc():
+def npc(modelo=True):
+    from mobs.tanda3c import npc_skills
+    extra = ''.join(f'  - {s}\n' for s in npc_skills('astral_npc_portales')) if modelo else ''
     return '''# Generado por portales.py. Ubicacion en el lobby elegida por el dueno.
 astral_npc_portales:
   Type: VILLAGER
@@ -92,7 +94,7 @@ astral_npc_portales:
   Skills:
   - cancelevent @self ~onInteract
   - 'command{c="dm open portales <trigger.name>"} @self ~onInteract'
-'''
+''' + extra
 
 
 def generate():

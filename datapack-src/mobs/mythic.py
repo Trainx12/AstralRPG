@@ -341,6 +341,8 @@ def npc_block(mid, name, prof, skills):
     lines += ["  Skills:", "  - cancelevent @self ~onInteract"]
     if cofre:
         lines += [f"  - model{{m={cofre}}} @self ~onSpawn", f"  - model{{m={cofre}}} @self ~onLoad"]
+    from mobs.tanda3c import npc_skills
+    lines += ["  - " + s for s in npc_skills(mid)]
     lines += ["  - '" + s.replace("'", "''") + "'" for s in skills]
     return "\n".join(lines) + "\n"
 
@@ -565,6 +567,8 @@ def main():
     generate()
     from mobs.tanda3b import generate as generate_tanda3b
     generate_tanda3b()
+    from mobs.tanda3c import generate as generate_tanda3c
+    generate_tanda3c()
 
 
 if __name__ == "__main__":

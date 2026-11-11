@@ -19,3 +19,6 @@ astral_npc_portales:
   Skills:
   - cancelevent @self ~onInteract
   - 'command{c="dm open portales <trigger.name>"} @self ~onInteract'
+  - skill{s=AST_NPC_hechicero} @self ~onSpawn
+  - skill{s=AST_NPC_hechicero} @self ~onLoad
+  - state{s=saludo} @self ~onInteract

@@ -77,6 +77,9 @@ astral_bosque_guia:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
 astral_npc_bosque:
   Type: VILLAGER
@@ -96,6 +99,9 @@ astral_npc_bosque:
     VillagerType: PLAINS
   Skills:
   - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_bruja} @self ~onSpawn
+  - skill{s=AST_NPC_bruja} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
   - command{c="lp user <trigger.name> permission set astral.descubierto.bosque true"} @self ~onInteract ?~!haspermission{p=astral.descubierto.bosque}
   - message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract
   - skill{s=BOSQUE_ENTRAR} @trigger ~onInteract

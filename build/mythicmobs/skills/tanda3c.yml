@@ -1,0 +1,48 @@
+# Generado por mobs/tanda3c.py
+AST_MODELO_astral_maquina_arcade:
+  Skills:
+  - model{m=astral_maquina_arcade} @self
+  - brightness{pid=pantalla;b=15;s=15} @self
+  - brightness{pid=marquesina;b=15;s=15} @self
+  - brightness{pid=neon;b=15;s=15} @self
+  - brightness{pid=luces;b=15;s=15} @self
+  - brightness{pid=botones;b=15;s=15} @self
+AST_MODELO_astral_maquina_capsulas:
+  Skills:
+  - model{m=astral_maquina_capsulas} @self
+  - brightness{pid=cupula;b=15;s=15} @self
+  - brightness{pid=pomo;b=15;s=15} @self
+AST_NPC_mago:
+  Skills:
+  - model{m=astral_npc_mago} @self
+  - brightness{pid=cristal;b=15;s=15} @self
+AST_NPC_herrero:
+  Skills:
+  - model{m=astral_npc_herrero} @self
+AST_NPC_subastas:
+  Skills:
+  - model{m=astral_npc_subastas} @self
+AST_NPC_bazar:
+  Skills:
+  - model{m=astral_npc_bazar} @self
+  - brightness{pid=farol;b=15;s=15} @self
+AST_NPC_cronista:
+  Skills:
+  - model{m=astral_npc_cronista} @self
+AST_NPC_minero:
+  Skills:
+  - model{m=astral_npc_minero} @self
+  - brightness{pid=lampara;b=15;s=15} @self
+  - brightness{pid=farol;b=15;s=15} @self
+  - brightness{pid=oro;b=15;s=15} @self
+AST_NPC_caballero:
+  Skills:
+  - model{m=astral_npc_caballero} @self
+AST_NPC_hechicero:
+  Skills:
+  - model{m=astral_npc_hechicero} @self
+  - brightness{pid=gema;b=15;s=15} @self
+AST_NPC_bruja:
+  Skills:
+  - model{m=astral_npc_bruja} @self
+  - brightness{pid=gema;b=15;s=15} @self

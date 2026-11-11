@@ -92,6 +92,7 @@ SALAS = [
          final_npcs={"cofre": (40.5, 24, -225.5)}),  # cofre donde llegan a la sala
 ]
 LOBBY_NPC = "astral_npc_mina"
+from mobs.tanda3c import npc_skills  # noqa: E402
 PREMIO = [("esencia_elite", 4), ("alma_corrupta", 2), ("gema_luminica", 1), ("cristal_refinado", 1)]
 PREMIO_PLATA = 2500
 
@@ -181,14 +182,15 @@ def mob_yml(dungeon=None):
               "  - " + q(f'command{{c="dm open cofre_{dungeon['key']} <trigger.name>"}} @self ~onInteract'), ""]
         L += ["astral_mina_guia:", "  Type: VILLAGER", f"  Display: {q('&b&lExpediciones Astrales &7- elegir destino')}",
               "  Health: 100", "  Options:"] + quieto + ["    Profession: CARTOGRAPHER", "    VillagerType: PLAINS",
-              "  Skills:", "  - cancelevent @self ~onInteract",
+              "  Skills:", "  - cancelevent @self ~onInteract"] + ["  - " + s for s in npc_skills('guia', dungeon['key'])] + [
               "  - " + q('command{c="dm open expediciones <trigger.name>"} @self ~onInteract'), ""]
     # Entradas escondidas en salas secretas: no mostrar el nombre tras paredes.
     # vendedor del lobby
     L += [f"{LOBBY_NPC}:", "  Type: VILLAGER", f"  Display: {q('&8&lMazmorra: &7Minas Olvidadas')}", "  Health: 100", "  Options:",
           "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
           "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true", "    AlwaysShowName: false",
-          "    Profession: MASON", "    VillagerType: PLAINS", "  Skills:", "  - cancelevent @self ~onInteract",
+          "    Profession: MASON", "    VillagerType: PLAINS", "  Skills:", "  - cancelevent @self ~onInteract"] + [
+          "  - " + s for s in npc_skills('entrada', dungeon['key'])] + [
           "  - " + q(f'command{{c="lp user <trigger.name> permission set astral.descubierto.{dungeon["key"]} true"}} @self ~onInteract ?~!haspermission{{p=astral.descubierto.{dungeon["key"]}}}'),
           "  - " + q('message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'),
           "  - " + q("skill{s=MINA_ENTRAR} @trigger ~onInteract"), ""]

@@ -15,7 +15,7 @@
 | `build/mythicmobs/skills/tanda3a.yml` | `plugins/MythicMobs/skills/tanda3a.yml` |
 | `build/AstralRPG-Textures.zip` | R2, objeto `AstralRPG-Textures.zip` |
 
-Pack: **17,552,861 bytes**, SHA-1 **`d05cab11deda98621c5d93b9d83bbfee10af20c6`**.
+Pack: **17,726,533 bytes**, SHA-1 **`9034a25e41f9ee8715240420f3f034186ebbf77f`**.
 Assets reconvertidos con BetterModel 3.6.0; el pack incluye la geometria y texturas v2. No subir solamente los bbmodels conservando el pack v1.
 
 Las estatuas usan los bbmodels existentes: `astral_cangrejo`, `astral_chaman`, `astral_momia`, `astral_yeti`, `astral_golem_forja`, todos a s=2.0. Conservar esos cinco en BetterModel.
@@ -37,7 +37,7 @@ Recrear el controlador de oleadas del Bosque para eliminar el estado de oleadas 
 ```text
 mm mobs kill astral_bosque_planta
 mm mobs kill astral_bosque_control_sala1
-execute in minecraft:bosque run kill @e[tag=ad.bosque.sala1]
+execute in minecraft:bosque run minecraft:kill @e[tag=ad.bosque.sala1]
 data remove storage astral:tanda2/bosque/sala1 queue
 mm mobs spawn astral_bosque_control_sala1 1 bosque,1468.5,101,1570.5
 ```
