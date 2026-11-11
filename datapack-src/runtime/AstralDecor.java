@@ -70,17 +70,101 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private final Random random = new Random();
     private static final Set<String> PLUSH = Set.of("alex","creaking","ocelot","steve","tropical_fish","zombie_horse");
     private static final Map<String,Integer> PLANTS = Map.of("swamp",65,"mangrove_swamp",65,"jungle",70,"sparse_jungle",50,"bamboo_jungle",65,"dark_forest",35,"forest",8,"flower_forest",8,"birch_forest",8);
+    private final Set<UUID> skinsApplied = new HashSet<>();
+    private void loginSkins() {
+        if(!getConfig().getBoolean("skins-after-login",true) || !Bukkit.getPluginManager().isPluginEnabled("SkinsRestorer"))return;
+        for(Player p:Bukkit.getOnlinePlayers()) {
+            if(!authenticated(p)) { skinsApplied.remove(p.getUniqueId());continue; }
+            if(skinsApplied.add(p.getUniqueId()))Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"sr applyskin "+p.getName());
+        }
+    }
+    @EventHandler public void packSkin(PlayerResourcePackStatusEvent e) {
+        if(e.getStatus()!=PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED || !authenticated(e.getPlayer()))return;
+        skinsApplied.remove(e.getPlayer().getUniqueId());
+    }
+    private final Map<UUID,ItemDisplay> hats = new HashMap<>();
+    private NamespacedKey selection(String kind) { return new NamespacedKey(this,"cosmetic_"+kind); }
+    private boolean authenticated(Player p) {
+        var auth=Bukkit.getPluginManager().getPlugin("AuthMe");
+        if(auth==null || !auth.isEnabled())return true;
+        try {
+            var api=Class.forName("fr.xephi.authme.api.v3.AuthMeApi",true,auth.getClass().getClassLoader());
+            return (boolean)api.getMethod("isAuthenticated",Player.class).invoke(api.getMethod("getInstance").invoke(null),p);
+        } catch(ReflectiveOperationException ex) { return false; }
+    }
+    private ItemStack selected(Player p,String kind) {
+        String key=p.getPersistentDataContainer().get(selection(kind),PersistentDataType.STRING);
+        if(key==null || !p.hasPermission("astral.cosmetico."+kind+"."+key))return null;
+        String model=getConfig().getString("cosmetics."+kind+"."+key);
+        if(model==null)return null;
+        ItemStack item=new ItemStack(Material.PAPER);var meta=item.getItemMeta();
+        meta.setItemModel(NamespacedKey.fromString("astral:"+model));item.setItemMeta(meta);return item;
+    }
+    public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
+        if(!(sender instanceof Player p))return true;
+        if(!authenticated(p)) { p.sendMessage("Primero inicia sesion.");return true; }
+        if(args.length!=2 || !Set.of("sombrero","alas").contains(args[0]))return false;
+        String kind=args[0],key=args[1];
+        if(key.equals("quitar"))p.getPersistentDataContainer().remove(selection(kind));
+        else {
+            if(!getConfig().contains("cosmetics."+kind+"."+key) || !p.hasPermission("astral.cosmetico."+kind+"."+key)) {
+                p.sendMessage("Todavia no desbloqueaste ese cosmetico.");return true;
+            }
+            p.getPersistentDataContainer().set(selection(kind),PersistentDataType.STRING,key);
+        }
+        p.saveData();
+        wings(); hats();
+        p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado. Los sombreros se muestran solo sin casco.");
+        return true;
+    }
+    private void removeCosmetics(UUID id) {
+        skinsApplied.remove(id);
+        var wing=wings.remove(id);if(wing!=null)wing.remove();
+        var hat=hats.remove(id);if(hat!=null)hat.remove();
+    }
+    @EventHandler public void leaveCosmetics(PlayerQuitEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
+    @EventHandler public void deathCosmetics(PlayerDeathEvent e) { removeCosmetics(e.getEntity().getUniqueId()); }
+    private void hats() {
+        Set<UUID> active=new HashSet<>();
+        for(Player p:Bukkit.getOnlinePlayers()) {
+            ItemStack item=selected(p,"sombrero");
+            if(item==null || !authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR
+                || (p.getInventory().getHelmet()!=null && !p.getInventory().getHelmet().getType().isAir()))continue;
+            active.add(p.getUniqueId());
+            Location loc=p.getEyeLocation().add(0,.15,0);
+            ItemDisplay v=hats.get(p.getUniqueId());
+            if(v!=null && !v.getWorld().equals(p.getWorld())) {v.remove();v=null;}
+            if(v==null || !v.isValid()) {
+                v=p.getWorld().spawn(loc,ItemDisplay.class);v.setPersistent(false);v.setInvulnerable(true);
+                v.addScoreboardTag("astral.hat");v.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
+                v.setTransformation(new Transformation(new Vector3f(),new Quaternionf(),new Vector3f(.625f),new Quaternionf()));
+                v.setTeleportDuration(2);hats.put(p.getUniqueId(),v);
+                p.hideEntity(this,v); // No tapar la camara propia en primera persona.
+            }
+            if(!item.equals(v.getItemStack()))v.setItemStack(item);
+            v.teleport(loc);
+        }
+        hats.entrySet().removeIf(e->{if(active.contains(e.getKey()))return false;e.getValue().remove();return true;});
+    }
     public void onEnable() {
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
         saveDefaultConfig();
+        // Integrar solo el catalogo nuevo; conservar configuracion NPC del servidor.
+        try(var in=getResource("config.yml")) {
+            var defaults=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8));
+            var catalog=defaults.getConfigurationSection("cosmetics");
+            for(String key:catalog.getKeys(true))if(!catalog.isConfigurationSection(key))getConfig().set("cosmetics."+key,catalog.get(key));
+            saveConfig();
+        } catch(java.io.IOException ex) { throw new IllegalStateException(ex); }
         getServer().getPluginManager().registerEvents(this,this);
-        getServer().getScheduler().runTaskTimer(this,this::wings,1,2);
+        getServer().getScheduler().runTaskTimer(this,()->{wings();hats();},1,2);
+        getServer().getScheduler().runTaskTimer(this,this::loginSkins,20,20);
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
         getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, alas, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
-    public void onDisable() { wings.values().forEach(Entity::remove); wings.clear(); }
+    public void onDisable() { wings.values().forEach(Entity::remove); wings.clear(); hats.values().forEach(Entity::remove);hats.clear(); }
     private String id(ItemStack item) {
         if(item == null || !item.hasItemMeta()) return "";
         NamespacedKey key = item.getItemMeta().getItemModel();
@@ -212,7 +296,9 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         Set<UUID> active = new HashSet<>();
         for(Player p:Bukkit.getOnlinePlayers()) {
             // Segunda mano: inventario vanilla se encarga de muerte, tumbas y desconexion.
-            ItemStack cosmetic=p.getInventory().getItemInOffHand();
+            if(!authenticated(p))continue;
+            ItemStack cosmetic=selected(p,"alas");
+            if(cosmetic==null)cosmetic=p.getInventory().getItemInOffHand();
             String id=id(cosmetic);
             if(!Set.of("carnivora_alas","asura_alas").contains(id) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR) continue;
             active.add(p.getUniqueId());

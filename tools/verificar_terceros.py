@@ -45,6 +45,14 @@ def fingerprints():
                 if t.get('source', '').startswith('data:image/png;base64,'):
                     raw = base64.b64decode(t['source'].split(',', 1)[1])
                     hashes.add(sha(raw)); pixels.add(png_signature(raw))
+    # Originales nuevos conservados como ZIP; incluir tambien sus PNG en la auditoria.
+    for archive in (privado()/'originales/cosmeticos').glob('*.zip'):
+        hashes.add(sha(archive.read_bytes()))
+        with zipfile.ZipFile(archive) as z:
+            for name in z.namelist():
+                if name.endswith(('.png','.json')):
+                    blob=z.read(name);hashes.add(sha(blob))
+                    if name.endswith('.png'):pixels.add(png_signature(blob))
     return hashes, pixels, names
 
 

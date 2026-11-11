@@ -22,7 +22,7 @@ def build(jdk,server):
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralDecor*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(),(2026,11,10,0,0,0)),p.read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.2.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI]\n')
+        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.3.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI, AuthMe, SkinsRestorer]\ncommands:\n  astralcosmetic:\n    usage: /astralcosmetic <sombrero|alas> <clave|quitar>\n')
         from mobs.tanda3c import NPC_MODELOS, MAQUINAS, MAZMORRAS
         models={mid:'astral_npc_'+name for mid,name in NPC_MODELOS.items()}
         skills={mid:'AST_NPC_'+name for mid,name in NPC_MODELOS.items()}
@@ -33,7 +33,9 @@ def build(jdk,server):
         for dungeon in MAZMORRAS:
             for mid,name in [('astral_npc_'+dungeon,'bruja'),('astral_'+dungeon+'_guia','mago')]:
                 models[mid]='astral_npc_'+name; skills[mid]='AST_NPC_'+name
-        config={'npc-models':models,'npc-skills':skills,'hidden-npcs':['astral_npc_'+d for d in MAZMORRAS]}
+        from cosmeticos_catalogo import catalog
+        cosmetics={kind:{key:model for k,key,_,_,model in catalog() if k==kind} for kind in ('sombrero','alas')}
+        config={'skins-after-login':True,'cosmetics':cosmetics,'npc-models':models,'npc-skills':skills,'hidden-npcs':['astral_npc_'+d for d in MAZMORRAS]}
         z.writestr(zipfile.ZipInfo('config.yml',(2026,11,10,0,0,0)),yaml.safe_dump(config,sort_keys=False))
     print(dest)
 

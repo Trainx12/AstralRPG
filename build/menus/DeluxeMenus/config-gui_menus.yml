@@ -106,3 +106,7 @@ gui_menus:
     file: dropper_h4rs.yml
   cosmeticos:
     file: cosmeticos.yml
+  cosmeticos_sombreros:
+    file: cosmeticos_sombreros.yml
+  cosmeticos_alas:
+    file: cosmeticos_alas.yml

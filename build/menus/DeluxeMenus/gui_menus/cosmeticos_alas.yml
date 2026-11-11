@@ -1,0 +1,127 @@
+{
+  "menu_title": "&8Cosmeticos - Alas",
+  "size": 54,
+  "items": {
+    "carnivora": {
+      "slot": 9,
+      "material": "PAPER",
+      "item_model": "astral:carnivora_alas",
+      "priority": 1,
+      "display_name": "&dAlas de Carnivora",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Deja libres tus dos manos.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.carnivora"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.carnivora"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic alas carnivora"
+      ]
+    },
+    "carnivora_locked": {
+      "slot": 9,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Alas de Carnivora",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "asura": {
+      "slot": 10,
+      "material": "PAPER",
+      "item_model": "astral:asura_alas",
+      "priority": 1,
+      "display_name": "&dAlas de Asura",
+      "lore": [
+        "&7Rareza: Legendario",
+        "&7No da proteccion ni estadisticas.",
+        "&7Deja libres tus dos manos.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.asura"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.asura"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic alas asura"
+      ]
+    },
+    "asura_locked": {
+      "slot": 10,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Alas de Asura",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "clear": {
+      "slot": 49,
+      "material": "BARRIER",
+      "display_name": "&eQuitar",
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic alas quitar"
+      ]
+    },
+    "back": {
+      "slot": 45,
+      "material": "ARROW",
+      "display_name": "&fTitulos",
+      "click_commands": [
+        "[openguimenu] cosmeticos"
+      ]
+    },
+    "gacha": {
+      "slot": 53,
+      "material": "CHEST",
+      "display_name": "&dGacha de Cosmeticos",
+      "click_commands": [
+        "[openguimenu] gacha_cosmeticos"
+      ]
+    }
+  }
+}

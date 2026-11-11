@@ -119,18 +119,45 @@ Crate:
         - "<gray>Rareza: <gold><bold>Legendario"
         - "<gold>★★★★★<dark_gray>"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<gray>Probabilidad: <yellow><bold>0.23%"
         - "<gold>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.3125
+      Weight: 0.2273
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.astral true"
         - "tellraw %player% {\"text\":\"Titulo ASTRAL desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «ASTRAL»',color:'white'}]"
     "2":
+      DisplayName: "<gold><bold>Alas de Asura"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "asura_alas"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <gold><bold>Legendario"
+        - "<gold>★★★★★<dark_gray>"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.14%"
+        - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.1364
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.alas.asura true"
+        - "tellraw %player% {\"text\":\"Alas de Asura desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Alas de Asura',color:'white'}]"
+    "3":
       DisplayName: "<gold><bold>Cabeza de Dragon"
       DisplayItem: "dragon_head"
       Settings:
@@ -146,17 +173,17 @@ Crate:
         - "<gray>Rareza: <gold><bold>Legendario"
         - "<gold>★★★★★<dark_gray>"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.19%"
-        - "<gold>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.14%"
+        - "<gold>▮<dark_gray>▮▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.1875
+      Weight: 0.1364
       Commands:
         - "give %player% minecraft:dragon_head 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cabeza de Dragon',color:'white'}]"
-    "3":
+    "4":
       DisplayName: "<light_purple><bold>Titulo «Campeon»"
       DisplayItem: "name_tag"
       Settings:
@@ -172,18 +199,18 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.35%"
-        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.51%"
+        - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.3462
+      Weight: 0.5147
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.campeon true"
         - "tellraw %player% {\"text\":\"Titulo Campeon desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Campeon»',color:'white'}]"
-    "4":
+    "5":
       DisplayName: "<light_purple><bold>Titulo «Senor del Abismo»"
       DisplayItem: "name_tag"
       Settings:
@@ -199,18 +226,207 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.35%"
-        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.51%"
+        - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.3462
+      Weight: 0.5147
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.senor_del_abismo true"
         - "tellraw %player% {\"text\":\"Titulo Senor del Abismo desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Senor del Abismo»',color:'white'}]"
-    "5":
+    "6":
+      DisplayName: "<light_purple><bold>Cabeza de Frankenstein"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_frankenstein"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.frankenstein true"
+        - "tellraw %player% {\"text\":\"Cabeza de Frankenstein desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cabeza de Frankenstein',color:'white'}]"
+    "7":
+      DisplayName: "<light_purple><bold>Sombrero de Bruja"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_bruja"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.bruja true"
+        - "tellraw %player% {\"text\":\"Sombrero de Bruja desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Sombrero de Bruja',color:'white'}]"
+    "8":
+      DisplayName: "<light_purple><bold>Cuernos de Diablo"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_diablo"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.diablo true"
+        - "tellraw %player% {\"text\":\"Cuernos de Diablo desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cuernos de Diablo',color:'white'}]"
+    "9":
+      DisplayName: "<light_purple><bold>Capucha de Ilusionista"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_illusioner"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.illusioner true"
+        - "tellraw %player% {\"text\":\"Capucha de Ilusionista desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Capucha de Ilusionista',color:'white'}]"
+    "10":
+      DisplayName: "<light_purple><bold>Capucha de Vindicador"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_vindicator"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.vindicator true"
+        - "tellraw %player% {\"text\":\"Capucha de Vindicador desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Capucha de Vindicador',color:'white'}]"
+    "11":
+      DisplayName: "<light_purple><bold>Sombrero de Carnivora"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_carnivora"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.carnivora true"
+        - "tellraw %player% {\"text\":\"Sombrero de Carnivora desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Sombrero de Carnivora',color:'white'}]"
+    "12":
+      DisplayName: "<light_purple><bold>Alas de Carnivora"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "carnivora_alas"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.3088
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.alas.carnivora true"
+        - "tellraw %player% {\"text\":\"Alas de Carnivora desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+        - "scoreboard players set %player% pity_cosmeticos 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Alas de Carnivora',color:'white'}]"
+    "13":
       DisplayName: "<light_purple><bold>Molde de adorno: silence"
       DisplayItem: "silence_armor_trim_smithing_template"
       Settings:
@@ -226,17 +442,17 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.81%"
-        - "<light_purple>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.31%"
+        - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.8077
+      Weight: 0.3088
       Commands:
         - "give %player% minecraft:silence_armor_trim_smithing_template 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Molde de adorno: silence',color:'white'}]"
-    "6":
+    "14":
       DisplayName: "<aqua><bold>Titulo «Domador»"
       DisplayItem: "name_tag"
       Settings:
@@ -250,16 +466,16 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.96%"
-        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.38%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.9643
+      Weight: 1.375
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.domador true"
         - "tellraw %player% {\"text\":\"Titulo Domador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "7":
+    "15":
       DisplayName: "<aqua><bold>Titulo «Arcano»"
       DisplayItem: "name_tag"
       Settings:
@@ -273,16 +489,16 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.96%"
-        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.38%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.9643
+      Weight: 1.375
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.arcano true"
         - "tellraw %player% {\"text\":\"Titulo Arcano desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "8":
+    "16":
       DisplayName: "<aqua><bold>Titulo «Berserker»"
       DisplayItem: "name_tag"
       Settings:
@@ -296,16 +512,16 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.96%"
-        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.38%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.9643
+      Weight: 1.375
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.berserker true"
         - "tellraw %player% {\"text\":\"Titulo Berserker desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "9":
+    "17":
       DisplayName: "<aqua><bold>Titulo «Arquero»"
       DisplayItem: "name_tag"
       Settings:
@@ -319,16 +535,108 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>1.96%"
-        - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.38%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 1.9643
+      Weight: 1.375
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.arquero true"
         - "tellraw %player% {\"text\":\"Titulo Arquero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "10":
+    "18":
+      DisplayName: "<aqua><bold>Gorro de Clerigo"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_cleric"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.82%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.825
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.cleric true"
+        - "tellraw %player% {\"text\":\"Gorro de Clerigo desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "19":
+      DisplayName: "<aqua><bold>Gorro de Bibliotecario"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_librarian"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.82%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.825
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.librarian true"
+        - "tellraw %player% {\"text\":\"Gorro de Bibliotecario desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "20":
+      DisplayName: "<aqua><bold>Gorro de Nieve"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_snow"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.82%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.825
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.snow true"
+        - "tellraw %player% {\"text\":\"Gorro de Nieve desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "21":
+      DisplayName: "<aqua><bold>Gorro de Pantano"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_swamp"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <aqua>Raro"
+        - "<aqua>★★★<dark_gray>★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>0.82%"
+        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 0.825
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.swamp true"
+        - "tellraw %player% {\"text\":\"Gorro de Pantano desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "22":
       DisplayName: "<aqua><bold>Molde de adorno: vex"
       DisplayItem: "vex_armor_trim_smithing_template"
       Settings:
@@ -342,15 +650,15 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.79%"
-        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.55%"
+        - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.7857
+      Weight: 0.55
       Commands:
         - "give %player% minecraft:vex_armor_trim_smithing_template 1"
-    "11":
+    "23":
       DisplayName: "<aqua><bold>Molde de adorno: tide"
       DisplayItem: "tide_armor_trim_smithing_template"
       Settings:
@@ -364,15 +672,15 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.79%"
-        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.55%"
+        - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.7857
+      Weight: 0.55
       Commands:
         - "give %player% minecraft:tide_armor_trim_smithing_template 1"
-    "12":
+    "24":
       DisplayName: "<aqua><bold>Molde de adorno: ward"
       DisplayItem: "ward_armor_trim_smithing_template"
       Settings:
@@ -386,15 +694,15 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.79%"
-        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.55%"
+        - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.7857
+      Weight: 0.55
       Commands:
         - "give %player% minecraft:ward_armor_trim_smithing_template 1"
-    "13":
+    "25":
       DisplayName: "<aqua><bold>Molde de adorno: eye"
       DisplayItem: "eye_armor_trim_smithing_template"
       Settings:
@@ -408,15 +716,15 @@ Crate:
         - "<gray>Rareza: <aqua>Raro"
         - "<aqua>★★★<dark_gray>★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>0.79%"
-        - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>0.55%"
+        - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 0.7857
+      Weight: 0.55
       Commands:
         - "give %player% minecraft:eye_armor_trim_smithing_template 1"
-    "14":
+    "26":
       DisplayName: "<green><bold>Titulo «Cazador»"
       DisplayItem: "name_tag"
       Settings:
@@ -439,7 +747,7 @@ Crate:
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.cazador true"
         - "tellraw %player% {\"text\":\"Titulo Cazador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "15":
+    "27":
       DisplayName: "<green><bold>Titulo «Herrero»"
       DisplayItem: "name_tag"
       Settings:
@@ -462,7 +770,7 @@ Crate:
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.herrero true"
         - "tellraw %player% {\"text\":\"Titulo Herrero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "16":
+    "28":
       DisplayName: "<green><bold>Titulo «Alquimista»"
       DisplayItem: "name_tag"
       Settings:
@@ -485,7 +793,7 @@ Crate:
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.alquimista true"
         - "tellraw %player% {\"text\":\"Titulo Alquimista desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "17":
+    "29":
       DisplayName: "<green><bold>Molde de adorno: coast"
       DisplayItem: "coast_armor_trim_smithing_template"
       Settings:
@@ -507,7 +815,7 @@ Crate:
       Weight: 2.1739
       Commands:
         - "give %player% minecraft:coast_armor_trim_smithing_template 1"
-    "18":
+    "30":
       DisplayName: "<green><bold>Molde de adorno: dune"
       DisplayItem: "dune_armor_trim_smithing_template"
       Settings:
@@ -529,7 +837,7 @@ Crate:
       Weight: 2.1739
       Commands:
         - "give %player% minecraft:dune_armor_trim_smithing_template 1"
-    "19":
+    "31":
       DisplayName: "<green><bold>Molde de adorno: wild"
       DisplayItem: "wild_armor_trim_smithing_template"
       Settings:
@@ -551,7 +859,7 @@ Crate:
       Weight: 2.1739
       Commands:
         - "give %player% minecraft:wild_armor_trim_smithing_template 1"
-    "20":
+    "32":
       DisplayName: "<green><bold>Molde de adorno: sentry"
       DisplayItem: "sentry_armor_trim_smithing_template"
       Settings:
@@ -573,7 +881,7 @@ Crate:
       Weight: 2.1739
       Commands:
         - "give %player% minecraft:sentry_armor_trim_smithing_template 1"
-    "21":
+    "33":
       DisplayName: "<white><bold>Titulo «Aventurero»"
       DisplayItem: "name_tag"
       Settings:
@@ -587,16 +895,16 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.11%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>5.26%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.1111
+      Weight: 5.2632
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.aventurero true"
         - "tellraw %player% {\"text\":\"Titulo Aventurero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "22":
+    "34":
       DisplayName: "<white><bold>Titulo «Explorador»"
       DisplayItem: "name_tag"
       Settings:
@@ -610,16 +918,16 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.11%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>5.26%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.1111
+      Weight: 5.2632
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.explorador true"
         - "tellraw %player% {\"text\":\"Titulo Explorador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "23":
+    "35":
       DisplayName: "<white><bold>Titulo «Lenador»"
       DisplayItem: "name_tag"
       Settings:
@@ -633,16 +941,16 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.11%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>5.26%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.1111
+      Weight: 5.2632
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.lenador true"
         - "tellraw %player% {\"text\":\"Titulo Lenador desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "24":
+    "36":
       DisplayName: "<white><bold>Titulo «Minero»"
       DisplayItem: "name_tag"
       Settings:
@@ -656,16 +964,246 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.11%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>5.26%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.1111
+      Weight: 5.2632
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.minero true"
         - "tellraw %player% {\"text\":\"Titulo Minero desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
-    "25":
+    "37":
+      DisplayName: "<white><bold>Gorro de Armero"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_armorer"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.armorer true"
+        - "tellraw %player% {\"text\":\"Gorro de Armero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "38":
+      DisplayName: "<white><bold>Gorro de Carnicero"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_butcher"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.butcher true"
+        - "tellraw %player% {\"text\":\"Gorro de Carnicero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "39":
+      DisplayName: "<white><bold>Gorro de Cartografo"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_cartographer"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.cartographer true"
+        - "tellraw %player% {\"text\":\"Gorro de Cartografo desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "40":
+      DisplayName: "<white><bold>Gorro de Desierto"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_desert"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.desert true"
+        - "tellraw %player% {\"text\":\"Gorro de Desierto desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "41":
+      DisplayName: "<white><bold>Gorro de Granjero"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_farmer"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.farmer true"
+        - "tellraw %player% {\"text\":\"Gorro de Granjero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "42":
+      DisplayName: "<white><bold>Gorro de Pescador"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_fisherman"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.fisherman true"
+        - "tellraw %player% {\"text\":\"Gorro de Pescador desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "43":
+      DisplayName: "<white><bold>Gorro de Flechero"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_fletcher"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.fletcher true"
+        - "tellraw %player% {\"text\":\"Gorro de Flechero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "44":
+      DisplayName: "<white><bold>Gorro de Sabana"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_savanna"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.savanna true"
+        - "tellraw %player% {\"text\":\"Gorro de Sabana desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "45":
+      DisplayName: "<white><bold>Gorro de Pastor"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_shepherd"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.shepherd true"
+        - "tellraw %player% {\"text\":\"Gorro de Pastor desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "46":
+      DisplayName: "<white><bold>Gorro de Herrero"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "cosmeticos/sombrero_weaponsmith"
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <white>Comun"
+        - "<white>★<dark_gray>★★★★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
+      Weight: 3.1579
+      Commands:
+        - "lp user %player% permission set astral.cosmetico.sombrero.weaponsmith true"
+        - "tellraw %player% {\"text\":\"Gorro de Herrero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
+    "47":
       DisplayName: "<white><bold>Cohetes x16"
       DisplayItem: "firework_rocket"
       Settings:
@@ -679,15 +1217,15 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>8.89%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>4.21%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 8.8889
+      Weight: 4.2105
       Commands:
         - "give %player% minecraft:firework_rocket 16"
-    "26":
+    "48":
       DisplayName: "<white><bold>Etiquetas x3"
       DisplayItem: "name_tag"
       Settings:
@@ -701,11 +1239,11 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.67%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>3.16%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.6667
+      Weight: 3.1579
       Commands:
         - "give %player% minecraft:name_tag 3"

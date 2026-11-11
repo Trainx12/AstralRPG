@@ -130,7 +130,7 @@ items:
     amount: 1
     display_name: '&d&lCosmeticos y titulos'
     lore:
-    - '&7Elegi tu titulo desbloqueado.'
+    - '&7Elegi tus titulos, sombreros y alas.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: astral:menu/icon_cosmeticos

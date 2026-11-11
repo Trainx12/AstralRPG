@@ -1,0 +1,991 @@
+{
+  "menu_title": "&8Cosmeticos - Sombreros",
+  "size": 54,
+  "items": {
+    "frankenstein": {
+      "slot": 9,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_frankenstein",
+      "priority": 1,
+      "display_name": "&dCabeza de Frankenstein",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.frankenstein"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.frankenstein"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero frankenstein"
+      ]
+    },
+    "frankenstein_locked": {
+      "slot": 9,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Cabeza de Frankenstein",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "bruja": {
+      "slot": 10,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_bruja",
+      "priority": 1,
+      "display_name": "&dSombrero de Bruja",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.bruja"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.bruja"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero bruja"
+      ]
+    },
+    "bruja_locked": {
+      "slot": 10,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Sombrero de Bruja",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "diablo": {
+      "slot": 11,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_diablo",
+      "priority": 1,
+      "display_name": "&dCuernos de Diablo",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.diablo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.diablo"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero diablo"
+      ]
+    },
+    "diablo_locked": {
+      "slot": 11,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Cuernos de Diablo",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "armorer": {
+      "slot": 12,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_armorer",
+      "priority": 1,
+      "display_name": "&dGorro de Armero",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.armorer"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.armorer"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero armorer"
+      ]
+    },
+    "armorer_locked": {
+      "slot": 12,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Armero",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "butcher": {
+      "slot": 13,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_butcher",
+      "priority": 1,
+      "display_name": "&dGorro de Carnicero",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.butcher"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.butcher"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero butcher"
+      ]
+    },
+    "butcher_locked": {
+      "slot": 13,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Carnicero",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "cartographer": {
+      "slot": 14,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_cartographer",
+      "priority": 1,
+      "display_name": "&dGorro de Cartografo",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.cartographer"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.cartographer"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero cartographer"
+      ]
+    },
+    "cartographer_locked": {
+      "slot": 14,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Cartografo",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "cleric": {
+      "slot": 15,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_cleric",
+      "priority": 1,
+      "display_name": "&dGorro de Clerigo",
+      "lore": [
+        "&7Rareza: Raro",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.cleric"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.cleric"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero cleric"
+      ]
+    },
+    "cleric_locked": {
+      "slot": 15,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Clerigo",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "desert": {
+      "slot": 16,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_desert",
+      "priority": 1,
+      "display_name": "&dGorro de Desierto",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.desert"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.desert"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero desert"
+      ]
+    },
+    "desert_locked": {
+      "slot": 16,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Desierto",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "farmer": {
+      "slot": 17,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_farmer",
+      "priority": 1,
+      "display_name": "&dGorro de Granjero",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.farmer"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.farmer"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero farmer"
+      ]
+    },
+    "farmer_locked": {
+      "slot": 17,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Granjero",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "fisherman": {
+      "slot": 18,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_fisherman",
+      "priority": 1,
+      "display_name": "&dGorro de Pescador",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.fisherman"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.fisherman"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero fisherman"
+      ]
+    },
+    "fisherman_locked": {
+      "slot": 18,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Pescador",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "fletcher": {
+      "slot": 19,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_fletcher",
+      "priority": 1,
+      "display_name": "&dGorro de Flechero",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.fletcher"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.fletcher"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero fletcher"
+      ]
+    },
+    "fletcher_locked": {
+      "slot": 19,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Flechero",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "librarian": {
+      "slot": 20,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_librarian",
+      "priority": 1,
+      "display_name": "&dGorro de Bibliotecario",
+      "lore": [
+        "&7Rareza: Raro",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.librarian"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.librarian"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero librarian"
+      ]
+    },
+    "librarian_locked": {
+      "slot": 20,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Bibliotecario",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "savanna": {
+      "slot": 21,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_savanna",
+      "priority": 1,
+      "display_name": "&dGorro de Sabana",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.savanna"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.savanna"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero savanna"
+      ]
+    },
+    "savanna_locked": {
+      "slot": 21,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Sabana",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "shepherd": {
+      "slot": 22,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_shepherd",
+      "priority": 1,
+      "display_name": "&dGorro de Pastor",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.shepherd"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.shepherd"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero shepherd"
+      ]
+    },
+    "shepherd_locked": {
+      "slot": 22,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Pastor",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "snow": {
+      "slot": 23,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_snow",
+      "priority": 1,
+      "display_name": "&dGorro de Nieve",
+      "lore": [
+        "&7Rareza: Raro",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.snow"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.snow"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero snow"
+      ]
+    },
+    "snow_locked": {
+      "slot": 23,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Nieve",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "swamp": {
+      "slot": 24,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_swamp",
+      "priority": 1,
+      "display_name": "&dGorro de Pantano",
+      "lore": [
+        "&7Rareza: Raro",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.swamp"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.swamp"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero swamp"
+      ]
+    },
+    "swamp_locked": {
+      "slot": 24,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Pantano",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "weaponsmith": {
+      "slot": 25,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_weaponsmith",
+      "priority": 1,
+      "display_name": "&dGorro de Herrero",
+      "lore": [
+        "&7Rareza: Comun",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.weaponsmith"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.weaponsmith"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero weaponsmith"
+      ]
+    },
+    "weaponsmith_locked": {
+      "slot": 25,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Gorro de Herrero",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "illusioner": {
+      "slot": 26,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_illusioner",
+      "priority": 1,
+      "display_name": "&dCapucha de Ilusionista",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.illusioner"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.illusioner"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero illusioner"
+      ]
+    },
+    "illusioner_locked": {
+      "slot": 26,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Capucha de Ilusionista",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "vindicator": {
+      "slot": 27,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_vindicator",
+      "priority": 1,
+      "display_name": "&dCapucha de Vindicador",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.vindicator"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.vindicator"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero vindicator"
+      ]
+    },
+    "vindicator_locked": {
+      "slot": 27,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Capucha de Vindicador",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "carnivora": {
+      "slot": 28,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/sombrero_carnivora",
+      "priority": 1,
+      "display_name": "&dSombrero de Carnivora",
+      "lore": [
+        "&7Rareza: Epico",
+        "&7No da proteccion ni estadisticas.",
+        "&7Solo visible sin casco.",
+        "&eClic para equipar."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.carnivora"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.sombrero.carnivora"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no lo desbloqueaste."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero carnivora"
+      ]
+    },
+    "carnivora_locked": {
+      "slot": 28,
+      "material": "GRAY_DYE",
+      "priority": 2,
+      "display_name": "&8Sombrero de Carnivora",
+      "lore": [
+        "&7Se consigue en la Gacha de Cosmeticos."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no lo desbloqueaste."
+      ]
+    },
+    "clear": {
+      "slot": 49,
+      "material": "BARRIER",
+      "display_name": "&eQuitar",
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero quitar"
+      ]
+    },
+    "back": {
+      "slot": 45,
+      "material": "ARROW",
+      "display_name": "&fTitulos",
+      "click_commands": [
+        "[openguimenu] cosmeticos"
+      ]
+    },
+    "gacha": {
+      "slot": 53,
+      "material": "CHEST",
+      "display_name": "&dGacha de Cosmeticos",
+      "click_commands": [
+        "[openguimenu] gacha_cosmeticos"
+      ]
+    }
+  }
+}

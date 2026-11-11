@@ -149,6 +149,8 @@ def prepare():
     private_configs(models)
     from tanda4b_privado import prepare as prepare_tanda4b
     prepare_tanda4b(base)
+    from cosmeticos_privado import prepare as prepare_cosmetics
+    prepare_cosmetics()
     preview(models)
     print('Preparados 20 modelos y espada en build privado.')
 

@@ -247,6 +247,12 @@ default_font['providers'] = cofre_providers + default_font['providers']
 from cosmeticos_ui import assets as cosmetic_assets
 cosmetic_files, cosmetic_providers = cosmetic_assets()
 files.update(cosmetic_files)
+# Reservas vanilla reproducibles sin originales privados.
+from cosmeticos_catalogo import HATS
+for key,_,_,_ in HATS:
+    put_json(f'assets/astral/items/cosmeticos/sombrero_{key}.json',
+             {'model':{'type':'minecraft:model','model':'minecraft:item/leather_helmet'}})
+
 default_font['providers'] = cosmetic_providers + default_font['providers']
 from mascotas_ui import assets as pet_ui_assets
 pet_ui_files, pet_ui_providers = pet_ui_assets()

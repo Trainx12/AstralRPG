@@ -31,6 +31,8 @@ def menu_data():
             'item_flags':['HIDE_ATTRIBUTES'],'display_name':'&eQuitar titulo activo',
             'lore':['&7Deja tu nombre sin titulo.','&7Conservas todas tus insignias desbloqueadas.'],
             'click_commands':['[close]','[player] titulo quitar']}
+    items['sombreros']={'slot':0,'material':'LEATHER_HELMET','display_name':'&dSombreros','click_commands':['[openguimenu] cosmeticos_sombreros']}
+    items['alas']={'slot':1,'material':'ELYTRA','display_name':'&dAlas','click_commands':['[openguimenu] cosmeticos_alas']}
     items['info']={'slot':4,'material':'PAPER','item_model':'astral:cosmeticos/nav_info','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&b&lTu coleccion de insignias',
                    'lore':['&7Pasa el cursor por una insignia para leer su titulo.',
                            '&7Clic en una desbloqueada para equiparla.',
@@ -42,6 +44,30 @@ def menu_data():
     items['back']={'slot':45,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&fVolver al atlas','click_commands':['[openguimenu] principal']}
     items['close']={'slot':53,'material':'PAPER','item_model':'astral:cosmeticos/nav_close','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&cCerrar','click_commands':['[close]']}
     return {'menu_title':title(),'open_command':['cosmeticos','titulos'],'register_command':True,'size':54,'items':items}
+
+def equipment_menu(kind):
+    from cosmeticos_catalogo import catalog
+    items={}
+    for index,(_,key,name,rarity,model) in enumerate(r for r in catalog() if r[0]==kind):
+        perm=f'astral.cosmetico.{kind}.{key}'
+        req={'requirements':{'obtenido':{'type':'has permission','permission':perm}}}
+        items[key]={'slot':9+index,'material':'PAPER','item_model':'astral:'+model,'priority':1,
+            'display_name':'&d'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],
+            '&7No da proteccion ni estadisticas.', '&7Solo visible sin casco.' if kind=='sombrero' else '&7Deja libres tus dos manos.',
+            '&eClic para equipar.'], 'view_requirement':req,
+            'click_requirement':dict(req,deny_commands=['[message] &cTodavia no lo desbloqueaste.']),
+            'click_commands':['[close]',f'[player] astralcosmetic {kind} {key}']}
+        items[key+'_locked']={'slot':9+index,'material':'GRAY_DYE','priority':2,
+            'display_name':'&8'+name,'lore':['&7Se consigue en la Gacha de Cosmeticos.'],
+            'click_commands':['[message] &7Todavia no lo desbloqueaste.']}
+    items['clear']={'slot':49,'material':'BARRIER','display_name':'&eQuitar',
+        'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
+    items['back']={'slot':45,'material':'ARROW','display_name':'&fTitulos',
+        'click_commands':['[openguimenu] cosmeticos']}
+    items['gacha']={'slot':53,'material':'CHEST','display_name':'&dGacha de Cosmeticos',
+        'click_commands':['[openguimenu] gacha_cosmeticos']}
+    return {'menu_title':'&8Cosmeticos - '+('Sombreros' if kind=='sombrero' else 'Alas'), 'size':54,'items':items}
+
 
 def script():
     lines=['# Generado por cosmeticos.py. Equipar cambia solo el prefijo cosmetico de prioridad 100.',
@@ -63,26 +89,10 @@ def generate():
     menu.write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     out=ROOT/'build/gameplay';out.mkdir(parents=True,exist_ok=True)
     (out/'astral_cosmeticos.sk').write_text(script(),encoding='utf-8')
-    import yaml
-    for filename in ('gacha_cosmeticos.yml','gacha_cosmeticos_garantia.yml'):
-        backup=ROOT/'.local/backups'/(filename+'-antes-coleccion.yml')
-        if not backup.exists():continue
-        data=yaml.safe_load(backup.read_text(encoding='utf-8'))
-        for prize in data['Crate']['Prizes'].values():
-            commands=[]
-            for command in prize.get('Commands',[]):
-                if ' meta setprefix 100 ' not in command:
-                    commands.append(command);continue
-                matched=False
-                for _,name,_ in TITLES:
-                    if '«'+name+'»' not in command:continue
-                    key=name.lower().replace(' ','_')
-                    commands += [f'lp user %player% permission set astral.cosmetico.titulo.{key} true',
-                        'tellraw %player% '+json.dumps({'text':f'Titulo {name} desbloqueado. Elige con /cosmeticos sin perder los anteriores.','color':'light_purple'},ensure_ascii=False)]
-                    matched=True;break
-                if not matched:raise ValueError('Titulo remoto desconocido: '+command)
-            prize['Commands']=commands
-        path=out/'CrazyCrates'/filename;path.parent.mkdir(parents=True,exist_ok=True)
-        path.write_text(yaml.safe_dump(data,allow_unicode=True,sort_keys=False),encoding='utf-8')
+    for kind in ('sombreros','alas'):
+        dest=menu.with_name('cosmeticos_'+kind+'.yml')
+        dest.write_text(json.dumps(equipment_menu('sombrero' if kind=='sombreros' else 'alas'),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    # La unica salida de CrazyCrates es lobby.py: no reusar respaldos privados viejos.
+
 
 if __name__=='__main__':generate()

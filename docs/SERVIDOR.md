@@ -1,5 +1,43 @@
 # AstralRPG: cómo está armado el servidor
 
+## Cosmeticos y SkinsRestorer preparados (11/11/2026)
+
+**Sin desplegar.** [Entrega exacta, descarga, SHA-1 y reinicio](../build/deploy/cosmeticos-skins.md).
+AstralDecor 1.3.0 agrega 20 sombreros y 2 alas a la coleccion permanente de
+`/cosmeticos`; la gacha conserva titulos, pesos por rareza y garantia. Los
+sombreros solo se muestran sin casco, sin ocuparlo ni modificar sus estadisticas.
+La seleccion persiste en datos del jugador; los displays no generan items al morir.
+Carnivora aporta sombrero y alas; Asura aporta alas. El arte queda en el circuito privado.
+
+SkinsRestorer **15.12.6**, compatible con Paper 26.1.2 segun su version oficial,
+queda preparado para reinstalar conservando `plugins/SkinsRestorer` y sus datos.
+Su JAR no se publica en el repo. Desactivar la aplicacion automatica al entrar
+(`advanced.disableOnJoinSkins: true`, `advanced.enablePaperJoinListener: false`)
+y `server.resourcePackFix`; AstralDecor ejecuta `sr applyskin <jugador>` despues
+de que AuthMe confirme autenticacion y al terminar de cargar el pack. Conserva
+la seleccion de skin; sin seleccion usa la cuenta. Mantener `online-mode=false`
+y el `/premium` de AuthMe. Permisos limitados a cambiar/quitar la skin propia,
+sin comandos para otros jugadores; claves y comandos exactos en la entrega.
+No modifica los prefijos de LuckPerms ni el formato de TAB/nonchat.
+
+Verificado: compilacion con Java 25; regeneracion lobby/menus/pack publico y
+`build_privado.py --prepare`; suite Python completa de 221 pruebas y luego
+5 pruebas focalizadas (incluye la nueva conservacion byte a byte de Tienda/Yeti).
+Pack FINAL privado auditado: 5239 referencias, sin reemplazar texturas vanilla
+de aldeanos/illagers. Paper 26.1.2 con SkinsRestorer y jugador NMS simulado:
+13 comprobaciones correctas de permiso, display unico, manos/casco libres,
+persistencia en playerdata, ocultacion con casco, quitar y muerte sin drops.
+SkinsRestorer cargo y respondio a applyskin; sin errores en la ejecucion final.
+Reproducir con `tools/probar_cosmeticos_paper.py --java <Java25> --base <Paper-local>`;
+no subir CosmeticsProbe.jar. Evidencia local en `.local/cosmeticos-probe/paper.log`.
+
+**Pendientes:** medicion spark ANTES/DESPUES en Empower (sin cifras remotas
+disponibles), cliente real y segundo jugador, gacha en CrazyCrates, reconexion
+real, muerte con AxGraves y cuentas premium/no premium con AuthMe/TAB/nonchat.
+La prueba local no carga esos plugins ni certifica el render del cliente.
+Instalar exige apagar y reiniciar por los JAR. No hubo subida a R2 ni cambios
+en Empower/Aternos; nunca reemplazar mundos.
+
 Entrega Tienda y decoracion del 11/11 preparada, **sin desplegar**:
 [archivos, SHA-1, reinicio y comprobaciones](../build/deploy/tienda-modelo.md).
 AstralDecor 1.1 recupera los modelos de NPC al terminar de cargar BetterModel y

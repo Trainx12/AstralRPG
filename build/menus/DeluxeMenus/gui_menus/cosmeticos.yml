@@ -946,6 +946,22 @@
         "[player] titulo quitar"
       ]
     },
+    "sombreros": {
+      "slot": 0,
+      "material": "LEATHER_HELMET",
+      "display_name": "&dSombreros",
+      "click_commands": [
+        "[openguimenu] cosmeticos_sombreros"
+      ]
+    },
+    "alas": {
+      "slot": 1,
+      "material": "ELYTRA",
+      "display_name": "&dAlas",
+      "click_commands": [
+        "[openguimenu] cosmeticos_alas"
+      ]
+    },
     "info": {
       "slot": 4,
       "material": "PAPER",

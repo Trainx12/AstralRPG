@@ -363,7 +363,7 @@ def principal_menu():
         ('arenas', 'IRON_SWORD', '&c&lArenas PvP', ['&7Pelea sin perder tu equipo.'], ['[openguimenu] arenas']),
         ('misiones', 'WRITABLE_BOOK', '&e&lEl Cronista', ['&7Misiones, historia y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
         ('mascotas', 'BONE', '&6&lMascotas', ['&7Coleccion de 23 companeros en 3 paginas.', '&7Invoca, entrena o guarda a tu mascota.'], ['[openguimenu] mascotas']),
-        ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tu titulo desbloqueado.'], ['[openguimenu] cosmeticos']),
+        ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tus titulos, sombreros y alas.'], ['[openguimenu] cosmeticos']),
         ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
         ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
@@ -630,7 +630,7 @@ def main():
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]
-    lista += ['  cosmeticos:\n    file: cosmeticos.yml']
+    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_sombreros','cosmeticos_alas')]
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")
 

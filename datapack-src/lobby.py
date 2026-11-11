@@ -143,6 +143,10 @@ def cosmetic_rewards():
         key=name.lower().replace(' ','_')
         R.append((rar, 10, f"Titulo «{name}»", [f'lp user %player% permission set astral.cosmetico.titulo.{key} true',
                     f'tellraw %player% {{"text":"Titulo {name} desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.","color":"light_purple"}}']))
+    from cosmeticos_catalogo import catalog
+    for kind,key,name,rarity,model in catalog():
+        R.append((rarity, 6, name, [f'lp user %player% permission set astral.cosmetico.{kind}.{key} true',
+            f'tellraw %player% {{"text":"{name} desbloqueado. Equipalo desde /cosmeticos.","color":"light_purple"}}']))
     R.append(("common", 8, "Cohetes x16", ["give %player% minecraft:firework_rocket 16"]))
     R.append(("common", 6, "Etiquetas x3", ["give %player% minecraft:name_tag 3"]))
     for t in ("coast", "dune", "wild", "sentry"):
@@ -162,7 +166,7 @@ GACHAS = {
                            desc=["<gray>Monturas y mascotas de AstralRPG.", "<gray>Las monturas traen silla."],
                            rewards=mount_rewards),
     "gacha_cosmeticos": dict(name="<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>", cost=500,
-                             desc=["<gray>Titulos para el chat y", "<gray>adornos para tu armadura."],
+                             desc=["<gray>Titulos, sombreros y alas.", "<gray>Equipalos desde /cosmeticos."],
                              rewards=cosmetic_rewards),
 }
 
@@ -190,6 +194,11 @@ EGG_ICON = {"astral_mapache": "fox_spawn_egg", "astral_pinguino": "chicken_spawn
 def icon(cmds):
     """(material, modelo astral o None, cantidad) que se muestra en la ruleta."""
     c0 = cmds[0]
+    if c0.startswith('lp user %player% permission set astral.cosmetico.'):
+        from cosmeticos_catalogo import catalog
+        for kind,key,name,rarity,model in catalog():
+            if f'astral.cosmetico.{kind}.{key} true' in c0:
+                return 'paper', model, 1
     if c0.startswith('lp user %player% permission set astral.mascota.'):
         from mobs.mascotas import MASCOTAS
         pid = c0.split('astral.mascota.', 1)[1].split()[0]
@@ -486,7 +495,7 @@ def spawn_yml():
 HOLO_COLOR = {"gacha_rpg": "#B07CFF", "gacha_monturas": "#7ED957", "gacha_cosmeticos": "#FF7BD5"}
 HOLO_NAME = {"gacha_rpg": "Gacha de Armas", "gacha_monturas": "Gacha de Monturas", "gacha_cosmeticos": "Gacha de Cosmeticos"}
 HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "Monturas con silla y mascotas",
-             "gacha_cosmeticos": "Titulos para el chat y adornos"}
+             "gacha_cosmeticos": "Titulos, sombreros y alas"}
 
 
 def holo_cmds():
