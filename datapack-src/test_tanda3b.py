@@ -68,14 +68,15 @@ class Tanda3bTests(unittest.TestCase):
                         self.assertEqual(got,Counter(expanded(wave,players)))
 
     def test_model_identity_v4(self):
-        # Los modelos sin cambios conservan identidad binaria. El rig corregido
-        # y las texturas de TODOS los esqueletos se prueban en test_arreglos.
-        import hashlib
-        expected={'astral_creeper_nuclear':'a941d593d3a803df66c174f20173290bd32da12193d51d21bc0d9afe8204439d',
-                  'astral_esq_nigromante':'2b1c5e05b2a23dd550f174b6c9bf1807f53e93b065960078e4a47d71e767608e'}
-        for name,digest in expected.items():
+        # Death agrega rig/animacion; geometria, arte y animaciones anteriores intactos.
+        import subprocess
+        for name in ('astral_creeper_nuclear','astral_esq_nigromante'):
             with self.subTest(model=name):
-                self.assertEqual(hashlib.sha256((ROOT/"build/models"/(name+".bbmodel")).read_bytes()).hexdigest(),digest)
+                before=json.loads(subprocess.check_output(['git','show',f'6a8fef8:build/models/{name}.bbmodel'],cwd=ROOT))
+                after=json.loads((ROOT/'build/models'/f'{name}.bbmodel').read_text())
+                self.assertEqual(before['elements'],after['elements'])
+                self.assertEqual(before['textures'],after['textures'])
+                self.assertEqual(before['animations'],[a for a in after['animations'] if a['name']!='death'])
 
     def test_models_texture_density_and_pack(self):
         from mobs.tamanos import dimensions, scale

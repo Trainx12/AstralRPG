@@ -64,6 +64,7 @@ astral_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
@@ -94,6 +95,7 @@ astral_goblin:
   - skill{s=AST_MODEL_astral_goblin} @self ~onSpawn
   - skill{s=AST_MODEL_astral_goblin} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
@@ -120,6 +122,7 @@ astral_abejorro:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
@@ -146,6 +149,7 @@ astral_arana:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.15
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
@@ -172,6 +176,7 @@ astral_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
   - command{c="eco give <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
@@ -373,6 +378,7 @@ astral_momia:
   - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -420,6 +426,7 @@ astral_yeti:
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -476,6 +483,7 @@ astral_golem_forja:
   - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -518,6 +526,7 @@ astral_cangrejo:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -566,6 +575,7 @@ astral_chaman:
   - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
   - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -606,6 +616,7 @@ astral_espantapajaros_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_espantapajaros_elite_vamp,AST_AFIJO_astral_espantapajaros_elite_expl,AST_AFIJO_astral_espantapajaros_elite_blind,AST_AFIJO_astral_espantapajaros_elite_veloz,AST_AFIJO_astral_espantapajaros_elite_invoc,AST_AFIJO_astral_espantapajaros_elite_mald} @self ~onSpawn
@@ -654,6 +665,7 @@ astral_abejorro_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_abejorro_elite_vamp,AST_AFIJO_astral_abejorro_elite_expl,AST_AFIJO_astral_abejorro_elite_blind,AST_AFIJO_astral_abejorro_elite_veloz,AST_AFIJO_astral_abejorro_elite_invoc,AST_AFIJO_astral_abejorro_elite_mald} @self ~onSpawn
@@ -702,6 +714,7 @@ astral_arana_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_arana_elite_vamp,AST_AFIJO_astral_arana_elite_expl,AST_AFIJO_astral_arana_elite_blind,AST_AFIJO_astral_arana_elite_veloz,AST_AFIJO_astral_arana_elite_invoc,AST_AFIJO_astral_arana_elite_mald} @self ~onSpawn
@@ -750,6 +763,7 @@ astral_cara_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
   - randomskill{skills=AST_AFIJO_astral_cara_elite_vamp,AST_AFIJO_astral_cara_elite_expl,AST_AFIJO_astral_cara_elite_blind,AST_AFIJO_astral_cara_elite_veloz,AST_AFIJO_astral_cara_elite_invoc,AST_AFIJO_astral_cara_elite_mald} @self ~onSpawn
@@ -809,6 +823,7 @@ astral_cangrejo_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -884,6 +899,7 @@ astral_momia_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_momia} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -963,6 +979,7 @@ astral_yeti_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_yeti} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -1051,6 +1068,7 @@ astral_golem_forja_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_golem_forja} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -1124,6 +1142,7 @@ astral_cangrejo_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_cangrejo} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -1204,6 +1223,7 @@ astral_chaman_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_chaman} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}

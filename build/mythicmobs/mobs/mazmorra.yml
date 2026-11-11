@@ -31,6 +31,7 @@ astral_mina_guardian:
   Drops:
   - exp 15
   Skills:
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=MINA_MODELO_astral_mina_guardian} @self ~onSpawn
   - skill{s=MINA_MODELO_astral_mina_guardian} @self ~onLoad
   - state{s=attack} @self ~onAttack

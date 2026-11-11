@@ -378,7 +378,7 @@ ASTRAL_ROWS = [
     ref("sidebar_world"), DIVIDER,
     f"{section('♟ Jugador')} {TEXT}%player%",
     f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
-    f"{PURPLE}♛ {MUTED}Rango {TEXT}%condition:rango%  {PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
+    f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
     f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
     f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
     f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
@@ -389,8 +389,18 @@ ASTRAL_ROWS = [
     f"{PURPLE}103.106.58.173:7004",
 ]
 assert len(ASTRAL_ROWS) <= 15
-ASTRAL_BOARD = (f'    astral:\n      title: "{TITLE}"\n      lines:\n'
-                + "".join(f'        - "{row}"\n' for row in ASTRAL_ROWS))
+from mobs.progreso_oleadas import sidebar_conditions
+DUNGEON_ROWS = ASTRAL_ROWS[:7] + [
+    f"{section('Mazmorra')} {TEXT}%condition:ad_room_1%",
+    f"{PURPLE}%condition:ad_active%",
+    f"{MUTED}Restantes {TEXT}%objective_score_{'{ad.left}'}%",
+    *ASTRAL_ROWS[11:],
+]
+ASTRAL_BOARD = ('    mazmorra:\n      title: "'+TITLE+'"\n'
+                '      display-condition: "%condition:ad_dungeon%=true"\n      lines:\n'
+                + ''.join(f'        - "{row}"\n' for row in DUNGEON_ROWS)
+                + f'    astral:\n      title: "{TITLE}"\n      lines:\n'
+                + ''.join(f'        - "{row}"\n' for row in ASTRAL_ROWS))
 
 
 # Los mismos colores, titulo y separadores que el panel lateral.
@@ -436,6 +446,7 @@ scoreboard:
     false: "%luckperms_prefix%"
 '''
 
+TAB_SECTIONS += sidebar_conditions()
 TAB_SECTIONS += (playtime_conditions() + location_conditions() + location_conditions(centered=True) + daily_count_conditions() + daily_sidebar_conditions() + story_sidebar_conditions()
                  + weekday_replacements()) + '''placeholders:
   date-format: "EEEE"
@@ -532,7 +543,8 @@ def commands():
          f"execute in minecraft:{WORLD} run worldborder set 360",
          f"rg flag -w {WORLD} __global__ build deny",
          f"rg flag -w {WORLD} __global__ pvp deny",
-         f"rg flag -w {WORLD} __global__ mob-spawning allow",
+           "# WorldGuard worlds/lobby/config.yml: mobs.block-plugin-spawning: false; luego wg reload.",
+           f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ fall-damage deny",
          f"rg flag -w {WORLD} __global__ invincible allow",
          f"rg flag -w {WORLD} __global__ item-drop deny",

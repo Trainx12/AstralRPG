@@ -410,6 +410,14 @@ from tanda4b import public_assets as tanda4b_public_assets
 files.update(tanda4b_public_assets())
 from tanda4b_world import own_textures as tanda4b_own_textures
 files.update(tanda4b_own_textures())
+from pack_audit import relocate_model_textures, audit
+# Errata del pack base de Stellarity: la textura existente se llama side_snow.
+snow_model='assets/stellarity/models/block/ender_grass_block_snowy.json'
+if snow_model in files:
+    snow=json.loads(files[snow_model])
+    snow['textures']['side']='stellarity:block/ender_grass_block_side_snow'
+    files[snow_model]=json.dumps(snow).encode('utf8')
+relocate_model_textures(files)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
@@ -419,6 +427,7 @@ from pathlib import Path
 target = Path(OUT).resolve()
 temporary = target.with_suffix('.zip.tmp')
 temporary.write_bytes(archive.getvalue())
+audit(temporary)
 temporary.replace(target)
 print(f"{len(files)} archivos -> {OUT}")
 

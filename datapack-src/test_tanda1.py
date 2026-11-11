@@ -98,7 +98,7 @@ class Tanda1(unittest.TestCase):
 
     def test_tab_general_and_toggle(self):
         config = yaml.safe_load(TAB_SECTIONS)
-        self.assertEqual(list(config['scoreboard']['scoreboards']), ['minas', 'astral'])
+        self.assertEqual(list(config['scoreboard']['scoreboards']), ['minas', 'mazmorra', 'astral'])
         self.assertLessEqual(len(ASTRAL_ROWS), 15)
         self.assertEqual(len(ASTRAL_ROWS), 14)
         self.assertNotIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))
@@ -106,7 +106,7 @@ class Tanda1(unittest.TestCase):
         self.assertNotIn('%player_armor%', str(ASTRAL_ROWS))
         self.assertNotIn('Conectados', str(ASTRAL_ROWS))
         self.assertIn('103.106.58.173:7004', ASTRAL_ROWS[-1])
-        for label in ('Stats', 'Poder', 'Oro', 'Rango', 'Diarias', 'Historia', 'Monstruos'):
+        for label in ('Stats', 'Poder', 'Oro', 'Diarias', 'Historia', 'Monstruos'):
             self.assertIn(label, str(ASTRAL_ROWS))
         import betterhud
         self.assertIn('[papi:objective_score_{astraldef}]', betterhud.layouts_yml())

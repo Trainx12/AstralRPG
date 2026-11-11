@@ -13,37 +13,37 @@ command /mazmorras [<text>]:
             if player does not have permission "astral.descubierto.bosque":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1468.5 101 1570.5"
+            execute console command "execute in minecraft:bosque run minecraft:tp %name of player% 1468.5 101 1570.5 0 0"
             stop
         if {_destino} is "mina":
             if player does not have permission "astral.descubierto.mina":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:mina run minecraft:tp %name of player% 10.5 -45 -124.5"
+            execute console command "execute in minecraft:mina run minecraft:tp %name of player% 10.5 -45 -124.5 0 0"
             stop
         if {_destino} is "tumba":
             if player does not have permission "astral.descubierto.tumba":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:tumba run minecraft:tp %name of player% -148.426 62 -97.473"
+            execute console command "execute in minecraft:tumba run minecraft:tp %name of player% -148.426 62 -97.473 0 0"
             stop
         if {_destino} is "cumbre":
             if player does not have permission "astral.descubierto.cumbre":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:cumbre_hielo run minecraft:tp %name of player% -25.6 33 -23.4"
+            execute console command "execute in minecraft:cumbre_hielo run minecraft:tp %name of player% -25.6 33 -23.4 49.9 0"
             stop
         if {_destino} is "forja":
             if player does not have permission "astral.descubierto.forja":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:forja_volcano run minecraft:tp %name of player% 23.2 13 -159.4"
+            execute console command "execute in minecraft:forja_volcano run minecraft:tp %name of player% 23.2 13 -159.4 151.5 0"
             stop
         if {_destino} is "santuario":
             if player does not have permission "astral.descubierto.santuario":
                 send "&cPrimero debes encontrar y hablar con el aldeano de esta mazmorra." to player
                 stop
-            execute console command "execute in minecraft:santuario_interstellar run minecraft:tp %name of player% 34.5 180 40.5"
+            execute console command "execute in minecraft:santuario_interstellar run minecraft:tp %name of player% 34.5 180 40.5 0 0"
             stop
         send "&eDestinos: bosque, mina, tumba, cumbre, forja y santuario." to player
 

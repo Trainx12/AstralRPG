@@ -75,3 +75,12 @@ Espada del Heroe Errante (`espada_heroe_errante`): tier III, mismo dano, velocid
 ## Verificacion y limites
 
 Prueba local con Paper 26.1.2, BetterModel 3.6.0 y MythicMobs 5.13.0: carga de 193 mobs y smoke de todas las incorporaciones. Los avisos de dialogos de ejemplo faltantes son previos; MythicMobs tambien avisa al apagarse con entidades activas. Sin jugador conectado: falta comprobar visualmente en Minecraft texturas, interacciones, seguimiento y bonus. El despliegue remoto y la subida a R2 siguen pendientes.
+
+La correccion urgente del 11/11 actualiza los derivados de Carnivora, Asura y peluches
+para el atlas de items 26.x, y verifica las UV 0..16 de la Espada del Heroe Errante.
+Goblin y Grub agregan `death` en sus copias adaptadas; los originales quedan intactos.
+`deploy_urgente.py` copia solo los productos de esta tarea a
+`build/entregas/urgente-mascotas-texturas/` del repo privado. Esa carpeta permite
+publicarlos sin incluir los cambios previos del resto de `build/`.
+El SHA-1 y los destinos exactos estan en la entrega publica; la imagen GUI privada
+sale de `preview_pack_gui.py`, leyendo modelos y PNG del ZIP FINAL.

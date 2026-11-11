@@ -2,7 +2,10 @@
 import math
 import random
 from PIL import ImageDraw
-from bbmodel import Model, hexc, swing as _swing
+try:
+    from .bbmodel import Model, hexc, swing as _swing
+except ImportError:
+    from bbmodel import Model, hexc, swing as _swing
 
 
 def swing(amp, speed=1, phase=0):

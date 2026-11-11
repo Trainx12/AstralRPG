@@ -26,7 +26,7 @@ TUMBA_SALA1_LIMPIA:
   - removetag{tag=tumba.ola2} @self
 TUMBA_IR_SALA2:
   Skills:
-  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> -203.163 88 203.533"}
+  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> -203.163 88 203.533 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA1_RESET:
   Skills:
@@ -71,7 +71,7 @@ TUMBA_SALA2_LIMPIA:
   - removetag{tag=tumba.ola3} @self
 TUMBA_IR_SALA3:
   Skills:
-  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> 0.368 73 -44.104"}
+  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> 0.368 73 -44.104 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA2_RESET:
   Skills:
@@ -94,7 +94,7 @@ TUMBA_SALA3_INICIO:
   - delay 10
   - removetag{tag=tumba.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/arrival"} @self
-  - summon{type=astral_tumba_momia;amount=1;radius=0;onSurface=false} @Location{x=0.568;y=73;z=0.512}
+  - summon{type=astral_tumba_momia;amount=1;radius=0;onSurface=false} @Location{x=0.568;y=72;z=0.512}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/companions"} @self
   - delay 10
   - removetag{tag=tumba.espera} @self
@@ -110,8 +110,8 @@ TUMBA_SALA3_LIMPIA:
   - command{c="execute as <target.name> at @s run function astral:quest/event/momia"} @PlayersInRadius{r=64}
   - command{c="lp user <target.name> permission set astral.completada.tumba true"} @PlayersInRadius{r=64}
   - remove @MobsInRadius{r=64;types=astral_tumba_cofre,astral_tumba_guia}
-  - summon{type=astral_tumba_cofre;amount=1;radius=0;onSurface=false} @Location{x=0.5;y=73;z=0.5}
-  - summon{type=astral_tumba_guia;amount=1;radius=0;onSurface=false} @Location{x=1.5;y=73;z=1.5}
+  - summon{type=astral_tumba_cofre;amount=1;radius=0;onSurface=false} @Location{x=0.5;y=72;z=0.5}
+  - summon{type=astral_tumba_guia;amount=1;radius=0;onSurface=false} @Location{x=1.5;y=72;z=1.5}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
 TUMBA_SALA3_RESET:
@@ -145,7 +145,7 @@ TUMBA_PREMIO_YA:
 TUMBA_ENTRAR:
   Skills:
   - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Bajando a las &fTumba del Rey de Arena&7... &8(3 salas. Para salir: /spawn)"}'
-  - command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -148.426 62 -97.473"}
+  - command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -148.426 62 -97.473 0 0"}
 TANDA2_tumba_AST_FASE_astral_momia_2:
   Skills:
   - addtag{tag=astral.fase2} @self

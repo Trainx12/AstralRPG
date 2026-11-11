@@ -5,6 +5,7 @@ Las Minas siguen en mazmorra.MINA y conservan todos sus identificadores.
 """
 from copy import deepcopy
 import re
+from mobs.rutas_mazmorras import ROUTES
 
 try:
     from . import mythic
@@ -29,9 +30,9 @@ DEFINITIONS = [
          enemies=["espantapajaros", "arana", "cara"], money=2000),
     dict(key="cumbre", name="Cumbre Helada", map="ice-lobby.zip", world="cumbre_hielo",
          boss="yeti", event="yeti", tier=4,
-         points=[(16.5, 64, 18.5), (24.5, 66, -1.5), (6.5, 63, 32.5)],
-         arrivals={"sala1": (8.5, 65, 8.5)}, room_radius=14, final_radius=12,
-         labels=["Paso de la escarcha", "Ascenso blanco", "Trono del Yeti"],
+         points=[ROUTES['cumbre'][0][:3], (-101.8,30,56.9)],
+         arrivals={"sala1": ROUTES['cumbre'][0][:3], "sala2": ROUTES['cumbre'][1][:3]}, room_radius=34, final_radius=128,
+         labels=["Plaza de la fuente", "Trono del Yeti"],
          enemies=["arana", "cara", "espantapajaros"], money=2500),
     dict(key="forja", name="Corazon de la Forja", map="volcano.zip", world="forja_volcano",
          boss="golem_forja", event="golem_forja", tier=5,
@@ -59,6 +60,7 @@ def variant(key, source, ancestral=False, boss=False):
     base = "astral_" + source
     mid = f"astral_{key}_{source}" + ("_eco" if ancestral else "")
     data = deepcopy(mythic.ancestral_def(base) if ancestral else mythic.MOBS[base])
+    data['native_death_only'] = key == 'santuario'
     if boss and key in ('bosque','tumba','cumbre','forja'):
         from escala import VIDA_JEFE
         data['hp'] = VIDA_JEFE[key]

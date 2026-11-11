@@ -89,6 +89,8 @@ def adapted(data, mid):
         if 'groups' in data:
             data['groups'].append(tag)
         data['outliner'].append(tag)
+    from mobs.muerte import adapted as death_animation
+    death_animation(data, mid)
     # El resto conserva las animaciones originales, incluida idle del Grub.
     return data
 
@@ -192,7 +194,7 @@ def private_configs(models):
         bounds.cache_clear()
 
 
-def preview(models, name='tanda4a', include_sword=True):
+def preview(models, name='tanda4a', include_sword=True, gui=False):
     """Render CPU local con texturas originales, exclusivamente en el repo privado."""
     from PIL import Image, ImageDraw, ImageOps
     from mobs.build_models import preview3d
@@ -255,7 +257,8 @@ def preview(models, name='tanda4a', include_sword=True):
         data['elements'] = elements
         model = SimpleNamespace(export=lambda: (data, atlas), bones=bones,
                                 cubes=[dict(bone=parents.get(e['uuid'])) for e in elements])
-        im = preview3d(model, atlas, scale=3, background=(0, 0, 0, 0))
+        im = preview3d(model, atlas, yaw=0 if gui else 35, pitch=0 if gui else 25,
+                       scale=3, background=(0, 0, 0, 0))
         if mid.startswith('astral_pet_'):
             pid=mid.removeprefix('astral_pet_')
             icon=ImageOps.contain(im.crop(im.getbbox()),(16,16),Image.Resampling.LANCZOS)
@@ -308,11 +311,15 @@ def finish(assets):
                 name = path.relative_to(folder).as_posix()
                 files[('assets/' + name) if folder == assets else name] = path.read_bytes()
     target = base / 'AstralRPG-Textures.zip'
+    from pack_audit import relocate_model_textures
+    relocate_model_textures(files)
     temporary = target.with_suffix('.zip.tmp')
     with zipfile.ZipFile(temporary, 'w', zipfile.ZIP_DEFLATED) as out:
         for name, data in sorted(files.items()):
             info = zipfile.ZipInfo(name, date_time=(2026, 11, 10, 0, 0, 0))
             out.writestr(info, data, compress_type=zipfile.ZIP_DEFLATED)
+    from pack_audit import audit
+    audit(temporary)
     temporary.replace(target)
     digest = hashlib.sha1(target.read_bytes()).hexdigest()
     (base / 'pack.sha1').write_text(digest + '\n')

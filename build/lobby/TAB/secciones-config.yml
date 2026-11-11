@@ -56,6 +56,23 @@ scoreboard:
         - "%condition:am_time%"
         - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
         - "<#D6B4FF>AstralRPG.aternos.me"
+    mazmorra:
+      title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+      display-condition: "%condition:ad_dungeon%=true"
+      lines:
+        - "%condition:sidebar_world%"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
+        - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%condition:playtime%"
+        - "<#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
+        - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
+        - "<gradient:#5268C7:#D17AFF><bold>Mazmorra</bold></gradient> <#F0E6FF>%condition:ad_room_1%"
+        - "<#D6B4FF>%condition:ad_active%"
+        - "<#AA96C5>Restantes <#F0E6FF>%objective_score_{ad.left}%"
+        - "<#D6B4FF>✎ <#AA96C5>Historia %condition:historia%"
+        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
+        - "<#D6B4FF>103.106.58.173:7004"
     astral:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       lines:
@@ -63,7 +80,7 @@ scoreboard:
         - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
         - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
         - "<#D6B4FF>◷ <#AA96C5>Tiempo jugado <#F0E6FF>%condition:playtime%"
-        - "<#D6B4FF>♛ <#AA96C5>Rango <#F0E6FF>%condition:rango%  <#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
+        - "<#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
         - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
         - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
         - "<gradient:#5268C7:#D17AFF><bold>✎ Diarias</bold></gradient> <#AA96C5>· 00:00 ARG"
@@ -494,6 +511,96 @@ conditions:
       - "%luckperms_prefix%="
     true: "<dark_gray>ninguno"
     false: "%luckperms_prefix%"
+  ad_dungeon:
+    type: OR
+    conditions:
+      - "%world%=mina"
+      - "%world%=bosque"
+      - "%world%=tumba"
+      - "%world%=cumbre_hielo"
+      - "%world%=forja_volcano"
+    true: "true"
+    false: "false"
+  ad_room_1:
+    conditions:
+      - "%objective_score_{ad.room}%=1"
+    true: "Campamento Minero"
+    false: "%condition:ad_room_2%"
+  ad_room_2:
+    conditions:
+      - "%objective_score_{ad.room}%=2"
+    true: "Lago Subterraneo"
+    false: "%condition:ad_room_3%"
+  ad_room_3:
+    conditions:
+      - "%objective_score_{ad.room}%=3"
+    true: "Tuneles de Soporte"
+    false: "%condition:ad_room_4%"
+  ad_room_4:
+    conditions:
+      - "%objective_score_{ad.room}%=4"
+    true: "Salon del Guardian"
+    false: "%condition:ad_room_5%"
+  ad_room_5:
+    conditions:
+      - "%objective_score_{ad.room}%=5"
+    true: "Claro de las raices"
+    false: "%condition:ad_room_6%"
+  ad_room_6:
+    conditions:
+      - "%objective_score_{ad.room}%=6"
+    true: "Altar del Chaman"
+    false: "%condition:ad_room_7%"
+  ad_room_7:
+    conditions:
+      - "%objective_score_{ad.room}%=7"
+    true: "Patio de los olvidados"
+    false: "%condition:ad_room_8%"
+  ad_room_8:
+    conditions:
+      - "%objective_score_{ad.room}%=8"
+    true: "Pasaje de los sellos"
+    false: "%condition:ad_room_9%"
+  ad_room_9:
+    conditions:
+      - "%objective_score_{ad.room}%=9"
+    true: "Trono del Rey de Arena"
+    false: "%condition:ad_room_10%"
+  ad_room_10:
+    conditions:
+      - "%objective_score_{ad.room}%=10"
+    true: "Plaza de la fuente"
+    false: "%condition:ad_room_11%"
+  ad_room_11:
+    conditions:
+      - "%objective_score_{ad.room}%=11"
+    true: "Trono del Yeti"
+    false: "%condition:ad_room_12%"
+  ad_room_12:
+    conditions:
+      - "%objective_score_{ad.room}%=12"
+    true: "Forja - sala 1"
+    false: "%condition:ad_room_13%"
+  ad_room_13:
+    conditions:
+      - "%objective_score_{ad.room}%=13"
+    true: "Forja - sala 2"
+    false: "%condition:ad_room_14%"
+  ad_room_14:
+    conditions:
+      - "%objective_score_{ad.room}%=14"
+    true: "Nucleo de la Forja"
+    false: "Esperando sala"
+  ad_phase:
+    conditions:
+      - "%objective_score_{ad.wave}%=0"
+    true: "Jefe"
+    false: "Oleada %objective_score_{ad.wave}%/%objective_score_{ad.total}%"
+  ad_active:
+    conditions:
+      - "%objective_score_{ad.room}%>0"
+    true: "%condition:ad_phase%"
+    false: "Esperando sala"
   playtime:
     conditions:
       - "%statistic_days_played%>=1"

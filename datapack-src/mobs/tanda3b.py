@@ -5,7 +5,7 @@ import yaml
 from mobs.tamanos import skills as size_skills
 
 ROOT=Path(__file__).resolve().parents[2]
-WEIGHTS={'arquero':30,'escudero':20,'nigromante':15,'espadachin':20,'guardian':15}
+WEIGHTS={'arquero':38,'escudero':25,'nigromante':18,'guardian':19}
 NUCLEAR_CHANCE=30
 NUCLEAR_DAMAGE=2
 NUCLEAR_POWER=2
@@ -20,7 +20,8 @@ def definitions():
         goals=['clear']
         if ranged: goals+=['fleeplayers{d=4;s=1.2;ss=1.2}']
         goals+=['bowattack' if kind=='arquero' else 'lookatplayers' if kind=='nigromante' else 'meleeattack','randomstroll']
-        sk=[f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onSpawn',f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onLoad']
+        sk=[f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onSpawn',f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onLoad',
+            'skill{s=AST_MUERTE} @self ~onDeath']
         if kind=='nigromante': sk+=['skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80']
         else: sk+=['state{s=attack} @self ~onShoot' if ranged else 'state{s=attack} @self ~onAttack']
         mobs[mid]={'Type':'SKELETON','Display':'&7'+{'arquero':'Arquero de escarcha','escudero':'Escudero','nigromante':'Nigromante','espadachin':'Espadachin','guardian':'Guardian musgoso'}[kind],
@@ -71,7 +72,7 @@ def definitions():
             'skill{s=AST_NUCLEAR_MODELO} @self ~onSpawn','skill{s=AST_NUCLEAR_MODELO} @self ~onLoad',
             'particles{p=dust;color=#6f8a2f;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12',
             'particles{p=dust;color=#ffd21f;size=0.5;amount=1;hS=0.3;vS=0.5;speed=0} @self ~onTimer:30',
-            'skill{s=AST_NUCLEAR_HINCHAR} @self ~onPrime']}
+            'skill{s=AST_NUCLEAR_HINCHAR} @self ~onPrime','skill{s=AST_MUERTE} @self ~onDeath']}
     skills['AST_NUCLEAR_MODELO']={'Skills':['model{m=astral_creeper_nuclear} @self','brightness{pid=face;b=15;s=15} @self']}
     skills['AST_NUCLEAR_HINCHAR']={'Skills':['state{s=swell} @self','brightness{b=15;s=15} @self','particles{p=dust;color=#ffd21f;size=0.7;amount=12;hS=0.4;vS=0.6} @self']}
     return mobs,skills

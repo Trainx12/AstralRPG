@@ -47,14 +47,16 @@ class VM:
             return self.line(m[3]) if present==(m[1]=='if') else False
         m=re.fullmatch(r'execute store result score (\S+) (\S+) run execute if entity (.+)',line)
         if m: self.scores[m[1],m[2]]=self.count(m[3]); return False
+        m=re.fullmatch(r'execute store result score (\S+) (\S+) run data get storage \S+ queue',line)
+        if m: self.scores[m[1],m[2]]=len(self.queue); return False
         if line.startswith('execute as @e'): return False  # mob/roll, testeado por separado
         m=re.fullmatch(r'scoreboard players (set|add|remove) (\S+) (\S+) (-?\d+)',line)
         if m:
             old=self.score(m[2],m[3]); n=int(m[4]); self.scores[m[2],m[3]]=n if m[1]=='set' else old+n*(1 if m[1]=='add' else -1)
             return False
-        m=re.fullmatch(r'scoreboard players operation (\S+) (\S+) (=|\*=|/=) (\S+) (\S+)',line)
+        m=re.fullmatch(r'scoreboard players operation (\S+) (\S+) (=|\*=|/=|\+=) (\S+) (\S+)',line)
         if m:
-            a=self.score(m[1],m[2]); b=self.score(m[4],m[5]); self.scores[m[1],m[2]]=b if m[3]=='=' else a*b if m[3]=='*=' else a//b
+            a=self.score(m[1],m[2]); b=self.score(m[4],m[5]); self.scores[m[1],m[2]]=b if m[3]=='=' else a*b if m[3]=='*=' else a+b if m[3]=='+=' else a//b
             return False
         m=re.fullmatch(r'data modify storage \S+ queue (set|append) value (.+)',line)
         if m:
@@ -131,7 +133,7 @@ class OleadasTests(unittest.TestCase):
                         for m,_,_ in w: self.assertNotIn(m,banned); self.assertFalse(m.startswith('astral_'))
                 for x,y,z in r['spawn_points']:
                     from mobs.salas_seguras import safe
-                    self.assertGreaterEqual(y,r['llegada'][1])
+                    self.assertTrue(r['floor_range'][0]<=y<=r['floor_range'][1])
                     self.assertTrue(safe(d['world'],(x,y,z)),(d['key'],r['id'],x,y,z))
                     if 'spawn_bounds' in r:
                         lo,hi=r['spawn_bounds']; self.assertTrue(all(a<=math.floor(v)<=b for a,v,b in zip(lo,(x,y,z),hi)))
@@ -186,7 +188,7 @@ class ModelSizeTests(unittest.TestCase):
         from mobs.entrega_tanda2 import collision,movement
         from mobs.tamanos import SPECIAL,scale
         model,s=SPECIAL['astral_yeti_cumbre']
-        self.assertEqual(s,8)
+        self.assertEqual(s,4)
         sc=scale(model,s,'RAVAGER'); point=(-101.8,30,56.9)
         self.assertEqual(collision('cumbre_hielo',point,'RAVAGER',sc)['bloques_no_aire'],0)
         for samples in movement('cumbre_hielo',point,'RAVAGER',sc).values():

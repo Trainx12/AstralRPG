@@ -16,6 +16,7 @@ execute in minecraft:lobby run worldborder center 178 192
 execute in minecraft:lobby run worldborder set 360
 rg flag -w lobby __global__ build deny
 rg flag -w lobby __global__ pvp deny
+# WorldGuard worlds/lobby/config.yml: mobs.block-plugin-spawning: false; luego wg reload.
 rg flag -w lobby __global__ mob-spawning allow
 rg flag -w lobby __global__ fall-damage deny
 rg flag -w lobby __global__ invincible allow

@@ -62,9 +62,7 @@ def configure(dungeon):
         arrival=(-25.6,33,-23.4)
         pts=points(world,((-51,25,-49),(0,40,2)),white=True,origin=arrival)
         old=[dict(id='sala1',name='Plaza de la fuente',centro=arrival,llegada=arrival,yaw=49.9,r=34,spawn_points=pts)]
-        boss.update(id='sala2',centro=(-101.8,30,56.9),llegada=(-54.9,30,6.5),r=80,yaw=-138.9,boss_yaw=-138.9)
-        # No inventar otra llegada: el grupo conserva la llegada elegida por el dueno.
-        boss.update(llegada=arrival,r=128,yaw=49.9)
+        boss.update(id='sala2',centro=(-101.8,30,56.9),llegada=(-54.9,30,6.5),r=128,yaw=45.7,boss_yaw=-138.9)
         boss['final_npcs']={'cofre':arrival}
     elif key=='forja':
         bounds=[((-21,12,-203),(53,13,-122)),((-158,12,-121),(-92,13,-104))]
@@ -92,6 +90,8 @@ def configure(dungeon):
         boss['spawn_points']=points(world,((math.floor(x-12),math.floor(y-2),math.floor(z-12)),
                                                  (math.floor(x+12),math.floor(y+2),math.floor(z+12))),width=2)
     d['rooms']=old+[boss]
+    from mobs.rutas_mazmorras import apply
+    apply(d)
     from mobs.salas_seguras import configure as secure_rooms
     secure_rooms(d)
     return d
@@ -290,3 +290,6 @@ def generate(files):
                           f'execute unless data storage {store} queue[0] run tag @s remove {key}.espera',
                           f'tag @s remove {busy}',f'execute if entity {sel} run tag @s add {busy}',
                           f'execute if data storage {store} queue[0] run tag @s add {busy}'])
+
+    from mobs.progreso_oleadas import generate as generate_progress
+    generate_progress(files, ds)

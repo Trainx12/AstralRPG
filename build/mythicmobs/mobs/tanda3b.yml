@@ -26,6 +26,7 @@ astral_esq_arquero:
   Skills:
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
 astral_esq_escudero:
   Type: SKELETON
@@ -53,6 +54,7 @@ astral_esq_escudero:
   Skills:
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
 astral_esq_nigromante:
   Type: SKELETON
@@ -80,34 +82,8 @@ astral_esq_nigromante:
   Skills:
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-astral_esq_espadachin:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
 astral_esq_guardian:
   Type: SKELETON
   Display: '&7Guardian musgoso'
@@ -134,6 +110,7 @@ astral_esq_guardian:
   Skills:
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
 astral_esq_arquero_mina_sala1:
   Type: SKELETON
@@ -163,6 +140,7 @@ astral_esq_arquero_mina_sala1:
   - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_mina_sala1:
@@ -192,6 +170,7 @@ astral_esq_escudero_mina_sala1:
   - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_mina_sala1:
@@ -221,36 +200,8 @@ astral_esq_nigromante_mina_sala1:
   - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_mina_sala1:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_mina_sala1:
   Type: SKELETON
@@ -279,6 +230,7 @@ astral_esq_guardian_mina_sala1:
   - skill{s=AST_ESQ_mina_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_mina_sala2:
@@ -309,6 +261,7 @@ astral_esq_arquero_mina_sala2:
   - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_mina_sala2:
@@ -338,6 +291,7 @@ astral_esq_escudero_mina_sala2:
   - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_mina_sala2:
@@ -367,36 +321,8 @@ astral_esq_nigromante_mina_sala2:
   - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_mina_sala2:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_mina_sala2:
   Type: SKELETON
@@ -425,6 +351,7 @@ astral_esq_guardian_mina_sala2:
   - skill{s=AST_ESQ_mina_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_mina_sala3:
@@ -455,6 +382,7 @@ astral_esq_arquero_mina_sala3:
   - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_mina_sala3:
@@ -484,6 +412,7 @@ astral_esq_escudero_mina_sala3:
   - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_mina_sala3:
@@ -513,36 +442,8 @@ astral_esq_nigromante_mina_sala3:
   - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_mina_sala3:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_mina_sala3:
   Type: SKELETON
@@ -571,6 +472,7 @@ astral_esq_guardian_mina_sala3:
   - skill{s=AST_ESQ_mina_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_mina_sala4:
@@ -601,6 +503,7 @@ astral_esq_arquero_mina_sala4:
   - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_mina_sala4:
@@ -630,6 +533,7 @@ astral_esq_escudero_mina_sala4:
   - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_mina_sala4:
@@ -659,36 +563,8 @@ astral_esq_nigromante_mina_sala4:
   - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_mina_sala4:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_mina_sala4:
   Type: SKELETON
@@ -717,6 +593,7 @@ astral_esq_guardian_mina_sala4:
   - skill{s=AST_ESQ_mina_sala4_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_bosque_sala1:
@@ -747,6 +624,7 @@ astral_esq_arquero_bosque_sala1:
   - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_bosque_sala1:
@@ -776,6 +654,7 @@ astral_esq_escudero_bosque_sala1:
   - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_bosque_sala1:
@@ -805,36 +684,8 @@ astral_esq_nigromante_bosque_sala1:
   - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_bosque_sala1:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_bosque_sala1:
   Type: SKELETON
@@ -863,6 +714,7 @@ astral_esq_guardian_bosque_sala1:
   - skill{s=AST_ESQ_bosque_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_bosque_sala2:
@@ -893,6 +745,7 @@ astral_esq_arquero_bosque_sala2:
   - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_bosque_sala2:
@@ -922,6 +775,7 @@ astral_esq_escudero_bosque_sala2:
   - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_bosque_sala2:
@@ -951,36 +805,8 @@ astral_esq_nigromante_bosque_sala2:
   - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_bosque_sala2:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_bosque_sala2:
   Type: SKELETON
@@ -1009,6 +835,7 @@ astral_esq_guardian_bosque_sala2:
   - skill{s=AST_ESQ_bosque_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_tumba_sala1:
@@ -1039,6 +866,7 @@ astral_esq_arquero_tumba_sala1:
   - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_tumba_sala1:
@@ -1068,6 +896,7 @@ astral_esq_escudero_tumba_sala1:
   - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_tumba_sala1:
@@ -1097,36 +926,8 @@ astral_esq_nigromante_tumba_sala1:
   - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_tumba_sala1:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_tumba_sala1:
   Type: SKELETON
@@ -1155,6 +956,7 @@ astral_esq_guardian_tumba_sala1:
   - skill{s=AST_ESQ_tumba_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_tumba_sala2:
@@ -1185,6 +987,7 @@ astral_esq_arquero_tumba_sala2:
   - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_tumba_sala2:
@@ -1214,6 +1017,7 @@ astral_esq_escudero_tumba_sala2:
   - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_tumba_sala2:
@@ -1243,36 +1047,8 @@ astral_esq_nigromante_tumba_sala2:
   - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_tumba_sala2:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_tumba_sala2:
   Type: SKELETON
@@ -1301,6 +1077,7 @@ astral_esq_guardian_tumba_sala2:
   - skill{s=AST_ESQ_tumba_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_tumba_sala3:
@@ -1331,6 +1108,7 @@ astral_esq_arquero_tumba_sala3:
   - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_tumba_sala3:
@@ -1360,6 +1138,7 @@ astral_esq_escudero_tumba_sala3:
   - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_tumba_sala3:
@@ -1389,36 +1168,8 @@ astral_esq_nigromante_tumba_sala3:
   - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_tumba_sala3:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_tumba_sala3:
   Type: SKELETON
@@ -1447,6 +1198,7 @@ astral_esq_guardian_tumba_sala3:
   - skill{s=AST_ESQ_tumba_sala3_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_cumbre_sala1:
@@ -1477,6 +1229,7 @@ astral_esq_arquero_cumbre_sala1:
   - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_cumbre_sala1:
@@ -1506,6 +1259,7 @@ astral_esq_escudero_cumbre_sala1:
   - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_cumbre_sala1:
@@ -1535,36 +1289,8 @@ astral_esq_nigromante_cumbre_sala1:
   - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_cumbre_sala1:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_cumbre_sala1:
   Type: SKELETON
@@ -1593,6 +1319,7 @@ astral_esq_guardian_cumbre_sala1:
   - skill{s=AST_ESQ_cumbre_sala1_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_arquero_cumbre_sala2:
@@ -1623,6 +1350,7 @@ astral_esq_arquero_cumbre_sala2:
   - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_arquero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onShoot
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_escudero_cumbre_sala2:
@@ -1652,6 +1380,7 @@ astral_esq_escudero_cumbre_sala2:
   - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_escudero} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_nigromante_cumbre_sala2:
@@ -1681,36 +1410,8 @@ astral_esq_nigromante_cumbre_sala2:
   - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_nigromante} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_ESQ_HECHIZO} @target ~onTimer:80
-  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
-astral_esq_espadachin_cumbre_sala2:
-  Type: SKELETON
-  Display: '&7Espadachin'
-  Health: 20
-  Damage: 3
-  Equipment:
-  - IRON_SWORD HAND
-  Options:
-    Glowing: true
-    MovementSpeed: 0.32
-    PreventSunburn: true
-    PreventOtherDrops: true
-    PreventRandomEquipment: true
-    PreventItemPickup: true
-    Silent: true
-    Despawn: false
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  AITargetSelectors:
-  - clear
-  - players
-  Skills:
-  - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onSpawn
-  - skill{s=AST_ESQ_MODELO_espadachin} @self ~onLoad
-  - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_esq_guardian_cumbre_sala2:
   Type: SKELETON
@@ -1739,6 +1440,7 @@ astral_esq_guardian_cumbre_sala2:
   - skill{s=AST_ESQ_cumbre_sala2_INICIO} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onSpawn
   - skill{s=AST_ESQ_MODELO_guardian} @self ~onLoad
+  - skill{s=AST_MUERTE} @self ~onDeath
   - state{s=attack} @self ~onAttack
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
 astral_creeper_nuclear:
@@ -1758,3 +1460,4 @@ astral_creeper_nuclear:
   - particles{p=dust;color=#6f8a2f;size=0.65;amount=3;hS=0.45;vS=0.7;speed=0} @self ~onTimer:12
   - particles{p=dust;color=#ffd21f;size=0.5;amount=1;hS=0.3;vS=0.5;speed=0} @self ~onTimer:30
   - skill{s=AST_NUCLEAR_HINCHAR} @self ~onPrime
+  - skill{s=AST_MUERTE} @self ~onDeath

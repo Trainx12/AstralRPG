@@ -35,7 +35,7 @@ CUMBRE_SALA1_LIMPIA:
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Trono del Yeti',distance=..200] add cumbre.unlocked"} @self
 CUMBRE_IR_SALA2:
   Skills:
-  - command{c="execute in minecraft:cumbre_hielo run minecraft:tp <target.name> -25.6 33 -23.4 49.9 0"}
+  - command{c="execute in minecraft:cumbre_hielo run minecraft:tp <target.name> -54.9 30 6.5 45.7 0"}
   - sound{s=entity.enderman.teleport}
 CUMBRE_SALA1_RESET:
   Skills:
@@ -56,7 +56,7 @@ CUMBRE_SALA2_INICIO:
   - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=136}
   - removetag{tag=cumbre.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala2/arrival"} @self
-  - summon{type=astral_cumbre_yeti;amount=1;radius=0;onSurface=false} @Location{x=-101.8;y=33;z=56.9}
+  - summon{type=astral_cumbre_yeti;amount=1;radius=0;onSurface=false} @Location{x=-101.8;y=30;z=56.9}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala2/companions"} @self
   - delay 10
   - removetag{tag=cumbre.espera} @self
@@ -68,7 +68,7 @@ CUMBRE_SALA2_LIMPIA:
   - command{c="execute as <target.name> at @s run function astral:quest/event/yeti"} @PlayersInRadius{r=136}
   - command{c="lp user <target.name> permission set astral.completada.cumbre true"} @PlayersInRadius{r=136}
   - remove @MobsInRadius{r=136;types=astral_cumbre_cofre,astral_cumbre_guia}
-  - summon{type=astral_cumbre_cofre;amount=1;radius=0;onSurface=false} @Location{x=-101.8;y=33;z=56.9}
+  - summon{type=astral_cumbre_cofre;amount=1;radius=0;onSurface=false} @Location{x=-101.8;y=30;z=56.9}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=136}'
   Conditions:

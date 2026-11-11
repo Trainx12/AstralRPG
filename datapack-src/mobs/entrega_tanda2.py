@@ -94,8 +94,8 @@ def generate():
          'Se prioriza el alto: una sola escala no puede igualar proporciones distintas entre modelo y entidad. '+\
          'El ancho puede diferir. Las animaciones tampoco tienen una caja dinamica. '+\
          'Mascotas, monturas, NPC y estatuas quedan excluidos.\n\n'+'\n'.join(size_rows)+'\n\n'+\
-         'Yeti de Cumbre: modelo de 16 x 28 x 8,8 bloques (`s=8`, cuatro veces el normal y el Ancestral). '+\
-         'Caja RAVAGER de 24,818 x 28 con `scale=12,727273`, por debajo del tope 16; coincide el alto, no el ancho. '+\
+         'Yeti de Cumbre: modelo de 8 x 14 x 4,4 bloques (`s=4`, dos veces el Ancestral). '+\
+         'Caja RAVAGER de 12,409 x 14 con `scale=6,363636`, por debajo del tope 16; coincide el alto, no el ancho. '+\
          'Golem de Forja: modelo 12,9 x 24,25 x 12,9; '+\
          '`scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.\n'
     doc.write_text(text,encoding='utf-8')
@@ -110,7 +110,7 @@ def generate():
             'No requiere apagar ni reiniciar para esta correccion. El siguiente Yeti usa el tamano nuevo; '+
             'un Yeti existente requiere recargar su chunk para aplicar onLoad (comprobar modelo y atributo), '+
             'o completar la partida antes de actualizar. No matar al jefe durante una partida.',
-            'Verificar `attribute <UUID> minecraft:scale get` (12.727273), '+
+            'Verificar `attribute <UUID> minecraft:scale get` (6.363636), '+
             '`attribute <UUID> minecraft:max_health get` (2475000), ataques, movimiento corto y consola. '+
             'Si Tanda 2 aun no esta instalada, seguir la lista completa y el reinicio indicados abajo.', '',
             '## Archivos locales → destino', '',
@@ -141,12 +141,12 @@ def generate():
     audit={}
     for d in ds:
         key=d['key']; model,s,entity={'bosque':('astral_chaman',2,'EVOKER'),'mina':('astral_golem_forja',2,'IRON_GOLEM'),
-                                    'tumba':('astral_momia',2,'HUSK'),'cumbre':('astral_yeti',8,'RAVAGER'),'forja':('astral_golem_forja',8,'IRON_GOLEM')}[key]
+                                    'tumba':('astral_momia',2,'HUSK'),'cumbre':('astral_yeti',4,'RAVAGER'),'forja':('astral_golem_forja',8,'IRON_GOLEM')}[key]
         report += [f'| {key} | '+', '.join(str(len(r['oleadas'])) for r in d['rooms'][:-1])+' | '+
                    ', '.join(f'{r["id"]}: {len(r["spawn_points"])}' for r in d['rooms'])+f' | {d["rooms"][-1]["centro"]} / {fmt(VIDA_JEFE[key])} | {s} / {scale(model,s,entity)} |']
         audit[key]={r['id']:{k:r[k] for k in ('centro','llegada','spawn_points','spawn_bounds','golem_points') if k in r} for r in d['rooms']}
     report += ['', 'Puntos exactos y selecciones: `build/deploy/tanda2-puntos.json`. Leidos de los mapas locales del servidor, sin modificarlos.', '', '## Limites de tamano comprobados', '']
-    for key,entity,model,s in [('cumbre','RAVAGER','astral_yeti',8),('forja','IRON_GOLEM','astral_golem_forja',8)]:
+    for key,entity,model,s in [('cumbre','RAVAGER','astral_yeti',4),('forja','IRON_GOLEM','astral_golem_forja',8)]:
         d=next(d for d in ds if d['key']==key); measure=collision(d['world'],d['rooms'][-1]['centro'],entity,scale(model,s,entity))
         audit[key]['caja_jefe']=measure
         if key=='cumbre':
@@ -159,7 +159,7 @@ def generate():
                        'Los no aire incluyen bloques parciales, cuyo estado de colision debe comprobar Paper.']
             for direction,samples in audit[key]['movimiento_jefe'].items():
                 report += [f'  - {direction}: '+', '.join(f'{p["distancia"]:g} b: {p["bloques_no_aire"]} no aire / {p["bloques_solidos"]} solidos' for p in samples)+'.']
-    report += ['', 'Yeti: modelo y caja de 28 bloques de alto; conserva punto, vida, ataques y movimiento casi quieto. '+
+    report += ['', 'Yeti: modelo y caja de 14 bloques de alto; conserva punto, vida, ataques y movimiento casi quieto. '+
                'El ancho vanilla difiere del modelo. El Golem conserva persecucion y step_height alto.', '',
                '## Comandos de actualizacion (sin /)', '']
     for d in ds: report += [f'### {d["key"]}', '', '```text',upgrade_commands(d).rstrip(),'```','']

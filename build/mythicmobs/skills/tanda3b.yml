@@ -18,12 +18,6 @@ AST_ESQ_MODELO_nigromante:
   - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.169081"} @self
   - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.701449"} @self
   - brightness{pid=orb;b=15;s=15} @self
-AST_ESQ_MODELO_espadachin:
-  Skills:
-  - model{m=astral_esq_espadachin} @self
-  - addtag{tag=ad.esq.espadachin} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.010008"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.606005"} @self
 AST_ESQ_MODELO_guardian:
   Skills:
   - model{m=astral_esq_guardian} @self
@@ -52,9 +46,6 @@ AST_ESQ_mina_sala1_escudero:
 AST_ESQ_mina_sala1_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_mina_sala1_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_mina_sala1_guardian:
   Skills:
   - summon{type=astral_esq_guardian_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
@@ -69,7 +60,7 @@ AST_ESQ_CONVIERTE_mina_sala1:
   - hastag{tag=ad.esq.mina.sala1} true
   Skills:
   - removetag{tag=ad.esq.mina.sala1;sync=true}
-  - randomskill{s=AST_ESQ_mina_sala1_arquero 30,AST_ESQ_mina_sala1_escudero 20,AST_ESQ_mina_sala1_nigromante 15,AST_ESQ_mina_sala1_espadachin 20,AST_ESQ_mina_sala1_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala1_arquero 38,AST_ESQ_mina_sala1_escudero 25,AST_ESQ_mina_sala1_nigromante 18,AST_ESQ_mina_sala1_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_mina_sala2_arquero:
   Skills:
@@ -80,9 +71,6 @@ AST_ESQ_mina_sala2_escudero:
 AST_ESQ_mina_sala2_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_mina_sala2_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_mina_sala2_guardian:
   Skills:
   - summon{type=astral_esq_guardian_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
@@ -97,7 +85,7 @@ AST_ESQ_CONVIERTE_mina_sala2:
   - hastag{tag=ad.esq.mina.sala2} true
   Skills:
   - removetag{tag=ad.esq.mina.sala2;sync=true}
-  - randomskill{s=AST_ESQ_mina_sala2_arquero 30,AST_ESQ_mina_sala2_escudero 20,AST_ESQ_mina_sala2_nigromante 15,AST_ESQ_mina_sala2_espadachin 20,AST_ESQ_mina_sala2_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala2_arquero 38,AST_ESQ_mina_sala2_escudero 25,AST_ESQ_mina_sala2_nigromante 18,AST_ESQ_mina_sala2_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_mina_sala3_arquero:
   Skills:
@@ -108,9 +96,6 @@ AST_ESQ_mina_sala3_escudero:
 AST_ESQ_mina_sala3_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_mina_sala3_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_mina_sala3_guardian:
   Skills:
   - summon{type=astral_esq_guardian_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
@@ -125,7 +110,7 @@ AST_ESQ_CONVIERTE_mina_sala3:
   - hastag{tag=ad.esq.mina.sala3} true
   Skills:
   - removetag{tag=ad.esq.mina.sala3;sync=true}
-  - randomskill{s=AST_ESQ_mina_sala3_arquero 30,AST_ESQ_mina_sala3_escudero 20,AST_ESQ_mina_sala3_nigromante 15,AST_ESQ_mina_sala3_espadachin 20,AST_ESQ_mina_sala3_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala3_arquero 38,AST_ESQ_mina_sala3_escudero 25,AST_ESQ_mina_sala3_nigromante 18,AST_ESQ_mina_sala3_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_mina_sala4_arquero:
   Skills:
@@ -136,9 +121,6 @@ AST_ESQ_mina_sala4_escudero:
 AST_ESQ_mina_sala4_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_mina_sala4_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_mina_sala4_guardian:
   Skills:
   - summon{type=astral_esq_guardian_mina_sala4;amount=1;radius=0;onSurface=false;sync=true}
@@ -153,7 +135,7 @@ AST_ESQ_CONVIERTE_mina_sala4:
   - hastag{tag=ad.esq.mina.sala4} true
   Skills:
   - removetag{tag=ad.esq.mina.sala4;sync=true}
-  - randomskill{s=AST_ESQ_mina_sala4_arquero 30,AST_ESQ_mina_sala4_escudero 20,AST_ESQ_mina_sala4_nigromante 15,AST_ESQ_mina_sala4_espadachin 20,AST_ESQ_mina_sala4_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_mina_sala4_arquero 38,AST_ESQ_mina_sala4_escudero 25,AST_ESQ_mina_sala4_nigromante 18,AST_ESQ_mina_sala4_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_bosque_sala1_arquero:
   Skills:
@@ -164,9 +146,6 @@ AST_ESQ_bosque_sala1_escudero:
 AST_ESQ_bosque_sala1_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_bosque_sala1_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_bosque_sala1_guardian:
   Skills:
   - summon{type=astral_esq_guardian_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
@@ -181,7 +160,7 @@ AST_ESQ_CONVIERTE_bosque_sala1:
   - hastag{tag=ad.esq.bosque.sala1} true
   Skills:
   - removetag{tag=ad.esq.bosque.sala1;sync=true}
-  - randomskill{s=AST_ESQ_bosque_sala1_arquero 30,AST_ESQ_bosque_sala1_escudero 20,AST_ESQ_bosque_sala1_nigromante 15,AST_ESQ_bosque_sala1_espadachin 20,AST_ESQ_bosque_sala1_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_bosque_sala1_arquero 38,AST_ESQ_bosque_sala1_escudero 25,AST_ESQ_bosque_sala1_nigromante 18,AST_ESQ_bosque_sala1_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_bosque_sala2_arquero:
   Skills:
@@ -192,9 +171,6 @@ AST_ESQ_bosque_sala2_escudero:
 AST_ESQ_bosque_sala2_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_bosque_sala2_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_bosque_sala2_guardian:
   Skills:
   - summon{type=astral_esq_guardian_bosque_sala2;amount=1;radius=0;onSurface=false;sync=true}
@@ -209,7 +185,7 @@ AST_ESQ_CONVIERTE_bosque_sala2:
   - hastag{tag=ad.esq.bosque.sala2} true
   Skills:
   - removetag{tag=ad.esq.bosque.sala2;sync=true}
-  - randomskill{s=AST_ESQ_bosque_sala2_arquero 30,AST_ESQ_bosque_sala2_escudero 20,AST_ESQ_bosque_sala2_nigromante 15,AST_ESQ_bosque_sala2_espadachin 20,AST_ESQ_bosque_sala2_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_bosque_sala2_arquero 38,AST_ESQ_bosque_sala2_escudero 25,AST_ESQ_bosque_sala2_nigromante 18,AST_ESQ_bosque_sala2_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_tumba_sala1_arquero:
   Skills:
@@ -220,9 +196,6 @@ AST_ESQ_tumba_sala1_escudero:
 AST_ESQ_tumba_sala1_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_tumba_sala1_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_tumba_sala1_guardian:
   Skills:
   - summon{type=astral_esq_guardian_tumba_sala1;amount=1;radius=0;onSurface=false;sync=true}
@@ -237,7 +210,7 @@ AST_ESQ_CONVIERTE_tumba_sala1:
   - hastag{tag=ad.esq.tumba.sala1} true
   Skills:
   - removetag{tag=ad.esq.tumba.sala1;sync=true}
-  - randomskill{s=AST_ESQ_tumba_sala1_arquero 30,AST_ESQ_tumba_sala1_escudero 20,AST_ESQ_tumba_sala1_nigromante 15,AST_ESQ_tumba_sala1_espadachin 20,AST_ESQ_tumba_sala1_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala1_arquero 38,AST_ESQ_tumba_sala1_escudero 25,AST_ESQ_tumba_sala1_nigromante 18,AST_ESQ_tumba_sala1_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_tumba_sala2_arquero:
   Skills:
@@ -248,9 +221,6 @@ AST_ESQ_tumba_sala2_escudero:
 AST_ESQ_tumba_sala2_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_tumba_sala2_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_tumba_sala2_guardian:
   Skills:
   - summon{type=astral_esq_guardian_tumba_sala2;amount=1;radius=0;onSurface=false;sync=true}
@@ -265,7 +235,7 @@ AST_ESQ_CONVIERTE_tumba_sala2:
   - hastag{tag=ad.esq.tumba.sala2} true
   Skills:
   - removetag{tag=ad.esq.tumba.sala2;sync=true}
-  - randomskill{s=AST_ESQ_tumba_sala2_arquero 30,AST_ESQ_tumba_sala2_escudero 20,AST_ESQ_tumba_sala2_nigromante 15,AST_ESQ_tumba_sala2_espadachin 20,AST_ESQ_tumba_sala2_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala2_arquero 38,AST_ESQ_tumba_sala2_escudero 25,AST_ESQ_tumba_sala2_nigromante 18,AST_ESQ_tumba_sala2_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_tumba_sala3_arquero:
   Skills:
@@ -276,9 +246,6 @@ AST_ESQ_tumba_sala3_escudero:
 AST_ESQ_tumba_sala3_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_tumba_sala3_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_tumba_sala3_guardian:
   Skills:
   - summon{type=astral_esq_guardian_tumba_sala3;amount=1;radius=0;onSurface=false;sync=true}
@@ -293,7 +260,7 @@ AST_ESQ_CONVIERTE_tumba_sala3:
   - hastag{tag=ad.esq.tumba.sala3} true
   Skills:
   - removetag{tag=ad.esq.tumba.sala3;sync=true}
-  - randomskill{s=AST_ESQ_tumba_sala3_arquero 30,AST_ESQ_tumba_sala3_escudero 20,AST_ESQ_tumba_sala3_nigromante 15,AST_ESQ_tumba_sala3_espadachin 20,AST_ESQ_tumba_sala3_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_tumba_sala3_arquero 38,AST_ESQ_tumba_sala3_escudero 25,AST_ESQ_tumba_sala3_nigromante 18,AST_ESQ_tumba_sala3_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_cumbre_sala1_arquero:
   Skills:
@@ -304,9 +271,6 @@ AST_ESQ_cumbre_sala1_escudero:
 AST_ESQ_cumbre_sala1_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_cumbre_sala1_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_cumbre_sala1_guardian:
   Skills:
   - summon{type=astral_esq_guardian_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
@@ -321,7 +285,7 @@ AST_ESQ_CONVIERTE_cumbre_sala1:
   - hastag{tag=ad.esq.cumbre.sala1} true
   Skills:
   - removetag{tag=ad.esq.cumbre.sala1;sync=true}
-  - randomskill{s=AST_ESQ_cumbre_sala1_arquero 30,AST_ESQ_cumbre_sala1_escudero 20,AST_ESQ_cumbre_sala1_nigromante 15,AST_ESQ_cumbre_sala1_espadachin 20,AST_ESQ_cumbre_sala1_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_cumbre_sala1_arquero 38,AST_ESQ_cumbre_sala1_escudero 25,AST_ESQ_cumbre_sala1_nigromante 18,AST_ESQ_cumbre_sala1_guardian 19;sync=true}
   - remove{sync=true}
 AST_ESQ_cumbre_sala2_arquero:
   Skills:
@@ -332,9 +296,6 @@ AST_ESQ_cumbre_sala2_escudero:
 AST_ESQ_cumbre_sala2_nigromante:
   Skills:
   - summon{type=astral_esq_nigromante_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
-AST_ESQ_cumbre_sala2_espadachin:
-  Skills:
-  - summon{type=astral_esq_espadachin_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
 AST_ESQ_cumbre_sala2_guardian:
   Skills:
   - summon{type=astral_esq_guardian_cumbre_sala2;amount=1;radius=0;onSurface=false;sync=true}
@@ -349,7 +310,7 @@ AST_ESQ_CONVIERTE_cumbre_sala2:
   - hastag{tag=ad.esq.cumbre.sala2} true
   Skills:
   - removetag{tag=ad.esq.cumbre.sala2;sync=true}
-  - randomskill{s=AST_ESQ_cumbre_sala2_arquero 30,AST_ESQ_cumbre_sala2_escudero 20,AST_ESQ_cumbre_sala2_nigromante 15,AST_ESQ_cumbre_sala2_espadachin 20,AST_ESQ_cumbre_sala2_guardian 15;sync=true}
+  - randomskill{s=AST_ESQ_cumbre_sala2_arquero 38,AST_ESQ_cumbre_sala2_escudero 25,AST_ESQ_cumbre_sala2_nigromante 18,AST_ESQ_cumbre_sala2_guardian 19;sync=true}
   - remove{sync=true}
 AST_NUCLEAR_MODELO:
   Skills:

@@ -146,7 +146,7 @@ def mob_yml(dungeon=None):
         sk = list(d.get("skills", [])) + list(d.get("drops", []))
         if d.get("model"):
             m, sc, col = d["model"]
-            sk = [f"skill{{s=MINA_MODELO_{mid}}} @self ~onSpawn", f"skill{{s=MINA_MODELO_{mid}}} @self ~onLoad",
+            sk = ['skill{s=AST_MUERTE} @self ~onDeath', f"skill{{s=MINA_MODELO_{mid}}} @self ~onSpawn", f"skill{{s=MINA_MODELO_{mid}}} @self ~onLoad",
                   "state{s=attack} @self ~onAttack"] + sk
         sk.append(f'command{{c="eco give <trigger.name> {d["money"]}"}} @trigger ~onDeath ?~isplayer')
         L += ["  Skills:"] + ["  - " + q(s) for s in sk] + [""]

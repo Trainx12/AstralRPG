@@ -15,9 +15,8 @@ GLYPHS = tuple(chr(0xea10 + i) for i in range(4))
 # Mismo orden que menus.principal_menu: casillas 10-16 y 19-25.
 KEYS = ('bazar', 'minas', 'mazmorras', 'expediciones', 'portales', 'parkour', 'arenas',
         'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn',
-        'bosque', 'fragmentos', 'tienda', 'peluches', 'subastas', 'vender',
-        'intercambio', 'gacha_rpg', 'gacha_monturas', 'gacha_cosmeticos', 'duelos')
-SLOTS = (tuple(range(10, 17)) + tuple(range(19, 26)) + tuple(range(28, 35)) + tuple(range(37, 41)))
+        'fragmentos', 'duelos')
+SLOTS = tuple(range(10, 17)) + tuple(range(19, 26)) + (30, 32)
 ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', peluches='mascotas',
                 subastas='bazar', vender='bazar', intercambio='bazar', gacha_rpg='skills',
                 gacha_monturas='mascotas', gacha_cosmeticos='cosmeticos', duelos='arenas')

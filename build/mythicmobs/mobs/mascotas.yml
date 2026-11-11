@@ -24,7 +24,6 @@ astral_pet_lobo:
   Skills:
   - 'skill{s=PET_MODELO_lobo} @self ~onSpawn'
   - 'skill{s=PET_MODELO_lobo} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_lobo_CHEQUEO} @owner ~onTimer:20'
@@ -58,7 +57,6 @@ astral_pet_cuervo:
   Skills:
   - 'skill{s=PET_MODELO_cuervo} @self ~onSpawn'
   - 'skill{s=PET_MODELO_cuervo} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_cuervo_CHEQUEO} @owner ~onTimer:20'
@@ -93,7 +91,6 @@ astral_pet_golem:
   Skills:
   - 'skill{s=PET_MODELO_golem} @self ~onSpawn'
   - 'skill{s=PET_MODELO_golem} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_golem_CHEQUEO} @owner ~onTimer:20'
@@ -127,7 +124,6 @@ astral_pet_zorro:
   Skills:
   - 'skill{s=PET_MODELO_zorro} @self ~onSpawn'
   - 'skill{s=PET_MODELO_zorro} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_zorro_CHEQUEO} @owner ~onTimer:20'
@@ -161,7 +157,6 @@ astral_pet_dragon:
   Skills:
   - 'skill{s=PET_MODELO_dragon} @self ~onSpawn'
   - 'skill{s=PET_MODELO_dragon} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_dragon_CHEQUEO} @owner ~onTimer:20'
@@ -195,7 +190,6 @@ astral_pet_fenix:
   Skills:
   - 'skill{s=PET_MODELO_fenix} @self ~onSpawn'
   - 'skill{s=PET_MODELO_fenix} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_fenix_CHEQUEO} @owner ~onTimer:20'
@@ -232,7 +226,6 @@ astral_pet_ghastito:
   Skills:
   - 'skill{s=PET_MODELO_ghastito} @self ~onSpawn'
   - 'skill{s=PET_MODELO_ghastito} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_ghastito_CHEQUEO} @owner ~onTimer:20'
@@ -266,7 +259,6 @@ astral_pet_bombardero:
   Skills:
   - 'skill{s=PET_MODELO_bombardero} @self ~onSpawn'
   - 'skill{s=PET_MODELO_bombardero} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_bombardero_CHEQUEO} @owner ~onTimer:20'
@@ -300,7 +292,6 @@ astral_pet_canonero:
   Skills:
   - 'skill{s=PET_MODELO_canonero} @self ~onSpawn'
   - 'skill{s=PET_MODELO_canonero} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_canonero_CHEQUEO} @owner ~onTimer:20'
@@ -334,7 +325,6 @@ astral_pet_encapuchado:
   Skills:
   - 'skill{s=PET_MODELO_encapuchado} @self ~onSpawn'
   - 'skill{s=PET_MODELO_encapuchado} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_encapuchado_CHEQUEO} @owner ~onTimer:20'
@@ -368,7 +358,6 @@ astral_pet_llamita:
   Skills:
   - 'skill{s=PET_MODELO_llamita} @self ~onSpawn'
   - 'skill{s=PET_MODELO_llamita} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_llamita_CHEQUEO} @owner ~onTimer:20'
@@ -402,7 +391,6 @@ astral_pet_hondero:
   Skills:
   - 'skill{s=PET_MODELO_hondero} @self ~onSpawn'
   - 'skill{s=PET_MODELO_hondero} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_hondero_CHEQUEO} @owner ~onTimer:20'
@@ -436,7 +424,6 @@ astral_pet_saqueador:
   Skills:
   - 'skill{s=PET_MODELO_saqueador} @self ~onSpawn'
   - 'skill{s=PET_MODELO_saqueador} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_saqueador_CHEQUEO} @owner ~onTimer:20'
@@ -470,7 +457,6 @@ astral_pet_brujita:
   Skills:
   - 'skill{s=PET_MODELO_brujita} @self ~onSpawn'
   - 'skill{s=PET_MODELO_brujita} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_brujita_CHEQUEO} @owner ~onTimer:20'
@@ -504,7 +490,6 @@ astral_pet_desierto:
   Skills:
   - 'skill{s=PET_MODELO_desierto} @self ~onSpawn'
   - 'skill{s=PET_MODELO_desierto} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_desierto_CHEQUEO} @owner ~onTimer:20'
@@ -538,7 +523,6 @@ astral_pet_jungla:
   Skills:
   - 'skill{s=PET_MODELO_jungla} @self ~onSpawn'
   - 'skill{s=PET_MODELO_jungla} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_jungla_CHEQUEO} @owner ~onTimer:20'
@@ -572,7 +556,6 @@ astral_pet_frondoso:
   Skills:
   - 'skill{s=PET_MODELO_frondoso} @self ~onSpawn'
   - 'skill{s=PET_MODELO_frondoso} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_frondoso_CHEQUEO} @owner ~onTimer:20'
@@ -606,7 +589,6 @@ astral_pet_micelio:
   Skills:
   - 'skill{s=PET_MODELO_micelio} @self ~onSpawn'
   - 'skill{s=PET_MODELO_micelio} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_micelio_CHEQUEO} @owner ~onTimer:20'
@@ -640,7 +622,6 @@ astral_pet_pradera:
   Skills:
   - 'skill{s=PET_MODELO_pradera} @self ~onSpawn'
   - 'skill{s=PET_MODELO_pradera} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_pradera_CHEQUEO} @owner ~onTimer:20'
@@ -674,7 +655,6 @@ astral_pet_sabana:
   Skills:
   - 'skill{s=PET_MODELO_sabana} @self ~onSpawn'
   - 'skill{s=PET_MODELO_sabana} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_sabana_CHEQUEO} @owner ~onTimer:20'
@@ -708,7 +688,6 @@ astral_pet_nieve:
   Skills:
   - 'skill{s=PET_MODELO_nieve} @self ~onSpawn'
   - 'skill{s=PET_MODELO_nieve} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_nieve_CHEQUEO} @owner ~onTimer:20'
@@ -742,7 +721,6 @@ astral_pet_pantano:
   Skills:
   - 'skill{s=PET_MODELO_pantano} @self ~onSpawn'
   - 'skill{s=PET_MODELO_pantano} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_pantano_CHEQUEO} @owner ~onTimer:20'
@@ -776,7 +754,6 @@ astral_pet_honguito:
   Skills:
   - 'skill{s=PET_MODELO_honguito} @self ~onSpawn'
   - 'skill{s=PET_MODELO_honguito} @self ~onLoad'
-  - 'setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn'
   - 'remove @self ~onTimer:40 ?!hasowner'
   - 'remove @self ~onTimer:20 ?!ownerIsOnline'
   - 'skill{s=PET_honguito_CHEQUEO} @owner ~onTimer:20'

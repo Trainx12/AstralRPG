@@ -166,6 +166,11 @@ class Model:
         return img
 
     def export(self):
+        try:
+            from .muerte import ensure
+        except ImportError:
+            from muerte import ensure
+        ensure(self)
         size, pos = self._pack()
         img = self._paint(size, pos)
         buf = io.BytesIO()

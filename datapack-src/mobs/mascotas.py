@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 OUT = os.path.join(HERE, "..", "..", "build")
 KILLS_POR_NIVEL = 25
 NIVEL_MAX = 30
-MUNDOS_BONUS = ("mina", "bosque", "tumba", "cumbre", "forja", "santuario")
+MUNDOS_BONUS = ("mina", "bosque", "tumba", "cumbre_hielo", "forja_volcano", "santuario_interstellar")
 
 
 def condicion_mazmorra():
@@ -96,7 +96,6 @@ def mob_yml():
                   # Dueno por nombre (lo anota MASC_INVOCAR justo antes de invocar). Buscar "el jugador
                   # mas cercano" fallaba con jugadores en creativo: la mascota quedaba sin dueno y
                   # 'remove ?!hasowner' la borraba al instante.
-                  "setowner @PlayerByName{name=<global.pet_owner>} ~onSpawn",
                   "remove @self ~onTimer:40 ?!hasowner", "remove @self ~onTimer:20 ?!ownerIsOnline",
                   f"skill{{s=PET_{pid}_CHEQUEO}} @owner ~onTimer:20",
                   f"skill{{s=PET_{pid}_BONUS1}} @owner ~onTimer:40",
@@ -172,14 +171,16 @@ def skill_yml():
               f"  - haspermission{{p=astral.mascota.{pid}}} true", "  Skills:",
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
               sk(f'command{{c="scoreboard players set {p} petsel {n}"}}'),
-              sk("delay 25"),                                  # que la anterior alcance a irse
-              sk('setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'),
-              # El invocador es el controlador invisible, no el jugador.
-              # Si summon vuelve a asignarlo como dueno, ownerIsOnline borra
-              # la mascota al segundo. Respetar el setowner de ~onSpawn.
-              sk(f"summon{{type=astral_pet_{pid};amount=1;summonerIsOwner=false;summonerIsParent=false}}"),
+              # El jugador invoca en su posicion y Mythic asigna su UUID como dueno.
+              # No compartir un nombre global entre pedidos concurrentes.
+              sk(f"sudoskill{{s=MASC_CREAR_{pid}}}"),
               sk("particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}"),
               sk(f'message{{m="&7Invocaste a tu &f{d["nombre"]}&7. &8(/mascotas para guardarla)"}}'), ""]
+        L += [f"MASC_CREAR_{pid}:", "  Skills:", sk("delay 25"),
+              sk(f"skill{{s=MASC_APARECER_{pid}}} @self"), "",
+              f"MASC_APARECER_{pid}:", "  Conditions:", "  - isplayer true",
+              f"  - score{{o=petsel;v={n}}} true", "  Skills:",
+              sk(f"summon{{type=astral_pet_{pid};amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true}} @self"), ""]
         L += [f"MASC_NOTIENE_{pid}:", "  TargetConditions:", f"  - score{{o=mascota;v={n}}} true",
               f"  - haspermission{{p=astral.mascota.{pid}}} false", "  Skills:",
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
@@ -252,6 +253,7 @@ def commands():
           "# ClearLag: en plugins/ClearLag/config.yml -> optimizations.mob-spawn-limiter.exempt-spawn-reasons",
           "#   agregar CUSTOM (las mascotas las invoca MythicMobs; sin esto el limite de 20 pasivos las cancela)",
           "# Permitir mascotas invocadas; desactivar apariciones naturales.",
+          "# WorldGuard worlds/lobby/config.yml: mobs.block-plugin-spawning: false; despues wg reload.",
           "mv gamerule set minecraft:spawn_mobs false lobby",
           "rg flag -w lobby __global__ mob-spawning allow",
           "# /mascotas: agregar en commands.yml (raiz de Files), dentro de 'aliases:'",

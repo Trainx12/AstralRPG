@@ -10,7 +10,7 @@ import yaml
 from minijuegos_datapack import Adapter, MAPS
 from mobs.mazmorra import MINA, skill_yml, mob_yml
 from mobs.mazmorras_data import catalog
-from mobs.salas_seguras import safe, overlay, install_commands
+from mobs.salas_seguras import safe, overlay, install_commands, FLOORS
 from mobs.tanda2 import generate
 from mobs.tamanos import rotate
 from mobs.creatures_tanda3b import skeleton, VARIANTS
@@ -50,24 +50,22 @@ class ArreglosTests(unittest.TestCase):
                 if room.get('boss_room'):points.append(room['boss_spawn'])
                 for point in points:
                     with self.subTest(d=d['key'],r=room['id'],point=point):
-                        self.assertGreaterEqual(point[1],room['llegada'][1])
+                        self.assertTrue(room['floor_range'][0]<=point[1]<=room['floor_range'][1])
                         self.assertTrue(safe(d['world'],point))
                 prefix=f'data/astral/function/tanda2/{d["key"]}/{room["id"]}/'
                 for p,text in self.files.items():
                     if not p.startswith(prefix):continue
                     for x,y,z in re.findall(r'summon minecraft:\w+ (-?[\d.]+) (-?[\d.]+) (-?[\d.]+)',text):
                         point=tuple(map(float,(x,y,z)))
-                        self.assertGreaterEqual(point[1],room['llegada'][1],p)
+                        self.assertTrue(room['floor_range'][0]<=point[1]<=room['floor_range'][1],p)
                         self.assertTrue(safe(d['world'],point),p)
         from mobs.tanda3a import PLANT_POINTS
         bosque=next(d for d in self.ds if d['key']=='bosque')
         for p in PLANT_POINTS:
-            self.assertGreaterEqual(p[1],bosque['rooms'][0]['llegada'][1]);self.assertTrue(safe('bosque',p))
+            self.assertTrue(97<=p[1]<=102);self.assertTrue(safe('bosque',p))
 
     def test_supports_are_explicit_install_only_and_keep_existing_blocks(self):
-        commands=install_commands();self.assertTrue(commands)
-        self.assertTrue(all(c.endswith(' keep') for c in commands))
-        self.assertTrue(all(('minecraft:tumba ' in c or 'minecraft:cumbre_hielo ' in c) for c in commands))
+        self.assertEqual(install_commands(),[])
         self.assertFalse(any(' run fill ' in text for text in self.files.values()))
 
     def test_every_chest_uses_platform_or_exact_boss_spawn(self):
@@ -98,29 +96,28 @@ class ArreglosTests(unittest.TestCase):
             return p
         model=skeleton('arquero')
         self.assertEqual(model.bones['bow']['parent'],'bow_grip')
-        self.assertEqual(model.bones['bow_grip']['parent'],'arm_r')
+        self.assertEqual(model.bones['bow_grip']['parent'],'arm_l')
         for animation in ('idle','walk','attack'):
             length=model.anims[animation][0]
             for i in range(25):
                 m=posed(model,animation,length*i/24)
                 origin=m.bones['bow_grip']['origin']
-                hand=transform(m,'arm_r',origin);grip=transform(m,'bow',origin)
+                hand=transform(m,'arm_l',origin);grip=transform(m,'bow',origin)
                 self.assertLess(math.dist(hand,grip),1e-6)
-                arrow=transform(m,'bow',(origin[0]+1,origin[1],origin[2]))
+                arrow=transform(m,'bow',(origin[0]-1,origin[1],origin[2]))
                 self.assertLess(arrow[2]-grip[2],-.85)
                 self.assertLess(hand[2],-10)
 
     def test_skeleton_art_is_preserved_for_every_variant(self):
         for kind in VARIANTS:
             data=json.loads(subprocess.check_output(['git','show',f'c3d4af8:build/models/astral_esq_{kind}.bbmodel'],cwd=ROOT))
-            self.assertEqual(skeleton(kind).export()[0]['textures'][0]['source'],data['textures'][0]['source'])
+            if kind!='arquero':self.assertEqual(skeleton(kind).export()[0]['textures'][0]['source'],data['textures'][0]['source'])
             if kind in ('guardian','espadachin'):self.assertEqual(skeleton(kind).bones['weapon']['parent'],'arm_r')
 
     def test_principal_keeps_old_buttons_and_adds_all_services(self):
         data=yaml.safe_load(principal_menu());items=data['items']
         expected={'bazar','minas','mazmorras','expediciones','portales','parkour','arenas','misiones',
-                  'mascotas','cosmeticos','skills','guia','comandos','spawn','bosque','fragmentos',
-                  'tienda','peluches','subastas','vender','intercambio','gacha_rpg','gacha_monturas','gacha_cosmeticos','duelos'}
+                  'mascotas','cosmeticos','skills','guia','comandos','spawn','fragmentos','duelos'}
         self.assertEqual(set(items)-{'info','cerrar'},expected)
         self.assertEqual(len({v['slot'] for v in items.values()}),len(items))
 

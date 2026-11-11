@@ -2,8 +2,12 @@
 import math
 import random
 from PIL import ImageDraw
-from bbmodel import Model, hexc
-from creatures_tanda3a import vine, swing
+try:
+    from .bbmodel import Model, hexc
+    from .creatures_tanda3a import vine, swing
+except ImportError:
+    from bbmodel import Model, hexc
+    from creatures_tanda3a import vine, swing
 
 VARIANTS = ('arquero', 'escudero', 'nigromante', 'espadachin', 'guardian')
 
@@ -164,16 +168,30 @@ def skeleton(kind):
         for b,x,y,z in (('head',-3,31,-3),('head',2,30,1),('arm_l',-5,18,-1.5),('arm_r',5,22,-1.5)):
             for j in range(3):
                 box(b,(x+j*.7,y,z),(x+.4+j*.7,y+2.8-j*.7,z+.6),'#a8e3ff',rotation=(0,0,18-j*15))
+        def cord(m,b,pts,width,color):
+            # En el plano XY conservar el signo de dx, tambien en la mitad
+            # superior del arco; hypot(dx,dz) invertia esos segmentos.
+            for a,c in zip(pts,pts[1:]):
+                dx,dy=c[0]-a[0],c[1]-a[1]
+                length=math.hypot(dx,dy);mid=tuple((x+y)/2 for x,y in zip(a,c))
+                m.cube(b,(mid[0]-width/2,mid[1]-length/2,mid[2]-width/2),
+                       (mid[0]+width/2,mid[1]+length/2,mid[2]+width/2),color,
+                       rotation=(0,0,-math.degrees(math.atan2(dx,dy))),origin=mid,pat='bark')
         bow=[(6,3,-4),(9,7,-4),(11,14,-4),(11,21,-4),(9,28,-4),(6,32,-4)]
         bow_start=len(m.cubes)
         # La empunadura comparte la mano derecha; contrarrotacion para que
         # el arco siga vertical y giro Y para que la flecha apunte a -Z.
         m.bone('bow_grip',(5,11,0),'arm_r',rotation=(-78,0,0))
         m.bone('bow',(5,11,0),'bow_grip',rotation=(0,90,0))
-        vine(m,'bow',bow,1.3,'#3d4222')
-        vine(m,'bow',[bow[0],(4,17,-4),bow[-1]],.22,'#d6d7ac')
-        vine(m,'bow',[(-3,17,-4.1),(12,17,-4.1)],.35,'#b9b28f')
-        box('bow',(11.5,16.5,-4.7),(13,17.5,-3.6),'#b8e0d7')
+        cord(m,'bow',bow,1.3,'#3d4222')
+        m.bone('bowstring',(5,11,0),'bow')
+        m.bone('bowstring_lower',(0,-3,0),'bowstring')
+        m.bone('bowstring_upper',(0,26,0),'bowstring')
+        m.bone('arrow',(5,11,0),'bow')
+        cord(m,'bowstring_lower',[bow[0],(4,17,-4)],.22,'#d6d7ac')
+        cord(m,'bowstring_upper',[(4,17,-4),bow[-1]],.22,'#d6d7ac')
+        cord(m,'arrow',[(-3,17,-4.1),(12,17,-4.1)],.35,'#b9b28f')
+        box('arrow',(11.5,16.5,-4.7),(13,17.5,-3.6),'#b8e0d7')
         for y in (4,29): box('bow',(5.7,y,-4.4),(6.7,y+1.2,-3.5),'#9aa57c','wrap')
         for cube in m.cubes[bow_start:]:
             for field in ('from','to','origin'):
@@ -248,8 +266,14 @@ def skeleton(kind):
     m.anim('idle',3,{'body':{'position':(0,swing(.18,1/3),0)},'head':{'rotation':(0,swing(3,1/3),0)}})
     m.anim('walk',1,{b:{'rotation':(swing(a),0,0)} for b,a in [('leg_l',24),('leg_r',-24),('arm_l',-14),('arm_r',14)]})
     if kind=='arquero':
+        pull=swing(3,1/1.3)
         attack={'arm_r':{'rotation':(swing(4,1/1.3),0,0)},
-                'arm_l':{'rotation':(swing(-12,1/1.3),swing(-8,1/1.3),0)}}
+                'arm_l':{'rotation':(swing(-12,1/1.3),swing(-8,1/1.3),0)},
+                'arrow':{'position':(swing(-3,1/1.3),0,0)}}
+        for bone,dy,sign in [('bowstring_lower',14,1),('bowstring_upper',15,-1)]:
+            factor=f'math.sqrt((2+({pull}))*(2+({pull}))+{dy*dy})/math.sqrt({dy*dy+4})'
+            angle=f'(math.atan((2+({pull}))/{dy})-{round(math.degrees(math.atan(2/dy)),4)})*{sign}'
+            attack[bone]={'rotation':(0,0,angle),'scale':(factor,)*3}
     elif kind=='nigromante':
         attack={'arm_r':{'rotation':(swing(-25,1/1.3),0,0)},
                 'orb':{'scale':('1+math.sin(q.anim_time*276.923)*0.35',)*3},
@@ -260,6 +284,28 @@ def skeleton(kind):
         if kind in ('guardian','espadachin'):
             attack['weapon']={'rotation':(swing(-45,1/1.3),0,swing(-22,1/1.3))}
     m.anim('attack',.65,attack,loop='once')
+    if kind=='arquero':
+        # Reflejar el rig completo: arco en izquierda y tensado con derecha.
+        # Se refleja tambien cada canal para conservar contacto y trayectoria.
+        swap=lambda b: {'arm_l':'arm_r','arm_r':'arm_l','leg_l':'leg_r','leg_r':'leg_l'}.get(b,b)
+        for info in m.bones.values():
+            info['origin'][0]*=-1
+            info['rotation'][1:]=[-v for v in info['rotation'][1:]]
+            info['parent']=swap(info['parent'])
+        m.bones={swap(b):info for b,info in m.bones.items()}
+        for c in m.cubes:
+            c['bone']=swap(c['bone'])
+            c['from'][0],c['to'][0]=-c['to'][0],-c['from'][0]
+            if c.get('origin') is not None:c['origin']=[-c['origin'][0],*c['origin'][1:]]
+            if c.get('rotation') is not None:c['rotation']=[c['rotation'][0],*[-v for v in c['rotation'][1:]]]
+        for name,(length,loop,channels) in list(m.anims.items()):
+            reflected={}
+            for bone,values in channels.items():
+                reflected[swap(bone)]={}
+                for channel,vector in values.items():
+                    signs=(-1,1,1) if channel=='position' else (1,-1,-1) if channel=='rotation' else (1,1,1)
+                    reflected[swap(bone)][channel]=tuple(v if sign==1 else -v if isinstance(v,(int,float)) else f'0-({v})' for v,sign in zip(vector,signs))
+            m.anims[name]=(length,loop,reflected)
     return m
 
 

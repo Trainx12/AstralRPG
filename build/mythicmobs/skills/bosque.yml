@@ -103,7 +103,7 @@ BOSQUE_PREMIO_YA:
 BOSQUE_ENTRAR:
   Skills:
   - 'message{m="&8[&7Bosque Sombrio&8] &7Bajando a las &fBosque Sombrio&7... &8(2 salas. Para salir: /spawn)"}'
-  - command{c="execute in minecraft:bosque run minecraft:tp <trigger.name> 1468.5 101 1570.5"}
+  - command{c="execute in minecraft:bosque run minecraft:tp <trigger.name> 1468.5 101 1570.5 0 0"}
 TANDA2_bosque_AST_FASE_astral_chaman_2:
   Skills:
   - addtag{tag=astral.fase2} @self

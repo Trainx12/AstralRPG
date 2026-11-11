@@ -33,7 +33,7 @@ def plant():
         'Options':dict(NoAI=True,NoGravity=True,MovementSpeed=0,KnockbackResistance=1,Collidable=False,
                        Glowing=True,Silent=True,Despawn=False,PreventOtherDrops=True,
                        PreventSunburn=True,PreventRandomEquipment=True,PreventItemPickup=True),
-        'Skills':['skill{s=AST_PLANTA_INICIO} @self ~onSpawn',
+        'Skills':['skill{s=AST_MUERTE} @self ~onDeath','skill{s=AST_PLANTA_INICIO} @self ~onSpawn',
                   'skill{s=AST_PLANTA_MODELO} @self ~onLoad',
                   'glowbone{g=true;c=FFFFFF} @self ~onTimer:20',
                   'skill{s=AST_PLANTA_MORDIDA} @self ~onTimer:30 ?playerwithin{d=3}',

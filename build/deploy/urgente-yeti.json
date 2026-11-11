@@ -1,0 +1,173 @@
+{
+  "yeti_scale": 6.363636,
+  "jefe": {
+    "ancho": 12.409,
+    "alto": 14.0,
+    "bloques_no_aire": 0,
+    "bloques_solidos": 0,
+    "tipos": {},
+    "ejemplos": []
+  },
+  "puerta": {
+    "ancho": 12.409,
+    "alto": 14.0,
+    "bloques_no_aire": 0,
+    "bloques_solidos": 0,
+    "tipos": {},
+    "ejemplos": []
+  },
+  "movimiento": {
+    "este": [
+      {
+        "distancia": 0.25,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.5,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.75,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 1,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      }
+    ],
+    "oeste": [
+      {
+        "distancia": 0.25,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.5,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.75,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 1,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      }
+    ],
+    "sur": [
+      {
+        "distancia": 0.25,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.5,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.75,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 1,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      }
+    ],
+    "norte": [
+      {
+        "distancia": 0.25,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.5,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 0.75,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      },
+      {
+        "distancia": 1,
+        "ancho": 12.409,
+        "alto": 14.0,
+        "bloques_no_aire": 0,
+        "bloques_solidos": 0,
+        "tipos": {},
+        "ejemplos": []
+      }
+    ]
+  }
+}

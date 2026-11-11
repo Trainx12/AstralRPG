@@ -380,3 +380,43 @@ Tanda 2 preparada localmente, sin desplegar: `build/deploy/tanda2.md`. Requiere 
 El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.
 
 Tanda 4a preparada, sin desplegar: [circuito privado y catalogo de las 17 mascotas nuevas](TERCEROS.md). Lista exacta de archivos, reinicio y reposicion de vendedores en `build/deploy/tanda4a.md`. El pack FINAL se toma del repositorio privado; no reemplazarlo por el ZIP publico al subir a R2.
+
+## Correccion urgente del 11/11 (preparada, despliegue pendiente)
+
+Mascotas: `<global.pet_owner>` no se resuelve en MythicMobs 5.13; dejaba la mascota
+sin dueno y `ownerIsOnline` la retiraba. La invocacion ahora corre como el jugador
+con `sudoskill` y `summonerIsOwner=true`, asignando su UUID sin un nombre global.
+Los bonus usan los mundos reales `cumbre_hielo`, `forja_volcano` y `santuario_interstellar`.
+
+En `plugins/WorldGuard/worlds/lobby/config.yml`, dentro de `mobs`, conservar
+`block-plugin-spawning: false`. Claude ya aplico ese ajuste en el servidor segun
+el diagnostico del pedido; comprobarlo al desplegar. Permite invocaciones de plugins
+con la region protegida. `spawn_mobs=false` sigue evitando mobs naturales.
+Una edicion con el servidor encendido requiere `wg reload`; el reinicio tambien la carga.
+ClearLag debe conservar `CUSTOM` en `exempt-spawn-reasons` y la exclusion `clearlag_exclude`.
+
+La Cumbre llega a `-25.6 33 -23.4` (yaw 49.9); el jefe recibe al grupo en
+`-54.9 30 6.5` (yaw 45.7). Y30 tiene piso firme en el mapa local; Y52.7 era la
+posicion de observacion del dueno. Yeti y cofre: `-101.8 30 56.9`.
+El Yeti usa `s=4`, el doble del Ancestral, con `minecraft:scale=6.363636` y 14 bloques
+de alto. Esto reemplaza el tamano de 28 bloques indicado en la nota historica de Tanda 2.
+No instalar el apoyo antiguo propuesto a Y32 sobre esa ubicacion.
+
+El espadachin ya no forma parte de las apariciones; se conserva el modelo.
+La muerte de criaturas usa `death` de BetterModel 3.6.0 (0.8 s, sin repeticion),
+mas tinte y humo. NPC, mascotas, cofres y monturas conservan sus animaciones.
+Archivos exactos, SHA-1 FINAL, tabla de todas las llegadas y reinicio:
+[urgente-mascotas-texturas.md](../build/deploy/urgente-mascotas-texturas.md).
+Las vistas CPU y el jugador NMS simulado no sustituyen la revision visual con cliente
+ni la consola del servidor remoto.
+
+
+Ajuste posterior del mismo 11/11: se anula la propuesta de apoyos en Tumba/Cumbre.
+Los mobs y cofres usan piso natural, con rangos por sala en `mobs/salas_seguras.py`.
+`arreglos-apoyos.txt` se elimina; no agregar bloques. Menu Astral conserva 14 accesos
+mas Fragmentos y Duelos. Intercambio esta en Comandos y Peluches dentro de la Tienda.
+El panel TAB reemplaza diarias por sala/oleada/restantes en las cinco mazmorras;
+se elimina Rango del panel general. La bossbar PURPLE es independiente por sala,
+cuenta vivos y pendientes, y se oculta durante el jefe o al salir. Los scores `ad.*`
+se crean al cargar el datapack. Integrar las secciones de TAB conservando el resto.
+Entrega unica vigente: `build/deploy/urgente-mascotas-texturas.md`; requiere un reinicio.

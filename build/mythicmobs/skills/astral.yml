@@ -1,3 +1,9 @@
+AST_MUERTE:
+  Skills:
+  - tint{c=FF5555} @self
+  - delay 16
+  - particles{p=poof;amount=14;hS=0.5;vS=0.5} @self
+
 AST_MODEL_astral_mapache:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -135,9 +141,9 @@ AST_MODEL_astral_chaman:
 AST_MODEL_astral_yeti_cumbre:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti;s=8.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 12.727273"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 7.636364"} @self
+  - model{m=astral_yeti;s=4.0} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 6.363636"} @self
+  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 3.818182"} @self
 AST_SILLA_VER:
   Skills:
   - delay 3

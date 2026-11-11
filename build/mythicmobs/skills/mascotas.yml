@@ -15,20 +15,20 @@ PET_lobo_CHEQUEO:
 
 PET_lobo_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_lobo;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_lobo;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -47,11 +47,21 @@ MASC_INVOCAR_lobo:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 1"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_lobo;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_lobo}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fLobo del Bosque&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_lobo:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_lobo} @self'
+
+MASC_APARECER_lobo:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=1} true
+  Skills:
+  - 'summon{type=astral_pet_lobo;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_lobo:
   TargetConditions:
@@ -86,20 +96,20 @@ PET_cuervo_CHEQUEO:
 
 PET_cuervo_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_cuervo;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_cuervo;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
@@ -113,7 +123,7 @@ PET_cuervo_EVOLUCION:
 
 PET_cuervo_MARCA:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'skill{s=PET_cuervo_MARCA_UNO} @LivingInRadius{r=14}'
 
@@ -130,11 +140,21 @@ MASC_INVOCAR_cuervo:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 2"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_cuervo;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_cuervo}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCuervo Arcano&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_cuervo:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_cuervo} @self'
+
+MASC_APARECER_cuervo:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=2} true
+  Skills:
+  - 'summon{type=astral_pet_cuervo;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_cuervo:
   TargetConditions:
@@ -169,20 +189,20 @@ PET_golem_CHEQUEO:
 
 PET_golem_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_golem;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_golem;v=20to30} true
   Skills:
   - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
@@ -201,11 +221,21 @@ MASC_INVOCAR_golem:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 3"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_golem;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_golem}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fGolem de Piedra&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_golem:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_golem} @self'
+
+MASC_APARECER_golem:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=3} true
+  Skills:
+  - 'summon{type=astral_pet_golem;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_golem:
   TargetConditions:
@@ -240,20 +270,20 @@ PET_zorro_CHEQUEO:
 
 PET_zorro_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_zorro;v=10to30} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_zorro;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=1;hasParticles=false}'
@@ -272,11 +302,21 @@ MASC_INVOCAR_zorro:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 4"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_zorro;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_zorro}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fZorro Espectral&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_zorro:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_zorro} @self'
+
+MASC_APARECER_zorro:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=4} true
+  Skills:
+  - 'summon{type=astral_pet_zorro;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_zorro:
   TargetConditions:
@@ -311,20 +351,20 @@ PET_dragon_CHEQUEO:
 
 PET_dragon_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_dragon;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_dragon;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -343,11 +383,21 @@ MASC_INVOCAR_dragon:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 5"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_dragon;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_dragon}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fDragoncito de Fuego&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_dragon:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_dragon} @self'
+
+MASC_APARECER_dragon:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=5} true
+  Skills:
+  - 'summon{type=astral_pet_dragon;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_dragon:
   TargetConditions:
@@ -382,20 +432,20 @@ PET_fenix_CHEQUEO:
 
 PET_fenix_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_fenix;v=10to30} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
   - 'delay 1'
@@ -409,7 +459,7 @@ PET_fenix_EVOLUCION:
 
 PET_fenix_RESCATE1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=1to9} true
   Skills:
@@ -425,7 +475,7 @@ PET_fenix_RESCATE1:
 
 PET_fenix_RESCATE2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=10to19} true
   Skills:
@@ -441,7 +491,7 @@ PET_fenix_RESCATE2:
 
 PET_fenix_RESCATE3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
@@ -462,11 +512,21 @@ MASC_INVOCAR_fenix:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 6"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_fenix;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_fenix}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fFenix&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_fenix:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_fenix} @self'
+
+MASC_APARECER_fenix:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=6} true
+  Skills:
+  - 'summon{type=astral_pet_fenix;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_fenix:
   TargetConditions:
@@ -501,20 +561,20 @@ PET_ghastito_CHEQUEO:
 
 PET_ghastito_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=slow_falling;duration=70;level=0;hasParticles=false}'
 
 PET_ghastito_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_ghastito;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_ghastito_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_ghastito;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -533,11 +593,21 @@ MASC_INVOCAR_ghastito:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 7"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_ghastito;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_ghastito}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fGhastito de Nube&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_ghastito:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_ghastito} @self'
+
+MASC_APARECER_ghastito:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=7} true
+  Skills:
+  - 'summon{type=astral_pet_ghastito;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_ghastito:
   TargetConditions:
@@ -572,20 +642,20 @@ PET_bombardero_CHEQUEO:
 
 PET_bombardero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_bombardero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_bombardero;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_bombardero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_bombardero;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -604,11 +674,21 @@ MASC_INVOCAR_bombardero:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 8"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_bombardero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_bombardero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fBombardero Musgoso&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_bombardero:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_bombardero} @self'
+
+MASC_APARECER_bombardero:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=8} true
+  Skills:
+  - 'summon{type=astral_pet_bombardero;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_bombardero:
   TargetConditions:
@@ -643,20 +723,20 @@ PET_canonero_CHEQUEO:
 
 PET_canonero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_canonero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_canonero;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_canonero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_canonero;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -675,11 +755,21 @@ MASC_INVOCAR_canonero:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 9"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_canonero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_canonero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCanonero de Bolsillo&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_canonero:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_canonero} @self'
+
+MASC_APARECER_canonero:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=9} true
+  Skills:
+  - 'summon{type=astral_pet_canonero;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_canonero:
   TargetConditions:
@@ -714,20 +804,20 @@ PET_encapuchado_CHEQUEO:
 
 PET_encapuchado_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_encapuchado_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_encapuchado;v=10to30} true
   Skills:
   - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
 
 PET_encapuchado_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_encapuchado;v=20to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
@@ -746,11 +836,21 @@ MASC_INVOCAR_encapuchado:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 10"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_encapuchado;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_encapuchado}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fZorro Encapuchado&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_encapuchado:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_encapuchado} @self'
+
+MASC_APARECER_encapuchado:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=10} true
+  Skills:
+  - 'summon{type=astral_pet_encapuchado;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_encapuchado:
   TargetConditions:
@@ -785,20 +885,20 @@ PET_llamita_CHEQUEO:
 
 PET_llamita_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_llamita_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_llamita;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_llamita_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_llamita;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -817,11 +917,21 @@ MASC_INVOCAR_llamita:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 11"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_llamita;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_llamita}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fLlamita Viajera&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_llamita:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_llamita} @self'
+
+MASC_APARECER_llamita:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=11} true
+  Skills:
+  - 'summon{type=astral_pet_llamita;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_llamita:
   TargetConditions:
@@ -856,20 +966,20 @@ PET_hondero_CHEQUEO:
 
 PET_hondero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_hondero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_hondero;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_hondero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_hondero;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -888,11 +998,21 @@ MASC_INVOCAR_hondero:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 12"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_hondero;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_hondero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fPequeno Hondero&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_hondero:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_hondero} @self'
+
+MASC_APARECER_hondero:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=12} true
+  Skills:
+  - 'summon{type=astral_pet_hondero;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_hondero:
   TargetConditions:
@@ -927,20 +1047,20 @@ PET_saqueador_CHEQUEO:
 
 PET_saqueador_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_saqueador_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_saqueador;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_saqueador_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_saqueador;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -959,11 +1079,21 @@ MASC_INVOCAR_saqueador:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 13"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_saqueador;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_saqueador}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fSaqueador Elegante&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_saqueador:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_saqueador} @self'
+
+MASC_APARECER_saqueador:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=13} true
+  Skills:
+  - 'summon{type=astral_pet_saqueador;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_saqueador:
   TargetConditions:
@@ -998,20 +1128,20 @@ PET_brujita_CHEQUEO:
 
 PET_brujita_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_brujita_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_brujita;v=10to30} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_brujita_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_brujita;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -1030,11 +1160,21 @@ MASC_INVOCAR_brujita:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 14"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_brujita;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_brujita}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fBrujita Estelar&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_brujita:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_brujita} @self'
+
+MASC_APARECER_brujita:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=14} true
+  Skills:
+  - 'summon{type=astral_pet_brujita;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_brujita:
   TargetConditions:
@@ -1069,20 +1209,20 @@ PET_desierto_CHEQUEO:
 
 PET_desierto_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_desierto_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_desierto;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_desierto_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_desierto;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1101,11 +1241,21 @@ MASC_INVOCAR_desierto:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 15"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_desierto;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_desierto}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito del Desierto&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_desierto:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_desierto} @self'
+
+MASC_APARECER_desierto:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=15} true
+  Skills:
+  - 'summon{type=astral_pet_desierto;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_desierto:
   TargetConditions:
@@ -1140,20 +1290,20 @@ PET_jungla_CHEQUEO:
 
 PET_jungla_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_jungla_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_jungla;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_jungla_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_jungla;v=20to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
@@ -1172,11 +1322,21 @@ MASC_INVOCAR_jungla:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 16"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_jungla;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_jungla}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de la Jungla&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_jungla:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_jungla} @self'
+
+MASC_APARECER_jungla:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=16} true
+  Skills:
+  - 'summon{type=astral_pet_jungla;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_jungla:
   TargetConditions:
@@ -1211,20 +1371,20 @@ PET_frondoso_CHEQUEO:
 
 PET_frondoso_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_frondoso_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_frondoso;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_frondoso_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_frondoso;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1243,11 +1403,21 @@ MASC_INVOCAR_frondoso:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 17"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_frondoso;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_frondoso}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito Frondoso&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_frondoso:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_frondoso} @self'
+
+MASC_APARECER_frondoso:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=17} true
+  Skills:
+  - 'summon{type=astral_pet_frondoso;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_frondoso:
   TargetConditions:
@@ -1282,20 +1452,20 @@ PET_micelio_CHEQUEO:
 
 PET_micelio_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_micelio_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_micelio;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_micelio_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_micelio;v=20to30} true
   Skills:
   - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
@@ -1314,11 +1484,21 @@ MASC_INVOCAR_micelio:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 18"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_micelio;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_micelio}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Micelio&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_micelio:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_micelio} @self'
+
+MASC_APARECER_micelio:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=18} true
+  Skills:
+  - 'summon{type=astral_pet_micelio;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_micelio:
   TargetConditions:
@@ -1353,20 +1533,20 @@ PET_pradera_CHEQUEO:
 
 PET_pradera_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_pradera_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_pradera;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_pradera_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_pradera;v=20to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
@@ -1385,11 +1565,21 @@ MASC_INVOCAR_pradera:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 19"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_pradera;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_pradera}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Pradera&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_pradera:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_pradera} @self'
+
+MASC_APARECER_pradera:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=19} true
+  Skills:
+  - 'summon{type=astral_pet_pradera;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_pradera:
   TargetConditions:
@@ -1424,20 +1614,20 @@ PET_sabana_CHEQUEO:
 
 PET_sabana_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_sabana_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_sabana;v=10to30} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_sabana_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_sabana;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
@@ -1456,11 +1646,21 @@ MASC_INVOCAR_sabana:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 20"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_sabana;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_sabana}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Sabana&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_sabana:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_sabana} @self'
+
+MASC_APARECER_sabana:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=20} true
+  Skills:
+  - 'summon{type=astral_pet_sabana;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_sabana:
   TargetConditions:
@@ -1495,20 +1695,20 @@ PET_nieve_CHEQUEO:
 
 PET_nieve_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_nieve_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_nieve;v=10to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_nieve_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_nieve;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -1527,11 +1727,21 @@ MASC_INVOCAR_nieve:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 21"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_nieve;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_nieve}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Nieve&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_nieve:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_nieve} @self'
+
+MASC_APARECER_nieve:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=21} true
+  Skills:
+  - 'summon{type=astral_pet_nieve;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_nieve:
   TargetConditions:
@@ -1566,20 +1776,20 @@ PET_pantano_CHEQUEO:
 
 PET_pantano_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=water_breathing;duration=70;level=0;hasParticles=false}'
 
 PET_pantano_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_pantano;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_pantano_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_pantano;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1598,11 +1808,21 @@ MASC_INVOCAR_pantano:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 22"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_pantano;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_pantano}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Pantano&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_pantano:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_pantano} @self'
+
+MASC_APARECER_pantano:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=22} true
+  Skills:
+  - 'summon{type=astral_pet_pantano;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_pantano:
   TargetConditions:
@@ -1637,20 +1857,20 @@ PET_honguito_CHEQUEO:
 
 PET_honguito_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_honguito_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_honguito;v=10to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_honguito_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre,forja,santuario} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
   - score{o=plv_honguito;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -1669,11 +1889,21 @@ MASC_INVOCAR_honguito:
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
   - 'command{c="scoreboard players set <target.name> petsel 23"}'
-  - 'delay 25'
-  - 'setvariable{var=global.pet_owner;value="<target.name>";type=STRING}'
-  - 'summon{type=astral_pet_honguito;amount=1;summonerIsOwner=false;summonerIsParent=false}'
+  - 'sudoskill{s=MASC_CREAR_honguito}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fHonguito Errante&7. &8(/mascotas para guardarla)"}'
+
+MASC_CREAR_honguito:
+  Skills:
+  - 'delay 25'
+  - 'skill{s=MASC_APARECER_honguito} @self'
+
+MASC_APARECER_honguito:
+  Conditions:
+  - isplayer true
+  - score{o=petsel;v=23} true
+  Skills:
+  - 'summon{type=astral_pet_honguito;amount=1;radius=0;onSurface=false;summonerIsOwner=true;summonerIsParent=false;sync=true} @self'
 
 MASC_NOTIENE_honguito:
   TargetConditions:

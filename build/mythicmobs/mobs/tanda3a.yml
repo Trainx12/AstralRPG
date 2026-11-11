@@ -18,6 +18,7 @@ astral_bosque_planta:
     PreventRandomEquipment: true
     PreventItemPickup: true
   Skills:
+  - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_PLANTA_INICIO} @self ~onSpawn
   - skill{s=AST_PLANTA_MODELO} @self ~onLoad
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20

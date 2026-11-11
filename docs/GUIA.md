@@ -261,3 +261,13 @@ Panel lateral actual: TAB (`lobby.py`), BetterHud apagado por defecto; `/sb` en 
 ## Circuito de assets privados y dos packs
 
 La tanda 4a incorpora un circuito separado: [pasos completos y tabla de mascotas](TERCEROS.md). El pack publico se regenera como siempre, sin arte privado. Preparar modelos con `python datapack-src/build_privado.py --prepare`, convertir TODOS los modelos en BetterModel local y combinar con `--assets <build/assets>`. El pack FINAL sale en `<ASTRAL_PRIVADO>/build/AstralRPG-Textures.zip`; ese es el que se pasa a `tools/subir_pack_r2.py` para el servidor. El publico sigue siendo reproducible sin el clon privado. Auditar los archivos versionados con `python tools/verificar_terceros.py` antes de publicar codigo. No copiar estos assets a pack-source ni commitearlos en el repo publico.
+
+Correccion urgente del 11/11: `pack_audit.py` comprueba referencias de todos los modelos,
+PNG del atlas y capas de armadura; `build_pack.py` y `build_privado.py --assets` la
+ejecutan antes de reemplazar el ZIP. Los PNG reales fuera de item/block se normalizan;
+los sprites sinteticos de adornos se validan contra las paletas declaradas del atlas.
+`preview_pack_gui.py` renderiza los 31 items afectados desde el ZIP FINAL; su imagen
+queda solo en el repositorio privado. `deploy_urgente.py` prepara la entrega aislada
+y [la lista de instalacion](../build/deploy/urgente-mascotas-texturas.md).
+Las llegadas de mazmorras se mantienen en `mobs/rutas_mazmorras.py`: cambiar esa tabla,
+regenerar `mobs/mazmorra.py`, `viajes_mazmorras.py` y `build.py`, y correr `test_urgente`.

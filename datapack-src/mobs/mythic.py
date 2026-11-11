@@ -411,6 +411,8 @@ def mob_block(mid, d, model=None, elite=None):
     if elite:
         sk += astral_drop("esencia_elite", 1.0, 2) + astral_drop("alma_corrupta", 0.3)
     sk += d.get("skills", [])
+    if d['kind'] in ('hostil','jefe','fauna') and not d.get('native_death_only'):
+        sk.append('- skill{s=AST_MUERTE} @self ~onDeath')
     real = f"{mid}" if not elite else mid          # id del mob que se esta generando
     base = model                                   # id de la criatura normal
     # Un evento personal por baja. Las variantes de mazmorra reutilizan este
@@ -445,7 +447,8 @@ def mob_block(mid, d, model=None, elite=None):
 
 
 def metaskills():
-    out = []
+    out = ['AST_MUERTE:', '  Skills:', '  - tint{c=FF5555} @self',
+           '  - delay 16', '  - particles{p=poof;amount=14;hS=0.5;vS=0.5} @self', '']
     for mid, d in MOBS.items():
         scale = ';s=2.0' if d['kind'] == 'jefe' else ''
         out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}{scale}}} @self"]

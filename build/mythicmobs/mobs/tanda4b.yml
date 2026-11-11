@@ -18,6 +18,7 @@ astral_planta_salvaje:
     PreventItemPickup: true
   Skills:
   - skill{s=AST_PLANTA_SALVAJE_INICIO} @self ~onSpawn
+  - skill{s=AST_PLANTA_INICIO} @self ~onSpawn
   - skill{s=AST_PLANTA_MODELO} @self ~onLoad
   - skill{s=AST_PLANTA_MORDIDA} @self ~onTimer:30 ?playerwithin{d=3}
   - skill{s=AST_PLANTA_ESCUPIR} @self ~onTimer:80 ?playerwithin{d=12}

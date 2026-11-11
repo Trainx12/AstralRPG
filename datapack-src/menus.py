@@ -368,16 +368,7 @@ def principal_menu():
         ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
-        ('bosque', 'OAK_SAPLING', '&a&lBosque Astral', ['&7Tala arboles que vuelven a crecer.'], ['[close]', '[player] bosque<delay=3>']),
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
-        ('tienda', 'EMERALD', '&a&lTienda', ['&7Compra materiales y equipo.'], ['[close]', '[player] economyshopgui:shop<delay=3>']),
-        ('peluches', 'PINK_WOOL', '&d&lPeluches', ['&7Companeros decorativos: $2.500 cada uno.'], ['[close]', '[player] economyshopgui:shop Peluches<delay=3>']),
-        ('subastas', 'GOLD_INGOT', '&6&lSubastas', ['&7Explora, publica y retira tus ventas.'], ['[openguimenu] subastas']),
-        ('vender', 'CHEST', '&e&lVenta rapida', ['&7Abri la caja para vender tus objetos.'], ['[close]', '[player] economyshopgui:sellgui<delay=3>']),
-        ('intercambio', 'BUNDLE', '&b&lIntercambio', ['&7Intercambia equipo y oro con otro jugador.', '&eEscribi /trade <jugador>.'], ['[close]', '[message] &eUsa /trade <jugador> para elegir con quien intercambiar.']),
-        ('gacha_rpg', 'AMETHYST_SHARD', '&5&lGacha de Armas', ['&7Premios, probabilidades y garantia.'], ['[openguimenu] gacha_rpg']),
-        ('gacha_monturas', 'SADDLE', '&a&lGacha de Monturas', ['&7Monturas y 20 mascotas de la coleccion.', '&7Consulta la probabilidad de cada premio.'], ['[openguimenu] gacha_monturas']),
-        ('gacha_cosmeticos', 'NAME_TAG', '&d&lGacha de Cosmeticos', ['&7Titulos y adornos para tu aventura.'], ['[openguimenu] gacha_cosmeticos']),
         ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&eEscribi /duel <jugador>.'], ['[close]', '[message] &eUsa /duel <jugador> para enviar un desafio.']),
     ]
     from menu_ui import SLOTS, KEYS, title as menu_title

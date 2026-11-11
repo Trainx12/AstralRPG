@@ -147,6 +147,7 @@ astral_cumbre_yeti:
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - skill{s=AST_YETI_PISOTON} @self ~onTimer:160
   - projectile{onHit=AST_YETI_HIELO;v=14;i=1;hR=2;vR=2;mr=120;bulletType=ITEM;material=SNOWBALL} @PlayersInRadius{r=120} ~onTimer:100
+  - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Trono del Yeti'] add cumbre.jefe.derrotado"} @self ~onDeath

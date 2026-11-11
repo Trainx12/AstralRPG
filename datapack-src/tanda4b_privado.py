@@ -12,17 +12,34 @@ def prepare(base):
     car = x / 'carnivoret/Weapons/RSS/assets/elitecreatures'
     asura = x / 'asura/Asura/assets/asura'
     plush = x / 'peluches/nm_plushies_starter_pack_rp/assets/nogs_menagerie'
+    # Los items solo leen texturas de la carpeta textures/item/ (atlas de items): las de estos packs se mueven
+    # ahi y se reescriben sus referencias (sin esto el juego las muestra violeta y negro).
+    NS = ('elitecreatures', 'asura', 'nogs_menagerie')
+    def item_tex(ref):
+        ns, _, p = ref.partition(':')
+        return f'{ns}:item/{p}' if ns in NS and p and not p.startswith(('item/', 'block/')) else ref
     for source in (car, asura, plush):
         if not source.is_dir():
             raise FileNotFoundError(source)
         for path in source.rglob('*'):
-            if path.suffix not in ('.png', '.json'):
+            if path.suffix not in ('.png', '.json', '.mcmeta'):
                 continue
-            dest = out / source.name / path.relative_to(source)
+            rel = path.relative_to(source)
+            if rel.parts[0] == 'textures':
+                rel = rel.relative_to('textures')
+                rel = rel if rel.parts[0] in ('item', 'block') else ('item' / rel)
+                rel = 'textures' / rel
+            dest = out / source.name / rel
+            old = out / source.name / path.relative_to(source)
+            if old != dest and old.is_file():
+                # Solo derivados de esta fuente, nunca originales ni carpetas ajenas.
+                old.unlink()
             dest.parent.mkdir(parents=True, exist_ok=True)
             if path.suffix == '.json':
                 d = json.loads(path.read_text(encoding='utf8'))
                 d.pop('overrides', None)  # estados modernos declarados debajo
+                if isinstance(d.get('textures'), dict):
+                    d['textures'] = {k: item_tex(v) if isinstance(v, str) else v for k, v in d['textures'].items()}
                 dest.write_text(json.dumps(d, ensure_ascii=False), encoding='utf8')
             else:
                 shutil.copyfile(path, dest)
@@ -38,7 +55,7 @@ def prepare(base):
     mappings.update({'carnivora_' + k:car_model(v) for k,v in {'pico':'pickaxe','pala':'shovel','azada':'hoe','alas':'wing','helmet':'hat'}.items()})
     for piece in ('chestplate','leggings','boots'):
         put('elitecreatures/models/item/carnivora_' + piece + '.json', {'parent':'minecraft:item/generated',
-            'textures':{'layer0':'elitecreatures:carnivoret_weapon_set/carnivoret_' + piece}})
+            'textures':{'layer0':'elitecreatures:item/carnivoret_weapon_set/carnivoret_' + piece}})
         mappings['carnivora_' + piece] = model('elitecreatures:item/carnivora_' + piece)
     mappings['carnivora_arco'] = {'type':'minecraft:condition', 'property':'minecraft:using_item',
         'on_false':car_model('bow'), 'on_true':{'type':'minecraft:range_dispatch', 'property':'minecraft:use_duration', 'scale':.05,
