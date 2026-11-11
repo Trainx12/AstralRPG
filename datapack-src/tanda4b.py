@@ -51,7 +51,9 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         add_item(iid, 'minecraft:diamond_' + piece, label + ' Carnivora', '#bff05a', [txt('Armadura Carnivora III')],
                  {'type': 'armor', 'set': 'carnivora', 'tier': 3, 'piece': piece, 'def': defensa_pieza(3, piece)},
                  extra={'minecraft:attribute_modifiers': armor_attrs(iid, piece, 'diamond', {}, vida=VIDA_PIEZA[3]),
-                        'minecraft:equippable': {'slot': {'helmet':'head','chestplate':'chest','leggings':'legs','boots':'feet'}[piece], 'asset_id':'astral:carnivora'}},
+                        # Sin asset_id en cabeza: usa el modelo Java y su display.head.
+                        'minecraft:equippable': {'slot': {'helmet':'head','chestplate':'chest','leggings':'legs','boots':'feet'}[piece],
+                                                **({} if piece == 'helmet' else {'asset_id':'astral:carnivora'})}},
                  model='astral:' + iid, kind='armor')
     for iid, (name, base, fallback) in SIMPLE.items():
         material = iid == 'colmillo_carnivoro' or iid.startswith('asura_moneda_')

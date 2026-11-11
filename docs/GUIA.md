@@ -1,5 +1,11 @@
 # Guía para agregar cosas a AstralRPG
 
+Correccion de casco Carnivora y seguimiento de alas (sin desplegar):
+[alas-casco.md](../build/deploy/alas-casco.md). Entrega posterior a Cosmeticos y tanda5a;
+`deploy_alas_casco.py` conserva su FINAL y solo cambia dos wrappers privados.
+`build.py` incluye la migracion puntual del casco sin reconstruir sus items.
+Ensayo de estado Paper: `tools/probar_alas_casco_paper.py`; validacion visual con dos clientes pendiente.
+
 Tanda 5a (preparada, sin desplegar): [entrega](../build/deploy/tanda5a.md).
 Para proteger terreno en survival: pala de oro y clic derecho en dos esquinas. Minimo 6x6;
 protege todo de fondo a techo. Se empieza con 36 bloques de area, sin ganar por tiempo.

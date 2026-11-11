@@ -15,8 +15,8 @@ def rotate(point, origin, axis, angle):
     return [p[i]+origin[i] for i in range(3)]
 
 
-def wing_components(iid, raw):
-    """Wrapper propio: raiz en hombros, toda la geometria detras; original intacto."""
+def wing_components(iid, raw, *, shoulder_tips=False):
+    """Wrapper propio; shoulder_tips=False conserva la reproduccion de entregas historicas."""
     asura=iid=='asura_alas'
     ref='asura:asura_wings' if asura else 'elitecreatures:carnivoret_weapon_set/wing'
     scale=1 if asura else .9
@@ -29,7 +29,10 @@ def wing_components(iid, raw):
             vertices.append(rotate([(v-8)*scale for v in p],[0,0,0],'y',yaw))
     # Fijar el punto mas alto a la altura de hombros y el mas delantero al plano de espalda.
     tx=-(max(p[0] for p in vertices)+min(p[0] for p in vertices))/2
-    translation=[round(tx,5),round(-max(p[1] for p in vertices),5),round(-max(p[2] for p in vertices),5)]
+    # Las puntas superiores deben subir sobre los hombros. Anclar el MAXIMO al
+    # hombro hacia que toda el ala colgara hasta las piernas (sobre todo Carnivora).
+    top = 10.4 if shoulder_tips else 0  # 0,65 bloques sobre el anclaje del runtime.
+    translation=[round(tx,5),round(top-max(p[1] for p in vertices),5),round(-max(p[2] for p in vertices),5)]
     wrapper={'parent':ref,'display':{'fixed':{'rotation':[0,yaw,0],'translation':translation,'scale':[scale]*3}}}
     tree={'type':'minecraft:select','property':'minecraft:display_context','cases':[
         {'when':['firstperson_lefthand','firstperson_righthand','thirdperson_lefthand','thirdperson_righthand'],
@@ -102,7 +105,7 @@ def prepare(base):
         mappings['peluche_' + k] = model('nogs_menagerie:plushies/nm_plushie_' + k)
     for iid in ('carnivora_alas','asura_alas'):
         ns,name=mappings[iid]['model'].split(':')
-        mappings[iid],wrapper=wing_components(iid,json.loads((out/ns/'models'/f'{name}.json').read_text(encoding='utf8')))
+        mappings[iid],wrapper=wing_components(iid,json.loads((out/ns/'models'/f'{name}.json').read_text(encoding='utf8')),shoulder_tips=True)
         put('astral/models/cosmetics/'+iid+'.json',wrapper)
     for iid, tree in mappings.items():
         put('astral/items/' + iid + '.json', {'model':tree})

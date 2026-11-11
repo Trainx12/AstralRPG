@@ -35,7 +35,14 @@ def apply(files,items,version):
                     lines.append(f'execute if items entity @s {slot} {upgraded} run return run item modify entity @s {slot} astral:upgrade/{iid}/{level}')
             lines.append(f'execute if items entity @s {slot} {selector} run return run item modify entity @s {slot} astral:upgrade/{iid}')
         fn('upgrade/slot/'+slot.replace('.','_'),lines)
-    fn('upgrade/check',[
+    # Reparacion puntual incluso en v15; no reconstruye items ni toca mejoras.
+    helmet_old='*[minecraft:custom_data~{astral:{id:"carnivora_helmet"}},minecraft:equippable~{asset_id:"astral:carnivora"}]'
+    files['data/astral/item_modifier/carnivora_head.json']=json.dumps({
+        'function':'minecraft:set_components','components':{'minecraft:equippable':{'slot':'head'}}})
+    fn('upgrade/carnivora_head',[
+        f'execute unless items entity @s container.* {helmet_old} unless items entity @s armor.head {helmet_old} unless items entity @s weapon.offhand {helmet_old} run return 0',
+    ]+[f'execute if items entity @s {slot} {helmet_old} run item modify entity @s {slot} astral:carnivora_head' for slot in slots])
+    fn('upgrade/check',['function astral:upgrade/carnivora_head']+[
         f'execute if items entity @s {slot} {old} run function astral:upgrade/slot/{slot.replace(".","_")}' for slot in slots])
     # El impulso lo aplica Skript con velocidad real; el datapack solo valida el objeto y solicita el uso.
     fn('grapple/use',['tag @s add astral.grapple.request'])
