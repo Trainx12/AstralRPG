@@ -1,5 +1,17 @@
 # AstralRPG: cómo está armado el servidor
 
+Tanda 5a preparada, **sin desplegar**: [lista exacta de archivos, versiones y pruebas](../build/deploy/tanda5a.md).
+Generadores: `datapack-src/tanda5a.py`, `escala.py`, `runtime/AstralProgression.java`.
+GriefPrevention 16.18.7: solo survival, 36 bloques iniciales, minimo 6x6, sin ganancia por hora,
+proteccion completa de fondo a techo. EconomyShopGUI suma paquetes de area mediante consola;
+`/buyclaimblocks` y venta directa quedan desactivados. Respeta WorldGuard; Bolt conserva sus candados.
+BlzdBackpacks 1.0.0-alpha.1: mochila virtual `/bp`, permisos `blzdbp.small/medium/large`
+para 9/27/54 espacios, vendidos en Mochilas. No hay objeto mochila para anidar; shulkers y bundles bloqueados.
+El contenido virtual permanece al morir, separado de AxGraves. Requiere prueba de muerte/tumba en remoto antes de habilitar compras.
+Se instala con servidor apagado y reinicio; no usar recarga general para JAR nuevos.
+Los cuatro packs de estructuras van solo a `world/datapacks`, generan en chunks nuevos;
+AstralProgression restringe sus estructuras fuera del survival y agrega loot sin sustituir tablas vanilla.
+
 ## Cosmeticos y SkinsRestorer preparados (11/11/2026)
 
 **Sin desplegar.** [Entrega exacta, descarga, SHA-1 y reinicio](../build/deploy/cosmeticos-skins.md).

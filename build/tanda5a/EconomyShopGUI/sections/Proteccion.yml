@@ -1,0 +1,8 @@
+enable: true
+slot: 40
+title: Astral - Proteccion
+item:
+  material: GOLDEN_SHOVEL
+  name: '&6Proteccion'
+  lore:
+  - '&7Click para ver las opciones.'

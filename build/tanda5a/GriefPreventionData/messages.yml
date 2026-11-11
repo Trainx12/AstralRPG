@@ -1,0 +1,81 @@
+Messages:
+  CreateClaimSuccess:
+    Text: Zona protegida de fondo a techo. /trust <jugador> para compartir.
+  NoBuildPermission:
+    Text: No tenes permiso de {0} para construir aqui.
+  NoContainersPermission:
+    Text: Este contenedor pertenece a {0}.
+  ClaimStart:
+    Text: Primera esquina marcada. Marca la esquina opuesta con clic derecho.
+  ClaimTooNarrow:
+    Text: El ancho minimo es {0} bloques.
+  CreateClaimInsufficientBlocks:
+    Text: No tenes bloques suficientes. Compra area en /shop, Proteccion.
+  ResizeClaimTooNarrow:
+    Text: El ancho minimo es {0} bloques.
+  ResizeClaimInsufficientArea:
+    Text: El area minima es {0} bloques.
+  ClaimsDisabledWorld:
+    Text: Las zonas solo se protegen en survival.
+  NotEnoughBlocksForMinClaim:
+    Text: Necesitas al menos 36 bloques disponibles (6x6).
+  SuccessfulAbandon:
+    Text: Zona liberada. Te quedan {0} bloques.
+  NoBuildOutsideClaims:
+    Text: Protege tu terreno con una pala de oro.
+  TrustListHeader:
+    Text: 'Permisos de esta zona:'
+  RemainingBlocks:
+    Text: Te quedan {0} bloques de proteccion.
+  ResizeNeedMoreBlocks:
+    Text: Necesitas {0} bloques mas. Compra area en /shop, Proteccion.
+  ClaimResizeSuccess:
+    Text: Zona redimensionada. Te quedan {0} bloques.
+  ResizeStart:
+    Text: Marca la nueva posicion de esta esquina con la pala.
+  CreateClaimFailOverlap:
+    Text: La zona se superpone con otra tuya. Usa /abandonclaim o cambia las esquinas.
+  CreateClaimFailOverlapOtherPlayer:
+    Text: La zona se superpone con una de {0}.
+  CreateClaimFailOverlapShort:
+    Text: La zona se superpone con otra existente.
+  ResizeFailOverlap:
+    Text: 'No se puede ampliar: hay otra zona protegida.'
+  CreateClaimFailOverlapRegion:
+    Text: WorldGuard no permite construir en parte de esa zona.
+  ResizeFailOverlapRegion:
+    Text: No podes construir alli; no podes proteger esa area.
+  ClaimsExtendToSky:
+    Text: Las zonas protegen hasta el techo del mundo.
+  ClaimsAutoExtendDownward:
+    Text: En Astral las zonas ya protegen hasta el fondo del mundo.
+  BuildingOutsideClaims:
+    Text: Este terreno no esta protegido. Usa una pala de oro para marcar dos esquinas.
+  ChestClaimConfirmation:
+    Text: Este cofre esta protegido.
+  TrustListNoClaim:
+    Text: Parate dentro de tu zona para consultar los permisos.
+  ClaimsListHeader:
+    Text: 'Zonas protegidas:'
+  BuildPermission:
+    Text: construir
+  AccessPermission:
+    Text: acceder
+  ContainersPermission:
+    Text: usar contenedores
+  PermissionTrust:
+    Text: compartir permisos
+  NoPermissionTrust:
+    Text: No podes dar permisos aqui.
+  OnlyOwnersModifyClaims:
+    Text: Solo el propietario puede modificar esta zona.
+  OnlyOwnersAbandonClaims:
+    Text: Solo el propietario puede liberar esta zona.
+  YouHaveNoClaims:
+    Text: Todavia no tenes zonas protegidas.
+  NotYourClaim:
+    Text: Esta zona no es tuya.
+  UntrustIndividualAllClaims:
+    Text: Se retiro el acceso de {0} a tus zonas.
+  UntrustEveryoneAllClaims:
+    Text: Se retiraron los permisos compartidos de tus zonas.

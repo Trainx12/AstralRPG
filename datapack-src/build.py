@@ -1863,10 +1863,17 @@ for pet_page in range(3):
         [btn('Ver pagina '+str(i),dialog=f'guia/mascotas_{i}') for i in range(1,4) if i!=pet_page+1]
         +[btn('Abrir /mascotas',command='/mascotas')],back='guia')
 
+dlg("guia/proteccion", txt("Terrenos y mochilas", "gold", bold=True), [
+    msg("Solo en survival: pala de oro, clic derecho en dos esquinas. Protege todo de fondo a techo. Minimo 6x6 (36 bloques).", "gray"),
+    msg("Empezas con 36 bloques de area, sin ganar por tiempo. /shop -> Proteccion suma area: 36 + 25 = 61, no 11x11. Podes repartirla entre zonas de minimo 36 cada una.", "gray"),
+    msg("/trust jugador comparte; /untrust jugador retira acceso; /abandonclaim libera la zona. WorldGuard y los candados de Bolt siguen vigentes.", "gray"),
+    msg("/shop -> Mochilas: compra 9, 27 o 54 espacios. /bp abre tu mochila virtual. Su contenido persiste al morir y no pasa a la tumba. Sin mochilas dentro de mochilas, shulkers ni bundles.", "gray"),
+], [], back="guia")
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
     # Colores fuertes y distintos entre si, pensados para leerse sobre el pergamino.
     btn(txt("Como se juega", "#7a3a10"), dialog="guia/como"),
+    btn(txt("Terrenos y mochilas", "#7a3a10"), dialog="guia/proteccion"),
     btn(txt("Misiones e historia", "#006e78"), command="/trigger aq.journal"),
     btn(txt("Materiales", "#a0177a"), dialog="guia/materiales"),
     btn(txt("Berserker", "#b8141c"), dialog="guia/berserker"),

@@ -20,6 +20,21 @@ GOLPES = {1: 5.0, 2: 4.8, 3: 4.6, 4: 4.4, 5: 4.2}
 # Vida de ese mob: 500 / 2.400 / 11.500 / 55.000 / 262.500.
 VIDA_REF = {t: round(DANO[t] * GOLPES[t]) for t in DANO}
 
+# AuraSkills legacy: el nivel destino es el argumento de xp_requirements.yml.
+# 25 -> 26: 100*(26-2)^2+100 = 57.700; 250 bajas/h = 230,8 XP/baja T5.
+XP_MOB = {0: 0, 1: 20, 2: 40, 3: 80, 4: 140, 5: 230.8}
+XP_ELITE = 1.5
+XP_JEFE = 8
+
+
+def xp_skill_mob(tier, elite=False, jefe=False):
+    """Una sola recompensa por baja; jefe reemplaza el bonus de elite."""
+    return round(XP_MOB[max(0, min(5, tier))] * (XP_JEFE if jefe else XP_ELITE if elite else 1), 2)
+
+
+def xp_skill_level(destination):
+    return 100 * (destination - 2) ** 2 + 100
+
 # Dano de la espada de cada tier antes de la escala (items.SWORDS: dmg * (1+bonus)).
 ESPADA_REAL = {1: 6.6, 2: 7.08, 3: 8.75, 4: 9.45, 5: 12.0}
 # Factor REAL para todas las armas Astral de ese tier (mantiene la diferencia entre clases).

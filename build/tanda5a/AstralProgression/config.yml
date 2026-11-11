@@ -1,0 +1,830 @@
+survival-world: world
+xp:
+  '0': 0
+  '1': 20
+  '2': 40
+  '3': 80
+  '4': 140
+  '5': 230.8
+elite-bonus: 1.5
+boss-bonus: 8
+dungeon-tiers:
+  bosque: 1
+  mina: 2
+  tumba: 3
+  cumbre: 4
+  forja: 5
+  santuario: 5
+  cumbre_hielo: 4
+  forja_volcano: 5
+  santuario_interstellar: 5
+mythic:
+  astral_espantapajaros:
+    tier: 1
+    boss: false
+    elite: false
+  astral_goblin:
+    tier: 1
+    boss: false
+    elite: false
+  astral_abejorro:
+    tier: 1
+    boss: false
+    elite: false
+  astral_arana:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cara:
+    tier: 1
+    boss: false
+    elite: false
+  astral_momia:
+    tier: 1
+    boss: true
+    elite: false
+  astral_yeti:
+    tier: 1
+    boss: true
+    elite: false
+  astral_golem_forja:
+    tier: 5
+    boss: true
+    elite: false
+  astral_cangrejo:
+    tier: 1
+    boss: true
+    elite: false
+  astral_chaman:
+    tier: 1
+    boss: true
+    elite: false
+  astral_espantapajaros_elite:
+    tier: 1
+    boss: false
+    elite: true
+  astral_abejorro_elite:
+    tier: 1
+    boss: false
+    elite: true
+  astral_arana_elite:
+    tier: 1
+    boss: false
+    elite: true
+  astral_cara_elite:
+    tier: 1
+    boss: false
+    elite: true
+  astral_cangrejo_elite:
+    tier: 1
+    boss: true
+    elite: true
+  astral_momia_ancestral:
+    tier: 1
+    boss: true
+    elite: false
+  astral_yeti_ancestral:
+    tier: 1
+    boss: true
+    elite: false
+  astral_golem_forja_ancestral:
+    tier: 5
+    boss: true
+    elite: false
+  astral_cangrejo_ancestral:
+    tier: 1
+    boss: true
+    elite: false
+  astral_chaman_ancestral:
+    tier: 1
+    boss: true
+    elite: false
+  astral_bosque_chaman:
+    tier: 1
+    boss: true
+    elite: false
+  astral_cumbre_yeti:
+    tier: 4
+    boss: true
+    elite: false
+  astral_forja_golem_forja:
+    tier: 5
+    boss: true
+    elite: false
+  astral_mina_guardian:
+    tier: 2
+    boss: true
+    elite: false
+  astral_santuario_cangrejo_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_santuario_chaman_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_santuario_momia_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_santuario_yeti_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_santuario_golem_forja_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_bosque_planta:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_arquero:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_escudero:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_nigromante:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_guardian:
+    tier: 1
+    boss: true
+    elite: false
+  astral_esq_arquero_mina_sala1:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_escudero_mina_sala1:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_nigromante_mina_sala1:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_guardian_mina_sala1:
+    tier: 2
+    boss: true
+    elite: false
+  astral_esq_arquero_mina_sala2:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_escudero_mina_sala2:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_nigromante_mina_sala2:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_guardian_mina_sala2:
+    tier: 2
+    boss: true
+    elite: false
+  astral_esq_arquero_mina_sala3:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_escudero_mina_sala3:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_nigromante_mina_sala3:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_guardian_mina_sala3:
+    tier: 2
+    boss: true
+    elite: false
+  astral_esq_arquero_mina_sala4:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_escudero_mina_sala4:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_nigromante_mina_sala4:
+    tier: 2
+    boss: false
+    elite: false
+  astral_esq_guardian_mina_sala4:
+    tier: 2
+    boss: true
+    elite: false
+  astral_esq_arquero_bosque_sala1:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_escudero_bosque_sala1:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_nigromante_bosque_sala1:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_guardian_bosque_sala1:
+    tier: 1
+    boss: true
+    elite: false
+  astral_esq_arquero_bosque_sala2:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_escudero_bosque_sala2:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_nigromante_bosque_sala2:
+    tier: 1
+    boss: false
+    elite: false
+  astral_esq_guardian_bosque_sala2:
+    tier: 1
+    boss: true
+    elite: false
+  astral_esq_arquero_tumba_sala1:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_escudero_tumba_sala1:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_nigromante_tumba_sala1:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_guardian_tumba_sala1:
+    tier: 3
+    boss: true
+    elite: false
+  astral_esq_arquero_tumba_sala2:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_escudero_tumba_sala2:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_nigromante_tumba_sala2:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_guardian_tumba_sala2:
+    tier: 3
+    boss: true
+    elite: false
+  astral_esq_arquero_tumba_sala3:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_escudero_tumba_sala3:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_nigromante_tumba_sala3:
+    tier: 3
+    boss: false
+    elite: false
+  astral_esq_guardian_tumba_sala3:
+    tier: 3
+    boss: true
+    elite: false
+  astral_esq_arquero_cumbre_sala1:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_escudero_cumbre_sala1:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_nigromante_cumbre_sala1:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_guardian_cumbre_sala1:
+    tier: 4
+    boss: true
+    elite: false
+  astral_esq_arquero_cumbre_sala2:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_escudero_cumbre_sala2:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_nigromante_cumbre_sala2:
+    tier: 4
+    boss: false
+    elite: false
+  astral_esq_guardian_cumbre_sala2:
+    tier: 4
+    boss: true
+    elite: false
+  astral_planta_salvaje:
+    tier: 1
+    boss: false
+    elite: false
+  astral_tumba_momia:
+    tier: 3
+    boss: true
+    elite: false
+structure-namespaces:
+- nova_structures
+- explorify
+- structory
+- structory_towers
+loot:
+  alma_corrupta:
+    tier: 3
+    chance: 0.005
+  arco_1:
+    tier: 1
+    chance: 0.15
+  arco_2:
+    tier: 2
+    chance: 0.03
+  arco_3:
+    tier: 3
+    chance: 0.005
+  arco_4:
+    tier: 4
+    chance: 0.0004
+  arco_5:
+    tier: 5
+    chance: 3.0e-06
+  arquero_1_boots:
+    tier: 1
+    chance: 0.15
+  arquero_1_chestplate:
+    tier: 1
+    chance: 0.15
+  arquero_1_helmet:
+    tier: 1
+    chance: 0.15
+  arquero_1_leggings:
+    tier: 1
+    chance: 0.15
+  arquero_2_boots:
+    tier: 2
+    chance: 0.03
+  arquero_2_chestplate:
+    tier: 2
+    chance: 0.03
+  arquero_2_helmet:
+    tier: 2
+    chance: 0.03
+  arquero_2_leggings:
+    tier: 2
+    chance: 0.03
+  arquero_3_boots:
+    tier: 3
+    chance: 0.005
+  arquero_3_chestplate:
+    tier: 3
+    chance: 0.005
+  arquero_3_helmet:
+    tier: 3
+    chance: 0.005
+  arquero_3_leggings:
+    tier: 3
+    chance: 0.005
+  arquero_4_boots:
+    tier: 4
+    chance: 0.0004
+  arquero_4_chestplate:
+    tier: 4
+    chance: 0.0004
+  arquero_4_helmet:
+    tier: 4
+    chance: 0.0004
+  arquero_4_leggings:
+    tier: 4
+    chance: 0.0004
+  arquero_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  arquero_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  arquero_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  arquero_5_leggings:
+    tier: 5
+    chance: 3.0e-06
+  asura_espada:
+    tier: 4
+    chance: 0.0004
+  asura_moneda_card:
+    tier: 4
+    chance: 0.0004
+  asura_moneda_circle:
+    tier: 4
+    chance: 0.0004
+  asura_moneda_emerald:
+    tier: 4
+    chance: 0.0004
+  asura_moneda_square:
+    tier: 4
+    chance: 0.0004
+  asura_moneda_triangle:
+    tier: 4
+    chance: 0.0004
+  baston_1:
+    tier: 1
+    chance: 0.15
+  baston_2:
+    tier: 2
+    chance: 0.03
+  baston_3:
+    tier: 3
+    chance: 0.005
+  baston_4:
+    tier: 4
+    chance: 0.0004
+  baston_5:
+    tier: 5
+    chance: 3.0e-06
+  berserker_1_boots:
+    tier: 1
+    chance: 0.15
+  berserker_1_chestplate:
+    tier: 1
+    chance: 0.15
+  berserker_1_helmet:
+    tier: 1
+    chance: 0.15
+  berserker_1_leggings:
+    tier: 1
+    chance: 0.15
+  berserker_2_boots:
+    tier: 2
+    chance: 0.03
+  berserker_2_chestplate:
+    tier: 2
+    chance: 0.03
+  berserker_2_helmet:
+    tier: 2
+    chance: 0.03
+  berserker_2_leggings:
+    tier: 2
+    chance: 0.03
+  berserker_3_boots:
+    tier: 3
+    chance: 0.005
+  berserker_3_chestplate:
+    tier: 3
+    chance: 0.005
+  berserker_3_helmet:
+    tier: 3
+    chance: 0.005
+  berserker_3_leggings:
+    tier: 3
+    chance: 0.005
+  berserker_4_boots:
+    tier: 4
+    chance: 0.0004
+  berserker_4_chestplate:
+    tier: 4
+    chance: 0.0004
+  berserker_4_helmet:
+    tier: 4
+    chance: 0.0004
+  berserker_4_leggings:
+    tier: 4
+    chance: 0.0004
+  berserker_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  berserker_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  berserker_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  berserker_5_leggings:
+    tier: 5
+    chance: 3.0e-06
+  carnivora_arco:
+    tier: 3
+    chance: 0.005
+  carnivora_baston:
+    tier: 3
+    chance: 0.005
+  carnivora_boots:
+    tier: 3
+    chance: 0.005
+  carnivora_chestplate:
+    tier: 3
+    chance: 0.005
+  carnivora_espada:
+    tier: 3
+    chance: 0.005
+  carnivora_guadana:
+    tier: 3
+    chance: 0.005
+  carnivora_hacha:
+    tier: 3
+    chance: 0.005
+  carnivora_helmet:
+    tier: 3
+    chance: 0.005
+  carnivora_lanza:
+    tier: 3
+    chance: 0.005
+  carnivora_leggings:
+    tier: 3
+    chance: 0.005
+  carnivora_martillo:
+    tier: 3
+    chance: 0.005
+  chispa_astral:
+    tier: 4
+    chance: 0.0004
+  colmillo_carnivoro:
+    tier: 1
+    chance: 0.15
+  corazon_shulker:
+    tier: 3
+    chance: 0.005
+  cristal_arcano:
+    tier: 2
+    chance: 0.03
+  cristal_refinado:
+    tier: 3
+    chance: 0.005
+  cuero_tratado:
+    tier: 1
+    chance: 0.15
+  esencia_elite:
+    tier: 2
+    chance: 0.03
+  esencia_nether:
+    tier: 1
+    chance: 0.15
+  espada_1:
+    tier: 1
+    chance: 0.15
+  espada_2:
+    tier: 2
+    chance: 0.03
+  espada_3:
+    tier: 3
+    chance: 0.005
+  espada_4:
+    tier: 4
+    chance: 0.0004
+  espada_5:
+    tier: 5
+    chance: 3.0e-06
+  espada_destello:
+    tier: 3
+    chance: 0.005
+  espada_sombras:
+    tier: 3
+    chance: 0.005
+  espada_tormenta:
+    tier: 3
+    chance: 0.005
+  fragmento_astral:
+    tier: 1
+    chance: 0.15
+  fragmento_cristal:
+    tier: 1
+    chance: 0.15
+  fragmento_umbrio:
+    tier: 1
+    chance: 0.15
+  gema_luminica:
+    tier: 2
+    chance: 0.03
+  gema_luminica_perfecta:
+    tier: 5
+    chance: 3.0e-06
+  gema_umbria:
+    tier: 3
+    chance: 0.005
+  gema_umbria_fragmentada:
+    tier: 1
+    chance: 0.15
+  gema_umbria_perfecta:
+    tier: 5
+    chance: 3.0e-06
+  guadana_1:
+    tier: 1
+    chance: 0.15
+  guadana_2:
+    tier: 2
+    chance: 0.03
+  guadana_3:
+    tier: 3
+    chance: 0.005
+  guadana_4:
+    tier: 4
+    chance: 0.0004
+  guadana_5:
+    tier: 5
+    chance: 3.0e-06
+  guadana_umbria:
+    tier: 3
+    chance: 0.005
+  guantes_meteoro:
+    tier: 3
+    chance: 0.005
+  hacha_1:
+    tier: 1
+    chance: 0.15
+  hacha_2:
+    tier: 2
+    chance: 0.03
+  hacha_3:
+    tier: 3
+    chance: 0.005
+  hacha_4:
+    tier: 4
+    chance: 0.0004
+  hacha_5:
+    tier: 5
+    chance: 3.0e-06
+  hacha_terremoto:
+    tier: 3
+    chance: 0.005
+  lanza_1:
+    tier: 1
+    chance: 0.15
+  lanza_2:
+    tier: 2
+    chance: 0.03
+  lanza_3:
+    tier: 3
+    chance: 0.005
+  lanza_4:
+    tier: 4
+    chance: 0.0004
+  lanza_5:
+    tier: 5
+    chance: 3.0e-06
+  madera_estelar:
+    tier: 2
+    chance: 0.03
+  mago_1_boots:
+    tier: 1
+    chance: 0.15
+  mago_1_chestplate:
+    tier: 1
+    chance: 0.15
+  mago_1_helmet:
+    tier: 1
+    chance: 0.15
+  mago_1_leggings:
+    tier: 1
+    chance: 0.15
+  mago_2_boots:
+    tier: 2
+    chance: 0.03
+  mago_2_chestplate:
+    tier: 2
+    chance: 0.03
+  mago_2_helmet:
+    tier: 2
+    chance: 0.03
+  mago_2_leggings:
+    tier: 2
+    chance: 0.03
+  mago_3_boots:
+    tier: 3
+    chance: 0.005
+  mago_3_chestplate:
+    tier: 3
+    chance: 0.005
+  mago_3_helmet:
+    tier: 3
+    chance: 0.005
+  mago_3_leggings:
+    tier: 3
+    chance: 0.005
+  mago_4_boots:
+    tier: 4
+    chance: 0.0004
+  mago_4_chestplate:
+    tier: 4
+    chance: 0.0004
+  mago_4_helmet:
+    tier: 4
+    chance: 0.0004
+  mago_4_leggings:
+    tier: 4
+    chance: 0.0004
+  mago_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  mago_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  mago_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  mago_5_leggings:
+    tier: 5
+    chance: 3.0e-06
+  netherita_fundida:
+    tier: 2
+    chance: 0.03
+  netherita_reforzada:
+    tier: 4
+    chance: 0.0004
+  nucleo_astral:
+    tier: 5
+    chance: 3.0e-06
+  nucleo_eolico:
+    tier: 2
+    chance: 0.03
+  nucleo_furia:
+    tier: 2
+    chance: 0.03
+  nucleo_furia_pura:
+    tier: 5
+    chance: 3.0e-06
+  palo_reforzado:
+    tier: 2
+    chance: 0.03
+  polvo_astral:
+    tier: 2
+    chance: 0.03
+  shadowsteel:
+    tier: 2
+    chance: 0.03
+  talisman_furia_1:
+    tier: 1
+    chance: 0.15
+  talisman_furia_2:
+    tier: 2
+    chance: 0.03
+  talisman_furia_3:
+    tier: 3
+    chance: 0.005
+  talisman_roca_1:
+    tier: 1
+    chance: 0.15
+  talisman_roca_2:
+    tier: 2
+    chance: 0.03
+  talisman_roca_3:
+    tier: 3
+    chance: 0.005
+  talisman_vida_1:
+    tier: 1
+    chance: 0.15
+  talisman_vida_2:
+    tier: 2
+    chance: 0.03
+  talisman_vida_3:
+    tier: 3
+    chance: 0.005
+  talisman_viento_1:
+    tier: 1
+    chance: 0.15
+  talisman_viento_2:
+    tier: 2
+    chance: 0.03
+  talisman_viento_3:
+    tier: 3
+    chance: 0.005
+  varita_curacion:
+    tier: 3
+    chance: 0.005
+  varita_estallido:
+    tier: 3
+    chance: 0.005
+claim-packages:
+- blocks: 25
+  price: 15000
+- blocks: 100
+  price: 50000
+- blocks: 1225
+  price: 500000
+- blocks: 2500
+  price: 950000
+- blocks: 10000
+  price: 3500000
+backpack-packages:
+- permission: blzdbp.small
+  slots: 9
+  price: 5000
+- permission: blzdbp.medium
+  slots: 27
+  price: 50000
+- permission: blzdbp.large
+  slots: 54
+  price: 250000

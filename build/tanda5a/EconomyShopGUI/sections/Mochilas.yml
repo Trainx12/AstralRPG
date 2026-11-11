@@ -1,0 +1,8 @@
+enable: true
+slot: 41
+title: Astral - Mochilas
+item:
+  material: CHEST
+  name: '&6Mochilas'
+  lore:
+  - '&7Click para ver las opciones.'

@@ -1,0 +1,8 @@
+prefix: '<gold>Astral <gray>» '
+no-permission: <red>Compra una mochila en /shop, Mochilas.
+backpack-opened: <green>Mochila abierta.
+backpack-restricted: <red>No podes usar la mochila ahora.
+pickup-mode:
+  inventory-first: '<green>Recoger: inventario primero.'
+  backpack-first: '<green>Recoger: mochila primero.'
+item-restricted: <red>Ese objeto no se puede guardar en la mochila.

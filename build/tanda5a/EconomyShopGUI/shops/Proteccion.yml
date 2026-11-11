@@ -1,0 +1,9 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: GOLDEN_SHOVEL
+        displayname: '&6Abriendo...'
+        buy: -1
+        sell: -1

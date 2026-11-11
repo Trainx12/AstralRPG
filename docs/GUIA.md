@@ -1,5 +1,17 @@
 # Guía para agregar cosas a AstralRPG
 
+Tanda 5a (preparada, sin desplegar): [entrega](../build/deploy/tanda5a.md).
+Para proteger terreno en survival: pala de oro y clic derecho en dos esquinas. Minimo 6x6;
+protege todo de fondo a techo. Se empieza con 36 bloques de area, sin ganar por tiempo.
+`/shop` → Proteccion agrega area: 36 + 25 = 61, **no** un cuadrado 11x11.
+Puede repartirse entre varias zonas, cada una de al menos 36 bloques.
+`/trust jugador` comparte, `/untrust jugador` quita acceso y `/abandonclaim` libera la zona.
+`/shop` → Mochilas compra un permiso permanente para 9, 27 o 54 espacios; `/bp` abre.
+La mochila es virtual, persiste al morir y su contenido no pasa a AxGraves. No admite shulkers ni bundles.
+Balance: `escala.py`; precios/probabilidades/configuraciones: `tanda5a.py`;
+versiones verificadas: `tanda5a-versions.json`. Regenerar datapack con `build.py`
+y luego `tanda5a.py --java <java25> --server <Paper-local>` para compilar el runtime propio.
+
 NPC Tienda y decoracion: `deploy_tienda.py` prepara la entrega aislada sobre el pack
 instalado, `preview_decor.py` renderiza las alas con pechera solo en privado y
 `tools/probar_decor_paper.py` prueba AstralDecor con WorldGuard y reinicio local.

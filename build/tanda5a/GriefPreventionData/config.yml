@@ -1,0 +1,33 @@
+GriefPrevention:
+  Claims:
+    Mode:
+      world: Survival
+      lobby: Disabled
+    InitialBlocks: 36
+    Claim Blocks Accrued Per Hour:
+      Default: 0
+    BlocksAccruedPerHour: 0
+    AccruedIdlePercent: 0
+    MinimumWidth: 6
+    MinimumArea: 36
+    ExtendIntoGroundDistance: 1000000
+    MaximumDepth: -2147483648
+    AutomaticNewPlayerClaimsRadius: -1
+    CreationRequiresWorldGuardBuildPermission: true
+    ModificationTool: GOLDEN_SHOVEL
+    Expiration:
+      AllClaims:
+        DaysInactive: 0
+  Economy:
+    ClaimBlocksPurchaseCost: 0
+    ClaimBlocksSellValue: 0
+  ProtectItemsDroppedOnDeath:
+    PvPWorlds: false
+    NonPvPWorlds: false
+  PvP:
+    ProtectFreshSpawns: false
+    PunishLogout: false
+  Spam:
+    Enabled: false
+  SmartBan: false
+  MaxPlayersPerIpAddress: 0

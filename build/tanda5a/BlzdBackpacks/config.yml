@@ -1,0 +1,28 @@
+tiers:
+  small: 9
+  medium: 27
+  large: 54
+pickup:
+  default-mode: INVENTORY_FIRST
+storage:
+  autosave-interval: 30
+gui:
+  title: <gold>Mochila Astral
+restrictions:
+  combat:
+    enabled: true
+    cooldown-seconds: 15
+  in-vehicle: true
+  while-gliding: true
+  while-swimming: true
+  while-flying: true
+  while-dead: true
+  creative: true
+  spectator: true
+item-restrictions:
+  enabled: true
+  mode: BLACKLIST
+  items:
+  - '#shulker_boxes'
+  - BUNDLE
+  - NETHER_STAR
