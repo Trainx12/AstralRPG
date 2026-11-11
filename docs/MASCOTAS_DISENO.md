@@ -1,6 +1,6 @@
 # Santuario de companeros
 
-Interfaz de `/mascotas` para las seis criaturas actuales: Lobo del Bosque,
+Pagina artistica original de `/mascotas` para las seis primeras criaturas (el catalogo actual tiene 23 en tres paginas; ver `SERVIDOR.md`): Lobo del Bosque,
 Cuervo Arcano, Golem de Piedra, Zorro Espectral, Dragoncito de Fuego y Fenix.
 Paleta de madera oscura, bosque, piedra runica, bronce, cian y ambar; sin rosa.
 

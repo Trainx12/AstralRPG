@@ -5,7 +5,7 @@ import yaml
 from mobs.tamanos import skills as size_skills
 
 ROOT=Path(__file__).resolve().parents[2]
-PLANT_POINTS=((1448.5,102,1564.5),(1478.5,102,1561.5),(1457.5,97,1579.5))
+PLANT_POINTS=((1448.5,102,1564.5),(1478.5,102,1561.5),(1425.5,102,1563.5))
 PLANT_COUNTS={2:2,3:3}
 STATUES=('cangrejo','chaman','momia','yeti','golem_forja')
 
@@ -35,6 +35,7 @@ def plant():
                        PreventSunburn=True,PreventRandomEquipment=True,PreventItemPickup=True),
         'Skills':['skill{s=AST_PLANTA_INICIO} @self ~onSpawn',
                   'skill{s=AST_PLANTA_MODELO} @self ~onLoad',
+                  'glowbone{g=true;c=FFFFFF} @self ~onTimer:20',
                   'skill{s=AST_PLANTA_MORDIDA} @self ~onTimer:30 ?playerwithin{d=3}',
                   'skill{s=AST_PLANTA_ESCUPIR} @self ~onTimer:80 ?playerwithin{d=12}']}}
 
@@ -57,7 +58,7 @@ def plant_skills():
               'potion{type=POISON;duration=60;level=0} @PlayersNearOrigin{r=1}']}}
     for wave,count in PLANT_COUNTS.items():
         data[f'AST_PLANTAS_OLA{wave}']={'Skills':[
-            f'summon{{type=astral_bosque_planta;amount=1;radius=0}} @Location{{x={x};y={y};z={z}}}'
+            f'summon{{type=astral_bosque_planta;amount=1;radius=0;onSurface=false}} @Location{{x={x};y={y};z={z}}}'
             for x,y,z in PLANT_POINTS[:count]]}
     return data
 

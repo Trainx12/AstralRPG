@@ -220,14 +220,16 @@ def mascotas_extra_menu(page):
                       [f"&7Nivel: &e{SCORE.format('plv_' + pid)}&7/30", '&7Gacha de Monturas',
                        *[f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
                        '&eClic: ver estado e invocar'],
-                      extra={'click_commands': [f'[openguimenu] mascota_{pid}']})
+                      extra={'item_model': q(f'astral:mascotas/catalogo_{pid}'),
+                             'click_commands': [f'[openguimenu] mascota_{pid}']})
     # Nueve tarjetas por pagina; una segunda fila deja espacio para la novena.
     subset = pets[(page - 2) * 9:(page - 2) * 9 + 9]
     if len(subset) == 9:
         pid, d = subset[-1]
         lines += item(pid, d['icono'], 22, hexc(d['color']) + d['nombre'],
                       [f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
-                      extra={'click_commands': [f'[openguimenu] mascota_{pid}']})
+                      extra={'item_model': q(f'astral:mascotas/catalogo_{pid}'),
+                             'click_commands': [f'[openguimenu] mascota_{pid}']})
     lines += item('anterior', 'ARROW', 45, '&eAnterior', extra={'click_commands': [
         '[openguimenu] ' + ('mascotas' if page == 2 else 'mascotas_2')]})
     if page == 2:
@@ -245,7 +247,8 @@ def mascota_nueva_detalle(pid):
             f"&7Experiencia: &e{SCORE.format('pmod_' + pid)}&7/25",
             *[f'&7Nv. {lv}: &f{bonus}' for lv, bonus in zip((1, 10, 20), d['texto'])],
             '&7Nivel 30: evolucion visual', '&8Bonus solo en mazmorras', '&7Se consigue en la Gacha de Monturas']
-    lines = item('info', d['icono'], 13, hexc(d['color']) + d['nombre'], lore, extra={'update': 'true'})
+    lines = item('info', d['icono'], 13, hexc(d['color']) + d['nombre'], lore, extra={
+        'update': 'true', 'item_model': q(f'astral:mascotas/catalogo_{pid}')})
     lines += item('invocar', 'LIME_DYE', 29, '&aInvocar', lore, extra={
         'click_requirement': requirement + "\n      deny_commands:\n      - '[message] &cTodavia no tienes esta mascota.'",
         'click_commands': ['[close]', f"[console] scoreboard players set %player_name% mascota {d['n']}"]})
@@ -359,12 +362,23 @@ def principal_menu():
         ('parkour', 'FEATHER', '&a&lMini juegos', ['&7Parkour, droppers y Color Escape.'], ['[openguimenu] parkour']),
         ('arenas', 'IRON_SWORD', '&c&lArenas PvP', ['&7Pelea sin perder tu equipo.'], ['[openguimenu] arenas']),
         ('misiones', 'WRITABLE_BOOK', '&e&lEl Cronista', ['&7Misiones, historia y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
-        ('mascotas', 'BONE', '&6&lMascotas', ['&7Invoca o guarda a tu companero.'], ['[openguimenu] mascotas']),
+        ('mascotas', 'BONE', '&6&lMascotas', ['&7Coleccion de 23 companeros en 3 paginas.', '&7Invoca, entrena o guarda a tu mascota.'], ['[openguimenu] mascotas']),
         ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tu titulo desbloqueado.'], ['[openguimenu] cosmeticos']),
         ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
         ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
+        ('bosque', 'OAK_SAPLING', '&a&lBosque Astral', ['&7Tala arboles que vuelven a crecer.'], ['[close]', '[player] bosque<delay=3>']),
+        ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
+        ('tienda', 'EMERALD', '&a&lTienda', ['&7Compra materiales y equipo.'], ['[close]', '[player] economyshopgui:shop<delay=3>']),
+        ('peluches', 'PINK_WOOL', '&d&lPeluches', ['&7Companeros decorativos: $2.500 cada uno.'], ['[close]', '[player] economyshopgui:shop Peluches<delay=3>']),
+        ('subastas', 'GOLD_INGOT', '&6&lSubastas', ['&7Explora, publica y retira tus ventas.'], ['[openguimenu] subastas']),
+        ('vender', 'CHEST', '&e&lVenta rapida', ['&7Abri la caja para vender tus objetos.'], ['[close]', '[player] economyshopgui:sellgui<delay=3>']),
+        ('intercambio', 'BUNDLE', '&b&lIntercambio', ['&7Intercambia equipo y oro con otro jugador.', '&eEscribi /trade <jugador>.'], ['[close]', '[message] &eUsa /trade <jugador> para elegir con quien intercambiar.']),
+        ('gacha_rpg', 'AMETHYST_SHARD', '&5&lGacha de Armas', ['&7Premios, probabilidades y garantia.'], ['[openguimenu] gacha_rpg']),
+        ('gacha_monturas', 'SADDLE', '&a&lGacha de Monturas', ['&7Monturas y 20 mascotas de la coleccion.', '&7Consulta la probabilidad de cada premio.'], ['[openguimenu] gacha_monturas']),
+        ('gacha_cosmeticos', 'NAME_TAG', '&d&lGacha de Cosmeticos', ['&7Titulos y adornos para tu aventura.'], ['[openguimenu] gacha_cosmeticos']),
+        ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&eEscribi /duel <jugador>.'], ['[close]', '[message] &eUsa /duel <jugador> para enviar un desafio.']),
     ]
     from menu_ui import SLOTS, KEYS, title as menu_title
     assert [b[0] for b in buttons] == list(KEYS)

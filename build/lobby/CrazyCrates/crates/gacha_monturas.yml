@@ -105,12 +105,12 @@ Crate:
   Prizes:
     "1":
       DisplayName: "<gold><bold>Mascota 3D: Brujita Estelar"
-      DisplayItem: "name_tag"
+      DisplayItem: "witch_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_brujita"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -160,12 +160,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
     "3":
       DisplayName: "<gold><bold>Mascota 3D: Fenix"
-      DisplayItem: "name_tag"
+      DisplayItem: "paper"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_fenix"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -188,12 +188,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
     "4":
       DisplayName: "<light_purple><bold>Mascota 3D: Bombardero Musgoso"
-      DisplayItem: "name_tag"
+      DisplayItem: "creeper_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_bombardero"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -216,12 +216,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Bombardero Musgoso',color:'white'}]"
     "5":
       DisplayName: "<light_purple><bold>Mascota 3D: Zorro Encapuchado"
-      DisplayItem: "name_tag"
+      DisplayItem: "fox_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_encapuchado"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -244,12 +244,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Zorro Encapuchado',color:'white'}]"
     "6":
       DisplayName: "<light_purple><bold>Mascota 3D: Cubito de Micelio"
-      DisplayItem: "name_tag"
+      DisplayItem: "mycelium"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_micelio"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -272,12 +272,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Cubito de Micelio',color:'white'}]"
     "7":
       DisplayName: "<light_purple><bold>Mascota 3D: Honguito Errante"
-      DisplayItem: "name_tag"
+      DisplayItem: "red_mushroom"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_honguito"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -327,12 +327,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
     "9":
       DisplayName: "<light_purple><bold>Mascota 3D: Dragoncito de Fuego"
-      DisplayItem: "name_tag"
+      DisplayItem: "paper"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_dragon"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -355,12 +355,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Dragoncito de Fuego',color:'white'}]"
     "10":
       DisplayName: "<aqua><bold>Mascota 3D: Ghastito de Nube"
-      DisplayItem: "name_tag"
+      DisplayItem: "ghast_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_ghastito"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -379,12 +379,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "11":
       DisplayName: "<aqua><bold>Mascota 3D: Canonero de Bolsillo"
-      DisplayItem: "name_tag"
+      DisplayItem: "fire_charge"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_canonero"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -403,12 +403,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "12":
       DisplayName: "<aqua><bold>Mascota 3D: Saqueador Elegante"
-      DisplayItem: "name_tag"
+      DisplayItem: "pillager_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_saqueador"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -427,12 +427,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "13":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de la Jungla"
-      DisplayItem: "name_tag"
+      DisplayItem: "jungle_sapling"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_jungla"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -451,12 +451,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "14":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito Frondoso"
-      DisplayItem: "name_tag"
+      DisplayItem: "moss_block"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_frondoso"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -475,12 +475,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "15":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de Nieve"
-      DisplayItem: "name_tag"
+      DisplayItem: "snowball"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_nieve"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -499,12 +499,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "16":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de Pantano"
-      DisplayItem: "name_tag"
+      DisplayItem: "lily_pad"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_pantano"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -569,12 +569,12 @@ Crate:
         - "give %player% minecraft:saddle 1"
     "19":
       DisplayName: "<aqua><bold>Mascota 3D: Cuervo Arcano"
-      DisplayItem: "name_tag"
+      DisplayItem: "paper"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_cuervo"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -639,12 +639,12 @@ Crate:
         - "give %player% minecraft:saddle 1"
     "22":
       DisplayName: "<white><bold>Mascota 3D: Llamita Viajera"
-      DisplayItem: "name_tag"
+      DisplayItem: "llama_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_llamita"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -663,12 +663,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "23":
       DisplayName: "<white><bold>Mascota 3D: Pequeno Hondero"
-      DisplayItem: "name_tag"
+      DisplayItem: "slime_ball"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_hondero"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -687,12 +687,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "24":
       DisplayName: "<white><bold>Mascota 3D: Cubito del Desierto"
-      DisplayItem: "name_tag"
+      DisplayItem: "sand"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_desierto"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -711,12 +711,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "25":
       DisplayName: "<white><bold>Mascota 3D: Cubito de Pradera"
-      DisplayItem: "name_tag"
+      DisplayItem: "wheat"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_pradera"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
@@ -735,12 +735,12 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "26":
       DisplayName: "<white><bold>Mascota 3D: Cubito de Sabana"
-      DisplayItem: "name_tag"
+      DisplayItem: "acacia_sapling"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_sabana"
       DisplayAmount: 1
       DisplayLore:
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"

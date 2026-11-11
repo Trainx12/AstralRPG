@@ -154,7 +154,7 @@ MINA_SALA4_INICIO:
   - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=43}
   - removetag{tag=mina.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala4/arrival"} @self
-  - summon{type=astral_mina_guardian;amount=1;radius=0} @Location{x=36.5;y=24;z=-248.5}
+  - summon{type=astral_mina_guardian;amount=1;radius=0;onSurface=false} @Location{x=36.5;y=24;z=-248.5}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala4/companions"} @self
   - delay 10
   - removetag{tag=mina.espera} @self
@@ -166,7 +166,7 @@ MINA_SALA4_LIMPIA:
   - command{c="execute as <target.name> at @s run function astral:quest/event/mina"} @PlayersInRadius{r=43}
   - command{c="lp user <target.name> permission set astral.completada.mina true"} @PlayersInRadius{r=43}
   - remove @MobsInRadius{r=43;types=astral_mina_cofre,astral_mina_guia}
-  - summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=40.5;y=24;z=-225.5}
+  - summon{type=astral_mina_cofre;amount=1;radius=0;onSurface=false} @Location{x=36.5;y=24;z=-248.5}
   - skill{s=MINA_MASCOTA} @PlayersInRadius{r=43}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=43}'

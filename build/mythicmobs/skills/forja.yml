@@ -83,7 +83,7 @@ FORJA_SALA3_INICIO:
   - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=64}
   - removetag{tag=forja.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/forja/sala3/arrival"} @self
-  - summon{type=astral_forja_golem_forja;amount=1;radius=0} @Location{x=-7.9;y=47;z=-21.1}
+  - summon{type=astral_forja_golem_forja;amount=1;radius=0;onSurface=false} @Location{x=-7.9;y=47;z=-21.1}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/forja/sala3/companions"} @self
   - delay 10
   - removetag{tag=forja.espera} @self
@@ -95,7 +95,7 @@ FORJA_SALA3_LIMPIA:
   - command{c="execute as <target.name> at @s run function astral:quest/event/golem_forja"} @PlayersInRadius{r=64}
   - command{c="lp user <target.name> permission set astral.completada.forja true"} @PlayersInRadius{r=64}
   - remove @MobsInRadius{r=64;types=astral_forja_cofre,astral_forja_guia}
-  - summon{type=astral_forja_cofre;amount=1;radius=0} @Location{x=0.8;y=47;z=26}
+  - summon{type=astral_forja_cofre;amount=1;radius=0;onSurface=false} @Location{x=-7.9;y=47;z=-21.1}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=64}'
   Conditions:

@@ -28,10 +28,10 @@ AST_PLANTA_VENENO:
   - potion{type=POISON;duration=60;level=0} @PlayersNearOrigin{r=1}
 AST_PLANTAS_OLA2:
   Skills:
-  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1448.5;y=102;z=1564.5}
-  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1478.5;y=102;z=1561.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0;onSurface=false} @Location{x=1448.5;y=102;z=1564.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0;onSurface=false} @Location{x=1478.5;y=102;z=1561.5}
 AST_PLANTAS_OLA3:
   Skills:
-  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1448.5;y=102;z=1564.5}
-  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1478.5;y=102;z=1561.5}
-  - summon{type=astral_bosque_planta;amount=1;radius=0} @Location{x=1457.5;y=97;z=1579.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0;onSurface=false} @Location{x=1448.5;y=102;z=1564.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0;onSurface=false} @Location{x=1478.5;y=102;z=1561.5}
+  - summon{type=astral_bosque_planta;amount=1;radius=0;onSurface=false} @Location{x=1425.5;y=102;z=1563.5}

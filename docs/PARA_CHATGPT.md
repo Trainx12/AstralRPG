@@ -38,7 +38,7 @@
 | **Criaturas 3D** | MythicMobs + BetterModel (modelos 3D sin mods). Fauna: mapache y pingüino. Hostiles: espantapájaros, abejorro, araña y cara voladora. |
 | **Jefes** | Momia (desierto), Yeti (picos nevados), Gólem de Forja (Nether), Cangrejo (playas) y Chamán (pantano, de noche). Cambian de fase al 60% y al 25% de vida. Tienen versión **Ancestral**: un evento raro que se anuncia a todo el server. |
 | **Monturas** | Chocobo/Ave Corredora, Grillo, Escarabajo, Lagarto, Gran Ave y Pterodáctilo. Se ensillan y se manejan con WASD. |
-| **Mascotas** | 6 mascotas 3D que dan efectos y suben hasta el nivel 30 (Lobo, Cuervo, Gólem, Zorro, Dragoncito y Fénix). Comando `/mascotas`. |
+| **Mascotas** | 23 mascotas 3D que dan efectos y suben hasta el nivel 30 (6 originales + 17 nuevas; catalogo completo abajo). Comando `/mascotas`. |
 | **Herramientas** | Taladros (9 niveles, área de hasta 4x4) y motosierras (5 niveles, hasta tirar el árbol entero). |
 | **Herrero** | Mejora armas y armaduras de +1 a +10. Desde +5 puede fallar. |
 | **Bonus de set** | Llevar 2 o 4 piezas de la misma clase da un extra. |
@@ -598,20 +598,37 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 
 ### Mascotas
 
-6 mascotas 3D que siguen al jugador (también entre mundos) y le dan efectos mientras están afuera. Una a la vez. En el lobby no salen.
+23 mascotas 3D que siguen al jugador (también entre mundos) y le dan efectos mientras están afuera. Una a la vez. Se permiten en el lobby; sus bonus solo se activan en las mazmorras.
 
-| Mascota | Nivel 1 | Nivel 10 | Nivel 20 | Cómo se consigue |
+| Mascota | Nivel 1 | + Nivel 10 | + Nivel 20 | Como se consigue |
 |---|---|---|---|---|
-| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | 3% al matar Espantapájaros o Abejorros |
-| Cuervo Arcano | Visión nocturna, marca a los mobs cerca | + Suerte | + Velocidad I | Gacha de Monturas (raro) |
-| Gólem de Piedra | Resistencia I | + Regeneración I | + Absorción | Mazmorra: 15% el Gólem Antiguo, 5% el cofre |
-| Zorro Espectral | Velocidad I | + Salto I | Velocidad II | 20% el Yeti, 2% las Caras Voladoras |
-| Dragoncito de Fuego | Resistencia al fuego | + Fuerza I | + Prisa I | Gacha de Monturas (épico) |
-| Fénix | Te salva con poca vida cada 10 min | cada 7 min | cada 5 min | Gacha de Monturas (legendario) |
+| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | Espantapajaros y Armored Grubs (raro) |
+| Cuervo Arcano | Vision nocturna y marca a los mobs cercanos | + Suerte | + Velocidad I | Gacha de Monturas |
+| Golem de Piedra | Resistencia I | + Regeneracion I | + 2 corazones de absorcion | Mazmorra Minas Olvidadas (raro) |
+| Zorro Espectral | Velocidad I | + Salto I | Velocidad II | Yeti de las Cumbres y Caras Voladoras (raro) |
+| Dragoncito de Fuego | Resistencia al fuego | + Fuerza I | + Prisa I | Gacha de Monturas (epico) |
+| Fenix | Te salva con poca vida (cada 10 min) | cada 7 min | cada 5 min | Gacha de Monturas (legendario) |
+| Ghastito de Nube | Caida lenta | + Regeneracion I | + Suerte | Gacha de Monturas |
+| Bombardero Musgoso | Resistencia I | + Fuerza I | + Prisa I | Gacha de Monturas |
+| Canonero de Bolsillo | Fuerza I | + Prisa I | + Suerte | Gacha de Monturas |
+| Zorro Encapuchado | Velocidad I | + Vision nocturna | + Fuerza I | Gacha de Monturas |
+| Llamita Viajera | Salto I | + Suerte | + Resistencia I | Gacha de Monturas |
+| Pequeno Hondero | Prisa I | + Velocidad I | + Suerte | Gacha de Monturas |
+| Saqueador Elegante | Suerte | + Fuerza I | + Resistencia I | Gacha de Monturas |
+| Brujita Estelar | Regeneracion I | + Resistencia al fuego | + Suerte | Gacha de Monturas |
+| Cubito del Desierto | Resistencia al fuego | + Prisa I | + Resistencia I | Gacha de Monturas |
+| Cubito de la Jungla | Salto I | + Velocidad I | + Fuerza I | Gacha de Monturas |
+| Cubito Frondoso | Regeneracion I | + Prisa I | + Resistencia I | Gacha de Monturas |
+| Cubito de Micelio | Regeneracion I | + Suerte | + 2 corazones de absorcion | Gacha de Monturas |
+| Cubito de Pradera | Velocidad I | + Suerte | + Regeneracion I | Gacha de Monturas |
+| Cubito de Sabana | Prisa I | + Resistencia al fuego | + Velocidad I | Gacha de Monturas |
+| Cubito de Nieve | Velocidad I | + Resistencia I | + Suerte | Gacha de Monturas |
+| Cubito de Pantano | Respiracion acuatica | + Regeneracion I | + Resistencia I | Gacha de Monturas |
+| Honguito Errante | Regeneracion I | + Resistencia I | + Prisa I | Gacha de Monturas |
 
 - **Uso:** `/mascotas` (alias en `commands.yml` → `/trigger mascota set 99`) abre un menú con botones *Invocar* y *Guardar*.
 - **Niveles:** 1 nivel cada 25 mobs que mata el dueño con la mascota afuera, hasta 30. Nivel 30: más grande y con partículas.
-- **Por dentro:** tener la mascota = permiso `astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix>`; la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
+- **Por dentro:** tener la mascota = permiso `astral.mascota.<id>` (23 IDs en `datapack-src/mobs/mascotas.py`); la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
 - Dar una mascota a mano: `lp user <jugador> permission set astral.mascota.<id> true`. Armado: `build/mascotas/comandos.txt`.
 
 ### Menús, bazar y subastas
@@ -698,7 +715,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 | `trigger astral.guia` | Abre la guía (también Esc → Guía AstralRPG) |
 | `mm mobs spawn astral_<id>` | Spawnear una criatura (ej. `astral_chocobo`, `astral_yeti`) |
 | `mm mobs list` | Lista de criaturas cargadas (tienen que ser 34: 27 criaturas + 7 vendedores) |
-| `bettermodel reload` | Recargar modelos (tienen que ser 26: 17 criaturas, 3 cofres y 6 mascotas) |
+| `bettermodel reload` | Recargar modelos (catalogo completo propio y privado; no asumir el recuento anterior) |
 | `bolt edit add <amigo>` y clic en la caja | Compartir un cofre o shulker protegido |
 | `bolt trust` | Confiar todas tus protecciones a un amigo |
 | `bolt info` y clic | Ver de quién es una protección |

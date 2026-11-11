@@ -3,8 +3,8 @@ AST_ESQ_MODELO_arquero:
   Skills:
   - model{m=astral_esq_arquero} @self
   - addtag{tag=ad.esq.arquero} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.06633"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.639798"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.132341"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.679405"} @self
 AST_ESQ_MODELO_escudero:
   Skills:
   - model{m=astral_esq_escudero} @self

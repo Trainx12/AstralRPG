@@ -17,6 +17,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_ghastito'
     click_commands:
     - '[openguimenu] mascota_ghastito'
   'bombardero':
@@ -33,6 +34,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_bombardero'
     click_commands:
     - '[openguimenu] mascota_bombardero'
   'canonero':
@@ -49,6 +51,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_canonero'
     click_commands:
     - '[openguimenu] mascota_canonero'
   'encapuchado':
@@ -65,6 +68,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_encapuchado'
     click_commands:
     - '[openguimenu] mascota_encapuchado'
   'llamita':
@@ -81,6 +85,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_llamita'
     click_commands:
     - '[openguimenu] mascota_llamita'
   'hondero':
@@ -97,6 +102,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_hondero'
     click_commands:
     - '[openguimenu] mascota_hondero'
   'saqueador':
@@ -113,6 +119,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_saqueador'
     click_commands:
     - '[openguimenu] mascota_saqueador'
   'brujita':
@@ -129,6 +136,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_brujita'
     click_commands:
     - '[openguimenu] mascota_brujita'
   'desierto':
@@ -142,6 +150,7 @@ items:
     - '&7Nv. 20: &f+ Resistencia I'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_desierto'
     click_commands:
     - '[openguimenu] mascota_desierto'
   'anterior':

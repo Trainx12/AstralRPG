@@ -173,6 +173,16 @@ def assets():
                     index=row*3+col
                     model(pid+('_locked' if locked else '')+f'_{index}',image.crop((col*18,row*18,col*18+18,row*18+18)))
     for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
+    # Definiciones publicas de reserva. El circuito privado superpone los
+    # retratos licenciados sin copiar sus pixeles al ZIP publico.
+    for pid, data in ALL_PETS.items():
+        if data['n'] <= 6:
+            image=portrait(pid); image.thumbnail((16,16),Image.Resampling.NEAREST)
+            icon=Image.new('RGBA',(18,18));icon.alpha_composite(image,((18-image.width)//2,(18-image.height)//2))
+            model('catalogo_'+pid,icon)
+        else:
+            files[f'assets/astral/items/mascotas/catalogo_{pid}.json']=json.dumps({
+                'model':{'type':'minecraft:model','model':'minecraft:item/'+data['icono'].lower()}}).encode()
     image=rest_button()
     for i in range(5):model(f'rest_{i}',image.crop((i*18,0,i*18+18,18)))
     providers.append({'type':'space','advances':advances})

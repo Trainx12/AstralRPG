@@ -176,6 +176,7 @@ astral_forja_golem_forja:
   - skill{s=TANDA2_forja_AST_FASE_astral_golem_forja_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=TANDA2_forja_AST_FASE_astral_golem_forja_3_empuje} @self ~onTimer:140 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
   - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Nucleo de la Forja'] add forja.jefe.derrotado"} @self ~onDeath
   - addtag{tag=ad.forja.sala3} @self ~onSpawn
   - addtag{tag=ad.forja.sala3} @self ~onLoad

@@ -54,6 +54,7 @@ def definitions():
                 mid=f'astral_esq_{kind}_{key}_{room}'
                 mob=deepcopy(mobs['astral_esq_'+kind])
                 mob['Skills'].insert(0,f'skill{{s={root}_INICIO}} @self ~onSpawn')
+                mob['Skills'].append('glowbone{g=true;c=FFFFFF} @self ~onTimer:20')
                 mobs[mid]=mob
                 choice=root+'_'+kind
                 skills[choice]={'Skills':[f'summon{{type={mid};amount=1;radius=0;onSurface=false;sync=true}}']}

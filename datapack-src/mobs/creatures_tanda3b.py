@@ -71,8 +71,10 @@ def skeleton(kind):
         for y in (1,4,9,11): box(b,(x-1.15,y,-1.2),(x+1.15,y+1.2,1.2),cloth,'wrap')
         box(b,(x-1.3,0,-1.9),(x+1.3,1.8,1.4),leather,'cloth')
     for b,x in (('arm_l',-5),('arm_r',5)):
-        poses={'arquero':((-68,-15,-22),(-78,20,14)),
-               'escudero':((-30,0,-22),(12,0,18)),
+        # Frente del modelo = -Z: con el brazo hacia -Y, X POSITIVO
+        # levanta la mano hacia delante. El signo anterior la llevaba a +Z.
+        poses={'arquero':((78,-65,0),(78,0,0)),
+               'escudero':((30,0,-22),(12,0,18)),
                'nigromante':((0,0,-112),(0,0,12)),
                'espadachin':((-15,0,-24),(-30,0,92)),
                'guardian':((-22,-12,-25),(0,-10,172))}
@@ -147,7 +149,7 @@ def skeleton(kind):
                 box('arm_r',(x,15+j*2,-1.6),(x+width,17+j*2,-.8),'#c6c8a5')
                 box('arm_r',(x+width-.2,15+j*2,-1.7),(x+width+.3,17+j*2,-.7),'#edf0ce')
             # El equipo tiene su propio pivote: la hoja no gira hacia el pecho.
-            m.bone('weapon',(5,12,-1),'body',rotation=(0,0,-72 if kind=='espadachin' else -14))
+            m.bone('weapon',(5,12,-1),'arm_r',rotation=(0,0,-72 if kind=='espadachin' else -14))
             for c in m.cubes[sword_start:]:
                 c['bone']='weapon'
                 if kind=='guardian':
@@ -163,12 +165,20 @@ def skeleton(kind):
             for j in range(3):
                 box(b,(x+j*.7,y,z),(x+.4+j*.7,y+2.8-j*.7,z+.6),'#a8e3ff',rotation=(0,0,18-j*15))
         bow=[(6,3,-4),(9,7,-4),(11,14,-4),(11,21,-4),(9,28,-4),(6,32,-4)]
-        m.bone('bow',(7,17,-4),'body',rotation=(0,-12,-12))
+        bow_start=len(m.cubes)
+        # La empunadura comparte la mano derecha; contrarrotacion para que
+        # el arco siga vertical y giro Y para que la flecha apunte a -Z.
+        m.bone('bow_grip',(5,11,0),'arm_r',rotation=(-78,0,0))
+        m.bone('bow',(5,11,0),'bow_grip',rotation=(0,90,0))
         vine(m,'bow',bow,1.3,'#3d4222')
         vine(m,'bow',[bow[0],(4,17,-4),bow[-1]],.22,'#d6d7ac')
         vine(m,'bow',[(-3,17,-4.1),(12,17,-4.1)],.35,'#b9b28f')
         box('bow',(11.5,16.5,-4.7),(13,17.5,-3.6),'#b8e0d7')
         for y in (4,29): box('bow',(5.7,y,-4.4),(6.7,y+1.2,-3.5),'#9aa57c','wrap')
+        for cube in m.cubes[bow_start:]:
+            for field in ('from','to','origin'):
+                if cube.get(field) is not None:
+                    cube[field]=[v+delta for v,delta in zip(cube[field],(-6,-6,4))]
         box('body',(-4.4,15,2),(-1,25,4.6),leather,'wood')
         for x in (-4,-2.8,-1.7):
             box('body',(x,23,3),(x+.3,29,3.3),'#b9b28f')
@@ -238,17 +248,15 @@ def skeleton(kind):
     m.anim('idle',3,{'body':{'position':(0,swing(.18,1/3),0)},'head':{'rotation':(0,swing(3,1/3),0)}})
     m.anim('walk',1,{b:{'rotation':(swing(a),0,0)} for b,a in [('leg_l',24),('leg_r',-24),('arm_l',-14),('arm_r',14)]})
     if kind=='arquero':
-        attack={'arm_r':{'rotation':(swing(-55,1/1.3),0,0)},
-                'arm_l':{'rotation':(swing(-70,1/1.3),swing(18,1/1.3),0),
-                         'position':(swing(-2,1/1.3),0,swing(-2,1/1.3))}}
-        attack['bow']={'rotation':(0,swing(-7,1/1.3),swing(5,1/1.3))}
+        attack={'arm_r':{'rotation':(swing(4,1/1.3),0,0)},
+                'arm_l':{'rotation':(swing(-12,1/1.3),swing(-8,1/1.3),0)}}
     elif kind=='nigromante':
         attack={'arm_r':{'rotation':(swing(-25,1/1.3),0,0)},
                 'orb':{'scale':('1+math.sin(q.anim_time*276.923)*0.35',)*3},
                 'head':{'rotation':(swing(-8,1/1.3),0,0)}}
     else:
-        attack={'arm_r':{'rotation':(swing(-70,1/1.3),0,swing(-12,1/1.3))},
-                'arm_l':{'rotation':(swing(-20 if kind=='escudero' else -35,1/1.3),0,0)}}
+        attack={'arm_r':{'rotation':(swing(70,1/1.3),0,swing(-12,1/1.3))},
+                'arm_l':{'rotation':(swing(20 if kind=='escudero' else 35,1/1.3),0,0)}}
         if kind in ('guardian','espadachin'):
             attack['weapon']={'rotation':(swing(-45,1/1.3),0,swing(-22,1/1.3))}
     m.anim('attack',.65,attack,loop='once')

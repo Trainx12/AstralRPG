@@ -55,7 +55,7 @@ BOSQUE_SALA2_INICIO:
   - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=48}
   - removetag{tag=bosque.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/arrival"} @self
-  - summon{type=astral_bosque_chaman;amount=1;radius=0} @Location{x=1604.5;y=101;z=1382.5}
+  - summon{type=astral_bosque_chaman;amount=1;radius=0;onSurface=false} @Location{x=1604.5;y=101;z=1382.5}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/companions"} @self
   - delay 10
   - removetag{tag=bosque.espera} @self
@@ -67,7 +67,7 @@ BOSQUE_SALA2_LIMPIA:
   - command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=48}
   - command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=48}
   - remove @MobsInRadius{r=48;types=astral_bosque_cofre,astral_bosque_guia}
-  - summon{type=astral_bosque_cofre;amount=1;radius=0} @Location{x=1603.7;y=100;z=1413.4}
+  - summon{type=astral_bosque_cofre;amount=1;radius=0;onSurface=false} @Location{x=1604.5;y=101;z=1382.5}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=48}'
   Conditions:

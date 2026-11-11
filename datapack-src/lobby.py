@@ -188,6 +188,10 @@ EGG_ICON = {"astral_mapache": "fox_spawn_egg", "astral_pinguino": "chicken_spawn
 def icon(cmds):
     """(material, modelo astral o None, cantidad) que se muestra en la ruleta."""
     c0 = cmds[0]
+    if c0.startswith('lp user %player% permission set astral.mascota.'):
+        from mobs.mascotas import MASCOTAS
+        pid = c0.split('astral.mascota.', 1)[1].split()[0]
+        return MASCOTAS[pid].get('icono', 'PAPER').lower(), 'mascotas/catalogo_' + pid, 1
     if "loot astral:item/" in c0:
         return "paper", c0.split("astral:item/")[1], len(cmds)
     if c0.startswith("mm egg give"):

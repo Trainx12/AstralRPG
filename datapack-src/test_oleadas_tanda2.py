@@ -130,14 +130,16 @@ class OleadasTests(unittest.TestCase):
                     for w in r['oleadas']:
                         for m,_,_ in w: self.assertNotIn(m,banned); self.assertFalse(m.startswith('astral_'))
                 for x,y,z in r['spawn_points']:
-                    self.assertTrue(clear(d['world'],x,y,z,1,3),(d['key'],r['id'],x,y,z))
+                    from mobs.salas_seguras import safe
+                    self.assertGreaterEqual(y,r['llegada'][1])
+                    self.assertTrue(safe(d['world'],(x,y,z)),(d['key'],r['id'],x,y,z))
                     if 'spawn_bounds' in r:
                         lo,hi=r['spawn_bounds']; self.assertTrue(all(a<=math.floor(v)<=b for a,v,b in zip(lo,(x,y,z),hi)))
                     if d['key']=='forja': self.assertTrue(clear(d['world'],x,y,z,2,3))
                     if d['key']=='forja' and not r.get('boss_room'): self.assertTrue(clear(d['world'],x,y,z,3,3))
                     if d['key']=='cumbre' and r['id']=='sala1':
                         self.assertLessEqual(math.hypot(x+0-r['llegada'][0],z-r['llegada'][2]),25)
-                        self.assertIn(get(d['world'],x,y-1,z),('minecraft:snow_block','minecraft:quartz_block','minecraft:smooth_quartz','minecraft:white_concrete','minecraft:white_wool'))
+                        self.assertIn(__import__('mobs.salas_seguras',fromlist=['overlay']).overlay(d['world'],x,y-1,z),('minecraft:snow_block','minecraft:quartz_block','minecraft:smooth_quartz','minecraft:white_concrete','minecraft:white_wool'))
                 for x,y,z in r.get('golem_points',[]): self.assertTrue(clear(d['world'],x,y,z,3,3,allow_steps=True))
 
     def test_boss_health_and_acknowledgement_and_glowing(self):

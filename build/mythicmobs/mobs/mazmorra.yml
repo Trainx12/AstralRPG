@@ -46,6 +46,7 @@ astral_mina_guardian:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 0.5
   - command{c="eco give <trigger.name> 1500"} @trigger ~onDeath ?~isplayer
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Salon del Guardian'] add mina.jefe.derrotado"} @self ~onDeath
   - addtag{tag=ad.mina.sala4} @self ~onSpawn
   - addtag{tag=ad.mina.sala4} @self ~onLoad

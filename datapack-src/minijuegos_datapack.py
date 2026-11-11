@@ -234,13 +234,23 @@ class Adapter:
                 raise ValueError(f'El datapack sobrescribe algo de Minecraft: {rel}')
             target = f'data/{self.ns[ns]}/{rest}'
             if rest.endswith('.mcfunction'):
-                self.files[target] = '\n'.join(self.command(l) for l in text(raw).split('\n'))
+                # More Maps es publicidad ajena a la partida. Sus criterios de
+                # interaccion modernos no son validos en 26.1.2 y se convierten
+                # en criterios demasiado amplios; @s ademas no queda acotado por
+                # selectors(). Neutralizar TODO el modulo, incluidas llamadas
+                # directas/tick/schedule, no solamente el premio del logro.
+                self.files[target] = ('# AstralRPG: publicidad More Maps desactivada.\n'
+                    if ns == 'more_maps' else
+                    '\n'.join(self.command(l) for l in text(raw).split('\n')))
             elif rest.endswith('.json'):
                 content = self.rename_ns(text(raw))
                 for old, new in self.dims.items():
                     content = re.sub(rf'"(?:minecraft:)?{old}"', f'"minecraft:{new}"', content)
                 if rest.startswith('advancement/'):
-                    content = self.advancement(content, f'{self.ns[ns]}:{rest[len("advancement/"):-len(".json")]}')
+                    if ns == 'more_maps':
+                        content = json.dumps({'criteria': {'disabled': {'trigger': 'minecraft:impossible'}}})
+                    else:
+                        content = self.advancement(content, f'{self.ns[ns]}:{rest[len("advancement/"):-len(".json")]}')
                 else:
                     content = self.selectors(content)
                 self.files[target] = content

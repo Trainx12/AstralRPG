@@ -116,7 +116,8 @@ items:
     amount: 1
     display_name: '&6&lMascotas'
     lore:
-    - '&7Invoca o guarda a tu companero.'
+    - '&7Coleccion de 23 companeros en 3 paginas.'
+    - '&7Invoca, entrena o guarda a tu mascota.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: astral:menu/icon_mascotas
@@ -191,6 +192,158 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] spawn<delay=3>'
+  'bosque':
+    material: OAK_SAPLING
+    slot: 28
+    amount: 1
+    display_name: '&a&lBosque Astral'
+    lore:
+    - '&7Tala arboles que vuelven a crecer.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_bosque
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bosque<delay=3>'
+  'fragmentos':
+    material: AMETHYST_SHARD
+    slot: 29
+    amount: 1
+    display_name: '&d&lFragmentos Astrales'
+    lore:
+    - '&7Coleccion y recompensas de los jefes.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_fragmentos
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] fragmentos'
+  'tienda':
+    material: EMERALD
+    slot: 30
+    amount: 1
+    display_name: '&a&lTienda'
+    lore:
+    - '&7Compra materiales y equipo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_tienda
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] economyshopgui:shop<delay=3>'
+  'peluches':
+    material: PINK_WOOL
+    slot: 31
+    amount: 1
+    display_name: '&d&lPeluches'
+    lore:
+    - '&7Companeros decorativos: $2.500 cada uno.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_peluches
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] economyshopgui:shop Peluches<delay=3>'
+  'subastas':
+    material: GOLD_INGOT
+    slot: 32
+    amount: 1
+    display_name: '&6&lSubastas'
+    lore:
+    - '&7Explora, publica y retira tus ventas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_subastas
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] subastas'
+  'vender':
+    material: CHEST
+    slot: 33
+    amount: 1
+    display_name: '&e&lVenta rapida'
+    lore:
+    - '&7Abri la caja para vender tus objetos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_vender
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] economyshopgui:sellgui<delay=3>'
+  'intercambio':
+    material: BUNDLE
+    slot: 34
+    amount: 1
+    display_name: '&b&lIntercambio'
+    lore:
+    - '&7Intercambia equipo y oro con otro jugador.'
+    - '&eEscribi /trade <jugador>.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_intercambio
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[message] &eUsa /trade <jugador> para elegir con quien intercambiar.'
+  'gacha_rpg':
+    material: AMETHYST_SHARD
+    slot: 37
+    amount: 1
+    display_name: '&5&lGacha de Armas'
+    lore:
+    - '&7Premios, probabilidades y garantia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_gacha_rpg
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] gacha_rpg'
+  'gacha_monturas':
+    material: SADDLE
+    slot: 38
+    amount: 1
+    display_name: '&a&lGacha de Monturas'
+    lore:
+    - '&7Monturas y 20 mascotas de la coleccion.'
+    - '&7Consulta la probabilidad de cada premio.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_gacha_monturas
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] gacha_monturas'
+  'gacha_cosmeticos':
+    material: NAME_TAG
+    slot: 39
+    amount: 1
+    display_name: '&d&lGacha de Cosmeticos'
+    lore:
+    - '&7Titulos y adornos para tu aventura.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_gacha_cosmeticos
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] gacha_cosmeticos'
+  'duelos':
+    material: DIAMOND_SWORD
+    slot: 40
+    amount: 1
+    display_name: '&c&lDuelos'
+    lore:
+    - '&7Desafia a otro jugador.'
+    - '&eEscribi /duel <jugador>.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_duelos
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[message] &eUsa /duel <jugador> para enviar un desafio.'
   'info':
     material: NETHER_STAR
     slot: 4

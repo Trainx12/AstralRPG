@@ -203,7 +203,7 @@ def tp(x, y, z, who="<target.name>", world=WORLD):
 
 def located_summon(mob, point):
     x, y, z = point
-    return f"summon{{type={mob};amount=1;radius=0}} @Location{{x={x};y={y};z={z}}}"
+    return f"summon{{type={mob};amount=1;radius=0;onSurface=false}} @Location{{x={x};y={y};z={z}}}"
 
 
 def group_wave_skills(room, world):
@@ -235,6 +235,7 @@ def group_wave_skills(room, world):
 
 def skill_yml(dungeon=None):
     dungeon = dungeon or MINA
+    exact_surface = ';onSurface=false' if dungeon.get('tanda2') else ''
     MOBS, SALAS, WORLD = dungeon["mobs"], dungeon["rooms"], dungeon["world"]
     PREMIO, PREMIO_PLATA, COOLDOWN = dungeon["reward"], dungeon["money"], dungeon["cooldown"]
     L = ["# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)", ""]
@@ -327,9 +328,9 @@ def skill_yml(dungeon=None):
                 # Sin teletransporte: aparece un cofre (se cobra con clic) y el guia de
                 # Expediciones, que los lleva a donde quieran. RESET los quita cuando se van.
                 L += ["  - " + q(f"remove @MobsInRadius{{r={r + 8};types=astral_mina_cofre,astral_mina_guia}}"),
-                      "  - " + q("summon{type=astral_mina_cofre;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["cofre"])]
+                      "  - " + q(("summon{type=astral_mina_cofre;amount=1;radius=0"+exact_surface+"} @Location{x=%s;y=%s;z=%s}") % fin["cofre"])]
                 if fin.get("guia"):
-                    L += ["  - " + q("summon{type=astral_mina_guia;amount=1;radius=0} @Location{x=%s;y=%s;z=%s}" % fin["guia"])]
+                    L += ["  - " + q(("summon{type=astral_mina_guia;amount=1;radius=0"+exact_surface+"} @Location{x=%s;y=%s;z=%s}") % fin["guia"])]
                 if dungeon["key"] == "mina":
                     # La mascota Golem sigue saliendo al 5% al ganar (antes venia con el cofre).
                     L += ["  - " + q(f"skill{{s=MINA_MASCOTA}} @PlayersInRadius{{r={r + 8}}}")]

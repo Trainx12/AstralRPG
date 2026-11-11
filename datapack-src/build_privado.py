@@ -101,6 +101,9 @@ def item_assets(data):
         path = f'privado:item/{mid}_{i}'
         textures[str(i)] = path
         result[f'assets/privado/textures/item/{mid}_{i}.png'] = base64.b64decode(texture['source'].split(',', 1)[1])
+    # Blockbench guarda las UV en pixeles de la textura (64x64); Minecraft las lee siempre en 0..16.
+    res = data.get('resolution', {})
+    su, sv = 16 / res.get('width', 16), 16 / res.get('height', 16)
     elements = []
     for cube in data['elements']:
         if cube.get('type', 'cube') != 'cube':
@@ -111,7 +114,8 @@ def item_assets(data):
             if len(axes) != 1 or axes[0][1] not in (-45, -22.5, 22.5, 45):
                 raise ValueError('Rotacion de item no compatible con Java')
             e['rotation'] = dict(origin=cube.get('origin', [8, 8, 8]), axis=axes[0][0], angle=axes[0][1], rescale=cube.get('rescale', False))
-        e['faces'] = {side: {**{k: v for k, v in face.items() if k in ('uv', 'rotation', 'tintindex')},
+        e['faces'] = {side: {**{k: v for k, v in face.items() if k in ('rotation', 'tintindex')},
+                             **({'uv': [round(u * s, 4) for u, s in zip(face['uv'], (su, sv, su, sv))]} if 'uv' in face else {}),
                              'texture': '#' + str(face['texture'])}
                       for side, face in cube['faces'].items() if face.get('texture') is not None}
         elements.append(e)
@@ -252,6 +256,22 @@ def preview(models, name='tanda4a', include_sword=True):
         model = SimpleNamespace(export=lambda: (data, atlas), bones=bones,
                                 cubes=[dict(bone=parents.get(e['uuid'])) for e in elements])
         im = preview3d(model, atlas, scale=3, background=(0, 0, 0, 0))
+        if mid.startswith('astral_pet_'):
+            pid=mid.removeprefix('astral_pet_')
+            icon=ImageOps.contain(im.crop(im.getbbox()),(16,16),Image.Resampling.LANCZOS)
+            canvas=Image.new('RGBA',(18,18))
+            canvas.alpha_composite(icon,((18-icon.width)//2,(18-icon.height)//2))
+            import io as _io
+            blob=_io.BytesIO();canvas.save(blob,format='PNG')
+            name='catalogo_'+pid
+            entries={f'assets/astral/textures/item/mascotas/{name}.png':blob.getvalue(),
+                f'assets/astral/models/mascotas/{name}.json':json.dumps({'parent':'minecraft:item/generated',
+                    'textures':{'layer0':f'astral:item/mascotas/{name}'},'gui_light':'front'}).encode(),
+                f'assets/astral/items/mascotas/{name}.json':json.dumps({'model':{
+                    'type':'minecraft:model','model':f'astral:mascotas/{name}'}}).encode()}
+            for relative,content in entries.items():
+                dest=privado()/'build/item-pack'/relative
+                dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(content)
         im = ImageOps.contain(im.crop(im.getbbox()), (225, 190), Image.Resampling.NEAREST)
         tile = Image.new('RGBA', (270, 235), '#18232b')
         tile.alpha_composite(im, ((270 - im.width) // 2, 20))

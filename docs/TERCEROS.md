@@ -38,7 +38,7 @@ El codigo, los balances y los menus son propios y se publican. El arte de tercer
 
 Las 17 nuevas se obtienen en la Gacha de Monturas, con permiso permanente y compensacion de 1000$ como las mascotas anteriores. No se agregan drops de mundo. Probabilidades por rareza intactas: comun 60%, poco comun 25%, rara 11%, epica 3,5%, legendaria 0,5%; garantia epica/legendaria cada 40 tiradas. Los premios de cada rareza comparten ese porcentaje: las posibilidades individuales anteriores disminuyen al ampliar el catalogo.
 
-Los bonus son acumulativos en niveles 1, 10 y 20, solo en los mundos de bonus ya configurados; nivel 30 conserva evolucion. `/mascotas` tiene tres paginas. Las seis originales conservan su arte; las nuevas usan iconos vanilla y pantallas de detalle con estado y permiso. No se usa MCPets ni se publican retratos del arte licenciado.
+Los bonus son acumulativos en niveles 1, 10 y 20, solo en los mundos de bonus ya configurados; nivel 30 conserva evolucion. `/mascotas` tiene tres paginas. Las seis originales conservan su arte; las nuevas usan retratos renderizados desde sus modelos privados en las paginas, detalles y vitrina de CrazyCrates, con estado y permiso. El pack publico conserva iconos vanilla de reserva; los retratos solo se generan en el item-pack privado con build_privado.py --prepare. No se usa MCPets ni se publican retratos del arte licenciado.
 
 | ID | Mascota | Rareza | Nivel 1 | + Nivel 10 | + Nivel 20 |
 |---|---|---|---|---|---|

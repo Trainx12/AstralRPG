@@ -46,7 +46,7 @@ class Tanda3aTests(unittest.TestCase):
         d=next(d for d in catalog() if d['key']=='bosque')
         sk=yaml.safe_load(skill_yml(d)); files={'data/astral/function/load.mcfunction':''}; generate(files)
         r=d['rooms'][0]; arrival=r['llegada']; tag='ad.bosque.sala1'
-        recorded=json.loads((ROOT/'build/deploy/tanda2-puntos.json').read_text())['bosque']['sala1']['spawn_points']
+        recorded=[list(p) for p in r['spawn_points']]
         for pt in PLANT_POINTS:
             self.assertIn(list(pt),recorded)
             self.assertGreater(math.dist(pt,arrival),12)

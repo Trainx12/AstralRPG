@@ -17,6 +17,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_jungla'
     click_commands:
     - '[openguimenu] mascota_jungla'
   'frondoso':
@@ -33,6 +34,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_frondoso'
     click_commands:
     - '[openguimenu] mascota_frondoso'
   'micelio':
@@ -49,6 +51,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_micelio'
     click_commands:
     - '[openguimenu] mascota_micelio'
   'pradera':
@@ -65,6 +68,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_pradera'
     click_commands:
     - '[openguimenu] mascota_pradera'
   'sabana':
@@ -81,6 +85,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_sabana'
     click_commands:
     - '[openguimenu] mascota_sabana'
   'nieve':
@@ -97,6 +102,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_nieve'
     click_commands:
     - '[openguimenu] mascota_nieve'
   'pantano':
@@ -113,6 +119,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_pantano'
     click_commands:
     - '[openguimenu] mascota_pantano'
   'honguito':
@@ -129,6 +136,7 @@ items:
     - '&eClic: ver estado e invocar'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/catalogo_honguito'
     click_commands:
     - '[openguimenu] mascota_honguito'
   'anterior':

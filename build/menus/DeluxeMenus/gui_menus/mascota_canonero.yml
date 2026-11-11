@@ -20,6 +20,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     update: true
+    item_model: 'astral:mascotas/catalogo_canonero'
   'invocar':
     material: LIME_DYE
     slot: 29

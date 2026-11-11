@@ -1850,6 +1850,14 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
         "Pesadilla y Astral). Son mas fuertes y sueltan materiales para Talismanes y Lanzas.", "gray"),
 ], [], back="guia")
 
+from mobs.mascotas import MASCOTAS as GUIDE_PETS
+for pet_page in range(3):
+    pets=list(GUIDE_PETS.items())[pet_page*8:(pet_page+1)*8]
+    dlg(f'guia/mascotas_{pet_page+1}', txt(f'Mascotas ({pet_page+1}/3)', 'gold', bold=True),
+        [msg(f"{d['nombre']}: {d['fuente']}\nNv. 1: {d['texto'][0]}; +10: {d['texto'][1]}; +20: {d['texto'][2]}") for pid,d in pets],
+        [btn('Ver pagina '+str(i),dialog=f'guia/mascotas_{i}') for i in range(1,4) if i!=pet_page+1]
+        +[btn('Abrir /mascotas',command='/mascotas')],back='guia')
+
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
     # Colores fuertes y distintos entre si, pensados para leerse sobre el pergamino.
@@ -1866,6 +1874,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Motosierras", "#4a7410"), dialog="guia/motosierras"),
     btn(txt("Carnivora III", "#477a10"), dialog="guia/carnivora"),
     btn(txt("Asura IV", "#8a6a00"), dialog="guia/asura"),
+    btn(txt("23 mascotas", "#006e78"), dialog="guia/mascotas_1"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
 put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})

@@ -68,9 +68,11 @@ class Tanda3bTests(unittest.TestCase):
                         self.assertEqual(got,Counter(expanded(wave,players)))
 
     def test_model_identity_v4(self):
-        # SHA-256: esqueletos de 315ab9d; nuclear de 1008f75. Incluye textura y animaciones.
+        # Los modelos sin cambios conservan identidad binaria. El rig corregido
+        # y las texturas de TODOS los esqueletos se prueban en test_arreglos.
         import hashlib
-        expected={'astral_creeper_nuclear': 'a941d593d3a803df66c174f20173290bd32da12193d51d21bc0d9afe8204439d', 'astral_esq_arquero': 'b7c59f4671b56331849698c5c0ea88a61502340da2b1dc3c7385ffb22a8502d9', 'astral_esq_escudero': '0397cffc90bd3a1682fc1a921744606c404baab6080fdd6ea43874b13624764b', 'astral_esq_espadachin': 'ae5cbf811631a3e137260df7ad09fca6c8f75c13b50e8fd18ddf5e7f3ae8aa3b', 'astral_esq_guardian': 'cab9c7f20ff1200196169e5bf3dc0516638cfeb97940765f3304cbe27b73b182', 'astral_esq_nigromante': '2b1c5e05b2a23dd550f174b6c9bf1807f53e93b065960078e4a47d71e767608e'}
+        expected={'astral_creeper_nuclear':'a941d593d3a803df66c174f20173290bd32da12193d51d21bc0d9afe8204439d',
+                  'astral_esq_nigromante':'2b1c5e05b2a23dd550f174b6c9bf1807f53e93b065960078e4a47d71e767608e'}
         for name,digest in expected.items():
             with self.subTest(model=name):
                 self.assertEqual(hashlib.sha256((ROOT/"build/models"/(name+".bbmodel")).read_bytes()).hexdigest(),digest)

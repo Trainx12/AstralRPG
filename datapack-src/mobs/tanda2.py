@@ -92,6 +92,8 @@ def configure(dungeon):
         boss['spawn_points']=points(world,((math.floor(x-12),math.floor(y-2),math.floor(z-12)),
                                                  (math.floor(x+12),math.floor(y+2),math.floor(z+12))),width=2)
     d['rooms']=old+[boss]
+    from mobs.salas_seguras import configure as secure_rooms
+    secure_rooms(d)
     return d
 
 def path(d,r): return f'tanda2/{d["key"]}/{r["id"]}'
@@ -133,9 +135,9 @@ def transform(text,d,kind):
                     skill[:]=[s for s in skill if not s.startswith('delay ')]
                 if room.get('boss_room'):
                     mob=room['oleadas'][0][0][0]
-                    x,y,z=room['centro']
+                    x,y,z=room.get('boss_spawn',room['centro'])
                     skill += [f'removetag{{tag={key}.jefe.derrotado}} @self',
-                              cmd(p+'/arrival'),f'summon{{type={mob};amount=1;radius=0}} @Location{{x={x};y={y};z={z}}}',
+                              cmd(p+'/arrival'),f'summon{{type={mob};amount=1;radius=0;onSurface=false}} @Location{{x={x};y={y};z={z}}}',
                               cmd(p+'/companions'),'delay 10',f'removetag{{tag={key}.espera}} @self']
                 else:
                     if key=='bosque' and n in (2,3):
@@ -166,6 +168,12 @@ def transform(text,d,kind):
                         line=line.replace(xyz+'"}',xyz+f' {target["yaw"]} 0'+'"}')
                     value['Skills'][i]=line
     if kind=='mobs':
+        # BetterModel 3.6.0: el flag vanilla de la base invisible no pinta
+        # los ItemDisplay. glowbone actualiza los huesos del tracker.
+        # Solo estas copias de mazmorra; no toca elites, mascotas ni estatuas.
+        for mid, mob in data.items():
+            if mob.get('Options', {}).get('Glowing') and '_control_' not in mid:
+                mob.setdefault('Skills', []).append('glowbone{g=true;c=FFFFFF} @self ~onTimer:20')
         room=d['rooms'][-1]; boss_id=room['oleadas'][0][0][0]
         if boss_id in data:
             sk=data[boss_id]['Skills']

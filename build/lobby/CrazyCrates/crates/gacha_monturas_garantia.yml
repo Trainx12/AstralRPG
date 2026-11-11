@@ -105,12 +105,12 @@ Crate:
   Prizes:
     "1":
       DisplayName: "<gold><bold>Mascota 3D: Brujita Estelar"
-      DisplayItem: "name_tag"
+      DisplayItem: "witch_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_brujita"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -160,12 +160,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
     "3":
       DisplayName: "<gold><bold>Mascota 3D: Fenix"
-      DisplayItem: "name_tag"
+      DisplayItem: "paper"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_fenix"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -188,12 +188,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
     "4":
       DisplayName: "<light_purple><bold>Mascota 3D: Bombardero Musgoso"
-      DisplayItem: "name_tag"
+      DisplayItem: "creeper_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_bombardero"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -216,12 +216,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Bombardero Musgoso',color:'white'}]"
     "5":
       DisplayName: "<light_purple><bold>Mascota 3D: Zorro Encapuchado"
-      DisplayItem: "name_tag"
+      DisplayItem: "fox_spawn_egg"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_encapuchado"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -244,12 +244,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Zorro Encapuchado',color:'white'}]"
     "6":
       DisplayName: "<light_purple><bold>Mascota 3D: Cubito de Micelio"
-      DisplayItem: "name_tag"
+      DisplayItem: "mycelium"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_micelio"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -272,12 +272,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Cubito de Micelio',color:'white'}]"
     "7":
       DisplayName: "<light_purple><bold>Mascota 3D: Honguito Errante"
-      DisplayItem: "name_tag"
+      DisplayItem: "red_mushroom"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_honguito"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"
@@ -327,12 +327,12 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
     "9":
       DisplayName: "<light_purple><bold>Mascota 3D: Dragoncito de Fuego"
-      DisplayItem: "name_tag"
+      DisplayItem: "paper"
       Settings:
         Custom-Model-Data: -1
         Model:
-          Namespace: ""
-          Id: ""
+          Namespace: "astral"
+          Id: "mascotas/catalogo_dragon"
       DisplayAmount: 1
       DisplayEnchantments:
         - "unbreaking:1"

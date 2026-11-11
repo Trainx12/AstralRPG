@@ -14,8 +14,13 @@ START, END = '', ''
 GLYPHS = tuple(chr(0xea10 + i) for i in range(4))
 # Mismo orden que menus.principal_menu: casillas 10-16 y 19-25.
 KEYS = ('bazar', 'minas', 'mazmorras', 'expediciones', 'portales', 'parkour', 'arenas',
-        'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn')
-SLOTS = tuple(range(10, 17)) + tuple(range(19, 26))
+        'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn',
+        'bosque', 'fragmentos', 'tienda', 'peluches', 'subastas', 'vender',
+        'intercambio', 'gacha_rpg', 'gacha_monturas', 'gacha_cosmeticos', 'duelos')
+SLOTS = (tuple(range(10, 17)) + tuple(range(19, 26)) + tuple(range(28, 35)) + tuple(range(37, 41)))
+ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', peluches='mascotas',
+                subastas='bazar', vender='bazar', intercambio='bazar', gacha_rpg='skills',
+                gacha_monturas='mascotas', gacha_cosmeticos='cosmeticos', duelos='arenas')
 
 
 def title():
@@ -24,7 +29,7 @@ def title():
 
 def icon(key):
     """Icono de Gemini en 18x18 (el modelo lo dibuja a escala 1.125 sobre la casilla)."""
-    im = illustration('menu_' + key).resize((18, 18), Image.Resampling.LANCZOS)
+    im = illustration('menu_' + ICON_ART.get(key, key)).resize((18, 18), Image.Resampling.LANCZOS)
     d = ImageDraw.Draw(im)
     d.rectangle((0, 0, 17, 17), outline=EDGE)
     return im
@@ -44,10 +49,9 @@ def panel():
     d = ImageDraw.Draw(im)
     d.rectangle((24, 56, 199, 258), fill=FILL)
     # Vitrina de dos filas de iconos, con un brillo de estrellas a los costados.
-    d.rectangle((46, 73, 177, 112), fill='#140f1d', outline='#6c5a3a')
-    for cx, cy in ((46, 73), (177, 73), (46, 112), (177, 112)):
+    d.rectangle((46, 73, 177, 148), fill='#140f1d', outline='#6c5a3a')
+    for cx, cy in ((46, 73), (177, 73), (46, 148), (177, 148)):
         d.polygon(((cx, cy - 2), (cx + 2, cy), (cx, cy + 2), (cx - 2, cy)), fill=EDGE)
-    text(im, 'Tu aventura empieza aca', (112, 119), color='#d7c4f5')
     for slot in (*SLOTS, 4, 49):
         x, y = 31 + slot % 9 * 18, 57 + slot // 9 * 18
         d.rectangle((x, y, x + 17, y + 17), outline=EDGE)

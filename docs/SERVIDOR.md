@@ -157,18 +157,35 @@ Sus efectos solo se activan en mina, bosque, tumba, cumbre, forja y santuario. A
 ya aplicados caducan naturalmente: hasta 3,5 segundos, o 20 segundos para la absorcion del Fenix.
 En lobby y arena se permiten invocaciones con WorldGuard; `spawn_mobs=false` impide apariciones naturales.
 
-| Mascota | Nivel 1 | Nivel 10 | Nivel 20 | Cómo se consigue |
+| Mascota | Nivel 1 | + Nivel 10 | + Nivel 20 | Como se consigue |
 |---|---|---|---|---|
-| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | 3% al matar Espantapájaros o Armored Grubs |
-| Cuervo Arcano | Visión nocturna, marca a los mobs cerca | + Suerte | + Velocidad I | Gacha de Monturas (raro) |
-| Gólem de Piedra | Resistencia I | + Regeneración I | + Absorción | Mazmorra: 15% el Gólem Antiguo, 5% el cofre |
-| Zorro Espectral | Velocidad I | + Salto I | Velocidad II | 20% el Yeti, 2% las Caras Voladoras |
-| Dragoncito de Fuego | Resistencia al fuego | + Fuerza I | + Prisa I | Gacha de Monturas (épico) |
-| Fénix | Te salva con poca vida cada 10 min | cada 7 min | cada 5 min | Gacha de Monturas (legendario) |
+| Lobo del Bosque | Fuerza I | + Velocidad I | + Resistencia I | Espantapajaros y Armored Grubs (raro) |
+| Cuervo Arcano | Vision nocturna y marca a los mobs cercanos | + Suerte | + Velocidad I | Gacha de Monturas |
+| Golem de Piedra | Resistencia I | + Regeneracion I | + 2 corazones de absorcion | Mazmorra Minas Olvidadas (raro) |
+| Zorro Espectral | Velocidad I | + Salto I | Velocidad II | Yeti de las Cumbres y Caras Voladoras (raro) |
+| Dragoncito de Fuego | Resistencia al fuego | + Fuerza I | + Prisa I | Gacha de Monturas (epico) |
+| Fenix | Te salva con poca vida (cada 10 min) | cada 7 min | cada 5 min | Gacha de Monturas (legendario) |
+| Ghastito de Nube | Caida lenta | + Regeneracion I | + Suerte | Gacha de Monturas |
+| Bombardero Musgoso | Resistencia I | + Fuerza I | + Prisa I | Gacha de Monturas |
+| Canonero de Bolsillo | Fuerza I | + Prisa I | + Suerte | Gacha de Monturas |
+| Zorro Encapuchado | Velocidad I | + Vision nocturna | + Fuerza I | Gacha de Monturas |
+| Llamita Viajera | Salto I | + Suerte | + Resistencia I | Gacha de Monturas |
+| Pequeno Hondero | Prisa I | + Velocidad I | + Suerte | Gacha de Monturas |
+| Saqueador Elegante | Suerte | + Fuerza I | + Resistencia I | Gacha de Monturas |
+| Brujita Estelar | Regeneracion I | + Resistencia al fuego | + Suerte | Gacha de Monturas |
+| Cubito del Desierto | Resistencia al fuego | + Prisa I | + Resistencia I | Gacha de Monturas |
+| Cubito de la Jungla | Salto I | + Velocidad I | + Fuerza I | Gacha de Monturas |
+| Cubito Frondoso | Regeneracion I | + Prisa I | + Resistencia I | Gacha de Monturas |
+| Cubito de Micelio | Regeneracion I | + Suerte | + 2 corazones de absorcion | Gacha de Monturas |
+| Cubito de Pradera | Velocidad I | + Suerte | + Regeneracion I | Gacha de Monturas |
+| Cubito de Sabana | Prisa I | + Resistencia al fuego | + Velocidad I | Gacha de Monturas |
+| Cubito de Nieve | Velocidad I | + Resistencia I | + Suerte | Gacha de Monturas |
+| Cubito de Pantano | Respiracion acuatica | + Regeneracion I | + Resistencia I | Gacha de Monturas |
+| Honguito Errante | Regeneracion I | + Resistencia I | + Prisa I | Gacha de Monturas |
 
 - **Uso:** `/mascotas` (alias en `commands.yml` → `/trigger mascota set 99`) abre un menú con botones *Invocar* y *Guardar*.
 - **Niveles:** 1 nivel cada 25 mobs que mata el dueño con la mascota afuera, hasta 30. Nivel 30: más grande y con partículas.
-- **Por dentro:** tener la mascota = permiso `astral.mascota.<lobo|cuervo|golem|zorro|dragon|fenix>`; la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
+- **Por dentro:** tener la mascota = permiso `astral.mascota.<id>` (23 IDs en `datapack-src/mobs/mascotas.py`); la elegida está en el puntaje `petsel`; los niveles en `plv_<id>`. Un controlador invisible (`astral_mascotas_control`) en un chunk del lobby siempre cargado atiende los pedidos de todos.
 - Dar una mascota a mano: `lp user <jugador> permission set astral.mascota.<id> true`. Armado: `build/mascotas/comandos.txt`.
 
 ## Menús, bazar y subastas

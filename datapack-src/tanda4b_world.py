@@ -35,6 +35,7 @@ def generate(files):
         f'execute if score @s astral.mt matches {tier} if predicate astral:tanda4b/drop{tier} run loot spawn ~ ~ ~ loot astral:item/colmillo_carnivoro' for tier in DROP_CHANCE)+'\n'
     m=deepcopy(plant()['astral_bosque_planta'])
     m['Options'].update(Despawn=True,Glowing=False)
+    m['Skills']=[s for s in m['Skills'] if not s.startswith('glowbone{')]
     m['Skills'][0]='skill{s=AST_PLANTA_SALVAJE_INICIO} @self ~onSpawn'
     m['Skills']+=['command{c="execute as <caster.uuid> at @s run function astral:tanda4b/planta/drop"} @self ~onDeath']
     m['Drops']=['money 15 1']
