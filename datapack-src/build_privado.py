@@ -24,6 +24,38 @@ def adapted(data, mid):
     """Copias portables: texturas embebidas, sin rutas locales y nombres unicos."""
     data = deepcopy(data)
     data['name'] = mid
+    if mid.startswith('astral_pet_'):
+        # ModelEngine usa estas cajas como metadatos, no como geometria visible.
+        # Quitar solo sus descendientes: los planos de ojos/hojas son arte valido.
+        groups = {g['uuid']: g for g in data.get('groups', [])}
+        removed = set()
+        def prune(node, inherited=False):
+            if isinstance(node, str):
+                if inherited:
+                    removed.add(node)
+                return not inherited
+            group = groups.get(node['uuid'], node)
+            hidden = inherited or group.get('visibility') is False or group.get('name') in ('hitbox', 'tag_status', 'tag_nickname')
+            children = [child for child in node.get('children', []) if prune(child, hidden)]
+            node['children'] = children
+            if hidden:
+                removed.add(node['uuid'])
+            return not hidden
+        data['outliner'] = [node for node in data['outliner'] if prune(node)]
+        # Contornos de casco invertidos: BetterModel no conserva su culling de
+        # ModelEngine y los exporta como caras sueltas. Mantener el cuerpo normal.
+        removed.update(e['uuid'] for e in data['elements']
+                       if e.get('name') == 'cube_outline' and any(a > b for a,b in zip(e['from'],e['to'])))
+        data['elements'] = [e for e in data['elements'] if e['uuid'] not in removed]
+        def clean(node):
+            if isinstance(node, dict):
+                node['children'] = [c for c in node.get('children', []) if (c if isinstance(c,str) else c['uuid']) not in removed]
+                for child in node['children']: clean(child)
+        for node in data['outliner']: clean(node)
+        if 'groups' in data:
+            data['groups'] = [g for g in data['groups'] if g['uuid'] not in removed]
+        for animation in data.get('animations', []):
+            animation['animators'] = {k: v for k, v in animation.get('animators', {}).items() if k not in removed}
     for i, texture in enumerate(data['textures']):
         if not texture.get('source', '').startswith('data:image/png;base64,'):
             raise ValueError('Textura sin PNG embebido: ' + mid)
@@ -102,6 +134,8 @@ def prepare():
             write_json(base / 'models' / (mid + '.bbmodel'), data)
             models[mid] = data
     private_configs(models)
+    from tanda4b_privado import prepare as prepare_tanda4b
+    prepare_tanda4b(base)
     preview(models)
     print('Preparados 20 modelos y espada en build privado.')
 
@@ -147,14 +181,15 @@ def private_configs(models):
         bounds.cache_clear()
 
 
-def preview(models):
+def preview(models, name='tanda4a', include_sword=True):
     """Render CPU local con texturas originales, exclusivamente en el repo privado."""
     from PIL import Image, ImageDraw, ImageOps
     from mobs.build_models import preview3d
     from types import SimpleNamespace
     tiles = []
     all_models = dict(models)
-    all_models['espada_heroe_errante'] = adapted(json.loads(sources()['espada_heroe_errante'].read_text(encoding='utf-8')), 'espada_heroe_errante')
+    if include_sword:
+        all_models['espada_heroe_errante'] = adapted(json.loads(sources()['espada_heroe_errante'].read_text(encoding='utf-8')), 'espada_heroe_errante')
     for mid, data in all_models.items():
         data = deepcopy(data)
         images = [Image.open(io.BytesIO(base64.b64decode(t['source'].split(',', 1)[1]))).convert('RGBA') for t in data['textures']]
@@ -218,7 +253,7 @@ def preview(models):
     sheet = Image.new('RGBA', (270 * 5, 235 * ((len(tiles) + 4) // 5)), '#101820')
     for i, tile in enumerate(tiles):
         sheet.paste(tile, (i % 5 * 270, i // 5 * 235))
-    dest = privado() / 'build/previews/tanda4a.png'
+    dest = privado() / ('build/previews/' + name + '.png')
     dest.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(dest)
 

@@ -1,0 +1,9 @@
+enable: true
+slot: 39
+title: Astral - Peluches
+item:
+  material: RABBIT_HIDE
+  name: '&dPeluches'
+  lore:
+  - '&7Seis modelos colocables.'
+  - '&e$2.500 por unidad.'

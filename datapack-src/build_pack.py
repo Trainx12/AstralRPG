@@ -406,6 +406,10 @@ betterhud()
 put_json('assets/astral/items/espada_heroe_errante.json',
          {'model': model_ref('minecraft:item/diamond_sword')})
 
+from tanda4b import public_assets as tanda4b_public_assets
+files.update(tanda4b_public_assets())
+from tanda4b_world import own_textures as tanda4b_own_textures
+files.update(tanda4b_own_textures())
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

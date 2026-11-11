@@ -1,0 +1,5 @@
+AST_PLANTA_SALVAJE_INICIO:
+  Skills:
+  - addtag{tag=astral.wildplant} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+  - skill{s=AST_PLANTA_MODELO} @self

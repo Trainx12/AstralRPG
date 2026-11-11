@@ -1,5 +1,26 @@
 # Contenidos privados - tanda 4a
 
+## Continuacion: tanda 4b
+
+Carnivora T3, Asura T4 (cinco monedas), seis peluches y correccion de contornos
+de mascotas siguen este mismo circuito de dos packs. El arte de `x/carnivoret`,
+`x/asura` y `x/peluches` se convierte con `tanda4b_privado.py` al ejecutar
+`build_privado.py --prepare`; originales intactos. Las vistas `tanda4a.png` y
+`tanda4b.png` quedan exclusivamente en el build privado. Esta ultima se regenera
+con `python datapack-src/preview_tanda4b.py`; es una vista estatica, no una captura en juego.
+
+`AstralDecor.jar` es codigo propio publico (`datapack-src/runtime/AstralDecor.java`),
+compilado para Paper 26.1.2 / Java 25 con `build_runtime.py`. Resuelve muebles
+protegidos por WorldGuard, alas cosmeticas, generacion/proteccion de mena y
+la tienda de peluches de $2.500 mediante Vault. EconomyShopGUI gratuito abre
+la tienda propia desde su seccion Peluches, porque componentes/comandos de
+compra son funciones Premium.
+
+Lista exacta, reproduccion, estado reservado del note_block, efectos secundarios,
+reinicio y pruebas pendientes con jugador: [tanda4b.md](../build/deploy/tanda4b.md).
+El pack FINAL de 4b reemplaza al FINAL de 4a; no usar el SHA-1 anterior al instalar
+ambas juntas. No se desplego esta tanda.
+
 El codigo, los balances y los menus son propios y se publican. El arte de terceros y todas sus salidas derivadas se conservan en el repositorio privado. No integrar Game Stations. Esta tanda no modifica Santuario.
 
 ## Reproduccion sin red

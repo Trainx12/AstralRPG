@@ -1,0 +1,9 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: RABBIT_HIDE
+        displayname: '&dAbriendo peluches...'
+        sell: -1
+        buy: -1

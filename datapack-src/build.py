@@ -558,6 +558,8 @@ for _iid in ARMOR_ITEMS:
 # ---------------------------------------------------------------------------
 # Loot tables de items (sirven para /loot y para el altar)
 # ---------------------------------------------------------------------------
+from tanda4b import register as register_tanda4b
+register_tanda4b(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 for iid, it in ITEMS.items():
     put(f"data/{NS}/loot_table/item/{iid}.json", {
         "type": "minecraft:command",
@@ -1795,6 +1797,8 @@ for cid, cname, ccol, weps in CLASSES:
     dlg(f"guia/{cid}", txt(cname, ccol, bold=True),
         [msg(f"Equipo de {cname}. Cada tier se forja con la pieza del tier anterior.")], sub, back="guia")
 recipe_leaf("guia/lanzas", "Lanzas (Combate)", rids_where(lambda o: o.startswith("lanza_")), "guia")
+recipe_leaf("guia/carnivora", "Equipo Carnivora III", rids_where(lambda o: o.startswith("carnivora_")), "guia")
+recipe_leaf("guia/asura", "Equipo Asura IV", rids_where(lambda o: o in ("asura_espada", "asura_alas")), "guia")
 tal_btns = []
 for tid, t in TALISMANS.items():
     recipe_leaf(f"guia/talisman_{tid}", t["name"], rids_where(lambda o, tid=tid: o.startswith(f"talisman_{tid}_")), "guia/talismanes")
@@ -1860,6 +1864,8 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Especiales", "#4a3a30"), dialog="guia/especiales"),
     btn(txt("Taladros", "#8a6a00"), dialog="guia/taladros"),
     btn(txt("Motosierras", "#4a7410"), dialog="guia/motosierras"),
+    btn(txt("Carnivora III", "#477a10"), dialog="guia/carnivora"),
+    btn(txt("Asura IV", "#8a6a00"), dialog="guia/asura"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
 put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})
@@ -1897,7 +1903,11 @@ KITS = [
     ("historia", "Recuerdos de historia", "aqua", "minecraft:light_blue_shulker_box",
      [i for i in ITEMS if ITEMS[i]["kind"] == "quest"]),
     ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
-     [i for i in ITEMS if ITEMS[i]["kind"] == "material"]),
+     [i for i in ITEMS if ITEMS[i]["kind"] == "material" and i != 'colmillo_carnivoro' and not i.startswith('asura_')]),
+    ('carnivora', 'Equipo Carnivora', 'green', 'minecraft:green_shulker_box',
+     [i for i in ITEMS if i.startswith('carnivora_') or i == 'colmillo_carnivoro']),
+    ('asura_peluches', 'Asura y peluches', 'gold', 'minecraft:yellow_shulker_box',
+     [i for i in ITEMS if i.startswith(('asura_', 'peluche_'))]),
     ("berserker", "Armaduras Berserker", "red", "minecraft:red_shulker_box",
      [i for i in ITEMS if i.startswith("berserker_")]),
     ("mago", "Armaduras Mago", "dark_purple", "minecraft:magenta_shulker_box",
@@ -2306,6 +2316,8 @@ from special_weapons import generate as generate_special_weapons
 generate_special_weapons(files)
 from mobs.tanda2 import generate as generate_dungeon_waves
 generate_dungeon_waves(files)
+from tanda4b_world import generate as generate_tanda4b_world
+generate_tanda4b_world(files)
 
 # ---------------------------------------------------------------------------
 # Escribir

@@ -1,0 +1,27 @@
+astral_planta_salvaje:
+  Type: HUSK
+  Display: '&dPlanta carnivora'
+  Health: 40
+  Damage: 6
+  Options:
+    NoAI: true
+    NoGravity: true
+    MovementSpeed: 0
+    KnockbackResistance: 1
+    Collidable: false
+    Glowing: false
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+  Skills:
+  - skill{s=AST_PLANTA_SALVAJE_INICIO} @self ~onSpawn
+  - skill{s=AST_PLANTA_MODELO} @self ~onLoad
+  - skill{s=AST_PLANTA_MORDIDA} @self ~onTimer:30 ?playerwithin{d=3}
+  - skill{s=AST_PLANTA_ESCUPIR} @self ~onTimer:80 ?playerwithin{d=12}
+  - command{c="execute as <caster.uuid> at @s run function astral:tanda4b/planta/drop"}
+    @self ~onDeath
+  Drops:
+  - money 15 1
