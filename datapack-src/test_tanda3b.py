@@ -97,7 +97,7 @@ class Tanda3bTests(unittest.TestCase):
                     self.assertGreaterEqual(uv[2]-uv[0],density*(e['to'][0]-e['from'][0])-.01)
                 if 'creeper' not in name:
                     self.assertGreater(dimensions(name,1)[1],1.9)
-                    self.assertGreaterEqual(1.99*scale(name,1,'SKELETON'),dimensions(name,1)[1])
+                    self.assertAlmostEqual(1.99*scale(name,1,'SKELETON'),dimensions(name,1)[1],places=5)
                 else:
                     im=Image.open(io.BytesIO(base64.b64decode(data['textures'][0]['source'].split(',')[1])))
                     self.assertFalse(any(0<a<255 for a in im.getchannel('A').get_flattened_data()))

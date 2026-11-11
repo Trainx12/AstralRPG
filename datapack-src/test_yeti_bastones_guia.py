@@ -25,21 +25,16 @@ class YetiBastonesGuiaTests(unittest.TestCase):
                 self.assertAlmostEqual(max(p[1] for p in pts),v[4],places=5)
                 self.assertLessEqual(max(math.hypot(p[0],p[2]) for p in pts),1.14/2)
 
-    def test_yeti_exactly_three_blocks_above_ancestral(self):
+    def test_yeti_same_model_size_and_box_as_ancestral(self):
         model,s=SPECIAL['astral_yeti_cumbre']
-        self.assertAlmostEqual(dimensions(model,s)[1],dimensions(model,2)[1]+3)
+        self.assertEqual(s,2.0)
+        self.assertEqual(dimensions(model,s),dimensions(model,2))
+        self.assertEqual(scale(model,s,'RAVAGER'),scale(model,2,'RAVAGER'))
 
-    def test_all_corners_fit_vanilla_box_at_every_yaw(self):
+    def test_height_formula_before_d51e4de_for_all_models(self):
         for mid,model,s,entity in rows():
-            sc=scale(model,s,entity);w,h=VANILLA[entity]
-            x,y,z=bounds(model)
-            for yaw in range(0,360,5):
-                a=math.radians(yaw)
-                for px in x:
-                    for pz in z:
-                        self.assertLessEqual(abs(px*math.cos(a)-pz*math.sin(a))*s,w*sc/2,mid)
-                        self.assertLessEqual(abs(px*math.sin(a)+pz*math.cos(a))*s,w*sc/2,mid)
-            self.assertLessEqual(y[1]*s,h*sc,mid)
+            self.assertEqual(scale(model,s,entity),
+                round(min(16,dimensions(model,s)[1]/VANILLA[entity][1]),6),mid)
 
     def test_guides_two_blocks_away_on_natural_floor_and_reset(self):
         ds=[configure(MINA)]+[d for d in catalog() if d['key']!='santuario']

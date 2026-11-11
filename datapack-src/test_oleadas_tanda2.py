@@ -188,7 +188,7 @@ class ModelSizeTests(unittest.TestCase):
         from mobs.entrega_tanda2 import collision,movement
         from mobs.tamanos import SPECIAL,scale
         model,s=SPECIAL['astral_yeti_cumbre']
-        self.assertAlmostEqual(s,20/7)
+        self.assertEqual(s,2.0)
         sc=scale(model,s,'RAVAGER'); point=(-101.8,30,56.9)
         self.assertEqual(collision('cumbre_hielo',point,'RAVAGER',sc)['bloques_no_aire'],0)
         for samples in movement('cumbre_hielo',point,'RAVAGER',sc).values():
@@ -202,10 +202,10 @@ class ModelSizeTests(unittest.TestCase):
         for mid,model,s,entity in rows():
             sc=scale(model,s,entity)
             self.assertGreater(sc,0); self.assertLessEqual(sc,16)
-            self.assertGreaterEqual(sc,dimensions(model,s)[1]/VANILLA[entity][1])
+            self.assertAlmostEqual(sc,dimensions(model,s)[1]/VANILLA[entity][1],places=6)
             if mid!='astral_mina_guardian': self.assertTrue(any('minecraft:scale base set '+str(sc) in v for v in skills['AST_MODEL_'+mid]['Skills']))
         self.assertEqual(dimensions('astral_yeti',8)[1],28)
-        with self.assertRaises(ValueError):scale('astral_yeti',8,'RAVAGER')
+        self.assertEqual(scale('astral_yeti',8,'RAVAGER'),12.727273)
 
 
 class SantuarioSinCambiosTests(unittest.TestCase):

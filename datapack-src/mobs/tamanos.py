@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 VANILLA={'SKELETON':(.6,1.99),'CREEPER':(.6,1.7),'FOX':(.6,.7),'CHICKEN':(.4,.7),'VEX':(.4,.8),'SPIDER':(1.4,.9),
          'ZOMBIE':(.6,1.95),'PHANTOM':(.9,.5),'HUSK':(.6,1.95),'RAVAGER':(1.95,2.2),'IRON_GOLEM':(1.4,2.7),'EVOKER':(.6,1.95)}
-SPECIAL={'astral_yeti_cumbre':('astral_yeti',20/7),
+SPECIAL={'astral_yeti_cumbre':('astral_yeti',2.0),
          'astral_golem_forja_mazmorra':('astral_golem_forja',8.0)}
 
 def rotate(p, origin, angles):
@@ -49,13 +49,9 @@ def dimensions(model,s):
     return tuple((hi-lo)*s for lo,hi in bounds(model))
 
 def scale(model,s,entity):
-    # Una caja vanilla es cuadrada y gira separada del arte. Cubrir tambien
-    # brazos y profundidad en cualquier yaw, sin escalar el modelo de BetterModel.
-    x,y,z=bounds(model)
-    diameter=2*math.hypot(max(map(abs,x)),max(map(abs,z)))*s
-    required=max(y[1]*s/VANILLA[entity][1],diameter/VANILLA[entity][0])
-    if required>16: raise ValueError(f'Caja fuera del limite vanilla: {model} {required}')
-    return math.ceil(required*1_000_000)/1_000_000
+    # Restaurar la formula anterior a d51e4de: BetterModel tambien recibe la
+    # escala vanilla. Ensanchar esta caja agranda el modelo completo en juego.
+    return round(min(16,dimensions(model,s)[1]/VANILLA[entity][1]),6)
 
 def skills(model,s,entity,protect_sanctuary=True):
     sc=scale(model,s,entity)

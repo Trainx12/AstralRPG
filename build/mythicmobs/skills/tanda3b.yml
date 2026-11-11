@@ -3,27 +3,27 @@ AST_ESQ_MODELO_arquero:
   Skills:
   - model{m=astral_esq_arquero} @self
   - addtag{tag=ad.esq.arquero} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 3.234623"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 1.940774"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.132341"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.679405"} @self
 AST_ESQ_MODELO_escudero:
   Skills:
   - model{m=astral_esq_escudero} @self
   - addtag{tag=ad.esq.escudero} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 3.871179"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 2.322707"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.028853"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.617312"} @self
 AST_ESQ_MODELO_nigromante:
   Skills:
   - model{m=astral_esq_nigromante} @self
   - addtag{tag=ad.esq.nigromante} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 5.609874"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 3.365924"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.169081"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.701449"} @self
   - brightness{pid=orb;b=15;s=15} @self
 AST_ESQ_MODELO_guardian:
   Skills:
   - model{m=astral_esq_guardian} @self
   - addtag{tag=ad.esq.guardian} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 4.12669"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 2.476014"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 1.117045"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 0.670227"} @self
 AST_ESQ_HECHIZO:
   Conditions:
   - targetwithin{d=16} true
