@@ -409,6 +409,14 @@ El Yeti usa `s=4`, el doble del Ancestral, con `minecraft:scale=6.363636` y 14 b
 de alto. Esto reemplaza el tamano de 28 bloques indicado en la nota historica de Tanda 2.
 No instalar el apoyo antiguo propuesto a Y32 sobre esa ubicacion.
 
+Entrega posterior preparada, sin desplegar: [yeti-bastones-guia.md](../build/deploy/yeti-bastones-guia.md),
+con Tienda incluida en un solo reinicio. Sustituye el tamano anterior por 10 bloques
+(`s=20/7`), frente a 7 del Ancestral. La caja conservadora de Cumbre usa
+`minecraft:scale=6.199573`, cubre brazos y alto y deja altura sobrante por el
+escalado uniforme vanilla. Bastones intersectan cajas completas. Los cinco guias
+finales aparecen a 2 bloques del cofre; los seis peluches se corrigen al cargar.
+Lobby sigue sin permitir colocarlos, incluso con OP/bypass.
+
 El espadachin ya no forma parte de las apariciones; se conserva el modelo.
 La muerte de criaturas usa `death` de BetterModel 3.6.0 (0.8 s, sin repeticion),
 mas tinte y humo. NPC, mascotas, cofres y monturas conservan sus animaciones.

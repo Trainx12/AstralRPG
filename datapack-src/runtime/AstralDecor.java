@@ -77,6 +77,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getScheduler().runTaskTimer(this,this::wings,1,2);
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
         getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
+        getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, alas, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
     public void onDisable() { wings.values().forEach(Entity::remove); wings.clear(); }
@@ -117,6 +118,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         String id = id(e.getItem());
         if(!id.startsWith("peluche_") || !PLUSH.contains(id.substring(8))) return;
         Player p = e.getPlayer();
+        if(p.getWorld().getName().equals("lobby")) { e.setCancelled(true); p.sendMessage("Aca no se pueden poner peluches"); return; }
         // No ignorar DENY ajenos: puede ser una proteccion de Bolt u otro plugin.
         if(e.useInteractedBlock()==Event.Result.DENY || e.useItemInHand()==Event.Result.DENY) {
             p.sendMessage("Aca no se pueden poner peluches: otro plugin bloqueo el clic."); return;
@@ -129,7 +131,8 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         double top=shape.stream().filter(b->b.getMinX()<=.5 && b.getMaxX()>=.5 && b.getMinZ()<=.5 && b.getMaxZ()>=.5)
             .mapToDouble(b->b.getMaxY()).max().orElse(0);
         if(top<=0) { p.sendMessage("El peluche necesita apoyo en el centro del bloque."); return; }
-        Location loc=support.getLocation().add(.5,top,.5); loc.setYaw(p.getLocation().getYaw()+180);
+        Location loc=support.getLocation().add(.5,top,.5);
+        loc.setYaw((float)Math.toDegrees(Math.atan2(p.getX()-loc.getX(),loc.getZ()-p.getZ())));
         if(!build(p,support.getLocation()) || !build(p,loc)) { p.sendMessage("Aca no se pueden poner peluches: no tenes permiso para construir."); return; }
         var occupied=new org.bukkit.util.BoundingBox(loc.getX()-.4,loc.getY()+.01,loc.getZ()-.4,loc.getX()+.4,loc.getY()+.9,loc.getZ()+.4);
         for(int y=loc.getBlockY();y<=Math.floor(loc.getY()+.9);y++) {
@@ -142,15 +145,49 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         ItemDisplay visual = null; Interaction hitbox = null;
         try {
             visual = loc.getWorld().spawn(loc,ItemDisplay.class); visual.setItemStack(item); visual.setInvulnerable(true);
-            visual.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
             hitbox = loc.getWorld().spawn(loc,Interaction.class); hitbox.setInteractionWidth(.85f); hitbox.setInteractionHeight(.9f); hitbox.setResponsive(true);
             hitbox.getPersistentDataContainer().set(saved,PersistentDataType.BYTE_ARRAY,item.serializeAsBytes());
             hitbox.getPersistentDataContainer().set(display,PersistentDataType.STRING,visual.getUniqueId().toString());
+            upright(visual,hitbox,id.substring(8));
             // Siempre consumir, incluso creativo: recoger devuelve exactamente esa unidad.
             p.getInventory().getItemInMainHand().subtract(1);
         } catch(RuntimeException ex) {
             if(visual!=null) visual.remove(); if(hitbox!=null) hitbox.remove(); throw ex;
         }
+    }
+    // Medidas normalizadas de los seis modelos. NONE evita el fixed=-90 del pack.
+    // s, offset XYZ, alto: la dimension mayor mide .8 bloques, base Y=0.
+    private static final Map<String,float[]> PLUSH_LAYOUT=Map.of(
+        "alex",new float[]{.9423214f,0,.4711607f,.0249853f,.8f},
+        "steve",new float[]{.9423214f,0,.4711607f,.0249853f,.8f},
+        "creaking",new float[]{.6167065f,-.0054479f,.328266f,.0114544f,.8f},
+        "ocelot",new float[]{.9630682f,0,.4825072f,-.0242436f,.7596946f},
+        "tropical_fish",new float[]{1.3099642f,-.0409053f,.3888956f,-.5731094f,.8f},
+        "zombie_horse",new float[]{.7000782f,0,.3534775f,.0301098f,.5549313f});
+    private void upright(ItemDisplay visual,Interaction hitbox,String id) {
+        float[] v=PLUSH_LAYOUT.get(id); if(v==null)return;
+        visual.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.NONE);
+        // El pez esta acostado en el JSON original: su cara superior pasa al frente.
+        Quaternionf rotation=new Quaternionf().rotationX(id.equals("tropical_fish")?-(float)Math.PI/2:0);
+        visual.setTransformation(new Transformation(new Vector3f(v[1],v[2],v[3]),rotation,new Vector3f(v[0]),new Quaternionf()));
+        hitbox.setInteractionWidth(1.14f); // diagonal .8 x .8, cubre cualquier yaw
+        hitbox.setInteractionHeight(v[4]);
+        hitbox.addScoreboardTag("astral.plush.upright.v2");
+    }
+    private void repairPlush(Chunk chunk) {
+        for(Entity e:chunk.getEntities()) {
+            if(!(e instanceof Interaction h) || h.getScoreboardTags().contains("astral.plush.upright.v2"))continue;
+            String uuid=h.getPersistentDataContainer().get(display,PersistentDataType.STRING);
+            if(uuid==null || !h.getPersistentDataContainer().has(saved,PersistentDataType.BYTE_ARRAY))continue;
+            Entity linked=Bukkit.getEntity(UUID.fromString(uuid));
+            if(!(linked instanceof ItemDisplay d))continue;
+            String iid=id(d.getItemStack());if(!iid.startsWith("peluche_"))continue;
+            Location loc=d.getLocation();loc.setPitch(0);loc.setYaw(loc.getYaw()+180);d.teleport(loc);
+            upright(d,h,iid.substring(8));
+        }
+    }
+    @EventHandler public void loadPlush(ChunkLoadEvent e) {
+        getServer().getScheduler().runTask(this,()->{if(e.getChunk().isLoaded())repairPlush(e.getChunk());});
     }
     @EventHandler(priority=EventPriority.HIGHEST)
     public void collect(PrePlayerAttackEntityEvent e) {
@@ -209,6 +246,11 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             if(model==null) continue;
             Entity entity=mob.getEntity().getBukkitEntity();
             if(!entity.isValid() || entity.isDead()) continue;
+            if(mid.endsWith("_guia")) {
+                Player nearest=entity.getWorld().getPlayers().stream().filter(p->p.getGameMode()!=GameMode.SPECTATOR && p.getLocation().distanceSquared(entity.getLocation())<1024)
+                    .min(java.util.Comparator.comparingDouble(p->p.getLocation().distanceSquared(entity.getLocation()))).orElse(null);
+                if(nearest!=null) { Location l=entity.getLocation();l.setDirection(nearest.getLocation().subtract(l).toVector());entity.setRotation(l.getYaw(),0); }
+            }
             var renderer=BetterModel.modelOrNull(model);
             if(renderer==null) continue; // BetterModel puede seguir armando su catalogo.
             var registry=BetterModel.registryOrNull(entity.getUniqueId());

@@ -69,8 +69,9 @@ CUMBRE_SALA2_LIMPIA:
   - command{c="lp user <target.name> permission set astral.completada.cumbre true"} @PlayersInRadius{r=136}
   - remove @MobsInRadius{r=136;types=astral_cumbre_cofre,astral_cumbre_guia}
   - summon{type=astral_cumbre_cofre;amount=1;radius=0;onSurface=false} @Location{x=-101.8;y=30;z=56.9}
+  - summon{type=astral_cumbre_guia;amount=1;radius=0;onSurface=false} @Location{x=-99.8;y=30;z=56.9}
   - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=136}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=136}'
   Conditions:
   - hastag{tag=cumbre.jefe.derrotado} true
   - hastag{tag=cumbre.fin} false

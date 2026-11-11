@@ -49,11 +49,11 @@ class UrgenteTests(unittest.TestCase):
         cumbre=next(d for d in catalog() if d['key']=='cumbre')
         self.assertEqual(cumbre['rooms'][-1]['boss_spawn'],(-101.8,30,56.9))
 
-    def test_yeti_twice_ancestral_with_matching_height(self):
+    def test_yeti_three_blocks_above_ancestral_with_covering_box(self):
         model,size=SPECIAL['astral_yeti_cumbre']
-        self.assertEqual(size,4)
-        self.assertAlmostEqual(dimensions(model,size)[1],2*dimensions(model,2)[1])
-        self.assertAlmostEqual(2.2*scale(model,size,'RAVAGER'),dimensions(model,size)[1],places=5)
+        self.assertAlmostEqual(size,20/7)
+        self.assertAlmostEqual(dimensions(model,size)[1],dimensions(model,2)[1]+3)
+        self.assertGreaterEqual(2.2*scale(model,size,'RAVAGER'),dimensions(model,size)[1])
         from mobs.entrega_tanda2 import collision,movement
         sc=scale(model,size,'RAVAGER')
         for p in ((-101.8,30,56.9),(-54.9,30,6.5)):

@@ -96,7 +96,7 @@ class Tanda3aTests(unittest.TestCase):
                                    ('astral_bosque_planta',1,'HUSK',{'idle','attack','spit'})):
             d=json.loads((ROOT/'build/models'/f'{model}.bbmodel').read_text())
             self.assertEqual({a['name'] for a in d['animations']},anims|{'death'})
-            self.assertAlmostEqual(VANILLA[entity][1]*scale(model,s,entity),dimensions(model,s)[1],places=5)
+            self.assertGreaterEqual(VANILLA[entity][1]*scale(model,s,entity),dimensions(model,s)[1])
             for a in d['animations']:
                 for channel in a['animators'].values():
                     for key in channel['keyframes']:

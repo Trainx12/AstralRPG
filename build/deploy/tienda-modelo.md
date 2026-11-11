@@ -63,7 +63,7 @@ Los listados de lobby y tanda3c reflejan estas posiciones; no ejecutar todo coma
 - Alas en segunda mano (F o inventario), con cualquier pechera. Sacarlas de esa mano las oculta. Sin proteccion ni vuelo; caen o se conservan segun las reglas de muerte/tumbas del servidor. El runtime nunca consume ni entrega copias. Los items viejos se actualizan a v15 al entrar.
 - Display pasajero, offset local detras de hombros, rotacion del cuerpo e interpolacion de 2 ticks; baja al agacharse. El objeto no se dibuja en la mano; GUI y suelo conservan su vista.
 - Peluches sobre superficies con colision (incluye losas y alfombras). Espacio libre de 0,9 bloques; mensajes al faltar apoyo, permiso, espacio o ante interaccion bloqueada. Conserva cancelaciones ajenas.
-- Para decorar lobby: OP con bypass WorldGuard activo o `lp user <jugador> permission set worldguard.region.bypass.lobby true`. Revocar el permiso al terminar. No abrir build para todos. El runtime consulta el bypass oficial tambien al recoger.
+- Lobby: no permite colocar peluches, tampoco con OP o bypass. Mensaje: Aca no se pueden poner peluches. No otorgar permisos para decorar lobby. La recogida conserva la consulta de WorldGuard.
 - WorldGuard y WorldEdit usados en la prueba local; Bolt, Essentials y AxGraves no estan cargados alli. Si otro plugin bloquea, revisar su permiso en remoto; no desactivar protecciones globalmente.
 
 ## Calidad y limites
@@ -82,8 +82,8 @@ Reproduccion: generar datapack/lobby/MythicMobs y `python mobs/preview_tanda3c.p
 
 ## Verificacion local comprobada
 
-- Suite completa: 209 pruebas aprobadas.
-- Paper 26.1.2 / BetterModel 3.6.0 / MythicMobs 5.13.0 / WorldGuard 7.0.18: 80 comprobaciones, cero fallos, incluido reinicio.
+- Suite completa: 214 pruebas aprobadas.
+- Paper 26.1.2 / BetterModel 3.6.0 / MythicMobs 5.13.0 / WorldGuard 7.0.18: 230 comprobaciones, cero fallos, incluido reinicio.
 - Recuperacion sin duplicados: Tienda, maquinas, Venta rapida, NPC de Expediciones, guardian oculto y guia de salida. Nombre/tracker acompanan /tp.
 - Alas: pasajero unico, pechera simultanea, altura real 1,45 b, giro corporal y altura agachado 1,2 b.
 - Peluches: clic nativo Paper, proteccion WG y bypass OP; piedra, losa y alfombra en supervivencia/creativo; una sola devolucion.

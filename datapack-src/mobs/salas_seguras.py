@@ -36,10 +36,15 @@ def configure(dungeon):
             if not limits[0]<=p[1]<=limits[1] or not safe(world,p):
                 raise ValueError(f'Jefe sin piso natural: {key} {p}')
             room['boss_spawn']=p
-            if key=='tumba': room['final_npcs']['guia']=(1.5,72,1.5)
             chest={'bosque':(1604.5,101,1382.5),'tumba':(0.5,72,0.5)}.get(key,p)
             if not safe(world,chest): chest=p
             room.setdefault('final_npcs',{})['cofre']=chest
+            # Distancia exacta de dos bloques, piso natural y tres bloques libres.
+            x,y,z=chest
+            candidates=[(x+dx,y,z+dz) for dx,dz in ((2,0),(-2,0),(0,2),(0,-2))]
+            guide=next((p for p in candidates if safe(world,p)),None)
+            if guide is None: raise ValueError(f'Sin piso para guia junto al cofre: {key} {chest}')
+            room['final_npcs']['guia']=guide
             room['chest_platform']=key in ('bosque','tumba')
 
 

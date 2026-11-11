@@ -70,6 +70,10 @@ public final class DecorProbe extends JavaPlugin {
                     ((Map)field.get(list)).put(name.equals("playersByUUID")?profile.id():profile.name().toLowerCase(Locale.ROOT),fake);
                 }
                 player=fake.getBukkitEntity();player.setOp(true);
+                for(Entity old:player.getWorld().getEntities())if(old.getScoreboardTags().contains("decor.migrate")) {
+                    String uuid=old.getPersistentDataContainer().get(new NamespacedKey("astraldecor","display"),org.bukkit.persistence.PersistentDataType.STRING);
+                    if(uuid!=null) {Entity d=Bukkit.getEntity(UUID.fromString(uuid));if(d!=null)d.remove();}old.remove();
+                }
                 player.setInvulnerable(true);
                 MythicBukkit.inst().getPlayerManager().loadProfile(player);
                 kr.toxicity.model.api.BetterModel.platform().playerManager().player(
@@ -110,10 +114,67 @@ public final class DecorProbe extends JavaPlugin {
                     } catch(Exception ex) { check(false,"inspeccion nombre "+mid); }
                 },65);
             }
+        } else if(args[0].equals("combat")) {
+            Location back=player.getLocation();
+            World arena=Bukkit.getWorld("yeti_combat");
+            if(arena==null)arena=Bukkit.createWorld(new WorldCreator("yeti_combat").type(WorldType.FLAT).generateStructures(false));
+            cmd("execute in minecraft:yeti_combat run gamerule minecraft:spawn_mobs false");
+            player.teleport(new Location(arena,0,-60,0));
+            player.addScoreboardTag("astral.caster");
+            cmd("data modify storage astral:tmp spell set value {dmg:1}");
+            for(int cx=1;cx<=4;cx++)for(int cz=-6;cz<=3;cz++)player.getWorld().getChunkAt(cx,cz).setForceLoaded(true);
+            for(int x=25;x<=55;x++)for(int z=-90;z<=40;z++)player.getWorld().getBlockAt(x,-61,z).setType(Material.STONE);
+            List<LivingEntity> targets=new ArrayList<>();
+            targets.add(player.getWorld().spawn(new Location(player.getWorld(),40,-60,0),Zombie.class));
+            targets.add((LivingEntity)MythicBukkit.inst().getAPIHelper().spawnMythicMob("astral_esq_arquero",new Location(player.getWorld(),40,-60,10)));
+            targets.add((LivingEntity)MythicBukkit.inst().getAPIHelper().spawnMythicMob("astral_cumbre_yeti",new Location(player.getWorld(),40,-60,20)));
+            targets.add(player.getWorld().spawn(new Location(player.getWorld(),40,-60,30),TropicalFish.class));
+            targets.add(player.getWorld().spawn(new Location(player.getWorld(),40,-60,-10),CaveSpider.class));
+            int bossIndex=0;
+            for(String mid:List.of("astral_momia","astral_golem_forja","astral_mina_guardian","astral_yeti_ancestral"))
+                targets.add((LivingEntity)MythicBukkit.inst().getAPIHelper().spawnMythicMob(mid,new Location(player.getWorld(),40,-60,-20-20*bossIndex++)));
+            Bukkit.getScheduler().runTaskLater(this,()-> {
+                try {
+                    int targetIndex=0;
+                    for(LivingEntity target:targets) {
+                        var box=target.getBoundingBox();
+                        // Apuntar al cuerpo visible, no al espacio sobrante por el escalado uniforme.
+                        double visibleHeight=getConfig().getDoubleList("probe-heights").get(targetIndex++);
+                        getLogger().info("DECOR BOX "+target.getType()+" "+box);
+                        if(target.getType()==EntityType.RAVAGER)check(box.getWidthX()>8 && box.getHeight()>7,"caja real del Yeti cubre modelo completo");
+                        for(double distance:new double[]{1.5,18})for(double fraction:new double[]{.02,.5,.98}) {
+                            target.setHealth(target.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue());
+                            double before=target.getHealth();target.setNoDamageTicks(0);
+                            double y=box.getMinY()+visibleHeight*fraction;
+                            cmd("scoreboard players set #steps astral.tmp 0");
+                            cmd("execute in "+target.getWorld().getKey()+" positioned "+(box.getMaxX()+distance)+" "+y+" "+target.getZ()+" rotated 90 0 run function astral:spell/ray");
+                            check(target.getHealth()<before,"baston caja "+target.getType()+" altura="+fraction+" distancia="+distance);
+                        }
+                        // Ray tracing de Paper usa la misma caja para melee y proyectiles.
+                        for(double fraction:new double[]{.02,.5,.98}) {
+                            var start=new Location(target.getWorld(),box.getMinX()-2,box.getMinY()+visibleHeight*fraction,target.getZ());
+                            var hit=target.getWorld().rayTraceEntities(start,new org.bukkit.util.Vector(1,0,0),box.getWidthX()+4,e->e==target);
+                            check(hit!=null && hit.getHitEntity()==target,"rayo melee/flecha "+target.getType()+" altura="+fraction);
+                        }
+                        target.remove();
+                    }
+                } catch(Exception ex) {check(false,"combat exception "+ex);}
+                finally {targets.forEach(Entity::remove);player.removeScoreboardTag("astral.caster");player.teleport(back);}
+            },20);
         } else if(args[0].equals("restart")) {
             var mobs=MythicBukkit.inst().getMobManager().getActiveMobs().stream().filter(m->m.getEntity().getBukkitEntity().getScoreboardTags().contains("decor.restart")).toList();
             check(!mobs.isEmpty(),"NPC persistio al reiniciar");
             for(var m:mobs) { var reg=BetterModel.registryOrNull(m.getUniqueId());check(reg!=null && reg.trackers().size()==1,"NPC modelado tras reinicio"); }
+            int migrated=0;
+            for(World w:Bukkit.getWorlds())for(Interaction h:w.getEntitiesByClass(Interaction.class)) {
+                if(!h.getScoreboardTags().contains("decor.migrate"))continue;
+                migrated++;
+                var uuid=h.getPersistentDataContainer().get(new NamespacedKey("astraldecor","display"),org.bukkit.persistence.PersistentDataType.STRING);
+                var d=(ItemDisplay)Bukkit.getEntity(UUID.fromString(uuid));
+                check(d!=null && d.getItemDisplayTransform()==ItemDisplay.ItemDisplayTransform.NONE,"peluche antiguo reparado al cargar");
+                check(h.getScoreboardTags().contains("astral.plush.upright.v2"),"migracion persistida sin perder item");
+            }
+            check(migrated==6,"seis peluches conservados al reiniciar");
         } else if(args[0].equals("wings")) {
             player.getInventory().setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
             player.getInventory().setItemInOffHand(item("asura_alas"));
@@ -159,6 +220,27 @@ public final class DecorProbe extends JavaPlugin {
             player.getInventory().setItemInMainHand(item("peluche_alex"));click(floor);check(plush().size()==1,"OP respeta bypass WG para decorar");
             for(var h:plush()) Bukkit.getPluginManager().callEvent(new io.papermc.paper.event.player.PrePlayerAttackEntityEvent(player,h,false));
             buildFlag(true);
+            floor.setType(Material.STONE);
+            int idx=0;
+            for(String id:List.of("alex","creaking","ocelot","steve","tropical_fish","zombie_horse")) {
+                var f=player.getWorld().getBlockAt(3+idx++*2,-61,0);f.setType(Material.STONE);
+                player.getInventory().setItemInMainHand(item("peluche_"+id));click(f);
+                Interaction h=plush().stream().filter(v->Math.abs(v.getX()-f.getX()-.5)<.01).findFirst().orElseThrow();
+                String uuid=h.getPersistentDataContainer().get(new NamespacedKey("astraldecor","display"),org.bukkit.persistence.PersistentDataType.STRING);
+                var d=(ItemDisplay)Bukkit.getEntity(UUID.fromString(uuid));
+                check(d.getItemDisplayTransform()==ItemDisplay.ItemDisplayTransform.NONE,"transformacion neutra "+id);
+                check(h.getInteractionHeight()>0 && h.getInteractionHeight()<=.801,"altura caja "+id);
+                check(d.getLocation().getDirection().dot(player.getLocation().subtract(d.getLocation()).toVector().normalize())<0,"frente -Z mira al jugador "+id);
+                // Persistir el formato anterior para probar la migracion en el segundo arranque.
+                d.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
+                h.removeScoreboardTag("astral.plush.upright.v2");h.addScoreboardTag("decor.migrate");
+            }
+            World lobby=Bukkit.getWorld("lobby");if(lobby==null)lobby=Bukkit.createWorld(new WorldCreator("lobby").type(WorldType.FLAT).generateStructures(false));
+            Location back=player.getLocation();player.teleport(new Location(lobby,0,-60,0));player.setOp(true);
+            var lobbyFloor=lobby.getBlockAt(0,-61,0);lobbyFloor.setType(Material.STONE);
+            player.getInventory().setItemInMainHand(item("peluche_alex"));click(lobbyFloor);
+            check(plush().isEmpty() && player.getInventory().getItemInMainHand().getAmount()==1,"lobby bloqueado incluso OP sin consumir");
+            player.teleport(back);
         } else if(args[0].equals("result")) { getLogger().info("DECOR RESULT failures="+failures); }
       } catch(Exception ex) {failures++;getLogger().log(java.util.logging.Level.SEVERE,"DECOR FAIL exception",ex);}
       return true;

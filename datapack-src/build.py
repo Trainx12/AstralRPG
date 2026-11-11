@@ -719,6 +719,9 @@ for key, pred in ING_PRED.items():
 for c in SUBS:
     put(f"data/{NS}/item_modifier/sub/{c}.json", {"function": "minecraft:set_count", "count": -c, "add": True})
 
+put(f"data/{NS}/predicate/in_sanctuary.json", {"condition":"minecraft:any_of", "terms":[
+    {"condition":"minecraft:location_check", "predicate":{"dimension":"minecraft:"+world}}
+    for world in ("santuario","santuario_interstellar")]})
 put(f"data/{NS}/predicate/sneaking.json", {"condition": "minecraft:entity_properties", "entity": "this",
                                            "predicate": {"flags": {"is_sneaking": True}}})
 
@@ -1034,7 +1037,9 @@ fn("spell/ray", [
     "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
     "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
     # nbt=!{NoAI:1b}: los NPC de MythicMobs (vendedores, gachas) estan quietos y no se pueden lastimar.
-    f"execute as @e[{MOB},distance=..1.1,tag=!astral.caster,nbt=!{{NoAI:1b}},limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
+    # dx/dy/dz intersectan la caja, distance solo mide al origen (los pies).
+    # dx=0 es un cubo de UN bloque en Java; centrado da tolerancia .5 sin huecos.
+    f"execute positioned ~-0.5 ~-0.5 ~-0.5 as @e[{MOB},dx=0,dy=0,dz=0,tag=!astral.caster,nbt=!{{NoAI:1b}},limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
     f"execute unless block ~ ~ ~ #{NS}:passable run return run particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
     "scoreboard players add #steps astral.tmp 1",
     "execute if score #steps astral.tmp matches 50.. run return 0",

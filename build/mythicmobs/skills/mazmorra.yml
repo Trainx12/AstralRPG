@@ -3,8 +3,8 @@ MINA_MODELO_astral_mina_guardian:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_coloso_musgoso;s=2.0} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 2.13171"} @self
-  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 1.279026"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:scale base set 5.299882"} @self
+  - command{c="execute at <caster.uuid> run attribute <caster.uuid> minecraft:step_height base set 3.179929"} @self
 MINA_ONDA_GOLEM:
   Skills:
   - particles{p=cloud;amount=60;hS=5;vS=0.2;speed=0} @self
@@ -167,9 +167,10 @@ MINA_SALA4_LIMPIA:
   - command{c="lp user <target.name> permission set astral.completada.mina true"} @PlayersInRadius{r=43}
   - remove @MobsInRadius{r=43;types=astral_mina_cofre,astral_mina_guia}
   - summon{type=astral_mina_cofre;amount=1;radius=0;onSurface=false} @Location{x=36.5;y=24;z=-248.5}
+  - summon{type=astral_mina_guia;amount=1;radius=0;onSurface=false} @Location{x=38.5;y=24;z=-248.5}
   - skill{s=MINA_MASCOTA} @PlayersInRadius{r=43}
   - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=43}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=43}'
   Conditions:
   - hastag{tag=mina.jefe.derrotado} true
   - hastag{tag=mina.fin} false

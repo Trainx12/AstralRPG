@@ -5,6 +5,11 @@ instalado, `preview_decor.py` renderiza las alas con pechera solo en privado y
 `tools/probar_decor_paper.py` prueba AstralDecor con WorldGuard y reinicio local.
 Ver [tienda-modelo.md](../build/deploy/tienda-modelo.md); no instalar el plugin de prueba en remoto.
 
+Entrega conjunta posterior (sin desplegar): [yeti-bastones-guia.md](../build/deploy/yeti-bastones-guia.md).
+`deploy_yeti.py` conserva el FINAL de Tienda y prepara YAML privados aislados;
+`preview_plush.py` deja las vistas de peluches solo en privado. Usar la lista conjunta
+para instalar ambas tareas en un reinicio. Lobby no admite colocar peluches, tampoco OP.
+
 Mapa de dónde está cada cosa, cómo se agrega algo nuevo y cómo se sube al servidor (Empower Servers).
 La parte de administración (plugins, comandos, problemas conocidos) está en [SERVIDOR.md](SERVIDOR.md).
 

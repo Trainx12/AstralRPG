@@ -15,6 +15,14 @@ def run(java,server):
     if not server.is_relative_to(ROOT/'.local'):
         raise ValueError('Solo Paper local dentro de .local')
     work=ROOT/'.local/decor-probe';work.mkdir(exist_ok=True)
+    delivery=ROOT/'.local/terceros/AstralRPG-privado/build/entregas/yeti-bastones-guia'
+    # Instalar exactamente la entrega conjunta en el Paper local, nunca en remoto.
+    for kind in ('mobs','skills'):
+        shutil.copy2(delivery/f'mythicmobs/{kind}/astral.yml',server/f'plugins/MythicMobs/{kind}/astral.yml')
+        for name in ('mazmorra','bosque','tumba','cumbre','forja','tanda3a','tanda3b'):
+            source=ROOT/f'build/mythicmobs/{kind}/{name}.yml'
+            if source.exists():shutil.copy2(source,server/f'plugins/MythicMobs/{kind}/{name}.yml')
+    shutil.copy2(ROOT/'build/AstralRPG-Items.zip',server/'prueba/datapacks/AstralRPG-Items.zip')
     deps=[*server.joinpath('libraries').rglob('*.jar'),*server.joinpath('versions').rglob('*.jar'),
           server/'plugins/mythicmobs.jar',server/'plugins/bettermodel.jar',server/'plugins/worldguard.jar',server/'plugins/worldedit.jar']
     subprocess.run([str(java),'-m','jdk.compiler/com.sun.tools.javac.Main','-encoding','UTF-8',
@@ -22,6 +30,13 @@ def run(java,server):
     with zipfile.ZipFile(server/'plugins/DecorProbe.jar','w') as z:
         for p in work.joinpath('astraltest').glob('DecorProbe*.class'):z.write(p,'astraltest/'+p.name)
         z.writestr('plugin.yml',"name: DecorProbe\nversion: 1\nmain: astraltest.DecorProbe\napi-version: '26.1.2'\ndepend: [BetterModel, MythicMobs, AstralDecor, WorldGuard]\ncommands:\n  decorprobe: {}\n")
+        import sys
+        sys.path.insert(0,str(ROOT/'datapack-src'))
+        from mobs.tamanos import dimensions
+        heights=[1.95,dimensions('astral_esq_arquero',1)[1],10,.4,.5,
+                 dimensions('astral_momia',2)[1],dimensions('astral_golem_forja',2)[1],
+                 dimensions('astral_coloso_musgoso',2)[1],7]
+        z.writestr('config.yml',yaml.safe_dump({'probe-heights':heights}))
     shutil.copy2(ROOT/'build/runtime/AstralDecor.jar',server/'plugins/AstralDecor.jar')
     # Config completa del runtime propio; no copiar configuraciones generales de pruebas al servidor.
     with zipfile.ZipFile(ROOT/'build/runtime/AstralDecor.jar') as z:
@@ -46,7 +61,7 @@ def run(java,server):
                     time.sleep(1)
                 else:raise TimeoutError('Paper no arranco')
                 if stage=='primero':
-                    for c,wait in [('player',2),('npc',5),('wings',3),('plush',2),('result',1)]:
+                    for c,wait in [('player',2),('npc',5),('wings',3),('combat',4),('plush',2),('result',1)]:
                         cmd('decorprobe '+c);time.sleep(wait)
                 else:
                     time.sleep(5);cmd('decorprobe restart');time.sleep(2);cmd('decorprobe result');time.sleep(1)

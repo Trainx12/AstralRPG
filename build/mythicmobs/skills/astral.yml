@@ -8,20 +8,20 @@ AST_MODEL_astral_mapache:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_mapache} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 1.4375"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 0.862500"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 4.785638"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.871383"} @self
 AST_MODEL_astral_pinguino:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_pinguino} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.223214"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.333928"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.676361"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.205817"} @self
 AST_MODEL_astral_espantapajaros:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_espantapajaros} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.578125"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.546875"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 4.723818"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.834291"} @self
 AST_MODEL_astral_goblin:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -30,20 +30,20 @@ AST_MODEL_astral_abejorro:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_abejorro} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 1.296875"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 0.778125"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 7.457113"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 4.474268"} @self
 AST_MODEL_astral_arana:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_arana} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 1.083333"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 0.650000"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 1.539551"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 0.923731"} @self
 AST_MODEL_astral_cara:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_cara} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.35"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 2.010000"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.725"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.235000"} @self
 AST_MODEL_astral_grillo:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -112,38 +112,38 @@ AST_MODEL_astral_momia:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_momia;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.102564"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.261538"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 6.564451"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 3.938671"} @self
 AST_MODEL_astral_yeti:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_yeti;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.181818"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.909091"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 4.339701"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.603821"} @self
 AST_MODEL_astral_golem_forja:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.555266"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.533160"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.43786"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.062716"} @self
 AST_MODEL_astral_cangrejo:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_cangrejo;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.138889"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.883333"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.903165"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.341899"} @self
 AST_MODEL_astral_chaman:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_chaman;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.788358"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.673015"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 8.087792"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 4.852675"} @self
 AST_MODEL_astral_yeti_cumbre:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti;s=4.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 6.363636"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 3.818182"} @self
+  - model{m=astral_yeti;s=2.857142857142857} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 6.199573"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 3.719744"} @self
 AST_SILLA_VER:
   Skills:
   - delay 3
@@ -504,8 +504,8 @@ AST_MODEL_astral_momia_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_momia;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.102564"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.261538"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 6.564451"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 3.938671"} @self
   - delay 2
   - tint{c=FFD24A} @self
 AST_ANCESTRAL_SEVA_astral_momia:
@@ -516,8 +516,8 @@ AST_MODEL_astral_yeti_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_yeti;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.181818"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.909091"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 4.339701"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.603821"} @self
   - delay 2
   - tint{c=9FE8FF} @self
 AST_ANCESTRAL_SEVA_astral_yeti:
@@ -528,8 +528,8 @@ AST_MODEL_astral_golem_forja_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.555266"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.533160"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.43786"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.062716"} @self
   - delay 2
   - tint{c=FF6A2A} @self
 AST_ANCESTRAL_SEVA_astral_golem_forja:
@@ -540,8 +540,8 @@ AST_MODEL_astral_cangrejo_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_cangrejo;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.138889"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.883333"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.903165"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 2.341899"} @self
   - delay 2
   - tint{c=FF9AD0} @self
 AST_ANCESTRAL_SEVA_astral_cangrejo:
@@ -552,8 +552,8 @@ AST_MODEL_astral_chaman_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_chaman;s=2.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.788358"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.673015"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 8.087792"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 4.852675"} @self
   - delay 2
   - tint{c=7CFF6A} @self
 AST_ANCESTRAL_SEVA_astral_chaman:
@@ -564,48 +564,48 @@ AST_MODEL_astral_espantapajaros_elite:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_espantapajaros;s=1.35} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 3.480469"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 2.088281"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 6.377154"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 3.826292"} @self
   - delay 2
   - tint{c=FF3A3A} @self
 AST_MODEL_astral_abejorro_elite:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_abejorro;s=1.35} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 1.750781"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.050469"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 10.067102"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 6.040261"} @self
   - delay 2
   - tint{c=FFC020} @self
 AST_MODEL_astral_arana_elite:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_arana;s=1.35} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 1.4625"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 0.877500"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.078394"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.247036"} @self
   - delay 2
   - tint{c=40FFD0} @self
 AST_MODEL_astral_cara_elite:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_cara;s=1.35} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 4.5225"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 2.713500"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 5.028751"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 3.017251"} @self
   - delay 2
   - tint{c=A040FF} @self
 AST_MODEL_astral_cangrejo_elite:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_cangrejo;s=1.35} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 2.11875"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 1.271250"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.634637"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.580782"} @self
   - delay 2
   - tint{c=60A0FF} @self
 AST_MODEL_astral_golem_forja_mazmorra:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_golem_forja;s=8.0} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:scale base set 10.221063"} @self
-  - command{c="execute at <caster.uuid> run execute unless dimension minecraft:santuario unless dimension minecraft:santuario_interstellar run attribute <caster.uuid> minecraft:step_height base set 6.132638"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 13.751438"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 8.000000"} @self
 AST_YETI_PISOTON:
   Skills:
   - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self

@@ -96,8 +96,9 @@ FORJA_SALA3_LIMPIA:
   - command{c="lp user <target.name> permission set astral.completada.forja true"} @PlayersInRadius{r=64}
   - remove @MobsInRadius{r=64;types=astral_forja_cofre,astral_forja_guia}
   - summon{type=astral_forja_cofre;amount=1;radius=0;onSurface=false} @Location{x=-7.9;y=47;z=-21.1}
+  - summon{type=astral_forja_guia;amount=1;radius=0;onSurface=false} @Location{x=-5.9;y=47;z=-21.1}
   - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=64}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
   Conditions:
   - hastag{tag=forja.jefe.derrotado} true
   - hastag{tag=forja.fin} false

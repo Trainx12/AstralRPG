@@ -68,8 +68,9 @@ BOSQUE_SALA2_LIMPIA:
   - command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=48}
   - remove @MobsInRadius{r=48;types=astral_bosque_cofre,astral_bosque_guia}
   - summon{type=astral_bosque_cofre;amount=1;radius=0;onSurface=false} @Location{x=1604.5;y=101;z=1382.5}
+  - summon{type=astral_bosque_guia;amount=1;radius=0;onSurface=false} @Location{x=1606.5;y=101;z=1382.5}
   - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7Desde el cofre pueden volver al lobby."} @PlayersInRadius{r=48}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=48}'
   Conditions:
   - hastag{tag=bosque.jefe.derrotado} true
   - hastag{tag=bosque.fin} false

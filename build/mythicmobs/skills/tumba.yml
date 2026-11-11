@@ -111,7 +111,7 @@ TUMBA_SALA3_LIMPIA:
   - command{c="lp user <target.name> permission set astral.completada.tumba true"} @PlayersInRadius{r=64}
   - remove @MobsInRadius{r=64;types=astral_tumba_cofre,astral_tumba_guia}
   - summon{type=astral_tumba_cofre;amount=1;radius=0;onSurface=false} @Location{x=0.5;y=72;z=0.5}
-  - summon{type=astral_tumba_guia;amount=1;radius=0;onSurface=false} @Location{x=1.5;y=72;z=1.5}
+  - summon{type=astral_tumba_guia;amount=1;radius=0;onSurface=false} @Location{x=2.5;y=72;z=0.5}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=64}'
 TUMBA_SALA3_RESET:

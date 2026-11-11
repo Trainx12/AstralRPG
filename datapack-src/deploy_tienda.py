@@ -100,7 +100,7 @@ def manifest(sha,refs,count):
               '- Alas en segunda mano (F o inventario), con cualquier pechera. Sacarlas de esa mano las oculta. Sin proteccion ni vuelo; caen o se conservan segun las reglas de muerte/tumbas del servidor. El runtime nunca consume ni entrega copias. Los items viejos se actualizan a v15 al entrar.',
               '- Display pasajero, offset local detras de hombros, rotacion del cuerpo e interpolacion de 2 ticks; baja al agacharse. El objeto no se dibuja en la mano; GUI y suelo conservan su vista.',
               '- Peluches sobre superficies con colision (incluye losas y alfombras). Espacio libre de 0,9 bloques; mensajes al faltar apoyo, permiso, espacio o ante interaccion bloqueada. Conserva cancelaciones ajenas.',
-              '- Para decorar lobby: OP con bypass WorldGuard activo o `lp user <jugador> permission set worldguard.region.bypass.lobby true`. Revocar el permiso al terminar. No abrir build para todos. El runtime consulta el bypass oficial tambien al recoger.',
+              '- Lobby: no permite colocar peluches, tampoco con OP o bypass. Mensaje: Aca no se pueden poner peluches. No otorgar permisos para decorar lobby. La recogida conserva la consulta de WorldGuard.',
               '- WorldGuard y WorldEdit usados en la prueba local; Bolt, Essentials y AxGraves no estan cargados alli. Si otro plugin bloquea, revisar su permiso en remoto; no desactivar protecciones globalmente.', '',
               '## Calidad y limites', '',
               '- Cuatro vueltas renderizadas, con comparacion frontal, ambos tres cuartos, costado y espalda. Evidencia privada en `.local/tienda-review/vuelta1.png` a `vuelta4.png`.',
@@ -113,7 +113,8 @@ def manifest(sha,refs,count):
               f'- Render de alas Asura y Carnivora con pechera, frente/espalda/costado: `{private}/previews/alas-pechera.png` (solo privado).',
               '- Paper con jugador NMS simulado verifica estado, protecciones y reinicio; no certifica suavidad visual de caminar/correr/saltar ni el clic del menu con cliente real. Revisar esas acciones y las tumbas al desplegar. No hay captura de cliente ni despliegue remoto.', '',
               'Reproduccion: generar datapack/lobby/MythicMobs y `python mobs/preview_tanda3c.py npc`; compilar build_runtime.py; ejecutar `tools/probar_decor_paper.py` con Java25/Paper local; `python datapack-src/deploy_tienda.py --assets <Paper>/plugins/BetterModel/build/assets`; luego `python build_pack.py pack-source` desde datapack-src.', '']
-    tests=ROOT/'.local/tienda-tests.txt'
+    tests=ROOT/'.local/yeti-tests.txt'
+    if not tests.exists():tests=ROOT/'.local/tienda-tests.txt'
     probes=[ROOT/'.local/decor-probe'/n for n in ('primero.log','reinicio.log')]
     if tests.exists() and all(p.exists() for p in probes):
         blob=tests.read_bytes();suite=blob.decode('utf-16' if blob.startswith((b'\xff\xfe',b'\xfe\xff')) else 'utf8',errors='replace')

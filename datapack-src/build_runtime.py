@@ -22,7 +22,7 @@ def build(jdk,server):
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralDecor*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(),(2026,11,10,0,0,0)),p.read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.1.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI]\n')
+        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.2.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI]\n')
         from mobs.tanda3c import NPC_MODELOS, MAQUINAS, MAZMORRAS
         models={mid:'astral_npc_'+name for mid,name in NPC_MODELOS.items()}
         skills={mid:'AST_NPC_'+name for mid,name in NPC_MODELOS.items()}
