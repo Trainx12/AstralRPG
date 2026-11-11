@@ -47,6 +47,7 @@ def txt(text, color="gray", **kw):
 # ---------------------------------------------------------------------------
 ITEMS = {}      # id -> {"base":..., "components": {...}, "name":..., "kind":...}
 FICHAS = {}
+REQUIREMENTS = {}
 RECIPES = []    # (out_id, count, ingredients, group)
 
 
@@ -90,6 +91,8 @@ def aura_pdc(kind, skill=None, level=None, traits=None):
 
 def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None, model=None,
              glint=None, kind="item"):
+    REQUIREMENTS[item_id] = {s: n for key, value in (pdc or {}).items()
+                             if key.endswith('_requirements') for s, n in value.items()}
     custom = {NS: dict({"id": item_id, "v": ITEM_VERSION}, **astral_data)}
     if pdc:
         custom["PublicBukkitValues"] = pdc
@@ -560,6 +563,9 @@ for _iid in ARMOR_ITEMS:
 # ---------------------------------------------------------------------------
 from tanda4b import register as register_tanda4b
 register_tanda4b(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
+from mesa import prepare as prepare_mesa, export as export_mesa
+MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
+export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
 for iid, it in ITEMS.items():
     put(f"data/{NS}/loot_table/item/{iid}.json", {
         "type": "minecraft:command",
@@ -1763,6 +1769,8 @@ def recipe_detail(rid, back):
     desc = [txt(it["name"] + (f" x{n}" if n > 1 else "") + "\n", it["color"], bold=True),
             txt("Necesitas:\n", "gray")]
     desc += [txt(f"  {c}x {ing_name(k, i)}\n", "white") for (k, i, c) in ings]
+    desc.append(txt("Tambien en la mesa de crafteo\n" if MESA[out]
+                    else "Solo Forja: las cantidades superan la mesa 3x3\n", "dark_green"))
     body = [{"type": "minecraft:item", "item": item_stack(out, n),
              "description": {"contents": desc, "width": 220},
              "show_decorations": True, "show_tooltip": True, "width": 16, "height": 16},
@@ -1841,6 +1849,12 @@ for m, ways in WHERE.items():
 dlg("guia/drops", txt("Donde se consiguen", "gold", bold=True), drop_body, [], back="guia/materiales")
 
 dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
+    msg("MESA Y LIBRO DE RECETAS", "gold"),
+    msg("Las recetas que entran en 3x3 tambien se hacen en una mesa normal. El libro verde las desbloquea "
+        "al conseguir uno de sus materiales; hace clic para autollenar. Usa materiales Astral exactos. "
+        "La mesa exige el nivel de AuraSkills del resultado. Las recetas grandes siguen en la Forja.", "gray"),
+    msg("ACCESO RAPIDO A LA GUIA", "gold"),
+    msg("Opciones -> Controles -> Acciones rapidas: asigna una tecla para abrir la Guia Astral.", "gray"),
     msg("FORJA ASTRAL", "gold"),
     msg("Pone una Mesa de Herreria, abri esta guia al lado y apreta Forjar en lo que quieras hacer. "
         "Los materiales se sacan solos de tu inventario.", "gray"),

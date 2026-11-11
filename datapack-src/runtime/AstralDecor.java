@@ -24,6 +24,163 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
 /** Runtime propio de la tanda 4b. Datos persistentes en entidades/chunks. */
 public final class AstralDecor extends JavaPlugin implements Listener {
+    private static final class TableRecipe {
+        NamespacedKey key;
+        final List<ItemStack> ingredients = new ArrayList<>();
+        final Map<String,Integer> requirements = new HashMap<>();
+        final List<Integer> questTiers = new ArrayList<>();
+    }
+    private final Map<NamespacedKey,TableRecipe> tableRecipes = new LinkedHashMap<>();
+    private final Map<UUID,Long> craftWarnings = new HashMap<>();
+    private final List<ItemStack> tableItems = new ArrayList<>();
+    private ItemStack recipeItem(String id) {
+        var table=Bukkit.getLootTable(NamespacedKey.fromString("astral:item/"+id));
+        if(table==null)throw new IllegalStateException("Falta loot astral:item/"+id);
+        return table.populateLoot(random,new org.bukkit.loot.LootContext.Builder(Bukkit.getWorlds().getFirst().getSpawnLocation()).build()).iterator().next();
+    }
+    private void loadTableRecipes() {
+        tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();tableItems.clear();
+        try(var in=getResource("mesa.json")) {
+            var rows=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8)).getAsJsonArray();
+            for(var element:rows) {
+                var row=element.getAsJsonObject();if(!row.get("table").getAsBoolean())continue;
+                String output=row.get("output").getAsString();
+                TableRecipe data=new TableRecipe();data.key=new NamespacedKey("astral","mesa/"+output);
+                var result=recipeItem(output);result.setAmount(row.get("count").getAsInt());
+                var recipe=new ShapelessRecipe(data.key,result);
+                // Un grupo por resultado: compartir grupo ocultaria alternativas tras una sola tarjeta.
+                recipe.setGroup("astral_"+output);recipe.setCategory(org.bukkit.inventory.recipe.CraftingBookCategory.MISC);
+                for(var ingredient:row.getAsJsonArray("ingredients")) {
+                    var a=ingredient.getAsJsonArray();String kind=a.get(0).getAsString(),id=a.get(1).getAsString();
+                    ItemStack item;
+                    if(kind.equals("c"))item=recipeItem(id);
+                    else if(id.equals("water_bottle")) {
+                        item=new ItemStack(Material.POTION);var meta=(org.bukkit.inventory.meta.PotionMeta)item.getItemMeta();
+                        meta.setBasePotionType(org.bukkit.potion.PotionType.WATER);item.setItemMeta(meta);
+                    } else item=new ItemStack(Objects.requireNonNull(Material.matchMaterial(id)));
+                    item.setAmount(1);
+                    for(int i=0;i<a.get(2).getAsInt();i++) {recipe.addIngredient(new RecipeChoice.ExactChoice(item));data.ingredients.add(item);}
+                }
+                row.getAsJsonObject("requirements").entrySet().forEach(e->data.requirements.put(e.getKey(),e.getValue().getAsInt()));
+                String custom=result.getItemMeta().getAsString();
+                for(int tier:List.of(1,5))if(custom.matches("(?s).*\\btier:"+tier+"[,}].*") || output.equals("baston_"+tier))data.questTiers.add(tier);
+                rememberTableItem(result.asOne());
+                for(var ingredient:data.ingredients)if(astralIngredient(ingredient))rememberTableItem(ingredient);
+                if(!Bukkit.addRecipe(recipe))throw new IllegalStateException("Receta duplicada "+data.key);
+                tableRecipes.put(data.key,data);
+            }
+            discoverTableRecipes();
+            getLogger().info("Mesa Astral: "+tableRecipes.size()+" recetas exactas registradas");
+        } catch(Exception ex) {
+            tableRecipes.keySet().forEach(Bukkit::removeRecipe);tableRecipes.clear();tableItems.clear();
+            getLogger().log(java.util.logging.Level.SEVERE,"No se pudieron registrar las recetas Astral",ex);
+        }
+    }
+    private void rememberTableItem(ItemStack item) {
+        if(tableItems.stream().noneMatch(item::isSimilar))tableItems.add(item);
+    }
+    private void discoverTableRecipes() {
+        for(Player p:Bukkit.getOnlinePlayers()) {
+          // Migrar solo lore de items canonicos previos; conservar cantidades y otros componentes.
+          for(var item:p.getInventory().getContents())if(astralIngredient(item)) {
+            for(var canonical:tableItems) {
+                if(item.getType()!=canonical.getType())continue;
+                if(item.isSimilar(canonical))break;
+                var candidate=item.clone();var meta=candidate.getItemMeta();
+                meta.lore(canonical.getItemMeta().lore());candidate.setItemMeta(meta);
+                if(candidate.isSimilar(canonical)) {item.setItemMeta(meta);break;}
+            }
+          }
+          for(var recipe:tableRecipes.values()) {
+            if(p.hasDiscoveredRecipe(recipe.key))continue;
+            boolean found=false;
+            for(var item:p.getInventory().getContents()) {
+                if(item!=null && recipe.ingredients.stream().anyMatch(ingredient->ingredient.isSimilar(item))) {found=true;break;}
+            }
+            if(found)p.discoverRecipe(recipe.key);
+          }
+        }
+    }
+    @EventHandler public void tableReload(org.bukkit.event.server.ServerLoadEvent e) {
+        if(e.getType()==org.bukkit.event.server.ServerLoadEvent.LoadType.RELOAD)loadTableRecipes();
+    }
+    @EventHandler public void tableQuit(PlayerQuitEvent e) {craftWarnings.remove(e.getPlayer().getUniqueId());}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectFuel(FurnaceBurnEvent e) {
+        if(astralIngredient(e.getFuel()))e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectSmelting(FurnaceSmeltEvent e) {
+        if(astralIngredient(e.getSource()))e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectCampfire(BlockCookEvent e) {
+        if(astralIngredient(e.getSource()))e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectBrewing(BrewEvent e) {
+        for(var item:e.getContents().getContents())if(astralIngredient(item)) {e.setCancelled(true);return;}
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectBrewingFuel(BrewingStandFuelEvent e) {
+        if(astralIngredient(e.getFuel()))e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST) public void protectSmithing(PrepareSmithingEvent e) {
+        for(var item:e.getInventory().getContents())if(astralIngredient(item)) {e.setResult(null);return;}
+    }
+    private boolean astralIngredient(ItemStack item) {
+        // Incluye materiales sin item_model y objetos Astral de versiones anteriores.
+        return item!=null && item.hasItemMeta() && item.getItemMeta().getAsString().contains("astral:");
+    }
+    private TableRecipe tableRecipe(Recipe recipe) {
+        return recipe instanceof Keyed keyed?tableRecipes.get(keyed.getKey()):null;
+    }
+    private boolean tableLevel(Player player,TableRecipe recipe) {
+        if(recipe.requirements.isEmpty())return true;
+        try {
+            var plugin=Bukkit.getPluginManager().getPlugin("AuraSkills");
+            if(plugin==null || !plugin.isEnabled())return false;
+            var api=Class.forName("dev.aurelium.auraskills.api.AuraSkillsApi",true,plugin.getClass().getClassLoader());
+            Object instance=api.getMethod("get").invoke(null);
+            Object user=api.getMethod("getUser",UUID.class).invoke(instance,player.getUniqueId());
+            var skills=Class.forName("dev.aurelium.auraskills.api.skill.Skills",true,plugin.getClass().getClassLoader());
+            var skillType=Class.forName("dev.aurelium.auraskills.api.skill.Skill",true,plugin.getClass().getClassLoader());
+            var userType=Class.forName("dev.aurelium.auraskills.api.user.SkillsUser",true,plugin.getClass().getClassLoader());
+            for(var req:recipe.requirements.entrySet()) {
+                Object skill=skills.getField(req.getKey().split(":")[1].toUpperCase(Locale.ROOT)).get(null);
+                if((int)userType.getMethod("getSkillLevel",skillType).invoke(user,skill)<req.getValue())return false;
+            }
+            return true;
+        } catch(ReflectiveOperationException | RuntimeException ex) {return false;}
+    }
+    private boolean allowedTable(Player p,CraftingInventory inventory,Recipe recipe) {
+        TableRecipe data=tableRecipe(recipe);
+        if(data!=null) {
+            if(tableLevel(p,data))return true;
+            long now=System.currentTimeMillis();
+            if(now-craftWarnings.getOrDefault(p.getUniqueId(),0L)>2000) {
+                craftWarnings.put(p.getUniqueId(),now);
+                var names=Map.of("defense","Defensa","fighting","Combate","sorcery","Hechiceria","forging","Forja","mining","Mineria","foraging","Tala","archery","Arqueria");
+                String needed=String.join(", ",data.requirements.entrySet().stream().map(e->names.getOrDefault(e.getKey().split(":")[1],e.getKey())+" "+e.getValue()).toList());
+                p.sendMessage("Para fabricar necesitas "+needed+" de AuraSkills. Consulta la Guia Astral.");
+            }
+            return false;
+        }
+        return Arrays.stream(inventory.getMatrix()).noneMatch(this::astralIngredient);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST) public void prepareTable(PrepareItemCraftEvent e) {
+        if(e.getView().getPlayer() instanceof Player p && !allowedTable(p,e.getInventory(),e.getRecipe()))e.getInventory().setResult(null);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void takeTable(CraftItemEvent e) {
+        if(e.getWhoClicked() instanceof Player p && !allowedTable(p,e.getInventory(),e.getRecipe())) {e.setCancelled(true);e.getInventory().setResult(null);}
+        // Consumo, sobrantes (cubos), inventario lleno y shift-clic quedan a cargo de Paper.
+    }
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void tableQuest(CraftItemEvent e) {
+        var data=tableRecipe(e.getRecipe());
+        if(data==null || e.getCurrentItem()==null || e.getCurrentItem().getType().isAir() || e.getAction()==InventoryAction.NOTHING)return;
+        Player p=(Player)e.getWhoClicked();
+        // Registrar solo despues de comprobar que hubo consumo real, sin premios por previsualizar.
+        var before=Arrays.stream(e.getInventory().getMatrix()).filter(Objects::nonNull).mapToInt(ItemStack::getAmount).sum();
+        getServer().getScheduler().runTask(this,()->{
+            int after=Arrays.stream(e.getInventory().getMatrix()).filter(Objects::nonNull).mapToInt(ItemStack::getAmount).sum();
+            if(after<before)for(int tier:data.questTiers)Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"execute as "+p.getName()+" run function astral:quest/event/forge"+tier);
+        });
+    }
     private static final class PlushShop implements InventoryHolder {
         private Inventory inventory;
         public Inventory getInventory() { return inventory; }
@@ -163,6 +320,8 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             saveConfig();
         } catch(java.io.IOException ex) { throw new IllegalStateException(ex); }
         getServer().getPluginManager().registerEvents(this,this);
+        getServer().getScheduler().runTask(this,this::loadTableRecipes);
+        getServer().getScheduler().runTaskTimer(this,this::discoverTableRecipes,20,20);
         // Descubrir equipo a 2 Hz; la ruta de 20 Hz solo visita portadores de alas.
         getServer().getScheduler().runTaskTimer(this,this::discoverWings,1,10);
         getServer().getScheduler().runTaskTimer(this,this::wings,2,1);
@@ -173,7 +332,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, alas, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
-    public void onDisable() { wings.values().forEach(Entity::remove); wings.clear(); wingWearers.clear(); wingYaw.clear(); hats.values().forEach(Entity::remove);hats.clear(); }
+    public void onDisable() { tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear(); wings.values().forEach(Entity::remove); wings.clear(); wingWearers.clear(); wingYaw.clear(); hats.values().forEach(Entity::remove);hats.clear(); }
     private String id(ItemStack item) {
         if(item == null || !item.hasItemMeta()) return "";
         NamespacedKey key = item.getItemMeta().getItemModel();

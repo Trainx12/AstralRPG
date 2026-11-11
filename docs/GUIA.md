@@ -1,5 +1,13 @@
 # Guía para agregar cosas a AstralRPG
 
+Recetas de mesa preparadas, sin desplegar: [recetas-mesa.md](../build/deploy/recetas-mesa.md).
+`build.py` exporta las mismas recetas de la Forja a `build/runtime/mesa.json`; `build_runtime.py`
+lo incluye en AstralDecor 1.5.0. La mesa exige ingredientes exactos y niveles del resultado.
+El libro verde desbloquea cada receta al tener un ingrediente; las de mas de nueve unidades
+siguen solo en la Forja. La guia explica cuales aplican. Para abrirla con una tecla:
+Opciones -> Controles -> Acciones rapidas. Regenerar datapack **y JAR** al cambiar recetas;
+no requiere cambiar el resource pack. Reinicio completo para instalar ambos archivos.
+
 Correccion de casco Carnivora y seguimiento de alas (sin desplegar):
 [alas-casco.md](../build/deploy/alas-casco.md). Entrega posterior a Cosmeticos y tanda5a;
 `deploy_alas_casco.py` conserva su FINAL y solo cambia dos wrappers privados.

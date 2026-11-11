@@ -1,0 +1,4126 @@
+[
+  {
+    "output": "gancho",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:fishing_rod",
+        1
+      ],
+      [
+        "v",
+        "minecraft:iron_ingot",
+        2
+      ],
+      [
+        "v",
+        "minecraft:string",
+        2
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "netherita_reforzada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "v",
+        "minecraft:blaze_powder",
+        4
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "shadowsteel",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:iron_ingot",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "cuero_tratado",
+    "count": 2,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather",
+        8
+      ],
+      [
+        "v",
+        "water_bottle",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "palo_reforzado",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "v",
+        "minecraft:stick",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "fragmento_cristal",
+    "count": 4,
+    "ingredients": [
+      [
+        "c",
+        "cristal_arcano",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "cristal_refinado",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "fragmento_cristal",
+        4
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "gema_umbria_fragmentada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "fragmento_umbrio",
+        8
+      ],
+      [
+        "v",
+        "minecraft:coal",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "gema_umbria",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "fragmento_umbrio",
+        8
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "nucleo_furia_pura",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "nucleo_furia",
+        4
+      ],
+      [
+        "v",
+        "minecraft:blaze_powder",
+        4
+      ],
+      [
+        "v",
+        "minecraft:lava_bucket",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "polvo_astral",
+    "count": 2,
+    "ingredients": [
+      [
+        "c",
+        "fragmento_astral",
+        8
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "nucleo_astral",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "polvo_astral",
+        4
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        4
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "nucleo_eolico",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:feather",
+        4
+      ],
+      [
+        "c",
+        "madera_estelar",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "gema_luminica_perfecta",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_luminica",
+        8
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "gema_umbria_perfecta",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_umbria",
+        8
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Materiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "berserker_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "berserker_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "berserker_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "berserker_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "berserker_2_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        3
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "berserker_2_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        3
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "berserker_2_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        3
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "berserker_2_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_1_boots",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        3
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "berserker_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_2_helmet",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "berserker_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_2_chestplate",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "berserker_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_2_leggings",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "berserker_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_2_boots",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "berserker_4_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "berserker_4_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "berserker_4_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "berserker_4_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_3_boots",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "berserker_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_4_helmet",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "berserker_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_4_chestplate",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "berserker_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_4_leggings",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "berserker_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_4_boots",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "mago_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "mago_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "mago_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "mago_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "mago_2_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "mago_2_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "mago_2_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "mago_2_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_1_boots",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "mago_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_2_helmet",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "mago_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_2_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "mago_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_2_leggings",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "mago_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_2_boots",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "mago_4_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "mago_4_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "mago_4_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "mago_4_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_3_boots",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "mago_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_4_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "mago_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_4_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "mago_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_4_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "mago_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_4_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "arquero_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "arquero_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "arquero_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "arquero_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 6
+    }
+  },
+  {
+    "output": "arquero_2_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "arquero_2_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "arquero_2_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "arquero_2_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_1_boots",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 10
+    }
+  },
+  {
+    "output": "arquero_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_2_helmet",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "arquero_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_2_chestplate",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "arquero_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_2_leggings",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "arquero_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_2_boots",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 14
+    }
+  },
+  {
+    "output": "arquero_4_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "arquero_4_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "arquero_4_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "arquero_4_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_3_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 18
+    }
+  },
+  {
+    "output": "arquero_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_4_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "arquero_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_4_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "arquero_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_4_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "arquero_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_4_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "espada_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 12
+    }
+  },
+  {
+    "output": "espada_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_1",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        1
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "espada_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_2",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "espada_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_3",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "espada_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_4",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "hacha_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        3
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        2
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 12
+    }
+  },
+  {
+    "output": "hacha_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_1",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "hacha_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_2",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "hacha_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_3",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "hacha_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_4",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "baston_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "fragmento_cristal",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 8
+    }
+  },
+  {
+    "output": "baston_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_1",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 14
+    }
+  },
+  {
+    "output": "baston_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_2",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "baston_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_3",
+        1
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 26
+    }
+  },
+  {
+    "output": "baston_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_4",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "guadana_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        2
+      ],
+      [
+        "c",
+        "shadowsteel",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 12
+    }
+  },
+  {
+    "output": "guadana_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_1",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        2
+      ],
+      [
+        "c",
+        "shadowsteel",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 16
+    }
+  },
+  {
+    "output": "guadana_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_2",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "guadana_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_3",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 26
+    }
+  },
+  {
+    "output": "guadana_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_4",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        2
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "arco_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "v",
+        "minecraft:string",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 8
+    }
+  },
+  {
+    "output": "arco_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_1",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 14
+    }
+  },
+  {
+    "output": "arco_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_2",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 20
+    }
+  },
+  {
+    "output": "arco_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_3",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 25
+    }
+  },
+  {
+    "output": "arco_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_4",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 30
+    }
+  },
+  {
+    "output": "espada_tormenta",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ],
+      [
+        "v",
+        "minecraft:lightning_rod",
+        1
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "espada_sombras",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "shadowsteel",
+        5
+      ],
+      [
+        "c",
+        "gema_umbria",
+        3
+      ],
+      [
+        "v",
+        "minecraft:ender_pearl",
+        8
+      ]
+    ],
+    "group": "Especiales",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "espada_destello",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "v",
+        "minecraft:ender_pearl",
+        4
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "hacha_terremoto",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "netherita_reforzada",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ],
+      [
+        "v",
+        "minecraft:obsidian",
+        8
+      ]
+    ],
+    "group": "Especiales",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "varita_curacion",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ],
+      [
+        "v",
+        "minecraft:ghast_tear",
+        2
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "varita_estallido",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ],
+      [
+        "c",
+        "cristal_arcano",
+        3
+      ],
+      [
+        "v",
+        "minecraft:blaze_powder",
+        8
+      ]
+    ],
+    "group": "Especiales",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "guadana_umbria",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "gema_umbria",
+        3
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 16
+    }
+  },
+  {
+    "output": "guantes_meteoro",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "v",
+        "minecraft:blaze_powder",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Especiales",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 12
+    }
+  },
+  {
+    "output": "taladro_diamante",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:diamond_block",
+        2
+      ],
+      [
+        "v",
+        "minecraft:iron_block",
+        2
+      ],
+      [
+        "v",
+        "minecraft:redstone_block",
+        4
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 5
+    }
+  },
+  {
+    "output": "taladro_mitril",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_diamante",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "v",
+        "minecraft:prismarine_crystals",
+        8
+      ],
+      [
+        "v",
+        "minecraft:diamond_block",
+        2
+      ]
+    ],
+    "group": "Taladros",
+    "table": false,
+    "requirements": {
+      "auraskills:mining": 8
+    }
+  },
+  {
+    "output": "taladro_amatista",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_mitril",
+        1
+      ],
+      [
+        "v",
+        "minecraft:amethyst_block",
+        8
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ]
+    ],
+    "group": "Taladros",
+    "table": false,
+    "requirements": {
+      "auraskills:mining": 12
+    }
+  },
+  {
+    "output": "taladro_rubi",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_amatista",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        2
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "v",
+        "minecraft:redstone_block",
+        8
+      ]
+    ],
+    "group": "Taladros",
+    "table": false,
+    "requirements": {
+      "auraskills:mining": 16
+    }
+  },
+  {
+    "output": "taladro_topacio",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_rubi",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ],
+      [
+        "c",
+        "esencia_elite",
+        2
+      ],
+      [
+        "v",
+        "minecraft:gold_block",
+        4
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 20
+    }
+  },
+  {
+    "output": "taladro_titanio",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_topacio",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "v",
+        "minecraft:netherite_ingot",
+        2
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 25
+    }
+  },
+  {
+    "output": "taladro_jaspe",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_titanio",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 30
+    }
+  },
+  {
+    "output": "taladro_gemas",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_jaspe",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ],
+      [
+        "c",
+        "polvo_astral",
+        4
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 35
+    }
+  },
+  {
+    "output": "taladro_divan",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "taladro_gemas",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        2
+      ],
+      [
+        "c",
+        "chispa_astral",
+        4
+      ],
+      [
+        "v",
+        "minecraft:netherite_block",
+        1
+      ]
+    ],
+    "group": "Taladros",
+    "table": true,
+    "requirements": {
+      "auraskills:mining": 40
+    }
+  },
+  {
+    "output": "motosierra_basica",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:iron_block",
+        3
+      ],
+      [
+        "v",
+        "minecraft:diamond",
+        4
+      ],
+      [
+        "v",
+        "minecraft:redstone_block",
+        2
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ]
+    ],
+    "group": "Motosierras",
+    "table": false,
+    "requirements": {
+      "auraskills:foraging": 5
+    }
+  },
+  {
+    "output": "motosierra_avanzada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "motosierra_basica",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        2
+      ],
+      [
+        "v",
+        "minecraft:diamond_block",
+        2
+      ]
+    ],
+    "group": "Motosierras",
+    "table": true,
+    "requirements": {
+      "auraskills:foraging": 10
+    }
+  },
+  {
+    "output": "motosierra_industrial",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "motosierra_avanzada",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        3
+      ],
+      [
+        "c",
+        "esencia_elite",
+        2
+      ],
+      [
+        "v",
+        "minecraft:emerald_block",
+        2
+      ]
+    ],
+    "group": "Motosierras",
+    "table": true,
+    "requirements": {
+      "auraskills:foraging": 16
+    }
+  },
+  {
+    "output": "motosierra_infernal",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "motosierra_industrial",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        3
+      ],
+      [
+        "c",
+        "esencia_nether",
+        4
+      ],
+      [
+        "v",
+        "minecraft:netherite_ingot",
+        2
+      ]
+    ],
+    "group": "Motosierras",
+    "table": false,
+    "requirements": {
+      "auraskills:foraging": 24
+    }
+  },
+  {
+    "output": "motosierra_astral",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "motosierra_infernal",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        8
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "polvo_astral",
+        4
+      ]
+    ],
+    "group": "Motosierras",
+    "table": false,
+    "requirements": {
+      "auraskills:foraging": 32
+    }
+  },
+  {
+    "output": "talisman_vida_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "esencia_elite",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ],
+      [
+        "v",
+        "minecraft:golden_apple",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_vida_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_vida_1",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_vida_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_vida_2",
+        1
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_furia_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "esencia_elite",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ],
+      [
+        "v",
+        "minecraft:blaze_rod",
+        2
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_furia_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_furia_1",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_furia_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_furia_2",
+        1
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_viento_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "esencia_elite",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ],
+      [
+        "v",
+        "minecraft:feather",
+        4
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_viento_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_viento_1",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_viento_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_viento_2",
+        1
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_roca_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "esencia_elite",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ],
+      [
+        "v",
+        "minecraft:iron_block",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_roca_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_roca_1",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talisman_roca_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "talisman_roca_2",
+        1
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Talismanes",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "lanza_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:iron_spear",
+        1
+      ],
+      [
+        "c",
+        "esencia_elite",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 10
+    }
+  },
+  {
+    "output": "lanza_2",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_1",
+        1
+      ],
+      [
+        "c",
+        "esencia_elite",
+        3
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 15
+    }
+  },
+  {
+    "output": "lanza_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_2",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "lanza_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_3",
+        1
+      ],
+      [
+        "c",
+        "alma_corrupta",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "lanza_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_4",
+        1
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "carnivora_espada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_hacha",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_guadana",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_baston",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_arco",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_lanza",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_martillo",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        12
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_pico",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_pala",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_azada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_cana",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_escudo",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "carnivora_alas",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "colmillo_carnivoro",
+        8
+      ],
+      [
+        "c",
+        "shadowsteel",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Carnivora",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "asura_espada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asura_moneda_emerald",
+        32
+      ],
+      [
+        "c",
+        "asura_moneda_card",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_circle",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_square",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_triangle",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria",
+        2
+      ]
+    ],
+    "group": "Asura",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "asura_alas",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asura_moneda_emerald",
+        32
+      ],
+      [
+        "c",
+        "asura_moneda_card",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_circle",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_square",
+        2
+      ],
+      [
+        "c",
+        "asura_moneda_triangle",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        3
+      ],
+      [
+        "c",
+        "gema_umbria",
+        2
+      ]
+    ],
+    "group": "Asura",
+    "table": false,
+    "requirements": {}
+  }
+]

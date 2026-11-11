@@ -58,7 +58,8 @@ class ToolsTest(unittest.TestCase):
             client = Mock()
             with patch.object(subir_pack_r2, 'fields', return_value=data), \
                  patch('boto3.client', return_value=client), \
-                 patch.object(subir_pack_r2, 'urlopen', return_value=io.BytesIO(b'wrong')):
+                 patch.object(subir_pack_r2, 'urlopen', side_effect=lambda *a, **kw: io.BytesIO(b'wrong')), \
+                 patch.object(subir_pack_r2, 'sleep'):
                 with self.assertRaisesRegex(ValueError, 'no coincide'):
                     subir_pack_r2.upload(path)
             self.assertEqual(client.upload_file.call_args.args[1:3], ('astralrpg-pack', 'AstralRPG-Textures.zip'))

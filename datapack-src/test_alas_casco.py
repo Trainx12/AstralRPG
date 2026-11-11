@@ -10,25 +10,28 @@ from tanda4b_privado import rotate
 
 
 class AlasCascoTests(unittest.TestCase):
-    def test_datapack_changes_only_helmet_and_targeted_migration(self):
+    def test_helmet_components_and_targeted_migration(self):
         previous=subprocess.check_output(['git','show','75f49c4fde2f39faeb178f4b364da02b9c5bf8a6:build/AstralRPG-Items.zip'],cwd=ROOT)
         with zipfile.ZipFile(io.BytesIO(previous)) as old, zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as new:
             added=set(new.namelist())-set(old.namelist())
             self.assertEqual(added,{'data/astral/item_modifier/carnivora_head.json','data/astral/function/upgrade/carnivora_head.mcfunction'})
             self.assertTrue(set(old.namelist())<=set(new.namelist()))
-            changed=[n for n in old.namelist() if old.read(n)!=new.read(n)]
+            # Comprobar la reparacion puntual; futuras tareas pueden cambiar guia/lore.
+            changed=[n for n in old.namelist() if old.read(n)!=new.read(n) and
+                     (n=='data/astral/function/upgrade/check.mcfunction' or
+                      'carnivora_helmet' in n and ('/upgrade/' in n or '/loot_table/item/' in n))]
             for n in changed:
                 if n.endswith('.json'):
                     a=json.loads(old.read(n));b=json.loads(new.read(n))
-                    self.assertIn('carnivora_helmet',old.read(n).decode())
-                    def repair(value):
+                    def repair(value, expected=False):
                         if isinstance(value,dict):
+                            value.pop('minecraft:lore',None)
                             eq=value.get('minecraft:equippable')
-                            if eq and eq.get('slot')=='head':eq.pop('asset_id',None)
-                            for v in value.values():repair(v)
+                            if expected and eq and eq.get('slot')=='head':eq.pop('asset_id',None)
+                            for v in value.values():repair(v,expected)
                         elif isinstance(value,list):
-                            for v in value:repair(v)
-                    repair(a);self.assertEqual(a,b,n)
+                            for v in value:repair(v,expected)
+                    repair(a,True);repair(b);self.assertEqual(a,b,n)
                 else:
                     self.assertTrue(n=='data/astral/function/upgrade/check.mcfunction' or '/upgrade/' in n and n.endswith('/carnivora_helmet.mcfunction'),n)
             modifier=json.loads(new.read('data/astral/item_modifier/carnivora_head.json'))
