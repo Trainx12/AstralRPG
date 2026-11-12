@@ -23,7 +23,7 @@ ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', pelu
 EXTRA_KEYS = ('mochilas','proteccion','recetas','tren','santuario','titulos',
               'subastas','vender','intercambio','tienda','peluches','bosque',
               'gacha_rpg','gacha_monturas','gacha_cosmeticos',
-              'back','next','close','clear','lock','saldo','ranking','pagar','valor',
+              'back','next','close','clear','lock','saldo','ranking','pagar','valor','premios',
               'login','password','premium','panel','atlas','spiral','spiral2','paradise3',
               'colorescape','magmarun','batallanaval','dropper_facil','dropper_h4rs')
 EXTRA_KEYS += tuple(f'dropper_{kind}_{n}' for kind,count in (('facil',6),('h4rs',10)) for n in range(1,count+1))
@@ -38,8 +38,56 @@ def title():
 GEMINI_ICONS = ('fragmentos', 'duelos', 'cosmeticos', 'mochilas', 'proteccion', 'recetas', 'tren', 'santuario')
 
 
+# Botones con arte de Gemini (pedido 12/11/2026: los dibujitos se veian pobres).
+# Reusados de otras ventanas: recorte cuadrado del centro de su ilustracion.
+REUSE = dict(vender='bazar_vender', intercambio='bazar_intercambio', subastas='subastas_mercado',
+             tienda='bazar_comprar', gacha_rpg='gacha_rpg_x1', gacha_monturas='gacha_monturas_x1',
+             gacha_cosmeticos='gacha_cosmeticos_x1', titulos='titulo_13', bosque='expediciones_bosque',
+             **{k: 'minijuego_' + k for k in ('spiral', 'spiral2', 'paradise3', 'colorescape', 'magmarun',
+                                              'batallanaval', 'dropper_facil', 'dropper_h4rs')})
+# Hojas nuevas 33 y 34 (botones): pack-source/ref/gemini/boton_<key>.png. 'next' es 'back' espejado.
+BOTONES = ('back', 'close', 'clear', 'lock', 'ranking', 'pagar', 'valor', 'premium',
+           'premios', 'saldo', 'panel', 'atlas', 'login', 'password', 'peluches')
+
+
+def square_art(name):
+    """Ilustracion sin el magenta de la hoja, recortada al cuadrado del centro."""
+    art = illustration(name).convert('RGB')
+    px = art.load()
+    w, h = art.size
+    keep = lambda x, y: not (px[x, y][0] > 190 and px[x, y][1] < 90 and px[x, y][2] > 190)
+    cols = [x for x in range(w) if keep(x, h // 2)]
+    rows = [y for y in range(h) if keep(w // 2, y)]
+    l, r, t, b = min(cols), max(cols) + 1, min(rows), max(rows) + 1
+    side = min(r - l, b - t)
+    x0, y0 = l + (r - l - side) // 2, t + (b - t - side) // 2
+    return art.crop((x0, y0, x0 + side, y0 + side)).convert('RGBA')
+
+
+def framed(art):
+    im = art.resize((72, 72), Image.Resampling.LANCZOS).resize((18, 18), Image.Resampling.LANCZOS)
+    ImageDraw.Draw(im).rectangle((0, 0, 17, 17), outline=EDGE)
+    return im
+
+
+def boton_file(key):
+    return ROOT / f'pack-source/ref/gemini/boton_{key}.png'
+
+
 def icon(key):
     """Icono de Gemini en 18x18 (el modelo lo dibuja a escala 1.125 sobre la casilla)."""
+    if key == 'next' and boton_file('back').exists():
+        return framed(square_art('boton_back').transpose(Image.Transpose.FLIP_LEFT_RIGHT))
+    if key in BOTONES and boton_file(key).exists():
+        return framed(square_art('boton_' + key))
+    if key == 'saldo':
+        return framed(square_art('venta_monedas'))
+    if key in REUSE:
+        return framed(square_art(REUSE[key]))
+    if key.startswith(('dropper_facil_', 'dropper_h4rs_')):
+        im = framed(square_art('minijuego_' + key.rsplit('_', 1)[0]))
+        outlined(im, key.rsplit('_', 1)[1], (9, 5))
+        return im
     if key in NEW_KEYS and key not in GEMINI_ICONS:
         return painted_icon(key)
     art = illustration('menu_' + (key if key in GEMINI_ICONS else ICON_ART.get(key, key)))
@@ -140,7 +188,7 @@ def painted_icon(key):
             color={'spiral':c,'spiral2':'#ae94da','paradise3':'#8bc97b','magmarun':'#df997d'}[key]
             for x,y in ((3,12),(6,9),(9,6),(12,3)):d.rectangle((x,y,x+3,y+2),fill=color,outline=g)
     else:  # Cada caja tiene su propio sello y color.
-        color={'gacha_rpg':'#75dce0','gacha_monturas':'#9bd882','gacha_cosmeticos':'#cf8cdb'}[key]
+        color={'gacha_rpg':'#75dce0','gacha_monturas':'#9bd882','gacha_cosmeticos':'#cf8cdb','premios':'#e1c35a'}[key]
         d.rectangle((3,5,14,14),fill='#735139',outline=g);d.line((3,9,14,9),fill=g)
         if key=='gacha_rpg':d.polygon(((9,6),(11,9),(9,12),(7,9)),fill=color)
         elif key=='gacha_monturas':d.arc((5,6,12,12),0,180,fill=color,width=2)
@@ -156,7 +204,7 @@ def button_model(key):
              'pay':'pagar','shop':'tienda','sellgui':'vender','worth':'valor','ah':'subastas',
              'trade':'intercambio','changepassword':'password','volver':'back','anterior':'back',
              'siguiente':'next','cerrar':'close','lobby':'spawn','mas_companeros':'next',
-             'descubiertas':'expediciones','explorar':'expediciones','premios':'gacha_rpg'}
+             'descubiertas':'expediciones','explorar':'expediciones'}
     key=aliases.get(key,key)
     return 'astral:menu/icon_'+key if key in (*KEYS,*EXTRA_KEYS) else None
 

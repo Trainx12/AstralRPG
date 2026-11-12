@@ -127,7 +127,7 @@ def gacha_menu(gid, g):
                       extra={"item_model":q(f'astral:servicios/{gid}_x{t}_{index}'),
                              "click_requirement": requisito_plata(costo), "click_commands": [c+'<delay=3>' if 'crates forceopen ' in c else c for c in cmds]})
     items += item("premios", "CHEST", 49, "&6&lVer premios", ["&7Todos los premios y su probabilidad"],
-                  extra={"item_model":q(f'astral:menu/icon_{gid}'),"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
+                  extra={"item_model":q('astral:menu/icon_premios'),"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
     items += item('saldo','GOLD_NUGGET',8,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     items += item('garantia','ENDER_EYE',47,'&dGarantia',[f'&7Tu progreso: &e{SCORE.format(o)}&7/{n}',
                   '&7Un Epico o Legendario reinicia el contador.'],extra={'update':'true'})

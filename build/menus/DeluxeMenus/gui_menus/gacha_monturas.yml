@@ -1181,7 +1181,7 @@ items:
     - '&7Todos los premios y su probabilidad'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: 'astral:menu/icon_gacha_monturas'
+    item_model: 'astral:menu/icon_premios'
     click_commands:
     - '[close]'
     - '[console] sudo %player_name% crates preview gacha_monturas<delay=3>'
