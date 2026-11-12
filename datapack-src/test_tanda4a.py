@@ -36,12 +36,15 @@ class Tanda4aTests(unittest.TestCase):
 
     def test_all_new_pets_reachable_once_and_permission_guarded(self):
         seen = set()
-        for page in (2, 3):
+        for page in (2, 3, 4):
             menu = yaml.safe_load(mascotas_extra_menu(page))
-            slots = [entry['slot'] for entry in menu['items'].values()]
-            self.assertEqual(len(slots), len(set(slots)))
+            # Varias capas por casilla (bloqueada / nivel 1-10-20), pero cada casilla es de una sola cosa.
+            owner = {}
+            for key, entry in menu['items'].items():
+                base = key.split('_hit_')[0].removesuffix('_no').removesuffix('_nv10').removesuffix('_nv20')
+                self.assertEqual(owner.setdefault(entry['slot'], base), base, key)
             for pid, *_ in PETS:
-                if pid not in menu['items']:
+                if 'm_' + pid not in menu['items']:
                     continue
                 self.assertNotIn(pid, seen); seen.add(pid)
                 detail = yaml.safe_load(mascota_detalle_menu(pid))['items']

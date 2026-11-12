@@ -38,8 +38,22 @@ class CosmeticsUITests(unittest.TestCase):
             self.assertNotIn(slot,occupied);occupied.add(slot)
             self.assertEqual(entry['click_commands'],['[close]','[player] titulo quitar'])
         self.assertEqual(items['gacha']['click_commands'],['[openguimenu] gacha_cosmeticos'])
-        self.assertEqual(items['back']['click_commands'],['[openguimenu] principal'])
+        self.assertEqual(items['back']['click_commands'],['[openguimenu] cosmeticos'])
         for key in ('info','gacha','back','close'):self.assertNotIn(items[key]['slot'],occupied)
+
+    def test_hub_cards_open_titles_and_hats_and_resolve(self):
+        from cosmeticos import hub_data
+        from cosmeticos_ui import HUB_CARDS
+        data=hub_data();self.assertEqual(data['open_command'],['cosmeticos'])
+        self.assertEqual(menu_data()['open_command'],['titulos'])
+        slots=[e['slot'] for e in data['items'].values()]
+        self.assertEqual(len(slots),len(set(slots)))
+        for key,target in (('titulos','cosmeticos_titulos'),('sombreros','cosmeticos_sombreros')):
+            for i,slot in enumerate(HUB_CARDS[key]):
+                entry=data['items'][key if i==0 else f'{key}_hit_{i}']
+                self.assertEqual(entry['slot'],slot)
+                self.assertIn(f'[openguimenu] {target}',entry['click_commands'])
+                self.assertIn(f"assets/astral/items/{entry['item_model'].split(':')[1]}.json",self.files)
 
     def test_all_models_and_textures_resolve(self):
         for entry in menu_data()['items'].values():

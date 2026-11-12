@@ -6345,12 +6345,12 @@ items:
     click_commands:
     - '[close]'
   'mas_companeros':
-    material: ARROW
+    material: PAPER
     slot: 46
     amount: 1
-    display_name: '&eMas companeros'
+    display_name: '&eMas companeros &7(pagina 2)'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:mascotas/nav_next'
     click_commands:
     - '[openguimenu] mascotas_2'
-    item_model: 'astral:menu/icon_next'

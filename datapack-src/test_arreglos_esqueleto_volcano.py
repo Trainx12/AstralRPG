@@ -123,12 +123,13 @@ class ArreglosTests(unittest.TestCase):
 
     def test_pet_pages_details_crates_and_guide_cover_new_catalog(self):
         seen=set()
-        for page in (2,3):
+        for page in (2,3,4):
             menu=yaml.safe_load(mascotas_extra_menu(page))['items']
             for pid,d in MASCOTAS.items():
-                if pid not in menu:continue
+                if 'm_'+pid not in menu:continue
                 seen.add(pid)
-                self.assertEqual(menu[pid]['item_model'],f'astral:mascotas/catalogo_{pid}')
+                self.assertEqual(menu['m_'+pid]['item_model'],f'astral:mascotas/{pid}_0')
+                self.assertIn(f'[openguimenu] mascota_{pid}',menu['m_'+pid]['right_click_commands'])
                 self.assertIn('astral:companero/nivel_1_0',mascota_detalle_menu(pid))
         self.assertEqual(seen,{pid for pid,d in MASCOTAS.items() if d['n']>6})
         from lobby import mount_rewards, icon

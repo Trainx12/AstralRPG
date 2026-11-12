@@ -1,0 +1,1004 @@
+{
+  "menu_title": "&f",
+  "open_command": [
+    "titulos"
+  ],
+  "register_command": true,
+  "size": 54,
+  "items": {
+    "aventurero": {
+      "slot": 10,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/aventurero",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&7Aventurero",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.aventurero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.aventurero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo aventurero"
+      ]
+    },
+    "aventurero_locked": {
+      "slot": 10,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/aventurero_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Aventurero",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "explorador": {
+      "slot": 11,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/explorador",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&aExplorador",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.explorador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.explorador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo explorador"
+      ]
+    },
+    "explorador_locked": {
+      "slot": 11,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/explorador_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Explorador",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "lenador": {
+      "slot": 12,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/lenador",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&6Lenador",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.lenador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.lenador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo lenador"
+      ]
+    },
+    "lenador_locked": {
+      "slot": 12,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/lenador_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Lenador",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "minero": {
+      "slot": 13,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/minero",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&8Minero",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.minero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.minero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo minero"
+      ]
+    },
+    "minero_locked": {
+      "slot": 13,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/minero_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Minero",
+      "lore": [
+        "&7Rareza: &fComun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "cazador": {
+      "slot": 14,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/cazador",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&2Cazador",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.cazador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.cazador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo cazador"
+      ]
+    },
+    "cazador_locked": {
+      "slot": 14,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/cazador_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Cazador",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "herrero": {
+      "slot": 15,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/herrero",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&cHerrero",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.herrero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.herrero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo herrero"
+      ]
+    },
+    "herrero_locked": {
+      "slot": 15,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/herrero_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Herrero",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "alquimista": {
+      "slot": 16,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/alquimista",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&dAlquimista",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.alquimista"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.alquimista"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo alquimista"
+      ]
+    },
+    "alquimista_locked": {
+      "slot": 16,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/alquimista_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Alquimista",
+      "lore": [
+        "&7Rareza: &fPoco comun",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "domador": {
+      "slot": 28,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/domador",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&eDomador",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.domador"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.domador"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo domador"
+      ]
+    },
+    "domador_locked": {
+      "slot": 28,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/domador_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Domador",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "arcano": {
+      "slot": 29,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/arcano",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&5Arcano",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arcano"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arcano"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo arcano"
+      ]
+    },
+    "arcano_locked": {
+      "slot": 29,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/arcano_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Arcano",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "berserker": {
+      "slot": 30,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/berserker",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&4Berserker",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.berserker"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.berserker"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo berserker"
+      ]
+    },
+    "berserker_locked": {
+      "slot": 30,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/berserker_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Berserker",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "arquero": {
+      "slot": 31,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/arquero",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&aArquero",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arquero"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.arquero"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo arquero"
+      ]
+    },
+    "arquero_locked": {
+      "slot": 31,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/arquero_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Arquero",
+      "lore": [
+        "&7Rareza: &fRaro",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "campeon": {
+      "slot": 32,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/campeon",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&6&lCampeon",
+      "lore": [
+        "&7Rareza: &fEpico",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.campeon"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.campeon"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo campeon"
+      ]
+    },
+    "campeon_locked": {
+      "slot": 32,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/campeon_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Campeon",
+      "lore": [
+        "&7Rareza: &fEpico",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "senor_del_abismo": {
+      "slot": 33,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/senor_del_abismo",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&5&lSenor del Abismo",
+      "lore": [
+        "&7Rareza: &fEpico",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.senor_del_abismo"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.senor_del_abismo"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo senor_del_abismo"
+      ]
+    },
+    "senor_del_abismo_locked": {
+      "slot": 33,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/senor_del_abismo_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8Senor del Abismo",
+      "lore": [
+        "&7Rareza: &fEpico",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "astral": {
+      "slot": 34,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/astral",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 1,
+      "display_name": "&b&lASTRAL",
+      "lore": [
+        "&7Rareza: &fLegendario",
+        "",
+        "&aInsignia desbloqueada.",
+        "&7Se muestra como titulo junto a tu nombre.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.astral"
+          }
+        }
+      },
+      "click_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.astral"
+          }
+        },
+        "deny_commands": [
+          "[message] &cTodavia no obtuviste este titulo."
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo astral"
+      ]
+    },
+    "astral_locked": {
+      "slot": 34,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/astral_locked",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "priority": 2,
+      "display_name": "&8ASTRAL",
+      "lore": [
+        "&7Rareza: &fLegendario",
+        "",
+        "&8Insignia sin desbloquear.",
+        "&7Se consigue en la Galeria Celeste.",
+        "&7Usa el cofre de arriba para ver la gacha."
+      ],
+      "click_commands": [
+        "[message] &7Todavia no obtuviste este titulo.",
+        "[sound] ENTITY_VILLAGER_NO"
+      ]
+    },
+    "none": {
+      "slot": 47,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/clear_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Deja tu nombre sin titulo.",
+        "&7Conservas todas tus insignias desbloqueadas."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "none_hit_1": {
+      "slot": 48,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/clear_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Deja tu nombre sin titulo.",
+        "&7Conservas todas tus insignias desbloqueadas."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "none_hit_2": {
+      "slot": 49,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/clear_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Deja tu nombre sin titulo.",
+        "&7Conservas todas tus insignias desbloqueadas."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "none_hit_3": {
+      "slot": 50,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/clear_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Deja tu nombre sin titulo.",
+        "&7Conservas todas tus insignias desbloqueadas."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "none_hit_4": {
+      "slot": 51,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/clear_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar titulo activo",
+      "lore": [
+        "&7Deja tu nombre sin titulo.",
+        "&7Conservas todas tus insignias desbloqueadas."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] titulo quitar"
+      ]
+    },
+    "info": {
+      "slot": 4,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_info",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&b&lTu coleccion de insignias",
+      "lore": [
+        "&7Pasa el cursor por una insignia para leer su titulo.",
+        "&7Clic en una desbloqueada para equiparla.",
+        "&7Las apagadas con candado aun no son tuyas.",
+        "&7Cambiar de titulo conserva toda tu coleccion."
+      ]
+    },
+    "gacha": {
+      "slot": 8,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_gacha",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&6&lConseguir mas titulos",
+      "lore": [
+        "&7Abre la gacha Galeria Celeste.",
+        "&7Consulta sus precios y premios antes de tirar."
+      ],
+      "click_commands": [
+        "[openguimenu] gacha_cosmeticos"
+      ]
+    },
+    "back": {
+      "slot": 45,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_back",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&fVolver a Cosmeticos",
+      "click_commands": [
+        "[openguimenu] cosmeticos"
+      ]
+    },
+    "close": {
+      "slot": 53,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_close",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

@@ -35,11 +35,6 @@ def menu_data():
             'item_flags':['HIDE_ATTRIBUTES'],'display_name':'&eQuitar titulo activo',
             'lore':['&7Deja tu nombre sin titulo.','&7Conservas todas tus insignias desbloqueadas.'],
             'click_commands':['[close]','[player] titulo quitar']}
-    items['sombreros']={'slot':0,'material':'LEATHER_HELMET','display_name':'&dSombreros','click_commands':['[openguimenu] cosmeticos_sombreros']}
-    items['sombreros']['item_model']='astral:menu/icon_cosmeticos'
-    items['sombreros']['display_name']='&d&lGORROS / SOMBREROS'
-    items['titulos']={'slot':1,'material':'PAPER','item_model':'astral:menu/icon_titulos',
-        'display_name':'&6&lTITULOS','lore':['&7Tu coleccion de insignias esta debajo.']}
     items['info']={'slot':4,'material':'PAPER','item_model':'astral:cosmeticos/nav_info','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&b&lTu coleccion de insignias',
                    'lore':['&7Pasa el cursor por una insignia para leer su titulo.',
                            '&7Clic en una desbloqueada para equiparla.',
@@ -48,12 +43,37 @@ def menu_data():
     items['gacha']={'slot':8,'material':'PAPER','item_model':'astral:cosmeticos/nav_gacha','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&6&lConseguir mas titulos',
                     'lore':['&7Abre la gacha Galeria Celeste.','&7Consulta sus precios y premios antes de tirar.'],
                     'click_commands':['[openguimenu] gacha_cosmeticos']}
-    items['back']={'slot':45,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&fVolver al atlas','click_commands':['[openguimenu] principal']}
+    items['back']={'slot':45,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&fVolver a Cosmeticos','click_commands':['[openguimenu] cosmeticos']}
     items['close']={'slot':53,'material':'PAPER','item_model':'astral:cosmeticos/nav_close','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&cCerrar','click_commands':['[close]']}
-    return {'menu_title':title(),'open_command':['cosmeticos','titulos'],'register_command':True,'size':54,'items':items}
+    return {'menu_title':title(),'open_command':['titulos'],'register_command':True,'size':54,'items':items}
+
+
+def hub_data():
+    """/cosmeticos: dos tarjetas grandes, Titulos y Sombreros (referencia del dueno 12/11/2026)."""
+    from cosmeticos_ui import hub_title, HUB_CARDS
+    items={}
+    texts={'titulos':('&6&lTITULOS',['&7Insignias que se muestran','&7junto a tu nombre en el chat.','','&eClic para ver tu coleccion.'],
+                      'cosmeticos_titulos'),
+           'sombreros':('&d&lSOMBREROS',['&7Gorros que se ven en tu cabeza.','&7Solo visibles sin casco.','','&eClic para elegir uno.'],
+                        'cosmeticos_sombreros')}
+    for key,slots in HUB_CARDS.items():
+        name,lore,target=texts[key]
+        for i,slot in enumerate(slots):
+            items[key if i==0 else f'{key}_hit_{i}']={'slot':slot,'material':'PAPER','item_model':f'astral:cosmeticos/hub_{key}_{i}',
+                'item_flags':['HIDE_ATTRIBUTES'],'display_name':name,'lore':lore,
+                'click_commands':['[sound] UI_BUTTON_CLICK',f'[openguimenu] {target}']}
+    items['back']={'slot':45,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],
+                   'display_name':'&fVolver al Menu Astral','click_commands':['[openguimenu] principal']}
+    items['gacha']={'slot':49,'material':'PAPER','item_model':'astral:cosmeticos/nav_gacha','item_flags':['HIDE_ATTRIBUTES'],
+                    'display_name':'&6&lGacha de Cosmeticos','lore':['&7Titulos y gorros nuevos.'],
+                    'click_commands':['[openguimenu] gacha_cosmeticos']}
+    items['close']={'slot':53,'material':'PAPER','item_model':'astral:cosmeticos/nav_close','item_flags':['HIDE_ATTRIBUTES'],
+                    'display_name':'&cCerrar','click_commands':['[close]']}
+    return {'menu_title':hub_title(),'open_command':['cosmeticos'],'register_command':True,'size':54,'items':items}
 
 def equipment_menu(kind):
     from cosmeticos_catalogo import catalog
+    from gorros_ui import title as hat_title, HAT_SLOTS, CLEAR_SLOTS, BACK_SLOT, GACHA_SLOT
     items={}
     for index,(_,key,name,rarity,model) in enumerate(r for r in catalog() if r[0]==kind):
         perm=f'astral.cosmetico.{kind}.{key}'
@@ -62,29 +82,33 @@ def equipment_menu(kind):
         if legacy:
             req['minimum_requirements']=1
             req['requirements']['compensacion']={'type':'has permission','permission':'astral.cosmetico.alas.'+legacy}
-        items[key]={'slot':9+index,'material':'PAPER','item_model':'astral:'+model,'priority':1,
+        slot=HAT_SLOTS[index]
+        items[key]={'slot':slot,'material':'PAPER','item_model':'astral:cosmeticos/menu_sombrero_'+key,'priority':1,
             'display_name':'&d'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],
-            '&7No da proteccion ni estadisticas.', '&7Solo visible sin casco.' if kind=='sombrero' else '&7Deja libres tus dos manos.',
-            '&eClic para equipar.'], 'view_requirement':req,
+            '&7No da proteccion ni estadisticas.','&7Solo visible sin casco.','&eClic para equipar.'],
+            'view_requirement':req,
             'click_requirement':dict(req,deny_commands=['[message] &cTodavia no lo desbloqueaste.']),
             'click_commands':['[close]',f'[player] astralcosmetic {kind} {key}']}
-        items[key+'_locked']={'slot':9+index,'material':'GRAY_DYE','item_model':'astral:menu/icon_lock','priority':2,
-            'display_name':'&8'+name,'lore':['&7Se consigue en la Gacha de Cosmeticos.'],
+        items[key+'_locked']={'slot':slot,'material':'GRAY_DYE','item_model':'astral:menu/icon_lock','priority':2,
+            'display_name':'&8'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],'&7Se consigue en la Gacha de Cosmeticos.'],
             'click_commands':['[message] &7Todavia no lo desbloqueaste.']}
-    items['clear']={'slot':49,'material':'BARRIER','item_model':'astral:menu/icon_clear','display_name':'&eQuitar',
-        'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
-    items['back']={'slot':45,'material':'ARROW','item_model':'astral:menu/icon_titulos','display_name':'&fTitulos',
-        'click_commands':['[openguimenu] cosmeticos']}
-    items['gacha']={'slot':53,'material':'CHEST','item_model':'astral:menu/icon_gacha_cosmeticos','display_name':'&dGacha de Cosmeticos',
+    for index,slot in enumerate(CLEAR_SLOTS):
+        items['clear' if index==0 else f'clear_hit_{index}']={'slot':slot,'material':'PAPER',
+            'item_model':f'astral:cosmeticos/quitar_sombrero_{index}','item_flags':['HIDE_ATTRIBUTES'],
+            'display_name':'&eQuitar sombrero','lore':['&7Deja tu cabeza sin gorro.','&7Los gorros solo se ven sin casco.'],
+            'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
+    items['back']={'slot':BACK_SLOT,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],
+        'display_name':'&fVolver a Cosmeticos','click_commands':['[openguimenu] cosmeticos']}
+    items['gacha']={'slot':GACHA_SLOT,'material':'PAPER','item_model':'astral:cosmeticos/nav_gacha','item_flags':['HIDE_ATTRIBUTES'],
+        'display_name':'&dGacha de Cosmeticos','lore':['&7Titulos y gorros nuevos.'],
         'click_commands':['[openguimenu] gacha_cosmeticos']}
-    from gorros_ui import title as hat_title
     return {'menu_title':hat_title(), 'size':54,'items':items}
 
 
 def script():
     lines=['# Generado por cosmeticos.py. Equipar cambia solo el prefijo cosmetico de prioridad 100.',
            'command /titulo [<text>]:','    executable by: players','    trigger:',
-           '        if arg-1 is not set:','            execute console command "dm open cosmeticos %name of player%"','            stop',
+           '        if arg-1 is not set:','            execute console command "dm open cosmeticos_titulos %name of player%"','            stop',
            '        if arg-1 is "quitar":','            execute console command "lp user %name of player% meta removeprefix 100"','            stop']
     for _,name,col in TITLES:
         key=name.lower().replace(' ','_')
@@ -98,7 +122,8 @@ def script():
 
 def generate():
     menu=ROOT/'build/menus/DeluxeMenus/gui_menus/cosmeticos.yml';menu.parent.mkdir(parents=True,exist_ok=True)
-    menu.write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    menu.write_text(json.dumps(hub_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    menu.with_name('cosmeticos_titulos.yml').write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     out=ROOT/'build/gameplay';out.mkdir(parents=True,exist_ok=True)
     (out/'astral_cosmeticos.sk').write_text(script(),encoding='utf-8')
     for kind in ('sombreros',):

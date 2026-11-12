@@ -76,6 +76,8 @@ gui_menus:
     file: mascotas_2.yml
   mascotas_3:
     file: mascotas_3.yml
+  mascotas_4:
+    file: mascotas_4.yml
   mazmorras:
     file: mazmorras.yml
   cofre_mina:
@@ -106,5 +108,7 @@ gui_menus:
     file: dropper_h4rs.yml
   cosmeticos:
     file: cosmeticos.yml
+  cosmeticos_titulos:
+    file: cosmeticos_titulos.yml
   cosmeticos_sombreros:
     file: cosmeticos_sombreros.yml

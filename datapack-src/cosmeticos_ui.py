@@ -14,11 +14,50 @@ GLYPHS=tuple(chr(0xe710+i) for i in range(4))
 RARITIES={'common':('Comun','#a8bac1'),'uncommon':('Poco comun','#94bc91'),
           'rare':('Raro','#73cee0'),'epic':('Epico','#94b1f0'),'legendary':('Legendario','#edc36b')}
 TITLE_SLOTS=tuple(range(10,17))+tuple(range(28,35))
+# /cosmeticos (pantalla principal): dos tarjetas de 4x5 casillas.
+HUB_CARDS={'titulos':tuple(r*9+c for r in range(5) for c in range(0,4)),
+           'sombreros':tuple(r*9+c for r in range(5) for c in range(5,9))}
+HUB_START,HUB_END='',''
+HUB_GLYPHS=tuple(chr(0xed40+i) for i in range(4))
 CLEAR_SLOTS=tuple(range(47,52))
 
 
 def title():
     return '&f'+START+''.join(GLYPHS)+END
+
+
+def hub_title():
+    return '&f'+HUB_START+''.join(HUB_GLYPHS)+HUB_END
+
+
+def hub_card(key):
+    """Tarjeta grande 72x90: ilustracion de Gemini y cinta con el nombre."""
+    from services_ui import illustration
+    from adventure_ui import label
+    art=illustration('cosmeticos_'+key)
+    side=min(art.size);art=art.crop(((art.width-side)//2,(art.height-side)//2,(art.width+side)//2,(art.height+side)//2))
+    im=Image.new('RGBA',(72,90),'#0d222f')
+    im.alpha_composite(art.resize((288,288),Image.Resampling.BOX).resize((70,70),Image.Resampling.LANCZOS),(1,1))
+    d=ImageDraw.Draw(im)
+    d.rectangle((0,71,71,89),fill='#14303c')
+    d.line((2,72,69,72),fill=EDGE);d.line((2,88,69,88),fill=EDGE)
+    label(im,'TITULOS' if key=='titulos' else 'SOMBREROS',(36,77),56,'#f3e4b8')
+    d.rectangle((0,0,71,89),outline=EDGE);d.rectangle((1,1,70,88),outline='#3d2c12')
+    for cx,cy in ((0,0),(71,0),(0,89),(71,89)):d.point((cx,cy),fill='#8bdce2')
+    return im
+
+
+def hub_panel():
+    im=panel('COSMETICOS');d=ImageDraw.Draw(im)
+    d.rectangle((24,56,199,165),fill=FILL)
+    for key,slots in HUB_CARDS.items():
+        x,y=31+slots[0]%9*18,57+slots[0]//9*18
+        d.rectangle((x,y,x+71,y+89),fill=(0,0,0,0))
+    for slot in (45,49,53):
+        x,y=31+slot%9*18,57+slot//9*18
+        d.rectangle((x,y,x+17,y+17),outline=EDGE);d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+    d.rectangle((67,147,156,164),fill=FILL)
+    return im
 
 
 def key_for(name):
@@ -153,7 +192,7 @@ def panel(caption='COSMETICOS Y TITULOS'):
         for col in range(7):
             x=49+col*18
             d.line((x,y+19,x,y+21),fill=EDGE)
-    for slot in (*TITLE_SLOTS,0,1,4,8,45,53):
+    for slot in (*TITLE_SLOTS,4,8,45,53):
         x,y=31+slot%9*18,57+slot//9*18
         d.rectangle((x,y,x+17,y+17),outline=EDGE)
         d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
@@ -191,6 +230,18 @@ def assets():
     for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
     button=clear_button()
     for i in range(5):model(f'clear_{i}',button.crop((i*18,0,i*18+18,18)))
+    for key,slots in HUB_CARDS.items():
+        card=hub_card(key)
+        for i,slot in enumerate(slots):
+            col,row=i%4,i//4
+            model(f'hub_{key}_{i}',card.crop((col*18,row*18,col*18+18,row*18+18)))
+    # Glifos de la pantalla principal (mismo START/END que la galeria de titulos).
+    a2,b2,c2,d2=HUB_GLYPHS;hub=hub_panel()
+    for n,(part,ascent,char,rewind) in enumerate(((hub.crop((0,0,224,SPLIT)),53,a2,b2),(hub.crop((0,SPLIT,224,280)),-3,c2,d2))):
+        path=f'font/cosmeticos/hub_{n}.png'
+        files['assets/astral/textures/'+path]=png(part)
+        providers.insert(-1,{'type':'bitmap','file':'astral:'+path,'height':part.height,'ascent':ascent,'chars':[char]})
+        advances[rewind]=-(part.getbbox()[2]+1)
     return files,providers
 
 

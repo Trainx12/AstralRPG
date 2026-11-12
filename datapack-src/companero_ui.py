@@ -13,7 +13,8 @@ from market_ui import band_color
 from adventure_ui import label
 from mobs.mascotas import MASCOTAS as ALL_PETS
 MASCOTAS = ALL_PETS
-# El render de terceros se inyecta solo al construir la entrega privada.
+# Retratos pintados (Gemini) de las mascotas de terceros: se inyectan solo al
+# construir la entrega privada (deploy_disenos2.py); el pack publico usa una reserva.
 PORTRAITS = {}
 
 ROOT = Path(__file__).resolve().parent
@@ -46,10 +47,10 @@ PERKS = {
 }
 EVOLUTION = ('evolucion', 'Evolucion visual', '')
 from terceros import PETS
-_EFFECT_ICONS = dict(slow_falling='salto', regeneration='regeneracion', luck='suerte',
+_EFFECT_ICONS = dict(slow_falling='caida_lenta', regeneration='regeneracion', luck='suerte',
     resistance='resistencia', strength='fuerza', haste='prisa', speed='velocidad',
     night_vision='vision', jump_boost='salto', fire_resistance='anti_fuego',
-    absorption='absorcion', water_breathing='vision')
+    absorption='absorcion', water_breathing='respiracion')
 for _pid, *_, _effects in PETS:
     _lines = {'fire_resistance':('Resistencia','al fuego'),
               'water_breathing':('Respiracion','acuatica'),
@@ -93,9 +94,7 @@ def panel(pid):
     # Retrato grande a la izquierda (fuera de la grilla), con marco dorado.
     x0, y0, x1, y1 = 29, 57, 24 + E - 3, 165
     if pid in PORTRAITS:
-        art = Image.new('RGBA', (160, 220), '#10221f')
-        portrait = ImageOps.contain(PORTRAITS[pid], (150, 210), Image.Resampling.LANCZOS)
-        art.alpha_composite(portrait, ((160-portrait.width)//2, (220-portrait.height)//2))
+        art = PORTRAITS[pid].convert('RGBA')
     elif MASCOTAS[pid]['n'] <= 6:
         art = illustration('retrato_' + pid)
     else:
@@ -105,7 +104,10 @@ def panel(pid):
     w, h = x1 - x0 - 3, y1 - y0 - 3
     ch = min(art.height, round(art.width * h / w)); cw = round(ch * w / h)
     left = (art.width - cw) // 2; top = (art.height - ch) // 2
-    im.alpha_composite(art.crop((left, top, left + cw, top + ch)).resize((w, h), Image.Resampling.LANCZOS), (x0 + 2, y0 + 2))
+    piece = art.crop((left, top, left + cw, top + ch))
+    if piece.width > 4 * w:  # reducir en dos pasos: nitido, sin dejar el pixel art borroso
+        piece = piece.resize((w * 4, h * 4), Image.Resampling.BOX)
+    im.alpha_composite(piece.resize((w, h), Image.Resampling.LANCZOS), (x0 + 2, y0 + 2))
     d.rectangle((x0, y0, x1, y1), outline=GOLD); d.rectangle((x0 + 1, y0 + 1, x1 - 1, y1 - 1), outline='#3d2c12')
     for cx, cy in ((x0, y0), (x1, y0), (x0, y1), (x1, y1)):
         d.polygon(((cx, cy - 2), (cx + 2, cy), (cx, cy + 2), (cx - 2, cy)), fill='#7fe0d8')

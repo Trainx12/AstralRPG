@@ -3,9 +3,9 @@
   "size": 54,
   "items": {
     "frankenstein": {
-      "slot": 9,
+      "slot": 1,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_frankenstein",
+      "item_model": "astral:cosmeticos/menu_sombrero_frankenstein",
       "priority": 1,
       "display_name": "&dCabeza de Frankenstein",
       "lore": [
@@ -39,12 +39,13 @@
       ]
     },
     "frankenstein_locked": {
-      "slot": 9,
+      "slot": 1,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Cabeza de Frankenstein",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -52,9 +53,9 @@
       ]
     },
     "bruja": {
-      "slot": 10,
+      "slot": 3,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_bruja",
+      "item_model": "astral:cosmeticos/menu_sombrero_bruja",
       "priority": 1,
       "display_name": "&dSombrero de Bruja",
       "lore": [
@@ -88,12 +89,13 @@
       ]
     },
     "bruja_locked": {
-      "slot": 10,
+      "slot": 3,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Sombrero de Bruja",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -101,9 +103,9 @@
       ]
     },
     "diablo": {
-      "slot": 11,
+      "slot": 5,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_diablo",
+      "item_model": "astral:cosmeticos/menu_sombrero_diablo",
       "priority": 1,
       "display_name": "&dCuernos de Diablo",
       "lore": [
@@ -147,12 +149,13 @@
       ]
     },
     "diablo_locked": {
-      "slot": 11,
+      "slot": 5,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Cuernos de Diablo",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -160,9 +163,9 @@
       ]
     },
     "armorer": {
-      "slot": 12,
+      "slot": 7,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_armorer",
+      "item_model": "astral:cosmeticos/menu_sombrero_armorer",
       "priority": 1,
       "display_name": "&dGorro de Armero",
       "lore": [
@@ -196,12 +199,13 @@
       ]
     },
     "armorer_locked": {
-      "slot": 12,
+      "slot": 7,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Armero",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -209,9 +213,9 @@
       ]
     },
     "butcher": {
-      "slot": 13,
+      "slot": 10,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_butcher",
+      "item_model": "astral:cosmeticos/menu_sombrero_butcher",
       "priority": 1,
       "display_name": "&dGorro de Carnicero",
       "lore": [
@@ -245,12 +249,13 @@
       ]
     },
     "butcher_locked": {
-      "slot": 13,
+      "slot": 10,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Carnicero",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -258,9 +263,9 @@
       ]
     },
     "cartographer": {
-      "slot": 14,
+      "slot": 12,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_cartographer",
+      "item_model": "astral:cosmeticos/menu_sombrero_cartographer",
       "priority": 1,
       "display_name": "&dGorro de Cartografo",
       "lore": [
@@ -294,12 +299,13 @@
       ]
     },
     "cartographer_locked": {
-      "slot": 14,
+      "slot": 12,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Cartografo",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -307,9 +313,9 @@
       ]
     },
     "cleric": {
-      "slot": 15,
+      "slot": 14,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_cleric",
+      "item_model": "astral:cosmeticos/menu_sombrero_cleric",
       "priority": 1,
       "display_name": "&dGorro de Clerigo",
       "lore": [
@@ -343,12 +349,13 @@
       ]
     },
     "cleric_locked": {
-      "slot": 15,
+      "slot": 14,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Clerigo",
       "lore": [
+        "&7Rareza: Raro",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -358,7 +365,7 @@
     "desert": {
       "slot": 16,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_desert",
+      "item_model": "astral:cosmeticos/menu_sombrero_desert",
       "priority": 1,
       "display_name": "&dGorro de Desierto",
       "lore": [
@@ -398,6 +405,7 @@
       "priority": 2,
       "display_name": "&8Gorro de Desierto",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -405,9 +413,9 @@
       ]
     },
     "farmer": {
-      "slot": 17,
+      "slot": 19,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_farmer",
+      "item_model": "astral:cosmeticos/menu_sombrero_farmer",
       "priority": 1,
       "display_name": "&dGorro de Granjero",
       "lore": [
@@ -441,12 +449,13 @@
       ]
     },
     "farmer_locked": {
-      "slot": 17,
+      "slot": 19,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Granjero",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -454,9 +463,9 @@
       ]
     },
     "fisherman": {
-      "slot": 18,
+      "slot": 21,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_fisherman",
+      "item_model": "astral:cosmeticos/menu_sombrero_fisherman",
       "priority": 1,
       "display_name": "&dGorro de Pescador",
       "lore": [
@@ -490,12 +499,13 @@
       ]
     },
     "fisherman_locked": {
-      "slot": 18,
+      "slot": 21,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pescador",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -503,9 +513,9 @@
       ]
     },
     "fletcher": {
-      "slot": 19,
+      "slot": 23,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_fletcher",
+      "item_model": "astral:cosmeticos/menu_sombrero_fletcher",
       "priority": 1,
       "display_name": "&dGorro de Flechero",
       "lore": [
@@ -539,12 +549,13 @@
       ]
     },
     "fletcher_locked": {
-      "slot": 19,
+      "slot": 23,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Flechero",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -552,9 +563,9 @@
       ]
     },
     "librarian": {
-      "slot": 20,
+      "slot": 25,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_librarian",
+      "item_model": "astral:cosmeticos/menu_sombrero_librarian",
       "priority": 1,
       "display_name": "&dGorro de Bibliotecario",
       "lore": [
@@ -588,12 +599,13 @@
       ]
     },
     "librarian_locked": {
-      "slot": 20,
+      "slot": 25,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Bibliotecario",
       "lore": [
+        "&7Rareza: Raro",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -601,9 +613,9 @@
       ]
     },
     "savanna": {
-      "slot": 21,
+      "slot": 28,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_savanna",
+      "item_model": "astral:cosmeticos/menu_sombrero_savanna",
       "priority": 1,
       "display_name": "&dGorro de Sabana",
       "lore": [
@@ -637,12 +649,13 @@
       ]
     },
     "savanna_locked": {
-      "slot": 21,
+      "slot": 28,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Sabana",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -650,9 +663,9 @@
       ]
     },
     "shepherd": {
-      "slot": 22,
+      "slot": 30,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_shepherd",
+      "item_model": "astral:cosmeticos/menu_sombrero_shepherd",
       "priority": 1,
       "display_name": "&dGorro de Pastor",
       "lore": [
@@ -686,12 +699,13 @@
       ]
     },
     "shepherd_locked": {
-      "slot": 22,
+      "slot": 30,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pastor",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -699,9 +713,9 @@
       ]
     },
     "snow": {
-      "slot": 23,
+      "slot": 32,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_snow",
+      "item_model": "astral:cosmeticos/menu_sombrero_snow",
       "priority": 1,
       "display_name": "&dGorro de Nieve",
       "lore": [
@@ -735,12 +749,13 @@
       ]
     },
     "snow_locked": {
-      "slot": 23,
+      "slot": 32,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Nieve",
       "lore": [
+        "&7Rareza: Raro",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -748,9 +763,9 @@
       ]
     },
     "swamp": {
-      "slot": 24,
+      "slot": 34,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_swamp",
+      "item_model": "astral:cosmeticos/menu_sombrero_swamp",
       "priority": 1,
       "display_name": "&dGorro de Pantano",
       "lore": [
@@ -784,12 +799,13 @@
       ]
     },
     "swamp_locked": {
-      "slot": 24,
+      "slot": 34,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pantano",
       "lore": [
+        "&7Rareza: Raro",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -797,9 +813,9 @@
       ]
     },
     "weaponsmith": {
-      "slot": 25,
+      "slot": 37,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_weaponsmith",
+      "item_model": "astral:cosmeticos/menu_sombrero_weaponsmith",
       "priority": 1,
       "display_name": "&dGorro de Herrero",
       "lore": [
@@ -833,12 +849,13 @@
       ]
     },
     "weaponsmith_locked": {
-      "slot": 25,
+      "slot": 37,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Herrero",
       "lore": [
+        "&7Rareza: Comun",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -846,9 +863,9 @@
       ]
     },
     "illusioner": {
-      "slot": 26,
+      "slot": 39,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_illusioner",
+      "item_model": "astral:cosmeticos/menu_sombrero_illusioner",
       "priority": 1,
       "display_name": "&dCapucha de Ilusionista",
       "lore": [
@@ -882,12 +899,13 @@
       ]
     },
     "illusioner_locked": {
-      "slot": 26,
+      "slot": 39,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Capucha de Ilusionista",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -895,9 +913,9 @@
       ]
     },
     "vindicator": {
-      "slot": 27,
+      "slot": 41,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_vindicator",
+      "item_model": "astral:cosmeticos/menu_sombrero_vindicator",
       "priority": 1,
       "display_name": "&dCapucha de Vindicador",
       "lore": [
@@ -931,12 +949,13 @@
       ]
     },
     "vindicator_locked": {
-      "slot": 27,
+      "slot": 41,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Capucha de Vindicador",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -944,9 +963,9 @@
       ]
     },
     "carnivora": {
-      "slot": 28,
+      "slot": 43,
       "material": "PAPER",
-      "item_model": "astral:cosmeticos/sombrero_carnivora",
+      "item_model": "astral:cosmeticos/menu_sombrero_carnivora",
       "priority": 1,
       "display_name": "&dSombrero de Carnivora",
       "lore": [
@@ -990,12 +1009,13 @@
       ]
     },
     "carnivora_locked": {
-      "slot": 28,
+      "slot": 43,
       "material": "GRAY_DYE",
       "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Sombrero de Carnivora",
       "lore": [
+        "&7Rareza: Epico",
         "&7Se consigue en la Gacha de Cosmeticos."
       ],
       "click_commands": [
@@ -1003,10 +1023,85 @@
       ]
     },
     "clear": {
+      "slot": 47,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/quitar_sombrero_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar sombrero",
+      "lore": [
+        "&7Deja tu cabeza sin gorro.",
+        "&7Los gorros solo se ven sin casco."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero quitar"
+      ]
+    },
+    "clear_hit_1": {
+      "slot": 48,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/quitar_sombrero_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar sombrero",
+      "lore": [
+        "&7Deja tu cabeza sin gorro.",
+        "&7Los gorros solo se ven sin casco."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero quitar"
+      ]
+    },
+    "clear_hit_2": {
       "slot": 49,
-      "material": "BARRIER",
-      "item_model": "astral:menu/icon_clear",
-      "display_name": "&eQuitar",
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/quitar_sombrero_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar sombrero",
+      "lore": [
+        "&7Deja tu cabeza sin gorro.",
+        "&7Los gorros solo se ven sin casco."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero quitar"
+      ]
+    },
+    "clear_hit_3": {
+      "slot": 50,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/quitar_sombrero_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar sombrero",
+      "lore": [
+        "&7Deja tu cabeza sin gorro.",
+        "&7Los gorros solo se ven sin casco."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralcosmetic sombrero quitar"
+      ]
+    },
+    "clear_hit_4": {
+      "slot": 51,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/quitar_sombrero_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&eQuitar sombrero",
+      "lore": [
+        "&7Deja tu cabeza sin gorro.",
+        "&7Los gorros solo se ven sin casco."
+      ],
       "click_commands": [
         "[close]",
         "[player] astralcosmetic sombrero quitar"
@@ -1014,18 +1109,27 @@
     },
     "back": {
       "slot": 45,
-      "material": "ARROW",
-      "item_model": "astral:menu/icon_titulos",
-      "display_name": "&fTitulos",
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_back",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&fVolver a Cosmeticos",
       "click_commands": [
         "[openguimenu] cosmeticos"
       ]
     },
     "gacha": {
       "slot": 53,
-      "material": "CHEST",
-      "item_model": "astral:menu/icon_gacha_cosmeticos",
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/nav_gacha",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&dGacha de Cosmeticos",
+      "lore": [
+        "&7Titulos y gorros nuevos."
+      ],
       "click_commands": [
         "[openguimenu] gacha_cosmeticos"
       ]

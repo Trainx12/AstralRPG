@@ -3,7 +3,7 @@ command /titulo [<text>]:
     executable by: players
     trigger:
         if arg-1 is not set:
-            execute console command "dm open cosmeticos %name of player%"
+            execute console command "dm open cosmeticos_titulos %name of player%"
             stop
         if arg-1 is "quitar":
             execute console command "lp user %name of player% meta removeprefix 100"
