@@ -1,0 +1,104 @@
+nameFormat: astral_lobby_survival
+speedLimit: 0.16
+gravity: 0.0
+slowDown: false
+keepChunksLoaded: true
+allowPlayerEnter: true
+allowPlayerExit: true
+allowMobEnter: false
+invincible: true
+playerTakeable: false
+collision:
+  players: CANCEL
+  misc: CANCEL
+  train: CANCEL
+  block: DEFAULT
+carts:
+- entityType: MINECART
+  astral-model: head
+  model:
+    type: EMPTY
+    physical:
+      cartLength: 2.6
+      wheelCenter: 0.0
+      wheelDistance: 1.5
+    attachments:
+    - type: ITEM
+      item:
+        type: PAPER
+        meta:
+          ==: ItemMeta
+          meta-type: UNSPECIFIC
+          item-model: astral:tren_head
+      position:
+        transform: FIXED
+        posY: 1.0
+- entityType: MINECART
+  astral-model: cart
+  model:
+    type: EMPTY
+    physical:
+      cartLength: 2.6
+      wheelCenter: 0.0
+      wheelDistance: 1.5
+    attachments:
+    - type: ITEM
+      item:
+        type: PAPER
+        meta:
+          ==: ItemMeta
+          meta-type: UNSPECIFIC
+          item-model: astral:tren_cart
+      position:
+        transform: FIXED
+        posY: 1.0
+    - type: SEAT
+      position:
+        posY: 1.0
+      displayMode: DEFAULT
+- entityType: MINECART
+  astral-model: cart
+  model:
+    type: EMPTY
+    physical:
+      cartLength: 2.6
+      wheelCenter: 0.0
+      wheelDistance: 1.5
+    attachments:
+    - type: ITEM
+      item:
+        type: PAPER
+        meta:
+          ==: ItemMeta
+          meta-type: UNSPECIFIC
+          item-model: astral:tren_cart
+      position:
+        transform: FIXED
+        posY: 1.0
+    - type: SEAT
+      position:
+        posY: 1.0
+      displayMode: DEFAULT
+- entityType: MINECART
+  astral-model: cart
+  model:
+    type: EMPTY
+    physical:
+      cartLength: 2.6
+      wheelCenter: 0.0
+      wheelDistance: 1.5
+    attachments:
+    - type: ITEM
+      item:
+        type: PAPER
+        meta:
+          ==: ItemMeta
+          meta-type: UNSPECIFIC
+          item-model: astral:tren_cart
+      position:
+        transform: FIXED
+        posY: 1.0
+    - type: SEAT
+      position:
+        posY: 1.0
+      displayMode: DEFAULT

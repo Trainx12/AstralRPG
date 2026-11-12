@@ -53,6 +53,19 @@ def fingerprints():
                 if name.endswith(('.png','.json')):
                     blob=z.read(name);hashes.add(sha(blob))
                     if name.endswith('.png'):pixels.add(png_signature(blob))
+    # Tren: el original contiene otro ZIP; auditar tambien sus texturas/modelos.
+    def train_archive(data):
+        hashes.add(sha(data))
+        with zipfile.ZipFile(io.BytesIO(data)) as z:
+            for name in z.namelist():
+                if name.endswith('/'):continue
+                blob=z.read(name)
+                if name.endswith('.zip'):train_archive(blob)
+                elif name.endswith(('.png','.json')):
+                    hashes.add(sha(blob))
+                    if name.endswith('.png'):pixels.add(png_signature(blob))
+    for archive in (privado()/'x/tren').glob('*.zip'):
+        train_archive(archive.read_bytes())
     return hashes, pixels, names
 
 

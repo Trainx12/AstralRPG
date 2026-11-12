@@ -1,0 +1,14 @@
+{
+  "traincarts": {
+    "version": "2.0.0",
+    "url": "https://cdn.modrinth.com/data/7xgugLBo/versions/RkoAukJK/TrainCarts-2.0.0-1720.jar",
+    "sha512": "670c735ceca3125774e79a5a85af1651e217684beab5a739e1b628e2e73271cf4c1340547e127e463df1e051f56c2932c5c1db6245afc7cce336f1e256501f70",
+    "sha256": "b3be51f9870ca1186e241fc0c3983b1a56e3d84075b332f42d01b2496005d8bb"
+  },
+  "bkcommonlib": {
+    "version": "2.0.0",
+    "url": "https://cdn.modrinth.com/data/rTg6ckWb/versions/OKs254Bb/BKCommonLib-2.0.0-2018.jar",
+    "sha512": "b80070e9de41ec20d2efff1dfe8fcae81ac56f06bad40fc12b7b9e47d84c7d305a9e8eb712ccb525ca5d36ec9a2b2641a2bd2d20e3aba981b3acc1c25eab9fff",
+    "sha256": "f1d1095b0a1fa7dba9cee275f5e1aae47904f771102d9c687448016378318271"
+  }
+}

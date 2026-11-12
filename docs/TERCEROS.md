@@ -1,5 +1,16 @@
 # Contenidos privados - tanda 4a
 
+## Tren del lobby (preparado, sin desplegar)
+
+`tren_lobby.py` conserva el ZIP original Steam Train Coaster en `ASTRAL_PRIVADO/x/tren/`
+y sus derivados solo en `ASTRAL_PRIVADO/build/entregas/tren-lobby/`.
+Convierte paper/CMD viejo a item_model 26.1 y atlas item, sin override vanilla.
+El FINAL se basa exclusivamente en la entrega Alas/casco y conserva cada entrada previa.
+Codigo, referencias de modelos y configuracion de tren propia se publican sin arte;
+el auditor incluye el ZIP anidado original. No publicar capturas del arte licenciado.
+Los pastes originales no se pudieron recuperar (HTTP 403); offsets de asientos y escala
+deben cotejarse en cliente. Lista de instalacion: [tren-lobby.md](../build/deploy/tren-lobby.md).
+
 ## Continuacion: tanda 4b
 
 Carnivora T3, Asura T4 (cinco monedas), seis peluches y correccion de contornos

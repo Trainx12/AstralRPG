@@ -1,5 +1,12 @@
 # AstralRPG: cómo está armado el servidor
 
+Tren lobby → survival preparado, **sin desplegar**: [archivos, ubicacion pendiente,
+comandos y reinicio](../build/deploy/tren-lobby.md). TrainCarts 2.0.0-1720,
+BKCommonLib 2.0.0-2018 y AstralTrain 1.0.0; tres plazas, espera de 5 s, recorrido de
+8 bloques y destino individual cama/punto valido en `world`, o spawn de `world`.
+Requiere confirmar el hueco y el anden dentro de la montaña antes de activarlo.
+El Viajero conserva su comando actual `mvtp <jugador> w:world` como respaldo.
+
 Tanda 5a preparada, **sin desplegar**: [lista exacta de archivos, versiones y pruebas](../build/deploy/tanda5a.md).
 Generadores: `datapack-src/tanda5a.py`, `escala.py`, `runtime/AstralProgression.java`.
 GriefPrevention 16.18.7: solo survival, 36 bloques iniciales, minimo 6x6, sin ganancia por hora,
@@ -188,7 +195,8 @@ Isla de "Parrot Spawn" (solo la isla grande, sin la torre del loro). Es un mundo
 | Cofre violeta (sobre el cristal del medio, lado este) | Gacha de Armas (1000$) | Materiales, armas, talismanes |
 | Cofre verde (cristal del norte, lado este) | Gacha de Monturas (2500$) | Monturas con silla y mascotas |
 | Cofre rosa (cristal del sur, lado este) | Gacha de Cosméticos (500$) | Títulos para el chat y moldes de adorno |
-| Junto al banco del sur | Viajero | Te lleva al mundo normal |
+| Junto al banco del sur | Viajero (respaldo conservado) | Te lleva al mundo normal; retiro pendiente de decidir tras validar el tren |
+| Dentro de la montaña, acceso por el hueco (XYZ pendientes) | Tren al survival (preparado, sin instalar) | Tres plazas, cama/punto valido del survival o spawn de world; ver entrega |
 
   En las gachas: clic para tirar (el vendedor cobra y abre la ruleta de CrazyCrates con `crates forceopen`), shift + clic para ver la vitrina de premios (común 60%, poco común 25%, raro 11%, épico 3,5%, legendario 0,5%).
 - **Tiradas x1 / x10 / x25 / x50:** clic al cofre muestra en el chat un botón por cantidad (con el precio). El botón hace `/trigger gachatirar set <código>` (gacha × 100 + tiradas: 1xx Armas, 2xx Monturas, 3xx Cosméticos) y el cofre, cada 1/4 de segundo, cobra a los jugadores cercanos que lo apretaron. Con más de una tirada gira la ruleta **una vez** (con animación; si toca la garantía, es esa) y unos 7 segundos después llegan los demás premios juntos: CrazyCrates les da llaves virtuales y las abre con `crates mass-open` (necesita `crazycrates.massopen` en el grupo `default` y `Max-Mass-Open: 50` en las cajas). En tiradas múltiples, si sale un Épico el contador de garantía vuelve a 0.

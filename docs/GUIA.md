@@ -1,5 +1,12 @@
 # Guía para agregar cosas a AstralRPG
 
+Tren lobby → survival preparado, sin desplegar: [tren-lobby.md](../build/deploy/tren-lobby.md).
+`tren_lobby.py` genera AstralTrain, configuracion TrainCarts y un FINAL privado sobre
+Alas/casco, conservando su contenido. No regenera AstralDecor ni el datapack de Recetas.
+Requiere TrainCarts/BKCommonLib 2.0.0 y reinicio completo. Estacion desactivada hasta
+confirmar por F3 el hueco de la montaña y espacio libre detras; no va en el pasto.
+El Viajero sigue como respaldo hasta decidir su retiro. No subir mapas ni arte al repo publico.
+
 Recetas de mesa preparadas, sin desplegar: [recetas-mesa.md](../build/deploy/recetas-mesa.md).
 `build.py` exporta las mismas recetas de la Forja a `build/runtime/mesa.json`; `build_runtime.py`
 lo incluye en AstralDecor 1.5.0. La mesa exige ingredientes exactos y niveles del resultado.
