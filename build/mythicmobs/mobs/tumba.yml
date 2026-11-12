@@ -13,7 +13,6 @@ astral_tumba_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala1/tick"} @self ~onTimer:20
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala1;sync=true} @EntitiesInRadius{r=60} ~onTimer:5 ?hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
@@ -33,7 +32,6 @@ astral_tumba_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala2/tick"} @self ~onTimer:20
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala2;sync=true} @EntitiesInRadius{r=68} ~onTimer:5 ?hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
@@ -54,7 +52,6 @@ astral_tumba_control_sala3:
     Persistent: true
     Collidable: false
   Skills:
-  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/tick"} @self ~onTimer:20
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala3;sync=true} @EntitiesInRadius{r=88} ~onTimer:5 ?hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?hastag{tag=tumba.jefe.derrotado} ?!hastag{tag=tumba.sala3.busy}

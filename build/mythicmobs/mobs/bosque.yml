@@ -13,7 +13,6 @@ astral_bosque_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/tick"} @self ~onTimer:20
   - foreach{s=AST_ESQ_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
   - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on}
   - skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
@@ -34,7 +33,6 @@ astral_bosque_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/tick"} @self ~onTimer:20
   - foreach{s=AST_ESQ_CONVIERTE_bosque_sala2;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
   - skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on}
   - skill{s=BOSQUE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala2.busy} ?hastag{tag=bosque.jefe.derrotado}

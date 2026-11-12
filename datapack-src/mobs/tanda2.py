@@ -111,7 +111,8 @@ def transform(text,d,kind):
             sk=control['Skills']
             if key != 'forja':
                 sk.insert(0,f'foreach{{s=AST_ESQ_CONVIERTE_{key}_{room["id"]};sync=true}} @EntitiesInRadius{{r={room["r"]+32}}} ~onTimer:5 ?hastag{{tag={key}.on}}')
-            sk.insert(0,cmd(p+'/tick')+' ~onTimer:20')
+            # El mantenimiento corre en loop/t20 del datapack. Pasarlo por
+            # consola Mythic imprime Running function / returned aun sin sala activa.
             for i,line in enumerate(sk):
                 line=re.sub(r'\?mobsinradius\{[^}]+\}',f'?!hastag{{tag={busy}}}',line)
                 if key=='cumbre' and room.get('boss_room') and '_INICIO}' in line:
@@ -212,10 +213,15 @@ def generate(files):
     # Objetivos propios: no dependen de ejecutar comandos de instalacion manuales.
     load='data/astral/function/load.mcfunction'
     files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive'))+'\n'
+    maintenance=[]
     for d in ds:
         key=d['key']
         for r in d['rooms']:
             p=path(d,r); t=tag(d,r); store='astral:'+p; busy=f'{key}.{r["id"]}.busy'
+            # El nombre ya identifica los controles persistentes (tambien en la UI).
+            # No necesita recrearlos ni cargar chunks de salas vacias.
+            control=f'@e[type=armor_stand,name={json.dumps("Control "+r["name"],ensure_ascii=False)},tag={key}.on]'
+            maintenance.append(f'execute in minecraft:{d["world"]} as {control} at @s run function astral:{p}/tick')
             cap=OLEADA_TOPE_FORJA if key=='forja' else OLEADA_TOPE
             sel=f'@e[tag={t},nbt=!{{Health:0.0f}}]'
             wave_sel=f'@e[tag={t}.wave,nbt=!{{Health:0.0f}}]'
@@ -291,5 +297,8 @@ def generate(files):
                           f'tag @s remove {busy}',f'execute if entity {sel} run tag @s add {busy}',
                           f'execute if data storage {store} queue[0] run tag @s add {busy}'])
 
+    fn('tanda2/tick',maintenance)
+    files.setdefault('data/astral/function/loop/t20.mcfunction','')
+    files['data/astral/function/loop/t20.mcfunction']+='function astral:tanda2/tick\n'
     from mobs.progreso_oleadas import generate as generate_progress
     generate_progress(files, ds)
