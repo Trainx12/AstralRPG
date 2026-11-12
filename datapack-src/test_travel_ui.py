@@ -74,7 +74,9 @@ class TravelUI(unittest.TestCase):
         for kind,data,mapping in [('portales',portales.menu_data(),ui.CARD_SLOTS),('arenas',minijuegos.menu_data('arena'),ui.ARENA_SLOTS)]:
             slots=[i['slot'] for i in data['items'].values()]
             self.assertEqual(len(slots),len(set(slots)))
-            self.assertEqual(set(slots),ui.USED[kind])
+            # Arenas suma el boton de duelos (duelos.py) en la fila de abajo, fuera del arte.
+            from duelos import ARENAS_BUTTON_SLOT
+            self.assertEqual(set(slots),ui.USED[kind]|({ARENAS_BUTTON_SLOT} if kind=='arenas' else set()))
             self.assertEqual(data['size'],ui.ROWS[kind]*9)
             self.assertEqual(data['menu_title'],ui.title(kind))
             for key,expected in mapping.items():
@@ -87,6 +89,7 @@ class TravelUI(unittest.TestCase):
                 self.assertFalse(any(k.startswith('proximo') for k in data['items']))
                 for d in minijuegos.ARENAS:
                     self.assertEqual(data['items'][d['id']]['click_commands'],['[close]',f'[player] arenas {d["id"]}<delay=3>'])
+                self.assertEqual(data['items']['desafiar']['click_commands'],['[close]','[player] desafiar<delay=3>'])
 
     def test_sale_states_and_transparent_inventory(self):
         script=minas.script()

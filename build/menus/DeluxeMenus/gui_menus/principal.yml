@@ -212,14 +212,14 @@ items:
     display_name: '&c&lDuelos'
     lore:
     - '&7Desafia a otro jugador.'
-    - '&eEscribi /duel <jugador>.'
+    - '&7Tambien desde Arenas PvP.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: astral:menu/icon_duelos
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[message] &eUsa /duel <jugador> para enviar un desafio.'
+    - '[player] desafiar<delay=3>'
   'info':
     material: NETHER_STAR
     slot: 4

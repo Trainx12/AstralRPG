@@ -87,7 +87,14 @@ por memoria; en Empower no hay ese límite. La config ya estaba lista en `datapa
 `Duels--arenas.json` arena `Astral` en el mundo `arena`; `Duels--lobby.json` vuelve al lobby),
 exportada con `node plugins_basicos.mjs` a `build/plugins-basicos/Duels/`.
 
-- Jugadores: `/duel <jugador>` (desafía), `/duel accept <jugador>`, `/duel deny <jugador>`.
+Desde el 12/11/2026 los duelos viven **dentro de Arenas PvP** (`datapack-src/duelos.py`): en `/arenas` (y en el
+boton Duelos del Menu Astral) "Desafiar a un jugador" abre `/desafiar`, una ventana de Skript con las cabezas de los
+conectados; al elegir uno corre `/duel <jugador>` y Duels abre su ventana de pedido, donde el retador elige la arena.
+Arenas de Duels: `Astral` (mundo `arena`) y `TFT1`-`TFT3` (mundo `arenas_tft`, puntos con piso comprobado). Jar en el
+server: `plugins/Duels-Optimised-8.3.jar` (copia privada en `.local/duels/`, nunca al repo). Prueba:
+`python tools/probar_duelos_paper.py --java <java25> --base .local/testsrv`.
+
+- Jugadores: `/desafiar` o `/duel <jugador>` (desafía), `/duel accept <jugador>`, `/duel deny <jugador>`.
 - Admin: `/duels` (ayuda), `/duels arena list`, `/duels reload`.
 - El jar se baja de BuiltByBit con cuenta (lo baja el dueño). En el server quedaron los datos viejos en
   `plugins/Duels/`; si `arenas.json` está vacío, subir los de `build/plugins-basicos/Duels/`.

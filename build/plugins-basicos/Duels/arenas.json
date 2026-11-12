@@ -21,5 +21,74 @@
         "yaw": 135
       }
     }
+  },
+  {
+    "name": "TFT1",
+    "disabled": false,
+    "kits": [],
+    "positions": {
+      "1": {
+        "world": "arenas_tft",
+        "x": -274.5,
+        "y": 143,
+        "z": -550.5,
+        "pitch": 0,
+        "yaw": 90
+      },
+      "2": {
+        "world": "arenas_tft",
+        "x": -298.5,
+        "y": 143,
+        "z": -550.5,
+        "pitch": 0,
+        "yaw": -90
+      }
+    }
+  },
+  {
+    "name": "TFT2",
+    "disabled": false,
+    "kits": [],
+    "positions": {
+      "1": {
+        "world": "arenas_tft",
+        "x": -274.5,
+        "y": 139,
+        "z": -282.5,
+        "pitch": 0,
+        "yaw": 90
+      },
+      "2": {
+        "world": "arenas_tft",
+        "x": -298.5,
+        "y": 139,
+        "z": -282.5,
+        "pitch": 0,
+        "yaw": -90
+      }
+    }
+  },
+  {
+    "name": "TFT3",
+    "disabled": false,
+    "kits": [],
+    "positions": {
+      "1": {
+        "world": "arenas_tft",
+        "x": -274.5,
+        "y": 139,
+        "z": -14.5,
+        "pitch": 0,
+        "yaw": 90
+      },
+      "2": {
+        "world": "arenas_tft",
+        "x": -298.5,
+        "y": 139,
+        "z": -14.5,
+        "pitch": 0,
+        "yaw": -90
+      }
+    }
   }
 ]

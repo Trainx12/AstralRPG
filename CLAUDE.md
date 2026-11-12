@@ -30,6 +30,7 @@ python mobs/mazmorra.py           # Mazmorra Minas Olvidadas (salas, mobs, jefe,
 python mobs/mascotas.py           # Mascotas 3D (/mascotas, bonus, niveles)
 python lobby.py                    # gachas (CrazyCrates), cobro, TAB (tabulador + panel de minas), comandos del lobby
 python betterhud.py                # BetterHud apagado por defecto y /sb para TAB; conservar pack-source/betterhud
+python duelos.py                   # Duelos dentro de /arenas: /desafiar (Skript) y arenas de Duels
 python menus.py                    # menus de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar, cofre del jefe y /fragmentos
 ```
 

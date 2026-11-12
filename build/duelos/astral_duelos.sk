@@ -1,0 +1,62 @@
+# Generado por duelos.py. Skript 2.17, sin addons. Ventana para elegir rival de Duels.
+function astral_desafiar(p: player):
+    close {_p}'s inventory
+    set {_id} to uuid of {_p}
+    delete {-duelo.obj::%{_id}%::*}
+    set {_inv} to a new chest inventory with 6 rows named colored "&8Desafiar a un jugador"
+    set {_n} to 0
+    loop all players:
+        loop-player is not {_p}
+        {_n} < 45
+        set slot {_n} of {_inv} to skull of loop-player named "&e%name of loop-player%"
+        set lore of slot {_n} of {_inv} to "&7Clic: elegi la arena y envia el desafio." and "&7Nadie pierde items en un duelo."
+        set {-duelo.obj::%{_id}%::%{_n}%} to name of loop-player
+        add 1 to {_n}
+    if {_n} is 0:
+        set slot 22 of {_inv} to barrier named "&cNo hay otros jugadores conectados"
+    set slot 49 of {_inv} to book named "&eComo funciona"
+    set lore of slot 49 of {_inv} to "&71. Elegi a quien desafiar." and "&72. Elegi la arena y envia el pedido." and "&73. El otro acepta con /duel accept <tu nombre>."
+    set slot 45 of {_inv} to arrow named "&fVolver a Arenas"
+    set slot 53 of {_inv} to barrier named "&cCerrar"
+    set {-duelo.gui::%{_id}%} to {_inv}
+    open {_inv} to {_p}
+
+command /desafiar:
+    trigger:
+        if sender is a player:
+            astral_desafiar(player)
+
+on inventory click:
+    set {_id} to uuid of player
+    set {_inv} to {-duelo.gui::%{_id}%}
+    if {_inv} is not set:
+        stop
+    if player's current inventory is not {_inv}:
+        delete {-duelo.gui::%{_id}%}
+        stop
+    cancel event
+    if clicked inventory is not {_inv}:
+        stop
+    set {_slot} to index of event-slot
+    if {_slot} is 53:
+        close player's inventory
+        stop
+    if {_slot} is 45:
+        close player's inventory
+        execute console command "dm open arenas %name of player%"
+        stop
+    set {_t} to {-duelo.obj::%{_id}%::%{_slot}%}
+    if {_t} is not set:
+        stop
+    close player's inventory
+    if {_t} parsed as player is not set:
+        send "&cEse jugador ya no esta conectado." to player
+        stop
+    make player execute command "duel %{_t}%"
+
+on inventory close:
+    delete {-duelo.gui::%uuid of player%}
+
+on quit:
+    delete {-duelo.gui::%uuid of player%}
+    delete {-duelo.obj::%uuid of player%::*}

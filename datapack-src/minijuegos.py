@@ -131,6 +131,9 @@ def menu_data(kind):
                 items[key if n==0 else f'{key}_{slot}']=dict(material='PAPER',slot=slot,item_model='astral:viajes/blank',display_name='&f'+key.title(),click_commands=commands)
         # Lobby: la primera casilla muestra la barrera vanilla.
         items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
+        # Duelos viven dentro de Arenas PvP: elegir rival y despues arena (duelos.py).
+        from duelos import arenas_button
+        items['desafiar']=arenas_button()
         return decorate(dict(menu_title=title('arenas'),size=54,items=items))
     if kind == 'parkour':
         # Ventana ilustrada (minijuegos_ui.py): ocho tarjetas de 2x2 casillas.

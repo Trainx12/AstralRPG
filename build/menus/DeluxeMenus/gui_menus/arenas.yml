@@ -598,6 +598,21 @@
       "click_commands": [
         "[close]"
       ]
+    },
+    "desafiar": {
+      "material": "DIAMOND_SWORD",
+      "slot": 49,
+      "item_model": "astral:menu/icon_duelos",
+      "display_name": "&c&lDesafiar a un jugador",
+      "lore": [
+        "&7Elegi a quien desafiar y despues la arena.",
+        "&7Nadie pierde items en un duelo.",
+        "&7El otro acepta con &e/duel accept <tu nombre>&7."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] desafiar<delay=3>"
+      ]
     }
   }
 }

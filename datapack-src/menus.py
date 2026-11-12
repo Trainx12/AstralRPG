@@ -379,7 +379,7 @@ def principal_menu():
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
-        ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&eEscribi /duel <jugador>.'], ['[close]', '[message] &eUsa /duel <jugador> para enviar un desafio.']),
+        ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&7Tambien desde Arenas PvP.'], ['[close]', '[player] desafiar<delay=3>']),
     ]
     from menu_ui import SLOTS, KEYS, title as menu_title
     assert [b[0] for b in buttons] == list(KEYS)
@@ -400,7 +400,7 @@ def principal_menu():
 COMANDOS = [
     ('Aventura', 'LIME_STAINED_GLASS_PANE', [
         ('parkour', 'FEATHER', '/minijuegos', ['Parkour, droppers y Color Escape.', 'Entras sin tu inventario: se devuelve al salir.'], '/minijuegos [id]', ['[openguimenu] parkour']),
-        ('arenas', 'IRON_SWORD', '/arenas', ['Arenas PvP con tu equipo.', 'Conservas todo al morir.'], '/arenas [id]', ['[openguimenu] arenas']),
+        ('arenas', 'IRON_SWORD', '/arenas', ['Arenas PvP con tu equipo.', 'Conservas todo al morir.', 'Duelos: Desafiar a un jugador (/desafiar).'], '/arenas [id]', ['[openguimenu] arenas']),
         ('menu', 'COMPASS', '/menu', ['Menu principal: expediciones, mazmorras,', 'misiones, bazar, mascotas y guia.', 'Tambien con la Estrella del slot 9.'], '/menu', ['[openguimenu] principal']),
         ('mazmorras', 'NETHER_STAR', '/mazmorras', ['Viaja a las mazmorras que ya descubriste', 'hablando con su guardian.'], '/mazmorras', ['[close]', '[player] mazmorras<delay=3>']),
         ('expediciones', 'FILLED_MAP', '/expediciones', ['Destinos de exploracion: Reino,', 'Cavernas y las zonas de busqueda.'], '/expediciones', ['[close]', '[player] expediciones<delay=3>']),

@@ -35,6 +35,7 @@ items:
     lore:
     - '&7Arenas PvP con tu equipo.'
     - '&7Conservas todo al morir.'
+    - '&7Duelos: Desafiar a un jugador (/desafiar).'
     - ''
     - '&fUso: &e/arenas [id]'
     - '&aClic para usarlo.'
