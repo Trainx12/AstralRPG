@@ -63,7 +63,8 @@ def generate(files):
     def fn(path, lines):
         files[f'data/astral/function/{path}.mcfunction'] = '\n'.join(lines) + '\n'
     for t in range(1, 6):
-        fn(f'inf/apply/t{t}', ['tag @s add astral.seen', f'function astral:mob/t{t}',
+        # mob/nombre arma el cartel [Tn] con #mt: sin esto mostraba el tier del ultimo mob de otro mundo.
+        fn(f'inf/apply/t{t}', ['tag @s add astral.seen', f'scoreboard players set #mt astral.tmp {t}', f'function astral:mob/t{t}',
                                f'scoreboard players set @s astral.mt {t}', 'function astral:inf/plus',
                                'data modify entity @s Health set value 1.0E9f', 'function astral:mob/nombre',
                                'tag @s remove inf.nuevo'])
@@ -105,7 +106,7 @@ def script(primera=None, cada=None, aviso=None):
          '    set {_c} to 0',
          '    loop all players:',
          '        world of loop-player is {_w}',
-         '        gamemode of loop-player is not spectator',
+         '        gamemode of loop-player is survival or adventure',
          '        add 1 to {_c}',
          '    return {_c}',
          '',
@@ -287,13 +288,17 @@ def script(primera=None, cada=None, aviso=None):
          '        execute console command "scoreboard players set %name of loop-player% inf.seg %{_ss}%"',
          '        execute console command "scoreboard players set %name of loop-player% inf.kills %{-inf.kills::%{_n}%}%"',
          '    # Que todos ataquen al jugador (arañas y endermans incluidos).',
+         '    # Solo jugadores en supervivencia/aventura (en creativo nadie recibe dano).',
+         '    loop all players in {_w}:',
+         '        gamemode of loop-player is survival or adventure',
+         '        add loop-player to {_ps::*}',
          '    set {_vivos} to 0',
          '    loop all entities in {_w}:',
          '        if scoreboard tags of loop-entity contains "inf.mob":',
          '            add 1 to {_vivos}',
          '            if target of loop-entity is not set:',
-         '                set {_ps::*} to all players in {_w}',
-         '                set target of loop-entity to random element out of {_ps::*}',
+         '                if {_ps::*} is set:',
+         '                    set target of loop-entity to random element out of {_ps::*}',
          '    # Aparicion: un grupo cada X segundos segun la velocidad; un mob por jugador.',
          '    add 1 to {-inf.cd::%{_n}%}',
          *[f'    if {{-inf.vel::%{{_n}}%}} is {v}:\n        set {{_cada}} to {s}' for v, n, mat, s in SPEEDS],

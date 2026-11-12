@@ -19,6 +19,8 @@ def generate(files,items):
     inspect += [f'tag @s remove asgui.mat.{m}' for m in mats]
     inspect += ['scoreboard players set #k astral.tmp 0',
         'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"weapon"}}] unless items entity @s weapon.mainhand minecraft:carrot_on_a_stick run scoreboard players set #k astral.tmp 1',
+        # Bastones (12/11/2026): mejora de arma, igual que build.py.
+        'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"staff"}}] run scoreboard players set #k astral.tmp 1',
         'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"armor"}}] run scoreboard players set #k astral.tmp 2',
         'execute if score #k astral.tmp matches 0 run return 0','tag @s add asgui.valid','scoreboard players set #l astral.tmp 0']
     for n in MEJORAS:

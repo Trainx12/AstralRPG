@@ -33,6 +33,19 @@ class InfinitaTests(unittest.TestCase):
         for t in range(1, 6):
             self.assertIn(f'function astral:mob/t{t}', files[f'data/astral/function/inf/apply/t{t}.mcfunction'])
         self.assertIn('astral:infinita 0.25 add_multiplied_total', files['data/astral/function/inf/plus.mcfunction'])
+        # El cartel [Tn] de mob/nombre usa #mt: tiene que ser el tier elegido.
+        self.assertIn('scoreboard players set #mt astral.tmp 2', files['data/astral/function/inf/apply/t2.mcfunction'])
+
+    def test_creative_players_are_not_targets_nor_counted(self):
+        sk = infinita.script()
+        self.assertIn('gamemode of loop-player is survival or adventure', sk)
+        self.assertNotIn('is not spectator', sk)
+
+    def test_herrero_accepts_staffs(self):
+        import services
+        files = {}
+        services.generate(files, {})
+        self.assertIn('type:"staff"', files['data/astral/function/mejora/gui/inspect.mcfunction'])
 
     def test_spawn_points_inside_the_dome(self):
         for x, y, z in infinita.SPAWN_POINTS + [infinita.ARRIVAL[:3]]:

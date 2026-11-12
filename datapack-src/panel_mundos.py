@@ -63,8 +63,6 @@ def boards_and_conditions():
             *footer]),
         _board('survival', 'pm_survival', player + [
             f"{section('⚒ Survival')}",
-            f"{PURPLE}⌖ {MUTED}XYZ {TEXT}%player_x% %player_y% %player_z%",
-            f"{PURPLE}❀ {MUTED}Bioma {TEXT}%player_biome%",
             f"{PURPLE}✦ {MUTED}Nivel {TEXT}%player_level%  {PURPLE}☠ {MUTED}Muertes {TEXT}%statistic_deaths%",
             f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
             f"{PURPLE}» {MUTED}/menu · /sethome · /spawn",

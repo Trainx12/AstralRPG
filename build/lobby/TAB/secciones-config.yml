@@ -13,7 +13,7 @@ header-footer:
         - "<#D6B4FF>♟ <#AA96C5>Jugadores <#F0E6FF>%online%/%server_max_players%  <#D6B4FF>· <#AA96C5>Ping <#F0E6FF>%ping%ms  <#D6B4FF>· <#AA96C5>TPS <#F0E6FF>%server_tps_1%"
         - "<#D6B4FF>⌖ <#F0E6FF>%condition:mundo%  <#D6B4FF>· <#AA96C5>/spawn vuelve al lobby"
         - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>AstralRPG.aternos.me"
+        - "<#D6B4FF>103.106.58.173:7004"
         - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
 playerlist-objective:
   enabled: true
@@ -97,8 +97,6 @@ scoreboard:
         - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
         - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
         - "<gradient:#5268C7:#D17AFF><bold>⚒ Survival</bold></gradient>"
-        - "<#D6B4FF>⌖ <#AA96C5>XYZ <#F0E6FF>%player_x% %player_y% %player_z%"
-        - "<#D6B4FF>❀ <#AA96C5>Bioma <#F0E6FF>%player_biome%"
         - "<#D6B4FF>✦ <#AA96C5>Nivel <#F0E6FF>%player_level%  <#D6B4FF>☠ <#AA96C5>Muertes <#F0E6FF>%statistic_deaths%"
         - "<#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
         - "<#D6B4FF>» <#AA96C5>/menu · /sethome · /spawn"
@@ -122,7 +120,7 @@ scoreboard:
         - "%condition:am_pay%"
         - "%condition:am_time%"
         - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>AstralRPG.aternos.me"
+        - "<#D6B4FF>103.106.58.173:7004"
     mazmorra:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:ad_dungeon%=true"

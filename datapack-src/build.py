@@ -1328,6 +1328,12 @@ for t in range(1, 6):
         for slot in ("container.*", "weapon.offhand"):
             lvl.append(f"execute if score @s astral.wt matches ..{t - 1} if items entity @s {slot} {sel} "
                        f"run scoreboard players set @s astral.wt {t}")
+    # Pedido 12/11/2026: los mobs del mundo se adaptan al MEJOR tier del inventario (armas, bastones,
+    # armaduras y herramientas Astral, puestas o guardadas), no solo a las armas.
+    for kind in ("armor", "tool"):
+        for slot in ("container.*", "armor.*", "weapon.offhand"):
+            lvl.append(f"execute if score @s astral.wt matches ..{t - 1} if items entity @s {slot} "
+                       f"*[minecraft:custom_data~{{{NS}:{{type:\"{kind}\",tier:{t}}}}}] run scoreboard players set @s astral.wt {t}")
     for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet"):
         lvl.append(f"execute if score @s astral.at matches ..{t - 1} if items entity @s {slot} "
                    f"*[minecraft:custom_data~{{{NS}:{{type:\"armor\",tier:{t}}}}}] run scoreboard players set @s astral.at {t}")

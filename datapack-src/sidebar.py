@@ -124,7 +124,7 @@ def location_conditions(centered=False):
 LOCAL_DATE = "%localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy%"
 SERVER_ROWS = [
     f"{PURPLE}◈ {TEXT}%date% {LOCAL_DATE} {PURPLE}· {TEXT}%time%",
-    f"{PURPLE}AstralRPG.aternos.me",
+    f"{PURPLE}103.106.58.173:7004",
 ]
 
 

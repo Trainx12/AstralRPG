@@ -17,7 +17,7 @@ function inf_jugadores(w: world) :: number:
     set {_c} to 0
     loop all players:
         world of loop-player is {_w}
-        gamemode of loop-player is not spectator
+        gamemode of loop-player is survival or adventure
         add 1 to {_c}
     return {_c}
 
@@ -229,13 +229,17 @@ function inf_tick(n: text, w: world, pj: number):
         execute console command "scoreboard players set %name of loop-player% inf.seg %{_ss}%"
         execute console command "scoreboard players set %name of loop-player% inf.kills %{-inf.kills::%{_n}%}%"
     # Que todos ataquen al jugador (arañas y endermans incluidos).
+    # Solo jugadores en supervivencia/aventura (en creativo nadie recibe dano).
+    loop all players in {_w}:
+        gamemode of loop-player is survival or adventure
+        add loop-player to {_ps::*}
     set {_vivos} to 0
     loop all entities in {_w}:
         if scoreboard tags of loop-entity contains "inf.mob":
             add 1 to {_vivos}
             if target of loop-entity is not set:
-                set {_ps::*} to all players in {_w}
-                set target of loop-entity to random element out of {_ps::*}
+                if {_ps::*} is set:
+                    set target of loop-entity to random element out of {_ps::*}
     # Aparicion: un grupo cada X segundos segun la velocidad; un mob por jugador.
     add 1 to {-inf.cd::%{_n}%}
     if {-inf.vel::%{_n}%} is 1:

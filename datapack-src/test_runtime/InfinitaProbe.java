@@ -74,6 +74,7 @@ public final class InfinitaProbe extends JavaPlugin {
             check(m2.size() >= 1 && m2.size() < m1.size(), "sala 2 (Facil, 1 jugador) con menos mobs: " + m2.size());
             check(m1.stream().allMatch(e -> e.getScoreboardTags().contains("astral.mt5")), "sala 1 todos tier V");
             check(m2.stream().allMatch(e -> e.getScoreboardTags().contains("astral.mt1")), "sala 2 todos tier I");
+            check(m2.stream().allMatch(e -> e.getCustomName() != null && e.getCustomName().contains("[T1]")), "el cartel de la sala 2 dice [T1]: " + m2.stream().map(Entity::getCustomName).toList());
             var hp = m1.stream().filter(e -> e instanceof LivingEntity).mapToDouble(e -> ((LivingEntity) e).getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue()).max().orElse(0);
             check(hp > 10000, "vida tier V aplicada: " + hp);
             var types = new HashSet<String>(); for (var e : m1) types.add(e.getType().name());

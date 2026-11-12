@@ -507,6 +507,9 @@ NAME_HOLOS = {
     "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
     "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
+    "astral_npc_cronista": ("Cronista", "#55FFFF", "Misiones diarias e historia", 2.8),
+    "astral_npc_bazar": ("Bazar", "#FFAA00", "Mercado y subastas", 2.9),
+    "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", 2.6),
 }
 
 
