@@ -111,7 +111,7 @@ public final class AstralTrain extends JavaPlugin implements Listener {
                 cart.getNode("model").getNodeList("attachments").getFirst().set("item",item);
             }
             var group=SpawnableGroup.fromConfig(config);
-            var locations=group.findSpawnLocations(home,forward,SpawnableGroup.SpawnMode.CENTER);
+            var locations=group.findSpawnLocations(home.clone().subtract(forward.clone().multiply(4)),forward,SpawnableGroup.SpawnMode.CENTER);
             if(locations==null || locations.isOccupied())throw new IllegalStateException("Faltan vias libres para el tren");
             train=group.spawn(locations);
             train.getProperties().setTrainName(NAME);
@@ -186,7 +186,7 @@ public final class AstralTrain extends JavaPlugin implements Listener {
             reset();return;
         }
         if(travel>240 || train.size()!=4) {reset();return;}
-        train.setForwardForce(.16);
+        train.setForwardForce(.08);
     }
 
     Location platform() {
@@ -246,11 +246,17 @@ public final class AstralTrain extends JavaPlugin implements Listener {
                 getConfig().set("station.x",x);getConfig().set("station.y",y);getConfig().set("station.z",z);
                 getConfig().set("station.direction",face.name());getConfig().set("enabled",true);saveConfig();
                 configure();sender.sendMessage("Estacion guardada. Revisar vias, anden y consola.");
+            } else if(args.length==1 && args[0].equalsIgnoreCase("recrear")) {
+                if(home==null && !getConfig().getBoolean("enabled")) {
+                    sender.sendMessage("Estacion desactivada; usar fijar para activarla.");return true;
+                }
+                reset();configure();
+                sender.sendMessage("Tren recreado conservando la estacion guardada.");
             } else if(args.length==1 && args[0].equalsIgnoreCase("apagar")) {
                 reset();home=null;retry=0;recovering=false;getConfig().set("enabled",false);saveConfig();
                 for(var chunk:tickets)chunk.removePluginChunkTicket(this);tickets.clear();
                 sender.sendMessage("Tren apagado; pasajeros devueltos al anden.");
-            } else sender.sendMessage("/astraltren fijar <x> <y> <z> <NORTH|SOUTH|EAST|WEST> | apagar. Estado: "+(home==null?"sin estacion":moving?"viajando":"anden"));
+            } else sender.sendMessage("/astraltren fijar <x> <y> <z> <NORTH|SOUTH|EAST|WEST> | recrear | apagar. Estado: "+(home==null?"sin estacion":moving?"viajando":"anden"));
         } catch(Exception e) {sender.sendMessage("No se pudo configurar. Usar coordenadas enteras y direccion cardinal.");getLogger().warning(e.toString());}
         return true;
     }

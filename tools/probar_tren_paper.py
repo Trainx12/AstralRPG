@@ -21,6 +21,7 @@ def run(java,base,recovery_only=False):
     for name in ('traincarts','bkcommonlib'):shutil.copy2(ROOT/'.local/tren-deps'/f'{name}.jar',plugins/f'{name}.jar')
     shutil.copy2(ROOT/'build/tren/AstralTrain.jar',plugins/'AstralTrain.jar')
     (plugins/'AstralTrain').mkdir(exist_ok=True)
+    shutil.copy2(ROOT/'build/tren/AstralTrain/train.yml',plugins/'AstralTrain/train.yml')
     if not recovery_only:shutil.copy2(ROOT/'build/tren/AstralTrain/config.yml',plugins/'AstralTrain/config.yml')
     deps=[*server.joinpath('libraries').rglob('*.jar'),*server.joinpath('versions').rglob('*.jar'),*plugins.glob('*.jar')]
     subprocess.run([str(java),'-m','jdk.compiler/com.sun.tools.javac.Main','-encoding','UTF-8',
@@ -54,8 +55,8 @@ def run(java,base,recovery_only=False):
         print('\n'.join(l for l in text.splitlines() if 'TRAIN ' in l or 'ERROR' in l),flush=True)
         if 'TRAIN RESULT failures=0' not in text or 'TRAIN FAIL' in text:raise AssertionError('Fallo: '+str(log))
     if not recovery_only:
-        session('paper.log',[('setup',4),('ready',1),('one',2),('countdown',12),('arrived',1),
-            ('three',2),('exit',12),('twoarrived',1),('three',14),('allarrived',1),('invalidbed',1),
+        session('paper.log',[('setup',4),('ready',1),('one',2),('countdown',16),('arrived',1),
+            ('three',2),('exit',16),('twoarrived',1),('three',18),('allarrived',1),('invalidbed',1),
             ('one',6),('outside',1),('result',1)])
     session('restart.log',[('recovered',2),('setup',4),('one',6),('persist',.2),('result',.2)],crash=True)
     session('crash-restart.log',[('recovered',2),('result',1)])

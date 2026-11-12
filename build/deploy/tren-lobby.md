@@ -91,7 +91,7 @@ el complemento mantiene una unica instancia con nombre `astral_lobby_survival`.
 Los JAR de terceros quedan locales; si faltan, descargarlos de las URL fijadas en versions.json
 y verificar hashes antes de compilar/instalar. Nunca reemplazar configs completas de otros plugins.
 
-AstralTrain.jar SHA-256: `c401a19e6b6875d68a0bac0aa354304f47b68ddf43a221e34b7fac2a65542428`.
+AstralTrain.jar SHA-256: `2f54b46fd55c7ace93af19dcd98e6104ead6b23cddc6f5dc58c94965df65ec4d`.
 Pack FINAL SHA-1: `ad66e732862b13f8042c3b7e0e93844839d55607`.
 Base Alas/casco SHA-1: `54ace74b9f9b6a962ca3bd92bc60ff6e74a3e838`; 12640 entradas anteriores conservadas
 byte por byte; sin eliminaciones. El arte y procedencia detallada estan solo en privado.

@@ -30,15 +30,17 @@ def dump(path, data):
 def cart(kind):
     # Arte separado del YAML: solo referencias a item_model propio.
     item={'type':'PAPER','meta':{'==':'ItemMeta','meta-type':'UNSPECIFIC','item-model':'astral:tren_'+kind}}
-    attachments=[{'type':'ITEM','item':item,'position':{'transform':'FIXED','posY':1.0}}]
+    attachments=[{'type':'ITEM','item':item,'position':{'transform':'DISPLAY_FIXED','posY':2.0,
+        'posZ':(-0.02313125 if kind=='head' else 0.0887875),
+        'sizeX':2.0,'sizeY':2.0,'sizeZ':2.0}}]
     if kind=='cart':
-        attachments.append({'type':'SEAT','position':{'posY':1.0},'displayMode':'DEFAULT'})
+        attachments.append({'type':'SEAT','position':{'posY':1.25,'posZ':0.1},'displayMode':'DEFAULT'})
     return {'entityType':'MINECART','astral-model':kind,'model':{'type':'EMPTY',
-        'physical':{'cartLength':2.6,'wheelCenter':0.0,'wheelDistance':1.5},'attachments':attachments}}
+        'physical':{'cartLength':(3.6275125 if kind=='head' else 4.89375),'wheelCenter':0.0,'wheelDistance':1.5},'attachments':attachments}}
 
 
 def configuration():
-    return {'nameFormat':'astral_lobby_survival','speedLimit':0.16,'gravity':0.0,
+    return {'nameFormat':'astral_lobby_survival','speedLimit':0.08,'gravity':0.0,
         'slowDown':False,'keepChunksLoaded':True,'allowPlayerEnter':True,'allowPlayerExit':True,
         'allowMobEnter':False,'invincible':True,'playerTakeable':False,
         'collision':{'players':'CANCEL','misc':'CANCEL','train':'CANCEL','block':'DEFAULT'},
@@ -80,7 +82,7 @@ def compile_plugin(java,server):
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         for path in sorted((classes/'astral').glob('AstralTrain*.class')):
             z.writestr(zipfile.ZipInfo('astral/'+path.name,STAMP),path.read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',STAMP),"name: AstralTrain\nversion: 1.0.0\nmain: astral.AstralTrain\napi-version: '26.1.2'\ndepend: [Train_Carts, BKCommonLib]\nsoftdepend: [Multiverse-Core]\ncommands:\n  astraltren:\n    permission: astraltren.admin\npermissions:\n  astraltren.admin:\n    default: op\n")
+        z.writestr(zipfile.ZipInfo('plugin.yml',STAMP),"name: AstralTrain\nversion: 1.1.0\nmain: astral.AstralTrain\napi-version: '26.1.2'\ndepend: [Train_Carts, BKCommonLib]\nsoftdepend: [Multiverse-Core]\ncommands:\n  astraltren:\n    permission: astraltren.admin\npermissions:\n  astraltren.admin:\n    default: op\n")
         for name in ('config.yml','train.yml'):
             z.writestr(zipfile.ZipInfo(name,STAMP),(OUT/'AstralTrain'/name).read_bytes())
     return hashlib.sha256(dest.read_bytes()).hexdigest()

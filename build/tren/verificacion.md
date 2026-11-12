@@ -3,7 +3,7 @@
 Generado por `tren_lobby.py`; no es evidencia de despliegue remoto.
 Paper 26.1.2 build 74, Java 25; jugadores NMS simulados, sin clientes reales.
 
-AstralTrain.jar SHA-256: `c401a19e6b6875d68a0bac0aa354304f47b68ddf43a221e34b7fac2a65542428`.
+AstralTrain.jar SHA-256: `2f54b46fd55c7ace93af19dcd98e6104ead6b23cddc6f5dc58c94965df65ec4d`.
 Los resultados solo se dan por correctos si el JAR del ensayo coincide byte por byte con la entrega.
 
 | Ensayo | Resultado | Comprobaciones correctas |
