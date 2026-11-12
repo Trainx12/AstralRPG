@@ -1882,7 +1882,9 @@ dlg("guia/proteccion", txt("Terrenos y mochilas", "gold", bold=True), [
     msg("Solo en survival: pala de oro, clic derecho en dos esquinas. Protege todo de fondo a techo. Minimo 6x6 (36 bloques).", "gray"),
     msg("Empezas con 36 bloques de area, sin ganar por tiempo. /shop -> Proteccion suma area: 36 + 25 = 61, no 11x11. Podes repartirla entre zonas de minimo 36 cada una.", "gray"),
     msg("/trust jugador comparte; /untrust jugador retira acceso; /abandonclaim libera la zona. WorldGuard y los candados de Bolt siguen vigentes.", "gray"),
-    msg("/shop -> Mochilas: compra 9, 27 o 54 espacios. /bp abre tu mochila virtual. Su contenido persiste al morir y no pasa a la tumba. Sin mochilas dentro de mochilas, shulkers ni bundles.", "gray"),
+    msg("Mochilas: se compran en /shop -> Mochilas: Cuero 9 espacios ($5.000), Cobre 18 ($20.000), Hierro 27 ($50.000), Oro 36 ($100.000) y Diamante 45 ($175.000). Necesitas un lugar libre en el inventario.", "gray"),
+    msg("La mochila es un objeto: tenela en la mano y hace clic derecho para abrirla. Tambien se fabrican (cuero + hilo + cofre) y se mejoran rodeandolas con 8 lingotes del nivel siguiente; Netherite (54) en la mesa de herreria. /bp muestra las recetas.", "gray"),
+    msg("Cuidado: si moris, la mochila cae con tus cosas a la tumba y su contenido va con ella. No se puede meter una mochila dentro de otra.", "gray"),
 ], [], back="guia")
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [

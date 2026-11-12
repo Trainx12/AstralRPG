@@ -20,23 +20,23 @@ Subir las siguientes rutas, conservando el resto de cada carpeta:
 | `build/tanda5a/EconomyShopGUI/sections/Proteccion.yml` | `plugins/EconomyShopGUI/sections/Proteccion.yml` |
 | `build/tanda5a/EconomyShopGUI/shops/Mochilas.yml` | `plugins/EconomyShopGUI/shops/Mochilas.yml` |
 | `build/tanda5a/EconomyShopGUI/shops/Proteccion.yml` | `plugins/EconomyShopGUI/shops/Proteccion.yml` |
+| `build/tanda5a/ExpendableBackpacks/config.yml` | `plugins/ExpendableBackpacks/config.yml` |
 | `build/tanda5a/GriefPreventionData/config.yml` | `plugins/GriefPreventionData/config.yml` |
 | `build/tanda5a/GriefPreventionData/messages.yml` | `plugins/GriefPreventionData/messages.yml` |
 
 GriefPreventionData/config.yml y messages.yml son ajustes: si ya existen, combinar las claves, no borrar claims ni PlayerData.
 Comprobar que el mundo survival se llama `world`; si difiere, ajustar `survival-world` y Claims.Mode antes de arrancar.
-Los slots de tienda 40/41 deben estar libres; mover solo estas dos secciones si ya estan ocupados.
+Slots de tienda: 40 Proteccion, 42 Mochilas (41 lo usa misc en el server).
 
 ## Descargas verificadas en Modrinth (26.1.2, formato datapack o Paper)
 
 - [griefprevention 16.18.7](https://modrinth.com/plugin/griefprevention/version/dGfCZHqk): [GriefPrevention.jar](https://cdn.modrinth.com/data/O4o4mKaq/versions/dGfCZHqk/GriefPrevention.jar) → `plugins/GriefPrevention.jar`. Local: `.local/tanda5a/GriefPrevention.jar`. SHA-1 `642c06bb3ef907a934e612914ad8397f56c7bbf4`.
-- [blzdbackpacks 1.0.0-alpha.1](https://modrinth.com/plugin/blzdbackpacks/version/y4i2wjMa): [BlzdBackpacks-1.0.0-alpha.1.jar](https://cdn.modrinth.com/data/6JVfEqek/versions/y4i2wjMa/BlzdBackpacks-1.0.0-alpha.1.jar) → `plugins/BlzdBackpacks-1.0.0-alpha.1.jar`. Local: `.local/tanda5a/BlzdBackpacks-1.0.0-alpha.1.jar`. SHA-1 `dbcc372727fa374b48d44c1d83b78b574ada33fd`.
 - [dungeons-and-taverns 5.2.0](https://modrinth.com/datapack/dungeons-and-taverns/version/ohqJT0pv): [Dungeons and Taverns v5.2.0.zip](https://cdn.modrinth.com/data/tpehi7ww/versions/ohqJT0pv/Dungeons%20and%20Taverns%20v5.2.0.zip) → `world/datapacks/Dungeons and Taverns v5.2.0.zip`. Local: `.local/tanda5a/Dungeons and Taverns v5.2.0.zip`. SHA-1 `1d0f5d8fb7ca306fe0dd84ea11461dcc0db35885`.
 - [explorify v1.6.6](https://modrinth.com/datapack/explorify/version/aQ2oh7MS): [Explorify v1.6.6.dp.zip](https://cdn.modrinth.com/data/HSfsxuTo/versions/aQ2oh7MS/Explorify%20v1.6.6.dp.zip) → `world/datapacks/Explorify v1.6.6.dp.zip`. Local: `.local/tanda5a/Explorify v1.6.6.dp.zip`. SHA-1 `383face9181f81ecf285deb1d9e6ca18b023b746`.
 - [structory 1.3.17](https://modrinth.com/datapack/structory/version/OIcllpSf): [Structory_v1.3.7.zip](https://cdn.modrinth.com/data/aKCwCJlY/versions/OIcllpSf/Structory_v1.3.7.zip) → `world/datapacks/Structory_v1.3.7.zip`. Local: `.local/tanda5a/Structory_v1.3.7.zip`. SHA-1 `559a14234f8957360515a8967ed3b4e39025b5d3`.
 - [structory-towers 1.0.17](https://modrinth.com/datapack/structory-towers/version/uxUF2h4B): [Structory_Towers_v1.0.17.zip](https://cdn.modrinth.com/data/j3FONRYr/versions/uxUF2h4B/Structory_Towers_v1.0.17.zip) → `world/datapacks/Structory_Towers_v1.0.17.zip`. Local: `.local/tanda5a/Structory_Towers_v1.0.17.zip`. SHA-1 `bbf5191cefbf4d538a6ae4695d2f88364390166e`.
 
-Terceros nunca al Git publico. BlzdBackpacks es alfa: revisar pruebas locales y completar la prueba con AxGraves antes de habilitar compras en remoto.
+Terceros nunca al Git publico. Mochilas: ExpendableBackpacks 1.2.0 (ya instalado en el server).
 Structory y Towers son de Stardust Labs. No se superponen estructuras ni loot entre los cuatro packs. El tag load compartido se combina (sin replace).
 Structory/Towers comparten data/c/worldgen/structure_icons.json: metadatos de iconos, ignorados por vanilla/Paper, prevalece el pack de mayor prioridad. No altera estructuras ni cofres; una futura integracion que lea esos iconos debe combinar ambos mapas.
 Solo chunks nuevos. Paper comparte datapacks entre mundos; AstralProgression cancela AsyncStructureSpawnEvent de los cuatro namespaces fuera del survival.
@@ -45,7 +45,7 @@ No apilar otra version de D&T si ya existe: reemplazar solo su ZIP anterior tras
 
 Iniciar (Java 25). Requiere AuraSkills con preset legacy, MythicMobs, Vault, proveedor de economia, LuckPerms y EconomyShopGUI ya existentes.
 Ejecutar `build/tanda5a/permisos.txt`; despues `sreload` y `skills reload`. Un reinicio carga el JAR y los datapacks; no usar PlugMan ni /reload general.
-Verificar consola: AstralProgression habilitado, GriefPrevention y BlzdBackpacks cargados, sin errores de datapacks.
+Verificar consola: AstralProgression habilitado, GriefPrevention y ExpendableBackpacks cargados, sin errores de datapacks.
 
 ## XP y ritmo
 
@@ -81,9 +81,10 @@ Inicio 36, sin bloques por tiempo. Comprar SUMA: 36+25=61, no 11x11. Se reparte 
 `/trust jugador`, `/untrust jugador`, `/abandonclaim`; Bolt sigue controlando cofres y WorldGuard sigue controlando regiones.
 `/buyclaimblocks` y venta de bloques desactivados. Precio unico en tanda5a.py; compra desde EconomyShopGUI abre menu propio y ejecuta `adjustbonusclaimblocks jugador cantidad` desde consola.
 Paquetes: 25 bloques = $15,000, 100 bloques = $50,000, 1225 bloques = $500,000, 2500 bloques = $950,000, 10000 bloques = $3,500,000. Caros frente a minas: $80 → $700.000 → $25M.
-Mochilas virtuales: 9 slots ($5,000, blzdbp.small), 27 slots ($50,000, blzdbp.medium), 54 slots ($250,000, blzdbp.large). Compra permiso permanente, /bp abre.
-No hay item mochila para anidar. Bloquea shulkers, bundles y estrellas (Menu Astral). El contenido virtual persiste separado de AxGraves; no cae en tumbas.
-Guardia propia cierra GUI al recibir dano (antes de calcular drops) y antes de morir, y bloquea recogida con mochila abierta para evitar dos copias de inventario desincronizadas.
+Mochilas (ExpendableBackpacks): Cuero 9 espacios $5,000, Cobre 18 espacios $20,000, Hierro 27 espacios $50,000, Oro 36 espacios $100,000, Diamante 45 espacios $175,000.
+La tienda ejecuta `backpack give jugador nivel` desde consola: la mochila es un item (clic derecho abre). Pide un espacio libre antes de cobrar.
+Tambien se fabrican (cuero+hilo+cofre) y se mejoran rodeandolas con 8 lingotes; Netherite en herreria. `allow-backpack-inception: false`.
+Al morir la mochila cae como item (AxGraves la guarda en la tumba); el contenido queda ligado a la mochila.
 
 ## Loot aditivo por item y cofre
 
@@ -115,6 +116,6 @@ Comparacion ZIP contra HEAD previo: solo guia.json y la pagina nueva guia/protec
 - Comparar curva activa con la copia local y comprobar que el preset legacy tenga sorcery.
 - Espada, arco (cambiar arma en vuelo), baston directo/area y guadana: una sola recompensa de la skill correcta; matar elite/jefe y mob vanilla escalado.
 - Dos cuentas sin OP: proteger 6x6; intentar romper fondo/techo, varias zonas, comprar 25 y comprobar 61; WG y Bolt siguen negando acceso.
-- /bp: comprar tamanos, shift/clic numeros/arrastre, desconexion/reinicio; morir con GUI abierta y AxGraves, recuperar tumba una vez, revisar que no se duplique contenido.
+- Mochilas: comprar niveles, abrir con clic derecho, desconexion/reinicio; morir con AxGraves, recuperar tumba una vez, revisar que no se duplique contenido.
 - Abrir cofres nuevos de cada pack (tambien vagoneta), conservar loot vanilla; reabrir no duplica. Generar chunks en mundo excluido y confirmar que no aparecen estructuras de los packs.
 - Revisar consola y medir memoria/TPS con spark. No afirmar estas pruebas remotas como realizadas.

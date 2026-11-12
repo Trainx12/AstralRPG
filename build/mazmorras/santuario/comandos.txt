@@ -1,5 +1,5 @@
 # Santuario Azeroth. Instalar primero datapack y regiones con servidor APAGADO.
-# Dimension del datapack: NO mv create ni importar como THE_END.
+# Dimension del datapack (cielo del End): NO mv create ni importar como THE_END.
 # Ruta SOLO nueva: world/dimensions/minecraft/santuario_azeroth/region/
 # Paper la carga desde el datapack; no crear/importar con Multiverse.
 # Conservar santuario_interstellar y sus regiones como respaldo.
@@ -22,12 +22,9 @@ rg flag -w world_minecraft_santuario_azeroth __global__ creeper-explosion deny
 rg flag -w world_minecraft_santuario_azeroth __global__ other-explosion deny
 rg flag -w world_minecraft_santuario_azeroth __global__ tnt deny
 lp group default permission set astral.santuario.cd false
-# SOLO con la mazmorra vacia; retirar el controlador del mundo viejo:
-execute in minecraft:santuario_interstellar run forceload add 46 48
+# SOLO con la mazmorra vacia. Retirar controladores viejos y crear UNO nuevo:
 mm mobs kill astral_santuario_control_sala1
-execute in minecraft:santuario_interstellar run forceload remove 46 48
-# Crear una sola vez el controlador nuevo:
-execute in minecraft:santuario_azeroth run forceload add 144 -48 351 159
-mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,247.5,57,19.5
-# Conservar las cargas del recorte: las oleadas recorren sectores separados.
-# Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 247.5 57 14.5 0 0
+execute in minecraft:santuario_azeroth run forceload remove all
+execute in minecraft:santuario_azeroth run forceload add 191 187 321 321
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,256.5,180,254.5
+# Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 256.5 180 254.5 0 0

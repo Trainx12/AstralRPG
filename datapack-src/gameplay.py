@@ -1,6 +1,6 @@
 """Balance, migracion sin reemplazar inventarios y reglas de las mazmorras."""
 import json
-from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD
+from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD, ARRIVAL as SANCTUARY_ARRIVAL
 from pathlib import Path
 from minijuegos import parkour_worlds, arena_worlds
 
@@ -267,7 +267,7 @@ function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
     if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 247.5 57 14.5 0 0"
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% __SANCT_TP__ 0 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop
@@ -506,7 +506,7 @@ on quit:
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
 __PVP__
-__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits)
+__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL)))
 
 
 def realistic_hook():

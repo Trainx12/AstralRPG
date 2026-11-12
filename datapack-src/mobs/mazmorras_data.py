@@ -6,7 +6,7 @@ Las Minas siguen en mazmorra.MINA y conservan todos sus identificadores.
 from copy import deepcopy
 import re
 from mobs.rutas_mazmorras import ROUTES
-from santuario_azeroth import WORLD as SANCTUARY_WORLD, ARRIVAL, CENTER, BOSSES, CHEST, GUIDE
+from santuario_azeroth import WORLD as SANCTUARY_WORLD, ARRIVAL, CENTER, BOSSES, CHEST, GUIDE, RADIUS, FLOOR_Y
 
 try:
     from . import mythic
@@ -42,9 +42,9 @@ DEFINITIONS = [
          points=[(82.5, 52, -55.5)],
          labels=["Nucleo de la Forja"],
          enemies=["espantapajaros", "arana", "cara"], money=3000),
-    dict(key="santuario", name="Santuario Celestial", map="Spires of Azeroth.zip",
+    dict(key="santuario", name="Santuario Celestial", map="spiritarena.schem",
          world=SANCTUARY_WORLD, boss=None, event="santuario", tier=5,
-         points=[CENTER], arrival=ARRIVAL, radius=104,
+         points=[CENTER], arrival=ARRIVAL, radius=RADIUS,
          labels=["Prueba de los cinco ecos"],
          enemies=[], money=5000),
 ]
@@ -129,7 +129,7 @@ def catalog():
             rooms.append(dict(id="sala1", name=definition["labels"][0], centro=definition["points"][0],
                               llegada=definition.get("arrival", definition["points"][0]),
                               r=definition.get("radius", 30), oleadas=waves, extra=sorted(helpers),
-                              wave_spawn_points=BOSSES, floor_range=(57,57)))
+                              wave_spawn_points=BOSSES, floor_range=(FLOOR_Y,FLOOR_Y)))
         else:
             boss, block, helpers = variant(key, definition["boss"], boss=True)
             blocks.append(block)

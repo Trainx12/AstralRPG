@@ -37,6 +37,49 @@ DAILIES = [
     (13, 2, "Pesadilla", "nightmare", 1, "Mata un elite vanilla de tier IV o V"),
     (14, 2, "Mejora arriesgada", "upgrade", 1, "Intenta una mejora +5 o mayor en el Herrero"),
 ]
+# Lo que cuenta el Cronista al aceptar cada capitulo (un parrafo por linea).
+STORY_TEXT = [
+    ["Hace tiempo, la Estrella Astral cuidaba este mundo desde el cielo. Una noche se partio en pedazos.",
+     "Sus fragmentos cayeron por todos lados y corrompieron a las criaturas. Por eso los mobs son mas fuertes que antes.",
+     "Este Refugio es lo poco que quedo del cielo. Antes de salir, necesitas equipo de verdad.",
+     "Anda a ver al Herrero y forja tu primera pieza de tier I. Despues volve y seguimos."],
+    ["Bien forjado. Ahora mira los campos de afuera: los espantapajaros caminan solos y los Armored Grubs se multiplican.",
+     "Los mas peligrosos son los elites: brillan distinto porque tocaron un fragmento.",
+     "Mata 10 Espantapajaros, 10 Armored Grubs y un elite. Traeme 3 Esencias de Elite para estudiarlas."],
+    ["Las esencias me mostraron algo: un fragmento cayo al mar.",
+     "En las playas hay un Cangrejo gigante que lo tiene adentro. La marea lo volvio enorme y enojado.",
+     "Derrotalo. No hace falta que me traigas nada: el fragmento te va a reconocer cuando lo venzas."],
+    ["El fragmento de la marea esta tranquilo. El siguiente esta en el bosque del pantano.",
+     "Las Caras Voladoras cuidan a un Chaman que uso el fragmento para hacer magia oscura.",
+     "Mata 15 Caras Voladoras para abrir camino y derrota al Chaman."],
+    ["En el desierto hay una arena vieja que todavia recuerda las peleas de antes.",
+     "Una Momia despierta ahi cada vez que alguien entra. Su fragmento la mantiene viva.",
+     "Vencela y traete el recuerdo de la arena."],
+    ["Los mineros del Refugio cavaron demasiado hondo y encontraron un fragmento en las Minas Olvidadas.",
+     "Nadie volvio a salir. Dicen que la lampara del jefe minero sigue prendida.",
+     "Completa las cuatro salas de las Minas. Anda con equipo bueno y comida."],
+    ["Hace frio aca, ¿no? Es porque un fragmento cayo en la nieve.",
+     "El Yeti lo encontro y desde entonces la tormenta no para.",
+     "Derrota al Yeti y el silencio blanco se va a terminar."],
+    ["Queda el ultimo fragmento, el mas fuerte: el corazon de la forja.",
+     "El Herrero construyo hace anos un golem para cuidar su taller. El fragmento lo volvio loco.",
+     "Vas a necesitar una pieza de tier V para aguantarlo. Forjala y derrota al Golem de Forja."],
+    ["Lo lograste. Tengo el eco de cada fragmento que trajiste.",
+     "Si los juntamos, la Estrella Astral puede volver a brillar.",
+     "Usa COMPROBAR en mi menu y la encendemos juntos. Despues el Santuario Celestial te va a abrir sus puertas."],
+]
+
+
+def story_dialog(chapter, paragraphs):
+    ink = lambda text, color="#30241b", **kw: {"text": text, "color": color, "shadow_color": 0, **kw}
+    body = [{"type": "minecraft:plain_message", "contents": ink(p), "width": 300} for p in paragraphs]
+    body.append({"type": "minecraft:plain_message", "width": 300,
+                 "contents": ink("Objetivo: " + CHAPTERS[chapter - 1], "#1a5cc0")})
+    return {"type": "minecraft:notice", "title": ink(f"El Cronista - Capitulo {chapter}/9", "#7a3a10", bold=True),
+            "body": body, "can_close_with_escape": True, "pause": False, "after_action": "close",
+            "action": {"label": ink("Entendido", "#1c7d2c", bold=True), "width": 200}}
+
+
 COUNTERS = ["hostil", "spider", "elite", "biomes", "pet", "ride", "mine", "boss", "nightmare", "upgrade"]
 STORY = {"cangrejo": (3, 1, "fragmento_marea"), "chaman": (4, 2, "fragmento_pantano"),
          "momia": (5, 3, "fragmento_arena"), "mina": (6, 4, "lampara_minero"),
@@ -194,7 +237,12 @@ def generate(files, items):
         'execute if score @s aq.accepted matches 1 run return run ' + msg('Esta mision YA esta ACTIVA. Completa el objetivo y usa COMPROBAR.', 'aqua'),
         "execute if score @s aq.state matches 0 run " + call("start"),
         'execute unless score @s aq.state matches 1..9 run return 0',
-        'scoreboard players set @s aq.accepted 1', call('gui/accepted')])
+        'scoreboard players set @s aq.accepted 1', call('gui/accepted'), call('gui/story_dialog')])
+    # El Cronista cuenta el capitulo en un dialogo vanilla (sin plugins).
+    fn("gui/story_dialog", [f"execute if score @s aq.state matches {i} run return run dialog show @s {NS}:cronista/capitulo_{i}"
+                            for i in range(1, 10)])
+    for i, paragraphs in enumerate(STORY_TEXT, 1):
+        files[f"data/{NS}/dialog/cronista/capitulo_{i}.json"] = json.dumps(story_dialog(i, paragraphs), ensure_ascii=False, indent=1)
     fn("gui/reject", [call("sync"), "scoreboard players set @s aq.accepted 0",
         msg("Mision rechazada o pausada. Conservas tus avances y podes aceptarla mas tarde.", "yellow")])
     for state in range(10):

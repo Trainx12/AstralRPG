@@ -209,8 +209,18 @@ class ModelSizeTests(unittest.TestCase):
 
 
 class SantuarioSinCambiosTests(unittest.TestCase):
-    def test_sanctuary_outputs_are_identical_ignoring_checkout_newlines(self):
+    """El Santuario (spiritarena) toma TODAS sus coordenadas del bloque unico de santuario_azeroth.py."""
+    def test_sanctuary_outputs_use_single_coordinate_block(self):
+        from santuario_azeroth import ARRIVAL, CENTER, RADIUS, BOUNDS
         root=Path(__file__).resolve().parents[1]
-        expected={'build/mythicmobs/mobs/santuario.yml': '983343c9e2bc001ca3db580c702936f73d1d6140277686c11c27e5463ccbdd86', 'build/mythicmobs/skills/santuario.yml': '056d3a0c551a2c633ba61a01002df4df8084b7295e5d9c9cddeed5e7325df0fb', 'build/mazmorras/santuario/comandos.txt': 'da71543ef7d3e652ddde9df8d4f9fd803eda60021e67ee5eff08f4bd929e58a7'}
-        for name,digest in expected.items():
-            self.assertEqual(hashlib.sha256((root/name).read_bytes().replace(b'\r\n',b'\n')).hexdigest(),digest,name)
+        fmt=lambda p:' '.join(map(str,p))
+        commands=(root/'build/mazmorras/santuario/comandos.txt').read_text(encoding='utf8')
+        self.assertIn('forceload add '+fmt(BOUNDS),commands)
+        self.assertIn(','.join(map(str,CENTER)),commands)
+        self.assertIn('tp <jugador> '+fmt(ARRIVAL),commands)
+        mobs=(root/'build/mythicmobs/mobs/santuario.yml').read_text(encoding='utf8')
+        self.assertIn(f'playerwithin{{d={RADIUS}}}',mobs)
+        rescue=(root/'build/gameplay/astral_gameplay.sk').read_text(encoding='utf8')
+        self.assertIn('santuario_azeroth run minecraft:tp %name of {_p}% '+fmt(ARRIVAL),rescue)
+        for old in ('247.5 57','247.5,57','144 -48 351 159'):
+            for text in (commands,mobs,rescue):self.assertNotIn(old,text)

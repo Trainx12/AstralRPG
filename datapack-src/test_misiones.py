@@ -3,6 +3,7 @@
 Ejecutar: python -m unittest test_misiones
 No reemplaza la prueba visual con DeluxeMenus en Minecraft.
 """
+import json
 import re
 import unittest
 from unittest.mock import patch
@@ -82,6 +83,11 @@ class MissionMenus(unittest.TestCase):
     def check_click_targets(self, shown, function, active):
         for slot in [38,39,40,41,42] + ([] if active else list(range(9,36))):
             commands = shown[slot]['extra']['click_commands']
+            if function == 'gui/accept':
+                # Cierra el menu para que se vea el dialogo del Cronista.
+                self.assertEqual(commands[0], '[close]')
+                self.assertIn('function astral:quest/' + function, commands[1])
+                continue
             self.assertIn('function astral:quest/' + function, commands[0])
             self.assertIn('[console] dm open misiones', commands[1])
         if active:
@@ -105,7 +111,9 @@ class MissionMenus(unittest.TestCase):
                 self.assertNotIn('/accept', str(entry['extra']))
             for entry in items:
                 commands = entry["extra"].get("click_commands", [])
-                self.assertNotIn('[close]', commands)
+                # Solo aceptar la historia cierra: abre el dialogo del Cronista.
+                if not any('quest/gui/accept' in c for c in commands):
+                    self.assertNotIn('[close]', commands)
                 self.assertNotIn("aq.page", entry["extra"].get("view_requirement", ""))
 
 
@@ -181,6 +189,16 @@ class AcceptanceTransitions(unittest.TestCase):
             self.run_function('gui/accept',scores,effects)
             self.assertEqual(scores['@s','aq.accepted'],int(state<10))
             self.assertEqual(sum('title @s title ' in e for e in effects),int(state<10))
+
+    def test_accepting_story_opens_cronista_dialog(self):
+        dispatch=self.files['data/astral/function/quest/gui/story_dialog.mcfunction']
+        accept=self.files['data/astral/function/quest/gui/accept.mcfunction']
+        self.assertIn('function astral:quest/gui/story_dialog', accept.strip().splitlines()[-1])
+        for i in range(1,10):
+            self.assertIn(f'matches {i} run return run dialog show @s astral:cronista/capitulo_{i}', dispatch)
+            d=json.loads(self.files[f'data/astral/dialog/cronista/capitulo_{i}.json'])
+            self.assertEqual(d['type'],'minecraft:notice')
+            self.assertGreaterEqual(len(d['body']),3)
 
     def test_hard_claim_rechecks_goal_and_only_pays_once(self):
         scores={('@s','aq.d2'):12,('@s','aq.active2'):1,('@s','aq.done2'):0,('@s','aq.boss'):0}

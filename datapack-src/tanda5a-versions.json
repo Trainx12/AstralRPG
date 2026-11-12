@@ -32,43 +32,6 @@
       }
     ]
   },
-  "blzdbackpacks": {
-    "id": "y4i2wjMa",
-    "version_number": "1.0.0-alpha.1",
-    "game_versions": [
-      "1.21",
-      "1.21.1",
-      "1.21.10",
-      "1.21.11",
-      "1.21.2",
-      "1.21.3",
-      "1.21.4",
-      "1.21.5",
-      "1.21.6",
-      "1.21.7",
-      "1.21.8",
-      "1.21.9",
-      "26.1.2"
-    ],
-    "loaders": [
-      "paper",
-      "purpur"
-    ],
-    "files": [
-      {
-        "id": "BjHc9wYV",
-        "hashes": {
-          "sha1": "dbcc372727fa374b48d44c1d83b78b574ada33fd",
-          "sha512": "60106b5f2bdcb29c86da0accc49ea2a86bf2fe1aa38ad3f915a5dfbfff206aac9091963fd6655153009170aef0e28d90646326e92e47cb3bfc122de68d6af7c7"
-        },
-        "url": "https://cdn.modrinth.com/data/6JVfEqek/versions/y4i2wjMa/BlzdBackpacks-1.0.0-alpha.1.jar",
-        "filename": "BlzdBackpacks-1.0.0-alpha.1.jar",
-        "primary": true,
-        "size": 44021,
-        "file_type": null
-      }
-    ]
-  },
   "dungeons-and-taverns": {
     "id": "ohqJT0pv",
     "version_number": "5.2.0",

@@ -81,7 +81,7 @@ class SantuarioMapTests(unittest.TestCase):
         self.assertEqual(RESCUE_HEIGHTS[WORLD],0)
         rescue=script().split('function astral_rescue(p: player):')[1].split('function ',1)[0]
         self.assertIn('minecraft:santuario_azeroth run minecraft:tp',rescue)
-        self.assertIn('247.5 57 14.5',rescue)
+        self.assertIn(' '.join(map(str,ARRIVAL)),rescue)
         self.assertLess(rescue.index('minecraft:santuario_azeroth'),rescue.index('spawn %name'))
 
 

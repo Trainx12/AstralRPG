@@ -37,7 +37,7 @@ function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
     if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 247.5 57 14.5 0 0"
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 256.5 180 254.5 0 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop

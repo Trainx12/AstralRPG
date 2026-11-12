@@ -20,13 +20,13 @@ def run(java, source):
     for name,path in [('auraskills.jar',ROOT/'.local/asw-native/server/plugins/auraskills.jar'),
                       ('mythicmobs.jar',ROOT/'.local/asw-native/server/plugins/mythicmobs.jar'),
                       ('GriefPrevention.jar',ROOT/'.local/tanda5a/GriefPrevention.jar'),
-                      ('BlzdBackpacks.jar',ROOT/'.local/tanda5a/BlzdBackpacks-1.0.0-alpha.1.jar'),
+                      ('ExpendableBackpacks.jar',ROOT/'.local/expendable/ExpendableBackpacks-1.2.0.jar'),
                       ('AstralProgression.jar',ROOT/'build/runtime/AstralProgression.jar')]:
         shutil.copy2(path,plugins/name)
     for name in ['nightcore.jar','excellentenchants.jar','packetevents.jar']:
         shutil.copy2(source/'plugins'/name,plugins/name)
     # Solo configuraciones de plugins propias del ensayo; ningun dato de jugadores previo.
-    for folder in ['AstralProgression','GriefPreventionData','BlzdBackpacks']:
+    for folder in ['AstralProgression','GriefPreventionData','ExpendableBackpacks']:
         shutil.copytree(ROOT/'build/tanda5a'/folder,plugins/folder,dirs_exist_ok=True)
     mm=plugins/'MythicMobs/mobs';mm.mkdir(parents=True,exist_ok=True)
     (mm/'tanda5a_probe.yml').write_text('astral_mina_guardian:\n  Type: ZOMBIE\n  Health: 100\n  Damage: 1\n  Options:\n    NoAI: true\n  Drops: []\n')
@@ -60,7 +60,7 @@ def run(java, source):
         '-classpath',os.pathsep.join(map(str,jars)),'-d',str(target),str(ROOT/'datapack-src/test_runtime/ProgressionProbe.java')],check=True)
     with zipfile.ZipFile(plugins/'ProgressionProbe.jar','w') as z:
         for p in (target/'astraltest').glob('ProgressionProbe*.class'):z.write(p,'astraltest/'+p.name)
-        z.writestr('plugin.yml',"name: ProgressionProbe\nversion: 1\nmain: astraltest.ProgressionProbe\napi-version: '26.1.2'\ndepend: [AstralProgression, BlzdBackpacks]\ncommands:\n  t5probe: {}\n")
+        z.writestr('plugin.yml',"name: ProgressionProbe\nversion: 1\nmain: astraltest.ProgressionProbe\napi-version: '26.1.2'\ndepend: [AstralProgression, ExpendableBackpacks]\ncommands:\n  t5probe: {}\n")
     for phase in ['paper','restart']:
         log=ROOT/f'.local/tanda5a/{phase}.log'
         with log.open('w',encoding='utf8') as out:

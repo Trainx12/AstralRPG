@@ -413,7 +413,7 @@ COMANDOS = [
         ('cosmeticos', 'NAME_TAG', '/cosmeticos', ['Elegi tu titulo para el chat entre', 'los que desbloqueaste. Tambien /titulos.'], '/cosmeticos', ['[openguimenu] cosmeticos']),
         ('titulo', 'PAPER', '/titulo quitar', ['Saca el titulo que tenes puesto.', 'No pierde los que desbloqueaste.'], '/titulo quitar', ['[close]', '[player] titulo quitar']),
         ('sb', 'ITEM_FRAME', '/sb', ['Muestra u oculta el panel de la', 'derecha (vida, oro, poder, nivel).'], '/sb', ['[close]', '[player] sb']),
-        ('mochilas', 'CHEST', '/bp', ['Abre tu mochila virtual.', 'El permiso se compra en /shop.'], '/bp', ['[close]', '[player] bp<delay=3>']),
+        ('mochilas', 'CHEST', '/bp', ['Recetas y niveles de mochilas.', 'Se compran en /shop -> Mochilas.', 'Clic derecho con la mochila para abrirla.'], '/bp', ['[close]', '[player] bp<delay=3>']),
         ('proteccion', 'GOLDEN_SHOVEL', 'Proteccion de terreno', ['Compra area en /shop y marca', 'dos esquinas con una pala de oro.'], '/shop', ['[close]', '[player] economyshopgui:shop<delay=3>']),
         ('recetas', 'BOOK', 'Recetas y Forja', ['Consulta materiales y recetas', 'en la Guia Astral.'], 'Guia Astral', ['[close]', '[player] trigger astral.guia set 1']),
     ]),
@@ -475,6 +475,10 @@ def misiones_menu(current_page=0):
             for i, (key, value) in enumerate(scores.items()))
 
     def action(function):
+        if function == 'gui/accept':
+            # Al aceptar, el Cronista cuenta la historia en un dialogo vanilla.
+            # Reabrir el menu lo taparia: el dialogo trae su boton para volver.
+            return ['[close]', f"[console] execute as {P} at @s run function astral:quest/{function}"]
         page = int(function.rsplit('/', 1)[1]) if function.startswith('gui/page/') else current_page
         # Abrir desde consola reconstruye las condiciones con los scores ya
         # actualizados. No cerrar para mandar al jugador a leer el chat.

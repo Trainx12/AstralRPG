@@ -23,9 +23,11 @@ Generadores: `datapack-src/tanda5a.py`, `escala.py`, `runtime/AstralProgression.
 GriefPrevention 16.18.7: solo survival, 36 bloques iniciales, minimo 6x6, sin ganancia por hora,
 proteccion completa de fondo a techo. EconomyShopGUI suma paquetes de area mediante consola;
 `/buyclaimblocks` y venta directa quedan desactivados. Respeta WorldGuard; Bolt conserva sus candados.
-BlzdBackpacks 1.0.0-alpha.1: mochila virtual `/bp`, permisos `blzdbp.small/medium/large`
-para 9/27/54 espacios, vendidos en Mochilas. No hay objeto mochila para anidar; shulkers y bundles bloqueados.
-El contenido virtual permanece al morir, separado de AxGraves. Requiere prueba de muerte/tumba en remoto antes de habilitar compras.
+Mochilas: **ExpendableBackpacks 1.2.0** (unico plugin de mochilas; BlzdBackpacks se descarto el 12/11/2026).
+La mochila es un item (cabeza): clic derecho la abre; `/bp` muestra recetas. Niveles cuero 9, cobre 18, hierro 27,
+oro 36, diamante 45, netherite 54 (herreria). La tienda Mochilas (slot 42, menu propio de AstralProgression) cobra y
+ejecuta `backpack give <jugador> <nivel>` por consola; pide un lugar libre antes de cobrar. Precios en `tanda5a.py`
+(`MOCHILAS`). `allow-backpack-inception: false`. Al morir la mochila cae a la tumba de AxGraves con su contenido.
 Se instala con servidor apagado y reinicio; no usar recarga general para JAR nuevos.
 Los cuatro packs de estructuras van solo a `world/datapacks`, generan en chunks nuevos;
 AstralProgression restringe sus estructuras fuera del survival y agrega loot sin sustituir tablas vanilla.

@@ -4,20 +4,31 @@ import json
 WORLD = 'santuario_azeroth'
 # Paper 26.1: level-name=world (servidor vigente) + namespace + path.
 BUKKIT_WORLD = 'world_minecraft_santuario_azeroth'
-BOUNDS = (144, -48, 351, 159)
-ARRIVAL = (247.5, 57, 14.5)
-CENTER = (247.5, 57, 19.5)
-# Orden original, cinco oleadas de un Ancestral. Pies sobre vidrio natural.
-BOSSES = ((233.5, 57, 1.5), (299.5, 57, 37.5), (267.5, 57, 106.5),
-          (197.5, 57, 36.5), (247.5, 57, 19.5))
-CHEST = (247.5, 57, 23.5)
-GUIDE = (249.5, 57, 23.5)
+# 12/11/2026: el mapa viejo quedo bugeado; ahora la dimension guarda spiritarena.schem
+# pegada entera (tools/pegar_santuario_spirit.py) con este punto como destino de WorldEdit.
+# La estructura ocupa de (191, 61, 187) a (321, 191, 321): todo en la region r.0.0.
+PASTE_ORIGIN = (256, 64, 256)
+BOUNDS = (191, 187, 321, 321)  # forceload x1 z1 x2 z2
+
+# ===================== COORDENADAS DEL SANTUARIO (UNICO LUGAR) =====================
+# PROVISORIO hasta que el dueno diga donde van la entrada, los jefes y el cofre:
+# todo arriba del centro de la estructura, parado sobre vidrio violeta (y=179).
+# Para cambiarlas: editar este bloque, `python build.py` y `python mobs/mazmorra.py`.
+ARRIVAL = (256.5, 180, 254.5)   # tp de entrada y rescate
+CENTER = (256.5, 180, 254.5)    # controlador de las oleadas
+RADIUS = 150                    # jugadores dentro de este radio cuentan como "en el Santuario"
+# Cinco oleadas de un Ancestral: Cangrejo, Chaman, Momia, Yeti, Golem de Forja.
+BOSSES = ((256.5, 180, 254.5),) * 5
+FLOOR_Y = 180                   # piso donde aparecen los jefes
+CHEST = (258.5, 180, 256.5)     # cofre del premio final
+GUIDE = (256.5, 180, 256.5)     # NPC guia
+# ====================================================================================
 
 
 def commands():
     w = BUKKIT_WORLD
     lines = ['# Santuario Azeroth. Instalar primero datapack y regiones con servidor APAGADO.',
-             '# Dimension del datapack: NO mv create ni importar como THE_END.',
+             '# Dimension del datapack (cielo del End): NO mv create ni importar como THE_END.',
              '# Ruta SOLO nueva: world/dimensions/minecraft/santuario_azeroth/region/',
              '# Paper la carga desde el datapack; no crear/importar con Multiverse.',
              '# Conservar santuario_interstellar y sus regiones como respaldo.',
@@ -30,15 +41,12 @@ def commands():
                        ('creeper-explosion','deny'),('other-explosion','deny'),('tnt','deny')]:
         lines.append(f'rg flag -w {w} __global__ {flag} {value}')
     lines += ['lp group default permission set astral.santuario.cd false',
-              '# SOLO con la mazmorra vacia; retirar el controlador del mundo viejo:',
-              'execute in minecraft:santuario_interstellar run forceload add 46 48',
+              '# SOLO con la mazmorra vacia. Retirar controladores viejos y crear UNO nuevo:',
               'mm mobs kill astral_santuario_control_sala1',
-              'execute in minecraft:santuario_interstellar run forceload remove 46 48',
-              '# Crear una sola vez el controlador nuevo:',
-              f'execute in minecraft:{WORLD} run forceload add 144 -48 351 159',
-              f'mm mobs spawn astral_santuario_control_sala1 1 {w},247.5,57,19.5',
-              '# Conservar las cargas del recorte: las oleadas recorren sectores separados.',
-              f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> 247.5 57 14.5 0 0']
+              f'execute in minecraft:{WORLD} run forceload remove all',
+              f'execute in minecraft:{WORLD} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
+              f'mm mobs spawn astral_santuario_control_sala1 1 {w},{CENTER[0]},{CENTER[1]},{CENTER[2]}',
+              f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> {ARRIVAL[0]} {ARRIVAL[1]} {ARRIVAL[2]} 0 0']
     return '\n'.join(lines)+'\n'
 
 
@@ -65,7 +73,7 @@ def generate(files):
                         (f'data/minecraft/dimension/{WORLD}.json', dimension)]:
         files[path] = json.dumps(value, indent=2)+'\n'
     files['data/astral/function/santuario/load.mcfunction'] = '\n'.join([
-        f'execute in minecraft:{WORLD} run forceload add 144 -48 351 159',
+        f'execute in minecraft:{WORLD} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
         *[f'execute in minecraft:{WORLD} run gamerule minecraft:{rule} {value}' for rule,value in (
             ('keep_inventory','true'),('spawn_mobs','false'),('random_tick_speed','0'),
             ('mob_griefing','false'),('tnt_explodes','false'),('advance_weather','false'))]])+'\n'

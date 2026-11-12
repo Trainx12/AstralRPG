@@ -56,7 +56,6 @@ public final class ProgressionProbe extends JavaPlugin {
             Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerJoinEvent(p,net.kyori.adventure.text.Component.empty()));
             AuraSkillsApi.get().getUserManager().loadUser(p.getUniqueId());
             var permission=p.addAttachment(this);permission.setPermission("auraskills.skill.sorcery",true);
-            permission.setPermission("blzdbp.small",true);
             io.lumine.mythic.bukkit.MythicBukkit.inst().getPlayerManager().loadProfile(p);
         } else if(args[0].equals("xp")) {
             check(runtime.weaponSkill(item("baston_1")).equals("sorcery"),"PDC baston sorcery");
@@ -135,10 +134,15 @@ public final class ProgressionProbe extends JavaPlugin {
                 },2);
             }
         } else if(args[0].equals("backpack")) {
-            p.setOp(false);p.performCommand("bp");
-            Bukkit.getScheduler().runTaskLater(this,()->backpackCheck(),3);
+            // Mismo comando que ejecuta la tienda de AstralProgression al cobrar.
+            p.setOp(false);p.getInventory().clear();
+            check(Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"backpack give "+p.getName()+" leather"),"tienda: backpack give");
+            Bukkit.getScheduler().runTaskLater(this,()->{openBackpack();Bukkit.getScheduler().runTaskLater(this,()->backpackCheck(),3);},2);
         } else if(args[0].equals("restart")) {
-            p.setOp(false);p.performCommand("bp");
+            // El jugador simulado vuelve sin inventario: se le devuelve la MISMA mochila guardada.
+            var saved=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(new java.io.File(getDataFolder(),"mochila.yml")).getItemStack("item");
+            check(saved!=null,"mochila guardada antes del reinicio");
+            p.setOp(false);p.getInventory().clear();p.getInventory().setItem(0,saved);openBackpack();
             Bukkit.getScheduler().runTaskLater(this,()->{
                 var stack=p.getOpenInventory().getTopInventory().getItem(0);
                 check(stack!=null && stack.getType()==Material.EMERALD && stack.getAmount()==7,"mochila conserva 7 esmeraldas tras reinicio");
@@ -148,18 +152,32 @@ public final class ProgressionProbe extends JavaPlugin {
       } catch(Throwable ex) { failures++;getLogger().warning("T5A FAIL "+ex);ex.printStackTrace(); }
       return true;
     }
+    void openBackpack() {
+        int slot=-1;
+        for(int i=0;i<36;i++) { var it=p.getInventory().getItem(i); if(it!=null && it.getType()==Material.PLAYER_HEAD) { slot=i;break; } }
+        check(slot>=0,"mochila entregada como item");
+        if(slot<0) return;
+        var it=p.getInventory().getItem(slot);p.getInventory().setItem(slot,null);p.getInventory().setItem(0,it);p.getInventory().setHeldItemSlot(0);
+        var ev=new org.bukkit.event.player.PlayerInteractEvent(p,org.bukkit.event.block.Action.RIGHT_CLICK_AIR,it,null,org.bukkit.block.BlockFace.SELF,org.bukkit.inventory.EquipmentSlot.HAND);
+        Bukkit.getPluginManager().callEvent(ev);
+    }
     void backpackCheck() {
       try {
             var inv=p.getOpenInventory().getTopInventory();
-            check(inv.getSize()==9 && inv.getHolder().getClass().getName().contains("BackpackInventoryHolder"),"mochila pequena abre");
-            inv.setItem(0,new ItemStack(Material.EMERALD,7));p.closeInventory();p.performCommand("bp");
+            check(inv.getSize()==9 && inv.getType()!=org.bukkit.event.inventory.InventoryType.CRAFTING,"mochila de cuero abre con 9 espacios");
+            inv.setItem(0,new ItemStack(Material.EMERALD,7));p.closeInventory();
+            Bukkit.getScheduler().runTaskLater(this,()->{
+            openBackpack();
             Bukkit.getScheduler().runTaskLater(this,()->{
             var stack=p.getOpenInventory().getTopInventory().getItem(0);
             check(stack!=null && stack.getAmount()==7,"guardar y reabrir sin duplicar");
-            var drop=p.getWorld().dropItem(p.getLocation(),new ItemStack(Material.DIAMOND));
-            var pick=new EntityPickupItemEvent(p,drop,0);Bukkit.getPluginManager().callEvent(pick);
-            check(pick.isCancelled(),"recogida bloqueada con GUI abierta");drop.remove();p.closeInventory();
+            p.closeInventory();
+            try {
+                var y=new org.bukkit.configuration.file.YamlConfiguration();y.set("item",p.getInventory().getItem(0));
+                getDataFolder().mkdirs();y.save(new java.io.File(getDataFolder(),"mochila.yml"));
+            } catch(java.io.IOException ex) { check(false,"guardar mochila de prueba"); }
             },3);
+            },2);
       } catch(Throwable ex) { failures++;getLogger().warning("T5A FAIL "+ex);ex.printStackTrace(); }
     }
 }

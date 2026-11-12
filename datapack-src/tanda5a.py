@@ -17,7 +17,11 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT/'build/tanda5a'
 PROBABILIDADES = {1: .15, 2: .03, 3: .005, 4: .0004, 5: .000003}
 PAQUETES = [(25, 15000), (100, 50000), (1225, 500000), (2500, 950000), (10000, 3500000)]
-MOCHILAS = [('small', 9, 5000), ('medium', 27, 50000), ('large', 54, 250000)]
+# ExpendableBackpacks 1.2.0 (unico plugin de mochilas): nivel, nombre, espacios, precio.
+# La mochila es un item; tambien se fabrica/mejora con su receta. Netherite solo en herreria.
+MOCHILAS = [('leather', 'Cuero', 9, 5000), ('copper', 'Cobre', 18, 20000), ('iron', 'Hierro', 27, 50000),
+            ('gold', 'Oro', 36, 100000), ('diamond', 'Diamante', 45, 175000)]
+SLOT_MOCHILAS = 42  # 40 Proteccion, 41 misc (ocupados en el server)
 STRUCTURE_NAMESPACES = ['nova_structures', 'explorify', 'structory', 'structory_towers']
 MATERIAL_TIERS = {
     'netherita_fundida': 2, 'netherita_reforzada': 4, 'shadowsteel': 2,
@@ -96,7 +100,7 @@ def generate():
               'dungeon-tiers': TIER_MAZMORRA, 'mythic': mythic_catalog(),
               'structure-namespaces': STRUCTURE_NAMESPACES,
               'loot': catalog(), 'claim-packages': [{'blocks': b, 'price': p} for b, p in PAQUETES],
-              'backpack-packages': [{'permission': 'blzdbp.'+k, 'slots': n, 'price': p} for k, n, p in MOCHILAS]}
+              'backpack-packages': [{'tier': k, 'name': nombre, 'slots': n, 'price': p} for k, nombre, n, p in MOCHILAS]}
     dump(OUT/'AstralProgression/config.yml', config)
     # Los modos se refuerzan al cargar cada mundo desde el runtime, incluyendo mundos futuros.
     dump(OUT/'GriefPreventionData/config.yml', {'GriefPrevention': {
@@ -148,19 +152,10 @@ def generate():
                 'UntrustIndividualAllClaims': 'Se retiro el acceso de {0} a tus zonas.',
                 'UntrustEveryoneAllClaims': 'Se retiraron los permisos compartidos de tus zonas.'}
     dump(OUT/'GriefPreventionData/messages.yml', {'Messages': {k: {'Text': v} for k, v in messages.items()}})
-    dump(OUT/'BlzdBackpacks/config.yml', {
-        'tiers': {k: n for k, n, _ in MOCHILAS}, 'pickup': {'default-mode': 'INVENTORY_FIRST'},
-        'storage': {'autosave-interval': 30}, 'gui': {'title': '<gold>Mochila Astral'},
-        'restrictions': {'combat': {'enabled': True, 'cooldown-seconds': 15}, 'in-vehicle': True,
-                         'while-gliding': True, 'while-swimming': True, 'while-flying': True,
-                         'while-dead': True, 'creative': True, 'spectator': True},
-        'item-restrictions': {'enabled': True, 'mode': 'BLACKLIST', 'items': ['#shulker_boxes', 'BUNDLE', 'NETHER_STAR']}})
-    dump(OUT/'BlzdBackpacks/messages.yml', {
-        'prefix': '<gold>Astral <gray>» ', 'no-permission': '<red>Compra una mochila en /shop, Mochilas.',
-        'backpack-opened': '<green>Mochila abierta.', 'backpack-restricted': '<red>No podes usar la mochila ahora.',
-        'pickup-mode': {'inventory-first': '<green>Recoger: inventario primero.', 'backpack-first': '<green>Recoger: mochila primero.'},
-        'item-restricted': '<red>Ese objeto no se puede guardar en la mochila.'})
-    for section, slot, material in [('Proteccion', 40, 'GOLDEN_SHOVEL'), ('Mochilas', 41, 'CHEST')]:
+    dump(OUT/'ExpendableBackpacks/config.yml', {
+        'allow-backpack-inception': False, 'give-backpack-on-first-join': False,
+        'starter-backpack-message': '&dAstralRPG &8» &eRecibiste una mochila de cuero. Clic derecho para abrirla.'})
+    for section, slot, material in [('Proteccion', 40, 'GOLDEN_SHOVEL'), ('Mochilas', SLOT_MOCHILAS, 'CHEST')]:
         dump(OUT/f'EconomyShopGUI/sections/{section}.yml', {
             'enable': True, 'slot': slot, 'title': 'Astral - '+section,
             'item': {'material': material, 'name': '&6'+section, 'lore': ['&7Click para ver las opciones.']}})
@@ -187,18 +182,18 @@ def write_delivery(config):
         lines.append(f'| `build/tanda5a/{path.relative_to(OUT).as_posix()}` | `plugins/{path.relative_to(OUT).as_posix()}` |')
     lines += ['', 'GriefPreventionData/config.yml y messages.yml son ajustes: si ya existen, combinar las claves, no borrar claims ni PlayerData.',
               'Comprobar que el mundo survival se llama `world`; si difiere, ajustar `survival-world` y Claims.Mode antes de arrancar.',
-              'Los slots de tienda 40/41 deben estar libres; mover solo estas dos secciones si ya estan ocupados.', '',
+              f'Slots de tienda: 40 Proteccion, {SLOT_MOCHILAS} Mochilas (41 lo usa misc en el server).', '',
               '## Descargas verificadas en Modrinth (26.1.2, formato datapack o Paper)', '']
     versions = json.loads((ROOT/'datapack-src/tanda5a-versions.json').read_text(encoding='utf8'))
-    for slug in ['griefprevention', 'blzdbackpacks', 'dungeons-and-taverns', 'explorify', 'structory', 'structory-towers']:
+    for slug in ['griefprevention', 'dungeons-and-taverns', 'explorify', 'structory', 'structory-towers']:
         v = versions[slug]
         assert '26.1.2' in v['game_versions']
         f = next(f for f in v['files'] if f['primary'])
-        is_plugin = slug in ('griefprevention', 'blzdbackpacks')
+        is_plugin = slug == 'griefprevention'
         dest = 'plugins/' if is_plugin else 'world/datapacks/'
         lines += [f'- [{slug} {v["version_number"]}](https://modrinth.com/{"plugin" if is_plugin else "datapack"}/{slug}/version/{v["id"]}): '
                   f'[{f["filename"]}]({f["url"]}) → `{dest}{f["filename"]}`. Local: `.local/tanda5a/{f["filename"]}`. SHA-1 `{f["hashes"]["sha1"]}`.']
-    lines += ['', 'Terceros nunca al Git publico. BlzdBackpacks es alfa: revisar pruebas locales y completar la prueba con AxGraves antes de habilitar compras en remoto.',
+    lines += ['', 'Terceros nunca al Git publico. Mochilas: ExpendableBackpacks 1.2.0 (ya instalado en el server).',
               'Structory y Towers son de Stardust Labs. No se superponen estructuras ni loot entre los cuatro packs. El tag load compartido se combina (sin replace).',
               'Structory/Towers comparten data/c/worldgen/structure_icons.json: metadatos de iconos, ignorados por vanilla/Paper, prevalece el pack de mayor prioridad. No altera estructuras ni cofres; una futura integracion que lea esos iconos debe combinar ambos mapas.',
               'Solo chunks nuevos. Paper comparte datapacks entre mundos; AstralProgression cancela AsyncStructureSpawnEvent de los cuatro namespaces fuera del survival.',
@@ -206,7 +201,7 @@ def write_delivery(config):
               'No apilar otra version de D&T si ya existe: reemplazar solo su ZIP anterior tras respaldo. Conservar Stellarity instalado.', '',
               'Iniciar (Java 25). Requiere AuraSkills con preset legacy, MythicMobs, Vault, proveedor de economia, LuckPerms y EconomyShopGUI ya existentes.',
               'Ejecutar `build/tanda5a/permisos.txt`; despues `sreload` y `skills reload`. Un reinicio carga el JAR y los datapacks; no usar PlugMan ni /reload general.',
-              'Verificar consola: AstralProgression habilitado, GriefPrevention y BlzdBackpacks cargados, sin errores de datapacks.', '',
+              'Verificar consola: AstralProgression habilitado, GriefPrevention y ExpendableBackpacks cargados, sin errores de datapacks.', '',
               '## XP y ritmo', '',
               'Copia local de AuraSkills: `.local/asw-native/server/plugins/AuraSkills/xp_requirements.yml`; corroborada con fichas-paper y testsrv.',
               'Preset legacy no reemplaza xp_requirements. Formula: `100*(nivel_destino-2)^2+100`. No se pudo leer la configuracion remota en esta tarea: comparar antes de instalar.',
@@ -231,9 +226,10 @@ def write_delivery(config):
               '`/trust jugador`, `/untrust jugador`, `/abandonclaim`; Bolt sigue controlando cofres y WorldGuard sigue controlando regiones.',
               '`/buyclaimblocks` y venta de bloques desactivados. Precio unico en tanda5a.py; compra desde EconomyShopGUI abre menu propio y ejecuta `adjustbonusclaimblocks jugador cantidad` desde consola.',
               'Paquetes: '+', '.join(f'{b} bloques = ${p:,}' for b,p in PAQUETES)+'. Caros frente a minas: $80 → $700.000 → $25M.',
-              'Mochilas virtuales: '+', '.join(f'{n} slots (${p:,}, blzdbp.{k})' for k,n,p in MOCHILAS)+'. Compra permiso permanente, /bp abre.',
-              'No hay item mochila para anidar. Bloquea shulkers, bundles y estrellas (Menu Astral). El contenido virtual persiste separado de AxGraves; no cae en tumbas.',
-              'Guardia propia cierra GUI al recibir dano (antes de calcular drops) y antes de morir, y bloquea recogida con mochila abierta para evitar dos copias de inventario desincronizadas.', '',
+              'Mochilas (ExpendableBackpacks): '+', '.join(f'{nombre} {n} espacios ${p:,}' for k,nombre,n,p in MOCHILAS)+'.',
+              'La tienda ejecuta `backpack give jugador nivel` desde consola: la mochila es un item (clic derecho abre). Pide un espacio libre antes de cobrar.',
+              'Tambien se fabrican (cuero+hilo+cofre) y se mejoran rodeandolas con 8 lingotes; Netherite en herreria. `allow-backpack-inception: false`.',
+              'Al morir la mochila cae como item (AxGraves la guarda en la tumba); el contenido queda ligado a la mochila.', '',
               '## Loot aditivo por item y cofre', '', '| Rareza | Probabilidad | Porcentaje |', '|---|---:|---:|']
     for t, name in enumerate(['Comun/material', 'Poco comun', 'Rara', 'Epica', 'Legendaria'], 1):
         lines.append(f'| {name} | {PROBABILIDADES[t]} | {PROBABILIDADES[t]*100:g}% |')
@@ -253,7 +249,7 @@ def write_delivery(config):
               '- Comparar curva activa con la copia local y comprobar que el preset legacy tenga sorcery.',
               '- Espada, arco (cambiar arma en vuelo), baston directo/area y guadana: una sola recompensa de la skill correcta; matar elite/jefe y mob vanilla escalado.',
               '- Dos cuentas sin OP: proteger 6x6; intentar romper fondo/techo, varias zonas, comprar 25 y comprobar 61; WG y Bolt siguen negando acceso.',
-              '- /bp: comprar tamanos, shift/clic numeros/arrastre, desconexion/reinicio; morir con GUI abierta y AxGraves, recuperar tumba una vez, revisar que no se duplique contenido.',
+              '- Mochilas: comprar niveles, abrir con clic derecho, desconexion/reinicio; morir con AxGraves, recuperar tumba una vez, revisar que no se duplique contenido.',
               '- Abrir cofres nuevos de cada pack (tambien vagoneta), conservar loot vanilla; reabrir no duplica. Generar chunks en mundo excluido y confirmar que no aparecen estructuras de los packs.',
               '- Revisar consola y medir memoria/TPS con spark. No afirmar estas pruebas remotas como realizadas.']
     path = ROOT/'build/deploy/tanda5a.md'
@@ -276,7 +272,7 @@ def build(java, server):
         for p in sorted((target/'astral').glob('AstralProgression*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), (2026,11,11,0,0,0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026,11,11,0,0,0)),
-                   "name: AstralProgression\nversion: 1.0.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, BlzdBackpacks, AxGraves]\n")
+                   "name: AstralProgression\nversion: 1.0.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves]\n")
         z.writestr(zipfile.ZipInfo('config.yml', (2026,11,11,0,0,0)), yaml.safe_dump(config, sort_keys=False))
     print(dest)
 

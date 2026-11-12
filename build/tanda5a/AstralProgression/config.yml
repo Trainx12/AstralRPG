@@ -18,6 +18,7 @@ dungeon-tiers:
   cumbre_hielo: 4
   forja_volcano: 5
   santuario_interstellar: 5
+  santuario_azeroth: 5
 mythic:
   astral_espantapajaros:
     tier: 1
@@ -819,12 +820,23 @@ claim-packages:
 - blocks: 10000
   price: 3500000
 backpack-packages:
-- permission: blzdbp.small
+- tier: leather
+  name: Cuero
   slots: 9
   price: 5000
-- permission: blzdbp.medium
+- tier: copper
+  name: Cobre
+  slots: 18
+  price: 20000
+- tier: iron
+  name: Hierro
   slots: 27
   price: 50000
-- permission: blzdbp.large
-  slots: 54
-  price: 250000
+- tier: gold
+  name: Oro
+  slots: 36
+  price: 100000
+- tier: diamond
+  name: Diamante
+  slots: 45
+  price: 175000

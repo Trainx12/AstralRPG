@@ -184,19 +184,6 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             for(ItemStack item:additions) inv.addItem(item).values().forEach(left->location.getWorld().dropItemNaturally(location,left));
         });
     }
-    private boolean backpack(Inventory inv) {
-        return inv.getHolder()!=null && inv.getHolder().getClass().getName().equals("dev.blzd.backpacks.gui.BackpackInventoryHolder");
-    }
-    @EventHandler(priority=EventPriority.LOWEST,ignoreCancelled=true) public void pickup(EntityPickupItemEvent e) {
-        if(e.getEntity() instanceof Player p && backpack(p.getOpenInventory().getTopInventory())) e.setCancelled(true);
-    }
-    @EventHandler(priority=EventPriority.LOWEST,ignoreCancelled=true) public void closeDamage(EntityDamageEvent e) {
-        // Devolver cursor y sincronizar almacenamiento ANTES de calcular los drops de muerte.
-        if(e.getEntity() instanceof Player p && backpack(p.getOpenInventory().getTopInventory())) p.closeInventory();
-    }
-    @EventHandler(priority=EventPriority.LOWEST) public void dying(PlayerDeathEvent e) {
-        if(backpack(e.getEntity().getOpenInventory().getTopInventory())) e.getEntity().closeInventory();
-    }
     private static final class Shop implements InventoryHolder {
         Inventory inventory; final boolean claims;
         Shop(boolean claims) { this.claims=claims; }
@@ -215,8 +202,8 @@ public final class AstralProgression extends JavaPlugin implements Listener {
                 var row=packages.get(i);
                 ItemStack item=new ItemStack(claims?Material.GOLDEN_SHOVEL:Material.CHEST);
                 var meta=item.getItemMeta();
-                meta.setDisplayName((claims?row.get("blocks")+" bloques":row.get("slots")+" espacios")+" - $"+row.get("price"));
-                meta.setLore(List.of(claims?"Suma area; no define un lado del terreno.":"Permiso permanente. Abrir con /bp.","Click izquierdo para comprar."));
+                meta.setDisplayName((claims?row.get("blocks")+" bloques":"Mochila de "+row.get("name")+" ("+row.get("slots")+" espacios)")+" - $"+row.get("price"));
+                meta.setLore(List.of(claims?"Suma area; no define un lado del terreno.":"Se entrega como item. Clic derecho para abrirla.","Click izquierdo para comprar."));
                 item.setItemMeta(meta); shop.inventory.setItem(i,item);
             }
             p.openInventory(shop.inventory);
@@ -232,10 +219,12 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(e.getRawSlot()>=packages.size() || !buying.add(p.getUniqueId())) return;
         try {
             var row=packages.get(e.getRawSlot());
-            boolean ownsSize=!shop.claims && packages.stream().anyMatch(pkg->p.hasPermission(pkg.get("permission").toString()) &&
-                ((Number)pkg.get("slots")).intValue()>=((Number)row.get("slots")).intValue());
-            if(!shop.claims && (Bukkit.getPluginManager().getPlugin("BlzdBackpacks")==null || ownsSize)) {
-                p.sendMessage("Ya tenes ese tamano o el plugin no esta disponible."); return;
+            if(!shop.claims && Bukkit.getPluginManager().getPlugin("ExpendableBackpacks")==null) {
+                p.sendMessage("Las mochilas no estan disponibles; avisa al administrador."); return;
+            }
+            // La mochila es un item: sin lugar libre se perderia. Revisar antes de cobrar.
+            if(!shop.claims && p.getInventory().firstEmpty()==-1) {
+                p.sendMessage("Libera un espacio del inventario para recibir la mochila."); return;
             }
             var vault=Bukkit.getPluginManager().getPlugin("Vault");
             if(vault==null) throw new IllegalStateException("Falta Vault");
@@ -245,15 +234,14 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             Object provider=registration.getProvider();
             double price=((Number)row.get("price")).doubleValue();
             String command=shop.claims?"griefprevention:adjustbonusclaimblocks "+p.getName()+" "+row.get("blocks"):
-                "lp user "+p.getName()+" permission set "+row.get("permission")+" true";
-            if(!shop.claims && Bukkit.getPluginManager().getPlugin("LuckPerms")==null) throw new IllegalStateException("Falta LuckPerms");
+                "backpack give "+p.getName()+" "+row.get("tier");
             Object result=economy.getMethod("withdrawPlayer",OfflinePlayer.class,double.class).invoke(provider,p,price);
             if(!(boolean)result.getClass().getMethod("transactionSuccess").invoke(result)) { p.sendMessage("No tenes saldo suficiente."); return; }
             if(!Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command)) {
                 economy.getMethod("depositPlayer",OfflinePlayer.class,double.class).invoke(provider,p,price);
                 p.sendMessage("No se completo la compra; saldo devuelto."); return;
             }
-            p.sendMessage(shop.claims?"Bloques sumados a tu saldo de proteccion.":"Mochila comprada. Abrila con /bp.");
+            p.sendMessage(shop.claims?"Bloques sumados a tu saldo de proteccion.":"Mochila comprada. Clic derecho con ella en la mano para abrirla.");
             p.closeInventory();
         } catch(ReflectiveOperationException | IllegalStateException ex) {
             getLogger().warning("Compra no disponible: "+ex); p.sendMessage("La tienda no esta disponible; avisa al administrador.");

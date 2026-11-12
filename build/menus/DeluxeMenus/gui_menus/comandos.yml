@@ -235,8 +235,9 @@ items:
     amount: 1
     display_name: '&e&l/bp'
     lore:
-    - '&7Abre tu mochila virtual.'
-    - '&7El permiso se compra en /shop.'
+    - '&7Recetas y niveles de mochilas.'
+    - '&7Se compran en /shop -> Mochilas.'
+    - '&7Clic derecho con la mochila para abrirla.'
     - ''
     - '&fUso: &e/bp'
     - '&aClic para usarlo.'

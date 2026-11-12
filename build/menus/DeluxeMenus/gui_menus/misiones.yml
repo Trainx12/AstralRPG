@@ -105,8 +105,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_10':
     material: PAPER
     slot: 10
@@ -135,8 +135,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_11':
     material: PAPER
     slot: 11
@@ -165,8 +165,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_12':
     material: PAPER
     slot: 12
@@ -195,8 +195,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_13':
     material: PAPER
     slot: 13
@@ -225,8 +225,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_14':
     material: PAPER
     slot: 14
@@ -255,8 +255,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_15':
     material: PAPER
     slot: 15
@@ -285,8 +285,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_16':
     material: PAPER
     slot: 16
@@ -315,8 +315,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_17':
     material: PAPER
     slot: 17
@@ -345,8 +345,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_18':
     material: PAPER
     slot: 18
@@ -375,8 +375,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_19':
     material: PAPER
     slot: 19
@@ -405,8 +405,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_20':
     material: PAPER
     slot: 20
@@ -435,8 +435,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_21':
     material: PAPER
     slot: 21
@@ -465,8 +465,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available':
     material: PAPER
     slot: 22
@@ -495,8 +495,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_23':
     material: PAPER
     slot: 23
@@ -525,8 +525,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_24':
     material: PAPER
     slot: 24
@@ -555,8 +555,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_25':
     material: PAPER
     slot: 25
@@ -585,8 +585,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_26':
     material: PAPER
     slot: 26
@@ -615,8 +615,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_27':
     material: PAPER
     slot: 27
@@ -645,8 +645,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_28':
     material: PAPER
     slot: 28
@@ -675,8 +675,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_29':
     material: PAPER
     slot: 29
@@ -705,8 +705,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_30':
     material: PAPER
     slot: 30
@@ -735,8 +735,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_31':
     material: PAPER
     slot: 31
@@ -765,8 +765,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_32':
     material: PAPER
     slot: 32
@@ -795,8 +795,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_33':
     material: PAPER
     slot: 33
@@ -825,8 +825,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_34':
     material: PAPER
     slot: 34
@@ -855,8 +855,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_0_available_hit_35':
     material: PAPER
     slot: 35
@@ -885,8 +885,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_0_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_0_hit_38':
     material: PAPER
     slot: 38
@@ -907,8 +907,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_0_hit_39':
     material: PAPER
     slot: 39
@@ -929,8 +929,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_0':
     material: PAPER
     slot: 40
@@ -951,8 +951,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_0_hit_41':
     material: PAPER
     slot: 41
@@ -973,8 +973,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_0_hit_42':
     material: PAPER
     slot: 42
@@ -995,8 +995,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_0':
     material: CLOCK
     slot: 45
@@ -1050,8 +1050,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_10':
     material: PAPER
     slot: 10
@@ -1084,8 +1084,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_11':
     material: PAPER
     slot: 11
@@ -1118,8 +1118,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_12':
     material: PAPER
     slot: 12
@@ -1152,8 +1152,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_13':
     material: PAPER
     slot: 13
@@ -1186,8 +1186,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_14':
     material: PAPER
     slot: 14
@@ -1220,8 +1220,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_15':
     material: PAPER
     slot: 15
@@ -1254,8 +1254,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_16':
     material: PAPER
     slot: 16
@@ -1288,8 +1288,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_17':
     material: PAPER
     slot: 17
@@ -1322,8 +1322,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_18':
     material: PAPER
     slot: 18
@@ -1356,8 +1356,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_19':
     material: PAPER
     slot: 19
@@ -1390,8 +1390,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_20':
     material: PAPER
     slot: 20
@@ -1424,8 +1424,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_21':
     material: PAPER
     slot: 21
@@ -1458,8 +1458,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available':
     material: PAPER
     slot: 22
@@ -1492,8 +1492,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_23':
     material: PAPER
     slot: 23
@@ -1526,8 +1526,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_24':
     material: PAPER
     slot: 24
@@ -1560,8 +1560,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_25':
     material: PAPER
     slot: 25
@@ -1594,8 +1594,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_26':
     material: PAPER
     slot: 26
@@ -1628,8 +1628,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_27':
     material: PAPER
     slot: 27
@@ -1662,8 +1662,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_28':
     material: PAPER
     slot: 28
@@ -1696,8 +1696,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_29':
     material: PAPER
     slot: 29
@@ -1730,8 +1730,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_30':
     material: PAPER
     slot: 30
@@ -1764,8 +1764,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_31':
     material: PAPER
     slot: 31
@@ -1798,8 +1798,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_32':
     material: PAPER
     slot: 32
@@ -1832,8 +1832,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_33':
     material: PAPER
     slot: 33
@@ -1866,8 +1866,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_34':
     material: PAPER
     slot: 34
@@ -1900,8 +1900,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_1_available_hit_35':
     material: PAPER
     slot: 35
@@ -1934,8 +1934,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_1_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_1_hit_38':
     material: PAPER
     slot: 38
@@ -1960,8 +1960,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_1_hit_39':
     material: PAPER
     slot: 39
@@ -1986,8 +1986,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_1':
     material: PAPER
     slot: 40
@@ -2012,8 +2012,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_1_hit_41':
     material: PAPER
     slot: 41
@@ -2038,8 +2038,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_1_hit_42':
     material: PAPER
     slot: 42
@@ -2064,8 +2064,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_1':
     material: CLOCK
     slot: 45
@@ -3126,8 +3126,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_10':
     material: PAPER
     slot: 10
@@ -3163,8 +3163,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_11':
     material: PAPER
     slot: 11
@@ -3200,8 +3200,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_12':
     material: PAPER
     slot: 12
@@ -3237,8 +3237,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_13':
     material: PAPER
     slot: 13
@@ -3274,8 +3274,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_14':
     material: PAPER
     slot: 14
@@ -3311,8 +3311,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_15':
     material: PAPER
     slot: 15
@@ -3348,8 +3348,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_16':
     material: PAPER
     slot: 16
@@ -3385,8 +3385,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_17':
     material: PAPER
     slot: 17
@@ -3422,8 +3422,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_18':
     material: PAPER
     slot: 18
@@ -3459,8 +3459,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_19':
     material: PAPER
     slot: 19
@@ -3496,8 +3496,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_20':
     material: PAPER
     slot: 20
@@ -3533,8 +3533,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_21':
     material: PAPER
     slot: 21
@@ -3570,8 +3570,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available':
     material: PAPER
     slot: 22
@@ -3607,8 +3607,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_23':
     material: PAPER
     slot: 23
@@ -3644,8 +3644,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_24':
     material: PAPER
     slot: 24
@@ -3681,8 +3681,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_25':
     material: PAPER
     slot: 25
@@ -3718,8 +3718,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_26':
     material: PAPER
     slot: 26
@@ -3755,8 +3755,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_27':
     material: PAPER
     slot: 27
@@ -3792,8 +3792,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_28':
     material: PAPER
     slot: 28
@@ -3829,8 +3829,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_29':
     material: PAPER
     slot: 29
@@ -3866,8 +3866,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_30':
     material: PAPER
     slot: 30
@@ -3903,8 +3903,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_31':
     material: PAPER
     slot: 31
@@ -3940,8 +3940,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_32':
     material: PAPER
     slot: 32
@@ -3977,8 +3977,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_33':
     material: PAPER
     slot: 33
@@ -4014,8 +4014,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_34':
     material: PAPER
     slot: 34
@@ -4051,8 +4051,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_2_available_hit_35':
     material: PAPER
     slot: 35
@@ -4088,8 +4088,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_2_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_2_hit_38':
     material: PAPER
     slot: 38
@@ -4114,8 +4114,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_2_hit_39':
     material: PAPER
     slot: 39
@@ -4140,8 +4140,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_2':
     material: PAPER
     slot: 40
@@ -4166,8 +4166,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_2_hit_41':
     material: PAPER
     slot: 41
@@ -4192,8 +4192,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_2_hit_42':
     material: PAPER
     slot: 42
@@ -4218,8 +4218,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_2':
     material: CLOCK
     slot: 45
@@ -5357,8 +5357,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_10':
     material: PAPER
     slot: 10
@@ -5390,8 +5390,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_11':
     material: PAPER
     slot: 11
@@ -5423,8 +5423,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_12':
     material: PAPER
     slot: 12
@@ -5456,8 +5456,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_13':
     material: PAPER
     slot: 13
@@ -5489,8 +5489,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_14':
     material: PAPER
     slot: 14
@@ -5522,8 +5522,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_15':
     material: PAPER
     slot: 15
@@ -5555,8 +5555,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_16':
     material: PAPER
     slot: 16
@@ -5588,8 +5588,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_17':
     material: PAPER
     slot: 17
@@ -5621,8 +5621,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_18':
     material: PAPER
     slot: 18
@@ -5654,8 +5654,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_19':
     material: PAPER
     slot: 19
@@ -5687,8 +5687,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_20':
     material: PAPER
     slot: 20
@@ -5720,8 +5720,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_21':
     material: PAPER
     slot: 21
@@ -5753,8 +5753,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available':
     material: PAPER
     slot: 22
@@ -5786,8 +5786,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_23':
     material: PAPER
     slot: 23
@@ -5819,8 +5819,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_24':
     material: PAPER
     slot: 24
@@ -5852,8 +5852,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_25':
     material: PAPER
     slot: 25
@@ -5885,8 +5885,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_26':
     material: PAPER
     slot: 26
@@ -5918,8 +5918,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_27':
     material: PAPER
     slot: 27
@@ -5951,8 +5951,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_28':
     material: PAPER
     slot: 28
@@ -5984,8 +5984,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_29':
     material: PAPER
     slot: 29
@@ -6017,8 +6017,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_30':
     material: PAPER
     slot: 30
@@ -6050,8 +6050,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_31':
     material: PAPER
     slot: 31
@@ -6083,8 +6083,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_32':
     material: PAPER
     slot: 32
@@ -6116,8 +6116,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_33':
     material: PAPER
     slot: 33
@@ -6149,8 +6149,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_34':
     material: PAPER
     slot: 34
@@ -6182,8 +6182,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_3_available_hit_35':
     material: PAPER
     slot: 35
@@ -6215,8 +6215,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_3_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_3_hit_38':
     material: PAPER
     slot: 38
@@ -6241,8 +6241,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_3_hit_39':
     material: PAPER
     slot: 39
@@ -6267,8 +6267,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_3':
     material: PAPER
     slot: 40
@@ -6293,8 +6293,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_3_hit_41':
     material: PAPER
     slot: 41
@@ -6319,8 +6319,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_3_hit_42':
     material: PAPER
     slot: 42
@@ -6345,8 +6345,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_3':
     material: CLOCK
     slot: 45
@@ -7377,8 +7377,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_10':
     material: PAPER
     slot: 10
@@ -7411,8 +7411,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_11':
     material: PAPER
     slot: 11
@@ -7445,8 +7445,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_12':
     material: PAPER
     slot: 12
@@ -7479,8 +7479,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_13':
     material: PAPER
     slot: 13
@@ -7513,8 +7513,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_14':
     material: PAPER
     slot: 14
@@ -7547,8 +7547,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_15':
     material: PAPER
     slot: 15
@@ -7581,8 +7581,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_16':
     material: PAPER
     slot: 16
@@ -7615,8 +7615,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_17':
     material: PAPER
     slot: 17
@@ -7649,8 +7649,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_18':
     material: PAPER
     slot: 18
@@ -7683,8 +7683,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_19':
     material: PAPER
     slot: 19
@@ -7717,8 +7717,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_20':
     material: PAPER
     slot: 20
@@ -7751,8 +7751,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_21':
     material: PAPER
     slot: 21
@@ -7785,8 +7785,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available':
     material: PAPER
     slot: 22
@@ -7819,8 +7819,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_23':
     material: PAPER
     slot: 23
@@ -7853,8 +7853,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_24':
     material: PAPER
     slot: 24
@@ -7887,8 +7887,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_25':
     material: PAPER
     slot: 25
@@ -7921,8 +7921,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_26':
     material: PAPER
     slot: 26
@@ -7955,8 +7955,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_27':
     material: PAPER
     slot: 27
@@ -7989,8 +7989,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_28':
     material: PAPER
     slot: 28
@@ -8023,8 +8023,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_29':
     material: PAPER
     slot: 29
@@ -8057,8 +8057,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_30':
     material: PAPER
     slot: 30
@@ -8091,8 +8091,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_31':
     material: PAPER
     slot: 31
@@ -8125,8 +8125,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_32':
     material: PAPER
     slot: 32
@@ -8159,8 +8159,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_33':
     material: PAPER
     slot: 33
@@ -8193,8 +8193,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_34':
     material: PAPER
     slot: 34
@@ -8227,8 +8227,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_4_available_hit_35':
     material: PAPER
     slot: 35
@@ -8261,8 +8261,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_4_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_4_hit_38':
     material: PAPER
     slot: 38
@@ -8287,8 +8287,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_4_hit_39':
     material: PAPER
     slot: 39
@@ -8313,8 +8313,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_4':
     material: PAPER
     slot: 40
@@ -8339,8 +8339,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_4_hit_41':
     material: PAPER
     slot: 41
@@ -8365,8 +8365,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_4_hit_42':
     material: PAPER
     slot: 42
@@ -8391,8 +8391,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_4':
     material: CLOCK
     slot: 45
@@ -9449,8 +9449,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_10':
     material: PAPER
     slot: 10
@@ -9482,8 +9482,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_11':
     material: PAPER
     slot: 11
@@ -9515,8 +9515,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_12':
     material: PAPER
     slot: 12
@@ -9548,8 +9548,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_13':
     material: PAPER
     slot: 13
@@ -9581,8 +9581,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_14':
     material: PAPER
     slot: 14
@@ -9614,8 +9614,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_15':
     material: PAPER
     slot: 15
@@ -9647,8 +9647,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_16':
     material: PAPER
     slot: 16
@@ -9680,8 +9680,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_17':
     material: PAPER
     slot: 17
@@ -9713,8 +9713,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_18':
     material: PAPER
     slot: 18
@@ -9746,8 +9746,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_19':
     material: PAPER
     slot: 19
@@ -9779,8 +9779,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_20':
     material: PAPER
     slot: 20
@@ -9812,8 +9812,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_21':
     material: PAPER
     slot: 21
@@ -9845,8 +9845,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available':
     material: PAPER
     slot: 22
@@ -9878,8 +9878,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_23':
     material: PAPER
     slot: 23
@@ -9911,8 +9911,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_24':
     material: PAPER
     slot: 24
@@ -9944,8 +9944,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_25':
     material: PAPER
     slot: 25
@@ -9977,8 +9977,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_26':
     material: PAPER
     slot: 26
@@ -10010,8 +10010,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_27':
     material: PAPER
     slot: 27
@@ -10043,8 +10043,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_28':
     material: PAPER
     slot: 28
@@ -10076,8 +10076,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_29':
     material: PAPER
     slot: 29
@@ -10109,8 +10109,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_30':
     material: PAPER
     slot: 30
@@ -10142,8 +10142,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_31':
     material: PAPER
     slot: 31
@@ -10175,8 +10175,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_32':
     material: PAPER
     slot: 32
@@ -10208,8 +10208,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_33':
     material: PAPER
     slot: 33
@@ -10241,8 +10241,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_34':
     material: PAPER
     slot: 34
@@ -10274,8 +10274,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_5_available_hit_35':
     material: PAPER
     slot: 35
@@ -10307,8 +10307,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_5_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_5_hit_38':
     material: PAPER
     slot: 38
@@ -10333,8 +10333,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_5_hit_39':
     material: PAPER
     slot: 39
@@ -10359,8 +10359,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_5':
     material: PAPER
     slot: 40
@@ -10385,8 +10385,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_5_hit_41':
     material: PAPER
     slot: 41
@@ -10411,8 +10411,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_5_hit_42':
     material: PAPER
     slot: 42
@@ -10437,8 +10437,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_5':
     material: CLOCK
     slot: 45
@@ -11467,8 +11467,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_10':
     material: PAPER
     slot: 10
@@ -11499,8 +11499,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_11':
     material: PAPER
     slot: 11
@@ -11531,8 +11531,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_12':
     material: PAPER
     slot: 12
@@ -11563,8 +11563,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_13':
     material: PAPER
     slot: 13
@@ -11595,8 +11595,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_14':
     material: PAPER
     slot: 14
@@ -11627,8 +11627,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_15':
     material: PAPER
     slot: 15
@@ -11659,8 +11659,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_16':
     material: PAPER
     slot: 16
@@ -11691,8 +11691,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_17':
     material: PAPER
     slot: 17
@@ -11723,8 +11723,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_18':
     material: PAPER
     slot: 18
@@ -11755,8 +11755,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_19':
     material: PAPER
     slot: 19
@@ -11787,8 +11787,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_20':
     material: PAPER
     slot: 20
@@ -11819,8 +11819,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_21':
     material: PAPER
     slot: 21
@@ -11851,8 +11851,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available':
     material: PAPER
     slot: 22
@@ -11883,8 +11883,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_23':
     material: PAPER
     slot: 23
@@ -11915,8 +11915,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_24':
     material: PAPER
     slot: 24
@@ -11947,8 +11947,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_25':
     material: PAPER
     slot: 25
@@ -11979,8 +11979,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_26':
     material: PAPER
     slot: 26
@@ -12011,8 +12011,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_27':
     material: PAPER
     slot: 27
@@ -12043,8 +12043,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_28':
     material: PAPER
     slot: 28
@@ -12075,8 +12075,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_29':
     material: PAPER
     slot: 29
@@ -12107,8 +12107,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_30':
     material: PAPER
     slot: 30
@@ -12139,8 +12139,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_31':
     material: PAPER
     slot: 31
@@ -12171,8 +12171,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_32':
     material: PAPER
     slot: 32
@@ -12203,8 +12203,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_33':
     material: PAPER
     slot: 33
@@ -12235,8 +12235,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_34':
     material: PAPER
     slot: 34
@@ -12267,8 +12267,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_6_available_hit_35':
     material: PAPER
     slot: 35
@@ -12299,8 +12299,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_6_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_6_hit_38':
     material: PAPER
     slot: 38
@@ -12325,8 +12325,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_6_hit_39':
     material: PAPER
     slot: 39
@@ -12351,8 +12351,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_6':
     material: PAPER
     slot: 40
@@ -12377,8 +12377,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_6_hit_41':
     material: PAPER
     slot: 41
@@ -12403,8 +12403,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_6_hit_42':
     material: PAPER
     slot: 42
@@ -12429,8 +12429,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_6':
     material: CLOCK
     slot: 45
@@ -13433,8 +13433,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_10':
     material: PAPER
     slot: 10
@@ -13466,8 +13466,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_11':
     material: PAPER
     slot: 11
@@ -13499,8 +13499,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_12':
     material: PAPER
     slot: 12
@@ -13532,8 +13532,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_13':
     material: PAPER
     slot: 13
@@ -13565,8 +13565,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_14':
     material: PAPER
     slot: 14
@@ -13598,8 +13598,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_15':
     material: PAPER
     slot: 15
@@ -13631,8 +13631,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_16':
     material: PAPER
     slot: 16
@@ -13664,8 +13664,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_17':
     material: PAPER
     slot: 17
@@ -13697,8 +13697,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_18':
     material: PAPER
     slot: 18
@@ -13730,8 +13730,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_19':
     material: PAPER
     slot: 19
@@ -13763,8 +13763,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_20':
     material: PAPER
     slot: 20
@@ -13796,8 +13796,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_21':
     material: PAPER
     slot: 21
@@ -13829,8 +13829,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available':
     material: PAPER
     slot: 22
@@ -13862,8 +13862,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_23':
     material: PAPER
     slot: 23
@@ -13895,8 +13895,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_24':
     material: PAPER
     slot: 24
@@ -13928,8 +13928,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_25':
     material: PAPER
     slot: 25
@@ -13961,8 +13961,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_26':
     material: PAPER
     slot: 26
@@ -13994,8 +13994,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_27':
     material: PAPER
     slot: 27
@@ -14027,8 +14027,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_28':
     material: PAPER
     slot: 28
@@ -14060,8 +14060,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_29':
     material: PAPER
     slot: 29
@@ -14093,8 +14093,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_30':
     material: PAPER
     slot: 30
@@ -14126,8 +14126,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_31':
     material: PAPER
     slot: 31
@@ -14159,8 +14159,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_32':
     material: PAPER
     slot: 32
@@ -14192,8 +14192,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_33':
     material: PAPER
     slot: 33
@@ -14225,8 +14225,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_34':
     material: PAPER
     slot: 34
@@ -14258,8 +14258,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_7_available_hit_35':
     material: PAPER
     slot: 35
@@ -14291,8 +14291,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_7_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_7_hit_38':
     material: PAPER
     slot: 38
@@ -14317,8 +14317,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_7_hit_39':
     material: PAPER
     slot: 39
@@ -14343,8 +14343,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_7':
     material: PAPER
     slot: 40
@@ -14369,8 +14369,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_7_hit_41':
     material: PAPER
     slot: 41
@@ -14395,8 +14395,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_7_hit_42':
     material: PAPER
     slot: 42
@@ -14421,8 +14421,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_7':
     material: CLOCK
     slot: 45
@@ -15453,8 +15453,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_10':
     material: PAPER
     slot: 10
@@ -15487,8 +15487,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_11':
     material: PAPER
     slot: 11
@@ -15521,8 +15521,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_12':
     material: PAPER
     slot: 12
@@ -15555,8 +15555,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_13':
     material: PAPER
     slot: 13
@@ -15589,8 +15589,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_14':
     material: PAPER
     slot: 14
@@ -15623,8 +15623,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_15':
     material: PAPER
     slot: 15
@@ -15657,8 +15657,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_16':
     material: PAPER
     slot: 16
@@ -15691,8 +15691,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_17':
     material: PAPER
     slot: 17
@@ -15725,8 +15725,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_18':
     material: PAPER
     slot: 18
@@ -15759,8 +15759,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_19':
     material: PAPER
     slot: 19
@@ -15793,8 +15793,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_20':
     material: PAPER
     slot: 20
@@ -15827,8 +15827,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_21':
     material: PAPER
     slot: 21
@@ -15861,8 +15861,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available':
     material: PAPER
     slot: 22
@@ -15895,8 +15895,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_23':
     material: PAPER
     slot: 23
@@ -15929,8 +15929,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_24':
     material: PAPER
     slot: 24
@@ -15963,8 +15963,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_25':
     material: PAPER
     slot: 25
@@ -15997,8 +15997,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_26':
     material: PAPER
     slot: 26
@@ -16031,8 +16031,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_27':
     material: PAPER
     slot: 27
@@ -16065,8 +16065,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_28':
     material: PAPER
     slot: 28
@@ -16099,8 +16099,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_29':
     material: PAPER
     slot: 29
@@ -16133,8 +16133,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_30':
     material: PAPER
     slot: 30
@@ -16167,8 +16167,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_31':
     material: PAPER
     slot: 31
@@ -16201,8 +16201,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_32':
     material: PAPER
     slot: 32
@@ -16235,8 +16235,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_33':
     material: PAPER
     slot: 33
@@ -16269,8 +16269,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_34':
     material: PAPER
     slot: 34
@@ -16303,8 +16303,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_8_available_hit_35':
     material: PAPER
     slot: 35
@@ -16337,8 +16337,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_8_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_8_hit_38':
     material: PAPER
     slot: 38
@@ -16363,8 +16363,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_8_hit_39':
     material: PAPER
     slot: 39
@@ -16389,8 +16389,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_8':
     material: PAPER
     slot: 40
@@ -16415,8 +16415,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_8_hit_41':
     material: PAPER
     slot: 41
@@ -16441,8 +16441,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_8_hit_42':
     material: PAPER
     slot: 42
@@ -16467,8 +16467,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_8':
     material: CLOCK
     slot: 45
@@ -17525,8 +17525,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_10':
     material: PAPER
     slot: 10
@@ -17558,8 +17558,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_11':
     material: PAPER
     slot: 11
@@ -17591,8 +17591,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_12':
     material: PAPER
     slot: 12
@@ -17624,8 +17624,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_13':
     material: PAPER
     slot: 13
@@ -17657,8 +17657,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_14':
     material: PAPER
     slot: 14
@@ -17690,8 +17690,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_5'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_15':
     material: PAPER
     slot: 15
@@ -17723,8 +17723,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_6'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_16':
     material: PAPER
     slot: 16
@@ -17756,8 +17756,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_7'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_17':
     material: PAPER
     slot: 17
@@ -17789,8 +17789,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_8'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_18':
     material: PAPER
     slot: 18
@@ -17822,8 +17822,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_9'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_19':
     material: PAPER
     slot: 19
@@ -17855,8 +17855,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_10'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_20':
     material: PAPER
     slot: 20
@@ -17888,8 +17888,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_11'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_21':
     material: PAPER
     slot: 21
@@ -17921,8 +17921,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_12'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available':
     material: PAPER
     slot: 22
@@ -17954,8 +17954,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_13'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_23':
     material: PAPER
     slot: 23
@@ -17987,8 +17987,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_14'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_24':
     material: PAPER
     slot: 24
@@ -18020,8 +18020,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_15'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_25':
     material: PAPER
     slot: 25
@@ -18053,8 +18053,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_16'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_26':
     material: PAPER
     slot: 26
@@ -18086,8 +18086,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_17'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_27':
     material: PAPER
     slot: 27
@@ -18119,8 +18119,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_18'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_28':
     material: PAPER
     slot: 28
@@ -18152,8 +18152,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_19'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_29':
     material: PAPER
     slot: 29
@@ -18185,8 +18185,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_20'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_30':
     material: PAPER
     slot: 30
@@ -18218,8 +18218,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_21'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_31':
     material: PAPER
     slot: 31
@@ -18251,8 +18251,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_22'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_32':
     material: PAPER
     slot: 32
@@ -18284,8 +18284,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_23'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_33':
     material: PAPER
     slot: 33
@@ -18317,8 +18317,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_24'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_34':
     material: PAPER
     slot: 34
@@ -18350,8 +18350,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_25'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'historia_9_available_hit_35':
     material: PAPER
     slot: 35
@@ -18383,8 +18383,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/story_9_available_26'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_9_hit_38':
     material: PAPER
     slot: 38
@@ -18409,8 +18409,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_0'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_9_hit_39':
     material: PAPER
     slot: 39
@@ -18435,8 +18435,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_1'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_9':
     material: PAPER
     slot: 40
@@ -18461,8 +18461,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_2'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_9_hit_41':
     material: PAPER
     slot: 41
@@ -18487,8 +18487,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_3'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'aceptar_9_hit_42':
     material: PAPER
     slot: 42
@@ -18513,8 +18513,8 @@ items:
           output: '0'
     item_model: 'astral:cronista/accept_4'
     click_commands:
+    - '[close]'
     - '[console] execute as %player_name% at @s run function astral:quest/gui/accept'
-    - '[console] dm open misiones %player_name%<delay=2>'
   'rechazar_9':
     material: CLOCK
     slot: 45
