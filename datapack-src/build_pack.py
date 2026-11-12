@@ -266,6 +266,10 @@ from minijuegos_ui import assets as minigame_assets
 minigame_files, minigame_providers = minigame_assets()
 files.update(minigame_files)
 default_font['providers'] = minigame_providers + default_font['providers']
+from infinita_ui import assets as infinita_assets
+infinita_files, infinita_providers = infinita_assets()
+files.update(infinita_files)
+default_font['providers'] = infinita_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)

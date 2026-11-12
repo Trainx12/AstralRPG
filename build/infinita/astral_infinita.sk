@@ -36,73 +36,24 @@ function inf_nombre_tier(t: number) :: text:
         return "Tier V+"
     return "Tier V+"
 
-function inf_ventana_tier(p: player):
-    set {_inv} to a new chest inventory with 3 rows named colored "&5Mazmorra Infinita - Tier"
-    set slot 10 of {_inv} to lime dye named "&f&lTier I"
-    set slot 11 of {_inv} to green dye named "&f&lTier II"
-    set slot 12 of {_inv} to yellow dye named "&f&lTier III"
-    set slot 13 of {_inv} to orange dye named "&f&lTier IV"
-    set slot 14 of {_inv} to red dye named "&f&lTier V"
-    set slot 15 of {_inv} to nether star named "&f&lTier V+"
-    set lore of slot 10 of {_inv} to "&7Pelea contra mobs de Tier I." and "&720 min en este tier; despues sube cada 10 min."
-    set lore of slot 11 of {_inv} to "&7Pelea contra mobs de Tier II." and "&720 min en este tier; despues sube cada 10 min."
-    set lore of slot 12 of {_inv} to "&7Pelea contra mobs de Tier III." and "&720 min en este tier; despues sube cada 10 min."
-    set lore of slot 13 of {_inv} to "&7Pelea contra mobs de Tier IV." and "&720 min en este tier; despues sube cada 10 min."
-    set lore of slot 14 of {_inv} to "&7Pelea contra mobs de Tier V." and "&720 min en este tier; despues sube cada 10 min."
-    set lore of slot 15 of {_inv} to "&7Pelea contra mobs de Tier V+." and "&720 min en este tier; despues sube cada 10 min."
-    set slot 22 of {_inv} to barrier named "&cCerrar"
-    set {-inf.gui::%uuid of {_p}%} to "tier"
-    open {_inv} to {_p}
-
-function inf_ventana_vel(p: player):
-    set {_inv} to a new chest inventory with 3 rows named colored "&5Mazmorra Infinita - Velocidad"
-    set slot 11 of {_inv} to lime wool named "&f&lFacil"
-    set slot 12 of {_inv} to yellow wool named "&f&lNormal"
-    set slot 13 of {_inv} to orange wool named "&f&lDificil"
-    set slot 14 of {_inv} to red wool named "&f&lPesadilla"
-    set lore of slot 11 of {_inv} to "&7Aparece un grupo de mobs cada 4 s." and "&7Mas jugadores, mas mobs."
-    set lore of slot 12 of {_inv} to "&7Aparece un grupo de mobs cada 3 s." and "&7Mas jugadores, mas mobs."
-    set lore of slot 13 of {_inv} to "&7Aparece un grupo de mobs cada 2 s." and "&7Mas jugadores, mas mobs."
-    set lore of slot 14 of {_inv} to "&7Aparece un grupo de mobs cada 1 s." and "&7Mas jugadores, mas mobs."
-    set slot 22 of {_inv} to barrier named "&cCerrar"
-    set {-inf.gui::%uuid of {_p}%} to "vel"
-    open {_inv} to {_p}
-
+# Ventanas ilustradas de DeluxeMenus (infinita_ui.py): infinita_tier -> infinita_vel.
+# Al hacer clic, la consola ejecuta infelegir <jugador> tier|vel <n>.
 command /infinita:
     executable by: players
     description: Mazmorra Infinita: elegi tier y velocidad.
     trigger:
-        inf_ventana_tier(player)
+        delete {-inf.elige.tier::%uuid of player%}
+        execute console command "dm open infinita_tier %name of player%"
 
-on inventory click:
-    set {_g} to {-inf.gui::%uuid of player%}
-    if {_g} is not set:
-        stop
-    cancel event
-    set {_s} to index of event-slot
-    if clicked inventory is player's inventory:
-        stop
-    if {_s} is 22:
-        delete {-inf.gui::%uuid of player%}
-        close player's inventory
-        stop
-    if {_g} is "tier":
-        if {_s} is between 10 and 15:
-            set {-inf.elige.tier::%uuid of player%} to {_s} - 9
-            close player's inventory
-            wait 2 ticks
-            inf_ventana_vel(player)
-        stop
-    if {_g} is "vel":
-        if {_s} is between 11 and 14:
-            delete {-inf.gui::%uuid of player%}
-            close player's inventory
-            inf_entrar(player, {-inf.elige.tier::%uuid of player%}, {_s} - 10)
-
-on inventory close:
-    if {-inf.gui::%uuid of player%} is "vel":
-        stop
-    delete {-inf.gui::%uuid of player%}
+command /infelegir <player> <text> <number>:
+    executable by: console
+    trigger:
+        if arg-2 is "tier":
+            if arg-3 is between 1 and 6:
+                set {-inf.elige.tier::%uuid of arg-1%} to arg-3
+        else if arg-2 is "vel":
+            if arg-3 is between 1 and 4:
+                inf_entrar(arg-1, {-inf.elige.tier::%uuid of arg-1%}, arg-3)
 
 function inf_entrar(p: player, tier: number, vel: number):
     if {_tier} is not set:

@@ -1,0 +1,471 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "tier1": {
+      "material": "PAPER",
+      "slot": 0,
+      "item_model": "astral:infinita/tier1_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier I",
+      "lore": [
+        "&7Pelea contra mobs de Tier I.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 1",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier1_hit_1": {
+      "material": "PAPER",
+      "slot": 1,
+      "item_model": "astral:infinita/tier1_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier I",
+      "lore": [
+        "&7Pelea contra mobs de Tier I.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 1",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier1_hit_2": {
+      "material": "PAPER",
+      "slot": 9,
+      "item_model": "astral:infinita/tier1_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier I",
+      "lore": [
+        "&7Pelea contra mobs de Tier I.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 1",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier1_hit_3": {
+      "material": "PAPER",
+      "slot": 10,
+      "item_model": "astral:infinita/tier1_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier I",
+      "lore": [
+        "&7Pelea contra mobs de Tier I.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 1",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier2": {
+      "material": "PAPER",
+      "slot": 2,
+      "item_model": "astral:infinita/tier2_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier II",
+      "lore": [
+        "&7Pelea contra mobs de Tier II.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 2",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier2_hit_1": {
+      "material": "PAPER",
+      "slot": 3,
+      "item_model": "astral:infinita/tier2_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier II",
+      "lore": [
+        "&7Pelea contra mobs de Tier II.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 2",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier2_hit_2": {
+      "material": "PAPER",
+      "slot": 11,
+      "item_model": "astral:infinita/tier2_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier II",
+      "lore": [
+        "&7Pelea contra mobs de Tier II.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 2",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier2_hit_3": {
+      "material": "PAPER",
+      "slot": 12,
+      "item_model": "astral:infinita/tier2_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier II",
+      "lore": [
+        "&7Pelea contra mobs de Tier II.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 2",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier3": {
+      "material": "PAPER",
+      "slot": 5,
+      "item_model": "astral:infinita/tier3_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier III",
+      "lore": [
+        "&7Pelea contra mobs de Tier III.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 3",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier3_hit_1": {
+      "material": "PAPER",
+      "slot": 6,
+      "item_model": "astral:infinita/tier3_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier III",
+      "lore": [
+        "&7Pelea contra mobs de Tier III.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 3",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier3_hit_2": {
+      "material": "PAPER",
+      "slot": 14,
+      "item_model": "astral:infinita/tier3_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier III",
+      "lore": [
+        "&7Pelea contra mobs de Tier III.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 3",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier3_hit_3": {
+      "material": "PAPER",
+      "slot": 15,
+      "item_model": "astral:infinita/tier3_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier III",
+      "lore": [
+        "&7Pelea contra mobs de Tier III.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 3",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier4": {
+      "material": "PAPER",
+      "slot": 7,
+      "item_model": "astral:infinita/tier4_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier IV",
+      "lore": [
+        "&7Pelea contra mobs de Tier IV.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 4",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier4_hit_1": {
+      "material": "PAPER",
+      "slot": 8,
+      "item_model": "astral:infinita/tier4_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier IV",
+      "lore": [
+        "&7Pelea contra mobs de Tier IV.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 4",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier4_hit_2": {
+      "material": "PAPER",
+      "slot": 16,
+      "item_model": "astral:infinita/tier4_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier IV",
+      "lore": [
+        "&7Pelea contra mobs de Tier IV.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 4",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier4_hit_3": {
+      "material": "PAPER",
+      "slot": 17,
+      "item_model": "astral:infinita/tier4_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier IV",
+      "lore": [
+        "&7Pelea contra mobs de Tier IV.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 4",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier5": {
+      "material": "PAPER",
+      "slot": 20,
+      "item_model": "astral:infinita/tier5_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V",
+      "lore": [
+        "&7Pelea contra mobs de Tier V.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 5",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier5_hit_1": {
+      "material": "PAPER",
+      "slot": 21,
+      "item_model": "astral:infinita/tier5_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V",
+      "lore": [
+        "&7Pelea contra mobs de Tier V.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 5",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier5_hit_2": {
+      "material": "PAPER",
+      "slot": 29,
+      "item_model": "astral:infinita/tier5_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V",
+      "lore": [
+        "&7Pelea contra mobs de Tier V.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 5",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier5_hit_3": {
+      "material": "PAPER",
+      "slot": 30,
+      "item_model": "astral:infinita/tier5_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V",
+      "lore": [
+        "&7Pelea contra mobs de Tier V.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 5",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier6": {
+      "material": "PAPER",
+      "slot": 23,
+      "item_model": "astral:infinita/tier6_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V+",
+      "lore": [
+        "&7Pelea contra mobs de Tier V+.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 6",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier6_hit_1": {
+      "material": "PAPER",
+      "slot": 24,
+      "item_model": "astral:infinita/tier6_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V+",
+      "lore": [
+        "&7Pelea contra mobs de Tier V+.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 6",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier6_hit_2": {
+      "material": "PAPER",
+      "slot": 32,
+      "item_model": "astral:infinita/tier6_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V+",
+      "lore": [
+        "&7Pelea contra mobs de Tier V+.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 6",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier6_hit_3": {
+      "material": "PAPER",
+      "slot": 33,
+      "item_model": "astral:infinita/tier6_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lTier V+",
+      "lore": [
+        "&7Pelea contra mobs de Tier V+.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 6",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    }
+  }
+}

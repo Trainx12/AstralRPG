@@ -58,12 +58,13 @@ public final class InfinitaProbe extends JavaPlugin {
         switch (args[0]) {
         case "setup" -> { for (String n : List.of("A", "B", "C")) p.put(n, fake("Inf" + n));
             p.get("A").performCommand("party invitar InfB"); p.get("B").performCommand("party aceptar"); }
+        // Las ventanas son de DeluxeMenus (no esta en el ensayo): sus clics ejecutan infelegir por consola.
         case "tierA" -> { p.get("A").performCommand("infinita"); }
-        case "pickA" -> { check(p.get("A").getOpenInventory().getTitle().contains("Tier"), "ventana de tier: " + p.get("A").getOpenInventory().getTitle()); click(p.get("A"), 14); }
-        case "velA" -> { check(p.get("A").getOpenInventory().getTitle().contains("Velocidad"), "ventana de velocidad: " + p.get("A").getOpenInventory().getTitle()); click(p.get("A"), 14); }
+        case "pickA" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "infelegir InfA tier 5");
+        case "velA" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "infelegir InfA vel 4");
         case "tierC" -> { p.get("C").performCommand("infinita"); }
-        case "pickC" -> click(p.get("C"), 10);
-        case "velC" -> click(p.get("C"), 11);
+        case "pickC" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "infelegir InfC tier 1");
+        case "velC" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "infelegir InfC vel 1");
         case "inside" -> {
             check(where("A").equals("infinita") && where("B").equals("infinita"), "party A+B en la sala 1: " + where("A") + "/" + where("B"));
             check(where("C").equals("infinita_2"), "C solo en la sala 2: " + where("C"));

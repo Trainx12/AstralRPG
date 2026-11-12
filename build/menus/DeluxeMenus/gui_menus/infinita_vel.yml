@@ -1,0 +1,480 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "vel1": {
+      "material": "PAPER",
+      "slot": 1,
+      "item_model": "astral:infinita/vel1_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel1_hit_1": {
+      "material": "PAPER",
+      "slot": 2,
+      "item_model": "astral:infinita/vel1_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel1_hit_2": {
+      "material": "PAPER",
+      "slot": 3,
+      "item_model": "astral:infinita/vel1_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel1_hit_3": {
+      "material": "PAPER",
+      "slot": 10,
+      "item_model": "astral:infinita/vel1_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel1_hit_4": {
+      "material": "PAPER",
+      "slot": 11,
+      "item_model": "astral:infinita/vel1_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel1_hit_5": {
+      "material": "PAPER",
+      "slot": 12,
+      "item_model": "astral:infinita/vel1_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lFacil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 4 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 1<delay=2>"
+      ]
+    },
+    "vel2": {
+      "material": "PAPER",
+      "slot": 5,
+      "item_model": "astral:infinita/vel2_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel2_hit_1": {
+      "material": "PAPER",
+      "slot": 6,
+      "item_model": "astral:infinita/vel2_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel2_hit_2": {
+      "material": "PAPER",
+      "slot": 7,
+      "item_model": "astral:infinita/vel2_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel2_hit_3": {
+      "material": "PAPER",
+      "slot": 14,
+      "item_model": "astral:infinita/vel2_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel2_hit_4": {
+      "material": "PAPER",
+      "slot": 15,
+      "item_model": "astral:infinita/vel2_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel2_hit_5": {
+      "material": "PAPER",
+      "slot": 16,
+      "item_model": "astral:infinita/vel2_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lNormal",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 3 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 2<delay=2>"
+      ]
+    },
+    "vel3": {
+      "material": "PAPER",
+      "slot": 19,
+      "item_model": "astral:infinita/vel3_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel3_hit_1": {
+      "material": "PAPER",
+      "slot": 20,
+      "item_model": "astral:infinita/vel3_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel3_hit_2": {
+      "material": "PAPER",
+      "slot": 21,
+      "item_model": "astral:infinita/vel3_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel3_hit_3": {
+      "material": "PAPER",
+      "slot": 28,
+      "item_model": "astral:infinita/vel3_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel3_hit_4": {
+      "material": "PAPER",
+      "slot": 29,
+      "item_model": "astral:infinita/vel3_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel3_hit_5": {
+      "material": "PAPER",
+      "slot": 30,
+      "item_model": "astral:infinita/vel3_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lDificil",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 2 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 3<delay=2>"
+      ]
+    },
+    "vel4": {
+      "material": "PAPER",
+      "slot": 23,
+      "item_model": "astral:infinita/vel4_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "vel4_hit_1": {
+      "material": "PAPER",
+      "slot": 24,
+      "item_model": "astral:infinita/vel4_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "vel4_hit_2": {
+      "material": "PAPER",
+      "slot": 25,
+      "item_model": "astral:infinita/vel4_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "vel4_hit_3": {
+      "material": "PAPER",
+      "slot": 32,
+      "item_model": "astral:infinita/vel4_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "vel4_hit_4": {
+      "material": "PAPER",
+      "slot": 33,
+      "item_model": "astral:infinita/vel4_4",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "vel4_hit_5": {
+      "material": "PAPER",
+      "slot": 34,
+      "item_model": "astral:infinita/vel4_5",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&5&lPesadilla",
+      "lore": [
+        "&7Aparece un grupo de mobs cada 1 s.",
+        "&7Mas jugadores, mas mobs.",
+        "",
+        "&eClic para entrar"
+      ],
+      "click_commands": [
+        "[close]",
+        "[console] infelegir %player_name% vel 4<delay=2>"
+      ]
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 45,
+      "display_name": "&fVolver al tier",
+      "click_commands": [
+        "[openguimenu] infinita_tier"
+      ],
+      "item_model": "astral:menu/icon_back"
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    }
+  }
+}

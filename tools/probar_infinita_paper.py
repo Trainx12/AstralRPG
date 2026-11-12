@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT/'datapack-src'))
 
 
 def run(java, base):
+    sys.stdout.reconfigure(errors="replace")
     import infinita
     from mazmorras_copias import script as copias_script
     work = ROOT/'.local/infinita-probe'
