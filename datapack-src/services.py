@@ -157,7 +157,7 @@ function asg_refresh(p: player):
             set slot 20 of {_inv} to emerald named "&6Precio de venta"
             stop
         if asg_sale_allowed({_held}) is false:
-            asg_bar({_p}, "invalid", "&cEste objeto no se admite en venta rapida.")
+            asg_bar({_p}, "sale_invalid", "&cEste objeto no se puede vender aca.")
             asg_action({_p}, "sell_blocked", "&cVENDER", "&7No se venden objetos RPG, renombrados o encantados.")
             stop
         set {_type} to type of {_held}
@@ -179,7 +179,7 @@ function asg_refresh(p: player):
         stop
     asg_inspect({_p})
     if "asgui.valid" is not in scoreboard tags of {_p}:
-        asg_bar({_p}, "invalid", "&cSolo equipo de AstralRPG. Los bastones no se mejoran.")
+        asg_bar({_p}, "invalid", "&cSolo armas, bastones y armaduras de AstralRPG.")
         asg_action({_p}, "blocked", "&cMEJORAR", "&7Este objeto no es mejorable.")
         stop
     if "asgui.max" is in scoreboard tags of {_p}:

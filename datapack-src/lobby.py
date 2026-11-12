@@ -498,6 +498,15 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
              "gacha_cosmeticos": "Titulos y gorros"}
 
 
+# NPC con modelo alto: (titulo, color, subtitulo, altura del cartel sobre los pies).
+NAME_HOLOS = {
+    "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.9),
+    "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
+    "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
+    "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
+}
+
+
 def holo_cmds():
     import json
     out = ["# --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)",
@@ -516,6 +525,15 @@ def holo_cmds():
         out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + 1.55} {z} "
                    f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
                    f"line_width:220,text:{comp}}}")
+    # Nombres arriba de los NPC cuyo modelo 3D tapa la etiqueta de MythicMobs (pedido 12/11/2026).
+    NL = chr(10)
+    for npc, (title, color, sub, height) in NAME_HOLOS.items():
+        x, y, z, _ = NPC_POS[npc]
+        text = [{"text": title, "color": color, "bold": True}, {"text": NL + sub, "color": "gray"}]
+        comp = json.dumps({"text": "", "extra": text}, ensure_ascii=False)
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height} {z} "
+                   f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
+                   f"line_width:200,text:{comp}}}")
     # Cartel de ayuda arriba del Viajero (por encima de su nombre)
     x, y, z, _ = NPC_POS["astral_npc_viajero"]
     NL = chr(10)

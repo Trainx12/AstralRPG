@@ -89,8 +89,8 @@ astral_npc_santuario:
 astral_santuario_cangrejo_eco:
   Type: SPIDER
   Display: '&d&lCangrejo Ancestral'
-  Health: 1000
-  Damage: 14.4
+  Health: 7875000
+  Damage: 17.3
   Armor: 6
   Options:
     Glowing: true
@@ -156,8 +156,8 @@ astral_santuario_cangrejo_eco:
 astral_santuario_chaman_eco:
   Type: EVOKER
   Display: '&2&lGran Chaman Ancestral'
-  Health: 1000
-  Damage: 12.8
+  Health: 9187500
+  Damage: 16.6
   Armor: 6
   Options:
     Glowing: true
@@ -229,8 +229,8 @@ astral_santuario_chaman_eco:
 astral_santuario_momia_eco:
   Type: HUSK
   Display: '&6&lFarao Ancestral'
-  Health: 1000
-  Damage: 16.0
+  Health: 10500000
+  Damage: 22.4
   Armor: 6
   Options:
     Glowing: true
@@ -301,8 +301,8 @@ astral_santuario_momia_eco:
 astral_santuario_yeti_eco:
   Type: RAVAGER
   Display: '&b&lYeti Ancestral'
-  Health: 1000
-  Damage: 22.4
+  Health: 11812500
+  Damage: 33.6
   Armor: 6
   Options:
     Glowing: true
@@ -375,8 +375,8 @@ astral_santuario_yeti_eco:
 astral_santuario_golem_forja_eco:
   Type: IRON_GOLEM
   Display: '&4&lColoso de la Forja Ancestral'
-  Health: 1000
-  Damage: 25.6
+  Health: 13125000
+  Damage: 41.0
   Armor: 6
   Options:
     Glowing: true

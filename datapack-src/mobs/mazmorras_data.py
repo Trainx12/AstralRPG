@@ -128,6 +128,13 @@ def catalog():
                     waves.append([(source, 1, 0)])
                     continue
                 mid, block, add = variant(key, source, ancestral=True, boss=True)
+                # Jefes de tier 5 (pedido 12/11/2026): vida del jefe de la Forja, de 60% a 100% por oleada.
+                from escala import VIDA_JEFE
+                hp = round(VIDA_JEFE['forja'] * (0.6 + 0.1 * WAVES.index(source)))
+                block = re.sub(r'(?m)^(  Health: )\S+', lambda m: m[1] + str(hp), block, count=1)
+                # Golpe mas fuerte: x1.2 el primero hasta x1.7 el ultimo (despues Skript aplica el x tier 5).
+                factor = 1.2 + 0.1 * WAVES.index(source)
+                block = re.sub(r'(?m)^(  Damage: )(\S+)', lambda m: m[1] + str(round(float(m[2]) * factor, 1)), block, count=1)
                 blocks.append(block); helpers.update(add)
                 waves.append([(mid, 1, 0)])
             rooms.append(dict(id="sala1", name=definition["labels"][0], centro=definition["points"][0],

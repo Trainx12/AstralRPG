@@ -245,7 +245,8 @@ def assets():
         tiles(name,button(caption,width,color))
     bars={'empty':('COLOCA TU EQUIPO','#ddc699'),'invalid':('EQUIPO NO MEJORABLE','#ec998b'),'max':('NIVEL MAXIMO +10','#e8d475'),
           'sale_empty':('ELIGE QUE VENDER','#ddc699'),'sale_ready':('REVISA EL IMPORTE','#9ed7b0'),'sold':('VENTA COMPLETADA','#9ed7b0'),
-          'not_sold':('NO SE VENDIO EL ITEM','#ec998b')}
+          'not_sold':('NO SE VENDIO EL ITEM','#ec998b'),
+          'sale_invalid':('NO SE PUEDE VENDER','#ec998b')}
     for level,(money,chance,_) in MEJORAS.items():
         bars[f'level{level}']=(f'+{level} / {money}$ / {round(chance*100)}%','#ddc699')
         bars[f'ok{level}']=(f'MEJORA EXITOSA +{level}','#9ed7b0')

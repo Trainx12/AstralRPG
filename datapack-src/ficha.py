@@ -154,7 +154,8 @@ def weapon_stats(source, level):
         arrow = data['arrow']
         lines.append(stat('Daño', '+' + fmt(arrow * factor), 'red', arrow * (factor - 1) if level else None))
     if 'spell' in data:
-        lines.append(stat('Daño de hechizo', '+' + fmt(data['spell_display']), 'light_purple'))
+        spell = data['spell_display']
+        lines.append(stat('Daño de hechizo', '+' + fmt(spell * factor), 'light_purple', spell * (factor - 1) if level else None))
     if data.get('mdmg') and source['kind'] == 'staff':
         lines.append(stat('Daño mágico', f"+{num(data['mdmg'] / 100)}%", 'light_purple'))
     for m in mods:

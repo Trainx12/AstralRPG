@@ -615,85 +615,85 @@ function astral_dano_tier(e: entity) :: number:
 
 function astral_dano_mundo(w: world) :: number:
     set {_n} to name of {_w}
-    if {_n} is "bosque" or "minecraft:bosque":
+    if {_n} is "bosque" or "minecraft:bosque" or "world_minecraft_bosque":
         return 22.0
-    if {_n} is "bosque_2" or "minecraft:bosque_2":
+    if {_n} is "bosque_2" or "minecraft:bosque_2" or "world_minecraft_bosque_2":
         return 22.0
-    if {_n} is "bosque_3" or "minecraft:bosque_3":
+    if {_n} is "bosque_3" or "minecraft:bosque_3" or "world_minecraft_bosque_3":
         return 22.0
-    if {_n} is "bosque_4" or "minecraft:bosque_4":
+    if {_n} is "bosque_4" or "minecraft:bosque_4" or "world_minecraft_bosque_4":
         return 22.0
-    if {_n} is "bosque_5" or "minecraft:bosque_5":
+    if {_n} is "bosque_5" or "minecraft:bosque_5" or "world_minecraft_bosque_5":
         return 22.0
-    if {_n} is "bosque_6" or "minecraft:bosque_6":
+    if {_n} is "bosque_6" or "minecraft:bosque_6" or "world_minecraft_bosque_6":
         return 22.0
-    if {_n} is "mina" or "minecraft:mina":
+    if {_n} is "mina" or "minecraft:mina" or "world_minecraft_mina":
         return 48.0
-    if {_n} is "mina_2" or "minecraft:mina_2":
+    if {_n} is "mina_2" or "minecraft:mina_2" or "world_minecraft_mina_2":
         return 48.0
-    if {_n} is "mina_3" or "minecraft:mina_3":
+    if {_n} is "mina_3" or "minecraft:mina_3" or "world_minecraft_mina_3":
         return 48.0
-    if {_n} is "mina_4" or "minecraft:mina_4":
+    if {_n} is "mina_4" or "minecraft:mina_4" or "world_minecraft_mina_4":
         return 48.0
-    if {_n} is "mina_5" or "minecraft:mina_5":
+    if {_n} is "mina_5" or "minecraft:mina_5" or "world_minecraft_mina_5":
         return 48.0
-    if {_n} is "mina_6" or "minecraft:mina_6":
+    if {_n} is "mina_6" or "minecraft:mina_6" or "world_minecraft_mina_6":
         return 48.0
-    if {_n} is "tumba" or "minecraft:tumba":
+    if {_n} is "tumba" or "minecraft:tumba" or "world_minecraft_tumba":
         return 120.0
-    if {_n} is "tumba_2" or "minecraft:tumba_2":
+    if {_n} is "tumba_2" or "minecraft:tumba_2" or "world_minecraft_tumba_2":
         return 120.0
-    if {_n} is "tumba_3" or "minecraft:tumba_3":
+    if {_n} is "tumba_3" or "minecraft:tumba_3" or "world_minecraft_tumba_3":
         return 120.0
-    if {_n} is "tumba_4" or "minecraft:tumba_4":
+    if {_n} is "tumba_4" or "minecraft:tumba_4" or "world_minecraft_tumba_4":
         return 120.0
-    if {_n} is "tumba_5" or "minecraft:tumba_5":
+    if {_n} is "tumba_5" or "minecraft:tumba_5" or "world_minecraft_tumba_5":
         return 120.0
-    if {_n} is "tumba_6" or "minecraft:tumba_6":
+    if {_n} is "tumba_6" or "minecraft:tumba_6" or "world_minecraft_tumba_6":
         return 120.0
-    if {_n} is "cumbre" or "minecraft:cumbre":
+    if {_n} is "cumbre" or "minecraft:cumbre" or "world_minecraft_cumbre":
         return 280.0
-    if {_n} is "forja" or "minecraft:forja":
+    if {_n} is "forja" or "minecraft:forja" or "world_minecraft_forja":
         return 400.0
-    if {_n} is "santuario" or "minecraft:santuario":
+    if {_n} is "santuario" or "minecraft:santuario" or "world_minecraft_santuario":
         return 400.0
-    if {_n} is "cumbre_hielo" or "minecraft:cumbre_hielo":
+    if {_n} is "cumbre_hielo" or "minecraft:cumbre_hielo" or "world_minecraft_cumbre_hielo":
         return 280.0
-    if {_n} is "cumbre_hielo_2" or "minecraft:cumbre_hielo_2":
+    if {_n} is "cumbre_hielo_2" or "minecraft:cumbre_hielo_2" or "world_minecraft_cumbre_hielo_2":
         return 280.0
-    if {_n} is "cumbre_hielo_3" or "minecraft:cumbre_hielo_3":
+    if {_n} is "cumbre_hielo_3" or "minecraft:cumbre_hielo_3" or "world_minecraft_cumbre_hielo_3":
         return 280.0
-    if {_n} is "cumbre_hielo_4" or "minecraft:cumbre_hielo_4":
+    if {_n} is "cumbre_hielo_4" or "minecraft:cumbre_hielo_4" or "world_minecraft_cumbre_hielo_4":
         return 280.0
-    if {_n} is "cumbre_hielo_5" or "minecraft:cumbre_hielo_5":
+    if {_n} is "cumbre_hielo_5" or "minecraft:cumbre_hielo_5" or "world_minecraft_cumbre_hielo_5":
         return 280.0
-    if {_n} is "cumbre_hielo_6" or "minecraft:cumbre_hielo_6":
+    if {_n} is "cumbre_hielo_6" or "minecraft:cumbre_hielo_6" or "world_minecraft_cumbre_hielo_6":
         return 280.0
-    if {_n} is "forja_volcano" or "minecraft:forja_volcano":
+    if {_n} is "forja_volcano" or "minecraft:forja_volcano" or "world_minecraft_forja_volcano":
         return 400.0
-    if {_n} is "forja_volcano_2" or "minecraft:forja_volcano_2":
+    if {_n} is "forja_volcano_2" or "minecraft:forja_volcano_2" or "world_minecraft_forja_volcano_2":
         return 400.0
-    if {_n} is "forja_volcano_3" or "minecraft:forja_volcano_3":
+    if {_n} is "forja_volcano_3" or "minecraft:forja_volcano_3" or "world_minecraft_forja_volcano_3":
         return 400.0
-    if {_n} is "forja_volcano_4" or "minecraft:forja_volcano_4":
+    if {_n} is "forja_volcano_4" or "minecraft:forja_volcano_4" or "world_minecraft_forja_volcano_4":
         return 400.0
-    if {_n} is "forja_volcano_5" or "minecraft:forja_volcano_5":
+    if {_n} is "forja_volcano_5" or "minecraft:forja_volcano_5" or "world_minecraft_forja_volcano_5":
         return 400.0
-    if {_n} is "forja_volcano_6" or "minecraft:forja_volcano_6":
+    if {_n} is "forja_volcano_6" or "minecraft:forja_volcano_6" or "world_minecraft_forja_volcano_6":
         return 400.0
-    if {_n} is "santuario_interstellar" or "minecraft:santuario_interstellar":
+    if {_n} is "santuario_interstellar" or "minecraft:santuario_interstellar" or "world_minecraft_santuario_interstellar":
         return 400.0
-    if {_n} is "santuario_azeroth" or "minecraft:santuario_azeroth":
+    if {_n} is "santuario_azeroth" or "minecraft:santuario_azeroth" or "world_minecraft_santuario_azeroth":
         return 400.0
-    if {_n} is "santuario_azeroth_2" or "minecraft:santuario_azeroth_2":
+    if {_n} is "santuario_azeroth_2" or "minecraft:santuario_azeroth_2" or "world_minecraft_santuario_azeroth_2":
         return 400.0
-    if {_n} is "santuario_azeroth_3" or "minecraft:santuario_azeroth_3":
+    if {_n} is "santuario_azeroth_3" or "minecraft:santuario_azeroth_3" or "world_minecraft_santuario_azeroth_3":
         return 400.0
-    if {_n} is "santuario_azeroth_4" or "minecraft:santuario_azeroth_4":
+    if {_n} is "santuario_azeroth_4" or "minecraft:santuario_azeroth_4" or "world_minecraft_santuario_azeroth_4":
         return 400.0
-    if {_n} is "santuario_azeroth_5" or "minecraft:santuario_azeroth_5":
+    if {_n} is "santuario_azeroth_5" or "minecraft:santuario_azeroth_5" or "world_minecraft_santuario_azeroth_5":
         return 400.0
-    if {_n} is "santuario_azeroth_6" or "minecraft:santuario_azeroth_6":
+    if {_n} is "santuario_azeroth_6" or "minecraft:santuario_azeroth_6" or "world_minecraft_santuario_azeroth_6":
         return 400.0
     if {_n} is "world_minecraft_santuario_azeroth":
         return 400.0

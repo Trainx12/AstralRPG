@@ -117,7 +117,7 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
             hidden.append("minecraft:attribute_modifiers")
     ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind,
                       "ficha": item_id in FICHAS,
-                      "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("staff", "drill", "saw")}
+                      "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("drill", "saw")}
 
 
 def req_line(skill, level):
@@ -1020,8 +1020,15 @@ for ti, tier in enumerate(ARMOR_SETS["mago"]["tiers"]):
             cast.append(f"{sel} run scoreboard players add #pct astral.tmp {int(round(st['mdmg'] * 100 / 4))}")
         if "cdr" in st:
             cast.append(f"{sel} run scoreboard players add #cdr astral.tmp {int(round(st['cdr'] / 4))}")
+# Mejora del Herrero en el baston: mismo % que el dano de un arma (MEJORA_DANO).
+cast.append("scoreboard players set #mej astral.tmp 100")
+for _lvl, _f in enumerate(MEJORA_DANO, 1):
+    cast.append(f'execute if items entity @s weapon.mainhand *[minecraft:enchantments~[{{enchantments:"{NS}:mejora_arma",levels:{_lvl}}}]] '
+                f"run scoreboard players set #mej astral.tmp {round(_f * 100)}")
 cast += [
     "execute if score #base astral.tmp matches ..0 run return 0",
+    "scoreboard players operation #base astral.tmp *= #mej astral.tmp",
+    "scoreboard players operation #base astral.tmp /= #100 astral.const",
     # #base en puntos de vida enteros (hasta 75.000) y #pct en centesimas de %: se pasa #pct a %
     # antes de multiplicar para no pasar el limite de los numeros del scoreboard.
     "scoreboard players operation #pct astral.tmp /= #100 astral.const",
@@ -2202,6 +2209,7 @@ HAND = "weapon.mainhand"
 KIND = ["scoreboard players set #k astral.tmp 0",
         f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"weapon"}}}}] '
         f"unless items entity @s {HAND} minecraft:carrot_on_a_stick run scoreboard players set #k astral.tmp 1",
+        f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"staff"}}}}] run scoreboard players set #k astral.tmp 1',
         f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"armor"}}}}] run scoreboard players set #k astral.tmp 2']
 ver = ["scoreboard players set @s astralmejn 0", "scoreboard players set @s astralmejok 0"] + KIND + [
        "execute if score #k astral.tmp matches 0 run return run tellraw @s " + json.dumps(

@@ -117,7 +117,8 @@ def vida():
     from escala import DANO_MOB, TIER_MAZMORRA
     tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
                       for t in range(5, 0, -1))
-    mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}":\n        return {DANO_MOB[t]}'
+    # Las dimensiones del datapack se llaman world_minecraft_<dim> en Bukkit (el Santuario y sus copias).
+    mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}" or "world_minecraft_{w}":\n        return {DANO_MOB[t]}'
                        for w, t in TIER_MAZMORRA.items())
     mundos += f'\n    if {{_n}} is "{SANCTUARY_BUKKIT_WORLD}":\n        return {DANO_MOB[5]}'
     return r'''
