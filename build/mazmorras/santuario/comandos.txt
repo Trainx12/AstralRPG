@@ -1,30 +1,33 @@
-# Santuario Celestial - ubicaciones propuestas, revisar en creativo antes de habilitar.
-# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.
-# Crear un mundo NUEVO. Nunca subir nada sobre world ni sobre mina.
-mv create santuario_interstellar normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-# Apagar el servidor y copiar SOLO las regiones recortadas a world/dimensions/minecraft/santuario_interstellar/region.
-# Ver docs/MAZMORRAS.md para preparar los recortes sin datapacks ni entidades del mapa original.
-mv modify santuario_interstellar set difficulty hard
-mv modify santuario_interstellar set gamemode survival
-mv modify santuario_interstellar set pvp false
-mv modify santuario_interstellar set allow-weather false
-mv gamerule set minecraft:spawn_mobs false santuario_interstellar
-mv gamerule set minecraft:keep_inventory true santuario_interstellar
-mv gamerule set minecraft:random_tick_speed 0 santuario_interstellar
-rg flag -w santuario_interstellar __global__ build deny
-rg flag -w santuario_interstellar __global__ chest-access deny
-rg flag -w santuario_interstellar __global__ pvp deny
-rg flag -w santuario_interstellar __global__ mob-spawning allow
-rg flag -w santuario_interstellar __global__ interact allow
-rg flag -w santuario_interstellar __global__ use deny
-# espera del cofre: false para todos (sin esto el cofre no le paga a los OP)
+# Santuario Azeroth. Instalar primero datapack y regiones con servidor APAGADO.
+# Dimension del datapack: NO mv create ni importar como THE_END.
+# Ruta SOLO nueva: world/dimensions/minecraft/santuario_azeroth/region/
+# Paper la carga desde el datapack; no crear/importar con Multiverse.
+# Conservar santuario_interstellar y sus regiones como respaldo.
+execute in minecraft:santuario_azeroth run difficulty hard
+execute in minecraft:santuario_azeroth run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth __global__ tnt deny
 lp group default permission set astral.santuario.cd false
-# RECORRIDO DE REVISION (OP en creativo; el mapa tiene que estar cargado):
-# Prueba de los cinco ecos: execute in minecraft:santuario_interstellar run minecraft:tp <jugador> 34.5 180 40.5
-# Confirmar piso, techo, recorrido y espacio para el jefe. Son sugerencias, no puntos probados.
-# DESPUES de revisar las coordenadas y cambiar enabled=True:
-# execute in minecraft:santuario_interstellar run forceload add 46 48
-# mm mobs spawn astral_santuario_control_sala1 1 santuario_interstellar,46.5,180,48.5
-# execute in minecraft:santuario_interstellar run forceload remove 46 48
-# NPC de entrada (en el lobby): mm mobs spawn astral_npc_santuario
-# Los jefes y mobs del mundo normal conservan sus apariciones.
+# SOLO con la mazmorra vacia; retirar el controlador del mundo viejo:
+execute in minecraft:santuario_interstellar run forceload add 46 48
+mm mobs kill astral_santuario_control_sala1
+execute in minecraft:santuario_interstellar run forceload remove 46 48
+# Crear una sola vez el controlador nuevo:
+execute in minecraft:santuario_azeroth run forceload add 144 -48 351 159
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,247.5,57,19.5
+# Conservar las cargas del recorte: las oleadas recorren sectores separados.
+# Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 247.5 57 14.5 0 0

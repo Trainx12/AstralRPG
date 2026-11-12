@@ -78,8 +78,8 @@ TIER_ESPECIAL = 3
 # Mazmorras: tier fijo. Santuario es el epilogo (V+): tier 5 con vida extra.
 # Los mundos actuales de Cumbre, Forja y Santuario tienen otro nombre (cumbre_hielo...).
 TIER_MAZMORRA = {"bosque": 1, "mina": 2, "tumba": 3, "cumbre": 4, "forja": 5, "santuario": 5,
-                 "cumbre_hielo": 4, "forja_volcano": 5, "santuario_interstellar": 5}
-EXTRA_VIDA_MAZMORRA = {"santuario": 1.5, "santuario_interstellar": 1.5}
+                 "cumbre_hielo": 4, "forja_volcano": 5, "santuario_interstellar": 5, "santuario_azeroth": 5}
+EXTRA_VIDA_MAZMORRA = {"santuario": 1.5, "santuario_interstellar": 1.5, "santuario_azeroth": 1.5}
 
 # Probabilidades de tier en el mundo (en %).
 PROB_TIER_MAS = 4

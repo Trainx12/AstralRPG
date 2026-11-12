@@ -7,6 +7,11 @@ from mapas import NBT
 from santuario_mapa import legacy_chunks, write_nbt
 from mobs.mazmorras_data import catalog
 from mobs.mazmorra import skill_yml
+from santuario_azeroth import WORLD, BUKKIT_WORLD, ARRIVAL, BOSSES, CHEST, GUIDE, generate, commands
+from escala import TIER_MAZMORRA, EXTRA_VIDA_MAZMORRA
+from gameplay import DUNGEONS, RESCUE_HEIGHTS, patch_graves, script
+from mobs.mascotas import MUNDOS_BONUS
+import json
 import yaml
 
 
@@ -35,16 +40,49 @@ class SantuarioMapTests(unittest.TestCase):
 
     def test_new_map_arrival_activates_five_boss_waves(self):
         dungeon = next(d for d in catalog() if d['key'] == 'santuario')
-        self.assertEqual(dungeon['world'], 'santuario_interstellar')
+        self.assertEqual(dungeon['world'], WORLD)
         room = dungeon['rooms'][0]
-        self.assertEqual(room['llegada'], (34.5, 180, 40.5))
+        self.assertEqual(room['llegada'], ARRIVAL)
         self.assertGreaterEqual(room['r'], 15)
         self.assertEqual(len(room['oleadas']), 5)
         skills = yaml.safe_load(skill_yml(dungeon))
         summons = [line for value in skills.values() for line in value['Skills']
-                   if 'summon{type=astral_santuario_' in line]
+                   if 'summon{type=astral_santuario_' in line and '_eco;' in line]
         self.assertTrue(any('cangrejo_eco' in line for line in summons))
         self.assertTrue(any('golem_forja_eco' in line for line in summons))
+        self.assertEqual(len(summons),5)
+        for line,point in zip(summons,BOSSES,strict=True):
+            self.assertIn('onSurface=false',line)
+            self.assertIn('x=%s;y=%s;z=%s' % point,line)
+        self.assertEqual(room['final_npcs'],{'cofre':CHEST,'guia':GUIDE})
+        self.assertEqual(sum((a-b)**2 for a,b in zip(CHEST,GUIDE)),4)
+
+    def test_end_sky_without_end_generation_or_dragon(self):
+        files={};generate(files)
+        kind=json.loads(files['data/astral/dimension_type/santuario.json'])
+        self.assertEqual(kind['skybox'],'end')
+        self.assertNotIn('effects',kind)
+        self.assertFalse(kind['has_ender_dragon_fight'])
+        dim=json.loads(files[f'data/minecraft/dimension/{WORLD}.json'])
+        self.assertEqual(dim['type'],'astral:santuario')
+        self.assertEqual(dim['generator']['type'],'minecraft:flat')
+        self.assertEqual(dim['generator']['settings']['layers'],[{'block':'minecraft:air','height':1}])
+        self.assertNotIn('mv create', '\n'.join(l for l in commands().splitlines() if not l.startswith('#')))
+
+    def test_fixed_tier_inventory_pets_and_void_rescue(self):
+        self.assertEqual(TIER_MAZMORRA[WORLD],5)
+        self.assertEqual(EXTRA_VIDA_MAZMORRA[WORLD],1.5)
+        self.assertIn(WORLD,DUNGEONS)
+        self.assertIn(WORLD,MUNDOS_BONUS)
+        self.assertIn(BUKKIT_WORLD,MUNDOS_BONUS)
+        self.assertIn(BUKKIT_WORLD,DUNGEONS)
+        self.assertIn(WORLD,patch_graves({})['disabled-worlds'])
+        self.assertIn(BUKKIT_WORLD,patch_graves({})['disabled-worlds'])
+        self.assertEqual(RESCUE_HEIGHTS[WORLD],0)
+        rescue=script().split('function astral_rescue(p: player):')[1].split('function ',1)[0]
+        self.assertIn('minecraft:santuario_azeroth run minecraft:tp',rescue)
+        self.assertIn('247.5 57 14.5',rescue)
+        self.assertLess(rescue.index('minecraft:santuario_azeroth'),rescue.index('spawn %name'))
 
 
 if __name__ == '__main__':

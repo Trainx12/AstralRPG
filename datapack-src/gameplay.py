@@ -1,16 +1,17 @@
 """Balance, migracion sin reemplazar inventarios y reglas de las mazmorras."""
 import json
+from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD
 from pathlib import Path
 from minijuegos import parkour_worlds, arena_worlds
 
 ROOT=Path(__file__).resolve().parent.parent
 DUNGEONS=('bosque','tumba','mina','cumbre','forja','santuario',
           # mundos actuales de Cumbre, Forja y Santuario (08/11/2026)
-          'cumbre_hielo','forja_volcano','santuario_interstellar')
+          'cumbre_hielo','forja_volcano','santuario_interstellar','santuario_azeroth',SANCTUARY_BUKKIT_WORLD)
 PROTECTED=('lobby',)+DUNGEONS+('cavernas','reino','exp_desierto','exp_hielo','exp_santuario')
 # Altura absoluta de rescate. Mina tiene salas bajo Y=0; no usar el mismo limite.
 RESCUE_HEIGHTS={'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
-                'cumbre':0, 'forja':0, 'santuario':0}
+                'cumbre':0, 'forja':0, 'santuario':0, 'santuario_azeroth':0, SANCTUARY_BUKKIT_WORLD:0}
 
 def apply(files,items,version):
     def fn(name,lines):files[f'data/astral/function/{name}.mcfunction']='\n'.join(lines)+'\n'
@@ -57,8 +58,13 @@ def apply(files,items,version):
     (output/'astral_gameplay.sk').write_text(script(),encoding='utf-8')
     commands=[]
     for world in PROTECTED:
+        if world in ('santuario_azeroth', SANCTUARY_BUKKIT_WORLD):
+            continue  # esta dimension pertenece al datapack, no a Multiverse
         commands += [f'mv gamerule set minecraft:keep_inventory true {world}']
+    commands += ['execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory true']
     for world in DUNGEONS:
+        if world == 'santuario_azeroth':
+            continue  # WorldGuard identifica el nombre Bukkit
         commands += [f'rg flag -w {world} __global__ block-break deny',
                      f'rg flag -w {world} __global__ block-place deny',
                      f'rg flag -w {world} __global__ build deny']
@@ -111,6 +117,7 @@ def vida():
                       for t in range(5, 0, -1))
     mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}":\n        return {DANO_MOB[t]}'
                        for w, t in TIER_MAZMORRA.items())
+    mundos += f'\n    if {{_n}} is "{SANCTUARY_BUKKIT_WORLD}":\n        return {DANO_MOB[5]}'
     return r'''
 # Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.
 # - Mob con tier (astral.mt#): su golpe, flecha o explosion x DANO_MOB del tier.
@@ -255,10 +262,15 @@ function astral_rescue_height(w: world) :: number:
 __RESCUE_LIMITS__
     return -10000
 
-# Caer debajo del limite del mundo: directo a /spawn. No se guarda ninguna posicion.
+# Santuario vuelve a su entrada; el resto conserva su rescate al lobby.
 function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
+    if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 247.5 57 14.5 0 0"
+        set fall distance of {_p} to 0
+        send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
+        stop
     execute console command "spawn %name of {_p}%"
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 

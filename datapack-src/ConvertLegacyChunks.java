@@ -15,7 +15,8 @@ class ConvertLegacyChunks {
         try (var files = Files.list(input)) {
             for (var path : files.filter(p -> p.toString().endsWith(".nbt")).sorted().toList()) {
                 var old = NbtIo.readCompressed(path, NbtAccounter.unlimitedHeap());
-                var converted = DataFixTypes.CHUNK.updateToCurrentVersion(fixer, old, 1343);
+                int sourceVersion = args.length > 2 ? Integer.parseInt(args[2]) : 1343;
+                var converted = DataFixTypes.CHUNK.updateToCurrentVersion(fixer, old, sourceVersion);
                 converted.putInt("DataVersion", SharedConstants.getCurrentVersion().dataVersion().version());
                 NbtIo.writeCompressed(converted, output.resolve(path.getFileName()));
                 count++;

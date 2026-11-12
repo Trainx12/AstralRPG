@@ -6,6 +6,7 @@ Las Minas siguen en mazmorra.MINA y conservan todos sus identificadores.
 from copy import deepcopy
 import re
 from mobs.rutas_mazmorras import ROUTES
+from santuario_azeroth import WORLD as SANCTUARY_WORLD, ARRIVAL, CENTER, BOSSES, CHEST, GUIDE
 
 try:
     from . import mythic
@@ -41,9 +42,9 @@ DEFINITIONS = [
          points=[(82.5, 52, -55.5)],
          labels=["Nucleo de la Forja"],
          enemies=["espantapajaros", "arana", "cara"], money=3000),
-    dict(key="santuario", name="Santuario Celestial", map="mapa_Santuari_Mazmorra.zip",
-         world="santuario_interstellar", boss=None, event="santuario", tier=6,
-         points=[(46.5, 180, 48.5)], arrival=(34.5, 180, 40.5), radius=18,
+    dict(key="santuario", name="Santuario Celestial", map="Spires of Azeroth.zip",
+         world=SANCTUARY_WORLD, boss=None, event="santuario", tier=5,
+         points=[CENTER], arrival=ARRIVAL, radius=104,
          labels=["Prueba de los cinco ecos"],
          enemies=[], money=5000),
 ]
@@ -127,7 +128,8 @@ def catalog():
                 waves.append([(mid, 1, 0)])
             rooms.append(dict(id="sala1", name=definition["labels"][0], centro=definition["points"][0],
                               llegada=definition.get("arrival", definition["points"][0]),
-                              r=definition.get("radius", 30), oleadas=waves, extra=sorted(helpers)))
+                              r=definition.get("radius", 30), oleadas=waves, extra=sorted(helpers),
+                              wave_spawn_points=BOSSES, floor_range=(57,57)))
         else:
             boss, block, helpers = variant(key, definition["boss"], boss=True)
             blocks.append(block)
@@ -155,6 +157,8 @@ def catalog():
             # Cofre del jefe donde llegan a la sala final (piso comprobado: es la llegada).
             dungeon["rooms"][-1]["final_npcs"] = {"cofre": dungeon["rooms"][-1]["llegada"]}
         from mobs.tanda2 import configure
+        if key == 'santuario':
+            dungeon['rooms'][-1]['final_npcs'] = {'cofre': CHEST, 'guia': GUIDE}
         out.append(configure(dungeon))
     return out
 

@@ -648,139 +648,149 @@ conditions:
     false: "%condition:mundo_5%"
   mundo_7:
     conditions:
-      - "%world%=santuario"
+      - "%world%=world_minecraft_santuario_azeroth"
     true: "Santuario Celestial"
     false: "%condition:mundo_6%"
   mundo_8:
     conditions:
-      - "%world%=forja"
-    true: "Volcán de la Forja"
+      - "%world%=santuario_interstellar"
+    true: "Santuario Celestial"
     false: "%condition:mundo_7%"
   mundo_9:
     conditions:
-      - "%world%=cumbre"
-    true: "Cumbre Nevada"
+      - "%world%=santuario"
+    true: "Santuario Celestial"
     false: "%condition:mundo_8%"
   mundo_10:
     conditions:
-      - "%world%=astral_minas"
-    true: "Minas Astrales"
+      - "%world%=forja"
+    true: "Volcán de la Forja"
     false: "%condition:mundo_9%"
   mundo_11:
     conditions:
-      - "%world%=mina"
-    true: "Minas Olvidadas"
+      - "%world%=cumbre"
+    true: "Cumbre Nevada"
     false: "%condition:mundo_10%"
   mundo_12:
     conditions:
-      - "%world%=astral_bosque"
-    true: "Bosque Astral"
+      - "%world%=astral_minas"
+    true: "Minas Astrales"
     false: "%condition:mundo_11%"
   mundo_13:
     conditions:
-      - "%world%=dropper_h4rs"
-    true: "Dropper H4rs"
+      - "%world%=mina"
+    true: "Minas Olvidadas"
     false: "%condition:mundo_12%"
   mundo_14:
     conditions:
-      - "%world%=dropper_facil"
-    true: "Dropper"
+      - "%world%=astral_bosque"
+    true: "Bosque Astral"
     false: "%condition:mundo_13%"
   mundo_15:
     conditions:
-      - "%world%=colorescape"
-    true: "Color Escape"
+      - "%world%=dropper_h4rs"
+    true: "Dropper H4rs"
     false: "%condition:mundo_14%"
   mundo_16:
     conditions:
-      - "%world%=parkour_paradise3"
-    true: "Parkour Paradise 3"
+      - "%world%=dropper_facil"
+    true: "Dropper"
     false: "%condition:mundo_15%"
   mundo_17:
     conditions:
-      - "%world%=parkour_spiral2"
-    true: "Parkour Espiral 2"
+      - "%world%=colorescape"
+    true: "Color Escape"
     false: "%condition:mundo_16%"
   mundo_18:
     conditions:
-      - "%world%=parkour_spiral"
-    true: "Parkour Espiral"
+      - "%world%=parkour_paradise3"
+    true: "Parkour Paradise 3"
     false: "%condition:mundo_17%"
   mundo_19:
     conditions:
-      - "%world%=arenas_tft"
-    true: "Arenas PvP"
+      - "%world%=parkour_spiral2"
+    true: "Parkour Espiral 2"
     false: "%condition:mundo_18%"
   mundo_20:
     conditions:
-      - "%world%=arena"
-    true: "Arena Astral"
+      - "%world%=parkour_spiral"
+    true: "Parkour Espiral"
     false: "%condition:mundo_19%"
   mundo_21:
     conditions:
-      - "%world%=portales_astrales"
-    true: "Portales Astrales"
+      - "%world%=arenas_tft"
+    true: "Arenas PvP"
     false: "%condition:mundo_20%"
   mundo_22:
     conditions:
-      - "%world%=the_end"
-    true: "El End"
+      - "%world%=arena"
+    true: "Arena Astral"
     false: "%condition:mundo_21%"
   mundo_23:
     conditions:
-      - "%world%=world_the_end"
-    true: "El End"
+      - "%world%=portales_astrales"
+    true: "Portales Astrales"
     false: "%condition:mundo_22%"
   mundo_24:
     conditions:
-      - "%world%=the_nether"
-    true: "El Nether"
+      - "%world%=the_end"
+    true: "El End"
     false: "%condition:mundo_23%"
   mundo_25:
     conditions:
-      - "%world%=world_nether"
-    true: "El Nether"
+      - "%world%=world_the_end"
+    true: "El End"
     false: "%condition:mundo_24%"
   mundo_26:
     conditions:
-      - "%world%=lobby"
-    true: "Refugio Astral"
+      - "%world%=the_nether"
+    true: "El Nether"
     false: "%condition:mundo_25%"
   mundo_27:
     conditions:
-      - "%world%=overworld"
-    true: "Supervivencia"
+      - "%world%=world_nether"
+    true: "El Nether"
     false: "%condition:mundo_26%"
   mundo_28:
     conditions:
-      - "%world%=world"
-    true: "Supervivencia"
+      - "%world%=lobby"
+    true: "Refugio Astral"
     false: "%condition:mundo_27%"
   mundo_29:
     conditions:
-      - "%world%=santuario_interstellar"
-    true: "Santuario Celestial"
+      - "%world%=overworld"
+    true: "Supervivencia"
     false: "%condition:mundo_28%"
   mundo_30:
     conditions:
-      - "%world%=forja_volcano"
-    true: "Corazón de la Forja"
+      - "%world%=world"
+    true: "Supervivencia"
     false: "%condition:mundo_29%"
   mundo_31:
     conditions:
-      - "%world%=cumbre_hielo"
-    true: "Cumbre Helada"
+      - "%world%=santuario_azeroth"
+    true: "Santuario Celestial"
     false: "%condition:mundo_30%"
   mundo_32:
     conditions:
+      - "%world%=forja_volcano"
+    true: "Corazón de la Forja"
+    false: "%condition:mundo_31%"
+  mundo_33:
+    conditions:
+      - "%world%=cumbre_hielo"
+    true: "Cumbre Helada"
+    false: "%condition:mundo_32%"
+  mundo_34:
+    conditions:
       - "%world%=tumba"
     true: "Tumba del Rey de Arena"
-    false: "%condition:mundo_31%"
+    false: "%condition:mundo_33%"
   mundo:
     conditions:
       - "%world%=bosque"
     true: "Bosque Sombrío"
-    false: "%condition:mundo_32%"
+    false: "%condition:mundo_34%"
   sidebar_world_0:
     conditions:
       - "%world%=exp_santuario"
@@ -818,139 +828,149 @@ conditions:
     false: "%condition:sidebar_world_5%"
   sidebar_world_7:
     conditions:
-      - "%world%=santuario"
+      - "%world%=world_minecraft_santuario_azeroth"
     true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_6%"
   sidebar_world_8:
     conditions:
-      - "%world%=forja"
-    true: "        <#F0E6FF>Volcán de la Forja"
+      - "%world%=santuario_interstellar"
+    true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_7%"
   sidebar_world_9:
     conditions:
-      - "%world%=cumbre"
-    true: "          <#F0E6FF>Cumbre Nevada"
+      - "%world%=santuario"
+    true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_8%"
   sidebar_world_10:
     conditions:
-      - "%world%=astral_minas"
-    true: "           <#F0E6FF>Minas Astrales"
+      - "%world%=forja"
+    true: "        <#F0E6FF>Volcán de la Forja"
     false: "%condition:sidebar_world_9%"
   sidebar_world_11:
     conditions:
-      - "%world%=mina"
-    true: "          <#F0E6FF>Minas Olvidadas"
+      - "%world%=cumbre"
+    true: "          <#F0E6FF>Cumbre Nevada"
     false: "%condition:sidebar_world_10%"
   sidebar_world_12:
     conditions:
-      - "%world%=astral_bosque"
-    true: "           <#F0E6FF>Bosque Astral"
+      - "%world%=astral_minas"
+    true: "           <#F0E6FF>Minas Astrales"
     false: "%condition:sidebar_world_11%"
   sidebar_world_13:
     conditions:
-      - "%world%=dropper_h4rs"
-    true: "           <#F0E6FF>Dropper H4rs"
+      - "%world%=mina"
+    true: "          <#F0E6FF>Minas Olvidadas"
     false: "%condition:sidebar_world_12%"
   sidebar_world_14:
     conditions:
-      - "%world%=dropper_facil"
-    true: "               <#F0E6FF>Dropper"
+      - "%world%=astral_bosque"
+    true: "           <#F0E6FF>Bosque Astral"
     false: "%condition:sidebar_world_13%"
   sidebar_world_15:
     conditions:
-      - "%world%=colorescape"
-    true: "            <#F0E6FF>Color Escape"
+      - "%world%=dropper_h4rs"
+    true: "           <#F0E6FF>Dropper H4rs"
     false: "%condition:sidebar_world_14%"
   sidebar_world_16:
     conditions:
-      - "%world%=parkour_paradise3"
-    true: "        <#F0E6FF>Parkour Paradise 3"
+      - "%world%=dropper_facil"
+    true: "               <#F0E6FF>Dropper"
     false: "%condition:sidebar_world_15%"
   sidebar_world_17:
     conditions:
-      - "%world%=parkour_spiral2"
-    true: "         <#F0E6FF>Parkour Espiral 2"
+      - "%world%=colorescape"
+    true: "            <#F0E6FF>Color Escape"
     false: "%condition:sidebar_world_16%"
   sidebar_world_18:
     conditions:
-      - "%world%=parkour_spiral"
-    true: "          <#F0E6FF>Parkour Espiral"
+      - "%world%=parkour_paradise3"
+    true: "        <#F0E6FF>Parkour Paradise 3"
     false: "%condition:sidebar_world_17%"
   sidebar_world_19:
     conditions:
-      - "%world%=arenas_tft"
-    true: "             <#F0E6FF>Arenas PvP"
+      - "%world%=parkour_spiral2"
+    true: "         <#F0E6FF>Parkour Espiral 2"
     false: "%condition:sidebar_world_18%"
   sidebar_world_20:
     conditions:
-      - "%world%=arena"
-    true: "            <#F0E6FF>Arena Astral"
+      - "%world%=parkour_spiral"
+    true: "          <#F0E6FF>Parkour Espiral"
     false: "%condition:sidebar_world_19%"
   sidebar_world_21:
     conditions:
-      - "%world%=portales_astrales"
-    true: "         <#F0E6FF>Portales Astrales"
+      - "%world%=arenas_tft"
+    true: "             <#F0E6FF>Arenas PvP"
     false: "%condition:sidebar_world_20%"
   sidebar_world_22:
     conditions:
-      - "%world%=the_end"
-    true: "                <#F0E6FF>El End"
+      - "%world%=arena"
+    true: "            <#F0E6FF>Arena Astral"
     false: "%condition:sidebar_world_21%"
   sidebar_world_23:
     conditions:
-      - "%world%=world_the_end"
-    true: "                <#F0E6FF>El End"
+      - "%world%=portales_astrales"
+    true: "         <#F0E6FF>Portales Astrales"
     false: "%condition:sidebar_world_22%"
   sidebar_world_24:
     conditions:
-      - "%world%=the_nether"
-    true: "              <#F0E6FF>El Nether"
+      - "%world%=the_end"
+    true: "                <#F0E6FF>El End"
     false: "%condition:sidebar_world_23%"
   sidebar_world_25:
     conditions:
-      - "%world%=world_nether"
-    true: "              <#F0E6FF>El Nether"
+      - "%world%=world_the_end"
+    true: "                <#F0E6FF>El End"
     false: "%condition:sidebar_world_24%"
   sidebar_world_26:
     conditions:
-      - "%world%=lobby"
-    true: "           <#F0E6FF>Refugio Astral"
+      - "%world%=the_nether"
+    true: "              <#F0E6FF>El Nether"
     false: "%condition:sidebar_world_25%"
   sidebar_world_27:
     conditions:
-      - "%world%=overworld"
-    true: "           <#F0E6FF>Supervivencia"
+      - "%world%=world_nether"
+    true: "              <#F0E6FF>El Nether"
     false: "%condition:sidebar_world_26%"
   sidebar_world_28:
     conditions:
-      - "%world%=world"
-    true: "           <#F0E6FF>Supervivencia"
+      - "%world%=lobby"
+    true: "           <#F0E6FF>Refugio Astral"
     false: "%condition:sidebar_world_27%"
   sidebar_world_29:
     conditions:
-      - "%world%=santuario_interstellar"
-    true: "        <#F0E6FF>Santuario Celestial"
+      - "%world%=overworld"
+    true: "           <#F0E6FF>Supervivencia"
     false: "%condition:sidebar_world_28%"
   sidebar_world_30:
     conditions:
-      - "%world%=forja_volcano"
-    true: "       <#F0E6FF>Corazón de la Forja"
+      - "%world%=world"
+    true: "           <#F0E6FF>Supervivencia"
     false: "%condition:sidebar_world_29%"
   sidebar_world_31:
     conditions:
-      - "%world%=cumbre_hielo"
-    true: "           <#F0E6FF>Cumbre Helada"
+      - "%world%=santuario_azeroth"
+    true: "        <#F0E6FF>Santuario Celestial"
     false: "%condition:sidebar_world_30%"
   sidebar_world_32:
     conditions:
+      - "%world%=forja_volcano"
+    true: "       <#F0E6FF>Corazón de la Forja"
+    false: "%condition:sidebar_world_31%"
+  sidebar_world_33:
+    conditions:
+      - "%world%=cumbre_hielo"
+    true: "           <#F0E6FF>Cumbre Helada"
+    false: "%condition:sidebar_world_32%"
+  sidebar_world_34:
+    conditions:
       - "%world%=tumba"
     true: "     <#F0E6FF>Tumba del Rey de Arena"
-    false: "%condition:sidebar_world_31%"
+    false: "%condition:sidebar_world_33%"
   sidebar_world:
     conditions:
       - "%world%=bosque"
     true: "          <#F0E6FF>Bosque Sombrío"
-    false: "%condition:sidebar_world_32%"
+    false: "%condition:sidebar_world_34%"
   daily_count_0:
     type: AND
     conditions:

@@ -95,6 +95,8 @@ def world_labels():
         'cumbre': 'Cumbre Nevada', 'cumbre_hielo': 'Cumbre Helada',
         'forja': 'Volcán de la Forja', 'forja_volcano': 'Corazón de la Forja',
         'santuario': 'Santuario Celestial', 'santuario_interstellar': 'Santuario Celestial',
+        'santuario_azeroth': 'Santuario Celestial',
+        'world_minecraft_santuario_azeroth': 'Santuario Celestial',
         'santuario_freemap9': 'Jardines del Santuario',
         'reino': 'Reino de las Mazmorras', 'cavernas': 'Cavernas',
         'exp_desierto': 'Expedición al Desierto', 'exp_hielo': 'Expedición al Hielo',

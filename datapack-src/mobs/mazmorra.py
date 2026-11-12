@@ -235,7 +235,7 @@ def group_wave_skills(room, world):
 
 def skill_yml(dungeon=None):
     dungeon = dungeon or MINA
-    exact_surface = ';onSurface=false' if dungeon.get('tanda2') else ''
+    exact_surface = ';onSurface=false' if dungeon.get('tanda2') or dungeon['key']=='santuario' else ''
     MOBS, SALAS, WORLD = dungeon["mobs"], dungeon["rooms"], dungeon["world"]
     PREMIO, PREMIO_PLATA, COOLDOWN = dungeon["reward"], dungeon["money"], dungeon["cooldown"]
     L = ["# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)", ""]
@@ -277,6 +277,9 @@ def skill_yml(dungeon=None):
             spawn_radius = s.get("spawn_radius", 4)
             index = 0
             for (m, base, extra) in s["oleadas"][k - 1]:
+                if 'wave_spawn_points' in s:
+                    out.extend(q(located_summon(m, s['wave_spawn_points'][k-1])) for _ in range(base))
+                    continue
                 if "spawn_points" in s:
                     points = s["golem_points"] if m.endswith("_golem") else s["spawn_points"]
                     for _ in range(base):
@@ -457,6 +460,9 @@ def main():
 
 
 def new_commands(dungeon):
+    if dungeon['key'] == 'santuario':
+        from santuario_azeroth import commands as sanctuary_commands
+        return sanctuary_commands()
     w = dungeon["world"]
     lines = [f'# {dungeon["name"]} - ubicaciones propuestas, revisar en creativo antes de habilitar.',
              '# Editar enabled y coordenadas en datapack-src/mobs/mazmorras_data.py y regenerar.',

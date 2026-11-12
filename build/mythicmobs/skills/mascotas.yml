@@ -15,20 +15,20 @@ PET_lobo_CHEQUEO:
 
 PET_lobo_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_lobo;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_lobo_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_lobo;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -96,20 +96,20 @@ PET_cuervo_CHEQUEO:
 
 PET_cuervo_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_cuervo;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_cuervo_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_cuervo;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
@@ -123,7 +123,7 @@ PET_cuervo_EVOLUCION:
 
 PET_cuervo_MARCA:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'skill{s=PET_cuervo_MARCA_UNO} @LivingInRadius{r=14}'
 
@@ -189,20 +189,20 @@ PET_golem_CHEQUEO:
 
 PET_golem_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_golem;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_golem_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_golem;v=20to30} true
   Skills:
   - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
@@ -270,20 +270,20 @@ PET_zorro_CHEQUEO:
 
 PET_zorro_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_zorro;v=10to30} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_zorro_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_zorro;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=1;hasParticles=false}'
@@ -351,20 +351,20 @@ PET_dragon_CHEQUEO:
 
 PET_dragon_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_dragon;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_dragon_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_dragon;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -432,20 +432,20 @@ PET_fenix_CHEQUEO:
 
 PET_fenix_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_fenix;v=10to30} true
   Skills:
   - 'delay 1'
 
 PET_fenix_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
   - 'delay 1'
@@ -459,7 +459,7 @@ PET_fenix_EVOLUCION:
 
 PET_fenix_RESCATE1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=1to9} true
   Skills:
@@ -475,7 +475,7 @@ PET_fenix_RESCATE1:
 
 PET_fenix_RESCATE2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=10to19} true
   Skills:
@@ -491,7 +491,7 @@ PET_fenix_RESCATE2:
 
 PET_fenix_RESCATE3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - healthpercent{p=<0.3} true
   - score{o=plv_fenix;v=20to30} true
   Skills:
@@ -561,20 +561,20 @@ PET_ghastito_CHEQUEO:
 
 PET_ghastito_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=slow_falling;duration=70;level=0;hasParticles=false}'
 
 PET_ghastito_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_ghastito;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_ghastito_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_ghastito;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -642,20 +642,20 @@ PET_bombardero_CHEQUEO:
 
 PET_bombardero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_bombardero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_bombardero;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_bombardero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_bombardero;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
@@ -723,20 +723,20 @@ PET_canonero_CHEQUEO:
 
 PET_canonero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_canonero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_canonero;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_canonero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_canonero;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -804,20 +804,20 @@ PET_encapuchado_CHEQUEO:
 
 PET_encapuchado_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_encapuchado_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_encapuchado;v=10to30} true
   Skills:
   - 'potion{type=night_vision;duration=70;level=0;hasParticles=false}'
 
 PET_encapuchado_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_encapuchado;v=20to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
@@ -885,20 +885,20 @@ PET_llamita_CHEQUEO:
 
 PET_llamita_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_llamita_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_llamita;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_llamita_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_llamita;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -966,20 +966,20 @@ PET_hondero_CHEQUEO:
 
 PET_hondero_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_hondero_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_hondero;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_hondero_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_hondero;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -1047,20 +1047,20 @@ PET_saqueador_CHEQUEO:
 
 PET_saqueador_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_saqueador_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_saqueador;v=10to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
 
 PET_saqueador_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_saqueador;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1128,20 +1128,20 @@ PET_brujita_CHEQUEO:
 
 PET_brujita_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_brujita_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_brujita;v=10to30} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_brujita_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_brujita;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -1209,20 +1209,20 @@ PET_desierto_CHEQUEO:
 
 PET_desierto_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_desierto_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_desierto;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_desierto_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_desierto;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1290,20 +1290,20 @@ PET_jungla_CHEQUEO:
 
 PET_jungla_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=jump_boost;duration=70;level=0;hasParticles=false}'
 
 PET_jungla_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_jungla;v=10to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_jungla_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_jungla;v=20to30} true
   Skills:
   - 'potion{type=strength;duration=70;level=0;hasParticles=false}'
@@ -1371,20 +1371,20 @@ PET_frondoso_CHEQUEO:
 
 PET_frondoso_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_frondoso_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_frondoso;v=10to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_frondoso_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_frondoso;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1452,20 +1452,20 @@ PET_micelio_CHEQUEO:
 
 PET_micelio_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_micelio_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_micelio;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_micelio_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_micelio;v=20to30} true
   Skills:
   - 'potion{type=absorption;duration=70;level=0;hasParticles=false}'
@@ -1533,20 +1533,20 @@ PET_pradera_CHEQUEO:
 
 PET_pradera_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_pradera_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_pradera;v=10to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
 
 PET_pradera_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_pradera;v=20to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
@@ -1614,20 +1614,20 @@ PET_sabana_CHEQUEO:
 
 PET_sabana_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'
 
 PET_sabana_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_sabana;v=10to30} true
   Skills:
   - 'potion{type=fire_resistance;duration=70;level=0;hasParticles=false}'
 
 PET_sabana_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_sabana;v=20to30} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
@@ -1695,20 +1695,20 @@ PET_nieve_CHEQUEO:
 
 PET_nieve_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=speed;duration=70;level=0;hasParticles=false}'
 
 PET_nieve_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_nieve;v=10to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_nieve_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_nieve;v=20to30} true
   Skills:
   - 'potion{type=luck;duration=70;level=0;hasParticles=false}'
@@ -1776,20 +1776,20 @@ PET_pantano_CHEQUEO:
 
 PET_pantano_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=water_breathing;duration=70;level=0;hasParticles=false}'
 
 PET_pantano_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_pantano;v=10to30} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_pantano_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_pantano;v=20to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
@@ -1857,20 +1857,20 @@ PET_honguito_CHEQUEO:
 
 PET_honguito_BONUS1:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   Skills:
   - 'potion{type=regeneration;duration=70;level=0;hasParticles=false}'
 
 PET_honguito_BONUS2:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_honguito;v=10to30} true
   Skills:
   - 'potion{type=resistance;duration=70;level=0;hasParticles=false}'
 
 PET_honguito_BONUS3:
   TargetConditions:
-  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar} true
+  - world{w=mina,bosque,tumba,cumbre_hielo,forja_volcano,santuario_interstellar,santuario_azeroth,world_minecraft_santuario_azeroth} true
   - score{o=plv_honguito;v=20to30} true
   Skills:
   - 'potion{type=haste;duration=70;level=0;hasParticles=false}'

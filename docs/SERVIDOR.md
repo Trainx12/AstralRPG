@@ -1,5 +1,11 @@
 # AstralRPG: cómo está armado el servidor
 
+Santuario Azeroth preparado, sin instalar: [lista de archivos y comandos](../build/deploy/santuario-azeroth.md).
+Dimension `minecraft:santuario_azeroth`; nombre Bukkit con el mundo principal `world`:
+`world_minecraft_santuario_azeroth`. Dimension del datapack con cielo End y sin dragon;
+no crear/importar por Multiverse. Se mantiene Interstellar como copia.
+Reinicio completo obligatorio. Faltan prueba con cliente real y revision remota.
+
 Tren lobby → survival preparado, **sin desplegar**: [archivos, ubicacion pendiente,
 comandos y reinicio](../build/deploy/tren-lobby.md). TrainCarts 2.0.0-1720,
 BKCommonLib 2.0.0-2018 y AstralTrain 1.0.0; tres plazas, espera de 5 s, recorrido de

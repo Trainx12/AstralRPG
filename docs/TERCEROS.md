@@ -1,5 +1,11 @@
 # Contenidos privados - tanda 4a
 
+Santuario Azeroth: `Spires of Azeroth.zip` y sus regiones convertidas son de terceros.
+Original intacto en Downloads; etapas, regiones y vistas CPU exclusivamente en
+`.local/santuario-azeroth/`. No publicar mapas, schematics ni las vistas derivadas.
+Codigo/configuracion propios y entrega se publican: [santuario-azeroth.md](../build/deploy/santuario-azeroth.md).
+El mapa no se incorpora al resource pack ni necesita cambiar el FINAL privado.
+
 ## Tren del lobby (preparado, sin desplegar)
 
 `tren_lobby.py` conserva el ZIP original Steam Train Coaster en `ASTRAL_PRIVADO/x/tren/`

@@ -60,6 +60,8 @@ disabled-worlds:
 - cumbre_hielo
 - forja_volcano
 - santuario_interstellar
+- santuario_azeroth
+- world_minecraft_santuario_azeroth
 - cavernas
 - reino
 - exp_desierto

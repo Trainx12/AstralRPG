@@ -727,7 +727,7 @@ for c in SUBS:
 
 put(f"data/{NS}/predicate/in_sanctuary.json", {"condition":"minecraft:any_of", "terms":[
     {"condition":"minecraft:location_check", "predicate":{"dimension":"minecraft:"+world}}
-    for world in ("santuario","santuario_interstellar")]})
+    for world in ("santuario","santuario_interstellar","santuario_azeroth")]})
 put(f"data/{NS}/predicate/sneaking.json", {"condition": "minecraft:entity_properties", "entity": "this",
                                            "predicate": {"flags": {"is_sneaking": True}}})
 
@@ -1406,6 +1406,7 @@ fn('mob/jefe_mundo', [
     # Santuario conserva su balance: no adaptar Ancestrales de esa prueba.
     'execute if dimension minecraft:santuario run return 0',
     'execute if dimension minecraft:santuario_interstellar run return 0',
+    'execute if dimension minecraft:santuario_azeroth run return 0',
     'scoreboard players set #mt astral.tmp 1',
     f'execute if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo',
     'execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1',
@@ -2353,6 +2354,8 @@ from mobs.tanda2 import generate as generate_dungeon_waves
 generate_dungeon_waves(files)
 from tanda4b_world import generate as generate_tanda4b_world
 generate_tanda4b_world(files)
+from santuario_azeroth import generate as generate_sanctuary
+generate_sanctuary(files)
 
 # ---------------------------------------------------------------------------
 # Escribir

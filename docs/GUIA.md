@@ -1,5 +1,11 @@
 # Guía para agregar cosas a AstralRPG
 
+Santuario Azeroth preparado, sin desplegar: [santuario-azeroth.md](../build/deploy/santuario-azeroth.md).
+Conversion privada: `tools/preparar_santuario_azeroth.py`; dimension y coordenadas:
+`datapack-src/santuario_azeroth.py`. No crear este destino con Multiverse: lo registra el datapack.
+Requiere reinicio y las dos regiones privadas del nuevo destino; Interstellar queda
+como copia. El ensayo Paper no sustituye el combate ni las capturas con cliente real.
+
 Tren lobby → survival preparado, sin desplegar: [tren-lobby.md](../build/deploy/tren-lobby.md).
 `tren_lobby.py` genera AstralTrain, configuracion TrainCarts y un FINAL privado sobre
 Alas/casco, conservando su contenido. No regenera AstralDecor ni el datapack de Recetas.

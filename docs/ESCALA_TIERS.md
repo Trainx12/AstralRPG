@@ -1,5 +1,10 @@
 # Escala por tier (números grandes reales)
 
+Santuario Azeroth preparado, sin desplegar: `santuario_azeroth` conserva tier fijo 5
+con x1,5 de vida del mundo. Los atributos propios de los Ancestrales siguen intactos.
+Skript reconoce tambien el nombre Bukkit `world_minecraft_santuario_azeroth`.
+Interstellar conserva sus excepciones como copia. Ver [entrega](../build/deploy/santuario-azeroth.md).
+
 Pedido del dueño (03/11/2026): que cada tier se sienta como un salto enorme. Todo sale de
 `datapack-src/escala.py`; para cambiar un número se edita ahí y se regenera (`python build.py`,
 `python gameplay.py`).

@@ -1,5 +1,15 @@
 # Mazmorras nuevas: preparacion y recorrido de revision
 
+Santuario Azeroth preparado, **sin desplegar**: [entrega y archivos exactos](../build/deploy/santuario-azeroth.md).
+Sustituye las rutas activas de Interstellar por la dimension de datapack
+`minecraft:santuario_azeroth`, cielo End sin dragon, generacion vacia y cinco
+Ancestrales sobre el anillo de vidrio Y=57. Paper usa el nombre Bukkit
+`world_minecraft_santuario_azeroth` con `level-name=world`: WorldGuard y plugins
+usan ese nombre; los comandos vanilla usan la clave de dimension.
+No crear/importar con Multiverse ni borrar el mundo anterior. El mapa convertido
+queda en `.local/santuario-azeroth/entrega/`; conservar privado. Prueba Paper con
+jugador simulado aprobada; faltan recorrido, combate y capturas con cliente real.
+
 Arreglos del 08/11/2026 (commit 1a7e61a):
 - Las criaturas de mazmorra usan `Despawn: false`. Con `true`, Minecraft las borraba al rato y el control
   veia la sala vacia y pasaba de oleada. RESET y LIMPIA las quitan.

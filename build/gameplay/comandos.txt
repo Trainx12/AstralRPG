@@ -13,6 +13,7 @@ mv gamerule set minecraft:keep_inventory true reino
 mv gamerule set minecraft:keep_inventory true exp_desierto
 mv gamerule set minecraft:keep_inventory true exp_hielo
 mv gamerule set minecraft:keep_inventory true exp_santuario
+execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory true
 rg flag -w bosque __global__ block-break deny
 rg flag -w bosque __global__ block-place deny
 rg flag -w bosque __global__ build deny
@@ -40,4 +41,7 @@ rg flag -w forja_volcano __global__ build deny
 rg flag -w santuario_interstellar __global__ block-break deny
 rg flag -w santuario_interstellar __global__ block-place deny
 rg flag -w santuario_interstellar __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth __global__ build deny
 lp group default permission set axgraves.allowgraves true

@@ -7,6 +7,8 @@ options:
     rescate-y-cumbre: 0
     rescate-y-forja: 0
     rescate-y-santuario: 0
+    rescate-y-santuario_azeroth: 0
+    rescate-y-world_minecraft_santuario_azeroth: 0
 
 # Solo lobby y mazmorras. La altura -10000 deja fuera al resto de mundos.
 function astral_rescue_height(w: world) :: number:
@@ -24,17 +26,26 @@ function astral_rescue_height(w: world) :: number:
         return {@rescate-y-forja}
     if name of {_w} is "santuario":
         return {@rescate-y-santuario}
+    if name of {_w} is "santuario_azeroth":
+        return {@rescate-y-santuario_azeroth}
+    if name of {_w} is "world_minecraft_santuario_azeroth":
+        return {@rescate-y-world_minecraft_santuario_azeroth}
     return -10000
 
-# Caer debajo del limite del mundo: directo a /spawn. No se guarda ninguna posicion.
+# Santuario vuelve a su entrada; el resto conserva su rescate al lobby.
 function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
+    if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 247.5 57 14.5 0 0"
+        set fall distance of {_p} to 0
+        send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
+        stop
     execute console command "spawn %name of {_p}%"
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar":
+    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "santuario_azeroth" or "world_minecraft_santuario_azeroth":
         return true
     return false
 
@@ -117,7 +128,7 @@ on mount:
 
 on death of player:
     set {_w} to name of world of victim
-    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "santuario_azeroth" or "world_minecraft_santuario_azeroth" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
         keep the inventory and experiences
         clear drops
         set {_x} to floor(x-coordinate of victim)
@@ -527,6 +538,10 @@ function astral_dano_mundo(w: world) :: number:
     if {_n} is "forja_volcano" or "minecraft:forja_volcano":
         return 400.0
     if {_n} is "santuario_interstellar" or "minecraft:santuario_interstellar":
+        return 400.0
+    if {_n} is "santuario_azeroth" or "minecraft:santuario_azeroth":
+        return 400.0
+    if {_n} is "world_minecraft_santuario_azeroth":
         return 400.0
     return 0
 
