@@ -183,4 +183,8 @@ rg flag -w infinita_5 __global__ build deny
 rg flag -w infinita_6 __global__ block-break deny
 rg flag -w infinita_6 __global__ block-place deny
 rg flag -w infinita_6 __global__ build deny
+rg flag -w arena __global__ block-break deny
+rg flag -w arena __global__ block-place deny
+rg flag -w arenas_tft __global__ block-break deny
+rg flag -w arenas_tft __global__ block-place deny
 lp group default permission set axgraves.allowgraves true

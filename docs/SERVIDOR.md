@@ -181,7 +181,7 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
 | WorldGuard + WorldEdit | Zonas protegidas y edición |
 | AuthMe | Login con contraseña (necesario en modo no premium). Modo premium activado: los premium con `/premium` entran sin contraseña. **No instalar FastLogin**: choca con el `/premium` de AuthMe 6 |
 | AxGraves | Tumba con tus cosas al morir |
-| ClearLag++ | Limpia ítems tirados para que no haya lag |
+| ClearLag++ 2.0.1 | Limpia ítems tirados para que no haya lag (auto-restart apagado) |
 | TAB | Tabulador y panel lateral de las Minas Astrales (ver Lobby) |
 | nonchat | Filtro y formato de chat |
 | RHLeafDecay | Las hojas se caen rápido al talar |

@@ -199,9 +199,16 @@ on break:
     if astral_dungeon(world of player) is true:
         if astral_builder(player) is false:
             cancel event
+    # Arenas PvP: no se rompe ni se pone nada (pedido 12/11/2026).
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
 
 on place:
     if astral_dungeon(world of player) is true:
+        if astral_builder(player) is false:
+            cancel event
+    if name of world of player is "arena" or "arenas_tft":
         if astral_builder(player) is false:
             cancel event
 

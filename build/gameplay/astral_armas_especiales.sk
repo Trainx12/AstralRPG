@@ -43,7 +43,8 @@ function asw_target(p: player, e: entity) :: boolean:
     if {_e} has metadata "NPC":
         return false
     if {_e} is a player:
-        if name of world of {_p} is not "arena" or "minecraft:arena":
+        # Solo en las Arenas PvP (minijuegos.arena_worlds: la clasica, las TFT y Duelos).
+        if name of world of {_p} is not "arena" or "minecraft:arena" or "arenas_tft" or "minecraft:arenas_tft":
             return false
         if gamemode of {_e} is not survival:
             if gamemode of {_e} is not adventure:

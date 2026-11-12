@@ -67,6 +67,10 @@ def script_options(text):
             'mana_curacion':MANA_ESPECIAL['curacion'],'cura_pct':CURACION['pct'],
             'cura_segundos':CURACION['segundos'],'cura_radio':CURACION['radio'],
             **{f'mana_baston_{t}':v for t,v in MANA_HECHIZO.items()}}
+    from minijuegos import arena_worlds
+    arenas=' or '.join(f'"{w}" or "minecraft:{w}"' for w in arena_worlds())
+    assert text.count('__ARENAS__')==1
+    text=text.replace('__ARENAS__',arenas)
     for key,value in values.items():
         text,n=re.subn(rf'^(    {key}): .*$',rf'\g<1>: {value}',text,flags=re.M)
         assert n==1,key

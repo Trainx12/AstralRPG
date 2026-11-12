@@ -1046,6 +1046,8 @@ cast += [
     "tag @s remove astral.caster",
 ]
 fn("spell/cast", cast)
+from minijuegos import arena_worlds as _arena_worlds
+ARENA_WORLDS = _arena_worlds()
 fn("spell/ray", [
     "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
     "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
@@ -1053,6 +1055,9 @@ fn("spell/ray", [
     # dx/dy/dz intersectan la caja, distance solo mide al origen (los pies).
     # dx=0 es un cubo de UN bloque en Java; centrado da tolerancia .5 sin huecos.
     f"execute positioned ~-0.5 ~-0.5 ~-0.5 as @e[{MOB},dx=0,dy=0,dz=0,tag=!astral.caster,nbt=!{{NoAI:1b}},limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
+    # Arenas PvP: el hechizo tambien pega a jugadores en survival/aventura (pedido 12/11/2026).
+    *[f"execute if dimension minecraft:{w} positioned ~-0.5 ~-0.5 ~-0.5 as @a[gamemode=!creative,gamemode=!spectator,dx=0,dy=0,dz=0,tag=!astral.caster,limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell"
+      for w in ARENA_WORLDS],
     f"execute unless block ~ ~ ~ #{NS}:passable run return run particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
     "scoreboard players add #steps astral.tmp 1",
     "execute if score #steps astral.tmp matches 50.. run return 0",
@@ -2298,7 +2303,20 @@ fn("tick", [
     "scoreboard players set @a[tag=!astral.drew,scores={astral.draw=1..}] astral.draw 0",
     "tag @a remove astral.drew",
 ])
+# Mochilas (ExpendableBackpacks, cabeza con dato propio): no se usan de casco (pedido 12/11/2026).
+MOCHILA_CABEZA = 'equipment.head.components."minecraft:custom_data".PublicBukkitValues."expendablebackpacks:backpack_uuid"'
+fn("mochila/cabeza", [
+    # El objeto entero (contenido, UUID y nivel) vuelve al inventario; si esta lleno queda a los pies, solo para el dueno.
+    'execute at @s run summon minecraft:item ~ ~1 ~ {Item:{id:"minecraft:stone",count:1},PickupDelay:0s,Tags:["astral.mochila"]}',
+    f"execute at @s as @e[type=minecraft:item,tag=astral.mochila,distance=..3,limit=1,sort=nearest] run data modify entity @s Item set from entity @p[tag=astral.mochcab] equipment.head",
+    f"execute at @s as @e[type=minecraft:item,tag=astral.mochila,distance=..3,limit=1,sort=nearest] run data modify entity @s Owner set from entity @p[tag=astral.mochcab] UUID",
+    "execute at @s run tag @e[type=minecraft:item,tag=astral.mochila,distance=..3] remove astral.mochila",
+    "item replace entity @s armor.head with minecraft:air",
+    "tellraw @s " + json.dumps(txt("La mochila no se puede usar en la cabeza: volvio a tu inventario.", "yellow")),
+])
+fn("mochila/check", ["tag @s add astral.mochcab", f"function {NS}:mochila/cabeza", "tag @s remove astral.mochcab"])
 fn("loop/t5", [
+    f"execute as @a if data entity @s {MOCHILA_CABEZA} run function {NS}:mochila/check",
     f"execute as @a run function {NS}:player/hp",
     f"execute as @a[scores={{astral.kills=1..}}] run function {NS}:set/kill",
     f"schedule function {NS}:loop/t5 5t replace",
