@@ -81,9 +81,9 @@ class SantuarioMapTests(unittest.TestCase):
         self.assertIn(BUKKIT_WORLD,patch_graves({})['disabled-worlds'])
         self.assertEqual(RESCUE_HEIGHTS[WORLD],0)
         rescue=script().split('function astral_rescue(p: player):')[1].split('function ',1)[0]
-        self.assertIn('minecraft:santuario_azeroth run minecraft:tp',rescue)
+        self.assertIn('at @s run minecraft:tp @s',rescue)  # en la misma copia
         self.assertIn(' '.join(map(str,ARRIVAL)),rescue)
-        self.assertLess(rescue.index('minecraft:santuario_azeroth'),rescue.index('spawn %name'))
+        self.assertLess(rescue.index('santuario_azeroth'),rescue.index('spawn %name'))
 
 
 if __name__ == '__main__':

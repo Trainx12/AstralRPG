@@ -2,13 +2,38 @@
 options:
     rescate-y-lobby: 60
     rescate-y-bosque: 0
+    rescate-y-bosque_2: 0
+    rescate-y-bosque_3: 0
+    rescate-y-bosque_4: 0
+    rescate-y-bosque_5: 0
+    rescate-y-bosque_6: 0
     rescate-y-tumba: 0
+    rescate-y-tumba_2: 0
+    rescate-y-tumba_3: 0
+    rescate-y-tumba_4: 0
+    rescate-y-tumba_5: 0
+    rescate-y-tumba_6: 0
     rescate-y-mina: -60
+    rescate-y-mina_2: -60
+    rescate-y-mina_3: -60
+    rescate-y-mina_4: -60
+    rescate-y-mina_5: -60
+    rescate-y-mina_6: -60
     rescate-y-cumbre: 0
     rescate-y-forja: 0
     rescate-y-santuario: 0
     rescate-y-santuario_azeroth: 0
+    rescate-y-santuario_azeroth_2: 0
+    rescate-y-santuario_azeroth_3: 0
+    rescate-y-santuario_azeroth_4: 0
+    rescate-y-santuario_azeroth_5: 0
+    rescate-y-santuario_azeroth_6: 0
     rescate-y-world_minecraft_santuario_azeroth: 0
+    rescate-y-world_minecraft_santuario_azeroth_2: 0
+    rescate-y-world_minecraft_santuario_azeroth_3: 0
+    rescate-y-world_minecraft_santuario_azeroth_4: 0
+    rescate-y-world_minecraft_santuario_azeroth_5: 0
+    rescate-y-world_minecraft_santuario_azeroth_6: 0
 
 # Solo lobby y mazmorras. La altura -10000 deja fuera al resto de mundos.
 function astral_rescue_height(w: world) :: number:
@@ -16,10 +41,40 @@ function astral_rescue_height(w: world) :: number:
         return {@rescate-y-lobby}
     if name of {_w} is "bosque":
         return {@rescate-y-bosque}
+    if name of {_w} is "bosque_2":
+        return {@rescate-y-bosque_2}
+    if name of {_w} is "bosque_3":
+        return {@rescate-y-bosque_3}
+    if name of {_w} is "bosque_4":
+        return {@rescate-y-bosque_4}
+    if name of {_w} is "bosque_5":
+        return {@rescate-y-bosque_5}
+    if name of {_w} is "bosque_6":
+        return {@rescate-y-bosque_6}
     if name of {_w} is "tumba":
         return {@rescate-y-tumba}
+    if name of {_w} is "tumba_2":
+        return {@rescate-y-tumba_2}
+    if name of {_w} is "tumba_3":
+        return {@rescate-y-tumba_3}
+    if name of {_w} is "tumba_4":
+        return {@rescate-y-tumba_4}
+    if name of {_w} is "tumba_5":
+        return {@rescate-y-tumba_5}
+    if name of {_w} is "tumba_6":
+        return {@rescate-y-tumba_6}
     if name of {_w} is "mina":
         return {@rescate-y-mina}
+    if name of {_w} is "mina_2":
+        return {@rescate-y-mina_2}
+    if name of {_w} is "mina_3":
+        return {@rescate-y-mina_3}
+    if name of {_w} is "mina_4":
+        return {@rescate-y-mina_4}
+    if name of {_w} is "mina_5":
+        return {@rescate-y-mina_5}
+    if name of {_w} is "mina_6":
+        return {@rescate-y-mina_6}
     if name of {_w} is "cumbre":
         return {@rescate-y-cumbre}
     if name of {_w} is "forja":
@@ -28,16 +83,37 @@ function astral_rescue_height(w: world) :: number:
         return {@rescate-y-santuario}
     if name of {_w} is "santuario_azeroth":
         return {@rescate-y-santuario_azeroth}
+    if name of {_w} is "santuario_azeroth_2":
+        return {@rescate-y-santuario_azeroth_2}
+    if name of {_w} is "santuario_azeroth_3":
+        return {@rescate-y-santuario_azeroth_3}
+    if name of {_w} is "santuario_azeroth_4":
+        return {@rescate-y-santuario_azeroth_4}
+    if name of {_w} is "santuario_azeroth_5":
+        return {@rescate-y-santuario_azeroth_5}
+    if name of {_w} is "santuario_azeroth_6":
+        return {@rescate-y-santuario_azeroth_6}
     if name of {_w} is "world_minecraft_santuario_azeroth":
         return {@rescate-y-world_minecraft_santuario_azeroth}
+    if name of {_w} is "world_minecraft_santuario_azeroth_2":
+        return {@rescate-y-world_minecraft_santuario_azeroth_2}
+    if name of {_w} is "world_minecraft_santuario_azeroth_3":
+        return {@rescate-y-world_minecraft_santuario_azeroth_3}
+    if name of {_w} is "world_minecraft_santuario_azeroth_4":
+        return {@rescate-y-world_minecraft_santuario_azeroth_4}
+    if name of {_w} is "world_minecraft_santuario_azeroth_5":
+        return {@rescate-y-world_minecraft_santuario_azeroth_5}
+    if name of {_w} is "world_minecraft_santuario_azeroth_6":
+        return {@rescate-y-world_minecraft_santuario_azeroth_6}
     return -10000
 
 # Santuario vuelve a su entrada; el resto conserva su rescate al lobby.
 function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
-    if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 256.5 64 281.5 180 0"
+    if name of world of {_p} contains "santuario_azeroth":
+        # En la misma copia del Santuario donde estaba (instancias.py).
+        execute console command "execute as %name of {_p}% at @s run minecraft:tp @s 256.5 64 281.5 180 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop
@@ -46,7 +122,7 @@ function astral_rescue(p: player):
 
 # Santuario: si ya hay alguien en la entrada, el que llega queda al costado (2, -2, 4, -4...).
 on world change:
-    if name of player's world is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+    if name of player's world contains "santuario_azeroth":
         wait 2 ticks
         set {_entrada} to location(256.5, 64, 281.5, world of player, 180, 0)
         if distance between player and {_entrada} > 1.5:
@@ -63,7 +139,7 @@ on world change:
             teleport player to location(256.5 + {_dx}, 64, 281.5, world of player, 180, 0)
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+    if name of {_w} is "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6":
         return true
     return false
 
@@ -146,7 +222,7 @@ on mount:
 
 on death of player:
     set {_w} to name of world of victim
-    if {_w} is "lobby" or "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "santuario_azeroth" or "world_minecraft_santuario_azeroth" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+    if {_w} is "lobby" or "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
         keep the inventory and experiences
         clear drops
         set {_x} to floor(x-coordinate of victim)
@@ -541,9 +617,39 @@ function astral_dano_mundo(w: world) :: number:
     set {_n} to name of {_w}
     if {_n} is "bosque" or "minecraft:bosque":
         return 22.0
+    if {_n} is "bosque_2" or "minecraft:bosque_2":
+        return 22.0
+    if {_n} is "bosque_3" or "minecraft:bosque_3":
+        return 22.0
+    if {_n} is "bosque_4" or "minecraft:bosque_4":
+        return 22.0
+    if {_n} is "bosque_5" or "minecraft:bosque_5":
+        return 22.0
+    if {_n} is "bosque_6" or "minecraft:bosque_6":
+        return 22.0
     if {_n} is "mina" or "minecraft:mina":
         return 48.0
+    if {_n} is "mina_2" or "minecraft:mina_2":
+        return 48.0
+    if {_n} is "mina_3" or "minecraft:mina_3":
+        return 48.0
+    if {_n} is "mina_4" or "minecraft:mina_4":
+        return 48.0
+    if {_n} is "mina_5" or "minecraft:mina_5":
+        return 48.0
+    if {_n} is "mina_6" or "minecraft:mina_6":
+        return 48.0
     if {_n} is "tumba" or "minecraft:tumba":
+        return 120.0
+    if {_n} is "tumba_2" or "minecraft:tumba_2":
+        return 120.0
+    if {_n} is "tumba_3" or "minecraft:tumba_3":
+        return 120.0
+    if {_n} is "tumba_4" or "minecraft:tumba_4":
+        return 120.0
+    if {_n} is "tumba_5" or "minecraft:tumba_5":
+        return 120.0
+    if {_n} is "tumba_6" or "minecraft:tumba_6":
         return 120.0
     if {_n} is "cumbre" or "minecraft:cumbre":
         return 280.0
@@ -553,11 +659,41 @@ function astral_dano_mundo(w: world) :: number:
         return 400.0
     if {_n} is "cumbre_hielo" or "minecraft:cumbre_hielo":
         return 280.0
+    if {_n} is "cumbre_hielo_2" or "minecraft:cumbre_hielo_2":
+        return 280.0
+    if {_n} is "cumbre_hielo_3" or "minecraft:cumbre_hielo_3":
+        return 280.0
+    if {_n} is "cumbre_hielo_4" or "minecraft:cumbre_hielo_4":
+        return 280.0
+    if {_n} is "cumbre_hielo_5" or "minecraft:cumbre_hielo_5":
+        return 280.0
+    if {_n} is "cumbre_hielo_6" or "minecraft:cumbre_hielo_6":
+        return 280.0
     if {_n} is "forja_volcano" or "minecraft:forja_volcano":
+        return 400.0
+    if {_n} is "forja_volcano_2" or "minecraft:forja_volcano_2":
+        return 400.0
+    if {_n} is "forja_volcano_3" or "minecraft:forja_volcano_3":
+        return 400.0
+    if {_n} is "forja_volcano_4" or "minecraft:forja_volcano_4":
+        return 400.0
+    if {_n} is "forja_volcano_5" or "minecraft:forja_volcano_5":
+        return 400.0
+    if {_n} is "forja_volcano_6" or "minecraft:forja_volcano_6":
         return 400.0
     if {_n} is "santuario_interstellar" or "minecraft:santuario_interstellar":
         return 400.0
     if {_n} is "santuario_azeroth" or "minecraft:santuario_azeroth":
+        return 400.0
+    if {_n} is "santuario_azeroth_2" or "minecraft:santuario_azeroth_2":
+        return 400.0
+    if {_n} is "santuario_azeroth_3" or "minecraft:santuario_azeroth_3":
+        return 400.0
+    if {_n} is "santuario_azeroth_4" or "minecraft:santuario_azeroth_4":
+        return 400.0
+    if {_n} is "santuario_azeroth_5" or "minecraft:santuario_azeroth_5":
+        return 400.0
+    if {_n} is "santuario_azeroth_6" or "minecraft:santuario_azeroth_6":
         return 400.0
     if {_n} is "world_minecraft_santuario_azeroth":
         return 400.0

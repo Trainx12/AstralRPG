@@ -8,7 +8,8 @@ BUKKIT_WORLD = 'world_minecraft_santuario_azeroth'
 # pegada entera (tools/pegar_santuario_spirit.py) con este punto como destino de WorldEdit.
 # La estructura ocupa de (191, 61, 187) a (321, 191, 321): todo en la region r.0.0.
 PASTE_ORIGIN = (256, 64, 256)
-BOUNDS = (191, 187, 321, 321)  # forceload x1 z1 x2 z2
+# Solo el centro donde se pelea (5x5 chunks): con 6 copias, cargar la estructura entera pesa.
+BOUNDS = (224, 224, 288, 288)  # forceload x1 z1 x2 z2
 
 # ===================== COORDENADAS DEL SANTUARIO (UNICO LUGAR) =====================
 # Puntos del dueno (capturas 12/11/2026). Piso de vidrio violeta comprobado en la schematic.
@@ -28,27 +29,29 @@ GUIDE = (255.5, 64, 256.5)      # NPC guia
 
 
 def commands():
-    w = BUKKIT_WORLD
-    lines = ['# Santuario Azeroth. Instalar primero datapack y regiones con servidor APAGADO.',
-             '# Dimension del datapack (cielo del End): NO mv create ni importar como THE_END.',
-             '# Ruta SOLO nueva: world/dimensions/minecraft/santuario_azeroth/region/',
-             '# Paper la carga desde el datapack; no crear/importar con Multiverse.',
-             '# Conservar santuario_interstellar y sus regiones como respaldo.',
-             f'execute in minecraft:{WORLD} run difficulty hard']
-    for rule, value in [('spawn_mobs','false'), ('keep_inventory','true'), ('random_tick_speed','0'),
-                        ('mob_griefing','false'), ('tnt_explodes','false'), ('advance_weather','false')]:
-        lines.append(f'execute in minecraft:{WORLD} run gamerule minecraft:{rule} {value}')
-    for flag,value in [('build','deny'),('block-break','deny'),('block-place','deny'),('chest-access','deny'),
-                       ('pvp','deny'),('interact','allow'),('use','deny'),('mob-spawning','allow'),
-                       ('creeper-explosion','deny'),('other-explosion','deny'),('tnt','deny')]:
-        lines.append(f'rg flag -w {w} __global__ {flag} {value}')
+    """Comandos de instalacion para las 6 copias del Santuario (instancias.py)."""
+    from instancias import copias, bukkit
+    lines = ['# Santuario (spiritarena) y sus copias. Regiones con el servidor APAGADO.',
+             '# Dimensiones del datapack (cielo del End): NO mv create ni importar como THE_END.',
+             '# Region: world/dimensions/minecraft/<copia>/region/r.0.0.mca (la misma para todas).']
+    for world in copias(WORLD):
+        w = bukkit(world)
+        lines.append(f'execute in minecraft:{world} run difficulty hard')
+        for rule, value in [('spawn_mobs','false'), ('keep_inventory','true'), ('random_tick_speed','0'),
+                            ('mob_griefing','false'), ('tnt_explodes','false'), ('advance_weather','false')]:
+            lines.append(f'execute in minecraft:{world} run gamerule minecraft:{rule} {value}')
+        for flag,value in [('build','deny'),('block-break','deny'),('block-place','deny'),('chest-access','deny'),
+                           ('pvp','deny'),('interact','allow'),('use','deny'),('mob-spawning','allow'),
+                           ('creeper-explosion','deny'),('other-explosion','deny'),('tnt','deny')]:
+            lines.append(f'rg flag -w {w} __global__ {flag} {value}')
     lines += ['lp group default permission set astral.santuario.cd false',
-              '# SOLO con la mazmorra vacia. Retirar controladores viejos y crear UNO nuevo:',
-              'mm mobs kill astral_santuario_control_sala1',
-              f'execute in minecraft:{WORLD} run forceload remove all',
-              f'execute in minecraft:{WORLD} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
-              f'mm mobs spawn astral_santuario_control_sala1 1 {w},{CENTER[0]},{CENTER[1]},{CENTER[2]}',
-              f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> {ARRIVAL[0]} {ARRIVAL[1]} {ARRIVAL[2]} {ARRIVAL_YAW} 0']
+              '# SOLO con el Santuario vacio. Retirar controladores viejos y crear UNO por copia:',
+              'mm mobs kill astral_santuario_control_sala1']
+    for world in copias(WORLD):
+        lines += [f'execute in minecraft:{world} run forceload remove all',
+                  f'execute in minecraft:{world} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
+                  f'mm mobs spawn astral_santuario_control_sala1 1 {bukkit(world)},{CENTER[0]},{CENTER[1]},{CENTER[2]}']
+    lines.append(f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> {ARRIVAL[0]} {ARRIVAL[1]} {ARRIVAL[2]} {ARRIVAL_YAW} 0')
     return '\n'.join(lines)+'\n'
 
 
@@ -71,12 +74,14 @@ def generate(files):
     dimension = {'type': 'astral:santuario', 'generator': {'type': 'minecraft:flat', 'settings': {
         'biome': 'minecraft:the_void', 'features': False, 'lakes': False,
         'layers': [{'block': 'minecraft:air', 'height': 1}]}}}
-    for path, value in [('data/astral/dimension_type/santuario.json', kind),
-                        (f'data/minecraft/dimension/{WORLD}.json', dimension)]:
-        files[path] = json.dumps(value, indent=2)+'\n'
-    files['data/astral/function/santuario/load.mcfunction'] = '\n'.join([
-        f'execute in minecraft:{WORLD} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
-        *[f'execute in minecraft:{WORLD} run gamerule minecraft:{rule} {value}' for rule,value in (
+    from instancias import copias
+    files['data/astral/dimension_type/santuario.json'] = json.dumps(kind, indent=2)+'\n'
+    # Una dimension por copia (instancias.py); todas con el mismo cielo del End.
+    for world in copias(WORLD):
+        files[f'data/minecraft/dimension/{world}.json'] = json.dumps(dimension, indent=2)+'\n'
+    files['data/astral/function/santuario/load.mcfunction'] = '\n'.join(line for world in copias(WORLD) for line in [
+        f'execute in minecraft:{world} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
+        *[f'execute in minecraft:{world} run gamerule minecraft:{rule} {value}' for rule,value in (
             ('keep_inventory','true'),('spawn_mobs','false'),('random_tick_speed','0'),
             ('mob_griefing','false'),('tnt_explodes','false'),('advance_weather','false'))]])+'\n'
     files.setdefault('data/astral/function/load.mcfunction','')

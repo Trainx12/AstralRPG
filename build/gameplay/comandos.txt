@@ -1,12 +1,37 @@
 mv gamerule set minecraft:keep_inventory true lobby
 mv gamerule set minecraft:keep_inventory true bosque
+mv gamerule set minecraft:keep_inventory true bosque_2
+mv gamerule set minecraft:keep_inventory true bosque_3
+mv gamerule set minecraft:keep_inventory true bosque_4
+mv gamerule set minecraft:keep_inventory true bosque_5
+mv gamerule set minecraft:keep_inventory true bosque_6
 mv gamerule set minecraft:keep_inventory true tumba
+mv gamerule set minecraft:keep_inventory true tumba_2
+mv gamerule set minecraft:keep_inventory true tumba_3
+mv gamerule set minecraft:keep_inventory true tumba_4
+mv gamerule set minecraft:keep_inventory true tumba_5
+mv gamerule set minecraft:keep_inventory true tumba_6
 mv gamerule set minecraft:keep_inventory true mina
+mv gamerule set minecraft:keep_inventory true mina_2
+mv gamerule set minecraft:keep_inventory true mina_3
+mv gamerule set minecraft:keep_inventory true mina_4
+mv gamerule set minecraft:keep_inventory true mina_5
+mv gamerule set minecraft:keep_inventory true mina_6
 mv gamerule set minecraft:keep_inventory true cumbre
 mv gamerule set minecraft:keep_inventory true forja
 mv gamerule set minecraft:keep_inventory true santuario
 mv gamerule set minecraft:keep_inventory true cumbre_hielo
+mv gamerule set minecraft:keep_inventory true cumbre_hielo_2
+mv gamerule set minecraft:keep_inventory true cumbre_hielo_3
+mv gamerule set minecraft:keep_inventory true cumbre_hielo_4
+mv gamerule set minecraft:keep_inventory true cumbre_hielo_5
+mv gamerule set minecraft:keep_inventory true cumbre_hielo_6
 mv gamerule set minecraft:keep_inventory true forja_volcano
+mv gamerule set minecraft:keep_inventory true forja_volcano_2
+mv gamerule set minecraft:keep_inventory true forja_volcano_3
+mv gamerule set minecraft:keep_inventory true forja_volcano_4
+mv gamerule set minecraft:keep_inventory true forja_volcano_5
+mv gamerule set minecraft:keep_inventory true forja_volcano_6
 mv gamerule set minecraft:keep_inventory true santuario_interstellar
 mv gamerule set minecraft:keep_inventory true cavernas
 mv gamerule set minecraft:keep_inventory true reino
@@ -17,12 +42,57 @@ execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory tru
 rg flag -w bosque __global__ block-break deny
 rg flag -w bosque __global__ block-place deny
 rg flag -w bosque __global__ build deny
+rg flag -w bosque_2 __global__ block-break deny
+rg flag -w bosque_2 __global__ block-place deny
+rg flag -w bosque_2 __global__ build deny
+rg flag -w bosque_3 __global__ block-break deny
+rg flag -w bosque_3 __global__ block-place deny
+rg flag -w bosque_3 __global__ build deny
+rg flag -w bosque_4 __global__ block-break deny
+rg flag -w bosque_4 __global__ block-place deny
+rg flag -w bosque_4 __global__ build deny
+rg flag -w bosque_5 __global__ block-break deny
+rg flag -w bosque_5 __global__ block-place deny
+rg flag -w bosque_5 __global__ build deny
+rg flag -w bosque_6 __global__ block-break deny
+rg flag -w bosque_6 __global__ block-place deny
+rg flag -w bosque_6 __global__ build deny
 rg flag -w tumba __global__ block-break deny
 rg flag -w tumba __global__ block-place deny
 rg flag -w tumba __global__ build deny
+rg flag -w tumba_2 __global__ block-break deny
+rg flag -w tumba_2 __global__ block-place deny
+rg flag -w tumba_2 __global__ build deny
+rg flag -w tumba_3 __global__ block-break deny
+rg flag -w tumba_3 __global__ block-place deny
+rg flag -w tumba_3 __global__ build deny
+rg flag -w tumba_4 __global__ block-break deny
+rg flag -w tumba_4 __global__ block-place deny
+rg flag -w tumba_4 __global__ build deny
+rg flag -w tumba_5 __global__ block-break deny
+rg flag -w tumba_5 __global__ block-place deny
+rg flag -w tumba_5 __global__ build deny
+rg flag -w tumba_6 __global__ block-break deny
+rg flag -w tumba_6 __global__ block-place deny
+rg flag -w tumba_6 __global__ build deny
 rg flag -w mina __global__ block-break deny
 rg flag -w mina __global__ block-place deny
 rg flag -w mina __global__ build deny
+rg flag -w mina_2 __global__ block-break deny
+rg flag -w mina_2 __global__ block-place deny
+rg flag -w mina_2 __global__ build deny
+rg flag -w mina_3 __global__ block-break deny
+rg flag -w mina_3 __global__ block-place deny
+rg flag -w mina_3 __global__ build deny
+rg flag -w mina_4 __global__ block-break deny
+rg flag -w mina_4 __global__ block-place deny
+rg flag -w mina_4 __global__ build deny
+rg flag -w mina_5 __global__ block-break deny
+rg flag -w mina_5 __global__ block-place deny
+rg flag -w mina_5 __global__ build deny
+rg flag -w mina_6 __global__ block-break deny
+rg flag -w mina_6 __global__ block-place deny
+rg flag -w mina_6 __global__ build deny
 rg flag -w cumbre __global__ block-break deny
 rg flag -w cumbre __global__ block-place deny
 rg flag -w cumbre __global__ build deny
@@ -35,13 +105,58 @@ rg flag -w santuario __global__ build deny
 rg flag -w cumbre_hielo __global__ block-break deny
 rg flag -w cumbre_hielo __global__ block-place deny
 rg flag -w cumbre_hielo __global__ build deny
+rg flag -w cumbre_hielo_2 __global__ block-break deny
+rg flag -w cumbre_hielo_2 __global__ block-place deny
+rg flag -w cumbre_hielo_2 __global__ build deny
+rg flag -w cumbre_hielo_3 __global__ block-break deny
+rg flag -w cumbre_hielo_3 __global__ block-place deny
+rg flag -w cumbre_hielo_3 __global__ build deny
+rg flag -w cumbre_hielo_4 __global__ block-break deny
+rg flag -w cumbre_hielo_4 __global__ block-place deny
+rg flag -w cumbre_hielo_4 __global__ build deny
+rg flag -w cumbre_hielo_5 __global__ block-break deny
+rg flag -w cumbre_hielo_5 __global__ block-place deny
+rg flag -w cumbre_hielo_5 __global__ build deny
+rg flag -w cumbre_hielo_6 __global__ block-break deny
+rg flag -w cumbre_hielo_6 __global__ block-place deny
+rg flag -w cumbre_hielo_6 __global__ build deny
 rg flag -w forja_volcano __global__ block-break deny
 rg flag -w forja_volcano __global__ block-place deny
 rg flag -w forja_volcano __global__ build deny
+rg flag -w forja_volcano_2 __global__ block-break deny
+rg flag -w forja_volcano_2 __global__ block-place deny
+rg flag -w forja_volcano_2 __global__ build deny
+rg flag -w forja_volcano_3 __global__ block-break deny
+rg flag -w forja_volcano_3 __global__ block-place deny
+rg flag -w forja_volcano_3 __global__ build deny
+rg flag -w forja_volcano_4 __global__ block-break deny
+rg flag -w forja_volcano_4 __global__ block-place deny
+rg flag -w forja_volcano_4 __global__ build deny
+rg flag -w forja_volcano_5 __global__ block-break deny
+rg flag -w forja_volcano_5 __global__ block-place deny
+rg flag -w forja_volcano_5 __global__ build deny
+rg flag -w forja_volcano_6 __global__ block-break deny
+rg flag -w forja_volcano_6 __global__ block-place deny
+rg flag -w forja_volcano_6 __global__ build deny
 rg flag -w santuario_interstellar __global__ block-break deny
 rg flag -w santuario_interstellar __global__ block-place deny
 rg flag -w santuario_interstellar __global__ build deny
 rg flag -w world_minecraft_santuario_azeroth __global__ block-break deny
 rg flag -w world_minecraft_santuario_azeroth __global__ block-place deny
 rg flag -w world_minecraft_santuario_azeroth __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ build deny
 lp group default permission set axgraves.allowgraves true

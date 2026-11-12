@@ -26,7 +26,7 @@ TUMBA_SALA1_LIMPIA:
   - removetag{tag=tumba.ola2} @self
 TUMBA_IR_SALA2:
   Skills:
-  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> -203.163 88 203.533 0 0"}
+  - command{c="execute as <target.name> at @s run minecraft:tp @s -203.163 88 203.533 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA1_RESET:
   Skills:
@@ -71,7 +71,7 @@ TUMBA_SALA2_LIMPIA:
   - removetag{tag=tumba.ola3} @self
 TUMBA_IR_SALA3:
   Skills:
-  - command{c="execute in minecraft:tumba run minecraft:tp <target.name> 0.368 73 -44.104 0 0"}
+  - command{c="execute as <target.name> at @s run minecraft:tp @s 0.368 73 -44.104 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA2_RESET:
   Skills:
@@ -104,6 +104,7 @@ TUMBA_SALA3_LIMPIA:
   - hastag{tag=tumba.fin} false
   Skills:
   - addtag{tag=tumba.fin} @self
+  - command{c="mazfin <caster.l.w>"}
   - remove @MobsInRadius{r=64;types=astral_tumba_momia}
   - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}
   - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}
@@ -144,8 +145,7 @@ TUMBA_PREMIO_YA:
   - message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}
 TUMBA_ENTRAR:
   Skills:
-  - 'message{m="&8[&7Tumba del Rey de Arena&8] &7Bajando a las &fTumba del Rey de Arena&7... &8(3 salas. Para salir: /spawn)"}'
-  - command{c="execute in minecraft:tumba run minecraft:tp <trigger.name> -148.426 62 -97.473 0 0"}
+  - command{c="mazentrar <trigger.name> tumba"}
 TANDA2_tumba_AST_FASE_astral_momia_2:
   Skills:
   - addtag{tag=astral.fase2} @self

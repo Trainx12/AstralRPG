@@ -40,12 +40,14 @@ class UrgenteTests(unittest.TestCase):
         skript=script()
         for d in [MINA]+catalog():
             text=dungeon_skills(d)
-            for room,route in zip(d['rooms'],ROUTES[d['key']]):
+            from mazmorras_copias import script as copias_script
+            entrada=copias_script()
+            for i,(room,route) in enumerate(zip(d['rooms'],ROUTES[d['key']])):
                 self.assertEqual((*room['llegada'],room.get('yaw',0)),route)
                 xyz=' '.join(map(str,route[:3]))
-                self.assertIn(xyz,text)
-            xyz=' '.join(map(str,ROUTES[d['key']][0][:3]))
-            self.assertIn(xyz,skript)
+                # La primera sala se entra por Skript (copia libre); las demas, por el controlador.
+                self.assertIn(xyz,entrada if i==0 else text)
+            self.assertIn(f'mazentrar %name of player% {d["key"]}',skript)
         cumbre=next(d for d in catalog() if d['key']=='cumbre')
         self.assertEqual(cumbre['rooms'][-1]['boss_spawn'],(-101.8,30,56.9))
 

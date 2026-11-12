@@ -20,6 +20,12 @@ class VM:
         self.alive=[]; self.spawned=[]; self.tags=set(); self.calls=0
 
     def score(self,h,o): return self.scores.get((h,o),0)
+    @property
+    def queue(self):
+        # Cola por indices en el controlador (una por copia): pendientes = ad.qm - ad.q.
+        return max(0,self.score('@s','ad.qm')-self.score('@s','ad.q'))
+    @queue.setter
+    def queue(self,value): pass
     def match(self,val,ran):
         if '..' not in ran: return val==int(ran)
         a,b=ran.split('..'); return (not a or val>=int(a)) and (not b or val<=int(b))
@@ -39,8 +45,11 @@ class VM:
         if m:
             yes=self.match(self.score(m[2],m[3]),m[4])
             return self.line(m[5]) if yes==(m[1]=='if') else False
-        m=re.fullmatch(r'execute (if|unless) data storage \S+ queue\[0\] run (.+)',line)
-        if m: return self.line(m[2]) if bool(self.queue)==(m[1]=='if') else False
+        m=re.fullmatch(r'execute (if|unless) score (\S+) (\S+) (<|>|<=|>=|=) (\S+) (\S+) run (.+)',line)
+        if m:
+            a,b=self.score(m[2],m[3]),self.score(m[5],m[6])
+            yes={'<':a<b,'>':a>b,'<=':a<=b,'>=':a>=b,'=':a==b}[m[4]]
+            return self.line(m[7]) if yes==(m[1]=='if') else False
         m=re.fullmatch(r'execute (if|unless) entity (.+) run (.+)',line)
         if m:
             present=(re.search(r'tag=([^\]]+)',m[2])[1] in self.tags) if m[2].startswith('@s') else self.count(m[2])>0
@@ -54,10 +63,13 @@ class VM:
         if m:
             old=self.score(m[2],m[3]); n=int(m[4]); self.scores[m[2],m[3]]=n if m[1]=='set' else old+n*(1 if m[1]=='add' else -1)
             return False
-        m=re.fullmatch(r'scoreboard players operation (\S+) (\S+) (=|\*=|/=|\+=) (\S+) (\S+)',line)
+        m=re.fullmatch(r'scoreboard players operation (\S+) (\S+) (=|\*=|/=|\+=|-=|%=) (\S+) (\S+)',line)
         if m:
-            a=self.score(m[1],m[2]); b=self.score(m[4],m[5]); self.scores[m[1],m[2]]=b if m[3]=='=' else a*b if m[3]=='*=' else a+b if m[3]=='+=' else a//b
+            a=self.score(m[1],m[2]); b=self.score(m[4],m[5])
+            self.scores[m[1],m[2]]={'=':b,'*=':a*b,'+=':a+b,'-=':a-b,'/=':a//b if b else a,'%=':a%b if b else a}[m[3]]
             return False
+        m=re.fullmatch(r'return run (.+)',line)
+        if m: self.line(m[1]); return True
         m=re.fullmatch(r'data modify storage \S+ queue (set|append) value (.+)',line)
         if m:
             value=json.loads(m[2]); self.queue=deepcopy(value) if m[1]=='set' else self.queue+[value]; return False
@@ -78,7 +90,7 @@ class VM:
             _,_,op,t=line.split(); self.tags.add(t) if op=='add' else self.tags.discard(t); return False
         if line.startswith('effect '): return False
         if line.startswith('kill @e'):
-            wanted=re.search(r'tag=([^\]]+)',line)[1]
+            wanted=re.search(r'tag=([^,\]]+)',line)[1]
             self.alive=[e for e in self.alive if wanted not in e['tags']]; return False
         if line.startswith('return '): return True
         raise AssertionError('Comando sin interpretar: '+line)
@@ -221,6 +233,6 @@ class SantuarioSinCambiosTests(unittest.TestCase):
         mobs=(root/'build/mythicmobs/mobs/santuario.yml').read_text(encoding='utf8')
         self.assertIn(f'playerwithin{{d={RADIUS}}}',mobs)
         rescue=(root/'build/gameplay/astral_gameplay.sk').read_text(encoding='utf8')
-        self.assertIn('santuario_azeroth run minecraft:tp %name of {_p}% '+fmt(ARRIVAL),rescue)
+        self.assertIn('at @s run minecraft:tp @s '+fmt(ARRIVAL),rescue)
         for old in ('247.5 57','247.5,57','144 -48 351 159'):
             for text in (commands,mobs,rescue):self.assertNotIn(old,text)

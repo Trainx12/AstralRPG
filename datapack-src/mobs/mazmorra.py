@@ -198,7 +198,8 @@ def mob_yml(dungeon=None):
 
 
 def tp(x, y, z, who="<target.name>", world=WORLD):
-    return f'command{{c="execute in minecraft:{world} run minecraft:tp {who} {x} {y} {z}"}}'
+    # Pase entre salas: en el MISMO mundo donde esta el jugador (sirve igual en las 6 copias).
+    return f'command{{c="execute as {who} at @s run minecraft:tp @s {x} {y} {z}"}}'
 
 
 def located_summon(mob, point):
@@ -320,6 +321,8 @@ def skill_yml(dungeon=None):
             L += [f"MINA_{S}_LIMPIA:",
                   *(["  Conditions:", "  - hastag{tag=mina.jefe.derrotado} true", "  - hastag{tag=mina.fin} false"] if s.get("require_boss_death") else []),
                   "  Skills:", "  - addtag{tag=mina.fin} @self",
+                  # Arranca los 8 minutos de esta copia (mazmorras_copias.py) para liberarla.
+                  "  - " + q('command{c="mazfin <caster.l.w>"}'),
                   *(["  - " + q(f"remove @MobsInRadius{{r={r + 8};types={tipos_sala(s)}}}")] if s.get("require_boss_death") else []),
                   "  - " + q(f'message{{m="&6&lEl Guardian de las Profundidades cayo! &7Abran el cofre..."}} @PlayersInRadius{{r={r + 8}}}'),
                   "  - " + q("sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=" + str(r + 8) + "}"),
@@ -378,9 +381,9 @@ def skill_yml(dungeon=None):
         L += ["MINA_ENTRAR:", "  Skills:", "  - " + q('message{m="&eEsta mazmorra esta en preparacion. Falta revisar las salas en Minecraft."}'), ""]
         return finish("\n".join(L) + "\n", dungeon)
     L += ["MINA_ENTRAR:"]
+    # La entrada la resuelve Skript (mazmorras_copias.py): copia libre, party y "ocupada".
     L += ["  Skills:",
-          "  - " + q(f'message{{m="&8[&7Mina&8] &7Bajando a las &fMinas Olvidadas&7... &8({len(SALAS)} salas. Para salir: /spawn)"}}'),
-          "  - " + q(tp(*s1["llegada"], who="<trigger.name>", world=WORLD)), ""]
+          "  - " + q(f'command{{c="mazentrar <trigger.name> {dungeon['key']}"}}'), ""]
     return transform(finish("\n".join(L) + "\n", dungeon), dungeon, 'skills')
 
 

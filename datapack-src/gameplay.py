@@ -5,13 +5,15 @@ from pathlib import Path
 from minijuegos import parkour_worlds, arena_worlds
 
 ROOT=Path(__file__).resolve().parent.parent
-DUNGEONS=('bosque','tumba','mina','cumbre','forja','santuario',
+from instancias import expand, expand_map
+# expand suma las 6 copias de cada mazmorra (instancias.py).
+DUNGEONS=expand(('bosque','tumba','mina','cumbre','forja','santuario',
           # mundos actuales de Cumbre, Forja y Santuario (08/11/2026)
-          'cumbre_hielo','forja_volcano','santuario_interstellar','santuario_azeroth',SANCTUARY_BUKKIT_WORLD)
+          'cumbre_hielo','forja_volcano','santuario_interstellar','santuario_azeroth',SANCTUARY_BUKKIT_WORLD))
 PROTECTED=('lobby',)+DUNGEONS+('cavernas','reino','exp_desierto','exp_hielo','exp_santuario')
 # Altura absoluta de rescate. Mina tiene salas bajo Y=0; no usar el mismo limite.
-RESCUE_HEIGHTS={'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
-                'cumbre':0, 'forja':0, 'santuario':0, 'santuario_azeroth':0, SANCTUARY_BUKKIT_WORLD:0}
+RESCUE_HEIGHTS=expand_map({'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
+                'cumbre':0, 'forja':0, 'santuario':0, 'santuario_azeroth':0, SANCTUARY_BUKKIT_WORLD:0})
 
 def apply(files,items,version):
     def fn(name,lines):files[f'data/astral/function/{name}.mcfunction']='\n'.join(lines)+'\n'
@@ -58,12 +60,12 @@ def apply(files,items,version):
     (output/'astral_gameplay.sk').write_text(script(),encoding='utf-8')
     commands=[]
     for world in PROTECTED:
-        if world in ('santuario_azeroth', SANCTUARY_BUKKIT_WORLD):
+        if 'santuario_azeroth' in world:
             continue  # esta dimension pertenece al datapack, no a Multiverse
         commands += [f'mv gamerule set minecraft:keep_inventory true {world}']
     commands += ['execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory true']
     for world in DUNGEONS:
-        if world == 'santuario_azeroth':
+        if world.startswith('santuario_azeroth'):
             continue  # WorldGuard identifica el nombre Bukkit
         commands += [f'rg flag -w {world} __global__ block-break deny',
                      f'rg flag -w {world} __global__ block-place deny',
@@ -266,8 +268,9 @@ __RESCUE_LIMITS__
 function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
-    if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% __SANCT_TP__ __SANCT_YAW__ 0"
+    if name of world of {_p} contains "santuario_azeroth":
+        # En la misma copia del Santuario donde estaba (instancias.py).
+        execute console command "execute as %name of {_p}% at @s run minecraft:tp @s __SANCT_TP__ __SANCT_YAW__ 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop
@@ -276,7 +279,7 @@ function astral_rescue(p: player):
 
 # Santuario: si ya hay alguien en la entrada, el que llega queda al costado (2, -2, 4, -4...).
 on world change:
-    if name of player's world is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+    if name of player's world contains "santuario_azeroth":
         wait 2 ticks
         set {_entrada} to location(__SANCT_X__, __SANCT_Y__, __SANCT_Z__, world of player, __SANCT_YAW__, 0)
         if distance between player and {_entrada} > 1.5:

@@ -3,8 +3,9 @@
 # Los otros cinco flags pedidos tambien pueden cancelar dano a entidades o TNT.
 # Ver build/deploy/tanda1.md: se omiten hasta validar la configuracion del servidor.
 SAFE_FLAGS = ('enderdragon-block-damage',)
-WORLDS = ('mina', 'bosque', 'tumba', 'cumbre', 'cumbre_hielo', 'forja',
-          'forja_volcano', 'cavernas', 'exp_desierto', 'exp_hielo', 'exp_nieve', 'exp_santuario')
+from instancias import expand
+WORLDS = expand(('mina', 'bosque', 'tumba', 'cumbre', 'cumbre_hielo', 'forja',
+          'forja_volcano', 'cavernas', 'exp_desierto', 'exp_hielo', 'exp_nieve', 'exp_santuario'))
 
 
 def commands(world):

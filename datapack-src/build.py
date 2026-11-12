@@ -727,7 +727,7 @@ for c in SUBS:
 
 put(f"data/{NS}/predicate/in_sanctuary.json", {"condition":"minecraft:any_of", "terms":[
     {"condition":"minecraft:location_check", "predicate":{"dimension":"minecraft:"+world}}
-    for world in ("santuario","santuario_interstellar","santuario_azeroth")]})
+    for world in ("santuario","santuario_interstellar",*__import__('instancias').copias("santuario_azeroth"))]})
 put(f"data/{NS}/predicate/sneaking.json", {"condition": "minecraft:entity_properties", "entity": "this",
                                            "predicate": {"flags": {"is_sneaking": True}}})
 
@@ -1406,7 +1406,7 @@ fn('mob/jefe_mundo', [
     # Santuario conserva su balance: no adaptar Ancestrales de esa prueba.
     'execute if dimension minecraft:santuario run return 0',
     'execute if dimension minecraft:santuario_interstellar run return 0',
-    'execute if dimension minecraft:santuario_azeroth run return 0',
+    *[f'execute if dimension minecraft:{w} run return 0' for w in __import__('instancias').copias('santuario_azeroth')],
     'scoreboard players set #mt astral.tmp 1',
     f'execute if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo',
     'execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1',

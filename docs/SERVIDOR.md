@@ -506,3 +506,16 @@ se elimina Rango del panel general. La bossbar PURPLE es independiente por sala,
 cuenta vivos y pendientes, y se oculta durante el jefe o al salir. Los scores `ad.*`
 se crean al cargar el datapack. Integrar las secciones de TAB conservando el resto.
 Entrega unica vigente: `build/deploy/urgente-mascotas-texturas.md`; requiere un reinicio.
+
+## Copias de mazmorras y parties (12/11/2026)
+
+Cada mazmorra tiene **6 copias** (`datapack-src/instancias.py`): `mina`, `mina_2` ... `mina_6`; igual `bosque`, `tumba`,
+`cumbre_hielo`, `forja_volcano` (clones de Multiverse) y `santuario_azeroth`..`_6` (dimensiones del datapack, misma region).
+- Entrada: los NPC y `/mazmorras` corren `mazentrar <jugador> <mazmorra>` (Skript `astral_mazmorras_copias.sk`, generado por
+  `mazmorras_copias.py`). Si un companero de party ya esta en una copia, va ahi; si no, la primera copia vacia (hace 15 s o mas)
+  y se lleva a los companeros de party que esten en el lobby. Sin copias libres: "Mazmorra ocupada".
+- `/party invitar|aceptar|rechazar|salir|echar <jugador>`, `/party` para ver el grupo (hasta 6; solo memoria).
+- Al ganar, el controlador corre `mazfin <mundo>`: 8 minutos despues los que sigan en esa copia vuelven al spawn.
+- Las oleadas de tanda2 guardan su avance en el controlador de cada copia (`ad.q`/`ad.qm`/`ad.w`) y sus selectores usan
+  `distance=0..` para no tocar otras copias. Pasos entre salas: `execute as <jugador> at @s run tp` (mundo propio).
+- Prueba: `python tools/probar_copias_paper.py --java <java25> --base .local/testsrv`.

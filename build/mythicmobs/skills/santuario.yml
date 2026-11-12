@@ -61,6 +61,7 @@ SANTUARIO_SALA1_OLA6:
 SANTUARIO_SALA1_LIMPIA:
   Skills:
   - addtag{tag=santuario.fin} @self
+  - 'command{c="mazfin <caster.l.w>"}'
   - 'message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=158}'
   - 'sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=158}'
   - 'command{c="execute as <target.name> at @s run function astral:quest/event/santuario"} @PlayersInRadius{r=158}'
@@ -106,6 +107,5 @@ SANTUARIO_PREMIO_YA:
 
 SANTUARIO_ENTRAR:
   Skills:
-  - 'message{m="&8[&7Santuario Celestial&8] &7Bajando a las &fSantuario Celestial&7... &8(1 salas. Para salir: /spawn)"}'
-  - 'command{c="execute in minecraft:santuario_azeroth run minecraft:tp <trigger.name> 256.5 64 281.5"}'
+  - 'command{c="mazentrar <trigger.name> santuario"}'
 

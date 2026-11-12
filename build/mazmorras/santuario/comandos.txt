@@ -1,8 +1,6 @@
-# Santuario Azeroth. Instalar primero datapack y regiones con servidor APAGADO.
-# Dimension del datapack (cielo del End): NO mv create ni importar como THE_END.
-# Ruta SOLO nueva: world/dimensions/minecraft/santuario_azeroth/region/
-# Paper la carga desde el datapack; no crear/importar con Multiverse.
-# Conservar santuario_interstellar y sus regiones como respaldo.
+# Santuario (spiritarena) y sus copias. Regiones con el servidor APAGADO.
+# Dimensiones del datapack (cielo del End): NO mv create ni importar como THE_END.
+# Region: world/dimensions/minecraft/<copia>/region/r.0.0.mca (la misma para todas).
 execute in minecraft:santuario_azeroth run difficulty hard
 execute in minecraft:santuario_azeroth run gamerule minecraft:spawn_mobs false
 execute in minecraft:santuario_azeroth run gamerule minecraft:keep_inventory true
@@ -21,10 +19,115 @@ rg flag -w world_minecraft_santuario_azeroth __global__ mob-spawning allow
 rg flag -w world_minecraft_santuario_azeroth __global__ creeper-explosion deny
 rg flag -w world_minecraft_santuario_azeroth __global__ other-explosion deny
 rg flag -w world_minecraft_santuario_azeroth __global__ tnt deny
+execute in minecraft:santuario_azeroth_2 run difficulty hard
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth_2 run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ tnt deny
+execute in minecraft:santuario_azeroth_3 run difficulty hard
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth_3 run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ tnt deny
+execute in minecraft:santuario_azeroth_4 run difficulty hard
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth_4 run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ tnt deny
+execute in minecraft:santuario_azeroth_5 run difficulty hard
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth_5 run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ tnt deny
+execute in minecraft:santuario_azeroth_6 run difficulty hard
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:spawn_mobs false
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:keep_inventory true
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:random_tick_speed 0
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:mob_griefing false
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:tnt_explodes false
+execute in minecraft:santuario_azeroth_6 run gamerule minecraft:advance_weather false
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ build deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-break deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-place deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ chest-access deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ pvp deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ interact allow
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ use deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ mob-spawning allow
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ creeper-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ other-explosion deny
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ tnt deny
 lp group default permission set astral.santuario.cd false
-# SOLO con la mazmorra vacia. Retirar controladores viejos y crear UNO nuevo:
+# SOLO con el Santuario vacio. Retirar controladores viejos y crear UNO por copia:
 mm mobs kill astral_santuario_control_sala1
 execute in minecraft:santuario_azeroth run forceload remove all
-execute in minecraft:santuario_azeroth run forceload add 191 187 321 321
+execute in minecraft:santuario_azeroth run forceload add 224 224 288 288
 mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,256.5,64,256.5
+execute in minecraft:santuario_azeroth_2 run forceload remove all
+execute in minecraft:santuario_azeroth_2 run forceload add 224 224 288 288
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth_2,256.5,64,256.5
+execute in minecraft:santuario_azeroth_3 run forceload remove all
+execute in minecraft:santuario_azeroth_3 run forceload add 224 224 288 288
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth_3,256.5,64,256.5
+execute in minecraft:santuario_azeroth_4 run forceload remove all
+execute in minecraft:santuario_azeroth_4 run forceload add 224 224 288 288
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth_4,256.5,64,256.5
+execute in minecraft:santuario_azeroth_5 run forceload remove all
+execute in minecraft:santuario_azeroth_5 run forceload add 224 224 288 288
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth_5,256.5,64,256.5
+execute in minecraft:santuario_azeroth_6 run forceload remove all
+execute in minecraft:santuario_azeroth_6 run forceload add 224 224 288 288
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth_6,256.5,64,256.5
 # Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 256.5 64 281.5 180 0

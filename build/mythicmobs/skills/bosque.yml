@@ -35,7 +35,7 @@ BOSQUE_SALA1_LIMPIA:
   - removetag{tag=bosque.ola3} @self
 BOSQUE_IR_SALA2:
   Skills:
-  - command{c="execute in minecraft:bosque run minecraft:tp <target.name> 1603.7 100 1413.4 -177.9 0"}
+  - command{c="execute as <target.name> at @s run minecraft:tp @s 1603.7 100 1413.4 -177.9 0"}
   - sound{s=entity.enderman.teleport}
 BOSQUE_SALA1_RESET:
   Skills:
@@ -62,6 +62,7 @@ BOSQUE_SALA2_INICIO:
 BOSQUE_SALA2_LIMPIA:
   Skills:
   - addtag{tag=bosque.fin} @self
+  - command{c="mazfin <caster.l.w>"}
   - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=48}
   - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=48}
   - command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=48}
@@ -103,8 +104,7 @@ BOSQUE_PREMIO_YA:
   - message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}
 BOSQUE_ENTRAR:
   Skills:
-  - 'message{m="&8[&7Bosque Sombrio&8] &7Bajando a las &fBosque Sombrio&7... &8(2 salas. Para salir: /spawn)"}'
-  - command{c="execute in minecraft:bosque run minecraft:tp <trigger.name> 1468.5 101 1570.5 0 0"}
+  - command{c="mazentrar <trigger.name> bosque"}
 TANDA2_bosque_AST_FASE_astral_chaman_2:
   Skills:
   - addtag{tag=astral.fase2} @self

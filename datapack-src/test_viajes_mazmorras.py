@@ -37,7 +37,7 @@ class TravelTests(unittest.TestCase):
             branch=text.split(f'        if {{_destino}} is "{d["key"]}":\n',1)[1].split('        if {_destino}',1)[0]
             check=f'if player does not have permission "{permission(d["key"])}"'
             self.assertIn(check,branch)
-            self.assertLess(branch.index(check),branch.index('minecraft:tp') if d['enabled'] else branch.index('en preparacion'))
+            self.assertLess(branch.index(check),branch.index('mazentrar') if d['enabled'] else branch.index('en preparacion'))
             self.assertIn('                stop',branch)
         self.assertNotIn('%arg-1%',text)
         self.assertIn('executable by: players',text)

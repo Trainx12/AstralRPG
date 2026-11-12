@@ -102,7 +102,9 @@ def world_labels():
         'exp_desierto': 'Expedición al Desierto', 'exp_hielo': 'Expedición al Hielo',
         'exp_nieve': 'Expedición a la Nieve', 'exp_santuario': 'Expedición al Santuario',
     })
-    return labels
+    # Las 6 copias de cada mazmorra muestran el mismo nombre (instancias.py).
+    from instancias import expand_map
+    return expand_map(labels)
 
 
 def location_conditions(centered=False):

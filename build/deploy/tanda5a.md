@@ -14,8 +14,6 @@ Subir las siguientes rutas, conservando el resto de cada carpeta:
 | `build/runtime/AstralProgression.jar` | `plugins/AstralProgression.jar` |
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` |
 | `build/tanda5a/AstralProgression/config.yml` | `plugins/AstralProgression/config.yml` |
-| `build/tanda5a/BlzdBackpacks/config.yml` | `plugins/BlzdBackpacks/config.yml` |
-| `build/tanda5a/BlzdBackpacks/messages.yml` | `plugins/BlzdBackpacks/messages.yml` |
 | `build/tanda5a/EconomyShopGUI/sections/Mochilas.yml` | `plugins/EconomyShopGUI/sections/Mochilas.yml` |
 | `build/tanda5a/EconomyShopGUI/sections/Proteccion.yml` | `plugins/EconomyShopGUI/sections/Proteccion.yml` |
 | `build/tanda5a/EconomyShopGUI/shops/Mochilas.yml` | `plugins/EconomyShopGUI/shops/Mochilas.yml` |

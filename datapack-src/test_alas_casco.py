@@ -20,9 +20,11 @@ class AlasCascoTests(unittest.TestCase):
             alas={'data/astral/function/altar/r/asura_alas.mcfunction','data/astral/function/altar/r/carnivora_alas.mcfunction',
                   'data/astral/dialog/receta/157.json','data/astral/dialog/receta/158.json',
                   'data/astral/function/forge/r/157.mcfunction','data/astral/function/forge/r/158.mcfunction'}
-            self.assertLessEqual(set(old.namelist())-alas,set(new.namelist()))
+            # Copias de mazmorras (12/11): la cola de oleadas dejo de usar dispatch/extra.
+            cola={n for n in old.namelist() if '/tanda2/' in n and (n.endswith('/dispatch.mcfunction') or n.endswith('/extra.mcfunction'))}
+            self.assertLessEqual(set(old.namelist())-alas-cola,set(new.namelist()))
             # Comprobar la reparacion puntual; futuras tareas pueden cambiar guia/lore.
-            changed=[n for n in old.namelist() if n not in alas and old.read(n)!=new.read(n) and
+            changed=[n for n in old.namelist() if n not in alas and n not in cola and old.read(n)!=new.read(n) and
                      (n=='data/astral/function/upgrade/check.mcfunction' or
                       'carnivora_helmet' in n and ('/upgrade/' in n or '/loot_table/item/' in n))]
             for n in changed:

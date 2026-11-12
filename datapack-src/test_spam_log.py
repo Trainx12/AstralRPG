@@ -23,7 +23,8 @@ class SpamLogTests(unittest.TestCase):
                 for suffix in ('_INICIO}', '_RESET}', '_LIMPIA}'):
                     self.assertTrue(any(suffix in s and '~onTimer:' in s for s in skills))
                 selector=f'@e[type=armor_stand,name={json.dumps("Control "+r["name"],ensure_ascii=False)},tag={d["key"]}.on]'
-                expected.append(f'execute in minecraft:{d["world"]} as {selector} at @s run function astral:{path(d,r)}/tick')
+                from instancias import copias
+                expected += [f'execute in minecraft:{w} as {selector} at @s run function astral:{path(d,r)}/tick' for w in copias(d['world'])]
         self.assertEqual(lines,expected)
         self.assertEqual(len(lines),len(set(lines)))
 

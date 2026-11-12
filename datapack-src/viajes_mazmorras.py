@@ -94,8 +94,8 @@ def script():
         if not d.get('enabled',False):
             lines += ['            send "&eEsta mazmorra esta en preparacion." to player','            stop']
         else:
-            command=f'execute in minecraft:{d["world"]} run minecraft:tp %name of player% {x} {y} {z} {d["rooms"][0].get("yaw",0)} 0'
-            lines += [f'            execute console command "{command}"','            stop']
+            # Copia libre, party y "ocupada": mazmorras_copias.py.
+            lines += [f'            execute console command "mazentrar %name of player% {key}"','            stop']
     lines += ['        send "&eDestinos: bosque, mina, tumba, cumbre, forja y santuario." to player']
     return '\n'.join(lines)+'\n'
 

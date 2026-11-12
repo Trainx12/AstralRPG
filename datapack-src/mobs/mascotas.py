@@ -25,7 +25,8 @@ OUT = os.path.join(HERE, "..", "..", "build")
 KILLS_POR_NIVEL = 25
 NIVEL_MAX = 30
 from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD
-MUNDOS_BONUS = ("mina", "bosque", "tumba", "cumbre_hielo", "forja_volcano", "santuario_interstellar", "santuario_azeroth", SANCTUARY_BUKKIT_WORLD)
+from instancias import expand as _copias
+MUNDOS_BONUS = _copias(("mina", "bosque", "tumba", "cumbre_hielo", "forja_volcano", "santuario_interstellar", "santuario_azeroth", SANCTUARY_BUKKIT_WORLD))
 
 
 def condicion_mazmorra():

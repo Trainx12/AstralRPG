@@ -1,0 +1,1143 @@
+# Generado por mazmorras_copias.py: 6 copias por mazmorra, parties y 8 minutos tras el jefe.
+# Variables {-...}: solo memoria. Se borran al reiniciar (nadie queda adentro tras un reinicio).
+
+function party_miembros(p: player) :: players:
+    set {_l} to {-party.lider::%uuid of {_p}%}
+    if {_l} is not set:
+        return {_p}
+    return {-party.miembros::%{_l}%::*}
+
+function party_avisar(l: text, m: text):
+    loop {-party.miembros::%{_l}%::*}:
+        send "&d[Party] &f%{_m}%" to loop-value
+
+function party_sacar(p: player):
+    set {_l} to {-party.lider::%uuid of {_p}%}
+    if {_l} is not set:
+        stop
+    if {_l} is "%uuid of {_p}%":
+        party_avisar({_l}, "%name of {_p}% disolvio la party.")
+        loop {-party.miembros::%{_l}%::*}:
+            delete {-party.lider::%uuid of loop-value%}
+        delete {-party.miembros::%{_l}%::*}
+        stop
+    delete {-party.miembros::%{_l}%::%uuid of {_p}%}
+    delete {-party.lider::%uuid of {_p}%}
+    party_avisar({_l}, "%name of {_p}% salio de la party.")
+    send "&dSaliste de la party." to {_p}
+
+command /party [<text>] [<text>]:
+    aliases: grupo
+    executable by: players
+    description: Grupo para entrar juntos a las mazmorras.
+    trigger:
+        set {_l} to {-party.lider::%uuid of player%}
+        if arg-1 is not set:
+            if {_l} is not set:
+                send "&dParty: &fno estas en ninguna. &7/party invitar <jugador> (hasta 6)." to player
+                stop
+            loop {-party.miembros::%{_l}%::*}:
+                add name of loop-value to {_n::*}
+            send "&dParty (%size of {_n::*}%): &f%{_n::*}%" to player
+            send "&7Entran juntos a la misma mazmorra. /party salir para dejarla." to player
+            stop
+        if arg-1 is "invitar":
+            set {_t} to arg-2 parsed as player
+            if {_t} is not set:
+                send "&cEse jugador no esta conectado. Uso: /party invitar <jugador>" to player
+                stop
+            if {_t} is player:
+                send "&cNo podes invitarte a vos mismo." to player
+                stop
+            if {-party.lider::%uuid of {_t}%} is set:
+                send "&c%name of {_t}% ya esta en una party." to player
+                stop
+            if {_l} is not set:
+                set {_l} to "%uuid of player%"
+                set {-party.lider::%uuid of player%} to {_l}
+                set {-party.miembros::%{_l}%::%uuid of player%} to player
+            if {_l} is not "%uuid of player%":
+                send "&cSolo el lider de la party puede invitar." to player
+                stop
+            if size of {-party.miembros::%{_l}%::*} >= 6:
+                send "&cLa party esta llena (maximo 6)." to player
+                stop
+            set {-party.inv::%uuid of {_t}%} to {_l}
+            set {-party.invt::%uuid of {_t}%} to now
+            send "&dInvitaste a &f%name of {_t}%&d. Tiene 60 segundos para aceptar." to player
+            send "&d%name of player% te invito a su party. &fEscribi &a/party aceptar &fo &c/party rechazar&f." to {_t}
+            stop
+        if arg-1 is "aceptar":
+            set {_i} to {-party.inv::%uuid of player%}
+            if {_i} is not set:
+                send "&cNo tenes invitaciones." to player
+                stop
+            delete {-party.inv::%uuid of player%}
+            if difference between {-party.invt::%uuid of player%} and now > 60 seconds:
+                send "&cLa invitacion vencio. Pedi otra." to player
+                stop
+            if {-party.lider::%{_i}%} is not set:
+                send "&cEsa party ya no existe." to player
+                stop
+            if {_l} is set:
+                party_sacar(player)
+            if size of {-party.miembros::%{_i}%::*} >= 6:
+                send "&cLa party se lleno." to player
+                stop
+            set {-party.lider::%uuid of player%} to {_i}
+            set {-party.miembros::%{_i}%::%uuid of player%} to player
+            party_avisar({_i}, "%name of player% se unio a la party.")
+            stop
+        if arg-1 is "rechazar":
+            delete {-party.inv::%uuid of player%}
+            send "&7Invitacion rechazada." to player
+            stop
+        if arg-1 is "salir":
+            if {_l} is not set:
+                send "&cNo estas en una party." to player
+                stop
+            party_sacar(player)
+            stop
+        if arg-1 is "echar":
+            if {_l} is not "%uuid of player%":
+                send "&cSolo el lider puede echar." to player
+                stop
+            set {_t} to arg-2 parsed as player
+            if {_t} is not set:
+                send "&cUso: /party echar <jugador>" to player
+                stop
+            if {-party.lider::%uuid of {_t}%} is not {_l}:
+                send "&cEse jugador no esta en tu party." to player
+                stop
+            if {_t} is player:
+                stop
+            party_sacar({_t})
+            send "&cTe echaron de la party." to {_t}
+            stop
+        send "&dParty: &f/party invitar <jugador>, aceptar, rechazar, salir, echar <jugador>" to player
+
+on quit:
+    party_sacar(player)
+    delete {-party.inv::%uuid of player%}
+
+function maz_jugadores(w: world) :: number:
+    set {_c} to 0
+    loop all players:
+        world of loop-player is {_w}
+        add 1 to {_c}
+    return {_c}
+
+function maz_entrar(p: player, key: text):
+    if {_key} is "bosque":
+        set {_nombre} to "Bosque Sombrio"
+        set {_tp} to "1468.5 101 1570.5 0 0"
+        set {_dim::1} to "bosque"
+        set {_mundo::1} to "bosque"
+        set {_dim::2} to "bosque_2"
+        set {_mundo::2} to "bosque_2"
+        set {_dim::3} to "bosque_3"
+        set {_mundo::3} to "bosque_3"
+        set {_dim::4} to "bosque_4"
+        set {_mundo::4} to "bosque_4"
+        set {_dim::5} to "bosque_5"
+        set {_mundo::5} to "bosque_5"
+        set {_dim::6} to "bosque_6"
+        set {_mundo::6} to "bosque_6"
+    if {_key} is "mina":
+        set {_nombre} to "Minas Olvidadas"
+        set {_tp} to "10.5 -45 -124.5 0 0"
+        set {_dim::1} to "mina"
+        set {_mundo::1} to "mina"
+        set {_dim::2} to "mina_2"
+        set {_mundo::2} to "mina_2"
+        set {_dim::3} to "mina_3"
+        set {_mundo::3} to "mina_3"
+        set {_dim::4} to "mina_4"
+        set {_mundo::4} to "mina_4"
+        set {_dim::5} to "mina_5"
+        set {_mundo::5} to "mina_5"
+        set {_dim::6} to "mina_6"
+        set {_mundo::6} to "mina_6"
+    if {_key} is "tumba":
+        set {_nombre} to "Tumba del Rey de Arena"
+        set {_tp} to "-148.426 62 -97.473 0 0"
+        set {_dim::1} to "tumba"
+        set {_mundo::1} to "tumba"
+        set {_dim::2} to "tumba_2"
+        set {_mundo::2} to "tumba_2"
+        set {_dim::3} to "tumba_3"
+        set {_mundo::3} to "tumba_3"
+        set {_dim::4} to "tumba_4"
+        set {_mundo::4} to "tumba_4"
+        set {_dim::5} to "tumba_5"
+        set {_mundo::5} to "tumba_5"
+        set {_dim::6} to "tumba_6"
+        set {_mundo::6} to "tumba_6"
+    if {_key} is "cumbre":
+        set {_nombre} to "Cumbre Helada"
+        set {_tp} to "-25.6 33 -23.4 49.9 0"
+        set {_dim::1} to "cumbre_hielo"
+        set {_mundo::1} to "cumbre_hielo"
+        set {_dim::2} to "cumbre_hielo_2"
+        set {_mundo::2} to "cumbre_hielo_2"
+        set {_dim::3} to "cumbre_hielo_3"
+        set {_mundo::3} to "cumbre_hielo_3"
+        set {_dim::4} to "cumbre_hielo_4"
+        set {_mundo::4} to "cumbre_hielo_4"
+        set {_dim::5} to "cumbre_hielo_5"
+        set {_mundo::5} to "cumbre_hielo_5"
+        set {_dim::6} to "cumbre_hielo_6"
+        set {_mundo::6} to "cumbre_hielo_6"
+    if {_key} is "forja":
+        set {_nombre} to "Corazon de la Forja"
+        set {_tp} to "23.2 13 -159.4 151.5 0"
+        set {_dim::1} to "forja_volcano"
+        set {_mundo::1} to "forja_volcano"
+        set {_dim::2} to "forja_volcano_2"
+        set {_mundo::2} to "forja_volcano_2"
+        set {_dim::3} to "forja_volcano_3"
+        set {_mundo::3} to "forja_volcano_3"
+        set {_dim::4} to "forja_volcano_4"
+        set {_mundo::4} to "forja_volcano_4"
+        set {_dim::5} to "forja_volcano_5"
+        set {_mundo::5} to "forja_volcano_5"
+        set {_dim::6} to "forja_volcano_6"
+        set {_mundo::6} to "forja_volcano_6"
+    if {_key} is "santuario":
+        set {_nombre} to "Santuario Celestial"
+        set {_tp} to "256.5 64 281.5 180 0"
+        set {_dim::1} to "santuario_azeroth"
+        set {_mundo::1} to "world_minecraft_santuario_azeroth"
+        set {_dim::2} to "santuario_azeroth_2"
+        set {_mundo::2} to "world_minecraft_santuario_azeroth_2"
+        set {_dim::3} to "santuario_azeroth_3"
+        set {_mundo::3} to "world_minecraft_santuario_azeroth_3"
+        set {_dim::4} to "santuario_azeroth_4"
+        set {_mundo::4} to "world_minecraft_santuario_azeroth_4"
+        set {_dim::5} to "santuario_azeroth_5"
+        set {_mundo::5} to "world_minecraft_santuario_azeroth_5"
+        set {_dim::6} to "santuario_azeroth_6"
+        set {_mundo::6} to "world_minecraft_santuario_azeroth_6"
+    if {_nombre} is not set:
+        stop
+    # 1) Si un companero de party ya esta adentro, va a su copia.
+    set {_m::*} to party_miembros({_p})
+    set {_elegida} to 0
+    loop 6 times:
+        set {_w} to world({_mundo::%loop-number%})
+        if {_w} is set:
+            loop {_m::*}:
+                loop-value-2 is not {_p}
+                world of loop-value-2 is {_w}
+                set {_elegida} to loop-number
+        if {_elegida} > 0:
+            exit loop
+    if {_elegida} > 0:
+        set {_grupo::*} to {_p}
+    else:
+        # 2) Primera copia vacia (y vacia hace un rato, para que se reinicien las salas).
+        loop 6 times:
+            set {_w} to world({_mundo::%loop-number%})
+            if {_w} is set:
+                if maz_jugadores({_w}) is 0:
+                    if {-maz.vacia::%{_mundo::%loop-number%}%} is set:
+                        if difference between {-maz.vacia::%{_mundo::%loop-number%}%} and now >= 15 seconds:
+                            set {_elegida} to loop-number
+                            exit loop
+        if {_elegida} is 0:
+            send "&cMazmorra ocupada: &flas %size of {_dim::*}% copias de %{_nombre}% estan en uso. &7Proba en unos minutos." to {_p}
+            stop
+        # La party entra junta: los companeros que esten en el lobby.
+        loop {_m::*}:
+            if loop-value is {_p}:
+                add loop-value to {_grupo::*}
+            else if name of world of loop-value is "lobby":
+                add loop-value to {_grupo::*}
+    set {_d} to {_dim::%{_elegida}%}
+    delete {-maz.vacia::%{_mundo::%{_elegida}%}%}
+    loop {_grupo::*}:
+        send "&8[&7%{_nombre}%&8] &7Entrando a la copia &f%{_elegida}%&7... &8(Para salir: /spawn)" to loop-value
+        execute console command "execute in minecraft:%{_d}% run minecraft:tp %uuid of loop-value% %{_tp}%"
+
+command /mazentrar <player> <text>:
+    executable by: console
+    trigger:
+        maz_entrar(arg-1, arg-2)
+
+command /mazfin <text>:
+    executable by: console
+    trigger:
+        if {-maz.fin::%arg-1%} is set:
+            stop
+        set {-maz.fin::%arg-1%} to now
+        set {_w} to world(arg-1)
+        if {_w} is set:
+            loop all players:
+                world of loop-player is {_w}
+                send "&6Ganaron! &fTienen 8 minutos para abrir el cofre. Despues vuelven al spawn." to loop-player
+
+every 5 seconds:
+    set {_w} to world("bosque")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque} is not set:
+                set {-maz.vacia::bosque} to now
+            delete {-maz.fin::bosque}
+            delete {-maz.aviso::bosque}
+        else:
+            delete {-maz.vacia::bosque}
+            if {-maz.fin::bosque} is set:
+                set {_t} to difference between {-maz.fin::bosque} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque}
+                    delete {-maz.aviso::bosque}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque} is not set:
+                        set {-maz.aviso::bosque} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("bosque_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque_2} is not set:
+                set {-maz.vacia::bosque_2} to now
+            delete {-maz.fin::bosque_2}
+            delete {-maz.aviso::bosque_2}
+        else:
+            delete {-maz.vacia::bosque_2}
+            if {-maz.fin::bosque_2} is set:
+                set {_t} to difference between {-maz.fin::bosque_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque_2}
+                    delete {-maz.aviso::bosque_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque_2} is not set:
+                        set {-maz.aviso::bosque_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("bosque_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque_3} is not set:
+                set {-maz.vacia::bosque_3} to now
+            delete {-maz.fin::bosque_3}
+            delete {-maz.aviso::bosque_3}
+        else:
+            delete {-maz.vacia::bosque_3}
+            if {-maz.fin::bosque_3} is set:
+                set {_t} to difference between {-maz.fin::bosque_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque_3}
+                    delete {-maz.aviso::bosque_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque_3} is not set:
+                        set {-maz.aviso::bosque_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("bosque_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque_4} is not set:
+                set {-maz.vacia::bosque_4} to now
+            delete {-maz.fin::bosque_4}
+            delete {-maz.aviso::bosque_4}
+        else:
+            delete {-maz.vacia::bosque_4}
+            if {-maz.fin::bosque_4} is set:
+                set {_t} to difference between {-maz.fin::bosque_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque_4}
+                    delete {-maz.aviso::bosque_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque_4} is not set:
+                        set {-maz.aviso::bosque_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("bosque_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque_5} is not set:
+                set {-maz.vacia::bosque_5} to now
+            delete {-maz.fin::bosque_5}
+            delete {-maz.aviso::bosque_5}
+        else:
+            delete {-maz.vacia::bosque_5}
+            if {-maz.fin::bosque_5} is set:
+                set {_t} to difference between {-maz.fin::bosque_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque_5}
+                    delete {-maz.aviso::bosque_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque_5} is not set:
+                        set {-maz.aviso::bosque_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("bosque_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::bosque_6} is not set:
+                set {-maz.vacia::bosque_6} to now
+            delete {-maz.fin::bosque_6}
+            delete {-maz.aviso::bosque_6}
+        else:
+            delete {-maz.vacia::bosque_6}
+            if {-maz.fin::bosque_6} is set:
+                set {_t} to difference between {-maz.fin::bosque_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::bosque_6}
+                    delete {-maz.aviso::bosque_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::bosque_6} is not set:
+                        set {-maz.aviso::bosque_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina} is not set:
+                set {-maz.vacia::mina} to now
+            delete {-maz.fin::mina}
+            delete {-maz.aviso::mina}
+        else:
+            delete {-maz.vacia::mina}
+            if {-maz.fin::mina} is set:
+                set {_t} to difference between {-maz.fin::mina} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina}
+                    delete {-maz.aviso::mina}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina} is not set:
+                        set {-maz.aviso::mina} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina_2} is not set:
+                set {-maz.vacia::mina_2} to now
+            delete {-maz.fin::mina_2}
+            delete {-maz.aviso::mina_2}
+        else:
+            delete {-maz.vacia::mina_2}
+            if {-maz.fin::mina_2} is set:
+                set {_t} to difference between {-maz.fin::mina_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina_2}
+                    delete {-maz.aviso::mina_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina_2} is not set:
+                        set {-maz.aviso::mina_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina_3} is not set:
+                set {-maz.vacia::mina_3} to now
+            delete {-maz.fin::mina_3}
+            delete {-maz.aviso::mina_3}
+        else:
+            delete {-maz.vacia::mina_3}
+            if {-maz.fin::mina_3} is set:
+                set {_t} to difference between {-maz.fin::mina_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina_3}
+                    delete {-maz.aviso::mina_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina_3} is not set:
+                        set {-maz.aviso::mina_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina_4} is not set:
+                set {-maz.vacia::mina_4} to now
+            delete {-maz.fin::mina_4}
+            delete {-maz.aviso::mina_4}
+        else:
+            delete {-maz.vacia::mina_4}
+            if {-maz.fin::mina_4} is set:
+                set {_t} to difference between {-maz.fin::mina_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina_4}
+                    delete {-maz.aviso::mina_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina_4} is not set:
+                        set {-maz.aviso::mina_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina_5} is not set:
+                set {-maz.vacia::mina_5} to now
+            delete {-maz.fin::mina_5}
+            delete {-maz.aviso::mina_5}
+        else:
+            delete {-maz.vacia::mina_5}
+            if {-maz.fin::mina_5} is set:
+                set {_t} to difference between {-maz.fin::mina_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina_5}
+                    delete {-maz.aviso::mina_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina_5} is not set:
+                        set {-maz.aviso::mina_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("mina_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::mina_6} is not set:
+                set {-maz.vacia::mina_6} to now
+            delete {-maz.fin::mina_6}
+            delete {-maz.aviso::mina_6}
+        else:
+            delete {-maz.vacia::mina_6}
+            if {-maz.fin::mina_6} is set:
+                set {_t} to difference between {-maz.fin::mina_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::mina_6}
+                    delete {-maz.aviso::mina_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::mina_6} is not set:
+                        set {-maz.aviso::mina_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba} is not set:
+                set {-maz.vacia::tumba} to now
+            delete {-maz.fin::tumba}
+            delete {-maz.aviso::tumba}
+        else:
+            delete {-maz.vacia::tumba}
+            if {-maz.fin::tumba} is set:
+                set {_t} to difference between {-maz.fin::tumba} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba}
+                    delete {-maz.aviso::tumba}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba} is not set:
+                        set {-maz.aviso::tumba} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba_2} is not set:
+                set {-maz.vacia::tumba_2} to now
+            delete {-maz.fin::tumba_2}
+            delete {-maz.aviso::tumba_2}
+        else:
+            delete {-maz.vacia::tumba_2}
+            if {-maz.fin::tumba_2} is set:
+                set {_t} to difference between {-maz.fin::tumba_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba_2}
+                    delete {-maz.aviso::tumba_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba_2} is not set:
+                        set {-maz.aviso::tumba_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba_3} is not set:
+                set {-maz.vacia::tumba_3} to now
+            delete {-maz.fin::tumba_3}
+            delete {-maz.aviso::tumba_3}
+        else:
+            delete {-maz.vacia::tumba_3}
+            if {-maz.fin::tumba_3} is set:
+                set {_t} to difference between {-maz.fin::tumba_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba_3}
+                    delete {-maz.aviso::tumba_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba_3} is not set:
+                        set {-maz.aviso::tumba_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba_4} is not set:
+                set {-maz.vacia::tumba_4} to now
+            delete {-maz.fin::tumba_4}
+            delete {-maz.aviso::tumba_4}
+        else:
+            delete {-maz.vacia::tumba_4}
+            if {-maz.fin::tumba_4} is set:
+                set {_t} to difference between {-maz.fin::tumba_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba_4}
+                    delete {-maz.aviso::tumba_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba_4} is not set:
+                        set {-maz.aviso::tumba_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba_5} is not set:
+                set {-maz.vacia::tumba_5} to now
+            delete {-maz.fin::tumba_5}
+            delete {-maz.aviso::tumba_5}
+        else:
+            delete {-maz.vacia::tumba_5}
+            if {-maz.fin::tumba_5} is set:
+                set {_t} to difference between {-maz.fin::tumba_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba_5}
+                    delete {-maz.aviso::tumba_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba_5} is not set:
+                        set {-maz.aviso::tumba_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("tumba_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::tumba_6} is not set:
+                set {-maz.vacia::tumba_6} to now
+            delete {-maz.fin::tumba_6}
+            delete {-maz.aviso::tumba_6}
+        else:
+            delete {-maz.vacia::tumba_6}
+            if {-maz.fin::tumba_6} is set:
+                set {_t} to difference between {-maz.fin::tumba_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::tumba_6}
+                    delete {-maz.aviso::tumba_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::tumba_6} is not set:
+                        set {-maz.aviso::tumba_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo} is not set:
+                set {-maz.vacia::cumbre_hielo} to now
+            delete {-maz.fin::cumbre_hielo}
+            delete {-maz.aviso::cumbre_hielo}
+        else:
+            delete {-maz.vacia::cumbre_hielo}
+            if {-maz.fin::cumbre_hielo} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo}
+                    delete {-maz.aviso::cumbre_hielo}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo} is not set:
+                        set {-maz.aviso::cumbre_hielo} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo_2} is not set:
+                set {-maz.vacia::cumbre_hielo_2} to now
+            delete {-maz.fin::cumbre_hielo_2}
+            delete {-maz.aviso::cumbre_hielo_2}
+        else:
+            delete {-maz.vacia::cumbre_hielo_2}
+            if {-maz.fin::cumbre_hielo_2} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo_2}
+                    delete {-maz.aviso::cumbre_hielo_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo_2} is not set:
+                        set {-maz.aviso::cumbre_hielo_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo_3} is not set:
+                set {-maz.vacia::cumbre_hielo_3} to now
+            delete {-maz.fin::cumbre_hielo_3}
+            delete {-maz.aviso::cumbre_hielo_3}
+        else:
+            delete {-maz.vacia::cumbre_hielo_3}
+            if {-maz.fin::cumbre_hielo_3} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo_3}
+                    delete {-maz.aviso::cumbre_hielo_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo_3} is not set:
+                        set {-maz.aviso::cumbre_hielo_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo_4} is not set:
+                set {-maz.vacia::cumbre_hielo_4} to now
+            delete {-maz.fin::cumbre_hielo_4}
+            delete {-maz.aviso::cumbre_hielo_4}
+        else:
+            delete {-maz.vacia::cumbre_hielo_4}
+            if {-maz.fin::cumbre_hielo_4} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo_4}
+                    delete {-maz.aviso::cumbre_hielo_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo_4} is not set:
+                        set {-maz.aviso::cumbre_hielo_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo_5} is not set:
+                set {-maz.vacia::cumbre_hielo_5} to now
+            delete {-maz.fin::cumbre_hielo_5}
+            delete {-maz.aviso::cumbre_hielo_5}
+        else:
+            delete {-maz.vacia::cumbre_hielo_5}
+            if {-maz.fin::cumbre_hielo_5} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo_5}
+                    delete {-maz.aviso::cumbre_hielo_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo_5} is not set:
+                        set {-maz.aviso::cumbre_hielo_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("cumbre_hielo_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::cumbre_hielo_6} is not set:
+                set {-maz.vacia::cumbre_hielo_6} to now
+            delete {-maz.fin::cumbre_hielo_6}
+            delete {-maz.aviso::cumbre_hielo_6}
+        else:
+            delete {-maz.vacia::cumbre_hielo_6}
+            if {-maz.fin::cumbre_hielo_6} is set:
+                set {_t} to difference between {-maz.fin::cumbre_hielo_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::cumbre_hielo_6}
+                    delete {-maz.aviso::cumbre_hielo_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::cumbre_hielo_6} is not set:
+                        set {-maz.aviso::cumbre_hielo_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano} is not set:
+                set {-maz.vacia::forja_volcano} to now
+            delete {-maz.fin::forja_volcano}
+            delete {-maz.aviso::forja_volcano}
+        else:
+            delete {-maz.vacia::forja_volcano}
+            if {-maz.fin::forja_volcano} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano}
+                    delete {-maz.aviso::forja_volcano}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano} is not set:
+                        set {-maz.aviso::forja_volcano} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano_2} is not set:
+                set {-maz.vacia::forja_volcano_2} to now
+            delete {-maz.fin::forja_volcano_2}
+            delete {-maz.aviso::forja_volcano_2}
+        else:
+            delete {-maz.vacia::forja_volcano_2}
+            if {-maz.fin::forja_volcano_2} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano_2}
+                    delete {-maz.aviso::forja_volcano_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano_2} is not set:
+                        set {-maz.aviso::forja_volcano_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano_3} is not set:
+                set {-maz.vacia::forja_volcano_3} to now
+            delete {-maz.fin::forja_volcano_3}
+            delete {-maz.aviso::forja_volcano_3}
+        else:
+            delete {-maz.vacia::forja_volcano_3}
+            if {-maz.fin::forja_volcano_3} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano_3}
+                    delete {-maz.aviso::forja_volcano_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano_3} is not set:
+                        set {-maz.aviso::forja_volcano_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano_4} is not set:
+                set {-maz.vacia::forja_volcano_4} to now
+            delete {-maz.fin::forja_volcano_4}
+            delete {-maz.aviso::forja_volcano_4}
+        else:
+            delete {-maz.vacia::forja_volcano_4}
+            if {-maz.fin::forja_volcano_4} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano_4}
+                    delete {-maz.aviso::forja_volcano_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano_4} is not set:
+                        set {-maz.aviso::forja_volcano_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano_5} is not set:
+                set {-maz.vacia::forja_volcano_5} to now
+            delete {-maz.fin::forja_volcano_5}
+            delete {-maz.aviso::forja_volcano_5}
+        else:
+            delete {-maz.vacia::forja_volcano_5}
+            if {-maz.fin::forja_volcano_5} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano_5}
+                    delete {-maz.aviso::forja_volcano_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano_5} is not set:
+                        set {-maz.aviso::forja_volcano_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("forja_volcano_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::forja_volcano_6} is not set:
+                set {-maz.vacia::forja_volcano_6} to now
+            delete {-maz.fin::forja_volcano_6}
+            delete {-maz.aviso::forja_volcano_6}
+        else:
+            delete {-maz.vacia::forja_volcano_6}
+            if {-maz.fin::forja_volcano_6} is set:
+                set {_t} to difference between {-maz.fin::forja_volcano_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::forja_volcano_6}
+                    delete {-maz.aviso::forja_volcano_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::forja_volcano_6} is not set:
+                        set {-maz.aviso::forja_volcano_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth}
+            if {-maz.fin::world_minecraft_santuario_azeroth} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth_2} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth_2} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth_2}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth_2}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth_2}
+            if {-maz.fin::world_minecraft_santuario_azeroth_2} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth_2}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth_2} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth_3} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth_3} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth_3}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth_3}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth_3}
+            if {-maz.fin::world_minecraft_santuario_azeroth_3} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth_3}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth_3} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth_4")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth_4} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth_4} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth_4}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth_4}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth_4}
+            if {-maz.fin::world_minecraft_santuario_azeroth_4} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth_4} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth_4}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth_4}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth_4} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth_4} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth_5")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth_5} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth_5} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth_5}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth_5}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth_5}
+            if {-maz.fin::world_minecraft_santuario_azeroth_5} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth_5} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth_5}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth_5}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth_5} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth_5} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("world_minecraft_santuario_azeroth_6")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::world_minecraft_santuario_azeroth_6} is not set:
+                set {-maz.vacia::world_minecraft_santuario_azeroth_6} to now
+            delete {-maz.fin::world_minecraft_santuario_azeroth_6}
+            delete {-maz.aviso::world_minecraft_santuario_azeroth_6}
+        else:
+            delete {-maz.vacia::world_minecraft_santuario_azeroth_6}
+            if {-maz.fin::world_minecraft_santuario_azeroth_6} is set:
+                set {_t} to difference between {-maz.fin::world_minecraft_santuario_azeroth_6} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::world_minecraft_santuario_azeroth_6}
+                    delete {-maz.aviso::world_minecraft_santuario_azeroth_6}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::world_minecraft_santuario_azeroth_6} is not set:
+                        set {-maz.aviso::world_minecraft_santuario_azeroth_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player

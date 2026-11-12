@@ -26,7 +26,7 @@ FORJA_SALA1_LIMPIA:
   - removetag{tag=forja.ola2} @self
 FORJA_IR_SALA2:
   Skills:
-  - command{c="execute in minecraft:forja_volcano run minecraft:tp <target.name> -125.5 13 -125.7 -13.4 0"}
+  - command{c="execute as <target.name> at @s run minecraft:tp @s -125.5 13 -125.7 -13.4 0"}
   - sound{s=entity.enderman.teleport}
 FORJA_SALA1_RESET:
   Skills:
@@ -64,7 +64,7 @@ FORJA_SALA2_LIMPIA:
   - removetag{tag=forja.ola2} @self
 FORJA_IR_SALA3:
   Skills:
-  - command{c="execute in minecraft:forja_volcano run minecraft:tp <target.name> 0.8 47 26 -178.2 0"}
+  - command{c="execute as <target.name> at @s run minecraft:tp @s 0.8 47 26 -178.2 0"}
   - sound{s=entity.enderman.teleport}
 FORJA_SALA2_RESET:
   Skills:
@@ -90,6 +90,7 @@ FORJA_SALA3_INICIO:
 FORJA_SALA3_LIMPIA:
   Skills:
   - addtag{tag=forja.fin} @self
+  - command{c="mazfin <caster.l.w>"}
   - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=64}
   - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=64}
   - command{c="execute as <target.name> at @s run function astral:quest/event/golem_forja"} @PlayersInRadius{r=64}
@@ -131,8 +132,7 @@ FORJA_PREMIO_YA:
   - message{m="&7Ya cobraste el cofre de esta mazmorra hace poco. &8(se puede cobrar cada 30 minutos)"}
 FORJA_ENTRAR:
   Skills:
-  - 'message{m="&8[&7Corazon de la Forja&8] &7Bajando a las &fCorazon de la Forja&7... &8(3 salas. Para salir: /spawn)"}'
-  - command{c="execute in minecraft:forja_volcano run minecraft:tp <trigger.name> 23.2 13 -159.4 151.5 0"}
+  - command{c="mazentrar <trigger.name> forja"}
 TANDA2_forja_AST_FASE_astral_golem_forja_2:
   Skills:
   - addtag{tag=astral.fase2} @self

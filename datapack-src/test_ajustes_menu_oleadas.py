@@ -46,7 +46,7 @@ class AjustesTests(unittest.TestCase):
                 self.assertIn('bossbar add '+bar,load)
                 self.assertIn('bossbar set '+bar+' players\n',tick)
                 ui=files[prefix+p+'/ui.mcfunction']
-                self.assertIn('queue',ui)
+                self.assertIn('ad.qm',ui)  # pendientes de la cola del controlador
                 self.assertIn('ad.left += @s ad.pending',ui)
                 self.assertIn('tag='+f'ad.{d["key"]}.{r["id"]}',ui)
                 self.assertIn(f'tag={d["key"]}.fin',ui)

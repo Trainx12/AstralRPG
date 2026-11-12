@@ -212,7 +212,7 @@ def generate(files):
     def fn(p,lines): files['data/astral/function/'+p+'.mcfunction']='\n'.join(lines)+'\n'
     # Objetivos propios: no dependen de ejecutar comandos de instalacion manuales.
     load='data/astral/function/load.mcfunction'
-    files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive'))+'\n'
+    files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive','ad.q','ad.qm','ad.w'))+'\n'
     maintenance=[]
     for d in ds:
         key=d['key']
@@ -221,13 +221,17 @@ def generate(files):
             # El nombre ya identifica los controles persistentes (tambien en la UI).
             # No necesita recrearlos ni cargar chunks de salas vacias.
             control=f'@e[type=armor_stand,name={json.dumps("Control "+r["name"],ensure_ascii=False)},tag={key}.on]'
-            maintenance.append(f'execute in minecraft:{d["world"]} as {control} at @s run function astral:{p}/tick')
+            # Una linea por copia de la mazmorra (instancias.py): cada controlador avanza su propia sala.
+            from instancias import copias
+            for world in copias(d['world']):
+                maintenance.append(f'execute in minecraft:{world} as {control} at @s run function astral:{p}/tick')
             cap=OLEADA_TOPE_FORJA if key=='forja' else OLEADA_TOPE
-            sel=f'@e[tag={t},nbt=!{{Health:0.0f}}]'
-            wave_sel=f'@e[tag={t}.wave,nbt=!{{Health:0.0f}}]'
-            fn(p+'/reset',[f'kill @e[tag={t}]',f'data remove storage {store} queue',
+            # distance=0.. limita al mundo del controlador: las 6 copias no se pisan.
+            sel=f'@e[tag={t},distance=0..,nbt=!{{Health:0.0f}}]'
+            wave_sel=f'@e[tag={t}.wave,distance=0..,nbt=!{{Health:0.0f}}]'
+            fn(p+'/reset',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0',
                            f'tag @s remove {busy}',f'scoreboard players set @s ad.clock 0'])
-            fn(p+'/cleanup',[f'kill @e[tag={t}]',f'data remove storage {store} queue'])
+            fn(p+'/cleanup',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0'])
             def spawn(m,pt,suffix):
                 x,y,z=pt; tags=[t,t+'.'+suffix,'ad.vanilla']
                 nbt='Tags:'+json.dumps(tags)+',Glowing:1b,PersistenceRequired:1b'
@@ -243,8 +247,8 @@ def generate(files):
                 if m=='WITHER_SKELETON': nbt+=',equipment:{mainhand:{id:"minecraft:stone_sword",count:1}}'
                 if m=='VINDICATOR': nbt+=',equipment:{mainhand:{id:"minecraft:iron_axe",count:1}}'
                 lines=[f'summon minecraft:{m.lower()} {x} {y} {z} {{{nbt}}}',
-                       f'execute as @e[tag={t},tag=!astral.seen] at @s run function astral:mob/roll']
-                if key=='forja': lines += [f'effect give @e[tag={t}] minecraft:fire_resistance infinite 0 true']
+                       f'execute as @e[tag={t},tag=!astral.seen,distance=0..] at @s run function astral:mob/roll']
+                if key=='forja': lines += [f'effect give @e[tag={t},distance=0..] minecraft:fire_resistance infinite 0 true']
                 return lines
             arrival='HUSK' if key=='tumba' else 'ZOMBIE'
             fn(p+'/arrival', [line for i in range(LLEGADA_MOBS) for line in spawn(arrival,r['spawn_points'][i%len(r['spawn_points'])],'arrival')])
@@ -252,50 +256,49 @@ def generate(files):
                 m,n=r['companions']
                 fn(p+'/companions',[line for i in range(n) for line in spawn(m,r['spawn_points'][i%len(r['spawn_points'])],'companion')])
                 fn(p+'/helpers',[line for i in range(2) for line in spawn('HUSK' if key=='tumba' else 'SKELETON' if key=='mina' else 'ZOMBIE',r['spawn_points'][i%len(r['spawn_points'])],'companion')])
+            # Cola por indices en el controlador: ad.w = oleada, ad.q = proximo, ad.qm = total
+            # (base + extra por jugadores). La extra repite la composicion base en orden.
+            picks=[]
             for n,wave in enumerate(r['oleadas'],1):
                 if r.get('boss_room'): continue
                 base=[m for m,count,_ in wave for _ in range(count)]
-                queue=[]
+                pick=['scoreboard players operation #i ad.i = @s ad.q',f'scoreboard players set #m ad.i {len(base)}',
+                      'scoreboard players operation #i ad.i %= #m ad.i']
                 for i,m in enumerate(base):
                     pts=r.get('golem_points',r['spawn_points']) if m=='RAVAGER' else r['spawn_points']
                     f=p+f'/w{n}/spawn{i}'
                     fn(f,spawn(m,pts[i%len(pts)],'wave'))
-                    queue.append({'fn':'astral:'+f})
+                    pick.append(f'execute if score #i ad.i matches {i} run return run function astral:{f}')
+                fn(p+f'/w{n}/pick',pick)
+                picks.append(f'execute if score @s ad.w matches {n} run function astral:{p}/w{n}/pick')
                 # ceil(base * 40% * jugadores extra), repartido siguiendo la composicion base.
                 lines=[f'tag @s add {key}.espera',f'tag @s add {busy}',
-                       f'data modify storage {store} queue set value '+json.dumps(queue),
+                       f'scoreboard players set @s ad.w {n}','scoreboard players set @s ad.q 0',
                        f'execute store result score @s ad.party run execute if entity @a[distance=..{r["r"]},gamemode=!spectator]',
                        'scoreboard players remove @s ad.party 2','scoreboard players set @s ad.n 0',
                        f'execute if score @s ad.party matches 1.. run scoreboard players operation @s ad.n = @s ad.party',
                        f'scoreboard players set #factor ad.n {len(base)*EXTRA_JUGADOR_PCT}',
                        'scoreboard players operation @s ad.n *= #factor ad.n',
                        'scoreboard players add @s ad.n 99','scoreboard players set #hundred ad.n 100',
-                       'scoreboard players operation @s ad.n /= #hundred ad.n','scoreboard players set @s ad.i 0',
-                       f'function astral:{p}/w{n}/extra', 'scoreboard players set @s ad.clock 0']
+                       'scoreboard players operation @s ad.n /= #hundred ad.n',
+                       f'scoreboard players set @s ad.qm {len(base)}','scoreboard players operation @s ad.qm += @s ad.n',
+                       'scoreboard players set @s ad.clock 0']
                 if n==1: lines += [f'function astral:{p}/arrival']
                 lines += [f'function astral:{p}/pop']*cap
                 fn(p+f'/wave{n}',lines)
-                extra=['execute if score @s ad.n matches ..0 run return 0']
-                for i,entry in enumerate(queue):
-                    extra += [f'execute if score @s ad.i matches {i} run data modify storage {store} queue append value '+json.dumps(entry)]
-                extra += ['scoreboard players remove @s ad.n 1','scoreboard players add @s ad.i 1',
-                          f'execute if score @s ad.i matches {len(base)}.. run scoreboard players set @s ad.i 0',
-                          f'function astral:{p}/w{n}/extra']
-                fn(p+f'/w{n}/extra',extra)
-            fn(p+'/dispatch',['$function $(fn)'])
-            fn(p+'/pop',[f'execute unless data storage {store} queue[0] run return 0',
+            fn(p+'/pop',['execute unless score @s ad.q < @s ad.qm run return 0',
                          f'execute store result score @s ad.alive run execute if entity {wave_sel}',
                          f'execute if score @s ad.alive matches {cap}.. run return 0',
-                         f'function astral:{p}/dispatch with storage {store} queue[0]',
-                         f'data remove storage {store} queue[0]'])
+                         *picks,
+                         'scoreboard players add @s ad.q 1'])
             fn(p+'/tick',[f'execute unless entity @s[tag={key}.on] run return 0',
                           'scoreboard players add @s ad.clock 20',
                           *[f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run function astral:{p}/pop']*OLEADA_TANDA,
                           f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run scoreboard players set @s ad.clock 0',
-                          f'execute if data storage {store} queue[0] run tag @s add {key}.espera',
-                          f'execute unless data storage {store} queue[0] run tag @s remove {key}.espera',
+                          f'execute if score @s ad.q < @s ad.qm run tag @s add {key}.espera',
+                          f'execute unless score @s ad.q < @s ad.qm run tag @s remove {key}.espera',
                           f'tag @s remove {busy}',f'execute if entity {sel} run tag @s add {busy}',
-                          f'execute if data storage {store} queue[0] run tag @s add {busy}'])
+                          f'execute if score @s ad.q < @s ad.qm run tag @s add {busy}'])
 
     fn('tanda2/tick',maintenance)
     files.setdefault('data/astral/function/loop/t20.mcfunction','')

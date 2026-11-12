@@ -10,15 +10,45 @@ elite-bonus: 1.5
 boss-bonus: 8
 dungeon-tiers:
   bosque: 1
+  bosque_2: 1
+  bosque_3: 1
+  bosque_4: 1
+  bosque_5: 1
+  bosque_6: 1
   mina: 2
+  mina_2: 2
+  mina_3: 2
+  mina_4: 2
+  mina_5: 2
+  mina_6: 2
   tumba: 3
+  tumba_2: 3
+  tumba_3: 3
+  tumba_4: 3
+  tumba_5: 3
+  tumba_6: 3
   cumbre: 4
   forja: 5
   santuario: 5
   cumbre_hielo: 4
+  cumbre_hielo_2: 4
+  cumbre_hielo_3: 4
+  cumbre_hielo_4: 4
+  cumbre_hielo_5: 4
+  cumbre_hielo_6: 4
   forja_volcano: 5
+  forja_volcano_2: 5
+  forja_volcano_3: 5
+  forja_volcano_4: 5
+  forja_volcano_5: 5
+  forja_volcano_6: 5
   santuario_interstellar: 5
   santuario_azeroth: 5
+  santuario_azeroth_2: 5
+  santuario_azeroth_3: 5
+  santuario_azeroth_4: 5
+  santuario_azeroth_5: 5
+  santuario_azeroth_6: 5
 mythic:
   astral_espantapajaros:
     tier: 1
