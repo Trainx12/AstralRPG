@@ -55,6 +55,7 @@ MASC_CREAR_lobo:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 1"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_lobo} @self'
 
 MASC_APARECER_lobo:
@@ -149,6 +150,7 @@ MASC_CREAR_cuervo:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 2"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_cuervo} @self'
 
 MASC_APARECER_cuervo:
@@ -231,6 +233,7 @@ MASC_CREAR_golem:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 3"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_golem} @self'
 
 MASC_APARECER_golem:
@@ -313,6 +316,7 @@ MASC_CREAR_zorro:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 4"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_zorro} @self'
 
 MASC_APARECER_zorro:
@@ -395,6 +399,7 @@ MASC_CREAR_dragon:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 5"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_dragon} @self'
 
 MASC_APARECER_dragon:
@@ -525,6 +530,7 @@ MASC_CREAR_fenix:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 6"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_fenix} @self'
 
 MASC_APARECER_fenix:
@@ -607,6 +613,7 @@ MASC_CREAR_ghastito:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 7"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_ghastito} @self'
 
 MASC_APARECER_ghastito:
@@ -689,6 +696,7 @@ MASC_CREAR_bombardero:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 8"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_bombardero} @self'
 
 MASC_APARECER_bombardero:
@@ -771,6 +779,7 @@ MASC_CREAR_canonero:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 9"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_canonero} @self'
 
 MASC_APARECER_canonero:
@@ -853,6 +862,7 @@ MASC_CREAR_encapuchado:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 10"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_encapuchado} @self'
 
 MASC_APARECER_encapuchado:
@@ -935,6 +945,7 @@ MASC_CREAR_llamita:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 11"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_llamita} @self'
 
 MASC_APARECER_llamita:
@@ -1017,6 +1028,7 @@ MASC_CREAR_hondero:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 12"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_hondero} @self'
 
 MASC_APARECER_hondero:
@@ -1099,6 +1111,7 @@ MASC_CREAR_saqueador:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 13"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_saqueador} @self'
 
 MASC_APARECER_saqueador:
@@ -1181,6 +1194,7 @@ MASC_CREAR_brujita:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 14"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_brujita} @self'
 
 MASC_APARECER_brujita:
@@ -1263,6 +1277,7 @@ MASC_CREAR_desierto:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 15"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_desierto} @self'
 
 MASC_APARECER_desierto:
@@ -1345,6 +1360,7 @@ MASC_CREAR_jungla:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 16"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_jungla} @self'
 
 MASC_APARECER_jungla:
@@ -1427,6 +1443,7 @@ MASC_CREAR_frondoso:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 17"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_frondoso} @self'
 
 MASC_APARECER_frondoso:
@@ -1509,6 +1526,7 @@ MASC_CREAR_micelio:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 18"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_micelio} @self'
 
 MASC_APARECER_micelio:
@@ -1591,6 +1609,7 @@ MASC_CREAR_pradera:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 19"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_pradera} @self'
 
 MASC_APARECER_pradera:
@@ -1673,6 +1692,7 @@ MASC_CREAR_sabana:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 20"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_sabana} @self'
 
 MASC_APARECER_sabana:
@@ -1755,6 +1775,7 @@ MASC_CREAR_nieve:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 21"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_nieve} @self'
 
 MASC_APARECER_nieve:
@@ -1837,6 +1858,7 @@ MASC_CREAR_pantano:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 22"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_pantano} @self'
 
 MASC_APARECER_pantano:
@@ -1919,6 +1941,7 @@ MASC_CREAR_honguito:
   Skills:
   - 'delay 25'
   - 'command{c="scoreboard players set <caster.name> petsel 23"}'
+  - 'delay 3'
   - 'skill{s=MASC_APARECER_honguito} @self'
 
 MASC_APARECER_honguito:

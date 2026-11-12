@@ -182,6 +182,9 @@ def skill_yml():
               sk(f'message{{m="&7Invocaste a tu &f{d["nombre"]}&7. &8(/mascotas para guardarla)"}}'), ""]
         L += [f"MASC_CREAR_{pid}:", "  Skills:", sk("delay 25"),
               sk(f'command{{c="scoreboard players set <caster.name> petsel {n}"}}'),
+              # El puntaje recien puesto no se ve en la misma pasada: sin esta espera,
+              # MASC_APARECER lo leia en 0 y no invocaba nada (12/11/2026).
+              sk("delay 3"),
               sk(f"skill{{s=MASC_APARECER_{pid}}} @self"), "",
               f"MASC_APARECER_{pid}:", "  Conditions:", "  - isplayer true",
               f"  - score{{o=petsel;v={n}}} true", "  Skills:",
