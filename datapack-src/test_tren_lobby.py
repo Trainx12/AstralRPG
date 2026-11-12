@@ -18,6 +18,11 @@ class TrainBuildTests(unittest.TestCase):
         self.assertFalse(configuration()['allowMobEnter'])
         self.assertFalse(configuration()['playerTakeable'])
 
+    def test_locomotive_uses_tall_model_and_wagons_the_low_one(self):
+        # En el pack original basic_coaster_cart es la locomotora alta.
+        models=[c['astral-model'] for c in configuration()['carts']]
+        self.assertEqual(models,['cart','head','head','head'])
+
     def source(self,path):
         inner=io.BytesIO()
         with zipfile.ZipFile(inner,'w') as z:

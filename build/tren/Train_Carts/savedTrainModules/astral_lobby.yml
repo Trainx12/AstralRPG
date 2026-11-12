@@ -16,6 +16,29 @@ AstralLobby:
     block: DEFAULT
   carts:
   - entityType: MINECART
+    astral-model: cart
+    model:
+      type: EMPTY
+      physical:
+        cartLength: 4.89375
+        wheelCenter: 0.0
+        wheelDistance: 1.5
+      attachments:
+      - type: ITEM
+        item:
+          type: PAPER
+          meta:
+            ==: ItemMeta
+            meta-type: UNSPECIFIC
+            item-model: astral:tren_cart
+        position:
+          transform: DISPLAY_FIXED
+          posY: 2.0
+          posZ: 0.0887875
+          sizeX: 2.0
+          sizeY: 2.0
+          sizeZ: 2.0
+  - entityType: MINECART
     astral-model: head
     model:
       type: EMPTY
@@ -38,12 +61,17 @@ AstralLobby:
           sizeX: 2.0
           sizeY: 2.0
           sizeZ: 2.0
+      - type: SEAT
+        position:
+          posY: 1.25
+          posZ: 0.1
+        displayMode: DEFAULT
   - entityType: MINECART
-    astral-model: cart
+    astral-model: head
     model:
       type: EMPTY
       physical:
-        cartLength: 4.89375
+        cartLength: 3.6275125
         wheelCenter: 0.0
         wheelDistance: 1.5
       attachments:
@@ -53,11 +81,11 @@ AstralLobby:
           meta:
             ==: ItemMeta
             meta-type: UNSPECIFIC
-            item-model: astral:tren_cart
+            item-model: astral:tren_head
         position:
           transform: DISPLAY_FIXED
           posY: 2.0
-          posZ: 0.0887875
+          posZ: -0.02313125
           sizeX: 2.0
           sizeY: 2.0
           sizeZ: 2.0
@@ -67,11 +95,11 @@ AstralLobby:
           posZ: 0.1
         displayMode: DEFAULT
   - entityType: MINECART
-    astral-model: cart
+    astral-model: head
     model:
       type: EMPTY
       physical:
-        cartLength: 4.89375
+        cartLength: 3.6275125
         wheelCenter: 0.0
         wheelDistance: 1.5
       attachments:
@@ -81,39 +109,11 @@ AstralLobby:
           meta:
             ==: ItemMeta
             meta-type: UNSPECIFIC
-            item-model: astral:tren_cart
+            item-model: astral:tren_head
         position:
           transform: DISPLAY_FIXED
           posY: 2.0
-          posZ: 0.0887875
-          sizeX: 2.0
-          sizeY: 2.0
-          sizeZ: 2.0
-      - type: SEAT
-        position:
-          posY: 1.25
-          posZ: 0.1
-        displayMode: DEFAULT
-  - entityType: MINECART
-    astral-model: cart
-    model:
-      type: EMPTY
-      physical:
-        cartLength: 4.89375
-        wheelCenter: 0.0
-        wheelDistance: 1.5
-      attachments:
-      - type: ITEM
-        item:
-          type: PAPER
-          meta:
-            ==: ItemMeta
-            meta-type: UNSPECIFIC
-            item-model: astral:tren_cart
-        position:
-          transform: DISPLAY_FIXED
-          posY: 2.0
-          posZ: 0.0887875
+          posZ: -0.02313125
           sizeX: 2.0
           sizeY: 2.0
           sizeZ: 2.0

@@ -64,7 +64,9 @@ public final class TrainProbe extends JavaPlugin {
             check(!a.hasPermission("astraltren.admin"),"administracion denegada a jugador normal");
             var model=train().get(1).getProperties().getConfig().getNode("model");
             var item=model.getNodeList("attachments").getFirst().get("item",org.bukkit.inventory.ItemStack.class);
-            check(item.getItemMeta().getItemModel().toString().equals("astral:tren_cart"),"componente item_model moderno");
+            check(item.getItemMeta().getItemModel().toString().equals("astral:tren_head"),"componente item_model moderno (vagon bajo)");
+            var loco=train().get(0).getProperties().getConfig().getNode("model").getNodeList("attachments").getFirst().get("item",org.bukkit.inventory.ItemStack.class);
+            check(loco.getItemMeta().getItemModel().toString().equals("astral:tren_cart"),"locomotora con chimenea adelante");
             check(train().head().getEntity().getEntity().getLocation().getZ()<train().tail().getEntity().getEntity().getLocation().getZ(),"locomotora al norte");
         }
         case "one" -> {a.setRespawnLocation(null,true);board(a,1);}

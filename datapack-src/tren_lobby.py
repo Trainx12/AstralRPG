@@ -27,13 +27,20 @@ def dump(path, data):
     path.write_text(yaml.safe_dump(data,sort_keys=False,allow_unicode=True),encoding='utf8')
 
 
-def cart(kind):
+# El pack original tiene los nombres cruzados: `basic_coaster_cart` es la
+# locomotora (alta, con chimenea, 127 piezas) y `basic_coaster_head` el vagon
+# bajo con asiento. Asi quedaba 1 vagon adelante y 3 locomotoras (12/11/2026).
+MODEL = {'loco':'cart','vagon':'head'}
+
+
+def cart(role):
     # Arte separado del YAML: solo referencias a item_model propio.
+    kind=MODEL[role]
     item={'type':'PAPER','meta':{'==':'ItemMeta','meta-type':'UNSPECIFIC','item-model':'astral:tren_'+kind}}
     attachments=[{'type':'ITEM','item':item,'position':{'transform':'DISPLAY_FIXED','posY':2.0,
         'posZ':(-0.02313125 if kind=='head' else 0.0887875),
         'sizeX':2.0,'sizeY':2.0,'sizeZ':2.0}}]
-    if kind=='cart':
+    if role=='vagon':
         attachments.append({'type':'SEAT','position':{'posY':1.25,'posZ':0.1},'displayMode':'DEFAULT'})
     return {'entityType':'MINECART','astral-model':kind,'model':{'type':'EMPTY',
         'physical':{'cartLength':(3.6275125 if kind=='head' else 4.89375),'wheelCenter':0.0,'wheelDistance':1.5},'attachments':attachments}}
@@ -44,7 +51,7 @@ def configuration():
         'slowDown':False,'keepChunksLoaded':True,'allowPlayerEnter':True,'allowPlayerExit':True,
         'allowMobEnter':False,'invincible':True,'playerTakeable':False,
         'collision':{'players':'CANCEL','misc':'CANCEL','train':'CANCEL','block':'DEFAULT'},
-        'carts':[cart('head'),cart('cart'),cart('cart'),cart('cart')]}
+        'carts':[cart('loco'),cart('vagon'),cart('vagon'),cart('vagon')]}
 
 
 def generate():
