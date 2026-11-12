@@ -389,9 +389,10 @@ ASTRAL_ROWS = [
     ref("sidebar_world"), DIVIDER,
     f"{section('♟ Jugador')} {TEXT}%player%",
     f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
-    f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
     f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
     f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
+    f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
+    DIVIDER,  # separa stats de diarias e historia (pedido 12/11/2026)
     f"{section('✎ Diarias')} {MUTED}· 00:00 ARG",
     *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
       for i, (icon, label) in enumerate((("✦", "Fácil"), ("✧", "Media"), ("✶", "Difícil")))),
@@ -399,11 +400,11 @@ ASTRAL_ROWS = [
 ]  # Fecha e IP solo en el TAB (pedido 12/11/2026).
 assert len(ASTRAL_ROWS) <= 15
 from mobs.progreso_oleadas import sidebar_conditions
-DUNGEON_ROWS = ASTRAL_ROWS[:7] + [
+DUNGEON_ROWS = ASTRAL_ROWS[:8] + [
     f"{section('Mazmorra')} {TEXT}%condition:ad_room_1%",
     f"{PURPLE}%condition:ad_active%",
     f"{MUTED}Restantes {TEXT}%objective_score_{'{ad.left}'}%",
-    *ASTRAL_ROWS[11:],
+    *ASTRAL_ROWS[12:],
 ]
 ASTRAL_BOARD = ('    mazmorra:\n      title: "'+TITLE+'"\n'
                 '      display-condition: "%condition:ad_dungeon%=true"\n      lines:\n'

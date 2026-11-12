@@ -38,7 +38,8 @@ def boards_and_conditions():
               f"{section('♟ Jugador')} {TEXT}%player%",
               f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
               f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
-              f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%"]
+              f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
+              f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%", DIVIDER]
     footer = []  # fecha e IP solo en el TAB
     boards = [
         _board('infinita', 'pm_infinita', player + [
@@ -63,7 +64,6 @@ def boards_and_conditions():
         _board('survival', 'pm_survival', player + [
             f"{section('⚒ Survival')}",
             f"{PURPLE}✦ {MUTED}Nivel {TEXT}%player_level%  {PURPLE}☠ {MUTED}Muertes {TEXT}%statistic_deaths%",
-            f"{PURPLE}☠ {MUTED}Monstruos {TEXT}%statistic_mob_kills%",
             f"{PURPLE}» {MUTED}/menu · /sethome · /spawn",
             *footer]),
     ]

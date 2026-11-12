@@ -108,8 +108,8 @@ def prepare(iid, name, base, lore, data, components, pdc):
 
 
 def mejorable(source):
-    """El Herrero mejora armas (no bastones) y armaduras; no herramientas."""
-    return source['kind'] not in ('staff', 'drill', 'saw')
+    """El Herrero mejora armas (bastones incluidos) y armaduras; no herramientas."""
+    return source['kind'] not in ('drill', 'saw')
 
 
 def enchant_lines(comps):

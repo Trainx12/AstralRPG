@@ -1,3 +1,4 @@
+import re
 """Regresion de entrega aislada, migracion sin perdida y geometria privada."""
 import io
 import itertools
@@ -38,7 +39,10 @@ class AlasCascoTests(unittest.TestCase):
                             for v in value.values():repair(v,expected)
                         elif isinstance(value,list):
                             for v in value:repair(v,expected)
-                    repair(a,True);repair(b);self.assertEqual(a,b,n)
+                    repair(a,True);repair(b)
+                    # ITEM_VERSION sube en tandas posteriores (16: estrellas en bastones).
+                    nv=lambda x:re.sub(r'(?<![A-Za-z_])v:\d+','v:N',json.dumps(x))
+                    self.assertEqual(nv(a),nv(b),n)
                 else:
                     self.assertTrue(n=='data/astral/function/upgrade/check.mcfunction' or '/upgrade/' in n and n.endswith('/carnivora_helmet.mcfunction'),n)
             modifier=json.loads(new.read('data/astral/item_modifier/carnivora_head.json'))

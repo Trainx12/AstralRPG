@@ -21,7 +21,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 15  # Alas cosmeticas en segunda mano, sin ocupar la pechera.
+ITEM_VERSION = 16  # Bastones mejorados muestran estrellas en el nombre.
 
 files = {}
 
