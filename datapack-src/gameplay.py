@@ -1,6 +1,6 @@
 """Balance, migracion sin reemplazar inventarios y reglas de las mazmorras."""
 import json
-from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD, ARRIVAL as SANCTUARY_ARRIVAL
+from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD, ARRIVAL as SANCTUARY_ARRIVAL, ARRIVAL_YAW as SANCTUARY_YAW, ARRIVAL_SPREAD as SANCTUARY_SPREAD
 from pathlib import Path
 from minijuegos import parkour_worlds, arena_worlds
 
@@ -267,12 +267,30 @@ function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
     if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% __SANCT_TP__ 0 0"
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% __SANCT_TP__ __SANCT_YAW__ 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop
     execute console command "spawn %name of {_p}%"
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
+
+# Santuario: si ya hay alguien en la entrada, el que llega queda al costado (2, -2, 4, -4...).
+on world change:
+    if name of player's world is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+        wait 2 ticks
+        set {_entrada} to location(__SANCT_X__, __SANCT_Y__, __SANCT_Z__, world of player, __SANCT_YAW__, 0)
+        if distance between player and {_entrada} > 1.5:
+            stop
+        set {_n} to 0
+        loop players in world of player:
+            loop-player is not player
+            distance between loop-player and {_entrada} < 10
+            add 1 to {_n}
+        if {_n} > 0:
+            set {_dx} to ceil({_n} / 2) * __SANCT_SPREAD__
+            if mod({_n}, 2) is 0:
+                set {_dx} to -1 * {_dx}
+            teleport player to location(__SANCT_X__ + {_dx}, __SANCT_Y__, __SANCT_Z__, world of player, __SANCT_YAW__, 0)
 
 function astral_dungeon(w: world) :: boolean:
     if name of {_w} is __WORLDS__:
@@ -506,7 +524,7 @@ on quit:
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
 __PVP__
-__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL)))
+__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
 
 
 def realistic_hook():

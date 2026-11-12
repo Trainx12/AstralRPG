@@ -6,7 +6,7 @@ Las Minas siguen en mazmorra.MINA y conservan todos sus identificadores.
 from copy import deepcopy
 import re
 from mobs.rutas_mazmorras import ROUTES
-from santuario_azeroth import WORLD as SANCTUARY_WORLD, ARRIVAL, CENTER, BOSSES, CHEST, GUIDE, RADIUS, FLOOR_Y
+from santuario_azeroth import WORLD as SANCTUARY_WORLD, ARRIVAL, CENTER, BOSSES, CHEST, GUIDE, RADIUS, FLOOR_Y, WAVES, ARRIVAL_YAW
 
 try:
     from . import mythic
@@ -122,14 +122,18 @@ def catalog():
         rooms = []
         if key == "santuario":
             waves = []
-            for source in ("cangrejo", "chaman", "momia", "yeti", "golem_forja"):
+            for source in WAVES:
+                if source.isupper():
+                    # Mob vanilla provisorio (lugar del jefe nuevo que todavia no existe).
+                    waves.append([(source, 1, 0)])
+                    continue
                 mid, block, add = variant(key, source, ancestral=True, boss=True)
                 blocks.append(block); helpers.update(add)
                 waves.append([(mid, 1, 0)])
             rooms.append(dict(id="sala1", name=definition["labels"][0], centro=definition["points"][0],
                               llegada=definition.get("arrival", definition["points"][0]),
                               r=definition.get("radius", 30), oleadas=waves, extra=sorted(helpers),
-                              wave_spawn_points=BOSSES, floor_range=(FLOOR_Y,FLOOR_Y)))
+                              wave_spawn_points=BOSSES, floor_range=(FLOOR_Y,FLOOR_Y), yaw=ARRIVAL_YAW))
         else:
             boss, block, helpers = variant(key, definition["boss"], boss=True)
             blocks.append(block)

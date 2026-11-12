@@ -37,12 +37,30 @@ function astral_rescue(p: player):
     set velocity of {_p} to vector(0, 0, 0)
     set fall distance of {_p} to 0
     if name of world of {_p} is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
-        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 256.5 180 254.5 0 0"
+        execute console command "execute in minecraft:santuario_azeroth run minecraft:tp %name of {_p}% 256.5 64 281.5 180 0"
         set fall distance of {_p} to 0
         send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
         stop
     execute console command "spawn %name of {_p}%"
     send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
+
+# Santuario: si ya hay alguien en la entrada, el que llega queda al costado (2, -2, 4, -4...).
+on world change:
+    if name of player's world is "santuario_azeroth" or "world_minecraft_santuario_azeroth":
+        wait 2 ticks
+        set {_entrada} to location(256.5, 64, 281.5, world of player, 180, 0)
+        if distance between player and {_entrada} > 1.5:
+            stop
+        set {_n} to 0
+        loop players in world of player:
+            loop-player is not player
+            distance between loop-player and {_entrada} < 10
+            add 1 to {_n}
+        if {_n} > 0:
+            set {_dx} to ceil({_n} / 2) * 2
+            if mod({_n}, 2) is 0:
+                set {_dx} to -1 * {_dx}
+            teleport player to location(256.5 + {_dx}, 64, 281.5, world of player, 180, 0)
 
 function astral_dungeon(w: world) :: boolean:
     if name of {_w} is "bosque" or "tumba" or "mina" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "forja_volcano" or "santuario_interstellar" or "santuario_azeroth" or "world_minecraft_santuario_azeroth":

@@ -26,5 +26,5 @@ lp group default permission set astral.santuario.cd false
 mm mobs kill astral_santuario_control_sala1
 execute in minecraft:santuario_azeroth run forceload remove all
 execute in minecraft:santuario_azeroth run forceload add 191 187 321 321
-mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,256.5,180,254.5
-# Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 256.5 180 254.5 0 0
+mm mobs spawn astral_santuario_control_sala1 1 world_minecraft_santuario_azeroth,256.5,64,256.5
+# Revision OP: execute in minecraft:santuario_azeroth run minecraft:tp <jugador> 256.5 64 281.5 180 0

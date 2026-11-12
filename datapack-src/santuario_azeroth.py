@@ -11,17 +11,19 @@ PASTE_ORIGIN = (256, 64, 256)
 BOUNDS = (191, 187, 321, 321)  # forceload x1 z1 x2 z2
 
 # ===================== COORDENADAS DEL SANTUARIO (UNICO LUGAR) =====================
-# PROVISORIO hasta que el dueno diga donde van la entrada, los jefes y el cofre:
-# todo arriba del centro de la estructura, parado sobre vidrio violeta (y=179).
+# Puntos del dueno (capturas 12/11/2026). Piso de vidrio violeta comprobado en la schematic.
 # Para cambiarlas: editar este bloque, `python build.py` y `python mobs/mazmorra.py`.
-ARRIVAL = (256.5, 180, 254.5)   # tp de entrada y rescate
-CENTER = (256.5, 180, 254.5)    # controlador de las oleadas
+ARRIVAL = (256.5, 64, 281.5)    # tp de entrada y rescate
+ARRIVAL_YAW = 180               # mirando al norte, hacia el centro
+ARRIVAL_SPREAD = 2              # si entran varios: los demas a 2, 4, 6 bloques al costado (eje X)
+CENTER = (256.5, 64, 256.5)     # controlador de las oleadas (centro de la arena)
 RADIUS = 150                    # jugadores dentro de este radio cuentan como "en el Santuario"
-# Cinco oleadas de un Ancestral: Cangrejo, Chaman, Momia, Yeti, Golem de Forja.
-BOSSES = ((256.5, 180, 254.5),) * 5
-FLOOR_Y = 180                   # piso donde aparecen los jefes
-CHEST = (258.5, 180, 256.5)     # cofre del premio final
-GUIDE = (256.5, 180, 256.5)     # NPC guia
+# Oleadas en orden, del mas debil al mas fuerte. 'ZOMBIE' (vanilla) reserva el lugar del jefe nuevo.
+WAVES = ('cangrejo', 'chaman', 'momia', 'yeti', 'golem_forja', 'ZOMBIE')
+BOSSES = ((256.5, 64, 256.5),) * len(WAVES)   # todos aparecen en el centro
+FLOOR_Y = 64                    # piso donde aparecen los jefes
+CHEST = (257.5, 64, 256.5)      # cofre del premio final (donde aparecen los jefes)
+GUIDE = (255.5, 64, 256.5)      # NPC guia
 # ====================================================================================
 
 
@@ -46,7 +48,7 @@ def commands():
               f'execute in minecraft:{WORLD} run forceload remove all',
               f'execute in minecraft:{WORLD} run forceload add {BOUNDS[0]} {BOUNDS[1]} {BOUNDS[2]} {BOUNDS[3]}',
               f'mm mobs spawn astral_santuario_control_sala1 1 {w},{CENTER[0]},{CENTER[1]},{CENTER[2]}',
-              f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> {ARRIVAL[0]} {ARRIVAL[1]} {ARRIVAL[2]} 0 0']
+              f'# Revision OP: execute in minecraft:{WORLD} run minecraft:tp <jugador> {ARRIVAL[0]} {ARRIVAL[1]} {ARRIVAL[2]} {ARRIVAL_YAW} 0']
     return '\n'.join(lines)+'\n'
 
 
