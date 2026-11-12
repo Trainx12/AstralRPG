@@ -467,6 +467,9 @@ TAB_SECTIONS += (playtime_conditions() + location_conditions() + location_condit
 '''
 
 TAB_SECTIONS = mines_sidebar(TAB_SECTIONS)
+# Paneles por mundo: infinita, mini juegos, arenas y survival (panel_mundos.py).
+from panel_mundos import apply as panel_por_mundo
+TAB_SECTIONS = panel_por_mundo(TAB_SECTIONS)
 
 
 TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)

@@ -2366,6 +2366,8 @@ from tanda4b_world import generate as generate_tanda4b_world
 generate_tanda4b_world(files)
 from santuario_azeroth import generate as generate_sanctuary
 generate_sanctuary(files)
+from infinita import generate as generate_infinita
+generate_infinita(files)  # Mazmorra Infinita: tier de los mobs (inf/apply)
 
 # ---------------------------------------------------------------------------
 # Escribir

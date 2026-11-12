@@ -519,3 +519,17 @@ Cada mazmorra tiene **6 copias** (`datapack-src/instancias.py`): `mina`, `mina_2
 - Las oleadas de tanda2 guardan su avance en el controlador de cada copia (`ad.q`/`ad.qm`/`ad.w`) y sus selectores usan
   `distance=0..` para no tocar otras copias. Pasos entre salas: `execute as <jugador> at @s run tp` (mundo propio).
 - Prueba: `python tools/probar_copias_paper.py --java <java25> --base .local/testsrv`.
+
+## Mazmorra Infinita (12/11/2026)
+
+`datapack-src/infinita.py` -> `build/infinita/astral_infinita.sk`, `build/infinita/comandos.txt` y funciones `inf/*` del datapack.
+- `/infinita` (o boton en /mazmorras, casilla 47): ventana de tier (I..V y V+) y de velocidad (Facil 4 s, Normal 3 s,
+  Dificil 2 s, Pesadilla 1 s). Party junta; 6 salas `infinita` .. `infinita_6`; sin sala libre: "Mazmorra ocupada".
+- 20 min en el tier elegido, despues +1 tier cada 10 min; aviso 5 min antes ("Te veo muy tranquilo, creo que podes dar
+  mas pelea"). En V+ sigue: +25% vida y dano por subida. Un mob por jugador en cada aparicion; tope 10 + 8 por jugador.
+- Mobs vanilla con el tier del datapack (`inf/apply/tN` = `mob/tN`): dano x tier en Skript, XP y nombre con vida.
+  Creepers (algunos nucleares) con `mob_griefing false`; ningun mob lastima a otro. Morir = volver al spawn.
+- Mapa: `doubledungeonspawn.schem` del dueno (privado en `.local/infinita-mapa`), pegado en (0,64,0) con
+  `tools/pegar_infinita.py`; se suben sus 4 regiones a cada sala con el server apagado. Antorchas flotantes conservadas.
+- Panel lateral por mundo (`panel_mundos.py`): infinita, mini juegos, arenas y survival; lobby con diarias.
+- Prueba: `python tools/probar_infinita_paper.py --java <java25> --base .local/testsrv` (tiempos acortados).

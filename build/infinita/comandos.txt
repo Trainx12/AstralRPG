@@ -1,0 +1,109 @@
+# Mazmorra Infinita: crear las 6 salas una vez; despues subir las regiones del mapa (server apagado).
+mv create infinita normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita set difficulty hard
+mv modify infinita set gamemode survival
+mv modify infinita set pvp false
+mv modify infinita set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita
+mv gamerule set minecraft:keep_inventory true infinita
+mv gamerule set minecraft:mob_griefing false infinita
+mv gamerule set minecraft:advance_time false infinita
+rg flag -w infinita __global__ build deny
+rg flag -w infinita __global__ block-break deny
+rg flag -w infinita __global__ block-place deny
+rg flag -w infinita __global__ chest-access deny
+rg flag -w infinita __global__ pvp deny
+rg flag -w infinita __global__ mob-spawning allow
+rg flag -w infinita __global__ interact allow
+rg flag -w infinita __global__ use deny
+execute in minecraft:infinita run setworldspawn 0 63 8
+mv create infinita_2 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita_2 set difficulty hard
+mv modify infinita_2 set gamemode survival
+mv modify infinita_2 set pvp false
+mv modify infinita_2 set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita_2
+mv gamerule set minecraft:keep_inventory true infinita_2
+mv gamerule set minecraft:mob_griefing false infinita_2
+mv gamerule set minecraft:advance_time false infinita_2
+rg flag -w infinita_2 __global__ build deny
+rg flag -w infinita_2 __global__ block-break deny
+rg flag -w infinita_2 __global__ block-place deny
+rg flag -w infinita_2 __global__ chest-access deny
+rg flag -w infinita_2 __global__ pvp deny
+rg flag -w infinita_2 __global__ mob-spawning allow
+rg flag -w infinita_2 __global__ interact allow
+rg flag -w infinita_2 __global__ use deny
+execute in minecraft:infinita_2 run setworldspawn 0 63 8
+mv create infinita_3 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita_3 set difficulty hard
+mv modify infinita_3 set gamemode survival
+mv modify infinita_3 set pvp false
+mv modify infinita_3 set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita_3
+mv gamerule set minecraft:keep_inventory true infinita_3
+mv gamerule set minecraft:mob_griefing false infinita_3
+mv gamerule set minecraft:advance_time false infinita_3
+rg flag -w infinita_3 __global__ build deny
+rg flag -w infinita_3 __global__ block-break deny
+rg flag -w infinita_3 __global__ block-place deny
+rg flag -w infinita_3 __global__ chest-access deny
+rg flag -w infinita_3 __global__ pvp deny
+rg flag -w infinita_3 __global__ mob-spawning allow
+rg flag -w infinita_3 __global__ interact allow
+rg flag -w infinita_3 __global__ use deny
+execute in minecraft:infinita_3 run setworldspawn 0 63 8
+mv create infinita_4 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita_4 set difficulty hard
+mv modify infinita_4 set gamemode survival
+mv modify infinita_4 set pvp false
+mv modify infinita_4 set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita_4
+mv gamerule set minecraft:keep_inventory true infinita_4
+mv gamerule set minecraft:mob_griefing false infinita_4
+mv gamerule set minecraft:advance_time false infinita_4
+rg flag -w infinita_4 __global__ build deny
+rg flag -w infinita_4 __global__ block-break deny
+rg flag -w infinita_4 __global__ block-place deny
+rg flag -w infinita_4 __global__ chest-access deny
+rg flag -w infinita_4 __global__ pvp deny
+rg flag -w infinita_4 __global__ mob-spawning allow
+rg flag -w infinita_4 __global__ interact allow
+rg flag -w infinita_4 __global__ use deny
+execute in minecraft:infinita_4 run setworldspawn 0 63 8
+mv create infinita_5 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita_5 set difficulty hard
+mv modify infinita_5 set gamemode survival
+mv modify infinita_5 set pvp false
+mv modify infinita_5 set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita_5
+mv gamerule set minecraft:keep_inventory true infinita_5
+mv gamerule set minecraft:mob_griefing false infinita_5
+mv gamerule set minecraft:advance_time false infinita_5
+rg flag -w infinita_5 __global__ build deny
+rg flag -w infinita_5 __global__ block-break deny
+rg flag -w infinita_5 __global__ block-place deny
+rg flag -w infinita_5 __global__ chest-access deny
+rg flag -w infinita_5 __global__ pvp deny
+rg flag -w infinita_5 __global__ mob-spawning allow
+rg flag -w infinita_5 __global__ interact allow
+rg flag -w infinita_5 __global__ use deny
+execute in minecraft:infinita_5 run setworldspawn 0 63 8
+mv create infinita_6 normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
+mv modify infinita_6 set difficulty hard
+mv modify infinita_6 set gamemode survival
+mv modify infinita_6 set pvp false
+mv modify infinita_6 set allow-weather false
+mv gamerule set minecraft:spawn_mobs false infinita_6
+mv gamerule set minecraft:keep_inventory true infinita_6
+mv gamerule set minecraft:mob_griefing false infinita_6
+mv gamerule set minecraft:advance_time false infinita_6
+rg flag -w infinita_6 __global__ build deny
+rg flag -w infinita_6 __global__ block-break deny
+rg flag -w infinita_6 __global__ block-place deny
+rg flag -w infinita_6 __global__ chest-access deny
+rg flag -w infinita_6 __global__ pvp deny
+rg flag -w infinita_6 __global__ mob-spawning allow
+rg flag -w infinita_6 __global__ interact allow
+rg flag -w infinita_6 __global__ use deny
+execute in minecraft:infinita_6 run setworldspawn 0 63 8

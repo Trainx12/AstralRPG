@@ -61,6 +61,9 @@ def menu_data():
     items['ayuda']={'material':'BOOK','slot':51,'display_name':'&dSellos de descubrimiento',
                     'lore':['&7El candado indica un portal sin descubrir.','&7Habla con su guardian para activarlo.']}
     items['saldo']={'material':'GOLD_NUGGET','slot':8,'display_name':'&6Tu saldo','lore':['&e%vault_eco_balance_formatted%$'],'update':True}
+    # Mazmorra Infinita (infinita.py): boton en la fila de abajo hasta tener su tarjeta ilustrada.
+    from infinita import menu_button
+    items['infinita']=menu_button()
     themed_cards(items,'mazmorras')
     return {'menu_title':adventure_title('mazmorras'),'size':54,'update_interval':1,'items':items}
 

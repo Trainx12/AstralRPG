@@ -34,6 +34,12 @@ options:
     rescate-y-world_minecraft_santuario_azeroth_4: 0
     rescate-y-world_minecraft_santuario_azeroth_5: 0
     rescate-y-world_minecraft_santuario_azeroth_6: 0
+    rescate-y-infinita: 40
+    rescate-y-infinita_2: 40
+    rescate-y-infinita_3: 40
+    rescate-y-infinita_4: 40
+    rescate-y-infinita_5: 40
+    rescate-y-infinita_6: 40
 
 # Solo lobby y mazmorras. La altura -10000 deja fuera al resto de mundos.
 function astral_rescue_height(w: world) :: number:
@@ -105,6 +111,18 @@ function astral_rescue_height(w: world) :: number:
         return {@rescate-y-world_minecraft_santuario_azeroth_5}
     if name of {_w} is "world_minecraft_santuario_azeroth_6":
         return {@rescate-y-world_minecraft_santuario_azeroth_6}
+    if name of {_w} is "infinita":
+        return {@rescate-y-infinita}
+    if name of {_w} is "infinita_2":
+        return {@rescate-y-infinita_2}
+    if name of {_w} is "infinita_3":
+        return {@rescate-y-infinita_3}
+    if name of {_w} is "infinita_4":
+        return {@rescate-y-infinita_4}
+    if name of {_w} is "infinita_5":
+        return {@rescate-y-infinita_5}
+    if name of {_w} is "infinita_6":
+        return {@rescate-y-infinita_6}
     return -10000
 
 # Santuario vuelve a su entrada; el resto conserva su rescate al lobby.
@@ -139,7 +157,7 @@ on world change:
             teleport player to location(256.5 + {_dx}, 64, 281.5, world of player, 180, 0)
 
 function astral_dungeon(w: world) :: boolean:
-    if name of {_w} is "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6":
+    if name of {_w} is "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "infinita" or "infinita_2" or "infinita_3" or "infinita_4" or "infinita_5" or "infinita_6":
         return true
     return false
 
@@ -222,7 +240,7 @@ on mount:
 
 on death of player:
     set {_w} to name of world of victim
-    if {_w} is "lobby" or "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+    if {_w} is "lobby" or "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "infinita" or "infinita_2" or "infinita_3" or "infinita_4" or "infinita_5" or "infinita_6" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
         keep the inventory and experiences
         clear drops
         set {_x} to floor(x-coordinate of victim)

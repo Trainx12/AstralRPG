@@ -19,6 +19,11 @@ public final class SchemPaste extends JavaPlugin {
     @Override public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
             var world = Bukkit.getWorld(args[0]);
+            if (world == null && !args[0].startsWith("world_")) {
+                // Mundo vacio para armar regiones (Mazmorra Infinita).
+                world = Bukkit.createWorld(new org.bukkit.WorldCreator(args[0]).type(org.bukkit.WorldType.FLAT)
+                        .generatorSettings("{\"layers\":[{\"block\":\"minecraft:air\",\"height\":1}],\"biome\":\"minecraft:the_void\"}").generateStructures(false));
+            }
             if (world == null) { getLogger().info("PASTE FAIL mundo " + args[0] + " no existe: " + Bukkit.getWorlds()); return true; }
             var file = new File(args[1]);
             Clipboard clip;

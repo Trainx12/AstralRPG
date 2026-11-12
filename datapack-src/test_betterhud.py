@@ -64,7 +64,7 @@ class PanelTest(unittest.TestCase):
         board = TAB_SECTIONS.split("\nscoreboard:\n", 1)[1].split("\nconditions:\n", 1)[0]
         self.assertIn("toggle-command: /sbtab", board)
         names = re.findall(r"^    (\w+):$", board, re.M)
-        self.assertEqual(names, ["minas", "mazmorra", "astral"])
+        self.assertEqual(names, ["infinita", "parkour", "arenas", "survival", "minas", "mazmorra", "astral"])
 
 
 if __name__ == "__main__":

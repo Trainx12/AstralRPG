@@ -58,6 +58,20 @@
       ],
       "update": true
     },
+    "infinita": {
+      "material": "SPAWNER",
+      "slot": 47,
+      "display_name": "&5&lMazmorra Infinita",
+      "lore": [
+        "&7Elegi tu tier y la velocidad de los mobs.",
+        "&7Cada 10 minutos sube la dificultad.",
+        "&7Entra con tu party. 6 salas para varios grupos."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] infinita<delay=3>"
+      ]
+    },
     "bosque": {
       "material": "PAPER",
       "slot": 9,

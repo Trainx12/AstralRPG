@@ -1,0 +1,15 @@
+# Generado por panel_mundos.py: contador del panel lateral en mini juegos.
+on load:
+    execute console command "scoreboard objectives add pk.min dummy"
+    execute console command "scoreboard objectives add pk.seg dummy"
+
+every 1 second:
+    loop all players:
+        if name of world of loop-player is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs":
+            add 1 to {-pk.t::%uuid of loop-player%}
+            set {_t} to {-pk.t::%uuid of loop-player%}
+            execute console command "scoreboard players set %name of loop-player% pk.min %floor({_t} / 60)%"
+            execute console command "scoreboard players set %name of loop-player% pk.seg %mod({_t}, 60)%"
+
+on world change:
+    delete {-pk.t::%uuid of player%}

@@ -33,6 +33,12 @@ mv gamerule set minecraft:keep_inventory true forja_volcano_4
 mv gamerule set minecraft:keep_inventory true forja_volcano_5
 mv gamerule set minecraft:keep_inventory true forja_volcano_6
 mv gamerule set minecraft:keep_inventory true santuario_interstellar
+mv gamerule set minecraft:keep_inventory true infinita
+mv gamerule set minecraft:keep_inventory true infinita_2
+mv gamerule set minecraft:keep_inventory true infinita_3
+mv gamerule set minecraft:keep_inventory true infinita_4
+mv gamerule set minecraft:keep_inventory true infinita_5
+mv gamerule set minecraft:keep_inventory true infinita_6
 mv gamerule set minecraft:keep_inventory true cavernas
 mv gamerule set minecraft:keep_inventory true reino
 mv gamerule set minecraft:keep_inventory true exp_desierto
@@ -159,4 +165,22 @@ rg flag -w world_minecraft_santuario_azeroth_5 __global__ build deny
 rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-break deny
 rg flag -w world_minecraft_santuario_azeroth_6 __global__ block-place deny
 rg flag -w world_minecraft_santuario_azeroth_6 __global__ build deny
+rg flag -w infinita __global__ block-break deny
+rg flag -w infinita __global__ block-place deny
+rg flag -w infinita __global__ build deny
+rg flag -w infinita_2 __global__ block-break deny
+rg flag -w infinita_2 __global__ block-place deny
+rg flag -w infinita_2 __global__ build deny
+rg flag -w infinita_3 __global__ block-break deny
+rg flag -w infinita_3 __global__ block-place deny
+rg flag -w infinita_3 __global__ build deny
+rg flag -w infinita_4 __global__ block-break deny
+rg flag -w infinita_4 __global__ block-place deny
+rg flag -w infinita_4 __global__ build deny
+rg flag -w infinita_5 __global__ block-break deny
+rg flag -w infinita_5 __global__ block-place deny
+rg flag -w infinita_5 __global__ build deny
+rg flag -w infinita_6 __global__ block-break deny
+rg flag -w infinita_6 __global__ block-place deny
+rg flag -w infinita_6 __global__ build deny
 lp group default permission set axgraves.allowgraves true

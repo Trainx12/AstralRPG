@@ -10,10 +10,13 @@ from instancias import expand, expand_map
 DUNGEONS=expand(('bosque','tumba','mina','cumbre','forja','santuario',
           # mundos actuales de Cumbre, Forja y Santuario (08/11/2026)
           'cumbre_hielo','forja_volcano','santuario_interstellar','santuario_azeroth',SANCTUARY_BUKKIT_WORLD))
+from infinita import WORLDS as INFINITA
+DUNGEONS=DUNGEONS+tuple(INFINITA)
 PROTECTED=('lobby',)+DUNGEONS+('cavernas','reino','exp_desierto','exp_hielo','exp_santuario')
 # Altura absoluta de rescate. Mina tiene salas bajo Y=0; no usar el mismo limite.
 RESCUE_HEIGHTS=expand_map({'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
                 'cumbre':0, 'forja':0, 'santuario':0, 'santuario_azeroth':0, SANCTUARY_BUKKIT_WORLD:0})
+RESCUE_HEIGHTS.update({w:40 for w in INFINITA})  # Mazmorra Infinita: caer = volver al spawn
 
 def apply(files,items,version):
     def fn(name,lines):files[f'data/astral/function/{name}.mcfunction']='\n'.join(lines)+'\n'

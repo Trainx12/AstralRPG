@@ -98,7 +98,7 @@ class Tanda1(unittest.TestCase):
 
     def test_tab_general_and_toggle(self):
         config = yaml.safe_load(TAB_SECTIONS)
-        self.assertEqual(list(config['scoreboard']['scoreboards']), ['minas', 'mazmorra', 'astral'])
+        self.assertEqual(list(config['scoreboard']['scoreboards']), ['infinita', 'parkour', 'arenas', 'survival', 'minas', 'mazmorra', 'astral'])
         self.assertLessEqual(len(ASTRAL_ROWS), 15)
         self.assertEqual(len(ASTRAL_ROWS), 14)
         self.assertNotIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))

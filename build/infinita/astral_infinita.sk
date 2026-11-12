@@ -1,0 +1,348 @@
+# Generado por infinita.py: Mazmorra Infinita (6 copias, tier, velocidad, subida cada 10 min).
+# Variables {-...}: solo memoria. Usa party_miembros() de astral_mazmorras_copias.sk.
+
+on load:
+    execute console command "scoreboard objectives add inf.tier dummy"
+    execute console command "scoreboard objectives add inf.plus dummy"
+    execute console command "scoreboard objectives add inf.min dummy"
+    execute console command "scoreboard objectives add inf.seg dummy"
+    execute console command "scoreboard objectives add inf.kills dummy"
+
+function inf_mundo(w: world) :: boolean:
+    if name of {_w} is "infinita" or "infinita_2" or "infinita_3" or "infinita_4" or "infinita_5" or "infinita_6":
+        return true
+    return false
+
+function inf_jugadores(w: world) :: number:
+    set {_c} to 0
+    loop all players:
+        world of loop-player is {_w}
+        gamemode of loop-player is not spectator
+        add 1 to {_c}
+    return {_c}
+
+function inf_nombre_tier(t: number) :: text:
+    if {_t} is 1:
+        return "Tier I"
+    if {_t} is 2:
+        return "Tier II"
+    if {_t} is 3:
+        return "Tier III"
+    if {_t} is 4:
+        return "Tier IV"
+    if {_t} is 5:
+        return "Tier V"
+    if {_t} is 6:
+        return "Tier V+"
+    return "Tier V+"
+
+function inf_ventana_tier(p: player):
+    set {_inv} to a new chest inventory with 3 rows named colored "&5Mazmorra Infinita - Tier"
+    set slot 10 of {_inv} to lime dye named "&f&lTier I"
+    set slot 11 of {_inv} to green dye named "&f&lTier II"
+    set slot 12 of {_inv} to yellow dye named "&f&lTier III"
+    set slot 13 of {_inv} to orange dye named "&f&lTier IV"
+    set slot 14 of {_inv} to red dye named "&f&lTier V"
+    set slot 15 of {_inv} to nether star named "&f&lTier V+"
+    set lore of slot 10 of {_inv} to "&7Pelea contra mobs de Tier I." and "&720 min en este tier; despues sube cada 10 min."
+    set lore of slot 11 of {_inv} to "&7Pelea contra mobs de Tier II." and "&720 min en este tier; despues sube cada 10 min."
+    set lore of slot 12 of {_inv} to "&7Pelea contra mobs de Tier III." and "&720 min en este tier; despues sube cada 10 min."
+    set lore of slot 13 of {_inv} to "&7Pelea contra mobs de Tier IV." and "&720 min en este tier; despues sube cada 10 min."
+    set lore of slot 14 of {_inv} to "&7Pelea contra mobs de Tier V." and "&720 min en este tier; despues sube cada 10 min."
+    set lore of slot 15 of {_inv} to "&7Pelea contra mobs de Tier V+." and "&720 min en este tier; despues sube cada 10 min."
+    set slot 22 of {_inv} to barrier named "&cCerrar"
+    set {-inf.gui::%uuid of {_p}%} to "tier"
+    open {_inv} to {_p}
+
+function inf_ventana_vel(p: player):
+    set {_inv} to a new chest inventory with 3 rows named colored "&5Mazmorra Infinita - Velocidad"
+    set slot 11 of {_inv} to lime wool named "&f&lFacil"
+    set slot 12 of {_inv} to yellow wool named "&f&lNormal"
+    set slot 13 of {_inv} to orange wool named "&f&lDificil"
+    set slot 14 of {_inv} to red wool named "&f&lPesadilla"
+    set lore of slot 11 of {_inv} to "&7Aparece un grupo de mobs cada 4 s." and "&7Mas jugadores, mas mobs."
+    set lore of slot 12 of {_inv} to "&7Aparece un grupo de mobs cada 3 s." and "&7Mas jugadores, mas mobs."
+    set lore of slot 13 of {_inv} to "&7Aparece un grupo de mobs cada 2 s." and "&7Mas jugadores, mas mobs."
+    set lore of slot 14 of {_inv} to "&7Aparece un grupo de mobs cada 1 s." and "&7Mas jugadores, mas mobs."
+    set slot 22 of {_inv} to barrier named "&cCerrar"
+    set {-inf.gui::%uuid of {_p}%} to "vel"
+    open {_inv} to {_p}
+
+command /infinita:
+    executable by: players
+    description: Mazmorra Infinita: elegi tier y velocidad.
+    trigger:
+        inf_ventana_tier(player)
+
+on inventory click:
+    set {_g} to {-inf.gui::%uuid of player%}
+    if {_g} is not set:
+        stop
+    cancel event
+    set {_s} to index of event-slot
+    if clicked inventory is player's inventory:
+        stop
+    if {_s} is 22:
+        delete {-inf.gui::%uuid of player%}
+        close player's inventory
+        stop
+    if {_g} is "tier":
+        if {_s} is between 10 and 15:
+            set {-inf.elige.tier::%uuid of player%} to {_s} - 9
+            close player's inventory
+            wait 2 ticks
+            inf_ventana_vel(player)
+        stop
+    if {_g} is "vel":
+        if {_s} is between 11 and 14:
+            delete {-inf.gui::%uuid of player%}
+            close player's inventory
+            inf_entrar(player, {-inf.elige.tier::%uuid of player%}, {_s} - 10)
+
+on inventory close:
+    if {-inf.gui::%uuid of player%} is "vel":
+        stop
+    delete {-inf.gui::%uuid of player%}
+
+function inf_entrar(p: player, tier: number, vel: number):
+    if {_tier} is not set:
+        set {_tier} to 1
+    set {_w::1} to "infinita"
+    set {_w::2} to "infinita_2"
+    set {_w::3} to "infinita_3"
+    set {_w::4} to "infinita_4"
+    set {_w::5} to "infinita_5"
+    set {_w::6} to "infinita_6"
+    set {_m::*} to party_miembros({_p})
+    set {_elegida} to 0
+    loop 6 times:
+        set {_mundo} to world({_w::%loop-number%})
+        if {_mundo} is set:
+            loop {_m::*}:
+                loop-value-2 is not {_p}
+                world of loop-value-2 is {_mundo}
+                set {_elegida} to loop-number
+        if {_elegida} > 0:
+            exit loop
+    if {_elegida} > 0:
+        set {_grupo::*} to {_p}
+    else:
+        loop 6 times:
+            set {_mundo} to world({_w::%loop-number%})
+            if {_mundo} is set:
+                if inf_jugadores({_mundo}) is 0:
+                    if {-inf.on::%{_w::%loop-number%}%} is not set:
+                        set {_elegida} to loop-number
+                        exit loop
+        if {_elegida} is 0:
+            send "&cMazmorra ocupada: &flas 6 salas de la Mazmorra Infinita estan en uso. &7Proba en un rato." to {_p}
+            stop
+        loop {_m::*}:
+            if loop-value is {_p}:
+                add loop-value to {_grupo::*}
+            else if name of world of loop-value is "lobby":
+                add loop-value to {_grupo::*}
+        set {_n} to {_w::%{_elegida}%}
+        set {-inf.on::%{_n}%} to true
+        set {-inf.tier::%{_n}%} to {_tier}
+        set {-inf.plus::%{_n}%} to 0
+        set {-inf.vel::%{_n}%} to {_vel}
+        set {-inf.seg::%{_n}%} to 0
+        set {-inf.next::%{_n}%} to 1200
+        set {-inf.kills::%{_n}%} to 0
+        set {-inf.cd::%{_n}%} to 0
+        delete {-inf.avisado::%{_n}%}
+    set {_n} to {_w::%{_elegida}%}
+    set {_i} to 0
+    loop {_grupo::*}:
+        set {_dx} to ceil({_i} / 2) * 2
+        if mod({_i}, 2) is 1:
+            set {_dx} to -1 * {_dx}
+        add 1 to {_i}
+        execute console command "execute in minecraft:%{_n}% run minecraft:tp %uuid of loop-value% %0.5 + {_dx}% 63 8.5 180 0"
+        send "&5[Mazmorra Infinita] &fSala %{_elegida}% - %inf_nombre_tier({-inf.tier::%{_n}%})%. &7Para salir: /spawn" to loop-value
+
+every 1 second:
+    loop {-inf.on::*}:
+        set {_n} to loop-index
+        set {_mundo} to world({_n})
+        if {_mundo} is not set:
+            delete {-inf.on::%{_n}%}
+        else:
+            set {_pj} to inf_jugadores({_mundo})
+            if {_pj} is 0:
+                inf_limpiar({_n})
+            else:
+                inf_tick({_n}, {_mundo}, {_pj})
+
+function inf_limpiar(n: text):
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[tag=inf.mob,distance=0..]"
+    delete {-inf.on::%{_n}%}
+    delete {-inf.tier::%{_n}%}
+    delete {-inf.plus::%{_n}%}
+    delete {-inf.vel::%{_n}%}
+    delete {-inf.seg::%{_n}%}
+    delete {-inf.next::%{_n}%}
+    delete {-inf.kills::%{_n}%}
+    delete {-inf.cd::%{_n}%}
+    delete {-inf.avisado::%{_n}%}
+
+function inf_tick(n: text, w: world, pj: number):
+    add 1 to {-inf.seg::%{_n}%}
+    set {_r} to {-inf.next::%{_n}%} - {-inf.seg::%{_n}%}
+    # Aviso 5 minutos antes de cada subida.
+    if {_r} <= 300:
+        if {-inf.avisado::%{_n}%} is not set:
+            set {-inf.avisado::%{_n}%} to true
+            loop all players:
+                world of loop-player is {_w}
+                send title "&c&lAtencion" with subtitle "&eTe veo muy tranquilo, creo que podes dar mas pelea" to loop-player for 4 seconds
+                send "&5[Mazmorra Infinita] &eTe veo muy tranquilo, creo que podes dar mas pelea. &7En 5 minutos sube la dificultad." to loop-player
+    if {_r} <= 0:
+        if {-inf.tier::%{_n}%} < 6:
+            add 1 to {-inf.tier::%{_n}%}
+        else:
+            add 1 to {-inf.plus::%{_n}%}
+        add 600 to {-inf.next::%{_n}%}
+        delete {-inf.avisado::%{_n}%}
+        set {_r} to {-inf.next::%{_n}%} - {-inf.seg::%{_n}%}
+        loop all players:
+            world of loop-player is {_w}
+            send title "&4&lSUBE LA DIFICULTAD" with subtitle "&f%inf_nombre_tier({-inf.tier::%{_n}%})%" to loop-player for 3 seconds
+            play sound "entity.wither.spawn" with volume 0.6 to loop-player
+    # Barra de accion: tier, tiempo a la proxima subida y bajas.
+    set {_t} to inf_nombre_tier({-inf.tier::%{_n}%})
+    if {-inf.plus::%{_n}%} > 0:
+        set {_t} to "%{_t}% +%{-inf.plus::%{_n}%} * 25%%%"
+    set {_mm} to floor({_r} / 60)
+    set {_ss} to mod({_r}, 60)
+    set {_sz} to "%{_ss}%"
+    if {_ss} < 10:
+        set {_sz} to "0%{_ss}%"
+    loop all players:
+        world of loop-player is {_w}
+        send action bar "&5%{_t}% &8| &fSube en &e%{_mm}%:%{_sz}% &8| &fBajas: &a%{-inf.kills::%{_n}%}%" to loop-player
+        # Valores para el panel lateral (panel_mundos.py).
+        execute console command "scoreboard players set %name of loop-player% inf.tier %{-inf.tier::%{_n}%}%"
+        execute console command "scoreboard players set %name of loop-player% inf.plus %{-inf.plus::%{_n}%}%"
+        execute console command "scoreboard players set %name of loop-player% inf.min %{_mm}%"
+        execute console command "scoreboard players set %name of loop-player% inf.seg %{_ss}%"
+        execute console command "scoreboard players set %name of loop-player% inf.kills %{-inf.kills::%{_n}%}%"
+    # Que todos ataquen al jugador (arañas y endermans incluidos).
+    set {_vivos} to 0
+    loop all entities in {_w}:
+        if scoreboard tags of loop-entity contains "inf.mob":
+            add 1 to {_vivos}
+            if target of loop-entity is not set:
+                set {_ps::*} to all players in {_w}
+                set target of loop-entity to random element out of {_ps::*}
+    # Aparicion: un grupo cada X segundos segun la velocidad; un mob por jugador.
+    add 1 to {-inf.cd::%{_n}%}
+    if {-inf.vel::%{_n}%} is 1:
+        set {_cada} to 4
+    if {-inf.vel::%{_n}%} is 2:
+        set {_cada} to 3
+    if {-inf.vel::%{_n}%} is 3:
+        set {_cada} to 2
+    if {-inf.vel::%{_n}%} is 4:
+        set {_cada} to 1
+    if {-inf.cd::%{_n}%} < {_cada}:
+        stop
+    set {-inf.cd::%{_n}%} to 0
+    set {_tope} to 10 + 8 * {_pj}
+    loop {_pj} times:
+        if {_vivos} < {_tope}:
+            inf_spawn({_n})
+            add 1 to {_vivos}
+
+function inf_spawn(n: text):
+    set {_p::1} to "24.5 63 0.5"
+    set {_p::2} to "26.5 63 15.5"
+    set {_p::3} to "15.5 63 26.5"
+    set {_p::4} to "0.5 63 30.5"
+    set {_p::5} to "-14.5 63 26.5"
+    set {_p::6} to "-25.5 63 15.5"
+    set {_p::7} to "-27.5 63 0.5"
+    set {_p::8} to "-25.5 63 -14.5"
+    set {_p::9} to "-14.5 63 -25.5"
+    set {_p::10} to "0.5 63 -29.5"
+    set {_p::11} to "15.5 63 -25.5"
+    set {_p::12} to "26.5 63 -14.5"
+    set {_pos} to {_p::%random integer between 1 and 12%}
+    set {_k} to random integer between 1 and 21
+    if {_k} is 1:
+        set {_s} to "zombie %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 2:
+        set {_s} to "zombie %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 3:
+        set {_s} to "zombie %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 4:
+        set {_s} to "husk %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 5:
+        set {_s} to "drowned %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:trident',count:1}}}"
+    if {_k} is 6:
+        set {_s} to "zombie_villager %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 7:
+        set {_s} to "skeleton %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:bow',count:1}}}"
+    if {_k} is 8:
+        set {_s} to "skeleton %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:bow',count:1}}}"
+    if {_k} is 9:
+        set {_s} to "stray %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:bow',count:1}}}"
+    if {_k} is 10:
+        set {_s} to "bogged %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:bow',count:1}}}"
+    if {_k} is 11:
+        set {_s} to "wither_skeleton %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:stone_sword',count:1}}}"
+    if {_k} is 12:
+        set {_s} to "spider %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 13:
+        set {_s} to "spider %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 14:
+        set {_s} to "cave_spider %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 15:
+        set {_s} to "creeper %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 16:
+        set {_s} to "creeper %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 17:
+        set {_s} to "creeper %{_pos}% {Tags:['inf.mob','inf.nuevo'],powered:1b,ExplosionRadius:6b,CustomName:'Creeper Nuclear',CustomNameVisible:1b}"
+    if {_k} is 18:
+        set {_s} to "witch %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    if {_k} is 19:
+        set {_s} to "pillager %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:crossbow',count:1}}}"
+    if {_k} is 20:
+        set {_s} to "vindicator %{_pos}% {Tags:['inf.mob','inf.nuevo'],equipment:{mainhand:{id:'minecraft:iron_axe',count:1}}}"
+    if {_k} is 21:
+        set {_s} to "enderman %{_pos}% {Tags:['inf.mob','inf.nuevo']}"
+    execute console command "execute in minecraft:%{_n}% run summon %{_s}%"
+    set {_t} to {-inf.tier::%{_n}%}
+    set {_extra} to {-inf.plus::%{_n}%}
+    if {_t} is 6:
+        set {_t} to 5
+        add 1 to {_extra}
+    execute console command "scoreboard players set #inf_plus astral.tmp %{_extra}%"
+    execute console command "execute in minecraft:%{_n}% as @e[tag=inf.nuevo,distance=0..] run function astral:inf/apply/t%{_t}%"
+
+# Bajas de la partida.
+on death:
+    if scoreboard tags of victim contains "inf.mob":
+        add 1 to {-inf.kills::%name of world of victim%}
+
+# Creepers (y cualquier mob de la sala) no lastiman a otros mobs; las explosiones no rompen bloques (mob_griefing false).
+on damage:
+    if scoreboard tags of victim contains "inf.mob":
+        if damage cause is entity explosion or block explosion:
+            cancel event
+            stop
+        if attacker is set:
+            if scoreboard tags of attacker contains "inf.mob":
+                cancel event
+
+# Quien muere sale de la partida y vuelve al lobby (inventario conservado por keep_inventory).
+on death of player:
+    if inf_mundo(world of victim) is true:
+        set {-inf.salio::%uuid of victim%} to true
+
+on respawn:
+    if {-inf.salio::%uuid of player%} is set:
+        delete {-inf.salio::%uuid of player%}
+        wait 2 ticks
+        execute console command "spawn %name of player%"

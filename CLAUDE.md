@@ -31,6 +31,8 @@ python mobs/mascotas.py           # Mascotas 3D (/mascotas, bonus, niveles)
 python lobby.py                    # gachas (CrazyCrates), cobro, TAB (tabulador + panel de minas), comandos del lobby
 python betterhud.py                # BetterHud apagado por defecto y /sb para TAB; conservar pack-source/betterhud
 python mazmorras_copias.py         # 6 copias por mazmorra: entrada (mazentrar), /party y 8 min tras el jefe
+python infinita.py                 # Mazmorra Infinita: /infinita, 6 salas, tier y velocidad, sube cada 10 min
+python panel_mundos.py             # panel lateral segun el mundo (TAB): infinita, mini juegos, arenas, survival
 python duelos.py                   # Duelos dentro de /arenas: /desafiar (Skript) y arenas de Duels
 python menus.py                    # menus de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar, cofre del jefe y /fragmentos
 ```
