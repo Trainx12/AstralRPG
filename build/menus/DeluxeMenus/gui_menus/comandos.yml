@@ -26,6 +26,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] parkour'
+    item_model: 'astral:menu/icon_parkour'
   'cmd_arenas':
     material: IRON_SWORD
     slot: 11
@@ -42,6 +43,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] arenas'
+    item_model: 'astral:menu/icon_arenas'
   'cmd_menu':
     material: COMPASS
     slot: 12
@@ -59,6 +61,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] principal'
+    item_model: 'astral:menu/icon_atlas'
   'cmd_mazmorras':
     material: NETHER_STAR
     slot: 13
@@ -76,6 +79,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] mazmorras<delay=3>'
+    item_model: 'astral:menu/icon_mazmorras'
   'cmd_expediciones':
     material: FILLED_MAP
     slot: 14
@@ -93,6 +97,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] expediciones<delay=3>'
+    item_model: 'astral:menu/icon_expediciones'
   'cmd_spawn':
     material: RED_BED
     slot: 15
@@ -110,6 +115,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] spawn'
+    item_model: 'astral:menu/icon_spawn'
   'cmd_guia':
     material: BOOK
     slot: 16
@@ -127,6 +133,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] trigger astral.guia set 1'
+    item_model: 'astral:menu/icon_guia'
   'tema_2':
     material: LIGHT_BLUE_STAINED_GLASS_PANE
     slot: 18
@@ -151,6 +158,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] skills<delay=3>'
+    item_model: 'astral:menu/icon_skills'
   'cmd_mascotas':
     material: BONE
     slot: 20
@@ -167,6 +175,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] mascotas'
+    item_model: 'astral:menu/icon_mascotas'
   'cmd_cosmeticos':
     material: NAME_TAG
     slot: 21
@@ -183,6 +192,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] cosmeticos'
+    item_model: 'astral:menu/icon_cosmeticos'
   'cmd_titulo':
     material: PAPER
     slot: 22
@@ -200,6 +210,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] titulo quitar'
+    item_model: 'astral:menu/icon_titulos'
   'cmd_sb':
     material: ITEM_FRAME
     slot: 23
@@ -217,6 +228,61 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] sb'
+    item_model: 'astral:menu/icon_panel'
+  'cmd_mochilas':
+    material: CHEST
+    slot: 24
+    amount: 1
+    display_name: '&e&l/bp'
+    lore:
+    - '&7Abre tu mochila virtual.'
+    - '&7El permiso se compra en /shop.'
+    - ''
+    - '&fUso: &e/bp'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bp<delay=3>'
+    item_model: 'astral:menu/icon_mochilas'
+  'cmd_proteccion':
+    material: GOLDEN_SHOVEL
+    slot: 25
+    amount: 1
+    display_name: '&e&lProteccion de terreno'
+    lore:
+    - '&7Compra area en /shop y marca'
+    - '&7dos esquinas con una pala de oro.'
+    - ''
+    - '&fUso: &e/shop'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] economyshopgui:shop<delay=3>'
+    item_model: 'astral:menu/icon_proteccion'
+  'cmd_recetas':
+    material: BOOK
+    slot: 26
+    amount: 1
+    display_name: '&e&lRecetas y Forja'
+    lore:
+    - '&7Consulta materiales y recetas'
+    - '&7en la Guia Astral.'
+    - ''
+    - '&fUso: &eGuia Astral'
+    - '&aClic para usarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.guia set 1'
+    item_model: 'astral:menu/icon_recetas'
   'tema_3':
     material: YELLOW_STAINED_GLASS_PANE
     slot: 27
@@ -240,6 +306,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] balance'
+    item_model: 'astral:menu/icon_saldo'
   'cmd_baltop':
     material: GOLD_BLOCK
     slot: 29
@@ -256,6 +323,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] baltop'
+    item_model: 'astral:menu/icon_ranking'
   'cmd_pay':
     material: GOLD_NUGGET
     slot: 30
@@ -271,6 +339,7 @@ items:
     click_commands:
     - '[close]'
     - '[message] &eEscribi: &f/pay <jugador> <cantidad>'
+    item_model: 'astral:menu/icon_pagar'
   'cmd_shop':
     material: EMERALD
     slot: 31
@@ -288,6 +357,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] economyshopgui:shop<delay=3>'
+    item_model: 'astral:menu/icon_tienda'
   'cmd_sellgui':
     material: CHEST
     slot: 32
@@ -305,6 +375,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] astralventa<delay=3>'
+    item_model: 'astral:menu/icon_vender'
   'cmd_worth':
     material: OAK_SIGN
     slot: 33
@@ -322,6 +393,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] worth'
+    item_model: 'astral:menu/icon_valor'
   'cmd_ah':
     material: BELL
     slot: 34
@@ -339,6 +411,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] ah<delay=3>'
+    item_model: 'astral:menu/icon_subastas'
   'cmd_trade':
     material: VILLAGER_SPAWN_EGG
     slot: 35
@@ -355,6 +428,7 @@ items:
     click_commands:
     - '[close]'
     - '[message] &eEscribi: &f/trade <jugador>'
+    item_model: 'astral:menu/icon_intercambio'
   'tema_4':
     material: RED_STAINED_GLASS_PANE
     slot: 36
@@ -378,6 +452,7 @@ items:
     click_commands:
     - '[close]'
     - '[message] &eEscribi: &f/login <clave>'
+    item_model: 'astral:menu/icon_login'
   'cmd_changepassword':
     material: IRON_DOOR
     slot: 38
@@ -393,6 +468,7 @@ items:
     click_commands:
     - '[close]'
     - '[message] &eEscribi: &f/changepassword <vieja> <nueva>'
+    item_model: 'astral:menu/icon_password'
   'cmd_premium':
     material: DIAMOND
     slot: 39
@@ -409,6 +485,7 @@ items:
     click_commands:
     - '[close]'
     - '[message] &eEscribi: &f/premium'
+    item_model: 'astral:menu/icon_premium'
   'info':
     material: WRITABLE_BOOK
     slot: 4
@@ -429,6 +506,7 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] principal'
+    item_model: 'astral:menu/icon_back'
   'vidrio_0':
     material: GRAY_STAINED_GLASS_PANE
     slot: 0
@@ -488,27 +566,6 @@ items:
   'vidrio_17':
     material: GRAY_STAINED_GLASS_PANE
     slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 24
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_25':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 25
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 26
     amount: 1
     display_name: ' '
     item_flags:

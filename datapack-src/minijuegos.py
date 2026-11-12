@@ -113,6 +113,7 @@ def definitions():
 
 
 def menu_data(kind):
+    from menu_ui import decorate
     if kind == 'arena':
         from travel_ui import title, ARENA_SLOTS
         if len(ARENAS)!=len(ARENA_SLOTS) or {d['id'] for d in ARENAS}!=set(ARENA_SLOTS):
@@ -130,7 +131,7 @@ def menu_data(kind):
                 items[key if n==0 else f'{key}_{slot}']=dict(material='PAPER',slot=slot,item_model='astral:viajes/blank',display_name='&f'+key.title(),click_commands=commands)
         # Lobby: la primera casilla muestra la barrera vanilla.
         items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
-        return dict(menu_title=title('arenas'),size=54,items=items)
+        return decorate(dict(menu_title=title('arenas'),size=54,items=items))
     if kind == 'parkour':
         maps = [d for d in PARKOURS if not d.get('group')]
         maps += [dict(id=g, name=d['name'], icon=d['icon'], description=f'{len(d["levels"])} niveles de caida libre.',
@@ -163,7 +164,7 @@ def menu_data(kind):
                               click_commands=['[close]', '[player] spawn<delay=3>'])
     items['cerrar'] = dict(material='BARRIER', slot=32, display_name='&cCerrar', click_commands=['[close]'])
     titles = {'parkour': '&8Mini juegos', 'arena': '&8Arenas PvP', **{g: '&8' + d['name'] for g, d in DROPPERS.items()}}
-    return dict(menu_title=titles[kind], size=36, items=items)
+    return decorate(dict(menu_title=titles[kind], size=36, items=items))
 
 
 def script():
@@ -558,6 +559,7 @@ def deployment():
 
 
 def generate():
+    from menu_ui import decorate
     from gameplay import script as gameplay_script
     from mobs.mythic import npc_block
     outputs = {'minijuegos/astral_minijuegos.sk': script(),
@@ -568,7 +570,7 @@ def generate():
                    'astral_npc_arena', '&c&lArena de jugadores &7- PvP', 'ARMORER',
                    ['command{c="dm open arenas <trigger.name>"} @self ~onInteract'])}
     for kind, filename in [('parkour', 'parkour'), ('arena', 'arenas')] + [(g, g) for g in DROPPERS]:
-        outputs[f'menus/DeluxeMenus/gui_menus/{filename}.yml'] = json.dumps(menu_data(kind), ensure_ascii=False, indent=2) + '\n'
+        outputs[f'menus/DeluxeMenus/gui_menus/{filename}.yml'] = json.dumps(decorate(menu_data(kind)), ensure_ascii=False, indent=2) + '\n'
     for filename, content in outputs.items():
         path = ROOT / 'build' / filename
         path.parent.mkdir(parents=True, exist_ok=True)

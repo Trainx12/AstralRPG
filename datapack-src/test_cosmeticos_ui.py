@@ -10,7 +10,10 @@ from cosmeticos_ui import assets,title,TITLE_SLOTS,CLEAR_SLOTS,key_for,panel
 
 class CosmeticsUITests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.files,cls.providers=assets()
+    def setUpClass(cls):
+        cls.files,cls.providers=assets()
+        from menu_ui import assets as menu_assets
+        cls.files.update(menu_assets()[0])
 
     def test_owned_titles_recheck_permission_and_locked_titles_cannot_equip(self):
         data=menu_data();items=data['items']

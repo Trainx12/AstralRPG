@@ -13,6 +13,10 @@ def menu_data():
     for index,(rarity,name,color) in enumerate(TITLES):
         key=key_for(name);perm='astral.cosmetico.titulo.'+key
         req={'requirements':{'obtenido':{'type':'has permission','permission':perm}}}
+        legacy={'carnivora':'carnivora','diablo':'asura'}.get(key)
+        if legacy:
+            req['minimum_requirements']=1
+            req['requirements']['compensacion']={'type':'has permission','permission':'astral.cosmetico.alas.'+legacy}
         items[key]={'slot':TITLE_SLOTS[index],'material':'PAPER','item_model':'astral:cosmeticos/'+key,
                     'item_flags':['HIDE_ATTRIBUTES'],'priority':1,'display_name':color+name,
                     'lore':['&7Rareza: &f'+RARITIES[rarity][0],'','&aInsignia desbloqueada.',
@@ -32,7 +36,10 @@ def menu_data():
             'lore':['&7Deja tu nombre sin titulo.','&7Conservas todas tus insignias desbloqueadas.'],
             'click_commands':['[close]','[player] titulo quitar']}
     items['sombreros']={'slot':0,'material':'LEATHER_HELMET','display_name':'&dSombreros','click_commands':['[openguimenu] cosmeticos_sombreros']}
-    items['alas']={'slot':1,'material':'ELYTRA','display_name':'&dAlas','click_commands':['[openguimenu] cosmeticos_alas']}
+    items['sombreros']['item_model']='astral:menu/icon_cosmeticos'
+    items['sombreros']['display_name']='&d&lGORROS / SOMBREROS'
+    items['titulos']={'slot':1,'material':'PAPER','item_model':'astral:menu/icon_titulos',
+        'display_name':'&6&lTITULOS','lore':['&7Tu coleccion de insignias esta debajo.']}
     items['info']={'slot':4,'material':'PAPER','item_model':'astral:cosmeticos/nav_info','item_flags':['HIDE_ATTRIBUTES'],'display_name':'&b&lTu coleccion de insignias',
                    'lore':['&7Pasa el cursor por una insignia para leer su titulo.',
                            '&7Clic en una desbloqueada para equiparla.',
@@ -51,22 +58,27 @@ def equipment_menu(kind):
     for index,(_,key,name,rarity,model) in enumerate(r for r in catalog() if r[0]==kind):
         perm=f'astral.cosmetico.{kind}.{key}'
         req={'requirements':{'obtenido':{'type':'has permission','permission':perm}}}
+        legacy={'carnivora':'carnivora','diablo':'asura'}.get(key)
+        if legacy:
+            req['minimum_requirements']=1
+            req['requirements']['compensacion']={'type':'has permission','permission':'astral.cosmetico.alas.'+legacy}
         items[key]={'slot':9+index,'material':'PAPER','item_model':'astral:'+model,'priority':1,
             'display_name':'&d'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],
             '&7No da proteccion ni estadisticas.', '&7Solo visible sin casco.' if kind=='sombrero' else '&7Deja libres tus dos manos.',
             '&eClic para equipar.'], 'view_requirement':req,
             'click_requirement':dict(req,deny_commands=['[message] &cTodavia no lo desbloqueaste.']),
             'click_commands':['[close]',f'[player] astralcosmetic {kind} {key}']}
-        items[key+'_locked']={'slot':9+index,'material':'GRAY_DYE','priority':2,
+        items[key+'_locked']={'slot':9+index,'material':'GRAY_DYE','item_model':'astral:menu/icon_lock','priority':2,
             'display_name':'&8'+name,'lore':['&7Se consigue en la Gacha de Cosmeticos.'],
             'click_commands':['[message] &7Todavia no lo desbloqueaste.']}
-    items['clear']={'slot':49,'material':'BARRIER','display_name':'&eQuitar',
+    items['clear']={'slot':49,'material':'BARRIER','item_model':'astral:menu/icon_clear','display_name':'&eQuitar',
         'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
-    items['back']={'slot':45,'material':'ARROW','display_name':'&fTitulos',
+    items['back']={'slot':45,'material':'ARROW','item_model':'astral:menu/icon_titulos','display_name':'&fTitulos',
         'click_commands':['[openguimenu] cosmeticos']}
-    items['gacha']={'slot':53,'material':'CHEST','display_name':'&dGacha de Cosmeticos',
+    items['gacha']={'slot':53,'material':'CHEST','item_model':'astral:menu/icon_gacha_cosmeticos','display_name':'&dGacha de Cosmeticos',
         'click_commands':['[openguimenu] gacha_cosmeticos']}
-    return {'menu_title':'&8Cosmeticos - '+('Sombreros' if kind=='sombrero' else 'Alas'), 'size':54,'items':items}
+    from gorros_ui import title as hat_title
+    return {'menu_title':hat_title(), 'size':54,'items':items}
 
 
 def script():
@@ -89,9 +101,11 @@ def generate():
     menu.write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     out=ROOT/'build/gameplay';out.mkdir(parents=True,exist_ok=True)
     (out/'astral_cosmeticos.sk').write_text(script(),encoding='utf-8')
-    for kind in ('sombreros','alas'):
+    for kind in ('sombreros',):
         dest=menu.with_name('cosmeticos_'+kind+'.yml')
         dest.write_text(json.dumps(equipment_menu('sombrero' if kind=='sombreros' else 'alas'),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+    retired=menu.with_name('cosmeticos_alas.yml')
+    if retired.exists():retired.unlink()
     # La unica salida de CrazyCrates es lobby.py: no reusar respaldos privados viejos.
 
 

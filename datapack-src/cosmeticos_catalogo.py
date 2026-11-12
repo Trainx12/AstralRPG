@@ -16,8 +16,7 @@ for key, name in [('armorer','Armero'), ('butcher','Carnicero'),
 HATS += [('illusioner','Capucha de Ilusionista','epic','item/illager_hat_illusioner'),
          ('vindicator','Capucha de Vindicador','epic','item/illager_hat_vindicator'),
          ('carnivora','Sombrero de Carnivora','epic',None)]
-WINGS = [('carnivora','Alas de Carnivora','epic','carnivora_alas'),
-         ('asura','Alas de Asura','legendary','asura_alas')]
+WINGS = []  # Retiradas por pedido del dueno; no volver a sortear permisos antiguos.
 
 
 def catalog():

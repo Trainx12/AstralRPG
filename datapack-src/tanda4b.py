@@ -23,8 +23,8 @@ SIMPLE = {
     'carnivora_azada': ('Azada Carnivora', 'diamond_hoe', 'minecraft:diamond_hoe'),
     'carnivora_cana': ('Cana Carnivora', 'fishing_rod', 'minecraft:fishing_rod'),
     'carnivora_escudo': ('Escudo Carnivoro', 'shield', 'minecraft:shield'),
-    'carnivora_alas': ('Alas Carnivoras', 'paper', 'minecraft:elytra'),
-    'asura_alas': ('Alas Asura', 'paper', 'minecraft:elytra'),
+    'carnivora_alas': ('Recuerdo Carnivora', 'paper', 'minecraft:feather'),
+    'asura_alas': ('Recuerdo Asura', 'paper', 'minecraft:feather'),
     **{'asura_moneda_' + k: ('Moneda Asura ' + v, 'paper', 'minecraft:emerald') for k, v in COINS.items()},
     **{'peluche_' + k: ('Peluche ' + v, 'paper', 'minecraft:rabbit_hide') for k, v in PLUSHIES.items()},
 }
@@ -68,14 +68,14 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         if iid in ('carnivora_pico', 'carnivora_pala', 'carnivora_azada'):
             extra['minecraft:enchantments'] = {'minecraft:efficiency': 3, 'minecraft:unbreaking': 2}
         add_item(iid, 'minecraft:' + base, name, '#bff05a' if 'carnivor' in iid else 'gold',
-                 [txt('Segunda mano: alas cosmeticas; compatible con pechera.' if iid.endswith('_alas') else
+                 [txt('Recuerdo de las alas retiradas. Sin efecto al equipar.' if iid.endswith('_alas') else
                       'Clic derecho en bloque: colocar. Clic izquierdo: recoger.' if iid.startswith('peluche_') else 'Material de forja.' if material else 'Equipo Carnivoro III')],
                  data, extra=extra, model='astral:' + iid, kind='material' if material else 'item')
     for iid in list(CLONES) + ['carnivora_' + p for p in ('helmet','chestplate','leggings','boots')] + [i for i in SIMPLE if i.startswith('carnivora_')]:
-        if iid == 'asura_espada':
+        if iid == 'asura_espada' or iid.endswith('_alas'):
             continue
         recipes.append((iid, 1, [('c','colmillo_carnivoro', 12 if iid.endswith('chestplate') else 8), ('c','shadowsteel',4), ('c','netherita_reforzada',1)], 'Carnivora'))
-    for iid in ('asura_espada', 'asura_alas'):
+    for iid in ('asura_espada',):
         recipes.append((iid, 1, [('c','asura_moneda_emerald',32), *[('c','asura_moneda_' + k,2) for k in COINS if k != 'emerald'], ('c','netherita_reforzada',3), ('c','gema_umbria',2)], 'Asura'))
 
 

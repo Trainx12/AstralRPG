@@ -1,42 +1,3336 @@
-menu_title: '&8Bombardero Musgoso'
+menu_title: '&f'
 open_command: mascota_bombardero
 size: 54
 update_interval: 1
 items:
-  'info':
-    material: CREEPER_SPAWN_EGG
+  'nivel_1_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_0'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '1'
+  'nivel_2_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_2_0'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '2'
+  'nivel_3_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_3_0'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '3'
+  'nivel_4_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_4_0'
+    priority: 4
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '4'
+  'nivel_5_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_5_0'
+    priority: 5
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '5'
+  'nivel_6_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_6_0'
+    priority: 6
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '6'
+  'nivel_7_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_7_0'
+    priority: 7
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '7'
+  'nivel_8_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_8_0'
+    priority: 8
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '8'
+  'nivel_9_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_9_0'
+    priority: 9
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '9'
+  'nivel_10_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_10_0'
+    priority: 10
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '10'
+  'nivel_11_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_11_0'
+    priority: 11
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '11'
+  'nivel_12_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_12_0'
+    priority: 12
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '12'
+  'nivel_13_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_13_0'
+    priority: 13
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '13'
+  'nivel_14_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_14_0'
+    priority: 14
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '14'
+  'nivel_15_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_15_0'
+    priority: 15
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '15'
+  'nivel_16_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_16_0'
+    priority: 16
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '16'
+  'nivel_17_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_17_0'
+    priority: 17
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '17'
+  'nivel_18_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_18_0'
+    priority: 18
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '18'
+  'nivel_19_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_19_0'
+    priority: 19
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '19'
+  'nivel_20_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_20_0'
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '20'
+  'nivel_21_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_21_0'
+    priority: 21
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '21'
+  'nivel_22_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_22_0'
+    priority: 22
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '22'
+  'nivel_23_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_23_0'
+    priority: 23
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '23'
+  'nivel_24_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_24_0'
+    priority: 24
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '24'
+  'nivel_25_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_25_0'
+    priority: 25
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '25'
+  'nivel_26_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_26_0'
+    priority: 26
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '26'
+  'nivel_27_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_27_0'
+    priority: 27
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '27'
+  'nivel_28_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_28_0'
+    priority: 28
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '28'
+  'nivel_29_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_29_0'
+    priority: 29
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '29'
+  'nivel_30_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_30_0'
+    priority: 30
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+  'nivel_base_0':
+    material: PAPER
+    slot: 0
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_0'
+    priority: 31
+  'nivel_1_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_1'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '1'
+  'nivel_2_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_2_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '2'
+  'nivel_3_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_3_1'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '3'
+  'nivel_4_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_4_1'
+    priority: 4
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '4'
+  'nivel_5_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_5_1'
+    priority: 5
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '5'
+  'nivel_6_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_6_1'
+    priority: 6
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '6'
+  'nivel_7_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_7_1'
+    priority: 7
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '7'
+  'nivel_8_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_8_1'
+    priority: 8
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '8'
+  'nivel_9_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_9_1'
+    priority: 9
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '9'
+  'nivel_10_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_10_1'
+    priority: 10
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '10'
+  'nivel_11_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_11_1'
+    priority: 11
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '11'
+  'nivel_12_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_12_1'
+    priority: 12
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '12'
+  'nivel_13_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_13_1'
+    priority: 13
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '13'
+  'nivel_14_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_14_1'
+    priority: 14
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '14'
+  'nivel_15_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_15_1'
+    priority: 15
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '15'
+  'nivel_16_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_16_1'
+    priority: 16
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '16'
+  'nivel_17_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_17_1'
+    priority: 17
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '17'
+  'nivel_18_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_18_1'
+    priority: 18
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '18'
+  'nivel_19_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_19_1'
+    priority: 19
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '19'
+  'nivel_20_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_20_1'
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '20'
+  'nivel_21_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_21_1'
+    priority: 21
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '21'
+  'nivel_22_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_22_1'
+    priority: 22
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '22'
+  'nivel_23_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_23_1'
+    priority: 23
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '23'
+  'nivel_24_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_24_1'
+    priority: 24
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '24'
+  'nivel_25_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_25_1'
+    priority: 25
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '25'
+  'nivel_26_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_26_1'
+    priority: 26
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '26'
+  'nivel_27_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_27_1'
+    priority: 27
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '27'
+  'nivel_28_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_28_1'
+    priority: 28
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '28'
+  'nivel_29_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_29_1'
+    priority: 29
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '29'
+  'nivel_30_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_30_1'
+    priority: 30
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+  'nivel_base_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_1'
+    priority: 31
+  'nivel_1_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_2'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '1'
+  'nivel_2_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_2_2'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '2'
+  'nivel_3_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_3_2'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '3'
+  'nivel_4_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_4_2'
+    priority: 4
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '4'
+  'nivel_5_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_5_2'
+    priority: 5
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '5'
+  'nivel_6_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_6_2'
+    priority: 6
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '6'
+  'nivel_7_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_7_2'
+    priority: 7
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '7'
+  'nivel_8_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_8_2'
+    priority: 8
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '8'
+  'nivel_9_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_9_2'
+    priority: 9
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '9'
+  'nivel_10_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_10_2'
+    priority: 10
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '10'
+  'nivel_11_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_11_2'
+    priority: 11
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '11'
+  'nivel_12_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_12_2'
+    priority: 12
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '12'
+  'nivel_13_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_13_2'
+    priority: 13
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '13'
+  'nivel_14_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_14_2'
+    priority: 14
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '14'
+  'nivel_15_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_15_2'
+    priority: 15
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '15'
+  'nivel_16_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_16_2'
+    priority: 16
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '16'
+  'nivel_17_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_17_2'
+    priority: 17
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '17'
+  'nivel_18_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_18_2'
+    priority: 18
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '18'
+  'nivel_19_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_19_2'
+    priority: 19
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '19'
+  'nivel_20_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_20_2'
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '20'
+  'nivel_21_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_21_2'
+    priority: 21
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '21'
+  'nivel_22_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_22_2'
+    priority: 22
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '22'
+  'nivel_23_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_23_2'
+    priority: 23
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '23'
+  'nivel_24_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_24_2'
+    priority: 24
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '24'
+  'nivel_25_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_25_2'
+    priority: 25
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '25'
+  'nivel_26_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_26_2'
+    priority: 26
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '26'
+  'nivel_27_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_27_2'
+    priority: 27
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '27'
+  'nivel_28_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_28_2'
+    priority: 28
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '28'
+  'nivel_29_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_29_2'
+    priority: 29
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '29'
+  'nivel_30_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_30_2'
+    priority: 30
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+  'nivel_base_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_2'
+    priority: 31
+  'nivel_1_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_3'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '1'
+  'nivel_2_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_2_3'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '2'
+  'nivel_3_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_3_3'
+    priority: 3
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '3'
+  'nivel_4_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_4_3'
+    priority: 4
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '4'
+  'nivel_5_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_5_3'
+    priority: 5
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '5'
+  'nivel_6_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_6_3'
+    priority: 6
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '6'
+  'nivel_7_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_7_3'
+    priority: 7
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '7'
+  'nivel_8_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_8_3'
+    priority: 8
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '8'
+  'nivel_9_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_9_3'
+    priority: 9
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '9'
+  'nivel_10_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_10_3'
+    priority: 10
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '10'
+  'nivel_11_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_11_3'
+    priority: 11
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '11'
+  'nivel_12_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_12_3'
+    priority: 12
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '12'
+  'nivel_13_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_13_3'
+    priority: 13
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '13'
+  'nivel_14_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_14_3'
+    priority: 14
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '14'
+  'nivel_15_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_15_3'
+    priority: 15
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '15'
+  'nivel_16_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_16_3'
+    priority: 16
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '16'
+  'nivel_17_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_17_3'
+    priority: 17
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '17'
+  'nivel_18_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_18_3'
+    priority: 18
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '18'
+  'nivel_19_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_19_3'
+    priority: 19
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '19'
+  'nivel_20_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_20_3'
+    priority: 20
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '20'
+  'nivel_21_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_21_3'
+    priority: 21
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '21'
+  'nivel_22_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_22_3'
+    priority: 22
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '22'
+  'nivel_23_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_23_3'
+    priority: 23
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '23'
+  'nivel_24_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_24_3'
+    priority: 24
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '24'
+  'nivel_25_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_25_3'
+    priority: 25
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '25'
+  'nivel_26_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_26_3'
+    priority: 26
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '26'
+  'nivel_27_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_27_3'
+    priority: 27
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '27'
+  'nivel_28_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_28_3'
+    priority: 28
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '28'
+  'nivel_29_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_29_3'
+    priority: 29
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '29'
+  'nivel_30_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_30_3'
+    priority: 30
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '=='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+  'nivel_base_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#71AE45&lBombardero Musgoso'
+    lore:
+    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas'
+    - '&7Sube con los mobs que matas con ella afuera.'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/nivel_1_3'
+    priority: 31
+  'xp_0_full':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_0_2'
+    priority: 1
+    update: true
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        maximo:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+        lleno:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '5'
+  'xp_0_half':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_0_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        medio:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '3'
+  'xp_0':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_0_0'
+    priority: 3
+    update: true
+  'xp_1_full':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_1_2'
+    priority: 1
+    update: true
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        maximo:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+        lleno:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '10'
+  'xp_1_half':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_1_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        medio:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '8'
+  'xp_1':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_1_0'
+    priority: 3
+    update: true
+  'xp_2_full':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_2_2'
+    priority: 1
+    update: true
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        maximo:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+        lleno:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '15'
+  'xp_2_half':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_2_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        medio:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '13'
+  'xp_2':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_2_0'
+    priority: 3
+    update: true
+  'xp_3_full':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_3_2'
+    priority: 1
+    update: true
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        maximo:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+        lleno:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '20'
+  'xp_3_half':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_3_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        medio:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '18'
+  'xp_3':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_3_0'
+    priority: 3
+    update: true
+  'xp_4_full':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_4_2'
+    priority: 1
+    update: true
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        maximo:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+        lleno:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '25'
+  'xp_4_half':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_4_1'
+    priority: 2
+    update: true
+    view_requirement:
+      requirements:
+        medio:
+          type: '>='
+          input: '%objective_score_{pmod_bombardero}%'
+          output: '23'
+  'xp_4':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&bExperiencia'
+    lore:
+    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25 bajas para el proximo nivel.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/xp_4_0'
+    priority: 3
+    update: true
+  'mejora_1_0':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_3':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_4':
+    material: PAPER
     slot: 13
     amount: 1
-    display_name: '&#71AE45Bombardero Musgoso'
+    display_name: '&6Nivel 1'
     lore:
-    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
-    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25'
-    - '&7Nv. 1: &fResistencia I'
-    - '&7Nv. 10: &f+ Fuerza I'
-    - '&7Nv. 20: &f+ Prisa I'
-    - '&7Nivel 30: evolucion visual'
-    - '&8Bonus solo en mazmorras'
-    - '&7Se consigue en la Gacha de Monturas'
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_5':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_6':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_1_7':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&6Nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'estado_1':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&aDesbloqueada (nivel 1)'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/ok'
+    priority: 1
     update: true
-    item_model: 'astral:mascotas/catalogo_bombardero'
-  'invocar':
-    material: LIME_DYE
+    view_requirement:
+      requirements:
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '1'
+  'estado_1_no':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&7Bloqueada: llega a nivel 1'
+    lore:
+    - '&7Desde nivel &e1&7: &fResistencia I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/lock'
+    priority: 2
+  'mejora_10_0':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_1':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_2':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_3':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_4':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_5':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_6':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_10_7':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&6Nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'estado_10':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&aDesbloqueada (nivel 10)'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/ok'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '10'
+  'estado_10_no':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&7Bloqueada: llega a nivel 10'
+    lore:
+    - '&7Desde nivel &e10&7: &f+ Fuerza I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/lock'
+    priority: 2
+  'mejora_20_0':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_2':
+    material: PAPER
     slot: 29
     amount: 1
-    display_name: '&aInvocar'
+    display_name: '&6Nivel 20'
     lore:
-    - '&7Nivel: &e%objective_score_{plv_bombardero}%&7/30'
-    - '&7Experiencia: &e%objective_score_{pmod_bombardero}%&7/25'
-    - '&7Nv. 1: &fResistencia I'
-    - '&7Nv. 10: &f+ Fuerza I'
-    - '&7Nv. 20: &f+ Prisa I'
-    - '&7Nivel 30: evolucion visual'
-    - '&8Bonus solo en mazmorras'
-    - '&7Se consigue en la Gacha de Monturas'
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_4':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_5':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_6':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_20_7':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&6Nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'estado_20':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&aDesbloqueada (nivel 20)'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/ok'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '20'
+  'estado_20_no':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&7Bloqueada: llega a nivel 20'
+    lore:
+    - '&7Desde nivel &e20&7: &f+ Prisa I'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/lock'
+    priority: 2
+  'mejora_30_0':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_1':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_2':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_4':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_5':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_6':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'mejora_30_7':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&6Nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:viajes/blank'
+  'estado_30':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&aDesbloqueada (nivel 30)'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/ok'
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        nivel:
+          type: '>='
+          input: '%objective_score_{plv_bombardero}%'
+          output: '30'
+  'estado_30_no':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&7Bloqueada: llega a nivel 30'
+    lore:
+    - '&7Desde nivel &e30&7: &fEvolucion visual de la mascota'
+    - '&8Los bonus solo se activan en mazmorras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/lock'
+    priority: 2
+  'invocar':
+    material: PAPER
+    slot: 46
+    amount: 1
+    display_name: '&b&lInvocar a Bombardero Musgoso'
+    lore:
+    - '&7La equipa y la llama a tu lado.'
+    - '&7Solo una mascota a la vez.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/invocar_0'
     click_requirement:
       requirements:
         tiene:
@@ -44,48 +3338,113 @@ items:
           permission: astral.mascota.bombardero
       deny_commands:
       - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 8'
-  'estado':
-    material: BARRIER
-    slot: 31
+  'invocar_1':
+    material: PAPER
+    slot: 47
     amount: 1
-    display_name: '&cBloqueada'
+    display_name: '&b&lInvocar a Bombardero Musgoso'
     lore:
-    - '&7Ganala en la Gacha de Monturas'
+    - '&7La equipa y la llama a tu lado.'
+    - '&7Solo una mascota a la vez.'
     item_flags:
     - HIDE_ATTRIBUTES
-    priority: 2
-  'estado_si':
-    material: EMERALD
-    slot: 31
-    amount: 1
-    display_name: '&aDesbloqueada'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    priority: 1
-    view_requirement:
+    item_model: 'astral:companero/invocar_1'
+    click_requirement:
       requirements:
         tiene:
           type: has permission
           permission: astral.mascota.bombardero
-  'guardar':
-    material: CHEST
-    slot: 33
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 8'
+  'invocar_2':
+    material: PAPER
+    slot: 48
     amount: 1
-    display_name: '&aGuardar mascota'
+    display_name: '&b&lInvocar a Bombardero Musgoso'
+    lore:
+    - '&7La equipa y la llama a tu lado.'
+    - '&7Solo una mascota a la vez.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/invocar_2'
+    click_requirement:
+      requirements:
+        tiene:
+          type: has permission
+          permission: astral.mascota.bombardero
+      deny_commands:
+      - '[message] &cTodavia no tienes esta mascota.'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 8'
+  'descansar':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/descansar_0'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'descansar_1':
+    material: PAPER
+    slot: 50
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/descansar_1'
+    click_commands:
+    - '[close]'
+    - '[console] scoreboard players set %player_name% mascota 98'
+  'descansar_2':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&a&lDejar descansar a tu mascota'
+    lore:
+    - '&7Guarda a tu companero actual.'
+    - '&7Conserva su nivel y sus mejoras.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/descansar_2'
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 98'
   'coleccion':
-    material: ARROW
+    material: PAPER
     slot: 45
     amount: 1
-    display_name: '&eVolver a la coleccion'
+    display_name: '&fVolver a la coleccion'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/volver'
     click_commands:
     - '[openguimenu] mascotas_2'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:companero/cerrar'
+    click_commands:
+    - '[close]'

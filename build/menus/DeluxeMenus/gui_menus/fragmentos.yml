@@ -301,7 +301,8 @@
       "display_name": "&fVolver al menu",
       "click_commands": [
         "[openguimenu] principal"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -309,7 +310,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     }
   }
 }

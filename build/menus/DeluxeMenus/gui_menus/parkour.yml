@@ -15,7 +15,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour spiral<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spiral"
     },
     "spiral2": {
       "material": "PHANTOM_MEMBRANE",
@@ -30,7 +31,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour spiral2<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spiral2"
     },
     "paradise3": {
       "material": "SUNFLOWER",
@@ -45,7 +47,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour paradise3<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_paradise3"
     },
     "colorescape": {
       "material": "LIME_DYE",
@@ -60,7 +63,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour colorescape<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_colorescape"
     },
     "magmarun": {
       "material": "MAGMA_BLOCK",
@@ -75,7 +79,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour magmarun<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_magmarun"
     },
     "batallanaval": {
       "material": "OAK_BOAT",
@@ -90,7 +95,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour batallanaval<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_batallanaval"
     },
     "dropper_facil": {
       "material": "WATER_BUCKET",
@@ -104,7 +110,8 @@
       ],
       "click_commands": [
         "[openguimenu] dropper_facil"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil"
     },
     "dropper_h4rs": {
       "material": "HEART_OF_THE_SEA",
@@ -118,7 +125,8 @@
       ],
       "click_commands": [
         "[openguimenu] dropper_h4rs"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs"
     },
     "proximo_20": {
       "material": "GRAY_DYE",
@@ -157,7 +165,8 @@
       "click_commands": [
         "[close]",
         "[player] spawn<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spawn"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -165,7 +174,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     }
   }
 }

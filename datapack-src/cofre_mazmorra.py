@@ -299,6 +299,7 @@ def fragmentos_menu():
 
 def generate():
     """Escribe las ventanas en build/menus/DeluxeMenus/gui_menus y devuelve sus nombres."""
+    from menu_ui import decorate
     from mobs.mazmorra import MINA
     from mobs.mazmorras_data import catalog
     out = ROOT / 'build/menus/DeluxeMenus/gui_menus'
@@ -306,9 +307,9 @@ def generate():
     nombres = []
     for dungeon in [MINA] + catalog():
         name = f"cofre_{dungeon['key']}"
-        (out / f'{name}.yml').write_text(json.dumps(cofre_menu(dungeon), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        (out / f'{name}.yml').write_text(json.dumps(decorate(cofre_menu(dungeon)), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         nombres.append(name)
-    (out / 'fragmentos.yml').write_text(json.dumps(fragmentos_menu(), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (out / 'fragmentos.yml').write_text(json.dumps(decorate(fragmentos_menu()), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return nombres + ['fragmentos']
 
 

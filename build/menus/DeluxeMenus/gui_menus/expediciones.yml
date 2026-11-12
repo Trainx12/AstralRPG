@@ -20,7 +20,8 @@
       "click_commands": [
         "[close]",
         "[player] spawn"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spawn"
     },
     "descubiertas": {
       "material": "ENDER_PEARL",
@@ -28,7 +29,8 @@
       "display_name": "&d&lViaje rapido: mazmorras descubiertas",
       "click_commands": [
         "[openguimenu] mazmorras"
-      ]
+      ],
+      "item_model": "astral:menu/icon_expediciones"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -36,7 +38,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     },
     "volver": {
       "material": "ARROW",
@@ -44,7 +47,8 @@
       "display_name": "&fVolver al atlas",
       "click_commands": [
         "[openguimenu] principal"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     },
     "saldo": {
       "material": "GOLD_NUGGET",

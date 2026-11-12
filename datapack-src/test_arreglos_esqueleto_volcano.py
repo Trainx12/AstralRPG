@@ -129,7 +129,7 @@ class ArreglosTests(unittest.TestCase):
                 if pid not in menu:continue
                 seen.add(pid)
                 self.assertEqual(menu[pid]['item_model'],f'astral:mascotas/catalogo_{pid}')
-                self.assertIn(f'astral:mascotas/catalogo_{pid}',mascota_detalle_menu(pid))
+                self.assertIn('astral:companero/nivel_1_0',mascota_detalle_menu(pid))
         self.assertEqual(seen,{pid for pid,d in MASCOTAS.items() if d['n']>6})
         from lobby import mount_rewards, icon
         for rarity,weight,name,commands in mount_rewards():

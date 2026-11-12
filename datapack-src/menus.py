@@ -41,6 +41,13 @@ def q(s):
 
 
 def item(key, material, slot, name, lore=(), amount=1, extra=None, glow=False):
+    # Iconos de servicio propios, conservando las tarjetas ilustradas existentes.
+    from menu_ui import button_model
+    extra = dict(extra or {})
+    icon_key = {'comprar':'tienda','guardar':'mascotas'}.get(key,key)
+    model=button_model(icon_key)
+    if model and 'item_model' not in extra:
+        extra['item_model'] = q(model)
     L = [f"  {q(key)}:", f"    material: {material}", f"    slot: {slot}", f"    amount: {amount}",
          f"    display_name: {q(name)}"]
     flags = ["HIDE_ATTRIBUTES"] + (["HIDE_ENCHANTS"] if glow else [])
@@ -120,7 +127,7 @@ def gacha_menu(gid, g):
                       extra={"item_model":q(f'astral:servicios/{gid}_x{t}_{index}'),
                              "click_requirement": requisito_plata(costo), "click_commands": [c+'<delay=3>' if 'crates forceopen ' in c else c for c in cmds]})
     items += item("premios", "CHEST", 49, "&6&lVer premios", ["&7Todos los premios y su probabilidad"],
-                  extra={"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
+                  extra={"item_model":q(f'astral:menu/icon_{gid}'),"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
     items += item('saldo','GOLD_NUGGET',8,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     items += item('garantia','ENDER_EYE',47,'&dGarantia',[f'&7Tu progreso: &e{SCORE.format(o)}&7/{n}',
                   '&7Un Epico o Legendario reinicia el contador.'],extra={'update':'true'})
@@ -236,7 +243,8 @@ def mascotas_extra_menu(page):
         lines += item('siguiente', 'ARROW', 53, '&eSiguiente', extra={'click_commands': ['[openguimenu] mascotas_3']})
     lines += item('guardar', 'CHEST', 49, '&aGuardar mascota', extra={'click_commands': [
         '[close]', '[console] scoreboard players set %player_name% mascota 98']})
-    return menu(f'&8Mascotas - pagina {page}/3', f'astralmascotas_{page}', 54, lines, update=True)
+    from mascotas_ui import page_title
+    return menu(page_title(page), f'astralmascotas_{page}', 54, lines, update=True)
 
 
 def mascota_nueva_detalle(pid):
@@ -263,8 +271,6 @@ def mascota_nueva_detalle(pid):
 
 def mascota_detalle_menu(pid):
     """Mi companero (companero_ui.py): cartel de nivel, barra de experiencia y mejoras con su estado real."""
-    if MASCOTAS[pid]["n"] > 6:
-        return mascota_nueva_detalle(pid)
     from companero_ui import title, LEVEL_SLOTS, XP_SLOTS, PERK_ROWS, PERK_LEVELS, INVOKE_SLOTS, REST_SLOTS
     P = "%player_name%"
     d = MASCOTAS[pid]
@@ -320,7 +326,7 @@ def mascota_detalle_menu(pid):
                           'item_model': q(f'astral:companero/descansar_{index}'),
                           'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
     items += item('coleccion', 'PAPER', 45, '&fVolver a la coleccion', extra={
-        'item_model': q('astral:companero/volver'), 'click_commands': ['[openguimenu] mascotas']})
+        'item_model': q('astral:companero/volver'), 'click_commands': ['[openguimenu] ' + ('mascotas' if d['n'] <= 6 else f"mascotas_{2 + (d['n'] - 7) // 9}")]})
     items += item('cerrar', 'PAPER', 53, '&cCerrar', extra={
         'item_model': q('astral:companero/cerrar'), 'click_commands': ['[close]']})
     return menu(title(pid), f'mascota_{pid}', 54, items, update=True)
@@ -363,7 +369,7 @@ def principal_menu():
         ('arenas', 'IRON_SWORD', '&c&lArenas PvP', ['&7Pelea sin perder tu equipo.'], ['[openguimenu] arenas']),
         ('misiones', 'WRITABLE_BOOK', '&e&lEl Cronista', ['&7Misiones, historia y recompensas.'], ['[console] execute as %player_name% at @s run function astral:quest/gui/page/0', '[openguimenu] misiones']),
         ('mascotas', 'BONE', '&6&lMascotas', ['&7Coleccion de 23 companeros en 3 paginas.', '&7Invoca, entrena o guarda a tu mascota.'], ['[openguimenu] mascotas']),
-        ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tus titulos, sombreros y alas.'], ['[openguimenu] cosmeticos']),
+        ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tus titulos y gorros.'], ['[openguimenu] cosmeticos']),
         ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
         ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
@@ -403,6 +409,9 @@ COMANDOS = [
         ('cosmeticos', 'NAME_TAG', '/cosmeticos', ['Elegi tu titulo para el chat entre', 'los que desbloqueaste. Tambien /titulos.'], '/cosmeticos', ['[openguimenu] cosmeticos']),
         ('titulo', 'PAPER', '/titulo quitar', ['Saca el titulo que tenes puesto.', 'No pierde los que desbloqueaste.'], '/titulo quitar', ['[close]', '[player] titulo quitar']),
         ('sb', 'ITEM_FRAME', '/sb', ['Muestra u oculta el panel de la', 'derecha (vida, oro, poder, nivel).'], '/sb', ['[close]', '[player] sb']),
+        ('mochilas', 'CHEST', '/bp', ['Abre tu mochila virtual.', 'El permiso se compra en /shop.'], '/bp', ['[close]', '[player] bp<delay=3>']),
+        ('proteccion', 'GOLDEN_SHOVEL', 'Proteccion de terreno', ['Compra area en /shop y marca', 'dos esquinas con una pala de oro.'], '/shop', ['[close]', '[player] economyshopgui:shop<delay=3>']),
+        ('recetas', 'BOOK', 'Recetas y Forja', ['Consulta materiales y recetas', 'en la Guia Astral.'], 'Guia Astral', ['[close]', '[player] trigger astral.guia set 1']),
     ]),
     ('Economia', 'YELLOW_STAINED_GLASS_PANE', [
         ('balance', 'GOLD_INGOT', '/balance', ['Cuanto oro tenes.'], '/balance', ['[close]', '[player] balance']),
@@ -630,7 +639,7 @@ def main():
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]
-    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_sombreros','cosmeticos_alas')]
+    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_sombreros')]
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")
 

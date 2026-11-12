@@ -12,7 +12,9 @@ from services_ui import png, SPLIT, outlined, header, tall, glyph_parts, illustr
 from market_ui import band_color
 from adventure_ui import label
 from mobs.mascotas import MASCOTAS as ALL_PETS
-MASCOTAS = {pid: d for pid, d in ALL_PETS.items() if d["n"] <= 6}
+MASCOTAS = ALL_PETS
+# El render de terceros se inyecta solo al construir la entrega privada.
+PORTRAITS = {}
 
 ROOT = Path(__file__).resolve().parent
 E = 88                          # ancho extra a la izquierda para el retrato
@@ -43,6 +45,17 @@ PERKS = {
     'fenix': (('rescate', 'Rescate cada 10 min', 'Te salva con poca vida'), ('rescate', 'Rescate cada 7 min', ''), ('rescate', 'Rescate cada 5 min', '')),
 }
 EVOLUTION = ('evolucion', 'Evolucion visual', '')
+from terceros import PETS
+_EFFECT_ICONS = dict(slow_falling='salto', regeneration='regeneracion', luck='suerte',
+    resistance='resistencia', strength='fuerza', haste='prisa', speed='velocidad',
+    night_vision='vision', jump_boost='salto', fire_resistance='anti_fuego',
+    absorption='absorcion', water_breathing='vision')
+for _pid, *_, _effects in PETS:
+    _lines = {'fire_resistance':('Resistencia','al fuego'),
+              'water_breathing':('Respiracion','acuatica'),
+              'absorption':('Absorcion','2 corazones extra')}
+    PERKS[_pid] = tuple((_EFFECT_ICONS[e], *_lines.get(e,(caption.lstrip('+ '),'')))
+                       for e, caption in zip(_effects, MASCOTAS[_pid]['texto']))
 
 
 def slot_xy(slot):
@@ -79,7 +92,16 @@ def panel(pid):
     d.rectangle((24, 56, W - 25, 257), fill=FILL)
     # Retrato grande a la izquierda (fuera de la grilla), con marco dorado.
     x0, y0, x1, y1 = 29, 57, 24 + E - 3, 165
-    art = illustration('retrato_' + pid)
+    if pid in PORTRAITS:
+        art = Image.new('RGBA', (160, 220), '#10221f')
+        portrait = ImageOps.contain(PORTRAITS[pid], (150, 210), Image.Resampling.LANCZOS)
+        art.alpha_composite(portrait, ((160-portrait.width)//2, (220-portrait.height)//2))
+    elif MASCOTAS[pid]['n'] <= 6:
+        art = illustration('retrato_' + pid)
+    else:
+        # Reserva propia, sin pixeles licenciados ni retrato de otra mascota.
+        art = Image.new('RGBA', (80, 110), '#10221f')
+        art.alpha_composite(paw(MASCOTAS[pid]['color']).resize((56,56), Image.Resampling.NEAREST), (12,27))
     w, h = x1 - x0 - 3, y1 - y0 - 3
     ch = min(art.height, round(art.width * h / w)); cw = round(ch * w / h)
     left = (art.width - cw) // 2; top = (art.height - ch) // 2

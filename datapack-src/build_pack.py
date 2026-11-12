@@ -254,6 +254,10 @@ for key,_,_,_ in HATS:
              {'model':{'type':'minecraft:model','model':'minecraft:item/leather_helmet'}})
 
 default_font['providers'] = cosmetic_providers + default_font['providers']
+from gorros_ui import assets as hat_assets
+hat_files, hat_providers = hat_assets()
+files.update(hat_files)
+default_font['providers'] = hat_providers + default_font['providers']
 from mascotas_ui import assets as pet_ui_assets
 pet_ui_files, pet_ui_providers = pet_ui_assets()
 files.update(pet_ui_files)

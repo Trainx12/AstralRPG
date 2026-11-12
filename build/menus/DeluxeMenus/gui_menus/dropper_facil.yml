@@ -15,7 +15,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil1<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_1"
     },
     "facil2": {
       "material": "WATER_BUCKET",
@@ -30,7 +31,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil2<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_2"
     },
     "facil3": {
       "material": "WATER_BUCKET",
@@ -45,7 +47,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil3<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_3"
     },
     "facil4": {
       "material": "WATER_BUCKET",
@@ -60,7 +63,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil4<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_4"
     },
     "facil5": {
       "material": "WATER_BUCKET",
@@ -75,7 +79,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil5<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_5"
     },
     "facil6": {
       "material": "WATER_BUCKET",
@@ -90,7 +95,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour facil6<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_facil_6"
     },
     "proximo_16": {
       "material": "GRAY_DYE",
@@ -138,7 +144,8 @@
       "display_name": "&fVolver a Mini juegos",
       "click_commands": [
         "[openguimenu] parkour"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -146,7 +153,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     }
   }
 }

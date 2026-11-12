@@ -1,4 +1,4 @@
-menu_title: '&8Mascotas - pagina 3/3'
+menu_title: '&f'
 open_command: astralmascotas_3
 size: 54
 update_interval: 1
@@ -148,6 +148,7 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] mascotas_2'
+    item_model: 'astral:menu/icon_back'
   'guardar':
     material: CHEST
     slot: 49
@@ -158,3 +159,4 @@ items:
     click_commands:
     - '[close]'
     - '[console] scoreboard players set %player_name% mascota 98'
+    item_model: 'astral:menu/icon_mascotas'

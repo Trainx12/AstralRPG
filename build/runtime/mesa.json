@@ -4012,75 +4012,7 @@
     "requirements": {}
   },
   {
-    "output": "carnivora_alas",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "colmillo_carnivoro",
-        8
-      ],
-      [
-        "c",
-        "shadowsteel",
-        4
-      ],
-      [
-        "c",
-        "netherita_reforzada",
-        1
-      ]
-    ],
-    "group": "Carnivora",
-    "table": false,
-    "requirements": {}
-  },
-  {
     "output": "asura_espada",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "asura_moneda_emerald",
-        32
-      ],
-      [
-        "c",
-        "asura_moneda_card",
-        2
-      ],
-      [
-        "c",
-        "asura_moneda_circle",
-        2
-      ],
-      [
-        "c",
-        "asura_moneda_square",
-        2
-      ],
-      [
-        "c",
-        "asura_moneda_triangle",
-        2
-      ],
-      [
-        "c",
-        "netherita_reforzada",
-        3
-      ],
-      [
-        "c",
-        "gema_umbria",
-        2
-      ]
-    ],
-    "group": "Asura",
-    "table": false,
-    "requirements": {}
-  },
-  {
-    "output": "asura_alas",
     "count": 1,
     "ingredients": [
       [

@@ -16,6 +16,7 @@ NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2189.114, 81, 179.263)}
 
 
 def menu_data():
+    from menu_ui import decorate
     from travel_ui import title, CARD_SLOTS
     items = {}
     for key, material, slot, name, lore, commands in (
@@ -37,7 +38,7 @@ def menu_data():
         for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
     # Lobby: la primera casilla muestra la barrera vanilla.
     items['lobby']['material']='BARRIER';del items['lobby']['item_model']
-    return {'menu_title': title('portales'), 'size': 54, 'items': items}
+    return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
 
 
 
@@ -98,8 +99,9 @@ astral_npc_portales:
 
 
 def generate():
+    from menu_ui import decorate
     outputs = {
-        'menus/DeluxeMenus/gui_menus/portales.yml': json.dumps(menu_data(), ensure_ascii=False, indent=2) + '\n',
+        'menus/DeluxeMenus/gui_menus/portales.yml': json.dumps(decorate(menu_data()), ensure_ascii=False, indent=2) + '\n',
         'mapas_exploracion/astral_portales.sk': script(),
         'mythicmobs/mobs/portales.yml': npc(),
     }

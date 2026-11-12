@@ -949,17 +949,19 @@
     "sombreros": {
       "slot": 0,
       "material": "LEATHER_HELMET",
-      "display_name": "&dSombreros",
+      "display_name": "&d&lGORROS / SOMBREROS",
       "click_commands": [
         "[openguimenu] cosmeticos_sombreros"
-      ]
+      ],
+      "item_model": "astral:menu/icon_cosmeticos"
     },
-    "alas": {
+    "titulos": {
       "slot": 1,
-      "material": "ELYTRA",
-      "display_name": "&dAlas",
-      "click_commands": [
-        "[openguimenu] cosmeticos_alas"
+      "material": "PAPER",
+      "item_model": "astral:menu/icon_titulos",
+      "display_name": "&6&lTITULOS",
+      "lore": [
+        "&7Tu coleccion de insignias esta debajo."
       ]
     },
     "info": {

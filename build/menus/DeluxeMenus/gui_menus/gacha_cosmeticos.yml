@@ -9,7 +9,7 @@ items:
     amount: 1
     display_name: '&#FF7BD5&l✦ Gacha de Cosmeticos ✦'
     lore:
-    - '&7Titulos, sombreros y alas'
+    - '&7Titulos y gorros'
     - ''
     - '&7Precio: &e500$ &7por tirada'
     - '&7Epico garantizado cada &f20 &7tiradas'
@@ -1181,6 +1181,7 @@ items:
     - '&7Todos los premios y su probabilidad'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:menu/icon_gacha_cosmeticos'
     click_commands:
     - '[close]'
     - '[console] sudo %player_name% crates preview gacha_cosmeticos<delay=3>'
@@ -1194,6 +1195,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     update: true
+    item_model: 'astral:menu/icon_saldo'
   'garantia':
     material: ENDER_EYE
     slot: 47
@@ -1227,6 +1229,7 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] bazar'
+    item_model: 'astral:menu/icon_back'
   'cerrar':
     material: BARRIER
     slot: 53
@@ -1236,3 +1239,4 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[close]'
+    item_model: 'astral:menu/icon_close'

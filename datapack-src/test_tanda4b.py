@@ -40,7 +40,8 @@ class Tanda4bTests(unittest.TestCase):
         recipes=[]
         register(items,{},recipes,lambda *a,**k:None,lambda t,*a,**k:{'text':t},lambda *a,**k:[])
         asura=[r for r in recipes if r[0].startswith('asura_')]
-        self.assertEqual(len(asura),2)
+        self.assertEqual(len(asura),1)
+        self.assertFalse(any(r[0].endswith('_alas') for r in recipes))
         for _,_,ingredients,_ in asura:
             ids={i[1] for i in ingredients}
             self.assertTrue({'asura_moneda_'+k for k in ('emerald','card','circle','square','triangle')}<=ids)

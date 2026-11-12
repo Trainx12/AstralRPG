@@ -1,5 +1,13 @@
 # Contenidos privados - tanda 4a
 
+Disenos del 12/11: `deploy_disenos.py` combina solo los cambios de esta tarea sobre
+el FINAL instalado ad66e73. Los 17 paneles nuevos usan renders CPU de los modelos
+privados adaptados; quedan exclusivamente en `build/entregas/disenos-pendientes/`
+del circuito privado, junto con las vistas de gorros y paginas 2/3. El pack publico
+usa una huella propia de reserva. No publicar esas vistas ni el FINAL en GitHub publico.
+Se retiran los modelos exclusivos de alas; sus IDs antiguos muestran una pluma vanilla.
+Ver [entrega](../build/deploy/disenos-pendientes.md). No se despliega ni publica R2 en esta tarea.
+
 Santuario Azeroth: `Spires of Azeroth.zip` y sus regiones convertidas son de terceros.
 Original intacto en Downloads; etapas, regiones y vistas CPU exclusivamente en
 `.local/santuario-azeroth/`. No publicar mapas, schematics ni las vistas derivadas.

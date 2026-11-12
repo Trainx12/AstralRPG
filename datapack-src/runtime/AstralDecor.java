@@ -223,9 +223,6 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         } catch(ReflectiveOperationException | IllegalStateException ex) { p.sendMessage("La tienda de peluches no esta disponible."); getLogger().warning(ex.toString()); }
     }
     private NamespacedKey saved, display;
-    private final Map<UUID, ItemDisplay> wings = new HashMap<>();
-    private final Set<UUID> wingWearers = new HashSet<>();
-    private final Map<UUID, Float> wingYaw = new HashMap<>();
     private final Random random = new Random();
     private static final Set<String> PLUSH = Set.of("alex","creaking","ocelot","steve","tropical_fish","zombie_horse");
     private static final Map<String,Integer> PLANTS = Map.of("swamp",65,"mangrove_swamp",65,"jungle",70,"sparse_jungle",50,"bamboo_jungle",65,"dark_forest",35,"forest",8,"flower_forest",8,"birch_forest",8);
@@ -241,7 +238,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         if(e.getStatus()!=PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED || !authenticated(e.getPlayer()))return;
         skinsApplied.remove(e.getPlayer().getUniqueId());
     }
-    private final Map<UUID,ItemDisplay> hats = new HashMap<>();
+    private final Set<UUID> hats = new HashSet<>();
     private NamespacedKey selection(String kind) { return new NamespacedKey(this,"cosmetic_"+kind); }
     private boolean authenticated(Player p) {
         var auth=Bukkit.getPluginManager().getPlugin("AuthMe");
@@ -253,7 +250,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     private ItemStack selected(Player p,String kind) {
         String key=p.getPersistentDataContainer().get(selection(kind),PersistentDataType.STRING);
-        if(key==null || !p.hasPermission("astral.cosmetico."+kind+"."+key))return null;
+        if(key==null || !ownsHat(p,key))return null;
         String model=getConfig().getString("cosmetics."+kind+"."+key);
         if(model==null)return null;
         ItemStack item=new ItemStack(Material.PAPER);var meta=item.getItemMeta();
@@ -262,52 +259,58 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
         if(!(sender instanceof Player p))return true;
         if(!authenticated(p)) { p.sendMessage("Primero inicia sesion.");return true; }
-        if(args.length!=2 || !Set.of("sombrero","alas").contains(args[0]))return false;
+        if(args.length!=2 || !Set.of("sombrero").contains(args[0]))return false;
         String kind=args[0],key=args[1];
         if(key.equals("quitar"))p.getPersistentDataContainer().remove(selection(kind));
         else {
-            if(!getConfig().contains("cosmetics."+kind+"."+key) || !p.hasPermission("astral.cosmetico."+kind+"."+key)) {
+            if(!getConfig().contains("cosmetics."+kind+"."+key) || !ownsHat(p,key)) {
                 p.sendMessage("Todavia no desbloqueaste ese cosmetico.");return true;
             }
             p.getPersistentDataContainer().set(selection(kind),PersistentDataType.STRING,key);
         }
         p.saveData();
-        discoverWings(); wings(); hats();
+        hats();
         p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado. Los sombreros se muestran solo sin casco.");
         return true;
     }
     private void removeCosmetics(UUID id) {
         skinsApplied.remove(id);
-        wingWearers.remove(id); wingYaw.remove(id);
-        var wing=wings.remove(id);if(wing!=null)wing.remove();
-        var hat=hats.remove(id);if(hat!=null)hat.remove();
+        if(hats.remove(id)) {
+            Player p=Bukkit.getPlayer(id);
+            if(p!=null)showHead(p,p.getInventory().getHelmet());
+        }
     }
     @EventHandler public void leaveCosmetics(PlayerQuitEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
     @EventHandler public void deathCosmetics(PlayerDeathEvent e) { removeCosmetics(e.getEntity().getUniqueId()); }
     @EventHandler(ignoreCancelled=true, priority=EventPriority.MONITOR)
     public void teleportCosmetics(PlayerTeleportEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
     @EventHandler public void changedCosmeticWorld(PlayerChangedWorldEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
+    private boolean ownsHat(Player p,String key) {
+        return p.hasPermission("astral.cosmetico.sombrero."+key)
+            || (key.equals("carnivora") && p.hasPermission("astral.cosmetico.alas.carnivora"))
+            || (key.equals("diablo") && p.hasPermission("astral.cosmetico.alas.asura"));
+    }
+    private void showHead(Player p,ItemStack item) {
+        ItemStack visual=item==null?new ItemStack(Material.AIR):item;
+        for(Player viewer:p.getWorld().getPlayers())if(viewer.canSee(p))
+            viewer.sendEquipmentChange(p,EquipmentSlot.HEAD,visual);
+    }
     private void hats() {
         Set<UUID> active=new HashSet<>();
         for(Player p:Bukkit.getOnlinePlayers()) {
+            p.getPersistentDataContainer().remove(selection("alas"));
+            ItemStack helmet=p.getInventory().getHelmet();
             ItemStack item=selected(p,"sombrero");
             if(item==null || !authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR
-                || (p.getInventory().getHelmet()!=null && !p.getInventory().getHelmet().getType().isAir()))continue;
-            active.add(p.getUniqueId());
-            Location loc=p.getEyeLocation().add(0,.15,0);
-            ItemDisplay v=hats.get(p.getUniqueId());
-            if(v!=null && !v.getWorld().equals(p.getWorld())) {v.remove();v=null;}
-            if(v==null || !v.isValid()) {
-                v=p.getWorld().spawn(loc,ItemDisplay.class);v.setPersistent(false);v.setInvulnerable(true);
-                v.addScoreboardTag("astral.hat");v.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.HEAD);
-                v.setTransformation(new Transformation(new Vector3f(),new Quaternionf(),new Vector3f(.625f),new Quaternionf()));
-                v.setTeleportDuration(2);hats.put(p.getUniqueId(),v);
-                p.hideEntity(this,v); // No tapar la camara propia en primera persona.
-            }
-            if(!item.equals(v.getItemStack()))v.setItemStack(item);
-            v.teleport(loc);
+                || (helmet!=null && !helmet.getType().isAir()))continue;
+            // Equipo visual vanilla: aplica display.head en la cabeza real y
+            // permite tercera persona propia, sin ocultar entidad ni mover inventario.
+            active.add(p.getUniqueId()); showHead(p,item);
         }
-        hats.entrySet().removeIf(e->{if(active.contains(e.getKey()))return false;e.getValue().remove();return true;});
+        for(UUID id:hats)if(!active.contains(id)) {
+            Player p=Bukkit.getPlayer(id);if(p!=null)showHead(p,p.getInventory().getHelmet());
+        }
+        hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
@@ -315,6 +318,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         // Integrar solo el catalogo nuevo; conservar configuracion NPC del servidor.
         try(var in=getResource("config.yml")) {
             var defaults=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8));
+            getConfig().set("cosmetics.alas",null);
             var catalog=defaults.getConfigurationSection("cosmetics");
             for(String key:catalog.getKeys(true))if(!catalog.isConfigurationSection(key))getConfig().set("cosmetics."+key,catalog.get(key));
             saveConfig();
@@ -322,17 +326,15 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this,this);
         getServer().getScheduler().runTask(this,this::loadTableRecipes);
         getServer().getScheduler().runTaskTimer(this,this::discoverTableRecipes,20,20);
-        // Descubrir equipo a 2 Hz; la ruta de 20 Hz solo visita portadores de alas.
-        getServer().getScheduler().runTaskTimer(this,this::discoverWings,1,10);
-        getServer().getScheduler().runTaskTimer(this,this::wings,2,1);
         getServer().getScheduler().runTaskTimer(this,this::hats,1,2);
         getServer().getScheduler().runTaskTimer(this,this::loginSkins,20,20);
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
         getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
-        getLogger().info("Tanda 4b: peluches, alas, plantas y mena exterior. WorldGuard obligatorio para construir.");
+        getLogger().info("Tanda 4b: peluches, gorros, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
-    public void onDisable() { tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear(); wings.values().forEach(Entity::remove); wings.clear(); wingWearers.clear(); wingYaw.clear(); hats.values().forEach(Entity::remove);hats.clear(); }
+    public void onDisable() { tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();
+        for(UUID id:new HashSet<>(hats))removeCosmetics(id); }
     private String id(ItemStack item) {
         if(item == null || !item.hasItemMeta()) return "";
         NamespacedKey key = item.getItemMeta().getItemModel();
@@ -459,60 +461,6 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         entity.remove();
         if(uuid!=null) { Entity visual=Bukkit.getEntity(UUID.fromString(uuid)); if(visual!=null) visual.remove(); }
         for(ItemStack overflow:p.getInventory().addItem(item).values()) p.getWorld().dropItemNaturally(p.getLocation(),overflow);
-    }
-    private ItemStack wingItem(Player p) {
-        ItemStack cosmetic=selected(p,"alas");
-        if(cosmetic!=null)return cosmetic; // Catalogo extensible, sin lista duplicada de IDs.
-        cosmetic=p.getInventory().getItemInOffHand();
-        return Set.of("carnivora_alas","asura_alas").contains(id(cosmetic))?cosmetic:null;
-    }
-    private void discoverWings() {
-        for(Player p:Bukkit.getOnlinePlayers())if(wingItem(p)!=null)wingWearers.add(p.getUniqueId());
-    }
-    private static float approachYaw(float current,float target) {
-        float delta=(target-current)%360;
-        if(delta>180)delta-=360;
-        if(delta< -180)delta+=360;
-        return current+Math.max(-12,Math.min(12,delta));
-    }
-    private void wings() {
-        Set<UUID> active = new HashSet<>();
-        for(var iterator=wingWearers.iterator();iterator.hasNext();) {
-            UUID owner=iterator.next(); Player p=Bukkit.getPlayer(owner);
-            if(p==null || !p.isOnline()) { iterator.remove(); continue; }
-            // Segunda mano: inventario vanilla se encarga de muerte, tumbas y desconexion.
-            ItemStack cosmetic=wingItem(p);
-            if(cosmetic==null) { iterator.remove(); continue; }
-            if(!authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR
-                || p.isSwimming() || p.isGliding() || Set.of(Pose.SWIMMING,Pose.SLEEPING,Pose.SPIN_ATTACK).contains(p.getPose()))continue;
-            active.add(p.getUniqueId());
-            // Paper 26.1.2 rechaza teleport Bukkit entre mundos si el jugador
-            // tiene pasajeros, ANTES de PlayerTeleportEvent. No montar entidades
-            // reales: seguir con interpolacion para no romper /spawn/home/portales.
-            Location loc=p.getLocation().add(0,p.isSneaking()?1.2:1.45,0); loc.setYaw(0); loc.setPitch(0);
-            ItemDisplay v=wings.get(p.getUniqueId());
-            if(v!=null && !v.getWorld().equals(p.getWorld())) { v.remove(); v=null; }
-            if(v==null || !v.isValid()) {
-                v=p.getWorld().spawn(loc,ItemDisplay.class); v.setPersistent(false); v.setInvulnerable(true); v.addScoreboardTag("astral.wings");
-                v.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.FIXED);
-                v.setInterpolationDuration(2); v.setTeleportDuration(2); wings.put(p.getUniqueId(),v);
-                wingYaw.put(owner,p.getBodyYaw());
-            }
-            if(!cosmetic.equals(v.getItemStack())) v.setItemStack(cosmetic.clone());
-            if(v.getLocation().distanceSquared(loc)>.000001)v.teleport(loc);
-            // Girar tanto la geometria como el offset local con el cuerpo suavizado.
-            float smooth=approachYaw(wingYaw.getOrDefault(owner,p.getBodyYaw()),p.getBodyYaw());
-            wingYaw.put(owner,smooth);
-            float yaw=(float)Math.toRadians(-smooth);
-            Quaternionf rotation=new Quaternionf().rotationY(yaw);
-            Vector3f offset=new Vector3f(0,0,-.38f).rotate(rotation);
-            Transformation next=new Transformation(offset,rotation,new Vector3f(1),new Quaternionf());
-            if(!next.equals(v.getTransformation())) {
-                v.setInterpolationDelay(0);
-                v.setTransformation(next);
-            }
-        }
-        wings.entrySet().removeIf(e->{if(active.contains(e.getKey())) return false; e.getValue().remove(); wingYaw.remove(e.getKey()); return true;});
     }
     private void npcs() {
         if(!getServer().getPluginManager().isPluginEnabled("MythicMobs") || !getServer().getPluginManager().isPluginEnabled("BetterModel")) return;

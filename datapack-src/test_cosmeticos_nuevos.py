@@ -23,13 +23,13 @@ class NewCosmeticsTests(unittest.TestCase):
 
     def test_all_rewards_are_permanent_and_have_preview(self):
         rewards=cosmetic_rewards()
-        self.assertEqual(len(HATS),20);self.assertEqual(len(WINGS),2)
+        self.assertEqual(len(HATS),20);self.assertEqual(len(WINGS),0)
         for kind,key,name,rarity,model in catalog():
             found=[r for r in rewards if f'astral.cosmetico.{kind}.{key} true' in r[3][0]]
             self.assertEqual(len(found),1)
             self.assertEqual(icon(found[0][3]),('paper',model,1))
             self.assertFalse(any('give ' in c for c in found[0][3]))
-        self.assertEqual(len({(r[0],r[1]) for r in catalog()}),22)
+        self.assertEqual(len({(r[0],r[1]) for r in catalog()}),20)
 
     def test_probabilities_keep_rarity_totals_and_titles(self):
         import yaml

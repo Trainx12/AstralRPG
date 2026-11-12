@@ -579,7 +579,8 @@
       "click_commands": [
         "[close]",
         "[player] spawn"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spawn"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -587,7 +588,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     }
   }
 }

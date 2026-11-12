@@ -1,5 +1,10 @@
 # AstralRPG: cómo está armado el servidor
 
+Disenos y cosmeticos preparados, sin desplegar: [archivos, SHA-1 y reinicio](../build/deploy/disenos-pendientes.md).
+AstralDecor 1.6.0 retira las alas (tambien de segunda mano) y muestra gorros mediante
+equipo visual HEAD, sin ocupar el casco. Permisos antiguos de alas habilitan Carnivora/Diablo.
+La comprobacion visual remota con dos clientes sigue pendiente.
+
 Santuario Azeroth preparado, sin instalar: [lista de archivos y comandos](../build/deploy/santuario-azeroth.md).
 Dimension `minecraft:santuario_azeroth`; nombre Bukkit con el mundo principal `world`:
 `world_minecraft_santuario_azeroth`. Dimension del datapack con cielo End y sin dragon;

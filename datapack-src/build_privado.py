@@ -197,12 +197,13 @@ def private_configs(models):
         bounds.cache_clear()
 
 
-def preview(models, name='tanda4a', include_sword=True, gui=False, angles=None):
+def preview(models, name='tanda4a', include_sword=True, gui=False, angles=None, collect=None):
     """Render CPU local con texturas originales, exclusivamente en el repo privado."""
     from PIL import Image, ImageDraw, ImageOps
     from mobs.build_models import preview3d
     from types import SimpleNamespace
     tiles = []
+    portraits = {}
     all_models = dict(models)
     if include_sword:
         all_models['espada_heroe_errante'] = adapted(json.loads(sources()['espada_heroe_errante'].read_text(encoding='utf-8')), 'espada_heroe_errante')
@@ -263,8 +264,10 @@ def preview(models, name='tanda4a', include_sword=True, gui=False, angles=None):
         yaw,pitch=(angles or {}).get(mid,(0,0) if gui else (35,25))
         im = preview3d(model, atlas, yaw=yaw, pitch=pitch,
                        scale=3, background=(0, 0, 0, 0))
+        if collect is not None:collect[mid]=im.crop(im.getbbox()).copy()
         if mid.startswith('astral_pet_'):
             pid=mid.removeprefix('astral_pet_')
+            portraits[pid] = im.crop(im.getbbox()).copy()
             icon=ImageOps.contain(im.crop(im.getbbox()),(16,16),Image.Resampling.LANCZOS)
             canvas=Image.new('RGBA',(18,18))
             canvas.alpha_composite(icon,((18-icon.width)//2,(18-icon.height)//2))
@@ -290,6 +293,7 @@ def preview(models, name='tanda4a', include_sword=True, gui=False, angles=None):
     dest = privado() / ('build/previews/' + name + '.png')
     dest.parent.mkdir(parents=True, exist_ok=True)
     sheet.save(dest)
+    return portraits
 
 
 def finish(assets):

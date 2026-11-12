@@ -26,6 +26,24 @@ def title():
     return '&f'+START+''.join(GLYPHS)+END
 
 
+PAGE_CHARS = {p:tuple(chr(0xed30+(p-2)*4+i) for i in range(4)) for p in (2,3)}
+
+
+def page_title(page):
+    return '&f'+START+''.join(PAGE_CHARS[page])+END
+
+
+def extra_panel(page):
+    im=panel();d=ImageDraw.Draw(im)
+    d.rectangle((24,56,199,165),fill=FILL)
+    for slot in (*range(10,18),22,45,49,53):
+        x,y=31+slot%9*18,57+slot//9*18
+        d.rectangle((x,y,x+17,y+17),fill='#10221f',outline=EDGE)
+        d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+    text(im,f'COLECCION {page} / 3',(112,130),color=EDGE)
+    return im
+
+
 def regions():
     return [(pid,[row*9+col for row in range(r,r+2) for col in range(c,c+3)])
             for pid,(r,c) in zip(MASCOTAS,((1,0),(1,3),(1,6),(3,0),(3,3),(3,6)))]
@@ -186,6 +204,14 @@ def assets():
     image=rest_button()
     for i in range(5):model(f'rest_{i}',image.crop((i*18,0,i*18+18,18)))
     providers.append({'type':'space','advances':advances})
+    for page in (2,3):
+        image,hh=full_panel(extra_panel(page))
+        chars=PAGE_CHARS[page]
+        for n,(part,ascent) in enumerate(glyph_parts(image,hh)):
+            path=f'font/mascotas/pagina_{page}_{n}.png'
+            files['assets/astral/textures/'+path]=png(part)
+            providers.append(dict(type='bitmap',file='astral:'+path,height=part.height,ascent=ascent,chars=[chars[n*2]]))
+            advances[chars[n*2+1]]=-(part.getbbox()[2]+1)
     return files,providers
 
 

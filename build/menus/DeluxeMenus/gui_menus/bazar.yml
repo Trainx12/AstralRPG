@@ -509,6 +509,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     update: true
+    item_model: 'astral:menu/icon_saldo'
   'ayuda':
     material: WRITABLE_BOOK
     slot: 8
@@ -528,3 +529,4 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] principal'
+    item_model: 'astral:menu/icon_back'

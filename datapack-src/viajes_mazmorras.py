@@ -147,12 +147,13 @@ def exploration_script():
 
 
 def generate():
+    from menu_ui import decorate
     menu=ROOT/'build/menus/DeluxeMenus/gui_menus/mazmorras.yml'
     skript=ROOT/'build/mapas_exploracion/astral_viajes.sk'
     menu.parent.mkdir(parents=True,exist_ok=True);skript.parent.mkdir(parents=True,exist_ok=True)
     # JSON es YAML valido y preserva exactamente los requisitos anidados.
-    menu.write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    menu.with_name('expediciones.yml').write_text(json.dumps(exploration_menu(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    menu.write_text(json.dumps(decorate(menu_data()),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    menu.with_name('expediciones.yml').write_text(json.dumps(decorate(exploration_menu()),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     skript.write_text(script()+'\n'+exploration_script(),encoding='utf-8')
     guides=[]
     for world,x,y,z,floor in [('exp_desierto',179.5,102,135.5,'sandstone'),

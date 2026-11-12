@@ -166,7 +166,7 @@ GACHAS = {
                            desc=["<gray>Monturas y mascotas de AstralRPG.", "<gray>Las monturas traen silla."],
                            rewards=mount_rewards),
     "gacha_cosmeticos": dict(name="<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>", cost=500,
-                             desc=["<gray>Titulos, sombreros y alas.", "<gray>Equipalos desde /cosmeticos."],
+                             desc=["<gray>Titulos y gorros.", "<gray>Equipalos desde /cosmeticos."],
                              rewards=cosmetic_rewards),
 }
 
@@ -495,7 +495,7 @@ def spawn_yml():
 HOLO_COLOR = {"gacha_rpg": "#B07CFF", "gacha_monturas": "#7ED957", "gacha_cosmeticos": "#FF7BD5"}
 HOLO_NAME = {"gacha_rpg": "Gacha de Armas", "gacha_monturas": "Gacha de Monturas", "gacha_cosmeticos": "Gacha de Cosmeticos"}
 HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "Monturas con silla y mascotas",
-             "gacha_cosmeticos": "Titulos, sombreros y alas"}
+             "gacha_cosmeticos": "Titulos y gorros"}
 
 
 def holo_cmds():

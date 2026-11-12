@@ -1,5 +1,9 @@
 # Guía para agregar cosas a AstralRPG
 
+Disenos y retiro de alas preparados, sin desplegar: [disenos-pendientes.md](../build/deploy/disenos-pendientes.md).
+Generadores `menus.py`, `menu_ui.py`, `companero_ui.py`, `gorros_ui.py` y `deploy_disenos.py`.
+El FINAL parte de ad66e73 instalado y conserva el tren; no instalar el ZIP publico.
+
 Santuario Azeroth preparado, sin desplegar: [santuario-azeroth.md](../build/deploy/santuario-azeroth.md).
 Conversion privada: `tools/preparar_santuario_azeroth.py`; dimension y coordenadas:
 `datapack-src/santuario_azeroth.py`. No crear este destino con Multiverse: lo registra el datapack.

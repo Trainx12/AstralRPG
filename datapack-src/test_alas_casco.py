@@ -14,10 +14,15 @@ class AlasCascoTests(unittest.TestCase):
         previous=subprocess.check_output(['git','show','75f49c4fde2f39faeb178f4b364da02b9c5bf8a6:build/AstralRPG-Items.zip'],cwd=ROOT)
         with zipfile.ZipFile(io.BytesIO(previous)) as old, zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as new:
             added=set(new.namelist())-set(old.namelist())
-            self.assertEqual(added,{'data/astral/item_modifier/carnivora_head.json','data/astral/function/upgrade/carnivora_head.mcfunction'})
-            self.assertTrue(set(old.namelist())<=set(new.namelist()))
+            # Tareas posteriores (Santuario, etc.) agregan otros archivos: solo exigir los de esta reparacion.
+            self.assertLessEqual({'data/astral/item_modifier/carnivora_head.json','data/astral/function/upgrade/carnivora_head.mcfunction'},added)
+            # Las alas se retiraron a pedido del dueno (12/11/2026): sus recetas pueden faltar.
+            alas={'data/astral/function/altar/r/asura_alas.mcfunction','data/astral/function/altar/r/carnivora_alas.mcfunction',
+                  'data/astral/dialog/receta/157.json','data/astral/dialog/receta/158.json',
+                  'data/astral/function/forge/r/157.mcfunction','data/astral/function/forge/r/158.mcfunction'}
+            self.assertLessEqual(set(old.namelist())-alas,set(new.namelist()))
             # Comprobar la reparacion puntual; futuras tareas pueden cambiar guia/lore.
-            changed=[n for n in old.namelist() if old.read(n)!=new.read(n) and
+            changed=[n for n in old.namelist() if n not in alas and old.read(n)!=new.read(n) and
                      (n=='data/astral/function/upgrade/check.mcfunction' or
                       'carnivora_helmet' in n and ('/upgrade/' in n or '/loot_table/item/' in n))]
             for n in changed:

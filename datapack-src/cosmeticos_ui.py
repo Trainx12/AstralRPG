@@ -129,7 +129,7 @@ def clear_button():
     return im
 
 
-def panel():
+def panel(caption='COSMETICOS Y TITULOS'):
     # Marco de Gemini (noviembre 2026): interior medido sobre el original.
     source=Image.open(ROOT/'pack-source/ref/cosmeticos2-frame.png').convert('RGBA')
     sx=[0,108,1690,source.width]
@@ -141,7 +141,7 @@ def panel():
             piece=source.crop((sx[col],sy[row],sx[col+1],sy[row+1]))
             im.alpha_composite(piece.resize((dx[col+1]-dx[col],dy[row+1]-dy[row]),Image.Resampling.NEAREST),(dx[col],dy[row]))
     from services_ui import outlined
-    outlined(im,'COSMETICOS Y TITULOS',(112,34))
+    outlined(im,caption,(112,34))
     d=ImageDraw.Draw(im);d.rectangle((24,56,199,258),fill=FILL)
     # Dos vitrinas; los emblemas ocupan solo las catorce casillas clicables.
     for y,caption in ((75,'OFICIOS Y AVENTURA'),(111,'HONORES Y LEYENDAS')):
@@ -153,7 +153,7 @@ def panel():
         for col in range(7):
             x=49+col*18
             d.line((x,y+19,x,y+21),fill=EDGE)
-    for slot in (*TITLE_SLOTS,4,8,45,53):
+    for slot in (*TITLE_SLOTS,0,1,4,8,45,53):
         x,y=31+slot%9*18,57+slot//9*18
         d.rectangle((x,y,x+17,y+17),outline=EDGE)
         d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
@@ -203,6 +203,9 @@ def previews(folder):
         im.alpha_composite(clear_button(),(67,147))
         for slot,kind in ((4,'info'),(8,'gacha'),(45,'back'),(53,'close')):
             im.alpha_composite(nav_icon(kind),(31+slot%9*18,57+slot//9*18))
+        from menu_ui import icon as menu_icon
+        im.alpha_composite(menu_icon('cosmeticos'),(31,57))
+        im.alpha_composite(menu_icon('titulos'),(49,57))
         text(im,'Inventario',(86,169),color='#383c40')
         (folder/f'cosmeticos-{sample}.png').write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)))
 

@@ -13,7 +13,10 @@ from test_bazar import run_deluxemenus_actions
 
 class MarketUI(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.files,cls.providers=market_ui.assets()
+    def setUpClass(cls):
+        cls.files,cls.providers=market_ui.assets()
+        from menu_ui import assets
+        cls.files.update(assets()[0])
 
     def check_models(self,data):
         for item in data['items'].values():

@@ -13,6 +13,8 @@ class PetsUITests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.files,cls.providers=assets()
+        from menu_ui import assets as menu_assets
+        cls.files.update(menu_assets()[0])
         cls.menu=yaml.safe_load(mascotas_menu())
 
     def test_all_tiles_have_the_correct_permission_and_invocation(self):

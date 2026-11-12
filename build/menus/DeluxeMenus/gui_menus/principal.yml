@@ -130,7 +130,7 @@ items:
     amount: 1
     display_name: '&d&lCosmeticos y titulos'
     lore:
-    - '&7Elegi tus titulos, sombreros y alas.'
+    - '&7Elegi tus titulos y gorros.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: astral:menu/icon_cosmeticos
@@ -241,3 +241,4 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
+    item_model: 'astral:menu/icon_close'

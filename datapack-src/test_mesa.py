@@ -45,7 +45,7 @@ class MesaTests(unittest.TestCase):
     def test_packaged_catalog_matches_generated_source(self):
         with zipfile.ZipFile(ROOT / 'build/runtime/AstralDecor.jar') as z:
             self.assertEqual(z.read('mesa.json'), (ROOT / 'build/runtime/mesa.json').read_bytes())
-            self.assertIn('version: 1.5.0', z.read('plugin.yml').decode())
+            self.assertIn('version: 1.6.0', z.read('plugin.yml').decode())
 
     def test_quick_actions_preserves_existing_guide(self):
         with zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip') as z:

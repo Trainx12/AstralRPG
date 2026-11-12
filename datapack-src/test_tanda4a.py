@@ -48,8 +48,8 @@ class Tanda4aTests(unittest.TestCase):
                 req = detail['invocar']['click_requirement']['requirements']['tiene']
                 self.assertEqual(req, {'type': 'has permission', 'permission': 'astral.mascota.' + pid})
                 self.assertIn(f'mascota {MASCOTAS[pid]["n"]}', str(detail['invocar']['click_commands']))
-                self.assertIn('Bloqueada', detail['estado']['display_name'])
-                self.assertIn('Desbloqueada', detail['estado_si']['display_name'])
+                self.assertIn('Bloqueada', detail['estado_1_no']['display_name'])
+                self.assertIn('Desbloqueada', detail['estado_1']['display_name'])
         self.assertEqual(seen, {p[0] for p in PETS})
 
     def test_rarity_totals_and_guarantee_unchanged(self):

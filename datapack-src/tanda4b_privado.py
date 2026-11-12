@@ -104,9 +104,9 @@ def prepare(base):
     for k in PLUSHIES:
         mappings['peluche_' + k] = model('nogs_menagerie:plushies/nm_plushie_' + k)
     for iid in ('carnivora_alas','asura_alas'):
-        ns,name=mappings[iid]['model'].split(':')
-        mappings[iid],wrapper=wing_components(iid,json.loads((out/ns/'models'/f'{name}.json').read_text(encoding='utf8')),shoulder_tips=True)
-        put('astral/models/cosmetics/'+iid+'.json',wrapper)
+        mappings[iid] = model('minecraft:item/feather')
+        wrapper=out/'astral/models/cosmetics'/f'{iid}.json'
+        if wrapper.exists():wrapper.unlink()
     for iid, tree in mappings.items():
         put('astral/items/' + iid + '.json', {'model':tree})
     for layer, part in ((1,'humanoid'),(2,'humanoid_leggings')):

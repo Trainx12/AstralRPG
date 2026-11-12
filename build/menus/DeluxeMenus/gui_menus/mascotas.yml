@@ -6353,3 +6353,4 @@ items:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] mascotas_2'
+    item_model: 'astral:menu/icon_next'

@@ -15,7 +15,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs1<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_1"
     },
     "h4rs2": {
       "material": "WATER_BUCKET",
@@ -30,7 +31,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs2<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_2"
     },
     "h4rs3": {
       "material": "WATER_BUCKET",
@@ -45,7 +47,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs3<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_3"
     },
     "h4rs4": {
       "material": "WATER_BUCKET",
@@ -60,7 +63,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs4<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_4"
     },
     "h4rs5": {
       "material": "WATER_BUCKET",
@@ -75,7 +79,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs5<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_5"
     },
     "h4rs6": {
       "material": "WATER_BUCKET",
@@ -90,7 +95,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs6<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_6"
     },
     "h4rs7": {
       "material": "WATER_BUCKET",
@@ -105,7 +111,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs7<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_7"
     },
     "h4rs8": {
       "material": "WATER_BUCKET",
@@ -120,7 +127,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs8<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_8"
     },
     "h4rs9": {
       "material": "WATER_BUCKET",
@@ -135,7 +143,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs9<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_9"
     },
     "h4rs10": {
       "material": "WATER_BUCKET",
@@ -150,7 +159,8 @@
       "click_commands": [
         "[close]",
         "[player] parkour h4rs10<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_dropper_h4rs_10"
     },
     "proximo_22": {
       "material": "GRAY_DYE",
@@ -178,7 +188,8 @@
       "display_name": "&fVolver a Mini juegos",
       "click_commands": [
         "[openguimenu] parkour"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -186,7 +197,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     }
   }
 }

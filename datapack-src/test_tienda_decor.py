@@ -18,7 +18,7 @@ class TiendaDecorTests(unittest.TestCase):
                 self.assertNotIn('minecraft:glider',c)
                 self.assertNotIn('minecraft:attribute_modifiers',c)
                 self.assertEqual(c['minecraft:max_stack_size'],1)
-                self.assertIn('Segunda mano',c['minecraft:lore'][0]['text'])
+                self.assertIn('Recuerdo',c['minecraft:lore'][0]['text'])
 
     def test_entire_wing_geometry_is_behind_shoulders(self):
         pack=privado()/'build/entregas/tienda-modelo/AstralRPG-Textures.zip'

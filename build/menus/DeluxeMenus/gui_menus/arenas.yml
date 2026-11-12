@@ -549,7 +549,8 @@
       "click_commands": [
         "[close]",
         "[player] spawn<delay=3>"
-      ]
+      ],
+      "item_model": "astral:menu/icon_spawn"
     },
     "lobby_46": {
       "material": "PAPER",

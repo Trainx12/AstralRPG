@@ -19,7 +19,8 @@
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"
-      ]
+      ],
+      "item_model": "astral:menu/icon_close"
     },
     "volver": {
       "material": "ARROW",
@@ -27,7 +28,8 @@
       "display_name": "&fVolver al atlas",
       "click_commands": [
         "[openguimenu] principal"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     },
     "explorar": {
       "material": "MAP",
@@ -35,7 +37,8 @@
       "display_name": "&aBuscar nuevos destinos",
       "click_commands": [
         "[openguimenu] expediciones"
-      ]
+      ],
+      "item_model": "astral:menu/icon_expediciones"
     },
     "ayuda": {
       "material": "BOOK",

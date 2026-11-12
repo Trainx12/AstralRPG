@@ -1,5 +1,5 @@
 {
-  "menu_title": "&8Cosmeticos - Sombreros",
+  "menu_title": "&f",
   "size": 54,
   "items": {
     "frankenstein": {
@@ -41,6 +41,7 @@
     "frankenstein_locked": {
       "slot": 9,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Cabeza de Frankenstein",
       "lore": [
@@ -89,6 +90,7 @@
     "bruja_locked": {
       "slot": 10,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Sombrero de Bruja",
       "lore": [
@@ -115,16 +117,26 @@
           "obtenido": {
             "type": "has permission",
             "permission": "astral.cosmetico.sombrero.diablo"
+          },
+          "compensacion": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.asura"
           }
-        }
+        },
+        "minimum_requirements": 1
       },
       "click_requirement": {
         "requirements": {
           "obtenido": {
             "type": "has permission",
             "permission": "astral.cosmetico.sombrero.diablo"
+          },
+          "compensacion": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.asura"
           }
         },
+        "minimum_requirements": 1,
         "deny_commands": [
           "[message] &cTodavia no lo desbloqueaste."
         ]
@@ -137,6 +149,7 @@
     "diablo_locked": {
       "slot": 11,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Cuernos de Diablo",
       "lore": [
@@ -185,6 +198,7 @@
     "armorer_locked": {
       "slot": 12,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Armero",
       "lore": [
@@ -233,6 +247,7 @@
     "butcher_locked": {
       "slot": 13,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Carnicero",
       "lore": [
@@ -281,6 +296,7 @@
     "cartographer_locked": {
       "slot": 14,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Cartografo",
       "lore": [
@@ -329,6 +345,7 @@
     "cleric_locked": {
       "slot": 15,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Clerigo",
       "lore": [
@@ -377,6 +394,7 @@
     "desert_locked": {
       "slot": 16,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Desierto",
       "lore": [
@@ -425,6 +443,7 @@
     "farmer_locked": {
       "slot": 17,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Granjero",
       "lore": [
@@ -473,6 +492,7 @@
     "fisherman_locked": {
       "slot": 18,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pescador",
       "lore": [
@@ -521,6 +541,7 @@
     "fletcher_locked": {
       "slot": 19,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Flechero",
       "lore": [
@@ -569,6 +590,7 @@
     "librarian_locked": {
       "slot": 20,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Bibliotecario",
       "lore": [
@@ -617,6 +639,7 @@
     "savanna_locked": {
       "slot": 21,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Sabana",
       "lore": [
@@ -665,6 +688,7 @@
     "shepherd_locked": {
       "slot": 22,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pastor",
       "lore": [
@@ -713,6 +737,7 @@
     "snow_locked": {
       "slot": 23,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Nieve",
       "lore": [
@@ -761,6 +786,7 @@
     "swamp_locked": {
       "slot": 24,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Pantano",
       "lore": [
@@ -809,6 +835,7 @@
     "weaponsmith_locked": {
       "slot": 25,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Gorro de Herrero",
       "lore": [
@@ -857,6 +884,7 @@
     "illusioner_locked": {
       "slot": 26,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Capucha de Ilusionista",
       "lore": [
@@ -905,6 +933,7 @@
     "vindicator_locked": {
       "slot": 27,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Capucha de Vindicador",
       "lore": [
@@ -931,16 +960,26 @@
           "obtenido": {
             "type": "has permission",
             "permission": "astral.cosmetico.sombrero.carnivora"
+          },
+          "compensacion": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.carnivora"
           }
-        }
+        },
+        "minimum_requirements": 1
       },
       "click_requirement": {
         "requirements": {
           "obtenido": {
             "type": "has permission",
             "permission": "astral.cosmetico.sombrero.carnivora"
+          },
+          "compensacion": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.alas.carnivora"
           }
         },
+        "minimum_requirements": 1,
         "deny_commands": [
           "[message] &cTodavia no lo desbloqueaste."
         ]
@@ -953,6 +992,7 @@
     "carnivora_locked": {
       "slot": 28,
       "material": "GRAY_DYE",
+      "item_model": "astral:menu/icon_lock",
       "priority": 2,
       "display_name": "&8Sombrero de Carnivora",
       "lore": [
@@ -965,6 +1005,7 @@
     "clear": {
       "slot": 49,
       "material": "BARRIER",
+      "item_model": "astral:menu/icon_clear",
       "display_name": "&eQuitar",
       "click_commands": [
         "[close]",
@@ -974,6 +1015,7 @@
     "back": {
       "slot": 45,
       "material": "ARROW",
+      "item_model": "astral:menu/icon_titulos",
       "display_name": "&fTitulos",
       "click_commands": [
         "[openguimenu] cosmeticos"
@@ -982,6 +1024,7 @@
     "gacha": {
       "slot": 53,
       "material": "CHEST",
+      "item_model": "astral:menu/icon_gacha_cosmeticos",
       "display_name": "&dGacha de Cosmeticos",
       "click_commands": [
         "[openguimenu] gacha_cosmeticos"
