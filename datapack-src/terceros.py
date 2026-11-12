@@ -41,8 +41,10 @@ def pet_definitions():
     return {pid: dict(n=i, nombre=name, rareza=rarity, color=color, icono=icon,
                      fuente='Gacha de Monturas', efectos=[[(e, 0)] for e in effects],
                      texto=[('' if j == 0 else '+ ') + EFFECT_NAMES[e] for j, e in enumerate(effects)],
-                     # Sin el repositorio privado, se usa un modelo propio disponible.
-                     modelo='astral_pet_lobo')
+                     # Solo el ID del modelo de BetterModel (sin arte): el server siempre tiene
+                     # los modelos privados. Antes era astral_pet_lobo y cada regeneracion publica
+                     # volvia a convertir las mascotas nuevas en lobos (12/11/2026).
+                     modelo='astral_pet_' + pid)
             for i, (pid, name, rarity, color, icon, effects) in enumerate(PETS, 7)}
 
 
