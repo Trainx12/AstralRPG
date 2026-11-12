@@ -262,6 +262,10 @@ from mascotas_ui import assets as pet_ui_assets
 pet_ui_files, pet_ui_providers = pet_ui_assets()
 files.update(pet_ui_files)
 default_font['providers'] = pet_ui_providers + default_font['providers']
+from minijuegos_ui import assets as minigame_assets
+minigame_files, minigame_providers = minigame_assets()
+files.update(minigame_files)
+default_font['providers'] = minigame_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)

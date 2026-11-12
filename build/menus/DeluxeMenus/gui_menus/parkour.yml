@@ -1,10 +1,14 @@
 {
-  "menu_title": "&8Mini juegos",
-  "size": 36,
+  "menu_title": "&f",
+  "size": 54,
   "items": {
     "spiral": {
-      "material": "FEATHER",
-      "slot": 10,
+      "material": "PAPER",
+      "slot": 0,
+      "item_model": "astral:minijuegos/spiral_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lSpiral Parkour Challenge",
       "lore": [
         "&7Una espiral de saltos hasta la cima.",
@@ -15,12 +19,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour spiral<delay=3>"
+      ]
+    },
+    "spiral_hit_1": {
+      "material": "PAPER",
+      "slot": 1,
+      "item_model": "astral:minijuegos/spiral_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_spiral"
+      "display_name": "&a&lSpiral Parkour Challenge",
+      "lore": [
+        "&7Una espiral de saltos hasta la cima.",
+        "&7Tipo: &fProgresiva",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral<delay=3>"
+      ]
+    },
+    "spiral_hit_2": {
+      "material": "PAPER",
+      "slot": 9,
+      "item_model": "astral:minijuegos/spiral_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lSpiral Parkour Challenge",
+      "lore": [
+        "&7Una espiral de saltos hasta la cima.",
+        "&7Tipo: &fProgresiva",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral<delay=3>"
+      ]
+    },
+    "spiral_hit_3": {
+      "material": "PAPER",
+      "slot": 10,
+      "item_model": "astral:minijuegos/spiral_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lSpiral Parkour Challenge",
+      "lore": [
+        "&7Una espiral de saltos hasta la cima.",
+        "&7Tipo: &fProgresiva",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral<delay=3>"
+      ]
     },
     "spiral2": {
-      "material": "PHANTOM_MEMBRANE",
-      "slot": 11,
+      "material": "PAPER",
+      "slot": 2,
+      "item_model": "astral:minijuegos/spiral2_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lParkour Spiral 2",
       "lore": [
         "&7La segunda espiral: mas alta y mas larga.",
@@ -31,12 +95,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour spiral2<delay=3>"
+      ]
+    },
+    "spiral2_hit_1": {
+      "material": "PAPER",
+      "slot": 3,
+      "item_model": "astral:minijuegos/spiral2_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_spiral2"
+      "display_name": "&a&lParkour Spiral 2",
+      "lore": [
+        "&7La segunda espiral: mas alta y mas larga.",
+        "&7Tipo: &fDificil",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral2<delay=3>"
+      ]
+    },
+    "spiral2_hit_2": {
+      "material": "PAPER",
+      "slot": 11,
+      "item_model": "astral:minijuegos/spiral2_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lParkour Spiral 2",
+      "lore": [
+        "&7La segunda espiral: mas alta y mas larga.",
+        "&7Tipo: &fDificil",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral2<delay=3>"
+      ]
+    },
+    "spiral2_hit_3": {
+      "material": "PAPER",
+      "slot": 12,
+      "item_model": "astral:minijuegos/spiral2_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lParkour Spiral 2",
+      "lore": [
+        "&7La segunda espiral: mas alta y mas larga.",
+        "&7Tipo: &fDificil",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour spiral2<delay=3>"
+      ]
     },
     "paradise3": {
-      "material": "SUNFLOWER",
-      "slot": 12,
+      "material": "PAPER",
+      "slot": 5,
+      "item_model": "astral:minijuegos/paradise3_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lParkour Paradise 3",
       "lore": [
         "&7Islas de saltos unidas por portales.",
@@ -47,12 +171,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour paradise3<delay=3>"
+      ]
+    },
+    "paradise3_hit_1": {
+      "material": "PAPER",
+      "slot": 6,
+      "item_model": "astral:minijuegos/paradise3_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_paradise3"
+      "display_name": "&a&lParkour Paradise 3",
+      "lore": [
+        "&7Islas de saltos unidas por portales.",
+        "&7Tipo: &fMedia",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour paradise3<delay=3>"
+      ]
+    },
+    "paradise3_hit_2": {
+      "material": "PAPER",
+      "slot": 14,
+      "item_model": "astral:minijuegos/paradise3_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lParkour Paradise 3",
+      "lore": [
+        "&7Islas de saltos unidas por portales.",
+        "&7Tipo: &fMedia",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour paradise3<delay=3>"
+      ]
+    },
+    "paradise3_hit_3": {
+      "material": "PAPER",
+      "slot": 15,
+      "item_model": "astral:minijuegos/paradise3_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lParkour Paradise 3",
+      "lore": [
+        "&7Islas de saltos unidas por portales.",
+        "&7Tipo: &fMedia",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour paradise3<delay=3>"
+      ]
     },
     "colorescape": {
-      "material": "LIME_DYE",
-      "slot": 13,
+      "material": "PAPER",
+      "slot": 7,
+      "item_model": "astral:minijuegos/colorescape_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lColor Escape",
       "lore": [
         "&7Escape de colores: resolve cada sala para salir.",
@@ -63,12 +247,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour colorescape<delay=3>"
+      ]
+    },
+    "colorescape_hit_1": {
+      "material": "PAPER",
+      "slot": 8,
+      "item_model": "astral:minijuegos/colorescape_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_colorescape"
+      "display_name": "&a&lColor Escape",
+      "lore": [
+        "&7Escape de colores: resolve cada sala para salir.",
+        "&7Tipo: &fPuzzle",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour colorescape<delay=3>"
+      ]
+    },
+    "colorescape_hit_2": {
+      "material": "PAPER",
+      "slot": 16,
+      "item_model": "astral:minijuegos/colorescape_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lColor Escape",
+      "lore": [
+        "&7Escape de colores: resolve cada sala para salir.",
+        "&7Tipo: &fPuzzle",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour colorescape<delay=3>"
+      ]
+    },
+    "colorescape_hit_3": {
+      "material": "PAPER",
+      "slot": 17,
+      "item_model": "astral:minijuegos/colorescape_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lColor Escape",
+      "lore": [
+        "&7Escape de colores: resolve cada sala para salir.",
+        "&7Tipo: &fPuzzle",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour colorescape<delay=3>"
+      ]
     },
     "magmarun": {
-      "material": "MAGMA_BLOCK",
-      "slot": 14,
+      "material": "PAPER",
+      "slot": 18,
+      "item_model": "astral:minijuegos/magmarun_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lMagma Run",
       "lore": [
         "&7Corre antes de que suba el magma: 7 temas.",
@@ -79,12 +323,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour magmarun<delay=3>"
+      ]
+    },
+    "magmarun_hit_1": {
+      "material": "PAPER",
+      "slot": 19,
+      "item_model": "astral:minijuegos/magmarun_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_magmarun"
+      "display_name": "&a&lMagma Run",
+      "lore": [
+        "&7Corre antes de que suba el magma: 7 temas.",
+        "&7Tipo: &fCarrera",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour magmarun<delay=3>"
+      ]
+    },
+    "magmarun_hit_2": {
+      "material": "PAPER",
+      "slot": 27,
+      "item_model": "astral:minijuegos/magmarun_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lMagma Run",
+      "lore": [
+        "&7Corre antes de que suba el magma: 7 temas.",
+        "&7Tipo: &fCarrera",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour magmarun<delay=3>"
+      ]
+    },
+    "magmarun_hit_3": {
+      "material": "PAPER",
+      "slot": 28,
+      "item_model": "astral:minijuegos/magmarun_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lMagma Run",
+      "lore": [
+        "&7Corre antes de que suba el magma: 7 temas.",
+        "&7Tipo: &fCarrera",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour magmarun<delay=3>"
+      ]
     },
     "batallanaval": {
-      "material": "OAK_BOAT",
-      "slot": 15,
+      "material": "PAPER",
+      "slot": 20,
+      "item_model": "astral:minijuegos/batallanaval_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lBatalla Naval",
       "lore": [
         "&7Hunde la flota rival: 2 jugadores.",
@@ -95,12 +399,72 @@
       "click_commands": [
         "[close]",
         "[player] parkour batallanaval<delay=3>"
+      ]
+    },
+    "batallanaval_hit_1": {
+      "material": "PAPER",
+      "slot": 21,
+      "item_model": "astral:minijuegos/batallanaval_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_batallanaval"
+      "display_name": "&a&lBatalla Naval",
+      "lore": [
+        "&7Hunde la flota rival: 2 jugadores.",
+        "&7Tipo: &f2 jugadores",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour batallanaval<delay=3>"
+      ]
+    },
+    "batallanaval_hit_2": {
+      "material": "PAPER",
+      "slot": 29,
+      "item_model": "astral:minijuegos/batallanaval_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lBatalla Naval",
+      "lore": [
+        "&7Hunde la flota rival: 2 jugadores.",
+        "&7Tipo: &f2 jugadores",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour batallanaval<delay=3>"
+      ]
+    },
+    "batallanaval_hit_3": {
+      "material": "PAPER",
+      "slot": 30,
+      "item_model": "astral:minijuegos/batallanaval_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lBatalla Naval",
+      "lore": [
+        "&7Hunde la flota rival: 2 jugadores.",
+        "&7Tipo: &f2 jugadores",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] parkour batallanaval<delay=3>"
+      ]
     },
     "dropper_facil": {
-      "material": "WATER_BUCKET",
-      "slot": 16,
+      "material": "PAPER",
+      "slot": 23,
+      "item_model": "astral:minijuegos/dropper_facil_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lThe Easiest Dropper",
       "lore": [
         "&76 niveles de caida libre.",
@@ -110,12 +474,69 @@
       ],
       "click_commands": [
         "[openguimenu] dropper_facil"
+      ]
+    },
+    "dropper_facil_hit_1": {
+      "material": "PAPER",
+      "slot": 24,
+      "item_model": "astral:minijuegos/dropper_facil_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_dropper_facil"
+      "display_name": "&a&lThe Easiest Dropper",
+      "lore": [
+        "&76 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_facil"
+      ]
+    },
+    "dropper_facil_hit_2": {
+      "material": "PAPER",
+      "slot": 32,
+      "item_model": "astral:minijuegos/dropper_facil_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lThe Easiest Dropper",
+      "lore": [
+        "&76 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_facil"
+      ]
+    },
+    "dropper_facil_hit_3": {
+      "material": "PAPER",
+      "slot": 33,
+      "item_model": "astral:minijuegos/dropper_facil_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lThe Easiest Dropper",
+      "lore": [
+        "&76 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_facil"
+      ]
     },
     "dropper_h4rs": {
-      "material": "HEART_OF_THE_SEA",
-      "slot": 19,
+      "material": "PAPER",
+      "slot": 25,
+      "item_model": "astral:minijuegos/dropper_h4rs_0",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
       "display_name": "&a&lThe Dropper (H4rs)",
       "lore": [
         "&710 niveles de caida libre.",
@@ -125,42 +546,65 @@
       ],
       "click_commands": [
         "[openguimenu] dropper_h4rs"
+      ]
+    },
+    "dropper_h4rs_hit_1": {
+      "material": "PAPER",
+      "slot": 26,
+      "item_model": "astral:minijuegos/dropper_h4rs_1",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ],
-      "item_model": "astral:menu/icon_dropper_h4rs"
+      "display_name": "&a&lThe Dropper (H4rs)",
+      "lore": [
+        "&710 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_h4rs"
+      ]
     },
-    "proximo_20": {
-      "material": "GRAY_DYE",
-      "slot": 20,
-      "display_name": "&7Proximamente"
+    "dropper_h4rs_hit_2": {
+      "material": "PAPER",
+      "slot": 34,
+      "item_model": "astral:minijuegos/dropper_h4rs_2",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lThe Dropper (H4rs)",
+      "lore": [
+        "&710 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_h4rs"
+      ]
     },
-    "proximo_21": {
-      "material": "GRAY_DYE",
-      "slot": 21,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_22": {
-      "material": "GRAY_DYE",
-      "slot": 22,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_23": {
-      "material": "GRAY_DYE",
-      "slot": 23,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_24": {
-      "material": "GRAY_DYE",
-      "slot": 24,
-      "display_name": "&7Proximamente"
-    },
-    "proximo_25": {
-      "material": "GRAY_DYE",
-      "slot": 25,
-      "display_name": "&7Proximamente"
+    "dropper_h4rs_hit_3": {
+      "material": "PAPER",
+      "slot": 35,
+      "item_model": "astral:minijuegos/dropper_h4rs_3",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&a&lThe Dropper (H4rs)",
+      "lore": [
+        "&710 niveles de caida libre.",
+        "&7Tipo: &fDropper",
+        "&7Sin tu inventario ni vida extra:",
+        "&7se te devuelven al salir."
+      ],
+      "click_commands": [
+        "[openguimenu] dropper_h4rs"
+      ]
     },
     "lobby": {
       "material": "RED_BED",
-      "slot": 30,
+      "slot": 45,
       "display_name": "&fVolver al lobby",
       "click_commands": [
         "[close]",
@@ -170,7 +614,7 @@
     },
     "cerrar": {
       "material": "BARRIER",
-      "slot": 32,
+      "slot": 53,
       "display_name": "&cCerrar",
       "click_commands": [
         "[close]"

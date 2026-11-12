@@ -133,6 +133,27 @@ def menu_data(kind):
         items['lobby']=dict(items['lobby'],material='BARRIER',display_name='&fVolver al lobby');del items['lobby']['item_model']
         return decorate(dict(menu_title=title('arenas'),size=54,items=items))
     if kind == 'parkour':
+        # Ventana ilustrada (minijuegos_ui.py): ocho tarjetas de 2x2 casillas.
+        from minijuegos_ui import title as mj_title, CARD_SLOTS, LOBBY_SLOT, CLOSE_SLOT
+        games = {d['id']: d for d in PARKOURS if not d.get('group')}
+        games.update({g: dict(id=g, name=d['name'], description=f'{len(d["levels"])} niveles de caida libre.',
+                              difficulty='Dropper', open_menu=g) for g, d in DROPPERS.items()})
+        if set(games) != set(CARD_SLOTS):
+            raise ValueError('Actualizar las tarjetas de minijuegos_ui al cambiar el catalogo')
+        items = {}
+        for gid, slots in CARD_SLOTS.items():
+            d = games[gid]
+            lore = ['&7' + d['description'], '&7Tipo: &f' + d['difficulty'],
+                    '&7Sin tu inventario ni vida extra:', '&7se te devuelven al salir.']
+            click = ['[openguimenu] ' + d['open_menu']] if d.get('open_menu') else ['[close]', f'[player] parkour {gid}<delay=3>']
+            for n, slot in enumerate(slots):
+                items[gid if n == 0 else f'{gid}_hit_{n}'] = dict(material='PAPER', slot=slot, item_model=f'astral:minijuegos/{gid}_{n}',
+                    item_flags=['HIDE_ATTRIBUTES'], display_name='&a&l' + d['name'], lore=lore, click_commands=click)
+        items['lobby'] = dict(material='RED_BED', slot=LOBBY_SLOT, display_name='&fVolver al lobby',
+                              click_commands=['[close]', '[player] spawn<delay=3>'])
+        items['cerrar'] = dict(material='BARRIER', slot=CLOSE_SLOT, display_name='&cCerrar', click_commands=['[close]'])
+        return decorate(dict(menu_title=mj_title(), size=54, items=items))
+    if kind == 'parkour':
         maps = [d for d in PARKOURS if not d.get('group')]
         maps += [dict(id=g, name=d['name'], icon=d['icon'], description=f'{len(d["levels"])} niveles de caida libre.',
                       difficulty='Dropper', open_menu=g) for g, d in DROPPERS.items()]

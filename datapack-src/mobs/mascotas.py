@@ -171,13 +171,16 @@ def skill_yml():
         L += [f"MASC_INVOCAR_{pid}:", "  TargetConditions:", f"  - score{{o=mascota;v={n}}} true",
               f"  - haspermission{{p=astral.mascota.{pid}}} true", "  Skills:",
               sk(f'command{{c="scoreboard players set {p} mascota 0"}}'),
-              sk(f'command{{c="scoreboard players set {p} petsel {n}"}}'),
+              # petsel en 0 primero: PET_*_CHEQUEO (cada 20 ticks) borra la mascota que ya estaba,
+              # aunque sea la misma; MASC_CREAR la elige de nuevo despues de 25 ticks y la invoca.
+              sk(f'command{{c="scoreboard players set {p} petsel 0"}}'),
               # El jugador invoca en su posicion y Mythic asigna su UUID como dueno.
               # No compartir un nombre global entre pedidos concurrentes.
               sk(f"sudoskill{{s=MASC_CREAR_{pid}}}"),
               sk("particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}"),
               sk(f'message{{m="&7Invocaste a tu &f{d["nombre"]}&7. &8(/mascotas para guardarla)"}}'), ""]
         L += [f"MASC_CREAR_{pid}:", "  Skills:", sk("delay 25"),
+              sk(f'command{{c="scoreboard players set <caster.name> petsel {n}"}}'),
               sk(f"skill{{s=MASC_APARECER_{pid}}} @self"), "",
               f"MASC_APARECER_{pid}:", "  Conditions:", "  - isplayer true",
               f"  - score{{o=petsel;v={n}}} true", "  Skills:",

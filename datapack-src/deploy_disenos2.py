@@ -13,9 +13,10 @@ from PIL import Image
 from terceros import ROOT, privado
 from pack_audit import audit
 
-BASE_SHA = 'd7310b324b82bf0c060e70f9febeb152c446a1a2'
-BASE = 'build/entregas/disenos-pendientes/AstralRPG-Textures.zip'
-DELIVERY = 'build/entregas/disenos-gemini'
+# Base = FINAL instalado en el server; HEAD = commit cuyo pack publico armo esa base.
+BASE_SHA = '2a0590a4d23f7512d0a7cdca197711d2db38cd30'
+BASE = 'build/entregas/disenos-gemini/AstralRPG-Textures.zip'
+DELIVERY = 'build/entregas/disenos-gemini2'
 
 
 def read_zip(src):

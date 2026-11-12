@@ -22,6 +22,8 @@ BACK_SLOT, GACHA_SLOT = 45, 53
 CELL = '#132033'
 # Escala extra de los gorros dentro del menu (solo modelos privados).
 MENU_SCALE = 1.55
+# Largo (px) que ocupa cada gorro en su celda: la celda dorada mide 34 x 16.
+TARGET = 21
 
 
 def title():
@@ -104,16 +106,54 @@ def assets():
     return files, providers
 
 
+def _bounds(files, ref):
+    def load(r):
+        ns, rel = r.split(':', 1) if ':' in r else ('minecraft', r)
+        return json.loads(files.get(f'assets/{ns}/models/{rel}.json', '{}'))
+    model = load(ref); els = model.get('elements'); parent = model.get('parent')
+    while els is None and parent:
+        m = load(parent); els = m.get('elements'); parent = m.get('parent')
+    if not els:
+        return None
+    lo = [min(e['from'][i] for e in els) for i in range(3)]
+    hi = [max(e['to'][i] for e in els) for i in range(3)]
+    return lo, hi
+
+
+def _rotate(v, rot):
+    """Rotacion de display de Minecraft (XYZ en grados) aplicada a un vector."""
+    import math
+    x, y, z = v
+    rx, ry, rz = (math.radians(a) for a in rot)
+    # JOML rotationXYZ: R = Rx * Ry * Rz (se aplica primero Z).
+    x, y = x*math.cos(rz)-y*math.sin(rz), x*math.sin(rz)+y*math.cos(rz)
+    x, z = x*math.cos(ry)+z*math.sin(ry), -x*math.sin(ry)+z*math.cos(ry)
+    y, z = y*math.cos(rx)-z*math.sin(rx), y*math.sin(rx)+z*math.cos(rx)
+    return x, y, z
+
+
 def private_menu_models(files):
-    """Circuito privado: copia de cada gorro con la vista de inventario agrandada."""
+    """Circuito privado: copia de cada gorro con la vista de inventario escalada a su tamano real
+    (lo mas largo ocupa ~TARGET px) y centrada en la casilla."""
     from cosmeticos_catalogo import HATS
     out = {}
     for key, *_ in HATS:
         ref = json.loads(files[f'assets/astral/items/cosmeticos/sombrero_{key}.json'])['model']['model']
         ns, rel = ref.split(':', 1)
         base = json.loads(files[f'assets/{ns}/models/{rel}.json'])
-        gui = dict(base.get('display', {}).get('gui', {'rotation': [30, 225, 0], 'scale': [0.625]*3}))
-        gui['scale'] = [round(v*MENU_SCALE, 4) for v in gui.get('scale', [0.625]*3)]
+        gui = dict(base.get('display', {}).get('gui', {}))
+        rot = gui.get('rotation', [30, 225, 0])
+        box = _bounds(files, ref)
+        if box:
+            lo, hi = box
+            size = max(h-l for l, h in zip(lo, hi))
+            scale = round(min(3.0, TARGET/size), 4)
+            center = [(l+h)/2-8 for l, h in zip(lo, hi)]
+            cx, cy, _ = _rotate([c*scale for c in center], rot)
+            gui = {'rotation': rot, 'translation': [round(-cx, 3), round(-cy, 3), 0], 'scale': [scale]*3}
+        else:
+            sc = gui.get('scale', [1, 1, 1])
+            gui['scale'] = [round(v*MENU_SCALE, 4) for v in sc]
         name = f'menu_sombrero_{key}'
         out[f'assets/astral/models/cosmeticos/{name}.json'] = json.dumps({'parent': ref, 'display': {'gui': gui}}).encode()
         out[f'assets/astral/items/cosmeticos/{name}.json'] = json.dumps({'oversized_in_gui': True,

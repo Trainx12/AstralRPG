@@ -34,11 +34,16 @@ def title():
     return '&f' + START + ''.join(GLYPHS) + END
 
 
+# Iconos pintados por Gemini (hojas 12 y 28): ganan sobre el pixel art de reserva.
+GEMINI_ICONS = ('fragmentos', 'duelos', 'cosmeticos', 'mochilas', 'proteccion', 'recetas', 'tren', 'santuario')
+
+
 def icon(key):
     """Icono de Gemini en 18x18 (el modelo lo dibuja a escala 1.125 sobre la casilla)."""
-    if key in NEW_KEYS:
+    if key in NEW_KEYS and key not in GEMINI_ICONS:
         return painted_icon(key)
-    im = illustration('menu_' + ICON_ART.get(key, key)).resize((18, 18), Image.Resampling.LANCZOS)
+    art = illustration('menu_' + (key if key in GEMINI_ICONS else ICON_ART.get(key, key)))
+    im = art.resize((72, 72), Image.Resampling.BOX).resize((18, 18), Image.Resampling.LANCZOS)
     d = ImageDraw.Draw(im)
     d.rectangle((0, 0, 17, 17), outline=EDGE)
     return im

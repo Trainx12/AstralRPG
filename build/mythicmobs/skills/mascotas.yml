@@ -46,7 +46,7 @@ MASC_INVOCAR_lobo:
   - haspermission{p=astral.mascota.lobo} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 1"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_lobo}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fLobo del Bosque&7. &8(/mascotas para guardarla)"}'
@@ -54,6 +54,7 @@ MASC_INVOCAR_lobo:
 MASC_CREAR_lobo:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 1"}'
   - 'skill{s=MASC_APARECER_lobo} @self'
 
 MASC_APARECER_lobo:
@@ -139,7 +140,7 @@ MASC_INVOCAR_cuervo:
   - haspermission{p=astral.mascota.cuervo} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 2"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_cuervo}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCuervo Arcano&7. &8(/mascotas para guardarla)"}'
@@ -147,6 +148,7 @@ MASC_INVOCAR_cuervo:
 MASC_CREAR_cuervo:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 2"}'
   - 'skill{s=MASC_APARECER_cuervo} @self'
 
 MASC_APARECER_cuervo:
@@ -220,7 +222,7 @@ MASC_INVOCAR_golem:
   - haspermission{p=astral.mascota.golem} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 3"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_golem}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fGolem de Piedra&7. &8(/mascotas para guardarla)"}'
@@ -228,6 +230,7 @@ MASC_INVOCAR_golem:
 MASC_CREAR_golem:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 3"}'
   - 'skill{s=MASC_APARECER_golem} @self'
 
 MASC_APARECER_golem:
@@ -301,7 +304,7 @@ MASC_INVOCAR_zorro:
   - haspermission{p=astral.mascota.zorro} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 4"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_zorro}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fZorro Espectral&7. &8(/mascotas para guardarla)"}'
@@ -309,6 +312,7 @@ MASC_INVOCAR_zorro:
 MASC_CREAR_zorro:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 4"}'
   - 'skill{s=MASC_APARECER_zorro} @self'
 
 MASC_APARECER_zorro:
@@ -382,7 +386,7 @@ MASC_INVOCAR_dragon:
   - haspermission{p=astral.mascota.dragon} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 5"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_dragon}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fDragoncito de Fuego&7. &8(/mascotas para guardarla)"}'
@@ -390,6 +394,7 @@ MASC_INVOCAR_dragon:
 MASC_CREAR_dragon:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 5"}'
   - 'skill{s=MASC_APARECER_dragon} @self'
 
 MASC_APARECER_dragon:
@@ -511,7 +516,7 @@ MASC_INVOCAR_fenix:
   - haspermission{p=astral.mascota.fenix} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 6"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_fenix}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fFenix&7. &8(/mascotas para guardarla)"}'
@@ -519,6 +524,7 @@ MASC_INVOCAR_fenix:
 MASC_CREAR_fenix:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 6"}'
   - 'skill{s=MASC_APARECER_fenix} @self'
 
 MASC_APARECER_fenix:
@@ -592,7 +598,7 @@ MASC_INVOCAR_ghastito:
   - haspermission{p=astral.mascota.ghastito} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 7"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_ghastito}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fGhastito de Nube&7. &8(/mascotas para guardarla)"}'
@@ -600,6 +606,7 @@ MASC_INVOCAR_ghastito:
 MASC_CREAR_ghastito:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 7"}'
   - 'skill{s=MASC_APARECER_ghastito} @self'
 
 MASC_APARECER_ghastito:
@@ -673,7 +680,7 @@ MASC_INVOCAR_bombardero:
   - haspermission{p=astral.mascota.bombardero} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 8"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_bombardero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fBombardero Musgoso&7. &8(/mascotas para guardarla)"}'
@@ -681,6 +688,7 @@ MASC_INVOCAR_bombardero:
 MASC_CREAR_bombardero:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 8"}'
   - 'skill{s=MASC_APARECER_bombardero} @self'
 
 MASC_APARECER_bombardero:
@@ -754,7 +762,7 @@ MASC_INVOCAR_canonero:
   - haspermission{p=astral.mascota.canonero} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 9"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_canonero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCanonero de Bolsillo&7. &8(/mascotas para guardarla)"}'
@@ -762,6 +770,7 @@ MASC_INVOCAR_canonero:
 MASC_CREAR_canonero:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 9"}'
   - 'skill{s=MASC_APARECER_canonero} @self'
 
 MASC_APARECER_canonero:
@@ -835,7 +844,7 @@ MASC_INVOCAR_encapuchado:
   - haspermission{p=astral.mascota.encapuchado} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 10"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_encapuchado}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fZorro Encapuchado&7. &8(/mascotas para guardarla)"}'
@@ -843,6 +852,7 @@ MASC_INVOCAR_encapuchado:
 MASC_CREAR_encapuchado:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 10"}'
   - 'skill{s=MASC_APARECER_encapuchado} @self'
 
 MASC_APARECER_encapuchado:
@@ -916,7 +926,7 @@ MASC_INVOCAR_llamita:
   - haspermission{p=astral.mascota.llamita} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 11"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_llamita}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fLlamita Viajera&7. &8(/mascotas para guardarla)"}'
@@ -924,6 +934,7 @@ MASC_INVOCAR_llamita:
 MASC_CREAR_llamita:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 11"}'
   - 'skill{s=MASC_APARECER_llamita} @self'
 
 MASC_APARECER_llamita:
@@ -997,7 +1008,7 @@ MASC_INVOCAR_hondero:
   - haspermission{p=astral.mascota.hondero} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 12"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_hondero}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fPequeno Hondero&7. &8(/mascotas para guardarla)"}'
@@ -1005,6 +1016,7 @@ MASC_INVOCAR_hondero:
 MASC_CREAR_hondero:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 12"}'
   - 'skill{s=MASC_APARECER_hondero} @self'
 
 MASC_APARECER_hondero:
@@ -1078,7 +1090,7 @@ MASC_INVOCAR_saqueador:
   - haspermission{p=astral.mascota.saqueador} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 13"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_saqueador}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fSaqueador Elegante&7. &8(/mascotas para guardarla)"}'
@@ -1086,6 +1098,7 @@ MASC_INVOCAR_saqueador:
 MASC_CREAR_saqueador:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 13"}'
   - 'skill{s=MASC_APARECER_saqueador} @self'
 
 MASC_APARECER_saqueador:
@@ -1159,7 +1172,7 @@ MASC_INVOCAR_brujita:
   - haspermission{p=astral.mascota.brujita} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 14"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_brujita}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fBrujita Estelar&7. &8(/mascotas para guardarla)"}'
@@ -1167,6 +1180,7 @@ MASC_INVOCAR_brujita:
 MASC_CREAR_brujita:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 14"}'
   - 'skill{s=MASC_APARECER_brujita} @self'
 
 MASC_APARECER_brujita:
@@ -1240,7 +1254,7 @@ MASC_INVOCAR_desierto:
   - haspermission{p=astral.mascota.desierto} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 15"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_desierto}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito del Desierto&7. &8(/mascotas para guardarla)"}'
@@ -1248,6 +1262,7 @@ MASC_INVOCAR_desierto:
 MASC_CREAR_desierto:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 15"}'
   - 'skill{s=MASC_APARECER_desierto} @self'
 
 MASC_APARECER_desierto:
@@ -1321,7 +1336,7 @@ MASC_INVOCAR_jungla:
   - haspermission{p=astral.mascota.jungla} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 16"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_jungla}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de la Jungla&7. &8(/mascotas para guardarla)"}'
@@ -1329,6 +1344,7 @@ MASC_INVOCAR_jungla:
 MASC_CREAR_jungla:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 16"}'
   - 'skill{s=MASC_APARECER_jungla} @self'
 
 MASC_APARECER_jungla:
@@ -1402,7 +1418,7 @@ MASC_INVOCAR_frondoso:
   - haspermission{p=astral.mascota.frondoso} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 17"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_frondoso}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito Frondoso&7. &8(/mascotas para guardarla)"}'
@@ -1410,6 +1426,7 @@ MASC_INVOCAR_frondoso:
 MASC_CREAR_frondoso:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 17"}'
   - 'skill{s=MASC_APARECER_frondoso} @self'
 
 MASC_APARECER_frondoso:
@@ -1483,7 +1500,7 @@ MASC_INVOCAR_micelio:
   - haspermission{p=astral.mascota.micelio} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 18"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_micelio}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Micelio&7. &8(/mascotas para guardarla)"}'
@@ -1491,6 +1508,7 @@ MASC_INVOCAR_micelio:
 MASC_CREAR_micelio:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 18"}'
   - 'skill{s=MASC_APARECER_micelio} @self'
 
 MASC_APARECER_micelio:
@@ -1564,7 +1582,7 @@ MASC_INVOCAR_pradera:
   - haspermission{p=astral.mascota.pradera} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 19"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_pradera}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Pradera&7. &8(/mascotas para guardarla)"}'
@@ -1572,6 +1590,7 @@ MASC_INVOCAR_pradera:
 MASC_CREAR_pradera:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 19"}'
   - 'skill{s=MASC_APARECER_pradera} @self'
 
 MASC_APARECER_pradera:
@@ -1645,7 +1664,7 @@ MASC_INVOCAR_sabana:
   - haspermission{p=astral.mascota.sabana} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 20"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_sabana}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Sabana&7. &8(/mascotas para guardarla)"}'
@@ -1653,6 +1672,7 @@ MASC_INVOCAR_sabana:
 MASC_CREAR_sabana:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 20"}'
   - 'skill{s=MASC_APARECER_sabana} @self'
 
 MASC_APARECER_sabana:
@@ -1726,7 +1746,7 @@ MASC_INVOCAR_nieve:
   - haspermission{p=astral.mascota.nieve} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 21"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_nieve}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Nieve&7. &8(/mascotas para guardarla)"}'
@@ -1734,6 +1754,7 @@ MASC_INVOCAR_nieve:
 MASC_CREAR_nieve:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 21"}'
   - 'skill{s=MASC_APARECER_nieve} @self'
 
 MASC_APARECER_nieve:
@@ -1807,7 +1828,7 @@ MASC_INVOCAR_pantano:
   - haspermission{p=astral.mascota.pantano} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 22"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_pantano}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fCubito de Pantano&7. &8(/mascotas para guardarla)"}'
@@ -1815,6 +1836,7 @@ MASC_INVOCAR_pantano:
 MASC_CREAR_pantano:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 22"}'
   - 'skill{s=MASC_APARECER_pantano} @self'
 
 MASC_APARECER_pantano:
@@ -1888,7 +1910,7 @@ MASC_INVOCAR_honguito:
   - haspermission{p=astral.mascota.honguito} true
   Skills:
   - 'command{c="scoreboard players set <target.name> mascota 0"}'
-  - 'command{c="scoreboard players set <target.name> petsel 23"}'
+  - 'command{c="scoreboard players set <target.name> petsel 0"}'
   - 'sudoskill{s=MASC_CREAR_honguito}'
   - 'particles{p=happy_villager;amount=20;hS=0.6;vS=0.6}'
   - 'message{m="&7Invocaste a tu &fHonguito Errante&7. &8(/mascotas para guardarla)"}'
@@ -1896,6 +1918,7 @@ MASC_INVOCAR_honguito:
 MASC_CREAR_honguito:
   Skills:
   - 'delay 25'
+  - 'command{c="scoreboard players set <caster.name> petsel 23"}'
   - 'skill{s=MASC_APARECER_honguito} @self'
 
 MASC_APARECER_honguito:
