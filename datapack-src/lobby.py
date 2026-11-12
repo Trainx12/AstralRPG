@@ -594,7 +594,10 @@ def commands():
          f"execute in minecraft:{WORLD} run setblock 211 101 191 minecraft:air",
          f"execute in minecraft:{WORLD} run setblock 208 101 197 minecraft:air",
          f"rg flag -w {WORLD} __global__ mob-spawning allow"]
+    # Borrar antes de crear: si esta lista se corre dos veces no quedan NPC repetidos (pasaba el 11/11).
+    # El lobby tiene que estar cargado (estar cerca o forceload) para que mm mobs kill los encuentre.
     for mid, (nx, ny, nz, nyaw) in NPC_POS.items():
+        C.append(f"mm mobs kill {mid}")
         C.append(f"mm mobs spawn {mid} 1 {WORLD},{nx},{ny},{nz},{nyaw},0")
     C.append("# Herrero (mejora +1..+10): no tiene lugar fijo. Parate donde lo quieras, y como jugador (con OP):")
     C.append("#   /mm mobs spawn astral_npc_herrero   (con el mob-spawning allow de arriba todavia puesto)")
