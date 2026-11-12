@@ -23,6 +23,12 @@ Generadores: `datapack-src/tanda5a.py`, `escala.py`, `runtime/AstralProgression.
 GriefPrevention 16.18.7: solo survival, 36 bloques iniciales, minimo 6x6, sin ganancia por hora,
 proteccion completa de fondo a techo. EconomyShopGUI suma paquetes de area mediante consola;
 `/buyclaimblocks` y venta directa quedan desactivados. Respeta WorldGuard; Bolt conserva sus candados.
+Mesa de encantamientos: **LynExp 1.0.0** (`LynExp-1.0.0-mc26.1-26.1.2.jar`, github.com/lyn1dev/enchanting-table).
+Al abrir una mesa se elige el encantamiento (1395 puntos de XP cada uno; clic derecho con items de mobs da XP).
+Ofrece todo encantamiento cuyo `supported_items` acepte el objeto: por eso los nuestros usan el tag vacio
+`#astral:sin_mesa` (si no, vendia Mejora +10). Los efectos y el Herrero (set_enchantments) no dependen de eso.
+Prueba local: `tools/probar_lynexp_paper.py`.
+
 Mochilas: **ExpendableBackpacks 1.2.0** (unico plugin de mochilas; BlzdBackpacks se descarto el 12/11/2026).
 La mochila es un item (cabeza): clic derecho la abre; `/bp` muestra recetas. Niveles cuero 9, cobre 18, hierro 27,
 oro 36, diamante 45, netherite 54 (herreria). La tienda Mochilas (slot 42, menu propio de AstralProgression) cobra y

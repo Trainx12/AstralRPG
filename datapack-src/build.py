@@ -738,7 +738,11 @@ put(f"data/{NS}/predicate/sneaking.json", {"condition": "minecraft:entity_proper
 NOHIT = {"condition": "minecraft:inverted", "term": {"condition": "minecraft:entity_properties", "entity": "this",
                                                      "predicate": {"nbt": "{Tags:[\"astral.nohit\"]}"}}}
 DIRECT = {"condition": "minecraft:damage_source_properties", "predicate": {"is_direct": True}}
-ENCH_ITEMS = f"#{NS}:enchantable"
+# Ningun objeto "acepta" nuestros encantamientos para el juego: asi la mesa de LynExp, yunques y /enchant
+# no los ofrecen (la mesa vendia Mejora +10 por XP, 12/11/2026). Los efectos no dependen de esto y
+# nuestros comandos (set_enchantments) los ponen igual.
+ENCH_ITEMS = f"#{NS}:sin_mesa"
+put(f"data/{NS}/tags/item/sin_mesa.json", {"values": []})
 
 
 def enchant(eid, name, color, max_level, slots, effects, supported=ENCH_ITEMS):
