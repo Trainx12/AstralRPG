@@ -396,9 +396,7 @@ ASTRAL_ROWS = [
     *(f"{PURPLE}{icon} {MUTED}{label} {ref(f'diaria{i}')}"
       for i, (icon, label) in enumerate((("✦", "Fácil"), ("✧", "Media"), ("✶", "Difícil")))),
     f"{PURPLE}✎ {MUTED}Historia {ref('historia')}",
-    SERVER_ROWS[0],
-    f"{PURPLE}103.106.58.173:7004",
-]
+]  # Fecha e IP solo en el TAB (pedido 12/11/2026).
 assert len(ASTRAL_ROWS) <= 15
 from mobs.progreso_oleadas import sidebar_conditions
 DUNGEON_ROWS = ASTRAL_ROWS[:7] + [

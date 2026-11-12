@@ -100,12 +100,12 @@ class Tanda1(unittest.TestCase):
         config = yaml.safe_load(TAB_SECTIONS)
         self.assertEqual(list(config['scoreboard']['scoreboards']), ['infinita', 'parkour', 'arenas', 'survival', 'minas', 'mazmorra', 'astral'])
         self.assertLessEqual(len(ASTRAL_ROWS), 15)
-        self.assertEqual(len(ASTRAL_ROWS), 14)
+        self.assertEqual(len(ASTRAL_ROWS), 12)  # sin fecha ni IP (12/11/2026)
         self.assertNotIn('%objective_score_{astraldef}%', str(ASTRAL_ROWS))
         self.assertEqual(ASTRAL_ROWS[5], '<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%')
         self.assertNotIn('%player_armor%', str(ASTRAL_ROWS))
         self.assertNotIn('Conectados', str(ASTRAL_ROWS))
-        self.assertIn('103.106.58.173:7004', ASTRAL_ROWS[-1])
+        self.assertNotIn('103.106.58.173:7004', str(ASTRAL_ROWS))  # la IP queda solo en el TAB
         for label in ('Stats', 'Poder', 'Oro', 'Diarias', 'Historia', 'Monstruos'):
             self.assertIn(label, str(ASTRAL_ROWS))
         import betterhud

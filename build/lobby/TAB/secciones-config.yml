@@ -52,8 +52,6 @@ scoreboard:
         - "<#D6B4FF>◷ <#AA96C5>Sube en <#F0E6FF>%objective_score_{inf.min}%:%condition:pm_inf_seg%"
         - "<#D6B4FF>⚔ <#AA96C5>Bajas <#F0E6FF>%objective_score_{inf.kills}%"
         - "<#D6B4FF>♟ <#AA96C5>/party para jugar en grupo"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     parkour:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:pm_parkour%=true"
@@ -68,8 +66,6 @@ scoreboard:
         - "<#D6B4FF>◷ <#AA96C5>Tiempo aqui <#F0E6FF>%objective_score_{pk.min}%:%condition:pm_pk_seg%"
         - "<#D6B4FF>☠ <#AA96C5>Caidas totales <#F0E6FF>%statistic_deaths%"
         - "<#D6B4FF>» <#AA96C5>/spawn para salir"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     arenas:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:pm_arenas%=true"
@@ -84,8 +80,6 @@ scoreboard:
         - "<#D6B4FF>⚔ <#AA96C5>Jugadores vencidos <#F0E6FF>%statistic_player_kills%"
         - "<#D6B4FF>☠ <#AA96C5>Muertes <#F0E6FF>%statistic_deaths%"
         - "<#D6B4FF>» <#AA96C5>Duelo: /desafiar"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     survival:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:pm_survival%=true"
@@ -100,8 +94,6 @@ scoreboard:
         - "<#D6B4FF>✦ <#AA96C5>Nivel <#F0E6FF>%player_level%  <#D6B4FF>☠ <#AA96C5>Muertes <#F0E6FF>%statistic_deaths%"
         - "<#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
         - "<#D6B4FF>» <#AA96C5>/menu · /sethome · /spawn"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     minas:
       display-condition: "%world%=astral_minas"
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
@@ -119,8 +111,6 @@ scoreboard:
         - "%condition:am_need%"
         - "%condition:am_pay%"
         - "%condition:am_time%"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     mazmorra:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:ad_dungeon%=true"
@@ -136,8 +126,6 @@ scoreboard:
         - "<#D6B4FF>%condition:ad_active%"
         - "<#AA96C5>Restantes <#F0E6FF>%objective_score_{ad.left}%"
         - "<#D6B4FF>✎ <#AA96C5>Historia %condition:historia%"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
     astral:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       lines:
@@ -153,8 +141,6 @@ scoreboard:
         - "<#D6B4FF>✧ <#AA96C5>Media %condition:diaria1%"
         - "<#D6B4FF>✶ <#AA96C5>Difícil %condition:diaria2%"
         - "<#D6B4FF>✎ <#AA96C5>Historia %condition:historia%"
-        - "<#D6B4FF>◈ <#F0E6FF>%date% %localtime_timezone_America/Argentina/Buenos_Aires,dd/MM/yy% <#D6B4FF>· <#F0E6FF>%time%"
-        - "<#D6B4FF>103.106.58.173:7004"
 conditions:
   pm_infinita:
     type: OR

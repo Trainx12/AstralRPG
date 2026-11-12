@@ -137,8 +137,7 @@ def board(name, location, activity, world=None):
         f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
         f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%",
         *activity,
-        *SERVER_ROWS,
-    ]
+    ]  # Fecha e IP solo en el TAB (pedido 12/11/2026), no en el panel lateral.
     assert len(rows) <= 15
     display = f'      display-condition: "%world%={world}"\n' if world else ""
     return (f'    {name}:\n{display}      title: "{TITLE}"\n      lines:\n'

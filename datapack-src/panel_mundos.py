@@ -39,8 +39,7 @@ def boards_and_conditions():
               f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
               f"{section('✦ Stats')} {PURPLE}❤ {TEXT}%player_health_rounded%/%player_max_health_rounded%",
               f"{PURPLE}⛃ {MUTED}Oro {TEXT}%vault_eco_balance_formatted%  {PURPLE}⚡ {MUTED}Poder {TEXT}%auraskills_power%"]
-    footer = ['%date% · %time%', f"{PURPLE}103.106.58.173:7004"]
-    footer[0] = f"{PURPLE}◈ {TEXT}%date% {PURPLE}· {TEXT}%time%"
+    footer = []  # fecha e IP solo en el TAB
     boards = [
         _board('infinita', 'pm_infinita', player + [
             f"{section('☠ Mazmorra Infinita')}",
