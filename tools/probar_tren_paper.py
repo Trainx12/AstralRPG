@@ -55,8 +55,8 @@ def run(java,base,recovery_only=False):
         print('\n'.join(l for l in text.splitlines() if 'TRAIN ' in l or 'ERROR' in l),flush=True)
         if 'TRAIN RESULT failures=0' not in text or 'TRAIN FAIL' in text:raise AssertionError('Fallo: '+str(log))
     if not recovery_only:
-        session('paper.log',[('setup',4),('ready',1),('one',2),('countdown',16),('arrived',1),
-            ('three',2),('exit',16),('twoarrived',1),('three',18),('allarrived',1),('invalidbed',1),
+        session('paper.log',[('setup',4),('ready',1),('one',2),('countdown',8),('arrived',9),('back',1),
+            ('three',2),('exit',9),('twoarrived',10),('three',10),('allarrived',10),('invalidbed',1),
             ('one',6),('outside',1),('result',1)])
     session('restart.log',[('recovered',2),('setup',4),('one',6),('persist',.2),('result',.2)],crash=True)
     session('crash-restart.log',[('recovered',2),('result',1)])

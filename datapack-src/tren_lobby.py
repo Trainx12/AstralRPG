@@ -41,24 +41,50 @@ def cart(role):
         'posZ':(-0.02313125 if kind=='head' else 0.0887875),
         'sizeX':2.0,'sizeY':2.0,'sizeZ':2.0}}]
     if role=='vagon':
-        attachments.append({'type':'SEAT','position':{'posY':1.25,'posZ':0.1},'displayMode':'DEFAULT'})
+        # El vagon tiene dos filas de asientos (modelo a escala 2): dos plazas por vagon.
+        for z in (-0.45, 0.55):
+            attachments.append({'type':'SEAT','position':{'posY':1.25,'posZ':z},'displayMode':'DEFAULT'})
     return {'entityType':'MINECART','astral-model':kind,'model':{'type':'EMPTY',
         'physical':{'cartLength':(3.6275125 if kind=='head' else 4.89375),'wheelCenter':0.0,'wheelDistance':1.5},'attachments':attachments}}
 
 
+# Estacion nueva del dueno (12/11/2026): via norte-sur en x=120, rieles a y=99 entre los muros
+# negros de z=175 (norte) y z=211 (sur). El tren espera centrado en el anden (z=193), sale al sur,
+# teletransporta 2 bloques antes del muro sur y vuelve a salir vacio desde el muro norte.
+STATION = (120, 99, 193, 'SOUTH')
+WALL_EXIT = 211          # cara del muro donde "choca" (sentido de salida)
+FIRST_RAIL_ENTRY = 176   # primer riel despues del muro por donde vuelve a salir
+LOCO, VAGON = 4.89375, 3.6275125
+CARTS = ('loco', 'vagon', 'vagon')
+SPEED = 0.12
+
+
+def trip():
+    """Distancias sobre la via medidas desde el centro del anden (sentido de salida positivo)."""
+    length = LOCO + VAGON*(len(CARTS)-1)
+    home = STATION[2] + 0.5
+    return {'velocidad': SPEED,
+            # centro de la locomotora cuando el tren queda centrado en el anden
+            'parada': round(length/2 - LOCO/2, 3),
+            # centro de la locomotora cuando su frente queda a 2 bloques del muro
+            'teleport': round(WALL_EXIT - 2 - LOCO/2 - home, 3),
+            # centro del tren al reaparecer: la cola pegada al muro de entrada
+            'salida': round(FIRST_RAIL_ENTRY + length/2 - home, 3)}
+
+
 def configuration():
-    return {'nameFormat':'astral_lobby_survival','speedLimit':0.08,'gravity':0.0,
+    return {'nameFormat':'astral_lobby_survival','speedLimit':SPEED,'gravity':0.0,
         'slowDown':False,'keepChunksLoaded':True,'allowPlayerEnter':True,'allowPlayerExit':True,
         'allowMobEnter':False,'invincible':True,'playerTakeable':False,
         'collision':{'players':'CANCEL','misc':'CANCEL','train':'CANCEL','block':'DEFAULT'},
-        'carts':[cart('loco'),cart('vagon'),cart('vagon'),cart('vagon')]}
+        'carts':[cart(c) for c in CARTS]}
 
 
 def generate():
     OUT.mkdir(parents=True,exist_ok=True)
     dump(OUT/'AstralTrain/train.yml',configuration())
     dump(OUT/'Train_Carts/savedTrainModules/astral_lobby.yml',{'AstralLobby':configuration()})
-    dump(OUT/'AstralTrain/config.yml',{'enabled':False,'station':{'x':0,'y':0,'z':0,'direction':'NORTH'}})
+    dump(OUT/'AstralTrain/config.yml',{'enabled':False,'station':{'x':0,'y':0,'z':0,'direction':'NORTH'},'viaje':trip()})
     versions=json.loads((ROOT/'datapack-src/tren-versions.json').read_text())
     (OUT/'versions.json').write_text(json.dumps(versions,indent=2)+'\n',encoding='utf8')
 

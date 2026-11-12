@@ -20,13 +20,14 @@ import com.bergerkiller.bukkit.tc.controller.spawnable.SpawnableGroup;
 import com.bergerkiller.bukkit.tc.properties.TrainPropertiesStore;
 import com.bergerkiller.bukkit.tc.events.seat.MemberBeforeSeatEnterEvent;
 
-/** Un solo tren, tres plazas. No modifica bloques, mundos ni NPC existentes. */
+/** Un solo tren: espera en el anden, sale, teletransporta antes del muro y vuelve a salir vacio
+ *  por el otro muro (estados 0 esperando, 1 saliendo, 2 volviendo). No modifica bloques ni NPC. */
 public final class AstralTrain extends JavaPlugin implements Listener {
     static final String NAME="astral_lobby_survival";
     MinecartGroup train;
     Location home, start;
     Vector forward;
-    int wait=-1, travel=0, retry=0;
+    int wait=-1, travel=0, retry=0, state=0, carts=0;
     boolean moving=false;
     boolean recovering=false;
     double lastDistance=0;
@@ -99,8 +100,13 @@ public final class AstralTrain extends JavaPlugin implements Listener {
         });
     }
 
-    void spawn() {
-        if(home==null || recovering)return;
+    void spawn() {spawnAt(0);}
+
+    double cfg(String key,double fallback) {return getConfig().getDouble("viaje."+key,fallback);}
+    double headOffset() {return train.head().getEntity().getEntity().getLocation().toVector().subtract(home.toVector()).dot(forward);}
+
+    boolean spawnAt(double offset) {
+        if(home==null || recovering)return false;
         try {
             var config=new FileConfiguration(new java.io.File(getDataFolder(),"train.yml"));config.load();
             // ItemStack del servidor: componente item_model moderno, sin CMD heredado.
@@ -111,7 +117,8 @@ public final class AstralTrain extends JavaPlugin implements Listener {
                 cart.getNode("model").getNodeList("attachments").getFirst().set("item",item);
             }
             var group=SpawnableGroup.fromConfig(config);
-            var locations=group.findSpawnLocations(home.clone().subtract(forward.clone().multiply(4)),forward,SpawnableGroup.SpawnMode.CENTER);
+            carts=config.getNodeList("carts").size();
+            var locations=group.findSpawnLocations(home.clone().add(forward.clone().multiply(offset)),forward,SpawnableGroup.SpawnMode.CENTER);
             if(locations==null || locations.isOccupied())throw new IllegalStateException("Faltan vias libres para el tren");
             train=group.spawn(locations);
             train.getProperties().setTrainName(NAME);
@@ -119,15 +126,18 @@ public final class AstralTrain extends JavaPlugin implements Listener {
             train.stop();
             // La espera nativa suprime la fisica de movimiento incluso antes
             // del primer tick propio, mientras terminan de cargar los mundos.
-            train.getActions().addActionWaitForever();
+            // Solo en el anden: el que vuelve desde el otro muro tiene que poder avanzar.
+            if(offset==0)train.getActions().addActionWaitForever();
             getConfig().set("cart-ids",train.stream().map(c->c.getEntity().getEntity().getUniqueId().toString()).toList());
             saveConfig();
-            start=train.head().getEntity().getEntity().getLocation();
-            wait=-1;moving=false;travel=0;
+            if(offset==0)start=train.head().getEntity().getEntity().getLocation();
+            wait=-1;travel=0;state=offset==0?0:2;moving=state!=0;
+            return true;
         } catch(Exception e) {
             if(train!=null && !train.isRemoved())train.destroy();
-            train=null;
+            train=null;state=0;moving=false;
             getLogger().warning("No se pudo preparar tren: "+e.getMessage());retry=200;
+            return false;
         }
     }
 
@@ -153,7 +163,7 @@ public final class AstralTrain extends JavaPlugin implements Listener {
         var passengers=riders();
         for(var p:new ArrayList<>(tracked))if(!passengers.contains(p))clearJourney(p);
         for(var p:passengers)if(tracked.add(p))p.getPersistentDataContainer().set(journey,PersistentDataType.BYTE,(byte)1);
-        if(!moving) {
+        if(state==0) {
             train.stop();
             if(passengers.isEmpty()) {wait=-1;return;}
             if(wait<0)wait=100;
@@ -163,30 +173,48 @@ public final class AstralTrain extends JavaPlugin implements Listener {
             }
             if(--wait<=0) {
                 train.getActions().clear();
-                moving=true;travel=0;
-                start=train.head().getEntity().getEntity().getLocation();
+                state=1;moving=true;travel=0;
                 for(var p:passengers)p.playSound(p.getLocation(),Sound.BLOCK_NOTE_BLOCK_FLUTE,1f,0.6f);
             }
             return;
         }
         travel++;
-        double distance=train.head().getEntity().getEntity().getLocation().toVector().subtract(start.toVector()).dot(forward);
-        if(distance>=8) {
-            lastDistance=distance;
-            train.stop();
-            // Se toma la lista al llegar, nunca la lista de quienes subieron al principio.
-            for(var p:passengers) {
-                p.leaveVehicle();
-                if(!p.teleport(destination(p))) {
-                    p.teleport(platform());
-                    p.sendMessage("§cViaje cancelado por otro plugin. Volviste al anden.");
+        double head=headOffset();
+        if(state==1) {
+            // Saliendo: 2 bloques antes del muro, los pasajeros pasan al survival.
+            if(head>=cfg("teleport",8)) {
+                lastDistance=head;
+                train.stop();
+                // Se toma la lista al llegar, nunca la lista de quienes subieron al principio.
+                for(var p:passengers) {
+                    p.leaveVehicle();
+                    if(!p.teleport(destination(p))) {
+                        p.teleport(platform());
+                        p.sendMessage("§cViaje cancelado por otro plugin. Volviste al anden.");
+                    }
+                    clearJourney(p);
                 }
-                clearJourney(p);
+                comeBack();return;
             }
-            reset();return;
+            if(travel>600 || train.size()!=carts) {reset();return;}
+            train.setForwardForce(cfg("velocidad",.08));
+            return;
         }
-        if(travel>240 || train.size()!=4) {reset();return;}
-        train.setForwardForce(.08);
+        // Volviendo vacio desde el otro muro: frena centrado en el anden.
+        if(head>=cfg("parada",0)) {
+            train.stop();train.getActions().addActionWaitForever();
+            state=0;moving=false;wait=-1;
+            return;
+        }
+        if(travel>900 || train.size()!=carts) {reset();return;}
+        train.setForwardForce(cfg("velocidad",.08));
+    }
+
+    void comeBack() {
+        for(var p:riders()) {p.leaveVehicle();p.teleport(platform());clearJourney(p);}
+        if(train!=null && !train.isRemoved())train.destroy();
+        train=null;
+        if(!spawnAt(cfg("salida",0)))retry=20;
     }
 
     Location platform() {
@@ -197,7 +225,7 @@ public final class AstralTrain extends JavaPlugin implements Listener {
     void reset() {
         for(var p:riders()) {p.leaveVehicle();p.teleport(platform());clearJourney(p);}
         if(train!=null && !train.isRemoved())train.destroy();
-        train=null;moving=false;wait=-1;retry=20;
+        train=null;moving=false;state=0;wait=-1;retry=20;
     }
 
     @EventHandler(ignoreCancelled=true) public void enter(MemberBeforeSeatEnterEvent e) {

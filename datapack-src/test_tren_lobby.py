@@ -13,15 +13,23 @@ from tren_lobby import BASE, DELIVERY, configuration, prepare_private
 class TrainBuildTests(unittest.TestCase):
     def test_three_seats_and_no_locomotive_seat(self):
         carts=configuration()['carts']
-        self.assertEqual(len(carts),4)
-        self.assertEqual([sum(a['type']=='SEAT' for a in c['model']['attachments']) for c in carts],[0,1,1,1])
+        self.assertEqual(len(carts),3)
+        self.assertEqual([sum(a['type']=='SEAT' for a in c['model']['attachments']) for c in carts],[0,2,2])
         self.assertFalse(configuration()['allowMobEnter'])
         self.assertFalse(configuration()['playerTakeable'])
 
     def test_locomotive_uses_tall_model_and_wagons_the_low_one(self):
         # En el pack original basic_coaster_cart es la locomotora alta.
         models=[c['astral-model'] for c in configuration()['carts']]
-        self.assertEqual(models,['cart','head','head','head'])
+        self.assertEqual(models,['cart','head','head'])
+
+    def test_trip_stops_two_blocks_before_the_wall_and_returns_from_the_other(self):
+        from tren_lobby import trip, STATION, WALL_EXIT, LOCO, FIRST_RAIL_ENTRY
+        t=trip(); home=STATION[2]+.5
+        self.assertAlmostEqual(home+t['teleport']+LOCO/2,WALL_EXIT-2,places=2)
+        self.assertGreater(t['teleport'],t['parada'])
+        self.assertLess(t['salida'],0)
+        self.assertAlmostEqual(home+t['salida']-(LOCO/2+3.6275125),FIRST_RAIL_ENTRY,places=2)
 
     def source(self,path):
         inner=io.BytesIO()

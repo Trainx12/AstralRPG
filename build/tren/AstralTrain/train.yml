@@ -1,5 +1,5 @@
 nameFormat: astral_lobby_survival
-speedLimit: 0.08
+speedLimit: 0.12
 gravity: 0.0
 slowDown: false
 keepChunksLoaded: true
@@ -63,7 +63,12 @@ carts:
     - type: SEAT
       position:
         posY: 1.25
-        posZ: 0.1
+        posZ: -0.45
+      displayMode: DEFAULT
+    - type: SEAT
+      position:
+        posY: 1.25
+        posZ: 0.55
       displayMode: DEFAULT
 - entityType: MINECART
   astral-model: head
@@ -91,33 +96,10 @@ carts:
     - type: SEAT
       position:
         posY: 1.25
-        posZ: 0.1
+        posZ: -0.45
       displayMode: DEFAULT
-- entityType: MINECART
-  astral-model: head
-  model:
-    type: EMPTY
-    physical:
-      cartLength: 3.6275125
-      wheelCenter: 0.0
-      wheelDistance: 1.5
-    attachments:
-    - type: ITEM
-      item:
-        type: PAPER
-        meta:
-          ==: ItemMeta
-          meta-type: UNSPECIFIC
-          item-model: astral:tren_head
-      position:
-        transform: DISPLAY_FIXED
-        posY: 2.0
-        posZ: -0.02313125
-        sizeX: 2.0
-        sizeY: 2.0
-        sizeZ: 2.0
     - type: SEAT
       position:
         posY: 1.25
-        posZ: 0.1
+        posZ: 0.55
       displayMode: DEFAULT
