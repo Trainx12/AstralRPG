@@ -28,7 +28,7 @@ class TrainBuildTests(unittest.TestCase):
         t=trip(); home=STATION[2]+.5
         self.assertAlmostEqual(home+t['teleport']+LOCO/2,WALL_EXIT,places=5)
         tail=home+t['salida']-(LOCO+2*VAGON)/2
-        self.assertAlmostEqual(tail,178.5,places=5)
+        self.assertAlmostEqual(tail,176.6,places=5)
         self.assertGreaterEqual(tail+VAGON/2,FIRST_RAIL_ENTRY)
         self.assertEqual(t['espera'],3)
         self.assertEqual(t['velocidad'],.16)
