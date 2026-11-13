@@ -66,7 +66,7 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         add_item(iid, 'minecraft:diamond_' + piece, label + ' de Agua', COLOR, lore,
                  {'type': 'armor', 'set': 'agua', 'tier': TIER, 'piece': piece, 'def': defensa_pieza(TIER, piece)},
                  extra={'minecraft:attribute_modifiers': mods,
-                        'minecraft:equippable': {'slot': SLOT[piece], **({} if piece == 'helmet' else {'asset_id': 'astral:agua'})}},
+                        'minecraft:equippable': {'slot': SLOT[piece], 'asset_id': 'astral:agua'}},  # casco incluido: se ve puesto
                  model='astral:' + iid, kind='armor')
     add_item('agua_pico', 'minecraft:diamond_pickaxe', 'Pico de las Mareas', COLOR,
              [txt('Equipo de Agua III'), txt('Mina rapido bajo el agua.', 'aqua')], {'type': 'utility', 'tier': TIER},
