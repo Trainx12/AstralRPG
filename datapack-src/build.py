@@ -21,7 +21,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 18  # Casco de Agua 3D con orejas (sin capa plana).
+ITEM_VERSION = 19  # Armaduras Astral con barra de armadura vanilla (13/11).
 
 files = {}
 
@@ -163,7 +163,7 @@ for (out, n, ings) in MAT_RECIPES:
 # ARMADURAS
 # ---------------------------------------------------------------------------
 def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0, vida=0):
-    # Sin armadura ni dureza vanilla: la proteccion es la DEFENSA de escala.py (astral.def), la aplica Skript.
+    # Sin dureza vanilla: la proteccion es la DEFENSA de escala.py (astral.def), la aplica Skript.
     slot = PIECE_SLOT[piece]
     mods = []
 
@@ -171,6 +171,9 @@ def armor_attrs(item_id, piece, mat, stats, extra_armor=0, tough_extra=0, vida=0
         mods.append({"type": f"minecraft:{attr}", "id": f"{NS}:{item_id}.{suffix}", "amount": round(amount, 4),
                      "operation": op, "slot": slot})
 
+    # Barra de armadura vanilla completa con el set (3/8/6/3 = 20, pedido del dueno 13/11/2026).
+    # Es solo el indicador: AstralDecor anula la reduccion vanilla en jugadores.
+    m("armor", {"helmet": 3, "chestplate": 8, "leggings": 6, "boots": 3}[piece], "add_value", "barra")
     if vida:
         # Vida fija de la pieza (escala.VIDA_PIEZA); los % de vida del set van aparte.
         m("max_health", vida, "add_value", "vida")
@@ -1362,6 +1365,10 @@ fn("player/def", [
 ] + [f'execute store result score #p astral.tmp run data get storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def\n'
      f"scoreboard players operation #d astral.tmp += #p astral.tmp" for slot in ("head", "chest", "legs", "feet")] + [
     "execute store result score #v astral.tmp run attribute @s minecraft:armor get 5",
+] + [f'execute if data storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def '
+     f'run scoreboard players remove #v astral.tmp {bar * 5}'
+     # La barra de armadura de las piezas Astral (3/8/6/3) es solo visual: no se suma a la Defensa.
+     for slot, bar in (("head", 3), ("chest", 8), ("legs", 6), ("feet", 3))] + [
     "scoreboard players operation @s astraldef = #d astral.tmp",
     "scoreboard players operation @s astraldef += #v astral.tmp",
     "execute if score @s astral.defp = #d astral.tmp run return 0",

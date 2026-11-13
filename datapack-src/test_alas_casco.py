@@ -40,6 +40,14 @@ class AlasCascoTests(unittest.TestCase):
                         elif isinstance(value,list):
                             for v in value:repair(v,expected)
                     repair(a,True);repair(b)
+                    # 13/11: las piezas Astral suman la barra de armadura vanilla (id *.barra), ajena a esta tanda.
+                    def strip_bar(value):
+                        if isinstance(value,dict):
+                            for v in value.values():strip_bar(v)
+                        elif isinstance(value,list):
+                            value[:]=[v for v in value if not (isinstance(v,dict) and str(v.get('id','')).endswith('.barra'))]
+                            for v in value:strip_bar(v)
+                    strip_bar(b)
                     # ITEM_VERSION sube en tandas posteriores (16: estrellas en bastones).
                     nv=lambda x:re.sub(r'(?<![A-Za-z_])v:\d+','v:N',json.dumps(x))
                     self.assertEqual(nv(a),nv(b),n)

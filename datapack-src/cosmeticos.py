@@ -54,7 +54,7 @@ def hub_data():
     items={}
     texts={'titulos':('&6&lTITULOS',['&7Insignias que se muestran','&7junto a tu nombre en el chat.','','&eClic para ver tu coleccion.'],
                       'cosmeticos_titulos'),
-           'sombreros':('&d&lSOMBREROS',['&7Gorros que se ven en tu cabeza.','&7Solo visibles sin casco.','','&eClic para elegir uno.'],
+           'sombreros':('&d&lSOMBREROS',['&7Gorros que se ven en tu cabeza.','&7Se ven sobre tu casco.','','&eClic para elegir uno.'],
                         'cosmeticos_sombreros')}
     for key,slots in HUB_CARDS.items():
         name,lore,target=texts[key]
@@ -85,7 +85,7 @@ def equipment_menu(kind):
         slot=HAT_SLOTS[index]
         items[key]={'slot':slot,'material':'PAPER','item_model':'astral:cosmeticos/menu_sombrero_'+key,'priority':1,
             'display_name':'&d'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],
-            '&7No da proteccion ni estadisticas.','&7Solo visible sin casco.','&eClic para equipar.'],
+            '&7No da proteccion ni estadisticas.','&7Se ve sobre tu casco.','&eClic para equipar.'],
             'view_requirement':req,
             'click_requirement':dict(req,deny_commands=['[message] &cTodavia no lo desbloqueaste.']),
             'click_commands':['[close]',f'[player] astralcosmetic {kind} {key}']}
@@ -95,7 +95,7 @@ def equipment_menu(kind):
     for index,slot in enumerate(CLEAR_SLOTS):
         items['clear' if index==0 else f'clear_hit_{index}']={'slot':slot,'material':'PAPER',
             'item_model':f'astral:cosmeticos/quitar_sombrero_{index}','item_flags':['HIDE_ATTRIBUTES'],
-            'display_name':'&eQuitar sombrero','lore':['&7Deja tu cabeza sin gorro.','&7Los gorros solo se ven sin casco.'],
+            'display_name':'&eQuitar sombrero','lore':['&7Deja tu cabeza sin gorro.','&7Tu casco sigue puesto.'],
             'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
     items['back']={'slot':BACK_SLOT,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],
         'display_name':'&fVolver a Cosmeticos','click_commands':['[openguimenu] cosmeticos']}

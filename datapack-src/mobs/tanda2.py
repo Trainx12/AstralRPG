@@ -240,9 +240,13 @@ def generate(files):
                     nbt='Tags:'+json.dumps(tags)+',NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b,active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:2147483647,show_particles:0b}]'
                 if m in ('ZOMBIE','HUSK'): nbt+=',IsBaby:0b'
                 if m in ('PIGLIN_BRUTE','HOGLIN'): nbt+=',IsImmuneToZombification:1b'
+                # Todos persiguen a los jugadores de la sala (pedido del dueno 13/11): rango de seguimiento 64.
+                follow='{id:"minecraft:follow_range",base:64}'
                 if m=='MAGMA_CUBE':
                     # Size 0 never splits; scale restores the large cube hitbox.
-                    nbt+=',Size:0,Health:16f,attributes:[{id:"minecraft:max_health",base:16},{id:"minecraft:attack_damage",base:6},{id:"minecraft:scale",base:4}]'
+                    nbt+=',Size:0,Health:16f,attributes:[{id:"minecraft:max_health",base:16},{id:"minecraft:attack_damage",base:6},{id:"minecraft:scale",base:4},'+follow+']'
+                else:
+                    nbt+=',attributes:['+follow+']'
                 if m in ('SKELETON','STRAY'): nbt+=',equipment:{mainhand:{id:"minecraft:bow",count:1}}'
                 if m=='WITHER_SKELETON': nbt+=',equipment:{mainhand:{id:"minecraft:stone_sword",count:1}}'
                 if m=='VINDICATOR': nbt+=',equipment:{mainhand:{id:"minecraft:iron_axe",count:1}}'
@@ -291,7 +295,11 @@ def generate(files):
                          f'execute if score @s ad.alive matches {cap}.. run return 0',
                          *picks,
                          'scoreboard players add @s ad.q 1'])
-            fn(p+'/tick',[f'execute unless entity @s[tag={key}.on] run return 0',
+            # Rescate (pedido del dueno 13/11): un mob de la sala metido dentro de bloques (tierra, roca,
+            # obsidiana...) vuelve a un punto de aparicion validado de la sala.
+            sx,sy,sz=r['spawn_points'][0]
+            rescue=f'execute as @e[tag={t},distance=0..] at @s if block ~ ~0.9 ~ #astral:enterrado run tp @s {sx} {sy} {sz}'
+            fn(p+'/tick',[f'execute unless entity @s[tag={key}.on] run return 0', rescue,
                           'scoreboard players add @s ad.clock 20',
                           *[f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run function astral:{p}/pop']*OLEADA_TANDA,
                           f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run scoreboard players set @s ad.clock 0',
@@ -301,6 +309,13 @@ def generate(files):
                           f'execute if score @s ad.q < @s ad.qm run tag @s add {busy}'])
 
     fn('tanda2/tick',maintenance)
+    files['data/astral/tags/block/enterrado.json']=json.dumps({'values':[
+        '#minecraft:dirt','#minecraft:base_stone_overworld','#minecraft:base_stone_nether','#minecraft:sand','#minecraft:logs',
+        '#minecraft:stone_bricks','#minecraft:terracotta','#minecraft:nylium','minecraft:gravel','minecraft:cobblestone',
+        'minecraft:mossy_cobblestone','minecraft:sandstone','minecraft:red_sandstone','minecraft:obsidian','minecraft:crying_obsidian',
+        'minecraft:magma_block','minecraft:snow_block','minecraft:packed_ice','minecraft:blue_ice','minecraft:ice',
+        'minecraft:nether_bricks','minecraft:polished_blackstone_bricks','minecraft:cobbled_deepslate','minecraft:deepslate_bricks',
+        'minecraft:smooth_basalt','minecraft:polished_basalt','minecraft:clay','minecraft:calcite']},indent=1)+'\n'
     files.setdefault('data/astral/function/loop/t20.mcfunction','')
     files['data/astral/function/loop/t20.mcfunction']+='function astral:tanda2/tick\n'
     from mobs.progreso_oleadas import generate as generate_progress

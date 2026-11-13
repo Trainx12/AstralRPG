@@ -30,6 +30,33 @@ HINTS = [
          text=[{'text':'Estás en el último tramo','color':'#B86AFF'}]),
 ]
 
+# Acertijos (pedido del dueno 13/11/2026), con el formato del de la Cumbre: titulo dorado y texto celeste.
+# Posicion: captura F3 del dueno, unos 2.5 bloques sobre sus pies.
+def riddle(tag, world, pos, place, lines):
+    return dict(tag=tag, world=world, pos=pos,
+                text=[{'text':f'\u2736 El acertijo {place} \u2736\n','color':'gold','bold':True},
+                      {'text':'\n'.join(lines),'color':'aqua','bold':False,'italic':True}])
+
+
+RIDDLES = [
+    riddle('astral.acertijo.forja', 'forja', (1530.5,226.2,1910.5), 'de la Forja',
+           ['Quien se aferra a la orilla jamás probará la gloria.',
+            'Desciende de tu refugio seguro y atraviésame sin miedo;',
+            'mi sangre naranja quema a los cobardes,',
+            'pero guía a los valientes hacia un altar oscuro en medio de la nada.']),
+    riddle('astral.acertijo.santuario', 'exp_santuario', (33.8,109.5,-39.2), 'del Santuario',
+           ['No intentes forzar la entrada del santuario;',
+            'busca lo único que respira en este patio de piedra.',
+            'Alcanza su copa, sigue el camino estrecho de la muralla',
+            'y cuélate en las sombras del interior.',
+            'Un pasillo oculto te guiará hasta su morador.']),
+    riddle('astral.acertijo.oceano', 'oceano', (-2.4,22.0,11.7), 'del Océano',
+           ['Desde el meridiano cero donde convergen los ejes del mundo,',
+            'desplázate 419 metros hacia donde muere el día',
+            'y proyecta 472 metros hacia la latitud plus',
+            'y encontrarás la plataforma que te lleva al crustáceo gigante.']),
+]
+
 
 def commands(hints=None):
     lines=['# Cavernas: pistas de Minas Olvidadas. No modifica el terreno.',
@@ -60,4 +87,6 @@ if __name__=='__main__':
     desert=commands([h for h in HINTS if h.get('world')=='exp_desierto'])
     (path.parent/'pistas-tumba.txt').write_text('\n'.join(desert)+'\n',encoding='utf-8')
     (private.parent/'pistas-tumba.json').write_text(json.dumps(desert,ensure_ascii=False),encoding='utf-8')
+    riddles=commands(RIDDLES)
+    (path.parent/'acertijos.txt').write_text('\n'.join(riddles)+'\n',encoding='utf-8')
     print(path)

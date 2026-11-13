@@ -18,7 +18,7 @@ def definitions():
         mid='astral_esq_'+kind
         ranged=kind in ('arquero','nigromante')
         goals=['clear']
-        if ranged: goals+=['fleeplayers{d=4;s=1.2;ss=1.2}']
+        # Sin fleeplayers: en mazmorras todos persiguen al jugador (pedido del dueno 13/11).
         goals+=['bowattack' if kind=='arquero' else 'lookatplayers' if kind=='nigromante' else 'meleeattack','randomstroll']
         sk=[f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onSpawn',f'skill{{s=AST_ESQ_MODELO_{kind}}} @self ~onLoad',
             'skill{s=AST_MUERTE} @self ~onDeath']
@@ -29,7 +29,7 @@ def definitions():
             'Equipment':['BOW HAND'] if kind=='arquero' else ['IRON_SWORD HAND'] if not ranged else [],
             'Options':dict(Glowing=True,MovementSpeed=.19 if kind=='escudero' else .32 if kind=='espadachin' else .25,
                            PreventSunburn=True,PreventOtherDrops=True,PreventRandomEquipment=True,PreventItemPickup=True,
-                           Silent=True,Despawn=False),
+                           Silent=True,Despawn=False,FollowRange=64),
             'AIGoalSelectors':goals,'AITargetSelectors':['clear','players'],'Skills':sk}
         skills['AST_ESQ_MODELO_'+kind]={'Skills':[f'model{{m={mid}}} @self',f'addtag{{tag=ad.esq.{kind}}} @self',
             *size_skills(mid,1,'SKELETON',protect_sanctuary=False)]}

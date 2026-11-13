@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 # Corte del centro vacio del marco (se mide sobre el original de Gemini, ver medir_marco()).
 FRAME = ('infinita', (100, 225, 828, 1060))
 FILL, EDGE = '#1c1426', '#c9a14f'
-START, END = '', ''          # saltos -32/+32 compartidos con minijuegos y mascotas
+START, END = '', ''          # saltos -32/+32 compartidos con minijuegos y mascotas
 KINDS = ('tier', 'vel')
 GLYPHS = {'tier': tuple(chr(0xed50 + i) for i in range(4)), 'vel': tuple(chr(0xed54 + i) for i in range(4))}
 CAPTIONS = {'tier': 'ELEGI TU TIER', 'vel': 'VELOCIDAD'}

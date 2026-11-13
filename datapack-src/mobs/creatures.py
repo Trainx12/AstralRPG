@@ -1358,12 +1358,8 @@ def chaman():
     for y in (3, 12, 22):
         m.cube("arm_r", (-10.4, y, -6.4), (-8.6, y + 0.6, -4.6), "#5a9a3a")                                 # enredadera
     m.blob("body", (0, 21, 4.6), (5.6, 4.4, 3.2), "#5a7a30", pat="cloth", levels=2)                          # joroba
-    m.bones["body"]["rotation"] = [-16, 0, 0]                                                               # encorvado hacia adelante
-    m.bones["head"]["rotation"] = [-8, 0, 0]
+    # Derecho (pedido del dueno 13/11: encorvado quedaba feo). Solo rotaciones: el pack no cambia.
     m.bones["head"]["origin"] = [0, 23, -3]
-    for n in ("leg_l", "leg_r"):
-        m.bones[n]["rotation"] = [16, 0, 0]
-    m.bones["arm_r"]["rotation"] = [16, 0, 0]                                                               # el baston queda derecho
     box(m, "body", (-3.6, 8.6, -5), (3.6, 13.4, -4.3), "#141c0e")                                           # hueco oscuro de la tunica
     for k, x in enumerate((-3.2, -1.8, -0.4, 1, 2.4)):
         box(m, "body", (x, 12 - (k % 2) * 0.8, -5.3), (x + 0.9, 13.4, -4.9), "#f0f0e8")                    # colmillos de arriba

@@ -182,6 +182,12 @@ def main(preview_path=None):
     previews = []
     for fn in creatures.ALL:
         m = fn()
+        if not m.name.startswith("astral_cofre") and not any(b.startswith("mtag_") for b in m.bones):
+            # Hueso 'mtag_' de BetterModel: muestra el nombre del mob ("[T3] Zombi ❤ 11.500") arriba del
+            # modelo, como en los mobs vanilla (pedido del dueno 13/11). AstralDecor le pasa el texto.
+            top = max(max(c["from"][1], c["to"][1]) for c in m.cubes)
+            root = next(b for b in m.order if m.bones[b]["parent"] is None)
+            m.bone("mtag_nombre", (0, top + 3, 0), root)
         img = save(m, os.path.join(OUT, f"{m.name}.bbmodel"))
         if preview_path and preview_path.endswith("3d.png"):
             only = os.environ.get("ONLY")

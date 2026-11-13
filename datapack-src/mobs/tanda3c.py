@@ -18,8 +18,8 @@ NPC_MODELOS = {
     'astral_npc_arena': 'caballero', 'astral_npc_portales': 'hechicero',
     'astral_npc_tienda': 'comerciante',
 }
-# Mazmorras: la entrada escondida usa la bruja y el guia del final el mago. Santuario queda en espera.
-MAZMORRAS = ('mina', 'bosque', 'tumba', 'cumbre', 'forja')
+# Mazmorras: la entrada escondida usa la bruja y el guia del final el mago (Santuario tambien, 13/11).
+MAZMORRAS = ('mina', 'bosque', 'tumba', 'cumbre', 'forja', 'santuario')
 LUCES = {'mago': ('cristal',), 'bazar': ('farol',), 'minero': ('lampara', 'farol', 'oro'), 'hechicero': ('gema',),
          'bruja': ('gema',), 'comerciante': ('lentes',)}
 PERSONAJES = ('mago', 'herrero', 'subastas', 'bazar', 'cronista', 'minero', 'caballero', 'hechicero', 'bruja', 'comerciante')

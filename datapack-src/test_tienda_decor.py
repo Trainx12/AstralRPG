@@ -66,7 +66,7 @@ class TiendaDecorTests(unittest.TestCase):
         self.assertEqual(cfg['npc-models']['astral_npc_tienda'],'astral_npc_comerciante')
         self.assertEqual(cfg['npc-models']['astral_npc_venta'],'astral_vendedor')
         self.assertEqual(cfg['npc-models']['astral_mina_guia'],'astral_npc_mago')
-        self.assertEqual(set(cfg['hidden-npcs']),{'astral_npc_'+d for d in ('mina','bosque','tumba','cumbre','forja')})
+        self.assertEqual(set(cfg['hidden-npcs']),{'astral_npc_'+d for d in ('mina','bosque','tumba','cumbre','forja','santuario')})
 
 
 if __name__=='__main__':unittest.main()

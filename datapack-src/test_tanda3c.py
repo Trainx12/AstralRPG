@@ -53,9 +53,9 @@ class Tanda3cTests(unittest.TestCase):
             self.assertIn('skill{s=AST_NPC_bruja} @self ~onSpawn', mobs['astral_npc_' + key]['Skills'])
             self.assertIs(mobs['astral_npc_' + key]['Options']['AlwaysShowName'], False)
         # Tienda usa el comerciante propio; Venta sigue con su modelo privado.
-        for mid in ('astral_npc_santuario', 'astral_npc_venta', 'astral_npc_gacha_rpg', 'astral_npc_parkour'):
+        for mid in ('astral_npc_venta', 'astral_npc_gacha_rpg', 'astral_npc_parkour'):
             self.assertFalse(any('AST_NPC_' in s for s in mobs[mid]['Skills']), mid)
-        self.assertEqual(npc_skills('entrada', 'santuario'), [])
+        self.assertEqual(npc_skills('entrada', 'santuario')[0], 'skill{s=AST_NPC_bruja} @self ~onSpawn')
 
     def test_console_lists_use_minecraft_kill(self):
         bad = re.compile(r'(?:^|run )kill @')

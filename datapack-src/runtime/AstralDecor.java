@@ -274,7 +274,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         }
         p.saveData();
         hats();
-        p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado. Los sombreros se muestran solo sin casco.");
+        p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado. Se ve sobre tu casco; tu casco sigue puesto.");
         return true;
     }
     private void removeCosmetics(UUID id) {
@@ -296,7 +296,9 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     private void showHead(Player p,ItemStack item) {
         ItemStack visual=item==null?new ItemStack(Material.AIR):item;
-        for(Player viewer:p.getWorld().getPlayers())if(viewer.canSee(p))
+        // Nunca al propio jugador: el paquete de equipo le pondria el gorro en su casilla de casco
+        // (pedido del dueno 13/11: el gorro solo se ve en el personaje y se quita desde /cosmeticos).
+        for(Player viewer:p.getWorld().getPlayers())if(viewer!=p && viewer.canSee(p))
             viewer.sendEquipmentChange(p,EquipmentSlot.HEAD,visual);
     }
     private void hats() {
@@ -305,10 +307,9 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             p.getPersistentDataContainer().remove(selection("alas"));
             ItemStack helmet=p.getInventory().getHelmet();
             ItemStack item=selected(p,"sombrero");
-            if(item==null || !authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR
-                || (helmet!=null && !helmet.getType().isAir()))continue;
-            // Equipo visual vanilla: aplica display.head en la cabeza real y
-            // permite tercera persona propia, sin ocultar entidad ni mover inventario.
+            if(item==null || !authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR)continue;
+            // Equipo visual vanilla: el gorro tapa el casco (que sigue puesto y protegiendo) solo a la vista
+            // de los demas; el inventario real no cambia.
             active.add(p.getUniqueId()); showHead(p,item);
         }
         for(UUID id:hats)if(!active.contains(id)) {
@@ -335,6 +336,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getScheduler().runTaskTimer(this,this::loginSkins,20,20);
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
         getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
+        getServer().getScheduler().runTaskTimer(this,this::modelNames,45,20);
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, gorros, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
@@ -497,6 +499,40 @@ public final class AstralDecor extends JavaPlugin implements Listener {
                 // BetterModel usa su propio flag, separado de CustomNameVisible de Bukkit.
                 bone.getNametag().alwaysVisible(visible);
                 if(!visible) bone.getNametag().component(net.kyori.adventure.text.Component.empty());
+            }
+        }
+    }
+    // Armaduras Astral: dan la barra de armadura vanilla completa (3/8/6/3) solo como indicador.
+    // La proteccion real es la DEFENSA de escala.py (astral_gameplay.sk), asi que la reduccion
+    // vanilla por armadura se anula en los jugadores.
+    @SuppressWarnings("deprecation")
+    @EventHandler(ignoreCancelled=true, priority=EventPriority.HIGHEST)
+    public void armorBarOnly(EntityDamageEvent e) {
+        if(!(e.getEntity() instanceof Player p) || !e.isApplicable(EntityDamageEvent.DamageModifier.ARMOR)) return;
+        var armor=p.getAttribute(org.bukkit.attribute.Attribute.ARMOR);
+        if(armor==null) return;
+        double bar=0;
+        for(var mod:armor.getModifiers()) if(mod.getKey().getKey().endsWith(".barra")) bar+=mod.getAmount();
+        if(bar<=0) return;
+        // Misma formula vanilla, pero sin la parte de la barra: otros bonus de armadura siguen protegiendo.
+        double a=Math.max(0,armor.getValue()-bar), d=e.getDamage(EntityDamageEvent.DamageModifier.BASE);
+        var tough=p.getAttribute(org.bukkit.attribute.Attribute.ARMOR_TOUGHNESS);
+        double t=tough==null?0:tough.getValue();
+        double reduction=Math.min(20,Math.max(a/5,a-d/(2+t/4)))/25;
+        e.setDamage(EntityDamageEvent.DamageModifier.ARMOR,-d*reduction);
+    }
+    // Mobs con modelo 3D: BetterModel oculta la entidad base y con ella su nombre ("[T3] Zombi ❤ 11.500").
+    // El hueso mtag_nombre de cada modelo muestra el mismo texto, actualizado cada segundo.
+    private void modelNames() {
+        if(!getServer().getPluginManager().isPluginEnabled("BetterModel")) return;
+        for(var registry:kr.toxicity.model.api.tracker.EntityTrackerRegistry.registries()) {
+            Entity entity=Bukkit.getEntity(registry.uuid());
+            if(!(entity instanceof LivingEntity) || entity instanceof Player || entity instanceof Villager) continue;
+            var name=entity.customName();
+            boolean visible=name!=null && entity.isCustomNameVisible() && !entity.isDead();
+            for(var tracker:registry.trackers()) for(var bone:tracker.bones()) if(bone.getNametag()!=null) {
+                bone.getNametag().alwaysVisible(visible);
+                bone.getNametag().component(visible?name:net.kyori.adventure.text.Component.empty());
             }
         }
     }

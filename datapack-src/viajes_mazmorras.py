@@ -14,7 +14,7 @@ EXPLORATION={
     'bosque':('cavernas',(172.5,102,89.5,0,0)),
     'tumba':('exp_desierto',(180.233,102,134.266,-124.8,0)),
     'mina':('cavernas',(172.5,102,89.5,0,0)),
-    'cumbre':('exp_nieve',(16.5,83,10.5,0,0)),
+    'cumbre':('exp_nieve',(12.5,81,17.5,-90,0)),   # captura F3 del dueno 13/11 (mirando al este)
     'forja':('forja',(1536.5,222,1900.5,0,0)),
     'santuario':('exp_santuario',(26.5,103,-31.5,180,0)),
 }

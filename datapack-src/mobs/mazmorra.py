@@ -137,7 +137,7 @@ def mob_yml(dungeon=None):
     for mid, d in MOBS.items():
         L += [f"{mid}:", f"  Type: {d['type']}", f"  Display: {q(d['name'])}", f"  Health: {d['hp']}", f"  Damage: {d['dmg']}",
               "  Options:", f"    MovementSpeed: {d['speed']}", "    PreventOtherDrops: true", "    PreventSunburn: true", "    PreventRandomEquipment: true",
-              "    Despawn: false", "    FollowRange: 32", "    Glowing: true"]
+              "    Despawn: false", "    FollowRange: 64", "    Glowing: true"]
         if d.get("boss"):
             if not d.get('model'):
                 L.append('    Scale: 2.0')

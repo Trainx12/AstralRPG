@@ -10,7 +10,7 @@ astral_mina_guardian:
     PreventSunburn: true
     PreventRandomEquipment: true
     Despawn: false
-    FollowRange: 32
+    FollowRange: 64
     Glowing: true
     KnockbackResistance: 0.8
   BossBar:

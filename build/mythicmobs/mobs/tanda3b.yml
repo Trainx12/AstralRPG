@@ -15,9 +15,9 @@ astral_esq_arquero:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -44,6 +44,7 @@ astral_esq_escudero:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -71,9 +72,9 @@ astral_esq_nigromante:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -100,6 +101,7 @@ astral_esq_guardian:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -128,9 +130,9 @@ astral_esq_arquero_mina_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -159,6 +161,7 @@ astral_esq_escudero_mina_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -188,9 +191,9 @@ astral_esq_nigromante_mina_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -219,6 +222,7 @@ astral_esq_guardian_mina_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -249,9 +253,9 @@ astral_esq_arquero_mina_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -280,6 +284,7 @@ astral_esq_escudero_mina_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -309,9 +314,9 @@ astral_esq_nigromante_mina_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -340,6 +345,7 @@ astral_esq_guardian_mina_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -370,9 +376,9 @@ astral_esq_arquero_mina_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -401,6 +407,7 @@ astral_esq_escudero_mina_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -430,9 +437,9 @@ astral_esq_nigromante_mina_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -461,6 +468,7 @@ astral_esq_guardian_mina_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -491,9 +499,9 @@ astral_esq_arquero_mina_sala4:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -522,6 +530,7 @@ astral_esq_escudero_mina_sala4:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -551,9 +560,9 @@ astral_esq_nigromante_mina_sala4:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -582,6 +591,7 @@ astral_esq_guardian_mina_sala4:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -612,9 +622,9 @@ astral_esq_arquero_bosque_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -643,6 +653,7 @@ astral_esq_escudero_bosque_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -672,9 +683,9 @@ astral_esq_nigromante_bosque_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -703,6 +714,7 @@ astral_esq_guardian_bosque_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -733,9 +745,9 @@ astral_esq_arquero_bosque_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -764,6 +776,7 @@ astral_esq_escudero_bosque_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -793,9 +806,9 @@ astral_esq_nigromante_bosque_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -824,6 +837,7 @@ astral_esq_guardian_bosque_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -854,9 +868,9 @@ astral_esq_arquero_tumba_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -885,6 +899,7 @@ astral_esq_escudero_tumba_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -914,9 +929,9 @@ astral_esq_nigromante_tumba_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -945,6 +960,7 @@ astral_esq_guardian_tumba_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -975,9 +991,9 @@ astral_esq_arquero_tumba_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -1006,6 +1022,7 @@ astral_esq_escudero_tumba_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1035,9 +1052,9 @@ astral_esq_nigromante_tumba_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -1066,6 +1083,7 @@ astral_esq_guardian_tumba_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1096,9 +1114,9 @@ astral_esq_arquero_tumba_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -1127,6 +1145,7 @@ astral_esq_escudero_tumba_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1156,9 +1175,9 @@ astral_esq_nigromante_tumba_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -1187,6 +1206,7 @@ astral_esq_guardian_tumba_sala3:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1217,9 +1237,9 @@ astral_esq_arquero_cumbre_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -1248,6 +1268,7 @@ astral_esq_escudero_cumbre_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1277,9 +1298,9 @@ astral_esq_nigromante_cumbre_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -1308,6 +1329,7 @@ astral_esq_guardian_cumbre_sala1:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1338,9 +1360,9 @@ astral_esq_arquero_cumbre_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - bowattack
   - randomstroll
   AITargetSelectors:
@@ -1369,6 +1391,7 @@ astral_esq_escudero_cumbre_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack
@@ -1398,9 +1421,9 @@ astral_esq_nigromante_cumbre_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
-  - fleeplayers{d=4;s=1.2;ss=1.2}
   - lookatplayers
   - randomstroll
   AITargetSelectors:
@@ -1429,6 +1452,7 @@ astral_esq_guardian_cumbre_sala2:
     PreventItemPickup: true
     Silent: true
     Despawn: false
+    FollowRange: 64
   AIGoalSelectors:
   - clear
   - meleeattack

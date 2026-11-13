@@ -11,7 +11,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -61,7 +61,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -111,7 +111,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -171,7 +171,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -221,7 +221,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -271,7 +271,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -321,7 +321,7 @@
       "lore": [
         "&7Rareza: Raro",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -371,7 +371,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -421,7 +421,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -471,7 +471,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -521,7 +521,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -571,7 +571,7 @@
       "lore": [
         "&7Rareza: Raro",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -621,7 +621,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -671,7 +671,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -721,7 +721,7 @@
       "lore": [
         "&7Rareza: Raro",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -771,7 +771,7 @@
       "lore": [
         "&7Rareza: Raro",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -821,7 +821,7 @@
       "lore": [
         "&7Rareza: Comun",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -871,7 +871,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -921,7 +921,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -971,7 +971,7 @@
       "lore": [
         "&7Rareza: Epico",
         "&7No da proteccion ni estadisticas.",
-        "&7Solo visible sin casco.",
+        "&7Se ve sobre tu casco.",
         "&eClic para equipar."
       ],
       "view_requirement": {
@@ -1032,7 +1032,7 @@
       "display_name": "&eQuitar sombrero",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Los gorros solo se ven sin casco."
+        "&7Tu casco sigue puesto."
       ],
       "click_commands": [
         "[close]",
@@ -1049,7 +1049,7 @@
       "display_name": "&eQuitar sombrero",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Los gorros solo se ven sin casco."
+        "&7Tu casco sigue puesto."
       ],
       "click_commands": [
         "[close]",
@@ -1066,7 +1066,7 @@
       "display_name": "&eQuitar sombrero",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Los gorros solo se ven sin casco."
+        "&7Tu casco sigue puesto."
       ],
       "click_commands": [
         "[close]",
@@ -1083,7 +1083,7 @@
       "display_name": "&eQuitar sombrero",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Los gorros solo se ven sin casco."
+        "&7Tu casco sigue puesto."
       ],
       "click_commands": [
         "[close]",
@@ -1100,7 +1100,7 @@
       "display_name": "&eQuitar sombrero",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Los gorros solo se ven sin casco."
+        "&7Tu casco sigue puesto."
       ],
       "click_commands": [
         "[close]",
