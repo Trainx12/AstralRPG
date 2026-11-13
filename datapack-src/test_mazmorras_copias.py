@@ -10,7 +10,7 @@ class CopiasTests(unittest.TestCase):
         self.assertEqual(instancias.copias('mina'), ['mina'] + [f'mina_{n}' for n in range(2, 7)])
         self.assertEqual(instancias.bukkit('santuario_azeroth_3'), 'world_minecraft_santuario_azeroth_3')
         self.assertEqual(instancias.bukkit('mina_3'), 'mina_3')
-        self.assertEqual(len(mc.all_worlds()), 36)
+        self.assertEqual(len(mc.all_worlds()), 36 + 3)  # + 3 copias de la Fosa del Crustaceo
 
     def test_lists_keyed_by_world_include_every_copy(self):
         from escala import TIER_MAZMORRA

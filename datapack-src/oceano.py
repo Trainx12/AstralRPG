@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.1.0'
+VERSION = '1.2.0'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -53,7 +53,8 @@ def arco_dano():
 
 def config():
     return (f'# Generado por oceano.py\nmundo: {WORLD}\nregenerar-cada-horas: {REGENERAR_HORAS}\n'
-            f'avisos-minutos: [{", ".join(map(str, AVISOS_MIN))}]\nproxima-regeneracion: 0\narco-dano: {arco_dano()}\n')
+            f'avisos-minutos: [{", ".join(map(str, AVISOS_MIN))}]\nproxima-regeneracion: 0\narco-dano: {arco_dano()}\n'
+            + __import__('oceano_fosa').plugin_config())
 
 
 def aviso_menu():

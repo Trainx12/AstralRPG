@@ -1,0 +1,47 @@
+# Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).
+astral_fosa_cangrejo:
+  Type: SPIDER
+  Display: '&b&lCangrejo de la Fosa'
+  Health: 460000
+  Damage: 9
+  Options:
+    Glowing: true
+    PreventOtherDrops: true
+    Silent: false
+    PreventSunburn: true
+    Despawn: false
+    MovementSpeed: 0.26
+    KnockbackResistance: 0.8
+    FollowRange: 40
+    PreventRandomEquipment: true
+  BossBar:
+    Enabled: true
+    Title: '&b&lCangrejo de la Fosa'
+    Range: 48
+    Color: PINK
+    Style: SEGMENTED_10
+  Drops:
+  - nautilus_shell 1 0.6
+  - prismarine_shard 2-5 1
+  - exp 100
+  Skills:
+  - addtag{tag=fosa.jefe} @self ~onSpawn
+  - addtag{tag=fosa.jefe} @self ~onLoad
+  - potion{type=WATER_BREATHING;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn
+  - summon{type=DROWNED;amount=4;radius=4} @self ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}
+  - message{m="&bEl Cangrejo llama a sus ahogados..."} @PlayersInRadius{r=60} ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}
+  - addtag{tag=fosa.f2} @self ~onDamaged ?healthpercent{p=<0.5}
+  - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.8
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.3
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
+  - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
+  - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
+  - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
+  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer

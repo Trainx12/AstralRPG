@@ -68,3 +68,24 @@ class OceanoTandaB(unittest.TestCase):
         self.assertIn('tool:"drill",tier:3', mine)
         self.assertNotIn('tool:"drill",tier:2', mine)
         self.assertIn('data/astral/loot_table/chests/oceano.json', self.z.namelist())
+
+
+class Fosa(unittest.TestCase):
+    def test_config_y_copias(self):
+        import oceano_fosa
+        cfg = oceano.config()
+        self.assertIn('fosa:\n  mundos: [fosa, fosa_2, fosa_3]', cfg)
+        self.assertIn('jefe: astral_fosa_cangrejo', cfg)
+        self.assertEqual(len(oceano_fosa.WORLDS), 3)
+        sk = (ROOT / 'build/mazmorras/astral_mazmorras_copias.sk').read_text(encoding='utf8')
+        self.assertIn('if {_key} is "fosa":', sk)
+        self.assertNotIn('fosa_4', sk)
+
+    def test_jefe_tier3(self):
+        from escala import TIER_FIJO, VIDA_JEFE
+        self.assertEqual(TIER_FIJO['fosa_2'], 3)
+        yml = (ROOT / 'build/mythicmobs/mobs/fosa.yml').read_text(encoding='utf8')
+        self.assertIn('astral_fosa_cangrejo:', yml)
+        self.assertIn(f"Health: {round(VIDA_JEFE['tumba'])}", yml)
+        self.assertIn('addtag{tag=fosa.jefe}', yml)
+        self.assertIn('WATER_BREATHING', yml)

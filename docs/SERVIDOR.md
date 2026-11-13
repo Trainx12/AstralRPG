@@ -32,6 +32,14 @@ Entrada: Portales (casilla 49) -> ventana `oceano_aviso` -> `/oceano entrar`. Ca
 (avisos 10/5/1 min, manda a todos al lobby, borra regiones y el generador las vuelve a crear con la misma semilla).
 OP: `/oceano estado`, `/oceano regenerar`, `/oceano plantilla` (opcional: copia limpia fija). Prueba: `tools/probar_oceano_paper.py`.
 
+Fosa del Crustaceo (`oceano_fosa.py`, tanda C): mazmorra acuatica escondida, tier 3, mundos `fosa`, `fosa_2`, `fosa_3`
+(`mv import <mundo> normal -g AstralOceano:vacio`). Arena: mapa Underwater Mob Arena (PvPqnda, TERCEROS) recortado y
+lleno de agua; sus regiones solo en `.local/acuatico/fosa-mundo` (nunca al repo). Entrada escondida: fondo de obsidiana
+llorona bajo un arco de prismarina oscura en el Oceano Astral (x -430, z 470), llama a `mazentrar <jugador> fosa`
+(party, 3 copias, 8 min tras el jefe). Oleadas y jefe (`astral_fosa_cangrejo`, MythicMobs `mobs/fosa.yml`) las maneja
+AstralOceano (`fosa:` en su config). Adentro SOLO respira el set de agua completo. Recompensa: pendiente del dueno.
+Prueba: `tools/probar_fosa_paper.py`.
+
 Mesa de encantamientos: **LynExp 1.0.0** (`LynExp-1.0.0-mc26.1-26.1.2.jar`, github.com/lyn1dev/enchanting-table).
 Al abrir una mesa se elige el encantamiento (1395 puntos de XP cada uno; clic derecho con items de mobs da XP).
 Ofrece todo encantamiento cuyo `supported_items` acepte el objeto: por eso los nuestros usan el tag vacio

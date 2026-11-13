@@ -46,11 +46,15 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskTimer(this, this::clock, 20 * 30, 20 * 30);
         Bukkit.getScheduler().runTaskTimer(this, this::waterSet, 20, 10);
         bowDamage = getConfig().getDouble("arco-dano", 2957);
+        loadFosa();
+        Bukkit.getScheduler().runTaskTimer(this, this::fosaTick, 40, 10);
     }
 
     void save() { getConfig().set("proxima-regeneracion", nextRegen); saveConfig(); }
 
-    @Override public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) { return new Gen(); }
+    @Override public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) { return "vacio".equals(id) ? new Vacio() : new Gen(); }
+
+    static final class Vacio extends ChunkGenerator { }
 
     // ----------------------------------------------------------------------------------- generador
     static final class Gen extends ChunkGenerator {
@@ -88,6 +92,20 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             ores(info.getSeed(), cx, cz, cols, data, min);
         }
 
+        // Entrada a la Fosa del Crustaceo (oceano_fosa.ENTRADA): sin cartel, en el fondo.
+        static int gateX = -430, gateZ = 470;
+        void gate(int cx, int cz, int[][] cols, ChunkData data) {
+            if (cx != gateX >> 4 || cz != gateZ >> 4) return;
+            int lx = gateX & 15, lz = gateZ & 15, f = cols[lx][lz];
+            for (int dx = -2; dx <= 2; dx++) for (int dz = -2; dz <= 2; dz++) {
+                int x = lx + dx, z = lz + dz;
+                if (x < 0 || x > 15 || z < 0 || z > 15) continue;
+                data.setBlock(x, f, z, Math.abs(dx) <= 1 && Math.abs(dz) <= 1 ? Material.CRYING_OBSIDIAN : Material.DARK_PRISMARINE);
+                if (Math.abs(dx) == 2 && Math.abs(dz) == 2) for (int y = f + 1; y <= f + 4; y++) data.setBlock(x, y, z, Material.DARK_PRISMARINE);
+            }
+            data.setBlock(lx, f + 5, lz, Material.SEA_LANTERN);
+        }
+
         // Menas (oceano_items.py): vetas dentro de la roca, deterministas por chunk.
         static final BlockData PERLA = Bukkit.createBlockData("minecraft:note_block[instrument=banjo,note=22,powered=false]");
         static final BlockData CORAL = Bukkit.createBlockData("minecraft:note_block[instrument=banjo,note=23,powered=false]");
@@ -115,6 +133,12 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                 double d = detail.noise(cx * 16 + x, cz * 16 + z, 0.5, 0.5, true);
                 Material top = d > 0.35 ? Material.GRAVEL : d < -0.4 ? Material.CLAY : Material.SAND;
                 for (int y = f - 3; y <= f; y++) if (y > info.getMinHeight() + 1 && data.getType(x, y, z) != Material.WATER) data.setBlock(x, y, z, y == f ? top : Material.SAND);
+            }
+            // La entrada va despues de la arena del fondo (si no, la tapa).
+            if (cx == gateX >> 4 && cz == gateZ >> 4) {
+                int[][] cols = new int[16][16];
+                for (int x = 0; x < 16; x++) for (int z = 0; z < 16; z++) cols[x][z] = floor(cx * 16 + x, cz * 16 + z);
+                gate(cx, cz, cols, data);
             }
         }
         @Override public int getBaseHeight(WorldInfo info, Random random, int x, int z, HeightMap map) { init(info.getSeed()); return floor(x, z) + 1; }
@@ -319,6 +343,142 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             t.getWorld().spawnParticle(Particle.SPLASH, t.getLocation(), 20, 0.3, 0.3, 0.3, 0.1);
             Bukkit.getScheduler().runTask(this, t::remove);
         }
+    }
+
+    // ----------------------------------------------------------------------------------- Fosa del Crustaceo
+    List<String> fosaWorlds = List.of(); double[] fosaArrival, fosaBoss; List<double[]> fosaPoints = new ArrayList<>();
+    List<Map<String, Integer>> fosaWaves = new ArrayList<>(); String fosaBossType; int[] gate = {-430, 470};
+    final Map<String, Integer> wave = new HashMap<>();         // mundo -> oleada actual (0 = esperando)
+    final Map<String, Long> waveAt = new HashMap<>();          // mundo -> cuando empezar la proxima
+    final Map<UUID, Long> gateCooldown = new HashMap<>();
+
+    static double[] xyz(String s) { String[] p = s.split(","); return new double[]{Double.parseDouble(p[0]), Double.parseDouble(p[1]), Double.parseDouble(p[2])}; }
+
+    void loadFosa() {
+        var c = getConfig().getConfigurationSection("fosa");
+        if (c == null) return;
+        fosaWorlds = c.getStringList("mundos");
+        fosaArrival = xyz(c.getString("llegada", "4.5,112,93.5"));
+        fosaBoss = xyz(c.getString("jefe-en", "4.5,112,110.5"));
+        fosaBossType = c.getString("jefe", "astral_fosa_cangrejo");
+        String[] g = c.getString("entrada", "-430,470").split(",");
+        gate = new int[]{Integer.parseInt(g[0].trim()), Integer.parseInt(g[1].trim())};
+        Gen.gateX = gate[0]; Gen.gateZ = gate[1];
+        for (String pt : c.getStringList("puntos")) fosaPoints.add(xyz(pt));
+        for (String w : c.getStringList("oleadas")) {
+            Map<String, Integer> m = new LinkedHashMap<>();
+            for (String part : w.split(",")) { String[] kv = part.split(":"); m.put(kv[0].trim(), Integer.parseInt(kv[1].trim())); }
+            fosaWaves.add(m);
+        }
+    }
+
+    boolean fosa(World w) { return w != null && fosaWorlds.contains(w.getName()); }
+
+    static boolean fighting(Player p) { return p.getGameMode() == GameMode.SURVIVAL || p.getGameMode() == GameMode.ADVENTURE; }
+
+    List<Entity> waveMobs(World w) {
+        List<Entity> out = new ArrayList<>();
+        for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("fosa.mob") || e.getScoreboardTags().contains("fosa.jefe")) if (!e.isDead()) out.add(e);
+        return out;
+    }
+
+    void fosaTick() {
+        long now = System.currentTimeMillis();
+        for (String name : fosaWorlds) {
+            World w = Bukkit.getWorld(name);
+            if (w == null) continue;
+            List<Player> players = w.getPlayers().stream().filter(AstralOceano::fighting).toList();
+            if (players.isEmpty()) {
+                if (wave.getOrDefault(name, 0) != 0 || !waveMobs(w).isEmpty()) { waveMobs(w).forEach(Entity::remove); wave.put(name, 0); waveAt.remove(name); }
+                continue;
+            }
+            // Respiracion: adentro solo sirve el set de agua completo (pociones, Respiracion, tortuga y conducto no).
+            for (Player p : players) breatheFosa(p);
+            int cur = wave.getOrDefault(name, 0);
+            if (cur == 0) { wave.put(name, -1); waveAt.put(name, now + 6000); title(players, "Fosa del Crustaceo", "Sin el set de agua completo, te ahogas"); continue; }
+            if (cur == -1) { if (now >= waveAt.get(name)) spawnWave(w, 1, players.size()); continue; }
+            if (cur > fosaWaves.size()) continue;                    // jefe derrotado: espera los 8 minutos (mazfin)
+            if (!waveMobs(w).isEmpty()) continue;
+            if (!waveAt.containsKey(name)) {
+                if (cur == fosaWaves.size()) {                       // murio el jefe
+                    wave.put(name, cur + 1);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mazfin " + name);
+                    title(players, "Fosa conquistada", "Derrotaron al Cangrejo de la Fosa");
+                    continue;
+                }
+                waveAt.put(name, now + 4000);
+                players.forEach(p -> broadcastTo(p, "&bOleada &f" + cur + "/" + fosaWaves.size() + " &bsuperada. Viene otra..."));
+            } else if (now >= waveAt.get(name)) { waveAt.remove(name); spawnWave(w, cur + 1, players.size()); }
+        }
+    }
+
+    void title(List<Player> ps, String a, String b) {
+        for (Player p : ps) p.showTitle(net.kyori.adventure.title.Title.title(
+            net.kyori.adventure.text.Component.text(a, net.kyori.adventure.text.format.NamedTextColor.AQUA),
+            net.kyori.adventure.text.Component.text(b, net.kyori.adventure.text.format.NamedTextColor.GRAY)));
+    }
+
+    void spawnWave(World w, int n, int players) {
+        wave.put(w.getName(), n); waveAt.remove(w.getName());
+        Map<String, Integer> def = fosaWaves.get(n - 1);
+        Random r = new Random();
+        double mult = 1 + 0.5 * (players - 1);
+        for (var e : def.entrySet()) {
+            if (e.getKey().equals("jefe")) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mm mobs spawn " + fosaBossType + " 1 " + w.getName() + "," + fosaBoss[0] + "," + fosaBoss[1] + "," + fosaBoss[2]);
+                w.getPlayers().forEach(p -> broadcastTo(p, "&b&lEl Cangrejo de la Fosa despierta."));
+                continue;
+            }
+            int count = (int) Math.ceil(e.getValue() * mult);
+            for (int i = 0; i < count; i++) {
+                double[] pt = fosaPoints.get(r.nextInt(fosaPoints.size()));
+                Location at = new Location(w, pt[0] + 0.5, pt[1], pt[2] + 0.5);
+                String type = e.getKey().equals("drowned_tridente") ? "drowned" : e.getKey();
+                Entity mob = w.spawnEntity(at, EntityType.valueOf(type.toUpperCase(Locale.ROOT)));
+                mob.addScoreboardTag("fosa.mob");
+                if (mob instanceof Mob m) {
+                    m.setRemoveWhenFarAway(false);
+                    if (e.getKey().equals("drowned_tridente")) m.getEquipment().setItemInMainHand(new ItemStack(Material.TRIDENT));
+                    Player near = null; double best = Double.MAX_VALUE;
+                    for (Player p : w.getPlayers()) if (fighting(p) && p.getLocation().distanceSquared(at) < best) { best = p.getLocation().distanceSquared(at); near = p; }
+                    if (near != null) m.setTarget(near);
+                }
+            }
+        }
+        if (!def.containsKey("jefe")) w.getPlayers().forEach(p -> broadcastTo(p, "&bOleada &f" + n + "/" + fosaWaves.size()));
+    }
+
+    void breatheFosa(Player p) {
+        if (waterPieces(p) == 4) return;                             // el set completo ya rellena el aire
+        p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+        p.removePotionEffect(PotionEffectType.CONDUIT_POWER);
+        int air = p.getRemainingAir() - 15;                            // por encima de la Respiracion o el casco de tortuga
+        if (air <= 0) {
+            p.setRemainingAir(0);
+            p.damage(2.0, org.bukkit.damage.DamageSource.builder(org.bukkit.damage.DamageType.DROWN).build());
+        } else p.setRemainingAir(air);
+    }
+
+    // En la Fosa no se rompe ni se pone nada, y los guardianes ancianos no dan fatiga.
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void fosaBreak(BlockBreakEvent e) { if (fosa(e.getBlock().getWorld()) && !builder(e.getPlayer())) e.setCancelled(true); }
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void fosaPlace(BlockPlaceEvent e) { if (fosa(e.getBlock().getWorld()) && !builder(e.getPlayer())) e.setCancelled(true); }
+    @EventHandler(ignoreCancelled = true) public void fatigue(EntityPotionEffectEvent e) {
+        if (e.getEntity() instanceof Player p && fosa(p.getWorld()) && e.getNewEffect() != null && e.getNewEffect().getType().equals(PotionEffectType.MINING_FATIGUE)) e.setCancelled(true);
+    }
+
+    // Entrada escondida: al llegar al fondo de obsidiana llorona, la corriente te lleva a la Fosa.
+    @EventHandler(ignoreCancelled = true) public void gateMove(PlayerMoveEvent e) {
+        Player p = e.getPlayer();
+        if (!here(p.getWorld()) || e.getTo() == null) return;
+        if (e.getFrom().getBlockX() == e.getTo().getBlockX() && e.getFrom().getBlockZ() == e.getTo().getBlockZ() && e.getFrom().getBlockY() == e.getTo().getBlockY()) return;
+        if (Math.abs(e.getTo().getX() - gate[0] - 0.5) > 1.6 || Math.abs(e.getTo().getZ() - gate[1] - 0.5) > 1.6) return;
+        Block below = e.getTo().getBlock().getRelative(BlockFace.DOWN);
+        if (below.getType() != Material.CRYING_OBSIDIAN && below.getRelative(BlockFace.DOWN).getType() != Material.CRYING_OBSIDIAN) return;
+        long now = System.currentTimeMillis();
+        if (now - gateCooldown.getOrDefault(p.getUniqueId(), 0L) < 6000) return;
+        gateCooldown.put(p.getUniqueId(), now);
+        broadcastTo(p, "&bUna corriente helada te arrastra hacia la &fFosa del Crustaceo&b...");
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mazentrar " + p.getName() + " fosa");
     }
 
     // ----------------------------------------------------------------------------------- regeneracion

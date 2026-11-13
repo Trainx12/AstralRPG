@@ -218,6 +218,15 @@ function maz_entrar(p: player, key: text):
         set {_mundo::5} to "world_minecraft_santuario_azeroth_5"
         set {_dim::6} to "santuario_azeroth_6"
         set {_mundo::6} to "world_minecraft_santuario_azeroth_6"
+    if {_key} is "fosa":
+        set {_nombre} to "Fosa del Crustaceo"
+        set {_tp} to "4.5 112 93.5 0 0"
+        set {_dim::1} to "fosa"
+        set {_mundo::1} to "fosa"
+        set {_dim::2} to "fosa_2"
+        set {_mundo::2} to "fosa_2"
+        set {_dim::3} to "fosa_3"
+        set {_mundo::3} to "fosa_3"
     if {_nombre} is not set:
         stop
     # 1) Si un companero de party ya esta adentro, va a su copia.
@@ -251,7 +260,7 @@ function maz_entrar(p: player, key: text):
         loop {_m::*}:
             if loop-value is {_p}:
                 add loop-value to {_grupo::*}
-            else if name of world of loop-value is "lobby":
+            else if name of world of loop-value is "lobby" or name of world of {_p}:
                 add loop-value to {_grupo::*}
     set {_d} to {_dim::%{_elegida}%}
     delete {-maz.vacia::%{_mundo::%{_elegida}%}%}
@@ -1138,6 +1147,78 @@ every 5 seconds:
                 else if {_t} >= 7 minutes:
                     if {-maz.aviso::world_minecraft_santuario_azeroth_6} is not set:
                         set {-maz.aviso::world_minecraft_santuario_azeroth_6} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("fosa")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::fosa} is not set:
+                set {-maz.vacia::fosa} to now
+            delete {-maz.fin::fosa}
+            delete {-maz.aviso::fosa}
+        else:
+            delete {-maz.vacia::fosa}
+            if {-maz.fin::fosa} is set:
+                set {_t} to difference between {-maz.fin::fosa} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::fosa}
+                    delete {-maz.aviso::fosa}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::fosa} is not set:
+                        set {-maz.aviso::fosa} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("fosa_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::fosa_2} is not set:
+                set {-maz.vacia::fosa_2} to now
+            delete {-maz.fin::fosa_2}
+            delete {-maz.aviso::fosa_2}
+        else:
+            delete {-maz.vacia::fosa_2}
+            if {-maz.fin::fosa_2} is set:
+                set {_t} to difference between {-maz.fin::fosa_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::fosa_2}
+                    delete {-maz.aviso::fosa_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::fosa_2} is not set:
+                        set {-maz.aviso::fosa_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("fosa_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::fosa_3} is not set:
+                set {-maz.vacia::fosa_3} to now
+            delete {-maz.fin::fosa_3}
+            delete {-maz.aviso::fosa_3}
+        else:
+            delete {-maz.vacia::fosa_3}
+            if {-maz.fin::fosa_3} is set:
+                set {_t} to difference between {-maz.fin::fosa_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::fosa_3}
+                    delete {-maz.aviso::fosa_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::fosa_3} is not set:
+                        set {-maz.aviso::fosa_3} to true
                         loop all players:
                             world of loop-player is {_w}
                             send "&eQueda 1 minuto: despues volves al spawn." to loop-player

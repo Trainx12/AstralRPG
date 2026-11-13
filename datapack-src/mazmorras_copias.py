@@ -30,6 +30,9 @@ def dungeons():
         x, y, z = room['llegada']
         out.append(dict(key=d['key'], name=d['name'], dims=copias(DUNGEON_WORLDS[d['key']]),
                         arrival=(x, y, z, room.get('yaw', 0))))
+    # Fosa del Crustaceo (oceano_fosa.py): 3 copias, entrada escondida en el Oceano Astral (no esta en /mazmorras).
+    import oceano_fosa
+    out.append(dict(key='fosa', name=oceano_fosa.NOMBRE, dims=list(oceano_fosa.WORLDS), arrival=oceano_fosa.LLEGADA))
     return out
 
 
@@ -209,7 +212,7 @@ def script(minutos=MINUTOS_FIN):
           '        loop {_m::*}:',
           '            if loop-value is {_p}:',
           '                add loop-value to {_grupo::*}',
-          '            else if name of world of loop-value is "lobby":',
+          '            else if name of world of loop-value is "lobby" or name of world of {_p}:',
           '                add loop-value to {_grupo::*}',
           '    set {_d} to {_dim::%{_elegida}%}',
           '    delete {-maz.vacia::%{_mundo::%{_elegida}%}%}',
