@@ -21,7 +21,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 17  # Casco de Agua con capa de armadura (se ve puesto).
+ITEM_VERSION = 18  # Casco de Agua 3D con orejas (sin capa plana).
 
 files = {}
 
