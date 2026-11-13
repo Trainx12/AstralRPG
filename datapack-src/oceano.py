@@ -75,9 +75,9 @@ def commands():
     return '\n'.join([
         f'# Oceano Astral (oceano.py). Con el plugin AstralOceano instalado y el server encendido:',
         f'mv create {w} normal -g AstralOceano',
-        f'mv gamerule set minecraft:do_daylight_cycle false {w}',
+        f'execute in minecraft:{w} run gamerule minecraft:advance_time false',   # 26.1: ex do_daylight_cycle
         f'execute in minecraft:{w} run time set 6000',
-        f'execute in minecraft:{w} run gamerule minecraft:do_weather_cycle false',
+        f'execute in minecraft:{w} run gamerule minecraft:advance_weather false',  # 26.1: ex do_weather_cycle
         f'execute in minecraft:{w} run worldborder center 0 0',
         f'execute in minecraft:{w} run worldborder set {RADIO * 2}',
         f'rg flag -w {w} __global__ pvp deny',

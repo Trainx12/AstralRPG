@@ -1,8 +1,8 @@
 # Oceano Astral (oceano.py). Con el plugin AstralOceano instalado y el server encendido:
 mv create oceano normal -g AstralOceano
-mv gamerule set minecraft:do_daylight_cycle false oceano
+execute in minecraft:oceano run gamerule minecraft:advance_time false
 execute in minecraft:oceano run time set 6000
-execute in minecraft:oceano run gamerule minecraft:do_weather_cycle false
+execute in minecraft:oceano run gamerule minecraft:advance_weather false
 execute in minecraft:oceano run worldborder center 0 0
 execute in minecraft:oceano run worldborder set 1200
 rg flag -w oceano __global__ pvp deny
