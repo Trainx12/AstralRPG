@@ -70,7 +70,8 @@ def plugin_config():
 def commands():
     L = ['# Fosa del Crustaceo (oceano_fosa.py). Con AstralOceano instalado y las regiones de la arena subidas:']
     for w in WORLDS:
-        L += [f'mv import {w} normal -g AstralOceano:vacio',
+        L += [f'mv import {w} normal -g AstralOceano:vacio --skip-folder-check',   # la carpeta solo trae region/
+              f'execute in minecraft:{w} run setworldspawn {int(LLEGADA[0])} {LLEGADA[1]} {int(LLEGADA[2])}',
               f'execute in minecraft:{w} run gamerule minecraft:spawn_mobs false',
               f'execute in minecraft:{w} run gamerule minecraft:mob_griefing false',
               f'execute in minecraft:{w} run gamerule minecraft:advance_time false',

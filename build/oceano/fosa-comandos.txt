@@ -1,5 +1,6 @@
 # Fosa del Crustaceo (oceano_fosa.py). Con AstralOceano instalado y las regiones de la arena subidas:
-mv import fosa normal -g AstralOceano:vacio
+mv import fosa normal -g AstralOceano:vacio --skip-folder-check
+execute in minecraft:fosa run setworldspawn 4 112 93
 execute in minecraft:fosa run gamerule minecraft:spawn_mobs false
 execute in minecraft:fosa run gamerule minecraft:mob_griefing false
 execute in minecraft:fosa run gamerule minecraft:advance_time false
@@ -8,7 +9,8 @@ execute in minecraft:fosa run gamerule minecraft:keep_inventory true
 rg flag -w fosa __global__ block-break deny
 rg flag -w fosa __global__ block-place deny
 rg flag -w fosa __global__ pvp deny
-mv import fosa_2 normal -g AstralOceano:vacio
+mv import fosa_2 normal -g AstralOceano:vacio --skip-folder-check
+execute in minecraft:fosa_2 run setworldspawn 4 112 93
 execute in minecraft:fosa_2 run gamerule minecraft:spawn_mobs false
 execute in minecraft:fosa_2 run gamerule minecraft:mob_griefing false
 execute in minecraft:fosa_2 run gamerule minecraft:advance_time false
@@ -17,7 +19,8 @@ execute in minecraft:fosa_2 run gamerule minecraft:keep_inventory true
 rg flag -w fosa_2 __global__ block-break deny
 rg flag -w fosa_2 __global__ block-place deny
 rg flag -w fosa_2 __global__ pvp deny
-mv import fosa_3 normal -g AstralOceano:vacio
+mv import fosa_3 normal -g AstralOceano:vacio --skip-folder-check
+execute in minecraft:fosa_3 run setworldspawn 4 112 93
 execute in minecraft:fosa_3 run gamerule minecraft:spawn_mobs false
 execute in minecraft:fosa_3 run gamerule minecraft:mob_griefing false
 execute in minecraft:fosa_3 run gamerule minecraft:advance_time false
