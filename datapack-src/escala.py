@@ -81,6 +81,8 @@ TIER_ESPECIAL = 3
 from instancias import expand_map as _copias
 TIER_MAZMORRA = _copias({"bosque": 1, "mina": 2, "tumba": 3, "cumbre": 4, "forja": 5, "santuario": 5,
                  "cumbre_hielo": 4, "forja_volcano": 5, "santuario_interstellar": 5, "santuario_azeroth": 5})
+# Mundos con tier fijo que no son mazmorras (sin vida extra ni elites de mazmorra).
+TIER_FIJO = {"oceano": 2}
 EXTRA_VIDA_MAZMORRA = _copias({"santuario": 1.5, "santuario_interstellar": 1.5, "santuario_azeroth": 1.5})
 
 # Probabilidades de tier en el mundo (en %).

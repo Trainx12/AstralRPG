@@ -49,6 +49,7 @@ class TravelUI(unittest.TestCase):
         for key,item in data['items'].items():
             self.assertTrue(item['click_commands'],key)
             if key=='lobby':self.assertEqual(item['material'],'BARRIER')
+            elif key=='oceano':self.assertEqual(item['material'],'HEART_OF_THE_SEA')  # item vanilla visible
             else:self.assertEqual(item['item_model'],'astral:viajes/blank')
             base=key.split('_')[0]
             self.assertEqual(item['click_commands'],data['items'][base]['click_commands'])

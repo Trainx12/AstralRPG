@@ -632,6 +632,20 @@
       "click_commands": [
         "[close]"
       ]
+    },
+    "oceano": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 49,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ]
     }
   }
 }

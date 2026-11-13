@@ -6,7 +6,7 @@ SANTUARIO_SALA1_INICIO:
   - addtag{tag=santuario.ola1} @self
   - 'message{m="&8[&7Santuario Celestial&8] &fPrueba de los cinco ecos &7- sala 1/1. &cAhi vienen!"} @PlayersInRadius{r=158}'
   - 'sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=158}'
-  - 'summon{type=astral_santuario_cangrejo_eco;amount=1;radius=0;onSurface=false} @Location{x=256.5;y=64;z=256.5}'
+  - 'summon{type=astral_santuario_coloso_musgoso_eco;amount=1;radius=0;onSurface=false} @Location{x=256.5;y=64;z=256.5}'
 
 SANTUARIO_SALA1_OLA2:
   Skills:
@@ -74,7 +74,7 @@ SANTUARIO_SALA1_LIMPIA:
 
 SANTUARIO_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=158;types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti,astral_santuario_cofre,astral_santuario_guia}'
+  - 'remove @MobsInRadius{r=158;types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti,astral_santuario_cofre,astral_santuario_guia}'
   - removetag{tag=santuario.on} @self
   - removetag{tag=santuario.fin} @self
   - removetag{tag=santuario.espera} @self

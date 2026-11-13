@@ -57,6 +57,33 @@ ARENA = dict(world="arena", map="batalla_de_Jugadores.zip", enabled=True,
                            for z in range(-2382, -2360, 5)])
 
 
+def coloso_santuario():
+    """Coloso Musgoso de las Minas Olvidadas como jefe Ancestral del Santuario (ola 1).
+
+    Parte del bloque Ancestral del Cangrejo (drops, recompensa, contorno, barra) y cambia cuerpo,
+    nombre, modelo y habilidades por las del jefe de la mina (sin el hook de su sala)."""
+    _, block, add = variant("santuario", "cangrejo", ancestral=True, boss=True)
+    mid = "astral_santuario_coloso_musgoso_eco"
+    block = block.replace("astral_santuario_cangrejo_eco:", mid + ":", 1)
+    block = block.replace("Type: SPIDER", "Type: IRON_GOLEM", 1)
+    block = block.replace("Cangrejo Ancestral", "Coloso Musgoso Ancestral")
+    block = block.replace("Color: PINK", "Color: PURPLE")
+    block = block.replace("  - nautilus_shell 1 0.6", "  - moss_block 2-4 0.6").replace("  - prismarine_shard 2-5 1", "  - mossy_cobblestone 2-5 1")
+    out = []
+    for line in block.splitlines():
+        if "AST_MODEL_astral_cangrejo" in line:
+            line = line.replace("AST_MODEL_astral_cangrejo_ancestral", "MINA_MODELO_astral_mina_guardian")
+        if "AST_FASE_astral_cangrejo" in line or "AST_AFIJO_astral_cangrejo" in line:
+            continue
+        out.append(line)
+    block = "\n".join(out) + "\n"
+    extra = ["  - skill{s=MINA_ONDA_GUARDIAN} @self ~onTimer:160",
+             "  - skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}",
+             "  - skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}"]
+    block = block.replace("  Skills:\n", "  Skills:\n" + "\n".join(extra) + "\n", 1)
+    return mid, block, set()
+
+
 def variant(key, source, ancestral=False, boss=False):
     base = "astral_" + source
     mid = f"astral_{key}_{source}" + ("_eco" if ancestral else "")
@@ -127,7 +154,10 @@ def catalog():
                     # Mob vanilla provisorio (lugar del jefe nuevo que todavia no existe).
                     waves.append([(source, 1, 0)])
                     continue
-                mid, block, add = variant(key, source, ancestral=True, boss=True)
+                if source == 'coloso_musgoso':
+                    mid, block, add = coloso_santuario()
+                else:
+                    mid, block, add = variant(key, source, ancestral=True, boss=True)
                 # Jefes de tier 5 (pedido 12/11/2026): vida del jefe de la Forja, de 60% a 100% por oleada.
                 from escala import VIDA_JEFE
                 hp = round(VIDA_JEFE['forja'] * (0.6 + 0.1 * WAVES.index(source)))

@@ -1400,6 +1400,10 @@ mob_roll = [
 for w, t in TIER_MAZMORRA.items():
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 1")
+from escala import TIER_FIJO
+for w, t in TIER_FIJO.items():  # Oceano Astral: tier fijo, sin depender del inventario (dg 2 = no es mazmorra)
+    mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
+    mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 2")
 mob_roll += [
     f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",

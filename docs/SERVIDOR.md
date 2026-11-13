@@ -23,6 +23,15 @@ Generadores: `datapack-src/tanda5a.py`, `escala.py`, `runtime/AstralProgression.
 GriefPrevention 16.18.7: solo survival, 36 bloques iniciales, minimo 6x6, sin ganancia por hora,
 proteccion completa de fondo a techo. EconomyShopGUI suma paquetes de area mediante consola;
 `/buyclaimblocks` y venta directa quedan desactivados. Respeta WorldGuard; Bolt conserva sus candados.
+Oceano Astral (`oceano.py`, plugin `AstralOceano`): mundo `oceano` de Multiverse con generador propio
+(`mv create oceano normal -g AstralOceano`). Todo agua entre el fondo y un techo de roca con bedrock en y=116:
+no hay superficie. Al poblar chunks, romper bloques o caer arena, el aire pasa a agua. No se pueden poner bloques
+que dejen aire (puertas, trampillas, carteles, camas, antorchas, esponjas, conductos, hielo...) ni usar baldes o botes.
+Sirven pociones de respiracion, casco con Respiracion y de tortuga. Mobs tier 2 (`escala.TIER_FIJO`).
+Entrada: Portales (casilla 49) -> ventana `oceano_aviso` -> `/oceano entrar`. Cada 72 h reales se regenera solo
+(avisos 10/5/1 min, manda a todos al lobby, borra regiones y el generador las vuelve a crear con la misma semilla).
+OP: `/oceano estado`, `/oceano regenerar`, `/oceano plantilla` (opcional: copia limpia fija). Prueba: `tools/probar_oceano_paper.py`.
+
 Mesa de encantamientos: **LynExp 1.0.0** (`LynExp-1.0.0-mc26.1-26.1.2.jar`, github.com/lyn1dev/enchanting-table).
 Al abrir una mesa se elige el encantamiento (1395 puntos de XP cada uno; clic derecho con items de mobs da XP).
 Ofrece todo encantamiento cuyo `supported_items` acepte el objeto: por eso los nuestros usan el tag vacio

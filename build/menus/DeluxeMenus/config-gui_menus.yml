@@ -116,3 +116,5 @@ gui_menus:
     file: infinita_tier.yml
   infinita_vel:
     file: infinita_vel.yml
+  oceano_aviso:
+    file: oceano_aviso.yml

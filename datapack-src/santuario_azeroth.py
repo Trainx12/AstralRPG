@@ -20,7 +20,8 @@ ARRIVAL_SPREAD = 2              # si entran varios: los demas a 2, 4, 6 bloques 
 CENTER = (256.5, 64, 256.5)     # controlador de las oleadas (centro de la arena)
 RADIUS = 150                    # jugadores dentro de este radio cuentan como "en el Santuario"
 # Oleadas en orden, del mas debil al mas fuerte. 'ZOMBIE' (vanilla) reserva el lugar del jefe nuevo.
-WAVES = ('cangrejo', 'chaman', 'momia', 'yeti', 'golem_forja', 'ZOMBIE')
+# Ola 1: Coloso Musgoso de las Minas (el Cangrejo pasa a ser el jefe de la mazmorra acuatica, 12/11/2026).
+WAVES = ('coloso_musgoso', 'chaman', 'momia', 'yeti', 'golem_forja', 'ZOMBIE')
 BOSSES = ((256.5, 64, 256.5),) * len(WAVES)   # todos aparecen en el centro
 FLOOR_Y = 64                    # piso donde aparecen los jefes
 CHEST = (257.5, 64, 256.5)      # cofre del premio final (donde aparecen los jefes)

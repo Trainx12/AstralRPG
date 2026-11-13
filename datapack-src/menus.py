@@ -650,6 +650,8 @@ def main():
     lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_titulos','cosmeticos_sombreros')]
     from infinita_ui import write_menus as write_infinita
     lista += [f'  {n}:\n    file: {n}.yml' for n in write_infinita()]
+    from oceano import generate as generate_oceano
+    lista += [f'  {n}:\n    file: {n}.yml' for n in generate_oceano()]
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")
 

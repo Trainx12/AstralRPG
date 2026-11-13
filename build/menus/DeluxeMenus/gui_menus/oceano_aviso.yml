@@ -1,0 +1,47 @@
+{
+  "menu_title": "&1&lOceano Astral - Aviso",
+  "size": 27,
+  "items": {
+    "info": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 13,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Todo es agua: &cno hay superficie&7 para respirar.",
+        "&7Sirven las pociones de respiracion, el casco",
+        "&7con &fRespiracion&7 y el casco de tortuga.",
+        "",
+        "&7Monstruos &ftier 2&7. Se recomienda ser &ftier 3",
+        "&7para minar y explorar.",
+        "",
+        "&8El oceano se regenera cada 3 dias.",
+        "&8No dejes cosas tuyas ahi."
+      ]
+    },
+    "entrar": {
+      "material": "LIME_STAINED_GLASS_PANE",
+      "slot": 11,
+      "display_name": "&a&lEntrar preparado",
+      "lore": [
+        "&7Ya tengo con que respirar.",
+        "",
+        "&eClic para entrar."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] oceano entrar<delay=3>"
+      ]
+    },
+    "volver": {
+      "material": "RED_STAINED_GLASS_PANE",
+      "slot": 15,
+      "display_name": "&c&lTodavia no",
+      "lore": [
+        "&7Volver a los portales."
+      ],
+      "click_commands": [
+        "[openguimenu] portales"
+      ]
+    }
+  }
+}

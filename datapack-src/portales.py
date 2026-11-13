@@ -38,6 +38,9 @@ def menu_data():
         for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
     # Lobby: la primera casilla muestra la barrera vanilla.
     items['lobby']['material']='BARRIER';del items['lobby']['item_model']
+    # Oceano Astral (oceano.py): casilla 49, abre la ventana de aviso.
+    from oceano import portales_button
+    items['oceano']=portales_button()
     return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
 
 

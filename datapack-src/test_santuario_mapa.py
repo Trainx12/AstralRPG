@@ -48,7 +48,7 @@ class SantuarioMapTests(unittest.TestCase):
         skills = yaml.safe_load(skill_yml(dungeon))
         summons = [line for value in skills.values() for line in value['Skills']
                    if 'summon{type=astral_santuario_' in line and '_eco;' in line]
-        self.assertTrue(any('cangrejo_eco' in line for line in summons))
+        self.assertTrue(any('coloso_musgoso_eco' in line for line in summons))
         self.assertTrue(any('golem_forja_eco' in line for line in summons))
         self.assertEqual(len(summons),5)  # la 6ta es un ZOMBIE vanilla provisorio
         self.assertTrue(any('summon{type=ZOMBIE;' in line for value in skills.values() for line in value['Skills']))

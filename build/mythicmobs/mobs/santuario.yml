@@ -15,12 +15,12 @@ astral_santuario_control_sala1:
     Collidable: false
   Skills:
   - 'skill{s=SANTUARIO_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=150} ?!hastag{tag=santuario.on}'
-  - 'skill{s=SANTUARIO_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=santuario.ola1} ?!hastag{tag=santuario.ola2} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=santuario.ola2} ?!hastag{tag=santuario.ola3} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=santuario.ola3} ?!hastag{tag=santuario.ola4} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA5} @self ~onTimer:20 ?hastag{tag=santuario.ola4} ?!hastag{tag=santuario.ola5} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA6} @self ~onTimer:20 ?hastag{tag=santuario.ola5} ?!hastag{tag=santuario.ola6} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=santuario.ola6} ?!hastag{tag=santuario.fin} ?!hastag{tag=santuario.espera} ?mobsinradius{types=CAVE_SPIDER,HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_cangrejo,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_cangrejo_eco,astral_santuario_chaman_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=santuario.ola1} ?!hastag{tag=santuario.ola2} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=santuario.ola2} ?!hastag{tag=santuario.ola3} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=santuario.ola3} ?!hastag{tag=santuario.ola4} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA5} @self ~onTimer:20 ?hastag{tag=santuario.ola4} ?!hastag{tag=santuario.ola5} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA6} @self ~onTimer:20 ?hastag{tag=santuario.ola5} ?!hastag{tag=santuario.ola6} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=santuario.ola6} ?!hastag{tag=santuario.fin} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
   - 'skill{s=SANTUARIO_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=santuario.on} ?!playerwithin{d=158}'
 
 astral_santuario_cofre:
@@ -86,9 +86,9 @@ astral_npc_santuario:
   - 'message{m="&aDestino descubierto. &7Ya puedes encontrarlo en &e/mazmorras&7."} @trigger ~onInteract'
   - 'skill{s=SANTUARIO_ENTRAR} @trigger ~onInteract'
 
-astral_santuario_cangrejo_eco:
-  Type: SPIDER
-  Display: '&d&lCangrejo Ancestral'
+astral_santuario_coloso_musgoso_eco:
+  Type: IRON_GOLEM
+  Display: '&d&lColoso Musgoso Ancestral'
   Health: 7875000
   Damage: 17.3
   Armor: 6
@@ -104,19 +104,22 @@ astral_santuario_cangrejo_eco:
     PreventRandomEquipment: true
   BossBar:
     Enabled: true
-    Title: '&d&lCangrejo Ancestral'
+    Title: '&d&lColoso Musgoso Ancestral'
     Range: 48
-    Color: PINK
+    Color: PURPLE
     Style: SEGMENTED_10
   Drops:
-  - nautilus_shell 1 0.6
-  - prismarine_shard 2-5 1
+  - moss_block 2-4 0.6
+  - mossy_cobblestone 2-5 1
   - exp 100
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onLoad
+  - skill{s=MINA_ONDA_GUARDIAN} @self ~onTimer:160
+  - skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}
+  - skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}
+  - skill{s=MINA_MODELO_astral_mina_guardian} @self ~onSpawn
+  - skill{s=MINA_MODELO_astral_mina_guardian} @self ~onLoad
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -138,10 +141,6 @@ astral_santuario_cangrejo_eco:
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
-  - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
-  - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - randomskill{skills=AST_AFIJO_astral_cangrejo_ancestral_vamp,AST_AFIJO_astral_cangrejo_ancestral_expl,AST_AFIJO_astral_cangrejo_ancestral_blind,AST_AFIJO_astral_cangrejo_ancestral_veloz,AST_AFIJO_astral_cangrejo_ancestral_mald} @self ~onSpawn
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=explosion;amount=6;hS=2} @self ~onDeath ?hastag{tag=astral.af_expl}

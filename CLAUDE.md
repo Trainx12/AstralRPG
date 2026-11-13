@@ -34,6 +34,7 @@ python mazmorras_copias.py         # 6 copias por mazmorra: entrada (mazentrar),
 python infinita.py                 # Mazmorra Infinita: /infinita, 6 salas, tier y velocidad, sube cada 10 min
 python panel_mundos.py             # panel lateral segun el mundo (TAB): infinita, mini juegos, arenas, survival
 python duelos.py                   # Duelos dentro de /arenas: /desafiar (Skript) y arenas de Duels
+python oceano.py --java <java25>   # Oceano Astral: plugin AstralOceano (generador, sin aire, /oceano, regenera c/3 dias) + aviso
 python menus.py                    # menus de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar, cofre del jefe y /fragmentos
 ```
 

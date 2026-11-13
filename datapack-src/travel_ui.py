@@ -22,7 +22,8 @@ VANILLA=['item/coal','item/copper_ingot','item/iron_ingot','item/gold_ingot','it
          'block/coal_ore','block/copper_ore','block/iron_ore','block/gold_ore','block/emerald_ore','block/diamond_ore','block/ancient_debris_side',
          'block/coal_block','block/copper_block','block/iron_block','block/gold_block','block/emerald_block','block/diamond_block','block/netherite_block']
 FRAME_COLORS={'open':'#71e07a','next':'#f2c94c','locked':'#656171'}
-USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,51,52,53},'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
+USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,49,51,52,53},  # 49: Oceano Astral
+      'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
       'minas':{4,9,18,27,45,49,53,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP)}
 GRID_Y=57
 
