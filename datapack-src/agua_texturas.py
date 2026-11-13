@@ -8,8 +8,8 @@ ASTRAL_PRIVADO/build/entregas/agua-texturas/ con rutas del resource pack. Nunca 
 - Armadura puesta: mitad de arriba de armor_tide_deepblue (capa 1) y de armor_tide_deepblue_legs (capa 2),
   del mod Ice and Fire que paso el dueno (TERCEROS: solo circuito privado).
 - Casco: modelo 3D con las dos aletas de la cabeza (las de brazos y piernas no se pueden en vanilla).
-- Hacha, pico, arco (con sus 3 tensados) y Perla Abisal: arte del dueno llevado al agua.
-- Coral Astral y las dos menas: dibujo propio en tonos de agua (la mena de perla usa la gema del dueno).
+- Hacha, pico y arco (con sus 3 tensados): arte del dueno llevado al agua. Perla Abisal: su gema sin retocar.
+- Perla Abisal, Coral Astral y sus menas (version piedra): arte del dueno sin retocar.
 """
 import colorsys
 import json
@@ -77,61 +77,6 @@ def bow(im):
     return im
 
 
-def _stone(seed):
-    """Piedra del fondo marino: azul pizarra con vetas (base de las menas)."""
-    import random
-    rng = random.Random(seed); im = Image.new('RGBA', (16, 16)); px = im.load()
-    for y in range(16):
-        for x in range(16):
-            v = rng.uniform(0.22, 0.34) + (0.05 if (x + 2 * y) % 7 == 0 else 0)
-            r, g, b = colorsys.hsv_to_rgb(0.58, 0.38, v)
-            px[x, y] = (round(r * 255), round(g * 255), round(b * 255), 255)
-    return im
-
-
-def ore_perla(gem):
-    """Mena de Perla Abisal: piedra marina con tres gemitas (la gema del dueno achicada)."""
-    im = _stone(7); small = gem.convert('RGBA').resize((6, 6), Image.LANCZOS)
-    for x, y in ((1, 2), (9, 1), (5, 9)):
-        im.alpha_composite(small, (x, y))
-    return im
-
-
-CORAL = [(0.47, 0.75, 0.45), (0.48, 0.65, 0.75), (0.50, 0.35, 0.97)]   # oscuro, medio, brillo (turquesa de arrecife)
-
-
-def _coral_px(c):
-    r, g, b = colorsys.hsv_to_rgb(*c); return (round(r * 255), round(g * 255), round(b * 255), 255)
-
-
-def coral_item():
-    """Coral Astral: rama de coral turquesa con puntas de espuma."""
-    im = Image.new('RGBA', (16, 16)); px = im.load()
-    dark, mid, hi = (_coral_px(c) for c in CORAL)
-    trunk = [(7, 14), (7, 13), (8, 12), (8, 11), (8, 10), (7, 9), (7, 8), (8, 7)]
-    left = [(6, 10), (5, 9), (4, 8), (4, 7), (3, 6), (3, 5), (4, 4)]
-    right = [(9, 9), (10, 8), (11, 7), (11, 6), (12, 5), (12, 4), (11, 3)]
-    top = [(8, 6), (8, 5), (9, 4), (8, 3), (8, 2)]
-    for pts in (trunk, left, right, top):
-        for x, y in pts:
-            px[x, y] = mid; px[x + 1, y] = dark
-    for x, y in ((4, 4), (11, 3), (8, 2), (3, 5), (12, 4)):
-        px[x, y] = hi
-    for x in range(5, 11):
-        px[x, 15] = dark
-    return im
-
-
-def ore_coral():
-    """Mena de Coral Astral: piedra marina con ramitas de coral."""
-    im = _stone(11); px = im.load()
-    dark, mid, hi = (_coral_px(c) for c in CORAL)
-    for ox, oy in ((2, 3), (9, 2), (5, 9), (11, 10)):
-        for dx, dy, c in ((1, 3, dark), (1, 2, mid), (1, 1, mid), (0, 0, hi), (2, 0, hi), (0, 1, mid), (2, 1, mid)):
-            px[ox + dx, oy + dy] = c
-    return im
-
-
 def _box(x0, y0, z0, x1, y1, z1, u, v, w, h, d, inflate=0.0):
     """Caja con UV de piel (u,v = esquina de la plantilla; w,h,d en pixeles de textura 64x64 -> /4)."""
     q = lambda a, b, c, e: [a / 4, b / 4, c / 4, e / 4]
@@ -178,11 +123,12 @@ def generate():
     files['assets/astral/textures/item/agua_pico.png'] = sword(Image.open(SRC / 'agua_pico.png'))
     for suf in ('', '_pulling_0', '_pulling_1', '_pulling_2'):
         files[f'assets/astral/textures/item/agua_arco{suf}.png'] = bow(Image.open(SRC / f'agua_arco{suf}.png'))
-    gem = tint(Image.open(SRC / 'perla_abisal.png'), hue=0.53, sat_gain=1.0, val_gain=1.05)
+    gem = Image.open(SRC / 'perla_abisal.png').convert('RGBA')   # el dueno la quiere tal cual
     files['assets/astral/textures/item/perla_abisal.png'] = gem
-    files['assets/astral/textures/block/perla_abisal_ore.png'] = ore_perla(gem)
-    files['assets/astral/textures/item/coral_astral.png'] = coral_item()
-    files['assets/astral/textures/block/coral_astral_ore.png'] = ore_coral()
+    # Mena de perla: la del dueno (version piedra). La de pizarra profunda queda guardada en originales.
+    files['assets/astral/textures/block/perla_abisal_ore.png'] = Image.open(SRC / 'perla_abisal_ore.png').convert('RGBA')
+    files['assets/astral/textures/item/coral_astral.png'] = Image.open(SRC / 'coral_astral.png').convert('RGBA')
+    files['assets/astral/textures/block/coral_astral_ore.png'] = Image.open(SRC / 'coral_astral_ore.png').convert('RGBA')
     layer = tint(Image.open(SRC / 'armadura_puesta_64x64.png').crop((0, 0, 64, 32)), val_gain=1.05)
     files['assets/astral/textures/entity/equipment/humanoid/agua.png'] = layer
     # Capa 2 (grebas): la del mod (armor_tide_deepblue_legs), mitad de arriba en formato 64x32.
