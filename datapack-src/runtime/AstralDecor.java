@@ -105,6 +105,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         if(e.getType()==org.bukkit.event.server.ServerLoadEvent.LoadType.RELOAD)loadTableRecipes();
     }
     @EventHandler public void tableQuit(PlayerQuitEvent e) {craftWarnings.remove(e.getPlayer().getUniqueId());}
+    // HUD: la vida se dibuja como UNA barra de 10 segmentos (hotbar del pack). Solo cambia el dibujo del cliente:
+    // la vida real (y lo que muestra AuraSkills arriba: vida, defensa y mana) sigue igual.
+    static void vidaEnBarra(Player p) { p.setHealthScale(20.0); p.setHealthScaled(true); }
+    @EventHandler(priority=EventPriority.MONITOR) public void hudVida(PlayerJoinEvent e) { vidaEnBarra(e.getPlayer()); }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void protectFuel(FurnaceBurnEvent e) {
         if(astralIngredient(e.getFuel()))e.setCancelled(true);
     }
@@ -314,6 +318,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     public void onEnable() {
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
+        for (Player p : Bukkit.getOnlinePlayers()) vidaEnBarra(p);
         saveDefaultConfig();
         // Integrar solo el catalogo nuevo; conservar configuracion NPC del servidor.
         try(var in=getResource("config.yml")) {
