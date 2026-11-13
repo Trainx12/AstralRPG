@@ -10,6 +10,9 @@ Pedido del dueno: TODO pasa a este pack salvo inventory.png (inventario de piedr
   cofre se pasa a gris) y el dibujo de cofre, cofre doble, barril y ender va en el TITULO, como hace el propio pack
   (glifos del font default + espacios negativos). Los menus tienen titulo propio, asi que no lo muestran.
   Un cofre renombrado muestra su nombre en lugar del dibujo.
+  OJO al armar el FINAL: font-extra.json trae un provider "space" (los espacios negativos 0xEC1A-C) ademas de
+  los bitmaps. Si se pierde, el titulo muestra dos cuadraditos y el cofre queda corrido (13/11).
+Pedido del dueno (13/11): los botones (sprites/widget/) siguen siendo los nuestros, no los del pack.
 Los titulos de las ventanas reemplazadas se ocultan o pasan a glifo: lang-ocultar.json, que el armado del FINAL
 suma a nuestros lang es_ar/es_es/es_mx/en_us; font-extra.json se suma a nuestro minecraft:default.
 
@@ -45,7 +48,9 @@ def elegidos(names):
         if not n.endswith('.png') or not n.startswith(GUI):
             continue
         r = n[len(GUI):]
-        if r in ('container/inventory.png', 'brown_recipe_book.png') or r.startswith(('container/inventory/', 'container/villagers/')):
+        # sprites/widget/: botones del menu de pausa, opciones y menus (los dorados nuestros); no son ventanas.
+        if r in ('container/inventory.png', 'brown_recipe_book.png') or r.startswith(
+                ('container/inventory/', 'container/villagers/', 'sprites/widget/')):
             continue
         out.append(n)
     return sorted(out)
