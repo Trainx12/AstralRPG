@@ -1,13 +1,16 @@
-"""HUD Astral: hotbar de marco dorado con casilleros azul noche y barras de vida y comida (dibujo propio).
+"""HUD Astral: hotbar azul noche con herrajes dorados biselados y gema, barras de vida y comida (dibujo propio).
 
-Inspirado en la imagen de referencia del dueno (13/11). Todo es vanilla, sin mods:
-- hotbar, seleccion (con gema verde) y mano izquierda: sprites del HUD a doble resolucion.
-- Vida: cada corazon es un segmento de barra roja (10 segmentos = una barra). AstralDecor fija la escala
-  de vida del cliente en 20 (10 corazones), asi siempre es UNA barra. La vida real no cambia y el texto
-  de AuraSkills (vida, defensa, mana) sigue arriba con los numeros reales.
-- Comida: segmentos naranjas (se vacia de izquierda a derecha, como vanilla).
-- Armadura y burbujas: quedan las de antes.
-Lo que no se puede en vanilla: adornos fuera de la barra y casillas extra.
+Sigue la imagen de referencia del dueno (13/11, segunda version). Todo es vanilla, sin mods:
+- hotbar: casilleros de acero azulado con separadores oscuros, liston dorado arriba al centro con gema verde,
+  escuadras doradas en las puntas (brazo arriba cortado en diagonal y canto que termina en punta) y filete abajo.
+  El dorado es metal biselado: cara naranja arriba, linea amarilla en el canto, caras terracota y sombra roja.
+- seleccion: marco dorado biselado sin gema, con muesca para que se vea la gema del centro de la barra.
+- mano izquierda: casillero con marco dorado biselado en inglete.
+- Vida y comida: cada corazon o muslo es un tramo de un tubo de acero con el relleno fino rojo o naranja
+  (10 tramos = una barra continua). AstralDecor fija la escala de vida del cliente en 20: siempre UNA barra.
+- Armadura: petos plateados. Burbujas: aros celestes.
+Lo que no se puede en vanilla: adornos fuera de cada sprite (volutas, puntas de las barras, casilla del
+cofre) ni mover armadura y burbujas al centro.
 
 python hud_barras.py [carpeta]  -> sprites en <carpeta>/assets/minecraft/textures/gui/sprites/hud/
 El HUD anterior quedo guardado en ASTRAL_PRIVADO/originales/hud-anterior-13-11/.
@@ -20,91 +23,177 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent.parent
 PRIV = Path(os.environ.get('ASTRAL_PRIVADO', ROOT / '.local/terceros/AstralRPG-privado'))
 OUT = PRIV / 'build/entregas/hud-barras'
-S = 2   # texeles por pixel de la interfaz
+S = 2   # texeles por pixel de la interfaz; todo se dibuja en texeles
 
-NEGRO = (10, 10, 14, 255)
-ORO_OSC, ORO, ORO_CLARO = (110, 58, 16, 255), (201, 128, 36, 255), (247, 196, 90, 255)
-NOCHE, NOCHE_OSC, NOCHE_CLARO = (26, 33, 49, 255), (14, 18, 28, 255), (52, 66, 92, 255)
-GEMA = ((20, 90, 50, 255), (60, 190, 100, 255), (190, 255, 200, 255))
+
+def c(h):
+    return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), 255)
+
+
+NADA = (0, 0, 0, 0)
+BORDE = c('171926')                                    # contorno casi negro
+NOCHE_OSC, NOCHE_SOMBRA, NOCHE = c('1c2030'), c('242b3c'), c('2b3447')
+ACERO_OSC, ACERO, ACERO_CLARO = c('46576f'), c('5f7289'), c('7d92ab')
+# dorado biselado: cara de arriba, canto brillante, caras laterales, cara de abajo y sombra
+ORO, ORO_CLARO, TERRA, ORO_BAJO, ORO_SOMBRA = c('e0903a'), c('f2d264'), c('c0623a'), c('c87830'), c('8f3430')
+GEMA_OSC, GEMA_MED, GEMA, GEMA_CLARA, GEMA_BORDE = c('2a8040'), c('3fa048'), c('4fb050'), c('86d874'), c('1f5a40')
 
 
 class Lienzo:
     def __init__(self, w, h):
-        self.im = Image.new('RGBA', (w * S, h * S), (0, 0, 0, 0)); self.px = self.im.load()
+        self.w, self.h = w, h
+        self.im = Image.new('RGBA', (w, h), NADA); self.px = self.im.load()
 
-    def rect(self, x0, y0, x1, y1, c):
-        for y in range(round(y0 * S), round(y1 * S)):
-            for x in range(round(x0 * S), round(x1 * S)):
-                if 0 <= x < self.im.width and 0 <= y < self.im.height:
-                    self.px[x, y] = c
+    def p(self, x, y, col):
+        if 0 <= x < self.w and 0 <= y < self.h:
+            self.px[x, y] = col
 
-    def marco(self, x0, y0, x1, y1, c, g=0.5):
-        self.rect(x0, y0, x1, y0 + g, c); self.rect(x0, y1 - g, x1, y1, c)
-        self.rect(x0, y0, x0 + g, y1, c); self.rect(x1 - g, y0, x1, y1, c)
+    def rect(self, x0, y0, x1, y1, col):
+        """Rectangulo con extremos incluidos."""
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                self.p(x, y, col)
 
-    def casillero(self, x0, y0, x1, y1):
-        self.rect(x0, y0, x1, y1, NEGRO)
-        self.rect(x0 + 0.5, y0 + 0.5, x1 - 0.5, y1 - 0.5, NOCHE)
-        self.rect(x0 + 0.5, y0 + 0.5, x1 - 0.5, y0 + 1, NOCHE_OSC); self.rect(x0 + 0.5, y0 + 0.5, x0 + 1, y1 - 0.5, NOCHE_OSC)
-        self.rect(x0 + 0.5, y1 - 1, x1 - 0.5, y1 - 0.5, NOCHE_CLARO); self.rect(x1 - 1, y0 + 0.5, x1 - 0.5, y1 - 0.5, NOCHE_CLARO)
+    def anillo(self, x0, y0, x1, y1, col):
+        self.rect(x0, y0, x1, y0, col); self.rect(x0, y1, x1, y1, col)
+        self.rect(x0, y0, x0, y1, col); self.rect(x1, y0, x1, y1, col)
 
-    def gema(self, cx, y):
-        o, m, b = GEMA
-        self.rect(cx - 1.5, y + 0.5, cx + 1.5, y + 1.5, o); self.rect(cx - 1, y, cx + 1, y + 2, o)
-        self.rect(cx - 1, y + 0.5, cx + 1, y + 1.5, m); self.rect(cx - 0.5, y, cx + 0.5, y + 2, m)
-        self.rect(cx - 0.5, y + 0.5, cx, y + 1, b)
+    def espejo(self):
+        """Copia la mitad izquierda sobre la derecha."""
+        for y in range(self.h):
+            for x in range(self.w // 2):
+                self.px[self.w - 1 - x, y] = self.px[x, y]
 
 
-def marco_oro(l, x0, y0, x1, y1):
-    l.rect(x0, y0, x1, y1, NEGRO)
-    l.rect(x0 + 0.5, y0 + 0.5, x1 - 0.5, y1 - 0.5, ORO_OSC)
-    l.rect(x0 + 1, y0 + 1, x1 - 1, y1 - 1, ORO)
-    l.rect(x0 + 1, y0 + 1, x1 - 1, y0 + 1.5, ORO_CLARO); l.rect(x0 + 1, y0 + 1, x0 + 1.5, y1 - 1, ORO_CLARO)
+def casillero(l, ox, oy, w=36, h=36):
+    """Casillero: aro de acero oscuro, canto claro arriba y a los lados, fondo azul noche con sombra."""
+    x1, y1 = ox + w - 1, oy + h - 1
+    l.rect(ox, oy, x1, y1, ACERO_OSC)
+    l.rect(ox + 1, oy + 1, x1 - 1, y1 - 1, ACERO_CLARO)
+    l.rect(ox + 1, y1 - 1, x1 - 1, y1 - 1, ACERO)                                  # canto de abajo, mas apagado
+    l.rect(ox + 2, oy + 2, x1 - 2, y1 - 2, NOCHE)
+    l.rect(ox + 2, oy + 2, x1 - 2, oy + 3, NOCHE_SOMBRA); l.rect(ox + 2, oy + 2, ox + 3, y1 - 2, NOCHE_SOMBRA)
+    for x, y in ((ox, oy), (x1, oy), (ox, y1), (x1, y1)):                          # esquinas redondeadas
+        l.p(x, y, BORDE)
+
+
+def marco_oro(l, x0, y0, x1, y1, g=3):
+    """Marco dorado biselado en inglete: g texeles de cara y un canto amarillo por dentro."""
+    l.anillo(x0, y0, x1, y1, BORDE)
+    for i in range(1, g + 1):
+        l.rect(x0 + i, y0 + i, x1 - i, y0 + i, ORO)                                # cara de arriba
+        l.rect(x0 + i, y1 - i, x1 - i, y1 - i, ORO_BAJO)                           # cara de abajo
+        l.rect(x0 + i, y0 + i, x0 + i, y1 - i, TERRA)                              # caras laterales
+        l.rect(x1 - i, y0 + i, x1 - i, y1 - i, TERRA)
+    i = g + 1
+    l.anillo(x0 + i, y0 + i, x1 - i, y1 - i, ORO_CLARO)                            # canto brillante
+    for k in range(1, g + 1):                                                      # ingletes
+        l.p(x0 + k, y0 + k, ORO_CLARO); l.p(x1 - k, y0 + k, ORO_CLARO)
+        l.p(x0 + k, y1 - k, ORO_SOMBRA); l.p(x1 - k, y1 - k, ORO_SOMBRA)
+    l.anillo(x0 + i + 1, y0 + i + 1, x1 - i - 1, y1 - i - 1, BORDE)
+
+
+def gema(l, cx, y, n=7):
+    """Rombo verde facetado, engarce oscuro con puntas doradas: 2n de ancho, 2n-1 de alto; cx = texel izquierdo del centro."""
+    filas = list(range(1, n + 1)) + list(range(n - 1, 0, -1))
+    for i, medio in enumerate(filas):
+        x0, x1 = cx - medio + 1, cx + medio
+        l.rect(x0 - 1, y + i, x1 + 1, y + i, BORDE)
+        l.rect(x0, y + i, x1, y + i, (ORO if i < n else ORO_BAJO) if medio <= 2 else GEMA_BORDE)
+        if medio == n:
+            l.rect(x0, y + i, x0 + 1, y + i, ORO); l.rect(x1 - 1, y + i, x1, y + i, ORO)
+        for x in range(x0 + 1, x1):
+            if medio > 2:
+                arriba, izq = i < n - 1, x <= cx
+                l.p(x, y + i, GEMA_CLARA if arriba and izq else GEMA if arriba else GEMA_MED if izq else GEMA_OSC)
+    l.rect(cx - 1, y + n - 3, cx, y + n - 3, c('d8ffc8'))                          # destello
+    l.rect(cx, y + len(filas), cx + 1, y + len(filas), BORDE)
 
 
 def hotbar():
-    l = Lienzo(182, 22)
-    marco_oro(l, 0, 0, 182, 22)
+    l = Lienzo(364, 44)
+    l.rect(0, 0, 363, 43, BORDE)
+    l.rect(1, 1, 362, 3, NOCHE_OSC)                       # franja de arriba
+    l.rect(1, 40, 362, 40, NOCHE_OSC)                     # repisa
     for i in range(9):
-        l.casillero(2 + 20 * i, 2, 20 + 20 * i, 20)
-        if i:   # remache en cada division
-            l.rect(20 * i, 0.5, 20 * i + 2, 1.5, ORO_CLARO); l.rect(20 * i + 0.5, 20.5, 20 * i + 1.5, 21.5, ORO_CLARO)
-    for x in (0, 181):   # puntas
-        l.rect(x, 9, x + 1, 13, ORO_CLARO)
+        casillero(l, 4 + 40 * i, 4)
+    for i in range(1, 9):                                 # tope de acero bajo cada separador
+        l.rect(40 * i + 1, 40, 40 * i + 2, 40, ACERO_OSC)
+    d = Lienzo(364, 44)                                   # herrajes en capa aparte: se espejan sin tocar los casilleros
+    d.rect(1, 41, 181, 41, ORO_BAJO); d.rect(1, 42, 181, 42, ORO_SOMBRA); d.rect(110, 41, 181, 41, ORO_CLARO)   # filete
+    d.rect(100, 41, 103, 41, ORO_CLARO); d.rect(106, 41, 107, 41, ORO_CLARO)
+    # escuadra de la punta: canto vertical que termina en punta abajo
+    for y in range(1, 43):
+        ancho = 6 if y <= 30 else max(1, 6 - (y - 30) // 2)
+        cols = (TERRA, TERRA, TERRA, ORO_CLARO, ORO_SOMBRA, ORO_SOMBRA)[:ancho]
+        for k, col in enumerate(cols):
+            d.p(1 + k, y, col)
+        if ancho < 6:
+            d.p(ancho, y, ORO_CLARO); d.p(1 + ancho, y, BORDE); d.p(2 + ancho, y, BORDE)
+    # brazo de arriba, cortado en diagonal (mas largo arriba)
+    for k, col in enumerate((ORO, ORO, ORO, ORO_CLARO, ORO_SOMBRA, ORO_SOMBRA)):
+        x0, x1 = (1 if k < 3 else 4 if k == 3 else 5), 34 - 2 * k
+        d.rect(x0, 1 + k, x1, 1 + k, col); d.rect(x1 + 1, 1 + k, x1 + 2, 1 + k, BORDE)
+    d.rect(7, 7, 22, 7, BORDE)
+    d.p(1, 1, ORO_CLARO); d.p(2, 2, ORO_CLARO); d.p(3, 3, ORO_CLARO); d.p(33, 1, ORO_CLARO); d.p(34, 1, ORO_CLARO)
+    # liston del centro: cara naranja, canto amarillo y sombra roja; punta en diagonal (mas largo abajo)
+    for k, col in enumerate((ORO, ORO, ORO_CLARO, ORO_CLARO, ORO_SOMBRA, ORO_SOMBRA)):
+        x0 = 88 - 2 * k
+        d.rect(x0, 1 + k, 181, 1 + k, col); d.rect(x0 - 2, 1 + k, x0 - 1, 1 + k, BORDE)
+    d.rect(88, 1, 91, 1, ORO_CLARO); d.rect(86, 2, 87, 2, ORO_CLARO)             # brillo en la punta
+    d.rect(76, 7, 181, 7, BORDE)
+    for i in range(2, 5):                                 # el casillero asoma su canto claro bajo el liston
+        x = 4 + 40 * i
+        d.rect(x + 1, 8, x + 34, 8, ACERO_CLARO)
+    d.espejo()
+    l.im.alpha_composite(d.im)
+    gema(l, 181, 0)
     return l.im
 
 
 def seleccion():
-    l = Lienzo(24, 23)
-    l.marco(0, 0, 24, 23, NEGRO); l.marco(0.5, 0.5, 23.5, 22.5, ORO_CLARO, 1); l.marco(1.5, 1.5, 22.5, 21.5, ORO, 1)
-    l.marco(2.5, 2.5, 21.5, 20.5, ORO_OSC)
-    for x, y in ((0, 0), (21, 0), (0, 20), (21, 20)):   # esquinas brillantes
-        l.rect(x + 0.5, y + 0.5, x + 2.5, y + 2.5, (255, 236, 160, 255))
-    o, m, b = GEMA   # gema verde arriba al centro
-    l.rect(9.5, 0, 14.5, 3, NEGRO); l.rect(10, 0.5, 14, 2.5, o); l.rect(10.5, 0.5, 13.5, 2, m); l.rect(11, 0.5, 12, 1, b)
+    """48x46; se dibuja 2 texeles arriba y a la izquierda de la barra. El casillero queda en 6..41."""
+    l = Lienzo(48, 46)
+    marco_oro(l, 1, 1, 46, 44, 3)
+    l.rect(7, 7, 40, 38, NADA)
+    l.rect(15, 0, 32, 6, NADA)                            # muesca: en el casillero del medio deja ver la gema
+    l.rect(14, 1, 14, 6, BORDE); l.rect(33, 1, 33, 6, BORDE)
     return l.im
 
 
 def mano_izquierda(derecha=False):
-    l = Lienzo(29, 24)
-    dx = 7 if derecha else 0
-    marco_oro(l, dx, 0, dx + 22, 24)
-    l.casillero(dx + 2, 3, dx + 20, 21)
+    """58x48; casillero con marco dorado biselado y un eslabon hacia la barra."""
+    l = Lienzo(58, 48)
+    marco_oro(l, 0, 2, 43, 45, 3)
+    casillero(l, 5, 7, 34, 34)
+    l.rect(44, 21, 57, 26, BORDE)                         # eslabon
+    l.rect(44, 22, 57, 22, ORO); l.rect(44, 23, 57, 23, ORO_CLARO); l.rect(44, 24, 57, 25, TERRA)
+    l.rect(48, 19, 53, 28, BORDE); l.rect(49, 20, 52, 27, TERRA); l.rect(49, 20, 52, 21, ORO)
+    l.rect(50, 22, 50, 26, ORO_CLARO); l.rect(49, 27, 52, 27, ORO_SOMBRA)
+    return l.im.transpose(Image.FLIP_LEFT_RIGHT) if derecha else l.im
+
+
+# ---------------------------------------------------------------- barras (corazones y comida como tramos de tubo)
+TUBO_ARRIBA, TUBO_LUZ, TUBO_MED, TUBO_CANAL, TUBO_ABAJO = c('3f4f66'), c('8ca0b8'), c('3a485e'), c('1a1f2e'), c('4a5c74')
+FILAS_TUBO = (BORDE, TUBO_ARRIBA, TUBO_ARRIBA, TUBO_LUZ, TUBO_MED, TUBO_CANAL,
+              None, None, None, None, None, TUBO_CANAL,    # canal del relleno: filas 6 a 10
+              TUBO_ABAJO, TUBO_ABAJO, NOCHE_SOMBRA, NOCHE_SOMBRA, NOCHE_OSC, BORDE)
+
+
+def _tubo(canal):
+    """Tramo vacio de 18x18: tubo de acero con brillo arriba y el canal del color dado."""
+    l = Lienzo(18, 18)
+    for y, col in enumerate(FILAS_TUBO):
+        l.rect(0, y, 17, y, col or canal)
     return l.im
 
 
-# ---------------------------------------------------------------- barras (corazones y comida como segmentos)
-def _seg(colores, desde=0, hasta=9, fondo=None):
-    """Segmento 9x9: filas 0 y 8 marco dorado y relleno de lado a lado (sin divisiones: la barra se ve continua)."""
-    l = Lienzo(9, 9)
-    if fondo:
-        l.rect(0, 0, 9, 1, ORO); l.rect(0, 8, 9, 9, ORO_OSC)
-        l.rect(0, 1, 9, 8, fondo); l.rect(0, 1, 9, 1.5, tuple(max(0, v - 12) for v in fondo[:3]) + (255,))
-        return l.im
-    alto, medio, bajo = colores
-    l.rect(desde, 1, hasta, 8, medio)
-    l.rect(desde, 1, hasta, 2.5, alto)
-    l.rect(desde, 6, hasta, 8, bajo)
+def _relleno(colores, desde=0, hasta=17):
+    """Relleno fino del canal (filas 6 a 10), de lado a lado para que la barra se vea continua."""
+    claro, medio, oscuro = colores
+    l = Lienzo(18, 18)
+    for y, col in zip(range(6, 11), (oscuro, medio, claro, medio, oscuro)):
+        l.rect(desde, y, hasta, y, col)
     return l.im
 
 
@@ -122,40 +211,105 @@ def _brillo(im, n=40):
     return im
 
 
-VIDA = {'': (225, 40, 40), 'poisoned_': (90, 170, 40), 'withered_': (70, 64, 64), 'frozen_': (150, 210, 245),
+VIDA = {'': (196, 16, 20), 'poisoned_': (90, 170, 40), 'withered_': (70, 64, 64), 'frozen_': (150, 210, 245),
         'absorbing_': (240, 195, 60)}
-COMIDA = {'': (235, 130, 35), '_hunger': (125, 150, 55)}
+COMIDA = {'': (216, 100, 32), '_hunger': (125, 150, 55)}
+
+
+def _tres(rgb):
+    return (_tono(rgb, 1.25), _tono(rgb, 1.0), _tono(rgb, 0.62))
 
 
 def barras():
     out = {}
     for var, rgb in VIDA.items():
-        col = (_tono(rgb, 1.35), _tono(rgb, 1.0), _tono(rgb, 0.6))
         for hc in ('', 'hardcore_'):
-            for parte, hasta in (('full', 9), ('half', 4.5)):
-                im = _seg(col, 0, hasta)
+            for parte, hasta in (('full', 17), ('half', 8)):
+                im = _relleno(_tres(rgb), 0, hasta)
                 out[f'heart/{var}{hc}{parte}.png'] = im
                 out[f'heart/{var}{hc}{parte}_blinking.png'] = _brillo(im)
-    fondo_vida = (48, 12, 16, 255)
     for hc in ('', '_hardcore'):
-        out[f'heart/container{hc}.png'] = _seg(None, fondo=fondo_vida)
-        out[f'heart/container{hc}_blinking.png'] = _brillo(_seg(None, fondo=fondo_vida), 60)
-    montura = (_tono((200, 90, 60), 1.3), _tono((200, 90, 60), 1.0), _tono((200, 90, 60), 0.6))
-    out['heart/vehicle_container.png'] = _seg(None, fondo=fondo_vida)
-    out['heart/vehicle_full.png'] = _seg(montura)
-    out['heart/vehicle_half.png'] = _seg(montura, 0, 4.5)
+        out[f'heart/container{hc}.png'] = _tubo(TUBO_CANAL)
+        out[f'heart/container{hc}_blinking.png'] = _brillo(_tubo(TUBO_CANAL), 60)
+    out['heart/vehicle_container.png'] = _tubo(TUBO_CANAL)
+    out['heart/vehicle_full.png'] = _relleno(_tres((200, 90, 60)))
+    out['heart/vehicle_half.png'] = _relleno(_tres((200, 90, 60)), 0, 8)
     for var, rgb in COMIDA.items():
-        col = (_tono(rgb, 1.3), _tono(rgb, 1.0), _tono(rgb, 0.62))
-        out[f'food_full{var}.png'] = _seg(col)
-        out[f'food_half{var}.png'] = _seg(col, 4.5, 9)       # se vacia por la izquierda
-        out[f'food_empty{var}.png'] = _seg(None, fondo=(44, 26, 12, 255))
+        out[f'food_full{var}.png'] = _relleno(_tres(rgb))
+        out[f'food_half{var}.png'] = _relleno(_tres(rgb), 9, 17)     # se vacia por la izquierda
+        out[f'food_empty{var}.png'] = _tubo(TUBO_CANAL)
     return out
+
+
+# ---------------------------------------------------------------- armadura (petos) y burbujas (aros)
+PETO = ('..................',
+        '..................',
+        '..###......###....',
+        '.#aaa#....#aaa#...',
+        '.#aaaa####aaaa#...',
+        '.#aaaaaaaaaaaa#...',
+        '.#abbbbbbbbbba#...',
+        '.#abbbbbbbbbbb#...',
+        '.#bbbbbbbbbbbb#...',
+        '.#bbbbbbbbbbbb#...',
+        '.#bbbbbbbbbbcc#...',
+        '..#bbbbbbbbcc#....',
+        '..#bbbbbbbccc#....',
+        '...#bbbbbccc#.....',
+        '....#cccccc#......',
+        '.....######.......',
+        '..................',
+        '..................')
+
+
+def _peto(izq, der):
+    """izq y der: paletas (a, b, c) de cada mitad."""
+    l = Lienzo(18, 18)
+    for y, fila in enumerate(PETO):
+        for x, ch in enumerate(fila):
+            if ch == '#':
+                l.p(x + 1, y, BORDE)
+            elif ch != '.':
+                l.p(x + 1, y, (izq if x < 8 else der)['abc'.index(ch)])
+    return l.im
+
+
+def armadura():
+    plata = (c('dfe6ee'), c('a4b0c2'), c('6b778c'))
+    vacio = (NOCHE, NOCHE_SOMBRA, NOCHE_OSC)
+    return {'armor_full.png': _peto(plata, plata), 'armor_half.png': _peto(plata, vacio),
+            'armor_empty.png': _peto(vacio, vacio)}
+
+
+def _aro(aro, luz, centro, roto=False):
+    l = Lienzo(18, 18)
+    for y in range(18):
+        for x in range(18):
+            dx, dy = x - 8.5, y - 8.5
+            r2 = dx * dx + dy * dy
+            if r2 > 7.2 ** 2:
+                continue
+            if roto and (abs(dx) < 1.6 or abs(dy) < 1.6):
+                continue
+            if r2 > 6.1 ** 2:
+                l.p(x, y, BORDE)
+            elif r2 > 3.4 ** 2:
+                l.p(x, y, luz if dx + dy < -4 else aro)
+            elif not roto:
+                l.p(x, y, BORDE if r2 > 2.4 ** 2 else centro)
+    return l.im
+
+
+def burbujas():
+    return {'air.png': _aro(c('86bcd6'), c('d2f0fa'), NOCHE),
+            'air_bursting.png': _aro(c('86bcd6'), c('d2f0fa'), NOCHE, roto=True),
+            'air_empty.png': _aro(ACERO_OSC, ACERO_OSC, NOCHE_OSC)}
 
 
 def sprites():
     out = {'hotbar.png': hotbar(), 'hotbar_selection.png': seleccion(),
            'hotbar_offhand_left.png': mano_izquierda(), 'hotbar_offhand_right.png': mano_izquierda(True)}
-    out.update(barras())
+    out.update(barras()); out.update(armadura()); out.update(burbujas())
     return out
 
 
@@ -166,25 +320,27 @@ def generate(base=OUT):
     return base
 
 
-def preview(path):
-    """Simulacion del HUD a 4x: hotbar, mano izquierda, vida 7.5/10 y comida 6.5/10."""
+def preview(path, elegido=2):
+    """Simulacion del HUD a 4x: hotbar, mano izquierda, vida 7.5/10, comida 6.5/10, armadura y burbujas."""
     sp = sprites(); E = 4
-    W, H = 182 + 60, 50
-    can = Image.new('RGBA', (W * S, H * S), (78, 110, 70, 255))
+    W, H = 182 + 60, 62
+    can = Image.new('RGBA', (W * S, H * S), (30, 30, 34, 255))
     def put(im, x, y):
         can.alpha_composite(im, (round(x * S), round(y * S)))
-    hx, hy = 40, 26
-    put(sp['hotbar.png'], hx, hy); put(sp['hotbar_selection.png'], hx - 1 + 20 * 2, hy - 1)
+    hx, hy = 40, 38
+    put(sp['hotbar.png'], hx, hy); put(sp['hotbar_selection.png'], hx - 1 + 20 * elegido, hy - 1)
     put(sp['hotbar_offhand_left.png'], hx - 29, hy - 1)
-    for i in range(10):
-        put(sp['heart/container.png'], hx + i * 8, hy - 13)
-        if i < 7: put(sp['heart/full.png'], hx + i * 8, hy - 13)
-        elif i == 7: put(sp['heart/half.png'], hx + i * 8, hy - 13)
+    for i in reversed(range(10)):
+        put(sp['heart/container.png'], hx + i * 8, hy - 17)
+        if i < 7: put(sp['heart/full.png'], hx + i * 8, hy - 17)
+        elif i == 7: put(sp['heart/half.png'], hx + i * 8, hy - 17)
+        put(sp['armor_full.png' if i < 6 else 'armor_half.png' if i == 6 else 'armor_empty.png'], hx + i * 8, hy - 27)
     for i in range(10):
         x = hx + 182 - i * 8 - 9
-        put(sp['food_empty.png'], x, hy - 13)
-        if i < 6: put(sp['food_full.png'], x, hy - 13)
-        elif i == 6: put(sp['food_half.png'], x, hy - 13)
+        put(sp['food_empty.png'], x, hy - 17)
+        if i < 6: put(sp['food_full.png'], x, hy - 17)
+        elif i == 6: put(sp['food_half.png'], x, hy - 17)
+        put(sp['air.png' if i < 7 else 'air_bursting.png' if i == 7 else 'air_empty.png'], x, hy - 27)
     can.resize((can.width * E // S, can.height * E // S), Image.NEAREST).save(path)
 
 
