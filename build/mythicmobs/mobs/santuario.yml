@@ -98,10 +98,19 @@ astral_santuario_coloso_musgoso_eco:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.26
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&d&lColoso Musgoso Ancestral'
@@ -141,6 +150,9 @@ astral_santuario_coloso_musgoso_eco:
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_JEFE_SLAM_astral_coloso_musgoso} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_coloso_musgoso} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - heal{a=4} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=heart;amount=4;vS=1} @self ~onAttack ?hastag{tag=astral.af_vamp}
   - particles{p=explosion;amount=6;hS=2} @self ~onDeath ?hastag{tag=astral.af_expl}
@@ -164,10 +176,19 @@ astral_santuario_chaman_eco:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.25
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&2&lGran Chaman Ancestral'
@@ -210,6 +231,9 @@ astral_santuario_chaman_eco:
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -237,10 +261,19 @@ astral_santuario_momia_eco:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.24
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&6&lFarao Ancestral'
@@ -281,6 +314,9 @@ astral_santuario_momia_eco:
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -309,10 +345,19 @@ astral_santuario_yeti_eco:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.28
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&b&lYeti Ancestral'
@@ -355,6 +400,9 @@ astral_santuario_yeti_eco:
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -383,7 +431,7 @@ astral_santuario_golem_forja_eco:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.22
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
@@ -438,6 +486,9 @@ astral_santuario_golem_forja_eco:
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_golem_forja_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}

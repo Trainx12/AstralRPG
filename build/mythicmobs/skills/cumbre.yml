@@ -126,7 +126,7 @@ TANDA2_cumbre_AST_FASE_astral_yeti_3:
   - message{m="&b&lEl Yeti se cubre de hielo y se vuelve mas rapido!"} @PlayersInRadius{r=40}
   - sound{s=entity.wither.spawn;v=0.6;p=1.4} @PlayersInRadius{r=40}
   - potion{type=RESISTANCE;duration=160;level=2} @self
-  - potion{type=SPEED;duration=999999;level=1} @self
+  - potion{type=SPEED;duration=999999;level=0} @self
 TANDA2_cumbre_AST_FASE_astral_yeti_3_frio:
   Skills:
   - potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=10}

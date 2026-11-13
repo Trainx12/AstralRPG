@@ -350,10 +350,19 @@ astral_momia:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.24
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&e&lMomia Ancestral'
@@ -379,6 +388,9 @@ astral_momia:
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -396,10 +408,19 @@ astral_yeti:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.28
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&f&lYeti de las Cumbres'
@@ -427,6 +448,9 @@ astral_yeti:
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -444,7 +468,7 @@ astral_golem_forja:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.22
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
@@ -484,6 +508,9 @@ astral_golem_forja:
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -501,10 +528,19 @@ astral_cangrejo:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.26
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&6&lCangrejo Ermitano Gigante'
@@ -527,6 +563,9 @@ astral_cangrejo:
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -545,10 +584,19 @@ astral_chaman:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.25
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&2&lChaman del Pantano'
@@ -576,6 +624,9 @@ astral_chaman:
   - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -790,10 +841,19 @@ astral_cangrejo_elite:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.26
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&6&lCangrejo Ermitano Gigante'
@@ -824,6 +884,9 @@ astral_cangrejo_elite:
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -850,10 +913,19 @@ astral_momia_ancestral:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.24
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&6&lFarao Ancestral'
@@ -900,6 +972,9 @@ astral_momia_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_momia} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -928,10 +1003,19 @@ astral_yeti_ancestral:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.28
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&b&lYeti Ancestral'
@@ -980,6 +1064,9 @@ astral_yeti_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_yeti} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -1008,7 +1095,7 @@ astral_golem_forja_ancestral:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.22
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
@@ -1069,6 +1156,9 @@ astral_golem_forja_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_golem_forja} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -1097,10 +1187,19 @@ astral_cangrejo_ancestral:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.26
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&d&lCangrejo Ancestral'
@@ -1143,6 +1242,9 @@ astral_cangrejo_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_cangrejo} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
   - command{c="lp user <trigger.name> permission set astral.fragmento.marea true"} @self ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}
@@ -1172,10 +1274,19 @@ astral_chaman_ancestral:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.25
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&2&lGran Chaman Ancestral'
@@ -1224,6 +1335,9 @@ astral_chaman_ancestral:
   - skill{s=AST_ANCESTRAL_SEVA_astral_chaman} @self ~onTimer:12000
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}

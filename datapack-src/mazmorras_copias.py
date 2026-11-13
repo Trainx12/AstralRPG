@@ -40,6 +40,31 @@ def all_worlds():
     return [bukkit(dim) for d in dungeons() for dim in d['dims']]
 
 
+def noche_worlds():
+    """Mazmorras siempre de noche (pedido 13/11/2026): todas las copias y la Infinita.
+    La Fosa queda afuera: es bajo el agua y de noche no se ve nada."""
+    from infinita import WORLDS as INFINITA
+    pares = [(dim, bukkit(dim)) for d in dungeons() if d['key'] != 'fosa' for dim in d['dims']]
+    return pares + [(w, w) for w in INFINITA]
+
+
+def noche():
+    """Skript: medianoche fija. La regla se pone al cargar (y cuando se carga una copia); la hora se repasa cada minuto."""
+    L = ['# Mazmorras siempre de noche (sin avance del tiempo). Comandos de consola sin spam: log_admin_commands false.',
+         'function maz_noche(reglas: boolean):']
+    for dim, name in noche_worlds():
+        L += [f'    set {{_w}} to world("{name}")',
+              '    if {_w} is set:',
+              '        if {_reglas} is true:',
+              f'            execute console command "execute in minecraft:{dim} run gamerule minecraft:advance_time false"',
+              '        if time in {_w} is not 0:00:',
+              '            set time in {_w} to 0:00']
+    L += ['', 'on load:', '    wait 5 seconds', '    maz_noche(true)', '',
+          'on world load:', '    wait 1 second', '    maz_noche(true)', '',
+          'every 1 minute:', '    maz_noche(false)', '']
+    return L
+
+
 def script(minutos=MINUTOS_FIN):
     MINUTOS_FIN = minutos  # la prueba local usa 1 minuto
     L = [f'# Generado por mazmorras_copias.py: {COPIES} copias por mazmorra, parties y {MINUTOS_FIN} minutos tras el jefe.',
@@ -237,7 +262,9 @@ def script(minutos=MINUTOS_FIN):
           '                world of loop-player is {_w}',
           f'                send "&6Ganaron! &fTienen {MINUTOS_FIN} minutos para abrir el cofre. Despues vuelven al spawn." to loop-player',
           '',
-          'every 5 seconds:']
+          '']
+    L += noche()
+    L += ['every 5 seconds:']
     for name in all_worlds():
         L += [f'    set {{_w}} to world("{name}")',
               '    if {_w} is set:',

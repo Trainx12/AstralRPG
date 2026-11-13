@@ -77,6 +77,9 @@ def coloso_santuario():
             continue
         out.append(line)
     block = "\n".join(out) + "\n"
+    # Golpe al piso y disparo con los colores del Coloso, no los del Cangrejo (jefes_combate.py).
+    for skill in ("AST_JEFE_SLAM_", "AST_JEFE_DISPARO_"):
+        block = block.replace(skill + "astral_cangrejo", skill + "astral_coloso_musgoso")
     extra = ["  - skill{s=MINA_ONDA_GUARDIAN} @self ~onTimer:160",
              "  - skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}",
              "  - skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}"]
@@ -97,11 +100,11 @@ def variant(key, source, ancestral=False, boss=False):
             # clear borra los goals vanilla de hechizos (incluido invocar vex).
             data['hostile_ai'] = True
         if key == 'cumbre':
-            data['speed'] = 0.005
-            data['stationary'] = True
-            data['skills'] = [s for s in data.get('skills', []) if 'leap{' not in s]
-            data['skills'] += ['- skill{s=AST_YETI_PISOTON} @self ~onTimer:160',
-                               '- projectile{onHit=AST_YETI_HIELO;v=14;i=1;hR=2;vR=2;mr=120;bulletType=ITEM;material=SNOWBALL} @PlayersInRadius{r=120} ~onTimer:100']
+            # 13/11/2026: el Yeti ya no espera quieto (lo estaba cuando media 28 bloques; hoy s=2).
+            # Persigue como los demas jefes y conserva su pisoton; el hielo de lejos sale de jefes_combate.py.
+            data['skills'] = list(data.get('skills', [])) + ['- skill{s=AST_YETI_PISOTON} @self ~onTimer:200']
+        # Correa: como ahora persiguen, si no queda nadie cerca vuelven a donde aparecieron (centro de la sala).
+        data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}']
         if key == 'forja':
             data['model_skill'] = 'AST_MODEL_astral_golem_forja_mazmorra'
             data['skills'] = list(data.get('skills', [])) + ['- potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn']

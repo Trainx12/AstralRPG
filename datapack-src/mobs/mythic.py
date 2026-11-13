@@ -23,6 +23,9 @@ def astral_drop(item, chance, amount=1):
 
 # --------------------------------------------------------------------------- definicion
 # kind: pasivo | hostil | montura | jefe
+# Jefes: persiguen un poco mas rapido que una arana; golpe al piso, disparo y salto (mobs/jefes_combate.py).
+from mobs.jefes_combate import VELOCIDAD as VELOCIDAD_JEFE, triggers as jefe_triggers, metaskills as jefe_metaskills  # noqa: E402
+
 MOBS = {
     # ---------------- fauna
     "astral_mapache": dict(kind="pasivo", type="FOX", name="&6Mapache", hp=14, speed=0.3,
@@ -84,7 +87,7 @@ MOBS = {
                                 spawn=dict(chance=0.008, biomes=["minecraft:badlands", "minecraft:eroded_badlands",
                                                                  "minecraft:wooded_badlands", "minecraft:jungle"])),
     # ---------------- jefes
-    "astral_momia": dict(kind="jefe", type="HUSK", name="&e&lMomia Ancestral", hp=320, damage=10, speed=0.24,
+    "astral_momia": dict(kind="jefe", type="HUSK", name="&e&lMomia Ancestral", hp=320, damage=10, speed=VELOCIDAD_JEFE,
                          # Barra roja, no amarilla: BetterHud usa la amarilla para el panel y la vuelve invisible
                          bar="RED", drops=["gold_ingot 3-8 1", "bone 4-8 1", "exp 120"],
                          astral=[("alma_corrupta", 1.0), ("chispa_astral", 0.35), ("gema_luminica", 0.8), ("esencia_elite", 1.0, 3)],
@@ -92,7 +95,7 @@ MOBS = {
                                  "- potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4",
                                  "- message{m=\"&eLa Momia Ancestral despierta...\"} @PlayersInRadius{r=30} ~onSpawn"],
                          spawn=dict(chance=0.0015, biomes=["minecraft:desert"])),
-    "astral_yeti": dict(kind="jefe", type="RAVAGER", name="&f&lYeti de las Cumbres", hp=450, damage=14, speed=0.28,
+    "astral_yeti": dict(kind="jefe", type="RAVAGER", name="&f&lYeti de las Cumbres", hp=450, damage=14, speed=VELOCIDAD_JEFE,
                         bar="WHITE", drops=["snow_block 4-10 1", "leather 4-8 1", "exp 150"],
                         astral=[("alma_corrupta", 1.0, 2), ("chispa_astral", 0.45), ("cristal_refinado", 0.8), ("esencia_elite", 1.0, 3)],
                         skills=["- potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200",
@@ -100,7 +103,7 @@ MOBS = {
                                 "- message{m=\"&fUn rugido helado retumba en la montana...\"} @PlayersInRadius{r=40} ~onSpawn",
                                 "- skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2"],      # mascota (mobs/mascotas.py)
                         spawn=dict(chance=0.0012, biomes=["minecraft:frozen_peaks", "minecraft:snowy_slopes", "minecraft:ice_spikes"])),
-    "astral_golem_forja": dict(kind="jefe", type="IRON_GOLEM", name="&c&lGolem de la Forja", hp=500, damage=16, speed=0.22,
+    "astral_golem_forja": dict(kind="jefe", type="IRON_GOLEM", name="&c&lGolem de la Forja", hp=500, damage=16, speed=VELOCIDAD_JEFE,
                                bar="RED", drops=["netherite_scrap 1-2 0.5", "iron_ingot 6-12 1", "blaze_rod 2-4 1", "exp 180"],
                                astral=[("nucleo_furia", 1.0, 2), ("netherita_fundida", 0.6), ("chispa_astral", 0.5),
                                        ("esencia_elite", 1.0, 3)],
@@ -110,13 +113,13 @@ MOBS = {
                                        "- message{m=\"&cEl suelo arde, el Golem de la Forja se levanta.\"} @PlayersInRadius{r=40} ~onSpawn"],
                                spawn=dict(chance=0.002, world="world_nether", biomes=["minecraft:basalt_deltas", "minecraft:nether_wastes",
                                                                                        "minecraft:crimson_forest"])),
-    "astral_cangrejo": dict(kind="jefe", type="SPIDER", name="&6&lCangrejo Ermitano Gigante", hp=260, damage=9, speed=0.26,
+    "astral_cangrejo": dict(kind="jefe", type="SPIDER", name="&6&lCangrejo Ermitano Gigante", hp=260, damage=9, speed=VELOCIDAD_JEFE,
                             bar="PINK", drops=["nautilus_shell 1 0.6", "prismarine_shard 2-5 1", "exp 100"],
                             astral=[("alma_corrupta", 0.8), ("corazon_shulker", 0.3), ("esencia_elite", 1.0, 2)],
                             skills=["- throw{velocity=8;velocityY=4} @target ~onAttack 0.35",
                                     "- message{m=\"&6Algo enorme se arrastra por la arena...\"} @PlayersInRadius{r=30} ~onSpawn"],
                             spawn=dict(chance=0.002, biomes=["minecraft:beach", "minecraft:stony_shore", "minecraft:warm_ocean"])),
-    "astral_chaman": dict(kind="jefe", type="EVOKER", name="&2&lChaman del Pantano", hp=340, damage=8, speed=0.25,
+    "astral_chaman": dict(kind="jefe", type="EVOKER", name="&2&lChaman del Pantano", hp=340, damage=8, speed=VELOCIDAD_JEFE,
                           bar="GREEN", drops=["totem_of_undying 1 0.3", "emerald 3-8 1", "slime_ball 2-6 1", "exp 160"],
                           astral=[("alma_corrupta", 1.0, 2), ("chispa_astral", 0.4), ("gema_umbria", 0.8), ("esencia_elite", 1.0, 3)],
                           skills=["- potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220",
@@ -196,7 +199,7 @@ FASES = {
          ["summon{type=STRAY;amount=2;radius=4} @self"],
          {"onda": (_onda(6, 6, "snowflake", "entity.ravager.roar"), 100)}),
         (25, "&b&lEl Yeti se cubre de hielo y se vuelve mas rapido!",
-         ["potion{type=RESISTANCE;duration=160;level=2} @self", "potion{type=SPEED;duration=999999;level=1} @self"],
+         ["potion{type=RESISTANCE;duration=160;level=2} @self", "potion{type=SPEED;duration=999999;level=0} @self"],
          {"frio": (["potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=10}",
                     "particles{p=snowflake;amount=80;hS=8;vS=1} @self"], 80)}),
     ],
@@ -213,7 +216,7 @@ FASES = {
         (60, "&6El Cangrejo llama a sus crias!",
          ["summon{type=CAVE_SPIDER;amount=3;radius=3} @self"], {}),
         (25, "&e&lEl Cangrejo se mete en su caparazon!",
-         ["potion{type=RESISTANCE;duration=120;level=3} @self", "potion{type=SPEED;duration=999999;level=1} @self"],
+         ["potion{type=RESISTANCE;duration=120;level=3} @self", "potion{type=SPEED;duration=999999;level=0} @self"],
          {"pinza": (_onda(5, 4, "bubble_pop", "entity.turtle.egg_crack"), 100)}),
     ],
     "astral_chaman": [
@@ -369,7 +372,8 @@ def mob_block(mid, d, model=None, elite=None):
     if d["kind"] == "montura" and d["type"] == "PHANTOM":
         # pterodactilo: vuela en circulos como un phantom pero no ataca
         lines += ["  AITargetSelectors:", "  - clear"]
-    if d.get("hostile_ai"):
+    if d.get("hostile_ai") or d["kind"] == "jefe":
+        # Todos los jefes persiguen y pegan (13/11/2026); antes solo el golem tenia IA hostil explicita.
         lines += ["  AIGoalSelectors:", "  - clear", "  - meleeattack", "  - randomstroll", "  - lookatplayers",
                   "  AITargetSelectors:", "  - clear", "  - attacker", "  - players"]
     if d["kind"] == "jefe":
@@ -415,6 +419,8 @@ def mob_block(mid, d, model=None, elite=None):
         sk.append('- skill{s=AST_MUERTE} @self ~onDeath')
     real = f"{mid}" if not elite else mid          # id del mob que se esta generando
     base = model                                   # id de la criatura normal
+    if d["kind"] == "jefe":
+        sk += ["- " + x for x in jefe_triggers(base)]   # golpe al piso, disparo y salto
     # Un evento personal por baja. Las variantes de mazmorra reutilizan este
     # mismo bloque y por eso conservan tanto las fases como la historia.
     if d["kind"] in ("hostil", "jefe") and not d.get("suppress_quest"):
@@ -520,7 +526,7 @@ def metaskills():
             '  - damage{a=12} @PlayersInRadius{r=20}', '  - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}',
             'AST_YETI_HIELO:', '  Skills:', '  - damage{a=8} @PlayersNearOrigin{r=3}',
             '  - potion{type=SLOWNESS;duration=60;level=1} @PlayersNearOrigin{r=3}']
-    return "\n".join(out) + "\n"
+    return "\n".join(out) + "\n" + jefe_metaskills()
 
 
 def spawns():

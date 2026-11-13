@@ -285,6 +285,273 @@ command /mazfin <text>:
                 world of loop-player is {_w}
                 send "&6Ganaron! &fTienen 8 minutos para abrir el cofre. Despues vuelven al spawn." to loop-player
 
+
+# Mazmorras siempre de noche (sin avance del tiempo). Comandos de consola sin spam: log_admin_commands false.
+function maz_noche(reglas: boolean):
+    set {_w} to world("bosque")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("bosque_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("bosque_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("bosque_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("bosque_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("bosque_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:bosque_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("mina_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:mina_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("tumba_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:tumba_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("cumbre_hielo_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:cumbre_hielo_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("forja_volcano_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:forja_volcano_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("world_minecraft_santuario_azeroth_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:santuario_azeroth_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita_3 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita_4")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita_4 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita_5")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita_5 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("infinita_6")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:infinita_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+
+on load:
+    wait 5 seconds
+    maz_noche(true)
+
+on world load:
+    wait 1 second
+    maz_noche(true)
+
+every 1 minute:
+    maz_noche(false)
+
 every 5 seconds:
     set {_w} to world("bosque")
     if {_w} is set:

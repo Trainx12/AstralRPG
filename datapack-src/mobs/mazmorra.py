@@ -19,6 +19,7 @@ import os
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from explosion_protection import commands as explosion_commands
+from mobs.jefes_combate import VELOCIDAD as VELOCIDAD_JEFE, triggers as jefe_triggers  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "..", "build")
@@ -49,20 +50,22 @@ MOBS = {
     "astral_mina_arana": dict(type="CAVE_SPIDER", name="&8Arana de la Mina", hp=24, dmg=5, speed=0.32, money=15,
                               drops=drop("fragmento_cristal", 0.15)),
     # mini jefes
-    "astral_mina_capataz": dict(type="DROWNED", name="&3&lCapataz Ahogado", hp=380, dmg=11, speed=0.27, boss="BLUE",
+    "astral_mina_capataz": dict(type="DROWNED", name="&3&lCapataz Ahogado", hp=380, dmg=11, speed=VELOCIDAD_JEFE, boss="BLUE",
                                 equip=["trident HAND", "iron_helmet HEAD"], money=400,
                                 drops=drop("alma_corrupta", 1.0) + drop("esencia_elite", 1.0, 2) + drop("gema_luminica", 0.4),
                                 skills=["summon{type=astral_mina_ahogado;amount=2;radius=3} @self ~onTimer:300",
                                         "potion{type=SLOWNESS;duration=60;level=1} @PlayersInRadius{r=6} ~onTimer:160",
-                                        "particles{p=bubble_pop;amount=60;hS=5;vS=0.5} @self ~onTimer:160"]),
-    "astral_mina_golem": dict(type="IRON_GOLEM", name="&7&lGolem de Piedra Antiguo", hp=480, dmg=14, speed=0.22, boss="WHITE",
+                                        "particles{p=bubble_pop;amount=60;hS=5;vS=0.5} @self ~onTimer:160",
+                                        *jefe_triggers("astral_mina_capataz"), "teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}"]),
+    "astral_mina_golem": dict(type="IRON_GOLEM", name="&7&lGolem de Piedra Antiguo", hp=480, dmg=14, speed=VELOCIDAD_JEFE, boss="WHITE",
                               hostile=True, money=500,
                               drops=drop("alma_corrupta", 1.0) + drop("esencia_elite", 1.0, 2) + drop("netherita_fundida", 0.5),
                               skills=["skill{s=PET_GANAR_GOLEM} @trigger ~onDeath 0.15",      # mascota (mascotas.py)
                                       "throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
-                                      "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140"]),
+                                      "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140",
+                                      *jefe_triggers("astral_mina_golem"), "teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}"]),
     # Jefe final con geometria propia; conserva ID, fases y balance de la Tanda 2.
-    "astral_mina_guardian": dict(type="IRON_GOLEM", name="&2&lColoso Musgoso de las Profundidades", hp=1000, dmg=16, speed=0.24,
+    "astral_mina_guardian": dict(type="IRON_GOLEM", name="&2&lColoso Musgoso de las Profundidades", hp=1000, dmg=16, speed=VELOCIDAD_JEFE,
                                  boss="PURPLE", hostile=True, model=("astral_coloso_musgoso", 2.0, None), money=1500,
                                  drops=drop("chispa_astral", 1.0, 2) + drop("alma_corrupta", 1.0, 2) + drop("nucleo_furia", 0.5),
                                  skills=["potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200",
@@ -71,7 +74,10 @@ MOBS = {
                                          # fase 2 (60%): llama mineros. fase 3 (25%): se enfurece
                                          "skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}",
                                          "skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}",
-                                         "summon{type=astral_mina_minero;amount=2;radius=5} @self ~onTimer:400 ?hastag{tag=mina.f2}"]),
+                                         "summon{type=astral_mina_minero;amount=2;radius=5} @self ~onTimer:400 ?hastag{tag=mina.f2}",
+                                         # persigue, golpea el piso y tira piedras (jefes_combate.py, 13/11/2026)
+                                         *jefe_triggers("astral_coloso_musgoso"),
+                                         "teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}"]),
 }
 
 # ------------------------------------------------------------------ salas

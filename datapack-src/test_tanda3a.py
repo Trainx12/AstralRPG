@@ -92,7 +92,7 @@ class Tanda3aTests(unittest.TestCase):
         self.assertIn('execute if data entity @s {Invulnerable:1b} run return 0',roll)
 
     def test_hitbox_and_animations_match_new_models(self):
-        for model,s,entity,anims in (('astral_coloso_musgoso',2,'IRON_GOLEM',{'idle','walk','attack'}),
+        for model,s,entity,anims in (('astral_coloso_musgoso',2,'IRON_GOLEM',{'idle','walk','attack','slam','throw'}),
                                    ('astral_bosque_planta',1,'HUSK',{'idle','attack','spit'})):
             d=json.loads((ROOT/'build/models'/f'{model}.bbmodel').read_text())
             self.assertEqual({a['name'] for a in d['animations']},anims|{'death'})

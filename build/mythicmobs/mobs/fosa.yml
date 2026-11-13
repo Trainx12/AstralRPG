@@ -10,10 +10,19 @@ astral_fosa_cangrejo:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.26
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&b&lCangrejo de la Fosa'
@@ -41,6 +50,9 @@ astral_fosa_cangrejo:
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}

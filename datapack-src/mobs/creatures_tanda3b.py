@@ -263,27 +263,21 @@ def skeleton(kind):
             for x in (3.5,6): box('arm_r',(x,22,-2.7),(x+.5,22.5,-2.4),'#c8d1b6')
         for y in (14,16):
             if kind=='espadachin': box('arm_r',(4.9,y,-1.3),(6.8,y+.7,1),cloth,'wrap')
-    m.anim('idle',3,{'body':{'position':(0,swing(.18,1/3),0)},'head':{'rotation':(0,swing(3,1/3),0)}})
-    m.anim('walk',1,{b:{'rotation':(swing(a),0,0)} for b,a in [('leg_l',24),('leg_r',-24),('arm_l',-14),('arm_r',14)]})
+    # Animaciones con cuerpo, cabeza y fotogramas clave (mobs/animaciones.py, pedido 13/11/2026).
+    from animaciones import skeleton_anims
+    idle,(walk_length,walk),attack,length=skeleton_anims(kind,m.bones)
+    m.anim('idle',3,idle)
+    m.anim('walk',walk_length,walk)
     if kind=='arquero':
         pull=swing(3,1/1.3)
-        attack={'arm_r':{'rotation':(swing(4,1/1.3),0,0)},
-                'arm_l':{'rotation':(swing(-12,1/1.3),swing(-8,1/1.3),0)},
-                'arrow':{'position':(swing(-3,1/1.3),0,0)}}
+        attack.update({'arm_r':{'rotation':(swing(4,1/1.3),0,0)},
+                       'arm_l':{'rotation':(swing(-12,1/1.3),swing(-8,1/1.3),0)},
+                       'arrow':{'position':(swing(-3,1/1.3),0,0)}})
         for bone,dy,sign in [('bowstring_lower',14,1),('bowstring_upper',15,-1)]:
             factor=f'math.sqrt((2+({pull}))*(2+({pull}))+{dy*dy})/math.sqrt({dy*dy+4})'
             angle=f'(math.atan((2+({pull}))/{dy})-{round(math.degrees(math.atan(2/dy)),4)})*{sign}'
             attack[bone]={'rotation':(0,0,angle),'scale':(factor,)*3}
-    elif kind=='nigromante':
-        attack={'arm_r':{'rotation':(swing(-25,1/1.3),0,0)},
-                'orb':{'scale':('1+math.sin(q.anim_time*276.923)*0.35',)*3},
-                'head':{'rotation':(swing(-8,1/1.3),0,0)}}
-    else:
-        attack={'arm_r':{'rotation':(swing(70,1/1.3),0,swing(-12,1/1.3))},
-                'arm_l':{'rotation':(swing(20 if kind=='escudero' else 35,1/1.3),0,0)}}
-        if kind in ('guardian','espadachin'):
-            attack['weapon']={'rotation':(swing(-45,1/1.3),0,swing(-22,1/1.3))}
-    m.anim('attack',.65,attack,loop='once')
+    m.anim('attack',length,attack,loop='once')
     if kind=='arquero':
         # Reflejar el rig completo: arco en izquierda y tensado con derecha.
         # Se refleja tambien cada canal para conservar contacto y trayectoria.
@@ -304,7 +298,8 @@ def skeleton(kind):
                 reflected[swap(bone)]={}
                 for channel,vector in values.items():
                     signs=(-1,1,1) if channel=='position' else (1,-1,-1) if channel=='rotation' else (1,1,1)
-                    reflected[swap(bone)][channel]=tuple(v if sign==1 else -v if isinstance(v,(int,float)) else f'0-({v})' for v,sign in zip(vector,signs))
+                    flip=lambda vec:tuple(v if sign==1 else -v if isinstance(v,(int,float)) else f'0-({v})' for v,sign in zip(vec,signs))
+                    reflected[swap(bone)][channel]=[(t,flip(v)) for t,v in vector] if isinstance(vector,list) else flip(vector)
             m.anims[name]=(length,loop,reflected)
     return m
 

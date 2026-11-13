@@ -1463,5 +1463,9 @@ ALL += TANDA3B
 from creatures_tanda3c import ALL as TANDA3C
 ALL += TANDA3C
 
+# Ataques con anticipacion, golpe al piso (slam) y lanzamiento (throw) de los jefes: mobs/animaciones.py.
+from animaciones import mejorar
+ALL = [mejorar(f) for f in ALL]
+
 # Monturas con hueso 'silla' (se muestra al ponerle montura) y asiento 'p_seat'
 MOUNTS = {"astral_lagarto", "astral_escarabajo", "astral_chocobo", "astral_grillo", "astral_ave", "astral_pterodactilo"}

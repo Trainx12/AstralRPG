@@ -114,7 +114,7 @@ astral_bosque_chaman:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.25
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
@@ -152,7 +152,11 @@ astral_bosque_chaman:
   - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}

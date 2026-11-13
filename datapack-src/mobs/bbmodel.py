@@ -209,6 +209,13 @@ class Model:
             for b, ch in chans.items():
                 kfs = []
                 for channel, xyz in ch.items():
+                    if isinstance(xyz, list):
+                        # Varios fotogramas clave: [(tiempo, (x, y, z)), ...] (mobs/animaciones.py).
+                        for i, (t, v) in enumerate(xyz):
+                            kfs.append({"channel": channel, "data_points": [{"x": str(v[0]), "y": str(v[1]), "z": str(v[2])}],
+                                        "uuid": uid(f"{self.name}/{an}/{b}/{channel}/{i}"), "time": round(t, 4), "color": -1,
+                                        "interpolation": "catmullrom"})
+                        continue
                     kfs.append({"channel": channel, "data_points": [{"x": str(xyz[0]), "y": str(xyz[1]), "z": str(xyz[2])}],
                                 "uuid": uid(f"{self.name}/{an}/{b}/{channel}"), "time": 0, "color": -1,
                                 "interpolation": "linear"})

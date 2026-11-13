@@ -133,10 +133,19 @@ astral_tumba_momia:
     Silent: false
     PreventSunburn: true
     Despawn: false
-    MovementSpeed: 0.24
+    MovementSpeed: 0.33
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   BossBar:
     Enabled: true
     Title: '&e&lMomia Ancestral'
@@ -160,7 +169,11 @@ astral_tumba_momia:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala3/helpers"} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
   - skill{s=AST_MUERTE} @self ~onDeath
+  - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=TANDA2_tumba_AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_tumba_AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_tumba_AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}

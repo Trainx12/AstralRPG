@@ -423,8 +423,8 @@ y sus piglins/hoglins son inmunes a zombificacion.
 
 Cumbre conserva la llegada elegida por el dueno tambien para el combate final.
 El segundo controlador se desbloquea al limpiar la plaza: no se activan ambos al entrar.
-No se invento otra llegada al Yeti. El Yeti queda casi quieto y usa pisoton, empujon y
-proyectiles. Su modelo mide 28 bloques de alto (`s=8`), cuatro veces el Yeti normal
+No se invento otra llegada al Yeti. Desde el 13/11/2026 el Yeti persigue (ver "Jefes agresivos")
+y conserva su pisoton. Nota historica: Su modelo mide 28 bloques de alto (`s=8`), cuatro veces el Yeti normal
 y el Ancestral (ambos `s=2`, 7 bloques). `scale=12,727273` da una caja de 28
 bloques de alto y 24,818 de ancho; el alto coincide, el ancho vanilla difiere.
 Las interferencias y pequenos desplazamientos en el mapa se miden en la entrega;
@@ -462,3 +462,25 @@ con proyectil de velocidad 7 y poison de 60 ticks; dano base 6 escalado por el
 Skript de gameplay y vida base 40 por `mob/roll`. No aparece en el mundo abierto.
 
 Tabla de tamanos, vistas y archivos exactos: [entrega Tanda 3a](../build/deploy/tanda3a.md).
+
+
+## Jefes agresivos y noche fija (13/11/2026)
+
+Pedido del dueno: los jefes persiguen, pegan de cerca y de lejos, golpean el piso y las mazmorras son siempre de noche.
+
+- `datapack-src/mobs/jefes_combate.py`: todos los jefes (los 5 del mundo, sus Elites/Ancestrales, las variantes de
+  mazmorra, los ecos del Santuario, la Fosa, el Coloso de las Minas y los mini jefes Capataz y Golem de Piedra) tienen
+  IA hostil, velocidad 0.33 (la arana vanilla es 0.30) y tres habilidades:
+  - **Golpe al piso** (`AST_JEFE_SLAM_<modelo>`, cada 9 s si hay alguien a 6 bloques): animacion `slam`, anillo de aviso
+    de radio 5, y al impacto (0,75 s) bloques que saltan (`blockwave`: bloques falsos, el mapa no cambia), columnas de
+    particulas, dano y empujon hacia arriba.
+  - **Disparo** (`AST_JEFE_DISPARO_<modelo>`, cada 5 s a los jugadores entre 7 y 32 bloques): animacion `throw` y un
+    proyectil tematico (arena, hielo, magma, agua, veneno, piedra musgosa).
+  - **Salto** (`AST_JEFE_SALTO`) hacia el objetivo si se aleja mas de 11 bloques.
+  - Correa: los jefes de mazmorra vuelven a donde aparecieron si no hay nadie a 40 bloques.
+- Animaciones con fotogramas clave: `datapack-src/mobs/animaciones.py` (ataque con anticipacion, `slam`, `throw`,
+  paso con rebote) y esqueletos menos rigidos (`creatures_tanda3b.skeleton`). Vista previa: `build/previews/jefes-animaciones.png`.
+- Noche fija: `maz_noche` en `astral_mazmorras_copias.sk` (`mazmorras_copias.py`) pone `advance_time false` y medianoche
+  en las 6 copias de cada mazmorra y en la Infinita (al cargar, al cargar un mundo y cada minuto). La Fosa queda de dia
+  (bajo el agua de noche no se ve).
+- Prueba local: `python tools/probar_jefes_paper.py --java <java25.exe> --server .local/tanda3b-paper`.

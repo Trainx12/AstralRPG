@@ -20,21 +20,32 @@ def value(expression,t):
     if not match:
         # Subconjunto aritmetico de Molang, sin acceso a Python ni atributos.
         source=expression.replace('q.anim_time','t')
-        for fn in ('sin','sqrt','atan'):source=source.replace('math.'+fn,fn)
+        for fn in ('sin','cos','sqrt','atan'):source=source.replace('math.'+fn,fn)
         tree=ast.parse(source,mode='eval')
         allowed=(ast.Expression,ast.BinOp,ast.UnaryOp,ast.Constant,ast.Name,ast.Load,
                  ast.Call,ast.Add,ast.Sub,ast.Mult,ast.Div,ast.USub,ast.UAdd)
         if any(not isinstance(n,allowed) for n in ast.walk(tree)):raise ValueError(expression)
-        functions={'sin':lambda x:math.sin(math.radians(x)),'atan':lambda x:math.degrees(math.atan(x)),'sqrt':math.sqrt,'t':t}
+        functions={'sin':lambda x:math.sin(math.radians(x)),'cos':lambda x:math.cos(math.radians(x)),'atan':lambda x:math.degrees(math.atan(x)),'sqrt':math.sqrt,'t':t}
         if any(isinstance(n,ast.Name) and n.id not in functions for n in ast.walk(tree)):raise ValueError(expression)
         return eval(compile(tree,'<Molang preview>','eval'),{'__builtins__':{}},functions)
     speed,phase,amp=map(float,match.groups())
     return math.sin(math.radians(t*360*speed+phase))*amp
 
 
+def keyframes(frames,t):
+    """Fotogramas [(segundo,(x,y,z))]: interpolacion lineal (BetterModel usa catmullrom, aca alcanza)."""
+    if t<=frames[0][0]: return frames[0][1]
+    for (t0,a),(t1,b) in zip(frames,frames[1:]):
+        if t<=t1:
+            k=(t-t0)/(t1-t0) if t1>t0 else 1
+            return tuple(x+(y-x)*k for x,y in zip(a,b))
+    return frames[-1][1]
+
+
 def posed(model,animation,t):
     model=deepcopy(model)
     for bone,channels in model.anims[animation][2].items():
+        channels={c:(keyframes(v,t) if isinstance(v,list) else v) for c,v in channels.items()}
         if 'rotation' in channels:
             model.bones[bone]['rotation']=[a+value(b,t) for a,b in zip(model.bones[bone]['rotation'],channels['rotation'])]
         if 'position' in channels:

@@ -5,7 +5,7 @@ astral_mina_guardian:
   Health: 72000
   Damage: 16
   Options:
-    MovementSpeed: 0.24
+    MovementSpeed: 0.33
     PreventOtherDrops: true
     PreventSunburn: true
     PreventRandomEquipment: true
@@ -41,6 +41,10 @@ astral_mina_guardian:
   - skill{s=MINA_GUARDIAN_F2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=mina.f2}
   - skill{s=MINA_GUARDIAN_F3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=mina.f3}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala4/helpers"} @self ~onTimer:400 ?hastag{tag=mina.f2}
+  - skill{s=AST_JEFE_SLAM_astral_coloso_musgoso} @self ~onTimer:30 ?playerwithin{d=6}
+  - skill{s=AST_JEFE_DISPARO_astral_coloso_musgoso} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0

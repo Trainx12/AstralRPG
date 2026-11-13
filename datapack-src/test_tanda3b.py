@@ -76,7 +76,11 @@ class Tanda3bTests(unittest.TestCase):
                 after=json.loads((ROOT/'build/models'/f'{name}.bbmodel').read_text())
                 self.assertEqual(before['elements'],after['elements'])
                 self.assertEqual(before['textures'],after['textures'])
-                self.assertEqual(before['animations'],[a for a in after['animations'] if a['name']!='death'])
+                if name=='astral_creeper_nuclear':
+                    self.assertEqual(before['animations'],[a for a in after['animations'] if a['name']!='death'])
+                else:
+                    # 13/11/2026: los esqueletos tienen animaciones nuevas (menos rigidas); se conservan los nombres.
+                    self.assertEqual({a['name'] for a in before['animations']},{a['name'] for a in after['animations'] if a['name']!='death'})
 
     def test_models_texture_density_and_pack(self):
         from mobs.tamanos import dimensions, scale
