@@ -1,5 +1,8 @@
 # Entrega: jefes agresivos, esqueletos menos rigidos y mazmorras de noche (13/11/2026)
 
+**DESPLEGADO 13/11/2026 22:11** (commit a5c7592). Los dos `astral.yml` salen de `build_privado.private_configs`.
+Ojo: en el server `sk` es AuraSkills; Skript es `skript reload`.
+
 No cambia el resource pack (solo animaciones de servidor y configs). No requiere reinicio.
 
 ## Archivos a subir (panel Empower -> Files)
@@ -7,15 +10,17 @@ No cambia el resource pack (solo animaciones de servidor y configs). No requiere
 |---|---|
 | `build/models/astral_{momia,yeti,golem_forja,cangrejo,chaman,coloso_musgoso}.bbmodel` | `plugins/BetterModel/models/` |
 | `build/models/astral_esq_{arquero,escudero,nigromante,espadachin,guardian}.bbmodel` | `plugins/BetterModel/models/` |
-| `build/mythicmobs/mobs/{astral,bosque,cumbre,forja,fosa,mazmorra,santuario,tumba}.yml` | `plugins/MythicMobs/mobs/` |
-| `build/mythicmobs/skills/{astral,cumbre}.yml` | `plugins/MythicMobs/skills/` |
+| `build/mythicmobs/mobs/{bosque,cumbre,forja,fosa,mazmorra,santuario,tumba}.yml` | `plugins/MythicMobs/mobs/` |
+| `ASTRAL_PRIVADO/build/mythicmobs/mobs/astral.yml` (privado: goblin, abejorro, vendedores) | `plugins/MythicMobs/mobs/` |
+| `build/mythicmobs/skills/cumbre.yml` | `plugins/MythicMobs/skills/` |
+| `ASTRAL_PRIVADO/build/mythicmobs/skills/astral.yml` (privado) | `plugins/MythicMobs/skills/` |
 | `build/mazmorras/astral_mazmorras_copias.sk` | `plugins/Skript/scripts/astral_mazmorras_copias.sk` |
 
 ## Consola (en este orden)
 ```
 bettermodel reload
 mm reload
-sk reload astral_mazmorras_copias
+skript reload astral_mazmorras_copias.sk
 ```
 Los jefes que ya estan vivos conservan la IA vieja hasta que vuelvan a aparecer (reiniciar la sala o `mm mobs kill <id>`
 con la sala vacia).
