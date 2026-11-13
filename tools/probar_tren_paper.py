@@ -10,7 +10,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def run(java,base,recovery_only=False):
+def run(java,base,recovery_only=False,geometry_only=False):
     work=ROOT/'.local/tren-probe';server=work/'paper';server.mkdir(parents=True,exist_ok=True)
     for name in ('libraries','versions','cache'):
         if not (server/name).exists():shutil.copytree(base/name,server/name)
@@ -42,9 +42,22 @@ def run(java,base,recovery_only=False):
                     if process.poll() is not None:raise RuntimeError('Paper termino; ver '+str(log))
                     time.sleep(1)
                 else:raise TimeoutError('Paper no arranco')
+                def ready_after(count):
+                    deadline=time.monotonic()+60
+                    while time.monotonic()<deadline:
+                        content=log.read_text(encoding='utf8',errors='replace')
+                        if content.count('TRAIN READY')>count:return
+                        if process.poll() is not None:raise RuntimeError('Paper termino esperando tren')
+                        time.sleep(.25)
+                    raise TimeoutError('Tren no preparado; ver '+str(log))
+                if logname in ('restart.log','crash-restart.log'):ready_after(0)
                 time.sleep(4)
                 cmd('spark health --memory');time.sleep(2)
-                for step,delay in steps:cmd('trainprobe '+step);time.sleep(delay)
+                for step,delay in steps:
+                    count=log.read_text(encoding='utf8',errors='replace').count('TRAIN READY')
+                    cmd('trainprobe '+step)
+                    if step=='setup':ready_after(count)
+                    time.sleep(delay)
                 if not crash:cmd('spark health --memory');time.sleep(2)
             finally:
                 if process.poll() is None:
@@ -54,9 +67,12 @@ def run(java,base,recovery_only=False):
         text=log.read_text(encoding='utf8',errors='replace')
         print('\n'.join(l for l in text.splitlines() if 'TRAIN ' in l or 'ERROR' in l),flush=True)
         if 'TRAIN RESULT failures=0' not in text or 'TRAIN FAIL' in text:raise AssertionError('Fallo: '+str(log))
+    if geometry_only:
+        session('geometry.log',[('setup',4),('ready',1),('result',1)])
+        return
     if not recovery_only:
-        session('paper.log',[('setup',4),('ready',1),('one',2),('countdown',8),('arrived',9),('back',1),
-            ('three',2),('exit',9),('twoarrived',10),('three',10),('allarrived',10),('invalidbed',1),
+        session('paper.log',[('setup',4),('ready',1),('recreate',3),('back',1),('one',2),('countdown',11),('arrived',9),('back',1),
+            ('three',2),('exit',9),('twoarrived',10),('three',14),('allarrived',10),('invalidbed',1),
             ('one',6),('outside',1),('result',1)])
     session('restart.log',[('recovered',2),('setup',4),('one',6),('persist',.2),('result',.2)],crash=True)
     session('crash-restart.log',[('recovered',2),('result',1)])
@@ -65,4 +81,5 @@ def run(java,base,recovery_only=False):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--java',type=Path,required=True);p.add_argument('--base',type=Path,required=True)
     p.add_argument('--recovery-only',action='store_true')
-    a=p.parse_args();run(a.java.resolve(),a.base.resolve(),a.recovery_only)
+    p.add_argument('--geometry-only',action='store_true')
+    a=p.parse_args();run(a.java.resolve(),a.base.resolve(),a.recovery_only,a.geometry_only)

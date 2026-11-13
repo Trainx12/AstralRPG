@@ -5,7 +5,8 @@ station:
   z: 0
   direction: NORTH
 viaje:
-  velocidad: 0.12
-  parada: 3.628
-  teleport: 13.053
-  salida: -9.426
+  manual: false
+  velocidad: 0.16
+  espera: 3
+  teleport: 15.053125
+  salida: -8.925612

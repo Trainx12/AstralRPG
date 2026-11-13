@@ -556,3 +556,10 @@ Cada mazmorra tiene **6 copias** (`datapack-src/instancias.py`): `mina`, `mina_2
   `tools/pegar_infinita.py`; se suben sus 4 regiones a cada sala con el server apagado. Antorchas flotantes conservadas.
 - Panel lateral por mundo (`panel_mundos.py`): infinita, mini juegos, arenas y survival; lobby con diarias.
 - Prueba: `python tools/probar_infinita_paper.py --java <java25> --base .local/testsrv` (tiempos acortados).
+
+
+Tren del lobby: AstralTrain 1.2.0 preparado, despliegue pendiente. Espera junto al
+muro norte, cuenta 3 s, sale a 0.16 bloques/tick y teletransporta al llegar el frente
+al muro sur; reaparece quieto sin regreso vacio. Actualizar solo JAR y train.yml,
+conservar config de estacion y reiniciar. Valores del JAR salvo `viaje.manual: true`.
+Lista exacta y verificaciones: [tren-lobby.md](../build/deploy/tren-lobby.md).

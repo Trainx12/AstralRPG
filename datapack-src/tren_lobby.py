@@ -49,27 +49,24 @@ def cart(role):
 
 
 # Estacion nueva del dueno (12/11/2026): via norte-sur en x=120, rieles a y=99 entre los muros
-# negros de z=175 (norte) y z=211 (sur); rieles de z=178 a z=208 (z=188 y 198 eran losas: se cambiaron por rieles). El tren espera centrado en el anden (z=193), sale al sur,
-# teletransporta 2 bloques antes del muro sur y vuelve a salir vacio desde el muro norte.
+# negros de z=175 (norte) y z=211 (sur); rieles de z=178 a z=208 (z=188 y 198 eran losas: se cambiaron por rieles). El tren espera junto al muro norte, sale al sur,
+# teletransporta al tocar el muro sur y reaparece quieto en la posicion inicial.
 STATION = (120, 99, 193, 'SOUTH')
 WALL_EXIT = 211          # cara del muro donde "choca" (sentido de salida)
 FIRST_RAIL_ENTRY = 178   # primer riel despues del muro norte (z=176-177 es piso)
 LOCO, VAGON = 4.89375, 3.6275125
 CARTS = ('loco', 'vagon', 'vagon')
-SPEED = 0.12
+SPEED = 0.16
+TAIL_START = 178.5  # cota nominal para CENTER; con acoples, cola real z=178 (2 bloques del muro)
 
 
 def trip():
     """Distancias sobre la via medidas desde el centro del anden (sentido de salida positivo)."""
     length = LOCO + VAGON*(len(CARTS)-1)
     home = STATION[2] + 0.5
-    return {'velocidad': SPEED,
-            # centro de la locomotora cuando el tren queda centrado en el anden
-            'parada': round(length/2 - LOCO/2, 3),
-            # centro de la locomotora cuando su frente queda a 2 bloques del muro
-            'teleport': round(WALL_EXIT - 2 - LOCO/2 - home, 3),
-            # centro del tren al reaparecer: la cola pegada al muro de entrada
-            'salida': round(FIRST_RAIL_ENTRY + length/2 - home, 3)}
+    return {'velocidad': SPEED, 'espera': 3,
+            'teleport': round(WALL_EXIT - LOCO/2 - home, 6),
+            'salida': round(TAIL_START + length/2 - home, 6)}
 
 
 def configuration():
@@ -84,7 +81,7 @@ def generate():
     OUT.mkdir(parents=True,exist_ok=True)
     dump(OUT/'AstralTrain/train.yml',configuration())
     dump(OUT/'Train_Carts/savedTrainModules/astral_lobby.yml',{'AstralLobby':configuration()})
-    dump(OUT/'AstralTrain/config.yml',{'enabled':False,'station':{'x':0,'y':0,'z':0,'direction':'NORTH'},'viaje':trip()})
+    dump(OUT/'AstralTrain/config.yml',{'enabled':False,'station':{'x':0,'y':0,'z':0,'direction':'NORTH'},'viaje':{'manual':False, **trip()}})
     versions=json.loads((ROOT/'datapack-src/tren-versions.json').read_text())
     (OUT/'versions.json').write_text(json.dumps(versions,indent=2)+'\n',encoding='utf8')
 
@@ -115,7 +112,7 @@ def compile_plugin(java,server):
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         for path in sorted((classes/'astral').glob('AstralTrain*.class')):
             z.writestr(zipfile.ZipInfo('astral/'+path.name,STAMP),path.read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',STAMP),"name: AstralTrain\nversion: 1.1.0\nmain: astral.AstralTrain\napi-version: '26.1.2'\ndepend: [Train_Carts, BKCommonLib]\nsoftdepend: [Multiverse-Core]\ncommands:\n  astraltren:\n    permission: astraltren.admin\npermissions:\n  astraltren.admin:\n    default: op\n")
+        z.writestr(zipfile.ZipInfo('plugin.yml',STAMP),"name: AstralTrain\nversion: 1.2.0\nmain: astral.AstralTrain\napi-version: '26.1.2'\ndepend: [Train_Carts, BKCommonLib]\nsoftdepend: [Multiverse-Core]\ncommands:\n  astraltren:\n    permission: astraltren.admin\npermissions:\n  astraltren.admin:\n    default: op\n")
         for name in ('config.yml','train.yml'):
             z.writestr(zipfile.ZipInfo(name,STAMP),(OUT/'AstralTrain'/name).read_bytes())
     return hashlib.sha256(dest.read_bytes()).hexdigest()
@@ -196,10 +193,22 @@ def verification():
     heaps=re.findall(r'\bMemory usage:\s*([\d.,]+ [MG]B)',clean)
     nonheaps=re.findall(r'Non-heap memory usage:\s*([\d.,]+ [MG]B)',clean)
     for i,(heap,nonheap) in enumerate(zip(heaps,nonheaps),1):lines.append(f'| {i} | {heap} | {nonheap} |')
-    lines+=['','Pruebas Python: `python -m unittest discover -s datapack-src -p test_tren_lobby.py` (4 casos).',
-        'Cubren plazas, reproducibilidad, preservacion de todas las entradas previas y rechazo de colisiones/falta de base.',
+    lines+=['', '## Geometria y configuracion', '',
+        'Via sintetica identica: x=120, y=99, rieles z=178..208; muros z=175 y z=211.',
+        'Objetivo inicial cola z=176.25 rechazado: findSpawnLocations devuelve null.',
+        'Se busco el primer spawn aceptado en incrementos de 0.001 bloques, sin cambiar vias.',
+        'Valores embebidos: `'+str(trip())+'`; manual false por defecto.', '']
+    if matched:
+        for line in clean.splitlines():
+            if 'TRAIN GEOMETRY' in line or 'TRAIN SPAWN' in line or 'frente llega al muro sur:' in line:
+                lines.append('- '+line[line.index('TRAIN '):])
+    lines+=['', 'Se acorta el ultimo tick: el ensayo exige frente en z=211.0 con tolerancia 0.001.',
+        'El ensayo comprueba tren completo quieto, JAR sobre config vieja, override manual,',
+        'pasajeros actuales, cama/spawn y recuperacion tras reinicio y corte abrupto.']
+    lines+=['','Pruebas Python: `python -m unittest discover -s datapack-src -p test_tren_lobby.py` (6 casos).',
+        'Cubren plazas, posicion junto al muro, llegada, espera/velocidad, reproducibilidad y preservacion del pack privado.',
         'Auditoria de arte publico: ejecutar `tools/verificar_terceros.py` con rutas agregadas al indice.',
-        '', 'Pendiente: XYZ exactos y construccion del anden, protecciones WorldGuard con jugador sin OP,',
+        '', 'Pendiente: revision del anden en servidor remoto, protecciones WorldGuard con jugador sin OP,',
         'click real, render de asientos/modelo con 1 y 3 clientes, reconexion real y memoria antes/despues en el hosting.',
         'No hay captura de Minecraft. Logs y arte permanecen privados.']
     (OUT/'verificacion.md').write_text('\n'.join(lines)+'\n',encoding='utf8')

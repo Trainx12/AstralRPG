@@ -23,13 +23,17 @@ class TrainBuildTests(unittest.TestCase):
         models=[c['astral-model'] for c in configuration()['carts']]
         self.assertEqual(models,['cart','head','head'])
 
-    def test_trip_stops_two_blocks_before_the_wall_and_returns_from_the_other(self):
-        from tren_lobby import trip, STATION, WALL_EXIT, LOCO, FIRST_RAIL_ENTRY
+    def test_trip_waits_by_north_wall_and_teleports_at_south_wall(self):
+        from tren_lobby import trip, STATION, WALL_EXIT, LOCO, VAGON, FIRST_RAIL_ENTRY
         t=trip(); home=STATION[2]+.5
-        self.assertAlmostEqual(home+t['teleport']+LOCO/2,WALL_EXIT-2,places=2)
-        self.assertGreater(t['teleport'],t['parada'])
-        self.assertLess(t['salida'],0)
-        self.assertAlmostEqual(home+t['salida']-(LOCO/2+3.6275125),FIRST_RAIL_ENTRY,places=2)
+        self.assertAlmostEqual(home+t['teleport']+LOCO/2,WALL_EXIT,places=5)
+        tail=home+t['salida']-(LOCO+2*VAGON)/2
+        self.assertAlmostEqual(tail,178.5,places=5)
+        self.assertGreaterEqual(tail+VAGON/2,FIRST_RAIL_ENTRY)
+        self.assertEqual(t['espera'],3)
+        self.assertEqual(t['velocidad'],.16)
+        self.assertEqual(configuration()['speedLimit'],.16)
+        self.assertNotIn('parada',t)
 
     def source(self,path):
         inner=io.BytesIO()

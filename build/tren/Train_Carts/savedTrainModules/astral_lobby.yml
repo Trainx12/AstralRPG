@@ -1,6 +1,6 @@
 AstralLobby:
   nameFormat: astral_lobby_survival
-  speedLimit: 0.12
+  speedLimit: 0.16
   gravity: 0.0
   slowDown: false
   keepChunksLoaded: true

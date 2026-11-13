@@ -15,10 +15,23 @@ import com.bergerkiller.bukkit.tc.controller.MinecartGroup;
 
 /** Ensayo NMS de estado servidor: no simula render ni clientes conectados. */
 public final class TrainProbe extends JavaPlugin {
-    Player a,b,c; int failures;
+    Player a,b,c; int failures; Location initialHead;
     @Override public void onEnable() {
         // En remoto lo carga Multiverse. El ensayo solo carga su lobby sintetico.
         if(Bukkit.getWorld("lobby")==null)Bukkit.createWorld(new WorldCreator("lobby").type(WorldType.FLAT).generatorSettings("{\"layers\":[{\"block\":\"minecraft:bedrock\",\"height\":1}],\"biome\":\"minecraft:plains\"}").generateStructures(false));
+        if(((JavaPlugin)plugin()).getConfig().getBoolean("enabled"))awaitReady();
+    }
+    void awaitReady() {
+        new org.bukkit.scheduler.BukkitRunnable() {
+            int ticks;
+            public void run() {
+                try {
+                    if(train()!=null && train().size()==3 && !(boolean)field("recovering")) {
+                        getLogger().info("TRAIN READY");cancel();
+                    } else if(++ticks>1200) {check(false,"tiempo de creacion agotado");cancel();}
+                } catch(Exception e) {check(false,"esperando creacion: "+e);cancel();}
+            }
+        }.runTaskTimer(this,1,1);
     }
     Object plugin() {return Bukkit.getPluginManager().getPlugin("AstralTrain");}
     Object field(String key)throws Exception {var f=plugin().getClass().getDeclaredField(key);f.setAccessible(true);return f.get(plugin());}
@@ -38,7 +51,7 @@ public final class TrainProbe extends JavaPlugin {
         var p=fake.getBukkitEntity();p.setInvulnerable(true);p.setGravity(false);return p;
     }
     void board(Player p,int seat)throws Exception {
-        p.teleport(new Location(Bukkit.getWorld("lobby"),2.5,81,.5));
+        p.teleport(new Location(Bukkit.getWorld("lobby"),118.5,99,193.5));
         check(train().get(seat).addPassengerForced(p),"subir "+p.getName()+" asiento "+seat);
     }
     @Override public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command cmd,String label,String[] args){
@@ -47,36 +60,60 @@ public final class TrainProbe extends JavaPlugin {
         case "setup" -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"astraltren apagar");
             var w=Bukkit.getWorld("lobby");if(w==null)w=Bukkit.createWorld(new WorldCreator("lobby").type(WorldType.FLAT).generatorSettings("{\"layers\":[{\"block\":\"minecraft:bedrock\",\"height\":1}],\"biome\":\"minecraft:plains\"}").generateStructures(false));
-            for(int x=-3;x<=3;x++)for(int z=-22;z<=22;z++) {
-                w.getBlockAt(x,80,z).setType(Material.STONE_BRICKS);
-                for(int y=81;y<=86;y++)w.getBlockAt(x,y,z).setType(Material.AIR);
+            for(int x=117;x<=123;x++)for(int z=175;z<=211;z++) {
+                w.getBlockAt(x,98,z).setType(Material.STONE_BRICKS);
+                for(int y=99;y<=104;y++)w.getBlockAt(x,y,z).setType(Material.AIR);
             }
-            for(int z=-19;z<=19;z++) {
-                var block=w.getBlockAt(0,81,z);block.setType(Material.RAIL);
+            for(int z=178;z<=208;z++) {
+                var block=w.getBlockAt(120,99,z);block.setType(Material.RAIL);
                 var rail=(Rail)block.getBlockData();rail.setShape(Rail.Shape.NORTH_SOUTH);block.setBlockData(rail);
             }
+            for(int x=117;x<=123;x++)for(int y=99;y<=104;y++)for(int z:List.of(175,211))w.getBlockAt(x,y,z).setType(Material.BLACK_CONCRETE);
             Bukkit.getWorld("world").setSpawnLocation(0,65,0);
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"astraltren fijar 0 81 0 NORTH");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"astraltren fijar 120 99 193 SOUTH");
             a=fake("TrainA");b=fake("TrainB");c=fake("TrainC");
+            awaitReady();
         }
         case "ready" -> {
+            var source=new com.bergerkiller.bukkit.common.config.FileConfiguration(new java.io.File(((JavaPlugin)plugin()).getDataFolder(),"train.yml"));source.load();
+            var spawnable=com.bergerkiller.bukkit.tc.controller.spawnable.SpawnableGroup.fromConfig(source);
+            for(int i=0;i<=12000;i++) {
+                double offset=-11.175613+i*.001;
+                var locations=spawnable.findSpawnLocations(new Location(Bukkit.getWorld("lobby"),120.5,99,193.5+offset),new org.bukkit.util.Vector(0,0,1),com.bergerkiller.bukkit.tc.controller.spawnable.SpawnableGroup.SpawnMode.CENTER);
+                if(locations!=null) {getLogger().info("TRAIN SPAWN nearestOffset="+offset+" geometricTail="+(193.5+offset-(4.89375+2*3.6275125)/2));break;}
+            }
+            if(train()==null) {check(false,"spawn completo requerido");return true;}
             check(train()!=null && train().size()==3,"locomotora y dos vagones");
+            initialHead=train().head().getEntity().getEntity().getLocation();
+            double tail=train().tail().getEntity().getEntity().getLocation().getZ()-3.6275125/2;
+            getLogger().info("TRAIN GEOMETRY tail="+tail+" gap="+(tail-176)+" head="+train().head().getEntity().getEntity().getLocation().getZ());
+            check(tail>=177.99 && tail<=178.51,"cola en spawn valido mas cercano al muro norte");
+            check(train().tail().getEntity().getEntity().getLocation().getZ()>=178,"ultimo coche sobre primer riel");
+            check(!(boolean)field("moving") && (int)field("state")==0 && train().getAverageForce()<.001,"tren completo quieto al aparecer");
+            var cfg=plugin().getClass().getDeclaredMethod("cfg",String.class,double.class);cfg.setAccessible(true);
+            var config=((JavaPlugin)plugin()).getConfig();
+            config.set("viaje.velocidad",.01);config.set("viaje.espera",99);config.set("viaje.teleport",2);config.set("viaje.salida",0);
+            check((double)cfg.invoke(plugin(),"velocidad",0d)==.16 && (double)cfg.invoke(plugin(),"espera",0d)==3,"JAR prevalece sobre config vieja");
+            config.set("viaje.manual",true);
+            check((double)cfg.invoke(plugin(),"velocidad",0d)==.01 && (double)cfg.invoke(plugin(),"espera",0d)==99,"manual true habilita valores del administrador");
+            config.set("viaje.manual",false);
             check(!a.hasPermission("astraltren.admin"),"administracion denegada a jugador normal");
             var model=train().get(1).getProperties().getConfig().getNode("model");
             var item=model.getNodeList("attachments").getFirst().get("item",org.bukkit.inventory.ItemStack.class);
             check(item.getItemMeta().getItemModel().toString().equals("astral:tren_head"),"componente item_model moderno (vagon bajo)");
             var loco=train().get(0).getProperties().getConfig().getNode("model").getNodeList("attachments").getFirst().get("item",org.bukkit.inventory.ItemStack.class);
             check(loco.getItemMeta().getItemModel().toString().equals("astral:tren_cart"),"locomotora con chimenea adelante");
-            check(train().head().getEntity().getEntity().getLocation().getZ()<train().tail().getEntity().getEntity().getLocation().getZ(),"locomotora al norte");
+            check(train().head().getEntity().getEntity().getLocation().getZ()>train().tail().getEntity().getEntity().getLocation().getZ(),"locomotora al sur");
         }
+        case "recreate" -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"astraltren recrear");
         case "one" -> {a.setRespawnLocation(null,true);board(a,1);}
         case "countdown" -> {check(!(boolean)field("moving") && (int)field("wait")>0,"cuenta regresiva espera al grupo");}
         case "arrived" -> {
             check(a.getWorld().getName().equals("world") && a.getLocation().distance(Bukkit.getWorld("world").getSpawnLocation())<2,"sin cama llega al spawn survival");
             check(train()!=null && !train().hasPassenger(),"tren repuesto vacio");
             double d=(double)field("lastDistance");
-            check(d>=13 && d<13.6,"teletransporta 2 bloques antes del muro: "+d);
-            check((int)field("state")==2 && train().head().getEntity().getEntity().getLocation().getZ()>5,"vuelve a salir por el otro muro");
+            check(Math.abs(d-15.053125)<.001,"frente llega al muro sur: z="+(193.5+d+4.89375/2));
+            check((int)field("state")==0 && !(boolean)field("moving"),"reaparece quieto en espera sin regreso vacio");
         }
         case "three" -> {
             var w=Bukkit.getWorld("world");
@@ -88,7 +125,7 @@ public final class TrainProbe extends JavaPlugin {
             board(a,1);board(b,1);board(c,2);
             check(train().hasPlayerPassenger(),"tres jugadores abordados");
         }
-        case "exit" -> {c.leaveVehicle();c.teleport(new Location(Bukkit.getWorld("lobby"),2.5,81,.5));}
+        case "exit" -> {c.leaveVehicle();c.teleport(new Location(Bukkit.getWorld("lobby"),118.5,99,193.5));}
         case "twoarrived" -> {
             check(a.getWorld().getName().equals("world") && a.getLocation().distance(new Location(Bukkit.getWorld("world"),10,65,9))<4,"cama survival respetada");
             check(b.getWorld().getName().equals("world"),"segundo pasajero transferido");
@@ -96,7 +133,7 @@ public final class TrainProbe extends JavaPlugin {
         }
         case "back" -> {
             check((int)field("state")==0 && !(boolean)field("moving"),"frena en el anden y espera");
-            check(train().head().getEntity().getEntity().getLocation().distance((Location)field("start"))<0.8,"queda centrado como al principio: "+train().head().getEntity().getEntity().getLocation());
+            check(train().head().getEntity().getEntity().getLocation().distance(initialHead)<.01,"queda junto al muro como al principio: "+train().head().getEntity().getEntity().getLocation());
         }
         case "allarrived" -> {check(List.of(a,b,c).stream().allMatch(p->p.getWorld().getName().equals("world")),"tres pasajeros transferidos juntos");}
         case "invalidbed" -> {
