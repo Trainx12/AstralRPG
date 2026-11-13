@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.0.0'
+VERSION = '1.1.0'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -40,9 +40,20 @@ permissions:
 '''
 
 
+def arco_dano():
+    """Dano del chorro del Arco de Agua = flecha del Arco III (arco_3 en el datapack generado)."""
+    import re
+    try:
+        z = zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip')
+        m = re.search(r'arrow:(\d+)', z.read('data/astral/loot_table/item/arco_3.json').decode())
+        return int(m[1]) if m else 2957
+    except (OSError, KeyError):
+        return 2957
+
+
 def config():
     return (f'# Generado por oceano.py\nmundo: {WORLD}\nregenerar-cada-horas: {REGENERAR_HORAS}\n'
-            f'avisos-minutos: [{", ".join(map(str, AVISOS_MIN))}]\nproxima-regeneracion: 0\n')
+            f'avisos-minutos: [{", ".join(map(str, AVISOS_MIN))}]\nproxima-regeneracion: 0\narco-dano: {arco_dano()}\n')
 
 
 def aviso_menu():

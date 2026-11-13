@@ -39,3 +39,32 @@ class Oceano(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class OceanoTandaB(unittest.TestCase):
+    def setUp(self):
+        self.z = zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip')
+
+    def test_items_y_recetas(self):
+        names = self.z.namelist()
+        for iid in ('perla_abisal', 'coral_astral', 'agua_espada', 'agua_hacha', 'agua_arco', 'agua_pico',
+                    'agua_helmet', 'agua_chestplate', 'agua_leggings', 'agua_boots'):
+            self.assertIn(f'data/astral/loot_table/item/{iid}.json', names, iid)
+        casco = self.z.read('data/astral/loot_table/item/agua_helmet.json').decode()
+        for attr in ('water_movement_efficiency', 'submerged_mining_speed', 'oxygen_bonus'):
+            self.assertIn(attr, casco)
+        self.assertIn('set:\\"agua\\"', casco)
+        mesa = json.loads((ROOT / 'build/runtime/mesa.json').read_text(encoding='utf8'))
+        self.assertTrue(any('agua_espada' in json.dumps(r) for r in mesa))
+
+    def test_menas_y_taladro(self):
+        table = json.loads(self.z.read('data/minecraft/loot_table/blocks/note_block.json'))
+        dumped = json.dumps(table)
+        self.assertIn('astral:item/perla_abisal', dumped)
+        self.assertIn('astral:item/coral_astral', dumped)
+        mine = self.z.read('data/astral/function/tool/mine.mcfunction').decode()
+        self.assertIn('execute if dimension minecraft:oceano run return run setblock ~ ~ ~ minecraft:water', mine)
+        self.assertIn('note_block[instrument=banjo,note=22]', mine)
+        self.assertIn('tool:"drill",tier:3', mine)
+        self.assertNotIn('tool:"drill",tier:2', mine)
+        self.assertIn('data/astral/loot_table/chests/oceano.json', self.z.namelist())

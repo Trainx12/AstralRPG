@@ -563,6 +563,8 @@ for _iid in ARMOR_ITEMS:
 # ---------------------------------------------------------------------------
 from tanda4b import register as register_tanda4b
 register_tanda4b(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
+from oceano_items import register as register_oceano
+register_oceano(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from mesa import prepare as prepare_mesa, export as export_mesa
 MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
 export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
@@ -1839,6 +1841,7 @@ for cid, cname, ccol, weps in CLASSES:
 recipe_leaf("guia/lanzas", "Lanzas (Combate)", rids_where(lambda o: o.startswith("lanza_")), "guia")
 recipe_leaf("guia/carnivora", "Equipo Carnivora III", rids_where(lambda o: o.startswith("carnivora_")), "guia")
 recipe_leaf("guia/asura", "Equipo Asura IV", rids_where(lambda o: o in ("asura_espada", "asura_alas")), "guia")
+recipe_leaf("guia/agua", "Equipo de Agua III", rids_where(lambda o: o.startswith("agua_")), "guia")
 tal_btns = []
 for tid, t in TALISMANS.items():
     recipe_leaf(f"guia/talisman_{tid}", t["name"], rids_where(lambda o, tid=tid: o.startswith(f"talisman_{tid}_")), "guia/talismanes")
@@ -1929,6 +1932,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Motosierras", "#4a7410"), dialog="guia/motosierras"),
     btn(txt("Carnivora III", "#477a10"), dialog="guia/carnivora"),
     btn(txt("Asura IV", "#8a6a00"), dialog="guia/asura"),
+    btn(txt("Agua III", "#4fd8e8"), dialog="guia/agua"),
     btn(txt("23 mascotas", "#006e78"), dialog="guia/mascotas_1"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
@@ -1967,7 +1971,10 @@ KITS = [
     ("historia", "Recuerdos de historia", "aqua", "minecraft:light_blue_shulker_box",
      [i for i in ITEMS if ITEMS[i]["kind"] == "quest"]),
     ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
-     [i for i in ITEMS if ITEMS[i]["kind"] == "material" and i != 'colmillo_carnivoro' and not i.startswith('asura_')]),
+     [i for i in ITEMS if ITEMS[i]["kind"] == "material" and i != 'colmillo_carnivoro' and not i.startswith('asura_')
+      and i not in ('perla_abisal', 'coral_astral')]),
+    ('agua', 'Equipo de Agua (Oceano)', 'aqua', 'minecraft:light_blue_shulker_box',
+     [i for i in ITEMS if i.startswith('agua_') or i in ('perla_abisal', 'coral_astral')]),
     ('carnivora', 'Equipo Carnivora', 'green', 'minecraft:green_shulker_box',
      [i for i in ITEMS if i.startswith('carnivora_') or i == 'colmillo_carnivoro']),
     ('asura_peluches', 'Asura y peluches', 'gold', 'minecraft:yellow_shulker_box',
@@ -2086,9 +2093,13 @@ fn("tool/bosque_loot", [
 ])
 fn("tool/mine", [
     f"execute unless block ~ ~ ~ #{NS}:drillable unless block ~ ~ ~ #{NS}:tree_logs run return 0",
+    # Menas del Oceano Astral: solo taladro de amatista (tier 3) o mejor (oceano_items.py).
+    *__import__('oceano_items').drill_guard(),
     'execute if dimension minecraft:astral_bosque run function astral:tool/bosque_loot',
     'execute unless dimension minecraft:astral_bosque run loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand',
     "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
+    # En el Oceano Astral no puede quedar aire: el hueco se llena de agua.
+    "execute if dimension minecraft:oceano run return run setblock ~ ~ ~ minecraft:water",
     "setblock ~ ~ ~ minecraft:air",
 ])
 for vertical_name, direction in [('down',-1),('up',1)]:
@@ -2396,6 +2407,8 @@ from mobs.tanda2 import generate as generate_dungeon_waves
 generate_dungeon_waves(files)
 from tanda4b_world import generate as generate_tanda4b_world
 generate_tanda4b_world(files)
+from oceano_items import generate as generate_oceano_items
+generate_oceano_items(files)
 from santuario_azeroth import generate as generate_sanctuary
 generate_sanctuary(files)
 from infinita import generate as generate_infinita

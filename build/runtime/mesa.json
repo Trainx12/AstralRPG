@@ -4054,5 +4054,197 @@
     "group": "Asura",
     "table": false,
     "requirements": {}
+  },
+  {
+    "output": "agua_espada",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "agua_hacha",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "agua_arco",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "agua_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "agua_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        10
+      ],
+      [
+        "c",
+        "coral_astral",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "agua_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        10
+      ],
+      [
+        "c",
+        "coral_astral",
+        4
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "agua_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "agua_pico",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "perla_abisal",
+        6
+      ],
+      [
+        "c",
+        "coral_astral",
+        2
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ]
+    ],
+    "group": "Agua",
+    "table": true,
+    "requirements": {}
   }
 ]

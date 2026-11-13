@@ -27,6 +27,9 @@ def run(java, base, radio, guardar):
     (srv / 'eula.txt').write_text('eula=true\n')
     (srv / 'server.properties').write_text('server-ip=127.0.0.1\nserver-port=25611\nonline-mode=false\nlevel-name=world\n'
                                            'level-type=minecraft:flat\ngenerate-structures=false\nmanagement-server-enabled=false\n')
+    packs = srv / 'world/datapacks'
+    packs.mkdir(parents=True)
+    shutil.copy2(ROOT / 'build/AstralRPG-Items.zip', packs / 'AstralRPG-Items.zip')
     plugins = srv / 'plugins'
     plugins.mkdir()
     shutil.copy2(ROOT / 'build/oceano/AstralOceano.jar', plugins / 'AstralOceano.jar')

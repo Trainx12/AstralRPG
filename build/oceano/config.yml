@@ -3,3 +3,4 @@ mundo: oceano
 regenerar-cada-horas: 72
 avisos-minutos: [10, 5, 1]
 proxima-regeneracion: 0
+arco-dano: 2957

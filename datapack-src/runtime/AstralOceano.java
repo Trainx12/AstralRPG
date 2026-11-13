@@ -17,6 +17,10 @@ import org.bukkit.event.world.ChunkPopulateEvent;
 import org.bukkit.generator.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.noise.SimplexOctaveGenerator;
+import org.bukkit.loot.Lootable;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.*;
+import java.util.regex.*;
 
 /**
  * Oceano Astral (generado por datapack-src/oceano.py).
@@ -29,7 +33,7 @@ import org.bukkit.util.noise.SimplexOctaveGenerator;
 public final class AstralOceano extends JavaPlugin implements Listener {
     static final int FLOOR_BASE = 18, CEIL_WATER = 109, CEIL_TOP = 116;
     String world; long everyMs; List<Integer> warnMinutes;
-    long nextRegen; boolean regenerating;
+    long nextRegen; boolean regenerating; double bowDamage;
 
     @Override public void onEnable() {
         saveDefaultConfig();
@@ -40,6 +44,8 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         if (nextRegen == 0) { nextRegen = System.currentTimeMillis() + everyMs; save(); }
         getServer().getPluginManager().registerEvents(this, this);
         Bukkit.getScheduler().runTaskTimer(this, this::clock, 20 * 30, 20 * 30);
+        Bukkit.getScheduler().runTaskTimer(this, this::waterSet, 20, 10);
+        bowDamage = getConfig().getDouble("arco-dano", 2957);
     }
 
     void save() { getConfig().set("proxima-regeneracion", nextRegen); saveConfig(); }
@@ -64,6 +70,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         @Override public void generateNoise(WorldInfo info, Random random, int cx, int cz, ChunkData data) {
             init(info.getSeed());
             int min = info.getMinHeight();
+            int[][] cols = new int[16][16];
             for (int x = 0; x < 16; x++) for (int z = 0; z < 16; z++) {
                 int wx = cx * 16 + x, wz = cz * 16 + z, f = Math.max(min + 6, floor(wx, wz));
                 data.setBlock(x, min, z, Material.BEDROCK);
@@ -74,8 +81,31 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                     data.setBlock(x, y, z, m);
                 }
                 for (int y = f + 1; y <= CEIL_WATER; y++) data.setBlock(x, y, z, Material.WATER);
+                cols[x][z] = f;
                 for (int y = CEIL_WATER + 1; y < CEIL_TOP; y++) data.setBlock(x, y, z, y == CEIL_WATER + 1 ? Material.DARK_PRISMARINE : Material.STONE);
                 data.setBlock(x, CEIL_TOP, z, Material.BEDROCK);
+            }
+            ores(info.getSeed(), cx, cz, cols, data, min);
+        }
+
+        // Menas (oceano_items.py): vetas dentro de la roca, deterministas por chunk.
+        static final BlockData PERLA = Bukkit.createBlockData("minecraft:note_block[instrument=banjo,note=22,powered=false]");
+        static final BlockData CORAL = Bukkit.createBlockData("minecraft:note_block[instrument=banjo,note=23,powered=false]");
+        void ores(long seed, int cx, int cz, int[][] cols, ChunkData data, int min) {
+            Random r = new Random(seed ^ (cx * 341873128712L) ^ (cz * 132897987541L));
+            vein(r, 2, 3, 20, cols, data, min, PERLA);
+            vein(r, 1, 10, 38, cols, data, min, CORAL);
+        }
+        void vein(Random r, int count, int fromDepth, int toDepth, int[][] cols, ChunkData data, int min, BlockData ore) {
+            for (int k = 0; k < count; k++) {
+                int x = 1 + r.nextInt(14), z = 1 + r.nextInt(14), y = cols[x][z] - fromDepth - r.nextInt(toDepth - fromDepth);
+                for (int n = 3 + r.nextInt(3); n > 0; n--) {
+                    if (y > min + 2) {
+                        Material m = data.getType(x, y, z);
+                        if (m == Material.STONE || m == Material.DEEPSLATE) data.setBlock(x, y, z, ore);
+                    }
+                    switch (r.nextInt(3)) { case 0 -> x = Math.max(0, Math.min(15, x + r.nextInt(3) - 1)); case 1 -> y += r.nextInt(3) - 1; default -> z = Math.max(0, Math.min(15, z + r.nextInt(3) - 1)); }
+                }
             }
         }
         @Override public void generateSurface(WorldInfo info, Random random, int cx, int cz, ChunkData data) {
@@ -89,11 +119,31 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         }
         @Override public int getBaseHeight(WorldInfo info, Random random, int x, int z, HeightMap map) { init(info.getSeed()); return floor(x, z) + 1; }
         @Override public BiomeProvider getDefaultBiomeProvider(WorldInfo info) { return new Biomes(); }
+        @Override public List<BlockPopulator> getDefaultPopulators(World world) { return List.of(new Chests()); }
         @Override public boolean shouldGenerateDecorations() { return true; }
         @Override public boolean shouldGenerateStructures() { return true; }
         @Override public boolean shouldGenerateMobs() { return true; }
         @Override public boolean shouldGenerateCaves() { return false; }
         @Override public Location getFixedSpawnLocation(World w, Random random) { init(w.getSeed()); return new Location(w, 0.5, floor(0, 0) + 2, 0.5); }
+    }
+
+    // Cofres al azar en el fondo (1 cada ~5 chunks), con la tabla astral:chests/oceano.
+    static final class Chests extends BlockPopulator {
+        @Override public void populate(WorldInfo info, Random random, int cx, int cz, LimitedRegion region) {
+            if (random.nextInt(5) != 0) return;
+            int x = cx * 16 + 2 + random.nextInt(12), z = cz * 16 + 2 + random.nextInt(12);
+            int y = CEIL_WATER;
+            while (y > info.getMinHeight() + 2 && region.getType(x, y, z) == Material.WATER) y--;
+            if (!region.getType(x, y, z).isSolid() || y >= CEIL_WATER - 2) return;
+            org.bukkit.block.data.type.Chest data = (org.bukkit.block.data.type.Chest) Bukkit.createBlockData(Material.CHEST);
+            data.setWaterlogged(true);
+            data.setFacing(List.of(BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST).get(random.nextInt(4)));
+            region.setBlockData(x, y + 1, z, data);
+            if (region.getBlockState(x, y + 1, z) instanceof Lootable chest) {
+                chest.setLootTable(Bukkit.getLootTable(NamespacedKey.fromString("astral:chests/oceano")), random.nextLong());
+                ((BlockState) chest).update(true, false);
+            }
+        }
     }
 
     static final class Biomes extends BiomeProvider {
@@ -140,7 +190,43 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     static final Set<Material> BANNED = EnumSet.of(Material.SPONGE, Material.WET_SPONGE, Material.CONDUIT, Material.SOUL_SAND,
             Material.MAGMA_BLOCK, Material.PISTON, Material.STICKY_PISTON, Material.TNT, Material.ICE, Material.PACKED_ICE,
             Material.BLUE_ICE, Material.FROSTED_ICE, Material.SNOW, Material.SNOW_BLOCK, Material.POWDER_SNOW, Material.LAVA,
-            Material.FIRE, Material.SOUL_FIRE, Material.SCAFFOLDING, Material.SLIME_BLOCK, Material.HONEY_BLOCK);
+            Material.FIRE, Material.SOUL_FIRE, Material.SCAFFOLDING, Material.SLIME_BLOCK, Material.HONEY_BLOCK, Material.NOTE_BLOCK);
+
+    static boolean ore(Block b) {
+        if (b.getType() != Material.NOTE_BLOCK || !(b.getBlockData() instanceof org.bukkit.block.data.type.NoteBlock n)) return false;
+        return n.getInstrument() == Instrument.BANJO && (n.getNote().getId() == 22 || n.getNote().getId() == 23);
+    }
+
+    // El texto de componentes trae espacios ("tool: \"drill\""): las busquedas los toleran.
+    static final Pattern ID = Pattern.compile("[{,]\\s*id:\\s*\"([a-z0-9_]+)\""), TIER = Pattern.compile("tier:\\s*([0-9]+)"),
+        DRILL = Pattern.compile("tool:\\s*\"drill\""), AGUA = Pattern.compile("set:\\s*\"agua\"");
+    static String components(ItemStack it) { return it == null || !it.hasItemMeta() ? "" : it.getItemMeta().getAsComponentString(); }
+    static String astralId(ItemStack it) { Matcher m = ID.matcher(components(it)); return m.find() ? m.group(1) : ""; }
+    static int drillTier(ItemStack it) {
+        String c = components(it);
+        if (!DRILL.matcher(c).find()) return 0;
+        Matcher m = TIER.matcher(c); return m.find() ? Integer.parseInt(m.group(1)) : 0;
+    }
+
+    // Las menas no cambian de estado: sin actualizaciones de fisica ni afinacion con clic derecho.
+    @EventHandler(ignoreCancelled = true) public void physics(BlockPhysicsEvent e) { if (here(e.getBlock().getWorld()) && ore(e.getBlock())) e.setCancelled(true); }
+    @EventHandler(ignoreCancelled = true) public void tune(PlayerInteractEvent e) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null && here(e.getClickedBlock().getWorld()) && e.getClickedBlock().getType() == Material.NOTE_BLOCK) e.setCancelled(true);
+    }
+    // Fuera del oceano, un bloque de nota afinado como mena (banjo 22/23) suelta solo el bloque de nota.
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void fakeOre(BlockBreakEvent e) {
+        if (here(e.getBlock().getWorld()) || !ore(e.getBlock())) return;
+        e.setDropItems(false);
+        if (e.getPlayer().getGameMode() != GameMode.CREATIVE)
+            e.getBlock().getWorld().dropItemNaturally(e.getBlock().getLocation().add(0.5, 0.5, 0.5), new ItemStack(Material.NOTE_BLOCK));
+    }
+
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void mineOre(BlockBreakEvent e) {
+        if (!here(e.getBlock().getWorld()) || !ore(e.getBlock()) || builder(e.getPlayer())) return;
+        if (drillTier(e.getPlayer().getInventory().getItemInMainHand()) < 3) {
+            e.setCancelled(true); deny(e.getPlayer(), "esta mena necesita un taladro de amatista o mejor.");
+        }
+    }
 
     void deny(Player p, String what) { if (!p.isOnline()) return; p.sendActionBar(net.kyori.adventure.text.Component.text("Oceano Astral: " + what, net.kyori.adventure.text.format.NamedTextColor.RED)); }
 
@@ -186,6 +272,54 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     @EventHandler(ignoreCancelled = true) public void explode(EntityExplodeEvent e) { if (here(e.getLocation().getWorld())) e.blockList().clear(); }
     @EventHandler(ignoreCancelled = true) public void explode(BlockExplodeEvent e) { if (here(e.getBlock().getWorld())) e.blockList().clear(); }
     @EventHandler(ignoreCancelled = true) public void fade(BlockFadeEvent e) { if (here(e.getBlock().getWorld())) { Block b = e.getBlock(); Bukkit.getScheduler().runTask(this, () -> flood(b)); } }
+
+    // ----------------------------------------------------------------------------------- set de agua
+    static int waterPieces(Player p) {
+        int n = 0;
+        for (ItemStack it : p.getInventory().getArmorContents()) if (AGUA.matcher(components(it)).find()) n++;
+        return n;
+    }
+
+    /** Casco: vision nocturna bajo el agua. Set completo: respiracion infinita (en cualquier mundo). */
+    void waterSet() {
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            int n = waterPieces(p);
+            if (n == 0) continue;
+            if (p.isUnderWater() && AGUA.matcher(components(p.getInventory().getHelmet())).find())
+                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 260, 0, true, false, true));
+            if (n == 4 && p.getRemainingAir() < p.getMaximumAir()) p.setRemainingAir(p.getMaximumAir());
+        }
+    }
+
+    // Arco de agua: clic derecho dispara un chorro (tridente de agua que no se recoge), sin flechas.
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = false) public void waterBow(PlayerInteractEvent e) {
+        if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+        if (e.getHand() != org.bukkit.inventory.EquipmentSlot.HAND) return;
+        ItemStack it = e.getItem();
+        if (!"agua_arco".equals(astralId(it))) return;
+        e.setCancelled(true);
+        Player p = e.getPlayer();
+        if (p.hasCooldown(it)) return;
+        p.setCooldown(it, 14);
+        Trident t = p.launchProjectile(Trident.class, p.getEyeLocation().getDirection().multiply(2.6));
+        t.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
+        t.addScoreboardTag("astral.chorro");
+        t.setGlowing(false);
+        p.getWorld().playSound(p.getLocation(), Sound.ENTITY_DROWNED_SHOOT, 0.8f, 1.4f);
+        p.getWorld().spawnParticle(Particle.BUBBLE_COLUMN_UP, p.getEyeLocation(), 12, 0.2, 0.2, 0.2, 0.05);
+        Bukkit.getScheduler().runTaskLater(this, () -> { if (t.isValid()) t.remove(); }, 60);
+    }
+
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true) public void chorro(EntityDamageByEntityEvent e) {
+        if (e.getDamager() instanceof Trident t && t.getScoreboardTags().contains("astral.chorro")) e.setDamage(bowDamage);
+    }
+
+    @EventHandler public void chorroHit(ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Trident t && t.getScoreboardTags().contains("astral.chorro")) {
+            t.getWorld().spawnParticle(Particle.SPLASH, t.getLocation(), 20, 0.3, 0.3, 0.3, 0.1);
+            Bukkit.getScheduler().runTask(this, t::remove);
+        }
+    }
 
     // ----------------------------------------------------------------------------------- regeneracion
     void clock() {

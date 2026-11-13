@@ -7,6 +7,8 @@ import org.bukkit.block.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.block.*;
 import org.bukkit.inventory.*;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.event.block.Action;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /** Ensayo local del Oceano Astral (genera, mide aire, prueba reglas, dibuja el fondo). Nunca va al server. */
@@ -62,18 +64,108 @@ public final class OceanoProbe extends JavaPlugin {
         check(spawn.getBlock().getType() == Material.WATER, "el punto de llegada es agua: " + spawn.getBlock().getType() + " en " + spawn.toVector());
         check(w.getBlockAt(5, 116, 5).getType() == Material.BEDROCK, "techo de bedrock en y=116");
         rules(w);
+        tandaB(w, inner);
         // Regeneracion: guardar plantilla, romper el techo de llegada y regenerar.
         Location probe = new Location(w, 8, 115, 8);
         Material before = probe.getBlock().getType();
         probe.getBlock().setType(Material.GOLD_BLOCK);
         w.save();
-        Bukkit.getScheduler().runTaskLater(this, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "oceano regenerar"), 20);
+        Bukkit.getScheduler().runTaskLater(this, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "oceano regenerar"), 80);
         Bukkit.getScheduler().runTaskLater(this, () -> {
             World nw = Bukkit.getWorld("oceano");
             check(nw != null && nw != w, "el mundo se volvio a cargar despues de regenerar");
             if (nw != null) check(nw.getBlockAt(8, 115, 8).getType() == before, "la regeneracion devolvio el bloque original: " + nw.getBlockAt(8, 115, 8).getType());
             getLogger().info("OCE RESULT failures=" + failures); Bukkit.shutdown();
-        }, 140);
+        }, 260);
+    }
+
+    Player fake(World w, String name) throws Exception {
+        var server = ((org.bukkit.craftbukkit.CraftServer) Bukkit.getServer()).getServer();
+        var lvl = ((org.bukkit.craftbukkit.CraftWorld) w).getHandle();
+        var profile = new com.mojang.authlib.GameProfile(UUID.randomUUID(), name);
+        var fp = new net.minecraft.server.level.ServerPlayer(server, lvl, profile, net.minecraft.server.level.ClientInformation.createDefault());
+        var connection = new net.minecraft.network.Connection(net.minecraft.network.protocol.PacketFlow.SERVERBOUND);
+        connection.channel = new io.netty.channel.embedded.EmbeddedChannel();
+        connection.channel.pipeline().addLast("packet_handler", connection);
+        connection.address = new java.net.InetSocketAddress("127.0.0.1", 0);
+        fp.connection = new net.minecraft.server.network.ServerGamePacketListenerImpl(server, connection, fp,
+            net.minecraft.server.network.CommonListenerCookie.createInitial(profile, false));
+        fp.setPos(0.5, 40, 0.5); lvl.addNewPlayer(fp); var list = server.getPlayerList(); list.players.add(fp);
+        for (String key : List.of("playersByUUID", "playersByName")) {
+            var f = net.minecraft.server.players.PlayerList.class.getDeclaredField(key); f.setAccessible(true);
+            ((Map) f.get(list)).put(key.equals("playersByUUID") ? profile.id() : profile.name().toLowerCase(Locale.ROOT), fp);
+        }
+        var ch = (io.netty.channel.embedded.EmbeddedChannel) connection.channel;
+        Bukkit.getScheduler().runTaskTimer(this, () -> ch.releaseOutbound(), 1, 1);
+        Bukkit.getScheduler().runTaskTimer(this, () -> { try { fp.doTick(); } catch (Throwable ignored) {} }, 1, 1);
+        Player p = fp.getBukkitEntity(); p.setGameMode(GameMode.SURVIVAL); return p;
+    }
+
+    ItemStack astral(Player p, String id) {
+        // Directo de la tabla del datapack (el jugador falso no recibe bien "loot give").
+        var table = Bukkit.getLootTable(NamespacedKey.fromString("astral:item/" + id));
+        var ctx = new org.bukkit.loot.LootContext.Builder(p.getLocation()).build();
+        var items = table.populateLoot(new Random(1), ctx);
+        return items.isEmpty() ? null : items.iterator().next();
+    }
+
+    void tandaB(World w, int inner) {
+        int perla = 0, coral = 0, chests = 0, withLoot = 0;
+        for (int x = -inner; x < inner; x++) for (int z = -inner; z < inner; z++) for (int y = -60; y < 60; y++) {
+            Block b = w.getBlockAt(x, y, z);
+            if (b.getType() == Material.NOTE_BLOCK && b.getBlockData() instanceof org.bukkit.block.data.type.NoteBlock n) {
+                if (n.getNote().getId() == 22) perla++; else if (n.getNote().getId() == 23) coral++;
+            } else if (b.getType() == Material.CHEST) { chests++; if (b.getState() instanceof org.bukkit.loot.Lootable l && l.getLootTable() != null) withLoot++; }
+        }
+        check(perla > 50 && coral > 20, "menas generadas: perla=" + perla + " coral=" + coral);
+        check(chests > 3 && withLoot == chests, "cofres al azar con botin: " + withLoot + "/" + chests);
+        try {
+            Player p = fake(w, "Buzo2");
+            Block ore = null;
+            outer: for (int x = -40; x < 40; x++) for (int z = -40; z < 40; z++) for (int y = -40; y < 50; y++) {
+                Block b = w.getBlockAt(x, y, z);
+                if (b.getType() == Material.NOTE_BLOCK) { ore = b; break outer; }
+            }
+            ItemStack pick = astral(p, "agua_pico");
+            p.getInventory().setItemInMainHand(pick);
+            var ev = new BlockBreakEvent(ore, p); Bukkit.getPluginManager().callEvent(ev);
+            check(ev.isCancelled(), "sin taladro no se mina la mena (con el pico de agua)");
+            ItemStack drill = astral(p, "taladro_amatista");
+            p.getInventory().setItemInMainHand(drill);
+            var ev2 = new BlockBreakEvent(ore, p); Bukkit.getPluginManager().callEvent(ev2);
+            check(!ev2.isCancelled(), "con taladro de amatista se mina la mena");
+            ItemStack low = astral(p, "taladro_mitril");
+            p.getInventory().setItemInMainHand(low);
+            var ev3 = new BlockBreakEvent(ore, p); Bukkit.getPluginManager().callEvent(ev3);
+            check(ev3.isCancelled(), "con taladro de mitril (tier 2) no se mina");
+            Block o = ore;
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:oceano run loot spawn " + o.getX() + " 100 " + o.getZ()
+                + " mine " + o.getX() + " " + o.getY() + " " + o.getZ() + " minecraft:netherite_pickaxe");
+            Bukkit.getScheduler().runTaskLater(this, () -> {
+                var drops = w.getNearbyEntities(new Location(w, o.getX(), 100, o.getZ()), 3, 3, 3).stream()
+                    .filter(e -> e instanceof Item).map(e -> ((Item) e).getItemStack()).toList();
+                check(drops.stream().anyMatch(d -> d.getType() == Material.PRISMARINE_CRYSTALS || d.getType() == Material.PRISMARINE_SHARD),
+                      "la mena suelta su material: " + drops);
+            }, 5);
+            ItemStack[] armor = new ItemStack[4];
+            String[] pieces = {"agua_boots", "agua_leggings", "agua_chestplate", "agua_helmet"};
+            for (int i = 0; i < 4; i++) armor[i] = astral(p, pieces[i]);
+            p.getInventory().clear(); p.getInventory().setArmorContents(armor);
+            p.teleport(new Location(w, 0.5, 60, 0.5)); p.setRemainingAir(0);
+            Player fp = p;
+            Bukkit.getScheduler().runTaskLater(this, () -> {
+                check(fp.getRemainingAir() >= fp.getMaximumAir() - 15, "set completo: respira sin limite (aire " + fp.getRemainingAir() + "/" + fp.getMaximumAir() + ")");
+                check(fp.hasPotionEffect(org.bukkit.potion.PotionEffectType.NIGHT_VISION), "casco de agua: vision nocturna bajo el agua");
+                double nado = fp.getAttribute(Attribute.WATER_MOVEMENT_EFFICIENCY).getValue();
+                check(nado >= 0.99, "nado con 4 piezas: " + nado);
+                ItemStack bow = astral(fp, "agua_arco");
+                fp.getInventory().setItemInMainHand(bow);
+                var click = new org.bukkit.event.player.PlayerInteractEvent(fp, Action.RIGHT_CLICK_AIR, bow, null, BlockFace.SELF, EquipmentSlot.HAND);
+                Bukkit.getPluginManager().callEvent(click);
+                long chorros = w.getEntitiesByClass(Trident.class).stream().filter(t -> t.getScoreboardTags().contains("astral.chorro")).count();
+                check(chorros == 1 && !fp.getInventory().contains(Material.ARROW), "el arco de agua dispara un chorro sin flechas: " + chorros);
+            }, 30);
+        } catch (Throwable t) { check(false, "tanda B: " + t); t.printStackTrace(); }
     }
 
     void rules(World w) {

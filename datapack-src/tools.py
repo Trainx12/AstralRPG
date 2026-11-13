@@ -76,7 +76,8 @@ DRILLABLE = ["#minecraft:base_stone_overworld", "#minecraft:base_stone_nether", 
              "minecraft:calcite", "minecraft:dripstone_block", "minecraft:smooth_basalt", "minecraft:end_stone",
              "minecraft:sandstone", "minecraft:red_sandstone", "minecraft:magma_block", "minecraft:amethyst_block",
              "minecraft:gravel", "minecraft:clay", "minecraft:soul_sand", "minecraft:soul_soil",
-             "minecraft:snow_block", "minecraft:packed_ice"]
+             "minecraft:snow_block", "minecraft:packed_ice",
+             "minecraft:note_block"]  # menas del Asura y del Oceano Astral
 
 
 FACING = {"n": ((0, 0, -1), (1, 0, 0)), "s": ((0, 0, 1), (-1, 0, 0)),
