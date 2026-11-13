@@ -94,13 +94,12 @@ def mano_izquierda(derecha=False):
 
 
 # ---------------------------------------------------------------- barras (corazones y comida como segmentos)
-def _seg(colores, desde=1, hasta=8, fondo=None):
-    """Segmento 9x9: filas 0 y 8 marco dorado, columnas 0 y 8 divisiones negras, relleno en desde..hasta."""
+def _seg(colores, desde=0, hasta=9, fondo=None):
+    """Segmento 9x9: filas 0 y 8 marco dorado y relleno de lado a lado (sin divisiones: la barra se ve continua)."""
     l = Lienzo(9, 9)
     if fondo:
         l.rect(0, 0, 9, 1, ORO); l.rect(0, 8, 9, 9, ORO_OSC)
-        l.rect(0, 1, 1, 8, NEGRO); l.rect(8, 1, 9, 8, NEGRO)
-        l.rect(1, 1, 8, 8, fondo); l.rect(1, 1, 8, 1.5, tuple(max(0, v - 12) for v in fondo[:3]) + (255,))
+        l.rect(0, 1, 9, 8, fondo); l.rect(0, 1, 9, 1.5, tuple(max(0, v - 12) for v in fondo[:3]) + (255,))
         return l.im
     alto, medio, bajo = colores
     l.rect(desde, 1, hasta, 8, medio)
@@ -133,8 +132,8 @@ def barras():
     for var, rgb in VIDA.items():
         col = (_tono(rgb, 1.35), _tono(rgb, 1.0), _tono(rgb, 0.6))
         for hc in ('', 'hardcore_'):
-            for parte, hasta in (('full', 8), ('half', 4.5)):
-                im = _seg(col, 1, hasta)
+            for parte, hasta in (('full', 9), ('half', 4.5)):
+                im = _seg(col, 0, hasta)
                 out[f'heart/{var}{hc}{parte}.png'] = im
                 out[f'heart/{var}{hc}{parte}_blinking.png'] = _brillo(im)
     fondo_vida = (48, 12, 16, 255)
@@ -144,11 +143,11 @@ def barras():
     montura = (_tono((200, 90, 60), 1.3), _tono((200, 90, 60), 1.0), _tono((200, 90, 60), 0.6))
     out['heart/vehicle_container.png'] = _seg(None, fondo=fondo_vida)
     out['heart/vehicle_full.png'] = _seg(montura)
-    out['heart/vehicle_half.png'] = _seg(montura, 1, 4.5)
+    out['heart/vehicle_half.png'] = _seg(montura, 0, 4.5)
     for var, rgb in COMIDA.items():
         col = (_tono(rgb, 1.3), _tono(rgb, 1.0), _tono(rgb, 0.62))
         out[f'food_full{var}.png'] = _seg(col)
-        out[f'food_half{var}.png'] = _seg(col, 4.5, 8)       # se vacia por la izquierda
+        out[f'food_half{var}.png'] = _seg(col, 4.5, 9)       # se vacia por la izquierda
         out[f'food_empty{var}.png'] = _seg(None, fondo=(44, 26, 12, 255))
     return out
 
