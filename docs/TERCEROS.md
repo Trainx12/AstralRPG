@@ -109,3 +109,12 @@ Goblin y Grub agregan `death` en sus copias adaptadas; los originales quedan int
 publicarlos sin incluir los cambios previos del resto de `build/`.
 El SHA-1 y los destinos exactos estan en la entrega publica; la imagen GUI privada
 sale de `preview_pack_gui.py`, leyendo modelos y PNG del ZIP FINAL.
+
+## Ventanas Darkmode Colourful Containers (13/11)
+
+`contenedores_darkmode.py` toma el ZIP original (Kingybu, Chris_XENO, BurntToast_) de
+`ASTRAL_PRIVADO/originales/contenedores/` y deja en `build/entregas/contenedores-darkmode/`
+solo las ventanas vanilla (mesas, hornos, yunque, aldeano, tolva, etc.) y sus sprites.
+Sin OptiGUI: lo de `assets/optigui` se descarta. Quedan nuestros el inventario, `generic_54`
+(cofres y menus), creativo, widgets y libro de recetas. Los titulos de esas ventanas se
+ocultan en nuestros lang (`lang-ocultar.json`). No publicar ese arte.
