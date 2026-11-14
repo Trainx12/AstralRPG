@@ -480,8 +480,8 @@ def commands():
     return '\n'.join([
         '# Renacimiento y deseos (generado por datapack-src/renacimiento.py). Consola, una vez.',
         f'lp group default permission set {VENCIDO} false',
-        f'lp group default permission set {PERM_ADMIN} false',
-        '# El dueno (y los OP sin el nodo en false) ven /deseos. Si hace falta a mano:',
+        '# /deseos: los OP lo tienen solos (permiso sin definir). NO ponerlo en false para default:',
+        '# eso tambien se lo quita al dueno. Para otro admin no OP:',
         f'# lp user Trainx permission set {PERM_ADMIN} true',
         '# Para mostrar el renacimiento en TAB/chat: %luckperms_meta_astral_renacimiento% o el sufijo ✦N.',
     ]) + '\n'
