@@ -1,0 +1,9 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: IRON_PICKAXE
+        displayname: '&6Abriendo oficios...'
+        sell: -1
+        buy: -1

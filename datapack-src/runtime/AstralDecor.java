@@ -206,6 +206,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         // Titulo reservado en la seccion gratuita de EconomyShopGUI. No se mueve ningun item suyo.
         if(e.getView().getTitle().equals(SHOP_TITLE) && e.getPlayer() instanceof Player p)
             getServer().getScheduler().runTask(this,()->{if(p.isOnline() && p.getOpenInventory().getTopInventory()==e.getInventory()) shop(p);});
+        // Ropa de oficio (oficios.py): la seccion abre el menu de DeluxeMenus que cobra y entrega.
+        if(e.getView().getTitle().equals("Astral - Oficios") && e.getPlayer() instanceof Player p)
+            getServer().getScheduler().runTask(this,()->{if(p.isOnline() && p.getOpenInventory().getTopInventory()==e.getInventory()){
+                p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"dm open oficios "+p.getName());}});
     }
     @EventHandler public void shopDrag(InventoryDragEvent e) { if(isShop(e.getInventory())) e.setCancelled(true); }
     @EventHandler public void buy(InventoryClickEvent e) {

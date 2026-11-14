@@ -1,0 +1,330 @@
+menu_title: 'Oficios'
+open_command: astralmenu_oficios
+size: 36
+items:
+  'saldo':
+    material: GOLD_NUGGET
+    slot: 4
+    amount: 1
+    display_name: '&6Tu saldo'
+    lore:
+    - '&e%vault_eco_balance_formatted%$'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    update: true
+    item_model: 'astral:menu/icon_saldo'
+  'minero_info':
+    material: LANTERN
+    slot: 9
+    amount: 1
+    display_name: '&#e0a83a&lMinero'
+    lore:
+    - '&7Ropa de trabajo tier I.'
+    - '&6Set completo: Prisa I y 10% de mineral extra en las Minas.'
+    - ''
+    - '&7Tambien se craftea en la Forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'minero_helmet':
+    material: IRON_HELMET
+    slot: 11
+    amount: 1
+    display_name: '&#e0a83aCasco de Minero'
+    lore:
+    - '&7Picas mas rapido.'
+    - '&7Ves en la oscuridad.'
+    - ''
+    - '&7Precio: &e800$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:minero_helmet'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 800
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e800$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 800'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_helmet'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fCasco de Minero&a.'''
+  'minero_chestplate':
+    material: IRON_CHESTPLATE
+    slot: 12
+    amount: 1
+    display_name: '&#e0a83aChaleco de Minero'
+    lore:
+    - '&7Picas mas rapido.'
+    - ''
+    - '&7Precio: &e1.200$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:minero_chestplate'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1200
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.200$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 1200'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_chestplate'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fChaleco de Minero&a.'''
+  'minero_leggings':
+    material: IRON_LEGGINGS
+    slot: 13
+    amount: 1
+    display_name: '&#e0a83aPantalon de Minero'
+    lore:
+    - '&7Picas mas rapido.'
+    - ''
+    - '&7Precio: &e1.200$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:minero_leggings'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1200
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.200$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 1200'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_leggings'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fPantalon de Minero&a.'''
+  'minero_boots':
+    material: IRON_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&#e0a83aBotas de Minero'
+    lore:
+    - '&7Picas mas rapido.'
+    - ''
+    - '&7Precio: &e800$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:minero_boots'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 800
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e800$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 800'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_boots'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fBotas de Minero&a.'''
+  'minero_set':
+    material: CHEST
+    slot: 16
+    amount: 1
+    display_name: '&#e0a83a&lSet completo de Minero'
+    lore:
+    - '&7Las 4 piezas juntas.'
+    - ''
+    - '&7Precio: &e3.500$ &8(ahorras 500$)'
+    - '&eClic para comprar'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 3500
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e3.500$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 3500'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_helmet'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_chestplate'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_leggings'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_boots'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste el set completo de Minero.'''
+  'talador_info':
+    material: IRON_AXE
+    slot: 27
+    amount: 1
+    display_name: '&#d2483a&lTalador'
+    lore:
+    - '&7Ropa de trabajo tier I.'
+    - '&6Set completo con hacha: Prisa II y 20% de tronco extra en el Bosque.'
+    - ''
+    - '&7Tambien se craftea en la Forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'talador_helmet':
+    material: IRON_HELMET
+    slot: 29
+    amount: 1
+    display_name: '&#d2483aGorro de Talador'
+    lore:
+    - '&7Rompes mas rapido.'
+    - '&7Con hacha en la mano: Prisa I.'
+    - ''
+    - '&7Precio: &e800$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:talador_helmet'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 800
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e800$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 800'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_helmet'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fGorro de Talador&a.'''
+  'talador_chestplate':
+    material: IRON_CHESTPLATE
+    slot: 30
+    amount: 1
+    display_name: '&#d2483aCamisa de Talador'
+    lore:
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&7Precio: &e1.200$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:talador_chestplate'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1200
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.200$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 1200'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_chestplate'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fCamisa de Talador&a.'''
+  'talador_leggings':
+    material: IRON_LEGGINGS
+    slot: 31
+    amount: 1
+    display_name: '&#d2483aPantalon de Talador'
+    lore:
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&7Precio: &e1.200$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:talador_leggings'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 1200
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e1.200$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 1200'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_leggings'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fPantalon de Talador&a.'''
+  'talador_boots':
+    material: IRON_BOOTS
+    slot: 32
+    amount: 1
+    display_name: '&#d2483aBotas de Talador'
+    lore:
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&7Precio: &e800$'
+    - '&eClic para comprar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:talador_boots'
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 800
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e800$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 800'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_boots'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste: &fBotas de Talador&a.'''
+  'talador_set':
+    material: CHEST
+    slot: 34
+    amount: 1
+    display_name: '&#d2483a&lSet completo de Talador'
+    lore:
+    - '&7Las 4 piezas juntas.'
+    - ''
+    - '&7Precio: &e3.500$ &8(ahorras 500$)'
+    - '&eClic para comprar'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    click_requirement:
+      requirements:
+        plata:
+          type: has money
+          amount: 3500
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e3.500$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 3500'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_helmet'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_chestplate'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_leggings'
+    - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_boots'
+    - '[sound] ENTITY_PLAYER_LEVELUP'
+    - '''[message] &aCompraste el set completo de Talador.'''
+  'ayuda':
+    material: BOOK
+    slot: 31
+    amount: 1
+    display_name: '&fSi tenes el inventario lleno'
+    lore:
+    - '&7Lo que compres cae a tus pies.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'cerrar':
+    material: BARRIER
+    slot: 35
+    amount: 1
+    display_name: '&cCerrar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    item_model: 'astral:menu/icon_close'

@@ -568,6 +568,8 @@ from tanda4b import register as register_tanda4b
 register_tanda4b(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from oceano_items import register as register_oceano
 register_oceano(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
+from oficios import register as register_oficios
+register_oficios(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from mesa import prepare as prepare_mesa, export as export_mesa
 MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
 export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
@@ -1861,6 +1863,7 @@ recipe_leaf("guia/lanzas", "Lanzas (Combate)", rids_where(lambda o: o.startswith
 recipe_leaf("guia/carnivora", "Equipo Carnivora III", rids_where(lambda o: o.startswith("carnivora_")), "guia")
 recipe_leaf("guia/asura", "Equipo Asura IV", rids_where(lambda o: o in ("asura_espada", "asura_alas")), "guia")
 recipe_leaf("guia/agua", "Equipo de Agua III", rids_where(lambda o: o.startswith("agua_")), "guia")
+recipe_leaf("guia/oficios", "Ropa de Minero y Talador I", rids_where(lambda o: o.startswith(("minero_", "talador_"))), "guia")
 tal_btns = []
 for tid, t in TALISMANS.items():
     recipe_leaf(f"guia/talisman_{tid}", t["name"], rids_where(lambda o, tid=tid: o.startswith(f"talisman_{tid}_")), "guia/talismanes")
@@ -1952,6 +1955,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Carnivora III", "#477a10"), dialog="guia/carnivora"),
     btn(txt("Asura IV", "#8a6a00"), dialog="guia/asura"),
     btn(txt("Agua III", "#4fd8e8"), dialog="guia/agua"),
+    btn(txt("Minero y Talador", "#8a5530"), dialog="guia/oficios"),
     btn(txt("23 mascotas", "#006e78"), dialog="guia/mascotas_1"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
@@ -2011,6 +2015,8 @@ KITS = [
       ("gancho", "gancho_realista", "guadana_umbria", "guantes_meteoro")]),
     ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
      [i for i in ITEMS if i.startswith(("taladro_", "motosierra_"))]),
+    ("oficios", "Ropa de Minero y Talador", "gold", "minecraft:brown_shulker_box",
+     [i for i in ITEMS if i.startswith(("minero_", "talador_"))]),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:
@@ -2244,6 +2250,9 @@ for set_id, bonus in SET_BONUS.items():
         for (eff, secs, lvl) in fx.get("kill", []):
             set_kill.append(f"execute if score @s {obj} matches {npz}.. run effect give @s minecraft:{eff} {secs} {lvl}")
 fn("set/check", set_check)
+from oficios import check_lines as oficios_check, load_lines as oficios_load
+fn("oficios/check", oficios_check())
+load += oficios_load()
 fn("set/kill", set_kill + ["scoreboard players set @s astral.kills 0"])
 load.append("scoreboard objectives add astral.kills minecraft.custom:minecraft.mob_kills")
 
@@ -2385,6 +2394,7 @@ fn("loop/t20", [
     f"execute as @e[scores={{astral.bleed=1..}}] at @s run function {NS}:fx/bleed_tick",
     f"execute as @a run function {NS}:upgrade/check",
     f"execute as @a run function {NS}:set/check",
+    f"execute as @a run function {NS}:oficios/check",
     f"execute as @e[scores={{astral.rem=1..}}] at @s run function {NS}:fx/remate_tick",
     f"execute as @a run function {NS}:player/lvl",
     f"execute as @e[type=#{NS}:escalable,tag=!astral.seen] at @s run function {NS}:mob/roll",

@@ -4246,5 +4246,172 @@
     "group": "Agua",
     "table": true,
     "requirements": {}
+  },
+  {
+    "output": "minero_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:iron_ingot",
+        3
+      ],
+      [
+        "v",
+        "minecraft:lantern",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        1
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "minero_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cuero_tratado",
+        4
+      ],
+      [
+        "v",
+        "minecraft:iron_ingot",
+        2
+      ],
+      [
+        "v",
+        "minecraft:coal",
+        4
+      ]
+    ],
+    "group": "Oficios",
+    "table": false,
+    "requirements": {}
+  },
+  {
+    "output": "minero_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "v",
+        "minecraft:copper_ingot",
+        4
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "minero_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "v",
+        "minecraft:iron_ingot",
+        2
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talador_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:green_wool",
+        3
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        1
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talador_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:red_wool",
+        4
+      ],
+      [
+        "v",
+        "minecraft:black_wool",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talador_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:blue_wool",
+        4
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
+  },
+  {
+    "output": "talador_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "v",
+        "minecraft:oak_log",
+        4
+      ]
+    ],
+    "group": "Oficios",
+    "table": true,
+    "requirements": {}
   }
 ]

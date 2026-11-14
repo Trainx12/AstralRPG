@@ -430,6 +430,8 @@ from tanda4b_world import own_textures as tanda4b_own_textures
 files.update(tanda4b_own_textures())
 from oceano_items import own_textures as oceano_own_textures
 files.update(oceano_own_textures())
+from oficios import own_textures as oficios_own_textures
+files.update(oficios_own_textures())
 from pack_audit import relocate_model_textures, audit
 # Errata del pack base de Stellarity: la textura existente se llama side_snow.
 snow_model='assets/stellarity/models/block/ender_grass_block_snowy.json'

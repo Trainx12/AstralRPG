@@ -1,0 +1,9 @@
+enable: true
+slot: 43
+title: Astral - Oficios
+item:
+  material: IRON_PICKAXE
+  name: '&6Oficios'
+  lore:
+  - '&7Ropa de Minero y de Talador.'
+  - '&e$800 a $1.200 por pieza, set $3.500.'

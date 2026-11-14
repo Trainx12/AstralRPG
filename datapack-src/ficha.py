@@ -189,7 +189,7 @@ def weapon_stats(source, level):
 def armor_stats(source, level):
     from items import ARMOR_SETS, ARMOR_VALUES, TOUGHNESS
     data = source['data']
-    tier = ({'stats': {}} if data['set'] in ('carnivora', 'agua') else ARMOR_SETS[data['set']]['tiers'][data['tier'] - 1])
+    tier = ({'stats': {}} if data['set'] in ('carnivora', 'agua', 'minero', 'talador') else ARMOR_SETS[data['set']]['tiers'][data['tier'] - 1])
     st = tier['stats']
     piece = data['piece']
     q = 4  # cada pieza da 1/4 del bonus del set

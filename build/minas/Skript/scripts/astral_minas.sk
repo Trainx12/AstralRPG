@@ -1042,6 +1042,11 @@ on uncancelled break with priority monitor:
     set {_i} to am_id(location of event-block)
     am_count(player, {_i}, 1)
     set {_d::*} to drops of event-block using player's tool
+    # Ropa de Minero (oficios.py): con el set completo, 10% de mineral extra.
+    if scoreboard tags of player contains "astral.ofi_minero":
+        if {_d::1} is set:
+            chance of 10%:
+                add {_d::1} to {_d::*}
     clear drops
     am_give(player, {_d::*})
     if player is sneaking:

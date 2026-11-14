@@ -635,6 +635,13 @@ def main():
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
     menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in (2, 3, 4)})
+    import oficios
+    menus["oficios"] = oficios.menu_yaml(item, menu, q, money, requisito_plata)
+    import yaml
+    for rel, data in oficios.shop_files().items():
+        dest = os.path.join(HERE, "..", "build", "shop", "EconomyShopGUI", rel)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        open(dest, "w", encoding="utf-8").write(yaml.safe_dump(data, allow_unicode=True, sort_keys=False))
     for k, txt in menus.items():
         open(os.path.join(OUT, "gui_menus", f"{k}.yml"), "w", encoding="utf-8").write(txt)
     lista = ["# Pegar dentro de plugins/DeluxeMenus/config.yml, en 'gui_menus:' (generado por datapack-src/menus.py)", "gui_menus:"]

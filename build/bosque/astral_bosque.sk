@@ -169,6 +169,15 @@ on uncancelled break with priority monitor:
     loop {_d::*}:
         if "%type of loop-value%" contains "log" or "stem" or "wood":
             rk_sumar(player, "bosque", item amount of loop-value)
+    # Ropa de Talador (oficios.py): con el set completo, 20% de tronco extra.
+    if scoreboard tags of player contains "astral.ofi_talador":
+        chance of 20%:
+            loop {_d::*}:
+                if "%type of loop-value%" contains "log" or "stem" or "wood":
+                    set {_extra} to loop-value
+            if {_extra} is set:
+                add {_extra} to {_d::*}
+                rk_sumar(player, "bosque", item amount of {_extra})
     clear drops
     am_give(player, {_d::*})
 

@@ -78,6 +78,8 @@ gui_menus:
     file: mascotas_3.yml
   mascotas_4:
     file: mascotas_4.yml
+  oficios:
+    file: oficios.yml
   mazmorras:
     file: mazmorras.yml
   cofre_mina:
