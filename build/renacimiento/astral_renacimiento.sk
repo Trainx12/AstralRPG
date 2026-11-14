@@ -1,0 +1,402 @@
+# Generado por datapack-src/renacimiento.py. No editar a mano (docs/DESEOS_Y_RANKINGS.md).
+# Trainx (jefe final), Renacimiento, Deseos y Deseo lite del Cronista.
+
+options:
+    tope: 25000000
+    topelite: 6250000
+
+# ------------------------------------------------------------------ Trainx
+# MythicMobs (mobs/trainx.py) llama estos comandos desde la consola con el nombre del mundo.
+command /trainxinicio <text>:
+    executable by: console
+    trigger:
+        set {-trainx.ini::%arg-1%} to unix timestamp of now
+        set {_w} to world(arg-1)
+        set {_n} to 0
+        loop all players in {_w}:
+            gamemode of loop-player is survival or adventure
+            add 1 to {_n}
+        if {_n} < 4:
+            loop all players in {_w}:
+                send "&5✦ &dTrainx esta pensado para &f4 jugadores tier V&d. Son &f%{_n}%&d: va a ser muy duro." to loop-player
+
+command /trainxfin <text>:
+    executable by: console
+    trigger:
+        set {_w} to world(arg-1)
+        set {_seg} to (unix timestamp of now) - ({-trainx.ini::%arg-1%} ? unix timestamp of now)
+        delete {-trainx.ini::%arg-1%}
+        loop all players in {_w}:
+            gamemode of loop-player is survival or adventure
+            add loop-player to {_ps::*}
+            execute console command "lp user %name of loop-player% permission set astral.trainx.vencido true"
+            trainx_mensaje(loop-player)
+        if size of {_ps::*} > 0:
+            rk_trainx({_seg}, {_ps::*})
+
+function trainx_mensaje(p: player):
+    send title "&d&lTrainx cayo" with subtitle "&7la estrella te esta mirando" to {_p} for 4 seconds
+    play sound "ui.toast.challenge_complete" to {_p}
+    wait 3 seconds
+    send "&5&o Trainx cae de rodillas, y por primera vez sonrie." to {_p}
+    wait 1 second
+    send "&d«Bien peleado, viajero. Pero esto no es el final:" to {_p}
+    wait 1 second
+    send "&d es apenas la primera vuelta del camino." to {_p}
+    wait 1 second
+    send "&d Los fragmentos de la estrella todavia laten en tu bolsa:" to {_p}
+    wait 1 second
+    send "&d la Marea, el Pantano, la Arena, la Lampara, el Hielo, el Fuego..." to {_p}
+    wait 1 second
+    send "&d y el Corazon Astral. Juntalos todos y volve a la luz." to {_p}
+    wait 1 second
+    send "&d Con ellos vas a poder &f&lrenacer&d: empezar de nuevo," to {_p}
+    wait 1 second
+    send "&d con un mundo mas fiero que antes y forjas que todavia nadie toco," to {_p}
+    wait 1 second
+    send "&d armas y armaduras de tiers que hoy duermen." to {_p}
+    wait 1 second
+    send "&d Y a quien se anima a renacer, la estrella le concede &f&lun deseo&d.»" to {_p}
+    wait 1 second
+    execute console command "tellraw %name of {_p}% {text:'[Ver mis fragmentos]',color:'aqua',click_event:{action:'run_command',command:'/fragmentos'},hover_event:{action:'show_text',value:'Abrir tus Fragmentos Astrales'}}"
+
+# ------------------------------------------------------------------ Renacimiento
+function astral_renac(p: player) :: number:
+    return {astral.renac::%uuid of {_p}%} ? 0
+
+function astral_renacer_listo(p: player) :: boolean:
+    if {_p} does not have permission "astral.fragmento.marea":
+        return false
+    if {_p} does not have permission "astral.fragmento.pantano":
+        return false
+    if {_p} does not have permission "astral.fragmento.arena":
+        return false
+    if {_p} does not have permission "astral.fragmento.lampara":
+        return false
+    if {_p} does not have permission "astral.fragmento.hielo":
+        return false
+    if {_p} does not have permission "astral.fragmento.fuego":
+        return false
+    if {_p} does not have permission "astral.fragmento.corazon":
+        return false
+    if {_p} does not have permission "astral.trainx.vencido":
+        return false
+    return true
+
+function astral_renacer_falta(p: player):
+    if {_p} does not have permission "astral.fragmento.marea":
+        add "marea" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.pantano":
+        add "pantano" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.arena":
+        add "arena" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.lampara":
+        add "lampara" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.hielo":
+        add "hielo" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.fuego":
+        add "fuego" to {_f::*}
+    if {_p} does not have permission "astral.fragmento.corazon":
+        add "corazon" to {_f::*}
+    if size of {_f::*} > 0:
+        set {_txt} to join {_f::*} with ", "
+        send "&cTe faltan fragmentos: &f%{_txt}%&c. Miralos en &f/fragmentos&c." to {_p}
+    if {_p} does not have permission "astral.trainx.vencido":
+        send "&cTodavia no venciste a &d&lTrainx&c, al final del Santuario Celestial." to {_p}
+
+command /astralrenacer [<text>]:
+    executable by: players
+    trigger:
+        if astral_renacer_listo(player) is false:
+            astral_renacer_falta(player)
+            play sound "entity.villager.no" to player
+            stop
+        if arg-1 is not "confirmar":
+            execute console command "dm open renacer %name of player%"
+            stop
+        astral_renacer(player)
+
+function astral_renacer(p: player):
+    set {_id} to uuid of {_p}
+    set {_n} to name of {_p}
+    add 1 to {astral.renac::%{_id}%}
+    set {_r} to {astral.renac::%{_id}%}
+    set {-renac::%{_id}%} to {_r}
+    # Fragmentos, Trainx y cooldowns de las mazmorras: todo se vuelve a conseguir.
+    execute console command "lp user %{_n}% permission unset astral.fragmento.marea"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.pantano"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.arena"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.lampara"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.hielo"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.fuego"
+    execute console command "lp user %{_n}% permission unset astral.fragmento.corazon"
+    execute console command "lp user %{_n}% permission unset astral.trainx.vencido"
+    execute console command "lp user %{_n}% permission unset astral.mina.cd"
+    execute console command "lp user %{_n}% permission unset astral.bosque.cd"
+    execute console command "lp user %{_n}% permission unset astral.tumba.cd"
+    execute console command "lp user %{_n}% permission unset astral.cumbre.cd"
+    execute console command "lp user %{_n}% permission unset astral.forja.cd"
+    execute console command "lp user %{_n}% permission unset astral.santuario.cd"
+    # Historia del Cronista (las diarias no se tocan).
+    execute console command "scoreboard players reset %{_n}% aq.state"
+    execute console command "scoreboard players reset %{_n}% aq.accepted"
+    execute console command "scoreboard players reset %{_n}% aq.herrero"
+    execute console command "scoreboard players reset %{_n}% aq.forge1"
+    execute console command "scoreboard players reset %{_n}% aq.forge5"
+    execute console command "scoreboard players reset %{_n}% aq.scare"
+    execute console command "scoreboard players reset %{_n}% aq.bee"
+    execute console command "scoreboard players reset %{_n}% aq.face"
+    execute console command "scoreboard players reset %{_n}% aq.helite"
+    execute console command "scoreboard players reset %{_n}% aq.f1"
+    execute console command "scoreboard players reset %{_n}% aq.f2"
+    execute console command "scoreboard players reset %{_n}% aq.f3"
+    execute console command "scoreboard players reset %{_n}% aq.f4"
+    execute console command "scoreboard players reset %{_n}% aq.f5"
+    execute console command "scoreboard players reset %{_n}% aq.f6"
+    execute console command "tag %{_n}% remove aq.title"
+    # Minas Astrales: vuelve a la primera.
+    delete {am.rank::%{_id}%}
+    delete {am.blocks::%{_id}%}
+    delete {am.minutes::%{_id}%}
+    delete {-am.b::%{_id}%}
+    # Plata a 0, insignia y contador para PlaceholderAPI.
+    execute console command "eco set %{_n}% 0"
+    execute console command "lp user %{_n}% meta set astral_renacimiento %{_r}%"
+    execute console command "lp user %{_n}% meta setsuffix 50 "" &d✦%{_r}%"""
+    set {astral.deseo.tiene::%{_id}%} to "completo"
+    send title "&d&lRenaciste" with subtitle "&7Renacimiento &f%{_r}%&7: el mundo ahora es mas fiero" to {_p} for 5 seconds
+    play sound "entity.wither.death" with volume 0.6 to {_p}
+    play sound "ui.toast.challenge_complete" to {_p}
+    execute console command "execute at %{_n}% run particle minecraft:end_rod ~ ~1 ~ 1 2 1 0.1 300 force"
+    broadcast "&5✦ &d%{_n}% &frenacio por &d%{_r}%&f° vez. &7La estrella lo mira de nuevo."
+    wait 4 seconds
+    send "&d«Volviste a empezar, pero no sos el mismo. Pedi tu deseo.»" to {_p}
+    astral_deseo_abrir({_p})
+
+# Dificultad personal: mobs x(N+2) de vida y dano. Se usa el renacimiento mas alto cerca (grupos).
+function astral_renac_cerca(l: location) :: number:
+    set {_m} to 0
+    loop all players in radius 32 around {_l}:
+        set {_r} to {-renac::%uuid of loop-player%} ? 0
+        if {_r} > {_m}:
+            set {_m} to {_r}
+    return {_m}
+
+on join:
+    set {-renac::%uuid of player%} to {astral.renac::%uuid of player%} ? 0
+
+on damage of player with priority highest:
+    attacker is set
+    attacker is not a player
+    set {_r} to astral_renac_cerca(location of victim)
+    {_r} > 0
+    set damage to damage * ({_r} + 2)
+
+on damage with priority highest:
+    victim is not a player
+    attacker is a player
+    set {_r} to astral_renac_cerca(location of victim)
+    {_r} > 0
+    set damage to damage / ({_r} + 2)
+
+# ------------------------------------------------------------------ Deseos
+function astral_deseo_abrir(p: player):
+    set {_t} to {astral.deseo.tiene::%uuid of {_p}%}
+    if {_t} is "completo":
+        execute console command "dm open deseo %name of {_p}%"
+    else if {_t} is "lite":
+        execute console command "dm open deseo_lite %name of {_p}%"
+    else:
+        send "&7No tenes ningun deseo para pedir." to {_p}
+
+command /deseo:
+    executable by: players
+    trigger:
+        astral_deseo_abrir(player)
+
+command /astraldeseo <text> <text>:
+    executable by: players
+    trigger:
+        if {astral.deseo.tiene::%uuid of player%} is not arg-1:
+            send "&cNo tenes ese deseo disponible." to player
+            stop
+        set {_ok} to false
+        if arg-1 is "completo":
+            if arg-2 is "plata":
+                set {_ok} to true
+            if arg-2 is "tier":
+                set {_ok} to true
+            if arg-2 is "arma":
+                set {_ok} to true
+            if arg-2 is "personalizada":
+                set {_ok} to true
+            if arg-2 is "otro":
+                set {_ok} to true
+        if arg-1 is "lite":
+            if arg-2 is "plata":
+                set {_ok} to true
+            if arg-2 is "tier":
+                set {_ok} to true
+            if arg-2 is "tiradas":
+                set {_ok} to true
+            if arg-2 is "arma":
+                set {_ok} to true
+            if arg-2 is "cosmetico":
+                set {_ok} to true
+        if {_ok} is false:
+            stop
+        set {-deseo.cat::%uuid of player%} to arg-2
+        if arg-2 is "plata":
+            if arg-1 is "completo":
+                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e25.000.000$&7)." to player
+            else:
+                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e6.250.000$&7)." to player
+        else:
+            send "&dEscribi tu deseo en el chat, bien explicado &7(un solo mensaje)." to player
+        send "&7Para volver a la ventana, escribi &fcancelar&7." to player
+
+on chat:
+    set {_c} to {-deseo.cat::%uuid of player%}
+    {_c} is set
+    cancel event
+    set {_m} to message
+    wait 1 tick
+    if {_m} is "cancelar":
+        delete {-deseo.cat::%uuid of player%}
+        astral_deseo_abrir(player)
+        stop
+    set {_t} to {astral.deseo.tiene::%uuid of player%}
+    if {_t} is not set:
+        delete {-deseo.cat::%uuid of player%}
+        stop
+    if {_c} is "plata":
+        set {_s} to {_m}
+        replace all "." and "," and "$" and " " with "" in {_s}
+        set {_v} to {_s} parsed as integer
+        if {_t} is "completo":
+            set {_max} to {@tope}
+        else:
+            set {_max} to {@topelite}
+        if {_v} is not set:
+            send "&cEso no es un numero. Escribi solo la cantidad (o &fcancelar&c)." to player
+            stop
+        if {_v} < 1:
+            send "&cTiene que ser mas que 0." to player
+            stop
+        if {_v} > {_max}:
+            send "&cTe pasaste del tope (&e%{_max}%$&c). Escribi otra cantidad." to player
+            stop
+        set {_m} to "%{_v}%$"
+    add 1 to {astral.deseos.n}
+    set {_k} to {astral.deseos.n}
+    set {astral.deseos::%{_k}%::jugador} to name of player
+    set {astral.deseos::%{_k}%::uuid} to uuid of player
+    set {astral.deseos::%{_k}%::tipo} to {_t}
+    set {astral.deseos::%{_k}%::cat} to {_c}
+    set {astral.deseos::%{_k}%::texto} to {_m}
+    set {astral.deseos::%{_k}%::fecha} to now
+    set {astral.deseos::%{_k}%::renac} to astral_renac(player)
+    set {astral.deseos::%{_k}%::estado} to "pendiente"
+    set {astral.deseos.pend::%{_k}%} to {_k}
+    delete {-deseo.cat::%uuid of player%}
+    delete {astral.deseo.tiene::%uuid of player%}
+    send "&d✦ Tu deseo quedo anotado &7(#%{_k}%)&d. El Admin lo va a revisar; te avisamos aca." to player
+    play sound "block.amethyst_block.resonate" to player
+    loop all players:
+        loop-player has permission "astral.admin.deseos"
+        send "&5[Deseos] &fNuevo deseo &d#%{_k}% &fde &e%name of player%&f (%{_t}%, %{_c}%): &7%{_m}%" to loop-player
+        execute console command "tellraw %name of loop-player% {text:'[Ver pendientes]',color:'light_purple',click_event:{action:'run_command',command:'/deseos'}}"
+
+function deseo_linea(admin: player, k: text):
+    set {_j} to {astral.deseos::%{_k}%::jugador}
+    set {_t} to {astral.deseos::%{_k}%::tipo}
+    set {_c} to {astral.deseos::%{_k}%::cat}
+    send "&d#%{_k}% &e%{_j}% &8(%{_t}%, %{_c}%, renacimiento %{astral.deseos::%{_k}%::renac}%) &f%{astral.deseos::%{_k}%::texto}%" to {_admin}
+    execute console command "tellraw %name of {_admin}% ['  ',{text:'[Aprobar]',color:'green',click_event:{action:'run_command',command:'/deseos aprobar %{_k}%'}},' ',{text:'[Rechazar]',color:'red',click_event:{action:'suggest_command',command:'/deseos rechazar %{_k}% '}}]"
+
+command /deseos [<text>] [<text>] [<text>]:
+    permission: astral.admin.deseos
+    trigger:
+        if arg-1 is not set:
+            send "&5&l--- Deseos pendientes ---" to player
+            set {_c} to 0
+            loop {astral.deseos.pend::*}:
+                add 1 to {_c}
+                deseo_linea(player, "%loop-value%")
+            if {_c} is 0:
+                send "&7No hay deseos pendientes." to player
+            send "&7Aprobar no entrega nada: cumplilo a mano. Historial: &f/deseos historial" to player
+            stop
+        if arg-1 is "historial":
+            set {_n} to {astral.deseos.n} ? 0
+            set {_d} to max(1, {_n} - 14)
+            loop ({_n} - {_d} + 1) times:
+                set {_k} to {_d} + loop-number - 1
+                {astral.deseos::%{_k}%::jugador} is set
+                send "&d#%{_k}% &e%{astral.deseos::%{_k}%::jugador}% &8%{astral.deseos::%{_k}%::estado}% &7%{astral.deseos::%{_k}%::texto}%" to player
+            stop
+        set {_k} to arg-2
+        if {astral.deseos.pend::%{_k}%} is not set:
+            send "&cEse deseo no esta pendiente." to player
+            stop
+        set {_u} to {astral.deseos::%{_k}%::uuid}
+        if arg-1 is "aprobar":
+            set {astral.deseos::%{_k}%::estado} to "aprobado"
+            delete {astral.deseos.pend::%{_k}%}
+            deseo_aviso({_u}, "&a✦ Tu deseo #%{_k}% fue &laprobado&a. El Admin lo va a cumplir pronto.")
+            send "&aDeseo #%{_k}% aprobado. Recorda cumplirlo a mano." to player
+        else if arg-1 is "rechazar":
+            set {_mot} to arg-3 ? "sin motivo"
+            set {astral.deseos::%{_k}%::estado} to "rechazado: %{_mot}%"
+            delete {astral.deseos.pend::%{_k}%}
+            # Puede volver a pedir otro deseo del mismo tipo.
+            set {astral.deseo.tiene::%{_u}%} to {astral.deseos::%{_k}%::tipo}
+            deseo_aviso({_u}, "&c✦ Tu deseo #%{_k}% fue rechazado (&f%{_mot}%&c). Podes pedir otro con &f/deseo&c.")
+            send "&eDeseo #%{_k}% rechazado." to player
+
+function deseo_aviso(u: text, m: text):
+    loop all players:
+        "%uuid of loop-player%" is {_u}
+        send {_m} to loop-player
+        play sound "block.note_block.chime" to loop-player
+        stop
+    add {_m} to {astral.deseos.aviso::%{_u}%::*}
+
+on join:
+    wait 5 seconds
+    player is online
+    loop {astral.deseos.aviso::%uuid of player%::*}:
+        send loop-value to player
+    delete {astral.deseos.aviso::%uuid of player%::*}
+    if player has permission "astral.admin.deseos":
+        set {_c} to size of {astral.deseos.pend::*}
+        if {_c} > 0:
+            send "&5[Deseos] &fHay &d%{_c}% &fdeseos esperando tu respuesta." to player
+            execute console command "tellraw %name of player% {text:'[Ver pendientes]',color:'light_purple',click_event:{action:'run_command',command:'/deseos'}}"
+    if {astral.deseo.tiene::%uuid of player%} is set:
+        send "&d✦ Tenes un deseo sin pedir." to player
+        execute console command "tellraw %name of player% {text:'[Pedir mi deseo]',color:'light_purple',click_event:{action:'run_command',command:'/deseo'},hover_event:{action:'show_text',value:'Abrir la ventana del deseo'}}"
+
+# ------------------------------------------------------------------ Deseo lite (fin de la historia)
+# misiones.py pone la etiqueta aq.deseo_lite al terminar el epilogo.
+every 3 seconds:
+    loop all players:
+        scoreboard tags of loop-player contains "aq.deseo_lite"
+        remove "aq.deseo_lite" from scoreboard tags of loop-player
+        deseo_lite(loop-player)
+
+function deseo_lite(p: player):
+    if {astral.deseo.tiene::%uuid of {_p}%} is not "completo":
+        set {astral.deseo.tiene::%uuid of {_p}%} to "lite"
+    wait 4 seconds
+    send "&b&o El Cronista cierra el libro con cuidado, como si pudiera romperse." to {_p}
+    wait 1 second
+    send "&3«La historia termino, y la escribiste vos." to {_p}
+    wait 1 second
+    send "&3 Antes de que la tinta se seque, te debo algo:" to {_p}
+    wait 1 second
+    send "&3 un deseo pequeno, de los que caben en una pagina.»" to {_p}
+    wait 1 second
+    execute console command "tellraw %name of {_p}% {text:'[Pedir mi deseo]',color:'light_purple',click_event:{action:'run_command',command:'/deseo'},hover_event:{action:'show_text',value:'Abrir la ventana del deseo'}}"
+    wait 2 seconds
+    astral_deseo_abrir({_p})

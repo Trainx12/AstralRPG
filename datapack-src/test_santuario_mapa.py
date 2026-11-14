@@ -51,7 +51,8 @@ class SantuarioMapTests(unittest.TestCase):
         self.assertTrue(any('coloso_musgoso_eco' in line for line in summons))
         self.assertTrue(any('golem_forja_eco' in line for line in summons))
         self.assertEqual(len(summons),5)  # la 6ta es un ZOMBIE vanilla provisorio
-        self.assertTrue(any('summon{type=ZOMBIE;' in line for value in skills.values() for line in value['Skills']))
+        # La oleada 6 ya no es un ZOMBIE provisorio: es el jefe final Trainx (14/11/2026).
+        self.assertTrue(any('summon{type=astral_santuario_trainx;' in line for value in skills.values() for line in value['Skills']))
         for line,point in zip(summons,BOSSES[:5],strict=True):
             self.assertIn('onSurface=false',line)
             self.assertIn('x=%s;y=%s;z=%s' % point,line)

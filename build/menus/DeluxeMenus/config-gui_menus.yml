@@ -94,6 +94,12 @@ gui_menus:
     file: cofre_santuario.yml
   fragmentos:
     file: fragmentos.yml
+  renacer:
+    file: renacer.yml
+  deseo:
+    file: deseo.yml
+  deseo_lite:
+    file: deseo_lite.yml
   expediciones:
     file: expediciones.yml
   portales:

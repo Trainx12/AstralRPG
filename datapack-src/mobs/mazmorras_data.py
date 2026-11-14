@@ -168,6 +168,13 @@ def catalog():
                     # Mob vanilla provisorio (lugar del jefe nuevo que todavia no existe).
                     waves.append([(source, 1, 0)])
                     continue
+                if source == 'trainx':
+                    # Jefe final (el dueno): vida y dano propios, sin los factores por oleada de abajo.
+                    from mobs.trainx import mob_block as trainx_block
+                    mid, block, add = trainx_block()
+                    blocks.append(block); helpers.update(add)
+                    waves.append([(mid, 1, 0)])
+                    continue
                 if source == 'coloso_musgoso':
                     mid, block, add = coloso_santuario()
                 else:

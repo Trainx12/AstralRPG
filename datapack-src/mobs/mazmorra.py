@@ -464,6 +464,8 @@ def main():
         folder = os.path.join(OUT, "mazmorras", dungeon["key"])
         os.makedirs(folder, exist_ok=True)
         open(os.path.join(folder, "comandos.txt"), "w", encoding="utf-8").write(commands(dungeon))
+    from mobs.trainx import write_skills as trainx_skills
+    trainx_skills(OUT)
     print(f"mazmorra: {len(MOBS)} mobs, {len(SALAS)} salas")
     generate_arena()
 

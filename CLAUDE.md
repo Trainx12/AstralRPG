@@ -37,6 +37,9 @@ python duelos.py                   # Duelos dentro de /arenas: /desafiar (Skript
 python oceano_fosa.py              # Fosa del Crustaceo: jefe (MythicMobs) y comandos; la arena (terceros) vive en .local/acuatico
 python oceano.py --java <java25>   # Oceano Astral: plugin AstralOceano (generador, sin aire, /oceano, regenera c/3 dias) + aviso
 python menus.py                    # menus de cofre (DeluxeMenus): /menu, /mascotas, gachas, bazar, cofre del jefe y /fragmentos
+python mobs/trainx.py              # jefe final Trainx (modelo privado con la skin del dueno); la pelea sale con mobs/mazmorra.py
+python renacimiento.py             # renacimiento, deseos (/deseo, /deseos) y deseo lite del Cronista
+python rankings.py                 # rankings semanales (parkour, Infinita, Trainx, Minas, Bosque), carteles y /trofeos
 ```
 
 ## Trampas conocidas

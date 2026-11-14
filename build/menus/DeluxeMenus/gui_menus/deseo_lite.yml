@@ -1,0 +1,134 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "plata": {
+      "material": "GOLD_INGOT",
+      "slot": 20,
+      "display_name": "&e&lPlata",
+      "lore": [
+        "&7Hasta &e6.250.000$&7.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo lite plata"
+      ]
+    },
+    "tier": {
+      "material": "ANVIL",
+      "slot": 21,
+      "display_name": "&d&lSubir 1 tier a 2 piezas",
+      "lore": [
+        "&7Dos piezas de tu equipo",
+        "&7(armas o armadura).",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo lite tier"
+      ]
+    },
+    "tiradas": {
+      "material": "CHEST",
+      "slot": 22,
+      "display_name": "&6&l10 tiradas gratis",
+      "lore": [
+        "&7De UNA gacha a eleccion:",
+        "&7Armas, Monturas o Cosmeticos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo lite tiradas"
+      ]
+    },
+    "arma": {
+      "material": "IRON_SWORD",
+      "slot": 23,
+      "display_name": "&b&lUn arma o armadura Astral",
+      "lore": [
+        "&7Una que ya exista,",
+        "&7de tu tier actual.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo lite arma"
+      ]
+    },
+    "cosmetico": {
+      "material": "LEATHER_HELMET",
+      "slot": 24,
+      "display_name": "&a&lUn cosmetico",
+      "lore": [
+        "&7Uno de la gacha de Cosmeticos",
+        "&7a eleccion.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo lite cosmetico"
+      ]
+    },
+    "reglas": {
+      "material": "BOOK",
+      "slot": 40,
+      "display_name": "&6&lReglas del deseo",
+      "lore": [
+        "&c&lNo se puede pedir:",
+        "&7- Creativo o cambiar de modo de juego.",
+        "&7- OP, permisos o comandos de admin.",
+        "&7- Desbloquear todos los tiers o mazmorras.",
+        "&7- Subir skills (AuraSkills).",
+        "&7- Mas deseos.",
+        "&7- Plata por encima del tope.",
+        "&7- Cosas que no existen en el server.",
+        "&7- Quitarle algo o perjudicar a otro jugador.",
+        "&7- Un arma personalizada o el deseo completo.",
+        "&7- Nada ofensivo.",
+        "",
+        "&e&lTodos los deseos los revisa el Admin,",
+        "&eaunque no rompan ninguna regla.",
+        "&7Puede rechazarlo o pedirte que lo cambies."
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "lore": [
+        "&7Tu deseo te espera: &f/deseo"
+      ],
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    }
+  }
+}

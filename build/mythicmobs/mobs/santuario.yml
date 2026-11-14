@@ -15,12 +15,12 @@ astral_santuario_control_sala1:
     Collidable: false
   Skills:
   - 'skill{s=SANTUARIO_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=150} ?!hastag{tag=santuario.on}'
-  - 'skill{s=SANTUARIO_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=santuario.ola1} ?!hastag{tag=santuario.ola2} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=santuario.ola2} ?!hastag{tag=santuario.ola3} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=santuario.ola3} ?!hastag{tag=santuario.ola4} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA5} @self ~onTimer:20 ?hastag{tag=santuario.ola4} ?!hastag{tag=santuario.ola5} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_OLA6} @self ~onTimer:20 ?hastag{tag=santuario.ola5} ?!hastag{tag=santuario.ola6} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
-  - 'skill{s=SANTUARIO_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=santuario.ola6} ?!hastag{tag=santuario.fin} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=santuario.ola1} ?!hastag{tag=santuario.ola2} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=santuario.ola2} ?!hastag{tag=santuario.ola3} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=santuario.ola3} ?!hastag{tag=santuario.ola4} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA5} @self ~onTimer:20 ?hastag{tag=santuario.ola4} ?!hastag{tag=santuario.ola5} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_OLA6} @self ~onTimer:20 ?hastag{tag=santuario.ola5} ?!hastag{tag=santuario.ola6} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
+  - 'skill{s=SANTUARIO_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=santuario.ola6} ?!hastag{tag=santuario.fin} ?!hastag{tag=santuario.espera} ?mobsinradius{types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti;a=0;r=158}'
   - 'skill{s=SANTUARIO_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=santuario.on} ?!playerwithin{d=158}'
 
 astral_santuario_cofre:
@@ -510,3 +510,74 @@ astral_santuario_golem_forja_eco:
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
   - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+
+astral_santuario_trainx:
+  Type: ZOMBIE
+  Display: '&d&lTrainx'
+  Health: 68250000
+  Damage: 36
+  Armor: 12
+  Options:
+    Glowing: true
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    Silent: true
+    Despawn: false
+    MovementSpeed: 0.31
+    KnockbackResistance: 1
+    FollowRange: 48
+    PreventRandomEquipment: true
+    Baby: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&5✦ Tier V+ ✦ &d&lTrainx'
+    Range: 64
+    Color: PURPLE
+    Style: SEGMENTED_20
+  Drops:
+  - exp 600
+  Skills:
+  - 'skill{s=TRAINX_MODELO} @self ~onSpawn'
+  - 'skill{s=TRAINX_MODELO} @self ~onLoad'
+  - 'skill{s=TRAINX_APARECE} @self ~onSpawn'
+  - 'command{c="trainxinicio <caster.l.w>"} @self ~onSpawn'
+  - 'state{s=attack} @self ~onAttack'
+  - 'skill{s=TRAINX_COMBO} @self ~onTimer:60 ?playerwithin{d=6}'
+  - 'skill{s=TRAINX_BARRIDO} @self ~onTimer:220 ?playerwithin{d=7}'
+  - 'skill{s=TRAINX_RAYO} @PlayersInRing{min=6;max=40} ~onTimer:40'
+  - 'skill{s=TRAINX_LLUVIA} @self ~onTimer:300 ?playerwithin{d=40}'
+  - 'skill{s=TRAINX_DASH} @PlayersInRing{min=12;max=40;sort=FURTHEST;limit=1} ~onTimer:300'
+  - 'skill{s=TRAINX_FASE2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=trainx.f2}'
+  - 'skill{s=TRAINX_FASE3} @self ~onDamaged ?healthpercent{p=<0.3} ?!hastag{tag=trainx.f3}'
+  - 'skill{s=TRAINX_LLUVIA} @self ~onTimer:180 ?hastag{tag=trainx.f2} ?playerwithin{d=40}'
+  - 'skill{s=TRAINX_RAYO} @PlayersInRing{min=6;max=40} ~onTimer:25 ?hastag{tag=trainx.f3}'
+  - 'skill{s=TRAINX_RESET} @self ~onTimer:600 ?!playerwithin{d=48}'
+  - 'teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}'
+  - 'teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=48}'
+  - 'skill{s=TRAINX_MUERE} @self ~onDeath'
+
+astral_trainx_estrella:
+  Type: ARMOR_STAND
+  Display: 'Estrella'
+  Health: 1
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    NoGravity: true
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    AlwaysShowName: false
+  Skills:
+  - 'skill{s=TRAINX_ESTRELLA} @self ~onSpawn'
+

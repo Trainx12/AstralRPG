@@ -274,7 +274,8 @@ def generate(files, items):
     complete(6, 2500)
     complete(7, 3000, ["loot give @s loot astral:item/chispa_astral"])
     complete(8, 5000)
-    complete(9, 10000, ["tag @s add aq.title", "particle minecraft:firework ~ ~4 ~ 2 3 2 0.1 100", "playsound minecraft:ui.toast.challenge_complete player @s ~ ~ ~ 1 1",
+    # aq.deseo_lite: renacimiento.py (Skript) abre el deseo lite del Cronista.
+    complete(9, 10000, ["tag @s add aq.title", "tag @s add aq.deseo_lite", "particle minecraft:firework ~ ~4 ~ 2 3 2 0.1 100", "playsound minecraft:ui.toast.challenge_complete player @s ~ ~ ~ 1 1",
                          msg("La Estrella Astral vuelve a brillar. Sos Portador de la Estrella. El Santuario Celestial esta abierto.", "gold")])
     fn("chapter/1", ["execute if score @s aq.herrero matches 1 if score @s aq.forge1 matches 1 run return run " + call("complete/1"), msg(CHAPTERS[0])])
     pred = '*[minecraft:custom_data~{astral:{id:"esencia_elite"}}]'

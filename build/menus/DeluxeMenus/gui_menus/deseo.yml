@@ -1,0 +1,137 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "plata": {
+      "material": "GOLD_BLOCK",
+      "slot": 20,
+      "display_name": "&e&lPlata",
+      "lore": [
+        "&7Hasta &e25.000.000$&7.",
+        "&8(lo que cuesta la ultima mina astral)",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo completo plata"
+      ]
+    },
+    "tier": {
+      "material": "NETHERITE_UPGRADE_SMITHING_TEMPLATE",
+      "slot": 21,
+      "display_name": "&d&lSubir 1 tier todo tu equipo",
+      "lore": [
+        "&7Armas y armadura que tengas.",
+        "&8Si ya es tier V, queda anotado",
+        "&8para cuando lleguen los tiers nuevos.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo completo tier"
+      ]
+    },
+    "arma": {
+      "material": "DIAMOND_SWORD",
+      "slot": 22,
+      "display_name": "&b&lUn arma o armadura Astral",
+      "lore": [
+        "&7Una que ya exista,",
+        "&7hasta tu tier +1.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo completo arma"
+      ]
+    },
+    "personalizada": {
+      "material": "NETHER_STAR",
+      "slot": 23,
+      "display_name": "&5&lArma personalizada",
+      "lore": [
+        "&7Nombre a eleccion y aspecto de un",
+        "&7modelo que ya exista. Dano de su",
+        "&7tier +1 como maximo y UNA",
+        "&7habilidad de las que ya existen.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo completo personalizada"
+      ]
+    },
+    "otro": {
+      "material": "WRITABLE_BOOK",
+      "slot": 24,
+      "display_name": "&f&lOtro deseo",
+      "lore": [
+        "&7Escribilo con tus palabras.",
+        "&7Tiene que respetar las reglas.",
+        "",
+        "&eClic para elegir."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES",
+        "HIDE_ADDITIONAL_TOOLTIP"
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astraldeseo completo otro"
+      ]
+    },
+    "reglas": {
+      "material": "BOOK",
+      "slot": 40,
+      "display_name": "&6&lReglas del deseo",
+      "lore": [
+        "&c&lNo se puede pedir:",
+        "&7- Creativo o cambiar de modo de juego.",
+        "&7- OP, permisos o comandos de admin.",
+        "&7- Desbloquear todos los tiers o mazmorras.",
+        "&7- Subir skills (AuraSkills).",
+        "&7- Mas deseos.",
+        "&7- Plata por encima del tope.",
+        "&7- Cosas que no existen en el server.",
+        "&7- Quitarle algo o perjudicar a otro jugador.",
+        "&7- Nada ofensivo.",
+        "",
+        "&e&lTodos los deseos los revisa el Admin,",
+        "&eaunque no rompan ninguna regla.",
+        "&7Puede rechazarlo o pedirte que lo cambies."
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "lore": [
+        "&7Tu deseo te espera: &f/deseo"
+      ],
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    }
+  }
+}

@@ -962,6 +962,8 @@ function am_can_break(b: block, p: player) :: boolean:
     return false
 
 function am_count(p: player, i: number, n: number):
+    # Ranking semanal de Minas (rankings.py): cuenta en cualquier mina.
+    rk_sumar({_p}, "minas", {_n})
     if {_i} is not am_rank({_p}):
         stop
     if {_i} is {-am.count} - 1:

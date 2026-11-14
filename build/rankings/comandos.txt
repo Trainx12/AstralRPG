@@ -1,0 +1,16 @@
+# Carteles de ranking (text_display). Generado por datapack-src/rankings.py.
+# Se actualizan solos cada 30 s con el script. Para moverlos: parado donde va, /ranking cartel <id>.
+kill @e[type=text_display,tag=astral_rank]
+execute in minecraft:parkour_spiral run summon text_display 0.5 -8.8 -5.0 {Tags:['astral_rank','astral_rank_parkour_spiral'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:parkour_spiral2 run summon text_display 0.5 56.2 -100.0 {Tags:['astral_rank','astral_rank_parkour_spiral2'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:parkour_paradise3 run summon text_display -33.5 133.2 763.0 {Tags:['astral_rank','astral_rank_parkour_paradise3'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:lobby run summon text_display 146.511 105.4 240.006 {Tags:['astral_rank','astral_rank_minas'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:lobby run summon text_display 180.5 101.5 182.5 {Tags:['astral_rank','astral_rank_infinita'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:lobby run summon text_display 186.5 101.5 182.5 {Tags:['astral_rank','astral_rank_trainx'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:santuario_azeroth run summon text_display 256.5 66.5 284.5 {Tags:['astral_rank','astral_rank_trainx'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+execute in minecraft:astral_bosque run summon text_display -7.5 67.4 56.5 {Tags:['astral_rank','astral_rank_bosque'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+# Metas de parkour: un OP parado en la meta de cada mapa:
+#   /ranking meta parkour_spiral
+#   /ranking meta parkour_spiral2
+#   /ranking meta parkour_paradise3
+# Titulos de ranking: /trofeos (el jugador los equipa ahi).

@@ -1,0 +1,136 @@
+# Generado por datapack-src/mobs/trainx.py: jefe final del Santuario (Trainx).
+
+TRAINX_MODELO:
+  Skills:
+  - 'addtag{tag=astral.seen} @self'
+  - 'addtag{tag=astral.vplus} @self'
+  - 'addtag{tag=astral.mt5} @self'
+  - 'model{m=astral_trainx;s=1} @self'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.5641"} @self'
+  - 'command{c="attribute <caster.uuid> minecraft:step_height base set 1.5"} @self'
+  - 'delay 2'
+  - 'command{c="execute as <caster.uuid> run function astral:mob/nombre_vplus"} @self'
+
+TRAINX_APARECE:
+  Skills:
+  - 'state{s=lluvia} @self'
+  - 'sound{s=entity.wither.spawn;v=2;p=0.8} @PlayersInRadius{r=64}'
+  - 'particles{p=end_rod;amount=200;hS=2;vS=6;y=4;speed=0.05} @self'
+  - 'particles{p=firework;amount=120;hS=3;vS=3;y=3;speed=0.1} @self'
+  - 'message{m="&5✦ &d&lTrainx &5✦ &7baja del cielo del Santuario, con la espada en una mano y el baston en la otra."} @PlayersInRadius{r=64}'
+  - 'message{m="&d«Llegaron muy lejos. Veamos si la estrella los eligio bien.»"} @PlayersInRadius{r=64}'
+
+TRAINX_COMBO:
+  Cooldown: 3
+  Skills:
+  - 'state{s=combo} @self'
+  - 'sound{s=entity.player.attack.sweep;v=1.5;p=0.7} @self'
+  - 'delay 5'
+  - 'particles{p=sweep_attack;amount=6;hS=2;vS=0.6;y=2} @self'
+  - 'damage{a=28} @PlayersInRadius{r=6}'
+  - 'delay 7'
+  - 'sound{s=entity.player.attack.strong;v=1.5;p=0.6} @self'
+  - 'particles{p=sweep_attack;amount=6;hS=2;vS=0.6;y=2} @self'
+  - 'damage{a=28} @PlayersInRadius{r=6}'
+  - 'throw{velocity=4;velocityY=1.5} @PlayersInRadius{r=4}'
+
+TRAINX_BARRIDO:
+  Cooldown: 8
+  Skills:
+  - 'state{s=barrido} @self'
+  - 'sound{s=block.beacon.power_select;v=2;p=0.6} @self'
+  - 'particlering{p=dust;color=#d0306a;size=2;radius=7;points=60;amount=1;y=0.2} @self'
+  - 'delay 6'
+  - 'particlering{p=dust;color=#d0306a;size=2;radius=7;points=60;amount=1;y=0.2} @self'
+  - 'delay 6'
+  - 'sound{s=entity.player.attack.sweep;v=2;p=0.5} @self'
+  - 'particles{p=sweep_attack;amount=20;hS=4;vS=0.4;y=1.5} @self'
+  - 'damage{a=30} @PlayersInRadius{r=7}'
+  - 'throw{velocity=8;velocityY=3} @PlayersInRadius{r=7}'
+
+TRAINX_RAYO:
+  Cooldown: 3
+  Skills:
+  - 'state{s=cast} @self'
+  - 'sound{s=block.amethyst_block.chime;v=2;p=0.6} @self'
+  - 'delay 10'
+  - 'sound{s=entity.illusioner.cast_spell;v=1.5;p=1.2} @self'
+  - 'projectile{onTick=TRAINX_RAYO_TICK;onHit=TRAINX_RAYO_HIT;v=18;i=1;hR=1;vR=1;mr=48;bulletType=ITEM;material=NETHER_STAR;hnp=true;sy=3}'
+
+TRAINX_RAYO_TICK:
+  Skills:
+  - 'particles{p=end_rod;amount=2;hS=0.05;vS=0.05;speed=0} @origin'
+  - 'particles{p=dust;color=#4fd1ff;size=1.3;amount=2;hS=0.1;vS=0.1} @origin'
+
+TRAINX_RAYO_HIT:
+  Skills:
+  - 'damage{a=13}'
+  - 'particles{p=firework;amount=25;hS=0.6;vS=0.6;speed=0.08} @origin'
+  - 'sound{s=entity.firework_rocket.blast;v=1.2;p=1.4} @origin'
+
+TRAINX_LLUVIA:
+  Cooldown: 8
+  Skills:
+  - 'state{s=lluvia} @self'
+  - 'sound{s=block.beacon.activate;v=2;p=1.4} @PlayersInRadius{r=40}'
+  - 'message{m="&d«Que caigan las estrellas.»"} @PlayersInRadius{r=40}'
+  - 'delay 10'
+  - 'summon{type=astral_trainx_estrella;amount=1;radius=0} @PlayersInRadius{r=40}'
+  - 'delay 16'
+  - 'summon{type=astral_trainx_estrella;amount=1;radius=0} @PlayersInRadius{r=40}'
+
+TRAINX_ESTRELLA:
+  Skills:
+  - 'particlering{p=end_rod;radius=2.5;points=24;amount=1;y=0.15} @self'
+  - 'delay 8'
+  - 'particlering{p=end_rod;radius=2.5;points=24;amount=1;y=0.15} @self'
+  - 'delay 8'
+  - 'particlering{p=dust;color=#ffd84d;size=2;radius=2.5;points=24;amount=1;y=0.15} @self'
+  - 'delay 6'
+  - 'particles{p=firework;amount=50;hS=0.3;vS=4;y=5;speed=0.02} @self'
+  - 'sound{s=entity.firework_rocket.large_blast;v=1.6;p=0.8} @self'
+  - 'damage{a=15} @PlayersInRadius{r=2.5}'
+  - 'particles{p=explosion;amount=2} @self'
+  - 'delay 2'
+  - 'remove @self'
+
+TRAINX_DASH:
+  Cooldown: 8
+  Skills:
+  - 'state{s=dash} @self'
+  - 'sound{s=entity.ender_dragon.flap;v=2;p=0.8} @self'
+  - 'delay 3'
+  - 'lunge{velocity=3.2;velocityY=0.35} @target'
+  - 'delay 10'
+  - 'particles{p=sweep_attack;amount=8;hS=2;vS=0.5;y=2} @self'
+  - 'damage{a=28} @PlayersInRadius{r=4}'
+
+TRAINX_FASE2:
+  Skills:
+  - 'addtag{tag=trainx.f2} @self'
+  - 'state{s=lluvia} @self'
+  - 'sound{s=entity.ender_dragon.growl;v=2;p=1.2} @PlayersInRadius{r=64}'
+  - 'message{m="&d«Bien. Entonces peleemos en serio.»"} @PlayersInRadius{r=64}'
+
+TRAINX_FASE3:
+  Skills:
+  - 'addtag{tag=trainx.f3} @self'
+  - 'potion{type=SPEED;duration=2147483647;level=0;hasParticles=false} @self'
+  - 'sound{s=entity.wither.ambient;v=2;p=0.6} @PlayersInRadius{r=64}'
+  - 'particles{p=dragon_breath;amount=150;hS=2;vS=3;y=2;speed=0.05} @self'
+  - 'message{m="&5&l«¡Muestrenme la luz de la estrella!»"} @PlayersInRadius{r=64}'
+
+TRAINX_RESET:
+  Skills:
+  - 'heal{a=2000000000} @self'
+  - 'removetag{tag=trainx.f2} @self'
+  - 'removetag{tag=trainx.f3} @self'
+  - 'potionclear @self'
+  - 'teleport @SpawnLocation'
+
+TRAINX_MUERE:
+  Skills:
+  - 'state{s=death} @self'
+  - 'sound{s=ui.toast.challenge_complete;v=2;p=0.8} @PlayersInRadius{r=64}'
+  - 'particles{p=end_rod;amount=300;hS=2;vS=4;y=3;speed=0.1} @self'
+  - 'command{c="trainxfin <caster.l.w>"} @self'

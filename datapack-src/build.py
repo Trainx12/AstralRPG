@@ -1504,6 +1504,18 @@ fn("mob/nombre", nombre + [
     f"function {NS}:mob/vida",
 ])
 
+# Jefe final Trainx (mobs/trainx.py): "✦ Tier V+ ✦ Trainx ❤ vida". Lo llama su skill de MythicMobs
+# (los jefes con modelo no pasan por mob/roll porque ya llevan astral.seen).
+fn("mob/nombre_vplus", [
+    f"data modify storage {NS}:tmp mob.n set value [{{text:\"✦ Tier V+ ✦ \",color:\"#d07bff\",bold:true}}]",
+    f"execute if data entity @s CustomName run data modify storage {NS}:tmp mob.n append from entity @s CustomName",
+    f"data modify storage {NS}:tmp mob.n append value {{text:\" ❤\",color:\"red\"}}",
+    f"data modify entity @s CustomName set from storage {NS}:tmp mob.n",
+    "data modify entity @s CustomNameVisible set value 1b",
+    "tag @s add astral.hpname",
+    f"function {NS}:mob/vida",
+])
+
 # Vida en el nombre: " ❤ 11.500" (con puntos de miles). Se llama cerca de jugadores.
 H = f"{NS}:tmp hp"
 vida = [

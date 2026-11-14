@@ -36,7 +36,7 @@ GUI_INNER_TOP, GUI_INNER_BOTTOM = 16, 218
 SPLIT = 50
 
 
-def frame():
+def frame(caption='EL CRONISTA'):
     source = Image.open(ART).convert('RGBA')
     top_h = GUI_INNER_TOP + OFFSET[1]
     scale = (GUI_INNER_BOTTOM - GUI_INNER_TOP) / (ART_INNER_BOTTOM - ART_INNER_TOP)
@@ -53,8 +53,8 @@ def frame():
             im.alpha_composite(piece.resize((dx[col + 1] - dx[col], dy[row + 1] - dy[row]), Image.Resampling.NEAREST), (dx[col], dy[row]))
     # Titulo dentro del cartel azul del marco.
     for ox, oy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-        text(im, 'EL CRONISTA', (104 + ox, 35 + oy), color='#0d1222')
-    text(im, 'EL CRONISTA', (104, 35), color='#f6e4b8')
+        text(im, caption, (104 + ox, 35 + oy), color='#0d1222')
+    text(im, caption, (104, 35), color='#f6e4b8')
     return im
 
 
@@ -62,8 +62,8 @@ def gemini_icon(name, size=16):
     return Image.open(GEMINI / f'{name}.png').convert('RGBA').resize((size, size), Image.Resampling.LANCZOS)
 
 
-def panel(rewards=False):
-    im = frame()
+def panel(rewards=False, caption='EL CRONISTA'):
+    im = frame(caption)
     body = Image.new('RGBA', (176, 222))
     d = ImageDraw.Draw(body)
     # Las posiciones son las del cofre de 54 slots y su inventario inferior.
@@ -102,6 +102,25 @@ def panel(rewards=False):
     for col in range(9):
         x = 8 + col * 18
         hole(x, 198, x + 15, 213)
+    return im
+
+
+# Deseo lite del Cronista (renacimiento.py): misma ventana azul, con las 5 opciones y las reglas marcadas.
+DESEO_SLOTS = (20, 21, 22, 23, 24)
+DESEO_REGLAS = 40
+
+
+def deseo_panel():
+    im = panel(True, 'UN DESEO')
+    d = ImageDraw.Draw(im)
+    ox, oy = OFFSET
+
+    def box(slot, color):
+        x, y = ox + 7 + slot % 9 * 18, oy + 17 + slot // 9 * 18
+        d.rectangle((x - 1, y - 1, x + 18, y + 18), outline=color)
+    for slot in DESEO_SLOTS:
+        box(slot, '#f0cd75')
+    box(DESEO_REGLAS, '#67e8cd')
     return im
 
 
@@ -224,8 +243,9 @@ def assets():
             for col in range(columns):
                 model(f'{name}_{row * columns + col}', image.crop((col*18, row*18, col*18+18, row*18+18)))
 
-    for name, chars, reward in [('background', ('\ue431', '\ue435'), False), ('rewards', ('\ue433', '\ue436'), True)]:
-        for part, ((im, ascent), char) in enumerate(zip(glyph_parts(panel(reward)), chars)):
+    for name, chars, image in [('background', ('\ue431', '\ue435'), panel(False)), ('rewards', ('\ue433', '\ue436'), panel(True)),
+                               ('deseo', ('\ue437', '\ue438'), deseo_panel())]:
+        for part, ((im, ascent), char) in enumerate(zip(glyph_parts(image), chars)):
             # Minecraft mide el avance de un glifo hasta su ultima columna con
             # pixeles visibles. Un punto casi invisible en la ultima columna
             # fija el avance en 209 para las dos partes y no se corren.
@@ -257,7 +277,7 @@ def assets():
 
 
 def title(page):
-    top, rest = ('\ue433', '\ue436') if page == 4 else ('\ue431', '\ue435')
+    top, rest = {4: ('\ue433', '\ue436'), 'deseo': ('\ue437', '\ue438')}.get(page, ('\ue431', '\ue435'))
     # El nombre CRONISTA ya viene dibujado en el marco.
     return '&f\ue430' + top + '\ue434' + rest + '\ue432'
 

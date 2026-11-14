@@ -7,15 +7,15 @@ las chicas las puede ir haciendo Claude. Lo marcado **a mano** lo hace el dueño
 
 | # | Tarea | Estado |
 |---|---|---|
-| 1 | Renacimiento: reinicio de progreso, tiers VI a X, dificultad personal y deseo | Definido (faltan detalles, ver abajo) |
-| 2 | Jefe final: el dueño, para 4 jugadores | Definido (arma y armadura por ver) |
+| 1 | Renacimiento: reinicio de progreso, tiers VI a X, dificultad personal y deseo | Hecho 14/11 sin tiers VI-X ni +100% plata (docs/DESEOS_Y_RANKINGS.md) |
+| 2 | Jefe final: el dueño, para 4 jugadores | Hecho 14/11: Trainx, oleada 6 del Santuario |
 | 3 | Final del Santuario al vencer a los 6 jefes | Por definir |
 | 4 | Bosque para motosierras (árboles que vuelven a crecer, como las Minas Astrales) | Hecho en el repo (08/11): docs/BOSQUE.md |
-| 5 | Fragmentos: llave para renacer (entregarlos al aldeano tras matar al jefe final) | Definido (va con el 1) |
+| 5 | Fragmentos: llave para renacer | Hecho 14/11: boton RENACER en /fragmentos |
 | 6 | Pistas/acertijos al entrar a una expedición para encontrar al aldeano de la mazmorra | Definido |
 | 7 | Más mapas de parkour (mínimo 1 más de la torre espiral) | Hecho en el repo (08/11): Spiral 2, Paradise 3, 2 droppers y Color Escape |
-| 8 | Ranking de parkour por mapa (más rápidos) | Definido |
-| 9 | Premio y deseo lite al terminar la historia del Cronista | Definido |
+| 8 | Ranking de parkour por mapa (más rápidos) | Hecho 14/11 + Infinita, Trainx, Minas y Bosque |
+| 9 | Premio y deseo lite al terminar la historia del Cronista | Deseo lite hecho 14/11 |
 | 10 | Saltador (gancho viejo) y Gancho (gancho real) | Hecho y subido al server (08/11) |
 | 11 | Arreglar el cofre de los jefes al terminar la mazmorra (WorldGuard bloqueaba el clic) | Hecho y subido al server (08/11); probar con un jugador sin OP |
 | 12 | Decorar a cada aldeano que no tenga puesto | Pendiente |

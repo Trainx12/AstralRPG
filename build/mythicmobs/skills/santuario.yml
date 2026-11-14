@@ -54,7 +54,7 @@ SANTUARIO_SALA1_OLA6:
   - addtag{tag=santuario.espera} @self
   - 'message{m="&8[&7Santuario Celestial&8] &7Oleada 6/6..."} @PlayersInRadius{r=158}'
   - delay 40
-  - 'summon{type=ZOMBIE;amount=1;radius=0;onSurface=false} @Location{x=256.5;y=64;z=256.5}'
+  - 'summon{type=astral_santuario_trainx;amount=1;radius=0;onSurface=false} @Location{x=256.5;y=64;z=256.5}'
   - delay 10
   - removetag{tag=santuario.espera} @self
 
@@ -74,7 +74,7 @@ SANTUARIO_SALA1_LIMPIA:
 
 SANTUARIO_SALA1_RESET:
   Skills:
-  - 'remove @MobsInRadius{r=158;types=HUSK,STRAY,VEX,WITCH,ZOMBIE,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_yeti_eco,astral_yeti,astral_santuario_cofre,astral_santuario_guia}'
+  - 'remove @MobsInRadius{r=158;types=HUSK,STRAY,VEX,WITCH,astral_chaman,astral_golem_forja,astral_momia,astral_santuario_chaman_eco,astral_santuario_coloso_musgoso_eco,astral_santuario_golem_forja_eco,astral_santuario_momia_eco,astral_santuario_trainx,astral_santuario_yeti_eco,astral_trainx_estrella,astral_yeti,astral_santuario_cofre,astral_santuario_guia}'
   - removetag{tag=santuario.on} @self
   - removetag{tag=santuario.fin} @self
   - removetag{tag=santuario.espera} @self

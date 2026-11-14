@@ -292,7 +292,113 @@
       "lore": [
         "&7Cada jefe da su fragmento la primera vez.",
         "&7Quedan guardados aca para siempre.",
-        "&7Con todos se podra renacer."
+        "&7Con todos, y despues de vencer a &d&lTrainx&7,",
+        "&7se puede &d&lrenacer&7."
+      ]
+    },
+    "renacer_0": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Necesitas los 7 fragmentos",
+        "&7y haber vencido a &d&lTrainx&7.",
+        "",
+        "&7Renacimientos: &f%luckperms_meta_astral_renacimiento%",
+        "",
+        "&eClic para ver que pasa."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer"
+      ],
+      "material": "PAPER",
+      "slot": 38,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "renacer_1": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Necesitas los 7 fragmentos",
+        "&7y haber vencido a &d&lTrainx&7.",
+        "",
+        "&7Renacimientos: &f%luckperms_meta_astral_renacimiento%",
+        "",
+        "&eClic para ver que pasa."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer"
+      ],
+      "material": "PAPER",
+      "slot": 39,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "renacer_2": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Necesitas los 7 fragmentos",
+        "&7y haber vencido a &d&lTrainx&7.",
+        "",
+        "&7Renacimientos: &f%luckperms_meta_astral_renacimiento%",
+        "",
+        "&eClic para ver que pasa."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer"
+      ],
+      "material": "PAPER",
+      "slot": 40,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "renacer_3": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Necesitas los 7 fragmentos",
+        "&7y haber vencido a &d&lTrainx&7.",
+        "",
+        "&7Renacimientos: &f%luckperms_meta_astral_renacimiento%",
+        "",
+        "&eClic para ver que pasa."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer"
+      ],
+      "material": "PAPER",
+      "slot": 41,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "renacer_4": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Necesitas los 7 fragmentos",
+        "&7y haber vencido a &d&lTrainx&7.",
+        "",
+        "&7Renacimientos: &f%luckperms_meta_astral_renacimiento%",
+        "",
+        "&eClic para ver que pasa."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer"
+      ],
+      "material": "PAPER",
+      "slot": 42,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
       ]
     },
     "volver": {

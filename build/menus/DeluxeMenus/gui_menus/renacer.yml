@@ -1,0 +1,145 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "pierdes": {
+      "material": "BARRIER",
+      "slot": 20,
+      "display_name": "&c&lSe reinicia",
+      "lore": [
+        "&7- Las mazmorras (y sus fragmentos:",
+        "&7  se vuelven a conseguir).",
+        "&7- La historia del Cronista.",
+        "&7- Las Minas Astrales.",
+        "&7- Tu plata vuelve a &e0$&7."
+      ]
+    },
+    "conservas": {
+      "material": "TOTEM_OF_UNDYING",
+      "slot": 24,
+      "display_name": "&a&lTe quedas con",
+      "lore": [
+        "&7- Tus skills.",
+        "&7- Cosmeticos, monturas y mascotas.",
+        "&7- Tu equipo, tambien el tier V."
+      ]
+    },
+    "info": {
+      "material": "NETHER_STAR",
+      "slot": 22,
+      "display_name": "&d&lRenacer",
+      "lore": [
+        "&7El mundo se vuelve mas fiero para vos:",
+        "&7los mobs tienen x3 de vida y dano",
+        "&7(y +1 por cada renacimiento mas).",
+        "&7Despues llegan forjas nuevas:",
+        "&7tiers VI a X, que se estan forjando.",
+        "",
+        "&dY la estrella te concede un deseo."
+      ]
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 45,
+      "display_name": "&fVolver a los fragmentos",
+      "click_commands": [
+        "[openguimenu] fragmentos"
+      ],
+      "item_model": "astral:menu/icon_back"
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    },
+    "confirmar_0": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Clic para renacer.",
+        "&cNo se puede deshacer."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer confirmar"
+      ],
+      "material": "PAPER",
+      "slot": 38,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "confirmar_1": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Clic para renacer.",
+        "&cNo se puede deshacer."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer confirmar"
+      ],
+      "material": "PAPER",
+      "slot": 39,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "confirmar_2": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Clic para renacer.",
+        "&cNo se puede deshacer."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer confirmar"
+      ],
+      "material": "PAPER",
+      "slot": 40,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "confirmar_3": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Clic para renacer.",
+        "&cNo se puede deshacer."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer confirmar"
+      ],
+      "material": "PAPER",
+      "slot": 41,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "confirmar_4": {
+      "display_name": "&d&lRENACER",
+      "lore": [
+        "&7Clic para renacer.",
+        "&cNo se puede deshacer."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] astralrenacer confirmar"
+      ],
+      "material": "PAPER",
+      "slot": 42,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    }
+  }
+}

@@ -44,12 +44,26 @@ COOLDOWN = "30m"
 # Marco y colores de la ventana de Mazmorras (adventure_ui).
 FILL, EDGE, ACCENT = '#1f1329', '#b28fd0', '#c88bdb'
 GLYPHS = {'cofre': tuple(chr(0xe620 + j) for j in range(4)),
-          'fragmentos': tuple(chr(0xe624 + j) for j in range(4))}
-CAPTIONS = {'cofre': 'BOTIN DEL JEFE', 'fragmentos': 'FRAGMENTOS ASTRALES'}
+          'fragmentos': tuple(chr(0xe624 + j) for j in range(4)),
+          # Renacimiento y deseos (renacimiento.py, 14/11/2026).
+          'renacer': tuple(chr(0xe628 + j) for j in range(4)),
+          'deseo': tuple(chr(0xe62c + j) for j in range(4))}
+# El deseo lite usa la ventana del Cronista (cronista_ui.deseo_panel), pedido del dueno 14/11.
+CAPTIONS = {'cofre': 'BOTIN DEL JEFE', 'fragmentos': 'FRAGMENTOS ASTRALES', 'renacer': 'RENACIMIENTO',
+            'deseo': 'UN DESEO'}
+# Botones dibujados de 5 casillas (fila 5): color de relleno, luz, sombra, texto.
+BOTONES = {'cofre': ('#2f6b3a', '#7fd48a', '#173d1f', 'RECLAMAR'),
+           'fragmentos': ('#5b2f7a', '#c79af0', '#2a133b', 'RENACER'),
+           'renacer': ('#7a2f4f', '#f09ac0', '#3b1326', 'RENACER')}
+# Casillas de las categorias del deseo (fila 3).
+SLOTS_DESEO = (20, 21, 22, 23, 24)
+SLOT_REGLAS = 40
+SLOTS_RENACER = (20, 24)                   # lo que se pierde / lo que se conserva
 SLOTS_PREMIO = (19, 21, 23, 25)            # fragmento, plata, item Astral, materiales
 SLOTS_BOTON = tuple(range(38, 43))         # boton RECLAMAR dibujado
 SLOTS_FRAG = tuple(range(19, 26))          # los 7 fragmentos
-SLOTS_PIE = {'cofre': (45, 49, 53), 'fragmentos': (45, 49, 53)}
+SLOTS_PIE = {'cofre': (45, 49, 53), 'fragmentos': (45, 49, 53), 'renacer': (45, 53),
+             'deseo': (53,)}
 
 
 def permiso(frag):
@@ -100,22 +114,38 @@ def panel(kind):
             _hueco(d, slot, '#d8b25a')
         for x in (52, 172):
             star(d, x, 66, ACCENT, 2)
-        # Boton RECLAMAR de 5 casillas: los clics los atrapan items invisibles encima.
-        x0, y0 = _xy(SLOTS_BOTON[0]); x1, y1 = _xy(SLOTS_BOTON[-1])
-        d.rectangle((x0, y0, x1 + 17, y1 + 17), fill='#2f6b3a', outline='#0d2412')
-        d.line((x0 + 1, y0 + 1, x1 + 16, y0 + 1), fill='#7fd48a')
-        d.line((x0 + 1, y1 + 16, x1 + 16, y1 + 16), fill='#173d1f')
-        d.rectangle((x0 - 1, y0 - 1, x1 + 18, y1 + 18), outline='#d8b25a')
-        label(im, 'RECLAMAR', ((x0 + x1 + 17) // 2, y0 + 5), 86, '#f2ffe9')
-    else:
+        _boton(im, d, kind)
+    elif kind == 'fragmentos':
         label(im, 'TU COLECCION', (112, 64), 150, '#f4e4be')
         xa, ya = _xy(SLOTS_FRAG[0]); xb, _ = _xy(SLOTS_FRAG[-1])
         d.rectangle((xa - 4, ya - 4, xb + 21, ya + 21), fill='#2b1d38', outline='#d8b25a')
         d.rectangle((xa - 3, ya - 3, xb + 20, ya + 20), outline='#120b18')
         for slot in SLOTS_FRAG:
             _hueco(d, slot, '#5d4a6e')
-        label(im, 'NO SE PUEDEN PERDER', (112, 120), 150, '#cbb8e0')
-        label(im, 'LLAVE DEL RENACIMIENTO', (112, 132), 160, '#8f7aa6')
+        label(im, 'LLAVE DEL RENACIMIENTO', (112, 116), 160, '#8f7aa6')
+        _boton(im, d, kind)
+    elif kind == 'renacer':
+        label(im, 'EMPEZAR DE NUEVO', (112, 64), 150, '#f4e4be')
+        for slot, oro in zip(SLOTS_RENACER, (False, True)):
+            _pedestal(d, slot, oro)
+            _hueco(d, slot, '#d8b25a' if oro else '#7f7a84')
+        label(im, 'PIERDES', (_xy(SLOTS_RENACER[0])[0] + 9, 116), 60, '#e3a0a0')
+        label(im, 'CONSERVAS', (_xy(SLOTS_RENACER[1])[0] + 9, 116), 64, '#a8e3a0')
+        star(d, 112, 102, ACCENT, 3)
+        _boton(im, d, kind)
+    else:   # deseo
+        lite = False
+        label(im, 'ELEGI LO QUE PEDIS', (112, 64), 150, '#f4e4be')
+        xa, ya = _xy(SLOTS_DESEO[0]); xb, _ = _xy(SLOTS_DESEO[-1])
+        d.rectangle((xa - 4, ya - 4, xb + 21, ya + 21), fill='#2b1d38', outline='#7fc9d8' if lite else '#d8b25a')
+        d.rectangle((xa - 3, ya - 3, xb + 20, ya + 20), outline='#120b18')
+        for slot in SLOTS_DESEO:
+            _hueco(d, slot, '#5d4a6e')
+        _pedestal(d, SLOT_REGLAS, not lite)
+        _hueco(d, SLOT_REGLAS, '#d8b25a')
+        label(im, 'LEE LAS REGLAS', (112, 117), 120, '#cbb8e0')
+        for x in (52, 172):
+            star(d, x, 66, '#7fc9d8' if lite else ACCENT, 2)
     for slot in SLOTS_PIE[kind]:
         _hueco(d, slot)
     # Inventario del jugador, igual que las demas ventanas de Mazmorras.
@@ -128,6 +158,17 @@ def panel(kind):
             d.rectangle((x, y, x + 17, y + 17), outline=EDGE)
             d.rectangle((x + 1, y + 1, x + 16, y + 16), fill=(0, 0, 0, 0))
     return im
+
+
+def _boton(im, d, kind):
+    """Boton de 5 casillas en la fila 5: los clics los atrapan items invisibles encima."""
+    fill, light, dark, text = BOTONES[kind]
+    x0, y0 = _xy(SLOTS_BOTON[0]); x1, y1 = _xy(SLOTS_BOTON[-1])
+    d.rectangle((x0, y0, x1 + 17, y1 + 17), fill=fill, outline='#0d0a12')
+    d.line((x0 + 1, y0 + 1, x1 + 16, y0 + 1), fill=light)
+    d.line((x0 + 1, y1 + 16, x1 + 16, y1 + 16), fill=dark)
+    d.rectangle((x0 - 1, y0 - 1, x1 + 18, y1 + 18), outline='#d8b25a')
+    label(im, text, ((x0 + x1 + 17) // 2, y0 + 5), 86, '#fff4e9')
 
 
 def sprite_lampara():
@@ -289,7 +330,14 @@ def fragmentos_menu():
                                   'item_flags': ['HIDE_ATTRIBUTES']}
     items['info'] = {'material': 'NETHER_STAR', 'slot': 49, 'display_name': '&b&lFragmentos Astrales',
                      'lore': ['&7Cada jefe da su fragmento la primera vez.', '&7Quedan guardados aca para siempre.',
-                              '&7Con todos se podra renacer.']}
+                              '&7Con todos, y despues de vencer a &d&lTrainx&7,', '&7se puede &d&lrenacer&7.']}
+    # Boton RENACER dibujado (renacimiento.py valida fragmentos y Trainx y abre la confirmacion).
+    for n, slot in enumerate(SLOTS_BOTON):
+        items[f'renacer_{n}'] = _invisible(slot, {
+            'display_name': '&d&lRENACER',
+            'lore': ['&7Necesitas los 7 fragmentos', '&7y haber vencido a &d&lTrainx&7.', '',
+                     '&7Renacimientos: &f%luckperms_meta_astral_renacimiento%', '', '&eClic para ver que pasa.'],
+            'click_commands': ['[close]', '[player] astralrenacer']})
     items['volver'] = {'material': 'ARROW', 'slot': 45, 'display_name': '&fVolver al menu',
                        'click_commands': ['[openguimenu] principal']}
     items['cerrar'] = {'material': 'BARRIER', 'slot': 53, 'display_name': '&cCerrar', 'click_commands': ['[close]']}
@@ -310,7 +358,11 @@ def generate():
         (out / f'{name}.yml').write_text(json.dumps(decorate(cofre_menu(dungeon)), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         nombres.append(name)
     (out / 'fragmentos.yml').write_text(json.dumps(decorate(fragmentos_menu()), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    return nombres + ['fragmentos']
+    from renacimiento import menus as menus_renacimiento
+    extra = menus_renacimiento()
+    for name, data in extra.items():
+        (out / f'{name}.yml').write_text(json.dumps(decorate(data), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    return nombres + ['fragmentos'] + list(extra)
 
 
 def previews(folder=ROOT / 'build/Servicios-preview'):
