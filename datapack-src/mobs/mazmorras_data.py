@@ -129,6 +129,13 @@ def variant(key, source, ancestral=False, boss=False):
     # No desaparecer como los mobs del mundo: si no, Minecraft las borra al rato y el control
     # de la sala pasa de oleada (08/11/2026). RESET/LIMPIA las quitan.
     block = block.replace("    Despawn: true\n", "    Despawn: false\n")
+    if key == "bosque" and boss:
+        # 13/11: el altar tiene un rio enfrente. Sin salto (lo tiraba en medio del agua) y con botas de
+        # Paso helado: cruza caminando sobre hielo que se derrite solo. Las botas no se ven (modelo 3D)
+        # ni caen (PreventOtherDrops). Si igual cae al agua, vuelve a su lugar (respaldo de arriba).
+        block = "".join(l for l in block.splitlines(keepends=True) if "AST_JEFE_SALTO" not in l)
+        block += ("  - command{c=\"item replace entity <caster.uuid> armor.feet with "
+                  "minecraft:leather_boots[enchantments={frost_walker:2}]\"} @self ~onSpawn\n")
     if key == "tumba" and boss:
         # Only this summoned boss can acknowledge victory to its own controller.
         # Se avisa al control de la sala del jefe con un comando vanilla: los targeters de
