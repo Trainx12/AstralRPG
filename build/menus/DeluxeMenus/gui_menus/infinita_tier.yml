@@ -389,16 +389,15 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&5&lTier V+",
+      "display_name": "&5&lTier VI a X",
       "lore": [
-        "&7Pelea contra mobs de Tier V+.",
-        "&720 min en este tier; despues sube cada 10 min.",
+        "&7Tier VI, VII, VIII, IX, X y X+.",
+        "&7Hace falta equipo de esos tiers.",
         "",
-        "&eClic para elegir"
+        "&eClic para ver"
       ],
       "click_commands": [
-        "[console] infelegir %player_name% tier 6",
-        "[openguimenu] infinita_vel"
+        "[openguimenu] infinita_tier_alto"
       ]
     },
     "tier6_hit_1": {
@@ -408,16 +407,15 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&5&lTier V+",
+      "display_name": "&5&lTier VI a X",
       "lore": [
-        "&7Pelea contra mobs de Tier V+.",
-        "&720 min en este tier; despues sube cada 10 min.",
+        "&7Tier VI, VII, VIII, IX, X y X+.",
+        "&7Hace falta equipo de esos tiers.",
         "",
-        "&eClic para elegir"
+        "&eClic para ver"
       ],
       "click_commands": [
-        "[console] infelegir %player_name% tier 6",
-        "[openguimenu] infinita_vel"
+        "[openguimenu] infinita_tier_alto"
       ]
     },
     "tier6_hit_2": {
@@ -427,16 +425,15 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&5&lTier V+",
+      "display_name": "&5&lTier VI a X",
       "lore": [
-        "&7Pelea contra mobs de Tier V+.",
-        "&720 min en este tier; despues sube cada 10 min.",
+        "&7Tier VI, VII, VIII, IX, X y X+.",
+        "&7Hace falta equipo de esos tiers.",
         "",
-        "&eClic para elegir"
+        "&eClic para ver"
       ],
       "click_commands": [
-        "[console] infelegir %player_name% tier 6",
-        "[openguimenu] infinita_vel"
+        "[openguimenu] infinita_tier_alto"
       ]
     },
     "tier6_hit_3": {
@@ -446,16 +443,15 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&5&lTier V+",
+      "display_name": "&5&lTier VI a X",
       "lore": [
-        "&7Pelea contra mobs de Tier V+.",
-        "&720 min en este tier; despues sube cada 10 min.",
+        "&7Tier VI, VII, VIII, IX, X y X+.",
+        "&7Hace falta equipo de esos tiers.",
         "",
-        "&eClic para elegir"
+        "&eClic para ver"
       ],
       "click_commands": [
-        "[console] infelegir %player_name% tier 6",
-        "[openguimenu] infinita_vel"
+        "[openguimenu] infinita_tier_alto"
       ]
     },
     "cerrar": {

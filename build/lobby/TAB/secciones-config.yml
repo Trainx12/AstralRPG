@@ -190,11 +190,36 @@ conditions:
       - "%world%=world_the_end"
     true: "true"
     false: "false"
-  pm_inf_tier6:
+  pm_inf_tier11:
     conditions:
       - "%objective_score_{inf.plus}%>=1"
-    true: "<#FF6B6B>Tier V+ (+%objective_score_{inf.plus}%)"
-    false: "Tier V+"
+    true: "<#FF6B6B>Tier X+ (+%objective_score_{inf.plus}%)"
+    false: "Tier X+"
+  pm_inf_tier10:
+    conditions:
+      - "%objective_score_{inf.tier}%<=10"
+    true: "Tier X"
+    false: "%condition:pm_inf_tier11%"
+  pm_inf_tier9:
+    conditions:
+      - "%objective_score_{inf.tier}%<=9"
+    true: "Tier IX"
+    false: "%condition:pm_inf_tier10%"
+  pm_inf_tier8:
+    conditions:
+      - "%objective_score_{inf.tier}%<=8"
+    true: "Tier VIII"
+    false: "%condition:pm_inf_tier9%"
+  pm_inf_tier7:
+    conditions:
+      - "%objective_score_{inf.tier}%<=7"
+    true: "Tier VII"
+    false: "%condition:pm_inf_tier8%"
+  pm_inf_tier6:
+    conditions:
+      - "%objective_score_{inf.tier}%<=6"
+    true: "Tier VI"
+    false: "%condition:pm_inf_tier7%"
   pm_inf_tier5:
     conditions:
       - "%objective_score_{inf.tier}%<=5"

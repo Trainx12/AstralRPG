@@ -70,12 +70,13 @@ def boards_and_conditions():
     tier_names = {t: n for t, n, _ in TIERS}
     conds = [_or('pm_infinita', INF), _or('pm_parkour', parkour_worlds()), _or('pm_arenas', arena_worlds()),
              _or('pm_survival', SURVIVAL)]
-    # Nombre del tier (inf.tier 1..6) y extra de 5+ (inf.plus).
-    out = f"<#FF6B6B>{tier_names[6]} (+%objective_score_{{inf.plus}}%)"
-    for t in range(6, 0, -1):
-        if t == 6:
-            conds.append(condition('pm_inf_tier6', f"{score('inf.plus')}>=1", out, tier_names[6]))
-            nxt = ref('pm_inf_tier6')
+    # Nombre del tier (inf.tier 1..11; 11 = X+) y extra de X+ (inf.plus).
+    top = max(tier_names)
+    out = f"<#FF6B6B>{tier_names[top]} (+%objective_score_{{inf.plus}}%)"
+    for t in range(top, 0, -1):
+        if t == top:
+            conds.append(condition(f'pm_inf_tier{top}', f"{score('inf.plus')}>=1", out, tier_names[top]))
+            nxt = ref(f'pm_inf_tier{top}')
         else:
             conds.append(condition(f'pm_inf_tier{t}', f"{score('inf.tier')}<={t}", tier_names[t], nxt))
             nxt = ref(f'pm_inf_tier{t}')

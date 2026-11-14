@@ -8,7 +8,10 @@ from escala import fmt, REGEN_POR_MANA
 from items import MEJORA_DANO, MEJORA_VIDA
 
 RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
-          3: ('RARA', '#5555FF'), 4: ('ÉPICA', 'dark_purple'), 5: ('LEGENDARIA', 'gold')}
+          3: ('RARA', '#5555FF'), 4: ('ÉPICA', 'dark_purple'), 5: ('LEGENDARIA', 'gold'),
+          # Tiers 6-10 (14/11/2026)
+          6: ('MÍTICA', '#ff5fd2'), 7: ('MÍTICA', '#ff5fd2'), 8: ('DIVINA', 'aqua'), 9: ('DIVINA', 'aqua'),
+          10: ('ASTRAL', '#b388ff')}
 TIPOS = {'sword': 'ESPADA', 'axe': 'HACHA', 'staff': 'BASTÓN', 'scythe': 'GUADAÑA',
          'bow': 'ARCO', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
          'helmet': 'CASCO', 'chestplate': 'PECHERA', 'leggings': 'GREBAS', 'boots': 'BOTAS'}
@@ -32,11 +35,11 @@ ENCH_DESC = {
     'ejecucion_astral': lambda l: "Ejecuta enemigos con menos del 20% de vida.",
     'cono': lambda l: "Golpea a todos en un cono frente a vos.",
     'maldicion': lambda l: "Aplica Lentitud y Debilidad por 2 a 3 s.",
-    'filo_arcano': lambda l: f"+{num([0.5, 1, 1.8, 3, 4.5][min(l, 5) - 1])} de daño por golpe.",
+    'filo_arcano': lambda l: f"+{num([0.5, 1, 1.8, 3, 4.5, 6, 7.5, 9, 11, 13][min(l, 10) - 1])} de daño por golpe.",
     'igneo': lambda l: "Prende fuego al enemigo por 4 s.",
-    'punteria': lambda l: f"Flechas con el daño del tier {l} (+{[0, 8, 15, 22, 30][min(l, 5) - 1]}% extra).",
-    'punteria_set': lambda l: f"+{[4, 8, 12, 18, 25][min(l, 5) - 1]}% de daño con arco.",
-    'empalar': lambda l: f"+{[1, 2, 3, 4, 6][min(l, 5) - 1]} de daño por golpe.",
+    'punteria': lambda l: f"Flechas con el daño del tier {l} (+{[0, 8, 15, 22, 30, 38, 46, 54, 62, 70][min(l, 10) - 1]}% extra).",
+    'punteria_set': lambda l: f"+{[4, 8, 12, 18, 25, 30, 35, 40, 45, 50][min(l, 10) - 1]}% de daño con arco.",
+    'empalar': lambda l: f"+{[1, 2, 3, 4, 6, 7, 8, 9, 10, 12][min(l, 10) - 1]} de daño por golpe.",
     'poder_astral': lambda l: f"Golpes de lanza con el daño del tier {l}.",
     'fortune': lambda l: f"Más minerales por bloque (hasta x{l + 1}).",
 }
@@ -60,7 +63,7 @@ def rareza(tier, kind):
     # Taladros: 9 tiers repartidos en las 5 rarezas.
     if kind == 'drill':
         tier = min(5, (tier * 5 + 8) // 9)
-    return RAREZA[max(1, min(5, tier))]
+    return RAREZA[max(1, min(max(RAREZA), tier))]
 
 
 def txt(text, color='gray', **kw):

@@ -1,6 +1,6 @@
 """Mazmorra Infinita (pedido del dueno 12/11/2026): practicar y farmear contra el tier elegido.
 
-- /infinita: ventana para elegir tier (1..5 y 5+) y otra para la velocidad de aparicion
+- /infinita: ventana para elegir tier (1..10 y X+; VI-X en una segunda ventana) y otra para la velocidad de aparicion
   (Facil, Normal, Dificil, Pesadilla). La party entra junta; 6 copias para varios grupos.
 - 20 minutos en el tier elegido; despues +1 tier cada 10 minutos (5 minutos antes avisa:
   "Te veo muy tranquilo, creo que podes dar mas pelea"). En 5+ sigue subiendo: +25% vida y dano.
@@ -35,7 +35,11 @@ SPAWN_POINTS = [(24.5, 63, 0.5), (26.5, 63, 15.5), (15.5, 63, 26.5), (0.5, 63, 3
 # ===============================================================================================
 
 TIERS = [(1, 'Tier I', 'LIME_DYE'), (2, 'Tier II', 'GREEN_DYE'), (3, 'Tier III', 'YELLOW_DYE'),
-         (4, 'Tier IV', 'ORANGE_DYE'), (5, 'Tier V', 'RED_DYE'), (6, 'Tier V+', 'NETHER_STAR')]
+         (4, 'Tier IV', 'ORANGE_DYE'), (5, 'Tier V', 'RED_DYE'),
+         # Tiers 6-10 (14/11/2026): segunda ventana. X+ (11) sigue subiendo +25% vida y dano.
+         (6, 'Tier VI', 'PINK_DYE'), (7, 'Tier VII', 'CYAN_DYE'), (8, 'Tier VIII', 'RED_DYE'),
+         (9, 'Tier IX', 'WHITE_DYE'), (10, 'Tier X', 'PURPLE_DYE'), (11, 'Tier X+', 'NETHER_STAR')]
+TIER_PLUS = TIERS[-1][0]   # 11 = Tier X+
 # (id, nombre, material, segundos entre apariciones)
 SPEEDS = [(1, 'Facil', 'LIME_WOOL', 4), (2, 'Normal', 'YELLOW_WOOL', 3), (3, 'Dificil', 'ORANGE_WOOL', 2),
           (4, 'Pesadilla', 'RED_WOOL', 1)]
@@ -62,11 +66,11 @@ def generate(files):
     """Funciones del datapack: aplicar el tier elegido (y el extra de 5+) a cada mob nuevo."""
     def fn(path, lines):
         files[f'data/astral/function/{path}.mcfunction'] = '\n'.join(lines) + '\n'
-    for t in range(1, 6):
+    for t in range(1, TIER_PLUS):
         # mob/nombre arma el cartel [Tn] con #mt: sin esto mostraba el tier del ultimo mob de otro mundo.
         fn(f'inf/apply/t{t}', ['tag @s add astral.seen', f'scoreboard players set #mt astral.tmp {t}', f'function astral:mob/t{t}',
                                f'scoreboard players set @s astral.mt {t}', 'function astral:inf/plus',
-                               'data modify entity @s Health set value 1.0E9f', 'function astral:mob/nombre',
+                               'data modify entity @s Health set value 1.0E30f', 'function astral:mob/nombre',
                                'tag @s remove inf.nuevo'])
     plus = []
     for k in range(1, 41):
@@ -112,7 +116,7 @@ def script(primera=None, cada=None, aviso=None):
          '',
          'function inf_nombre_tier(t: number) :: text:',
          *[f'    if {{_t}} is {t}:\n        return "{n}"' for t, n, _ in TIERS],
-         '    return "Tier V+"',
+         f'    return "{TIERS[-1][1]}"',
          '',
          '# Ventanas ilustradas de DeluxeMenus (infinita_ui.py): infinita_tier -> infinita_vel.',
          '# Al hacer clic, la consola ejecuta infelegir <jugador> tier|vel <n>.',
@@ -223,7 +227,7 @@ def script(primera=None, cada=None, aviso=None):
          f'                send title "&c&lAtencion" with subtitle "&e{MENSAJE_AVISO}" to loop-player for 4 seconds',
          f'                send "&5[Mazmorra Infinita] &e{MENSAJE_AVISO}. &7En 5 minutos sube la dificultad." to loop-player',
          '    if {_r} <= 0:',
-         '        if {-inf.tier::%{_n}%} < 6:',
+         f'        if {{-inf.tier::%{{_n}}%}} < {TIER_PLUS}:',
          '            add 1 to {-inf.tier::%{_n}%}',
          '        else:',
          '            add 1 to {-inf.plus::%{_n}%}',
@@ -285,8 +289,8 @@ def script(primera=None, cada=None, aviso=None):
          '    execute console command "execute in minecraft:%{_n}% run summon %{_s}%"',
          '    set {_t} to {-inf.tier::%{_n}%}',
          '    set {_extra} to {-inf.plus::%{_n}%}',
-         '    if {_t} is 6:',
-         '        set {_t} to 5',
+         f'    if {{_t}} is {TIER_PLUS}:',
+         f'        set {{_t}} to {TIER_PLUS - 1}',
          '        add 1 to {_extra}',
          '    execute console command "scoreboard players set #inf_plus astral.tmp %{_extra}%"',
          '    execute console command "execute in minecraft:%{_n}% as @e[tag=inf.nuevo,distance=0..] run function astral:inf/apply/t%{_t}%"',

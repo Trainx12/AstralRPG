@@ -48,10 +48,10 @@ function rk_valor(r: text, v: number) :: text:
     if {_r} is "infinita":
         set {_t} to floor({_v} / 100)
         set {_x} to {_v} - {_t} * 100
-        if {_t} >= 6:
+        if {_t} >= 11:
             if {_x} > 0:
-                return "Tier V+ (+%{_x}%)"
-            return "Tier V+"
+                return "Tier X+ (+%{_x}%)"
+            return "Tier X+"
         return "Tier %{_t}%"
     return "%{_v}%"
 

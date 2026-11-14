@@ -96,7 +96,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     }
     public int tier(LivingEntity mob) {
         if(mob instanceof Player || mob.getType()==EntityType.ARMOR_STAND) return 0;
-        for(int t=5;t>=1;t--) if(mob.getScoreboardTags().contains("astral.mt"+t)) return t;
+        for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.mt"+t)) return t;
         String mm=mythic(mob);
         if(!mm.isEmpty()) return getConfig().getInt("mythic."+mm+".tier",0);
         if(!(mob instanceof Monster)) return 0;

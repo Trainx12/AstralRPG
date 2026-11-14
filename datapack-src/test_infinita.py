@@ -7,7 +7,7 @@ import infinita
 class InfinitaTests(unittest.TestCase):
     def test_six_rooms_tiers_and_speeds(self):
         self.assertEqual(infinita.WORLDS, ['infinita'] + [f'infinita_{n}' for n in range(2, 7)])
-        self.assertEqual([t for t, _, _ in infinita.TIERS], [1, 2, 3, 4, 5, 6])
+        self.assertEqual([t for t, _, _ in infinita.TIERS], list(range(1, 12)))
         self.assertEqual([n for _, n, _, _ in infinita.SPEEDS], ['Facil', 'Normal', 'Dificil', 'Pesadilla'])
         self.assertEqual([s for *_, s in infinita.SPEEDS], sorted([s for *_, s in infinita.SPEEDS], reverse=True))
 
@@ -30,7 +30,7 @@ class InfinitaTests(unittest.TestCase):
     def test_datapack_applies_tier_and_plus(self):
         files = {}
         infinita.generate(files)
-        for t in range(1, 6):
+        for t in range(1, 11):
             self.assertIn(f'function astral:mob/t{t}', files[f'data/astral/function/inf/apply/t{t}.mcfunction'])
         self.assertIn('astral:infinita 0.25 add_multiplied_total', files['data/astral/function/inf/plus.mcfunction'])
         # El cartel [Tn] de mob/nombre usa #mt: tiene que ser el tier elegido.

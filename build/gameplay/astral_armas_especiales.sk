@@ -17,6 +17,11 @@ options:
     mana_baston_3: 90
     mana_baston_4: 150
     mana_baston_5: 200
+    mana_baston_6: 250
+    mana_baston_7: 300
+    mana_baston_8: 360
+    mana_baston_9: 430
+    mana_baston_10: 500
 
 function asw_identify(p: player):
     execute console command "execute as %name of {_p}% run function astral:special/identify"
@@ -467,7 +472,7 @@ function asw_staff(p: player):
         send action bar "&7El hechizo se esta recargando..." to {_p}
         stop
     set {_cost} to 0
-    loop 5 times:
+    loop 10 times:
         if scoreboard tags of {_p} contains "astral.staff.t%loop-number%":
             set {_cost} to asw_staff_cost(loop-number)
     if {_cost} <= 0:
@@ -488,7 +493,17 @@ function asw_staff_cost(t: number) :: number:
         return {@mana_baston_3}
     if {_t} is 4:
         return {@mana_baston_4}
-    return {@mana_baston_5}
+    if {_t} is 5:
+        return {@mana_baston_5}
+    if {_t} is 6:
+        return {@mana_baston_6}
+    if {_t} is 7:
+        return {@mana_baston_7}
+    if {_t} is 8:
+        return {@mana_baston_8}
+    if {_t} is 9:
+        return {@mana_baston_9}
+    return {@mana_baston_10}
 
 on right click:
     asw_identify(player)

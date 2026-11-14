@@ -23,7 +23,7 @@ KINDS = ('tier', 'vel')
 GLYPHS = {'tier': tuple(chr(0xed50 + i) for i in range(4)), 'vel': tuple(chr(0xed54 + i) for i in range(4))}
 CAPTIONS = {'tier': 'ELEGI TU TIER', 'vel': 'VELOCIDAD'}
 HINTS = {'tier': 'Despues de 20 min sube cada 10', 'vel': 'Mas jugadores, mas monstruos'}
-TIER_LABELS = ('I', 'II', 'III', 'IV', 'V', 'V+')   # 'TIER III' no entra en 36 px; el nombre completo va en el item
+TIER_LABELS = ('I', 'II', 'III', 'IV', 'V', 'VI-X')   # la sexta abre la ventana de VI a X+   # 'TIER III' no entra en 36 px; el nombre completo va en el item
 VEL_LABELS = ('FACIL', 'NORMAL', 'DIFICIL', 'PESADILLA')
 COLS = ((0, 1), (2, 3), (5, 6), (7, 8))
 
@@ -167,13 +167,25 @@ def menus():
     P = '%player_name%'
     items = {}
     for index, ((t, name, _), slots) in enumerate(zip(TIERS, CARD_SLOTS['tier'])):
-        lore = [f'&7Pelea contra mobs de {name}.', '&720 min en este tier; despues sube cada 10 min.', '', '&eClic para elegir']
+        alto = index == len(CARD_SLOTS['tier']) - 1   # sexta tarjeta: abre Tier VI a X+
+        lore = ([f'&7Tier VI, VII, VIII, IX, X y X+.', '&7Hace falta equipo de esos tiers.', '', '&eClic para ver'] if alto else
+                [f'&7Pelea contra mobs de {name}.', '&720 min en este tier; despues sube cada 10 min.', '', '&eClic para elegir'])
         for n, slot in enumerate(slots):
             items[f'tier{t}' if n == 0 else f'tier{t}_hit_{n}'] = dict(material='PAPER', slot=slot, item_model=f'astral:infinita/tier{index + 1}_{n}',
-                item_flags=['HIDE_ATTRIBUTES'], display_name=f'&5&l{name}', lore=lore,
-                click_commands=[f'[console] infelegir {P} tier {t}', '[openguimenu] infinita_vel'])
+                item_flags=['HIDE_ATTRIBUTES'], display_name='&5&lTier VI a X' if alto else f'&5&l{name}', lore=lore,
+                click_commands=['[openguimenu] infinita_tier_alto'] if alto else [f'[console] infelegir {P} tier {t}', '[openguimenu] infinita_vel'])
     items['cerrar'] = dict(material='BARRIER', slot=CLOSE_SLOT, display_name='&cCerrar', click_commands=['[close]'])
     out['infinita_tier'] = decorate(dict(menu_title=title('tier'), size=54, items=items))
+    # Tiers VI a X+ (14/11/2026): ventana simple de cofre con un item por tier.
+    items = {}
+    for slot, (t, name, mat) in zip((11, 12, 13, 14, 15, 22), [x for x in TIERS if x[0] >= 6]):
+        lore = ([f'&7Tier X y sigue subiendo: +25% de vida y dano', '&7cada 10 minutos.'] if t == 11 else
+                [f'&7Pelea contra mobs de {name}.', '&720 min en este tier; despues sube cada 10 min.'])
+        items[f'tier{t}'] = dict(material=mat, slot=slot, display_name=f'&5&l{name}', lore=lore + ['', '&eClic para elegir'],
+                                 click_commands=[f'[console] infelegir {P} tier {t}', '[openguimenu] infinita_vel'])
+    items['volver'] = dict(material='ARROW', slot=27, display_name='&fVolver', click_commands=['[openguimenu] infinita_tier'])
+    items['cerrar'] = dict(material='BARRIER', slot=35, display_name='&cCerrar', click_commands=['[close]'])
+    out['infinita_tier_alto'] = dict(menu_title='&5Mazmorra Infinita: Tier VI a X', size=36, items=items)
     items = {}
     for index, ((v, name, _, s), slots) in enumerate(zip(SPEEDS, CARD_SLOTS['vel'])):
         lore = [f'&7Aparece un grupo de mobs cada {s} s.', '&7Mas jugadores, mas mobs.', '', '&eClic para entrar']

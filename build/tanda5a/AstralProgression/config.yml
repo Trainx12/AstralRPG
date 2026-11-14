@@ -6,6 +6,11 @@ xp:
   '3': 80
   '4': 140
   '5': 230.8
+  '6': 360
+  '7': 540
+  '8': 800
+  '9': 1150
+  '10': 1600
 elite-bonus: 1.5
 boss-bonus: 8
 dungeon-tiers:
@@ -142,11 +147,15 @@ mythic:
     tier: 5
     boss: true
     elite: false
+  astral_fosa_cangrejo:
+    tier: 1
+    boss: true
+    elite: false
   astral_mina_guardian:
     tier: 2
     boss: true
     elite: false
-  astral_santuario_cangrejo_eco:
+  astral_santuario_coloso_musgoso_eco:
     tier: 5
     boss: true
     elite: false
@@ -163,6 +172,10 @@ mythic:
     boss: true
     elite: false
   astral_santuario_golem_forja_eco:
+    tier: 5
+    boss: true
+    elite: false
+  astral_santuario_trainx:
     tier: 5
     boss: true
     elite: false

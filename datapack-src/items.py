@@ -189,10 +189,12 @@ ARMOR_SETS = {
     },
 }
 
-ROMAN = ["I", "II", "III", "IV", "V"]
+ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 # Defensa progresa mas lento: requisitos inferiores a las armas de cada tier.
-ARMOR_DEFENSE_LEVELS = (6, 10, 14, 18, 22)
-ARMOR_DURABILITY = (2000, 3000, 4500, 6500, 9000)
+ARMOR_DEFENSE_LEVELS = (6, 10, 14, 18, 22, 26, 30, 34, 38, 42)
+ARMOR_DURABILITY = (2000, 3000, 4500, 6500, 9000, 12000, 15500, 19500, 24500, 30000)
+from items_t6_10 import extend_armor as _extend_armor
+_extend_armor(ARMOR_SETS)
 for _set in ARMOR_SETS.values():
     _set['skill'] = 'defense'
     for _index, _tier in enumerate(_set['tiers']):
@@ -389,3 +391,7 @@ MEJORAS = {
 }
 MEJORA_DANO = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.32, 1.40]   # x dano del arma
 MEJORA_VIDA = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]                       # % de vida por pieza (4 piezas +10 = +21%)
+
+# Tiers 6 a 10 (14/11/2026): armas, materiales y drops nuevos. Ver items_t6_10.py.
+from items_t6_10 import extend_weapons as _extend_weapons
+_extend_weapons(globals())

@@ -112,7 +112,7 @@ def pvp():
     lines = ['# Arena PvP: dano de armas Astral dividido por su factor (escala.py).',
              'on damage of player with priority low:', '    attacker is a player',
              '    name of world of victim is ' + ' or '.join(f'"{w}"' for w in arena_worlds())]
-    for t in range(1, 6):
+    for t in range(1, 11):
         lines.append(f'    if scoreboard tags of attacker contains "astral.ht{t}":')
         lines.append(f'        set damage to damage / {round(FACTOR_ARMA[t], 3)}')
     return chr(10).join(lines) + chr(10)
@@ -122,7 +122,7 @@ def vida():
     """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
     from escala import DANO_MOB, TIER_MAZMORRA
     tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
-                      for t in range(5, 0, -1))
+                      for t in range(10, 0, -1))
     # Las dimensiones del datapack se llaman world_minecraft_<dim> en Bukkit (el Santuario y sus copias).
     mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}" or "world_minecraft_{w}":\n        return {DANO_MOB[t]}'
                        for w, t in TIER_MAZMORRA.items())
@@ -187,7 +187,7 @@ def indicador():
     """
     from escala import FACTOR_MOSTRADO
     factores = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {round(FACTOR_MOSTRADO[t], 4)}'
-                         for t in range(1, 6))
+                         for t in range(1, 11))
     return r'''
 # Indicador de dano: "-2.500" y la vida del mob, en numeros del tier (escala.py).
 function astral_factor(e: entity) :: number:

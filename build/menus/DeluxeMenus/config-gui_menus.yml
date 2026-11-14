@@ -122,6 +122,8 @@ gui_menus:
     file: cosmeticos_sombreros.yml
   infinita_tier:
     file: infinita_tier.yml
+  infinita_tier_alto:
+    file: infinita_tier_alto.yml
   infinita_vel:
     file: infinita_vel.yml
   oceano_aviso:

@@ -1,0 +1,112 @@
+{
+  "menu_title": "&5Mazmorra Infinita: Tier VI a X",
+  "size": 36,
+  "items": {
+    "tier6": {
+      "material": "PINK_DYE",
+      "slot": 11,
+      "display_name": "&5&lTier VI",
+      "lore": [
+        "&7Pelea contra mobs de Tier VI.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 6",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier7": {
+      "material": "CYAN_DYE",
+      "slot": 12,
+      "display_name": "&5&lTier VII",
+      "lore": [
+        "&7Pelea contra mobs de Tier VII.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 7",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier8": {
+      "material": "RED_DYE",
+      "slot": 13,
+      "display_name": "&5&lTier VIII",
+      "lore": [
+        "&7Pelea contra mobs de Tier VIII.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 8",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier9": {
+      "material": "WHITE_DYE",
+      "slot": 14,
+      "display_name": "&5&lTier IX",
+      "lore": [
+        "&7Pelea contra mobs de Tier IX.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 9",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier10": {
+      "material": "PURPLE_DYE",
+      "slot": 15,
+      "display_name": "&5&lTier X",
+      "lore": [
+        "&7Pelea contra mobs de Tier X.",
+        "&720 min en este tier; despues sube cada 10 min.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 10",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "tier11": {
+      "material": "NETHER_STAR",
+      "slot": 22,
+      "display_name": "&5&lTier X+",
+      "lore": [
+        "&7Tier X y sigue subiendo: +25% de vida y dano",
+        "&7cada 10 minutos.",
+        "",
+        "&eClic para elegir"
+      ],
+      "click_commands": [
+        "[console] infelegir %player_name% tier 11",
+        "[openguimenu] infinita_vel"
+      ]
+    },
+    "volver": {
+      "material": "ARROW",
+      "slot": 27,
+      "display_name": "&fVolver",
+      "click_commands": [
+        "[openguimenu] infinita_tier"
+      ]
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 35,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ]
+    }
+  }
+}

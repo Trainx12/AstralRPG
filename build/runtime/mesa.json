@@ -910,6 +910,586 @@
     }
   },
   {
+    "output": "berserker_6_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "berserker_6_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "berserker_6_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "berserker_6_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "berserker_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_6_helmet",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "berserker_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_6_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "berserker_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_6_leggings",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "berserker_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_6_boots",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "berserker_8_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "berserker_8_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "berserker_8_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "berserker_8_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "berserker_9_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_8_helmet",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "berserker_9_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_8_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "berserker_9_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_8_leggings",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "berserker_9_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_8_boots",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "berserker_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_9_helmet",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "berserker_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_9_chestplate",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "berserker_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_9_leggings",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "berserker_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "berserker_9_boots",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ]
+    ],
+    "group": "Armaduras Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
     "output": "mago_1_helmet",
     "count": 1,
     "ingredients": [
@@ -1427,6 +2007,586 @@
     "table": true,
     "requirements": {
       "auraskills:defense": 22
+    }
+  },
+  {
+    "output": "mago_6_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "mago_6_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "mago_6_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "mago_6_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "mago_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_6_helmet",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "mago_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_6_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "mago_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_6_leggings",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "mago_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_6_boots",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "mago_8_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "mago_8_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "mago_8_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "mago_8_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "mago_9_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_8_helmet",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "mago_9_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_8_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "mago_9_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_8_leggings",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "mago_9_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_8_boots",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "mago_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_9_helmet",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "mago_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_9_chestplate",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "mago_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_9_leggings",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "mago_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "mago_9_boots",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
     }
   },
   {
@@ -1950,6 +3110,586 @@
     }
   },
   {
+    "output": "arquero_6_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "arquero_6_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "arquero_6_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "arquero_6_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 26
+    }
+  },
+  {
+    "output": "arquero_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_6_helmet",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "arquero_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_6_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "arquero_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_6_leggings",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "arquero_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_6_boots",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": true,
+    "requirements": {
+      "auraskills:defense": 30
+    }
+  },
+  {
+    "output": "arquero_8_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "arquero_8_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "arquero_8_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "arquero_8_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 34
+    }
+  },
+  {
+    "output": "arquero_9_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_8_helmet",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "arquero_9_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_8_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "arquero_9_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_8_leggings",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "arquero_9_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_8_boots",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 38
+    }
+  },
+  {
+    "output": "arquero_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_9_helmet",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "arquero_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_9_chestplate",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "arquero_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_9_leggings",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
+    "output": "arquero_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arquero_9_boots",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Arquero",
+    "table": false,
+    "requirements": {
+      "auraskills:defense": 42
+    }
+  },
+  {
     "output": "espada_1",
     "count": 1,
     "ingredients": [
@@ -2072,6 +3812,151 @@
     "table": true,
     "requirements": {
       "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "espada_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "espada_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "espada_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "espada_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "espada_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
     }
   },
   {
@@ -2220,6 +4105,176 @@
     }
   },
   {
+    "output": "hacha_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "hacha_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "hacha_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "hacha_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "hacha_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "hacha_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        3
+      ],
+      [
+        "c",
+        "palo_reforzado",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
+    }
+  },
+  {
     "output": "baston_1",
     "count": 1,
     "ingredients": [
@@ -2332,6 +4387,151 @@
     "table": true,
     "requirements": {
       "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "baston_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 37
+    }
+  },
+  {
+    "output": "baston_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "baston_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 47
+    }
+  },
+  {
+    "output": "baston_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "baston_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "baston_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
     }
   },
   {
@@ -2470,6 +4670,151 @@
     }
   },
   {
+    "output": "guadana_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 37
+    }
+  },
+  {
+    "output": "guadana_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        2
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "guadana_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        3
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 47
+    }
+  },
+  {
+    "output": "guadana_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        3
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "guadana_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "guadana_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        4
+      ]
+    ],
+    "group": "Armas de Mago",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
+  },
+  {
     "output": "arco_1",
     "count": 1,
     "ingredients": [
@@ -2577,6 +4922,151 @@
     "table": true,
     "requirements": {
       "auraskills:archery": 30
+    }
+  },
+  {
+    "output": "arco_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 35
+    }
+  },
+  {
+    "output": "arco_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 40
+    }
+  },
+  {
+    "output": "arco_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 45
+    }
+  },
+  {
+    "output": "arco_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 50
+    }
+  },
+  {
+    "output": "arco_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": false,
+    "requirements": {
+      "auraskills:archery": 55
     }
   },
   {
@@ -3625,6 +6115,151 @@
     "table": true,
     "requirements": {
       "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "lanza_6",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "lanza_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_6",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "chispa_astral",
+        1
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "lanza_8",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "chispa_astral",
+        2
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "lanza_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_8",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "chispa_astral",
+        2
+      ]
+    ],
+    "group": "Lanzas",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "lanza_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "lanza_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "chispa_astral",
+        3
+      ]
+    ],
+    "group": "Lanzas",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
     }
   },
   {

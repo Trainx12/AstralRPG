@@ -33,8 +33,18 @@ function inf_nombre_tier(t: number) :: text:
     if {_t} is 5:
         return "Tier V"
     if {_t} is 6:
-        return "Tier V+"
-    return "Tier V+"
+        return "Tier VI"
+    if {_t} is 7:
+        return "Tier VII"
+    if {_t} is 8:
+        return "Tier VIII"
+    if {_t} is 9:
+        return "Tier IX"
+    if {_t} is 10:
+        return "Tier X"
+    if {_t} is 11:
+        return "Tier X+"
+    return "Tier X+"
 
 # Ventanas ilustradas de DeluxeMenus (infinita_ui.py): infinita_tier -> infinita_vel.
 # Al hacer clic, la consola ejecuta infelegir <jugador> tier|vel <n>.
@@ -49,7 +59,7 @@ command /infelegir <player> <text> <number>:
     executable by: console
     trigger:
         if arg-2 is "tier":
-            if arg-3 is between 1 and 6:
+            if arg-3 is between 1 and 11:
                 set {-inf.elige.tier::%uuid of arg-1%} to arg-3
         else if arg-2 is "vel":
             if arg-3 is between 1 and 4:
@@ -150,7 +160,7 @@ function inf_tick(n: text, w: world, pj: number):
                 send title "&c&lAtencion" with subtitle "&eTe veo muy tranquilo, creo que podes dar mas pelea" to loop-player for 4 seconds
                 send "&5[Mazmorra Infinita] &eTe veo muy tranquilo, creo que podes dar mas pelea. &7En 5 minutos sube la dificultad." to loop-player
     if {_r} <= 0:
-        if {-inf.tier::%{_n}%} < 6:
+        if {-inf.tier::%{_n}%} < 11:
             add 1 to {-inf.tier::%{_n}%}
         else:
             add 1 to {-inf.plus::%{_n}%}
@@ -270,8 +280,8 @@ function inf_spawn(n: text):
     execute console command "execute in minecraft:%{_n}% run summon %{_s}%"
     set {_t} to {-inf.tier::%{_n}%}
     set {_extra} to {-inf.plus::%{_n}%}
-    if {_t} is 6:
-        set {_t} to 5
+    if {_t} is 11:
+        set {_t} to 10
         add 1 to {_extra}
     execute console command "scoreboard players set #inf_plus astral.tmp %{_extra}%"
     execute console command "execute in minecraft:%{_n}% as @e[tag=inf.nuevo,distance=0..] run function astral:inf/apply/t%{_t}%"

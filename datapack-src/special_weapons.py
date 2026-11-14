@@ -80,8 +80,8 @@ def script_options(text):
 def generate(files):
     lines=['tag @s remove astral.special'] + [f'tag @s remove astral.special.{iid}' for iid in WEAPONS]
     # Bastones de Mago: tier en la mano y si el hechizo esta en recarga (lo lee Skript para cobrar mana).
-    lines+=['tag @s remove astral.staff','tag @s remove astral.spell.cd']+[f'tag @s remove astral.staff.t{t}' for t in range(1,6)]
-    for t in range(1,6):
+    lines+=['tag @s remove astral.staff','tag @s remove astral.spell.cd']+[f'tag @s remove astral.staff.t{t}' for t in range(1,11)]
+    for t in range(1,11):
         staff=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"baston_{t}"}}}}]'
         lines+=[staff+' run tag @s add astral.staff',staff+f' run tag @s add astral.staff.t{t}']
     lines.append('execute if score @s astral.cd matches 1.. run tag @s add astral.spell.cd')

@@ -544,6 +544,16 @@ function astral_factor(e: entity) :: number:
         return 1.0
     if scoreboard tags of {_e} contains "astral.mt5":
         return 1.0
+    if scoreboard tags of {_e} contains "astral.mt6":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt7":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt8":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt9":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt10":
+        return 1.0
     return 1
 
 function astral_fmt(n: number) :: text:
@@ -619,6 +629,16 @@ on damage of player with priority low:
         set damage to damage / 1322.751
     if scoreboard tags of attacker contains "astral.ht5":
         set damage to damage / 5208.333
+    if scoreboard tags of attacker contains "astral.ht6":
+        set damage to damage / 24414.062
+    if scoreboard tags of attacker contains "astral.ht7":
+        set damage to damage / 114889.706
+    if scoreboard tags of attacker contains "astral.ht8":
+        set damage to damage / 542534.722
+    if scoreboard tags of attacker contains "astral.ht9":
+        set damage to damage / 2569901.316
+    if scoreboard tags of attacker contains "astral.ht10":
+        set damage to damage / 12207031.25
 
 
 # Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.
@@ -626,6 +646,16 @@ on damage of player with priority low:
 # - Mob sin tier dentro de una mazmorra (jefes de MythicMobs): x DANO_MOB del tier de la mazmorra.
 # - Todo lo demas (caidas, lava, ahogo, mobs sin tier, PvP): x (vida maxima / 20), como en vanilla.
 function astral_dano_tier(e: entity) :: number:
+    if scoreboard tags of {_e} contains "astral.mt10":
+        return 16000.0
+    if scoreboard tags of {_e} contains "astral.mt9":
+        return 8800.0
+    if scoreboard tags of {_e} contains "astral.mt8":
+        return 4400.0
+    if scoreboard tags of {_e} contains "astral.mt7":
+        return 2240.0
+    if scoreboard tags of {_e} contains "astral.mt6":
+        return 1120.0
     if scoreboard tags of {_e} contains "astral.mt5":
         return 400.0
     if scoreboard tags of {_e} contains "astral.mt4":

@@ -12,6 +12,7 @@ import subprocess
 import zipfile
 import yaml
 from escala import XP_MOB, XP_ELITE, XP_JEFE, xp_skill_level, TIER_MAZMORRA
+from items_t6_10 import MATERIALES as MATERIALES_ALTOS
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT/'build/tanda5a'
@@ -68,6 +69,10 @@ def catalog():
             if not match:
                 continue
             tier = re.search(r'tier:(\d+)', data)
+            if tier and int(tier[1]) > 5 or iid in MATERIALES_ALTOS:
+                continue  # T6-T10 (14/11/2026): solo se forjan o caen de mobs de su tier, nunca en cofres
+            if iid.startswith(('agua_', 'minero_', 'talador_')) or iid in ('perla_abisal', 'coral_astral'):
+                continue  # Oceano y oficios tienen su propia forma de conseguirse (no estaban en cofres)
             tier = min(5, int(tier[1])) if tier else MATERIAL_TIERS.get(iid, 1)
             # Materiales sin tier reciben uno explicito segun su progresion existente.
             result[iid] = {'tier': tier, 'chance': PROBABILIDADES[tier]}

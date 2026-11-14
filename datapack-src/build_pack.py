@@ -75,7 +75,19 @@ for iid, tex in BOW_TEX.items():
                     "fallback": model_ref(f"astral:item/{iid}_pulling_0")}}})
 
 # Texturas generadas (gen_textures.py)
+def _reserva(iid):
+    """Armadura T6-T10: en el pack publico se ve como el T5 de su clase (el FINAL privado la reemplaza)."""
+    if iid in ARMOR_ITEMS:
+        s_id, t, piece = iid.split("_")
+        if int(t) >= 6:
+            return f"{s_id}_5_{piece}"
+    return None
+
+
 for iid in GEN_WEAPON + GEN_ITEM + ARMOR_ITEMS:
+    if _reserva(iid):
+        put_json(f"assets/astral/items/{iid}.json", {"model": model_ref(f"astral:item/{_reserva(iid)}")})
+        continue
     copy(f"assets/astral/textures/item/gen/{iid}.png")
     parent = "minecraft:item/handheld" if iid in GEN_WEAPON else "minecraft:item/generated"
     put_json(f"assets/astral/models/item/{iid}.json", {"parent": parent, "textures": {"layer0": f"astral:item/gen/{iid}"}})
@@ -156,13 +168,15 @@ for _t in DRILLS + CHAINSAWS:
 
 # Como se ven puestas las armaduras
 for s_id in ARMOR_SETS_TEX:
-    for t in range(1, 6):
+    for t in range(1, 11):
         name = f"{s_id}_{t}"
-        for layer in ("humanoid", "humanoid_leggings"):
-            copy(f"assets/astral/textures/entity/equipment/{layer}/{name}.png")
+        tex = f"{s_id}_{min(t, 5)}"  # T6-T10: textura del T5 (reserva publica)
+        if t <= 5:
+            for layer in ("humanoid", "humanoid_leggings"):
+                copy(f"assets/astral/textures/entity/equipment/{layer}/{name}.png")
         put_json(f"assets/astral/equipment/{name}.json", {"layers": {
-            "humanoid": [{"texture": f"astral:{name}"}],
-            "humanoid_leggings": [{"texture": f"astral:{name}"}]}})
+            "humanoid": [{"texture": f"astral:{tex}"}],
+            "humanoid_leggings": [{"texture": f"astral:{tex}"}]}})
 
 # Mantener vanilla las capas que se dibujan sobre los items del inventario.
 # Version de prueba para aislar desapariciones al arrastrar o mostrar tooltips

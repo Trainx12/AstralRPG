@@ -74,5 +74,6 @@ GEN_ITEM = ["guantes_meteoro", "fragmento_cristal", "cristal_refinado", "corazon
            [f"talisman_{t}_{l}" for t in ("vida", "furia", "viento", "roca") for l in (1, 2, 3)]
 # Armaduras: todas las piezas tienen icono y textura puesta (equipment astral:<set>_<tier>)
 ARMOR_SETS_TEX = ["berserker", "mago", "arquero"]
-ARMOR_ITEMS = [f"{s}_{t}_{p}" for s in ARMOR_SETS_TEX for t in range(1, 6)
+# Tiers 6-10: en el pack publico se ven como el T5 de su clase; el pack FINAL privado trae los modelos elegidos.
+ARMOR_ITEMS = [f"{s}_{t}_{p}" for s in ARMOR_SETS_TEX for t in range(1, 11)
                for p in ("helmet", "chestplate", "leggings", "boots")]

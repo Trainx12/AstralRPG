@@ -67,7 +67,11 @@ class FichaTests(unittest.TestCase):
             # Igual que spell/cast: #pct en %, base x pct / 100 (enteros del scoreboard).
             pct=(10000+s['mdmg']*100+s.get('pierce',0)*100)//100
             damage=HECHIZO[tier]*pct//100
-            self.assertLess(HECHIZO[tier]*pct,2**31-1)
+            # spell/cast trabaja en miles desde el millon (T7+); con la mejora +10 (x1,40) y
+            # todo el set de Mago (+80% mas) tampoco puede pasar el tope del scoreboard.
+            base=HECHIZO[tier]//(1000 if HECHIZO[tier]>=1000000 else 1)
+            self.assertLess(base*140,2**31-1)
+            self.assertLess(base*140//100*(pct+80),2**31-1)
             lore=list(map(text,self.components(f'baston_{tier}')['minecraft:lore']))
             self.assertIn('Daño de hechizo: +'+fmt(damage),lore)
 

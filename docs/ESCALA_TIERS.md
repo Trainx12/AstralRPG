@@ -141,3 +141,31 @@ Medicion de todas las esquinas de los cubos existentes, con rotaciones, en pose 
 | astral_mina_guardian | 2 | 6.062 | 2.24537 | 6.062 |
 
 Yeti de Cumbre: modelo de 16 x 28 x 8,8 bloques (`s=8`, cuatro veces el normal y el Ancestral). Caja RAVAGER de 24,818 x 28 con `scale=12,727273`, por debajo del tope 16; coincide el alto, no el ancho. Golem de Forja: modelo 12,9 x 24,25 x 12,9; `scale=8,981481`, priorizando el alto. Vista previa: `build/previews/tamanos-jefes.png`.
+
+## Tiers 6 a 10 (14/11/2026)
+
+Pedido del dueño: armaduras elegidas de mods (casco 3D + cuerpo plano, arte solo en el pack FINAL privado).
+Todo sale de `escala.py` y `items_t6_10.py`. Entrega: `build/deploy/tiers6-10.md`.
+
+| Tier | Daño espada | Vida mob (zombi) | Vida set completo | Defensa set | Golpe mob común |
+|---|---|---|---|---|---|
+| T6 | 312.500 | 1.250.000 | 15.000 | 650 | 2.800 |
+| T7 | 1.562.500 | 5.937.500 | 25.000 | 800 | 5.600 |
+| T8 | 7.812.500 | 28.125.000 | 40.000 | 1.000 | 11.000 |
+| T9 | 39.062.500 | 132.812.500 | 65.000 | 1.250 | 22.000 |
+| T10 | 195.312.500 | 625.000.000 | 100.000 | 1.500 | 40.000 |
+
+- **Forja:** cada pieza/arma de tier N = la del tier N-1 + 4 del material del tier (desde T8 también 2 del anterior)
+  + un material de clase. Materiales: Fragmento de Ocaso (T6), Esquirla de Eclipse (T7), Núcleo de Supernova (T8),
+  Esencia del Vacío (T9), Corazón del Fin (T10). Nunca aparecen en cofres.
+- **Drops:** un mob de tier t puede soltar el material de cada tier 6..t: común 1,2%, élite 12%, jefe de mundo seguro.
+  Élites T5 4% y jefes de mundo T5 50% de Fragmento de Ocaso (primer paso desde T5).
+- **Mundo:** el tier sigue a la mejor arma/armadura del inventario (hasta 10). La amenaza para élites queda topeada
+  en 8 (la probabilidad de élite no sube más que con T5).
+- **Mazmorra Infinita:** Tier I-V en la ventana ilustrada; la sexta tarjeta abre `infinita_tier_alto` (VI a X y X+,
+  que sigue subiendo +25%).
+- **Números que pasan el tope de los puntajes (2.147 millones):** el cartel de vida pasa a miles desde 2.000 millones,
+  `fx/victim_pct` usa otra escala desde 20 millones de vida máxima y el hechizo de bastón calcula en miles desde el millón.
+- **Armas T6-T10:** se ven como el arma T5 de su familia hasta que el dueño elija modelos (`ARMA_MODELO`).
+- **Huecos sin modelo:** Berserker T6 y Arquero T8/T9 se ven como el T5 de su clase (`VISUAL` en `items_t6_10.py`).
+- `spigot.yml` necesita `maxHealth.max` y `attackDamage.max` en `1.0E12`.
