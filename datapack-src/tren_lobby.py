@@ -56,7 +56,7 @@ WALL_EXIT = 211          # cara del muro donde "choca" (sentido de salida)
 FIRST_RAIL_ENTRY = 176   # primer riel despues del muro norte (13/11: z=176-177 pasaron de piso a riel; copia en y=-60)
 LOCO, VAGON = 4.89375, 3.6275125
 CARTS = ('loco', 'vagon', 'vagon')
-SPEED = 0.16
+SPEED = 0.38  # 13/11: la locomotora llega al muro sur en ~3 s (21,7 bloques)
 TAIL_START = 176.6  # cota nominal para CENTER; con acoples la cola real queda ~0.5 antes: contra el muro norte (z=176)
 
 

@@ -70,7 +70,7 @@ No hace falta subir packs a R2, cambiar server.properties ni recargar otros plug
 No subir TrainProbe.jar, logs, arte privado ni mundos de ensayo.
 Nunca sustituir mundos ni usar Worlds -> Upload en la fila world.
 
-AstralTrain.jar SHA-256: `06794ff5a952f7ec47b6f4255be2fc0c0c37f06addd843439bf43d584c31e6b9`.
+AstralTrain.jar SHA-256: `eb5b8efba24117ea24e8680b3fa331e8003f2ca949a5418d7c648c9c9c9a41ed`.
 Pack privado conservado sin cambios: SHA-1 `0aa45479c57f98d1f555ff11fb559dc7504204df`.
 Base Alas/casco SHA-1 `54ace74b9f9b6a962ca3bd92bc60ff6e74a3e838`; 12640 entradas previas conservadas.
 El codigo/configuracion propia se publica; arte y procedencia permanecen privados.

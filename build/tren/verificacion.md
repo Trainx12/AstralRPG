@@ -3,7 +3,7 @@
 Generado por `tren_lobby.py`; no es evidencia de despliegue remoto.
 Paper 26.1.2 build 74, Java 25; jugadores NMS simulados, sin clientes reales.
 
-AstralTrain.jar SHA-256: `06794ff5a952f7ec47b6f4255be2fc0c0c37f06addd843439bf43d584c31e6b9`.
+AstralTrain.jar SHA-256: `eb5b8efba24117ea24e8680b3fa331e8003f2ca949a5418d7c648c9c9c9a41ed`.
 Los resultados solo se dan por correctos si el JAR del ensayo coincide byte por byte con la entrega.
 
 | Ensayo | Resultado | Comprobaciones correctas |
@@ -26,7 +26,7 @@ La primera es anterior a los viajes; la segunda posterior a los viajes.
 Via sintetica identica: x=120, y=99, rieles z=178..208; muros z=175 y z=211.
 Objetivo inicial cola z=176.25 rechazado: findSpawnLocations devuelve null.
 Se busco el primer spawn aceptado en incrementos de 0.001 bloques, sin cambiar vias.
-Valores embebidos: `{'velocidad': 0.16, 'espera': 3, 'teleport': 15.053125, 'salida': -10.825613}`; manual false por defecto.
+Valores embebidos: `{'velocidad': 0.38, 'espera': 3, 'teleport': 15.053125, 'salida': -10.825613}`; manual false por defecto.
 
 
 Se acorta el ultimo tick: el ensayo exige frente en z=211.0 con tolerancia 0.001.

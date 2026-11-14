@@ -31,8 +31,8 @@ class TrainBuildTests(unittest.TestCase):
         self.assertAlmostEqual(tail,176.6,places=5)
         self.assertGreaterEqual(tail+VAGON/2,FIRST_RAIL_ENTRY)
         self.assertEqual(t['espera'],3)
-        self.assertEqual(t['velocidad'],.16)
-        self.assertEqual(configuration()['speedLimit'],.16)
+        self.assertEqual(t['velocidad'],.38)
+        self.assertEqual(configuration()['speedLimit'],.38)
         self.assertNotIn('parada',t)
 
     def source(self,path):

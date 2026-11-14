@@ -6,7 +6,7 @@ station:
   direction: NORTH
 viaje:
   manual: false
-  velocidad: 0.16
+  velocidad: 0.38
   espera: 3
   teleport: 15.053125
   salida: -10.825613
