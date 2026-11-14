@@ -168,6 +168,7 @@ astral_forja_golem_forja:
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
+  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}

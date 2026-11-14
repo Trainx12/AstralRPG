@@ -170,6 +170,7 @@ astral_tumba_momia:
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
+  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40

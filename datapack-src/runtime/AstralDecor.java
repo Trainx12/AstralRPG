@@ -301,15 +301,94 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         for(Player viewer:p.getWorld().getPlayers())if(viewer!=p && viewer.canSee(p))
             viewer.sendEquipmentChange(p,EquipmentSlot.HEAD,visual);
     }
+    // Sombrero sobre el casco (13/11): el casco PUESTO pasa a dibujar el sombrero en la cabeza (definicion
+    // astral:cosmeticos/casco_<sombrero> del pack, sombreros_casco.py) y sin la armadura (equippable sin asset).
+    // En la casilla, la mano o el suelo sigue viendose el casco (custom_model_data con su modelo original),
+    // conserva atributos y Defensa. Se guarda el casco original entero y se devuelve apenas sale de la cabeza.
+    private NamespacedKey hatOriginal() { return new NamespacedKey(this,"hat_original"); }
+    private NamespacedKey hatWorn() { return new NamespacedKey(this,"hat_worn"); }
+    private boolean hatHelmet(ItemStack item) {
+        if(wearsHat(item)) return true;
+        if(item==null || item.getType().isAir() || !item.hasItemMeta()) return item!=null && item.getType().name().endsWith("_HELMET");
+        var model=item.getItemMeta().getItemModel();
+        if(model==null) return item.getType().name().endsWith("_HELMET");
+        return model.getNamespace().equals("astral") && model.getKey().endsWith("_helmet") && !model.getKey().contains("/");
+    }
+    private boolean wearsHat(ItemStack item) {
+        return item!=null && item.hasItemMeta() && item.getItemMeta().getPersistentDataContainer().has(hatOriginal(),PersistentDataType.BYTE_ARRAY);
+    }
+    private ItemStack restoreHat(ItemStack item) {
+        if(!wearsHat(item)) return item;
+        ItemStack original=ItemStack.deserializeBytes(item.getItemMeta().getPersistentDataContainer().get(hatOriginal(),PersistentDataType.BYTE_ARRAY));
+        // El desgaste mientras estuvo puesto se conserva.
+        if(item.getItemMeta() instanceof org.bukkit.inventory.meta.Damageable worn && original.getItemMeta() instanceof org.bukkit.inventory.meta.Damageable back) {
+            back.setDamage(worn.getDamage()); original.setItemMeta(back);
+        }
+        original.setAmount(item.getAmount());
+        return original;
+    }
+    private ItemStack wearHat(ItemStack helmet,String key) {
+        ItemStack original=restoreHat(helmet);
+        ItemStack worn=original.clone(); var meta=worn.getItemMeta();
+        NamespacedKey model=meta.getItemModel()!=null?meta.getItemModel():original.getType().getKey();
+        meta.setItemModel(new NamespacedKey("astral","cosmeticos/casco_"+key));
+        var cmd=meta.getCustomModelDataComponent(); cmd.setStrings(List.of(model.toString())); meta.setCustomModelDataComponent(cmd);
+        var equip=meta.getEquippable(); equip.setModel(null); meta.setEquippable(equip);
+        meta.getPersistentDataContainer().set(hatOriginal(),PersistentDataType.BYTE_ARRAY,original.serializeAsBytes());
+        meta.getPersistentDataContainer().set(hatWorn(),PersistentDataType.STRING,key);
+        worn.setItemMeta(meta);
+        return worn;
+    }
+    private void restoreHelmet(Player p) {
+        ItemStack helmet=p.getInventory().getHelmet();
+        if(wearsHat(helmet)) p.getInventory().setHelmet(restoreHat(helmet));
+    }
+    private void restoreStrays(Player p) {
+        var inv=p.getInventory();
+        ItemStack[] items=inv.getStorageContents();
+        for(int i=0;i<items.length;i++) if(wearsHat(items[i])) inv.setItem(i,restoreHat(items[i]));
+        if(wearsHat(inv.getItemInOffHand())) inv.setItemInOffHand(restoreHat(inv.getItemInOffHand()));
+        if(wearsHat(p.getItemOnCursor())) p.setItemOnCursor(restoreHat(p.getItemOnCursor()));
+    }
+    // Antes de cualquier movimiento de inventario, el casco vuelve a ser el original; si sigue en la cabeza,
+    // hats() lo vuelve a vestir en el proximo ciclo. Asi nunca sale un casco cambiado de la cabeza.
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatClick(InventoryClickEvent e) {
+        if(e.getWhoClicked() instanceof Player p) { restoreHelmet(p); restoreStrays(p); }
+        if(wearsHat(e.getCurrentItem())) e.setCurrentItem(restoreHat(e.getCurrentItem()));
+    }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatDrag(InventoryDragEvent e) { if(e.getWhoClicked() instanceof Player p) { restoreHelmet(p); restoreStrays(p); } }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatDrop(PlayerDropItemEvent e) {
+        var item=e.getItemDrop().getItemStack();
+        if(wearsHat(item)) e.getItemDrop().setItemStack(restoreHat(item));
+    }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatDeath(PlayerDeathEvent e) {
+        e.getDrops().replaceAll(this::restoreHat);
+        restoreHelmet(e.getEntity());
+    }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatQuit(PlayerQuitEvent e) { restoreHelmet(e.getPlayer()); restoreStrays(e.getPlayer()); }
     private void hats() {
         Set<UUID> active=new HashSet<>();
         for(Player p:Bukkit.getOnlinePlayers()) {
             p.getPersistentDataContainer().remove(selection("alas"));
+            restoreStrays(p);
             ItemStack helmet=p.getInventory().getHelmet();
             ItemStack item=selected(p,"sombrero");
-            if(item==null || !authenticated(p) || p.isDead() || p.isInvisible() || p.getGameMode()==GameMode.SPECTATOR)continue;
-            // Equipo visual vanilla: el gorro tapa el casco (que sigue puesto y protegiendo) solo a la vista
-            // de los demas; el inventario real no cambia.
+            String key=item==null?null:p.getPersistentDataContainer().get(selection("sombrero"),PersistentDataType.STRING);
+            boolean on=item!=null && authenticated(p) && !p.isDead() && !p.isInvisible() && p.getGameMode()!=GameMode.SPECTATOR;
+            if(on && hatHelmet(helmet) && helmet!=null && !helmet.getType().isAir()) {
+                // Casco real con el sombrero: lo ven todos, tambien el propio jugador en F5.
+                String current=wearsHat(helmet)?helmet.getItemMeta().getPersistentDataContainer().get(hatWorn(),PersistentDataType.STRING):null;
+                if(!key.equals(current)) p.getInventory().setHelmet(wearHat(helmet,key));
+                continue;
+            }
+            if(wearsHat(helmet)) p.getInventory().setHelmet(restoreHat(helmet));
+            if(!on)continue;
+            // Sin casco (o un casco raro): el sombrero se muestra a los demas como equipo visual.
             active.add(p.getUniqueId()); showHead(p,item);
         }
         for(UUID id:hats)if(!active.contains(id)) {
@@ -337,11 +416,13 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getScheduler().runTaskTimer(this,this::plants,400,400);
         getServer().getScheduler().runTaskTimer(this,this::npcs,40,20);
         getServer().getScheduler().runTaskTimer(this,this::modelNames,45,20);
+        getServer().getScheduler().runTaskTimer(this,this::separateMobs,50,4);
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, gorros, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
     public void onDisable() { tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();
-        for(UUID id:new HashSet<>(hats))removeCosmetics(id); }
+        for(UUID id:new HashSet<>(hats))removeCosmetics(id);
+        for(Player p:Bukkit.getOnlinePlayers()) { restoreHelmet(p); restoreStrays(p); } }
     private String id(ItemStack item) {
         if(item == null || !item.hasItemMeta()) return "";
         NamespacedKey key = item.getItemMeta().getItemModel();
@@ -533,6 +614,45 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             for(var tracker:registry.trackers()) for(var bone:tracker.bones()) if(bone.getNametag()!=null) {
                 bone.getNametag().alwaysVisible(visible);
                 bone.getNametag().component(visible?name:net.kyori.adventure.text.Component.empty());
+            }
+        }
+    }
+    // Los mobs no se pelean entre ellos, solo atacan a jugadores (13/11: en el Santuario el Coloso y el Chaman
+    // se golpeaban). Los lobos domesticados de un jugador siguen pudiendo pelear.
+    private static boolean wildMob(Entity e) {
+        return e instanceof Mob && !(e instanceof Tameable t && t.isTamed());
+    }
+    @EventHandler(ignoreCancelled=true, priority=EventPriority.HIGH)
+    public void noInfighting(EntityDamageByEntityEvent e) {
+        Entity attacker=e.getDamager();
+        if(attacker instanceof Projectile pr && pr.getShooter() instanceof Entity shooter) attacker=shooter;
+        if(wildMob(attacker) && e.getEntity() instanceof LivingEntity && !(e.getEntity() instanceof Player)
+            && !(e.getEntity() instanceof ArmorStand)) e.setCancelled(true);
+    }
+    @EventHandler(ignoreCancelled=true, priority=EventPriority.HIGH)
+    public void noInfightingTarget(EntityTargetLivingEntityEvent e) {
+        if(wildMob(e.getEntity()) && e.getTarget()!=null && !(e.getTarget() instanceof Player)) e.setCancelled(true);
+    }
+    // Colision entre mobs: si dos cajas se meten una en otra, se empujan suave hacia afuera (no se solapan).
+    private void separateMobs() {
+        Set<Entity> seen=new HashSet<>();
+        for(Player p:Bukkit.getOnlinePlayers()) {
+            if(p.getGameMode()==GameMode.SPECTATOR) continue;
+            for(Entity e:p.getNearbyEntities(24,12,24)) {
+                if(!(e instanceof Mob m) || !seen.add(e) || !m.hasAI() || e instanceof Villager || e.isInsideVehicle()
+                    || !wildMob(e)) continue;
+                var box=e.getBoundingBox();
+                for(Entity o:e.getWorld().getNearbyEntities(box,x->x!=e && x instanceof Mob om && om.hasAI() && !(x instanceof Villager) && wildMob(x))) {
+                    var other=o.getBoundingBox();
+                    double dx=box.getCenterX()-other.getCenterX(), dz=box.getCenterZ()-other.getCenterZ();
+                    double dist=Math.sqrt(dx*dx+dz*dz);
+                    double overlap=(box.getWidthX()+other.getWidthX())/2-dist;
+                    if(overlap<=0.05) continue;
+                    if(dist<0.01) { double a=random.nextDouble()*Math.PI*2; dx=Math.cos(a); dz=Math.sin(a); dist=1; }
+                    double push=Math.min(0.25,0.06+overlap*0.08);
+                    var v=e.getVelocity();
+                    e.setVelocity(v.setX(v.getX()+dx/dist*push).setZ(v.getZ()+dz/dist*push));
+                }
             }
         }
     }

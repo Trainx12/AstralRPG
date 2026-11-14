@@ -512,7 +512,9 @@ def metaskills():
     # Atributos junto al mismo modelo: los eventos spawn/load llaman esta skill.
     from mobs.tamanos import skills as size_skills, SPECIAL
     out += ['AST_MODEL_astral_golem_forja_mazmorra:', '  Skills:',
-            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_golem_forja;s=2.0} @self']
+            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_golem_forja;s=2.0} @self',
+            'AST_MODEL_astral_chaman_bosque:', '  Skills:',
+            '  - addtag{tag=astral.seen} @self', '  - model{m=astral_chaman;s=1.4} @self']
     sized=[]
     for line in out:
         sized.append(line)

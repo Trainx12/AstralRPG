@@ -606,6 +606,12 @@ AST_MODEL_astral_golem_forja_mazmorra:
   - model{m=astral_golem_forja;s=2.0} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.555266"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.533160"} @self
+AST_MODEL_astral_chaman_bosque:
+  Skills:
+  - addtag{tag=astral.seen} @self
+  - model{m=astral_chaman;s=1.4} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 1.929487"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.157692"} @self
 AST_YETI_PISOTON:
   Skills:
   - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self

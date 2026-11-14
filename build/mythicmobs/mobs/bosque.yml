@@ -139,8 +139,8 @@ astral_bosque_chaman:
   - slime_ball 2-6 1
   - exp 160
   Skills:
-  - skill{s=AST_MODEL_astral_chaman} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_chaman} @self ~onLoad
+  - skill{s=AST_MODEL_astral_chaman_bosque} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_chaman_bosque} @self ~onLoad
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -153,6 +153,7 @@ astral_bosque_chaman:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
+  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40

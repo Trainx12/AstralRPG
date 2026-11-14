@@ -155,6 +155,7 @@ astral_cumbre_yeti:
   - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - skill{s=AST_YETI_PISOTON} @self ~onTimer:200
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
+  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40

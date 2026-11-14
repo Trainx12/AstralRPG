@@ -105,6 +105,10 @@ def variant(key, source, ancestral=False, boss=False):
             data['skills'] = list(data.get('skills', [])) + ['- skill{s=AST_YETI_PISOTON} @self ~onTimer:200']
         # Correa: como ahora persiguen, si no queda nadie cerca vuelven a donde aparecieron (centro de la sala).
         data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}']
+        # 13/11: si cae al agua (el salto lo puede llevar al pantano), vuelve a donde aparecio.
+        data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}']
+        if key == 'bosque':
+            data['model_skill'] = 'AST_MODEL_astral_chaman_bosque'   # mas chico que el jefe del mundo (dueno 13/11)
         if key == 'forja':
             data['model_skill'] = 'AST_MODEL_astral_golem_forja_mazmorra'
             data['skills'] = list(data.get('skills', [])) + ['- potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn']
