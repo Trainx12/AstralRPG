@@ -109,7 +109,7 @@ def blend(text, colors, bold=False):
 
 
 # Linea 1: nombre con degrade celeste -> violeta -> dorado. Linea 2: lo que hay para hacer.
-LINE1 = ('      ' + blend('✦ ', [(242, 194, 91)]) + blend('AstralRPG', [(127, 231, 255), (184, 106, 255), (242, 194, 91)], bold=True)
+LINE1 = ('§r      ' + blend('✦ ', [(242, 194, 91)]) + blend('AstralRPG', [(127, 231, 255), (184, 106, 255), (242, 194, 91)], bold=True)
          + '§r' + blend(' ✦', [(242, 194, 91)]) + ' §8│ §7RPG sin mods')
 # Minecraft muestra unos 45 caracteres por linea: mas largo se corta.
 LINE2 = (' ' + hexcode((242, 194, 91)) + '⚔ §fMazmorras, jefes, mascotas '
@@ -120,7 +120,7 @@ MOTD = LINE1 + '\n' + LINE2
 def properties_value():
     """motd escapado para server.properties (Java properties: \\n y unicode \\uXXXX)."""
     text = ''.join('\\n' if c == '\n' else (c if ord(c) < 128 else '\\u%04x' % ord(c)) for c in MOTD)
-    # Java borra los espacios iniciales del valor: se escriben como   para que la linea quede centrada.
+    # Java y el panel borran los espacios iniciales: LINE1 empieza con §r para que no lo sean.
     lead = len(text) - len(text.lstrip(' '))
     return '\\u0020' * lead + text[lead:]
 
