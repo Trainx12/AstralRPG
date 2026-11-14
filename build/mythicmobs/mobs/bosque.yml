@@ -160,7 +160,7 @@ astral_bosque_chaman:
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
   - command{c="item replace entity <caster.uuid> armor.feet with minecraft:leather_boots[enchantments={frost_walker:2}]"} @self ~onSpawn
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Altar del Chaman'] add bosque.jefe.derrotado"} @self ~onDeath

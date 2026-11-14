@@ -22,7 +22,8 @@
   `astral_renacimiento` de LuckPerms.
 - Dificultad personal: mobs x(N+2) de vida y dano (se usa el renacimiento mas alto a 32 bloques).
 - Tiers VI a X: todavia no existen ("se estan forjando").
-- Pendiente: +100 % de plata de los mobs por renacimiento.
+- Plata de los mobs: +100 % por renacimiento de quien lo mata (renacimiento 1 = x2, 2 = x3...).
+  MythicMobs llama `astralplatamob <jugador> <plata>` (astral_renacimiento.sk). Los cofres de mazmorra no cambian.
 
 ## Deseos
 - Renacimiento -> ventana `deseo` (marco de mazmorras). Fin de la historia del Cronista -> `deseo_lite`

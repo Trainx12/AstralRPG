@@ -168,7 +168,7 @@ astral_santuario_coloso_musgoso_eco:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
 
 astral_santuario_chaman_eco:
   Type: EVOKER
@@ -253,7 +253,7 @@ astral_santuario_chaman_eco:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
 
 astral_santuario_momia_eco:
   Type: HUSK
@@ -337,7 +337,7 @@ astral_santuario_momia_eco:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
 
 astral_santuario_yeti_eco:
   Type: RAVAGER
@@ -423,7 +423,7 @@ astral_santuario_yeti_eco:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
 
 astral_santuario_golem_forja_eco:
   Type: IRON_GOLEM
@@ -509,7 +509,7 @@ astral_santuario_golem_forja_eco:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="eco give <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
 
 astral_santuario_trainx:
   Type: ZOMBIE

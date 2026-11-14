@@ -164,7 +164,7 @@ astral_cumbre_yeti:
   - skill{s=TANDA2_cumbre_AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_cumbre_AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=TANDA2_cumbre_AST_FASE_astral_yeti_3_frio} @self ~onTimer:80 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Trono del Yeti'] add cumbre.jefe.derrotado"} @self ~onDeath
   - addtag{tag=ad.cumbre.sala2} @self ~onSpawn

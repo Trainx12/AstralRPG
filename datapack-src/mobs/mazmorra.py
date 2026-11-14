@@ -154,7 +154,7 @@ def mob_yml(dungeon=None):
             m, sc, col = d["model"]
             sk = ['skill{s=AST_MUERTE} @self ~onDeath', f"skill{{s=MINA_MODELO_{mid}}} @self ~onSpawn", f"skill{{s=MINA_MODELO_{mid}}} @self ~onLoad",
                   "state{s=attack} @self ~onAttack"] + sk
-        sk.append(f'command{{c="eco give <trigger.name> {d["money"]}"}} @trigger ~onDeath ?~isplayer')
+        sk.append(f'command{{c="astralplatamob <trigger.name> {d["money"]}"}} @trigger ~onDeath ?~isplayer')
         L += ["  Skills:"] + ["  - " + q(s) for s in sk] + [""]
     # controladores de sala: armor stand invisible y quieto
     for i, s in enumerate(SALAS):

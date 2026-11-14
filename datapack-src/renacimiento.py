@@ -300,6 +300,17 @@ on damage with priority highest:
     {{_r}} > 0
     set damage to damage / ({{_r}} + 2)
 
+# Plata de los mobs (mobs/mythic.py y mobs/mazmorra.py): +100 % por cada renacimiento del que lo mata.
+command /astralplatamob <text> <number>:
+    executable by: console
+    trigger:
+        set {{_m}} to 1
+        loop all players:
+            name of loop-player is arg-1
+            set {{_m}} to 1 + ({{-renac::%uuid of loop-player%}} ? 0)
+        set {{_n}} to round(arg-2 * {{_m}})
+        execute console command "eco give %arg-1% %{{_n}}%"
+
 # ------------------------------------------------------------------ Deseos
 function astral_deseo_abrir(p: player):
     set {{_t}} to {{astral.deseo.tiene::%uuid of {{_p}}%}}

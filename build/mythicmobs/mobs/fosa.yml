@@ -56,4 +56,4 @@ astral_fosa_cangrejo:
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="eco give <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
