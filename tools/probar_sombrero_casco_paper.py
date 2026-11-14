@@ -38,7 +38,7 @@ def run(java,base):
                 if p.poll() is not None:raise RuntimeError('Paper termino; ver '+str(log))
                 time.sleep(1)
             else:raise TimeoutError('Paper no arranco')
-            for step in ('start','worn','change','moved','again','off','death','drops','result'):
+            for step in ('start','worn','change','moved','again','off','bare','bare2','bare3','death','drops','result'):
                 cmd('hatprobe '+step);time.sleep(2)
         finally:
             if p.poll() is None:cmd('stop');p.wait(timeout=60)

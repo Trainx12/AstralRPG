@@ -342,13 +342,39 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private void restoreHelmet(Player p) {
         ItemStack helmet=p.getInventory().getHelmet();
         if(wearsHat(helmet)) p.getInventory().setHelmet(restoreHat(helmet));
+        else if(hatOnly(helmet)) p.getInventory().setHelmet(null);
+    }
+    // Sin casco (13/11): un objeto propio en la casilla de la cabeza dibuja el sombrero; en el inventario no se
+    // ve (definicion astral:cosmeticos/solo_<sombrero>) y nunca sale de la cabeza.
+    private NamespacedKey hatOnlyKey() { return new NamespacedKey(this,"hat_only"); }
+    private boolean hatOnly(ItemStack item) {
+        return item!=null && item.hasItemMeta() && item.getItemMeta().getPersistentDataContainer().has(hatOnlyKey(),PersistentDataType.STRING);
+    }
+    private ItemStack hatOnlyItem(String key) {
+        ItemStack item=new ItemStack(Material.PAPER);var meta=item.getItemMeta();
+        meta.setItemModel(new NamespacedKey("astral","cosmeticos/solo_"+key));
+        meta.setHideTooltip(true); meta.setMaxStackSize(1);
+        meta.getPersistentDataContainer().set(hatOnlyKey(),PersistentDataType.STRING,key);
+        item.setItemMeta(meta);return item;
+    }
+    // Ponerse un casco con clic derecho: primero se libera la cabeza.
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void hatEquipByHand(org.bukkit.event.player.PlayerInteractEvent e) {
+        var item=e.getItem();
+        if(item!=null && item.hasItemMeta() && item.getItemMeta().hasEquippable() && item.getItemMeta().getEquippable().getSlot()==EquipmentSlot.HEAD
+            && hatOnly(e.getPlayer().getInventory().getHelmet())) e.getPlayer().getInventory().setHelmet(null);
+        else if(item!=null && item.getType().name().endsWith("_HELMET") && hatOnly(e.getPlayer().getInventory().getHelmet()))
+            e.getPlayer().getInventory().setHelmet(null);
     }
     private void restoreStrays(Player p) {
         var inv=p.getInventory();
         ItemStack[] items=inv.getStorageContents();
         for(int i=0;i<items.length;i++) if(wearsHat(items[i])) inv.setItem(i,restoreHat(items[i]));
+        for(int i=0;i<items.length;i++) if(hatOnly(items[i])) inv.setItem(i,null);
         if(wearsHat(inv.getItemInOffHand())) inv.setItemInOffHand(restoreHat(inv.getItemInOffHand()));
+        if(hatOnly(inv.getItemInOffHand())) inv.setItemInOffHand(null);
         if(wearsHat(p.getItemOnCursor())) p.setItemOnCursor(restoreHat(p.getItemOnCursor()));
+        if(hatOnly(p.getItemOnCursor())) p.setItemOnCursor(null);
     }
     // Antes de cualquier movimiento de inventario, el casco vuelve a ser el original; si sigue en la cabeza,
     // hats() lo vuelve a vestir en el proximo ciclo. Asi nunca sale un casco cambiado de la cabeza.
@@ -356,6 +382,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     public void hatClick(InventoryClickEvent e) {
         if(e.getWhoClicked() instanceof Player p) { restoreHelmet(p); restoreStrays(p); }
         if(wearsHat(e.getCurrentItem())) e.setCurrentItem(restoreHat(e.getCurrentItem()));
+        if(hatOnly(e.getCurrentItem())) e.setCurrentItem(null);
     }
     @EventHandler(priority=EventPriority.LOWEST)
     public void hatDrag(InventoryDragEvent e) { if(e.getWhoClicked() instanceof Player p) { restoreHelmet(p); restoreStrays(p); } }
@@ -363,10 +390,12 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     public void hatDrop(PlayerDropItemEvent e) {
         var item=e.getItemDrop().getItemStack();
         if(wearsHat(item)) e.getItemDrop().setItemStack(restoreHat(item));
+        if(hatOnly(item)) e.getItemDrop().remove();
     }
     @EventHandler(priority=EventPriority.LOWEST)
     public void hatDeath(PlayerDeathEvent e) {
         e.getDrops().replaceAll(this::restoreHat);
+        e.getDrops().removeIf(this::hatOnly);
         restoreHelmet(e.getEntity());
     }
     @EventHandler(priority=EventPriority.LOWEST)
@@ -387,8 +416,16 @@ public final class AstralDecor extends JavaPlugin implements Listener {
                 continue;
             }
             if(wearsHat(helmet)) p.getInventory().setHelmet(restoreHat(helmet));
+            boolean empty=helmet==null || helmet.getType().isAir();
+            if(hatOnly(helmet)) {
+                if(!on) { p.getInventory().setHelmet(null); continue; }
+                if(!key.equals(helmet.getItemMeta().getPersistentDataContainer().get(hatOnlyKey(),PersistentDataType.STRING)))
+                    p.getInventory().setHelmet(hatOnlyItem(key));
+                continue;
+            }
             if(!on)continue;
-            // Sin casco (o un casco raro): el sombrero se muestra a los demas como equipo visual.
+            if(empty) { p.getInventory().setHelmet(hatOnlyItem(key)); continue; }
+            // Casco raro (calabaza, cabeza...): el sombrero se muestra a los demas como equipo visual.
             active.add(p.getUniqueId()); showHead(p,item);
         }
         for(UUID id:hats)if(!active.contains(id)) {

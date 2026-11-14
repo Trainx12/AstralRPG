@@ -16,7 +16,8 @@ import com.mojang.authlib.GameProfile;
 
 /** Sombrero sobre el casco. Solo para Paper local; no instalar en remoto. */
 public final class HatHelmetProbe extends JavaPlugin {
-    Player player; int failures; ItemStack original;
+    Player player; int failures; ItemStack original, keep;
+    ItemStack restoreForProbe(ItemStack i) { return i==null?original.clone():i; }
     void check(boolean ok,String label) { if(!ok)failures++;getLogger().info("HATHELM "+(ok?"PASS ":"FAIL ")+label); }
     void command(String args) { Bukkit.dispatchCommand(player,"astralcosmetic "+args); }
     ItemStack helmet() {
@@ -86,6 +87,17 @@ public final class HatHelmetProbe extends JavaPlugin {
             ItemStack h=player.getInventory().getHelmet();
             check(h!=null && !h.getItemMeta().getPersistentDataContainer().has(new NamespacedKey("astraldecor","hat_original")),"quitar devuelve el casco original");
             command("sombrero bruja");
+        } else if(a[0].equals("bare")) {
+            keep=player.getInventory().getHelmet();player.getInventory().setHelmet(null);
+        } else if(a[0].equals("bare2")) {
+            ItemStack h=player.getInventory().getHelmet();
+            check(h!=null && "astral:cosmeticos/solo_bruja".equals(String.valueOf(h.getItemMeta().getItemModel())),"sin casco el sombrero sigue en la cabeza");
+            check(h!=null && h.getItemMeta().isHideTooltip(),"sin texto al pasar el mouse");
+            check(Arrays.stream(player.getInventory().getStorageContents()).noneMatch(i->i!=null && i.getType()==Material.PAPER),"no aparece en la mochila");
+            // Al ponerse un casco, el sombrero solo se va y el casco se viste.
+            player.getInventory().setHelmet(restoreForProbe(keep));
+        } else if(a[0].equals("bare3")) {
+            check(worn(player.getInventory().getHelmet(),"bruja"),"al ponerse el casco vuelve a dibujar el sombrero");
         } else if(a[0].equals("death")) {
             check(worn(player.getInventory().getHelmet(),"bruja"),"vestido antes de morir");
             player.setInvulnerable(false);player.setHealth(0);

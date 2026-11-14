@@ -7,6 +7,7 @@ Como funciona:
 - Este archivo arma esas definiciones: en la cabeza ("head") dibujan el sombrero; en cualquier otro lugar
   (inventario, mano, suelo) eligen por custom_model_data el modelo del casco original, asi el icono no cambia.
 - El plugin devuelve el casco original apenas sale de la cabeza o se quita el sombrero.
+- Sin casco: astral:cosmeticos/solo_<sombrero> (sombrero en la cabeza, nada en el inventario).
 
 Entrega privada sobre el FINAL publicado (las definiciones nombran modelos de sombreros privados):
 python sombreros_casco.py -> ASTRAL_PRIVADO/build/entregas/sombreros-casco/AstralRPG-Textures.zip
@@ -56,6 +57,11 @@ def definitions(files):
             'cases': [{'when': 'head', 'model': hat}],
             'fallback': {'type': 'minecraft:select', 'property': 'minecraft:custom_model_data', 'index': 0,
                          'cases': cases, 'fallback': hat}}}
+        # Sin casco: objeto que en la cabeza dibuja el sombrero y en cualquier otro lado no se ve
+        # (la casilla de casco parece vacia). AstralDecor no deja agarrarlo.
+        out[f'assets/astral/items/cosmeticos/solo_{key}.json'] = {'model': {
+            'type': 'minecraft:select', 'property': 'minecraft:display_context',
+            'cases': [{'when': 'head', 'model': hat}], 'fallback': {'type': 'minecraft:empty'}}}
     return out
 
 
