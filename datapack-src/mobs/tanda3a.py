@@ -40,6 +40,24 @@ def plant():
                   'skill{s=AST_PLANTA_ESCUPIR} @self ~onTimer:80 ?playerwithin{d=12}']}}
 
 
+def grounded(points, world='bosque'):
+    """La planta no tiene IA ni gravedad: se apoya sobre el primer bloque solido (pasto o helecho no cuentan).
+    Pedido del dueno 13/11: aparecian flotando. Sin el mapa local se usan las alturas guardadas."""
+    try:
+        from mobs.terreno import get, AIR
+        soft=('fern','grass','bush','sapling','flower','mushroom','roots','vine','leaf_litter','petals','snow')
+        def firm(name):
+            short=name.removeprefix('minecraft:')
+            return name not in AIR and (short=='grass_block' or not any(w in short for w in soft)) and 'water' not in short
+        out=[]
+        for x,y,z in points:
+            floor=next(yy for yy in range(int(y)+2,int(y)-12,-1) if firm(get(world,x,yy-1,z)))
+            out.append((x,floor,z))
+        return out
+    except (FileNotFoundError, StopIteration):
+        return list(points)
+
+
 def plant_skills():
     init=['addtag{tag=ad.bosque.sala1} @self','addtag{tag=ad.bosque.sala1.wave} @self',
           'addtag{tag=ad.vanilla} @self',
@@ -59,7 +77,7 @@ def plant_skills():
     for wave,count in PLANT_COUNTS.items():
         data[f'AST_PLANTAS_OLA{wave}']={'Skills':[
             f'summon{{type=astral_bosque_planta;amount=1;radius=0;onSurface=false}} @Location{{x={x};y={y};z={z}}}'
-            for x,y,z in PLANT_POINTS[:count]]}
+            for x,y,z in grounded(PLANT_POINTS[:count])]}
     return data
 
 
