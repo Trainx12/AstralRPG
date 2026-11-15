@@ -267,6 +267,14 @@ function maz_entrar(p: player, key: text):
     loop {_grupo::*}:
         send "&8[&7%{_nombre}%&8] &7Entrando a la copia &f%{_elegida}%&7... &8(Para salir: /spawn)" to loop-value
         execute console command "execute in minecraft:%{_d}% run minecraft:tp %uuid of loop-value% %{_tp}%"
+    # Copia nueva para el grupo: se borra lo que quedo tirado cerca de la llegada (las salas se limpian al vaciarse).
+    if {_grupo::*} is set:
+        wait 2 seconds
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:item,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
 
 command /mazentrar <player> <text>:
     executable by: console
@@ -558,6 +566,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque} is not set:
                 set {-maz.vacia::bosque} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque}
             delete {-maz.aviso::bosque}
         else:
@@ -582,6 +596,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque_2} is not set:
                 set {-maz.vacia::bosque_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque_2}
             delete {-maz.aviso::bosque_2}
         else:
@@ -606,6 +626,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque_3} is not set:
                 set {-maz.vacia::bosque_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque_3}
             delete {-maz.aviso::bosque_3}
         else:
@@ -630,6 +656,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque_4} is not set:
                 set {-maz.vacia::bosque_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque_4}
             delete {-maz.aviso::bosque_4}
         else:
@@ -654,6 +686,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque_5} is not set:
                 set {-maz.vacia::bosque_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque_5}
             delete {-maz.aviso::bosque_5}
         else:
@@ -678,6 +716,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::bosque_6} is not set:
                 set {-maz.vacia::bosque_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:bosque_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:bosque_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:bosque_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:bosque_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::bosque_6}
             delete {-maz.aviso::bosque_6}
         else:
@@ -702,6 +746,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina} is not set:
                 set {-maz.vacia::mina} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina}
             delete {-maz.aviso::mina}
         else:
@@ -726,6 +776,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina_2} is not set:
                 set {-maz.vacia::mina_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina_2}
             delete {-maz.aviso::mina_2}
         else:
@@ -750,6 +806,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina_3} is not set:
                 set {-maz.vacia::mina_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina_3}
             delete {-maz.aviso::mina_3}
         else:
@@ -774,6 +836,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina_4} is not set:
                 set {-maz.vacia::mina_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina_4}
             delete {-maz.aviso::mina_4}
         else:
@@ -798,6 +866,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina_5} is not set:
                 set {-maz.vacia::mina_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina_5}
             delete {-maz.aviso::mina_5}
         else:
@@ -822,6 +896,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::mina_6} is not set:
                 set {-maz.vacia::mina_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:mina_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:mina_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:mina_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:mina_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::mina_6}
             delete {-maz.aviso::mina_6}
         else:
@@ -846,6 +926,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba} is not set:
                 set {-maz.vacia::tumba} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba}
             delete {-maz.aviso::tumba}
         else:
@@ -870,6 +956,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba_2} is not set:
                 set {-maz.vacia::tumba_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba_2}
             delete {-maz.aviso::tumba_2}
         else:
@@ -894,6 +986,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba_3} is not set:
                 set {-maz.vacia::tumba_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba_3}
             delete {-maz.aviso::tumba_3}
         else:
@@ -918,6 +1016,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba_4} is not set:
                 set {-maz.vacia::tumba_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba_4}
             delete {-maz.aviso::tumba_4}
         else:
@@ -942,6 +1046,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba_5} is not set:
                 set {-maz.vacia::tumba_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba_5}
             delete {-maz.aviso::tumba_5}
         else:
@@ -966,6 +1076,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::tumba_6} is not set:
                 set {-maz.vacia::tumba_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:tumba_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:tumba_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:tumba_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:tumba_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::tumba_6}
             delete {-maz.aviso::tumba_6}
         else:
@@ -990,6 +1106,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo} is not set:
                 set {-maz.vacia::cumbre_hielo} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo}
             delete {-maz.aviso::cumbre_hielo}
         else:
@@ -1014,6 +1136,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo_2} is not set:
                 set {-maz.vacia::cumbre_hielo_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo_2}
             delete {-maz.aviso::cumbre_hielo_2}
         else:
@@ -1038,6 +1166,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo_3} is not set:
                 set {-maz.vacia::cumbre_hielo_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo_3}
             delete {-maz.aviso::cumbre_hielo_3}
         else:
@@ -1062,6 +1196,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo_4} is not set:
                 set {-maz.vacia::cumbre_hielo_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo_4}
             delete {-maz.aviso::cumbre_hielo_4}
         else:
@@ -1086,6 +1226,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo_5} is not set:
                 set {-maz.vacia::cumbre_hielo_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo_5}
             delete {-maz.aviso::cumbre_hielo_5}
         else:
@@ -1110,6 +1256,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::cumbre_hielo_6} is not set:
                 set {-maz.vacia::cumbre_hielo_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:cumbre_hielo_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:cumbre_hielo_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::cumbre_hielo_6}
             delete {-maz.aviso::cumbre_hielo_6}
         else:
@@ -1134,6 +1286,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano} is not set:
                 set {-maz.vacia::forja_volcano} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano}
             delete {-maz.aviso::forja_volcano}
         else:
@@ -1158,6 +1316,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano_2} is not set:
                 set {-maz.vacia::forja_volcano_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano_2}
             delete {-maz.aviso::forja_volcano_2}
         else:
@@ -1182,6 +1346,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano_3} is not set:
                 set {-maz.vacia::forja_volcano_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano_3}
             delete {-maz.aviso::forja_volcano_3}
         else:
@@ -1206,6 +1376,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano_4} is not set:
                 set {-maz.vacia::forja_volcano_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano_4}
             delete {-maz.aviso::forja_volcano_4}
         else:
@@ -1230,6 +1406,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano_5} is not set:
                 set {-maz.vacia::forja_volcano_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano_5}
             delete {-maz.aviso::forja_volcano_5}
         else:
@@ -1254,6 +1436,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::forja_volcano_6} is not set:
                 set {-maz.vacia::forja_volcano_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:forja_volcano_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:forja_volcano_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::forja_volcano_6}
             delete {-maz.aviso::forja_volcano_6}
         else:
@@ -1278,6 +1466,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth}
             delete {-maz.aviso::world_minecraft_santuario_azeroth}
         else:
@@ -1302,6 +1496,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth_2} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth_2}
             delete {-maz.aviso::world_minecraft_santuario_azeroth_2}
         else:
@@ -1326,6 +1526,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth_3} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth_3}
             delete {-maz.aviso::world_minecraft_santuario_azeroth_3}
         else:
@@ -1350,6 +1556,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth_4} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth_4} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth_4 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_4 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_4 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_4 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_4 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth_4}
             delete {-maz.aviso::world_minecraft_santuario_azeroth_4}
         else:
@@ -1374,6 +1586,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth_5} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth_5} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth_5 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_5 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_5 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_5 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_5 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth_5}
             delete {-maz.aviso::world_minecraft_santuario_azeroth_5}
         else:
@@ -1398,6 +1616,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::world_minecraft_santuario_azeroth_6} is not set:
                 set {-maz.vacia::world_minecraft_santuario_azeroth_6} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:santuario_azeroth_6 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_6 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_6 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_6 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:santuario_azeroth_6 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::world_minecraft_santuario_azeroth_6}
             delete {-maz.aviso::world_minecraft_santuario_azeroth_6}
         else:
@@ -1422,6 +1646,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::fosa} is not set:
                 set {-maz.vacia::fosa} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:fosa run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:fosa run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:fosa run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::fosa}
             delete {-maz.aviso::fosa}
         else:
@@ -1446,6 +1676,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::fosa_2} is not set:
                 set {-maz.vacia::fosa_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:fosa_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:fosa_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:fosa_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::fosa_2}
             delete {-maz.aviso::fosa_2}
         else:
@@ -1470,6 +1706,12 @@ every 5 seconds:
         if maz_jugadores({_w}) is 0:
             if {-maz.vacia::fosa_3} is not set:
                 set {-maz.vacia::fosa_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:fosa_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:fosa_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:fosa_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:fosa_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
             delete {-maz.fin::fosa_3}
             delete {-maz.aviso::fosa_3}
         else:

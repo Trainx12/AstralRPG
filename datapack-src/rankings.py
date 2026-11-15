@@ -68,9 +68,8 @@ def carteles():
         out.append((f'parkour_{pid}', f'minecraft:{d["world"]}', *cartel_parkour(d)))
     from lobby import NPC_POS
     mx, my, mz, _ = NPC_POS['astral_npc_minas']
-    out += [('minas', 'minecraft:lobby', mx, my + 3.4, mz + 2.5),
-            ('infinita', 'minecraft:lobby', 180.5, 101.5, 182.5),
-            ('trainx', 'minecraft:lobby', 186.5, 101.5, 182.5)]
+    # 15/11/2026: el dueno pidio borrar los de Infinita y Trainx del lobby; los vuelve a poner con /ranking cartel.
+    out += [('minas', 'minecraft:lobby', mx, my + 3.4, mz + 2.5)]
     from santuario_azeroth import ARRIVAL, WORLD
     out.append(('trainx', f'minecraft:{WORLD}', ARRIVAL[0], ARRIVAL[1] + 2.5, ARRIVAL[2] + 3))
     from bosque_talar import SPAWN
@@ -359,7 +358,8 @@ command /ranking [<text>] [<text>]:
             stop
         if arg-1 is "cartel":
             player has permission "astral.admin.ranking"
-            execute console command "kill @e[type=text_display,tag=astral_rank_%arg-2%]"
+            # Solo el cartel de ese id en el mundo donde esta el jugador (el de Trainx tambien esta en el Santuario).
+            execute console command "execute as %uuid of player% at @s run minecraft:kill @e[type=text_display,tag=astral_rank_%arg-2%,distance=0..]"
             execute console command "execute as %uuid of player% at @s run summon text_display ~ ~2.2 ~ {{Tags:['astral_rank','astral_rank_%arg-2%'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{{text:'Ranking',color:'gold'}}}}"
             rk_cartel(arg-2)
             send "&aCartel de &f%arg-2% &apuesto aca (se borro el anterior)." to player

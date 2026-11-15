@@ -261,7 +261,8 @@ command /ranking [<text>] [<text>]:
             stop
         if arg-1 is "cartel":
             player has permission "astral.admin.ranking"
-            execute console command "kill @e[type=text_display,tag=astral_rank_%arg-2%]"
+            # Solo el cartel de ese id en el mundo donde esta el jugador (el de Trainx tambien esta en el Santuario).
+            execute console command "execute as %uuid of player% at @s run minecraft:kill @e[type=text_display,tag=astral_rank_%arg-2%,distance=0..]"
             execute console command "execute as %uuid of player% at @s run summon text_display ~ ~2.2 ~ {Tags:['astral_rank','astral_rank_%arg-2%'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}"
             rk_cartel(arg-2)
             send "&aCartel de &f%arg-2% &apuesto aca (se borro el anterior)." to player

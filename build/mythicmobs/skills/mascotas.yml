@@ -4,6 +4,7 @@ PET_MODELO_lobo:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.lobo} @self
   - model{m=astral_pet_lobo} @self
 
 PET_lobo_CHEQUEO:
@@ -38,6 +39,7 @@ PET_lobo_EVOLUCION:
   - score{o=plv_lobo;v=30to30} true
   Skills:
   - 'model{m=astral_pet_lobo;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_lobo:
@@ -87,6 +89,7 @@ PET_MODELO_cuervo:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.cuervo} @self
   - model{m=astral_pet_cuervo} @self
 
 PET_cuervo_CHEQUEO:
@@ -121,6 +124,7 @@ PET_cuervo_EVOLUCION:
   - score{o=plv_cuervo;v=30to30} true
   Skills:
   - 'model{m=astral_pet_cuervo;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 PET_cuervo_MARCA:
@@ -182,6 +186,7 @@ PET_MODELO_golem:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.golem} @self
   - model{m=astral_pet_golem} @self
 
 PET_golem_CHEQUEO:
@@ -216,6 +221,7 @@ PET_golem_EVOLUCION:
   - score{o=plv_golem;v=30to30} true
   Skills:
   - 'model{m=astral_pet_golem;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_golem:
@@ -265,6 +271,7 @@ PET_MODELO_zorro:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.zorro} @self
   - model{m=astral_pet_zorro} @self
 
 PET_zorro_CHEQUEO:
@@ -299,6 +306,7 @@ PET_zorro_EVOLUCION:
   - score{o=plv_zorro;v=30to30} true
   Skills:
   - 'model{m=astral_pet_zorro;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_zorro:
@@ -348,6 +356,7 @@ PET_MODELO_dragon:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.dragon} @self
   - model{m=astral_pet_dragon} @self
 
 PET_dragon_CHEQUEO:
@@ -382,6 +391,7 @@ PET_dragon_EVOLUCION:
   - score{o=plv_dragon;v=30to30} true
   Skills:
   - 'model{m=astral_pet_dragon;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_dragon:
@@ -431,6 +441,7 @@ PET_MODELO_fenix:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.fenix} @self
   - model{m=astral_pet_fenix} @self
 
 PET_fenix_CHEQUEO:
@@ -465,6 +476,7 @@ PET_fenix_EVOLUCION:
   - score{o=plv_fenix;v=30to30} true
   Skills:
   - 'model{m=astral_pet_fenix;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 PET_fenix_RESCATE1:
@@ -562,6 +574,7 @@ PET_MODELO_ghastito:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.ghastito} @self
   - model{m=astral_pet_ghastito} @self
 
 PET_ghastito_CHEQUEO:
@@ -596,6 +609,7 @@ PET_ghastito_EVOLUCION:
   - score{o=plv_ghastito;v=30to30} true
   Skills:
   - 'model{m=astral_pet_ghastito;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_ghastito:
@@ -645,6 +659,7 @@ PET_MODELO_bombardero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.bombardero} @self
   - model{m=astral_pet_bombardero} @self
 
 PET_bombardero_CHEQUEO:
@@ -679,6 +694,7 @@ PET_bombardero_EVOLUCION:
   - score{o=plv_bombardero;v=30to30} true
   Skills:
   - 'model{m=astral_pet_bombardero;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_bombardero:
@@ -728,6 +744,7 @@ PET_MODELO_canonero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.canonero} @self
   - model{m=astral_pet_canonero} @self
 
 PET_canonero_CHEQUEO:
@@ -762,6 +779,7 @@ PET_canonero_EVOLUCION:
   - score{o=plv_canonero;v=30to30} true
   Skills:
   - 'model{m=astral_pet_canonero;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_canonero:
@@ -811,6 +829,7 @@ PET_MODELO_encapuchado:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.encapuchado} @self
   - model{m=astral_pet_encapuchado} @self
 
 PET_encapuchado_CHEQUEO:
@@ -845,6 +864,7 @@ PET_encapuchado_EVOLUCION:
   - score{o=plv_encapuchado;v=30to30} true
   Skills:
   - 'model{m=astral_pet_encapuchado;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_encapuchado:
@@ -894,6 +914,7 @@ PET_MODELO_llamita:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.llamita} @self
   - model{m=astral_pet_llamita} @self
 
 PET_llamita_CHEQUEO:
@@ -928,6 +949,7 @@ PET_llamita_EVOLUCION:
   - score{o=plv_llamita;v=30to30} true
   Skills:
   - 'model{m=astral_pet_llamita;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_llamita:
@@ -977,6 +999,7 @@ PET_MODELO_hondero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.hondero} @self
   - model{m=astral_pet_hondero} @self
 
 PET_hondero_CHEQUEO:
@@ -1011,6 +1034,7 @@ PET_hondero_EVOLUCION:
   - score{o=plv_hondero;v=30to30} true
   Skills:
   - 'model{m=astral_pet_hondero;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_hondero:
@@ -1060,6 +1084,7 @@ PET_MODELO_saqueador:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.saqueador} @self
   - model{m=astral_pet_saqueador} @self
 
 PET_saqueador_CHEQUEO:
@@ -1094,6 +1119,7 @@ PET_saqueador_EVOLUCION:
   - score{o=plv_saqueador;v=30to30} true
   Skills:
   - 'model{m=astral_pet_saqueador;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_saqueador:
@@ -1143,6 +1169,7 @@ PET_MODELO_brujita:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.brujita} @self
   - model{m=astral_pet_brujita} @self
 
 PET_brujita_CHEQUEO:
@@ -1177,6 +1204,7 @@ PET_brujita_EVOLUCION:
   - score{o=plv_brujita;v=30to30} true
   Skills:
   - 'model{m=astral_pet_brujita;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_brujita:
@@ -1226,6 +1254,7 @@ PET_MODELO_desierto:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.desierto} @self
   - model{m=astral_pet_desierto} @self
 
 PET_desierto_CHEQUEO:
@@ -1260,6 +1289,7 @@ PET_desierto_EVOLUCION:
   - score{o=plv_desierto;v=30to30} true
   Skills:
   - 'model{m=astral_pet_desierto;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_desierto:
@@ -1309,6 +1339,7 @@ PET_MODELO_jungla:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.jungla} @self
   - model{m=astral_pet_jungla} @self
 
 PET_jungla_CHEQUEO:
@@ -1343,6 +1374,7 @@ PET_jungla_EVOLUCION:
   - score{o=plv_jungla;v=30to30} true
   Skills:
   - 'model{m=astral_pet_jungla;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_jungla:
@@ -1392,6 +1424,7 @@ PET_MODELO_frondoso:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.frondoso} @self
   - model{m=astral_pet_frondoso} @self
 
 PET_frondoso_CHEQUEO:
@@ -1426,6 +1459,7 @@ PET_frondoso_EVOLUCION:
   - score{o=plv_frondoso;v=30to30} true
   Skills:
   - 'model{m=astral_pet_frondoso;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_frondoso:
@@ -1475,6 +1509,7 @@ PET_MODELO_micelio:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.micelio} @self
   - model{m=astral_pet_micelio} @self
 
 PET_micelio_CHEQUEO:
@@ -1509,6 +1544,7 @@ PET_micelio_EVOLUCION:
   - score{o=plv_micelio;v=30to30} true
   Skills:
   - 'model{m=astral_pet_micelio;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_micelio:
@@ -1558,6 +1594,7 @@ PET_MODELO_pradera:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.pradera} @self
   - model{m=astral_pet_pradera} @self
 
 PET_pradera_CHEQUEO:
@@ -1592,6 +1629,7 @@ PET_pradera_EVOLUCION:
   - score{o=plv_pradera;v=30to30} true
   Skills:
   - 'model{m=astral_pet_pradera;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_pradera:
@@ -1641,6 +1679,7 @@ PET_MODELO_sabana:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.sabana} @self
   - model{m=astral_pet_sabana} @self
 
 PET_sabana_CHEQUEO:
@@ -1675,6 +1714,7 @@ PET_sabana_EVOLUCION:
   - score{o=plv_sabana;v=30to30} true
   Skills:
   - 'model{m=astral_pet_sabana;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_sabana:
@@ -1724,6 +1764,7 @@ PET_MODELO_nieve:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.nieve} @self
   - model{m=astral_pet_nieve} @self
 
 PET_nieve_CHEQUEO:
@@ -1758,6 +1799,7 @@ PET_nieve_EVOLUCION:
   - score{o=plv_nieve;v=30to30} true
   Skills:
   - 'model{m=astral_pet_nieve;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_nieve:
@@ -1807,6 +1849,7 @@ PET_MODELO_pantano:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.pantano} @self
   - model{m=astral_pet_pantano} @self
 
 PET_pantano_CHEQUEO:
@@ -1841,6 +1884,7 @@ PET_pantano_EVOLUCION:
   - score{o=plv_pantano;v=30to30} true
   Skills:
   - 'model{m=astral_pet_pantano;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_pantano:
@@ -1890,6 +1934,7 @@ PET_MODELO_honguito:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet.honguito} @self
   - model{m=astral_pet_honguito} @self
 
 PET_honguito_CHEQUEO:
@@ -1924,6 +1969,7 @@ PET_honguito_EVOLUCION:
   - score{o=plv_honguito;v=30to30} true
   Skills:
   - 'model{m=astral_pet_honguito;s=1.35} @self'
+  - 'addtag{tag=astral.pet.evo} @self'
   - 'particles{p=end_rod;amount=6;hS=0.4;vS=0.6;speed=0.01} @self'
 
 MASC_INVOCAR_honguito:

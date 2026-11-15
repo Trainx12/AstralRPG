@@ -261,6 +261,7 @@ def skill_yml(dungeon=None):
               "  - " + q(f"particles{{p=cloud;amount=60;hS={radio};vS=0.2;speed=0}} @self"),
               "  - " + q("sound{s=entity.ravager.roar;v=1.5;p=0.7} @self"), "  - delay 20",
               "  - " + q(f"particles{{p=explosion;amount=12;hS={radio};vS=0.3}} @self"),
+              "  - " + __import__('efectos').mm_fx('golpe', '#c8c8c8', radio, 'piedra'),
               "  - " + q(f"damage{{a={dano}}} @PlayersInRadius{{r={radio}}}"),
               "  - " + q(f"throw{{velocity=4;velocityY=2}} @PlayersInRadius{{r={radio}}}"), ""]
     L += ["MINA_GUARDIAN_F2:", "  Skills:", "  - addtag{tag=mina.f2} @self",

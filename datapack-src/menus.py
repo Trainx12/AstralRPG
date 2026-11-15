@@ -78,7 +78,7 @@ def relleno(material, size, ocupados):
 
 # Comandos que los jugadores escriben: se registran como comandos de verdad.
 # Sin register_command, DeluxeMenus solo los atrapa al escribirlos y el chat los marca en rojo.
-COMANDOS_JUGADOR = {"menu", "comandos", "mascotas", "misiones"}
+COMANDOS_JUGADOR = {"configuraciones", "menu", "comandos", "mascotas", "misiones"}
 
 
 def menu(title, command, size, items, update=False):
@@ -393,7 +393,27 @@ def principal_menu():
                   extra={'update': 'true'})
     items += item('cerrar', 'BARRIER', 49, '&cCerrar',
                   extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]']})
+    # Configuraciones (15/11/2026): nivel de efectos visuales (plugin AstralEfectos).
+    items += item('configuraciones', 'COMPARATOR', 31, '&7&lConfiguraciones', ['&7Efectos visuales: Bajo, Medio o Alto.'],
+                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] configuraciones']})
     return menu(menu_title(), 'menu', 54, items, update=True)
+
+
+EFECTOS_NIVELES = [
+    ('bajo', 'GRAY_DYE', 11, '&f&lEfectos: Bajo', ['&7El juego como siempre.', '&7Sin efectos nuevos y solo 3 particulas', '&7por golpe. Ideal para PCs flojas.']),
+    ('medio', 'LIME_DYE', 13, '&a&lEfectos: Medio', ['&7Lo de siempre, mas:', '&7- disparos de bastones de color', '&7- anillos en los golpes de los jefes', '&8(con el que arrancan todos)']),
+    ('alto', 'MAGENTA_DYE', 15, '&d&lEfectos: Alto', ['&7Todo lo de Medio, mas:', '&7- explosiones de los jefes', '&7- rastros de armas al caminar', '&7- auras de armaduras con el set', '&7- rastro de mascotas evolucionadas']),
+]
+
+
+def configuraciones_menu():
+    items = item('titulo', 'COMPARATOR', 4, '&7&lConfiguraciones', ['&7Elegi cuantos efectos ves.', '&7Solo cambia lo que ves vos:', '&7el dano y las habilidades son iguales.'])
+    for key, material, slot, name, lore in EFECTOS_NIVELES:
+        items += item(f'efectos_{key}', material, slot, name, lore + ['', '&eClic para elegirlo.'],
+                      extra={'click_commands': ['[sound] UI_BUTTON_CLICK', f'[player] efectos {key}', '[close]']})
+    items += item('volver', 'ARROW', 22, '&fVolver al menu', extra={'click_commands': ['[openguimenu] principal']})
+    items += relleno('GRAY_STAINED_GLASS_PANE', 27, {4, 11, 13, 15, 22})
+    return menu('&8Configuraciones', 'configuraciones', 27, items)
 
 
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
@@ -631,7 +651,8 @@ def main():
     generate_dungeon_travel()
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
-    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu()})
+    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu(),
+                  "configuraciones": configuraciones_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
     menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in (2, 3, 4)})

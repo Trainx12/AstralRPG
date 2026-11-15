@@ -51,8 +51,10 @@ def cart(role):
 # Estacion nueva del dueno (12/11/2026): via norte-sur en x=120, rieles a y=99 entre los muros
 # negros de z=175 (norte) y z=211 (sur); rieles de z=178 a z=208 (z=188 y 198 eran losas: se cambiaron por rieles). El tren espera junto al muro norte, sale al sur,
 # teletransporta al tocar el muro sur y reaparece quieto en la posicion inicial.
-STATION = (120, 99, 193, 'SOUTH')
-WALL_EXIT = 211          # cara del muro donde "choca" (sentido de salida)
+# Vias nuevas (15/11/2026, el dueno movio el tren): x=96, rieles en y=99 de z=176 a z=207, muro norte en z=175 y
+# muro sur en z=208 (medido en el server). Mismo funcionamiento que antes.
+STATION = (96, 99, 192, 'SOUTH')
+WALL_EXIT = 208          # cara del muro donde "choca" (sentido de salida)
 FIRST_RAIL_ENTRY = 176   # primer riel despues del muro norte (13/11: z=176-177 pasaron de piso a riel; copia en y=-60)
 LOCO, VAGON = 4.89375, 3.6275125
 CARTS = ('loco', 'vagon', 'vagon')

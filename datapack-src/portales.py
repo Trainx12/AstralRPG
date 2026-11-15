@@ -6,13 +6,56 @@ ROOT = Path(__file__).resolve().parent.parent
 # End: portal_END.schem pegado con //paste -a parado en 146 82 78 (portal en 145 96 0),
 # sin el terreno natural. Llegada elegida por el dueno frente a la torre.
 # Nether: GuardianNPv3-92.schem ("guardianes"), separado en X -2248..-2138.
+# Nether (15/11/2026): llegada nueva elegida por el dueno, frente al portal grande al Nether Hub.
 ARRIVALS = {'end': (146.5, 84, 68.5, 180, 0),
-            'nether': (-2191.114, 81, 179.263, 179, -1.8)}
+            'nether': (-2137.59, 81, 159.48, 89.6, -2.1)}
 END_PASTE = (146, 82, 78)
 RESCUE_Y = 50  # la isla del End empieza en Y=64 y la base del Nether en Y=79
 NPC_POSITION = (211.434, 105, 237.492, 90.0, 0)
 # Copias del aldeano 2 bloques al este de cada llegada (mismo mob astral_npc_portales).
-NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2189.114, 81, 179.263)}
+NPC_ARRIVALS = {'end': (148.5, 84, 68.5), 'nether': (-2137.59, 81, 161.5)}   # nether: 2 bloques al costado de la llegada
+
+# Plugin AstralPortales (runtime/AstralPortales.java): Nether Hub <-> portal grande de portales_astrales.
+# Hub: zona que marco el dueno con WorldEdit (-239,110,-11 a -315,169,54); portal del Hub en ~(-282,124,23).
+PORTALES = {
+    'hub': {'mundo': 'minecraft:the_nether', 'desde': [-315, 110, -11], 'hasta': [-239, 169, 54],
+            'llegada': [-285.0, 124.0, 23.5, 90.0, 0.0]},
+    'astral': {'mundo': 'minecraft:portales_astrales', 'desde': [-2250, 60, 100], 'hasta': [-2125, 220, 220],
+               'llegada': list(ARRIVALS['nether'])},
+}
+PORTALES_YML = '''name: AstralPortales
+version: 1.0.0
+main: astral.AstralPortales
+api-version: '26.1.2'
+commands:
+  astralportal:
+    description: Guarda la llegada del Nether Hub o de portales_astrales donde estas parado
+    usage: /astralportal hub|astral
+    permission: astral.admin.portales
+permissions:
+  astral.admin.portales:
+    default: op
+  astral.admin.build:
+    default: op
+'''
+
+
+def build_plugin(jdk, server):
+    import os, subprocess, zipfile, yaml
+    target = ROOT / '.local/portales-classes'
+    target.mkdir(parents=True, exist_ok=True)
+    jars = list((server / 'libraries').rglob('*.jar'))
+    javac = [str(jdk / ('java.exe' if os.name == 'nt' else 'java')), '-m', 'jdk.compiler/com.sun.tools.javac.Main']
+    subprocess.run([*javac, '-encoding', 'UTF-8', '-source', '25', '-target', '25', '-classpath', os.pathsep.join(map(str, jars)),
+                    '-d', str(target), str(ROOT / 'datapack-src/runtime/AstralPortales.java')], check=True)
+    dest = ROOT / 'build/runtime/AstralPortales.jar'
+    stamp = (2026, 11, 15, 0, 0, 0)
+    with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
+        for p in sorted((target / 'astral').glob('AstralPortales*.class')):
+            z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), stamp), p.read_bytes())
+        z.writestr(zipfile.ZipInfo('plugin.yml', stamp), PORTALES_YML)
+        z.writestr(zipfile.ZipInfo('config.yml', stamp), yaml.safe_dump(PORTALES, sort_keys=False))
+    return dest
 
 
 def menu_data():
@@ -115,4 +158,11 @@ def generate():
 
 
 if __name__ == '__main__':
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--jdk', type=Path, help='bin de JDK 25: compila tambien AstralPortales.jar')
+    ap.add_argument('--server', type=Path, default=ROOT / '.local/testsrv')
+    a = ap.parse_args()
     generate()
+    if a.jdk:
+        print(build_plugin(a.jdk.resolve(), a.server.resolve()))

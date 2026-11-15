@@ -192,7 +192,8 @@ ARMOR_SETS = {
 ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 # Defensa progresa mas lento: requisitos inferiores a las armas de cada tier.
 ARMOR_DEFENSE_LEVELS = (6, 10, 14, 18, 22, 26, 30, 34, 38, 42)
-ARMOR_DURABILITY = (2000, 3000, 4500, 6500, 9000, 12000, 15500, 19500, 24500, 30000)
+# 15/11/2026: 1 punto por golpe (AstralDecor); T1-T2 suben para aguantar ~12 mazmorras (~250 golpes cada una).
+ARMOR_DURABILITY = (3000, 3500, 4500, 6500, 9000, 12000, 15500, 19500, 24500, 30000)
 from items_t6_10 import extend_armor as _extend_armor
 _extend_armor(ARMOR_SETS)
 for _set in ARMOR_SETS.values():
@@ -303,7 +304,9 @@ HOSTILE = ["minecraft:zombie", "minecraft:husk", "minecraft:drowned", "minecraft
            "minecraft:blaze", "minecraft:wither_skeleton", "minecraft:piglin_brute", "minecraft:hoglin",
            "minecraft:zoglin", "minecraft:magma_cube", "minecraft:ghast", "minecraft:phantom",
            "minecraft:guardian", "minecraft:breeze", "minecraft:enderman", "minecraft:endermite",
-           "minecraft:shulker", "minecraft:silverfish"]
+           "minecraft:shulker", "minecraft:silverfish",
+           # Nether (15/11/2026): los mas comunes no tenian tier, nombre ni vida.
+           "minecraft:zombified_piglin", "minecraft:piglin", "minecraft:slime"]
 # Drops de elites por tier: (material, probabilidad, cantidad)
 ELITE_DROPS = [
     [("esencia_elite", 0.5, 1)],

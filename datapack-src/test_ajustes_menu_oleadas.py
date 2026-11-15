@@ -12,7 +12,7 @@ from lobby import TAB_SECTIONS
 class AjustesTests(unittest.TestCase):
     def test_menu_only_adds_two_entries_and_trade_is_documented(self):
         items=yaml.safe_load(principal_menu())['items']
-        self.assertEqual(set(items)-{'info','cerrar'},set(('bazar minas mazmorras expediciones portales parkour arenas misiones mascotas cosmeticos skills guia comandos spawn fragmentos duelos').split()))
+        self.assertEqual(set(items)-{'info','cerrar'},set(('bazar minas mazmorras expediciones portales parkour arenas misiones mascotas cosmeticos skills guia comandos spawn fragmentos duelos configuraciones').split()))
         self.assertIn('/trade <jugador>',comandos_menu())
 
     def test_bow_limbs_are_joined_and_plush_section_is_enabled(self):

@@ -616,6 +616,7 @@ AST_YETI_PISOTON:
   Skills:
   - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self
   - delay 20
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> bfefff 8 hielo"}
   - damage{a=12} @PlayersInRadius{r=20}
   - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}
 AST_YETI_HIELO:
@@ -646,6 +647,7 @@ AST_JEFE_SLAM_astral_momia:
   - particles{p=cloud;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=cloud;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> f2d27a 5 arena"}
   - damage{a=8} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -666,6 +668,7 @@ AST_JEFE_DISPARO_HIT_astral_momia:
   - damage{a=6}
   - potion{type=SLOWNESS;duration=40;level=1}
   - particles{p=cloud;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> f2d27a 1 arena"}
 
 AST_JEFE_SLAM_astral_yeti:
   Cooldown: 9
@@ -682,6 +685,7 @@ AST_JEFE_SLAM_astral_yeti:
   - particles{p=snowflake;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=snowflake;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> bfefff 5 hielo"}
   - damage{a=11} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -702,6 +706,7 @@ AST_JEFE_DISPARO_HIT_astral_yeti:
   - damage{a=8}
   - potion{type=SLOWNESS;duration=60;level=1}
   - particles{p=snowflake;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> bfefff 1 hielo"}
 
 AST_JEFE_SLAM_astral_golem_forja:
   Cooldown: 9
@@ -718,6 +723,7 @@ AST_JEFE_SLAM_astral_golem_forja:
   - particles{p=flame;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=flame;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ff6a1a 5 fuego"}
   - damage{a=12} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -738,6 +744,7 @@ AST_JEFE_DISPARO_HIT_astral_golem_forja:
   - damage{a=9}
   - ignite{ticks=50}
   - particles{p=flame;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> ff6a1a 1 fuego"}
 
 AST_JEFE_SLAM_astral_cangrejo:
   Cooldown: 9
@@ -754,6 +761,7 @@ AST_JEFE_SLAM_astral_cangrejo:
   - particles{p=bubble_pop;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=bubble_pop;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 3fd0ff 5 agua"}
   - damage{a=7} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -774,6 +782,7 @@ AST_JEFE_DISPARO_HIT_astral_cangrejo:
   - damage{a=5}
   - throw{velocity=6;velocityY=2}
   - particles{p=bubble_pop;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 3fd0ff 1 agua"}
 
 AST_JEFE_SLAM_astral_chaman:
   Cooldown: 9
@@ -790,6 +799,7 @@ AST_JEFE_SLAM_astral_chaman:
   - particles{p=happy_villager;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=happy_villager;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 7cff5a 5 veneno"}
   - damage{a=6} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -810,6 +820,7 @@ AST_JEFE_DISPARO_HIT_astral_chaman:
   - damage{a=5}
   - potion{type=POISON;duration=60;level=1}
   - particles{p=happy_villager;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 7cff5a 1 veneno"}
 
 AST_JEFE_SLAM_astral_coloso_musgoso:
   Cooldown: 9
@@ -826,6 +837,7 @@ AST_JEFE_SLAM_astral_coloso_musgoso:
   - particles{p=spore_blossom_air;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=spore_blossom_air;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 5fe05a 5 naturaleza"}
   - damage{a=12} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -846,6 +858,7 @@ AST_JEFE_DISPARO_HIT_astral_coloso_musgoso:
   - damage{a=9}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=spore_blossom_air;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 5fe05a 1 naturaleza"}
 
 AST_JEFE_SLAM_astral_mina_capataz:
   Cooldown: 9
@@ -861,6 +874,7 @@ AST_JEFE_SLAM_astral_mina_capataz:
   - particles{p=bubble_pop;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=bubble_pop;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 4fe0c8 5 agua"}
   - damage{a=8} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -880,6 +894,7 @@ AST_JEFE_DISPARO_HIT_astral_mina_capataz:
   - damage{a=6}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=bubble_pop;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fe0c8 1 agua"}
 
 AST_JEFE_SLAM_astral_mina_golem:
   Cooldown: 9
@@ -895,6 +910,7 @@ AST_JEFE_SLAM_astral_mina_golem:
   - particles{p=crit;amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03} @Ring{radius=4;points=8}
   - particles{p=crit;amount=16;hS=0.25;vS=1;y=1;speed=0.03} @Ring{radius=2;points=5}
   - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self
+  - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c8c8c8 5 piedra"}
   - damage{a=10} @PlayersInRadius{r=5}
   - throw{velocity=2;velocityY=4} @PlayersInRadius{r=5}
 
@@ -914,4 +930,5 @@ AST_JEFE_DISPARO_HIT_astral_mina_golem:
   - damage{a=7}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=crit;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> c8c8c8 1 piedra"}
 

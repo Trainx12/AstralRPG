@@ -127,6 +127,21 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST) public void protectSmithing(PrepareSmithingEvent e) {
         for(var item:e.getInventory().getContents())if(astralIngredient(item)) {e.setResult(null);return;}
     }
+    // Durabilidad (15/11/2026): vanilla gasta dano/4 por pieza y con el dano escalado (miles) la armadura se rompia
+    // en una mazmorra. Equipo Astral: 1 punto por golpe; y si su durabilidad maxima es baja (oficios, agua, armas
+    // con durabilidad vanilla) a veces no gasta, para que rinda como OBJETIVO_DURABILIDAD golpes (~12 mazmorras).
+    private static final int OBJETIVO_ARMADURA=3000, OBJETIVO_ARMA=4000;
+    @EventHandler(ignoreCancelled=true,priority=EventPriority.HIGH)
+    public void desgasteAstral(PlayerItemDamageEvent e) {
+        ItemStack it=e.getItem();
+        if(!astralIngredient(it))return;
+        e.setDamage(Math.min(e.getDamage(),1));
+        int max=it.getType().getMaxDurability();
+        if(it.getItemMeta() instanceof org.bukkit.inventory.meta.Damageable d && d.hasMaxDamage())max=d.getMaxDamage();
+        String n=it.getType().name();
+        int objetivo=(n.endsWith("_HELMET")||n.endsWith("_CHESTPLATE")||n.endsWith("_LEGGINGS")||n.endsWith("_BOOTS"))?OBJETIVO_ARMADURA:OBJETIVO_ARMA;
+        if(max>0 && max<objetivo && Math.random()>(double)max/objetivo)e.setCancelled(true);
+    }
     private boolean astralIngredient(ItemStack item) {
         // Incluye materiales sin item_model y objetos Astral de versiones anteriores.
         return item!=null && item.hasItemMeta() && item.getItemMeta().getAsString().contains("astral:");
@@ -421,14 +436,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             }
             if(wearsHat(helmet)) p.getInventory().setHelmet(restoreHat(helmet));
             boolean empty=helmet==null || helmet.getType().isAir();
-            if(hatOnly(helmet)) {
-                if(!on) { p.getInventory().setHelmet(null); continue; }
-                if(!key.equals(helmet.getItemMeta().getPersistentDataContainer().get(hatOnlyKey(),PersistentDataType.STRING)))
-                    p.getInventory().setHelmet(hatOnlyItem(key));
-                continue;
-            }
+            // 15/11: ya no se pone un objeto en la casilla de la cabeza sin casco (bloqueaba ponerse el casco,
+            // sobre todo en creativo). Los que quedaron se borran; sin casco el sombrero se ve solo a los demas.
+            if(hatOnly(helmet)) { p.getInventory().setHelmet(null); empty=true; }
             if(!on)continue;
-            if(empty) { p.getInventory().setHelmet(hatOnlyItem(key)); continue; }
             // Casco raro (calabaza, cabeza...): el sombrero se muestra a los demas como equipo visual.
             active.add(p.getUniqueId()); showHead(p,item);
         }
@@ -743,3 +754,4 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blast(EntityExplodeEvent e) { e.blockList().removeIf(this::ore); }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void blast(BlockExplodeEvent e) { e.blockList().removeIf(this::ore); }
 }
+

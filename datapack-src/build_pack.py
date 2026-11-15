@@ -321,15 +321,15 @@ try:
 except Exception as e:
     print("sin pack.png:", e)
 
-# Sin corazones oscuros al pegar (particula damage_indicator): textura transparente.
-# El dano se ve con el indicador propio de astral_gameplay.sk (escala.py).
-try:
-    from PIL import Image as _Img
-    _buf = _io.BytesIO()
-    _Img.new("RGBA", (8, 8), (0, 0, 0, 0)).save(_buf, "PNG")
-    files["assets/minecraft/textures/particle/damage.png"] = _buf.getvalue()
-except Exception as e:
-    print("sin particula transparente:", e)
+# Corazones oscuros al pegar (damage_indicator): visibles otra vez (15/11/2026). La cantidad la limita el
+# plugin AstralEfectos segun el nivel de efectos del jugador (Bajo 3, Medio 6, Alto 12 por golpe).
+# Dibujos de explosion de AstralEfectos (efectos.py, arte propio): cuerpo tenido por dyed_color + brillos.
+from efectos import pack_files as _fx_files
+for _rel, _obj in _fx_files().items():
+    if hasattr(_obj, "save"):
+        files["assets/astral/" + _rel] = _png(_obj)
+    else:
+        put_json("assets/astral/" + _rel, _obj)
 
 # Stellarity (resource pack oficial, con permiso del autor): ver pack-source/terceros/CREDITOS.txt.
 # Lo nuestro gana en los choques; la fuente default se junta; sus overlays van al pack.mcmeta.

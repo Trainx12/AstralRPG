@@ -1,0 +1,235 @@
+menu_title: '&8Configuraciones'
+open_command: configuraciones
+size: 27
+register_command: true
+items:
+  'titulo':
+    material: COMPARATOR
+    slot: 4
+    amount: 1
+    display_name: '&7&lConfiguraciones'
+    lore:
+    - '&7Elegi cuantos efectos ves.'
+    - '&7Solo cambia lo que ves vos:'
+    - '&7el dano y las habilidades son iguales.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:menu/icon_titulos'
+  'efectos_bajo':
+    material: GRAY_DYE
+    slot: 11
+    amount: 1
+    display_name: '&f&lEfectos: Bajo'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[close]'
+  'efectos_medio':
+    material: LIME_DYE
+    slot: 13
+    amount: 1
+    display_name: '&a&lEfectos: Medio'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[close]'
+  'efectos_alto':
+    material: MAGENTA_DYE
+    slot: 15
+    amount: 1
+    display_name: '&d&lEfectos: Alto'
+    lore:
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[close]'
+  'volver':
+    material: ARROW
+    slot: 22
+    amount: 1
+    display_name: '&fVolver al menu'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[openguimenu] principal'
+    item_model: 'astral:menu/icon_back'
+  'vidrio_0':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_10':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 10
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_12':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 12
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_14':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 14
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_16':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 16
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

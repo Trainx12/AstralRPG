@@ -205,6 +205,9 @@ def script(primera=None, cada=None, aviso=None):
          '',
          'function inf_limpiar(n: text):',
          '    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[tag=inf.mob,distance=0..]"',
+         # 15/11/2026: tambien lo que quedo tirado de la partida anterior.
+         *[f'    execute console command "execute in minecraft:%{{_n}}% run minecraft:kill @e[type=minecraft:{t},distance=0..]"'
+           for t in ('item', 'arrow', 'spectral_arrow', 'trident', 'experience_orb')],
          '    delete {-inf.on::%{_n}%}',
          '    delete {-inf.tier::%{_n}%}',
          '    delete {-inf.plus::%{_n}%}',

@@ -5113,6 +5113,7 @@ function asg_refresh(p: player):
     set slot 20 of {_inv} to {_held}
     set slot 23 of {_inv} to air
     set slot 24 of {_inv} to air
+    asg_reparar_boton({_p})
     if {_held} is not set:
         asg_bar({_p}, "empty", "&eColoca un arma o armadura de AstralRPG.")
         asg_action({_p}, "blocked", "&7MEJORAR", "&7Primero coloca tu equipo.")
@@ -5283,6 +5284,74 @@ function asg_refresh(p: player):
         asg_bar({_p}, {asg.notice::%{_id}%}, "&eResultado del ultimo intento. Tu equipo permanece en el slot.")
     asg_action({_p}, {_model}, {_label}, "&7Materiales en tu inventario, dinero y probabilidad arriba." and "&7Si falla: se pierden materiales, no el equipo ni el dinero.")
 
+function asg_rep_costo(t: number) :: number:
+    if {_t} is 1:
+        return 150
+    if {_t} is 2:
+        return 300
+    if {_t} is 3:
+        return 600
+    if {_t} is 4:
+        return 1200
+    if {_t} is 5:
+        return 2500
+    if {_t} is 6:
+        return 4000
+    if {_t} is 7:
+        return 6000
+    if {_t} is 8:
+        return 8500
+    if {_t} is 9:
+        return 12000
+    if {_t} is 10:
+        return 16000
+    return 0
+
+function asg_rep_ver(p: player):
+    set {_id} to uuid of {_p}
+    set {_original} to {_p}'s tool
+    set {_p}'s tool to {asg.escrow::%{_id}%}
+    execute console command "execute as %name of {_p}% at @s run function astral:mejora/gui/reparar_ver"
+    set {_p}'s tool to {_original}
+
+function asg_rep_tier(p: player) :: number:
+    loop 10 times:
+        if {_p} has the scoreboard tag "asgui.rt%loop-number%":
+            return loop-number
+    return 0
+
+function asg_reparar_boton(p: player):
+    set {_inv} to {asg.gui::%uuid of {_p}%}
+    asg_rep_ver({_p})
+    if {_p} does not have the scoreboard tag "asgui.rep":
+        set {_b} to anvil named "&7Reparar"
+        set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
+        set slot 47 of {_inv} to {_b}
+        stop
+    set {_t} to asg_rep_tier({_p})
+    set {_b} to anvil named "&a&lReparar &7(tier %{_t}%)"
+    if {_t} is 1:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 150$", "&eMaterial: Fragmento Astral x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 2:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 300$", "&eMaterial: Polvo Astral x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 3:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 600$", "&eMaterial: Cristal Arcano Refinado x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 4:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 1200$", "&eMaterial: Chispa Astral x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 5:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 2500$", "&eMaterial: Nucleo Astral x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 6:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 4000$", "&eMaterial: Fragmento de Ocaso x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 7:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 6000$", "&eMaterial: Esquirla de Eclipse x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 8:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 8500$", "&eMaterial: Nucleo de Supernova x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 9:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 12000$", "&eMaterial: Esencia del Vacio x1" and "&8(el material se busca en tu inventario)"
+    if {_t} is 10:
+        set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 16000$", "&eMaterial: Corazon del Fin x1" and "&8(el material se busca en tu inventario)"
+    set slot 47 of {_inv} to {_b}
+
 function asg_open(p: player, mode: text):
     close {_p}'s inventory
     asg_return({_p})
@@ -5423,6 +5492,37 @@ on inventory click:
             else:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
+        stop
+    if {_slot} is 47:
+        if {asg.mode::%{_id}%} is not "forge":
+            stop
+        if {asg.escrow::%{_id}%} is not set:
+            stop
+        asg_rep_ver(player)
+        if player does not have the scoreboard tag "asgui.rep":
+            send "&eEse equipo no esta gastado o no es de AstralRPG." to player
+            stop
+        if player does not have the scoreboard tag "asgui.repmat":
+            send "&cTe falta el material para reparar (mira el yunque)." to player
+            stop
+        set {_c} to asg_rep_costo(asg_rep_tier(player))
+        if balance of player < {_c}:
+            send "&cNecesitas %{_c}%$ para reparar." to player
+            stop
+        set {asg.busy::%{_id}%} to true
+        set {_original} to player's tool
+        set player's tool to {asg.escrow::%{_id}%}
+        execute console command "execute as %player% at @s run tag @s remove asgui.reparado"
+        execute console command "execute as %player% at @s run function astral:mejora/gui/reparar"
+        set {_result} to player's tool
+        set player's tool to {_original}
+        set {asg.escrow::%{_id}%} to {_result}
+        set slot 20 of {_inv} to {_result}
+        if player has the scoreboard tag "asgui.reparado":
+            remove {_c} from player's balance
+            send "&aEquipo reparado por %{_c}%$." to player
+        delete {asg.busy::%{_id}%}
+        asg_refresh(player)
         stop
     if {_slot} is between 39 and 41:
         if {asg.escrow::%{_id}%} is not set:

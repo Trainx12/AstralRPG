@@ -45,6 +45,7 @@ TRAINX_BARRIDO:
   - 'delay 6'
   - 'sound{s=entity.player.attack.sweep;v=2;p=0.5} @self'
   - 'particles{p=sweep_attack;amount=20;hS=4;vS=0.4;y=1.5} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> d0306a 7 vacio"}'
   - 'damage{a=30} @PlayersInRadius{r=7}'
   - 'throw{velocity=8;velocityY=3} @PlayersInRadius{r=7}'
 
@@ -65,6 +66,7 @@ TRAINX_RAYO_TICK:
 TRAINX_RAYO_HIT:
   Skills:
   - 'damage{a=13}'
+  - 'command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fd1ff 1 luz"}'
   - 'particles{p=firework;amount=25;hS=0.6;vS=0.6;speed=0.08} @origin'
   - 'sound{s=entity.firework_rocket.blast;v=1.2;p=1.4} @origin'
 
@@ -89,6 +91,7 @@ TRAINX_ESTRELLA:
   - 'delay 6'
   - 'particles{p=firework;amount=50;hS=0.3;vS=4;y=5;speed=0.02} @self'
   - 'sound{s=entity.firework_rocket.large_blast;v=1.6;p=0.8} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ffd84d 2.5 luz"}'
   - 'damage{a=15} @PlayersInRadius{r=2.5}'
   - 'particles{p=explosion;amount=2} @self'
   - 'delay 2'

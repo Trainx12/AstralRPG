@@ -65,6 +65,16 @@ def noche():
     return L
 
 
+# Limpieza (15/11/2026): lo que quedo tirado de la pelea anterior (items, flechas, tridentes, experiencia).
+# distance=0.. limita el kill a la dimension de esa copia.
+LIMPIAR = ('item', 'arrow', 'spectral_arrow', 'trident', 'experience_orb')
+
+
+def limpiar(dim_expr, indent):
+    return [f'{indent}execute console command "execute in minecraft:{dim_expr} run minecraft:kill @e[type=minecraft:{t},distance=0..]"'
+            for t in LIMPIAR]
+
+
 def script(minutos=MINUTOS_FIN):
     MINUTOS_FIN = minutos  # la prueba local usa 1 minuto
     L = [f'# Generado por mazmorras_copias.py: {COPIES} copias por mazmorra, parties y {MINUTOS_FIN} minutos tras el jefe.',
@@ -244,6 +254,10 @@ def script(minutos=MINUTOS_FIN):
           '    loop {_grupo::*}:',
           '        send "&8[&7%{_nombre}%&8] &7Entrando a la copia &f%{_elegida}%&7... &8(Para salir: /spawn)" to loop-value',
           '        execute console command "execute in minecraft:%{_d}% run minecraft:tp %uuid of loop-value% %{_tp}%"',
+          '    # Copia nueva para el grupo: se borra lo que quedo tirado cerca de la llegada (las salas se limpian al vaciarse).',
+          '    if {_grupo::*} is set:',
+          '        wait 2 seconds',
+          *limpiar('%{_d}%', '        '),
           '',
           'command /mazentrar <player> <text>:',
           '    executable by: console',
@@ -271,6 +285,8 @@ def script(minutos=MINUTOS_FIN):
               '        if maz_jugadores({_w}) is 0:',
               f'            if {{-maz.vacia::{name}}} is not set:',
               f'                set {{-maz.vacia::{name}}} to now',
+              '                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea',
+              *limpiar(name.removeprefix('world_minecraft_'), '                '),
               f'            delete {{-maz.fin::{name}}}',
               f'            delete {{-maz.aviso::{name}}}',
               '        else:',

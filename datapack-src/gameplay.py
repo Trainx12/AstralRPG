@@ -105,17 +105,64 @@ def generate_action_bar(output):
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text('action_bar:\n'+''.join(f'  {key}: '+json.dumps(value,ensure_ascii=False)+'\n' for key,value in block.items()),encoding='utf-8')
 
+# Arenas PvP (15/11/2026, pedido del dueno): las armas tienen stats propias contra jugadores. Cada golpe saca un
+# porcentaje de la vida maxima del que lo recibe. Depende de:
+# - el tipo de arma (PVP_PCT),
+# - el tier del arma contra el tier de la armadura del otro (sale de su Defensa): x1,15 por cada tier de diferencia,
+#   entre x0,4 y x2,5 (un T10 contra un T5 pega el doble; un T5 contra un T10, la mitad),
+# - un tope por golpe (sin muertes de un golpe por Ejecucion, hechizos o habilidades).
+# Mismo tier: ~11 golpes de espada para matar.
+PVP_PCT = {'espada': 9.0, 'hacha': 11.0, 'lanza': 9.5, 'flecha': 7.5, 'hechizo': 8.5, 'otro': 6.0}
+PVP_PASO = 1.15
+PVP_MIN, PVP_MAX = 0.4, 2.5
+PVP_TOPE = 25.0      # % maximo de la vida por golpe
+
+
 def pvp():
-    """Arena PvP: el dano de las armas Astral es enorme (escala.py); entre jugadores se
-    divide por el factor del arma del atacante, asi el PvP queda como antes."""
-    from escala import FACTOR_ARMA
-    lines = ['# Arena PvP: dano de armas Astral dividido por su factor (escala.py).',
-             'on damage of player with priority low:', '    attacker is a player',
-             '    name of world of victim is ' + ' or '.join(f'"{w}"' for w in arena_worlds())]
-    for t in range(1, 11):
-        lines.append(f'    if scoreboard tags of attacker contains "astral.ht{t}":')
-        lines.append(f'        set damage to damage / {round(FACTOR_ARMA[t], 3)}')
-    return chr(10).join(lines) + chr(10)
+    """Arena PvP: dano en % de la vida del rival (ver PVP_PCT); reemplaza la division por FACTOR_ARMA."""
+    from escala import DEFENSA_SET
+    tiers = chr(10).join(f'    if scoreboard tags of {{_a}} contains "astral.ht{t}":' + chr(10) + f'        return {t}' for t in range(10, 0, -1))
+    # Tier de armadura por la Defensa: el mas alto cuyo set completo (90%) ya alcanza.
+    armadura = chr(10).join(f'    if {{_d}} >= {round(DEFENSA_SET[t] * 0.9)}:' + chr(10) + f'        return {t}' for t in range(10, 0, -1))
+    arenas = ' or '.join(f'"{w}"' for w in arena_worlds())
+    p = PVP_PCT
+    return f'''# Arena PvP: stats propias contra jugadores (gameplay.py PVP_PCT). Corre al final, despues de la defensa.
+function astral_pvp_tier(a: player) :: number:
+{tiers}
+    return 0
+
+function astral_pvp_armadura(d: number) :: number:
+{armadura}
+    return 0
+
+on damage of player with priority highest:
+    attacker is a player
+    name of world of victim is {arenas}
+    set {{_pct}} to {p['otro']}
+    set {{_tool}} to "%type of attacker's tool%"
+    set {{_causa}} to "%damage cause%"
+    if {{_tool}} contains "sword":
+        set {{_pct}} to {p['espada']}
+    if {{_tool}} contains "trident":
+        set {{_pct}} to {p['lanza']}
+    if {{_tool}} contains "axe":
+        if {{_tool}} does not contain "pickaxe":
+            set {{_pct}} to {p['hacha']}
+    if {{_causa}} contains "magic":
+        set {{_pct}} to {p['hechizo']}
+    if {{_causa}} contains "projectile":
+        set {{_pct}} to {p['flecha']}
+    set {{_dif}} to astral_pvp_tier(attacker) - astral_pvp_armadura(astral_defensa(victim))
+    set {{_f}} to {PVP_PASO} ^ {{_dif}}
+    if {{_f}} < {PVP_MIN}:
+        set {{_f}} to {PVP_MIN}
+    if {{_f}} > {PVP_MAX}:
+        set {{_f}} to {PVP_MAX}
+    set {{_pct}} to {{_pct}} * {{_f}}
+    if {{_pct}} > {PVP_TOPE}:
+        set {{_pct}} to {PVP_TOPE}
+    set damage to (max health of victim) * {{_pct}} / 100
+'''
 
 
 def vida():

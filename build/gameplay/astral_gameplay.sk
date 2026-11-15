@@ -615,30 +615,80 @@ on uncancelled damage of living entity with priority monitor:
 on load:
     execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
 
-# Arena PvP: dano de armas Astral dividido por su factor (escala.py).
-on damage of player with priority low:
+# Arena PvP: stats propias contra jugadores (gameplay.py PVP_PCT). Corre al final, despues de la defensa.
+function astral_pvp_tier(a: player) :: number:
+    if scoreboard tags of {_a} contains "astral.ht10":
+        return 10
+    if scoreboard tags of {_a} contains "astral.ht9":
+        return 9
+    if scoreboard tags of {_a} contains "astral.ht8":
+        return 8
+    if scoreboard tags of {_a} contains "astral.ht7":
+        return 7
+    if scoreboard tags of {_a} contains "astral.ht6":
+        return 6
+    if scoreboard tags of {_a} contains "astral.ht5":
+        return 5
+    if scoreboard tags of {_a} contains "astral.ht4":
+        return 4
+    if scoreboard tags of {_a} contains "astral.ht3":
+        return 3
+    if scoreboard tags of {_a} contains "astral.ht2":
+        return 2
+    if scoreboard tags of {_a} contains "astral.ht1":
+        return 1
+    return 0
+
+function astral_pvp_armadura(d: number) :: number:
+    if {_d} >= 1350:
+        return 10
+    if {_d} >= 1125:
+        return 9
+    if {_d} >= 900:
+        return 8
+    if {_d} >= 720:
+        return 7
+    if {_d} >= 585:
+        return 6
+    if {_d} >= 450:
+        return 5
+    if {_d} >= 315:
+        return 4
+    if {_d} >= 180:
+        return 3
+    if {_d} >= 90:
+        return 2
+    if {_d} >= 45:
+        return 1
+    return 0
+
+on damage of player with priority highest:
     attacker is a player
     name of world of victim is "arena" or "arenas_tft"
-    if scoreboard tags of attacker contains "astral.ht1":
-        set damage to damage / 15.152
-    if scoreboard tags of attacker contains "astral.ht2":
-        set damage to damage / 70.621
-    if scoreboard tags of attacker contains "astral.ht3":
-        set damage to damage / 285.714
-    if scoreboard tags of attacker contains "astral.ht4":
-        set damage to damage / 1322.751
-    if scoreboard tags of attacker contains "astral.ht5":
-        set damage to damage / 5208.333
-    if scoreboard tags of attacker contains "astral.ht6":
-        set damage to damage / 24414.062
-    if scoreboard tags of attacker contains "astral.ht7":
-        set damage to damage / 114889.706
-    if scoreboard tags of attacker contains "astral.ht8":
-        set damage to damage / 542534.722
-    if scoreboard tags of attacker contains "astral.ht9":
-        set damage to damage / 2569901.316
-    if scoreboard tags of attacker contains "astral.ht10":
-        set damage to damage / 12207031.25
+    set {_pct} to 6.0
+    set {_tool} to "%type of attacker's tool%"
+    set {_causa} to "%damage cause%"
+    if {_tool} contains "sword":
+        set {_pct} to 9.0
+    if {_tool} contains "trident":
+        set {_pct} to 9.5
+    if {_tool} contains "axe":
+        if {_tool} does not contain "pickaxe":
+            set {_pct} to 11.0
+    if {_causa} contains "magic":
+        set {_pct} to 8.5
+    if {_causa} contains "projectile":
+        set {_pct} to 7.5
+    set {_dif} to astral_pvp_tier(attacker) - astral_pvp_armadura(astral_defensa(victim))
+    set {_f} to 1.15 ^ {_dif}
+    if {_f} < 0.4:
+        set {_f} to 0.4
+    if {_f} > 2.5:
+        set {_f} to 2.5
+    set {_pct} to {_pct} * {_f}
+    if {_pct} > 25.0:
+        set {_pct} to 25.0
+    set damage to (max health of victim) * {_pct} / 100
 
 
 # Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.

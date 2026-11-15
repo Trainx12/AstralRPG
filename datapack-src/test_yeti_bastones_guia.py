@@ -54,7 +54,8 @@ class YetiBastonesGuiaTests(unittest.TestCase):
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:
             ray=z.read('data/astral/function/spell/ray.mcfunction').decode()
         self.assertIn('dx=0,dy=0,dz=0',ray)
-        self.assertNotIn('distance=',ray)
+        # distance solo en los que ven las particulas de efectos (astral.fx), nunca en quien recibe el hechizo
+        self.assertNotIn('distance=',''.join(l for l in ray.splitlines() if 'astral.fx' not in l))
         self.assertIn('nbt=!{NoAI:1b}',ray)
         self.assertIn('limit=1',ray)
 

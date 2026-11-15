@@ -138,6 +138,11 @@ every 1 second:
 
 function inf_limpiar(n: text):
     execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[tag=inf.mob,distance=0..]"
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[type=minecraft:item,distance=0..]"
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+    execute console command "execute in minecraft:%{_n}% run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
     delete {-inf.on::%{_n}%}
     delete {-inf.tier::%{_n}%}
     delete {-inf.plus::%{_n}%}

@@ -6,6 +6,19 @@ from items import MEJORAS, MATERIALS
 from services_ui import title
 
 ROOT=Path(__file__).resolve().parent
+# Reparar en el Herrero (15/11/2026): plata y un material por tier (mas barato que una mejora).
+REPARAR = {1: (150, 'fragmento_astral', 1), 2: (300, 'polvo_astral', 1), 3: (600, 'cristal_refinado', 1),
+           4: (1200, 'chispa_astral', 1), 5: (2500, 'nucleo_astral', 1), 6: (4000, 'fragmento_ocaso', 1),
+           7: (6000, 'esquirla_eclipse', 1), 8: (8500, 'nucleo_supernova', 1), 9: (12000, 'esencia_vacio', 1),
+           10: (16000, 'corazon_fin', 1)}
+REPARAR_SLOT = 47
+
+
+def _material_nombre(mid):
+    if mid in MATERIALS:
+        return MATERIALS[mid][0]
+    from items_t6_10 import MATERIALES
+    return MATERIALES[mid][0]
 OUT=ROOT.parent/'build/services'
 
 
@@ -37,6 +50,22 @@ def generate(files,items):
                       f'execute if score #c astral.tmp matches {amount}.. run tag @s add asgui.mat.{material}',
                       f'execute unless score #c astral.tmp matches {amount}.. run scoreboard players set #falta astral.tmp 1']
         fn(f'inspect/{n}',lines+['execute if score #falta astral.tmp matches 0 run tag @s add asgui.ready'])
+    # Reparar: tier del equipo en la mano (custom_data), si esta gastado y si hay material.
+    rep=['tag @s remove asgui.rep','tag @s remove asgui.repmat']+[f'tag @s remove asgui.rt{t}' for t in REPARAR]
+    rep+=['execute unless items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{}},minecraft:damage~{damage:{min:1}}] run return 0']
+    for t,(_,mat,cant) in REPARAR.items():
+        rep+=[f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{tier:{t}}}}}] run tag @s add asgui.rt{t}',
+              f'execute if entity @s[tag=asgui.rt{t}] store result score #c astral.tmp run clear @s *[minecraft:custom_data~{{astral:{{id:"{mat}"}}}}] 0',
+              f'execute if entity @s[tag=asgui.rt{t}] if score #c astral.tmp matches {cant}.. run tag @s add asgui.repmat']
+    for kind in ('armor','weapon','staff','utility'):
+        rep+=[f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{type:"{kind}"}}}}] run tag @s add asgui.rep']
+    fn('reparar_ver',rep)
+    hacer=['function astral:mejora/gui/reparar_ver','execute unless entity @s[tag=asgui.rep,tag=asgui.repmat] run return 0']
+    for t,(_,mat,cant) in REPARAR.items():
+        hacer+=[f'execute if entity @s[tag=asgui.rt{t}] run clear @s *[minecraft:custom_data~{{astral:{{id:"{mat}"}}}}] {cant}']
+    hacer+=['item modify entity @s weapon.mainhand astral:reparar','tag @s add asgui.reparado']
+    fn('reparar',hacer)
+    files['data/astral/item_modifier/reparar.json']=json.dumps({'function':'minecraft:set_damage','damage':1.0})
     fn('apply',['function astral:mejora/gui/inspect','execute unless entity @s[tag=asgui.ready] run return 0',
         'tag @s add asgui.attempted']+
         [f'execute if entity @s[tag=asgui.next{n}] run function astral:mejora/n/{n}' for n in MEJORAS]+
@@ -60,6 +89,12 @@ def script():
     cost=['function asg_cost(n: number) :: number:']
     for n,(money,_,_) in MEJORAS.items():cost += [f'    if {{_n}} is {n}:',f'        return {money}']
     cost+=['    return 0','']
+    rep_costo='\n'.join(f'    if {{_t}} is {t}:\n        return {money}' for t,(money,_,_) in REPARAR.items())
+    rep_lore_l=[]
+    for t,(money,mat,cant) in REPARAR.items():
+        rep_lore_l += [f'    if {{_t}} is {t}:',
+                       f'        set lore of {{_b}} to "&7Deja el equipo como nuevo.", "&eCosto: {money}$", "&eMaterial: {_material_nombre(mat)} x{cant}" and "&8(el material se busca en tu inventario)"']
+    rep_lore='\n'.join(rep_lore_l)
     render_mats=[]
     for n,(_,_,recipe) in MEJORAS.items():
         render_mats += [f'    if {{_n}} is {n}:']
@@ -175,6 +210,7 @@ function asg_refresh(p: player):
     set slot 20 of {_inv} to {_held}
     set slot 23 of {_inv} to air
     set slot 24 of {_inv} to air
+    asg_reparar_boton({_p})
     if {_held} is not set:
         asg_bar({_p}, "empty", "&eColoca un arma o armadura de AstralRPG.")
         asg_action({_p}, "blocked", "&7MEJORAR", "&7Primero coloca tu equipo.")
@@ -209,6 +245,36 @@ __MATERIALS__
     if {asg.notice::%{_id}%} is set:
         asg_bar({_p}, {asg.notice::%{_id}%}, "&eResultado del ultimo intento. Tu equipo permanece en el slot.")
     asg_action({_p}, {_model}, {_label}, "&7Materiales en tu inventario, dinero y probabilidad arriba." and "&7Si falla: se pierden materiales, no el equipo ni el dinero.")
+
+function asg_rep_costo(t: number) :: number:
+__REP_COSTO__
+    return 0
+
+function asg_rep_ver(p: player):
+    set {_id} to uuid of {_p}
+    set {_original} to {_p}'s tool
+    set {_p}'s tool to {asg.escrow::%{_id}%}
+    execute console command "execute as %name of {_p}% at @s run function astral:mejora/gui/reparar_ver"
+    set {_p}'s tool to {_original}
+
+function asg_rep_tier(p: player) :: number:
+    loop 10 times:
+        if "asgui.rt%loop-number%" is in scoreboard tags of {_p}:
+            return loop-number
+    return 0
+
+function asg_reparar_boton(p: player):
+    set {_inv} to {asg.gui::%uuid of {_p}%}
+    asg_rep_ver({_p})
+    if "asgui.rep" is not in scoreboard tags of {_p}:
+        set {_b} to anvil named "&7Reparar"
+        set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
+        set slot __REP_SLOT__ of {_inv} to {_b}
+        stop
+    set {_t} to asg_rep_tier({_p})
+    set {_b} to anvil named "&a&lReparar &7(tier %{_t}%)"
+__REP_LORE__
+    set slot __REP_SLOT__ of {_inv} to {_b}
 
 function asg_open(p: player, mode: text):
     close {_p}'s inventory
@@ -351,6 +417,37 @@ on inventory click:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
         stop
+    if {_slot} is __REP_SLOT__:
+        if {asg.mode::%{_id}%} is not "forge":
+            stop
+        if {asg.escrow::%{_id}%} is not set:
+            stop
+        asg_rep_ver(player)
+        if "asgui.rep" is not in scoreboard tags of player:
+            send "&eEse equipo no esta gastado o no es de AstralRPG." to player
+            stop
+        if "asgui.repmat" is not in scoreboard tags of player:
+            send "&cTe falta el material para reparar (mira el yunque)." to player
+            stop
+        set {_c} to asg_rep_costo(asg_rep_tier(player))
+        if balance of player < {_c}:
+            send "&cNecesitas %{_c}%$ para reparar." to player
+            stop
+        set {asg.busy::%{_id}%} to true
+        set {_original} to player's tool
+        set player's tool to {asg.escrow::%{_id}%}
+        execute console command "execute as %player% at @s run tag @s remove asgui.reparado"
+        execute console command "execute as %player% at @s run function astral:mejora/gui/reparar"
+        set {_result} to player's tool
+        set player's tool to {_original}
+        set {asg.escrow::%{_id}%} to {_result}
+        set slot 20 of {_inv} to {_result}
+        if "asgui.reparado" is in scoreboard tags of player:
+            remove {_c} from player's balance
+            send "&aEquipo reparado por %{_c}%$." to player
+        delete {asg.busy::%{_id}%}
+        asg_refresh(player)
+        stop
     if {_slot} is between 39 and 41:
         if {asg.escrow::%{_id}%} is not set:
             stop
@@ -412,7 +509,7 @@ every 10 ticks:
     loop all players:
         if {asg.gui::%uuid of loop-player%} is set:
             asg_refresh(loop-player)
-'''.replace('__MATERIALS__','\n'.join(render_mats))
+'''.replace('__MATERIALS__','\n'.join(render_mats)).replace('__REP_SLOT__',str(REPARAR_SLOT)).replace('__REP_COSTO__',rep_costo).replace('__REP_LORE__',rep_lore)
     core=re.sub(r'"([^"\n]+)" is not in scoreboard tags of (\{_p\}|player)',r'\2 does not have the scoreboard tag "\1"',core)
     core=re.sub(r'"([^"\n]+)" is in scoreboard tags of (\{_p\}|player)',r'\2 has the scoreboard tag "\1"',core)
     core=core.replace('shift left mouse button or shift right mouse button','left mouse button with shift or right mouse button with shift')

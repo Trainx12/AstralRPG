@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 20  # Armaduras T1-T10 con modelos elegidos (casco 3D) y armas T6-T10 nuevas (15/11).
+ITEM_VERSION = 21  # Durabilidad T1-T2 subida (15/11): 1 punto por golpe y ~12 mazmorras.
 
 files = {}
 
@@ -1057,9 +1057,21 @@ cast = [
     "scoreboard players set #cd astral.tmp 20",
     "scoreboard players set #cdr astral.tmp 0",
 ]
+from escala import COLOR_TIER as _CT
+cast.append(f'data modify storage {NS}:tmp spell.fxh set value "c070ff"')
+cast.append(f'data modify storage {NS}:tmp spell.fxc set value "[0.75,0.44,1.0]"')
+cast.append(f'data modify storage {NS}:tmp spell.fxe set value "arcano"')
+cast.append(f'data modify storage {NS}:tmp spell.fxp set value "witch"')
 for i, s in enumerate(STAFFS):
     t = i + 1
     sel = f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"baston_{t}"}}}}]'
+    _h = _CT[t].lstrip('#')
+    _rgb = ','.join(f"{int(_h[k:k + 2], 16) / 255:.2f}" for k in (0, 2, 4))
+    cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxh set value "{_h}"')
+    cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxc set value "[{_rgb}]"')
+    from efectos import ELEM_BASTON as _EB
+    cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxe set value "{_EB[t][0]}"')
+    cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxp set value "{_EB[t][1]}"')
     cast.append(f"{sel} run scoreboard players set #base astral.tmp {HECHIZO[t]}")
     cast.append(f"{sel} run scoreboard players add #pct astral.tmp {s['mdmg'] * 100}")
     cast.append(f"{sel} run scoreboard players set #cd astral.tmp {s['cd']}")
@@ -1103,15 +1115,27 @@ cast += [
     "tag @s add astral.caster",
     "scoreboard players set #steps astral.tmp 0",
     "playsound minecraft:entity.evoker.cast_spell player @a[distance=..16] ~ ~ ~ 0.8 1.6",
-    f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/ray",
+    f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/ray with storage {NS}:tmp spell",
     "tag @s remove astral.caster",
 ]
 fn("spell/cast", cast)
 from minijuegos import arena_worlds as _arena_worlds
 ARENA_WORLDS = _arena_worlds()
+# Efectos (15/11/2026): Bajo ve lo de siempre (witch + end_rod); Medio suma un rayo del color del tier del baston;
+# Alto lo hace mas grueso con chispas y al impactar pide al plugin AstralEfectos un estallido (marcador astral.fx).
+FX_MEDIO = "@a[scores={astral.fx=1..},distance=..96]"
+FX_ALTO = "@a[scores={astral.fx=2..},distance=..96]"
+FX_IMPACTO = ("$execute if entity " + FX_ALTO + " run summon marker ~ ~ ~ "
+              "{Tags:[\"astral.fx\",\"fx.estallido\",\"fxc.$(fxh)\",\"fxe.$(fxe)\"]}")
 fn("spell/ray", [
     "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
     "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
+    f"$particle minecraft:dust{{color:$(fxc),scale:1.3}} ~ ~ ~ 0.05 0.05 0.05 0 2 force {FX_MEDIO}",
+    f"$particle minecraft:dust{{color:$(fxc),scale:2.4}} ~ ~ ~ 0.14 0.14 0.14 0 2 force {FX_ALTO}",
+    f"particle minecraft:electric_spark ~ ~ ~ 0.1 0.1 0.1 0.05 1 force {FX_ALTO}",
+    # particula del elemento del baston (fuego, hielo, arcano...): una cada paso en Medio, mas en Alto
+    f"$particle minecraft:$(fxp) ~ ~ ~ 0.08 0.08 0.08 0.01 1 force {FX_MEDIO}",
+    f"$particle minecraft:$(fxp) ~ ~ ~ 0.18 0.18 0.18 0.02 2 force {FX_ALTO}",
     # nbt=!{NoAI:1b}: los NPC de MythicMobs (vendedores, gachas) estan quietos y no se pueden lastimar.
     # dx/dy/dz intersectan la caja, distance solo mide al origen (los pies).
     # dx=0 es un cubo de UN bloque en Java; centrado da tolerancia .5 sin huecos.
@@ -1119,13 +1143,18 @@ fn("spell/ray", [
     # Arenas PvP: el hechizo tambien pega a jugadores en survival/aventura (pedido 12/11/2026).
     *[f"execute if dimension minecraft:{w} positioned ~-0.5 ~-0.5 ~-0.5 as @a[gamemode=!creative,gamemode=!spectator,dx=0,dy=0,dz=0,tag=!astral.caster,limit=1,sort=nearest] run return run function {NS}:spell/hit with storage {NS}:tmp spell"
       for w in ARENA_WORLDS],
-    f"execute unless block ~ ~ ~ #{NS}:passable run return run particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
+    f"execute unless block ~ ~ ~ #{NS}:passable run return run function {NS}:spell/pared with storage {NS}:tmp spell",
     "scoreboard players add #steps astral.tmp 1",
     "execute if score #steps astral.tmp matches 50.. run return 0",
-    f"execute positioned ^ ^ ^0.5 run function {NS}:spell/ray",
+    f"execute positioned ^ ^ ^0.5 run function {NS}:spell/ray with storage {NS}:tmp spell",
+])
+fn("spell/pared", [
+    "particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
+    FX_IMPACTO,
 ])
 fn("spell/hit", [
     "$damage @s $(dmg) minecraft:magic by @a[tag=astral.caster,limit=1]",
+    FX_IMPACTO.replace("summon marker ~ ~ ~", "summon marker ~ ~1 ~"),
     "particle minecraft:dragon_breath ~ ~1 ~ 0.3 0.4 0.3 0.02 25",
     "playsound minecraft:entity.illusioner.cast_spell player @a[distance=..16] ~ ~ ~ 0.7 1.8",
     "return 1",
@@ -2462,6 +2491,8 @@ for L, (plata, prob, mats) in MEJORAS.items():
 # hacer vuelve a mirar que item tenes en la mano (#k) antes de tocarlo
 fn("mejora/hacer", KIND + ["execute if score #k astral.tmp matches 0 run return 0"] + hacer)
 load.append("scoreboard objectives add astraldef dummy")
+# Nivel de efectos visuales por jugador (plugin AstralEfectos): 0 Bajo, 1 Medio, 2 Alto.
+load.append("scoreboard objectives add astral.fx dummy")
 load.append("scoreboard objectives add astral.defp dummy")
 fn("load", load)
 fn("tick", [

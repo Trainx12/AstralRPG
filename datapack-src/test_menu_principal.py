@@ -16,7 +16,7 @@ class PrincipalMenuTests(unittest.TestCase):
         self.assertEqual(self.menu['menu_title'], title())
         self.assertEqual(self.menu['size'], 54)
         # Sin relleno de vidrio: el marco de menu_ui dibuja el fondo.
-        self.assertEqual(sorted(i['slot'] for i in self.items.values()), sorted([*SLOTS, 4, 49]))
+        self.assertEqual(sorted(i['slot'] for i in self.items.values()), sorted([*SLOTS, 4, 31, 49]))
         for key in KEYS:
             self.assertEqual(self.items[key]['item_model'], f'astral:menu/icon_{key}')
         self.assertEqual(self.items['cerrar']['slot'], 49)

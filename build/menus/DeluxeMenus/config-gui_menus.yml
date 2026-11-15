@@ -18,6 +18,8 @@ gui_menus:
     file: misiones.yml
   comandos:
     file: comandos.yml
+  configuraciones:
+    file: configuraciones.yml
   misiones_1:
     file: misiones_1.yml
   misiones_2:

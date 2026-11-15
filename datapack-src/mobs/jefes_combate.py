@@ -12,6 +12,7 @@ Los tiempos coinciden con mobs/animaciones.py (impacto del slam a los 15 ticks).
 El dano de las skills lo multiplica astral_gameplay.sk por el tier de la mazmorra, igual que el golpe.
 """
 from mobs.animaciones import SLAM_IMPACTO
+from efectos import COLOR_JEFE, ELEM_JEFE
 
 VELOCIDAD = 0.33
 RADIO_SLAM = 5
@@ -72,6 +73,8 @@ def metaskills():
                 f'  - particles{{p={p};amount=30;hS=0.25;vS=1.6;y=1.6;speed=0.03}} @Ring{{radius=4;points=8}}',
                 f'  - particles{{p={p};amount=16;hS=0.25;vS=1;y=1;speed=0.03}} @Ring{{radius=2;points=5}}',
                 '  - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self',
+                # Efectos (AstralEfectos): Medio anillos de color, Alto explosiones dibujadas (solo a quien lo eligio).
+                f'  - command{{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} {RADIO_SLAM} {ELEM_JEFE.get(model, "")}"}}',
                 f'  - damage{{a={t["slam"]}}} @PlayersInRadius{{r={RADIO_SLAM}}}',
                 f'  - throw{{velocity=2;velocityY=4}} @PlayersInRadius{{r={RADIO_SLAM}}}',
                 '']
@@ -89,5 +92,6 @@ def metaskills():
                 f'  - damage{{a={t["disparo"]}}}',
                 f'  - {t["extra"]}',
                 f'  - particles{{p={p};amount=20;hS=0.6;vS=0.6;speed=0.05}} @origin',
+                f'  - command{{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1 {ELEM_JEFE.get(model, "")}"}}',
                 '']
     return '\n'.join(out) + '\n'

@@ -117,7 +117,7 @@ class ArreglosTests(unittest.TestCase):
     def test_principal_keeps_old_buttons_and_adds_all_services(self):
         data=yaml.safe_load(principal_menu());items=data['items']
         expected={'bazar','minas','mazmorras','expediciones','portales','parkour','arenas','misiones',
-                  'mascotas','cosmeticos','skills','guia','comandos','spawn','fragmentos','duelos'}
+                  'mascotas','cosmeticos','skills','guia','comandos','spawn','fragmentos','duelos','configuraciones'}
         self.assertEqual(set(items)-{'info','cerrar'},expected)
         self.assertEqual(len({v['slot'] for v in items.values()}),len(items))
 

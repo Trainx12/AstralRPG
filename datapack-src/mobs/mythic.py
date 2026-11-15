@@ -526,6 +526,7 @@ def metaskills():
     out=sized
     out += ['AST_YETI_PISOTON:', '  Skills:',
             '  - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self', '  - delay 20',
+            '  - ' + __import__('efectos').mm_fx('golpe', '#bfefff', 8, 'hielo'),
             '  - damage{a=12} @PlayersInRadius{r=20}', '  - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}',
             'AST_YETI_HIELO:', '  Skills:', '  - damage{a=8} @PlayersNearOrigin{r=3}',
             '  - potion{type=SLOWNESS;duration=60;level=1} @PlayersNearOrigin{r=3}']

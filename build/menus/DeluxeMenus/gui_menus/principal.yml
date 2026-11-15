@@ -242,3 +242,15 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     item_model: 'astral:menu/icon_close'
+  'configuraciones':
+    material: COMPARATOR
+    slot: 31
+    amount: 1
+    display_name: '&7&lConfiguraciones'
+    lore:
+    - '&7Efectos visuales: Bajo, Medio o Alto.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] configuraciones'
