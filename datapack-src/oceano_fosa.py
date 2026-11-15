@@ -58,6 +58,31 @@ def boss_block():
     return block
 
 
+def aurora_block():
+    """Aurora (modelo privado de BetterModel, circuito privado): nada sobre la entrada de la Fosa. AstralOceano la
+    hace aparecer cuando hay alguien cerca y la devuelve si se aleja (radio 14). Es decoracion: no se puede lastimar."""
+    return '''
+astral_aurora:
+  Type: SALMON
+  Display: '&b&lAurora'
+  Health: 100
+  Options:
+    Invincible: true
+    Silent: true
+    Collidable: false
+    Despawn: false
+    Persistent: false
+    PreventOtherDrops: true
+  Skills:
+  - addtag{tag=oceano.aurora} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - addtag{tag=clearlag_exclude} @self ~onSpawn
+  - model{m=astral_aurora} @self ~onSpawn
+  - model{m=astral_aurora} @self ~onLoad
+  - state{s=swim} @self ~onTimer:60
+'''
+
+
 def plugin_config():
     """Seccion `fosa:` del config.yml de AstralOceano."""
     pts = ', '.join(f'"{x},{y},{z}"' for x, y, z in PUNTOS)
@@ -86,7 +111,7 @@ def commands():
 def generate():
     mobs = ROOT / 'build/mythicmobs/mobs/fosa.yml'
     mobs.parent.mkdir(parents=True, exist_ok=True)
-    mobs.write_text('# Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).\n' + boss_block(), encoding='utf-8')
+    mobs.write_text('# Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).\n' + boss_block() + aurora_block(), encoding='utf-8')
     out = ROOT / 'build/oceano/fosa-comandos.txt'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(commands(), encoding='utf-8')

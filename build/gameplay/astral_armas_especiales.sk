@@ -212,9 +212,8 @@ function asw_clear_path(p: player, dest: location) :: boolean:
     return true
 
 function asw_mobility(p: player) :: boolean:
-    if astral_dungeon(world of {_p}) is true:
-        send action bar "&cLos saltos especiales estan desactivados en mazmorras." to {_p}
-        return false
+    # 15/11/2026: el Destello tambien anda en mazmorras (pedido del dueno); asw_clear_path ya impide
+    # atravesar paredes, techos o lava, asi que no sirve para salirse del mapa.
     return true
 
 # Transmisión: muestreo desde los ojos y barrido del volumen del cuerpo cada 0,2.

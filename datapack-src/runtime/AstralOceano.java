@@ -48,6 +48,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         bowDamage = getConfig().getDouble("arco-dano", 2957);
         loadFosa();
         Bukkit.getScheduler().runTaskTimer(this, this::fosaTick, 40, 10);
+        Bukkit.getScheduler().runTaskTimer(this, this::auroraTick, 200, 200);
     }
 
     void save() { getConfig().set("proxima-regeneracion", nextRegen); saveConfig(); }
@@ -351,6 +352,13 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     final Map<String, Integer> wave = new HashMap<>();         // mundo -> oleada actual (0 = esperando)
     final Map<String, Long> waveAt = new HashMap<>();          // mundo -> cuando empezar la proxima
     final Map<UUID, Long> gateCooldown = new HashMap<>();
+    // 15/11/2026: barra de oleada como en las demas mazmorras, brillo espectral y techo de barreras.
+    final Map<String, org.bukkit.boss.BossBar> fosaBar = new HashMap<>();
+    final Map<String, Integer> waveMax = new HashMap<>();
+    int techoRadio = 96;
+    final NamespacedKey techoKey = new NamespacedKey("astral", "fosa_techo");
+    // Aurora (criatura privada de BetterModel): nada cerca de la entrada escondida del Oceano.
+    String auroraMob = "astral_aurora"; int auroraAltura = 7; double auroraRadio = 14;
 
     static double[] xyz(String s) { String[] p = s.split(","); return new double[]{Double.parseDouble(p[0]), Double.parseDouble(p[1]), Double.parseDouble(p[2])}; }
 
@@ -365,6 +373,10 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         gate = new int[]{Integer.parseInt(g[0].trim()), Integer.parseInt(g[1].trim())};
         Gen.gateX = gate[0]; Gen.gateZ = gate[1];
         for (String pt : c.getStringList("puntos")) fosaPoints.add(xyz(pt));
+        techoRadio = c.getInt("techo-radio", 96);
+        auroraMob = getConfig().getString("aurora.mob", auroraMob);
+        auroraAltura = getConfig().getInt("aurora.altura", auroraAltura);
+        auroraRadio = getConfig().getDouble("aurora.radio", auroraRadio);
         for (String w : c.getStringList("oleadas")) {
             Map<String, Integer> m = new LinkedHashMap<>();
             for (String part : w.split(",")) { String[] kv = part.split(":"); m.put(kv[0].trim(), Integer.parseInt(kv[1].trim())); }
@@ -388,6 +400,9 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             World w = Bukkit.getWorld(name);
             if (w == null) continue;
             List<Player> players = w.getPlayers().stream().filter(AstralOceano::fighting).toList();
+            techo(w);
+            for (LivingEntity le : w.getLivingEntities()) if (!(le instanceof Player) && !le.isGlowing()) le.setGlowing(true);
+            barra(w, players);
             if (players.isEmpty()) {
                 if (wave.getOrDefault(name, 0) != 0 || !waveMobs(w).isEmpty()) { waveMobs(w).forEach(Entity::remove); wave.put(name, 0); waveAt.remove(name); }
                 continue;
@@ -412,6 +427,73 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         }
     }
 
+    void barra(World w, List<Player> players) {
+        String name = w.getName();
+        var bar = fosaBar.computeIfAbsent(name, k -> Bukkit.createBossBar("Fosa del Crustaceo", org.bukkit.boss.BarColor.PURPLE, org.bukkit.boss.BarStyle.SOLID));
+        for (Player p : new ArrayList<>(bar.getPlayers())) if (!players.contains(p)) bar.removePlayer(p);
+        if (players.isEmpty()) { bar.setVisible(false); return; }
+        for (Player p : players) if (!bar.getPlayers().contains(p)) bar.addPlayer(p);
+        bar.setVisible(true);
+        int cur = wave.getOrDefault(name, 0), total = fosaWaves.size();
+        int left = waveMobs(w).size();
+        if (cur <= 0) { bar.setTitle("Fosa del Crustaceo - preparate"); bar.setProgress(1); return; }
+        if (cur > total) { bar.setTitle("Fosa conquistada"); bar.setProgress(1); return; }
+        boolean jefe = fosaWaves.get(cur - 1).containsKey("jefe");
+        int max = Math.max(left, waveMax.getOrDefault(name, 1));
+        waveMax.put(name, max);
+        String t = (jefe ? "Jefe: Cangrejo de la Fosa" : "Oleada " + cur + "/" + total) + " - " + left + " restantes";
+        if (left == 0) t = (jefe ? "Jefe derrotado" : "Oleada " + cur + "/" + total + " superada") + " - viene otra...";
+        bar.setTitle(t);
+        bar.setProgress(Math.max(0, Math.min(1, left / (double) max)));
+    }
+
+    /** Techo de barreras invisible sobre el agua de la arena (una vez por mundo), para no poder salir a respirar. */
+    void techo(World w) {
+        var pdc = w.getPersistentDataContainer();
+        if (pdc.has(techoKey, org.bukkit.persistence.PersistentDataType.BYTE)) return;
+        pdc.set(techoKey, org.bukkit.persistence.PersistentDataType.BYTE, (byte) 1);
+        int cx = (int) Math.floor(fosaArrival[0]), cz = (int) Math.floor(fosaArrival[2]), puestos = 0;
+        for (int x = cx - techoRadio; x <= cx + techoRadio; x++)
+            for (int z = cz - techoRadio; z <= cz + techoRadio; z++) {
+                int y = w.getHighestBlockYAt(x, z);
+                Block top = w.getBlockAt(x, y, z);
+                boolean agua = top.getType() == Material.WATER || top.getType() == Material.KELP || top.getType() == Material.KELP_PLANT
+                    || top.getType() == Material.SEAGRASS || top.getType() == Material.TALL_SEAGRASS || top.getType() == Material.BUBBLE_COLUMN
+                    || (top.getBlockData() instanceof Waterlogged wl && wl.isWaterlogged());
+                if (!agua || y + 1 >= w.getMaxHeight()) continue;
+                Block arriba = top.getRelative(BlockFace.UP);
+                if (arriba.getType().isAir()) { arriba.setType(Material.BARRIER, false); puestos++; }
+            }
+        getLogger().info("Fosa " + w.getName() + ": techo de barreras con " + puestos + " bloques.");
+    }
+
+    Location auroraHome;
+    /** Una Aurora nadando sobre la entrada escondida (solo si hay alguien cerca); si se aleja, vuelve. */
+    void auroraTick() {
+        World w = Bukkit.getWorld(world);
+        if (w == null || regenerating) return;
+        if (auroraHome == null || auroraHome.getWorld() != w) {
+            if (!w.isChunkLoaded(gate[0] >> 4, gate[1] >> 4)) return;
+            for (int y = w.getMinHeight(); y < w.getMaxHeight(); y++)
+                if (w.getBlockAt(gate[0], y, gate[1]).getType() == Material.CRYING_OBSIDIAN) {
+                    auroraHome = new Location(w, gate[0] + 0.5, y + auroraAltura, gate[1] + 0.5); break;
+                }
+            if (auroraHome == null) return;
+        }
+        boolean cerca = false;
+        for (Player p : w.getPlayers()) if (p.getLocation().distanceSquared(auroraHome) < 96 * 96) { cerca = true; break; }
+        Entity aurora = null;
+        for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("oceano.aurora") && e.isValid()) { aurora = e; break; }
+        if (aurora == null) {
+            if (cerca) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mm mobs spawn " + auroraMob + " 1 " + w.getName() + ","
+                + auroraHome.getX() + "," + auroraHome.getY() + "," + auroraHome.getZ());
+            return;
+        }
+        Location l = aurora.getLocation();
+        double dx = l.getX() - auroraHome.getX(), dz = l.getZ() - auroraHome.getZ(), dy = l.getY() - auroraHome.getY();
+        if (dx * dx + dz * dz > auroraRadio * auroraRadio || Math.abs(dy) > auroraRadio) aurora.teleport(auroraHome);
+    }
+
     void title(List<Player> ps, String a, String b) {
         for (Player p : ps) p.showTitle(net.kyori.adventure.title.Title.title(
             net.kyori.adventure.text.Component.text(a, net.kyori.adventure.text.format.NamedTextColor.AQUA),
@@ -419,7 +501,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     }
 
     void spawnWave(World w, int n, int players) {
-        wave.put(w.getName(), n); waveAt.remove(w.getName());
+        wave.put(w.getName(), n); waveAt.remove(w.getName()); waveMax.put(w.getName(), 1);
         Map<String, Integer> def = fosaWaves.get(n - 1);
         Random r = new Random();
         double mult = 1 + 0.5 * (players - 1);
@@ -436,6 +518,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                 String type = e.getKey().equals("drowned_tridente") ? "drowned" : e.getKey();
                 Entity mob = w.spawnEntity(at, EntityType.valueOf(type.toUpperCase(Locale.ROOT)));
                 mob.addScoreboardTag("fosa.mob");
+                mob.setGlowing(true);
                 if (mob instanceof Mob m) {
                     m.setRemoveWhenFarAway(false);
                     if (e.getKey().equals("drowned_tridente")) m.getEquipment().setItemInMainHand(new ItemStack(Material.TRIDENT));
