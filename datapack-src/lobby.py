@@ -501,14 +501,24 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
 
 
 # NPC con modelo alto: (titulo, color, subtitulo, altura del cartel sobre los pies).
+# 15/11/2026: Venta, Subastas, Tienda y Forja mas grandes (ESCALA_GRANDE), como los de Mini Juegos y Survival.
+ESCALA_GRANDE = 1.7
 NAME_HOLOS = {
     "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.9),
+    "astral_npc_subastas": ("Subastas", "#FFAA00", "Comprá y vendé entre jugadores", 3.0),
+    "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", 3.0),
     "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
     "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
     "astral_npc_cronista": ("Cronista", "#55FFFF", "Misiones diarias e historia", 2.8),
     "astral_npc_bazar": ("Bazar", "#FFAA00", "Mercado y subastas", 2.9),
     "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", 2.6),
+}
+GRANDES = {"astral_npc_venta", "astral_npc_subastas", "astral_npc_tienda", "astral_npc_herrero"}
+# Carteles sueltos (sin NPC), donde los pidio el dueno: (titulo, color, subtitulo, x, y, z).
+CARTELES_SUELTOS = {
+    "minijuegos": ("Mini Juegos", "#55FF55", "Parkour, droppers y Color Escape", 136.7, 109.4, 161.7),
+    "survival": ("Mundo Survival", "#7ED957", "Tomá el tren", 109.0, 109.8, 191.9),
 }
 
 
@@ -536,8 +546,19 @@ def holo_cmds():
         x, y, z, _ = NPC_POS[npc]
         text = [{"text": title, "color": color, "bold": True}, {"text": NL + sub, "color": "gray"}]
         comp = json.dumps({"text": "", "extra": text}, ensure_ascii=False)
-        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height} {z} "
-                   f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
+        esc = ESCALA_GRANDE if npc in GRANDES else 1
+        tr = (f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],"
+              f"right_rotation:[0f,0f,0f,1f]}}," if esc != 1 else "")
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height + (0.4 if esc != 1 else 0)} {z} "
+                   f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,{tr}"
+                   f"line_width:200,text:{comp}}}")
+    for key, (title, color, sub, x, y, z) in CARTELES_SUELTOS.items():
+        text = [{"text": "✦ " + title + " ✦", "color": color, "bold": True}, {"text": NL + sub, "color": "gray"}]
+        comp = json.dumps({"text": "", "extra": text}, ensure_ascii=False)
+        esc = ESCALA_GRANDE
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y} {z} "
+                   f"{{Tags:[\"astral_holo\",\"astral_holo_{key}\"],billboard:\"center\",shadow:1b,background:1073741824,"
+                   f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],right_rotation:[0f,0f,0f,1f]}},"
                    f"line_width:200,text:{comp}}}")
     # Cartel de ayuda arriba del Viajero (por encima de su nombre)
     x, y, z, _ = NPC_POS["astral_npc_viajero"]
