@@ -868,9 +868,10 @@ enchant("punteria", "Punteria", "green", TIER_MAX, ["mainhand", "offhand"], {
 })
 # Ballestas: tiempo de carga propio por nivel (la vanilla tarda 1,25 s).
 enchant("carga_rapida", "Carga Rapida", "green", len(BALLESTAS), ["mainhand", "offhand"], {
-    "minecraft:crossbow_charge_time": [{"effect": {"type": "minecraft:add", "value": {
+    # crossbow_charge_time es un efecto de valor UNICO (como Carga Rapida vanilla), no una lista: con lista no arranca el server.
+    "minecraft:crossbow_charge_time": {"type": "minecraft:add", "value": {
         "type": "minecraft:lookup", "values": [round(BALLESTAS[t]["carga"] - CARGA_VANILLA, 3) for t in sorted(BALLESTAS)],
-        "fallback": round(min(b["carga"] for b in BALLESTAS.values()) - CARGA_VANILLA, 3)}}}]})
+        "fallback": round(min(b["carga"] for b in BALLESTAS.values()) - CARGA_VANILLA, 3)}}})
 enchant("punteria_set", "Punteria del Set", "green", TIER_MAX, ["chest"], {
     "minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
         "type": "minecraft:lookup", "values": [1.04, 1.08, 1.12, 1.18, 1.25, 1.30, 1.35, 1.40, 1.45, 1.50], "fallback": 1.50}},
