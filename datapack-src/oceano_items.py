@@ -50,6 +50,7 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         if source in fichas:
             from ficha import render
             f = deepcopy(fichas[source]); f.update(id=iid, name=name, components=deepcopy(c))
+            f['original'] = [txt(f"{ {'sword': 'Espada', 'axe': 'Hacha', 'bow': 'Arco'}[_] } de Agua III")] + f['original'][1:]
             c.update(render(f))
             fichas[iid] = f
         items[iid] = it

@@ -453,6 +453,27 @@ if snow_model in files:
     snow=json.loads(files[snow_model])
     snow['textures']['side']='stellarity:block/ender_grass_block_side_snow'
     files[snow_model]=json.dumps(snow).encode('utf8')
+# Armas T6-T10: reserva publica igual al arma T5 de su familia (el modelo elegido esta en el FINAL privado,
+# armas_mod.py). Ballestas: se ven como la ballesta vanilla.
+from items_t6_10 import FAMILIAS_ARMA, TIERS_NUEVOS, BALLESTAS
+for _fam in FAMILIAS_ARMA:
+    for _t in TIERS_NUEVOS:
+        files[f"assets/astral/items/{_fam}_{_t}.json"] = files[f"assets/astral/items/{_fam}_5.json"]
+
+
+def _cb(n):
+    return model_ref(f"minecraft:item/{n}")
+
+
+for _t in BALLESTAS:
+    put_json(f"assets/astral/items/ballesta_{_t}.json", {"model": {
+        "type": "minecraft:select", "property": "minecraft:charge_type",
+        "cases": [{"when": "arrow", "model": _cb("crossbow_arrow")}, {"when": "rocket", "model": _cb("crossbow_firework")}],
+        "fallback": {"type": "minecraft:condition", "property": "minecraft:using_item", "on_false": _cb("crossbow"),
+                     "on_true": {"type": "minecraft:range_dispatch", "property": "minecraft:crossbow/pull",
+                                 "entries": [{"threshold": 0.58, "model": _cb("crossbow_pulling_1")},
+                                             {"threshold": 1.0, "model": _cb("crossbow_pulling_2")}],
+                                 "fallback": _cb("crossbow_pulling_0")}}}})
 relocate_model_textures(files)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()

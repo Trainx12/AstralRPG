@@ -3,7 +3,8 @@
 
 Las armaduras usan los modelos que eligio el dueno (casco 3D + cuerpo plano, ver armaduras_t6_10.py).
 Ese arte es de terceros y vive solo en el pack FINAL privado; aca solo hay ids.
-Las armas todavia no tienen modelo propio: se ven como el arma T5 de su familia (ARMA_MODELO).
+Las armas usan los modelos que eligio el dueno el 15/11 (armas_mod.py, tambien de terceros y solo en el FINAL
+privado); en el pack publico se ven como el arma T5 de su familia (reserva de build_pack.py).
 
 Cada pieza o arma de tier N se forja con la del tier N-1 + el material de su tier.
 Los materiales nuevos caen de mobs de ese tier o mas (mob/drop_tier en build.py), mas en elites y jefes.
@@ -36,10 +37,18 @@ DROP_OCASO_T5 = {"elite": 0.04, "jefe": 0.5}
 
 # Modelo de armadura elegido (id de armaduras_t6_10.SETS). None = sin modelo: se ve como el T5 de la clase.
 VISUAL = {
-    "mago": {6: "glacier_robe", 7: "scarlet_robe", 8: "rimeweave_robe", 9: "nebula", 10: "absolution_robe"},
-    "berserker": {6: None, 7: "lightbringer_armor", 8: "onslaught_armor", 9: "justicar_armor", 10: "destroyer_armor"},
-    "arquero": {6: "strider_armor", 7: "riftstalker_armor", 8: None, 9: None, 10: "deathmantle_armor"},
+    "mago": {1: "wandering_magician", 2: "netherite_fire_robe", 3: "sanguine_purple", 4: "pyromancer", 5: "dark_cover",
+             6: "glacier_robe", 7: "scarlet_robe", 8: "rimeweave_robe", 9: "nebula", 10: "absolution_robe"},
+    "berserker": {1: "rogues_berserker", 2: "dead_gladiator", 3: "sunset_wings", 4: "flesh_of_the_feaster",
+                  5: "dark_lord_rojo", 6: "spark_of_dawn", 7: "lightbringer_armor", 8: "onslaught_armor",
+                  9: "justicar_armor", 10: "destroyer_armor"},
+    "arquero": {1: "ranger", 2: "netherite_ranger", 3: "anarchy_thief", 4: "fantasy_thief", 5: "shadowwalker",
+                6: "strider_armor", 7: "riftstalker_armor", 8: "forgotten_trace", 9: "cultist", 10: "deathmantle_armor"},
 }
+# Modelos sin casco (el mod no trae cabeza): el casco no se ve puesto y su icono queda el del pack publico.
+SIN_CASCO = {"sanguine_purple"}
+# Casco pegado a la cabeza (textura plana, sin modelo 3D): el dueno lo pidio para la Nebulosa (Mago T9).
+CASCO_PLANO = {"nebula"}
 
 
 def _cost(t, extra):
@@ -96,11 +105,26 @@ def extend_armor(sets):
     a["dye"] = list(a["dye"]) + [0x9fe6ff] * 5
 
 
-# Arma T5 de cada familia: las T6-T10 se ven igual hasta que el dueno elija modelos.
-# Para cambiar el modelo de un arma: poner aca su item_model (por ejemplo "astral:espada_6").
-ARMA_MODELO = {f"{fam}_{t}": f"astral:{fam}_5" for fam in ("espada", "hacha", "guadana", "arco", "lanza")
-               for t in TIERS_NUEVOS}
-ARMA_MODELO.update({f"baston_{t}": None for t in TIERS_NUEVOS})  # None = mismo modelo que el baston T5
+# Cada arma T6-T10 tiene su propio item_model. El modelo elegido vive en el pack FINAL privado (armas_mod.py);
+# el pack publico trae una reserva igual al arma T5 de la familia (build_pack.py).
+FAMILIAS_ARMA = ("espada", "hacha", "baston", "guadana", "arco", "lanza")
+ARMA_MODELO = {f"{fam}_{t}": f"astral:{fam}_{t}" for fam in FAMILIAS_ARMA for t in TIERS_NUEVOS}
+
+# Ballestas de Arquero (15/11/2026): tier -> datos. "carga" son los segundos que tarda en cargar
+# (vanilla 1,25 s); el dano sale de Punteria del tier, igual que los arcos.
+BALLESTAS = {
+    3: {"name": "Ballesta Pesada de Zafiro", "carga": 0.9, "lvl": 20, "piercing": 1, "multishot": 0,
+        "cost": [("c", "arco_3", 1), ("c", "cristal_refinado", 3), ("v", "minecraft:crossbow", 1)],
+        "desc": ["Perforacion: la flecha atraviesa 1 enemigo"]},
+    4: {"name": "Ballesta Rapida del Nether", "carga": 0.65, "lvl": 25, "piercing": 0, "multishot": 1,
+        "cost": [("c", "ballesta_3", 1), ("c", "nucleo_eolico", 3)],
+        "desc": ["Multidisparo: 3 flechas por tiro"]},
+    5: {"name": "Ballesta Celeste Veloz", "carga": 0.2, "lvl": 30, "piercing": 2, "multishot": 1,
+        "cost": [("c", "ballesta_4", 1), ("c", "gema_luminica_perfecta", 2), ("c", "nucleo_astral", 1)],
+        "desc": ["Carga casi instantanea", "Multidisparo: 3 flechas por tiro", "Perforacion II: atraviesa 2 enemigos",
+                 "No gasta flechas normales"]},
+}
+CARGA_VANILLA = 1.25
 
 # Arcos: segundos entre disparos automaticos y multiplicador de Punteria por tier (1..10).
 ARCO_AUTO = [18, 15, 12, 10, 8, 7, 6, 5, 5, 4]
@@ -111,68 +135,68 @@ def extend_weapons(g):
     g["MATERIALS"].update(MATERIALES)
     S, A, ST, SC, B, SP = g["SWORDS"], g["AXES"], g["STAFFS"], g["SCYTHES"], g["BOWS"], g["SPEARS"]
     S += [
-        {"name": "Espada del Ocaso", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 60, "lvl": 35,
+        {"name": "Hoja Siniestra", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 60, "lvl": 35,
          "fx": {"lifesteal": 5, "furia": 2}, "cost": _cost(6, [("c", "nucleo_furia_pura", 1)]),
          "desc": ["Robo de vida", "+5% de dano por cada 10% de vida perdida"]},
-        {"name": "Espada del Eclipse", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 70, "lvl": 40,
+        {"name": "Daga del Rito Oscuro", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 70, "lvl": 40,
          "fx": {"lifesteal": 5, "furia": 2, "remate": 1}, "cost": _cost(7, [("c", "nucleo_furia_pura", 1)]),
          "desc": ["Robo de vida", "Furia", "+5% de dano a enemigos con menos del 50% de vida"]},
-        {"name": "Espada Supernova", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 80, "lvl": 45,
+        {"name": "Espada Espectral Carmesi", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 80, "lvl": 45,
          "fx": {"lifesteal": 5, "furia": 2, "remate": 1, "hendidura": 1}, "cost": _cost(8, [("c", "nucleo_furia_pura", 2)]),
          "desc": ["Robo de vida", "Furia", "Golpes en area pequena"]},
-        {"name": "Espada del Vacio Eterno", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 90, "lvl": 50,
+        {"name": "Mandoble de Obsidiana", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 90, "lvl": 50,
          "fx": {"lifesteal": 5, "furia": 2, "remate": 1, "hendidura": 1, "ejecucion": 1},
          "cost": _cost(9, [("c", "nucleo_furia_pura", 2)]),
          "desc": ["Robo de vida", "Furia", "Golpes en area", "Ejecuta enemigos con menos del 15% de vida"]},
-        {"name": "Espada del Fin de los Tiempos", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 100, "lvl": 55,
+        {"name": "Espada Esmeralda Nocturna", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 100, "lvl": 55,
          "fx": {"lifesteal": 5, "furia": 2, "remate": 1, "hendidura": 1, "ejecucion": 2},
          "cost": _cost(10, [("c", "nucleo_furia_pura", 3)]),
          "desc": ["Robo de vida", "Furia", "Golpes en area", "Ejecuta enemigos con menos del 20% de vida"]},
     ]
     axe_fx = {"sangrado": 1, "hendidura": 1, "ejecucion": 1}
     A += [
-        {"name": "Hacha del Ocaso", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 90, "spd": 1.0, "lvl": 35,
+        {"name": "Hacha Doble de Jade", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 90, "spd": 1.0, "lvl": 35,
          "fx": dict(axe_fx), "cost": _cost(6, [("c", "nucleo_furia_pura", 1), ("c", "palo_reforzado", 1)]),
          "desc": ["Ejecuta enemigos con menos del 15% de vida"]},
-        {"name": "Hacha del Eclipse", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 105, "spd": 1.0, "lvl": 40,
+        {"name": "Hacha del Torbellino", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 105, "spd": 1.0, "lvl": 40,
          "fx": dict(axe_fx, lifesteal=2), "cost": _cost(7, [("c", "nucleo_furia_pura", 1), ("c", "palo_reforzado", 1)]),
          "desc": ["Ejecuta enemigos con menos del 15% de vida", "Robo de vida"]},
-        {"name": "Hacha Supernova", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 120, "spd": 1.05, "lvl": 45,
+        {"name": "Hacha Doble Aurea", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 120, "spd": 1.05, "lvl": 45,
          "fx": dict(axe_fx, lifesteal=3), "cost": _cost(8, [("c", "nucleo_furia_pura", 2), ("c", "palo_reforzado", 1)]),
          "desc": ["Ejecuta enemigos con menos del 15% de vida", "Robo de vida"]},
-        {"name": "Hacha del Vacio Eterno", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 135, "spd": 1.05, "lvl": 50,
+        {"name": "Hacha Marca de Fuego", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 135, "spd": 1.05, "lvl": 50,
          "fx": dict(axe_fx, lifesteal=3, ejecucion=2), "cost": _cost(9, [("c", "nucleo_furia_pura", 2), ("c", "palo_reforzado", 1)]),
          "desc": ["Ejecuta enemigos con menos del 20% de vida", "Robo de vida"]},
-        {"name": "Hacha del Fin de los Tiempos", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 150, "spd": 1.1, "lvl": 55,
+        {"name": "Gran Hacha del Verdugo", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 150, "spd": 1.1, "lvl": 55,
          "fx": dict(axe_fx, lifesteal=4, ejecucion=2), "cost": _cost(10, [("c", "nucleo_furia_pura", 3), ("c", "palo_reforzado", 1)]),
          "desc": ["Ejecuta enemigos con menos del 20% de vida", "Robo de vida"]},
     ]
     staff_model = ST[4]["model"]
     for t, (name, mdmg, pierce, cd, lvl, n) in zip(TIERS_NUEVOS, [
-            ("Baston del Ocaso", 48, 25, 19, 37, 1), ("Baston del Eclipse", 56, 30, 18, 42, 1),
-            ("Baston Supernova", 64, 35, 17, 47, 2), ("Baston del Vacio Eterno", 72, 40, 16, 52, 2),
-            ("Baston del Fin de los Tiempos", 80, 45, 15, 57, 3)]):
+            ("Cetro de Amatista Arcana", 48, 25, 19, 37, 1), ("Baston de Brasa Solar", 56, 30, 18, 42, 1),
+            ("Baston del Cristal Celeste", 64, 35, 17, 47, 2), ("Baston de la Calavera Errante", 72, 40, 16, 52, 2),
+            ("Cetro del Llamahuesos", 80, 45, 15, 57, 3)]):
         ST.append({"name": name, "model": ARMA_MODELO[f"baston_{t}"] or staff_model, "mana": 0, "mdmg": mdmg,
                    "pierce": pierce, "spell": 10.0 + t - 5, "cd": cd, "lvl": lvl,
                    "cost": _cost(t, [("c", "gema_luminica_perfecta", n)]),
                    "desc": [f"Ignora {pierce}% de resistencia magica"]})
     for t, (name, dmg, mdmg, lvl, n, exe, ls) in zip(TIERS_NUEVOS, [
-            ("Guadana del Ocaso", 12, 50, 37, 2, 2, 2), ("Guadana del Eclipse", 13, 55, 42, 2, 2, 3),
-            ("Guadana Supernova", 14, 60, 47, 3, 2, 3), ("Guadana del Vacio Eterno", 15, 65, 52, 3, 2, 4),
-            ("Guadana del Fin de los Tiempos", 16, 70, 57, 4, 2, 5)]):
+            ("Guadana del Carcelero", 12, 50, 37, 2, 2, 2), ("Guadana Osaria", 13, 55, 42, 2, 2, 3),
+            ("Guadana de Piedra Antigua", 14, 60, 47, 3, 2, 3), ("Guadana de Escarcha", 15, 65, 52, 3, 2, 4),
+            ("Guadana de la Pesadilla", 16, 70, 57, 4, 2, 5)]):
         SC.append({"name": name, "base": "minecraft:netherite_hoe", "dmg": dmg, "lvl": lvl, "mdmg": mdmg, "reset_cd": True,
                    "fx": {"lifesteal": ls, "maldicion": 1, "cono": 1, "ejecucion": exe},
                    "cost": _cost(t, [("c", "gema_umbria_perfecta", n)]),
                    "desc": ["Ejecuta mobs con menos del 20% de vida", "Matar mobs reinicia el enfriamiento de hechizos"]})
     for t, (name, bonus, lvl, n) in zip(TIERS_NUEVOS, [
-            ("Arco del Ocaso", 48, 35, 1), ("Arco del Eclipse", 56, 40, 1), ("Arco Supernova", 64, 45, 2),
-            ("Arco del Vacio Eterno", 72, 50, 2), ("Arco del Fin de los Tiempos", 80, 55, 3)]):
+            ("Arco de las Almas Perdidas", 48, 35, 1), ("Arco del Vendaval Dorado", 56, 40, 1), ("Arco Enredadera del Eco", 64, 45, 2),
+            ("Arco de Burbujas Abisales", 72, 50, 2), ("Arco Embrujado", 80, 55, 3)]):
         B.append({"name": name, "bonus": bonus, "draw": 95, "lvl": lvl, "infinite": True, "cooldown": 0.4,
                   "cost": _cost(t, [("c", "gema_luminica_perfecta", n)]),
                   "desc": ["Disparo casi instantaneo", "No gasta flechas normales"]})
     for t, (name, bonus, lvl, n) in zip(TIERS_NUEVOS, [
-            ("Lanza del Ocaso", 7, 35, 1), ("Lanza del Eclipse", 8, 40, 1), ("Lanza Supernova", 9, 45, 2),
-            ("Lanza del Vacio Eterno", 10, 50, 2), ("Lanza del Fin de los Tiempos", 12, 55, 3)]):
+            ("Lanza de la Fortuna", 7, 35, 1), ("Tridente del Inframundo", 8, 40, 1), ("Lanza del Principe Errante", 9, 45, 2),
+            ("Lanza del Heroe Dorado", 10, 50, 2), ("Guja del Dragon Verde", 12, 55, 3)]):
         SP.append({"name": name, "base": "minecraft:netherite_spear", "lvl": lvl, "bonus": bonus,
                    "fx": {"lifesteal": 3, "sangrado": 1, "hendidura": 1, "ejecucion": 1},
                    "cost": _cost(t, [("c", "chispa_astral", n)]),

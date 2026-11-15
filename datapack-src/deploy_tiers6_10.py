@@ -22,7 +22,7 @@ from pathlib import Path
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from items_t6_10 import VISUAL  # noqa: E402
+from items_t6_10 import VISUAL, SIN_CASCO, CASCO_PLANO  # noqa: E402
 from armor_icons import icons, outline  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -85,21 +85,23 @@ def armaduras():
             files[f'assets/astral/equipment/{name}.json'] = js({'layers': {
                 'humanoid': [{'texture': f'astral:{tex}'}], 'humanoid_leggings': [{'texture': f'astral:{tex}'}]}})
             # Casco 3D: en la cabeza (display_context head) y en el inventario.
-            casco = json.loads((ARTE / f'assets/astral/models/item/{tex}_casco_3d.json').read_text(encoding='utf-8'))
-            files[f'assets/astral/models/item/{tex}_casco_3d.json'] = js(casco)
-            files[f'assets/astral/models/item/{tex}_casco_gui.json'] = js(icono_gui(casco))
-            files[f'assets/astral/textures/item/{tex}_casco.png'] = (ARTE / f'assets/astral/textures/item/{tex}_casco.png').read_bytes()
-            files[f'assets/astral/items/{name}_helmet.json'] = js({'model': {
-                'type': 'minecraft:select', 'property': 'minecraft:display_context',
-                'cases': [{'when': 'head', 'model': {'type': 'minecraft:model', 'model': f'astral:item/{tex}_casco_3d'}}],
-                'fallback': {'type': 'minecraft:model', 'model': f'astral:item/{tex}_casco_gui'}}})
+            # Sin casco en el mod: el yelmo conserva su asset_id (cabeza vacia en la textura) y el icono publico.
+            if vid not in SIN_CASCO and vid not in CASCO_PLANO:
+                casco = json.loads((ARTE / f'assets/astral/models/item/{tex}_casco_3d.json').read_text(encoding='utf-8'))
+                files[f'assets/astral/models/item/{tex}_casco_3d.json'] = js(casco)
+                files[f'assets/astral/models/item/{tex}_casco_gui.json'] = js(icono_gui(casco))
+                files[f'assets/astral/textures/item/{tex}_casco.png'] = (ARTE / f'assets/astral/textures/item/{tex}_casco.png').read_bytes()
+                files[f'assets/astral/items/{name}_helmet.json'] = js({'model': {
+                    'type': 'minecraft:select', 'property': 'minecraft:display_context',
+                    'cases': [{'when': 'head', 'model': {'type': 'minecraft:model', 'model': f'astral:item/{tex}_casco_3d'}}],
+                    'fallback': {'type': 'minecraft:model', 'model': f'astral:item/{tex}_casco_gui'}}})
             # Pechera, grebas y botas: icono plano sacado de la textura puesta (como los T1-T5).
             main = Image.open(ARTE / f'assets/astral/textures/entity/equipment/humanoid/{tex}.png').convert('RGBA')
             legs = Image.open(ARTE / f'assets/astral/textures/entity/equipment/humanoid_leggings/{tex}.png').convert('RGBA')
             small = [i.resize((64, 32), Image.Resampling.BOX) for i in (main, legs)]
             for piece, img in icons(*small).items():
-                if piece == 'helmet':
-                    continue
+                if piece == 'helmet' and vid not in CASCO_PLANO:
+                    continue   # casco 3D (arriba) o sin casco (icono publico)
                 iid = f'{name}_{piece}'
                 files[f'assets/astral/textures/item/t6_10/{iid}.png'] = png(img)
                 files[f'assets/astral/models/item/{iid}.json'] = js(

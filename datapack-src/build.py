@@ -10,7 +10,7 @@ import shutil
 import zipfile
 
 from escala import VIDA_PIEZA, VIDA_JUGADOR_BASE, defensa_pieza, TIER_MAX
-from items_t6_10 import ARCO_AUTO, PUNTERIA, ARMA_MODELO, VISUAL as ARMOR_VISUAL
+from items_t6_10 import ARCO_AUTO, PUNTERIA, ARMA_MODELO, BALLESTAS, CARGA_VANILLA, VISUAL as ARMOR_VISUAL, SIN_CASCO as ARMOR_SIN_CASCO, CASCO_PLANO as ARMOR_CASCO_PLANO
 from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MANA_HECHIZO, HECHIZO,
                     REGEN_POR_MANA, fmt)
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 19  # Armaduras Astral con barra de armadura vanilla (13/11).
+ITEM_VERSION = 20  # Armaduras T1-T10 con modelos elegidos (casco 3D) y armas T6-T10 nuevas (15/11).
 
 files = {}
 
@@ -116,6 +116,10 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
         hidden = comps.setdefault("minecraft:tooltip_display", {}).setdefault("hidden_components", [])
         if "minecraft:attribute_modifiers" not in hidden:
             hidden.append("minecraft:attribute_modifiers")
+    elif astral_data.get("type") == "utility" and "tier" in astral_data and any(
+            k in base for k in ("pickaxe", "shovel", "hoe", "fishing_rod", "shield")):
+        from ficha import utility_render
+        comps.update(utility_render(item_id, name, color, base, lore, astral_data, comps))
     ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind,
                       "ficha": item_id in FICHAS,
                       "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("drill", "saw")}
@@ -418,6 +422,21 @@ for i, s in enumerate(BOWS):
     ings = list(s["cost"]) if t == 1 else [("c", f"arco_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Arcos"))
 
+# Ballestas de Arquero (items_t6_10.BALLESTAS): cargan mas rapido que la vanilla y pegan con Punteria del tier.
+# En el pack publico se ven como la ballesta vanilla; el modelo elegido esta en el FINAL privado (armas_mod.py).
+for t, s in BALLESTAS.items():
+    iid = f"ballesta_{t}"
+    arrow = round(9 * PUNTERIA[t - 1] * FACTOR_ARMA[t])
+    ench = {f"{NS}:punteria": t, f"{NS}:carga_rapida": sorted(BALLESTAS).index(t) + 1}
+    if s["piercing"]:
+        ench["minecraft:piercing"] = s["piercing"]
+    if s["multishot"]:
+        ench["minecraft:multishot"] = s["multishot"]
+    desc = [f"Dano de flecha: ~{fmt(9 * FACTOR_ARMA[t])}", f"Carga en {s['carga']:.2f}s".replace(".", ",")] + s["desc"]
+    weapon_item(iid, "minecraft:crossbow", s["name"], ARQ, "Ballesta de Arquero", t, desc, "archery", s["lvl"], None,
+                ench, {"w": "crossbow", "arrow": arrow}, model=f"{NS}:{iid}")
+    RECIPES.append((iid, 1, list(s["cost"]), "Arcos"))
+
 # Especiales
 from special_weapons import WEAPONS as SPECIAL_WEAPONS, register as register_special_weapons
 register_special_weapons(add_item, RECIPES, txt, weapon_mods)
@@ -429,7 +448,7 @@ add_item("guadana_umbria", "minecraft:netherite_hoe", "Guadana Umbria", "#7d3cff
          pdc=aura_pdc("item", "sorcery", 16), kind="weapon")
 RECIPES.append(("guadana_umbria", 1, [("c", "gema_umbria", 3), ("c", "shadowsteel", 2), ("c", "palo_reforzado", 1)], "Especiales"))
 
-add_item("guantes_meteoro", "minecraft:paper", "Guantes de Puno Meteoro", "#ff8c1a",
+add_item("guantes_meteoro", "minecraft:paper", "Nudillos de Rubi", "#ff8c1a",
          [txt("Clase Monje", "#ff8c1a"), txt("Tus golpes queman"), txt("Mucho mas dano que a mano limpia"),
           req_line("fighting", 12)],
          {"type": "weapon", "w": "gloves", "tier": TIER_ESPECIAL}, model="minecraft:blaze_powder", glint=True,
@@ -563,9 +582,9 @@ for _iid in ARMOR_ITEMS:
                                   "equip_sound": f"minecraft:item.armor.equip_{_SOUND[_mat]}"}
     # Tiers 6-10 con modelo elegido: el casco se dibuja en 3D (item en la cabeza SIN asset_id; el pack FINAL
     # privado trae el modelo). Sin modelo, se ve como el T5 de su clase (pack publico).
-    if int(_t) >= 6 and _piece == "helmet" and ARMOR_VISUAL[_set].get(int(_t)):
+    if _piece == "helmet" and ARMOR_VISUAL[_set].get(int(_t)) not in (None, *ARMOR_SIN_CASCO, *ARMOR_CASCO_PLANO):
         del _c["minecraft:equippable"]["asset_id"]
-# Armas T6-T10: hasta que el dueno elija modelos se ven como el arma T5 de su familia (items_t6_10.ARMA_MODELO).
+# Armas T6-T10: cada una con su item_model (items_t6_10.ARMA_MODELO); el modelo elegido esta en el FINAL privado.
 for _iid, _it in ITEMS.items():
     _fam, _, _t = _iid.rpartition("_")
     if _fam in ("espada", "hacha", "baston", "guadana", "arco", "lanza") and _t.isdigit() and int(_t) >= 6:
@@ -847,6 +866,11 @@ enchant("punteria", "Punteria", "green", TIER_MAX, ["mainhand", "offhand"], {
         "type": "minecraft:lookup", "values": [1, 1, 1, 1] + [0] * (TIER_MAX - 4), "fallback": 0}},
         "requirements": {"condition": "minecraft:match_tool", "predicate": {"items": "minecraft:arrow"}}}],
 })
+# Ballestas: tiempo de carga propio por nivel (la vanilla tarda 1,25 s).
+enchant("carga_rapida", "Carga Rapida", "green", len(BALLESTAS), ["mainhand", "offhand"], {
+    "minecraft:crossbow_charge_time": [{"effect": {"type": "minecraft:add", "value": {
+        "type": "minecraft:lookup", "values": [round(BALLESTAS[t]["carga"] - CARGA_VANILLA, 3) for t in sorted(BALLESTAS)],
+        "fallback": round(min(b["carga"] for b in BALLESTAS.values()) - CARGA_VANILLA, 3)}}}]})
 enchant("punteria_set", "Punteria del Set", "green", TIER_MAX, ["chest"], {
     "minecraft:damage": [{"effect": {"type": "minecraft:multiply", "factor": {
         "type": "minecraft:lookup", "values": [1.04, 1.08, 1.12, 1.18, 1.25, 1.30, 1.35, 1.40, 1.45, 1.50], "fallback": 1.50}},
@@ -1925,7 +1949,7 @@ recipe_leaf("guia/materiales_1", "Forja: Materiales (1/2)", mats[:7], "guia/mate
 recipe_leaf("guia/materiales_2", "Forja: Materiales (2/2)", mats[7:], "guia/materiales")
 CLASSES = [("berserker", "Berserker", "#ff4d4d", [("espada_", "Espadas"), ("hacha_", "Hachas")]),
            ("mago", "Mago", "#b26bff", [("baston_", "Bastones"), ("guadana_", "Guadanas")]),
-           ("arquero", "Arquero", "#5ee08a", [("arco_", "Arcos")])]
+           ("arquero", "Arquero", "#5ee08a", [("arco_", "Arcos"), ("ballesta_", "Ballestas")])]
 for cid, cname, ccol, weps in CLASSES:
     sub = []
     for t in range(1, TIER_MAX + 1):
@@ -2115,6 +2139,8 @@ KITS = [
     ("especiales", "Especiales, Lanzas y Talismanes", "aqua", "minecraft:cyan_shulker_box",
      [i for i in ITEMS if i in SPECIAL_WEAPONS or i.startswith("talisman_") or i.startswith("lanza_") and _tier_de(i) <= 5 or i in
       ("gancho", "gancho_realista", "guadana_umbria", "guantes_meteoro")]),
+    ("ballestas", "Ballestas de Arquero", "green", "minecraft:green_shulker_box",
+     [i for i in ITEMS if i.startswith("ballesta_")]),
     ("herramientas", "Taladros y Motosierras", "yellow", "minecraft:yellow_shulker_box",
      [i for i in ITEMS if i.startswith(("taladro_", "motosierra_"))]),
     ("oficios", "Ropa de Minero y Talador", "gold", "minecraft:brown_shulker_box",

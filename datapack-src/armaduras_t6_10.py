@@ -44,12 +44,34 @@ def terraria(geo, tex):
     return dict(geo=TERRARIA / f'geo/{geo}.geo.json', tex=TERRARIA / f'textures/item/{tex}.png', glow=None)
 
 
+# Mods de la carpeta Revisar (pedido del 14-15/11/2026: T1-T5 y huecos de T6-T10)
+REVISAR = Path(os.environ.get('ASTRAL_MODS_REVISAR', MODS / 'Revisar'))
+
+
+def geckolib(root, geo, tex, overlay=None):
+    """Modelo GeckoLib generico: root = carpeta assets/<ns>, tex relativo a textures/."""
+    r = REVISAR / root
+    glow = r / f'textures/{tex}_glowmask.png'
+    return dict(geo=r / f'geo/{geo}.geo.json', tex=r / f'textures/{tex}.png',
+                glow=glow if glow.exists() else None,
+                overlay=(r / f'textures/{overlay}.png') if overlay else None)
+
+
+def fantasy(n):
+    return geckolib('fantasy armor/assets/fantasy_armor', f'{n}_armor', f'armor/{n}_armor', f'armor/{n}_armor_overlay')
+
+
+def irons(geo, tex, ar=False):
+    root = ("new iron spell/Iron's Spells AR v0.1" if ar else 'ireon spell viejo') + '/assets/irons_spellbooks'
+    return geckolib(root, geo, f'models/armor/{tex}')
+
+
 # (id, nombre, clase, tier, origen, ajustes)   <- una linea por set
 SETS = [
     ('glacier_robe', 'Glaciar', 'Mago', 6, armory('glacier_robe', 'tirisfal_robe'), {}),
     ('scarlet_robe', 'Escarlata', 'Mago', 7, armory('scarlet_robe', 'tirisfal_robe'), {}),
     ('rimeweave_robe', 'Escarcha', 'Mago', 8, armory('rimeweave_robe', 'tempest_robe'), {}),
-    ('nebula', 'Nebulosa', 'Mago', 9, terraria('nebulaarmor', 'nebulaarmor'), {}),
+    ('nebula', 'Nebulosa', 'Mago', 9, terraria('nebulaarmor', 'nebulaarmor'), {'casco_plano': True}),
     ('absolution_robe', 'Absolucion', 'Mago', 10, armory('absolution_robe', 'absolution_robe'), {}),
     ('lightbringer_armor', 'Portador de Luz', 'Berserker', 7, armory('lightbringer_armor', 'lightbringer_armor'), {}),
     ('onslaught_armor', 'Embestida', 'Berserker', 8, armory('onslaught_armor', 'onslaught_armor'), {}),
@@ -58,6 +80,31 @@ SETS = [
     ('strider_armor', 'Andariego', 'Arquero', 6, armory('strider_armor', 'strider_armor'), {'leg': 'lleg'}),
     ('riftstalker_armor', 'Acechador', 'Arquero', 7, armory('riftstalker_armor', 'riftstalker_armor'), {}),
     ('deathmantle_armor', 'Manto Mortal', 'Arquero', 10, armory('deathmantle_armor', 'deathmantle_armor'), {}),
+    # --- 15/11: T1-T5 de las tres clases y huecos (Berserker T6, Arquero T8/T9)
+    ('wandering_magician', 'Mago Errante', 'Mago', 1, irons('wandering_magician_armor', 'wandering_magician', ar=True), {}),
+    ('netherite_fire_robe', 'Fuego', 'Mago', 2,
+     geckolib('wizards-forge-3.1.3+1.20.1/assets/wizards', 'wizard_robes', 'armor/netherite_fire_robe'), {}),
+    ('sanguine_purple', 'Sanguina', 'Mago', 3,
+     geckolib('anarchyrpg/assets/anarchy_rpg', 'sanguine', 'armor/sanguine_purple'), {'sin_casco': True}),
+    ('pyromancer', 'Piromante', 'Mago', 4, irons('pyromancer_armor', 'pyromancer'), {}),
+    ('dark_cover', 'Manto Oscuro', 'Mago', 5, fantasy('dark_cover'), {}),
+    ('rogues_berserker', 'Berserker', 'Berserker', 1,
+     geckolib('rogues-forge-3.1.3+1.20.1/assets/rogues', 'warrior_armor', 'armor/berserker_armor'), {}),
+    ('dead_gladiator', 'Gladiador', 'Berserker', 2, fantasy('dead_gladiator'), {}),
+    ('sunset_wings', 'Alas del Atardecer', 'Berserker', 3, fantasy('sunset_wings'), {}),
+    ('flesh_of_the_feaster', 'Festin', 'Berserker', 4, fantasy('flesh_of_the_feaster'), {}),
+    ('dark_lord_rojo', 'Senor Oscuro', 'Berserker', 5, fantasy('dark_lord'), {'tint': 'rojo'}),
+    ('spark_of_dawn', 'Chispa del Alba', 'Berserker', 6, fantasy('spark_of_dawn'), {}),
+    ('ranger', 'Explorador', 'Arquero', 1,
+     geckolib('archers-forge-3.1.4+1.20.1/assets/archers', 'ranger_armor', 'armor/ranger_armor'), {}),
+    ('netherite_ranger', 'Explorador de Netherita', 'Arquero', 2,
+     geckolib('archers-forge-3.1.4+1.20.1/assets/archers', 'ranger_armor', 'armor/netherite_ranger_armor'), {}),
+    ('anarchy_thief', 'Ladron', 'Arquero', 3,
+     geckolib('anarchyrpg/assets/anarchy_rpg', 'thiefmodel', 'armor/thieftexture'), {}),
+    ('fantasy_thief', 'Ladron de las Sombras', 'Arquero', 4, fantasy('thief'), {}),
+    ('shadowwalker', 'Caminante de Sombras', 'Arquero', 5, irons('shadowwalker_armor', 'shadowwalker'), {}),
+    ('forgotten_trace', 'Rastro Olvidado', 'Arquero', 8, fantasy('forgotten_trace'), {}),
+    ('cultist', 'Cultista', 'Arquero', 9, irons('cultist_armor', 'cultist'), {'casco_sin_mascara': True}),
 ]
 
 K = 4                      # resolucion: textura de equipment 64x32 * K
@@ -76,11 +123,13 @@ def _box(x0, y0, z0, x1, y1, z1, inf):
 BODY_O = _box(-4, 12, -2, 4, 24, 2, 1.0)
 ARM_O = _box(4, 12, -2, 8, 24, 2, 1.0)       # brazo derecho (el izquierdo usa la misma textura espejada)
 LEG_O = _box(0, 0, -2, 4, 12, 2, 1.0)        # pierna derecha
+HEAD_O = _box(-4, 24, -4, 4, 32, 4, 1.0)     # cabeza (solo para cascos planos)
 BODY_I = _box(-4, 12, -2, 4, 24, 2, 0.5)
 LEG_I = _box(0, 0, -2, 4, 12, 2, 0.5)
 
 # (u, v, ancho, alto, prof) en la textura 64x32 de armadura
 UV_BODY, UV_ARM, UV_LEG = (16, 16, 8, 12, 4), (40, 16, 4, 12, 4), (0, 16, 4, 12, 4)
+UV_HEAD = (0, 0, 8, 8, 8)
 
 # cara: (eje a, a desde el max?, eje b, b desde el max?, eje profundidad, camara del lado +?)
 FACE_SPEC = {
@@ -305,6 +354,10 @@ def bake(cubes, tex, tex_size, opts):
     body = quads_of(lambda c: c['root'] == 'body')
     arm = quads_of(lambda c: c['root'] == opts.get('arm', 'rarm'))
     legq = quads_of(lambda c: c['root'] == opts.get('leg', 'rleg'))
+    waist = quads_of(lambda c: c['root'] == 'waist')   # faldones/sacos colgados de la cintura (Sanguina)
+    if waist:
+        body = body + waist
+        legq = legq + waist
     if opts.get('arm', 'rarm') == 'larm':           # usar el brazo izquierdo espejado
         arm = [(p * np.array([-1, 1, 1]), u, t) for p, u, t in arm]
     if opts.get('leg', 'rleg') == 'lleg':
@@ -319,6 +372,9 @@ def bake(cubes, tex, tex_size, opts):
     leg_noboot = [q for q in legq if not is_boot(q[2])]
     bake_part(leg_noboot, tex, LEG_I, UV_LEG, leg, win=win, eff=_eff(LEG_I, x0=0, y1=12))
     bake_part(body, tex, BODY_I, UV_BODY, leg, rows=(12, 15.5), dilate=False, eff=_eff(BODY_I, y0=12))
+    if opts.get('casco_plano'):   # la capucha/casco se pega a la cabeza (textura plana, sin modelo 3D aparte)
+        head = quads_of(lambda c: c['root'] == 'head')
+        bake_part(head, tex, HEAD_O, UV_HEAD, hum, eff=_eff(HEAD_O, y0=24))
     return hum, leg
 
 
@@ -420,6 +476,7 @@ def vanilla_geo():
     def cube(o, s, uv, inf, mirror=False):
         return {'origin': o, 'size': s, 'uv': uv, 'inflate': inf, 'mirror': mirror}
     hum = {'description': {'texture_width': 64, 'texture_height': 32}, 'bones': [
+        {'name': 'h', 'cubes': [cube([-4, 24, -4], [8, 8, 8], [0, 0], 1.0)]},
         {'name': 'b', 'cubes': [cube([-4, 12, -2], [8, 12, 4], [16, 16], 1.0)]},
         {'name': 'ra', 'cubes': [cube([-8, 12, -2], [4, 12, 4], [40, 16], 1.0)]},
         {'name': 'la', 'cubes': [cube([4, 12, -2], [4, 12, 4], [40, 16], 1.0, True)]},
@@ -464,18 +521,51 @@ def preview(sid, name, geo, tex, hum_img, leg_img, helm, helm_tex):
     return bg
 
 
+def tinte_rojo(tex):
+    """Lleva la armadura a tonos rojos (pedido del dueno para el Berserker T5): conserva la luz de cada pixel."""
+    rgb = tex[..., :3]
+    lum = rgb @ np.array([0.299, 0.587, 0.114])
+    sat = rgb.max(-1) - rgb.min(-1)
+    # rampa roja: negro -> rojo sangre -> rojo vivo -> rosado claro
+    ramp = np.array([[0.05, 0.01, 0.01], [0.42, 0.04, 0.05], [0.80, 0.12, 0.10], [1.0, 0.62, 0.55]])
+    x = np.clip(lum * 1.15, 0, 1) * (len(ramp) - 1)
+    i = np.clip(np.floor(x).astype(int), 0, len(ramp) - 2)
+    f = (x - i)[..., None]
+    red = ramp[i] * (1 - f) + ramp[i + 1] * f
+    # los metales claros y dorados quedan algo mas cerca del original para no perder el detalle
+    keep = np.clip((lum - 0.75) * 2, 0, 0.5)[..., None] * (sat[..., None] < 0.15)
+    out = tex.copy()
+    out[..., :3] = red * (1 - keep) + rgb * keep
+    return out
+
+
 # ------------------------------------------------------------------------------------- main
 def build(sid, name, cls, tier, src, opts):
     geo = G.load_geo(src['geo'])
     d = geo['description']
     tex_size = (d.get('texture_width', 64), d.get('texture_height', 64))
     tex = G.load_tex(src['tex'], src['glow'])
+    if src.get('overlay') and src['overlay'].exists():
+        ov = G.load_tex(src['overlay'])
+        if ov.shape == tex.shape:
+            a = ov[..., 3:4]
+            tex = tex.copy()
+            tex[..., :3] = ov[..., :3] * a + tex[..., :3] * (1 - a)
+            tex[..., 3] = np.maximum(tex[..., 3], ov[..., 3])
+    if opts.get('tint') == 'rojo':
+        tex = tinte_rojo(tex)
     cubes = G.collect_cubes(geo)
+    if opts.get('sin_casco'):
+        cubes = [c for c in cubes if c['root'] != 'head']
+    casco_sin = set(opts.get('casco_sin', ()))
+    helm_cubes = [c for c in cubes if not (c['root'] == 'head' and c['bone'] in casco_sin)]
+    if opts.get('casco_sin_mascara'):   # Cultista: sin la mascara de calavera (cubo con una sola cara), se ve la cara
+        helm_cubes = [c for c in helm_cubes if not (c['root'] == 'head' and len(c['faces']) == 1)]
     hum, leg = bake(cubes, tex, tex_size, opts)
     hum_img, leg_img = to_img(hum), to_img(leg)
     key = f'armadura_{sid}'
     tex_name = f'astral:item/{key}_casco'
-    helm = helmet_model(cubes, tex_name, tex_size)
+    helm = helmet_model(helm_cubes, tex_name, tex_size)
     pack = OUT / 'pack/assets/astral'
     for sub in ('textures/entity/equipment/humanoid', 'textures/entity/equipment/humanoid_leggings',
                 'textures/item', 'models/item', 'equipment'):

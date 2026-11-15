@@ -5070,6 +5070,79 @@
     }
   },
   {
+    "output": "ballesta_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "arco_3",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "v",
+        "minecraft:crossbow",
+        1
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 20
+    }
+  },
+  {
+    "output": "ballesta_4",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "ballesta_3",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 25
+    }
+  },
+  {
+    "output": "ballesta_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "ballesta_4",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Arcos",
+    "table": true,
+    "requirements": {
+      "auraskills:archery": 30
+    }
+  },
+  {
     "output": "espada_tormenta",
     "count": 1,
     "ingredients": [

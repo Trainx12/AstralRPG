@@ -12,7 +12,8 @@ from PIL import Image
 
 FACES = ('north', 'south', 'east', 'west', 'up', 'down')
 ROOTS = {'bipedhead': 'head', 'bipedbody': 'body', 'bipedrightarm': 'rarm', 'bipedleftarm': 'larm',
-         'bipedrightleg': 'rleg', 'bipedleftleg': 'lleg'}
+         'bipedrightleg': 'rleg', 'bipedleftleg': 'lleg',
+         'bipedwaist': 'waist'}
 
 
 def rot_matrix(rx, ry, rz):
@@ -95,7 +96,8 @@ def collect_cubes(geo):
     cubes = []
     for b in geo['bones']:
         ch = chain(b['name'])
-        root = ROOTS.get(ch[-1]['name'].lower())
+        # raiz: el primer hueso biped de la cadena (algunos modelos cuelgan todo de un hueso 'bone')
+        root = next((ROOTS[x['name'].lower()] for x in ch if x['name'].lower() in ROOTS), None)
         mirror_b = b.get('mirror', False)
         # transformacion de la cadena de huesos (hijo -> raiz)
         Rb, tb = np.eye(3), np.zeros(3)

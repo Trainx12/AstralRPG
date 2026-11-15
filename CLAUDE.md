@@ -40,6 +40,7 @@ python menus.py                    # menus de cofre (DeluxeMenus): /menu, /masco
 python mobs/trainx.py              # jefe final Trainx (modelo privado con la skin del dueno); la pelea sale con mobs/mazmorra.py
 python renacimiento.py             # renacimiento, deseos (/deseo, /deseos) y deseo lite del Cronista
 python rankings.py                 # rankings semanales (parkour, Infinita, Trainx, Minas, Bosque), carteles y /trofeos
+python armas_mod.py                # armas T6-T10, guante y ballestas con modelos de mods (solo circuito privado) + pack FINAL
 ```
 
 ## Trampas conocidas

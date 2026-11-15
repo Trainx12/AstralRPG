@@ -13,7 +13,8 @@ RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
           6: ('MÍTICA', '#ff5fd2'), 7: ('MÍTICA', '#ff5fd2'), 8: ('DIVINA', 'aqua'), 9: ('DIVINA', 'aqua'),
           10: ('ASTRAL', '#b388ff')}
 TIPOS = {'sword': 'ESPADA', 'axe': 'HACHA', 'staff': 'BASTÓN', 'scythe': 'GUADAÑA',
-         'bow': 'ARCO', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
+         'bow': 'ARCO', 'crossbow': 'BALLESTA', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
+         'pickaxe': 'PICO', 'shovel': 'PALA', 'hoe': 'AZADA', 'fishing_rod': 'CAÑA', 'shield': 'ESCUDO',
          'helmet': 'CASCO', 'chestplate': 'PECHERA', 'leggings': 'GREBAS', 'boots': 'BOTAS'}
 ENCHANTS = {'robo_vida': 'Robo de vida', 'furia': 'Furia', 'remate': 'Remate',
             'verdugo': 'Verdugo', 'sangrado': 'Sangrado', 'hendidura': 'Hendidura',
@@ -21,7 +22,8 @@ ENCHANTS = {'robo_vida': 'Robo de vida', 'furia': 'Furia', 'remate': 'Remate',
             'ejecucion': 'Ejecución', 'ejecucion_astral': 'Ejecución Astral',
             'igneo': 'Puño Ígneo', 'punteria': 'Puntería', 'empalar': 'Empalar',
             'poder_astral': 'Poder Astral', 'punteria_set': 'Puntería del Set', 'fortune': 'Fortuna',
-            'efficiency': 'Eficiencia', 'unbreaking': 'Irrompibilidad'}
+            'efficiency': 'Eficiencia', 'unbreaking': 'Irrompibilidad',
+            'carga_rapida': 'Carga Rápida', 'piercing': 'Perforación', 'multishot': 'Multidisparo'}
 # Qué hace cada encantamiento (los números salen de su definición en build.py).
 ENCH_DESC = {
     'robo_vida': lambda l: f"{[10, 15, 25, 30, 40][min(l, 5) - 1]}% de curarte al golpear (Regeneración III, 2 s).",
@@ -42,6 +44,9 @@ ENCH_DESC = {
     'empalar': lambda l: f"+{[1, 2, 3, 4, 6, 7, 8, 9, 10, 12][min(l, 10) - 1]} de daño por golpe.",
     'poder_astral': lambda l: f"Golpes de lanza con el daño del tier {l}.",
     'fortune': lambda l: f"Más minerales por bloque (hasta x{l + 1}).",
+    'carga_rapida': lambda l: f"Carga la ballesta en {['0,9', '0,65', '0,2'][min(l, 3) - 1]} s.",
+    'piercing': lambda l: f"La flecha atraviesa {l} enemigo{'s' if l > 1 else ''}.",
+    'multishot': lambda l: "Dispara 3 flechas por tiro.",
 }
 # Lineas de descripcion de items.py que ya explica un encantamiento (no se repiten).
 CUBIERTO = {'Robo de vida', 'Roba vida', '+5% de dano a enemigos con menos del 50% de vida',
@@ -153,7 +158,7 @@ def weapon_stats(source, level):
     factor = MEJORA_DANO[level - 1] if level else 1
     if damage is not None:
         lines.append(stat('Daño', '+' + fmt(damage * factor), 'red', damage * (factor - 1) if level else None))
-    if source['kind'] == 'bow' and 'arrow' in data:
+    if source['kind'] in ('bow', 'crossbow') and 'arrow' in data:
         arrow = data['arrow']
         lines.append(stat('Daño', '+' + fmt(arrow * factor), 'red', arrow * (factor - 1) if level else None))
     if 'spell' in data:
@@ -208,6 +213,7 @@ def armor_stats(source, level):
         v = st['hp'] / q
         lines.append(stat('Bonif. de vida', f"{'+' if v >= 0 else ''}{num(v)}%", 'red'))
     lines.append(stat('Defensa', f"+{num(data['def'])}", 'green'))
+    lines += attr_extra_lines(source['components'])
 
     def pct(label, key, color, sign=1, full=False):
         if key in st:
@@ -231,6 +237,61 @@ def armor_stats(source, level):
     if 'kb' in st:
         lines.append(stat('Resistencia al empuje', f"+{num(st['kb'] / q)}%", 'green'))
     return lines
+
+
+# Atributos de oficio/agua que no son vida ni defensa (los numeros salen de los attribute_modifiers reales).
+ATTR_EXTRA = {'water_movement_efficiency': ('Velocidad nadando', 'aqua', 100, '%'),
+              'submerged_mining_speed': ('Minado bajo el agua', 'aqua', 100, '%'),
+              'oxygen_bonus': ('Aire extra', 'aqua', 1, ''),
+              'block_break_speed': ('Velocidad de rotura', 'gold', 100, '%'),
+              'mining_efficiency': ('Eficiencia de minado', 'gold', 1, '')}
+
+
+def attr_extra_lines(comps):
+    lines = []
+    for m in comps.get('minecraft:attribute_modifiers', []):
+        attr = m['type'].split(':')[-1]
+        if attr in ATTR_EXTRA:
+            label, color, mult, suf = ATTR_EXTRA[attr]
+            lines.append(stat(label, f"+{num(round(m['amount'] * mult, 2))}{suf}", color))
+    return lines
+
+
+# Sets con descripcion propia (no estan en SET_BONUS): sus lineas de items van como texto y el "Set completo" como bono.
+SETS_PROPIOS = ('carnivora', 'agua', 'minero', 'talador')
+
+
+def set_propio_lines(source):
+    """(ayudas, bono) desde la lore original de las armaduras de sets propios."""
+    ayudas, bono = [], []
+    for line in source['original'][1:]:
+        text = line.get('text', '')
+        if not text or text.startswith(OMITIR) or text.startswith('Se fabrica'):
+            continue
+        if text.startswith('Set completo'):
+            rest = text.split(':', 1)[1].strip()
+            bono += [txt('Bono de set (4/4)', 'gold'), highlighted(rest[0].upper() + rest[1:])]
+        else:
+            ayudas.append(text)
+    return ayudas, bono
+
+
+def utility_render(iid, name, color, base, lore, data, comps):
+    """Ficha simple para herramientas de set (picos, palas, cana, escudo): misma presentacion que las armas."""
+    kind = next((k for k in ('pickaxe', 'shovel', 'hoe', 'fishing_rod', 'shield') if k in base), 'pickaxe')
+    rarity, rcolor = rareza(data.get('tier', 1), kind)
+    out = [txt(lore[0]['text'])] if lore else []
+    out += attr_extra_lines(comps)
+    ench = enchant_lines(comps)
+    if ench:
+        out += [txt('')] + ench
+    extras = [l.get('text', '') for l in lore[1:] if l.get('text') and not l['text'].startswith(('Requiere:', 'Se fabrica'))]
+    if extras:
+        out += [txt('')] + [highlighted(e) for e in extras]
+    out.append(txt(''))
+    out.extend(txt(l['text'], 'red') for l in lore if l.get('text', '').startswith('Requiere:'))
+    out.append(txt(rarity + ' ' + TIPOS[kind], rcolor, bold=True))
+    return {'minecraft:item_name': txt(name, color), 'minecraft:lore': out}
 
 
 def tool_stats(source):
@@ -302,7 +363,8 @@ def render(source, level=0):
     ench = enchant_lines(comps)
     if ench:
         lore += [txt('')] + ench
-    extras = [] if kind in ('drill', 'saw') or kind in ARMOR_PIECES else extra_lines(source)
+    ayudas, bono_propio = set_propio_lines(source) if kind in ARMOR_PIECES and source['data'].get('set') in SETS_PROPIOS else ([], [])
+    extras = ayudas if kind in ARMOR_PIECES else [] if kind in ('drill', 'saw') else extra_lines(source)
     if extras:
         lore += [txt('')] + [highlighted(e) for e in extras]
     for ability in abilities_for(source):
@@ -317,7 +379,9 @@ def render(source, level=0):
             lore.append(stat('Recarga', f"{num(ability['cooldown'])}s", 'green'))
         lore.extend(txt(s, 'dark_gray') for s in ability.get('notes', []))
     if kind in ARMOR_PIECES:
-        lore += [txt('')] + set_bonus_lines(source)
+        bono = set_bonus_lines(source) + bono_propio
+        if bono:
+            lore += [txt('')] + bono
     lore.append(txt(''))
     lore.extend(txt(s['text'], 'red') for s in original if s.get('text', '').startswith('Requiere:'))
     lore.append(txt(rarity + ' ' + TIPOS.get(kind, 'VARITA'), color, bold=True))
