@@ -21,12 +21,12 @@ MATERIAL_TIER = {
     10: "corazon_fin",
 }
 MATERIALES = {
-    "fragmento_ocaso": ("Fragmento de Ocaso", "#ff5fd2", "minecraft:amethyst_shard", True,
+    "fragmento_ocaso": ("Fragmento de Ocaso", "#ff5fd2", "astral:fragmento_ocaso", True,
                         "Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5)."),
-    "esquirla_eclipse": ("Esquirla de Eclipse", "#5ff0ff", "minecraft:echo_shard", True, "Cae de mobs tier 7 o mas."),
-    "nucleo_supernova": ("Nucleo de Supernova", "#ff3b3b", "minecraft:fire_charge", True, "Cae de mobs tier 8 o mas."),
-    "esencia_vacio": ("Esencia del Vacio", "#e8e8ff", "minecraft:ender_eye", True, "Cae de mobs tier 9 o mas."),
-    "corazon_fin": ("Corazon del Fin", "#b388ff", "minecraft:nether_star", True, "Cae de mobs tier 10."),
+    "esquirla_eclipse": ("Esquirla de Eclipse", "#5ff0ff", "astral:esquirla_eclipse", True, "Cae de mobs tier 7 o mas."),
+    "nucleo_supernova": ("Nucleo de Supernova", "#ff3b3b", "astral:nucleo_supernova", True, "Cae de mobs tier 8 o mas."),
+    "esencia_vacio": ("Esencia del Vacio", "#e8e8ff", "astral:esencia_vacio", True, "Cae de mobs tier 9 o mas."),
+    "corazon_fin": ("Corazon del Fin", "#b388ff", "astral:corazon_fin", True, "Cae de mobs tier 10."),
 }
 
 # Probabilidad de que un mob de tier >= N suelte el material de N: (comun, elite, jefe garantizado)

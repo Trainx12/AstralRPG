@@ -53,7 +53,7 @@ items:
     material: PAPER
     item_model: astral:manzana_esmeralda
     slot: 14
-    display_name: '&aManzana de Esmeralda'
+    display_name: '&aManzana de la Suerte'
     lore:
     - '&e51,000$'
     - '&7Limite por visita: 4'

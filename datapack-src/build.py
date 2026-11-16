@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 24  # Balance especial/acuatico, fichas y durabilidad explicita (16/11).
+ITEM_VERSION = 25  # Arte final, materiales y Manzana de la Suerte (16/11).
 
 files = {}
 
@@ -579,8 +579,8 @@ for _iid in REDESIGN_IDS:
     ITEMS[_iid]["components"]["minecraft:item_model"] = f"{NS}:{_iid}"
 for _t in DRILLS + CHAINSAWS:
     ITEMS[_t["id"]]["components"]["minecraft:item_model"] = f"{NS}:{_t['id']}"
-# El Saltador (id "gancho") se ve como bola de slime; su skin pasa al Gancho real
-ITEMS["gancho"]["components"]["minecraft:item_model"] = "minecraft:slime_ball"
+# Saltador con arte propio; conservar el modelo existente del Gancho real.
+ITEMS["gancho"]["components"]["minecraft:item_model"] = "astral:saltador"
 ITEMS["gancho_realista"]["components"]["minecraft:item_model"] = f"{NS}:gancho"
 # Armaduras: textura propia al tenerlas puestas
 _SOUND = {"leather": "leather", "chainmail": "chain", "iron": "iron", "diamond": "diamond", "netherite": "netherite"}
@@ -2112,7 +2112,7 @@ dlg("guia/mercader", txt("Goblin Mercader", "green", bold=True), [
 ], [], back="guia")
 dlg("guia/consumibles", txt("Experiencia y suerte", "green", bold=True), [
     msg("Frasco Pequeno: 60 puntos; Grande: 200; Gigante: 550 puntos de XP vanilla. Barril: 5.500 puntos. Clic derecho usa uno; Shift + clic usa todos los de esa mano. Se apilan de a 16.", "gray"),
-    msg("Manzana de Esmeralda: comela para mejorar las chances raras, epicas y legendarias de las gachas durante cinco minutos. Otra renueva el tiempo. No garantiza premios.", "gray"),
+    msg("Manzana de la Suerte: comela para mejorar las chances raras, epicas y legendarias de las gachas durante cinco minutos. Otra renueva el tiempo. No garantiza premios.", "gray"),
     msg("Se consiguen en /shop -> Consumibles, gachas, cofres de jefe y rankings. Los eventos ancestrales y la Infinita de tier VI o mas tambien dan XP embotellada.", "gray"),
 ], [], back="guia")
 dlg("guia/cocina", txt("Cocina (Crop & Kettle)", "gold", bold=True), [

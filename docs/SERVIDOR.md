@@ -580,7 +580,7 @@ AstralDecor 1.11.0, datapack y FINAL privado nuevos; no reemplazar mundos.
 
 Frasco Gigante da 550 puntos vanilla; Barril da 5.500. Clic derecho usa uno y
 Shift + clic todos los de esa mano; stack máximo 16. No lanza botellas ni orbes.
-Tienda: 25.000$, 220.000$ y Manzana de Esmeralda 60.000$.
+Tienda: 25.000$, 220.000$ y Manzana de la Suerte 60.000$.
 EconomyShopGUI gratuito abre `consumibles` de DeluxeMenus por el título reservado
 `Astral - Consumibles`; registrar ese menú y comprobar libre el slot 43 de sección.
 

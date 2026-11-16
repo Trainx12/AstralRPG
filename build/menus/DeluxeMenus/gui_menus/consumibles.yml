@@ -110,7 +110,7 @@ items:
     material: PAPER
     slot: 15
     amount: 1
-    display_name: '&aManzana de Esmeralda'
+    display_name: '&aManzana de la Suerte'
     lore:
     - '&e60,000$'
     - '&7Necesitas un espacio libre.'

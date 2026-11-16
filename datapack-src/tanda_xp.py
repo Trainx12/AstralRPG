@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 XP = {'frasco_xp_pequeno': 60, 'frasco_xp_grande': 200, 'frasco_xp_gigante': 550, 'barril_xp': 5500}
 PRECIOS = {'frasco_xp_pequeno': 3000, 'frasco_xp_grande': 9000, 'frasco_xp_gigante': 25000, 'barril_xp': 220000, 'manzana_esmeralda': 60000}
 NOMBRES = {'frasco_xp_pequeno': 'Frasco de Experiencia Pequeno', 'frasco_xp_grande': 'Frasco de Experiencia Grande', 'frasco_xp_gigante': 'Frasco de Experiencia Gigante', 'barril_xp': 'Barril de Experiencia',
-           'manzana_esmeralda': 'Manzana de Esmeralda'}
+           'manzana_esmeralda': 'Manzana de la Suerte'}
 SUERTE_SEGUNDOS = 300
 MOCHILAS = dict(leather='#946545', copper='#b66a45', iron='#b9bfca', gold='#e6bb3c',
                 diamond='#42c8cb', netherite='#49424d')

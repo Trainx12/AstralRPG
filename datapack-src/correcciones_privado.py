@@ -33,7 +33,13 @@ def prepare():
             files[new]=blob
         model={'model':{'type':'minecraft:model','model':'privado:item/bbcosmetics_'+key}}
         files[f'assets/astral/items/cosmeticos/espalda_{key}.json']=json.dumps(model).encode()
-        if key=='barrel':files['assets/astral/items/barril_xp.json']=json.dumps(model).encode()
+        if key=='barrel':
+            from arte_1611 import assets
+            files.update(assets())
+            gui=json.loads(files['assets/astral/items/barril_xp.json'])['model']
+            files['assets/astral/items/barril_xp.json']=json.dumps({'model':{
+                'type':'minecraft:select','property':'minecraft:display_context',
+                'cases':[{'when':'gui','model':gui}],'fallback':model['model']}}).encode()
     for name,blob in files.items():
         p=out/'pack'/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob)
     return out

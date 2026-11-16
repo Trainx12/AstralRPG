@@ -1,5 +1,11 @@
 # Ventanas y mascotas - 16/11/2026
 
+Arte final posterior preparado, sin desplegar: [cargar-arte-16-11](../build/deploy/cargar-arte-16-11.md).
+Items, materiales VI-X, Saltador, botella vanilla y navegacion con arte final;
+Manzana de la Suerte conserva el ID `manzana_esmeralda`. Generadores `arte_1611.py`
+y `deploy_arte_1611.py`; ITEM_VERSION 25. FINAL basado en mascotas-aurora-botones,
+con Crop & Kettle autorizado por el dueno para R2. Instalar antes de mochilas-3d.
+
 Entrega pendiente: [mascotas-aurora-botones](../build/deploy/mascotas-aurora-botones.md).
 18 mascotas: Fenix y 17 cubee, en tres paginas de seis; IDs/niveles conservados.
 Las cinco retiradas compensan una llave virtual de Monturas por permiso al entrar, una sola vez por UUID y mascota.

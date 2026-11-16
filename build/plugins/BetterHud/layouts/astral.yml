@@ -184,6 +184,101 @@ astral_panel_textos:
             operation: '=='
       12:
         name: astral_font
+        pattern: "<#F0E6FF>Bosque Sombrío"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'bosque_2'"
+            operation: '=='
+      13:
+        name: astral_font
+        pattern: "<#F0E6FF>Bosque Sombrío"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'bosque_3'"
+            operation: '=='
+      14:
+        name: astral_font
+        pattern: "<#F0E6FF>Bosque Sombrío"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'bosque_4'"
+            operation: '=='
+      15:
+        name: astral_font
+        pattern: "<#F0E6FF>Bosque Sombrío"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'bosque_5'"
+            operation: '=='
+      16:
+        name: astral_font
+        pattern: "<#F0E6FF>Bosque Sombrío"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'bosque_6'"
+            operation: '=='
+      17:
+        name: astral_font
         pattern: "<#F0E6FF>Tumba del Rey de Arena"
         x: 21
         y: 101
@@ -201,7 +296,102 @@ astral_panel_textos:
             first: "world"
             second: "'tumba'"
             operation: '=='
-      13:
+      18:
+        name: astral_font
+        pattern: "<#F0E6FF>Tumba del Rey de Arena"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'tumba_2'"
+            operation: '=='
+      19:
+        name: astral_font
+        pattern: "<#F0E6FF>Tumba del Rey de Arena"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'tumba_3'"
+            operation: '=='
+      20:
+        name: astral_font
+        pattern: "<#F0E6FF>Tumba del Rey de Arena"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'tumba_4'"
+            operation: '=='
+      21:
+        name: astral_font
+        pattern: "<#F0E6FF>Tumba del Rey de Arena"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'tumba_5'"
+            operation: '=='
+      22:
+        name: astral_font
+        pattern: "<#F0E6FF>Tumba del Rey de Arena"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'tumba_6'"
+            operation: '=='
+      23:
         name: astral_font
         pattern: "<#F0E6FF>Cumbre Helada"
         x: 21
@@ -220,7 +410,102 @@ astral_panel_textos:
             first: "world"
             second: "'cumbre_hielo'"
             operation: '=='
-      14:
+      24:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Helada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre_hielo_2'"
+            operation: '=='
+      25:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Helada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre_hielo_3'"
+            operation: '=='
+      26:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Helada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre_hielo_4'"
+            operation: '=='
+      27:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Helada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre_hielo_5'"
+            operation: '=='
+      28:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Helada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre_hielo_6'"
+            operation: '=='
+      29:
         name: astral_font
         pattern: "<#F0E6FF>Corazón de la Forja"
         x: 21
@@ -239,7 +524,102 @@ astral_panel_textos:
             first: "world"
             second: "'forja_volcano'"
             operation: '=='
-      15:
+      30:
+        name: astral_font
+        pattern: "<#F0E6FF>Corazón de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja_volcano_2'"
+            operation: '=='
+      31:
+        name: astral_font
+        pattern: "<#F0E6FF>Corazón de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja_volcano_3'"
+            operation: '=='
+      32:
+        name: astral_font
+        pattern: "<#F0E6FF>Corazón de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja_volcano_4'"
+            operation: '=='
+      33:
+        name: astral_font
+        pattern: "<#F0E6FF>Corazón de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja_volcano_5'"
+            operation: '=='
+      34:
+        name: astral_font
+        pattern: "<#F0E6FF>Corazón de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja_volcano_6'"
+            operation: '=='
+      35:
         name: astral_font
         pattern: "<#F0E6FF>Santuario Celestial"
         x: 21
@@ -256,387 +636,7 @@ astral_panel_textos:
             operation: '!='
           2:
             first: "world"
-            second: "'santuario_interstellar'"
-            operation: '=='
-      16:
-        name: astral_font
-        pattern: "<#F0E6FF>Supervivencia"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'world'"
-            operation: '=='
-      17:
-        name: astral_font
-        pattern: "<#F0E6FF>Supervivencia"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'overworld'"
-            operation: '=='
-      18:
-        name: astral_font
-        pattern: "<#F0E6FF>Refugio Astral"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'lobby'"
-            operation: '=='
-      19:
-        name: astral_font
-        pattern: "<#F0E6FF>El Nether"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'world_nether'"
-            operation: '=='
-      20:
-        name: astral_font
-        pattern: "<#F0E6FF>El Nether"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'the_nether'"
-            operation: '=='
-      21:
-        name: astral_font
-        pattern: "<#F0E6FF>El End"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'world_the_end'"
-            operation: '=='
-      22:
-        name: astral_font
-        pattern: "<#F0E6FF>El End"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'the_end'"
-            operation: '=='
-      23:
-        name: astral_font
-        pattern: "<#F0E6FF>Portales Astrales"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'portales_astrales'"
-            operation: '=='
-      24:
-        name: astral_font
-        pattern: "<#F0E6FF>Arena Astral"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'arena'"
-            operation: '=='
-      25:
-        name: astral_font
-        pattern: "<#F0E6FF>Arenas PvP"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'arenas_tft'"
-            operation: '=='
-      26:
-        name: astral_font
-        pattern: "<#F0E6FF>Parkour Espiral"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'parkour_spiral'"
-            operation: '=='
-      27:
-        name: astral_font
-        pattern: "<#F0E6FF>Parkour Espiral 2"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'parkour_spiral2'"
-            operation: '=='
-      28:
-        name: astral_font
-        pattern: "<#F0E6FF>Parkour Paradise 3"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'parkour_paradise3'"
-            operation: '=='
-      29:
-        name: astral_font
-        pattern: "<#F0E6FF>Color Escape"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'colorescape'"
-            operation: '=='
-      30:
-        name: astral_font
-        pattern: "<#F0E6FF>Dropper"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'dropper_facil'"
-            operation: '=='
-      31:
-        name: astral_font
-        pattern: "<#F0E6FF>Dropper H4rs"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'dropper_h4rs'"
-            operation: '=='
-      32:
-        name: astral_font
-        pattern: "<#F0E6FF>Bosque Astral"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'astral_bosque'"
-            operation: '=='
-      33:
-        name: astral_font
-        pattern: "<#F0E6FF>Minas Olvidadas"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'mina'"
-            operation: '=='
-      34:
-        name: astral_font
-        pattern: "<#F0E6FF>Cumbre Nevada"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'cumbre'"
-            operation: '=='
-      35:
-        name: astral_font
-        pattern: "<#F0E6FF>Volcán de la Forja"
-        x: 21
-        y: 101
-        align: left
-        scale: 0.5
-        outline: true
-        placeholder-string-format:
-          number: "#,###"
-        conditions:
-          1:
-            first: "world"
-            second: "'astral_minas'"
-            operation: '!='
-          2:
-            first: "world"
-            second: "'forja'"
+            second: "'santuario_azeroth'"
             operation: '=='
       36:
         name: astral_font
@@ -655,9 +655,712 @@ astral_panel_textos:
             operation: '!='
           2:
             first: "world"
-            second: "'santuario'"
+            second: "'santuario_azeroth_2'"
             operation: '=='
       37:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario_azeroth_3'"
+            operation: '=='
+      38:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario_azeroth_4'"
+            operation: '=='
+      39:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario_azeroth_5'"
+            operation: '=='
+      40:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario_azeroth_6'"
+            operation: '=='
+      41:
+        name: astral_font
+        pattern: "<#F0E6FF>Supervivencia"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world'"
+            operation: '=='
+      42:
+        name: astral_font
+        pattern: "<#F0E6FF>Supervivencia"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'overworld'"
+            operation: '=='
+      43:
+        name: astral_font
+        pattern: "<#F0E6FF>Refugio Astral"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'lobby'"
+            operation: '=='
+      44:
+        name: astral_font
+        pattern: "<#F0E6FF>El Nether"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_nether'"
+            operation: '=='
+      45:
+        name: astral_font
+        pattern: "<#F0E6FF>El Nether"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'the_nether'"
+            operation: '=='
+      46:
+        name: astral_font
+        pattern: "<#F0E6FF>El End"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_the_end'"
+            operation: '=='
+      47:
+        name: astral_font
+        pattern: "<#F0E6FF>El End"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'the_end'"
+            operation: '=='
+      48:
+        name: astral_font
+        pattern: "<#F0E6FF>Portales Astrales"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'portales_astrales'"
+            operation: '=='
+      49:
+        name: astral_font
+        pattern: "<#F0E6FF>Arena Astral"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'arena'"
+            operation: '=='
+      50:
+        name: astral_font
+        pattern: "<#F0E6FF>Arenas PvP"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'arenas_tft'"
+            operation: '=='
+      51:
+        name: astral_font
+        pattern: "<#F0E6FF>Parkour Espiral"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'parkour_spiral'"
+            operation: '=='
+      52:
+        name: astral_font
+        pattern: "<#F0E6FF>Parkour Espiral 2"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'parkour_spiral2'"
+            operation: '=='
+      53:
+        name: astral_font
+        pattern: "<#F0E6FF>Parkour Paradise 3"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'parkour_paradise3'"
+            operation: '=='
+      54:
+        name: astral_font
+        pattern: "<#F0E6FF>Color Escape"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'colorescape'"
+            operation: '=='
+      55:
+        name: astral_font
+        pattern: "<#F0E6FF>Dropper"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'dropper_facil'"
+            operation: '=='
+      56:
+        name: astral_font
+        pattern: "<#F0E6FF>Dropper H4rs"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'dropper_h4rs'"
+            operation: '=='
+      57:
+        name: astral_font
+        pattern: "<#F0E6FF>Bosque Astral"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'astral_bosque'"
+            operation: '=='
+      58:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina'"
+            operation: '=='
+      59:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina_2'"
+            operation: '=='
+      60:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina_3'"
+            operation: '=='
+      61:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina_4'"
+            operation: '=='
+      62:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina_5'"
+            operation: '=='
+      63:
+        name: astral_font
+        pattern: "<#F0E6FF>Minas Olvidadas"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'mina_6'"
+            operation: '=='
+      64:
+        name: astral_font
+        pattern: "<#F0E6FF>Cumbre Nevada"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'cumbre'"
+            operation: '=='
+      65:
+        name: astral_font
+        pattern: "<#F0E6FF>Volcán de la Forja"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'forja'"
+            operation: '=='
+      66:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario'"
+            operation: '=='
+      67:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'santuario_interstellar'"
+            operation: '=='
+      68:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth'"
+            operation: '=='
+      69:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_2'"
+            operation: '=='
+      70:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_3'"
+            operation: '=='
+      71:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_4'"
+            operation: '=='
+      72:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_5'"
+            operation: '=='
+      73:
+        name: astral_font
+        pattern: "<#F0E6FF>Santuario Celestial"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_6'"
+            operation: '=='
+      74:
         name: astral_font
         pattern: "<#F0E6FF>Jardines del Santuario"
         x: 21
@@ -676,7 +1379,7 @@ astral_panel_textos:
             first: "world"
             second: "'santuario_freemap9'"
             operation: '=='
-      38:
+      75:
         name: astral_font
         pattern: "<#F0E6FF>Reino de las Mazmorras"
         x: 21
@@ -695,7 +1398,7 @@ astral_panel_textos:
             first: "world"
             second: "'reino'"
             operation: '=='
-      39:
+      76:
         name: astral_font
         pattern: "<#F0E6FF>Cavernas"
         x: 21
@@ -714,7 +1417,7 @@ astral_panel_textos:
             first: "world"
             second: "'cavernas'"
             operation: '=='
-      40:
+      77:
         name: astral_font
         pattern: "<#F0E6FF>Expedición al Desierto"
         x: 21
@@ -733,7 +1436,7 @@ astral_panel_textos:
             first: "world"
             second: "'exp_desierto'"
             operation: '=='
-      41:
+      78:
         name: astral_font
         pattern: "<#F0E6FF>Expedición al Hielo"
         x: 21
@@ -752,7 +1455,7 @@ astral_panel_textos:
             first: "world"
             second: "'exp_hielo'"
             operation: '=='
-      42:
+      79:
         name: astral_font
         pattern: "<#F0E6FF>Expedición a la Nieve"
         x: 21
@@ -771,7 +1474,7 @@ astral_panel_textos:
             first: "world"
             second: "'exp_nieve'"
             operation: '=='
-      43:
+      80:
         name: astral_font
         pattern: "<#F0E6FF>Expedición al Santuario"
         x: 21
@@ -790,7 +1493,121 @@ astral_panel_textos:
             first: "world"
             second: "'exp_santuario'"
             operation: '=='
-      44:
+      81:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita'"
+            operation: '=='
+      82:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita_2'"
+            operation: '=='
+      83:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita_3'"
+            operation: '=='
+      84:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita_4'"
+            operation: '=='
+      85:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita_5'"
+            operation: '=='
+      86:
+        name: astral_font
+        pattern: "<#F0E6FF>Mazmorra Infinita"
+        x: 21
+        y: 101
+        align: left
+        scale: 0.5
+        outline: true
+        placeholder-string-format:
+          number: "#,###"
+        conditions:
+          1:
+            first: "world"
+            second: "'astral_minas'"
+            operation: '!='
+          2:
+            first: "world"
+            second: "'infinita_6'"
+            operation: '=='
+      87:
         name: astral_font
         pattern: "<#F0E6FF>Exploración"
         x: 21
@@ -811,133 +1628,305 @@ astral_panel_textos:
             operation: '!='
           3:
             first: "world"
-            second: "'tumba'"
+            second: "'bosque_2'"
             operation: '!='
           4:
             first: "world"
-            second: "'cumbre_hielo'"
+            second: "'bosque_3'"
             operation: '!='
           5:
             first: "world"
-            second: "'forja_volcano'"
+            second: "'bosque_4'"
             operation: '!='
           6:
             first: "world"
-            second: "'santuario_interstellar'"
+            second: "'bosque_5'"
             operation: '!='
           7:
             first: "world"
-            second: "'world'"
+            second: "'bosque_6'"
             operation: '!='
           8:
             first: "world"
-            second: "'overworld'"
+            second: "'tumba'"
             operation: '!='
           9:
             first: "world"
-            second: "'lobby'"
+            second: "'tumba_2'"
             operation: '!='
           10:
             first: "world"
-            second: "'world_nether'"
+            second: "'tumba_3'"
             operation: '!='
           11:
             first: "world"
-            second: "'the_nether'"
+            second: "'tumba_4'"
             operation: '!='
           12:
             first: "world"
-            second: "'world_the_end'"
+            second: "'tumba_5'"
             operation: '!='
           13:
             first: "world"
-            second: "'the_end'"
+            second: "'tumba_6'"
             operation: '!='
           14:
             first: "world"
-            second: "'portales_astrales'"
+            second: "'cumbre_hielo'"
             operation: '!='
           15:
             first: "world"
-            second: "'arena'"
+            second: "'cumbre_hielo_2'"
             operation: '!='
           16:
             first: "world"
-            second: "'arenas_tft'"
+            second: "'cumbre_hielo_3'"
             operation: '!='
           17:
             first: "world"
-            second: "'parkour_spiral'"
+            second: "'cumbre_hielo_4'"
             operation: '!='
           18:
             first: "world"
-            second: "'parkour_spiral2'"
+            second: "'cumbre_hielo_5'"
             operation: '!='
           19:
             first: "world"
-            second: "'parkour_paradise3'"
+            second: "'cumbre_hielo_6'"
             operation: '!='
           20:
             first: "world"
-            second: "'colorescape'"
+            second: "'forja_volcano'"
             operation: '!='
           21:
             first: "world"
-            second: "'dropper_facil'"
+            second: "'forja_volcano_2'"
             operation: '!='
           22:
             first: "world"
-            second: "'dropper_h4rs'"
+            second: "'forja_volcano_3'"
             operation: '!='
           23:
             first: "world"
-            second: "'astral_bosque'"
+            second: "'forja_volcano_4'"
             operation: '!='
           24:
             first: "world"
-            second: "'mina'"
+            second: "'forja_volcano_5'"
             operation: '!='
           25:
             first: "world"
-            second: "'cumbre'"
+            second: "'forja_volcano_6'"
             operation: '!='
           26:
             first: "world"
-            second: "'forja'"
+            second: "'santuario_azeroth'"
             operation: '!='
           27:
             first: "world"
-            second: "'santuario'"
+            second: "'santuario_azeroth_2'"
             operation: '!='
           28:
             first: "world"
-            second: "'santuario_freemap9'"
+            second: "'santuario_azeroth_3'"
             operation: '!='
           29:
             first: "world"
-            second: "'reino'"
+            second: "'santuario_azeroth_4'"
             operation: '!='
           30:
             first: "world"
-            second: "'cavernas'"
+            second: "'santuario_azeroth_5'"
             operation: '!='
           31:
             first: "world"
-            second: "'exp_desierto'"
+            second: "'santuario_azeroth_6'"
             operation: '!='
           32:
             first: "world"
-            second: "'exp_hielo'"
+            second: "'world'"
             operation: '!='
           33:
             first: "world"
-            second: "'exp_nieve'"
+            second: "'overworld'"
             operation: '!='
           34:
             first: "world"
+            second: "'lobby'"
+            operation: '!='
+          35:
+            first: "world"
+            second: "'world_nether'"
+            operation: '!='
+          36:
+            first: "world"
+            second: "'the_nether'"
+            operation: '!='
+          37:
+            first: "world"
+            second: "'world_the_end'"
+            operation: '!='
+          38:
+            first: "world"
+            second: "'the_end'"
+            operation: '!='
+          39:
+            first: "world"
+            second: "'portales_astrales'"
+            operation: '!='
+          40:
+            first: "world"
+            second: "'arena'"
+            operation: '!='
+          41:
+            first: "world"
+            second: "'arenas_tft'"
+            operation: '!='
+          42:
+            first: "world"
+            second: "'parkour_spiral'"
+            operation: '!='
+          43:
+            first: "world"
+            second: "'parkour_spiral2'"
+            operation: '!='
+          44:
+            first: "world"
+            second: "'parkour_paradise3'"
+            operation: '!='
+          45:
+            first: "world"
+            second: "'colorescape'"
+            operation: '!='
+          46:
+            first: "world"
+            second: "'dropper_facil'"
+            operation: '!='
+          47:
+            first: "world"
+            second: "'dropper_h4rs'"
+            operation: '!='
+          48:
+            first: "world"
+            second: "'astral_bosque'"
+            operation: '!='
+          49:
+            first: "world"
+            second: "'mina'"
+            operation: '!='
+          50:
+            first: "world"
+            second: "'mina_2'"
+            operation: '!='
+          51:
+            first: "world"
+            second: "'mina_3'"
+            operation: '!='
+          52:
+            first: "world"
+            second: "'mina_4'"
+            operation: '!='
+          53:
+            first: "world"
+            second: "'mina_5'"
+            operation: '!='
+          54:
+            first: "world"
+            second: "'mina_6'"
+            operation: '!='
+          55:
+            first: "world"
+            second: "'cumbre'"
+            operation: '!='
+          56:
+            first: "world"
+            second: "'forja'"
+            operation: '!='
+          57:
+            first: "world"
+            second: "'santuario'"
+            operation: '!='
+          58:
+            first: "world"
+            second: "'santuario_interstellar'"
+            operation: '!='
+          59:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth'"
+            operation: '!='
+          60:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_2'"
+            operation: '!='
+          61:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_3'"
+            operation: '!='
+          62:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_4'"
+            operation: '!='
+          63:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_5'"
+            operation: '!='
+          64:
+            first: "world"
+            second: "'world_minecraft_santuario_azeroth_6'"
+            operation: '!='
+          65:
+            first: "world"
+            second: "'santuario_freemap9'"
+            operation: '!='
+          66:
+            first: "world"
+            second: "'reino'"
+            operation: '!='
+          67:
+            first: "world"
+            second: "'cavernas'"
+            operation: '!='
+          68:
+            first: "world"
+            second: "'exp_desierto'"
+            operation: '!='
+          69:
+            first: "world"
+            second: "'exp_hielo'"
+            operation: '!='
+          70:
+            first: "world"
+            second: "'exp_nieve'"
+            operation: '!='
+          71:
+            first: "world"
             second: "'exp_santuario'"
             operation: '!='
-      45:
+          72:
+            first: "world"
+            second: "'infinita'"
+            operation: '!='
+          73:
+            first: "world"
+            second: "'infinita_2'"
+            operation: '!='
+          74:
+            first: "world"
+            second: "'infinita_3'"
+            operation: '!='
+          75:
+            first: "world"
+            second: "'infinita_4'"
+            operation: '!='
+          76:
+            first: "world"
+            second: "'infinita_5'"
+            operation: '!='
+          77:
+            first: "world"
+            second: "'infinita_6'"
+            operation: '!='
+      88:
         name: astral_font
         pattern: "<#AA96C5>Conectados"
         x: 21
@@ -952,7 +1941,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      46:
+      89:
         name: astral_font
         pattern: "<#F0E6FF>[papi:server_online]<#AA96C5>//<#F0E6FF>[papi:server_max_players]"
         x: 144
@@ -967,7 +1956,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      47:
+      90:
         name: astral_font
         pattern: "<#D6B4FF><b>PROGRESO"
         x: 21
@@ -982,7 +1971,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      48:
+      91:
         name: astral_font
         pattern: "<#AA96C5>Rango"
         x: 21
@@ -997,7 +1986,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      49:
+      92:
         name: astral_font
         pattern: "<#FFB347>Leyenda"
         x: 144
@@ -1016,7 +2005,7 @@ astral_panel_textos:
             first: "(number)papi:auraskills_power"
             second: "1500"
             operation: '>='
-      50:
+      93:
         name: astral_font
         pattern: "<#FF77FF>Héroe"
         x: 144
@@ -1039,7 +2028,7 @@ astral_panel_textos:
             first: "(number)papi:auraskills_power"
             second: "1500"
             operation: '<'
-      51:
+      94:
         name: astral_font
         pattern: "<#55FFFF>Veterano"
         x: 144
@@ -1062,7 +2051,7 @@ astral_panel_textos:
             first: "(number)papi:auraskills_power"
             second: "800"
             operation: '<'
-      52:
+      95:
         name: astral_font
         pattern: "<#55FF55>Aventurero"
         x: 144
@@ -1085,7 +2074,7 @@ astral_panel_textos:
             first: "(number)papi:auraskills_power"
             second: "400"
             operation: '<'
-      53:
+      96:
         name: astral_font
         pattern: "<#AAAAAA>Novato"
         x: 144
@@ -1104,7 +2093,7 @@ astral_panel_textos:
             first: "(number)papi:auraskills_power"
             second: "150"
             operation: '<'
-      54:
+      97:
         name: astral_font
         pattern: "<#AA96C5>Diarias"
         x: 21
@@ -1119,7 +2108,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      55:
+      98:
         name: astral_font
         pattern: "<#F0E6FF>0<#AA96C5>//3"
         x: 144
@@ -1146,7 +2135,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '<'
-      56:
+      99:
         name: astral_font
         pattern: "<#F0E6FF>1<#AA96C5>//3"
         x: 144
@@ -1173,7 +2162,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '<'
-      57:
+      100:
         name: astral_font
         pattern: "<#F0E6FF>1<#AA96C5>//3"
         x: 144
@@ -1200,7 +2189,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '<'
-      58:
+      101:
         name: astral_font
         pattern: "<#F0E6FF>2<#AA96C5>//3"
         x: 144
@@ -1227,7 +2216,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '<'
-      59:
+      102:
         name: astral_font
         pattern: "<#F0E6FF>1<#AA96C5>//3"
         x: 144
@@ -1254,7 +2243,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '>='
-      60:
+      103:
         name: astral_font
         pattern: "<#F0E6FF>2<#AA96C5>//3"
         x: 144
@@ -1281,7 +2270,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '>='
-      61:
+      104:
         name: astral_font
         pattern: "<#F0E6FF>2<#AA96C5>//3"
         x: 144
@@ -1308,7 +2297,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '>='
-      62:
+      105:
         name: astral_font
         pattern: "<#D6B4FF>3<#AA96C5>//3"
         x: 144
@@ -1335,7 +2324,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.done2"
             second: "1"
             operation: '>='
-      63:
+      106:
         name: astral_font
         pattern: "<#AA96C5>Historia"
         x: 21
@@ -1350,7 +2339,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      64:
+      107:
         name: astral_font
         pattern: "<#F0E6FF>0<#AA96C5>//9"
         x: 144
@@ -1369,7 +2358,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "2"
             operation: '<'
-      65:
+      108:
         name: astral_font
         pattern: "<#F0E6FF>1<#AA96C5>//9"
         x: 144
@@ -1388,7 +2377,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "2"
             operation: '=='
-      66:
+      109:
         name: astral_font
         pattern: "<#F0E6FF>2<#AA96C5>//9"
         x: 144
@@ -1407,7 +2396,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "3"
             operation: '=='
-      67:
+      110:
         name: astral_font
         pattern: "<#F0E6FF>3<#AA96C5>//9"
         x: 144
@@ -1426,7 +2415,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "4"
             operation: '=='
-      68:
+      111:
         name: astral_font
         pattern: "<#F0E6FF>4<#AA96C5>//9"
         x: 144
@@ -1445,7 +2434,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "5"
             operation: '=='
-      69:
+      112:
         name: astral_font
         pattern: "<#F0E6FF>5<#AA96C5>//9"
         x: 144
@@ -1464,7 +2453,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "6"
             operation: '=='
-      70:
+      113:
         name: astral_font
         pattern: "<#F0E6FF>6<#AA96C5>//9"
         x: 144
@@ -1483,7 +2472,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "7"
             operation: '=='
-      71:
+      114:
         name: astral_font
         pattern: "<#F0E6FF>7<#AA96C5>//9"
         x: 144
@@ -1502,7 +2491,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "8"
             operation: '=='
-      72:
+      115:
         name: astral_font
         pattern: "<#F0E6FF>8<#AA96C5>//9"
         x: 144
@@ -1521,7 +2510,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "9"
             operation: '=='
-      73:
+      116:
         name: astral_font
         pattern: "<#F0E6FF>9<#AA96C5>//9"
         x: 144
@@ -1540,7 +2529,7 @@ astral_panel_textos:
             first: "(number)papi:objective_score_aq.state"
             second: "10"
             operation: '>='
-      74:
+      117:
         name: astral_font
         pattern: "<#AA96C5>Monstruos"
         x: 21
@@ -1555,7 +2544,7 @@ astral_panel_textos:
             first: "world"
             second: "'astral_minas'"
             operation: '!='
-      75:
+      118:
         name: astral_font
         pattern: "<#F0E6FF>[papi:statistic_mob_kills]"
         x: 144

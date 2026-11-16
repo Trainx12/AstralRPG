@@ -479,6 +479,8 @@ for _t in BALLESTAS:
 from tanda_xp import assets as xp_assets
 from botones_provisorios import KEYS as XP_BUTTONS
 files.update(xp_assets(XP_BUTTONS))
+from arte_1611 import assets as arte_assets
+files.update(arte_assets())
 from ventanas_1611 import assets as ventanas_assets
 _vfiles, _vproviders = ventanas_assets()
 files.update(_vfiles)

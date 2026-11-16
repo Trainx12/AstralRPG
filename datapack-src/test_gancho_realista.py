@@ -8,7 +8,7 @@ PACK = Path(__file__).resolve().parent.parent / 'build/AstralRPG-Items/data/astr
 
 
 class RealisticHookTests(unittest.TestCase):
-    def test_two_distinct_hooks_saltador_slime_and_gancho_skin(self):
+    def test_two_distinct_hooks_saltador_art_and_gancho_skin(self):
         def item(iid):
             return json.loads((PACK / f'loot_table/item/{iid}.json').read_text(encoding='utf-8'))['pools'][0]['entries'][0]
         old, new = item('gancho'), item('gancho_realista')
@@ -16,7 +16,7 @@ class RealisticHookTests(unittest.TestCase):
         self.assertEqual(new['name'], 'minecraft:fishing_rod')
         components = new['functions'][0]['components']
         self.assertEqual(components['minecraft:item_model'], 'astral:gancho')
-        self.assertEqual(old['functions'][0]['components']['minecraft:item_model'], 'minecraft:slime_ball')
+        self.assertEqual(old['functions'][0]['components']['minecraft:item_model'], 'astral:saltador')
         self.assertIn('Gancho', str(components['minecraft:item_name']))
         self.assertIn('Saltador', str(old['functions'][0]['components']['minecraft:item_name']))
         self.assertIn('astral:item/gancho_realista', (PACK / 'loot_table/kit/especiales.json').read_text())
