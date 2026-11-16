@@ -2,7 +2,7 @@
 import json
 import unittest
 import zipfile
-from cosmeticos_catalogo import HATS, WINGS, catalog
+from cosmeticos_catalogo import HATS, WINGS, BACKS, catalog
 from cosmeticos import equipment_menu
 from lobby import cosmetic_rewards, crate_yml, GACHAS, icon, RARITY_WEIGHT
 from terceros import ROOT, privado
@@ -29,7 +29,7 @@ class NewCosmeticsTests(unittest.TestCase):
             self.assertEqual(len(found),1)
             self.assertEqual(icon(found[0][3]),('paper',model,1))
             self.assertFalse(any('give ' in c for c in found[0][3]))
-        self.assertEqual(len({(r[0],r[1]) for r in catalog()}),20)
+        self.assertEqual(len({(r[0],r[1]) for r in catalog()}),20+len(BACKS))
 
     def test_probabilities_keep_rarity_totals_and_titles(self):
         import yaml
@@ -40,7 +40,7 @@ class NewCosmeticsTests(unittest.TestCase):
             self.assertAlmostEqual(sum(r['Weight'] for r in prizes),100,places=2)
 
     def test_locked_equipment_cannot_equip_and_owned_rechecks(self):
-        for kind in ('sombrero','alas'):
+        for kind in ('sombrero','alas','espalda'):
             items=equipment_menu(kind)['items']
             for _,key,_,_,_ in filter(lambda r:r[0]==kind,catalog()):
                 self.assertEqual(items[key]['click_requirement']['requirements']['obtenido']['permission'],f'astral.cosmetico.{kind}.{key}')

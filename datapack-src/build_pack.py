@@ -262,7 +262,9 @@ from cosmeticos_ui import assets as cosmetic_assets
 cosmetic_files, cosmetic_providers = cosmetic_assets()
 files.update(cosmetic_files)
 # Reservas vanilla reproducibles sin originales privados.
-from cosmeticos_catalogo import HATS
+from cosmeticos_catalogo import HATS, BACKS
+for key,_,_ in BACKS:
+    put_json(f'assets/astral/items/cosmeticos/espalda_{key}.json', {'model':{'type':'minecraft:model','model':'minecraft:item/barrel'}})
 for key,_,_,_ in HATS:
     put_json(f'assets/astral/items/cosmeticos/sombrero_{key}.json',
              {'model':{'type':'minecraft:model','model':'minecraft:item/leather_helmet'}})

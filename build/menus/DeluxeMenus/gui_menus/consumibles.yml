@@ -2,9 +2,61 @@ menu_title: '&aConsumibles Astrales'
 open_command: astral_consumibles
 size: 27
 items:
-  'frasco_xp_gigante':
+  'frasco_xp_pequeno':
     material: PAPER
     slot: 11
+    amount: 1
+    display_name: '&aFrasco de Experiencia Pequeno'
+    lore:
+    - '&e3,000$'
+    - '&7Necesitas un espacio libre.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:frasco_xp_pequeno'
+    click_requirement:
+      requirements:
+        espacio:
+          type: javascript
+          expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
+        plata:
+          type: has money
+          amount: 3000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e3.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 3000'
+    - '[console] loot give %player_name% loot astral:item/frasco_xp_pequeno'
+    - '[close]'
+  'frasco_xp_grande':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&aFrasco de Experiencia Grande'
+    lore:
+    - '&e9,000$'
+    - '&7Necesitas un espacio libre.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:frasco_xp_grande'
+    click_requirement:
+      requirements:
+        espacio:
+          type: javascript
+          expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
+        plata:
+          type: has money
+          amount: 9000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e9.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 9000'
+    - '[console] loot give %player_name% loot astral:item/frasco_xp_grande'
+    - '[close]'
+  'frasco_xp_gigante':
+    material: PAPER
+    slot: 13
     amount: 1
     display_name: '&aFrasco de Experiencia Gigante'
     lore:
@@ -30,7 +82,7 @@ items:
     - '[close]'
   'barril_xp':
     material: PAPER
-    slot: 12
+    slot: 14
     amount: 1
     display_name: '&aBarril de Experiencia'
     lore:
@@ -56,7 +108,7 @@ items:
     - '[close]'
   'manzana_esmeralda':
     material: PAPER
-    slot: 13
+    slot: 15
     amount: 1
     display_name: '&aManzana de Esmeralda'
     lore:

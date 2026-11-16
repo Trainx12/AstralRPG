@@ -17,18 +17,20 @@ def build(jdk,server):
         raise FileNotFoundError('Faltan dependencias Paper locales')
     compiler = [str(jdk/('java.exe' if os.name=='nt' else 'java')), '-m','jdk.compiler/com.sun.tools.javac.Main']
     subprocess.run([*compiler, '-encoding','UTF-8','-source','25','-target','25',
-        '-classpath',os.pathsep.join(str(p) for p in jars),'-d',str(target),str(ROOT/'datapack-src/runtime/AstralDecor.java')],check=True)
+        '-classpath',os.pathsep.join(str(p) for p in jars),'-d',str(target),str(ROOT/'datapack-src/runtime/AstralDecor.java'),str(ROOT/'datapack-src/runtime/AstralMerchant.java')],check=True)
     dest=ROOT/'build/runtime/AstralDecor.jar'; dest.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
+        from correcciones_goblin import MERCHANT, MERCHANT_SPECIAL
+        z.writestr('mercader.json',__import__('json').dumps({iid:{'price':p,'stock':s,**MERCHANT_SPECIAL.get(iid,{})} for iid,p,s in MERCHANT}))
         from tanda_xp import XP, SUERTE_SEGUNDOS
         from balance_equipo import ASURA_GOLPES, ASURA_EXTRA, ASURA_CURA, CARNIVORA_CURA_BAJA
         import json
         z.writestr(zipfile.ZipInfo('consumibles.json',(2026,11,16,0,0,0)),json.dumps({'xp':XP,'suerte_segundos':SUERTE_SEGUNDOS}))
         z.writestr('balance.json',json.dumps(dict(asura_golpes=ASURA_GOLPES,asura_extra=ASURA_EXTRA,asura_cura=ASURA_CURA,carnivora_cura=CARNIVORA_CURA_BAJA)))
-        for p in sorted((target/'astral').glob('AstralDecor*.class')):
+        for p in sorted((target/'astral').glob('Astral*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(),(2026,11,10,0,0,0)),p.read_bytes())
         z.writestr(zipfile.ZipInfo('mesa.json',(2026,11,10,0,0,0)), (ROOT/'build/runtime/mesa.json').read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.12.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI, AuthMe, SkinsRestorer, AuraSkills]\ncommands:\n  astralgacha:\n    description: Tirada interna de consola\n  astralcosmetic:\n    usage: /astralcosmetic <sombrero> <clave|quitar>\n')
+        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.13.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI, AuthMe, SkinsRestorer, AuraSkills]\ncommands:\n  astralmercader:\n    description: Compra interna del Goblin Mercader\n  astralgacha:\n    description: Tirada interna de consola\n  astralcosmetic:\n    usage: /astralcosmetic <sombrero> <clave|quitar>\n')
         from mobs.tanda3c import NPC_MODELOS, MAQUINAS, MAZMORRAS
         models={mid:'astral_npc_'+name for mid,name in NPC_MODELOS.items()}
         skills={mid:'AST_NPC_'+name for mid,name in NPC_MODELOS.items()}
@@ -40,7 +42,7 @@ def build(jdk,server):
             for mid,name in [('astral_npc_'+dungeon,'bruja'),('astral_'+dungeon+'_guia','mago')]:
                 models[mid]='astral_npc_'+name; skills[mid]='AST_NPC_'+name
         from cosmeticos_catalogo import catalog
-        cosmetics={kind:{key:model for k,key,_,_,model in catalog() if k==kind} for kind in ('sombrero','alas')}
+        cosmetics={kind:{key:model for k,key,_,_,model in catalog() if k==kind} for kind in ('sombrero','alas','espalda')}
         config={'skins-after-login':True,'cosmetics':cosmetics,'npc-models':models,'npc-skills':skills,'hidden-npcs':['astral_npc_'+d for d in MAZMORRAS]}
         z.writestr(zipfile.ZipInfo('config.yml',(2026,11,10,0,0,0)),yaml.safe_dump(config,sort_keys=False))
     print(dest)

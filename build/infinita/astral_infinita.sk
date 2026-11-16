@@ -111,6 +111,8 @@ function inf_entrar(p: player, tier: number, vel: number):
         set {-inf.seg::%{_n}%} to 0
         set {-inf.next::%{_n}%} to 1200
         set {-inf.kills::%{_n}%} to 0
+        set {-inf.olas::%{_n}%} to 0
+        delete {-inf.golems::%{_n}%}
         set {-inf.cd::%{_n}%} to 0
         delete {-inf.avisado::%{_n}%}
     set {_n} to {_w::%{_elegida}%}
@@ -150,6 +152,8 @@ function inf_limpiar(n: text):
     delete {-inf.seg::%{_n}%}
     delete {-inf.next::%{_n}%}
     delete {-inf.kills::%{_n}%}
+    delete {-inf.olas::%{_n}%}
+    delete {-inf.golems::%{_n}%}
     delete {-inf.cd::%{_n}%}
     delete {-inf.avisado::%{_n}%}
 
@@ -225,10 +229,33 @@ function inf_tick(n: text, w: world, pj: number):
         stop
     set {-inf.cd::%{_n}%} to 0
     set {_tope} to 10 + 8 * {_pj}
+    if {-inf.golems::%{_n}%} is true:
+        if {_vivos} + 3 <= {_tope}:
+            inf_golems({_n})
+            delete {-inf.golems::%{_n}%}
+        stop
+    if {_vivos} >= {_tope}:
+        stop
+    add 1 to {-inf.olas::%{_n}%}
+    if mod({-inf.olas::%{_n}%}, 10) is 0:
+        set {-inf.golems::%{_n}%} to true
+        stop
     loop {_pj} times:
         if {_vivos} < {_tope}:
             inf_spawn({_n})
             add 1 to {_vivos}
+
+function inf_golems(n: text):
+    execute console command "mm mobs spawn astral_golem_bosque_infinita 1 %{_n}%,24.5,63,0.5"
+    execute console command "mm mobs spawn astral_golem_hielo_infinita 1 %{_n}%,26.5,63,15.5"
+    execute console command "mm mobs spawn astral_golem_cristal_infinita 1 %{_n}%,15.5,63,26.5"
+    set {_t} to {-inf.tier::%{_n}%}
+    set {_extra} to {-inf.plus::%{_n}%}
+    if {_t} is 11:
+        set {_t} to 10
+        add 1 to {_extra}
+    execute console command "scoreboard players set #inf_plus astral.tmp %{_extra}%"
+    execute console command "execute in minecraft:%{_n}% as @e[tag=inf.nuevo,distance=0..] run function astral:inf/apply/t%{_t}%"
 
 function inf_spawn(n: text):
     set {_p::1} to "24.5 63 0.5"

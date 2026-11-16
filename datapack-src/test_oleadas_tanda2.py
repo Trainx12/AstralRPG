@@ -85,7 +85,9 @@ class VM:
         m=re.fullmatch(r'summon minecraft:(\S+) .* (\{.*\})',line)
         if m:
             tags=json.loads(re.search(r'Tags:(\[[^]]*\])',m[2])[1])
-            entity={'type':m[1].upper(),'tags':tags}; self.alive.append(entity); self.spawned.append(entity); return False
+            # La reserva vanilla ocupa la misma plaza que su relevo Mythic.
+            kind='ASTRAL_GOLEM' if any(t.startswith('ad.golem.') for t in tags) else m[1].upper()
+            entity={'type':kind,'tags':tags}; self.alive.append(entity); self.spawned.append(entity); return False
         if line.startswith('tag @s '):
             _,_,op,t=line.split(); self.tags.add(t) if op=='add' else self.tags.discard(t); return False
         if line.startswith('effect '): return False
@@ -131,7 +133,11 @@ class OleadasTests(unittest.TestCase):
     def test_exact_wave_specs_and_round_up_total(self):
         for d in self.ds:
             for r,specs in zip(d['rooms'],WAVES[d['key']]):
-                self.assertEqual([[(m,n) for m,n,_ in w] for w in r['oleadas']],specs)
+                # Los golems sustituyen zombis sin cambiar las cantidades originales.
+                for wave,spec in zip(r['oleadas'],specs):
+                    actual=Counter()
+                    for m,n,_ in wave:actual['ZOMBIE' if m=='ASTRAL_GOLEM' else m]+=n
+                    self.assertEqual(actual,Counter(dict(spec)))
                 for wave in r['oleadas']:
                     base=sum(n for _,n,_ in wave)
                     for players in (1,2,5): self.assertEqual(len(expanded(wave,players)),math.ceil(base*(1+.4*max(0,players-2))))

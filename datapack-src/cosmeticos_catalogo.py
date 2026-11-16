@@ -19,7 +19,9 @@ HATS += [('illusioner','Capucha de Ilusionista','epic','item/illager_hat_illusio
 WINGS = []  # Retiradas por pedido del dueno; no volver a sortear permisos antiguos.
 
 
+BACKS = [('pitchfork','Horquilla Errante','rare'),('barrel','Barril Viajero','epic'),('wooden_bucket','Balde de Madera','rare'),('wooden_wheel','Rueda de Madera','epic')]
+
 def catalog():
     return [('sombrero', key, name, rarity, 'cosmeticos/sombrero_'+key)
             for key,name,rarity,_ in HATS] + [
-            ('alas',key,name,rarity,model) for key,name,rarity,model in WINGS]
+            ('alas',key,name,rarity,model) for key,name,rarity,model in WINGS] + [('espalda',key,name,rarity,'cosmeticos/espalda_'+key) for key,name,rarity in BACKS]

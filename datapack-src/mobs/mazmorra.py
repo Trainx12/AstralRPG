@@ -127,7 +127,7 @@ def finish(text, dungeon):
 
 
 def tipos_sala(s):
-    return ",".join(sorted({m for ol in s["oleadas"] for (m, _, _) in ol} | set(s.get("extra", []))))
+    return ",".join(sorted({("ZOMBIE" if m=="ASTRAL_GOLEM" else m) for ol in s["oleadas"] for (m, _, _) in ol} | set(s.get("extra", []))))
 
 
 def mob_yml(dungeon=None):

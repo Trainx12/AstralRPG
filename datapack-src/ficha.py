@@ -324,6 +324,8 @@ def abilities_for(source, level=0):
     data, kind = source['data'], source['kind']
     from special_weapons import WEAPONS
     from balance_equipo import AGUA_PROYECTIL, AGUA_MANA, AGUA_CD, AGUA_HACHA, ASURA_GOLPES, ASURA_EXTRA, ASURA_CURA
+    if source['id']=='espada_heroe_errante':
+        return [dict(name='Giro del Heroe',trigger='CLIC DERECHO',mana=30,cooldown=8,description=['Golpe de 360 grados, radio 3: 150% de tu golpe.']), dict(name='Valor del Heroe',trigger='PASIVA',description=['+10% de dano directo con la vida llena.'])]
     if source['id']=='asura_espada':
         return [dict(name='Furia de Asura', trigger='PASIVA', description=[f'Cada {ASURA_GOLPES} golpes directos al mismo enemigo en 5 s: +{num(ASURA_EXTRA*100)}% de daño y cura {num(ASURA_CURA*100)}% de vida máxima.'])]
     if source['id']=='agua_espada':

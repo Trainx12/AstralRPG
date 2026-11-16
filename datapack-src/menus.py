@@ -681,12 +681,14 @@ def main():
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]
-    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_titulos','cosmeticos_sombreros')]
+    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_titulos','cosmeticos_sombreros','cosmeticos_espaldas','goblin_mercader')]
     from infinita_ui import write_menus as write_infinita
     lista += [f'  {n}:\n    file: {n}.yml' for n in write_infinita()]
     from oceano import generate as generate_oceano
     lista += [f'  {n}:\n    file: {n}.yml' for n in generate_oceano()]
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
+    from correcciones_goblin import generate as generate_correcciones
+    generate_correcciones()
     print(f"menus: {len(menus)} -> {os.path.abspath(OUT)}")
 
 

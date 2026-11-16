@@ -76,6 +76,16 @@ def configure(dungeon):
     for room,waves in zip(old,WAVES[key]):
         skeletons={'SKELETON':ESQUELETOS['normal'],'STRAY':ESQUELETOS['hielo'],'WITHER_SKELETON':ESQUELETOS['forja']}
         room['oleadas']=[[(skeletons.get(m,m),n,0) for m,n in wave] for wave in waves]
+        from correcciones_goblin import GOLEM_DUNGEONS
+        if key in GOLEM_DUNGEONS:
+            # Sustituir 2-4 zombis, sin aumentar el total de la oleada.
+            for wave in room['oleadas']:
+                for i,(mob,count,extra) in enumerate(wave):
+                    if mob=='ZOMBIE':
+                        n=min(4,max(2,count//2))
+                        wave[i]=(mob,count-n,extra)
+                        wave.insert(i,('ASTRAL_GOLEM',n,0))
+                        break
         room.pop('group_scaling',None); room['extra']=[]
         if 'spawn_points' not in room:
             x,y,z=room['centro']; radius=room['r']-2
@@ -111,6 +121,8 @@ def transform(text,d,kind):
             sk=control['Skills']
             if key != 'forja':
                 sk.insert(0,f'foreach{{s=AST_ESQ_CONVIERTE_{key}_{room["id"]};sync=true}} @EntitiesInRadius{{r={room["r"]+32}}} ~onTimer:5 ?hastag{{tag={key}.on}}')
+            if key in ('bosque','mina','cumbre') and not room.get('boss_room'):
+                sk.insert(0,f'foreach{{s=AST_GOLEM_CONVIERTE_{key}_{room["id"]};sync=true}} @EntitiesInRadius{{r={room["r"]+32}}} ~onTimer:5 ?hastag{{tag={key}.on}}')
             # El mantenimiento corre en loop/t20 del datapack. Pasarlo por
             # consola Mythic imprime Running function / returned aun sin sala activa.
             for i,line in enumerate(sk):
@@ -237,7 +249,10 @@ def generate(files):
                 nbt='Tags:'+json.dumps(tags)+',Glowing:1b,PersistenceRequired:1b'
                 if m in ESQUELETOS_VARIANTES:
                     tags.append(f'ad.esq.{key}.{r["id"]}')
-                    nbt='Tags:'+json.dumps(tags)+',NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b,active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:2147483647,show_particles:0b}]'
+                    nbt='Tags:'+json.dumps(tags+['astral.seen'])+',NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b,active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:2147483647,show_particles:0b}]'
+                if m=='ASTRAL_GOLEM':
+                    tags.append(f'ad.golem.{key}.{r["id"]}')
+                    nbt='Tags:'+json.dumps(tags+['astral.seen'])+',NoAI:1b,Silent:1b,Invulnerable:1b,PersistenceRequired:1b,active_effects:[{id:"minecraft:invisibility",amplifier:0,duration:2147483647,show_particles:0b}]'
                 if m in ('ZOMBIE','HUSK'): nbt+=',IsBaby:0b'
                 if m in ('PIGLIN_BRUTE','HOGLIN'): nbt+=',IsImmuneToZombification:1b'
                 # Todos persiguen a los jugadores de la sala (pedido del dueno 13/11): rango de seguimiento 64.
@@ -250,8 +265,9 @@ def generate(files):
                 if m in ('SKELETON','STRAY'): nbt+=',equipment:{mainhand:{id:"minecraft:bow",count:1}}'
                 if m=='WITHER_SKELETON': nbt+=',equipment:{mainhand:{id:"minecraft:stone_sword",count:1}}'
                 if m=='VINDICATOR': nbt+=',equipment:{mainhand:{id:"minecraft:iron_axe",count:1}}'
-                lines=[f'summon minecraft:{m.lower()} {x} {y} {z} {{{nbt}}}',
+                lines=[f'summon minecraft:{('zombie' if m=='ASTRAL_GOLEM' else m.lower())} {x} {y} {z} {{{nbt}}}',
                        f'execute as @e[tag={t},tag=!astral.seen,distance=0..] at @s run function astral:mob/roll']
+                if m=='ASTRAL_GOLEM': lines=lines[:1]  # Reserva: el mob final recibe la escala al convertirse.
                 if key=='forja': lines += [f'effect give @e[tag={t},distance=0..] minecraft:fire_resistance infinite 0 true']
                 return lines
             arrival='HUSK' if key=='tumba' else 'ZOMBIE'

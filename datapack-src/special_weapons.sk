@@ -508,6 +508,25 @@ function asw_staff_cost(t: number) :: number:
         return {@mana_baston_9}
     return {@mana_baston_10}
 
+function asw_hero(p: player):
+    set {_id} to uuid of {_p}
+    if {-asw.hero::%{_id}%} is set:
+        if difference between now and {-asw.hero::%{_id}%} is less than 8 seconds:
+            stop
+    if asw_holds({_p}, "espada_heroe_errante") is false:
+        stop
+    if asw_ready({_p}) is false:
+        stop
+    if asw_pay({_p}, 30) is false:
+        stop
+    set {-asw.hero::%{_id}%} to now
+    set {_heroDamage} to 1.5 * (attack damage attribute of {_p})
+    set {_mejora} to "astral:mejora_arma" parsed as enchantment
+    set {_lv} to enchantment level of {_mejora} on tool of {_p}
+    __HERO_MEJORAS__
+    asw_area({_p}, location of {_p}, 3, {_heroDamage}, "player")
+    play sound "entity.player.attack.sweep" with volume 1 and pitch 1 at {_p}
+
 on right click:
     asw_identify(player)
     if scoreboard tags of player contains "astral.water_sword":
@@ -557,6 +576,9 @@ on right click:
     asw_request(player)
     if {-asw.mana::%uuid of player%} is not set:
         wait 2 ticks
+    if scoreboard tags of player contains "astral.special.espada_heroe_errante":
+        asw_hero(player)
+        stop
     if scoreboard tags of player contains "astral.special.espada_destello":
         if asw_mobility(player) is true:
             asw_blink(player)

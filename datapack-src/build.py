@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 23  # Balance especial/acuatico, fichas y durabilidad explicita (16/11).
+ITEM_VERSION = 24  # Balance especial/acuatico, fichas y durabilidad explicita (16/11).
 
 files = {}
 
@@ -353,11 +353,12 @@ for i, s in enumerate(SWORDS):
     ings = list(s["cost"]) if t == 1 else [("c", f"espada_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Armas Berserker"))
 
+from escala import DANO
 weapon_item("espada_heroe_errante", "minecraft:diamond_sword", "Espada del Heroe Errante", BERS,
-            "Espada Berserker", 3, ["Solo disponible por administracion"], "fighting", SWORDS[2]["lvl"],
-            weapon_mods("espada_heroe_errante", SWORDS[2]["dmg"] * (1 + SWORDS[2]["bonus"] / 100) * FACTOR_ARMA[3], 1.6),
-            {}, {"w": "sword"})
+            "Espada Berserker", 2, ["Se forja con materiales de tier II"], "fighting", SWORDS[1]["lvl"],
+            weapon_mods("espada_heroe_errante", DANO[2], 1.6), {}, {"w": "sword", "special": "espada_heroe_errante"})
 ITEMS["espada_heroe_errante"]["components"]["minecraft:item_model"] = "astral:espada_heroe_errante"
+RECIPES.append(("espada_heroe_errante", 1, [("c", "espada_1", 1)] + list(SWORDS[1]["cost"]), "Armas Berserker"))
 
 from items import CUCHILLOS
 from escala import DANO, CUCHILLO_DANO, CUCHILLO_VELOCIDAD
@@ -2022,7 +2023,7 @@ for cid, cname, ccol, weps in CLASSES:
         sub.append(btn(txt(f"Armadura {ROMAN[t - 1]} - {ARMOR_SETS[cid]['tiers'][t - 1]['name']}", ccol),
                        dialog=f"guia/{cid}_{t}", width=300))
     for pre, wname in weps:
-        r = rids_where(lambda o, pre=pre: o.startswith(pre) and o[-1].isdigit())
+        r = rids_where(lambda o, pre=pre: o.startswith(pre) and (o[-1].isdigit() or o=='espada_heroe_errante'))
         recipe_leaf(f"guia/{cid}_{pre[:-1]}", f"{cname}: {wname}", r, f"guia/{cid}")
         sub.append(btn(txt(wname, "gold"), dialog=f"guia/{cid}_{pre[:-1]}", width=300))
     dlg(f"guia/{cid}", txt(cname, ccol, bold=True),
@@ -2105,8 +2106,12 @@ dlg("guia/proteccion", txt("Terrenos y mochilas", "gold", bold=True), [
     msg("La mochila es un objeto: tenela en la mano y hace clic derecho para abrirla. Tambien se fabrican (cuero + hilo + cofre) y se mejoran rodeandolas con 8 lingotes del nivel siguiente; Netherite (54) en la mesa de herreria. /bp muestra las recetas.", "gray"),
     msg("Cuidado: si moris, la mochila cae con tus cosas a la tumba y su contenido va con ella. No se puede meter una mochila dentro de otra.", "gray"),
 ], [], back="guia")
+dlg("guia/mercader", txt("Goblin Mercader", "green", bold=True), [
+    msg("Cada 40-60 minutos visita a alguien en Survival durante 5 minutos. Clic derecho abre su tienda Astral con stock por jugador y visita. Si le pegas, se defiende solo de vos y se va.", "gray"),
+    msg("Golemcitos en Bosque, Minas y Cumbre: grupos de 2-4, con XP embotellada segun su tier. En Infinita se juntan los tres cada diez tandas de aparicion.", "gray"),
+], [], back="guia")
 dlg("guia/consumibles", txt("Experiencia y suerte", "green", bold=True), [
-    msg("Frasco Gigante: 550 puntos de XP vanilla. Barril: 5.500 puntos. Clic derecho usa uno; Shift + clic usa todos los de esa mano. Se apilan de a 16.", "gray"),
+    msg("Frasco Pequeno: 60 puntos; Grande: 200; Gigante: 550 puntos de XP vanilla. Barril: 5.500 puntos. Clic derecho usa uno; Shift + clic usa todos los de esa mano. Se apilan de a 16.", "gray"),
     msg("Manzana de Esmeralda: comela para mejorar las chances raras, epicas y legendarias de las gachas durante cinco minutos. Otra renueva el tiempo. No garantiza premios.", "gray"),
     msg("Se consiguen en /shop -> Consumibles, gachas, cofres de jefe y rankings. Los eventos ancestrales y la Infinita de tier VI o mas tambien dan XP embotellada.", "gray"),
 ], [], back="guia")
@@ -2114,6 +2119,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
     # Colores fuertes y distintos entre si, pensados para leerse sobre el pergamino.
     btn(txt("Como se juega", "#7a3a10"), dialog="guia/como"),
+    btn(txt("Goblin y golemcitos", "#1c7d2c"), dialog="guia/mercader"),
     btn(txt("Experiencia y suerte", "#1c7d2c"), dialog="guia/consumibles"),
     btn(txt("Terrenos y mochilas", "#7a3a10"), dialog="guia/proteccion"),
     btn(txt("Misiones e historia", "#006e78"), command="/trigger aq.journal"),
@@ -2177,7 +2183,7 @@ def _tier_de(iid):
 
 KITS = [
     ("cuchillos", "Cuchillos I-X", "red", "minecraft:red_shulker_box", [i for i in ITEMS if i.startswith("cuchillo_")]),
-    ("consumibles", "Consumibles Astrales", "green", "minecraft:green_shulker_box", ["frasco_xp_gigante","barril_xp","manzana_esmeralda"]),
+    ("consumibles", "Consumibles Astrales", "green", "minecraft:green_shulker_box", list(__import__("tanda_xp").PRECIOS)),
     ("historia", "Recuerdos de historia", "aqua", "minecraft:light_blue_shulker_box",
      [i for i in ITEMS if ITEMS[i]["kind"] == "quest"]),
     ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
@@ -2650,6 +2656,8 @@ generate_infinita(files)  # Mazmorra Infinita: tier de los mobs (inf/apply)
 # ---------------------------------------------------------------------------
 from tanda_xp import generate as generate_xp
 generate_xp(files)
+from correcciones_goblin import datapack
+datapack(files)
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)

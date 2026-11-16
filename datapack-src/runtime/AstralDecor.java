@@ -24,6 +24,7 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
 /** Runtime propio de la tanda 4b. Datos persistentes en entidades/chunks. */
 public final class AstralDecor extends JavaPlugin implements Listener {
+    private AstralMerchant merchant;
     private final Map<String,Integer> consumableXP = new HashMap<>();
     private int luckSeconds;
     private int asuraHits=4;
@@ -361,7 +362,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     private final Set<UUID> hats = new HashSet<>();
     private NamespacedKey selection(String kind) { return new NamespacedKey(this,"cosmetic_"+kind); }
-    private boolean authenticated(Player p) {
+    boolean authenticated(Player p) {
         var auth=Bukkit.getPluginManager().getPlugin("AuthMe");
         if(auth==null || !auth.isEnabled())return true;
         try {
@@ -378,6 +379,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         meta.setItemModel(NamespacedKey.fromString("astral:"+model));item.setItemMeta(meta);return item;
     }
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
+        if(command.getName().equals("astralmercader"))return merchant.command(sender,args);
         if(command.getName().equals("astralgacha")) {
             while(sender instanceof org.bukkit.command.ProxiedCommandSender proxy)sender=proxy.getCaller();
             if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=4)return true;
@@ -399,18 +401,18 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         }
         if(!(sender instanceof Player p))return true;
         if(!authenticated(p)) { p.sendMessage("Primero inicia sesion.");return true; }
-        if(args.length!=2 || !Set.of("sombrero").contains(args[0]))return false;
+        if(args.length!=2 || !Set.of("sombrero","espalda").contains(args[0]))return false;
         String kind=args[0],key=args[1];
         if(key.equals("quitar"))p.getPersistentDataContainer().remove(selection(kind));
         else {
-            if(!getConfig().contains("cosmetics."+kind+"."+key) || !ownsHat(p,key)) {
+            if(!getConfig().contains("cosmetics."+kind+"."+key) || !(kind.equals("espalda")?p.hasPermission("astral.cosmetico.espalda."+key):ownsHat(p,key))) {
                 p.sendMessage("Todavia no desbloqueaste ese cosmetico.");return true;
             }
             p.getPersistentDataContainer().set(selection(kind),PersistentDataType.STRING,key);
         }
         p.saveData();
         hats();
-        p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado. Se ve sobre tu casco; tu casco sigue puesto.");
+        p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado.");
         return true;
     }
     private void removeCosmetics(UUID id) {
@@ -566,6 +568,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
+        merchant=new AstralMerchant(this);
         loadConsumables();
         getServer().getScheduler().runTaskTimer(this,()->Bukkit.getOnlinePlayers().forEach(p->{updateLuck(p);backpackModels(p);}),1,20);
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
@@ -591,7 +594,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         getServer().getScheduler().runTask(this,()->Bukkit.getWorlds().forEach(w->Arrays.stream(w.getLoadedChunks()).forEach(this::repairPlush)));
         getLogger().info("Tanda 4b: peluches, gorros, plantas y mena exterior. WorldGuard obligatorio para construir.");
     }
-    public void onDisable() { tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();
+    public void onDisable() { if(merchant!=null)merchant.close(); tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();
         for(UUID id:new HashSet<>(hats))removeCosmetics(id);
         for(Player p:Bukkit.getOnlinePlayers()) { restoreHelmet(p); restoreStrays(p); } }
     private String id(ItemStack item) {

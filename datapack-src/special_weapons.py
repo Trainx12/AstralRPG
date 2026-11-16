@@ -80,6 +80,7 @@ def script_options(text):
     text=text.replace('__ARENAS__',arenas)
     from items import MEJORA_DANO
     text=text.replace('    __SISMO_MEJORAS__', '\n'.join(f'    if {{_qu}} is {lv}:\n        set {{_quakeDamage}} to {{_quakeDamage}} * {factor}' for lv,factor in enumerate(MEJORA_DANO,1)))
+    text=text.replace('    __HERO_MEJORAS__', '\n'.join(f'    if {{_lv}} is {lv}:\n        set {{_heroDamage}} to {{_heroDamage}} * {factor}' for lv,factor in enumerate(MEJORA_DANO,1)))
     for key,value in values.items():
         text,n=re.subn(rf'^(    {key}): .*$',rf'\g<1>: {value}',text,flags=re.M)
         assert n==1,key
@@ -87,7 +88,7 @@ def script_options(text):
 
 
 def generate(files):
-    lines=['tag @s remove astral.special'] + [f'tag @s remove astral.special.{iid}' for iid in WEAPONS]
+    lines=['tag @s remove astral.special'] + [f'tag @s remove astral.special.{iid}' for iid in (*WEAPONS, 'espada_heroe_errante')]
     # Bastones de Mago: tier en la mano y si el hechizo esta en recarga (lo lee Skript para cobrar mana).
     lines+=['tag @s remove astral.staff','tag @s remove astral.spell.cd']+[f'tag @s remove astral.staff.t{t}' for t in range(1,11)]
     for t in range(1,11):
@@ -95,7 +96,7 @@ def generate(files):
         lines+=[staff+' run tag @s add astral.staff',staff+f' run tag @s add astral.staff.t{t}']
     lines.append('execute if score @s astral.cd matches 1.. run tag @s add astral.spell.cd')
     lines += ['tag @s remove astral.water_sword', 'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{id:"agua_espada"}}] run tag @s add astral.water_sword']
-    for iid in WEAPONS:
+    for iid in (*WEAPONS, 'espada_heroe_errante'):
         check=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"{iid}"}}}}]'
         lines += [check+' run tag @s add astral.special', check+f' run tag @s add astral.special.{iid}']
     files['data/astral/function/special/identify.mcfunction']='\n'.join(lines)+'\n'

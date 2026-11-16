@@ -3960,6 +3960,32 @@
     }
   },
   {
+    "output": "espada_heroe_errante",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "espada_1",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        1
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ]
+    ],
+    "group": "Armas Berserker",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
     "output": "cuchillo_1",
     "count": 1,
     "ingredients": [
@@ -5340,60 +5366,23 @@
     }
   },
   {
-    "output": "ballesta_1",
-    "count": 1,
-    "ingredients": [
-      [
-        "v",
-        "minecraft:crossbow",
-        1
-      ],
-      [
-        "c",
-        "palo_reforzado",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 5
-    }
-  },
-  {
-    "output": "ballesta_2",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_1",
-        1
-      ],
-      [
-        "c",
-        "cristal_arcano",
-        3
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 12
-    }
-  },
-  {
     "output": "ballesta_3",
     "count": 1,
     "ingredients": [
       [
         "c",
-        "ballesta_2",
+        "arco_3",
         1
       ],
       [
         "c",
         "cristal_refinado",
         3
+      ],
+      [
+        "v",
+        "minecraft:crossbow",
+        1
       ]
     ],
     "group": "Arcos",
@@ -5447,151 +5436,6 @@
     "table": true,
     "requirements": {
       "auraskills:archery": 30
-    }
-  },
-  {
-    "output": "ballesta_6",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_5",
-        1
-      ],
-      [
-        "c",
-        "fragmento_ocaso",
-        4
-      ],
-      [
-        "c",
-        "nucleo_eolico",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 35
-    }
-  },
-  {
-    "output": "ballesta_7",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_6",
-        1
-      ],
-      [
-        "c",
-        "esquirla_eclipse",
-        4
-      ],
-      [
-        "c",
-        "nucleo_eolico",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 40
-    }
-  },
-  {
-    "output": "ballesta_8",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_7",
-        1
-      ],
-      [
-        "c",
-        "nucleo_supernova",
-        4
-      ],
-      [
-        "c",
-        "esquirla_eclipse",
-        2
-      ],
-      [
-        "c",
-        "nucleo_eolico",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 45
-    }
-  },
-  {
-    "output": "ballesta_9",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_8",
-        1
-      ],
-      [
-        "c",
-        "esencia_vacio",
-        4
-      ],
-      [
-        "c",
-        "nucleo_supernova",
-        2
-      ],
-      [
-        "c",
-        "nucleo_eolico",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 50
-    }
-  },
-  {
-    "output": "ballesta_10",
-    "count": 1,
-    "ingredients": [
-      [
-        "c",
-        "ballesta_9",
-        1
-      ],
-      [
-        "c",
-        "corazon_fin",
-        4
-      ],
-      [
-        "c",
-        "esencia_vacio",
-        2
-      ],
-      [
-        "c",
-        "nucleo_eolico",
-        2
-      ]
-    ],
-    "group": "Arcos",
-    "table": true,
-    "requirements": {
-      "auraskills:archery": 55
     }
   },
   {

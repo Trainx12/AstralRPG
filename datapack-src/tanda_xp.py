@@ -4,9 +4,9 @@ from pathlib import Path
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-XP = {'frasco_xp_gigante': 550, 'barril_xp': 5500}
-PRECIOS = {'frasco_xp_gigante': 25000, 'barril_xp': 220000, 'manzana_esmeralda': 60000}
-NOMBRES = {'frasco_xp_gigante': 'Frasco de Experiencia Gigante', 'barril_xp': 'Barril de Experiencia',
+XP = {'frasco_xp_pequeno': 60, 'frasco_xp_grande': 200, 'frasco_xp_gigante': 550, 'barril_xp': 5500}
+PRECIOS = {'frasco_xp_pequeno': 3000, 'frasco_xp_grande': 9000, 'frasco_xp_gigante': 25000, 'barril_xp': 220000, 'manzana_esmeralda': 60000}
+NOMBRES = {'frasco_xp_pequeno': 'Frasco de Experiencia Pequeno', 'frasco_xp_grande': 'Frasco de Experiencia Grande', 'frasco_xp_gigante': 'Frasco de Experiencia Gigante', 'barril_xp': 'Barril de Experiencia',
            'manzana_esmeralda': 'Manzana de Esmeralda'}
 SUERTE_SEGUNDOS = 300
 MOCHILAS = dict(leather='#946545', copper='#b66a45', iron='#b9bfca', gold='#e6bb3c',
@@ -27,7 +27,9 @@ def register(add, txt):
 
 
 def rewards(apple=False):
-    out = [('uncommon', 5, NOMBRES['frasco_xp_gigante'], ['loot give %player% loot astral:item/frasco_xp_gigante']),
+    out = [('common', 12, NOMBRES['frasco_xp_pequeno'], ['loot give %player% loot astral:item/frasco_xp_pequeno']),
+           ('uncommon', 9, NOMBRES['frasco_xp_grande'], ['loot give %player% loot astral:item/frasco_xp_grande']),
+           ('uncommon', 5, NOMBRES['frasco_xp_gigante'], ['loot give %player% loot astral:item/frasco_xp_gigante']),
            ('epic', 3, NOMBRES['barril_xp'], ['loot give %player% loot astral:item/barril_xp'])]
     if apple:
         out.append(('rare', 5, NOMBRES['manzana_esmeralda'], ['loot give %player% loot astral:item/manzana_esmeralda']))
@@ -37,11 +39,10 @@ def rewards(apple=False):
 def generate(files):
     files['data/astral/function/xp/cofre.mcfunction'] = '\n'.join(
         f'execute if predicate astral:xp/{iid} run loot give @s loot astral:item/{iid}' for iid in PRECIOS)+'\n'
-    for iid, chance in [('frasco_xp_gigante', .08), ('barril_xp', .01), ('manzana_esmeralda', .03)]:
+    for iid, chance in [('frasco_xp_pequeno', .35), ('frasco_xp_grande', .18), ('frasco_xp_gigante', .08), ('barril_xp', .01), ('manzana_esmeralda', .03)]:
         files[f'data/astral/predicate/xp/{iid}.json'] = json.dumps({'condition':'minecraft:random_chance','chance':chance})
-    files['data/astral/function/xp/infinita.mcfunction'] = (
-        'execute if predicate astral:xp/frasco_xp_gigante run loot give @s loot astral:item/frasco_xp_gigante\n'
-        'execute if predicate astral:xp/barril_xp run loot give @s loot astral:item/barril_xp\n')
+    files['data/astral/function/xp/infinita.mcfunction'] = '\n'.join(
+        f'execute if predicate astral:xp/{iid} run loot give @s loot astral:item/{iid}' for iid in XP)+'\n'
 
 
 def texture(name, color, size=32):
@@ -65,12 +66,10 @@ def assets(buttons=()):
         obj['textures'] = {'layer0':tex, 'all':tex, 'particle':tex}
         files[f'assets/astral/models/provisorias/{iid}.json'] = json.dumps(obj).encode()
         files[f'assets/astral/items/{iid}.json'] = json.dumps({'model':{'type':'minecraft:model','model':f'astral:provisorias/{iid}'}}).encode()
-    for iid, color in [('frasco_xp_gigante','#8acb5d'),('barril_xp','#517e32'),('manzana_esmeralda','#19b86b')]:
+    for iid, color in [('frasco_xp_pequeno','#b1d87e'),('frasco_xp_grande','#98cf69'),('frasco_xp_gigante','#8acb5d'),('barril_xp','#517e32'),('manzana_esmeralda','#19b86b')]:
         model(iid,color)
     for t in range(1,11):
         model(f'cuchillo_{t}', f'#{80+t*12:02x}{80+t*10:02x}{100+t*9:02x}')
-        if t not in (3,4,5):
-            model(f'ballesta_{t}', f'#{90+t*10:02x}9875')
     elements=[]
     # Cuerpo, bolsillo frontal, tapa y dos correas traseras; UV 0..16, textura comun.
     for a,b in [([3,2,5],[13,13,10]),([4,3,3],[12,8,5]),([2.5,12,4.5],[13.5,14,10.5]),

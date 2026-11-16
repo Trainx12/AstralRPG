@@ -1,0 +1,367 @@
+astral_golem_bosque:
+  Type: ZOMBIE
+  Display: '&aGolem de bosque'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - model{m=astral_golem_bosque} @self ~onSpawn
+  - model{m=astral_golem_bosque} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_cristal:
+  Type: ZOMBIE
+  Display: '&aGolem de cristal'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - model{m=astral_golem_cristal} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_hielo:
+  Type: ZOMBIE
+  Display: '&aGolem de hielo'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - model{m=astral_golem_hielo} @self ~onSpawn
+  - model{m=astral_golem_hielo} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_bosque_infinita:
+  Type: ZOMBIE
+  Display: '&aGolem de bosque'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - addtag{tag=inf.mob} @self ~onSpawn
+  - addtag{tag=inf.nuevo} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - model{m=astral_golem_bosque} @self ~onSpawn
+  - model{m=astral_golem_bosque} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_cristal_infinita:
+  Type: ZOMBIE
+  Display: '&aGolem de cristal'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - addtag{tag=inf.mob} @self ~onSpawn
+  - addtag{tag=inf.nuevo} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_hielo_infinita:
+  Type: ZOMBIE
+  Display: '&aGolem de hielo'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - addtag{tag=inf.mob} @self ~onSpawn
+  - addtag{tag=inf.nuevo} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - model{m=astral_golem_hielo} @self ~onSpawn
+  - model{m=astral_golem_hielo} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_cristal_mina_sala1:
+  Type: ZOMBIE
+  Display: '&aGolem de cristal'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_GOLEM_INICIO_mina_sala1} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_cristal_mina_sala2:
+  Type: ZOMBIE
+  Display: '&aGolem de cristal'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_GOLEM_INICIO_mina_sala2} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_cristal_mina_sala3:
+  Type: ZOMBIE
+  Display: '&aGolem de cristal'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_GOLEM_INICIO_mina_sala3} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onSpawn
+  - model{m=astral_golem_cristal} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_bosque_bosque_sala1:
+  Type: ZOMBIE
+  Display: '&aGolem de bosque'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_GOLEM_INICIO_bosque_sala1} @self ~onSpawn
+  - model{m=astral_golem_bosque} @self ~onSpawn
+  - model{m=astral_golem_bosque} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_golem_hielo_cumbre_sala1:
+  Type: ZOMBIE
+  Display: '&aGolem de hielo'
+  Health: 20
+  Damage: 3
+  Options:
+    Glowing: true
+    MovementSpeed: 0.25
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    FollowRange: 64
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill{s=AST_GOLEM_INICIO_cumbre_sala1} @self ~onSpawn
+  - model{m=astral_golem_hielo} @self ~onSpawn
+  - model{m=astral_golem_hielo} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
+  - sound{s=entity.iron_golem.hurt;v=0.6} @self ~onDamaged
+  - sound{s=entity.iron_golem.death;v=0.6} @self ~onDeath
+  - command{c="execute as <caster.uuid> at @s run function astral:golems/xp"} @self ~onDeath
+astral_goblin_vendedor:
+  Type: ZOMBIE
+  Display: '&2Goblin Mercader'
+  Health: 10000000
+  Damage: 3
+  Options:
+    MovementSpeed: 0.32
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    Despawn: false
+    AlwaysShowName: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  Skills:
+  - addtag{tag=astral.mercader} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - model{m=astral_goblin} @self ~onSpawn
+  - model{m=astral_goblin} @self ~onLoad
+  - remove @self ~onTimer:6000

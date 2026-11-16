@@ -97,8 +97,7 @@ ARMAS = {
     'ballesta_5': ('ballesta', 'archers:item/aether_rapid_crossbow'),
 }
 # Reservado: completar solo cuando el dueno elija los modelos. None conserva el PNG provisorio.
-PENDIENTES = {**{f'cuchillo_{t}': None for t in range(1,11)},
-              **{f'ballesta_{t}': None for t in (1,2,6,7,8,9,10)}}
+PENDIENTES = {f'cuchillo_{t}': None for t in range(1,11)}
 ARMAS.update({iid: spec for iid,spec in PENDIENTES.items() if spec is not None})
 # Ajuste de tamano en la mano respecto del mod (la guadana de piedra venia gigante).
 ESCALA = {'guadana_8': 0.67, 'lanza_6': 1.25}
@@ -738,7 +737,10 @@ def cambios_publicos():
 
 
 def pack_final(S):
-    with zipfile.ZipFile(BASE) as z:
+    from final_base import select_base
+    explicit=Path(sys.argv[sys.argv.index('--base')+1]) if '--base' in sys.argv else None
+    base=select_base(BASE,OUT,explicit)
+    with zipfile.ZipFile(base) as z:
         files = {n: z.read(n) for n in z.namelist()}
     pub = cambios_publicos()
     files.update(pub)

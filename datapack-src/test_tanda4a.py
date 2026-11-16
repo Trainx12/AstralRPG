@@ -79,15 +79,17 @@ class Tanda4aTests(unittest.TestCase):
         self.assertNotIn('state{s=attack}', mob)
         self.assertEqual(MOBS['astral_abejorro']['name'], '&8Armored Grub')
 
-    def test_admin_sword_has_no_recipe_or_enchantments(self):
+    def test_hero_sword_tier_two_and_recipe(self):
         with zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip') as z:
             d = json.loads(z.read('data/astral/loot_table/item/espada_heroe_errante.json'))
             c = d['pools'][0]['entries'][0]['functions'][0]['components']
-            self.assertIn('tier:3', c['minecraft:custom_data'])
+            self.assertIn('tier:2', c['minecraft:custom_data'])
             self.assertNotIn('minecraft:enchantments', c)
             self.assertEqual(c['minecraft:item_model'], 'astral:espada_heroe_errante')
-            self.assertFalse(any('espada_heroe_errante' in name for name in z.namelist() if '/recipe/' in name))
-            original = json.loads(z.read('data/astral/loot_table/item/espada_3.json'))['pools'][0]['entries'][0]['functions'][0]['components']
+            self.assertTrue(any(b'loot give @s loot astral:item/espada_heroe_errante' in z.read(name)
+                                for name in z.namelist() if '/function/forge/r/' in name))
+            self.assertIn('Espada del Heroe Errante',z.read('data/astral/dialog/guia/berserker_espada.json').decode())
+            original = json.loads(z.read('data/astral/loot_table/item/espada_2.json'))['pools'][0]['entries'][0]['functions'][0]['components']
             def damage(comps):
                 return next(m['amount'] for m in comps['minecraft:attribute_modifiers'] if m['type'] == 'minecraft:attack_damage')
             self.assertEqual(damage(c), damage(original))

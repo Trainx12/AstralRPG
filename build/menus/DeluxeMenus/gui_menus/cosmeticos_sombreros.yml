@@ -1029,10 +1029,10 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&eQuitar sombrero",
+      "display_name": "&eQuitar cosmetico",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Tu casco sigue puesto."
+        "&7Conservas toda tu coleccion."
       ],
       "click_commands": [
         "[close]",
@@ -1046,10 +1046,10 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&eQuitar sombrero",
+      "display_name": "&eQuitar cosmetico",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Tu casco sigue puesto."
+        "&7Conservas toda tu coleccion."
       ],
       "click_commands": [
         "[close]",
@@ -1063,10 +1063,10 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&eQuitar sombrero",
+      "display_name": "&eQuitar cosmetico",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Tu casco sigue puesto."
+        "&7Conservas toda tu coleccion."
       ],
       "click_commands": [
         "[close]",
@@ -1080,10 +1080,10 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&eQuitar sombrero",
+      "display_name": "&eQuitar cosmetico",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Tu casco sigue puesto."
+        "&7Conservas toda tu coleccion."
       ],
       "click_commands": [
         "[close]",
@@ -1097,10 +1097,10 @@
       "item_flags": [
         "HIDE_ATTRIBUTES"
       ],
-      "display_name": "&eQuitar sombrero",
+      "display_name": "&eQuitar cosmetico",
       "lore": [
         "&7Deja tu cabeza sin gorro.",
-        "&7Tu casco sigue puesto."
+        "&7Conservas toda tu coleccion."
       ],
       "click_commands": [
         "[close]",

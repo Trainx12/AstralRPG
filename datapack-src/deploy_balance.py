@@ -38,7 +38,10 @@ def final():
     import agua_texturas
     from PIL import Image
     out=privado()/'build/entregas/balance-especiales-agua';out.mkdir(parents=True,exist_ok=True)
-    base=privado()/BASE_FINAL
+    import sys
+    from final_base import select_base
+    explicit=Path(sys.argv[sys.argv.index('--base')+1]) if '--base' in sys.argv else None
+    base=select_base(privado()/BASE_FINAL,out,explicit)
     if not base.exists():raise FileNotFoundError('Falta el FINAL posterior a tiers 6-10 y tanda XP; no usar el publico.')
     generated=agua_texturas.generate()
     # Solo dos entradas: modelo de casco y color cerrado. Todo lo demas se conserva byte por byte.

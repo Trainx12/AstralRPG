@@ -1,0 +1,130 @@
+menu_title: '&2Goblin Mercader'
+size: 27
+items:
+  frasco_xp_pequeno:
+    material: PAPER
+    item_model: astral:frasco_xp_pequeno
+    slot: 10
+    display_name: '&aFrasco de Experiencia Pequeno'
+    lore:
+    - '&e2,550$'
+    - '&7Limite por visita: 4'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% frasco_xp_pequeno'
+    - '[close]'
+  frasco_xp_grande:
+    material: PAPER
+    item_model: astral:frasco_xp_grande
+    slot: 11
+    display_name: '&aFrasco de Experiencia Grande'
+    lore:
+    - '&e7,650$'
+    - '&7Limite por visita: 4'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% frasco_xp_grande'
+    - '[close]'
+  frasco_xp_gigante:
+    material: PAPER
+    item_model: astral:frasco_xp_gigante
+    slot: 12
+    display_name: '&aFrasco de Experiencia Gigante'
+    lore:
+    - '&e21,250$'
+    - '&7Limite por visita: 4'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% frasco_xp_gigante'
+    - '[close]'
+  barril_xp:
+    material: PAPER
+    item_model: astral:barril_xp
+    slot: 13
+    display_name: '&aBarril de Experiencia'
+    lore:
+    - '&e187,000$'
+    - '&7Limite por visita: 1'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% barril_xp'
+    - '[close]'
+  manzana_esmeralda:
+    material: PAPER
+    item_model: astral:manzana_esmeralda
+    slot: 14
+    display_name: '&aManzana de Esmeralda'
+    lore:
+    - '&e51,000$'
+    - '&7Limite por visita: 4'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% manzana_esmeralda'
+    - '[close]'
+  cristal_arcano:
+    material: PAPER
+    item_model: astral:cristal_arcano
+    slot: 15
+    display_name: '&aCristal Arcano'
+    lore:
+    - '&e1,800$'
+    - '&7Limite por visita: 6'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% cristal_arcano'
+    - '[close]'
+  cristal_refinado:
+    material: PAPER
+    item_model: astral:cristal_refinado
+    slot: 16
+    display_name: '&aCristal Refinado'
+    lore:
+    - '&e6,500$'
+    - '&7Limite por visita: 3'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% cristal_refinado'
+    - '[close]'
+  esencia_elite:
+    material: PAPER
+    item_model: astral:esencia_elite
+    slot: 17
+    display_name: '&aEsencia Elite'
+    lore:
+    - '&e2,500$'
+    - '&7Limite por visita: 4'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% esencia_elite'
+    - '[close]'
+  llave_cosmeticos:
+    material: PAPER
+    item_model: astral:cosmeticos/nav_gacha
+    slot: 18
+    display_name: '&aLlave virtual de Gacha de Cosmeticos'
+    lore:
+    - '&e425$'
+    - '&7Limite por visita: 3'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% llave_cosmeticos'
+    - '[close]'
+  cosmetico_balde:
+    material: PAPER
+    item_model: astral:cosmeticos/espalda_wooden_bucket
+    slot: 19
+    display_name: '&aBalde de Madera (cosmetico raro)'
+    lore:
+    - '&e12,000$'
+    - '&7Limite por visita: 1'
+    - '&7La compra valida cercania y stock.'
+    click_commands:
+    - '[console] astralmercader %player_name% cosmetico_balde'
+    - '[close]'
+  close:
+    material: PAPER
+    item_model: astral:cosmeticos/nav_close
+    slot: 26
+    display_name: '&cCerrar'
+    click_commands:
+    - '[close]'

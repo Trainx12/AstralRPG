@@ -1,0 +1,65 @@
+AST_GOLEM_INICIO_mina_sala1:
+  Skills:
+  - addtag{tag=ad.mina.sala1} @self
+  - addtag{tag=ad.mina.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_GOLEM_CONVIERTE_mina_sala1:
+  TargetConditions:
+  - hastag{tag=ad.golem.mina.sala1} true
+  Skills:
+  - removetag{tag=ad.golem.mina.sala1;sync=true}
+  - summon{type=astral_golem_cristal_mina_sala1;amount=1;radius=0;onSurface=false;sync=true}
+  - remove{sync=true}
+AST_GOLEM_INICIO_mina_sala2:
+  Skills:
+  - addtag{tag=ad.mina.sala2} @self
+  - addtag{tag=ad.mina.sala2.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_GOLEM_CONVIERTE_mina_sala2:
+  TargetConditions:
+  - hastag{tag=ad.golem.mina.sala2} true
+  Skills:
+  - removetag{tag=ad.golem.mina.sala2;sync=true}
+  - summon{type=astral_golem_cristal_mina_sala2;amount=1;radius=0;onSurface=false;sync=true}
+  - remove{sync=true}
+AST_GOLEM_INICIO_mina_sala3:
+  Skills:
+  - addtag{tag=ad.mina.sala3} @self
+  - addtag{tag=ad.mina.sala3.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_GOLEM_CONVIERTE_mina_sala3:
+  TargetConditions:
+  - hastag{tag=ad.golem.mina.sala3} true
+  Skills:
+  - removetag{tag=ad.golem.mina.sala3;sync=true}
+  - summon{type=astral_golem_cristal_mina_sala3;amount=1;radius=0;onSurface=false;sync=true}
+  - remove{sync=true}
+AST_GOLEM_INICIO_bosque_sala1:
+  Skills:
+  - addtag{tag=ad.bosque.sala1} @self
+  - addtag{tag=ad.bosque.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_GOLEM_CONVIERTE_bosque_sala1:
+  TargetConditions:
+  - hastag{tag=ad.golem.bosque.sala1} true
+  Skills:
+  - removetag{tag=ad.golem.bosque.sala1;sync=true}
+  - summon{type=astral_golem_bosque_bosque_sala1;amount=1;radius=0;onSurface=false;sync=true}
+  - remove{sync=true}
+AST_GOLEM_INICIO_cumbre_sala1:
+  Skills:
+  - addtag{tag=ad.cumbre.sala1} @self
+  - addtag{tag=ad.cumbre.sala1.wave} @self
+  - addtag{tag=ad.vanilla} @self
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self
+AST_GOLEM_CONVIERTE_cumbre_sala1:
+  TargetConditions:
+  - hastag{tag=ad.golem.cumbre.sala1} true
+  Skills:
+  - removetag{tag=ad.golem.cumbre.sala1;sync=true}
+  - summon{type=astral_golem_hielo_cumbre_sala1;amount=1;radius=0;onSurface=false;sync=true}
+  - remove{sync=true}

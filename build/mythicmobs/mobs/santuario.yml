@@ -143,6 +143,10 @@ astral_santuario_coloso_musgoso_eco:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_pequeno"} @self ~onDeath 0.65
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_grande"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_gigante"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/barril_xp"} @self ~onDeath 0.025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
@@ -223,6 +227,10 @@ astral_santuario_chaman_eco:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_pequeno"} @self ~onDeath 0.65
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_grande"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_gigante"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/barril_xp"} @self ~onDeath 0.025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
@@ -306,6 +314,10 @@ astral_santuario_momia_eco:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_pequeno"} @self ~onDeath 0.65
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_grande"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_gigante"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/barril_xp"} @self ~onDeath 0.025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
@@ -391,6 +403,10 @@ astral_santuario_yeti_eco:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_pequeno"} @self ~onDeath 0.65
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_grande"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_gigante"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/barril_xp"} @self ~onDeath 0.025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
@@ -478,6 +494,10 @@ astral_santuario_golem_forja_eco:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_pequeno"} @self ~onDeath 0.65
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_grande"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/frasco_xp_gigante"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/barril_xp"} @self ~onDeath 0.025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 1.0

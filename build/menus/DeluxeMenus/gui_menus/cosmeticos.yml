@@ -766,6 +766,15 @@
         "[openguimenu] cosmeticos_sombreros"
       ]
     },
+    "espaldas": {
+      "slot": 48,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/espalda_barrel",
+      "display_name": "&6Cosmeticos de espalda",
+      "click_commands": [
+        "[openguimenu] cosmeticos_espaldas"
+      ]
+    },
     "back": {
       "slot": 45,
       "material": "PAPER",

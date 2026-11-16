@@ -62,6 +62,7 @@ def hub_data():
             items[key if i==0 else f'{key}_hit_{i}']={'slot':slot,'material':'PAPER','item_model':f'astral:cosmeticos/hub_{key}_{i}',
                 'item_flags':['HIDE_ATTRIBUTES'],'display_name':name,'lore':lore,
                 'click_commands':['[sound] UI_BUTTON_CLICK',f'[openguimenu] {target}']}
+    items['espaldas']={'slot':48,'material':'PAPER','item_model':'astral:cosmeticos/espalda_barrel','display_name':'&6Cosmeticos de espalda','click_commands':['[openguimenu] cosmeticos_espaldas']}
     items['back']={'slot':45,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],
                    'display_name':'&fVolver al Menu Astral','click_commands':['[openguimenu] principal']}
     items['gacha']={'slot':49,'material':'PAPER','item_model':'astral:cosmeticos/nav_gacha','item_flags':['HIDE_ATTRIBUTES'],
@@ -83,9 +84,9 @@ def equipment_menu(kind):
             req['minimum_requirements']=1
             req['requirements']['compensacion']={'type':'has permission','permission':'astral.cosmetico.alas.'+legacy}
         slot=HAT_SLOTS[index]
-        items[key]={'slot':slot,'material':'PAPER','item_model':'astral:cosmeticos/menu_sombrero_'+key,'priority':1,
+        items[key]={'slot':slot,'material':'PAPER','item_model':'astral:'+model if kind=='espalda' else 'astral:cosmeticos/menu_sombrero_'+key,'priority':1,
             'display_name':'&d'+name,'lore':['&7Rareza: '+RARITIES[rarity][0],
-            '&7No da proteccion ni estadisticas.','&7Se ve sobre tu casco.','&eClic para equipar.'],
+            '&7No da proteccion ni estadisticas.','&7Se ve en la espalda.' if kind=='espalda' else '&7Se ve sobre tu casco.','&eClic para equipar.'],
             'view_requirement':req,
             'click_requirement':dict(req,deny_commands=['[message] &cTodavia no lo desbloqueaste.']),
             'click_commands':['[close]',f'[player] astralcosmetic {kind} {key}']}
@@ -95,14 +96,14 @@ def equipment_menu(kind):
     for index,slot in enumerate(CLEAR_SLOTS):
         items['clear' if index==0 else f'clear_hit_{index}']={'slot':slot,'material':'PAPER',
             'item_model':f'astral:cosmeticos/quitar_sombrero_{index}','item_flags':['HIDE_ATTRIBUTES'],
-            'display_name':'&eQuitar sombrero','lore':['&7Deja tu cabeza sin gorro.','&7Tu casco sigue puesto.'],
+            'display_name':'&eQuitar cosmetico','lore':['&7Deja tu espalda libre.' if kind=='espalda' else '&7Deja tu cabeza sin gorro.','&7Conservas toda tu coleccion.'],
             'click_commands':['[close]',f'[player] astralcosmetic {kind} quitar']}
     items['back']={'slot':BACK_SLOT,'material':'PAPER','item_model':'astral:cosmeticos/nav_back','item_flags':['HIDE_ATTRIBUTES'],
         'display_name':'&fVolver a Cosmeticos','click_commands':['[openguimenu] cosmeticos']}
     items['gacha']={'slot':GACHA_SLOT,'material':'PAPER','item_model':'astral:cosmeticos/nav_gacha','item_flags':['HIDE_ATTRIBUTES'],
         'display_name':'&dGacha de Cosmeticos','lore':['&7Titulos y gorros nuevos.'],
         'click_commands':['[openguimenu] gacha_cosmeticos']}
-    return {'menu_title':hat_title(), 'size':54,'items':items}
+    return {'menu_title':'&6Cosmeticos de espalda' if kind=='espalda' else hat_title(), 'size':54,'items':items}
 
 
 def script():
@@ -126,9 +127,9 @@ def generate():
     menu.with_name('cosmeticos_titulos.yml').write_text(json.dumps(menu_data(),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     out=ROOT/'build/gameplay';out.mkdir(parents=True,exist_ok=True)
     (out/'astral_cosmeticos.sk').write_text(script(),encoding='utf-8')
-    for kind in ('sombreros',):
+    for kind in ('sombreros','espaldas'):
         dest=menu.with_name('cosmeticos_'+kind+'.yml')
-        dest.write_text(json.dumps(equipment_menu('sombrero' if kind=='sombreros' else 'alas'),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+        dest.write_text(json.dumps(equipment_menu('sombrero' if kind=='sombreros' else 'espalda'),ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     retired=menu.with_name('cosmeticos_alas.yml')
     if retired.exists():retired.unlink()
     # La unica salida de CrazyCrates es lobby.py: no reusar respaldos privados viejos.

@@ -17,7 +17,7 @@ class TandaXPTests(unittest.TestCase):
         return json.loads(z.read(f'data/astral/loot_table/item/{iid}.json'))['pools'][0]['entries'][0]['functions'][0]['components']
 
     def test_consumables_exact_and_runtime_catalog(self):
-        self.assertEqual(XP,{'frasco_xp_gigante':550,'barril_xp':5500})
+        self.assertEqual(XP,{'frasco_xp_pequeno':60,'frasco_xp_grande':200,'frasco_xp_gigante':550,'barril_xp':5500})
         self.assertEqual(SUERTE_SEGUNDOS,300)
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z, zipfile.ZipFile(ROOT/'build/runtime/AstralDecor.jar') as jar:
             self.assertEqual(json.loads(jar.read('consumibles.json'))['xp'],XP)
@@ -47,17 +47,17 @@ class TandaXPTests(unittest.TestCase):
                 if t>1:self.assertIn(['c',f'cuchillo_{t-1}',1],recipe['ingredients'])
 
     def test_crossbows_and_archer_complete(self):
-        self.assertEqual(sorted(BALLESTAS),list(range(1,11)))
+        self.assertEqual(sorted(BALLESTAS),[3,4,5])
         self.assertEqual(len(ARMOR_SETS['arquero']['tiers']),10)
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:
             charge=json.loads(z.read('data/astral/enchantment/carga_rapida.json'))['effects']['minecraft:crossbow_charge_time']
             self.assertIsInstance(charge,dict)
-            self.assertEqual(len(charge['value']['values']),10)
+            self.assertEqual(len(charge['value']['values']),3)
             for t,b in BALLESTAS.items():
                 c=self.item(z,f'ballesta_{t}')
                 self.assertEqual(c['minecraft:enchantments']['astral:punteria'],t)
-                self.assertEqual(c['minecraft:enchantments']['astral:carga_rapida'],t)
-                if t>1:
+                self.assertEqual(c['minecraft:enchantments']['astral:carga_rapida'],t-2)
+                if t>3:
                     self.assertIn(('c',f'ballesta_{t-1}',1),b['cost'])
                     self.assertLess(b['carga'],BALLESTAS[t-1]['carga'])
                     self.assertGreaterEqual(b['piercing'],BALLESTAS[t-1]['piercing'])

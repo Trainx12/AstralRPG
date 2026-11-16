@@ -126,6 +126,10 @@ gui_menus:
     file: cosmeticos_titulos.yml
   cosmeticos_sombreros:
     file: cosmeticos_sombreros.yml
+  cosmeticos_espaldas:
+    file: cosmeticos_espaldas.yml
+  goblin_mercader:
+    file: goblin_mercader.yml
   infinita_tier:
     file: infinita_tier.yml
   infinita_tier_alto:

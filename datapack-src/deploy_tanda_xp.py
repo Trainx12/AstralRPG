@@ -14,7 +14,10 @@ BASE_FINAL='build/entregas/armas-mod/AstralRPG-Textures.zip'
 
 
 def final():
-    base=privado()/BASE_FINAL
+    import sys
+    from final_base import select_base
+    explicit=Path(sys.argv[sys.argv.index('--base')+1]) if '--base' in sys.argv else None
+    base=select_base(privado()/BASE_FINAL,privado()/'build/entregas/tanda-xp-cuchillo',explicit)
     if not base.exists():raise FileNotFoundError('Falta el FINAL de armas-mod; no se sustituye por el publico.')
     public=ROOT/'build/AstralRPG-Textures.zip'
     old_blob=subprocess.check_output(['git','show',BASE_PUBLICO+':build/AstralRPG-Textures.zip'],cwd=ROOT)
