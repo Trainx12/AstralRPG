@@ -71,6 +71,11 @@ def fingerprints():
 
 def inspect(name, data, prints):
     hashes, pixels, names = prints
+    # CNK permite jugar en servidor, pero no redistribuir su datapack/arte.
+    # Revisar tambien las rutas dentro de ZIP, independientemente de sus bytes.
+    member = name.split('!/')[-1].replace('\\', '/')
+    if member.startswith(('assets/cnk/', 'assets/cnk.book/', 'data/cnk/', 'data/cnk.iris/')):
+        return [name + ': contenido Crop & Kettle privado']
     suffix = Path(name).suffix.lower()
     if sha(data) in hashes:
         return [name + ': bytes privados']

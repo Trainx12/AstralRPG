@@ -94,7 +94,7 @@ Al morir la mochila cae como item (AxGraves la guarda en la tumba); el contenido
 | Epica | 0.0004 | 0.04% |
 | Legendaria | 3e-06 | 0.0003% |
 
-Catalogo: 154 items; una tirada independiente por item elegible, sin limite que cambie su probabilidad.
+Catalogo: 162 items; una tirada independiente por item elegible, sin limite que cambie su probabilidad.
 Rareza del equipo: ficha.py (T1..T5). Materiales sin rareza reciben tier explicito en MATERIAL_TIERS (tanda5a.py); nucleos/perfectas endgame son T5. Talismanes: tier existente.
 La probabilidad es por item, tambien para equipo comun: puede haber varias piezas comunes en un cofre; no hay tirada global ni multiplicador oculto por categoria.
 LootGenerateEvent conserva la lista original y agrega items desde astral:item/*. Solo contenedores naturales sin marca de colocacion, primera generacion, survival.

@@ -2115,6 +2115,12 @@ dlg("guia/consumibles", txt("Experiencia y suerte", "green", bold=True), [
     msg("Manzana de Esmeralda: comela para mejorar las chances raras, epicas y legendarias de las gachas durante cinco minutos. Otra renueva el tiempo. No garantiza premios.", "gray"),
     msg("Se consiguen en /shop -> Consumibles, gachas, cofres de jefe y rankings. Los eventos ancestrales y la Infinita de tier VI o mas tambien dan XP embotellada.", "gray"),
 ], [], back="guia")
+dlg("guia/cocina", txt("Cocina (Crop & Kettle)", "gold", bold=True), [
+    msg("Crop & Kettle por maybejake.", "gray"),
+    msg("En survival: nuevos cultivos, comidas y mas de cien recetas. La olla se fabrica con un caldero y una fogata. Consulta los avances y el recetario de Crop & Kettle para progresar.", "gray"),
+    msg("Los cultivos y las interacciones de cocina se usan en survival. Conserva los ingredientes nuevos para descubrir mas recetas.", "gray"),
+], [], back="guia")
+
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
     # Colores fuertes y distintos entre si, pensados para leerse sobre el pergamino.
@@ -2122,6 +2128,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Goblin y golemcitos", "#1c7d2c"), dialog="guia/mercader"),
     btn(txt("Experiencia y suerte", "#1c7d2c"), dialog="guia/consumibles"),
     btn(txt("Terrenos y mochilas", "#7a3a10"), dialog="guia/proteccion"),
+    btn(txt("Cocina (Crop & Kettle)", "#7a3a10"), dialog="guia/cocina"),
     btn(txt("Misiones e historia", "#006e78"), command="/trigger aq.journal"),
     btn(txt("Materiales", "#a0177a"), dialog="guia/materiales"),
     btn(txt("Berserker", "#b8141c"), dialog="guia/berserker"),

@@ -139,6 +139,54 @@ mythic:
     tier: 1
     boss: true
     elite: false
+  astral_golem_bosque:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_cristal:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_hielo:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_bosque_infinita:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_cristal_infinita:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_hielo_infinita:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_cristal_mina_sala1:
+    tier: 2
+    boss: false
+    elite: false
+  astral_golem_cristal_mina_sala2:
+    tier: 2
+    boss: false
+    elite: false
+  astral_golem_cristal_mina_sala3:
+    tier: 2
+    boss: false
+    elite: false
+  astral_golem_bosque_bosque_sala1:
+    tier: 1
+    boss: false
+    elite: false
+  astral_golem_hielo_cumbre_sala1:
+    tier: 4
+    boss: false
+    elite: false
+  astral_goblin_vendedor:
+    tier: 1
+    boss: false
+    elite: false
   astral_cumbre_yeti:
     tier: 4
     boss: true
@@ -388,6 +436,7 @@ structure-namespaces:
 - explorify
 - structory
 - structory_towers
+- cnk
 loot:
   alma_corrupta:
     tier: 3
@@ -485,6 +534,15 @@ loot:
   asura_moneda_triangle:
     tier: 4
     chance: 0.0004
+  ballesta_3:
+    tier: 3
+    chance: 0.005
+  ballesta_4:
+    tier: 4
+    chance: 0.0004
+  ballesta_5:
+    tier: 5
+    chance: 3.0e-06
   baston_1:
     tier: 1
     chance: 0.15
@@ -608,6 +666,21 @@ loot:
   cristal_refinado:
     tier: 3
     chance: 0.005
+  cuchillo_1:
+    tier: 1
+    chance: 0.15
+  cuchillo_2:
+    tier: 2
+    chance: 0.03
+  cuchillo_3:
+    tier: 3
+    chance: 0.005
+  cuchillo_4:
+    tier: 4
+    chance: 0.0004
+  cuchillo_5:
+    tier: 5
+    chance: 3.0e-06
   cuero_tratado:
     tier: 1
     chance: 0.15
@@ -633,11 +706,11 @@ loot:
     tier: 5
     chance: 3.0e-06
   espada_destello:
-    tier: 3
-    chance: 0.005
+    tier: 2
+    chance: 0.03
   espada_sombras:
-    tier: 3
-    chance: 0.005
+    tier: 4
+    chance: 0.0004
   espada_tormenta:
     tier: 3
     chance: 0.005
@@ -849,8 +922,8 @@ loot:
     tier: 3
     chance: 0.005
   varita_estallido:
-    tier: 3
-    chance: 0.005
+    tier: 4
+    chance: 0.0004
 claim-packages:
 - blocks: 25
   price: 15000

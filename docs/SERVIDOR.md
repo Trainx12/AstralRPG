@@ -594,3 +594,18 @@ Lobby con Velocidad II. Mochilas: modelo común 3D y texturas por material;
 se cambia solo `item_model`, conservando UUID y contenido del plugin.
 Las texturas provisorias y su tamaño están listadas en la entrega; reemplazar PNG
 en `datapack-src/pack-source/provisorias/` y regenerar ambos packs.
+
+## Cocina (Crop & Kettle)
+
+Crop & Kettle 1.3.12 por maybejake: integración preparada para Paper 26.1.2,
+**sin desplegar**. Nuevos cultivos y más de cien recetas; olla = caldero + fogata.
+Avances y recetario propios, más una entrada Cocina en la Guía Astral.
+Los triggers y jugadores se filtran al survival (`minecraft:overworld`).
+Es obligatorio mantener AstralProgression activo y añadir `cnk` a
+`structure-namespaces` para cancelar sus estructuras fuera de survival.
+Los tags de pausa/load/tick se suman a Astral, sin `replace`.
+No copiar el datapack por cada mundo: en Paper 26.1 se instala una sola vez
+en `world/datapacks/`. Requiere apagado y reinicio completo.
+Archivos, hashes, pruebas, licencia y condiciones previas:
+[crop-kettle.md](../build/deploy/crop-kettle.md). El FINAL es privado;
+su publicación en R2 queda pendiente de permiso para redistribuir los assets.

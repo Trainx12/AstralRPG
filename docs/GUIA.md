@@ -1,5 +1,14 @@
 # Guía para agregar cosas a AstralRPG
 
+## Cocina (Crop & Kettle)
+
+Integración preparada, sin desplegar: [entrega](../build/deploy/crop-kettle.md).
+Crop & Kettle por maybejake añade cultivos y más de cien recetas en survival;
+la olla se fabrica con un caldero y una fogata. Los avances y su recetario guían
+la progresión. La Guía Astral incluye el acceso Cocina.
+Generador: `datapack-src/crop_kettle.py`; originales y derivados exclusivamente
+privados. Leer las restricciones de licencia y economía antes de instalar.
+
 Disenos y retiro de alas preparados, sin desplegar: [disenos-pendientes.md](../build/deploy/disenos-pendientes.md).
 Generadores `menus.py`, `menu_ui.py`, `companero_ui.py`, `gorros_ui.py` y `deploy_disenos.py`.
 El FINAL parte de ad66e73 instalado y conserva el tren; no instalar el ZIP publico.

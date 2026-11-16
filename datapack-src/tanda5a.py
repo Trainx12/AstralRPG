@@ -23,7 +23,7 @@ PAQUETES = [(25, 15000), (100, 50000), (1225, 500000), (2500, 950000), (10000, 3
 MOCHILAS = [('leather', 'Cuero', 9, 5000), ('copper', 'Cobre', 18, 20000), ('iron', 'Hierro', 27, 50000),
             ('gold', 'Oro', 36, 100000), ('diamond', 'Diamante', 45, 175000)]
 SLOT_MOCHILAS = 42  # 40 Proteccion, 41 misc (ocupados en el server)
-STRUCTURE_NAMESPACES = ['nova_structures', 'explorify', 'structory', 'structory_towers']
+STRUCTURE_NAMESPACES = ['nova_structures', 'explorify', 'structory', 'structory_towers', 'cnk']
 MATERIAL_TIERS = {
     'netherita_fundida': 2, 'netherita_reforzada': 4, 'shadowsteel': 2,
     'esencia_nether': 1, 'madera_estelar': 2, 'palo_reforzado': 2, 'cuero_tratado': 1,
