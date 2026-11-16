@@ -384,7 +384,7 @@ def principal_menu():
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
         ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&7Tambien desde Arenas PvP.'], ['[close]', '[player] desafiar<delay=3>']),
     ]
-    from menu_ui import SLOTS, KEYS, title as menu_title
+    from menu_ui import SLOTS, KEYS, EFFECTS_SLOT, title as menu_title
     assert [b[0] for b in buttons] == list(KEYS)
     items = []
     for slot, (key, material, name, lore, commands) in zip(SLOTS, buttons):
@@ -397,8 +397,9 @@ def principal_menu():
     items += item('cerrar', 'BARRIER', 49, '&cCerrar',
                   extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]']})
     # Configuraciones (15/11/2026): nivel de efectos visuales (plugin AstralEfectos).
-    items += item('configuraciones', 'COMPARATOR', 31, '&7&lConfiguraciones', ['&7Efectos visuales: Bajo, Medio o Alto.'],
-                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] configuraciones']})
+    items += item('configuraciones', 'COMPARATOR', EFFECTS_SLOT, '&d&lEfectos', ['&7Efectos visuales: Bajo, Medio o Alto.'],
+                  extra={'item_model': 'astral:menu/icon_configuraciones',
+                         'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] configuraciones']})
     return menu(menu_title(), 'menu', 54, items, update=True)
 
 

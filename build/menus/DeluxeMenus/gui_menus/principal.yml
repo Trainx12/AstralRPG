@@ -247,12 +247,12 @@ items:
     material: COMPARATOR
     slot: 31
     amount: 1
-    display_name: '&7&lConfiguraciones'
+    display_name: '&d&lEfectos'
     lore:
     - '&7Efectos visuales: Bajo, Medio o Alto.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_configuraciones
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] configuraciones'
-    item_model: 'astral:boton_configuraciones'

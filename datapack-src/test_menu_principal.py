@@ -40,6 +40,23 @@ class PrincipalMenuTests(unittest.TestCase):
         data = yaml.safe_load(comandos_menu())
         self.assertIn('Estrella del slot 9', str(data))
 
+    def test_effects_button_opens_existing_settings_with_custom_model(self):
+        import json
+        from menu_ui import assets
+        from menus import configuraciones_menu
+        button = self.items['configuraciones']
+        self.assertIn('[openguimenu] configuraciones', button['click_commands'])
+        settings = yaml.safe_load(configuraciones_menu())
+        for level in ('bajo', 'medio', 'alto'):
+            self.assertIn('[player] efectos ' + level, settings['items']['efectos_' + level]['click_commands'])
+        files, _ = assets()
+        namespace, path = button['item_model'].split(':')
+        definition = json.loads(files[f'assets/{namespace}/items/{path}.json'])
+        namespace, path = definition['model']['model'].split(':')
+        model = json.loads(files[f'assets/{namespace}/models/{path}.json'])
+        namespace, path = model['textures']['layer0'].split(':')
+        self.assertIn(f'assets/{namespace}/textures/{path}.png', files)
+
 
 if __name__ == '__main__':
     unittest.main()

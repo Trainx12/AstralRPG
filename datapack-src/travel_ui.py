@@ -24,7 +24,7 @@ VANILLA=['item/coal','item/copper_ingot','item/iron_ingot','item/gold_ingot','it
 FRAME_COLORS={'open':'#71e07a','next':'#f2c94c','locked':'#656171'}
 USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,49,51,52,53},  # 49: Oceano Astral
       'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
-      'minas':{4,9,18,27,45,49,53,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP)}
+      'minas':{4,9,18,27,45,47,49,53,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP)}
 GRID_Y=57
 
 
@@ -278,17 +278,19 @@ def assets():
     return files,providers
 
 
-def previews(folder,concept=None):
+def previews(folder,concept=None,kinds=None):
     from minas import MINES,slot
     folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
-    for kind in KINDS:
+    for kind in KINDS if kinds is None else kinds:
         im=Image.new('RGBA',(448,560),'#252a28');im.alpha_composite(panel(kind))
         if kind=='minas':
             mapping={9:icon('tier1'),18:icon('tier2'),27:icon('tier3'),45:icon('info'),53:icon('cerrar')}
-            barrier=vanilla_texture('item/barrier')
-            if barrier is not None:mapping[49]=barrier
+            from menu_ui import icon as menu_icon
             mapping.update({slot(i):mine_icon(i,'open' if i<=5 else 'next' if i==6 else 'locked') for i in range(1,len(MINES)+1)})
             for s,art in mapping.items():im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+s%9*18)*2,(GRID_Y+1+s//9*18)*2))
+            # Los dos modelos del menu miden 18 px y se dibujan a escala 1.125.
+            for s,key in ((47,'bosque'),(49,'spawn')):
+                im.alpha_composite(menu_icon(key).resize((36,36),Image.Resampling.NEAREST),((31+s%9*18)*2,(GRID_Y+s//9*18)*2))
         if kind in ('portales','arenas'):
             art=vanilla_texture('item/barrier')
             if art is not None:im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+0*18)*2,(GRID_Y+1+5*18)*2))
@@ -297,7 +299,7 @@ def previews(folder,concept=None):
                 art=vanilla_texture('item/'+name)
                 if art is not None:im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+s*18)*2,(GRID_Y+1)*2))
         im.resize((672,840),Image.Resampling.NEAREST).save(folder/f'{kind}.png')
-    comparison(folder,concept)
+    if kinds is None:comparison(folder,concept)
 
 
 def comparison(folder,concept=None):

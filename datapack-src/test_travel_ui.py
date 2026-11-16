@@ -63,7 +63,7 @@ class TravelUI(unittest.TestCase):
         self.assertEqual(script,(ROOT/'build/minas/Skript/scripts/astral_minas.sk').read_text(encoding='utf-8'))
         destinations=dict((int(s),int(i)) for s,i in re.findall(r'set \{-am.dest::(\d+)\} to (\d+)',script))
         self.assertEqual(destinations,{minas.slot(i):i for i in range(1,21)})
-        self.assertEqual(set(destinations)|{4,9,18,27,45,49,53},ui.USED['minas'])
+        self.assertEqual(set(destinations)|{4,9,18,27,45,47,49,53},ui.USED['minas'])
         for snippet in ('set {_dest} to {-am.dest::%{_slot}%}', 'am_travel(player, {_dest})',
                         'if {_slot} is 49:', 'if {_slot} is 53:', 'if {_slot} is between 28 and 34:',
                         'else if {_slot} is 35:', 'am_sell(player)', 'cancel event'):

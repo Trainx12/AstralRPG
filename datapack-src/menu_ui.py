@@ -17,10 +17,11 @@ KEYS = ('bazar', 'minas', 'mazmorras', 'expediciones', 'portales', 'parkour', 'a
         'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn',
         'fragmentos', 'duelos')
 SLOTS = tuple(range(10, 17)) + tuple(range(19, 26)) + (30, 32)
+EFFECTS_SLOT = 31
 ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', peluches='mascotas',
                 subastas='bazar', vender='bazar', intercambio='bazar', gacha_rpg='skills',
                 gacha_monturas='mascotas', gacha_cosmeticos='cosmeticos', duelos='arenas')
-EXTRA_KEYS = ('mochilas','proteccion','recetas','tren','santuario','titulos',
+EXTRA_KEYS = ('configuraciones','mochilas','proteccion','recetas','tren','santuario','titulos',
               'subastas','vender','intercambio','tienda','peluches','bosque',
               'gacha_rpg','gacha_monturas','gacha_cosmeticos',
               'back','next','close','clear','lock','saldo','ranking','pagar','valor','premios',
@@ -102,7 +103,17 @@ def painted_icon(key):
     im=Image.new('RGBA',(18,18),'#18202b');d=ImageDraw.Draw(im)
     g,c,w='#d6b264','#75dce0','#f6e6bd'
     d.rectangle((0,0,17,17),outline=g);d.line((2,1,15,1),fill=w)
-    if key=='fragmentos':
+    if key=='configuraciones':
+        # Engranaje dorado con un destello violeta: ajustes de efectos visuales.
+        for box in ((7,2,10,4),(7,13,10,15),(2,7,4,10),(13,7,15,10),
+                    (4,4,6,6),(11,4,13,6),(4,11,6,13),(11,11,13,13)):
+            d.rectangle(box,fill=g)
+        d.ellipse((4,4,13,13),fill=g,outline=w)
+        d.ellipse((6,6,11,11),fill='#4c2b72')
+        d.polygon(((9,5),(10,8),(12,9),(10,10),(9,12),(8,10),(6,9),(8,8)),fill='#d2a6ff')
+        d.point((9,8),fill=w)
+        for point in ((3,3),(14,2),(15,13)):d.point(point,fill=c)
+    elif key=='fragmentos':
         for x,y in ((5,8),(11,5),(12,12)):
             d.polygon(((x,y-3),(x+2,y),(x,y+3),(x-2,y)),fill=c,outline=g)
     elif key=='duelos':
@@ -231,11 +242,11 @@ def panel():
     outlined(im, 'MENU ASTRAL', (112, TITLE_Y))
     d = ImageDraw.Draw(im)
     d.rectangle((24, 56, 199, 258), fill=FILL)
-    # Vitrina de dos filas de iconos, con un brillo de estrellas a los costados.
+    # Vitrina con los tres accesos inferiores: Fragmentos, Efectos y Duelos.
     d.rectangle((46, 73, 177, 148), fill='#140f1d', outline='#6c5a3a')
     for cx, cy in ((46, 73), (177, 73), (46, 148), (177, 148)):
         d.polygon(((cx, cy - 2), (cx + 2, cy), (cx, cy + 2), (cx - 2, cy)), fill=EDGE)
-    for slot in (*SLOTS, 4, 49):
+    for slot in (*SLOTS, EFFECTS_SLOT, 4, 49):
         x, y = 31 + slot % 9 * 18, 57 + slot // 9 * 18
         d.rectangle((x, y, x + 17, y + 17), outline=EDGE)
         d.rectangle((x + 1, y + 1, x + 16, y + 16), fill=(0, 0, 0, 0))
@@ -278,6 +289,7 @@ def preview(folder):
     im = Image.new('RGBA', SIZE, '#22242a'); im.alpha_composite(panel())
     for key, slot in zip(KEYS, SLOTS):
         im.alpha_composite(icon(key), (31 + slot % 9 * 18, 57 + slot // 9 * 18))
+    im.alpha_composite(icon('configuraciones'), (31 + EFFECTS_SLOT % 9 * 18, 57 + EFFECTS_SLOT // 9 * 18))
     text(im, 'Inventario', (86, 169), color='#383c40')
     (folder / 'menu-astral.png').write_bytes(png(im.resize((672, 840), Image.Resampling.NEAREST)))
 
