@@ -275,6 +275,14 @@ def script(minutos=MINUTOS_FIN):
           '            loop all players:',
           '                world of loop-player is {_w}',
           f'                send "&6Ganaron! &fTienen {MINUTOS_FIN} minutos para abrir el cofre. Despues vuelven al spawn." to loop-player',
+          # 15/11/2026: el cartel grande de la Fosa ("Fosa conquistada") en todas las mazmorras.
+          '                send title "&b%maz_nombre(arg-1)% conquistada" with subtitle "&7Derrotaron al jefe: el cofre los espera" to loop-player for 5 seconds',
+          '                play sound "ui.toast.challenge_complete" with volume 1 to loop-player',
+          '',
+          'function maz_nombre(w: text) :: text:',
+          *[l for d in dungeons() for l in (f'    if {{_w}} is ' + ' or '.join(f'"{bukkit(dim)}"' for dim in d['dims']) + ':',
+                                            f'        return "{d["name"]}"')],
+          '    return "Mazmorra"',
           '',
           '']
     L += noche()

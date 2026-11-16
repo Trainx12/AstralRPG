@@ -837,5 +837,9 @@ on damage of player with priority high:
 on heal of player:
     heal reason is not custom
     set {_k} to (max health of player) / 10
+    # 15/11/2026: la regeneracion por comida (saturacion) era como vanilla, hasta 10% de la vida por segundo
+    # y con comida el jugador era casi inmortal. Ahora rinde 0.2 de eso (mobs del survival incluidos).
+    if "%heal reason%" contains "satiat":
+        set {_k} to {_k} * 0.2
     if {_k} > 1:
         set heal amount to heal amount * {_k}

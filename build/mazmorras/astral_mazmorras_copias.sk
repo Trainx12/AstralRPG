@@ -292,6 +292,25 @@ command /mazfin <text>:
             loop all players:
                 world of loop-player is {_w}
                 send "&6Ganaron! &fTienen 8 minutos para abrir el cofre. Despues vuelven al spawn." to loop-player
+                send title "&b%maz_nombre(arg-1)% conquistada" with subtitle "&7Derrotaron al jefe: el cofre los espera" to loop-player for 5 seconds
+                play sound "ui.toast.challenge_complete" with volume 1 to loop-player
+
+function maz_nombre(w: text) :: text:
+    if {_w} is "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6":
+        return "Bosque Sombrio"
+    if {_w} is "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6":
+        return "Minas Olvidadas"
+    if {_w} is "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6":
+        return "Tumba del Rey de Arena"
+    if {_w} is "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6":
+        return "Cumbre Helada"
+    if {_w} is "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6":
+        return "Corazon de la Forja"
+    if {_w} is "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6":
+        return "Santuario Celestial"
+    if {_w} is "fosa" or "fosa_2" or "fosa_3":
+        return "Fosa del Crustaceo"
+    return "Mazmorra"
 
 
 # Mazmorras siempre de noche (sin avance del tiempo). Comandos de consola sin spam: log_admin_commands false.

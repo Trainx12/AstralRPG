@@ -35,6 +35,8 @@ PREMIOS = {
     "cumbre": ("hielo", ("gema_luminica", 2)),
     "forja": ("fuego", ("chispa_astral", 1)),
     "santuario": ("corazon", ("chispa_astral", 2)),
+    # Fosa del Crustaceo (15/11/2026): el fragmento de la Marea es del Cangrejo.
+    "fosa": ("marea", ("gema_luminica", 1)),
 }
 ITEM_NOMBRE = {"cristal_refinado": "Cristal Arcano Refinado", "gema_luminica": "Gema Luminica",
                "chispa_astral": "Chispa Astral", "esencia_elite": "Esencia de Elite",
@@ -353,7 +355,8 @@ def generate():
     out = ROOT / 'build/menus/DeluxeMenus/gui_menus'
     out.mkdir(parents=True, exist_ok=True)
     nombres = []
-    for dungeon in [MINA] + catalog():
+    from oceano_fosa import dungeon as fosa
+    for dungeon in [MINA] + catalog() + [fosa()]:
         name = f"cofre_{dungeon['key']}"
         (out / f'{name}.yml').write_text(json.dumps(decorate(cofre_menu(dungeon)), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         nombres.append(name)

@@ -88,4 +88,8 @@ class Fosa(unittest.TestCase):
         self.assertIn('astral_fosa_cangrejo:', yml)
         self.assertIn(f"Health: {round(VIDA_JEFE['tumba'])}", yml)
         self.assertIn('addtag{tag=fosa.jefe}', yml)
-        self.assertIn('WATER_BREATHING', yml)
+        # 15/11: base DROWNED (nada y persigue bajo el agua), 4 bloques de largo y cofre/guia al ganar
+        self.assertIn('Type: DROWNED', yml)
+        self.assertIn('model{m=astral_cangrejo;s=1.55}', yml)
+        self.assertIn('astral_fosa_cofre:', yml)
+        self.assertIn('astral_fosa_guia:', yml)

@@ -40,7 +40,7 @@ VISUAL = {
     "mago": {1: "wandering_magician", 2: "netherite_fire_robe", 3: "sanguine_purple", 4: "pyromancer", 5: "dark_cover",
              6: "glacier_robe", 7: "scarlet_robe", 8: "rimeweave_robe", 9: "nebula", 10: "absolution_robe"},
     "berserker": {1: "rogues_berserker", 2: "dead_gladiator", 3: "sunset_wings", 4: "flesh_of_the_feaster",
-                  5: "dark_lord_rojo", 6: "spark_of_dawn", 7: "lightbringer_armor", 8: "onslaught_armor",
+                  5: "dark_lord", 6: "spark_of_dawn", 7: "lightbringer_armor", 8: "onslaught_armor",
                   9: "justicar_armor", 10: "destroyer_armor"},
     "arquero": {1: "ranger", 2: "netherite_ranger", 3: "anarchy_thief", 4: "fantasy_thief", 5: "shadowwalker",
                 6: "strider_armor", 7: "riftstalker_armor", 8: "forgotten_trace", 9: "cultist", 10: "deathmantle_armor"},

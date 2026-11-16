@@ -1,6 +1,6 @@
 # Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).
 astral_fosa_cangrejo:
-  Type: SPIDER
+  Type: DROWNED
   Display: '&b&lCangrejo de la Fosa'
   Health: 460000
   Damage: 9
@@ -14,11 +14,6 @@ astral_fosa_cangrejo:
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
-  AIGoalSelectors:
-  - clear
-  - meleeattack
-  - randomstroll
-  - lookatplayers
   AITargetSelectors:
   - clear
   - attacker
@@ -36,12 +31,13 @@ astral_fosa_cangrejo:
   Skills:
   - addtag{tag=fosa.jefe} @self ~onSpawn
   - addtag{tag=fosa.jefe} @self ~onLoad
-  - potion{type=WATER_BREATHING;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn
   - summon{type=DROWNED;amount=4;radius=4} @self ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}
   - message{m="&bEl Cangrejo llama a sus ahogados..."} @PlayersInRadius{r=60} ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}
   - addtag{tag=fosa.f2} @self ~onDamaged ?healthpercent{p=<0.5}
-  - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad
+  - model{m=astral_cangrejo;s=1.55} @self ~onSpawn
+  - model{m=astral_cangrejo;s=1.55} @self ~onLoad
+  - command{c="attribute <caster.uuid> minecraft:scale base set 1.5"} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.8
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.3
@@ -57,6 +53,53 @@ astral_fosa_cangrejo:
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
   - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+
+astral_fosa_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de Fosa del Crustaceo &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - addtag{tag=fosa.premio} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - command{c="dm open cofre_fosa <trigger.name>"} @self ~onInteract
+astral_fosa_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - addtag{tag=fosa.premio} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
+  - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
 
 astral_aurora:
   Type: SALMON

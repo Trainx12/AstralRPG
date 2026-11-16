@@ -401,10 +401,11 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             if (w == null) continue;
             List<Player> players = w.getPlayers().stream().filter(AstralOceano::fighting).toList();
             techo(w);
-            for (LivingEntity le : w.getLivingEntities()) if (!(le instanceof Player) && !le.isGlowing()) le.setGlowing(true);
+            for (LivingEntity le : w.getLivingEntities()) if (!(le instanceof Player) && !le.isGlowing() && !le.getScoreboardTags().contains("fosa.premio")) le.setGlowing(true);
             barra(w, players);
             if (players.isEmpty()) {
                 if (wave.getOrDefault(name, 0) != 0 || !waveMobs(w).isEmpty()) { waveMobs(w).forEach(Entity::remove); wave.put(name, 0); waveAt.remove(name); }
+                for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("fosa.premio")) e.remove();
                 continue;
             }
             // Respiracion: adentro solo sirve el set de agua completo (pociones, Respiracion, tortuga y conducto no).
@@ -417,8 +418,11 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             if (!waveAt.containsKey(name)) {
                 if (cur == fosaWaves.size()) {                       // murio el jefe
                     wave.put(name, cur + 1);
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mazfin " + name);
-                    title(players, "Fosa conquistada", "Derrotaron al Cangrejo de la Fosa");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mazfin " + name);   // el cartel de "conquistada" lo pone mazfin
+                    // Cofre del jefe y guia de Expediciones, como en las demas mazmorras.
+                    String at = name + "," + fosaBoss[0] + "," + fosaBoss[1] + "," + fosaBoss[2];
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mm mobs spawn astral_fosa_cofre 1 " + at);
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mm mobs spawn astral_fosa_guia 1 " + name + "," + (fosaBoss[0] + 2.5) + "," + fosaBoss[1] + "," + fosaBoss[2]);
                     continue;
                 }
                 waveAt.put(name, now + 4000);

@@ -35,6 +35,9 @@ OLEADAS = [
     {'jefe': 1},
 ]
 JEFE = 'astral_fosa_cangrejo'
+JEFE_LARGO = 4.0                          # bloques de largo del Cangrejo (pedido del dueno 15/11)
+JEFE_ESCALA = 1.5                         # escala de la entidad (caja para pegarle)
+JEFE_MODELO = round(JEFE_LARGO / (JEFE_ESCALA * 1.725), 2)   # el modelo mide 1,725 de largo a escala 1
 ESCOLTA = 4                               # ahogados que llama el Cangrejo a la mitad de su vida
 ENTRADA = (-430, 470)                     # escondida: x, z en el fondo del Oceano Astral (sin cartel ni marca)
 
@@ -55,7 +58,77 @@ def boss_block():
              '  - message{m="&bEl Cangrejo llama a sus ahogados..."} @PlayersInRadius{r=60} ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}',
              '  - addtag{tag=fosa.f2} @self ~onDamaged ?healthpercent{p=<0.5}']
     block = block.replace('  Skills:\n', '  Skills:\n' + '\n'.join(extra) + '\n', 1)
+    # 15/11/2026: base DROWNED (nada y persigue bajo el agua con su IA normal) en vez de arana, y tamano propio:
+    # BetterModel multiplica la escala del modelo por la de la entidad, asi que el largo queda en JEFE_LARGO bloques.
+    block = re.sub(r'(?m)^  Type: \S+', '  Type: DROWNED', block, count=1)
+    block = re.sub(r'(?m)^  AIGoalSelectors:\n(?:  - .*\n)+', '', block, count=1)
+    block = block.replace('  - potion{type=WATER_BREATHING;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn\n', '')
+    modelo = [f'  - model{{m=astral_cangrejo;s={JEFE_MODELO}}} @self ~onSpawn',
+              f'  - model{{m=astral_cangrejo;s={JEFE_MODELO}}} @self ~onLoad',
+              f'  - command{{c="attribute <caster.uuid> minecraft:scale base set {JEFE_ESCALA}"}} @self ~onSpawn',
+              '  - addtag{tag=astral.seen} @self ~onSpawn']
+    block = block.replace('  - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn\n  - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad\n',
+                          '\n'.join(modelo) + '\n')
+    assert 'AST_MODEL_astral_cangrejo' not in block
     return block
+
+
+def premio_block():
+    """Cofre del jefe y guia de Expediciones al ganar (como las demas mazmorras). Los pone AstralOceano al morir el
+    Cangrejo y los saca cuando la copia se vacia (tag fosa.premio)."""
+    return f'''
+astral_fosa_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de {NOMBRE} &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - addtag{{tag=fosa.premio}} @self ~onSpawn
+  - addtag{{tag=astral.seen}} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - model{{m=astral_cofre_rpg}} @self ~onSpawn
+  - model{{m=astral_cofre_rpg}} @self ~onLoad
+  - state{{s=open}} @self ~onInteract
+  - command{{c="dm open cofre_fosa <trigger.name>"}} @self ~onInteract
+astral_fosa_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - addtag{{tag=fosa.premio}} @self ~onSpawn
+  - addtag{{tag=astral.seen}} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - skill{{s=AST_NPC_mago}} @self ~onSpawn
+  - skill{{s=AST_NPC_mago}} @self ~onLoad
+  - state{{s=saludo}} @self ~onInteract
+  - command{{c="dm open expediciones <trigger.name>"}} @self ~onInteract
+'''
+
+
+def dungeon():
+    """Datos para el cofre (cofre_mazmorra.py): tier 3, mismos premios que la Tumba (el dueno los puede cambiar)."""
+    return {'key': 'fosa', 'name': NOMBRE, 'money': 2000, 'reward': [('esencia_elite', 4), ('alma_corrupta', 1)]}
 
 
 def aurora_block():
@@ -111,7 +184,7 @@ def commands():
 def generate():
     mobs = ROOT / 'build/mythicmobs/mobs/fosa.yml'
     mobs.parent.mkdir(parents=True, exist_ok=True)
-    mobs.write_text('# Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).\n' + boss_block() + aurora_block(), encoding='utf-8')
+    mobs.write_text('# Generado por oceano_fosa.py: jefe de la Fosa del Crustaceo (tier 3).\n' + boss_block() + premio_block() + aurora_block(), encoding='utf-8')
     out = ROOT / 'build/oceano/fosa-comandos.txt'
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(commands(), encoding='utf-8')

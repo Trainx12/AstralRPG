@@ -165,6 +165,9 @@ on damage of player with priority highest:
 '''
 
 
+REGEN_COMIDA = 0.2   # fraccion de la regeneracion natural por comida (1 = como vanilla en proporcion)
+
+
 def vida():
     """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
     from escala import DANO_MOB, TIER_MAZMORRA
@@ -221,9 +224,13 @@ on damage of player with priority high:
 on heal of player:
     heal reason is not custom
     set {_k} to (max health of player) / 10
+    # 15/11/2026: la regeneracion por comida (saturacion) era como vanilla, hasta 10% de la vida por segundo
+    # y con comida el jugador era casi inmortal. Ahora rinde __REGEN_COMIDA__ de eso (mobs del survival incluidos).
+    if "%heal reason%" contains "satiat":
+        set {_k} to {_k} * __REGEN_COMIDA__
     if {_k} > 1:
         set heal amount to heal amount * {_k}
-'''.replace('__TIERS__', tiers).replace('__MUNDOS__', mundos)
+'''.replace('__REGEN_COMIDA__', str(REGEN_COMIDA)).replace('__TIERS__', tiers).replace('__MUNDOS__', mundos)
 
 
 def indicador():

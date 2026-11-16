@@ -71,6 +71,24 @@ def icono_gui(model):
     return m
 
 
+def icono_sin_casco(name, main):
+    """Icono del casco para sets sin cabeza: el icono publico del mismo tier, recoloreado con el color medio
+    de la tunica (conserva las luces y sombras del dibujo)."""
+    pub = zipfile.ZipFile(ROOT / 'build/AstralRPG-Textures.zip')
+    base = Image.open(io.BytesIO(pub.read(f'assets/astral/textures/item/gen/{name}_helmet.png'))).convert('RGBA')
+    px = [p for p in main.getdata() if p[3] > 200]
+    r, g, b = (sum(c[i] for c in px) // len(px) for i in range(3))
+    out = Image.new('RGBA', base.size)
+    for i, (pr, pg, pb, pa) in enumerate(base.getdata()):
+        lum = (pr * 299 + pg * 587 + pb * 114) / 255000
+        f = 0.35 + 1.3 * lum
+        out.putpixel((i % base.width, i // base.width), (min(255, int(r * f)), min(255, int(g * f)), min(255, int(b * f)), pa))
+    iid = f'{name}_helmet'
+    return {f'assets/astral/textures/item/t6_10/{iid}.png': png(out),
+            f'assets/astral/models/item/{iid}.json': js({'parent': 'minecraft:item/generated', 'textures': {'layer0': f'astral:item/t6_10/{iid}'}}),
+            f'assets/astral/items/{iid}.json': js({'model': {'type': 'minecraft:model', 'model': f'astral:item/{iid}'}})}
+
+
 def armaduras():
     files = {}
     for set_id, tiers in VISUAL.items():
@@ -99,9 +117,11 @@ def armaduras():
             main = Image.open(ARTE / f'assets/astral/textures/entity/equipment/humanoid/{tex}.png').convert('RGBA')
             legs = Image.open(ARTE / f'assets/astral/textures/entity/equipment/humanoid_leggings/{tex}.png').convert('RGBA')
             small = [i.resize((64, 32), Image.Resampling.BOX) for i in (main, legs)]
+            if vid in SIN_CASCO:   # 15/11: icono del casco con la paleta del set (antes quedaba el del T3 viejo)
+                files.update(icono_sin_casco(name, main))
             for piece, img in icons(*small).items():
                 if piece == 'helmet' and vid not in CASCO_PLANO:
-                    continue   # casco 3D (arriba) o sin casco (icono publico)
+                    continue   # casco 3D (arriba) o sin casco (icono_sin_casco)
                 iid = f'{name}_{piece}'
                 files[f'assets/astral/textures/item/t6_10/{iid}.png'] = png(img)
                 files[f'assets/astral/models/item/{iid}.json'] = js(

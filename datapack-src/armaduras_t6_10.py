@@ -85,7 +85,7 @@ SETS = [
     ('netherite_fire_robe', 'Fuego', 'Mago', 2,
      geckolib('wizards-forge-3.1.3+1.20.1/assets/wizards', 'wizard_robes', 'armor/netherite_fire_robe'), {}),
     ('sanguine_purple', 'Sanguina', 'Mago', 3,
-     geckolib('anarchyrpg/assets/anarchy_rpg', 'sanguine', 'armor/sanguine_purple'), {'sin_casco': True}),
+     geckolib('anarchyrpg/assets/anarchy_rpg', 'sanguine', 'armor/sanguine_purple'), {'sin_casco': True, 'botas': True}),
     ('pyromancer', 'Piromante', 'Mago', 4, irons('pyromancer_armor', 'pyromancer'), {}),
     ('dark_cover', 'Manto Oscuro', 'Mago', 5, fantasy('dark_cover'), {}),
     ('rogues_berserker', 'Berserker', 'Berserker', 1,
@@ -93,7 +93,7 @@ SETS = [
     ('dead_gladiator', 'Gladiador', 'Berserker', 2, fantasy('dead_gladiator'), {}),
     ('sunset_wings', 'Alas del Atardecer', 'Berserker', 3, fantasy('sunset_wings'), {}),
     ('flesh_of_the_feaster', 'Festin', 'Berserker', 4, fantasy('flesh_of_the_feaster'), {}),
-    ('dark_lord_rojo', 'Senor Oscuro', 'Berserker', 5, fantasy('dark_lord'), {'tint': 'rojo'}),
+    ('dark_lord', 'Senor Oscuro', 'Berserker', 5, fantasy('dark_lord'), {}),   # A52 con sus colores originales (15/11)
     ('spark_of_dawn', 'Chispa del Alba', 'Berserker', 6, fantasy('spark_of_dawn'), {}),
     ('ranger', 'Explorador', 'Arquero', 1,
      geckolib('archers-forge-3.1.4+1.20.1/assets/archers', 'ranger_armor', 'armor/ranger_armor'), {}),
@@ -539,6 +539,32 @@ def tinte_rojo(tex):
     return out
 
 
+# Botas pintadas (15/11/2026): modelos sin pies (Sanguina) dejaban la zona de las botas vacia y se veian invisibles.
+BOTAS_COLORES = ((42, 24, 56), (59, 33, 80), (184, 134, 46))   # violeta oscuro, violeta, dorado (de la tunica)
+
+
+def pintar_botas(img, k=None, colores=BOTAS_COLORES):
+    """Pinta botas en la zona de las piernas de la capa `humanoid` (textura 64x32 * k) si esta vacia:
+    4 pixeles de abajo de cada cara de la pierna, una linea dorada arriba y la suela."""
+    k = k or img.width // 64
+    img = img.copy()
+    px = img.load()
+    oscuro, medio, oro = colores
+
+    def rect(u0, v0, u1, v1, color_fn):
+        for v in range(v0 * k, v1 * k):
+            for u in range(u0 * k, u1 * k):
+                if px[u, v][3] == 0:
+                    c = color_fn(u // k, v // k)
+                    px[u, v] = (*c, 255)
+    tono = lambda u, v: medio if (u + v) % 3 == 0 else oscuro
+    for u0 in (0, 4, 8, 12):                         # derecha, frente, izquierda, atras
+        rect(u0, 28, u0 + 4, 32, tono)
+        rect(u0, 27, u0 + 4, 28, lambda u, v: oro)
+    rect(8, 16, 12, 20, lambda u, v: oscuro)          # suela
+    return img
+
+
 # ------------------------------------------------------------------------------------- main
 def build(sid, name, cls, tier, src, opts):
     geo = G.load_geo(src['geo'])
@@ -563,6 +589,8 @@ def build(sid, name, cls, tier, src, opts):
         helm_cubes = [c for c in helm_cubes if not (c['root'] == 'head' and len(c['faces']) == 1)]
     hum, leg = bake(cubes, tex, tex_size, opts)
     hum_img, leg_img = to_img(hum), to_img(leg)
+    if opts.get('botas'):
+        hum_img = pintar_botas(hum_img, K)
     key = f'armadura_{sid}'
     tex_name = f'astral:item/{key}_casco'
     helm = helmet_model(helm_cubes, tex_name, tex_size)
