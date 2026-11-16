@@ -171,7 +171,6 @@ MINA_SALA4_LIMPIA:
   - remove @MobsInRadius{r=43;types=astral_mina_cofre,astral_mina_guia}
   - summon{type=astral_mina_cofre;amount=1;radius=0;onSurface=false} @Location{x=36.5;y=24;z=-248.5}
   - summon{type=astral_mina_guia;amount=1;radius=0;onSurface=false} @Location{x=38.5;y=24;z=-248.5}
-  - skill{s=MINA_MASCOTA} @PlayersInRadius{r=43}
   - delay 20
   - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=43}'
   Conditions:
@@ -200,7 +199,6 @@ MINA_PREMIO:
   - command{c="loot give <target.name> loot astral:item/cristal_refinado"}
   - command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25
   - command{c="eco give <target.name> 2500"}
-  - skill{s=PET_GANAR_GOLEM} 0.05
   - command{c="lp user <target.name> permission settemp astral.mina.cd true 30m"}
   - 'message{m="&6Cofre de la Mina: &fmateriales de elite y &e2500$&f. &7(el proximo cofre en 30 minutos)"}'
 MINA_PREMIO_YA:
@@ -208,11 +206,6 @@ MINA_PREMIO_YA:
   - haspermission{p=astral.mina.cd} true
   Skills:
   - message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}
-MINA_MASCOTA:
-  TargetConditions:
-  - haspermission{p=astral.mina.cd} false
-  Skills:
-  - skill{s=PET_GANAR_GOLEM} 0.05
 MINA_ENTRAR:
   Skills:
   - command{c="mazentrar <trigger.name> mina"}

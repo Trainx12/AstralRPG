@@ -22,8 +22,8 @@ from menus import mascotas_extra_menu, mascota_detalle_menu
 class Tanda4aTests(unittest.TestCase):
     def test_catalog_and_permanent_scoreboard_ids(self):
         self.assertEqual(len(PETS), 17)
-        self.assertEqual([d['n'] for d in MASCOTAS.values()], list(range(1, 24)))
-        old = [MASCOTAS[p]['efectos'] for p in ('lobo', 'cuervo', 'golem', 'zorro', 'dragon', 'fenix')]
+        self.assertEqual([d['n'] for d in MASCOTAS.values()], list(range(6, 24)))
+        old = [MASCOTAS[p]['efectos'] for p in ('fenix',)]
         sk = yaml.safe_load(skill_yml())
         for pid, *_ in PETS:
             self.assertNotIn(MASCOTAS[pid]['efectos'], old)
@@ -36,8 +36,9 @@ class Tanda4aTests(unittest.TestCase):
 
     def test_all_new_pets_reachable_once_and_permission_guarded(self):
         seen = set()
-        for page in (2, 3, 4):
-            menu = yaml.safe_load(mascotas_extra_menu(page))
+        for page in (1, 2, 3):
+            from menus import mascotas_menu
+            menu = yaml.safe_load(mascotas_menu() if page == 1 else mascotas_extra_menu(page))
             # Varias capas por casilla (bloqueada / nivel 1-10-20), pero cada casilla es de una sola cosa.
             owner = {}
             for key, entry in menu['items'].items():

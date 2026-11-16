@@ -58,7 +58,6 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         bowDamage = getConfig().getDouble("arco-dano", 2957);
         loadFosa();
         Bukkit.getScheduler().runTaskTimer(this, this::fosaTick, 40, 10);
-        Bukkit.getScheduler().runTaskTimer(this, this::auroraTick, 200, 200);
     }
 
     void save() { getConfig().set("proxima-regeneracion", nextRegen); saveConfig(); }
@@ -407,8 +406,6 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     final Map<String, Integer> waveMax = new HashMap<>();
     int techoRadio = 96;
     final NamespacedKey techoKey = new NamespacedKey("astral", "fosa_techo");
-    // Aurora (criatura privada de BetterModel): nada cerca de la entrada escondida del Oceano.
-    String auroraMob = "astral_aurora"; int auroraAltura = 7; double auroraRadio = 14;
 
     static double[] xyz(String s) { String[] p = s.split(","); return new double[]{Double.parseDouble(p[0]), Double.parseDouble(p[1]), Double.parseDouble(p[2])}; }
 
@@ -424,9 +421,6 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         Gen.gateX = gate[0]; Gen.gateZ = gate[1];
         for (String pt : c.getStringList("puntos")) fosaPoints.add(xyz(pt));
         techoRadio = c.getInt("techo-radio", 96);
-        auroraMob = getConfig().getString("aurora.mob", auroraMob);
-        auroraAltura = getConfig().getInt("aurora.altura", auroraAltura);
-        auroraRadio = getConfig().getDouble("aurora.radio", auroraRadio);
         for (String w : c.getStringList("oleadas")) {
             Map<String, Integer> m = new LinkedHashMap<>();
             for (String part : w.split(",")) { String[] kv = part.split(":"); m.put(kv[0].trim(), Integer.parseInt(kv[1].trim())); }
@@ -519,33 +513,6 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                 if (arriba.getType().isAir()) { arriba.setType(Material.BARRIER, false); puestos++; }
             }
         getLogger().info("Fosa " + w.getName() + ": techo de barreras con " + puestos + " bloques.");
-    }
-
-    Location auroraHome;
-    /** Una Aurora nadando sobre la entrada escondida (solo si hay alguien cerca); si se aleja, vuelve. */
-    void auroraTick() {
-        World w = Bukkit.getWorld(world);
-        if (w == null || regenerating) return;
-        if (auroraHome == null || auroraHome.getWorld() != w) {
-            if (!w.isChunkLoaded(gate[0] >> 4, gate[1] >> 4)) return;
-            for (int y = w.getMinHeight(); y < w.getMaxHeight(); y++)
-                if (w.getBlockAt(gate[0], y, gate[1]).getType() == Material.CRYING_OBSIDIAN) {
-                    auroraHome = new Location(w, gate[0] + 0.5, y + auroraAltura, gate[1] + 0.5); break;
-                }
-            if (auroraHome == null) return;
-        }
-        boolean cerca = false;
-        for (Player p : w.getPlayers()) if (p.getLocation().distanceSquared(auroraHome) < 96 * 96) { cerca = true; break; }
-        Entity aurora = null;
-        for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("oceano.aurora") && e.isValid()) { aurora = e; break; }
-        if (aurora == null) {
-            if (cerca) Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mm mobs spawn " + auroraMob + " 1 " + w.getName() + ","
-                + auroraHome.getX() + "," + auroraHome.getY() + "," + auroraHome.getZ());
-            return;
-        }
-        Location l = aurora.getLocation();
-        double dx = l.getX() - auroraHome.getX(), dz = l.getZ() - auroraHome.getZ(), dy = l.getY() - auroraHome.getY();
-        if (dx * dx + dz * dz > auroraRadio * auroraRadio || Math.abs(dy) > auroraRadio) aurora.teleport(auroraHome);
     }
 
     void title(List<Player> ps, String a, String b) {

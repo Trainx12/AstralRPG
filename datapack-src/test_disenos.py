@@ -20,7 +20,7 @@ class DesignsTests(unittest.TestCase):
             self.assertEqual(items['invocar']['slot'],46)
             self.assertEqual(items['descansar']['slot'],49)
             self.assertIn('mascota '+str(d['n']),str(items['invocar']['click_commands']))
-            page='mascotas' if d['n']<=6 else f"mascotas_{2+(d['n']-7)//9}"
+            page='mascotas' if list(MASCOTAS).index(pid)<6 else f"mascotas_{1+list(MASCOTAS).index(pid)//6}"
             self.assertEqual(items['coleccion']['click_commands'],['[openguimenu] '+page])
 
     def test_no_wings_in_rewards_or_navigation_and_legacy_rights_work(self):

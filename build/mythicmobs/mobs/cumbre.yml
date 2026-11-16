@@ -153,7 +153,6 @@ astral_cumbre_yeti:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - skill{s=AST_YETI_PISOTON} @self ~onTimer:200
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
   - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}

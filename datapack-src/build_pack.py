@@ -479,6 +479,12 @@ for _t in BALLESTAS:
 from tanda_xp import assets as xp_assets
 from botones_provisorios import KEYS as XP_BUTTONS
 files.update(xp_assets(XP_BUTTONS))
+from ventanas_1611 import assets as ventanas_assets
+_vfiles, _vproviders = ventanas_assets()
+files.update(_vfiles)
+_default = json.loads(files["assets/minecraft/font/default.json"])
+_default["providers"].extend(_vproviders)
+files["assets/minecraft/font/default.json"] = json.dumps(_default).encode()
 relocate_model_textures(files)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()

@@ -226,7 +226,11 @@ def decorate(data):
         if 'item_model' not in item:
             model=button_model(key)
             if model:item['item_model']=model
-    return data
+    from ventanas_1611 import apply
+    command = data.get('open_command', '')
+    if isinstance(command, list): command = command[0] if command else ''
+    kind = {'astralmenu_oficios':'oficios'}.get(command, command)
+    return apply(kind, data)
 
 
 def panel():

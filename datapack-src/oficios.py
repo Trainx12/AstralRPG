@@ -135,7 +135,7 @@ def menu_yaml(item, menu, q, money, requisito_plata):
 
     def dar(iids):
         return [f'[console] execute as {P} at @s run loot spawn ~ ~ ~ loot astral:item/{i}' for i in iids]
-    lines = item('saldo', 'GOLD_NUGGET', 4, '&6Tu saldo', ['&e%vault_eco_balance_formatted%$'], extra={'update': 'true'})
+    lines = item('saldo', 'GOLD_NUGGET', 7, '&6Tu saldo', ['&e%vault_eco_balance_formatted%$'], extra={'update': 'true'})
     for row, (sid, sdef) in enumerate(SETS.items()):
         col = sdef['color'].replace('#', '&#')
         base = 9 + row * 18
@@ -149,14 +149,14 @@ def menu_yaml(item, menu, q, money, requisito_plata):
                           extra={'item_model': q('astral:' + iid), 'click_requirement': requisito_plata(costo),
                                  'click_commands': [f'[takemoney] {costo}', *dar([iid]), '[sound] ENTITY_PLAYER_LEVELUP',
                                                     q(f"[message] &aCompraste: &f{sdef['names'][piece]}&a.")]})
-        lines += item(f'{sid}_set', 'CHEST', base + 7, f"{col}&lSet completo de {sdef['label']}",
+        lines += item(f'{sid}_set', 'CHEST', base + 7, f"{col}&lSet completo de {sdef['label']} - {money(PRECIO_SET)}",
                       ['&7Las 4 piezas juntas.', '', f'&7Precio: &e{money(PRECIO_SET)} &8(ahorras {money(sum(PRECIO.values()) - PRECIO_SET)})',
                        '&eClic para comprar'], glow=True,
                       extra={'click_requirement': requisito_plata(PRECIO_SET),
                              'click_commands': [f'[takemoney] {PRECIO_SET}', *dar(f'{sid}_{p}' for p in PIECES),
                                                 '[sound] ENTITY_PLAYER_LEVELUP',
                                                 q(f"[message] &aCompraste el set completo de {sdef['label']}.")]})
-    lines += item('ayuda', 'BOOK', 31, '&fSi tenes el inventario lleno', ['&7Lo que compres cae a tus pies.'])
+    lines += item('ayuda', 'BOOK', 8, '&fSi tenes el inventario lleno', ['&7Lo que compres cae a tus pies.'])
     lines += item('cerrar', 'BARRIER', 35, '&cCerrar', extra={'click_commands': ['[close]']})
     return menu('Oficios', 'astralmenu_oficios', 36, lines)
 

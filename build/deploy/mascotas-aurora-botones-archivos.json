@@ -1,0 +1,217 @@
+[
+  {
+    "local": "build/AstralRPG-Items.zip",
+    "destino": "world/datapacks/AstralRPG-Items.zip",
+    "sha256": "697d6d778f6842d6cee0a2ef1df0b909aa84d32a2c7fd58d75203a61543e557b"
+  },
+  {
+    "local": "build/duelos/astral_duelos.sk",
+    "destino": "plugins/Skript/scripts/astral_duelos.sk",
+    "sha256": "0134b6cc55ede00e9ee681dc8ac2d0fb618b27c90547017ea8825767ec4420cb"
+  },
+  {
+    "local": "build/lobby/CrazyCrates/crates/gacha_monturas.yml",
+    "destino": "plugins/CrazyCrates/crates/gacha_monturas.yml",
+    "sha256": "8c56ec672b5bd925e2d8a6abdbdd901f6853e1d54e8ae50cfc3ebcff71649a46"
+  },
+  {
+    "local": "build/lobby/CrazyCrates/crates/gacha_monturas_garantia.yml",
+    "destino": "plugins/CrazyCrates/crates/gacha_monturas_garantia.yml",
+    "sha256": "dfdd25f18914b8b78b56f09aa3cca9149e5fd062ffd4a2b298e797e2bf75b149"
+  },
+  {
+    "local": "build/lobby/CrazyCrates/crates/gacha_monturas_garantia_suerte.yml",
+    "destino": "plugins/CrazyCrates/crates/gacha_monturas_garantia_suerte.yml",
+    "sha256": "dfdd25f18914b8b78b56f09aa3cca9149e5fd062ffd4a2b298e797e2bf75b149"
+  },
+  {
+    "local": "build/lobby/CrazyCrates/crates/gacha_monturas_suerte.yml",
+    "destino": "plugins/CrazyCrates/crates/gacha_monturas_suerte.yml",
+    "sha256": "5cd69b60700d14ff5acd5dbc9ad87b180d6dbf1254b4d04612583048355a17c3"
+  },
+  {
+    "local": "build/mascotas/astral_mascotas_retiro.sk",
+    "destino": "plugins/Skript/scripts/astral_mascotas_retiro.sk",
+    "sha256": "d2b7f9629ba31e15d22cd8859926a3cec863e3c427be4c4ecaa24871fb154160"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/configuraciones.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/configuraciones.yml",
+    "sha256": "ec32cef74baa9c6c97ba0a4ac3952b6bf58ced4ff8ad88fbaecdfc795c7a4601"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/deseo.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/deseo.yml",
+    "sha256": "a97f04df429b1be00bd9c003d0c12ff480bdaea5b7a296f724b91e98d5035a95"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/deseo_lite.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/deseo_lite.yml",
+    "sha256": "ae355894693e1d12384b8fd3cc156ade8cb45f89b37c803a321d96123958d941"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_bombardero.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_bombardero.yml",
+    "sha256": "9f8be91fd9df645494f116acc9308f2f0284065e5b85c6d9fd91cc15a5ba34f4"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_brujita.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_brujita.yml",
+    "sha256": "9eba3660ef07e12aa98c5401ad2e9ba43f736ccbb1234f5a011bb5ddfcc0f62a"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_canonero.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_canonero.yml",
+    "sha256": "2a05e75fefb94bb81df331aae34059013e847f2dc8b3857808761c59090a1c3e"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_desierto.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_desierto.yml",
+    "sha256": "c00258b64bdc9e73d009d4a2a4c360874e84bbb48151d80741c5bf18f9005c8f"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_encapuchado.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_encapuchado.yml",
+    "sha256": "08e25de4f5ccbd13bde3ff67bab078f139cb889fad9c43ad5713bf3e34528449"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_fenix.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_fenix.yml",
+    "sha256": "4fd87df69e4c8e921f119f0c58bb708844b19a24d5ba9f3b904bc0e6d0248cbf"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_frondoso.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_frondoso.yml",
+    "sha256": "624a1b98466159c1a020a9f214e9aca7336fe71cbb24a9ccad90608d4b297522"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_ghastito.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_ghastito.yml",
+    "sha256": "d8884375bce6ed7f32608bc2932f683645e397471ed2ef14903ddad615e97e1b"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_hondero.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_hondero.yml",
+    "sha256": "fa5cf1192f39cdee7b892f814415bc229c82dae975c480100029b1d0338e3863"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_honguito.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_honguito.yml",
+    "sha256": "bb469847f615501dfdea4b3c6cc16b5bceb39b9e9fc6bf1852211681af5136f6"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_jungla.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_jungla.yml",
+    "sha256": "032bf1fcb452d3aa1c7283b3e567510d514a0a1362da31f901726604ac3c21cd"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_llamita.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_llamita.yml",
+    "sha256": "48f855f4ac1b7d641a16e9bc4195e5efc8f2735666fdcfd4089b6f36433baac4"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_micelio.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_micelio.yml",
+    "sha256": "f8334ebab4b07a5c778f095a4d5aaa0ba0e90d6c121a7d526cb23038a9ed3127"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_nieve.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_nieve.yml",
+    "sha256": "51a828b00c669a430fb9f28887adb602e90aa7d9433106cb3f44226e2891b99a"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_pantano.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_pantano.yml",
+    "sha256": "03387a4e4094f6360e1893910da9911d4d335147e997f4b7e931a3baca057273"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_pradera.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_pradera.yml",
+    "sha256": "13dab527c1e878764708bdc94cff2bf18c1f0bddb66d79e9cb67a7d1c791a155"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_sabana.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_sabana.yml",
+    "sha256": "ca27d1a27a3c2cd65f10cab2c74ba8cff36bfa15bf3ee270eb3dd727f671b66a"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascota_saqueador.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascota_saqueador.yml",
+    "sha256": "00a444dd92d9fddfd0b4c0445b3c8614957b436f68b190db39851b354f5de898"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascotas.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascotas.yml",
+    "sha256": "243f7736e63abdaf8e70aee0361b2d329df662cf7342fbbf28af081e2d9cba96"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascotas_2.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascotas_2.yml",
+    "sha256": "50e2f203535ba92c4316fd73fe5ecdd6121a318f7a1d37de3c6afe5acd48a212"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/mascotas_3.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/mascotas_3.yml",
+    "sha256": "b0884b790741748c58589a62685a9446c22a8e99da727f6e37e657ad2085ebe4"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/oceano_aviso.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/oceano_aviso.yml",
+    "sha256": "1c5ef88e75b96a8903df4a7d6903e4c8e0fa827f978168600a44b2485f62dd75"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/oficios.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/oficios.yml",
+    "sha256": "151bc2ddabef5ddb4a195f60a640544f4f996a6d294fb7d488431517640b323a"
+  },
+  {
+    "local": "build/menus/DeluxeMenus/gui_menus/renacer.yml",
+    "destino": "plugins/DeluxeMenus/gui_menus/renacer.yml",
+    "sha256": "cc0d346552df61bf4bc94d20d60e7c7994354ebe95c72e28cd8c0f57064253d4"
+  },
+  {
+    "local": "build/mythicmobs/mobs/astral.yml",
+    "destino": "plugins/MythicMobs/mobs/astral.yml",
+    "sha256": "d0abca6a2c82699cc07c2a471d651eed8341d5e810d8c71db68d7744e3f92130"
+  },
+  {
+    "local": "build/mythicmobs/mobs/cumbre.yml",
+    "destino": "plugins/MythicMobs/mobs/cumbre.yml",
+    "sha256": "f4d77f6707d6d8f8b6c3e1b823acf599917e5045d773441aa77a72b2efdd0b3f"
+  },
+  {
+    "local": "build/mythicmobs/mobs/fosa.yml",
+    "destino": "plugins/MythicMobs/mobs/fosa.yml",
+    "sha256": "0a54868efccec5a54afcefb632ef59c2d4c17d31e540b18de34d5e64e7ca37bd"
+  },
+  {
+    "local": "build/mythicmobs/mobs/mascotas.yml",
+    "destino": "plugins/MythicMobs/mobs/mascotas.yml",
+    "sha256": "c5d78c0e37d7ffe6dd06fa580f2544a3a24387e9f77902243a00839012acf0fd"
+  },
+  {
+    "local": "build/mythicmobs/mobs/santuario.yml",
+    "destino": "plugins/MythicMobs/mobs/santuario.yml",
+    "sha256": "11e10bd00c6947f254e6e14bf68c831d4c4fa6f6adb2b5095f77b0e973588abf"
+  },
+  {
+    "local": "build/mythicmobs/skills/mascotas.yml",
+    "destino": "plugins/MythicMobs/skills/mascotas.yml",
+    "sha256": "8d5ca9777a2a5245d404d5fe3f402f8911065f1deefef070e6b7ca2f5fc75437"
+  },
+  {
+    "local": "build/mythicmobs/skills/mazmorra.yml",
+    "destino": "plugins/MythicMobs/skills/mazmorra.yml",
+    "sha256": "53f18ee8bc584543f5c2b388232a3f4cd52f75f4d893dfebd673e213418e94e0"
+  },
+  {
+    "local": "build/oceano/AstralOceano.jar",
+    "destino": "plugins/AstralOceano.jar",
+    "sha256": "23ccbc937780240bd1f672c8dda5084a73662e9206d7bd22c4037e66cf23eb64"
+  },
+  {
+    "local": "build/services/astral_servicios.sk",
+    "destino": "plugins/Skript/scripts/astral_servicios.sk",
+    "sha256": "eb649ffbb50950a5edd178d4ce2fb6a53fe65ac01f2502ffdb14f6e0977013c4"
+  }
+]

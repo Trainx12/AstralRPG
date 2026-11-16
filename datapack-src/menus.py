@@ -27,8 +27,6 @@ VIDRIO = {"gacha_rpg": "PURPLE_STAINED_GLASS_PANE", "gacha_monturas": "LIME_STAI
           "gacha_cosmeticos": "PINK_STAINED_GLASS_PANE"}
 ICONO = {"gacha_rpg": "AMETHYST_SHARD", "gacha_monturas": "SADDLE", "gacha_cosmeticos": "NAME_TAG"}
 TIRADA_ICONO = {"gacha_rpg": "AMETHYST_SHARD", "gacha_monturas": "WHEAT", "gacha_cosmeticos": "PINK_DYE"}   # se apilan hasta 64
-MASC_ICONO = {"lobo": "WOLF_SPAWN_EGG", "cuervo": "PARROT_SPAWN_EGG", "golem": "IRON_GOLEM_SPAWN_EGG",
-              "zorro": "FOX_SPAWN_EGG", "dragon": "BLAZE_SPAWN_EGG", "fenix": "CHICKEN_SPAWN_EGG"}
 
 
 def hexc(c):
@@ -87,7 +85,12 @@ def menu(title, command, size, items, update=False):
         L.append("register_command: true")
     if update:
         L.append("update_interval: 1")
-    return "\n".join(L + ["items:"] + items) + "\n"
+    import yaml
+    from ventanas_1611 import apply
+    if command not in ("configuraciones", "astralmenu_oficios"):
+        return "\n".join(L + ["items:"] + items) + "\n"
+    data = yaml.safe_load("\n".join(L + ["items:"] + items))
+    return yaml.safe_dump(apply({"astralmenu_oficios":"oficios"}.get(command, command), data), allow_unicode=True, sort_keys=False)
 
 
 def requisito_plata(costo):
@@ -272,7 +275,7 @@ def mascota_nueva_detalle(pid):
     lines += item('guardar', 'CHEST', 33, '&aGuardar mascota', extra={'click_commands': [
         '[close]', '[console] scoreboard players set %player_name% mascota 98']})
     lines += item('coleccion', 'ARROW', 45, '&eVolver a la coleccion', extra={'click_commands': [
-        f"[openguimenu] mascotas_{2 + (d['n'] - 7) // 9}"]})
+        "[openguimenu] " + ("mascotas" if list(MASCOTAS).index(pid)<6 else f"mascotas_{1+list(MASCOTAS).index(pid)//6}")]})
     return menu('&8' + d['nombre'], 'mascota_' + pid, 54, lines, update=True)
 
 
@@ -333,7 +336,7 @@ def mascota_detalle_menu(pid):
                           'item_model': q(f'astral:companero/descansar_{index}'),
                           'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
     items += item('coleccion', 'PAPER', 45, '&fVolver a la coleccion', extra={
-        'item_model': q('astral:companero/volver'), 'click_commands': ['[openguimenu] ' + ('mascotas' if d['n'] <= 6 else f"mascotas_{2 + (d['n'] - 7) // 9}")]})
+        'item_model': q('astral:companero/volver'), 'click_commands': ['[openguimenu] ' + ('mascotas' if list(MASCOTAS).index(pid) < 6 else f"mascotas_{1 + list(MASCOTAS).index(pid) // 6}")]})
     items += item('cerrar', 'PAPER', 53, '&cCerrar', extra={
         'item_model': q('astral:companero/cerrar'), 'click_commands': ['[close]']})
     return menu(title(pid), f'mascota_{pid}', 54, items, update=True)
@@ -654,12 +657,16 @@ def main():
     from viajes_mazmorras import generate as generate_dungeon_travel
     generate_dungeon_travel()
     os.makedirs(os.path.join(OUT, "gui_menus"), exist_ok=True)
+    from pathlib import Path
+    from mobs.mascotas import RETIRADAS
+    for obsolete in [*(f"mascota_{pid}" for pid in RETIRADAS), "mascotas_4"]:
+        (Path(OUT)/"gui_menus"/(obsolete+".yml")).unlink(missing_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu(),
                   "configuraciones": configuraciones_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
-    menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in (2, 3, 4)})
+    menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in __import__('mascotas_ui').PAGES})
     from tanda_xp import shop_menu, shop_files
     menus['consumibles'] = shop_menu(item, menu, q, requisito_plata)
     import oficios

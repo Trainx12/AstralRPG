@@ -1,3 +1,11 @@
+# Catalogo vigente - 16/11/2026
+
+El catalogo actual conserva solo el Fenix de la primera tanda mas las 17 mascotas nuevas de la tabla inferior.
+Las menciones a seis originales mas abajo describen la integracion historica. No se borran sus `.bbmodel`.
+Tres paginas de seis; los retratos Gemini derivados de modelos privados se regeneran exclusivamente en el FINAL.
+La entrega `deploy_mascotas_aurora_botones.py` conserva el FINAL de Crop & Kettle byte por byte fuera de su delta;
+no permite publicar ese pack ni sus vistas en el repositorio publico. Ver [entrega](../build/deploy/mascotas-aurora-botones.md).
+
 # Contenidos privados - tanda 4a
 
 Disenos del 12/11: `deploy_disenos.py` combina solo los cambios de esta tarea sobre

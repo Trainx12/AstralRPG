@@ -123,15 +123,16 @@ class ArreglosTests(unittest.TestCase):
 
     def test_pet_pages_details_crates_and_guide_cover_new_catalog(self):
         seen=set()
-        for page in (2,3,4):
-            menu=yaml.safe_load(mascotas_extra_menu(page))['items']
+        for page in (1,2,3):
+            from menus import mascotas_menu
+            menu=yaml.safe_load(mascotas_menu() if page==1 else mascotas_extra_menu(page))['items']
             for pid,d in MASCOTAS.items():
                 if 'm_'+pid not in menu:continue
                 seen.add(pid)
                 self.assertEqual(menu['m_'+pid]['item_model'],f'astral:mascotas/{pid}_0')
                 self.assertIn(f'[openguimenu] mascota_{pid}',menu['m_'+pid]['right_click_commands'])
                 self.assertIn('astral:companero/nivel_1_0',mascota_detalle_menu(pid))
-        self.assertEqual(seen,{pid for pid,d in MASCOTAS.items() if d['n']>6})
+        self.assertEqual(seen,set(MASCOTAS))
         from lobby import mount_rewards, icon
         for rarity,weight,name,commands in mount_rewards():
             if commands[0].startswith('lp user %player% permission set astral.mascota.'):

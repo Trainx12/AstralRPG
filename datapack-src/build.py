@@ -2092,7 +2092,7 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
 
 from mobs.mascotas import MASCOTAS as GUIDE_PETS
 for pet_page in range(3):
-    pets=list(GUIDE_PETS.items())[pet_page*8:(pet_page+1)*8]
+    pets=list(GUIDE_PETS.items())[pet_page*6:(pet_page+1)*6]
     dlg(f'guia/mascotas_{pet_page+1}', txt(f'Mascotas ({pet_page+1}/3)', 'gold', bold=True),
         [msg(f"{d['nombre']}: {d['fuente']}\nNv. 1: {d['texto'][0]}; +10: {d['texto'][1]}; +20: {d['texto'][2]}") for pid,d in pets],
         [btn('Ver pagina '+str(i),dialog=f'guia/mascotas_{i}') for i in range(1,4) if i!=pet_page+1]
@@ -2143,7 +2143,7 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Asura IV", "#8a6a00"), dialog="guia/asura"),
     btn(txt("Agua III", "#4fd8e8"), dialog="guia/agua"),
     btn(txt("Minero y Talador", "#8a5530"), dialog="guia/oficios"),
-    btn(txt("23 mascotas", "#006e78"), dialog="guia/mascotas_1"),
+    btn(txt(f"{len(GUIDE_PETS)} mascotas", "#006e78"), dialog="guia/mascotas_1"),
 ], columns=2)
 # Boton en el menu de pausa y en acciones rapidas
 put("data/minecraft/tags/dialog/pause_screen_additions.json", {"values": [f"{NS}:guia"]})

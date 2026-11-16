@@ -34,22 +34,8 @@ def condicion_mazmorra():
 
 # id: numero del boton, nombre, color, como se consigue, efectos por nivel (desde 1, desde 10, desde 20)
 #   efecto = (efecto de pocion, nivel 0 = I)
+RETIRADAS = ("lobo", "cuervo", "golem", "zorro", "dragon")
 MASCOTAS = {
-    "lobo": dict(n=1, nombre="Lobo del Bosque", color="#9AA0A8", fuente="Espantapajaros y Armored Grubs (raro)",
-                 efectos=[[("strength", 0)], [("speed", 0)], [("resistance", 0)]],
-                 texto=["Fuerza I", "+ Velocidad I", "+ Resistencia I"]),
-    "cuervo": dict(n=2, nombre="Cuervo Arcano", color="#B07CFF", fuente="Gacha de Monturas",
-                   efectos=[[("night_vision", 0)], [("luck", 0)], [("speed", 0)]], brillo=True,
-                   texto=["Vision nocturna y marca a los mobs cercanos", "+ Suerte", "+ Velocidad I"]),
-    "golem": dict(n=3, nombre="Golem de Piedra", color="#8A8A8A", fuente="Mazmorra Minas Olvidadas (raro)",
-                  efectos=[[("resistance", 0)], [("regeneration", 0)], [("absorption", 0)]],
-                  texto=["Resistencia I", "+ Regeneracion I", "+ 2 corazones de absorcion"]),
-    "zorro": dict(n=4, nombre="Zorro Espectral", color="#BFE8FF", fuente="Yeti de las Cumbres y Caras Voladoras (raro)",
-                  efectos=[[("speed", 0)], [("jump_boost", 0)], [("speed", 1)]],
-                  texto=["Velocidad I", "+ Salto I", "Velocidad II"]),
-    "dragon": dict(n=5, nombre="Dragoncito de Fuego", color="#E04A3A", fuente="Gacha de Monturas (epico)",
-                   efectos=[[("fire_resistance", 0)], [("strength", 0)], [("haste", 0)]],
-                   texto=["Resistencia al fuego", "+ Fuerza I", "+ Prisa I"]),
     "fenix": dict(n=6, nombre="Fenix", color="#FF7A2A", fuente="Gacha de Monturas (legendario)",
                   efectos=[[], [], []], rescate=[600, 420, 300],
                   texto=["Te salva con poca vida (cada 10 min)", "cada 7 min", "cada 5 min"]),
@@ -275,6 +261,22 @@ def commands():
     return "\n".join(C) + "\n"
 
 
+def migration_skript():
+    lines = ['# Generado por mobs/mascotas.py; no borrar las variables de compensacion.',
+             'on join:', '    wait 2 seconds', '    set {_u} to uuid of player',
+             '    set {_n} to name of player',
+             '    execute console command "execute as %name of player% if score @s petsel matches 1..5 run scoreboard players set @s petsel 0"',
+             '    execute console command "execute as %name of player% if score @s mascota matches 1..5 run scoreboard players set @s mascota 0"']
+    for pid in RETIRADAS:
+        lines += [f'    execute console command "execute at %name of player% run kill @e[tag=astral.pet.{pid},distance=0..]"',
+                  f'    if player has permission "astral.mascota.{pid}":',
+                  f'        if {{astral.pet_retiro_1611::%{{_u}}%::{pid}}} is not true:',
+                  f'            set {{astral.pet_retiro_1611::%{{_u}}%::{pid}}} to true',
+                  '            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"',
+                  f'            send "&6Tu mascota retirada ({pid}) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player']
+    return '\n'.join(lines) + '\n'
+
+
 def main():
     for sub in ("mobs", "skills"):
         os.makedirs(os.path.join(OUT, "mythicmobs", sub), exist_ok=True)
@@ -282,6 +284,7 @@ def main():
     open(os.path.join(OUT, "mythicmobs", "mobs", "mascotas.yml"), "w", encoding="utf-8").write(mob_yml())
     open(os.path.join(OUT, "mythicmobs", "skills", "mascotas.yml"), "w", encoding="utf-8").write(skill_yml())
     open(os.path.join(OUT, "mascotas", "comandos.txt"), "w", encoding="utf-8").write(commands())
+    open(os.path.join(OUT, "mascotas", "astral_mascotas_retiro.sk"), "w", encoding="utf8").write(migration_skript())
     print(f"mascotas: {len(MASCOTAS)}")
 
 

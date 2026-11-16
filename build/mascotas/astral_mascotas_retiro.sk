@@ -1,0 +1,37 @@
+# Generado por mobs/mascotas.py; no borrar las variables de compensacion.
+on join:
+    wait 2 seconds
+    set {_u} to uuid of player
+    set {_n} to name of player
+    execute console command "execute as %name of player% if score @s petsel matches 1..5 run scoreboard players set @s petsel 0"
+    execute console command "execute as %name of player% if score @s mascota matches 1..5 run scoreboard players set @s mascota 0"
+    execute console command "execute at %name of player% run kill @e[tag=astral.pet.lobo,distance=0..]"
+    if player has permission "astral.mascota.lobo":
+        if {astral.pet_retiro_1611::%{_u}%::lobo} is not true:
+            set {astral.pet_retiro_1611::%{_u}%::lobo} to true
+            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"
+            send "&6Tu mascota retirada (lobo) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player
+    execute console command "execute at %name of player% run kill @e[tag=astral.pet.cuervo,distance=0..]"
+    if player has permission "astral.mascota.cuervo":
+        if {astral.pet_retiro_1611::%{_u}%::cuervo} is not true:
+            set {astral.pet_retiro_1611::%{_u}%::cuervo} to true
+            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"
+            send "&6Tu mascota retirada (cuervo) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player
+    execute console command "execute at %name of player% run kill @e[tag=astral.pet.golem,distance=0..]"
+    if player has permission "astral.mascota.golem":
+        if {astral.pet_retiro_1611::%{_u}%::golem} is not true:
+            set {astral.pet_retiro_1611::%{_u}%::golem} to true
+            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"
+            send "&6Tu mascota retirada (golem) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player
+    execute console command "execute at %name of player% run kill @e[tag=astral.pet.zorro,distance=0..]"
+    if player has permission "astral.mascota.zorro":
+        if {astral.pet_retiro_1611::%{_u}%::zorro} is not true:
+            set {astral.pet_retiro_1611::%{_u}%::zorro} to true
+            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"
+            send "&6Tu mascota retirada (zorro) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player
+    execute console command "execute at %name of player% run kill @e[tag=astral.pet.dragon,distance=0..]"
+    if player has permission "astral.mascota.dragon":
+        if {astral.pet_retiro_1611::%{_u}%::dragon} is not true:
+            set {astral.pet_retiro_1611::%{_u}%::dragon} to true
+            execute console command "crates give virtual gacha_monturas 1 %{_n}% -s"
+            send "&6Tu mascota retirada (dragon) fue compensada con 1 llave virtual de la Gacha de Monturas. &eUsala con /crates mass-open gacha_monturas virtual 1." to player

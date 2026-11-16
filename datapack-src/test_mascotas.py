@@ -10,13 +10,12 @@ from mobs import build_models
 
 class MascotasTests(unittest.TestCase):
     def test_real_bonuses_accumulate_and_upgrades_replace_lower_amplifiers(self):
-        self.assertEqual(beneficios_actuales('zorro', 9), ['Velocidad I'])
-        self.assertEqual(beneficios_actuales('zorro', 10), ['Velocidad I', 'Salto I'])
-        self.assertEqual(beneficios_actuales('zorro', 20), ['Velocidad II', 'Salto I'])
-        self.assertEqual(beneficios_actuales('lobo', 30), ['Fuerza I', 'Velocidad I', 'Resistencia I'])
+        self.assertEqual(beneficios_actuales('pradera', 1), ['Velocidad I'])
+        self.assertEqual(beneficios_actuales('pradera', 10), ['Velocidad I', 'Suerte'])
+        self.assertEqual(beneficios_actuales('pradera', 20), ['Velocidad I', 'Suerte', 'Regeneracion I'])
+        self.assertTrue({'lobo','cuervo','golem','zorro','dragon'}.isdisjoint(MASCOTAS))
         for level, minutes in ((1, 10), (10, 7), (20, 5)):
             self.assertIn(f'cada {minutes} min', beneficios_actuales('fenix', level)[0])
-        self.assertIn('Marca a los mobs cercanos', beneficios_actuales('cuervo', 1))
 
     def test_every_portrait_tile_previews_current_and_future_bonuses(self):
         data = yaml.safe_load(mascotas_menu())

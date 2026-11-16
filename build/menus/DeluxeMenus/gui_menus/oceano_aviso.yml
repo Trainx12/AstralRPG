@@ -1,5 +1,5 @@
 {
-  "menu_title": "&1&lOceano Astral - Aviso",
+  "menu_title": "&f",
   "size": 27,
   "items": {
     "info": {
@@ -37,14 +37,14 @@
     "volver": {
       "material": "RED_STAINED_GLASS_PANE",
       "slot": 15,
-      "display_name": "&c&lTodavia no",
+      "display_name": "&c&lVolver",
       "lore": [
         "&7Volver a los portales."
       ],
       "click_commands": [
-        "[openguimenu] portales"
+        "[close]"
       ],
-      "item_model": "astral:menu/icon_back"
+      "item_model": "astral:boton_volver"
     }
   }
 }

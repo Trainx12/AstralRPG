@@ -1,3 +1,11 @@
+# Retiro de mascotas, Aurora y ventanas - 16/11/2026
+
+Implementacion preparada, sin despliegue remoto. Lista exacta y limpieza limitada al Oceano:
+[entrega](../build/deploy/mascotas-aurora-botones.md). Requiere apagar y reiniciar por AstralOceano 1.4.0,
+datapack y resource pack. Conservar `config.yml` del Oceano y las variables de Skript.
+Instalar `astral_mascotas_retiro.sk` junto a CrazyCrates y LuckPerms; nunca borrar sus marcadores de compensacion.
+El FINAL conserva Crop & Kettle y hereda su condicion pendiente de distribucion.
+
 # AstralRPG: cómo está armado el servidor
 
 Disenos y cosmeticos preparados, sin desplegar: [archivos, SHA-1 y reinicio](../build/deploy/disenos-pendientes.md).

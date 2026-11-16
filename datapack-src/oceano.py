@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.3.0'
+VERSION = '1.4.0'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -72,11 +72,12 @@ def aviso_menu():
         'entrar': dict(material='LIME_STAINED_GLASS_PANE', slot=11, display_name='&a&lEntrar preparado',
                        lore=['&7Ya tengo con que respirar.', '', '&eClic para entrar.'],
                        click_commands=['[close]', '[player] oceano entrar<delay=3>']),
-        'volver': dict(material='RED_STAINED_GLASS_PANE', slot=15, display_name='&c&lTodavia no',
-                       lore=['&7Volver a los portales.'], click_commands=['[openguimenu] portales']),
+        'volver': dict(material='RED_STAINED_GLASS_PANE', slot=15, display_name='&c&lVolver',
+                       lore=['&7Volver a los portales.'], click_commands=['[close]']),
     }
     from menu_ui import decorate
-    return decorate(dict(menu_title='&1&lOceano Astral - Aviso', size=27, items=items))
+    from ventanas_1611 import apply
+    return apply('oceano_aviso', decorate(dict(menu_title='&1&lOceano Astral - Aviso', size=27, items=items)))
 
 
 def portales_button():

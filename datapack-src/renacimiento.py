@@ -96,7 +96,8 @@ def renacer_menu():
     for n, slot in enumerate(SLOTS_BOTON):
         items[f'confirmar_{n}'] = _inv(slot, {'display_name': '&d&lRENACER', 'lore': ['&7Clic para renacer.', '&cNo se puede deshacer.'],
                                              'click_commands': ['[close]', '[player] astralrenacer confirmar']})
-    return {'menu_title': title('renacer'), 'size': 54, 'items': items}
+    from ventanas_1611 import apply
+    return apply('renacer', {'menu_title': title('renacer'), 'size': 54, 'items': items})
 
 
 def deseo_menu(tipo):
@@ -115,8 +116,10 @@ def deseo_menu(tipo):
     items['cerrar'] = {'material': 'BARRIER', 'slot': 53, 'display_name': '&cCerrar',
                        'lore': ['&7Tu deseo te espera: &f/deseo'], 'click_commands': ['[close]']}
     if tipo == 'lite':
-        return {'menu_title': cronista_title('deseo'), 'size': 54, 'items': items}
-    return {'menu_title': title('deseo'), 'size': 54, 'items': items}
+        from ventanas_1611 import apply
+        return apply('deseo_lite', {'menu_title': cronista_title('deseo'), 'size': 54, 'items': items})
+    from ventanas_1611 import apply
+    return apply('deseo', {'menu_title': title('deseo'), 'size': 54, 'items': items})
 
 
 def menus():

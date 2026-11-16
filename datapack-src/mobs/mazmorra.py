@@ -60,8 +60,7 @@ MOBS = {
     "astral_mina_golem": dict(type="IRON_GOLEM", name="&7&lGolem de Piedra Antiguo", hp=480, dmg=14, speed=VELOCIDAD_JEFE, boss="WHITE",
                               hostile=True, money=500,
                               drops=drop("alma_corrupta", 1.0) + drop("esencia_elite", 1.0, 2) + drop("netherita_fundida", 0.5),
-                              skills=["skill{s=PET_GANAR_GOLEM} @trigger ~onDeath 0.15",      # mascota (mascotas.py)
-                                      "throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
+                              skills=["throw{velocity=7;velocityY=3} @target ~onAttack 0.4",
                                       "skill{s=MINA_ONDA_GOLEM} @self ~onTimer:140",
                                       *jefe_triggers("astral_mina_golem"), "teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}"]),
     # Jefe final con geometria propia; conserva ID, fases y balance de la Tanda 2.
@@ -344,9 +343,6 @@ def skill_yml(dungeon=None):
                       "  - " + q(("summon{type=astral_mina_cofre;amount=1;radius=0"+exact_surface+"} @Location{x=%s;y=%s;z=%s}") % fin["cofre"])]
                 if fin.get("guia"):
                     L += ["  - " + q(("summon{type=astral_mina_guia;amount=1;radius=0"+exact_surface+"} @Location{x=%s;y=%s;z=%s}") % fin["guia"])]
-                if dungeon["key"] == "mina":
-                    # La mascota Golem sigue saliendo al 5% al ganar (antes venia con el cofre).
-                    L += ["  - " + q(f"skill{{s=MINA_MASCOTA}} @PlayersInRadius{{r={r + 8}}}")]
                 guia = "&7El guia de Expediciones los lleva a donde quieran." if fin.get("guia") else "&7Desde el cofre pueden volver al lobby."
                 L += ["  - delay 20",
                       "  - " + q(f'message{{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. {guia}"}} @PlayersInRadius{{r={r + 8}}}'), ""]
@@ -373,15 +369,11 @@ def skill_yml(dungeon=None):
         L += ["  - " + q(f'command{{c="loot give <target.name> loot astral:item/{it}"}}')] * n
     L += ["  - " + q('command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'),
           "  - " + q(f'command{{c="eco give <target.name> {PREMIO_PLATA}"}}'),
-          *( ["  - " + q("skill{s=PET_GANAR_GOLEM} 0.05")] if dungeon["key"] == "mina" else [] ),
           "  - " + q(f'command{{c="lp user <target.name> permission settemp astral.mina.cd true {COOLDOWN}"}}'),
           "  - " + q(f'message{{m="&6Cofre de la Mina: &fmateriales de elite y &e{PREMIO_PLATA}$&f. &7(el proximo cofre en 30 minutos)"}}'),
           "",
           "MINA_PREMIO_YA:", "  TargetConditions:", "  - haspermission{p=astral.mina.cd} true", "  Skills:",
           "  - " + q('message{m="&7Ya cobraste el cofre de la mina hace poco. &8(se puede cobrar cada 30 minutos)"}'), ""]
-    if dungeon["key"] == "mina":
-        L += ["MINA_MASCOTA:", "  TargetConditions:", "  - haspermission{p=astral.mina.cd} false", "  Skills:",
-              "  - " + q("skill{s=PET_GANAR_GOLEM} 0.05"), ""]
     # entrada desde el lobby
     s1 = SALAS[0]
     if not dungeon.get("enabled", False):

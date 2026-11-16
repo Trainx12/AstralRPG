@@ -1,10 +1,10 @@
 {
-  "menu_title": "&f",
+  "menu_title": "&f",
   "size": 54,
   "items": {
     "plata": {
       "material": "GOLD_INGOT",
-      "slot": 20,
+      "slot": 18,
       "display_name": "&e&lPlata",
       "lore": [
         "&7Hasta &e6.250.000$&7.",
@@ -23,7 +23,7 @@
     },
     "tier": {
       "material": "ANVIL",
-      "slot": 21,
+      "slot": 20,
       "display_name": "&d&lSubir 1 tier a 2 piezas",
       "lore": [
         "&7Dos piezas de tu equipo",
@@ -39,7 +39,7 @@
         "[close]",
         "[player] astraldeseo lite tier"
       ],
-      "item_model": "astral:boton_tier"
+      "item_model": "astral:boton_tier_lite"
     },
     "tiradas": {
       "material": "CHEST",
@@ -63,7 +63,7 @@
     },
     "arma": {
       "material": "IRON_SWORD",
-      "slot": 23,
+      "slot": 24,
       "display_name": "&b&lUn arma o armadura Astral",
       "lore": [
         "&7Una que ya exista,",
@@ -83,7 +83,7 @@
     },
     "cosmetico": {
       "material": "LEATHER_HELMET",
-      "slot": 24,
+      "slot": 26,
       "display_name": "&a&lUn cosmetico",
       "lore": [
         "&7Uno de la gacha de Cosmeticos",
@@ -103,7 +103,7 @@
     },
     "reglas": {
       "material": "BOOK",
-      "slot": 40,
+      "slot": 42,
       "display_name": "&6&lReglas del deseo",
       "lore": [
         "&c&lNo se puede pedir:",
@@ -134,7 +134,7 @@
       "click_commands": [
         "[close]"
       ],
-      "item_model": "astral:menu/icon_close"
+      "item_model": "astral:boton_cerrar"
     }
   }
 }

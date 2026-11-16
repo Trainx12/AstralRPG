@@ -1,10 +1,10 @@
 {
-  "menu_title": "&f",
+  "menu_title": "&f",
   "size": 54,
   "items": {
     "plata": {
       "material": "GOLD_BLOCK",
-      "slot": 20,
+      "slot": 18,
       "display_name": "&e&lPlata",
       "lore": [
         "&7Hasta &e25.000.000$&7.",
@@ -24,7 +24,7 @@
     },
     "tier": {
       "material": "NETHERITE_UPGRADE_SMITHING_TEMPLATE",
-      "slot": 21,
+      "slot": 20,
       "display_name": "&d&lSubir 1 tier todo tu equipo",
       "lore": [
         "&7Armas y armadura que tengas.",
@@ -65,7 +65,7 @@
     },
     "personalizada": {
       "material": "NETHER_STAR",
-      "slot": 23,
+      "slot": 24,
       "display_name": "&5&lArma personalizada",
       "lore": [
         "&7Nombre a eleccion y aspecto de un",
@@ -87,7 +87,7 @@
     },
     "otro": {
       "material": "WRITABLE_BOOK",
-      "slot": 24,
+      "slot": 26,
       "display_name": "&f&lOtro deseo",
       "lore": [
         "&7Escribilo con tus palabras.",
@@ -107,7 +107,7 @@
     },
     "reglas": {
       "material": "BOOK",
-      "slot": 40,
+      "slot": 42,
       "display_name": "&6&lReglas del deseo",
       "lore": [
         "&c&lNo se puede pedir:",
@@ -137,7 +137,7 @@
       "click_commands": [
         "[close]"
       ],
-      "item_model": "astral:menu/icon_close"
+      "item_model": "astral:boton_cerrar"
     }
   }
 }

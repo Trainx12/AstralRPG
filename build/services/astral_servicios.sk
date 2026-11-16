@@ -5364,8 +5364,8 @@ function asg_open(p: player, mode: text):
     set {asg.mode::%{_id}%} to {_mode}
     set slot 8 of {_inv} to book named "&eComo usar"
     set lore of slot 8 of {_inv} to "&71. Coloca el objeto en el recuadro.", "&72. Revisa los requisitos o el precio.", "&73. Pulsa el boton para confirmar." and "&7Cerrar o desconectarte devuelve tu objeto."
-    set slot 45 of {_inv} to arrow named "&eDevolver objeto"
-    set slot 53 of {_inv} to barrier named "&cCerrar y devolver"
+    set slot 45 of {_inv} to asg_icon("astral:menu/icon_back", "&eDevolver objeto")
+    set slot 53 of {_inv} to asg_icon("astral:menu/icon_close", "&cCerrar y devolver")
     asg_refresh({_p})
     open {_inv} to {_p}
 

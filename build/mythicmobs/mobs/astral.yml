@@ -63,7 +63,6 @@ astral_espantapajaros:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
@@ -121,7 +120,6 @@ astral_abejorro:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria_fragmentada"} @self ~onDeath 0.08
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
   - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
@@ -175,7 +173,6 @@ astral_cara:
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_umbria"} @self ~onDeath 0.03
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
   - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
@@ -446,7 +443,6 @@ astral_yeti:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
@@ -666,7 +662,6 @@ astral_espantapajaros_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
@@ -715,7 +710,6 @@ astral_abejorro_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
-  - skill{s=PET_GANAR_LOBO} @trigger ~onDeath 0.03
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
@@ -813,7 +807,6 @@ astral_cara_elite:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.3
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.02
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/elite"} @self ~onDeath ?~isplayer
@@ -1064,7 +1057,6 @@ astral_yeti_ancestral:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - 'message{m="&6&l(!) &e&b&lYeti Ancestral &7desperto en &f<caster.l.x> <caster.l.y> <caster.l.z> &7(&f<caster.l.w>&7). Tienen 10 minutos!"} @PlayersOnServer ~onSpawn'
   - sound{s=entity.ender_dragon.growl;v=0.5} @PlayersOnServer ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn

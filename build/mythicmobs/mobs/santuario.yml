@@ -419,7 +419,6 @@ astral_santuario_yeti_eco:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
-  - skill{s=PET_GANAR_ZORRO} @trigger ~onDeath 0.2
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}

@@ -138,26 +138,9 @@ def medal(index,locked=False):
 
 
 def nav_icon(kind):
-    """Botones del marco en el mismo metal y terciopelo que la galeria."""
-    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
-    d.rectangle((0,0,17,17),outline=EDGE);d.rectangle((1,1,16,16),fill='#163f4c',outline='#365d69')
-    d.line((2,1,15,1),fill='#ebdab1')
-    gold,ivory,teal='#d9b766','#f2e8c9',ACCENT
-    if kind=='info':      # pergamino con la i
-        d.rectangle((5,4,12,13),fill=ivory);d.line((4,4,13,4),fill=gold);d.line((4,13,13,13),fill=gold)
-        d.point((8,6),fill='#244650');d.line((8,8,8,11),fill='#244650')
-    elif kind=='gacha':   # cofre con gema turquesa
-        d.rectangle((3,7,14,13),fill='#7a5230',outline=gold);d.rectangle((3,5,14,7),fill='#946238',outline=gold)
-        d.line((3,9,14,9),fill=gold);d.rectangle((7,8,10,11),fill=gold)
-        d.point((8,9),fill=teal);d.point((9,10),fill=teal)
-        d.point((13,3),fill=teal);d.point((15,5),fill='#edc36b')
-    elif kind=='back':    # flecha dorada
-        d.polygon(((3,9),(8,4),(8,7),(14,7),(14,11),(8,11),(8,14)),fill=gold)
-        d.line((9,8,13,8),fill=ivory)
-    else:                 # cerrar: aspa marfil
-        d.line((5,5,12,12),fill=ivory,width=2);d.line((12,5,5,12),fill=ivory,width=2)
-        d.point((8,8),fill='#e07a5f')
-    return im
+    from navegacion_provisoria import icon
+    return icon("cosmeticos", kind)
+
 
 
 def clear_button():

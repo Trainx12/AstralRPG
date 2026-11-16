@@ -1,3 +1,12 @@
+# Ventanas y mascotas - 16/11/2026
+
+Entrega pendiente: [mascotas-aurora-botones](../build/deploy/mascotas-aurora-botones.md).
+18 mascotas: Fenix y 17 cubee, en tres paginas de seis; IDs/niveles conservados.
+Las cinco retiradas compensan una llave virtual de Monturas por permiso al entrar, una sola vez por UUID y mascota.
+AstralOceano 1.4.0 deja de generar Aurora.
+Arte final de las seis ventanas: `ventanas_1611.py`; reservas de navegacion con marca P: `navegacion_provisoria.py`.
+Vistas publicas usan retratos de reserva; los retratos licenciados quedan solo en el FINAL privado.
+
 # Guía para agregar cosas a AstralRPG
 
 ## Cocina (Crop & Kettle)

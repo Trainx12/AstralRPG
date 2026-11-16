@@ -1,4 +1,4 @@
-menu_title: '&f'
+menu_title: '&f'
 open_command: mascota_canonero
 size: 54
 update_interval: 1
@@ -3437,7 +3437,7 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:companero/volver'
     click_commands:
-    - '[openguimenu] mascotas_2'
+    - '[openguimenu] mascotas'
   'cerrar':
     material: PAPER
     slot: 53

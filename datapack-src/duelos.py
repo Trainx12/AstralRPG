@@ -63,7 +63,9 @@ function astral_desafiar(p: player):
     set slot 49 of {{_inv}} to book named "&eComo funciona"
     set lore of slot 49 of {{_inv}} to "&71. Elegi a quien desafiar." and "&72. Elegi la arena y envia el pedido." and "&73. El otro acepta con /duel accept <tu nombre>."
     set slot 45 of {{_inv}} to arrow named "&fVolver a Arenas"
+    set item model of slot 45 of {{_inv}} to "astral:menu/icon_back"
     set slot 53 of {{_inv}} to barrier named "&cCerrar"
+    set item model of slot 53 of {{_inv}} to "astral:menu/icon_close"
     set {{-duelo.gui::%{{_id}}%}} to {{_inv}}
     open {{_inv}} to {{_p}}
 

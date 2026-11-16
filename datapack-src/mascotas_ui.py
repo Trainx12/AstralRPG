@@ -1,4 +1,4 @@
-"""Santuario de las seis mascotas, con retratos de sus modelos reales."""
+"""Santuario de 18 mascotas, seis por pagina; retratos privados separados."""
 import json
 from functools import lru_cache
 from pathlib import Path
@@ -7,7 +7,7 @@ from escape_menu import text
 from services_ui import png,SPLIT,header,tall,glyph_parts,illustration
 from market_ui import band_color
 from mobs.mascotas import MASCOTAS as ALL_PETS
-MASCOTAS = {pid: d for pid, d in ALL_PETS.items() if d["n"] <= 6}
+MASCOTAS = {pid: d for pid, d in ALL_PETS.items() if pid in list(ALL_PETS)[:6]}
 
 ROOT=Path(__file__).resolve().parent
 SIZE=(224,280)
@@ -17,8 +17,8 @@ FRAME=('mascotas2',(170,597,1602,2023))
 TITLE,TITLE_Y='MASCOTAS',36
 START,END='\ue800','\ue801'
 GLYPHS=tuple(chr(0xe810+i) for i in range(4))
-LABELS={'lobo':'LOBO','cuervo':'CUERVO','golem':'GOLEM','zorro':'ZORRO','dragon':'DRAGON','fenix':'FENIX'}
-BONUS={'lobo':'FUERZA I','cuervo':'VISION','golem':'DEFENSA','zorro':'RAPIDEZ','dragon':'ANTI FUEGO','fenix':'RESCATE'}
+LABELS={'fenix':'FENIX'}
+BONUS={'fenix':'RESCATE'}
 REST_SLOTS=tuple(range(47,52))
 
 
@@ -26,10 +26,10 @@ def title():
     return '&f'+START+''.join(GLYPHS)+END
 
 
-PAGE_CHARS = {p:tuple(chr(0xed30+(p-2)*4+i) for i in range(4)) for p in (2,3,4)}
-# Mascotas 7-23: paginas 2-4 con seis tarjetas grandes cada una, como la pagina 1.
-EXTRA = [pid for pid, d in ALL_PETS.items() if d['n'] > 6]
-PAGES = {2: EXTRA[0:6], 3: EXTRA[6:12], 4: EXTRA[12:18]}
+PAGE_CHARS = {p:tuple(chr(0xed30+(p-2)*4+i) for i in range(4)) for p in (2,3)}
+# Paginas compactas: seis companeros por ventana; IDs de invocacion intactos.
+EXTRA = list(ALL_PETS)[6:]
+PAGES = {2: EXTRA[0:6], 3: EXTRA[6:12]}
 LAST_PAGE = max(PAGES)
 EXTRA_FRAME = ('mascotas3', (452, 281, 2299, 1300))
 EXTRA_LABELS = dict(ghastito='GHASTITO', bombardero='BOMBARDERO', canonero='CANONERO', encapuchado='ZORRITO',
@@ -129,6 +129,7 @@ def portrait(pid):
 
 def card(pid,locked=False):
     """Retrato pintado por Gemini, con el nombre abajo; bloqueada en gris con candado."""
+    if pid != 'fenix': return extra_card(pid, locked)
     color=MASCOTAS[pid]['color']
     art=illustration('mascota_'+pid)
     # Altura del centro del encuadre: donde queda la cara de cada mascota en su retrato.
@@ -169,36 +170,15 @@ def tiny_text(im,caption,y,color):
 
 
 def nav_icon(kind):
-    """Botones del marco en madera, musgo y oro del santuario."""
-    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
-    d.rectangle((0,0,17,17),outline=EDGE);d.rectangle((1,1,16,16),fill='#1d3a33',outline='#3e5550')
-    d.line((2,1,15,1),fill='#e4d2a5')
-    gold,ivory,teal='#d9b766','#eee3be','#7fe0c8'
-    if kind=='info':      # huella
-        d.ellipse((6,8,11,13),fill=gold)
-        for x,y in ((4,6),(7,4),(10,4),(13,6)):d.ellipse((x-1,y-1,x+1,y+1),fill=ivory)
-    elif kind=='gacha':   # montura con gema
-        d.polygon(((3,9),(6,6),(11,6),(14,9),(12,12),(5,12)),fill='#8a5a32',outline=gold)
-        d.line((6,12,6,15),fill=gold);d.line((11,12,11,15),fill=gold)
-        d.rectangle((8,7,9,8),fill=teal);d.point((14,3),fill=teal);d.point((15,5),fill=gold)
-    elif kind=='back':    # flecha dorada
-        d.polygon(((3,9),(8,4),(8,7),(14,7),(14,11),(8,11),(8,14)),fill=gold)
-        d.line((9,8,13,8),fill=ivory)
-    elif kind=='next':    # flecha dorada hacia la derecha
-        d.polygon(((14,9),(9,4),(9,7),(3,7),(3,11),(9,11),(9,14)),fill=gold)
-        d.line((4,8,8,8),fill=ivory)
-    else:                 # cerrar
-        d.line((5,5,12,12),fill=ivory,width=2);d.line((12,5,5,12),fill=ivory,width=2)
-        d.point((8,8),fill='#e07a5f')
-    return im
+    from navegacion_provisoria import icon
+    return icon("mascotas", kind)
+
 
 
 def rest_button():
-    im=Image.new('RGBA',(90,18),'#294438');d=ImageDraw.Draw(im)
-    d.rectangle((0,0,89,17),outline=EDGE);d.rectangle((2,2,87,15),outline='#57705a')
-    d.line((3,1,86,1),fill='#e4d2a5')
-    text(im,'DESCANSAR',(45,5),color='#eee3be')
-    return im
+    from navegacion_provisoria import rest
+    return rest()
+
 
 
 def panel(frame=None,regions_=None):
@@ -262,7 +242,8 @@ def assets():
                     index=row*3+col
                     model(pid+('_locked' if locked else '')+f'_{index}',image.crop((col*18,row*18,col*18+18,row*18+18)))
     for kind in ('info','gacha','back','close','next'):model('nav_'+kind,nav_icon(kind))
-    for pid in EXTRA:
+    for pid in ALL_PETS:
+        if pid == 'fenix': continue
         for locked in (False,True):
             for name,tile in extra_tiles(pid,locked).items():model(name,tile)
     # Definiciones publicas de reserva. El circuito privado superpone los

@@ -121,8 +121,6 @@ def mount_rewards():
         ("epic", 10, "Montura voladora: Gran Ave", egg("astral_ave")),
         ("legendary", 10, "Montura voladora: Pterodactilo", egg("astral_pterodactilo")),
         # mascotas que te siguen (mobs/mascotas.py): se guardan como permiso; si ya la tenias, igual te llevas 1000$
-        ("rare", 6, "Mascota 3D: Cuervo Arcano", mascota("cuervo")),
-        ("epic", 6, "Mascota 3D: Dragoncito de Fuego", mascota("dragon")),
         ("legendary", 6, "Mascota 3D: Fenix", mascota("fenix")),
     ]
 
