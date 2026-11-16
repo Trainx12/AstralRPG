@@ -26,6 +26,42 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 public final class AstralDecor extends JavaPlugin implements Listener {
     private final Map<String,Integer> consumableXP = new HashMap<>();
     private int luckSeconds;
+    private int asuraHits=4;
+    private double asuraExtra=.5,asuraHeal=.05,carnivoraHeal=.03;
+    private record Combo(int count,int tick,UUID target) {}
+    private final Map<UUID,Combo> asuraCombo=new HashMap<>();
+    private String equipmentId(ItemStack it) {
+        if(it==null || !it.hasItemMeta())return "";
+        var match=java.util.regex.Pattern.compile("[{,]\\s*id:\\s*\"([a-z0-9_]+)\"").matcher(it.getItemMeta().getAsComponentString());
+        return match.find()?match.group(1):"";
+    }
+    @EventHandler(priority=EventPriority.HIGH,ignoreCancelled=true)
+    public void asuraHit(EntityDamageByEntityEvent e) {
+        if(!(e.getDamager() instanceof Player p) || !(e.getEntity() instanceof LivingEntity) ||
+           e.getCause()!=EntityDamageEvent.DamageCause.ENTITY_ATTACK)return;
+        if(!equipmentId(p.getInventory().getItemInMainHand()).equals("asura_espada")) {asuraCombo.remove(p.getUniqueId());return;}
+        int tick=Bukkit.getCurrentTick();Combo old=asuraCombo.get(p.getUniqueId());
+        int count=old!=null && tick-old.tick()<=100 && old.target().equals(e.getEntity().getUniqueId())?old.count()+1:1;
+        if(count==asuraHits) {e.setDamage(e.getDamage()*(1+asuraExtra));}
+    }
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void asuraHeal(EntityDamageByEntityEvent e) {
+        if(!(e.getDamager() instanceof Player p) || e.getCause()!=EntityDamageEvent.DamageCause.ENTITY_ATTACK || e.getFinalDamage()<=0)return;
+        if(!equipmentId(p.getInventory().getItemInMainHand()).equals("asura_espada"))return;
+        int tick=Bukkit.getCurrentTick();Combo old=asuraCombo.get(p.getUniqueId());
+        int count=old!=null && tick-old.tick()<=100 && old.target().equals(e.getEntity().getUniqueId())?old.count()+1:1;
+        asuraCombo.put(p.getUniqueId(),new Combo(count%asuraHits,tick,e.getEntity().getUniqueId()));
+        if(count==asuraHits)healFraction(p,asuraHeal);
+    }
+    private void healFraction(Player p,double pct) {
+        double max=p.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue();
+        p.heal(max*pct,org.bukkit.event.entity.EntityRegainHealthEvent.RegainReason.CUSTOM);
+    }
+    @EventHandler public void carnivoraKill(EntityDeathEvent e) {
+        Player p=e.getEntity().getKiller();if(p==null || e.getEntity() instanceof Player)return;
+        for(var it:p.getInventory().getArmorContents())if(!equipmentId(it).matches("carnivora_(helmet|chestplate|leggings|boots)"))return;
+        healFraction(p,carnivoraHeal);
+    }
     private final NamespacedKey consumableKey = new NamespacedKey("astral","consumible");
     private final NamespacedKey luckUntilKey = new NamespacedKey("astral","suerte_hasta");
     private final Map<UUID,Integer> xpClickTick = new HashMap<>();
@@ -38,6 +74,11 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             obj.getAsJsonObject("xp").entrySet().forEach(e->consumableXP.put(e.getKey(),e.getValue().getAsInt()));
             luckSeconds=obj.get("suerte_segundos").getAsInt();
         } catch(Exception ex) {throw new IllegalStateException("Consumibles sin datos",ex);}
+        try(var in=getResource("balance.json")) {
+            var b=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in)).getAsJsonObject();
+            asuraHits=b.get("asura_golpes").getAsInt();asuraExtra=b.get("asura_extra").getAsDouble();
+            asuraHeal=b.get("asura_cura").getAsDouble();carnivoraHeal=b.get("carnivora_cura").getAsDouble();
+        } catch(Exception ex) {throw new IllegalStateException("Balance sin datos",ex);}
         var board=Bukkit.getScoreboardManager().getMainScoreboard();
         if(board.getObjective("astral.suerte")==null)board.registerNewObjective("astral.suerte",org.bukkit.scoreboard.Criteria.DUMMY,net.kyori.adventure.text.Component.text("Suerte"));
     }
@@ -86,7 +127,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             if(!model.equals(meta.getItemModel())) {meta.setItemModel(model);it.setItemMeta(meta);}
         }
     }
-    @EventHandler public void xpQuit(PlayerQuitEvent e) {xpClickTick.remove(e.getPlayer().getUniqueId());}
+    @EventHandler public void xpQuit(PlayerQuitEvent e) {xpClickTick.remove(e.getPlayer().getUniqueId());asuraCombo.remove(e.getPlayer().getUniqueId());}
     @EventHandler public void luckJoin(PlayerJoinEvent e) {updateLuck(e.getPlayer());}
     private static final class TableRecipe {
         NamespacedKey key;
@@ -191,20 +232,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.HIGHEST) public void protectSmithing(PrepareSmithingEvent e) {
         for(var item:e.getInventory().getContents())if(astralIngredient(item)) {e.setResult(null);return;}
     }
-    // Durabilidad (15/11/2026): vanilla gasta dano/4 por pieza y con el dano escalado (miles) la armadura se rompia
-    // en una mazmorra. Equipo Astral: 1 punto por golpe; y si su durabilidad maxima es baja (oficios, agua, armas
-    // con durabilidad vanilla) a veces no gasta, para que rinda como OBJETIVO_DURABILIDAD golpes (~12 mazmorras).
-    private static final int OBJETIVO_ARMADURA=3000, OBJETIVO_ARMA=4000;
+    // El dano escalado no aumenta el desgaste: 1 por evento positivo, reparable.
     @EventHandler(ignoreCancelled=true,priority=EventPriority.HIGH)
     public void desgasteAstral(PlayerItemDamageEvent e) {
-        ItemStack it=e.getItem();
-        if(!astralIngredient(it))return;
-        e.setDamage(Math.min(e.getDamage(),1));
-        int max=it.getType().getMaxDurability();
-        if(it.getItemMeta() instanceof org.bukkit.inventory.meta.Damageable d && d.hasMaxDamage())max=d.getMaxDamage();
-        String n=it.getType().name();
-        int objetivo=(n.endsWith("_HELMET")||n.endsWith("_CHESTPLATE")||n.endsWith("_LEGGINGS")||n.endsWith("_BOOTS"))?OBJETIVO_ARMADURA:OBJETIVO_ARMA;
-        if(max>0 && max<objetivo && Math.random()>(double)max/objetivo)e.setCancelled(true);
+        if(astralIngredient(e.getItem()))e.setDamage(Math.min(e.getDamage(),1));
     }
     private boolean astralIngredient(ItemStack item) {
         // Incluye materiales sin item_model y objetos Astral de versiones anteriores.

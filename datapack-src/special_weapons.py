@@ -20,27 +20,34 @@ WEAPONS = {
 
 # Números de las habilidades actuales, separados de su presentación.
 from escala import FACTOR_ARMA, TIER_ESPECIAL, fmt, MANA_ESPECIAL, CD_DANZA, MANA_HECHIZO, CURACION
-_scale = FACTOR_ARMA[TIER_ESPECIAL]
+from balance_equipo import SPECIAL_TIERS
+from escala import DANO, HECHIZO
+from items import AXES, STAFFS
+for iid,w in WEAPONS.items():
+    w['tier'] = SPECIAL_TIERS[iid]
+    w['damage_total'] = (AXES[2]['dmg'] * (1+AXES[2]['bonus']/100) * FACTOR_ARMA[3] if iid=='hacha_terremoto'
+                         else HECHIZO[4] * (1+STAFFS[3]['mdmg']/100) if iid=='varita_estallido' else
+                         w['damage'] * FACTOR_ARMA[3] if iid=='varita_curacion' else DANO[w['tier']])
 ABILITIES = {
     'espada_tormenta': [dict(name='Rayo de la Tormenta', trigger='AL GOLPEAR',
         description=['25% de invocar un rayo.', 'Daño: 30% del golpe (mínimo 1), radio 2 bloques.'])],
     'espada_sombras': [dict(name='Danza del Ender', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['danza'], cooldown=CD_DANZA,
         description=['Salta y golpea hasta 6 enemigos a 12 bloques.',
-                     f'Cada golpe causa {fmt(10*_scale)} de daño; un salto cada 4 ticks.'],
+                     f'Cada golpe causa {fmt(WEAPONS['espada_sombras']['damage_total'])} de daño; un salto cada 4 ticks.'],
         notes=['No atraviesa paredes. Usable en mazmorras.'])],
     'espada_destello': [dict(name='Transmisión Instantánea', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['destello'],
         description=['Teletransporta hasta 12 bloques hacia adelante', 'y da +50 de Velocidad por 3 segundos.'],
         notes=['Sin recarga. No usable en mazmorras.'])],
     'hacha_terremoto': [dict(name='Onda Sísmica', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['sismo'], cooldown=6,
-        description=[f'Onda de {fmt(10*_scale)} de daño hasta 5 bloques.', 'Levanta el suelo a tu alrededor.'])],
+        description=[f"Onda de {fmt(2*WEAPONS['hacha_terremoto']['damage_total'])} de daño hasta 5 bloques (x2 tu golpe, incluidas mejoras).", 'Levanta el suelo a tu alrededor.'])],
     'varita_curacion': [dict(name='Curación', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['curacion'], cooldown=1,
         description=[f"Cura el {CURACION['pct']}% de tu vida máxima por segundo",
                      f"durante {CURACION['segundos']} s, a vos y a los jugadores a {CURACION['radio']} bloques."],
         notes=['Las curaciones de varita no se acumulan. Usable en el lobby.'])],
     'varita_estallido': [dict(name='Estallido', trigger='AL GOLPEAR', mana=MANA_ESPECIAL['estallido'],
-        description=[f'Explosión de {fmt(6*_scale)} de daño en radio 2.']),
+        description=[f'Explosión de {fmt(WEAPONS['varita_estallido']['damage_total'])} de daño en radio 2.']),
         dict(name='Proyectil Explosivo', trigger='CLIC DERECHO', mana=MANA_ESPECIAL['estallido'], cooldown=1,
-        description=['Disparo instantáneo hasta 16 bloques.', f'Explosión de {fmt(6*_scale)} de daño en radio 2.'])],
+        description=['Disparo instantáneo hasta 16 bloques.', f'Explosión de {fmt(WEAPONS['varita_estallido']['damage_total'])} de daño en radio 2.'])],
 }
 for _iid, _weapon in WEAPONS.items():
     _weapon['abilities'] = ABILITIES[_iid]
@@ -52,17 +59,17 @@ def register(add_item, recipes, txt, weapon_mods):
         add_item(iid, 'minecraft:'+w['base'], w['name'], w['color'],
                  [txt('Arma especial - cualquier clase', w['color'])] +
                  [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')],
-                 {'type':'weapon', 'special':iid, 'tier':TIER_ESPECIAL}, model=w.get('model','astral:'+iid),
+                 {'type':'weapon', 'special':iid, 'tier':w['tier']}, model=w.get('model','astral:'+iid),
                  glint=w.get('glint'), kind='weapon',
                  pdc={'auraskills:ignore_interact':True},
-                 extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage']*FACTOR_ARMA[TIER_ESPECIAL],w['speed'])})
+                 extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage_total'],w['speed'])})
         recipes.append((iid,1,w['cost'],'Especiales'))
 
 
 def script_options(text):
     """Completa en el .sk el mana y las recargas de escala.py (una sola fuente de numeros)."""
     import re
-    values={'mana_destello':MANA_ESPECIAL['destello'],'mana_danza':MANA_ESPECIAL['danza'],'cd_danza':CD_DANZA,
+    values={'cd_agua':__import__('balance_equipo').AGUA_CD/20, 'dano_danza':WEAPONS['espada_sombras']['damage_total'], 'dano_estallido':WEAPONS['varita_estallido']['damage_total'], 'mana_destello':MANA_ESPECIAL['destello'],'mana_danza':MANA_ESPECIAL['danza'],'cd_danza':CD_DANZA,
             'mana_sismo':MANA_ESPECIAL['sismo'],'mana_estallido':MANA_ESPECIAL['estallido'],
             'mana_curacion':MANA_ESPECIAL['curacion'],'cura_pct':CURACION['pct'],
             'cura_segundos':CURACION['segundos'],'cura_radio':CURACION['radio'],
@@ -71,6 +78,8 @@ def script_options(text):
     arenas=' or '.join(f'"{w}" or "minecraft:{w}"' for w in arena_worlds())
     assert text.count('__ARENAS__')==1
     text=text.replace('__ARENAS__',arenas)
+    from items import MEJORA_DANO
+    text=text.replace('    __SISMO_MEJORAS__', '\n'.join(f'    if {{_qu}} is {lv}:\n        set {{_quakeDamage}} to {{_quakeDamage}} * {factor}' for lv,factor in enumerate(MEJORA_DANO,1)))
     for key,value in values.items():
         text,n=re.subn(rf'^(    {key}): .*$',rf'\g<1>: {value}',text,flags=re.M)
         assert n==1,key
@@ -85,6 +94,7 @@ def generate(files):
         staff=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"baston_{t}"}}}}]'
         lines+=[staff+' run tag @s add astral.staff',staff+f' run tag @s add astral.staff.t{t}']
     lines.append('execute if score @s astral.cd matches 1.. run tag @s add astral.spell.cd')
+    lines += ['tag @s remove astral.water_sword', 'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{id:"agua_espada"}}] run tag @s add astral.water_sword']
     for iid in WEAPONS:
         check=f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{astral:{{id:"{iid}"}}}}]'
         lines += [check+' run tag @s add astral.special', check+f' run tag @s add astral.special.{iid}']

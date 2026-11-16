@@ -34,6 +34,7 @@ class AlasCascoTests(unittest.TestCase):
                     def repair(value, expected=False):
                         if isinstance(value,dict):
                             value.pop('minecraft:lore',None)
+                            value.pop('minecraft:max_damage',None)
                             eq=value.get('minecraft:equippable')
                             if expected and eq and eq.get('slot')=='head':eq.pop('asset_id',None)
                             for v in value.values():repair(v,expected)
@@ -49,7 +50,7 @@ class AlasCascoTests(unittest.TestCase):
                             for v in value:strip_bar(v)
                     strip_bar(b)
                     # ITEM_VERSION sube en tandas posteriores (16: estrellas en bastones).
-                    nv=lambda x:re.sub(r'(?<![A-Za-z_])v:\d+','v:N',json.dumps(x))
+                    nv=lambda x:re.sub(r'(?<![A-Za-z_])v:\d+','v:N',re.sub(r'def:\d+','def:N',json.dumps(x)))
                     self.assertEqual(nv(a),nv(b),n)
                 else:
                     self.assertTrue(n=='data/astral/function/upgrade/check.mcfunction' or '/upgrade/' in n and n.endswith('/carnivora_helmet.mcfunction'),n)

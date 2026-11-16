@@ -24,7 +24,7 @@ class FichaTests(unittest.TestCase):
         cases={'espada_1':(1,'ESPADA'), 'espada_5':(5,'ESPADA'), 'hacha_3':(3,'HACHA'),
                'arco_2':(2,'ARCO'), 'baston_4':(4,'BASTÓN'), 'guadana_3':(3,'GUADAÑA'),
                'lanza_3':(3,'LANZA'), 'guantes_meteoro':(3,'GUANTES'), 'guadana_umbria':(3,'GUADAÑA')}
-        cases.update({iid:(3,'HACHA' if iid.startswith('hacha') else 'VARITA' if iid.startswith('varita') else 'ESPADA') for iid in WEAPONS})
+        cases.update({iid:(WEAPONS[iid]['tier'],'HACHA' if iid.startswith('hacha') else 'VARITA' if iid.startswith('varita') else 'ESPADA') for iid in WEAPONS})
         for iid,(tier,kind) in cases.items():
             c=self.components(iid)
             hidden=c['minecraft:tooltip_display']['hidden_components']

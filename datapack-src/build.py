@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 22  # Durabilidad T1-T2 subida (15/11): 1 punto por golpe y ~12 mazmorras.
+ITEM_VERSION = 23  # Balance especial/acuatico, fichas y durabilidad explicita (16/11).
 
 files = {}
 
@@ -148,7 +148,7 @@ for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
 add_item("gancho", "minecraft:carrot_on_a_stick", "Saltador", "#d0d0d0",
          [txt("Click derecho: impulso hacia donde miras"), txt("Salto elevado sin dano de caida."),
           txt("Enfriamiento: 2 segundos.", "dark_gray")],
-         {"type": "hook"},
+         {"type": "hook", "tier": 1},
          extra={"minecraft:enchantments": {f"{NS}:gancho": 1},
                 "minecraft:tooltip_display": {"hidden_components": ["minecraft:enchantments"]},
                 "minecraft:max_stack_size": 1})
@@ -161,7 +161,7 @@ add_item("gancho_realista", "minecraft:fishing_rod", "Gancho", "#D6B4FF",
           txt("Vuelve a pulsar al enganchar un bloque o entidad."),
           txt("El tiron te lleva hacia el anzuelo, no hacia la mirada."),
           txt("Anclaje fijo · alcance 32 bloques · sin recarga", "dark_gray")],
-         {"type": "realistic_hook"})
+         {"type": "realistic_hook", "tier": 1})
 
 for (out, n, ings) in MAT_RECIPES:
     RECIPES.append((out, n, ings, "Materiales"))
@@ -561,10 +561,9 @@ for i, s in enumerate(SPEARS):
     t = i + 1
     iid = f"lanza_{t}"
     ench = fx_to_ench(s["fx"])
-    ench[f"{NS}:empalar"] = t
-    ench[f"{NS}:poder_astral"] = t
+    # Dano explicito por tier, sin multiplicador duplicado de encantamientos.
     weapon_item(iid, s["base"], s["name"], "#ffb347", "Lanza de Combate", t,
-                [f"+{s['bonus']} de dano por golpe"] + s["desc"], "fighting", s["lvl"], None, ench, {"w": "spear"})
+                s["desc"], "fighting", s["lvl"], weapon_mods(iid, DANO[t] * __import__('balance_equipo').LANZA_DANO, __import__('balance_equipo').LANZA_VELOCIDAD), ench, {"w": "spear", "spear_balance": 1})
     ings = list(s["cost"]) if t == 1 else [("c", f"lanza_{t - 1}", 1)] + s["cost"]
     RECIPES.append((iid, 1, ings, "Lanzas"))
 
@@ -614,6 +613,8 @@ register_oceano(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from oficios import register as register_oficios
 register_oficios(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from mesa import prepare as prepare_mesa, export as export_mesa
+from balance_equipo import finalize as finalize_balance
+finalize_balance(ITEMS, FICHAS)
 MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
 export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
 for iid, it in ITEMS.items():
@@ -893,16 +894,21 @@ enchant("gancho", "Gancho", "gray", 1, ["mainhand"], {"minecraft:tick": [{
                "coordinate_scale": [1.0, 1.0, 1.0], "magnitude": 0.16},
     "requirements": {"condition": "minecraft:entity_scores", "entity": "this", "scores": {"astral.grap": {"min": 1}}}}]})
 
+# Encantamientos originales de lanzas quedan conservados al migrar, pero no duplican
+# el dano del nuevo atributo. En lanzas antiguas aun sin migrar funcionan como antes.
+LEGACY_SPEAR = {"condition":"minecraft:all_of","terms":[DIRECT,
+    {"condition":"minecraft:inverted","term":{"condition":"minecraft:entity_properties","entity":"attacker",
+     "predicate":{"equipment":{"mainhand":{"predicates":{"minecraft:custom_data":"{astral:{spear_balance:1}}"}}}}}}]}
 enchant("empalar", "Empalar", "gold", TIER_MAX, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:add",
                "value": {"type": "minecraft:lookup", "values": [1.0, 2.0, 3.0, 4.0, 6.0, 7.0, 8.0, 9.0, 10.0, 12.0], "fallback": 12.0}},
-    "requirements": DIRECT}]})
+    "requirements": LEGACY_SPEAR}]})
 
 # Poder Astral: multiplica el dano de las lanzas segun su tier (escala.py).
 enchant("poder_astral", "Poder Astral", "light_purple", TIER_MAX, ["mainhand"], {"minecraft:damage": [{
     "effect": {"type": "minecraft:multiply", "factor": {"type": "minecraft:lookup",
                "values": [round(FACTOR_ARMA[t], 3) for t in range(1, TIER_MAX + 1)], "fallback": round(FACTOR_ARMA[TIER_MAX], 3)}},
-    "requirements": DIRECT}]})
+    "requirements": LEGACY_SPEAR}]})
 
 # Mejora +1..+10 del Herrero (el nivel del encantamiento es el +N)
 put(f"data/{NS}/enchantment/mejora_arma.json", {
@@ -1465,6 +1471,19 @@ fn("player/def", [
      f'run scoreboard players remove #v astral.tmp {bar * 5}'
      # La barra de armadura de las piezas Astral (3/8/6/3) es solo visual: no se suma a la Defensa.
      for slot, bar in (("head", 3), ("chest", 8), ("legs", 6), ("feet", 3))] + [
+    "scoreboard players set #pct astral.tmp 100",
+    *[f'execute if items entity @s weapon.offhand *[minecraft:custom_data~{{astral:{{id:"talisman_roca_{lv}"}}}}] run scoreboard players set #pct astral.tmp {100+int(pct*100)}' for lv,pct in enumerate(__import__('balance_equipo').TALISMAN_PCT,1)],
+    "scoreboard players operation #d astral.tmp *= #pct astral.tmp",
+    "scoreboard players set #base astral.tmp 100",
+    "scoreboard players operation #d astral.tmp /= #base astral.tmp",
+    # Roca tambien multiplica la barra visual: descontar ese extra, no contarlo como defensa real.
+    "scoreboard players set #bar astral.tmp 0",
+    *[f'execute if data storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def run scoreboard players add #bar astral.tmp {bar*5}'
+      for slot,bar in (("head",3),("chest",8),("legs",6),("feet",3))],
+    "scoreboard players remove #pct astral.tmp 100",
+    "scoreboard players operation #bar astral.tmp *= #pct astral.tmp",
+    "scoreboard players operation #bar astral.tmp /= #base astral.tmp",
+    "scoreboard players operation #v astral.tmp -= #bar astral.tmp",
     "scoreboard players operation @s astraldef = #d astral.tmp",
     "scoreboard players operation @s astraldef += #v astral.tmp",
     "execute if score @s astral.defp = #d astral.tmp run return 0",

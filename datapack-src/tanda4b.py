@@ -39,6 +39,10 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         c['minecraft:item_model'] = 'astral:' + iid
         if iid == 'carnivora_hacha':
             c.setdefault('minecraft:enchantments', {}).update({'minecraft:efficiency':3, 'minecraft:unbreaking':2})
+        if iid == 'asura_espada':
+            from balance_equipo import ASURA_DANO
+            for m in c.get('minecraft:attribute_modifiers',[]):
+                if m['type']=='minecraft:attack_damage': m['amount']=(m['amount']+1)*ASURA_DANO-1
         it['name'] = name
         if source in fichas:
             from ficha import render
@@ -48,8 +52,8 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         items[iid] = it
     for piece, label in [('helmet', 'Casco'), ('chestplate', 'Pechera'), ('leggings', 'Grebas'), ('boots', 'Botas')]:
         iid = 'carnivora_' + piece
-        add_item(iid, 'minecraft:diamond_' + piece, label + ' Carnivora', '#bff05a', [txt('Armadura Carnivora III')],
-                 {'type': 'armor', 'set': 'carnivora', 'tier': 3, 'piece': piece, 'def': defensa_pieza(3, piece)},
+        add_item(iid, 'minecraft:diamond_' + piece, label + ' Carnivora', '#bff05a', [txt('Armadura Carnivora III'), txt(f"Set completo: al matar recuperas {__import__('balance_equipo').CARNIVORA_CURA_BAJA*100:g}% de vida maxima.", 'gold')],
+                 {'type': 'armor', 'set': 'carnivora', 'tier': 3, 'piece': piece, 'def': defensa_pieza(3, piece, __import__('balance_equipo').CARNIVORA_DEF)},
                  extra={'minecraft:attribute_modifiers': armor_attrs(iid, piece, 'diamond', {}, vida=VIDA_PIEZA[3]),
                         # Sin asset_id en cabeza: usa el modelo Java y su display.head.
                         'minecraft:equippable': {'slot': {'helmet':'head','chestplate':'chest','leggings':'legs','boots':'feet'}[piece],

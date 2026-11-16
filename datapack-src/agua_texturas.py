@@ -7,7 +7,7 @@ ASTRAL_PRIVADO/build/entregas/agua-texturas/ con rutas del resource pack. Nunca 
 - Espada 32x32: el acero gris pasa a agua turquesa (degradado por brillo); el mango a azul profundo.
 - Armadura puesta: mitad de arriba de armor_tide_deepblue (capa 1) y de armor_tide_deepblue_legs (capa 2),
   del mod Ice and Fire que paso el dueno (TERCEROS: solo circuito privado).
-- Casco: modelo 3D con las dos aletas de la cabeza (las de brazos y piernas no se pueden en vanilla).
+- Casco: casco cerrado azul oscuro y aletas reconstruidas desde el icono; resto del set intacto.
 - Hacha, pico y arco (con sus 3 tensados): arte del dueno llevado al agua. Perla Abisal: su gema sin retocar.
 - Perla Abisal, Coral Astral y sus menas (version piedra): arte del dueno sin retocar.
 """
@@ -89,29 +89,22 @@ def _box(x0, y0, z0, x1, y1, z1, u, v, w, h, d, inflate=0.0):
         'down': {'uv': q(u + d + w, v + d, u + d + w + w, v), 'texture': '#t'}}}
 
 
-# Aletas de la cabeza: medidas reales de ModelSeaSerpentArmor (Ice and Fire): caja 1x16x14 con UV en (0,32),
-# pose (+-3.5, -8.8, 3.5), xRot 180 y yRot +-30 grados. En la cabeza 1 pixel = 1.6 unidades del modelo de item
-# (16 unidades = casco de 10 pixeles) y el centro de la cabeza (0,-4,0) cae en (8,8,8). El giro va a 22.5
-# (el maximo permitido por paso en modelos de item).
-def _fin(side):
-    px = 1.6
-    cx, cy, cz = 8 + px * 3.5 * side, 8 + px * (8.8 - 0.4 - 4), 8 + px * (3.5 + 0.9)
-    hx, hy, hz = px * 0.5, px * 8, px * 7
-    side_uv = {'uv': [0, 46 / 4, 14 / 4, 62 / 4], 'rotation': 180, 'texture': '#t'}
-    edge = {'uv': [14 / 4, 46 / 4, 15 / 4, 62 / 4], 'texture': '#t'}
-    top = {'uv': [14 / 4, 32 / 4, 15 / 4, 46 / 4], 'texture': '#t'}
-    return {'from': [round(cx - hx, 3), round(cy - hy, 3), round(cz - hz, 3)], 'to': [round(cx + hx, 3), round(cy + hy, 3), round(cz + hz, 3)],
-            'rotation': {'angle': -22.5 * side, 'axis': 'y', 'origin': [round(cx, 3), round(cy, 3), round(cz, 3)]},
-            'faces': {'east': side_uv, 'west': side_uv, 'north': edge, 'south': edge, 'up': top, 'down': top}}
-
-
 def casco_3d():
-    """Caja del casco (16 unidades = capa de armadura en la cabeza) + capa externa + las dos aletas del mod."""
-    return {'textures': {'t': 'astral:item/agua_casco_3d', 'particle': 'astral:item/agua_casco_3d'},
-            'elements': [_box(0, 0, 0, 16, 16, 16, 0, 0, 8, 8, 8),
-                         _box(0, 0, 0, 16, 16, 16, 32, 0, 8, 8, 8, inflate=0.8),
-                         _fin(-1), _fin(1)],
-            'display': {'head': {'translation': [0, 0, 0], 'scale': [1, 1, 1]}}}
+    """Casco cerrado azul oscuro y aletas verticales tomadas del icono (sin cabeza/orejas)."""
+    im=tint(Image.open(SRC/'agua_helmet.png')).convert('RGBA')
+    # El cuerpo cerrado tapa la piel. El frente y las aletas son voxeles del icono.
+    elements=[{'from':[2,0,0],'to':[14,16,16],'faces':{face:{'uv':[0,0,16,16],'texture':'#solid'} for face in ('north','south','east','west','up','down')}}]
+    for y in range(im.height):
+        for x in range(im.width):
+            r,g,b,a=im.getpixel((x,y))
+            if not a:continue
+            uv=[x*16/im.width,y*16/im.height,(x+1)*16/im.width,(y+1)*16/im.height]
+            # Aletas extendidas por los costados, con profundidad; no son las orejas del mod.
+            front=x<4 or x>=im.width-4
+            elements.append({'from':[x,15-y,-.12],'to':[x+1,16-y,9 if front else .12],
+                             'faces':{f:{'uv':uv,'texture':'#icon'} for f in ('north','south','east','west','up','down')}})
+    return {'textures':{'icon':'astral:item/agua_helmet','solid':'astral:item/agua_casco_solido','particle':'astral:item/agua_helmet'},
+            'elements':elements,'display':{'head':{'translation':[0,0,0],'scale':[1,1,1]}}}
 
 
 def generate():
@@ -150,9 +143,10 @@ def generate():
         'type': 'minecraft:condition', 'property': 'minecraft:using_item', 'on_false': m(''),
         'on_true': {'type': 'minecraft:range_dispatch', 'property': 'minecraft:use_duration', 'scale': 0.05, 'fallback': m('_pulling_0'),
                     'entries': [{'threshold': 0.65, 'model': m('_pulling_1')}, {'threshold': 0.9, 'model': m('_pulling_2')}]}}}
-    # Casco 3D con las orejas (pedido del dueno): en la cabeza se dibuja este modelo; en el inventario, el icono.
+    # Casco cerrado con aletas del icono: en la cabeza el modelo; inventario conserva su icono.
     full = tint(Image.open(SRC / 'armadura_puesta_64x64.png'), val_gain=1.05)
     files['assets/astral/textures/item/agua_casco_3d.png'] = full
+    files['assets/astral/textures/item/agua_casco_solido.png'] = Image.new('RGBA',(16,16),(7,29,48,255))
     jsons['assets/astral/models/item/agua_casco_3d.json'] = casco_3d()
     jsons['assets/astral/items/agua_helmet.json'] = {'model': {
         'type': 'minecraft:select', 'property': 'minecraft:display_context',

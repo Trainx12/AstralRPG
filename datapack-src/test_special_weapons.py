@@ -44,7 +44,7 @@ class SpecialWeaponTests(unittest.TestCase):
                 self.assertNotIn('requirements',comp['minecraft:custom_data'])
                 damage=next(m for m in comp['minecraft:attribute_modifiers'] if m['type']=='minecraft:attack_damage')
                 from escala import FACTOR_ARMA, TIER_ESPECIAL
-                self.assertAlmostEqual(damage['amount']+1,w['damage']*FACTOR_ARMA[TIER_ESPECIAL],places=2)
+                self.assertAlmostEqual(damage['amount']+1,w['damage_total'],places=2)
 
 
 if __name__=='__main__':unittest.main()

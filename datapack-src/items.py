@@ -326,13 +326,13 @@ MATERIALS.update({
 # ---------------------------------------------------------------------------
 TALISMANS = {
     "vida": {"name": "Talisman de Vida", "color": "#ff6b6b", "model": "minecraft:heart_of_the_sea",
-             "attr": "max_health", "op": "add_value", "vals": [2, 4, 6], "fmt": "+{v} de vida maxima (corazones x2)"},
+             "attr": "max_health", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.20], "fmt": "+{p}% de vida maxima"},
     "furia": {"name": "Talisman de Furia", "color": "#ff9a3d", "model": "minecraft:blaze_powder",
-              "attr": "attack_damage", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.15], "fmt": "+{p}% de dano"},
+              "attr": "attack_damage", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.20], "fmt": "+{p}% de dano"},
     "viento": {"name": "Talisman del Viento", "color": "#bff5e6", "model": "minecraft:feather",
-               "attr": "movement_speed", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.15], "fmt": "+{p}% de velocidad"},
+               "attr": "movement_speed", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.20], "fmt": "+{p}% de velocidad"},
     "roca": {"name": "Talisman de Roca", "color": "#a0a0b0", "model": "minecraft:flint",
-             "attr": "armor", "op": "add_value", "vals": [2, 3, 5], "fmt": "+{v} de armadura"},
+             "attr": "armor", "op": "add_multiplied_base", "vals": [0.05, 0.10, 0.20], "fmt": "+{p}% de Defensa Astral y armadura"},
 }
 TALISMAN_COST = [
     [("c", "esencia_elite", 3), ("c", "gema_umbria_fragmentada", 1)],

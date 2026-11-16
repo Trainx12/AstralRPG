@@ -34,9 +34,19 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     static final int FLOOR_BASE = 18, CEIL_WATER = 109, CEIL_TOP = 116;
     String world; long everyMs; List<Integer> warnMinutes;
     long nextRegen; boolean regenerating; double bowDamage;
+    double waterDamage,waterAxe,swimFactor;
+    boolean applyingVision;
+    final Set<UUID> ownVision=new HashSet<>();
+    final Map<UUID,AbstractArrow> waterArrows=new HashMap<>();
+    final Set<UUID> arrowWaterTick=new HashSet<>();
+    final NamespacedKey swimKey=new NamespacedKey(this,"water_swim");
 
     @Override public void onEnable() {
         saveDefaultConfig();
+        try(var in=getResource("balance.json")) {
+            var b=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in)).getAsJsonObject();
+            waterDamage=b.get("projectile").getAsDouble();waterAxe=b.get("axe").getAsDouble();swimFactor=b.get("swim").getAsDouble();
+        } catch(Exception ex){throw new IllegalStateException(ex);}
         world = getConfig().getString("mundo", "oceano");
         everyMs = getConfig().getLong("regenerar-cada-horas", 72) * 3600_000L;
         warnMinutes = getConfig().getIntegerList("avisos-minutos");
@@ -305,47 +315,87 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         return n;
     }
 
-    /** Casco: vision nocturna bajo el agua. Set completo: respiracion infinita (en cualquier mundo). */
+    /** Solo la vision que agregamos nosotros se retira al salir; nunca sustituir una pocion ajena. */
     void waterSet() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            int n = waterPieces(p);
-            if (n == 0) continue;
-            if (p.isUnderWater() && AGUA.matcher(components(p.getInventory().getHelmet())).find())
-                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 260, 0, true, false, true));
-            if (n == 4 && p.getRemainingAir() < p.getMaximumAir()) p.setRemainingAir(p.getMaximumAir());
+        for(Player p:Bukkit.getOnlinePlayers()) {
+            boolean active=waterPieces(p)==4 && p.isUnderWater();
+            var effect=p.getPotionEffect(PotionEffectType.NIGHT_VISION);
+            if(active && (effect==null || ownVision.contains(p.getUniqueId()))) {
+                if(effect==null || (effect.getAmplifier()==0 && effect.getDuration()<=260 && !effect.hasIcon())) {
+                    applyingVision=true;try {p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,260,0,true,false,false));}finally {applyingVision=false;}ownVision.add(p.getUniqueId());
+                } else ownVision.remove(p.getUniqueId());
+            } else if(!active && ownVision.remove(p.getUniqueId()) && effect!=null && effect.getAmplifier()==0 && effect.getDuration()<=260 && !effect.hasIcon())p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+            if(waterPieces(p)==4)p.setRemainingAir(p.getMaximumAir());
+            swimSpeed(p,active);
         }
     }
-
-    // Arco de agua: clic derecho dispara un chorro (tridente de agua que no se recoge), sin flechas.
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = false) public void waterBow(PlayerInteractEvent e) {
-        if (e.getAction() != Action.RIGHT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        if (e.getHand() != org.bukkit.inventory.EquipmentSlot.HAND) return;
-        ItemStack it = e.getItem();
-        if (!"agua_arco".equals(astralId(it))) return;
-        e.setCancelled(true);
-        Player p = e.getPlayer();
-        if (p.hasCooldown(it)) return;
-        p.setCooldown(it, 14);
-        Trident t = p.launchProjectile(Trident.class, p.getEyeLocation().getDirection().multiply(2.6));
-        t.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
-        t.addScoreboardTag("astral.chorro");
-        t.setGlowing(false);
-        p.getWorld().playSound(p.getLocation(), Sound.ENTITY_DROWNED_SHOOT, 0.8f, 1.4f);
-        p.getWorld().spawnParticle(Particle.BUBBLE_COLUMN_UP, p.getEyeLocation(), 12, 0.2, 0.2, 0.2, 0.05);
-        Bukkit.getScheduler().runTaskLater(this, () -> { if (t.isValid()) t.remove(); }, 60);
+    // travelInWater de Paper 26.1.2: aceleracion .02, rozamiento .8/.9, objetivo .546.
+    // Con eficiencia 1 y jugador flotando, e=.5. Calibramos la velocidad terminal horizontal
+    // a 1.5x la normal; eficiencia=1 NO quiere decir nado x1.5.
+    void swimSpeed(Player p,boolean active) {
+        var speed=p.getAttribute(org.bukkit.attribute.Attribute.MOVEMENT_SPEED);
+        if(speed==null)return;
+        speed.removeModifier(swimKey);
+        if(!active || p.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE))return;
+        double efficiency=p.getAttribute(org.bukkit.attribute.Attribute.WATER_MOVEMENT_EFFICIENCY).getValue()*(p.isOnGround()?1:.5);
+        if(efficiency<=0)return;
+        double drag=p.isSprinting()?.9:.8;
+        double effectiveDrag=drag+(.54600006-drag)*efficiency;
+        double target=.02+(swimFactor*.02/(1-drag)*(1-effectiveDrag)-.02)/efficiency;
+        double current=speed.getValue();
+        if(current>0)speed.addTransientModifier(new org.bukkit.attribute.AttributeModifier(swimKey,target/current-1,org.bukkit.attribute.AttributeModifier.Operation.MULTIPLY_SCALAR_1));
+    }
+    @EventHandler public void swimTick(com.destroystokyo.paper.event.server.ServerTickStartEvent e) {
+        for(Player p:Bukkit.getOnlinePlayers())swimSpeed(p,waterPieces(p)==4 && p.isUnderWater());
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void externalVision(EntityPotionEffectEvent e) {
+        if(e.getEntity() instanceof Player p && e.getNewEffect()!=null && e.getNewEffect().getType().equals(PotionEffectType.NIGHT_VISION)
+           && !applyingVision)ownVision.remove(p.getUniqueId());
+    }
+    @EventHandler public void waterQuit(PlayerQuitEvent e) {
+        Player p=e.getPlayer();if(ownVision.remove(p.getUniqueId()))p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+        var speed=p.getAttribute(org.bukkit.attribute.Attribute.MOVEMENT_SPEED);if(speed!=null)speed.removeModifier(swimKey);
+    }
+    @EventHandler(priority=EventPriority.HIGH,ignoreCancelled=true) public void waterAxe(EntityDamageByEntityEvent e) {
+        if(e.getDamager() instanceof Player p && p.isUnderWater() && "agua_hacha".equals(astralId(p.getInventory().getItemInMainHand()))
+           && e.getCause()==EntityDamageEvent.DamageCause.ENTITY_ATTACK)e.setDamage(e.getDamage()*(1+waterAxe));
+        if(e.getDamager() instanceof Snowball s && s.getScoreboardTags().contains("astral.water_sword"))e.setDamage(waterDamage);
+    }
+    void waterShot(Player p) {
+        if(!"agua_espada".equals(astralId(p.getInventory().getItemInMainHand())))return;
+        Snowball shot=p.launchProjectile(Snowball.class,p.getEyeLocation().getDirection().multiply(1.5));
+        shot.setGravity(false);shot.addScoreboardTag("astral.water_sword");
+        shot.setItem(new ItemStack(Material.PRISMARINE_CRYSTALS));
+        Bukkit.getScheduler().runTaskLater(this,shot::remove,40);
+    }
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void waterArrow(EntityShootBowEvent e) {
+        if(!"agua_arco".equals(astralId(e.getBow())) || !(e.getProjectile() instanceof AbstractArrow arrow))return;
+        // Paper no expone water inertia; se registra el estado previo y se compensa .6 -> .99 al terminar el tick.
+        arrow.addScoreboardTag("astral.water_arrow");waterArrows.put(arrow.getUniqueId(),arrow);
     }
 
-    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true) public void chorro(EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Trident t && t.getScoreboardTags().contains("astral.chorro")) e.setDamage(bowDamage);
-    }
-
-    @EventHandler public void chorroHit(ProjectileHitEvent e) {
-        if (e.getEntity() instanceof Trident t && t.getScoreboardTags().contains("astral.chorro")) {
-            t.getWorld().spawnParticle(Particle.SPLASH, t.getLocation(), 20, 0.3, 0.3, 0.3, 0.1);
-            Bukkit.getScheduler().runTask(this, t::remove);
+    @EventHandler public void waterArrowStart(com.destroystokyo.paper.event.server.ServerTickStartEvent e) {
+        arrowWaterTick.clear();
+        waterArrows.values().removeIf(a->!a.isValid() || a.isInBlock());
+        for(AbstractArrow a:waterArrows.values())if(a.isInWater()) {
+            // Paper captura el vector de movimiento antes del .6 acuatico. Registrar el
+            // estado ANTES del tick evita compensar de mas al entrar/salir del agua.
+            arrowWaterTick.add(a.getUniqueId());
         }
     }
-
+    @EventHandler public void waterArrowTick(com.destroystokyo.paper.event.server.ServerTickEndEvent e) {
+        for(AbstractArrow a:waterArrows.values())if(arrowWaterTick.contains(a.getUniqueId()) && a.isValid() && !a.isInBlock()) {
+            double gravity=a.hasGravity()?.05:0;
+            var v=a.getVelocity();v.setY(v.getY()+gravity);v.multiply(.99f/.6f);v.setY(v.getY()-gravity);a.setVelocity(v);
+        }
+    }
+    @Override public void onDisable() {
+        for(Player p:Bukkit.getOnlinePlayers()) {
+            var speed=p.getAttribute(org.bukkit.attribute.Attribute.MOVEMENT_SPEED);if(speed!=null)speed.removeModifier(swimKey);
+            if(ownVision.contains(p.getUniqueId()))p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+        }
+        ownVision.clear();waterArrows.clear();
+    }
     // ----------------------------------------------------------------------------------- Fosa del Crustaceo
     List<String> fosaWorlds = List.of(); double[] fosaArrival, fosaBoss; List<double[]> fosaPoints = new ArrayList<>();
     List<Map<String, Integer>> fosaWaves = new ArrayList<>(); String fosaBossType; int[] gate = {-430, 470};
@@ -405,7 +455,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
             barra(w, players);
             if (players.isEmpty()) {
                 if (wave.getOrDefault(name, 0) != 0 || !waveMobs(w).isEmpty()) { waveMobs(w).forEach(Entity::remove); wave.put(name, 0); waveAt.remove(name); }
-                for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("fosa.premio")) e.remove();
+                for (Entity e : w.getEntities()) if (e.getScoreboardTags().contains("fosa.premio") || e instanceof Item || e instanceof AbstractArrow) e.remove();
                 continue;
             }
             // Respiracion: adentro solo sirve el set de agua completo (pociones, Respiracion, tortuga y conducto no).
@@ -623,6 +673,11 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     }
 
     @Override public boolean onCommand(CommandSender s, Command c, String label, String[] a) {
+        if(c.getName().equalsIgnoreCase("astralagua")) {
+            if(!(s instanceof ConsoleCommandSender) || a.length!=1)return true;
+            try {Player p=Bukkit.getPlayer(UUID.fromString(a[0]));if(p!=null)waterShot(p);}catch(IllegalArgumentException ignored){}
+            return true;
+        }
         String sub = a.length == 0 ? "estado" : a[0];
         switch (sub) {
             case "entrar" -> {

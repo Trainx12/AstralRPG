@@ -324,3 +324,25 @@ queda solo en el repositorio privado. `deploy_urgente.py` prepara la entrega ais
 y [la lista de instalacion](../build/deploy/urgente-mascotas-texturas.md).
 Las llegadas de mazmorras se mantienen en `mobs/rutas_mazmorras.py`: cambiar esa tabla,
 regenerar `mobs/mazmorra.py`, `viajes_mazmorras.py` y `build.py`, y correr `test_urgente`.
+
+
+## Balance de equipo especial y agua (16/11/2026, pendiente de instalar)
+
+Entrega y destinos: [balance-especiales-agua.md](../build/deploy/balance-especiales-agua.md).
+Asura es T4: +10% de daño base frente a Espada del Coloso; el cuarto golpe directo
+al mismo enemigo en 5 segundos pega +50% y cura 5% de vida máxima. Carnívora es T3:
++5% de defensa por pieza; con las cuatro piezas cura 3% de vida máxima al matar un mob.
+Los talismanes I/II/III dan 5%, 10% y 20%; Roca también multiplica la Defensa Astral.
+Las lanzas T1–T10 muestran daño propio del tier (90% de espada), sin multiplicar dos
+veces con sus encantamientos antiguos cuando se actualizan.
+
+La Espada de las Mareas dispara agua con clic derecho: 3.186 de daño, 90 de maná,
+1,1 segundos de recarga. El Hacha pega +25% bajo el agua; las flechas del Arco de
+las Mareas mantienen el rozamiento del aire. El Pico elimina la penalidad de agua.
+El set completo permite respirar sin límite y, sumergido, da visión nocturna y nado
+horizontal sostenido x1,5 (calibrado en Paper). Se conservan las pociones de visión
+ajenas y Gracia del Delfín. La visión propia se retira al salir o quitar una pieza.
+Todas las fichas muestran tier, estadísticas, requisitos y habilidades; la migración
+conserva encantamientos, mejoras y desgaste. El desgaste queda limitado a 1 por golpe.
+Las durabilidades cubren un presupuesto de 12 mazmorras de 200 golpes recibidos
+(o 600 usos de arma por partida); Infinita puede superar ese presupuesto.

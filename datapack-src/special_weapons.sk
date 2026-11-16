@@ -1,7 +1,9 @@
 # Generado por special_weapons.py. Skript 2.17 sin addons. MythicMobs + PlaceholderAPI + AuraSkills.
-# escala.py: armas especiales = tier 3; sus habilidades pegan x FACTOR_ARMA[3].
+# Tier y dano propios de cada arma: special_weapons.py / balance_equipo.py.
 options:
-    escala: 285.714
+    cd_agua: 1.1
+    dano_danza: 12500
+    dano_estallido: 15000
     # Mana y recargas: los completa special_weapons.py desde escala.py (referencia Hypixel).
     mana_destello: 50
     mana_danza: 0
@@ -119,9 +121,7 @@ function asw_hurt(p: player, e: entity, amount: number):
 function asw_hurt_as(p: player, e: entity, amount: number, kind: text):
     if asw_target({_p}, {_e}) is false:
         stop
-    # El rayo ya es un % del golpe; el resto escala al tier de las armas especiales.
-    if {_kind} is not "rayo":
-        set {_amount} to {_amount} * {@escala}
+    # Todas las habilidades reciben dano real, sin escala global.
     # Atribucion al jugador y evento Bukkit: WorldGuard y otros plugins pueden cancelar.
     set {-asw.damage::%uuid of {_p}%} to true
     set {_ticks} to no damage time of {_e}
@@ -162,7 +162,7 @@ function asw_explode(p: player, center: location):
     play sound "entity.generic.explode" with volume 0.6 and pitch 1.5 at {_center}
     set {_dimension} to asw_dimension(world of {_center})
     execute console command "execute in %{_dimension}% run particle minecraft:explosion %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% 0.3 0.3 0.3 0 3"
-    asw_area({_p}, {_center}, 2, 6, "explosion")
+    asw_area({_p}, {_center}, 2, {@dano_estallido}, "explosion")
 
 function asw_dimension(w: world) :: text:
     set {_name} to name of {_w}
@@ -381,7 +381,7 @@ function asw_shadow(p: player):
                             set {_hit} to location of {_target}
                             set {_hy} to y-coordinate of {_hit} + 1
                             execute console command "execute in %{_dimension}% run particle minecraft:sweep_attack %x-coordinate of {_hit}% %{_hy}% %z-coordinate of {_hit}% 0.2 0.2 0.2 0 1"
-                            asw_hurt({_p}, {_target}, 10)
+                            asw_hurt({_p}, {_target}, {@dano_danza})
         wait 4 ticks
     delete {-asw.busy::%{_id}%}
 
@@ -396,6 +396,10 @@ function asw_quake(p: player):
         stop
     set {-asw.quake::%{_id}%} to now
     set {-asw.busy::%{_id}%} to true
+    set {_quakeDamage} to 2 * (attack damage attribute of {_p})
+    set {_mejora} to "astral:mejora_arma" parsed as enchantment
+    set {_qu} to enchantment level of {_mejora} on tool of {_p}
+    __SISMO_MEJORAS__
     set {_center} to location of {_p}
     play sound "entity.iron_golem.attack" with volume 0.9 and pitch 0.5 at {_p}
     play sound "entity.generic.explode" with volume 0.4 and pitch 0.6 at {_p}
@@ -428,7 +432,7 @@ function asw_quake(p: player):
             if {_hit::%uuid of loop-entity%} is not set:
                 if asw_target({_p}, loop-entity) is true:
                     set {_hit::%uuid of loop-entity%} to true
-                    asw_hurt_as({_p}, loop-entity, 10, "sismo")
+                    asw_hurt_as({_p}, loop-entity, {_quakeDamage}, "sismo")
                     push loop-entity upwards at speed 0.45
         wait 2 ticks
     wait 2 ticks
@@ -506,6 +510,24 @@ function asw_staff_cost(t: number) :: number:
 
 on right click:
     asw_identify(player)
+    if scoreboard tags of player contains "astral.water_sword":
+        cancel event
+        if asw_ready(player) is false:
+            stop
+        if {-asw.water::%uuid of player%} is set:
+            if difference between now and {-asw.water::%uuid of player%} is less than {@cd_agua} seconds:
+                stop
+        set {-asw.water::%uuid of player%} to now
+        asw_request(player)
+        wait 2 ticks
+        asw_identify(player)
+        if scoreboard tags of player does not contain "astral.water_sword":
+            stop
+        if asw_pay(player, {@mana_baston_3}) is false:
+            stop
+        set {-asw.water::%uuid of player%} to now
+        execute console command "astralagua %uuid of player%"
+        stop
     if scoreboard tags of player contains "astral.staff":
         cancel event
         if {-asw.click::%uuid of player%} is set:

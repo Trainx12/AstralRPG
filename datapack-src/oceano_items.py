@@ -45,7 +45,7 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         c['minecraft:item_name'] = txt(name, COLOR)
         c['minecraft:item_model'] = 'astral:' + iid
         if iid == 'agua_arco':
-            c['minecraft:lore'] = c.get('minecraft:lore', []) + [txt('Clic derecho: chorro de agua. No gasta flechas.', 'aqua')]
+            c['minecraft:lore'] = c.get('minecraft:lore', []) + [txt('Flechas sin freno ni perdida de dano bajo el agua.', 'aqua')]
         it['name'] = name
         if source in fichas:
             from ficha import render
@@ -61,9 +61,7 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
                                      ('oxygen_bonus', AIRE, 'aire')):
             mods.append({'type': f'minecraft:{attr}', 'id': f'astral:{iid}.{suffix}', 'amount': amount, 'operation': 'add_value', 'slot': SLOT[piece]})
         lore = [txt('Armadura de Agua III'), txt('Nadas y minas mas rapido bajo el agua.', 'aqua')]
-        if piece == 'helmet':
-            lore.append(txt('Vision nocturna bajo el agua.', 'aqua'))
-        lore.append(txt('Set completo: respiras sin limite.', 'gold'))
+        lore.append(txt(f"Set completo: respiras sin limite; nado x{str(__import__('balance_equipo').NADO_FACTOR).replace('.', ',')} y vision nocturna solo bajo el agua.", 'gold'))
         add_item(iid, 'minecraft:diamond_' + piece, label + ' de Agua', COLOR, lore,
                  {'type': 'armor', 'set': 'agua', 'tier': TIER, 'piece': piece, 'def': defensa_pieza(TIER, piece)},
                  extra={'minecraft:attribute_modifiers': mods,

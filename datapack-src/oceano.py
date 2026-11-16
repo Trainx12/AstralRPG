@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.2.0'
+VERSION = '1.3.0'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -30,6 +30,8 @@ api-version: '26.1.2'
 load: STARTUP
 softdepend: [Multiverse-Core]
 commands:
+  astralagua:
+    description: Proyectil interno pagado por Skript (solo consola)
   oceano:
     description: Oceano Astral (entrar, estado; admin regenerar y plantilla)
 permissions:
@@ -111,6 +113,8 @@ def build_jar(java, base):
             z.writestr(zipfile.ZipInfo('astral/' + path.name, STAMP), path.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', STAMP), PLUGIN_YML)
         z.writestr(zipfile.ZipInfo('config.yml', STAMP), config())
+        from balance_equipo import AGUA_PROYECTIL, AGUA_HACHA, NADO_FACTOR
+        z.writestr('balance.json',json.dumps(dict(projectile=AGUA_PROYECTIL,axe=AGUA_HACHA,swim=NADO_FACTOR)))
     return dest
 
 

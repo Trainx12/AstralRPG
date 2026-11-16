@@ -19,7 +19,10 @@ class Tanda4bTests(unittest.TestCase):
         c=self.loot('asura_espada'); ref=self.loot('espada_4')
         self.assertIn('tier:4',c['minecraft:custom_data'])
         self.assertIn('id:"asura_espada"',c['minecraft:custom_data'])
-        self.assertEqual(c['minecraft:attribute_modifiers'],ref['minecraft:attribute_modifiers'])
+        from balance_equipo import ASURA_DANO
+        for m,r in zip(c['minecraft:attribute_modifiers'],ref['minecraft:attribute_modifiers']):
+            if m['type']=='minecraft:attack_damage':self.assertAlmostEqual(m['amount']+1,(r['amount']+1)*ASURA_DANO)
+            else:self.assertEqual(m,r)
         self.assertNotIn('V', c['minecraft:lore'][0]['text'].replace('IV',''))
         self.assertIn('tier:4',self.loot('asura_alas')['minecraft:custom_data'])
 
@@ -31,7 +34,7 @@ class Tanda4bTests(unittest.TestCase):
             self.assertIn('tier:3',c['minecraft:custom_data'])
         self.assertEqual(total,4*VIDA_PIEZA[3])
         for iid,(source,_,_) in CLONES.items():
-            if iid=='carnivora_hacha': continue
+            if iid in ('carnivora_hacha','asura_espada'): continue
             self.assertEqual(self.loot(iid).get('minecraft:attribute_modifiers'), self.loot(source).get('minecraft:attribute_modifiers'))
             self.assertEqual(self.loot(iid).get('minecraft:enchantments'),self.loot(source).get('minecraft:enchantments'))
 

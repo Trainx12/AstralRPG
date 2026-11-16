@@ -13,7 +13,7 @@ RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
           6: ('MÍTICA', '#ff5fd2'), 7: ('MÍTICA', '#ff5fd2'), 8: ('DIVINA', 'aqua'), 9: ('DIVINA', 'aqua'),
           10: ('ASTRAL', '#b388ff')}
 TIPOS = {'knife': 'CUCHILLO', 'sword': 'ESPADA', 'axe': 'HACHA', 'staff': 'BASTÓN', 'scythe': 'GUADAÑA',
-         'bow': 'ARCO', 'crossbow': 'BALLESTA', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
+         'talisman': 'TALISMÁN', 'bow': 'ARCO', 'crossbow': 'BALLESTA', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
          'pickaxe': 'PICO', 'shovel': 'PALA', 'hoe': 'AZADA', 'fishing_rod': 'CAÑA', 'shield': 'ESCUDO',
          'helmet': 'CASCO', 'chestplate': 'PECHERA', 'leggings': 'GREBAS', 'boots': 'BOTAS'}
 ENCHANTS = {'robo_vida': 'Robo de vida', 'furia': 'Furia', 'remate': 'Remate',
@@ -117,7 +117,7 @@ def prepare(iid, name, base, lore, data, components, pdc):
 
 def mejorable(source):
     """El Herrero mejora armas (bastones incluidos) y armaduras; no herramientas."""
-    return source['kind'] not in ('drill', 'saw')
+    return source['kind'] not in ('drill', 'saw', 'talisman')
 
 
 def enchant_lines(comps):
@@ -153,6 +153,9 @@ def extra_lines(source):
 def weapon_stats(source, level):
     data, comps = source['data'], source['components']
     lines = []
+    if source['kind']=='talisman':
+        labels={'max_health':'Vida máxima','attack_damage':'Daño','movement_speed':'Velocidad','armor':'Defensa'}
+        return [stat(labels[m['type'].split(':')[-1]], '+'+num(m['amount']*100)+'%', 'green') for m in comps['minecraft:attribute_modifiers']]
     mods = comps.get('minecraft:attribute_modifiers', [])
     damage = next((m['amount'] + 1 for m in mods if m['type'] == 'minecraft:attack_damage'), None)
     factor = MEJORA_DANO[level - 1] if level else 1
@@ -240,7 +243,7 @@ def armor_stats(source, level):
 
 
 # Atributos de oficio/agua que no son vida ni defensa (los numeros salen de los attribute_modifiers reales).
-ATTR_EXTRA = {'water_movement_efficiency': ('Velocidad nadando', 'aqua', 100, '%'),
+ATTR_EXTRA = {'water_movement_efficiency': ('Eficiencia acuática', 'aqua', 100, '%'),
               'submerged_mining_speed': ('Minado bajo el agua', 'aqua', 100, '%'),
               'oxygen_bonus': ('Aire extra', 'aqua', 1, ''),
               'block_break_speed': ('Velocidad de rotura', 'gold', 100, '%'),
@@ -288,7 +291,10 @@ def utility_render(iid, name, color, base, lore, data, comps):
     extras = [l.get('text', '') for l in lore[1:] if l.get('text') and not l['text'].startswith(('Requiere:', 'Se fabrica'))]
     if extras:
         out += [txt('')] + [highlighted(e) for e in extras]
+    if not any('Velocidad' in l.get('text','') for l in out):out.append(txt('Velocidad: sin modificación'))
+    out.append(txt(f"Tier: {data.get('tier', 1)}"))
     out.append(txt(''))
+    if not any(l.get('text','').startswith('Requiere:') for l in lore):out.append(txt('Requiere: sin nivel','red'))
     out.extend(txt(l['text'], 'red') for l in lore if l.get('text', '').startswith('Requiere:'))
     out.append(txt(rarity + ' ' + TIPOS[kind], rcolor, bold=True))
     return {'minecraft:item_name': txt(name, color), 'minecraft:lore': out}
@@ -314,11 +320,27 @@ def tool_stats(source):
     return lines
 
 
-def abilities_for(source):
+def abilities_for(source, level=0):
     data, kind = source['data'], source['kind']
     from special_weapons import WEAPONS
+    from balance_equipo import AGUA_PROYECTIL, AGUA_MANA, AGUA_CD, AGUA_HACHA, ASURA_GOLPES, ASURA_EXTRA, ASURA_CURA
+    if source['id']=='asura_espada':
+        return [dict(name='Furia de Asura', trigger='PASIVA', description=[f'Cada {ASURA_GOLPES} golpes directos al mismo enemigo en 5 s: +{num(ASURA_EXTRA*100)}% de daño y cura {num(ASURA_CURA*100)}% de vida máxima.'])]
+    if source['id']=='agua_espada':
+        return [dict(name='Proyectil de agua', trigger='CLIC DERECHO', mana=AGUA_MANA, cooldown=AGUA_CD/20,
+                     description=[f'Proyectil de {fmt(AGUA_PROYECTIL)} de daño (bastón T3 -10%).'])]
+    if source['id']=='agua_hacha':
+        return [dict(name='Fuerza de las Mareas', trigger='BAJO EL AGUA', description=[f'+{num(AGUA_HACHA*100)}% de daño con golpes directos.'])]
+    if source['id']=='agua_arco':
+        return [dict(name='Flecha de las Mareas', trigger='AL DISPARAR', description=['Flechas con el mismo rozamiento en agua que en aire.'])]
     if source['id'] in WEAPONS:
-        return WEAPONS[source['id']].get('abilities', [])
+        abilities = WEAPONS[source['id']].get('abilities', [])
+        if source['id']=='hacha_terremoto' and level:
+            from copy import deepcopy
+            abilities=deepcopy(abilities)
+            base=2*WEAPONS[source['id']]['damage_total']
+            abilities[0]['description'][0]=abilities[0]['description'][0].replace(fmt(base),fmt(base*MEJORA_DANO[level-1]))
+        return abilities
     if kind == 'staff':
         return [dict(name='Proyectil arcano', trigger='CLIC DERECHO',
                      description=['Dispara un proyectil arcano.', 'El daño de hechizo sube con la armadura de Mago.'],
@@ -367,7 +389,7 @@ def render(source, level=0):
     extras = ayudas if kind in ARMOR_PIECES else [] if kind in ('drill', 'saw') else extra_lines(source)
     if extras:
         lore += [txt('')] + [highlighted(e) for e in extras]
-    for ability in abilities_for(source):
+    for ability in abilities_for(source, level):
         lore.append(txt(''))
         header = txt('Habilidad: ' + ability['name'], 'gold')
         header['extra'] = [txt('  ' + ability['trigger'], 'yellow', bold=True)]
@@ -382,7 +404,13 @@ def render(source, level=0):
         bono = set_bonus_lines(source) + bono_propio
         if bono:
             lore += [txt('')] + bono
+    if 'minecraft:max_damage' in comps and kind not in ('drill','saw'):
+        lore.append(stat('Durabilidad',num(comps['minecraft:max_damage']),'white'))
+    if not any('Velocidad' in l.get('text','') for l in lore):lore.append(txt('Velocidad: sin modificación'))
+    lore.append(txt(f"Tier: {source['tier']}"))
     lore.append(txt(''))
+    if not any(s.get('text','').startswith('Requiere:') for s in original):
+        lore.append(txt('Requiere: sin nivel', 'red'))
     lore.extend(txt(s['text'], 'red') for s in original if s.get('text', '').startswith('Requiere:'))
     lore.append(txt(rarity + ' ' + TIPOS.get(kind, 'VARITA'), color, bold=True))
     return {'minecraft:item_name': name, 'minecraft:lore': lore}
