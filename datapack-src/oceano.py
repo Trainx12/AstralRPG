@@ -73,7 +73,8 @@ def aviso_menu():
         'volver': dict(material='RED_STAINED_GLASS_PANE', slot=15, display_name='&c&lTodavia no',
                        lore=['&7Volver a los portales.'], click_commands=['[openguimenu] portales']),
     }
-    return dict(menu_title='&1&lOceano Astral - Aviso', size=27, items=items)
+    from menu_ui import decorate
+    return decorate(dict(menu_title='&1&lOceano Astral - Aviso', size=27, items=items))
 
 
 def portales_button():

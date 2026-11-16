@@ -158,6 +158,19 @@ def cosmetic_rewards():
     return R
 
 
+# El catalogo publico y las probabilidades usan exactamente los mismos premios.
+from tanda_xp import rewards as xp_rewards
+_rpg_rewards, _mount_rewards, _cosmetic_rewards = rpg_rewards, mount_rewards, cosmetic_rewards
+
+def rpg_rewards():
+    return _rpg_rewards()+xp_rewards()
+
+def mount_rewards():
+    return _mount_rewards()+xp_rewards()
+
+def cosmetic_rewards():
+    return _cosmetic_rewards()+xp_rewards(apple=True)
+
 GACHAS = {
     "gacha_rpg": dict(name="<gradient:#B07CFF:#4FD1FF><b>Gacha de Armas</b></gradient>", cost=1000,
                       desc=["<gray>Materiales de forja, armas,", "<gray>talismanes y premios legendarios."],
@@ -217,7 +230,7 @@ def dq(s):
     return '"' + str(s).replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def crate_yml(gid, g, garantia=False):
+def crate_yml(gid, g, garantia=False, suerte=False):
     """Caja de CrazyCrates tipo CSGO: la ruleta gira en un inventario y frena en el premio.
     garantia=True: misma caja pero solo con Epicos y Legendarios (la tirada garantizada del pity)."""
     from gacha_ui import title as spin_title, SOUNDS
@@ -225,7 +238,8 @@ def crate_yml(gid, g, garantia=False):
     rewards = g["rewards"]()
     if garantia:
         rewards = [r for r in rewards if r[0] in PITY_RARITIES]
-    scale = 100 / sum(RARITY_WEIGHT[r] for r in PITY_RARITIES) if garantia else 1
+    weights = {r:w*(1.5 if suerte and r in ('rare','epic','legendary') else 1) for r,w in RARITY_WEIGHT.items()}
+    scale = 100 / sum(weights[r] for r in (PITY_RARITIES if garantia else weights))
     tot = {}
     for rar, w, _, _ in rewards:
         tot[rar] = tot.get(rar, 0) + w
@@ -268,7 +282,7 @@ def crate_yml(gid, g, garantia=False):
     ranked = sorted(rewards, key=lambda r: order.index(r[0]))
     for i, (rar, w, name, cmds) in enumerate(ranked):
         mat, model, amount = icon(cmds)
-        weight = round(RARITY_WEIGHT[rar] * w / tot[rar] * scale, 4)
+        weight = round(weights[rar] * w / tot[rar] * scale, 4)
         cm = list(cmds)
         if rar in PITY_RARITIES:
             cm.append(f"scoreboard players set %player% {pity_obj(gid)} 0")
@@ -661,7 +675,7 @@ def bazar_cmds():
 
 
 def movement_mob():
-    """Renueva Velocidad I solo en lobby; caduca tres segundos despues de salir."""
+    """Renueva Velocidad II solo en lobby; caduca tres segundos despues de salir."""
     return '''# Generado por datapack-src/lobby.py
 astral_lobby_movimiento:
   Type: ARMOR_STAND
@@ -677,13 +691,13 @@ astral_lobby_movimiento:
     Persistent: true
     Collidable: false
   Skills:
-  - 'potion{type=SPEED;duration=60;level=0;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'
+  - 'potion{type=SPEED;duration=60;level=1;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'
 '''
 
 
 def movement_commands():
     x, _, z, _ = SPAWN
-    return ["# Velocidad I en todo el lobby. Instalar build/mythicmobs/mobs/lobby.yml y hacer mm reload.",
+    return ["# Velocidad II en todo el lobby. Instalar build/mythicmobs/mobs/lobby.yml y hacer mm reload.",
             "# Crear UNA sola vez el controlador invisible (no volver a spawnearlo si ya existe):",
             f"execute in minecraft:{WORLD} run forceload add {int(x)} {int(z)}",
             f"mm mobs spawn astral_lobby_movimiento 1 {WORLD},{x},98,{z}"]
@@ -707,6 +721,10 @@ def main():
             f.write(crate_yml(gid, g))
         with open(os.path.join(cc, f"{gid}_garantia.yml"), "w", encoding="utf-8") as f:
             f.write(crate_yml(gid, g, garantia=True))
+        for guaranteed in (False, True):
+            suffix = '_garantia' if guaranteed else ''
+            with open(os.path.join(cc, f"{gid}{suffix}_suerte.yml"), "w", encoding="utf-8") as f:
+                f.write(crate_yml(gid, g, garantia=guaranteed, suerte=True))
     with open(os.path.join(OUT, "Essentials", "spawn.yml"), "w", encoding="utf-8") as f:
         f.write(spawn_yml())
     with open(os.path.join(OUT, "comandos.txt"), "w", encoding="utf-8") as f:

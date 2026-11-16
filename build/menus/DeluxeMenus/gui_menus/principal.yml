@@ -231,6 +231,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     update: true
+    item_model: 'astral:boton_info'
   'cerrar':
     material: BARRIER
     slot: 49
@@ -254,3 +255,4 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] configuraciones'
+    item_model: 'astral:boton_configuraciones'

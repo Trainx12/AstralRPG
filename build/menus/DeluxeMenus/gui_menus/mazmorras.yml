@@ -11,7 +11,8 @@
         "&7Encuentra a cada guardian para guardar su destino.",
         "&7Tus descubrimientos son personales y permanentes.",
         "&7Tambien puedes usar &e/mazmorras <destino>&7."
-      ]
+      ],
+      "item_model": "astral:boton_info"
     },
     "cerrar": {
       "material": "BARRIER",
@@ -47,7 +48,8 @@
       "lore": [
         "&7El candado indica un portal sin descubrir.",
         "&7Habla con su guardian para activarlo."
-      ]
+      ],
+      "item_model": "astral:boton_ayuda"
     },
     "saldo": {
       "material": "GOLD_NUGGET",
@@ -56,7 +58,8 @@
       "lore": [
         "&e%vault_eco_balance_formatted%$"
       ],
-      "update": true
+      "update": true,
+      "item_model": "astral:menu/icon_saldo"
     },
     "infinita": {
       "material": "SPAWNER",
@@ -70,7 +73,8 @@
       "click_commands": [
         "[close]",
         "[player] infinita<delay=3>"
-      ]
+      ],
+      "item_model": "astral:boton_infinita"
     },
     "bosque": {
       "material": "PAPER",

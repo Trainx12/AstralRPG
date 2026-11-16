@@ -34,12 +34,12 @@ class MarketUI(unittest.TestCase):
                     self.assertEqual(item['click_requirement']['requirements']['plata']['amount'],g['cost']*count)
                     cmds=item['click_commands']
                     self.assertEqual([c for c in cmds if c.startswith('[takemoney]')],[f"[takemoney] {g['cost']*count}"])
-                    opens=[c for c in cmds if 'crates forceopen ' in c]
+                    opens=[c for c in cmds if 'astralgacha ' in c]
                     self.assertEqual(len(opens),2)
                     self.assertTrue(all(c.endswith('<delay=3>') for c in opens))
                     # Las condiciones de garantia son mutuamente excluyentes.
                     self.assertIn(' unless score ',opens[1])
-                    if count>1:self.assertIn(f'virtual {gid} {count-1}', ' '.join(cmds))
+                    self.assertTrue(all(f'{gid} {count} ' in c for c in opens))
 
     def test_auction_navigation_and_no_automatic_listing(self):
         data=yaml.safe_load(menus.subastas_menu());self.check_models(data)

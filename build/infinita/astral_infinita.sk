@@ -176,6 +176,11 @@ function inf_tick(n: text, w: world, pj: number):
             world of loop-player is {_w}
             send title "&4&lSUBE LA DIFICULTAD" with subtitle "&f%inf_nombre_tier({-inf.tier::%{_n}%})%" to loop-player for 3 seconds
             play sound "entity.wither.spawn" with volume 0.6 to loop-player
+    # Cada 5 minutos, tiers VI+: chance 8% frasco y 1% barril por jugador presente.
+    if {-inf.tier::%{_n}%} >= 6:
+        if mod({-inf.seg::%{_n}%}, 300) is 0:
+            loop all players in {_w}:
+                execute console command "execute as %name of loop-player% run function astral:xp/infinita"
     # Barra de accion: tier, tiempo a la proxima subida y bajas.
     set {_t} to inf_nombre_tier({-inf.tier::%{_n}%})
     if {-inf.plus::%{_n}%} > 0:

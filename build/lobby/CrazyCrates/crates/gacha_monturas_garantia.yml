@@ -202,12 +202,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>13.12%"
+        - "<gray>Probabilidad: <yellow><bold>12.21%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 13.125
+      Weight: 12.2093
       Commands:
         - "lp user %player% permission set astral.mascota.bombardero true"
         - "eco give %player% 1000"
@@ -230,12 +230,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>13.12%"
+        - "<gray>Probabilidad: <yellow><bold>12.21%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 13.125
+      Weight: 12.2093
       Commands:
         - "lp user %player% permission set astral.mascota.encapuchado true"
         - "eco give %player% 1000"
@@ -258,12 +258,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>13.12%"
+        - "<gray>Probabilidad: <yellow><bold>12.21%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 13.125
+      Weight: 12.2093
       Commands:
         - "lp user %player% permission set astral.mascota.micelio true"
         - "eco give %player% 1000"
@@ -286,12 +286,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>13.12%"
+        - "<gray>Probabilidad: <yellow><bold>12.21%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 13.125
+      Weight: 12.2093
       Commands:
         - "lp user %player% permission set astral.mascota.honguito true"
         - "eco give %player% 1000"
@@ -314,12 +314,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>21.88%"
+        - "<gray>Probabilidad: <yellow><bold>20.35%"
         - "<light_purple>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 21.875
+      Weight: 20.3488
       Commands:
         - "mm egg give %player% astral_ave 1"
         - "give %player% minecraft:saddle 1"
@@ -341,15 +341,41 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>13.12%"
+        - "<gray>Probabilidad: <yellow><bold>12.21%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 13.125
+      Weight: 12.2093
       Commands:
         - "lp user %player% permission set astral.mascota.dragon true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Dragoncito de Fuego',color:'white'}]"
+    "10":
+      DisplayName: "<light_purple><bold>Barril de Experiencia"
+      DisplayItem: "paper"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: "astral"
+          Id: "barril_xp"
+      DisplayAmount: 1
+      DisplayEnchantments:
+        - "unbreaking:1"
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <light_purple>Epico"
+        - "<light_purple>★★★★<dark_gray>★"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>6.1%"
+        - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 6.1047
+      Commands:
+        - "loot give %player% loot astral:item/barril_xp"
+        - "scoreboard players set %player% pity_monturas 0"
+        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Barril de Experiencia',color:'white'}]"

@@ -294,7 +294,8 @@
         "&7Quedan guardados aca para siempre.",
         "&7Con todos, y despues de vencer a &d&lTrainx&7,",
         "&7se puede &d&lrenacer&7."
-      ]
+      ],
+      "item_model": "astral:boton_info"
     },
     "renacer_0": {
       "display_name": "&d&lRENACER",

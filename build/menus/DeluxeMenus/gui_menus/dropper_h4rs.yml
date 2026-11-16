@@ -165,22 +165,26 @@
     "proximo_22": {
       "material": "GRAY_DYE",
       "slot": 22,
-      "display_name": "&7Proximamente"
+      "display_name": "&7Proximamente",
+      "item_model": "astral:boton_proximamente"
     },
     "proximo_23": {
       "material": "GRAY_DYE",
       "slot": 23,
-      "display_name": "&7Proximamente"
+      "display_name": "&7Proximamente",
+      "item_model": "astral:boton_proximamente"
     },
     "proximo_24": {
       "material": "GRAY_DYE",
       "slot": 24,
-      "display_name": "&7Proximamente"
+      "display_name": "&7Proximamente",
+      "item_model": "astral:boton_proximamente"
     },
     "proximo_25": {
       "material": "GRAY_DYE",
       "slot": 25,
-      "display_name": "&7Proximamente"
+      "display_name": "&7Proximamente",
+      "item_model": "astral:boton_proximamente"
     },
     "volver": {
       "material": "ARROW",

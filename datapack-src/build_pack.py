@@ -474,6 +474,9 @@ for _t in BALLESTAS:
                                  "entries": [{"threshold": 0.58, "model": _cb("crossbow_pulling_1")},
                                              {"threshold": 1.0, "model": _cb("crossbow_pulling_2")}],
                                  "fallback": _cb("crossbow_pulling_0")}}}})
+from tanda_xp import assets as xp_assets
+from botones_provisorios import KEYS as XP_BUTTONS
+files.update(xp_assets(XP_BUTTONS))
 relocate_model_textures(files)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()

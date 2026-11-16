@@ -19,10 +19,13 @@ ROOT = Path(__file__).resolve().parent
 FRAME = ('infinita', (100, 225, 828, 1060))
 FILL, EDGE = '#1c1426', '#c9a14f'
 START, END = '', ''          # saltos -32/+32 compartidos con minijuegos y mascotas
-KINDS = ('tier', 'vel')
+KINDS = ('tier', 'vel', 'alto')
 GLYPHS = {'tier': tuple(chr(0xed50 + i) for i in range(4)), 'vel': tuple(chr(0xed54 + i) for i in range(4))}
+GLYPHS['alto'] = tuple(chr(0xed58+i) for i in range(4))
 CAPTIONS = {'tier': 'ELEGI TU TIER', 'vel': 'VELOCIDAD'}
+CAPTIONS['alto'] = 'TIERS VI A X+'
 HINTS = {'tier': 'Despues de 20 min sube cada 10', 'vel': 'Mas jugadores, mas monstruos'}
+HINTS['alto'] = 'Despues de 20 min sube cada 10'
 TIER_LABELS = ('I', 'II', 'III', 'IV', 'V', 'VI-X')   # la sexta abre la ventana de VI a X+   # 'TIER III' no entra en 36 px; el nombre completo va en el item
 VEL_LABELS = ('FACIL', 'NORMAL', 'DIFICIL', 'PESADILLA')
 COLS = ((0, 1), (2, 3), (5, 6), (7, 8))
@@ -37,6 +40,7 @@ CARD_SLOTS = {
     # Cartas anchas (3x2) para que entre PESADILLA: columnas 1-3 y 5-7, filas 0-1 y 2-3.
     'vel': [_slots(c, r) for r in ((0, 1), (2, 3)) for c in ((1, 2, 3), (5, 6, 7))],
 }
+CARD_SLOTS['alto'] = CARD_SLOTS['tier']
 BACK_SLOT, CLOSE_SLOT = 45, 53
 
 
@@ -56,7 +60,12 @@ def card_size(kind, index=0):
 def card(kind, index):
     """Tarjeta: pintura, placa con el nombre y, en velocidad, los segundos arriba a la derecha."""
     w, h = card_size(kind, index)
-    art = illustration(f'infinita_{kind}_{index + 1}')
+    if kind == 'alto':
+        from tanda_xp import texture
+        import io
+        art = Image.open(io.BytesIO(texture(f'infinita_alto_{index+6}', '#796493'))).convert('RGBA')
+    else:
+        art = illustration(f'infinita_{kind}_{index + 1}')
     # Recorte con la proporcion de la tarjeta; en vertical se queda con la parte de arriba (los monstruos).
     if art.width / art.height > w / h:
         cw = round(art.height * w / h); art = art.crop(((art.width - cw) // 2, 0, (art.width + cw) // 2, art.height))
@@ -64,7 +73,7 @@ def card(kind, index):
         ch = round(art.width * h / w); top = round((art.height - ch) * 0.3)
         art = art.crop((0, top, art.width, top + ch))
     im = art.resize((w * 4, h * 4), Image.Resampling.BOX).resize((w, h), Image.Resampling.LANCZOS)
-    labels = TIER_LABELS if kind == 'tier' else VEL_LABELS
+    labels = ('VI','VII','VIII','IX','X','X+') if kind=='alto' else TIER_LABELS if kind == 'tier' else VEL_LABELS
     plate_y = h - 11
     im.alpha_composite(Image.new('RGBA', (w, h - plate_y), (10, 6, 16, 205)), (0, plate_y))
     d = ImageDraw.Draw(im)
@@ -93,7 +102,7 @@ def panel(kind):
     for index, slots in enumerate(CARD_SLOTS[kind]):
         (x, y), (w, h) = slot_xy(slots[0]), card_size(kind, index)
         d.rectangle((x, y, x + w - 1, y + h - 1), fill=(0, 0, 0, 0))
-    if kind == 'tier':
+    if kind in ('tier','alto'):
         # Hueco del medio de abajo: simbolo de infinito dorado entre Tier V y Tier V+.
         cx, cy = 31 + 4 * 18 + 9, 57 + 2 * 18 + 18
         for ox in (-4, 4):
@@ -101,7 +110,7 @@ def panel(kind):
     # Franja con el aviso (fila 4) y casillas de la fila 5 (los iconos son items reales).
     d.rectangle((31, 129, 192, 144), fill='#2a1f38', outline=EDGE)
     label(im, HINTS[kind], (112, 133), 156, '#e9dcff')
-    for slot in ((BACK_SLOT, CLOSE_SLOT) if kind == 'vel' else (CLOSE_SLOT,)):
+    for slot in ((BACK_SLOT, CLOSE_SLOT) if kind in ('vel','alto') else (CLOSE_SLOT,)):
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), outline=EDGE); d.rectangle((x + 1, y + 1, x + 16, y + 16), fill=(0, 0, 0, 0))
     d.rectangle((31, 168, 192, 177), fill=band_color(EDGE))
@@ -178,14 +187,16 @@ def menus():
     out['infinita_tier'] = decorate(dict(menu_title=title('tier'), size=54, items=items))
     # Tiers VI a X+ (14/11/2026): ventana simple de cofre con un item por tier.
     items = {}
-    for slot, (t, name, mat) in zip((11, 12, 13, 14, 15, 22), [x for x in TIERS if x[0] >= 6]):
+    for index, ((t, name, mat), slots) in enumerate(zip([x for x in TIERS if x[0]>=6], CARD_SLOTS['alto'])):
         lore = ([f'&7Tier X y sigue subiendo: +25% de vida y dano', '&7cada 10 minutos.'] if t == 11 else
                 [f'&7Pelea contra mobs de {name}.', '&720 min en este tier; despues sube cada 10 min.'])
-        items[f'tier{t}'] = dict(material=mat, slot=slot, display_name=f'&5&l{name}', lore=lore + ['', '&eClic para elegir'],
-                                 click_commands=[f'[console] infelegir {P} tier {t}', '[openguimenu] infinita_vel'])
-    items['volver'] = dict(material='ARROW', slot=27, display_name='&fVolver', click_commands=['[openguimenu] infinita_tier'])
-    items['cerrar'] = dict(material='BARRIER', slot=35, display_name='&cCerrar', click_commands=['[close]'])
-    out['infinita_tier_alto'] = dict(menu_title='&5Mazmorra Infinita: Tier VI a X', size=36, items=items)
+        for n,slot in enumerate(slots):
+            items[f'tier{t}_{n}'] = dict(material='PAPER', slot=slot, item_model=f'astral:infinita/alto{index+1}_{n}',
+                display_name=f'&5&l{name}', lore=lore+['','&eClic para elegir'],
+                click_commands=[f'[console] infelegir {P} tier {t}', '[openguimenu] infinita_vel'])
+    items['volver'] = dict(material='ARROW', slot=BACK_SLOT, display_name='&fVolver', click_commands=['[openguimenu] infinita_tier'])
+    items['cerrar'] = dict(material='BARRIER', slot=CLOSE_SLOT, display_name='&cCerrar', click_commands=['[close]'])
+    out['infinita_tier_alto'] = decorate(dict(menu_title=title('alto'), size=54, items=items))
     items = {}
     for index, ((v, name, _, s), slots) in enumerate(zip(SPEEDS, CARD_SLOTS['vel'])):
         lore = [f'&7Aparece un grupo de mobs cada {s} s.', '&7Mas jugadores, mas mobs.', '', '&eClic para entrar']

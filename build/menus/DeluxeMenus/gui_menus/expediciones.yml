@@ -11,7 +11,8 @@
         "&7Van en orden: termina una mazmorra",
         "&7para abrir la expedicion siguiente.",
         "&7Habla con su guardian para desbloquear el viaje rapido."
-      ]
+      ],
+      "item_model": "astral:boton_info"
     },
     "lobby": {
       "material": "NETHER_STAR",
@@ -57,7 +58,8 @@
       "lore": [
         "&e%vault_eco_balance_formatted%$"
       ],
-      "update": true
+      "update": true,
+      "item_model": "astral:menu/icon_saldo"
     },
     "bosque": {
       "material": "PAPER",

@@ -96,9 +96,13 @@ ARMAS = {
     'ballesta_4': ('ballesta', 'archers:item/netherite_rapid_crossbow'),
     'ballesta_5': ('ballesta', 'archers:item/aether_rapid_crossbow'),
 }
+# Reservado: completar solo cuando el dueno elija los modelos. None conserva el PNG provisorio.
+PENDIENTES = {**{f'cuchillo_{t}': None for t in range(1,11)},
+              **{f'ballesta_{t}': None for t in (1,2,6,7,8,9,10)}}
+ARMAS.update({iid: spec for iid,spec in PENDIENTES.items() if spec is not None})
 # Ajuste de tamano en la mano respecto del mod (la guadana de piedra venia gigante).
 ESCALA = {'guadana_8': 0.67, 'lanza_6': 1.25}
-NOMBRES = {'baston': 'Baston', 'espada': 'Espada', 'hacha': 'Hacha', 'guadana': 'Guadana', 'arco': 'Arco',
+NOMBRES = {'cuchillo': 'Cuchillo', 'baston': 'Baston', 'espada': 'Espada', 'hacha': 'Hacha', 'guadana': 'Guadana', 'arco': 'Arco',
            'lanza': 'Lanza', 'ballesta': 'Ballesta', 'guantes': 'Guantes'}
 
 # Como agarra vanilla cada tipo de item (lo que heredan los modelos de los mods).

@@ -432,6 +432,11 @@ function rk_premio(p: player, n: text, pos: number):
         wait 8 seconds
         execute console command "loot give %{_n}% loot astral:item/chispa_astral"
         execute console command "loot give %{_n}% loot astral:item/chispa_astral"
+        execute console command "loot give %{_n}% loot astral:item/barril_xp"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
     if {_pos} is 2:
         execute console command "eco give %{_n}% 500000"
         execute console command "crates give virtual gacha_cosmeticos 5 %{_n}% -s"
@@ -443,6 +448,9 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "sudo %{_n}% crates mass-open gacha_rpg virtual 3"
         wait 8 seconds
         execute console command "loot give %{_n}% loot astral:item/chispa_astral"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
     if {_pos} is 3:
         execute console command "eco give %{_n}% 250000"
         execute console command "crates give virtual gacha_cosmeticos 3 %{_n}% -s"
@@ -454,6 +462,8 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "sudo %{_n}% crates mass-open gacha_rpg virtual 1"
         wait 8 seconds
         execute console command "loot give %{_n}% loot astral:item/gema_luminica"
+        execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
+        execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
 
 # ------------------------------------------------------------------ trofeos: titulos y aura
 function rk_titulo_texto(k: text) :: text:

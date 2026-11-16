@@ -563,3 +563,34 @@ muro norte, cuenta 3 s, sale a 0.16 bloques/tick y teletransporta al llegar el f
 al muro sur; reaparece quieto sin regreso vacio. Actualizar solo JAR y train.yml,
 conservar config de estacion y reiniciar. Valores del JAR salvo `viaje.manual: true`.
 Lista exacta y verificaciones: [tren-lobby.md](../build/deploy/tren-lobby.md).
+# Tanda XP y armas — 16/11/2026 (pendiente de despliegue)
+
+Entrega exacta: [tanda-xp-cuchillo.md](../build/deploy/tanda-xp-cuchillo.md).
+Generadores: `tanda_xp.py`, `build.py`, `build_pack.py`, `build_runtime.py`,
+`lobby.py`, `menus.py`, `deploy_tanda_xp.py`. Requiere reinicio completo con
+AstralDecor 1.11.0, datapack y FINAL privado nuevos; no reemplazar mundos.
+
+Frasco Gigante da 550 puntos vanilla; Barril da 5.500. Clic derecho usa uno y
+Shift + clic todos los de esa mano; stack máximo 16. No lanza botellas ni orbes.
+Tienda: 25.000$, 220.000$ y Manzana de Esmeralda 60.000$.
+EconomyShopGUI gratuito abre `consumibles` de DeluxeMenus por el título reservado
+`Astral - Consumibles`; registrar ese menú y comprobar libre el slot 43 de sección.
+
+La manzana se come incluso con hambre llena. AstralDecor guarda el vencimiento
+real en PDC `astral:suerte_hasta`, actualiza `astral.suerte` y la barra de acción.
+Dura cinco minutos, incluso si el jugador sale; otra manzana renueva el plazo.
+CrazyCrates usa cajas separadas `_suerte`: pesos raros, épicos y legendarios ×1,5
+antes de normalizar. Resultan 15,34884%, 4,88372% y 0,69767% respectivamente;
+comunes 55,81395% y poco comunes 23,25581%. La garantía sigue 87,5% épico y
+12,5% legendario. No intervienen permisos ni el efecto Suerte de Minecraft.
+La consola ejecuta `astralgacha jugador gacha cantidad garantia` internamente;
+toma el efecto al comprar el lote y conserva la misma caja para sus llaves
+diferidas. Las llaves antiguas y premios de ranking que abren CrazyCrates
+directamente conservan su tabla normal: el beneficio aplica a compras del menú.
+
+Cuchillos I–X: Combate, velocidad 3,0 y daño 53% de espada para DPS apenas menor.
+Ballestas I–X: Puntería por tier y carga de 1,20 a 0,10 segundos; recetas encadenadas.
+Lobby con Velocidad II. Mochilas: modelo común 3D y texturas por material;
+se cambia solo `item_model`, conservando UUID y contenido del plugin.
+Las texturas provisorias y su tamaño están listadas en la entrega; reemplazar PNG
+en `datapack-src/pack-source/provisorias/` y regenerar ambos packs.

@@ -1,0 +1,6 @@
+enable: true
+slot: 43
+title: Astral - Consumibles
+item:
+  material: EXPERIENCE_BOTTLE
+  name: '&aConsumibles Astrales'

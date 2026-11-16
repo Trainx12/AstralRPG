@@ -19,7 +19,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo completo plata"
-      ]
+      ],
+      "item_model": "astral:boton_plata"
     },
     "tier": {
       "material": "NETHERITE_UPGRADE_SMITHING_TEMPLATE",
@@ -39,7 +40,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo completo tier"
-      ]
+      ],
+      "item_model": "astral:boton_tier"
     },
     "arma": {
       "material": "DIAMOND_SWORD",
@@ -58,7 +60,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo completo arma"
-      ]
+      ],
+      "item_model": "astral:boton_arma"
     },
     "personalizada": {
       "material": "NETHER_STAR",
@@ -79,7 +82,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo completo personalizada"
-      ]
+      ],
+      "item_model": "astral:boton_personalizada"
     },
     "otro": {
       "material": "WRITABLE_BOOK",
@@ -98,7 +102,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo completo otro"
-      ]
+      ],
+      "item_model": "astral:boton_otro"
     },
     "reglas": {
       "material": "BOOK",
@@ -119,7 +124,8 @@
         "&e&lTodos los deseos los revisa el Admin,",
         "&eaunque no rompan ninguna regla.",
         "&7Puede rechazarlo o pedirte que lo cambies."
-      ]
+      ],
+      "item_model": "astral:boton_reglas"
     },
     "cerrar": {
       "material": "BARRIER",

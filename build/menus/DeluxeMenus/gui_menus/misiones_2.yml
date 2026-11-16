@@ -21848,6 +21848,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 9999
+    item_model: 'astral:boton_sin_datos'
   'sin_accion_hit_38':
     material: CLOCK
     slot: 38

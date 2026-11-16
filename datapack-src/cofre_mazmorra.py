@@ -290,7 +290,7 @@ def cofre_menu(dungeon):
     cobro = ['[close]', f'[console] eco give %player_name% {plata}']
     for i, n in materiales + [(astral, n_astral)]:
         cobro += [f'[console] loot give %player_name% loot astral:item/{i}'] * n
-    cobro += ['[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>',
+    cobro += ['[console] execute as %player_name% run function astral:xp/cofre', '[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>',
               f'[console] lp user %player_name% permission settemp {espera(key)} true {COOLDOWN}',
               f'[message] &6Cofre de {nombre}: &e{plata}$&f, {n_astral}x {ITEM_NOMBRE[astral]} y materiales de elite.',
               '[sound] ENTITY_PLAYER_LEVELUP']

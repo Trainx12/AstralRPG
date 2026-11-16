@@ -25,6 +25,7 @@ items:
     - '&7Tambien se craftea en la Forja.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_minero_info'
   'minero_helmet':
     material: IRON_HELMET
     slot: 11
@@ -161,6 +162,7 @@ items:
     - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/minero_boots'
     - '[sound] ENTITY_PLAYER_LEVELUP'
     - '''[message] &aCompraste el set completo de Minero.'''
+    item_model: 'astral:boton_minero_set'
   'talador_info':
     material: IRON_AXE
     slot: 27
@@ -173,6 +175,7 @@ items:
     - '&7Tambien se craftea en la Forja.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_talador_info'
   'talador_helmet':
     material: IRON_HELMET
     slot: 29
@@ -309,6 +312,7 @@ items:
     - '[console] execute as %player_name% at @s run loot spawn ~ ~ ~ loot astral:item/talador_boots'
     - '[sound] ENTITY_PLAYER_LEVELUP'
     - '''[message] &aCompraste el set completo de Talador.'''
+    item_model: 'astral:boton_talador_set'
   'ayuda':
     material: BOOK
     slot: 31
@@ -318,6 +322,7 @@ items:
     - '&7Lo que compres cae a tus pies.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_ayuda'
   'cerrar':
     material: BARRIER
     slot: 35

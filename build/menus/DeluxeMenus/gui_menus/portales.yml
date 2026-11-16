@@ -645,7 +645,8 @@
       ],
       "click_commands": [
         "[openguimenu] oceano_aviso"
-      ]
+      ],
+      "item_model": "astral:boton_oceano"
     }
   }
 }

@@ -20,6 +20,7 @@ PLATA = {1: 1_000_000, 2: 500_000, 3: 250_000}
 TIRADAS = {1: (('gacha_cosmeticos', 10), ('gacha_rpg', 5)), 2: (('gacha_cosmeticos', 5), ('gacha_rpg', 3)),
            3: (('gacha_cosmeticos', 3), ('gacha_rpg', 1))}
 ITEMS = {1: (('chispa_astral', 2),), 2: (('chispa_astral', 1),), 3: (('gema_luminica', 1),)}
+ITEMS = {p: items + ((('barril_xp',1),) if p==1 else ()) + (('frasco_xp_gigante',4-p),('manzana_esmeralda',1)) for p,items in ITEMS.items()}
 MASCOTA_PARKOUR = 'fenix'     # el 1° de cada parkour; si ya la tiene, 10 tiradas mas de Monturas
 COLOR_PUESTO = {1: '&6&l', 2: '&f&l', 3: '&c'}
 # ==============================================================================

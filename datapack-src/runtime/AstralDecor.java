@@ -24,6 +24,70 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
 /** Runtime propio de la tanda 4b. Datos persistentes en entidades/chunks. */
 public final class AstralDecor extends JavaPlugin implements Listener {
+    private final Map<String,Integer> consumableXP = new HashMap<>();
+    private int luckSeconds;
+    private final NamespacedKey consumableKey = new NamespacedKey("astral","consumible");
+    private final NamespacedKey luckUntilKey = new NamespacedKey("astral","suerte_hasta");
+    private final Map<UUID,Integer> xpClickTick = new HashMap<>();
+    private String consumable(ItemStack it) {
+        return it==null || !it.hasItemMeta()?"":it.getItemMeta().getPersistentDataContainer().getOrDefault(consumableKey,PersistentDataType.STRING,"");
+    }
+    private void loadConsumables() {
+        try(var in=getResource("consumibles.json")) {
+            var obj=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+            obj.getAsJsonObject("xp").entrySet().forEach(e->consumableXP.put(e.getKey(),e.getValue().getAsInt()));
+            luckSeconds=obj.get("suerte_segundos").getAsInt();
+        } catch(Exception ex) {throw new IllegalStateException("Consumibles sin datos",ex);}
+        var board=Bukkit.getScoreboardManager().getMainScoreboard();
+        if(board.getObjective("astral.suerte")==null)board.registerNewObjective("astral.suerte",org.bukkit.scoreboard.Criteria.DUMMY,net.kyori.adventure.text.Component.text("Suerte"));
+    }
+    @EventHandler(priority=EventPriority.HIGHEST)
+    public void useXP(PlayerInteractEvent e) {
+        if(e.getAction()!=Action.RIGHT_CLICK_AIR && e.getAction()!=Action.RIGHT_CLICK_BLOCK)return;
+        String key=consumable(e.getItem());
+        if(!consumableXP.containsKey(key) || e.getHand()==null)return;
+        // El evento de aire puede venir cancelado por defecto; respetar denegacion explicita del item.
+        if(e.useItemInHand()==Event.Result.DENY || !authenticated(e.getPlayer()))return;
+        e.setCancelled(true);
+        Player p=e.getPlayer();
+        int tick=Bukkit.getCurrentTick();
+        if(Objects.equals(xpClickTick.put(p.getUniqueId(),tick),tick))return;
+        ItemStack it=p.getInventory().getItem(e.getHand());
+        if(!key.equals(consumable(it)))return;
+        int count=p.isSneaking()?it.getAmount():1;
+        it.setAmount(it.getAmount()-count);
+        int amount=Math.multiplyExact(count,consumableXP.get(key));
+        p.giveExp(amount);p.sendMessage("Recibiste "+amount+" puntos de XP.");
+    }
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void eatEmerald(PlayerItemConsumeEvent e) {
+        if(!consumable(e.getItem()).equals("manzana_esmeralda"))return;
+        e.getPlayer().getPersistentDataContainer().set(luckUntilKey,PersistentDataType.LONG,System.currentTimeMillis()+luckSeconds*1000L);
+        e.getPlayer().sendMessage("Suerte en gachas renovada: 5 minutos. Mejora las probabilidades; no garantiza premios raros.");
+        updateLuck(e.getPlayer());
+    }
+    private void updateLuck(Player p) {
+        long remaining=Math.max(0,(p.getPersistentDataContainer().getOrDefault(luckUntilKey,PersistentDataType.LONG,0L)-System.currentTimeMillis()+999)/1000);
+        var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.suerte");
+        if(objective!=null)objective.getScore(p.getName()).setScore((int)remaining);
+        if(remaining>0)p.sendActionBar(net.kyori.adventure.text.Component.text("Suerte en gachas: "+remaining/60+":"+String.format("%02d",remaining%60)));
+    }
+    private void backpackModels(Player p) {
+        var uuid=NamespacedKey.fromString("expendablebackpacks:backpack_uuid");
+        var tierKey=NamespacedKey.fromString("expendablebackpacks:backpack_tier");
+        String[] materials={"leather","copper","iron","gold","diamond","netherite"};
+        for(var it:p.getInventory().getContents()) {
+            if(it==null || it.getType()!=Material.PLAYER_HEAD || !it.hasItemMeta())continue;
+            var meta=it.getItemMeta();var pdc=meta.getPersistentDataContainer();
+            if(!pdc.has(uuid,PersistentDataType.STRING))continue;
+            int tier=pdc.getOrDefault(tierKey,PersistentDataType.INTEGER,0);
+            if(tier<1 || tier>materials.length)continue;
+            var model=NamespacedKey.fromString("astral:mochila_"+materials[tier-1]);
+            if(!model.equals(meta.getItemModel())) {meta.setItemModel(model);it.setItemMeta(meta);}
+        }
+    }
+    @EventHandler public void xpQuit(PlayerQuitEvent e) {xpClickTick.remove(e.getPlayer().getUniqueId());}
+    @EventHandler public void luckJoin(PlayerJoinEvent e) {updateLuck(e.getPlayer());}
     private static final class TableRecipe {
         NamespacedKey key;
         final List<ItemStack> ingredients = new ArrayList<>();
@@ -225,6 +289,9 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         if(e.getView().getTitle().equals("Astral - Oficios") && e.getPlayer() instanceof Player p)
             getServer().getScheduler().runTask(this,()->{if(p.isOnline() && p.getOpenInventory().getTopInventory()==e.getInventory()){
                 p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"dm open oficios "+p.getName());}});
+        if(e.getView().getTitle().equals("Astral - Consumibles") && e.getPlayer() instanceof Player p)
+            getServer().getScheduler().runTask(this,()->{if(p.isOnline() && p.getOpenInventory().getTopInventory()==e.getInventory()) {
+                p.closeInventory();Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"dm open consumibles "+p.getName());}});
     }
     @EventHandler public void shopDrag(InventoryDragEvent e) { if(isShop(e.getInventory())) e.setCancelled(true); }
     @EventHandler public void buy(InventoryClickEvent e) {
@@ -280,6 +347,25 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         meta.setItemModel(NamespacedKey.fromString("astral:"+model));item.setItemMeta(meta);return item;
     }
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
+        if(command.getName().equals("astralgacha")) {
+            while(sender instanceof org.bukkit.command.ProxiedCommandSender proxy)sender=proxy.getCaller();
+            if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=4)return true;
+            Player target=Bukkit.getPlayerExact(args[0]);
+            if(target==null || !authenticated(target) || !Set.of("gacha_rpg","gacha_monturas","gacha_cosmeticos").contains(args[1]))return true;
+            int count;
+            try {count=Integer.parseInt(args[2]);}catch(NumberFormatException ex){return true;}
+            if(!Set.of(1,10,25,50).contains(count))return true;
+            boolean lucky=target.getPersistentDataContainer().getOrDefault(luckUntilKey,PersistentDataType.LONG,0L)>System.currentTimeMillis();
+            String normal=args[1]+(lucky?"_suerte":"");
+            String first=args[1]+(Boolean.parseBoolean(args[3])?"_garantia":"")+(lucky?"_suerte":"");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"crates forceopen "+first+" "+target.getName());
+            if(count>1)getServer().getScheduler().runTaskLater(this,()->{
+                // Snapshot del lote: no se mezclan llaves normales y con suerte al vencer el efecto.
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"crates give virtual "+normal+" "+(count-1)+" "+target.getName()+" -s");
+                if(target.isOnline())Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"sudo "+target.getName()+" crates mass-open "+normal+" virtual "+(count-1));
+            },140);
+            return true;
+        }
         if(!(sender instanceof Player p))return true;
         if(!authenticated(p)) { p.sendMessage("Primero inicia sesion.");return true; }
         if(args.length!=2 || !Set.of("sombrero").contains(args[0]))return false;
@@ -449,6 +535,8 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
+        loadConsumables();
+        getServer().getScheduler().runTaskTimer(this,()->Bukkit.getOnlinePlayers().forEach(p->{updateLuck(p);backpackModels(p);}),1,20);
         saved = new NamespacedKey(this,"item"); display = new NamespacedKey(this,"display");
         for (Player p : Bukkit.getOnlinePlayers()) vidaEnBarra(p);
         saveDefaultConfig();

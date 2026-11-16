@@ -12,7 +12,8 @@
         "&7- La historia del Cronista.",
         "&7- Las Minas Astrales.",
         "&7- Tu plata vuelve a &e0$&7."
-      ]
+      ],
+      "item_model": "astral:boton_pierdes"
     },
     "conservas": {
       "material": "TOTEM_OF_UNDYING",
@@ -22,7 +23,8 @@
         "&7- Tus skills.",
         "&7- Cosmeticos, monturas y mascotas.",
         "&7- Tu equipo, tambien el tier V."
-      ]
+      ],
+      "item_model": "astral:boton_conservas"
     },
     "info": {
       "material": "NETHER_STAR",
@@ -36,7 +38,8 @@
         "&7tiers VI a X, que se estan forjando.",
         "",
         "&dY la estrella te concede un deseo."
-      ]
+      ],
+      "item_model": "astral:boton_info"
     },
     "volver": {
       "material": "ARROW",

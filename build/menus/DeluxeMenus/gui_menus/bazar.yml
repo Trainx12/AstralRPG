@@ -520,6 +520,7 @@ items:
     - '&7Subastas e intercambio: otros jugadores.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_ayuda'
   'volver':
     material: ARROW
     slot: 53

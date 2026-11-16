@@ -112,12 +112,10 @@ def gacha_menu(gid, g):
                 f"[console] execute if score {P} {o} matches {n}.. run scoreboard players set {P} gachaflag 1",
                 f"[console] execute if score {P} gachaflag matches 1 run minecraft:tellraw {P} "
                 "{text:'Tirada garantizada! (Epico o Legendario seguro)',color:'light_purple',bold:true}",
-                f"[console] execute if score {P} gachaflag matches 1 run crates forceopen {gid}_garantia {P}",
-                f"[console] execute unless score {P} gachaflag matches 1 run crates forceopen {gid} {P}"]
+                f"[console] execute if score {P} gachaflag matches 1 run astralgacha {P} {gid} {t} true",
+                f"[console] execute unless score {P} gachaflag matches 1 run astralgacha {P} {gid} {t} false"]
         if t > 1:
             cmds += [f"[message] &7Gira la ruleta... cuando termine te llegan los otros &e{t - 1}&7 premios.",
-                     f"[console] crates give virtual {gid} {t - 1} {P} -s<delay={RULETA_TICKS}>",
-                     f"[console] sudo {P} crates mass-open {gid} virtual {t - 1}<delay={RULETA_TICKS + 1}>",
                      f"[message] &aListo: &f{t} tiradas &aen la {name}.<delay={RULETA_TICKS + 2}>"]
         for index,slot in enumerate(slots):
             items += item(f"x{t}_{index}", 'PAPER', slot,
@@ -125,14 +123,19 @@ def gacha_menu(gid, g):
                       ["", f"&7Precio: &e{money(costo)}", "&7Suma " + (f"{t} tiradas" if t > 1 else "1 tirada") + " a tu garantia",
                        "" if t == 1 else "&8Gira 1 ruleta y despues llegan los demas premios", "", "&eClic para tirar"],
                       extra={"item_model":q(f'astral:servicios/{gid}_x{t}_{index}'),
-                             "click_requirement": requisito_plata(costo), "click_commands": [c+'<delay=3>' if 'crates forceopen ' in c else c for c in cmds]})
+                             "click_requirement": requisito_plata(costo), "click_commands": [c+'<delay=3>' if 'astralgacha ' in c else c for c in cmds]})
     items += item("premios", "CHEST", 49, "&6&lVer premios", ["&7Todos los premios y su probabilidad"],
                   extra={"item_model":q('astral:menu/icon_premios'),"click_commands": ["[close]", f"[console] sudo {P} crates preview {gid}<delay=3>"]})
     items += item('saldo','GOLD_NUGGET',8,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     items += item('garantia','ENDER_EYE',47,'&dGarantia',[f'&7Tu progreso: &e{SCORE.format(o)}&7/{n}',
                   '&7Un Epico o Legendario reinicia el contador.'],extra={'update':'true'})
     items += item('probabilidades','BOOK',51,'&bProbabilidades',['&fComun: 60%','&aPoco comun: 25%',
-                  '&bRaro: 11%','&dEpico: 3,5%','&6Legendario: 0,5%'])
+                  '&bRaro: 11%','&dEpico: 3,5%','&6Legendario: 0,5%',
+                  '&aManzana (5 min): pesos raros/epicos/legendarios x1,5.',
+                  '&7Con suerte: 15,35% / 4,88% / 0,70%.',
+                  '&7Frasco: poco comun; barril: epico.',
+                  '&7Manzana: rara, solo Cosmeticos.',
+                  '&7Ver premios muestra chances individuales normales.'])
     items += item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
     items += item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
     return menu(title(gid), f"astralmenu_{gid}", 54, items, update=True)
@@ -656,10 +659,12 @@ def main():
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})
     menus.update({f"mascotas_{page}": mascotas_extra_menu(page) for page in (2, 3, 4)})
+    from tanda_xp import shop_menu, shop_files
+    menus['consumibles'] = shop_menu(item, menu, q, requisito_plata)
     import oficios
     menus["oficios"] = oficios.menu_yaml(item, menu, q, money, requisito_plata)
     import yaml
-    for rel, data in oficios.shop_files().items():
+    for rel, data in dict(oficios.shop_files(), **shop_files()).items():
         dest = os.path.join(HERE, "..", "build", "shop", "EconomyShopGUI", rel)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         open(dest, "w", encoding="utf-8").write(yaml.safe_dump(data, allow_unicode=True, sort_keys=False))

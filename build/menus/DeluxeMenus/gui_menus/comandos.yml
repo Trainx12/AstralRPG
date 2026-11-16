@@ -10,6 +10,7 @@ items:
     display_name: '&f&lAventura'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_tema'
   'cmd_parkour':
     material: FEATHER
     slot: 10
@@ -142,6 +143,7 @@ items:
     display_name: '&f&lPersonaje'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_tema'
   'cmd_skills':
     material: EXPERIENCE_BOTTLE
     slot: 19
@@ -292,6 +294,7 @@ items:
     display_name: '&f&lEconomia'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_tema'
   'cmd_balance':
     material: GOLD_INGOT
     slot: 28
@@ -438,6 +441,7 @@ items:
     display_name: '&f&lCuenta'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_tema'
   'cmd_login':
     material: TRIPWIRE_HOOK
     slot: 37
@@ -499,6 +503,7 @@ items:
     - '&7se usan con un clic.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_info'
   'volver':
     material: ARROW
     slot: 49

@@ -12,7 +12,7 @@ RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
           # Tiers 6-10 (14/11/2026)
           6: ('MÍTICA', '#ff5fd2'), 7: ('MÍTICA', '#ff5fd2'), 8: ('DIVINA', 'aqua'), 9: ('DIVINA', 'aqua'),
           10: ('ASTRAL', '#b388ff')}
-TIPOS = {'sword': 'ESPADA', 'axe': 'HACHA', 'staff': 'BASTÓN', 'scythe': 'GUADAÑA',
+TIPOS = {'knife': 'CUCHILLO', 'sword': 'ESPADA', 'axe': 'HACHA', 'staff': 'BASTÓN', 'scythe': 'GUADAÑA',
          'bow': 'ARCO', 'crossbow': 'BALLESTA', 'spear': 'LANZA', 'gloves': 'GUANTES', 'drill': 'TALADRO', 'saw': 'MOTOSIERRA',
          'pickaxe': 'PICO', 'shovel': 'PALA', 'hoe': 'AZADA', 'fishing_rod': 'CAÑA', 'shield': 'ESCUDO',
          'helmet': 'CASCO', 'chestplate': 'PECHERA', 'leggings': 'GREBAS', 'boots': 'BOTAS'}

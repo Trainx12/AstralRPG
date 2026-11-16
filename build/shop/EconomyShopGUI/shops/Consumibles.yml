@@ -1,0 +1,8 @@
+pages:
+  page1:
+    gui-rows: 3
+    items:
+      '1':
+        material: PAPER
+        buy: -1
+        sell: -1

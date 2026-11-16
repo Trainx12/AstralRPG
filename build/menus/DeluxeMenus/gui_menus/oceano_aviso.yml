@@ -16,7 +16,8 @@
         "",
         "&8El oceano se regenera cada 3 dias.",
         "&8No dejes cosas tuyas ahi."
-      ]
+      ],
+      "item_model": "astral:boton_info"
     },
     "entrar": {
       "material": "LIME_STAINED_GLASS_PANE",
@@ -30,7 +31,8 @@
       "click_commands": [
         "[close]",
         "[player] oceano entrar<delay=3>"
-      ]
+      ],
+      "item_model": "astral:boton_entrar"
     },
     "volver": {
       "material": "RED_STAINED_GLASS_PANE",
@@ -41,7 +43,8 @@
       ],
       "click_commands": [
         "[openguimenu] portales"
-      ]
+      ],
+      "item_model": "astral:menu/icon_back"
     }
   }
 }

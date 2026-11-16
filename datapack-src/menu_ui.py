@@ -206,12 +206,13 @@ def button_model(key):
              'siguiente':'next','cerrar':'close','lobby':'spawn','mas_companeros':'next',
              'descubiertas':'expediciones','explorar':'expediciones'}
     key=aliases.get(key,key)
-    return 'astral:menu/icon_'+key if key in (*KEYS,*EXTRA_KEYS) else None
+    from botones_provisorios import model
+    return 'astral:menu/icon_'+key if key in (*KEYS,*EXTRA_KEYS) else model(key)
 
 
 def decorate(data):
     for key,item in data['items'].items():
-        if 'item_model' not in item and any(k.endswith('commands') for k in item):
+        if 'item_model' not in item:
             model=button_model(key)
             if model:item['item_model']=model
     return data
@@ -250,6 +251,9 @@ def panel():
 
 def assets():
     files, providers = {}, []
+    from tanda_xp import assets as provisional_assets
+    from botones_provisorios import KEYS as provisional_buttons
+    files.update({k:v for k,v in provisional_assets(provisional_buttons).items() if '/boton_' in k})
     advances = {START: -32, END: 32}
     a, b, c, d = GLYPHS
     im = panel()

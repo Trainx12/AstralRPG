@@ -116,7 +116,7 @@ BALLESTAS = {
     3: {"name": "Ballesta Pesada de Zafiro", "carga": 0.9, "lvl": 20, "piercing": 1, "multishot": 0,
         "cost": [("c", "arco_3", 1), ("c", "cristal_refinado", 3), ("v", "minecraft:crossbow", 1)],
         "desc": ["Perforacion: la flecha atraviesa 1 enemigo"]},
-    4: {"name": "Ballesta Rapida del Nether", "carga": 0.65, "lvl": 25, "piercing": 0, "multishot": 1,
+    4: {"name": "Ballesta Rapida del Nether", "carga": 0.65, "lvl": 25, "piercing": 1, "multishot": 1,
         "cost": [("c", "ballesta_3", 1), ("c", "nucleo_eolico", 3)],
         "desc": ["Multidisparo: 3 flechas por tiro"]},
     5: {"name": "Ballesta Celeste Veloz", "carga": 0.2, "lvl": 30, "piercing": 2, "multishot": 1,
@@ -124,6 +124,20 @@ BALLESTAS = {
         "desc": ["Carga casi instantanea", "Multidisparo: 3 flechas por tiro", "Perforacion II: atraviesa 2 enemigos",
                  "No gasta flechas normales"]},
 }
+BALLESTAS.update({
+    1: dict(name='Ballesta de Aprendiz', carga=1.2, lvl=5, piercing=0, multishot=0,
+            cost=[('v','minecraft:crossbow',1),('c','palo_reforzado',2)], desc=[]),
+    2: dict(name='Ballesta de Acero', carga=1.05, lvl=12, piercing=1, multishot=0,
+            cost=[('c','ballesta_1',1),('c','cristal_arcano',3)], desc=['Perforacion I']),
+})
+BALLESTAS[3]['cost'] = [('c','ballesta_2',1),('c','cristal_refinado',3)]
+for t,name in zip(TIERS_NUEVOS, ('Ballesta del Ocaso','Ballesta del Eclipse','Ballesta de Supernova',
+                                'Ballesta del Vacio','Ballesta del Fin')):
+    BALLESTAS[t] = dict(name=name, carga=round(.2 - (t-5)*.02,2), lvl=5*t+5,
+        piercing=min(4,2+(t-5)//2), multishot=1,
+        cost=[('c',f'ballesta_{t-1}',1)]+_cost(t,[('c','nucleo_eolico',2)]),
+        desc=['Multidisparo: 3 flechas por tiro','Perforacion creciente','No gasta flechas normales'])
+BALLESTAS = dict(sorted(BALLESTAS.items()))
 CARGA_VANILLA = 1.25
 
 # Arcos: segundos entre disparos automaticos y multiplicador de Punteria por tier (1..10).

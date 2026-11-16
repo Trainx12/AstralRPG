@@ -398,3 +398,8 @@ MEJORA_VIDA = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]                       # %
 # Tiers 6 a 10 (14/11/2026): armas, materiales y drops nuevos. Ver items_t6_10.py.
 from items_t6_10 import extend_weapons as _extend_weapons
 _extend_weapons(globals())
+# Familia de Combate: misma progresion de materiales y requisitos que la espada.
+CUCHILLOS = [dict(name=name, lvl=s['lvl'], cost=list(s['cost'])) for name,s in zip(
+    ('Cuchillo de Aprendiz','Cuchillo de Acero','Cuchillo de Zafiro','Cuchillo del Nether',
+     'Cuchillo Celeste','Cuchillo del Ocaso','Cuchillo del Eclipse','Cuchillo de Supernova',
+     'Cuchillo del Vacio','Cuchillo del Fin'), SWORDS)]

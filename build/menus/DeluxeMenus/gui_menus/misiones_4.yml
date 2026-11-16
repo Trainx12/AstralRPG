@@ -91,6 +91,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/1'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_2':
     material: IRON_CHESTPLATE
     slot: 11
@@ -106,6 +107,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/2'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_3':
     material: IRON_LEGGINGS
     slot: 12
@@ -121,6 +123,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/3'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_4':
     material: IRON_BOOTS
     slot: 13
@@ -136,6 +139,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/4'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_5':
     material: IRON_HELMET
     slot: 19
@@ -151,6 +155,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/5'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_6':
     material: IRON_CHESTPLATE
     slot: 20
@@ -166,6 +171,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/6'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_7':
     material: IRON_LEGGINGS
     slot: 21
@@ -181,6 +187,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/7'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_8':
     material: IRON_BOOTS
     slot: 22
@@ -196,6 +203,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/8'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_9':
     material: IRON_HELMET
     slot: 28
@@ -211,6 +219,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/9'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_10':
     material: IRON_CHESTPLATE
     slot: 29
@@ -226,6 +235,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/10'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_11':
     material: IRON_LEGGINGS
     slot: 30
@@ -241,6 +251,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/11'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'premio_12':
     material: IRON_BOOTS
     slot: 31
@@ -256,6 +267,7 @@ items:
     click_commands:
     - '[console] execute as %player_name% at @s run function astral:quest/gui/choice/12'
     - '[console] dm open misiones_4 %player_name%<delay=2>'
+    item_model: 'astral:boton_premio'
   'actualizar':
     material: CLOCK
     slot: 52

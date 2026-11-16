@@ -14,6 +14,8 @@ sube un poco menos (5 golpes en T1 -> 4,2 en T5).
 """
 
 # Tier maximo del juego (T6-T10 agregados el 14/11/2026).
+CUCHILLO_DANO = 0.53  # 3.0 * .53 = 1.59 DPS frente a 1.60 de espada
+CUCHILLO_VELOCIDAD = 3.0
 TIER_MAX = 10
 TIERS = range(1, TIER_MAX + 1)
 

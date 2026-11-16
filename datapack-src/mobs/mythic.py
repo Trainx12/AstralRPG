@@ -161,7 +161,7 @@ def ancestral_def(mid):
     d["damage"] = d["damage"]     # el elite ya lo sube x1.6
     d["ancestral"] = True
     d["money"] = ANCESTRAL_MONEY
-    d["astral"] = list(d.get("astral", [])) + [("chispa_astral", 1.0, 2), ("alma_corrupta", 1.0, 2)]
+    d["astral"] = list(d.get("astral", [])) + [("frasco_xp_gigante",0.20),("barril_xp",0.025)] + [("chispa_astral", 1.0, 2), ("alma_corrupta", 1.0, 2)]
     d["skills"] = list(d.get("skills", [])) + [
         f"- 'message{{m=\"&6&l(!) &e{name} &7desperto en &f<caster.l.x> <caster.l.y> <caster.l.z> &7(&f<caster.l.w>&7). Tienen {ANCESTRAL_MINUTOS} minutos!\"}} @PlayersOnServer ~onSpawn'",
         "- sound{s=entity.ender_dragon.growl;v=0.5} @PlayersOnServer ~onSpawn",
@@ -408,7 +408,7 @@ def mob_block(mid, d, model=None, elite=None):
     for a in d.get("astral", []):
         item, ch = a[0], a[1]
         amount = a[2] if len(a) > 2 else 1
-        if elite:
+        if elite and item not in ('frasco_xp_gigante','barril_xp'):
             ch = min(1.0, ch * 2.5)
             amount += 1
         sk += astral_drop(item, ch, amount)

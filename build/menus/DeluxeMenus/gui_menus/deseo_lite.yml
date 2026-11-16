@@ -18,7 +18,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo lite plata"
-      ]
+      ],
+      "item_model": "astral:boton_plata"
     },
     "tier": {
       "material": "ANVIL",
@@ -37,7 +38,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo lite tier"
-      ]
+      ],
+      "item_model": "astral:boton_tier"
     },
     "tiradas": {
       "material": "CHEST",
@@ -56,7 +58,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo lite tiradas"
-      ]
+      ],
+      "item_model": "astral:boton_tiradas"
     },
     "arma": {
       "material": "IRON_SWORD",
@@ -75,7 +78,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo lite arma"
-      ]
+      ],
+      "item_model": "astral:boton_arma"
     },
     "cosmetico": {
       "material": "LEATHER_HELMET",
@@ -94,7 +98,8 @@
       "click_commands": [
         "[close]",
         "[player] astraldeseo lite cosmetico"
-      ]
+      ],
+      "item_model": "astral:boton_cosmetico"
     },
     "reglas": {
       "material": "BOOK",
@@ -116,7 +121,8 @@
         "&e&lTodos los deseos los revisa el Admin,",
         "&eaunque no rompan ninguna regla.",
         "&7Puede rechazarlo o pedirte que lo cambies."
-      ]
+      ],
+      "item_model": "astral:boton_reglas"
     },
     "cerrar": {
       "material": "BARRIER",

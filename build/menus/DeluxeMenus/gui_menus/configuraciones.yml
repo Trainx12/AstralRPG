@@ -32,6 +32,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos bajo'
     - '[close]'
+    item_model: 'astral:boton_efectos_bajo'
   'efectos_medio':
     material: LIME_DYE
     slot: 13
@@ -50,6 +51,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos medio'
     - '[close]'
+    item_model: 'astral:boton_efectos_medio'
   'efectos_alto':
     material: MAGENTA_DYE
     slot: 15
@@ -69,6 +71,7 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos alto'
     - '[close]'
+    item_model: 'astral:boton_efectos_alto'
   'volver':
     material: ARROW
     slot: 22

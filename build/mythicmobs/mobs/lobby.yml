@@ -13,4 +13,4 @@ astral_lobby_movimiento:
     Persistent: true
     Collidable: false
   Skills:
-  - 'potion{type=SPEED;duration=60;level=0;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'
+  - 'potion{type=SPEED;duration=60;level=1;hasParticles=false} @PlayersInWorld{targetcreative=true;targetinvulnerable=true;targetspectator=false} ~onTimer:20'

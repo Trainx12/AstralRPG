@@ -496,6 +496,7 @@ items:
     - '&7Revisa el objeto y su precio antes de comprar.'
     item_flags:
     - HIDE_ATTRIBUTES
+    item_model: 'astral:boton_ayuda'
   'volver':
     material: ARROW
     slot: 45
