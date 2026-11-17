@@ -4,6 +4,8 @@ PET_MODELO_fenix:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.fenix} @self
   - model{m=astral_pet_fenix} @self
 
@@ -137,6 +139,8 @@ PET_MODELO_ghastito:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.ghastito} @self
   - model{m=astral_pet_ghastito} @self
 
@@ -222,6 +226,8 @@ PET_MODELO_bombardero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.bombardero} @self
   - model{m=astral_pet_bombardero} @self
 
@@ -307,6 +313,8 @@ PET_MODELO_canonero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.canonero} @self
   - model{m=astral_pet_canonero} @self
 
@@ -392,6 +400,8 @@ PET_MODELO_encapuchado:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.encapuchado} @self
   - model{m=astral_pet_encapuchado} @self
 
@@ -477,6 +487,8 @@ PET_MODELO_llamita:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.llamita} @self
   - model{m=astral_pet_llamita} @self
 
@@ -562,6 +574,8 @@ PET_MODELO_hondero:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.hondero} @self
   - model{m=astral_pet_hondero} @self
 
@@ -647,6 +661,8 @@ PET_MODELO_saqueador:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.saqueador} @self
   - model{m=astral_pet_saqueador} @self
 
@@ -732,6 +748,8 @@ PET_MODELO_brujita:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.brujita} @self
   - model{m=astral_pet_brujita} @self
 
@@ -817,6 +835,8 @@ PET_MODELO_desierto:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.desierto} @self
   - model{m=astral_pet_desierto} @self
 
@@ -902,6 +922,8 @@ PET_MODELO_jungla:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.jungla} @self
   - model{m=astral_pet_jungla} @self
 
@@ -987,6 +1009,8 @@ PET_MODELO_frondoso:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.frondoso} @self
   - model{m=astral_pet_frondoso} @self
 
@@ -1072,6 +1096,8 @@ PET_MODELO_micelio:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.micelio} @self
   - model{m=astral_pet_micelio} @self
 
@@ -1157,6 +1183,8 @@ PET_MODELO_pradera:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.pradera} @self
   - model{m=astral_pet_pradera} @self
 
@@ -1242,6 +1270,8 @@ PET_MODELO_sabana:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.sabana} @self
   - model{m=astral_pet_sabana} @self
 
@@ -1327,6 +1357,8 @@ PET_MODELO_nieve:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.nieve} @self
   - model{m=astral_pet_nieve} @self
 
@@ -1412,6 +1444,8 @@ PET_MODELO_pantano:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.pantano} @self
   - model{m=astral_pet_pantano} @self
 
@@ -1497,6 +1531,8 @@ PET_MODELO_honguito:
   Skills:
   - addtag{tag=astral.seen} @self
   - addtag{tag=clearlag_exclude} @self
+  - addtag{tag=astral.pet} @self
+  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self
   - addtag{tag=astral.pet.honguito} @self
   - model{m=astral_pet_honguito} @self
 

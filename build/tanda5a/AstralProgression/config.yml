@@ -55,6 +55,14 @@ dungeon-tiers:
   santuario_azeroth_5: 5
   santuario_azeroth_6: 5
 mythic:
+  astral_mapache:
+    tier: 1
+    boss: false
+    elite: false
+  astral_pinguino:
+    tier: 1
+    boss: false
+    elite: false
   astral_espantapajaros:
     tier: 1
     boss: false

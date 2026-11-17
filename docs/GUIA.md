@@ -1,5 +1,12 @@
 # Gachas, carteles y doble salto - 17/11/2026
 
+Tanda posterior preparada: [mascotas, oceano y panorama](../build/deploy/mascotas-oceano-panorama-17-11.md).
+Generadores `deploy_tanda17.py`, `panorama.py`, `oceano.py`, `mobs/mascotas.py`,
+`tanda5a.py`; fuente del panorama propia versionada en `pack-source/panorama/`.
+FINAL basado exactamente en 96286fbd; barril plano en todos los contextos.
+Guardar barcos/texto con `/oceano decor guardar nombre`: [instrucciones](OCEANO_DECORACIONES.md).
+Requiere apagado/reinicio y subir el FINAL a R2. Despliegue pendiente.
+
 Entrega preparada, sin despliegue: [gachas-carteles-17-11](../build/deploy/gachas-carteles-17-11.md).
 AstralDecor 1.17.0 evalua el pity premio por premio y conserva los lotes pendientes;
 instalar junto a las doce cajas y los tres menus. Parche privado: solo `gui.toggle: false`.

@@ -599,6 +599,17 @@ muro norte, cuenta 3 s, sale a 0.16 bloques/tick y teletransporta al llegar el f
 al muro sur; reaparece quieto sin regreso vacio. Actualizar solo JAR y train.yml,
 conservar config de estacion y reiniciar. Valores del JAR salvo `viaje.manual: true`.
 Lista exacta y verificaciones: [tren-lobby.md](../build/deploy/tren-lobby.md).
+# Mascotas y decoraciones del oceano — 17/11/2026 (pendiente)
+
+Entrega: [mascotas-oceano-panorama-17-11](../build/deploy/mascotas-oceano-panorama-17-11.md).
+AstralProgression 1.1.0 protege mascotas por tag/ID, cancela dano y empujes,
+y excluye mascotas y monturas con dueno de XP de combate y contadores de bajas.
+Las monturas conservan su vulnerabilidad. AstralOceano 1.5.0 guarda barcos/texto
+por volumen, fuera del mundo: [comandos](OCEANO_DECORACIONES.md).
+AstralEfectos 1.3.0 ignora mascotas en el trazado del rayo.
+FINAL con panorama propio y barril plano; requiere apagar y reiniciar.
+Pendientes R2, instalacion y comprobacion visual/remota por Claude.
+
 # Tanda XP y armas — 16/11/2026 (pendiente de despliegue)
 
 Entrega exacta: [tanda-xp-cuchillo.md](../build/deploy/tanda-xp-cuchillo.md).

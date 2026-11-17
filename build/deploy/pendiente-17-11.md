@@ -9,11 +9,11 @@ Incluye direccion/interruptores, T6/XP/suerte, Destello/pausa y la tanda visual 
 
 | Local desde la raiz | Destino | SHA-256 |
 |---|---|---|
-| `build/runtime/AstralEfectos.jar` | `plugins/AstralEfectos.jar` | `ad7685d81bf03844792bb4d44cbbfbd11072a12e13e29ebe914b63e29b3b0557` |
+| `build/runtime/AstralEfectos.jar` | `plugins/AstralEfectos.jar` | `95a48419a73001a53b5468656f8eaf4d205dc2e345de6c1ccdc50816654b110c` |
 | `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `34f8223dd14d7170e45efc01799425e6a7cd3b940717710d2b3b9ab2efaf3bfe` |
-| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `387ab506f7405c4f9fd9ee6ea5e2f7941d0c2fd5d2182c78186c3deed9714fff` |
+| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `40bc478d2cb1b35679e14496ae9569abf2887017db6b4419756de19458ab2fc4` |
 | `.local/terceros/AstralRPG-privado/build/entregas/crop-kettle/CropAndKettle-Astral.zip` | `world/datapacks/CropAndKettle-Astral.zip` | `ebc22200ef9e0a5333716f8e9486fa3df1e5764d29e9a583f23a13aa55107e10` |
-| `build/gameplay/astral_armas_especiales.sk` | `plugins/Skript/scripts/special_weapons.sk` | `0805f366d3ce413a592764469c466fb9c3f6c8390a9c14433f1380259cdf021d` |
+| `build/gameplay/astral_armas_especiales.sk` | `plugins/Skript/scripts/special_weapons.sk` | `45f2f6bb1292ad1cea5eb4bf655ea678630ffdfda08df6e1d183444f346c1807` |
 | `build/services/astral_servicios.sk` | `plugins/Skript/scripts/astral_servicios.sk` | `2d930b05746e6fbde8b1dbe81aaeff95a774227d20c9cbf918abc30f2d74e88a` |
 | `build/menus/DeluxeMenus/gui_menus/configuraciones.yml` | `plugins/DeluxeMenus/gui_menus/configuraciones.yml` | `e51c83103d02179fb624d479f15c91cd8cc38bec06d946f33a4d6e5c905d47a3` |
 
@@ -120,7 +120,7 @@ Conservar todos los otros pendientes y el pack FINAL. Las estatuas tanda3a ya es
 | Local | Destino | SHA-256 |
 |---|---|---|
 | `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `34f8223dd14d7170e45efc01799425e6a7cd3b940717710d2b3b9ab2efaf3bfe` |
-| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `387ab506f7405c4f9fd9ee6ea5e2f7941d0c2fd5d2182c78186c3deed9714fff` |
+| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `40bc478d2cb1b35679e14496ae9569abf2887017db6b4419756de19458ab2fc4` |
 | `build/gameplay/astral_gameplay.sk` | `plugins/Skript/scripts/astral_gameplay.sk` | `d2e3ded9f527d93d91e976e98d3f89ad4e526e661ef1dc89b44cbf43fc97fd87` |
 | `build/lobby/CrazyCrates/crates/gacha_cosmeticos.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos.yml` | `7d4335154fef0ae36435a1dee8f510b8aaf3fc7285e6eedc461ac9099e1e36d7` |
 | `build/lobby/CrazyCrates/crates/gacha_cosmeticos_garantia.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos_garantia.yml` | `8a6c324c9b550e682b8fa1f6bc32d6ea00adc3797992774406f2c93ab8beca5b` |
@@ -147,3 +147,10 @@ Actualizacion opcional del datapack privado de Paradise y comandos de diagnostic
 Paradise sigue pendiente de diagnostico en vivo; no se certifica largada/checkpoints/meta ni boton reparado.
 Despliegue, consola remota, cliente visual y reconexion/reinicio con lotes en curso siguen pendientes de Claude.
 Nunca sustituir mundos ni usar Worlds > Upload en world.
+
+## Mascotas, oceano y panorama (tanda actual)
+
+Lista y hashes vigentes: [mascotas-oceano-panorama-17-11](mascotas-oceano-panorama-17-11.md).
+Esta tanda reemplaza los mismos JAR/datapack/script de las tablas anteriores y agrega AstralProgression, AstralOceano y el YAML privado de mascotas. Conservar el resto de 054db88 pendiente.
+Unico FINAL para instalar: `.local/terceros/AstralRPG-privado/build/entregas/mascotas-oceano-panorama-17-11/AstralRPG-Textures.zip`; SHA-1 `d9ec25c013ccffd028bd384a189e9b3524fdda37`, encima de `96286fbdc33d77b4ebcc11de8b15f7461631bac4`.
+Apagar y reiniciar. R2 e instalacion remota pendientes de Claude con navegador. Nunca reemplazar mundos. Instrucciones del dueno: [decoraciones](../../docs/OCEANO_DECORACIONES.md).

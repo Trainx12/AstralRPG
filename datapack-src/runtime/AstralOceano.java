@@ -21,6 +21,9 @@ import org.bukkit.loot.Lootable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.*;
 import java.util.regex.*;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.structure.Structure;
+import org.bukkit.util.BlockVector;
 
 /**
  * Oceano Astral (generado por datapack-src/oceano.py).
@@ -36,6 +39,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     long nextRegen; boolean regenerating; double bowDamage;
     double waterDamage,waterAxe,swimFactor;
     boolean applyingVision;
+    final Map<String,org.bukkit.util.BoundingBox> decorVolumes=new HashMap<>();
     final Set<UUID> ownVision=new HashSet<>();
     final Map<UUID,AbstractArrow> waterArrows=new HashMap<>();
     final Set<UUID> arrowWaterTick=new HashSet<>();
@@ -57,6 +61,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskTimer(this, this::waterSet, 20, 10);
         bowDamage = getConfig().getDouble("arco-dano", 2957);
         loadFosa();
+        try { for(String name:decorNames()) cacheDecor(name); } catch(IOException ex) {getLogger().severe("No se pudieron leer decoraciones: "+ex);}
         Bukkit.getScheduler().runTaskTimer(this, this::fosaTick, 40, 10);
     }
 
@@ -217,7 +222,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         int min = c.getWorld().getMinHeight() + 1;
         for (int x = 0; x < 16; x++) for (int z = 0; z < 16; z++) for (int y = min; y <= CEIL_WATER; y++) {
             Block b = c.getBlock(x, y, z);
-            if (airy(b.getType())) b.setType(Material.WATER, false);
+            if (airy(b.getType()) && decorVolumes.values().stream().noneMatch(box -> box.contains(b.getX()+.5,b.getY()+.5,b.getZ()+.5))) b.setType(Material.WATER, false);
         }
     }
 
@@ -607,6 +612,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         Path template = getDataFolder().toPath().resolve("plantilla");
         // Sin plantilla: se borran las regiones y el generador (misma semilla) las vuelve a crear iguales,
         // con menas, cofres y estructuras nuevas. Con plantilla (/oceano plantilla) se copia esa.
+        if (regenerating) { if(who!=null) who.sendMessage("Ya se esta regenerando."); return false; }
         if (w == null) { if (who != null) who.sendMessage("El mundo " + world + " no esta cargado."); return false; }
         regenerating = true;
         Path folder = dir(w);
@@ -617,6 +623,9 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                 for (Player p : w.getPlayers()) p.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv unload " + world);
                 if (Bukkit.getWorld(world) != null) Bukkit.unloadWorld(world, false);
+                if (Bukkit.getWorld(world) != null) throw new IOException("No se pudo descargar el oceano; no se borro nada");
+                if(!folder.toAbsolutePath().normalize().startsWith(Bukkit.getWorldContainer().toPath().toAbsolutePath().normalize())
+                    || world.equals(Bukkit.getWorlds().getFirst().getName())) throw new IOException("Ruta de oceano insegura");
                 for (String sub : List.of("region", "entities", "poi")) {
                     Path target = folder.resolve(sub);
                     if (Files.isDirectory(target)) try (var s = Files.walk(target)) { s.sorted(java.util.Comparator.reverseOrder()).forEach(p -> p.toFile().delete()); }
@@ -628,6 +637,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
                 }
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv load " + world);
                 if (Bukkit.getWorld(world) == null) Bukkit.createWorld(new WorldCreator(world).generator("AstralOceano"));
+                restoreDecor(null);
                 nextRegen = System.currentTimeMillis() + everyMs; save();
                 broadcast("&aEl Oceano Astral se regenero: menas y cofres nuevos.");
                 getLogger().info("Oceano regenerado desde " + template);
@@ -639,6 +649,114 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         return true;
     }
 
+    Path decorRoot() { return getDataFolder().toPath().resolve("decor"); }
+    Path decorPath(String name) {
+        if(!name.matches("[a-z0-9_][a-z0-9_-]{0,39}")) throw new IllegalArgumentException("Nombre: 1-40 letras minusculas, numeros, _ o -.");
+        return decorRoot().resolve(name);
+    }
+    List<String> decorNames() throws IOException {
+        if(!Files.isDirectory(decorRoot())) return List.of();
+        try(var stream=Files.list(decorRoot())) {
+            return stream.filter(p -> Files.isRegularFile(p.resolve("meta.yml"))).map(p -> p.getFileName().toString()).sorted().toList();
+        }
+    }
+    void cacheDecor(String name) {
+        var m=YamlConfiguration.loadConfiguration(decorPath(name).resolve("meta.yml").toFile());
+        int x=m.getInt("x"),y=m.getInt("y"),z=m.getInt("z");
+        decorVolumes.put(name,new org.bukkit.util.BoundingBox(x,y,z,x+m.getInt("sx"),y+m.getInt("sy"),z+m.getInt("sz")));
+    }
+    void loadDecorChunks(World w, int x,int z,int sx,int sz) {
+        for(int cx=x>>4;cx<=((x+sx-1)>>4);cx++) for(int cz=z>>4;cz<=((z+sz-1)>>4);cz++) w.getChunkAt(cx,cz).load();
+    }
+    boolean decoration(Entity e) {
+        return e instanceof Display || e instanceof Hanging || e instanceof ArmorStand || e instanceof Boat || e instanceof Minecart;
+    }
+    void saveDecor(String name, int x1,int y1,int z1,int x2,int y2,int z2) throws IOException {
+        World w=Bukkit.getWorld(world); if(w==null) throw new IllegalArgumentException("Oceano no cargado.");
+        Path dest=decorPath(name); if(Files.exists(dest)) throw new IllegalArgumentException("Ese nombre ya existe; usa otro o quitar primero.");
+        int x=Math.min(x1,x2),y=Math.min(y1,y2),z=Math.min(z1,z2);
+        int sx=Math.addExact(Math.subtractExact(Math.max(x1,x2),x),1),sy=Math.addExact(Math.subtractExact(Math.max(y1,y2),y),1),sz=Math.addExact(Math.subtractExact(Math.max(z1,z2),z),1);
+        if(y<w.getMinHeight() || (long)y+sy>w.getMaxHeight() || (long)sx*sy*sz>4_000_000L || sx>2048 || sz>2048)
+            throw new IllegalArgumentException("Zona fuera de altura o demasiado grande (maximo 4 millones de bloques, lado 2048).");
+        loadDecorChunks(w,x,z,sx,sz);
+        var box=new org.bukkit.util.BoundingBox(x,y,z,x+sx,y+sy,z+sz);
+        var entities=w.getNearbyEntities(box).stream().filter(e -> box.contains(e.getLocation().toVector()) && !(e instanceof Player)).toList();
+        if(entities.stream().anyMatch(e -> !decoration(e))) throw new IllegalArgumentException("Retira mobs y objetos sueltos del volumen antes de guardar.");
+        String tag="astral.oceano.decor."+name;
+        entities.forEach(e -> e.addScoreboardTag(tag));
+        Path temp=decorRoot().resolve(".tmp-"+UUID.randomUUID()); Files.createDirectories(temp);
+        try {
+            Structure structure=Bukkit.getStructureManager().createStructure();
+            structure.fill(new Location(w,x,y,z),new BlockVector(sx,sy,sz),true);
+            Bukkit.getStructureManager().saveStructure(temp.resolve("estructura.nbt").toFile(),structure);
+            YamlConfiguration meta=new YamlConfiguration();
+            meta.set("x",x);meta.set("y",y);meta.set("z",z);meta.set("sx",sx);meta.set("sy",sy);meta.set("sz",sz);
+            meta.save(temp.resolve("meta.yml").toFile());
+            Files.move(temp,dest,StandardCopyOption.ATOMIC_MOVE);
+            cacheDecor(name);
+        } catch(IOException|RuntimeException ex) {
+            entities.forEach(e -> e.removeScoreboardTag(tag));
+            try(var files=Files.walk(temp)) { for(Path file:files.sorted(java.util.Comparator.reverseOrder()).toList()) Files.deleteIfExists(file); }
+            throw ex;
+        }
+    }
+    void restoreDecor(String only) throws IOException {
+        World w=Bukkit.getWorld(world); if(w==null) throw new IOException("Oceano no cargado");
+        for(String name:only==null?decorNames():List.of(only)) {
+            Path folder=decorPath(name);
+            if(!Files.isRegularFile(folder.resolve("meta.yml"))) throw new IllegalArgumentException("Decoracion inexistente: "+name);
+            var meta=YamlConfiguration.loadConfiguration(folder.resolve("meta.yml").toFile());
+            int x=meta.getInt("x"),y=meta.getInt("y"),z=meta.getInt("z"),sx=meta.getInt("sx"),sz=meta.getInt("sz");
+            cacheDecor(name);
+            loadDecorChunks(w,x,z,sx,sz);
+            Structure structure=Bukkit.getStructureManager().loadStructure(folder.resolve("estructura.nbt").toFile());
+            String tag="astral.oceano.decor."+name;
+            w.getEntities().stream().filter(e -> e.getScoreboardTags().contains(tag)).forEach(Entity::remove);
+            structure.place(new Location(w,x,y,z),true,org.bukkit.block.structure.StructureRotation.NONE,
+                org.bukkit.block.structure.Mirror.NONE,0,1,new Random());
+        }
+    }
+    int[] selection(Player p) throws ReflectiveOperationException {
+        // WorldEdit opcional: no enlazar clases si el plugin no esta instalado.
+        Class<?> adapter=Class.forName("com.sk89q.worldedit.bukkit.BukkitAdapter");
+        Object actor=adapter.getMethod("adapt",Player.class).invoke(null,p);
+        Object we=Class.forName("com.sk89q.worldedit.WorldEdit").getMethod("getInstance").invoke(null);
+        Object manager=we.getClass().getMethod("getSessionManager").invoke(we);
+        Object session=manager.getClass().getMethod("get",Class.forName("com.sk89q.worldedit.extension.platform.SessionOwner")).invoke(manager,actor);
+        Object weWorld=adapter.getMethod("adapt",World.class).invoke(null,p.getWorld());
+        Object region=session.getClass().getMethod("getSelection",Class.forName("com.sk89q.worldedit.world.World")).invoke(session,weWorld);
+        int[] coords=new int[6];int i=0;
+        for(String corner:List.of("getMinimumPoint","getMaximumPoint")) {
+            Object v=region.getClass().getMethod(corner).invoke(region);
+            for(String axis:List.of("x","y","z")) coords[i++]=((Number)v.getClass().getMethod(axis).invoke(v)).intValue();
+        }
+        return coords;
+    }
+    void decorCommand(CommandSender s,String[] a) {
+        if(!s.hasPermission("astral.oceano.admin")) {s.sendMessage("Sin permiso.");return;}
+        if(regenerating) {s.sendMessage("Espera a que termine la regeneracion.");return;}
+        try {
+            if(a.length==2 && a[1].equals("lista")) {s.sendMessage("Decoraciones: "+String.join(", ",decorNames()));return;}
+            if(a.length>=2 && a[1].equals("poner") && a.length<=3) {restoreDecor(a.length==3?a[2]:null);s.sendMessage("Decoraciones restauradas.");return;}
+            if(a.length==3 && a[1].equals("quitar")) {
+                Path folder=decorPath(a[2]);
+                // Quitar el registro no destruye los bloques ni las entidades actuales.
+                Files.delete(folder.resolve("estructura.nbt"));Files.delete(folder.resolve("meta.yml"));Files.delete(folder);
+                decorVolumes.remove(a[2]);
+                s.sendMessage("Registro quitado; la construccion actual se conserva.");return;
+            }
+            if(a.length>=3 && a[1].equals("guardar")) {
+                int[] v=new int[6];
+                if(a.length==9) {for(int i=0;i<6;i++)v[i]=Integer.parseInt(a[i+3]);}
+                else if(a.length==3 && s instanceof Player p && here(p.getWorld())) v=selection(p);
+                else throw new IllegalArgumentException("Selecciona con WorldEdit dentro del oceano o pasa seis coordenadas.");
+                saveDecor(a[2],v[0],v[1],v[2],v[3],v[4],v[5]);s.sendMessage("Decoracion guardada: "+a[2]);return;
+            }
+            s.sendMessage("/oceano decor guardar <nombre> [x1 y1 z1 x2 y2 z2] | lista | poner [nombre] | quitar <nombre>");
+        } catch(ReflectiveOperationException ex) {s.sendMessage("Marca una seleccion WorldEdit completa en el oceano, o pasa las seis coordenadas.");
+        } catch(IOException|IllegalArgumentException|ArithmeticException ex) {s.sendMessage("No se completo: "+ex.getMessage());getLogger().warning("Decor: "+ex);}
+    }
+
     @Override public boolean onCommand(CommandSender s, Command c, String label, String[] a) {
         if(c.getName().equalsIgnoreCase("astralagua")) {
             if(!(s instanceof ConsoleCommandSender) || a.length!=1)return true;
@@ -647,6 +765,7 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         }
         String sub = a.length == 0 ? "estado" : a[0];
         switch (sub) {
+            case "decor" -> decorCommand(s,a);
             case "entrar" -> {
                 if (!(s instanceof Player p)) return true;
                 World w = Bukkit.getWorld(world);

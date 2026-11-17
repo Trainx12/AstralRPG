@@ -953,7 +953,7 @@ put(f"data/{NS}/tags/entity_type/bosses.json", {"values": ["minecraft:wither", "
                                                            "minecraft:warden", "minecraft:elder_guardian"]})
 put(f"data/{NS}/tags/block/passable.json", {"values": ["#minecraft:air", "#minecraft:replaceable"]})
 
-MOB = f"type=!minecraft:player,type=!#{NS}:ignore"
+MOB = f"type=!minecraft:player,type=!#{NS}:ignore,tag=!astral.pet,nbt=!{{Invulnerable:1b}}"
 
 # porcentaje de vida de la victima en #pct (0-100)
 fn("fx/victim_pct", [

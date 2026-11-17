@@ -45,6 +45,8 @@ function asw_holds(p: player, id: text) :: boolean:
     return false
 
 function asw_target(p: player, e: entity) :: boolean:
+    if scoreboard tags of {_e} contains "astral.pet":
+        return false
     if {_e} is not a living entity:
         return false
     if {_e} is {_p}:

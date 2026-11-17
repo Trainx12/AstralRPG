@@ -122,6 +122,8 @@ def skill_yml():
         model = d.get('modelo', f'astral_pet_{pid}')
         # clearlag_exclude: ClearLag no la limpia ni la despawnea por distancia.
         L += [f"PET_MODELO_{pid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", "  - addtag{tag=clearlag_exclude} @self",
+              "  - addtag{tag=astral.pet} @self",
+              '  - command{c="minecraft:data merge entity <caster.uuid> {Invulnerable:1b}"} @self',
               f"  - addtag{{tag=astral.pet.{pid}}} @self",
               f"  - model{{m={model}}} @self", ""]
         # chequeo: si el dueno ya no la tiene elegida, la mascota se va

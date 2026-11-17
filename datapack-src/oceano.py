@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.4.0'
+VERSION = '1.5.0'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -28,7 +28,7 @@ version: {VERSION}
 main: astral.AstralOceano
 api-version: '26.1.2'
 load: STARTUP
-softdepend: [Multiverse-Core]
+softdepend: [Multiverse-Core, WorldEdit]
 commands:
   astralagua:
     description: Proyectil interno pagado por Skript (solo consola)

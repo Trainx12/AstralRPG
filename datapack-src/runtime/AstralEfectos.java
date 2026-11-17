@@ -265,7 +265,7 @@ public final class AstralEfectos extends JavaPlugin implements Listener, TabExec
         Vector dir = ojos.getDirection();
         Player yo = mago;
         RayTraceResult r = ojos.getWorld().rayTrace(ojos, dir, 25, FluidCollisionMode.NEVER, true, 0.45,
-            x -> x instanceof LivingEntity && x != yo && !(x instanceof ArmorStand) && !(x instanceof Player pl && pl.getGameMode() == GameMode.SPECTATOR));
+            x -> x instanceof LivingEntity && x != yo && !x.isInvulnerable() && !x.getScoreboardTags().contains("astral.pet") && !(x instanceof ArmorStand) && !(x instanceof Player pl && pl.getGameMode() == GameMode.SPECTATOR));
         Location fin = r == null ? ojos.clone().add(dir.clone().multiply(25)) : r.getHitPosition().toLocation(ojos.getWorld());
         // Sale de la punta del baston (a la derecha y abajo de la vista), no del medio de la pantalla.
         Vector der = dir.clone().crossProduct(new Vector(0, 1, 0));

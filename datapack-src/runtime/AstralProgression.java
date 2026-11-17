@@ -25,6 +25,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     private String survival;
     private final Random random = new Random();
     private final Set<UUID> buying = new HashSet<>();
+    private final Map<UUID,Map<Statistic,EntityType>> friendlyDeaths = new HashMap<>();
     private static final Set<String> SKILLS = Set.of("fighting", "archery", "sorcery");
     public void onEnable() {
         saveDefaultConfig();
@@ -35,7 +36,55 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         mythicKey=new NamespacedKey(this,"mythic");
         getServer().getPluginManager().registerEvents(this,this);
         Bukkit.getWorlds().forEach(this::claims);
+        Bukkit.getWorlds().forEach(w -> w.getLivingEntities().forEach(this::protectPet));
+        Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getWorlds().forEach(w ->
+            w.getLivingEntities().forEach(this::protectPet)), 1, 20);
         getLogger().info("XP por tier, proteccion 2D y loot aditivo activos; survival="+survival);
+    }
+    public boolean pet(LivingEntity mob) {
+        return mob.getScoreboardTags().stream().anyMatch(t -> t.equals("astral.pet") || t.startsWith("astral.pet."))
+            || mythic(mob).startsWith("astral_pet_");
+    }
+    public boolean friendly(LivingEntity mob) {
+        if(mob.getScoreboardTags().contains("astral.no_combat_xp")) return true;
+        if(pet(mob)) return true;
+        if(mob instanceof Tameable tame && tame.getOwner()!=null) {mob.addScoreboardTag("astral.no_combat_xp");return true;}
+        var active=MythicBukkit.inst().getMobManager().getActiveMob(mob.getUniqueId());
+        boolean owned=active.map(m -> m.getOwner().isPresent() && Set.of("astral_grillo","astral_chocobo",
+            "astral_escarabajo","astral_lagarto","astral_ave","astral_pterodactilo").contains(m.getType().getInternalName())).orElse(false);
+        if(owned) mob.addScoreboardTag("astral.no_combat_xp");
+        return owned;
+    }
+    private void protectPet(LivingEntity mob) {
+        if(!pet(mob)) return;
+        mob.addScoreboardTag("astral.pet"); mob.setInvulnerable(true);
+        mob.setFireTicks(0); mob.setFallDistance(0);
+    }
+    @EventHandler(priority=EventPriority.LOWEST) public void petDamage(EntityDamageEvent e) {
+        if(e.getEntity() instanceof LivingEntity mob && pet(mob)) {protectPet(mob); e.setCancelled(true);}
+    }
+    @EventHandler(priority=EventPriority.HIGHEST) public void petDamageFinal(EntityDamageEvent e) {
+        petDamage(e);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST) public void petKnockback(io.papermc.paper.event.entity.EntityKnockbackEvent e) {
+        if(e.getEntity() instanceof LivingEntity mob && pet(mob)) e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST) public void petPush(io.papermc.paper.event.entity.EntityPushedByEntityAttackEvent e) {
+        if(e.getEntity() instanceof LivingEntity mob && pet(mob)) e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.LOWEST) public void petAttack(io.papermc.paper.event.player.PrePlayerAttackEntityEvent e) {
+        if(e.getAttacked() instanceof LivingEntity mob && pet(mob)) {protectPet(mob);e.setCancelled(true);}
+    }
+    @EventHandler public void petLoad(EntitiesLoadEvent e) { e.getEntities().forEach(entity -> {
+        if(entity instanceof LivingEntity mob) protectPet(mob);
+    }); }
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void petSpawn(CreatureSpawnEvent e) {
+        Bukkit.getScheduler().runTask(this, () -> { if(e.getEntity().isValid()) protectPet(e.getEntity()); });
+    }
+    @EventHandler(priority=EventPriority.LOWEST) public void mythicPetSpawn(io.lumine.mythic.bukkit.events.MythicMobSpawnEvent e) {
+        if(e.getMobType().getInternalName().startsWith("astral_pet_") && e.getEntity() instanceof LivingEntity mob) {
+            mob.addScoreboardTag("astral.pet");protectPet(mob);
+        }
     }
     private void claims(World w) {
         GriefPrevention.instance.config_claims_worldModes.put(w,
@@ -71,6 +120,11 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(!(e.getEntity() instanceof LivingEntity mob) || mob instanceof Player || e.getFinalDamage()<=0) return;
         Entity cause=e.getDamageSource().getCausingEntity();
         Entity direct=e.getDamageSource().getDirectEntity();
+        if(friendly(mob)) {
+            Player player=cause instanceof Player source ? source : mob.getKiller();
+            if(player!=null && e.getFinalDamage()>=mob.getHealth()) suppressKill(player,mob);
+            return;
+        }
         if(!(cause instanceof Player p)) return;
         String skill;
         if(direct instanceof Projectile projectile) {
@@ -95,7 +149,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             .map(m->m.getType().getInternalName()).orElse(mob.getPersistentDataContainer().getOrDefault(mythicKey,PersistentDataType.STRING,""));
     }
     public int tier(LivingEntity mob) {
-        if(mob instanceof Player || mob.getType()==EntityType.ARMOR_STAND) return 0;
+        if(mob instanceof Player || mob.getType()==EntityType.ARMOR_STAND || friendly(mob)) return 0;
         for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.mt"+t)) return t;
         String mm=mythic(mob);
         if(!mm.isEmpty()) return getConfig().getInt("mythic."+mm+".tier",0);
@@ -114,6 +168,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         return SKILLS.contains(skill==null?"":skill) ? skill : "";
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void vanillaXp(XpGainEvent e) {
+        if(e instanceof EntityXpGainEvent entity && friendly(entity.getAttacked())) {e.setCancelled(true);return;}
         if(e instanceof EntityXpGainEvent entity && SKILLS.contains(e.getSkill().getId().getKey()) &&
             tier(entity.getAttacked())>0 && !creditedSkill(entity.getAttacked(),e.getUser().getUuid()).isEmpty())
             e.setCancelled(true);
@@ -129,6 +184,10 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     }
     @EventHandler(priority=EventPriority.MONITOR) public void death(EntityDeathEvent e) {
         LivingEntity mob=e.getEntity(); Player p=mob.getKiller();
+        if(friendly(mob)) {
+            e.setDroppedExp(0);
+            return;
+        }
         if(p==null) {
             String uuid=mob.getPersistentDataContainer().get(playerKey,PersistentDataType.STRING);
             if(uuid!=null) p=Bukkit.getPlayer(UUID.fromString(uuid));
@@ -138,6 +197,21 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(skill.isEmpty() || xp<=0) return;
         // Command XP no genera EntityXpGainEvent: el filtro anterior no cancela nuestro premio.
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"skills xp add "+p.getName()+" "+skill+" "+String.format(Locale.ROOT,"%.2f",xp));
+    }
+    private void suppressKill(Player player,LivingEntity mob) {
+        // Las estadisticas se adjudican ANTES de EntityDeathEvent en vanilla.
+        UUID id=player.getUniqueId();Map<Statistic,EntityType> pending=new EnumMap<>(Statistic.class);
+        pending.put(Statistic.MOB_KILLS,mob.getType());pending.put(Statistic.KILL_ENTITY,mob.getType());
+        friendlyDeaths.put(id,pending);
+        Bukkit.getScheduler().runTask(this,()->friendlyDeaths.remove(id,pending));
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
+    public void friendlyStatistic(org.bukkit.event.player.PlayerStatisticIncrementEvent e) {
+        var pending=friendlyDeaths.get(e.getPlayer().getUniqueId());if(pending==null)return;
+        EntityType type=pending.get(e.getStatistic());
+        if(type!=null && (e.getEntityType()==null || type==e.getEntityType())) {
+            pending.remove(e.getStatistic());e.setCancelled(true);
+        }
     }
     private PersistentDataContainer container(InventoryHolder h) {
         return h instanceof PersistentDataHolder p ? p.getPersistentDataContainer() : null;

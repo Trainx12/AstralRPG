@@ -23,13 +23,9 @@ def final():
     previous=read(io.BytesIO(subprocess.check_output(['git','show',PUBLIC_BASE+':build/AstralRPG-Textures.zip'],cwd=ROOT)))
     public=read(ROOT/'build/AstralRPG-Textures.zip')
     delta={n:b for n,b in public.items() if b!=previous.get(n)}
-    # Barril: icono final en GUI, modelo BBcosmetics previo en mano y mundo.
+    # Barril: icono plano en TODOS los contextos, como los frascos.
     barrel='assets/astral/items/barril_xp.json'
-    fallback=json.loads(old[barrel])['model']
-    gui=json.loads(public[barrel])['model']
-    if fallback!=json.loads(previous[barrel])['model']:
-        delta[barrel]=json.dumps({'model':{'type':'minecraft:select','property':'minecraft:display_context',
-            'cases':[{'when':'gui','model':gui}],'fallback':fallback}}).encode()
+    delta[barrel]=public[barrel]
     files={**old,**delta};target=out/'AstralRPG-Textures.zip'
     with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
         for n,b in sorted(files.items()):z.writestr(zipfile.ZipInfo(n,(2026,11,16,0,0,0)),b,compress_type=zipfile.ZIP_DEFLATED)

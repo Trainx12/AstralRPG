@@ -277,7 +277,7 @@ def build(java, server):
         for p in sorted((target/'astral').glob('AstralProgression*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), (2026,11,11,0,0,0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026,11,11,0,0,0)),
-                   "name: AstralProgression\nversion: 1.0.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves]\n")
+                   "name: AstralProgression\nversion: 1.1.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves]\n")
         z.writestr(zipfile.ZipInfo('config.yml', (2026,11,11,0,0,0)), yaml.safe_dump(config, sort_keys=False))
     print(dest)
 

@@ -329,7 +329,7 @@ def config():
 
 
 PLUGIN_YML = """name: AstralEfectos
-version: 1.2.0
+version: 1.3.0
 main: astral.AstralEfectos
 api-version: '26.1.2'
 softdepend: [packetevents]

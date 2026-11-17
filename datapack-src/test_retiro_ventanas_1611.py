@@ -55,7 +55,8 @@ class RetiroVentanasTests(unittest.TestCase):
         self.assertNotIn('astral_aurora',mobs)
         with zipfile.ZipFile(ROOT/'build/oceano/AstralOceano.jar') as z:
             self.assertNotIn(b'auroraTick',z.read('astral/AstralOceano.class'))
-            self.assertIn('1.4.0',z.read('plugin.yml').decode())
+            from oceano import VERSION
+            self.assertEqual(yaml.safe_load(z.read('plugin.yml'))['version'],VERSION)
 
     def test_gemini_layouts_slots_actions_active_and_models(self):
         files,providers=assets()
