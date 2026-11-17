@@ -59,6 +59,17 @@ def effective(files):
 def patch_datapack(original):
     files = effective(original)
     changed = []
+    # Con varios dialogos vanilla reemplaza el boton Guia Astral por una lista.
+    # Astral registra su guia; CNK/Smithed no agregan accesos en pausa ni rapidas.
+    for tag in ('pause_screen_additions', 'quick_actions'):
+        name = f'data/minecraft/tags/dialog/{tag}.json'
+        if name in files:
+            obj = json.loads(files[name])
+            obj['values'] = [v for v in obj.get('values', [])
+                             if (v.get('id') if isinstance(v, dict) else v) == 'astral:guia']
+            obj.pop('replace', None)
+            files[name] = encoded(obj)
+            changed.append(name)
     # El pan de CNK usa BREAD: distinguirlo del pan comprado/crafteado vanilla
     # evita comprar trigo barato y revender la coccion al precio vanilla.
     # EconomyShopGUI debe conservar match-item-meta=true y no ignorar custom_data.
@@ -239,8 +250,9 @@ def delivery(report, probe=None):
               f"{len(report['recipe_matches'])} coincidencias nativas y {len(report['runtime_recipe_matches_by_material'])} coincidencias de ingredientes por material con la mesa Astral.",
               '- Mas de cien recetas de cocina propias van por funciones/olla, no por el registro de recetas de mesa. '
               'No hay reemplazos de `data/minecraft/recipe/*` ni de loot tables vanilla.',
-              '- Tags `minecraft:load`, `tick` y `pause_screen_additions`: aditivos, sin replace; conservan Guia Astral '
-              'y el enlace opcional de Smithed. `mineable/axe`, no_impact y painting_variant/placeable tampoco reemplazan tags existentes.',
+              '- Tags `minecraft:load` y `tick`: aditivos, sin replace. CNK/Smithed no agregan dialogos a '
+              '`pause_screen_additions` ni `quick_actions`: queda solamente Guia Astral, registrada por Astral. '
+              '`mineable/axe`, no_impact y painting_variant/placeable tampoco reemplazan tags existentes.',
               '- Los criterios de avances conservan sus condiciones previas y agregan el predicado de survival. '
               'Los selectores @a de las funciones tambien se filtran; los bucles de entidades programados corren en el overworld. '
               'El soporte queda limitado a survival, no cocina en Nether/End ni en mundos de plugins.',
@@ -296,7 +308,7 @@ def delivery(report, probe=None):
               'Si se ajustan solo precios despues: `sreload`.',
               'Consola: `datapack list enabled`; verificar Astral y CropAndKettle-Astral, ausencia de errores de functions/advancements/recipes '
               'y AstralProgression activo con survival correcto. Comprobar carga de Skript y MythicMobs. '
-              'Revisar ambos accesos del menu de pausa y el recetario CNK con cliente.',
+              'Revisar el boton Guia Astral del menu de pausa y el recetario CNK con cliente.',
               'En survival, fabricar olla (caldero+fogata), cocinar una receta del recetario y plantar un cultivo nuevo; '
               'comprobar crecimiento, cosecha y protecciones de claims/WorldGuard con un jugador sin permisos de admin. '
               'Repetir intento en lobby/minas/mazmorras: no debe activar CNK ni generar estructuras. '
@@ -366,5 +378,18 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base', type=Path)
     parser.add_argument('--probe', type=Path)
+    parser.add_argument('--datapack-only', action='store_true',
+                        help='Regenera solo el datapack privado; no modifica el FINAL de recursos ni su base')
     args = parser.parse_args()
-    build(args.base, args.probe)
+    if args.datapack_only:
+        data, changes = patch_datapack(read_zip(SOURCE / f'CropAndKettle-v{VERSION}-Data-Pack.zip'))
+        target = privado() / OUTPUT / 'CropAndKettle-Astral.zip'
+        write_zip(target, data)
+        audit_path = target.parent / 'audit.json'
+        if audit_path.exists():
+            report = json.loads(audit_path.read_text('utf8'))
+            report.update(datapack_sha1=sha(target), patched_entries=changes)
+            audit_path.write_bytes(encoded(report))
+        print(f'{target}: SHA-1 {sha(target)}; {len(changes)} entradas adaptadas')
+    else:
+        build(args.base, args.probe)

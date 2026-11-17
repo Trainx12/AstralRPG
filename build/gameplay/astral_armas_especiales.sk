@@ -338,13 +338,13 @@ function asw_blink(p: player):
         stop
     if asw_pay({_p}, {@mana_destello}) is false:
         stop
-    # Teletransporte RELATIVO de vanilla (~dx ~dy ~dz, sin tocar la rotacion): el cliente no
-    # recibe una camara/posicion absoluta del server, asi que no hay tiron ni giro de camara.
+    # API Paper en el mismo mundo, con posicion/rotacion/velocidad relativas.
+    # AstralDecor no elige otra dimension; los listeners conservan la cancelacion.
     set {_dx} to round((x-coordinate of {_dest} - x-coordinate of {_origin}) * 1000) / 1000
     set {_dy} to round((y-coordinate of {_dest} - y-coordinate of {_origin}) * 1000) / 1000
     set {_dz} to round((z-coordinate of {_dest} - z-coordinate of {_origin}) * 1000) / 1000
     asw_trail({_origin}, {_dest})
-    execute console command "execute as %name of {_p}% at @s run minecraft:tp @s ~%{_dx}% ~%{_dy}% ~%{_dz}%"
+    execute console command "astraldecor:astralblink %uuid of {_p}% %{_dx}% %{_dy}% %{_dz}%"
     # La posicion se actualiza en el tick siguiente; si algo cancelo el viaje
     # (p. ej. una region protegida), se devuelve el mana.
     wait 1 tick

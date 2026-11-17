@@ -1,3 +1,12 @@
+# Destello y Guia en pausa - 17/11/2026
+
+Lista acumulada vigente: [pendiente-17-11](../build/deploy/pendiente-17-11.md).
+Incluye bastones/interruptores, T6/XP/suerte, AstralDecor 1.15.0 y el datapack
+privado CNK sin accesos adicionales de pausa. Requiere apagar y reiniciar.
+Destello usa la API en el mismo mundo; ensayo local sin RESPAWN en world y lobby.
+La causa del cartel remoto no se reprodujo; falta cliente real y conjunto de plugins remoto.
+No cambia el resource pack. Despliegue pendiente de Claude con acceso al panel.
+
 # Bastones e interruptores - 17/11/2026
 
 Entrega conjunta pendiente: [efectos-direccion-interruptores](../build/deploy/efectos-direccion-interruptores.md).

@@ -632,7 +632,11 @@ Avances y recetario propios, más una entrada Cocina en la Guía Astral.
 Los triggers y jugadores se filtran al survival (`minecraft:overworld`).
 Es obligatorio mantener AstralProgression activo y añadir `cnk` a
 `structure-namespaces` para cancelar sus estructuras fuera de survival.
-Los tags de pausa/load/tick se suman a Astral, sin `replace`.
+Los tags load/tick se suman a Astral, sin `replace`. El parche del 17/11 retira
+los accesos CNK/Smithed de pausa y acciones rapidas: solo queda Guia Astral.
+Lista acumulada vigente: [pendiente-17-11](../build/deploy/pendiente-17-11.md),
+con AstralDecor 1.15.0 y Destello por API en el mismo mundo. Despliegue y
+confirmacion visual pendientes; causa del cartel remoto todavia no reproducida.
 No copiar el datapack por cada mundo: en Paper 26.1 se instala una sola vez
 en `world/datapacks/`. Requiere apagado y reinicio completo.
 Archivos, hashes, pruebas, licencia y condiciones previas:

@@ -7,6 +7,30 @@ from crop_kettle import ROOT, privado, read_zip, sha
 
 
 class CropKettleTests(unittest.TestCase):
+    def test_pause_and_quick_actions_remove_cnk_and_optional_smithed_after_overlays(self):
+        for tag in ('pause_screen_additions', 'quick_actions'):
+            name = f'data/minecraft/tags/dialog/{tag}.json'
+            raw = {'pack.mcmeta': encoded({'overlays': {'entries': [
+                {'directory': 'current', 'min_format': [101, 1], 'max_format': [101, 1]}]}}),
+                name: encoded({'values': ['cnk:main']}),
+                'current/' + name: encoded({'replace': True, 'values': [
+                    'cnk:main', {'id': 'smithed:main', 'required': False}, 'astral:guia']})}
+            patched, _ = patch_datapack(raw)
+            self.assertEqual(json.loads(patched[name]), {'values': ['astral:guia']})
+            self.assertIn(b'cnk:main', raw[name])
+
+    def test_final_datapacks_have_only_astral_pause_and_quick_actions(self):
+        cnk = privado() / 'build/entregas/crop-kettle/CropAndKettle-Astral.zip'
+        if not cnk.exists(): self.skipTest('Sin datapack privado')
+        for tag in ('pause_screen_additions', 'quick_actions'):
+            values = set()
+            for pack in (cnk, ROOT / 'build/AstralRPG-Items.zip'):
+                files = effective(read_zip(pack))
+                obj = json.loads(files.get(f'data/minecraft/tags/dialog/{tag}.json', b'{}'))
+                self.assertFalse(obj.get('replace', False))
+                values.update(v['id'] if isinstance(v, dict) else v for v in obj.get('values', []))
+            self.assertEqual(values, {'astral:guia'})
+
     def test_pan_de_cocina_conserva_material_y_se_distingue_para_ventas(self):
         name = 'data/cnk/loot_table/food/bread.json'
         recipe = {'pools': [{'rolls': 1, 'entries': [{'type': 'minecraft:item', 'name': 'minecraft:bread'}]}]}

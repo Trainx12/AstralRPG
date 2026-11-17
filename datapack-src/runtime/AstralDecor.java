@@ -410,6 +410,25 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         meta.setItemModel(NamespacedKey.fromString("astral:"+model));item.setItemMeta(meta);return item;
     }
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
+        if(command.getName().equals("astralblink")) {
+            // Solo consola: el Skript valida trayectoria, requisitos y mana.
+            if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=4)return true;
+            try {
+                Player p=Bukkit.getPlayer(UUID.fromString(args[0]));
+                if(p==null || !authenticated(p))return true;
+                double dx=Double.parseDouble(args[1]),dy=Double.parseDouble(args[2]),dz=Double.parseDouble(args[3]);
+                if(!Double.isFinite(dx) || !Double.isFinite(dy) || !Double.isFinite(dz)
+                    || dx*dx+dy*dy+dz*dz>13*13)return true;
+                Location dest=p.getLocation().add(dx,dy,dz);
+                p.teleport(dest,PlayerTeleportEvent.TeleportCause.PLUGIN,
+                    io.papermc.paper.entity.TeleportFlag.Relative.VELOCITY_X,
+                    io.papermc.paper.entity.TeleportFlag.Relative.VELOCITY_Y,
+                    io.papermc.paper.entity.TeleportFlag.Relative.VELOCITY_Z,
+                    io.papermc.paper.entity.TeleportFlag.Relative.VELOCITY_ROTATION,
+                    io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_PASSENGERS);
+            }catch(IllegalArgumentException ex){ /* Entrada invalida: no mover ni gastar desde aqui. */ }
+            return true;
+        }
         if(command.getName().equals("astralmercader"))return merchant.command(sender,args);
         if(command.getName().equals("astralgacha")) {
             while(sender instanceof org.bukkit.command.ProxiedCommandSender proxy)sender=proxy.getCaller();
@@ -456,7 +475,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     @EventHandler public void leaveCosmetics(PlayerQuitEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
     @EventHandler public void deathCosmetics(PlayerDeathEvent e) { removeCosmetics(e.getEntity().getUniqueId()); }
     @EventHandler(ignoreCancelled=true, priority=EventPriority.MONITOR)
-    public void teleportCosmetics(PlayerTeleportEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
+    public void teleportCosmetics(PlayerTeleportEvent e) {
+        if(e.getTo()!=null && !e.getFrom().getWorld().equals(e.getTo().getWorld()))
+            removeCosmetics(e.getPlayer().getUniqueId());
+    }
     @EventHandler public void changedCosmeticWorld(PlayerChangedWorldEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
     private boolean ownsHat(Player p,String key) {
         return p.hasPermission("astral.cosmetico.sombrero."+key)
