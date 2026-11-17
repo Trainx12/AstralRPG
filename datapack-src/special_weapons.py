@@ -66,7 +66,7 @@ def register(add_item, recipes, txt, weapon_mods):
         recipes.append((iid,1,w['cost'],'Especiales'))
 
 
-def script_options(text):
+def script_options(text, requirements):
     """Completa en el .sk el mana y las recargas de escala.py (una sola fuente de numeros)."""
     import re
     values={'cd_agua':__import__('balance_equipo').AGUA_CD/20, 'dano_danza':WEAPONS['espada_sombras']['damage_total'], 'dano_estallido':WEAPONS['varita_estallido']['damage_total'], 'mana_destello':MANA_ESPECIAL['destello'],'mana_danza':MANA_ESPECIAL['danza'],'cd_danza':CD_DANZA,
@@ -74,6 +74,23 @@ def script_options(text):
             'mana_curacion':MANA_ESPECIAL['curacion'],'cura_pct':CURACION['pct'],
             'cura_segundos':CURACION['segundos'],'cura_radio':CURACION['radio'],
             **{f'mana_baston_{t}':v for t,v in MANA_HECHIZO.items()}}
+    values.update({f'req_baston_{t}': requirements[f'baston_{t}']['auraskills:sorcery'] for t in range(1, 11)})
+    text = text.replace('    __REQUISITOS_OPCIONES__', '\n'.join(
+        f'    req_baston_{t}: 0' for t in range(1, 11)))
+    # El mismo registro PDC de build.py: no duplicar niveles ni inventar requisitos para especiales.
+    checks = []
+    names = {'sorcery': 'Hechiceria', 'fighting': 'Combate', 'archery': 'Arqueria'}
+    for iid in (*[f'baston_{t}' for t in range(1, 11)], 'agua_espada', *WEAPONS, 'espada_heroe_errante'):
+        for skill, level in requirements[iid].items():
+            skill = skill.removeprefix('auraskills:')
+            assert skill in names, (iid, skill)
+            req = '{@req_' + iid + '}' if iid.startswith('baston_') else str(level)
+            tag = ('astral.staff.t' + iid.removeprefix('baston_') if iid.startswith('baston_') else
+                   'astral.water_sword' if iid == 'agua_espada' else 'astral.special.' + iid)
+            checks += [f'    if scoreboard tags of {{_p}} contains "{tag}":',
+                       f'        if asw_level({{_p}}, "{skill}", "{names[skill]}", {req}) is false:',
+                       '            return false']
+    text = text.replace('    __REQUISITOS_CHECKS__', '\n'.join(checks))
     from minijuegos import arena_worlds
     arenas=' or '.join(f'"{w}" or "minecraft:{w}"' for w in arena_worlds())
     assert text.count('__ARENAS__')==1
@@ -87,7 +104,7 @@ def script_options(text):
     return text
 
 
-def generate(files):
+def generate(files, requirements):
     lines=['tag @s remove astral.special'] + [f'tag @s remove astral.special.{iid}' for iid in (*WEAPONS, 'espada_heroe_errante')]
     # Bastones de Mago: tier en la mano y si el hechizo esta en recarga (lo lee Skript para cobrar mana).
     lines+=['tag @s remove astral.staff','tag @s remove astral.spell.cd']+[f'tag @s remove astral.staff.t{t}' for t in range(1,11)]
@@ -111,7 +128,7 @@ def generate(files):
     root=Path(__file__).resolve().parent
     out=root.parent/'build/gameplay'
     out.mkdir(parents=True,exist_ok=True)
-    (out/'astral_armas_especiales.sk').write_text(script_options((root/'special_weapons.sk').read_text(encoding='utf-8')),encoding='utf-8')
+    (out/'astral_armas_especiales.sk').write_text(script_options((root/'special_weapons.sk').read_text(encoding='utf-8'), requirements),encoding='utf-8')
     (out/'fichas-despliegue.txt').write_text('''Fichas / Transmisión Instantánea / Defensa (ITEM_VERSION 11)
 Destino: Empower, Paper 26.1.2, Skript 2.17.1, AuraSkills 2.4.0.
 
@@ -151,3 +168,9 @@ ASW_LEER_MANA:
   Skills:
   - 'command{c="asw_mana <target.name> %auraskills_mana_int%"} @self'
 ''',encoding='utf-8')
+
+
+if __name__ == '__main__':
+    # build.py registra todos los items y sus PDC antes de generar este script.
+    import runpy
+    runpy.run_path(str(Path(__file__).with_name('build.py')), run_name='__main__')

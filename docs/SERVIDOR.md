@@ -3,7 +3,12 @@
 AstralEfectos 1.2.0 preparado, sin desplegar: [entrega y archivos exactos](../build/deploy/efectos-direccion-interruptores.md).
 Corrige la orientacion del rayo y agrega cinco preferencias por espectador en
 `/efectos` y Configuraciones (45 casillas). Las particulas nativas de MythicMobs
-y los avisos de ataque siguen visibles. Requiere JAR, menu y datapack nuevos,
+y los avisos de ataque siguen visibles. Los interruptores solo apagan efectos nuevos
+(AstralEfectos y particulas de elemento de Medio/Alto); las particulas de siempre
+de los bastones se ven siempre, incluso con Bastones=false.
+El clic de bastones I-X exige el nivel de Hechiceria del item antes de cobrar mana;
+tambien se controla Combate en Espada de Agua y Heroe Errante. Si falta la lectura
+de AuraSkills, no lanza ni cobra. Requiere JAR, menu, Skript y datapack nuevos,
 con apagado y reinicio completo; no cambia el resource pack ni los mundos.
 
 # Retiro de mascotas, Aurora y ventanas - 16/11/2026

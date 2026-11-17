@@ -1,3 +1,14 @@
+# Bastones e interruptores - 17/11/2026
+
+Entrega conjunta pendiente: [efectos-direccion-interruptores](../build/deploy/efectos-direccion-interruptores.md).
+Los interruptores apagan solo efectos nuevos de AstralEfectos y particulas de elemento
+de Medio/Alto. Las particulas tradicionales permanecen siempre visibles.
+El clic derecho de bastones exige Hechiceria antes de gastar mana; Espada de Agua y
+Heroe Errante exigen Combate. Generar con `python build.py` o `python special_weapons.py`
+(este ultimo tambien reconstruye el datapack para tomar los mismos requisitos PDC).
+Instalar datapack, menu, AstralEfectos.jar y una sola copia activa de special_weapons.sk;
+apagar y reiniciar. Archivos exactos, hashes y recargas en la entrega conjunta.
+
 # Ventanas y mascotas - 16/11/2026
 
 Entrega acumulada lista para instalar: [deploy-16-11](../build/deploy/deploy-16-11.md).

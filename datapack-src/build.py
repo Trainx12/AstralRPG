@@ -1154,8 +1154,8 @@ fn("spell/fx_rayo", [
     "{Tags:[\"astral.fx\",\"fx.rayo\",\"fxc.$(fxh)\",\"fxe.$(fxe)\"]}",
 ])
 fn("spell/ray", [
-    "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force @a[scores={astral.fx.bastones=1..}]",
-    "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force @a[scores={astral.fx.bastones=1..}]",
+    "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
+    "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
     # particula del elemento del baston (fuego, hielo, arcano...) acompanando al rayo del plugin
     f"$particle minecraft:$(fxp) ~ ~ ~ 0.08 0.08 0.08 0.01 1 force {FX_MEDIO}",
     f"$particle minecraft:$(fxp) ~ ~ ~ 0.18 0.18 0.18 0.02 1 force {FX_ALTO}",
@@ -1172,13 +1172,13 @@ fn("spell/ray", [
     f"execute positioned ^ ^ ^0.5 run function {NS}:spell/ray with storage {NS}:tmp spell",
 ])
 fn("spell/pared", [
-    "particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6 normal @a[scores={astral.fx.bastones=1..}]",
+    "particle minecraft:large_smoke ~ ~ ~ 0.1 0.1 0.1 0.01 6",
     FX_IMPACTO,
 ])
 fn("spell/hit", [
     "$damage @s $(dmg) minecraft:magic by @a[tag=astral.caster,limit=1]",
     FX_IMPACTO.replace("summon marker ~ ~ ~", "summon marker ~ ~1 ~"),
-    "particle minecraft:dragon_breath ~ ~1 ~ 0.3 0.4 0.3 0.02 25 normal @a[scores={astral.fx.bastones=1..}]",
+    "particle minecraft:dragon_breath ~ ~1 ~ 0.3 0.4 0.3 0.02 25",
     "playsound minecraft:entity.illusioner.cast_spell player @a[distance=..16] ~ ~ ~ 0.7 1.8",
     "return 1",
 ])
@@ -2650,7 +2650,9 @@ for iid, source in FICHAS.items():
 from estrella_menu import generate as generate_menu_star
 generate_menu_star(files)
 from special_weapons import generate as generate_special_weapons
-generate_special_weapons(files)
+from oceano_items import CLONES as OCEANO_CLONES
+generate_special_weapons(files, {**REQUIREMENTS, **{
+    iid: REQUIREMENTS[source] for iid, (source, _, _) in OCEANO_CLONES.items()}})
 from mobs.tanda2 import generate as generate_dungeon_waves
 generate_dungeon_waves(files)
 from tanda4b_world import generate as generate_tanda4b_world

@@ -52,15 +52,24 @@ class Interruptores(unittest.TestCase):
         self.assertIn('ojos.getWorld().rayTrace(ojos, dir, 25', java)
         self.assertIn('multiply(0.36)', java)
 
-    def test_datapack_filtra_todas_las_particulas_de_bastones(self):
+    def test_datapack_solo_filtra_particulas_nuevas_de_bastones(self):
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:
             for nombre in ('ray', 'hit', 'pared'):
                 text = z.read(f'data/astral/function/spell/{nombre}.mcfunction').decode()
                 for linea in text.splitlines():
                     if 'particle minecraft:' in linea:
-                        self.assertIn('astral.fx.bastones=1..', linea)
+                        if '$(fxp)' in linea:
+                            self.assertIn('astral.fx.bastones=1..', linea)
+                        else:
+                            self.assertNotIn('astral.fx', linea)
+                            self.assertNotIn('@a', linea)
             for nombre in ('fx_rayo', 'hit', 'pared'):
                 self.assertIn('astral.fx.bastones=1..', z.read(f'data/astral/function/spell/{nombre}.mcfunction').decode())
+
+    def test_menu_aclara_que_solo_apaga_efectos_nuevos(self):
+        text = configuraciones_menu()
+        self.assertIn('Solo apagan efectos nuevos.', text)
+        self.assertIn('Las particulas de siempre siguen visibles.', text)
 
 
 if __name__ == '__main__':

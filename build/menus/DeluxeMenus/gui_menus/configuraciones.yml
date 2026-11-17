@@ -12,6 +12,8 @@ items:
     lore:
     - '&7Elegi cuantos efectos ves.'
     - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos.'
+    - '&7Las particulas de siempre siguen visibles.'
     - '&7El dano y las habilidades son iguales.'
     - '&7Avisos de jefes y particulas MythicMobs siguen.'
     item_flags:
@@ -257,7 +259,7 @@ items:
     display_name: '&c&lBastones: FALSE'
     lore:
     - '&7Estado: &cDesactivado'
-    - '&7Rayos, fuego e impactos de bastones.'
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
     - ''
     - '&eClic para activar.'
     item_flags:
@@ -280,7 +282,7 @@ items:
     display_name: '&a&lBastones: TRUE'
     lore:
     - '&7Estado: &aActivado'
-    - '&7Rayos, fuego e impactos de bastones.'
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
     - ''
     - '&eClic para desactivar.'
     item_flags:

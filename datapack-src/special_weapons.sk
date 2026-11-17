@@ -24,6 +24,7 @@ options:
     mana_baston_8: 0
     mana_baston_9: 0
     mana_baston_10: 0
+    __REQUISITOS_OPCIONES__
 
 function asw_identify(p: player):
     execute console command "execute as %name of {_p}% run function astral:special/identify"
@@ -96,9 +97,37 @@ command /asw_mana <player> <number>:
     trigger:
         set {-asw.mana::%uuid of arg-1%} to arg-2
 
+# Respuesta atomica: si un placeholder no es numerico, Skript rechaza toda la respuesta.
+command /asw_datos <player> <number> <number> <number> <number>:
+    executable by: console
+    trigger:
+        set {-asw.mana::%uuid of arg-1%} to arg-2
+        set {-asw.skill::%uuid of arg-1%::sorcery} to arg-3
+        set {-asw.skill::%uuid of arg-1%::fighting} to arg-4
+        set {-asw.skill::%uuid of arg-1%::archery} to arg-5
+
 function asw_request(p: player):
     delete {-asw.mana::%uuid of {_p}%}
-    execute console command "dm execute %name of {_p}% [console] asw_mana %%player_name%% %%auraskills_mana_int%%"
+    delete {-asw.skill::%uuid of {_p}%::*}
+    execute console command "dm execute %name of {_p}% [console] asw_datos %name of {_p}% %%auraskills_mana_int%% %%auraskills_sorcery%% %%auraskills_fighting%% %%auraskills_archery%%"
+
+function asw_level(p: player, skill: text, label: text, req: number) :: boolean:
+    set {_level} to {-asw.skill::%uuid of {_p}%::%{_skill}%}
+    if {_level} is not set:
+        send action bar "&cNo se pudo leer el mana. Avisale a un administrador." to {_p}
+        return false
+    if {_level} < {_req}:
+        if {_skill} is "sorcery":
+            send action bar "&cNecesitas %{_label}% %{_req}% para usar este baston (tenes %{_level}%)." to {_p}
+        else:
+            send action bar "&cNecesitas %{_label}% %{_req}% para usar este objeto (tenes %{_level}%)." to {_p}
+        play sound "entity.villager.no" with volume 0.5 and pitch 1 to {_p}
+        return false
+    return true
+
+function asw_requirement(p: player) :: boolean:
+    __REQUISITOS_CHECKS__
+    return true
 
 # Usa el mana leido por asw_request en este mismo uso.
 function asw_pay(p: player, amount: number) :: boolean:
@@ -487,9 +516,17 @@ function asw_staff(p: player):
             set {_cost} to asw_staff_cost(loop-number)
     if {_cost} <= 0:
         stop
+    set {_held} to tool of {_p}
     asw_request({_p})
     if {-asw.mana::%uuid of {_p}%} is not set:
         wait 2 ticks
+    if asw_alive({_p}) is false:
+        stop
+    if tool of {_p} is not {_held}:
+        stop
+    asw_identify({_p})
+    if asw_requirement({_p}) is false:
+        stop
     if asw_pay({_p}, {_cost}) is false:
         stop
     execute console command "execute as %name of {_p}% at @s run function astral:spell/cast"
@@ -541,14 +578,24 @@ on right click:
         cancel event
         if asw_ready(player) is false:
             stop
+        if {-asw.click::%uuid of player%} is set:
+            if difference between now and {-asw.click::%uuid of player%} is less than 0.2 seconds:
+                stop
+        set {-asw.click::%uuid of player%} to now
         if {-asw.water::%uuid of player%} is set:
             if difference between now and {-asw.water::%uuid of player%} is less than {@cd_agua} seconds:
                 stop
-        set {-asw.water::%uuid of player%} to now
+        set {_held} to tool of player
         asw_request(player)
         wait 2 ticks
         asw_identify(player)
         if scoreboard tags of player does not contain "astral.water_sword":
+            stop
+        if asw_ready(player) is false:
+            stop
+        if tool of player is not {_held}:
+            stop
+        if asw_requirement(player) is false:
             stop
         if asw_pay(player, {@mana_baston_3}) is false:
             stop
@@ -581,9 +628,17 @@ on right click:
                 stop
     if {-asw.busy::%uuid of player%} is true:
         stop
+    set {_held} to tool of player
     asw_request(player)
     if {-asw.mana::%uuid of player%} is not set:
         wait 2 ticks
+    if asw_alive(player) is false:
+        stop
+    if tool of player is not {_held}:
+        stop
+    asw_identify(player)
+    if asw_requirement(player) is false:
+        stop
     if scoreboard tags of player contains "astral.special.espada_heroe_errante":
         asw_hero(player)
         stop
@@ -640,6 +695,8 @@ on uncancelled damage of living entity with priority monitor:
                     asw_explode({_p}, {_center})
 
 on load:
+    delete {-asw.mana::*}
+    delete {-asw.skill::*}
     loop all players:
         execute console command "minecraft:attribute %name of loop-player% minecraft:movement_speed modifier remove astral:transmision"
     delete {-asw.speed::*}
@@ -660,6 +717,8 @@ on unload:
                 kill loop-entity
 
 on quit:
+    delete {-asw.mana::%uuid of player%}
+    delete {-asw.skill::%uuid of player%::*}
     delete {-asw.regen::%uuid of player%}
     delete {-asw.healcd::%uuid of player%}
     execute console command "minecraft:attribute %name of player% minecraft:movement_speed modifier remove astral:transmision"

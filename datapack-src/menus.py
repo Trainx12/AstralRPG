@@ -416,7 +416,7 @@ EFECTOS_NIVELES = [
 EFECTOS_CATEGORIAS = [
     ('armaduras', 'armadura', 'Armaduras', 'Aura y destellos del set completo.'),
     ('armas', 'armas', 'Armas', 'Rastros al caminar y correr.'),
-    ('bastones', 'bastones', 'Bastones', 'Rayos, fuego e impactos de bastones.'),
+    ('bastones', 'bastones', 'Bastones', 'Solo rayos y particulas nuevos de Medio/Alto.'),
     ('mascotas', 'mascotas', 'Mascotas', 'Rastro de mascotas evolucionadas.'),
     ('jefes', 'jefes', 'Jefes', 'Adornos; los avisos de ataque siguen.')]
 
@@ -427,6 +427,7 @@ def configuraciones_menu():
                 f"\n          input: '{SCORE.format(obj)}'\n          output: '{valor}'")
     items = item('titulo', 'COMPARATOR', 4, '&7&lConfiguraciones',
                  ['&7Elegi cuantos efectos ves.', '&7Los interruptores solo cambian lo que ves vos.',
+                  '&7Solo apagan efectos nuevos.', '&7Las particulas de siempre siguen visibles.',
                   '&7El dano y las habilidades son iguales.', '&7Avisos de jefes y particulas MythicMobs siguen.'])
     for n, (key, material, slot, name, lore) in enumerate(EFECTOS_NIVELES):
         cmds = ['[sound] UI_BUTTON_CLICK', f'[player] efectos {key}', '[refresh]']
