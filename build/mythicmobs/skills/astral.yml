@@ -657,18 +657,20 @@ AST_JEFE_DISPARO_astral_momia:
   - state{s=throw} @self
   - sound{s=entity.husk.ambient;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> f2d27a 0.7 arena"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_momia;onHit=AST_JEFE_DISPARO_HIT_astral_momia;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=SAND;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_momia:
   Skills:
   - particles{p=cloud;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> f2d27a 1 arena"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_momia:
   Skills:
   - damage{a=6}
   - potion{type=SLOWNESS;duration=40;level=1}
   - particles{p=cloud;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> f2d27a 1 arena"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> f2d27a 1.7 arena"}
 
 AST_JEFE_SLAM_astral_yeti:
   Cooldown: 9
@@ -695,18 +697,20 @@ AST_JEFE_DISPARO_astral_yeti:
   - state{s=throw} @self
   - sound{s=entity.ravager.roar;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> bfefff 0.7 hielo"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_yeti;onHit=AST_JEFE_DISPARO_HIT_astral_yeti;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=SNOWBALL;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_yeti:
   Skills:
   - particles{p=snowflake;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> bfefff 1 hielo"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_yeti:
   Skills:
   - damage{a=8}
   - potion{type=SLOWNESS;duration=60;level=1}
   - particles{p=snowflake;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> bfefff 1 hielo"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> bfefff 1.7 hielo"}
 
 AST_JEFE_SLAM_astral_golem_forja:
   Cooldown: 9
@@ -733,18 +737,20 @@ AST_JEFE_DISPARO_astral_golem_forja:
   - state{s=throw} @self
   - sound{s=entity.blaze.shoot;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ff6a1a 0.7 fuego"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_golem_forja;onHit=AST_JEFE_DISPARO_HIT_astral_golem_forja;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=MAGMA_BLOCK;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_golem_forja:
   Skills:
   - particles{p=flame;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> ff6a1a 1 fuego"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_golem_forja:
   Skills:
   - damage{a=9}
   - ignite{ticks=50}
   - particles{p=flame;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> ff6a1a 1 fuego"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> ff6a1a 1.7 fuego"}
 
 AST_JEFE_SLAM_astral_cangrejo:
   Cooldown: 9
@@ -771,18 +777,20 @@ AST_JEFE_DISPARO_astral_cangrejo:
   - state{s=throw} @self
   - sound{s=entity.guardian.attack;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 3fd0ff 0.7 agua"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_cangrejo;onHit=AST_JEFE_DISPARO_HIT_astral_cangrejo;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=PRISMARINE_CRYSTALS;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_cangrejo:
   Skills:
   - particles{p=splash;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 3fd0ff 1 agua"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_cangrejo:
   Skills:
   - damage{a=5}
   - throw{velocity=6;velocityY=2}
   - particles{p=bubble_pop;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 3fd0ff 1 agua"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 3fd0ff 1.7 agua"}
 
 AST_JEFE_SLAM_astral_chaman:
   Cooldown: 9
@@ -809,18 +817,20 @@ AST_JEFE_DISPARO_astral_chaman:
   - state{s=throw} @self
   - sound{s=entity.evoker.prepare_attack;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 7cff5a 0.7 veneno"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_chaman;onHit=AST_JEFE_DISPARO_HIT_astral_chaman;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=SLIME_BALL;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_chaman:
   Skills:
   - particles{p=item_slime;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 7cff5a 1 veneno"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_chaman:
   Skills:
   - damage{a=5}
   - potion{type=POISON;duration=60;level=1}
   - particles{p=happy_villager;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 7cff5a 1 veneno"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 7cff5a 1.7 veneno"}
 
 AST_JEFE_SLAM_astral_coloso_musgoso:
   Cooldown: 9
@@ -847,18 +857,20 @@ AST_JEFE_DISPARO_astral_coloso_musgoso:
   - state{s=throw} @self
   - sound{s=entity.iron_golem.attack;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 5fe05a 0.7 naturaleza"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_coloso_musgoso;onHit=AST_JEFE_DISPARO_HIT_astral_coloso_musgoso;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=MOSSY_COBBLESTONE;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_coloso_musgoso:
   Skills:
   - particles{p=spore_blossom_air;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 5fe05a 1 naturaleza"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_coloso_musgoso:
   Skills:
   - damage{a=9}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=spore_blossom_air;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 5fe05a 1 naturaleza"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 5fe05a 1.7 naturaleza"}
 
 AST_JEFE_SLAM_astral_mina_capataz:
   Cooldown: 9
@@ -883,18 +895,20 @@ AST_JEFE_DISPARO_astral_mina_capataz:
   Skills:
   - sound{s=entity.drowned.shoot;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 4fe0c8 0.7 agua"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_mina_capataz;onHit=AST_JEFE_DISPARO_HIT_astral_mina_capataz;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=PRISMARINE_SHARD;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_mina_capataz:
   Skills:
   - particles{p=splash;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fe0c8 1 agua"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_mina_capataz:
   Skills:
   - damage{a=6}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=bubble_pop;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fe0c8 1 agua"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fe0c8 1.7 agua"}
 
 AST_JEFE_SLAM_astral_mina_golem:
   Cooldown: 9
@@ -919,16 +933,18 @@ AST_JEFE_DISPARO_astral_mina_golem:
   Skills:
   - sound{s=entity.iron_golem.attack;v=1.2;p=1.2} @self
   - delay 8
+  - command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c8c8c8 0.7 piedra"}
   - projectile{onTick=AST_JEFE_DISPARO_TICK_astral_mina_golem;onHit=AST_JEFE_DISPARO_HIT_astral_mina_golem;v=16;i=1;hR=1;vR=1;mr=40;bulletType=ITEM;material=COBBLESTONE;hnp=true}
 
 AST_JEFE_DISPARO_TICK_astral_mina_golem:
   Skills:
   - particles{p=crit;amount=3;hS=0.1;vS=0.1;speed=0} @origin
+  - command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> c8c8c8 1 piedra"} @origin
 
 AST_JEFE_DISPARO_HIT_astral_mina_golem:
   Skills:
   - damage{a=7}
   - potion{type=SLOWNESS;duration=40;level=0}
   - particles{p=crit;amount=20;hS=0.6;vS=0.6;speed=0.05} @origin
-  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> c8c8c8 1 piedra"}
+  - command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> c8c8c8 1.7 piedra"}
 

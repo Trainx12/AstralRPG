@@ -43,6 +43,9 @@ python rankings.py                 # rankings semanales (parkour, Infinita, Trai
 python efectos.py --jdk <java25>   # efectos visuales: plugin AstralEfectos (/efectos Bajo/Medio/Alto, astralfx para jefes) + dibujos del pack
 python portales.py --jdk <java25>  # menu/llegadas de portales + plugin AstralPortales (Nether Hub <-> portales_astrales, proteccion)
 python armas_mod.py                # armas T6-T10, guante y ballestas con modelos de mods (solo circuito privado) + pack FINAL
+python mochilas3d.py               # mochilas 3D (forma de Wet Backpacks, solo privado)
+python armas_planas3d.py           # cuchillos T1-T10 y equipo de las Mareas en 3D (solo privado)
+python deploy_modelos_efectos.py   # FINAL privado de mochilas, cuchillos, efectos y Fenix (build/deploy/modelos-3d-efectos.md)
 ```
 
 ## Trampas conocidas
