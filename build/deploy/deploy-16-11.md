@@ -177,3 +177,16 @@ de properties ni arranque. La instalacion y las pruebas posteriores en produccio
 siguen pendientes. La lista exacta de archivos, destinos y comandos, el respaldo
 y el paquete privado descriptos arriba permanecen vigentes para esta comprobacion;
 si se instala mas adelante, volver a contrastar el servidor con el respaldo.
+
+## Instalado (17/11 03:00 UTC, por Claude con el OK del dueno)
+
+- `instalar.py` aplico los 107 archivos + `server.properties` (solo `resource-pack-sha1`, mismo formato LF del original),
+  retiro los menus obsoletos, publico el FINAL en R2 (SHA-1 `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42`, descarga
+  publica verificada) y verifico los 108 hashes remotos. Arranque: `Done (249.083s)`, sin errores de plugins.
+- Encontrado al arrancar: `plugins/Skript/scripts/astral_armas_especiales.sk` (copia vieja del 15/11) duplicaba todas las
+  funciones `asw_*` y tapaba a `special_weapons.sk`. Se desactivo con `skript disable` (queda como
+  `-astral_armas_especiales.sk`) y se recargo `special_weapons.sk` sin errores. Nunca subir ese archivo con su nombre de
+  build: su destino es `special_weapons.sk`.
+- Datapacks activos: 16, incluido `CropAndKettle-Astral.zip`. MythicMobs: 196 mobs / 650 skills; `astral_goblin_vendedor` existe.
+- Aurora: `kill @e[tag=oceano.aurora]` dio "No entity was found" (chunk sin cargar). Repetirlo cuando alguien este en la
+  entrada del Oceano.
