@@ -438,10 +438,28 @@ def primera_persona(S, name, textura, solido, familia):
     Solo cambia las dos vistas en primera persona; conserva el resto del modelo.
     """
     base = VANILLA['item/crossbow' if familia == 'ballesta' else 'item/bow']
+    # Los iconos de mods tienen margenes transparentes distintos. Normalizar el
+    # contenido visible, no solo el lienzo: de otro modo T10 queda diminuto.
+    ns, path = textura.split(':', 1)
+    image = Image.open(io.BytesIO(S.files[f'assets/{ns}/textures/{path}.png'])).convert('RGBA')
+    w = image.width
+    x0,y0,x1,y1 = image.crop((0,0,w,w)).getbbox()
+    factor = (w * (1 if familia == 'ballesta' else 15/16)) / max(x1-x0,y1-y0)
+    center = np.array([(x0+x1)*8/w-8, 8-(y0+y1)*8/w, 0])
+    target = np.array([0,0,0] if familia == 'ballesta' else [.5,-.5,0])
     disp = {}
     for side in ('righthand', 'lefthand'):
         key = 'firstperson_' + side
-        disp[key] = dict(base[key], scale=[0.50] * 3, translation=[-0.5, 5.5, -1.0])
+        d = base[key]
+        r = list(d['rotation'])
+        if side == 'lefthand':
+            r[1],r[2] = -r[1],-r[2]
+        rotation = _rx(r[0]) @ _ry(r[1]) @ _rz(r[2])
+        correction = rotation @ ((target-center*factor)*.68)
+        if side == 'lefthand':
+            correction[0] *= -1
+        disp[key] = dict(d, scale=[round(.68*factor,5)]*3,
+                         translation=[round(float(t+c),5) for t,c in zip(d['translation'],correction)])
     plano = S.modelo(name + '_primera_persona', {
         'parent': 'minecraft:item/generated', 'textures': {'layer0': textura}, 'display': disp})
     return por_contexto(plano, solido, ('firstperson_righthand', 'firstperson_lefthand'))

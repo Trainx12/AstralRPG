@@ -11,7 +11,7 @@ REPARAR = {1: (150, 'fragmento_astral', 1), 2: (300, 'polvo_astral', 1), 3: (600
            4: (1200, 'chispa_astral', 1), 5: (2500, 'nucleo_astral', 1), 6: (4000, 'fragmento_ocaso', 1),
            7: (6000, 'esquirla_eclipse', 1), 8: (8500, 'nucleo_supernova', 1), 9: (12000, 'esencia_vacio', 1),
            10: (16000, 'corazon_fin', 1)}
-REPARAR_SLOT = 47
+REPARAR_SLOT = 48
 
 
 def _material_nombre(mid):
@@ -267,14 +267,32 @@ function asg_reparar_boton(p: player):
     set {_inv} to {asg.gui::%uuid of {_p}%}
     asg_rep_ver({_p})
     if "asgui.rep" is not in scoreboard tags of {_p}:
-        set {_b} to anvil named "&7Reparar"
+        set {_b} to asg_icon("astral:servicios/repair_off_0", "&7Reparar")
         set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
         set slot __REP_SLOT__ of {_inv} to {_b}
+        loop 2 times:
+            set {_s} to __REP_SLOT__ + loop-number
+            set {_tile} to asg_icon("astral:servicios/repair_off_%loop-number%", "&7Reparar")
+            set lore of {_tile} to lore of {_b}
+            set slot {_s} of {_inv} to {_tile}
         stop
     set {_t} to asg_rep_tier({_p})
-    set {_b} to anvil named "&a&lReparar &7(tier %{_t}%)"
+    set {_state} to "ready"
+    set {_label} to "&a&lReparar &7(tier %{_t}%)"
+    if "asgui.repmat" is not in scoreboard tags of {_p}:
+        set {_state} to "missing"
+        set {_label} to "&c&lReparar &7(tier %{_t}%) - faltan materiales"
+    if balance of {_p} < asg_rep_costo({_t}):
+        set {_state} to "missing"
+        set {_label} to "&c&lReparar &7(tier %{_t}%) - falta dinero"
+    set {_b} to asg_icon("astral:servicios/repair_%{_state}%_0", {_label})
 __REP_LORE__
     set slot __REP_SLOT__ of {_inv} to {_b}
+    loop 2 times:
+        set {_s} to __REP_SLOT__ + loop-number
+        set {_tile} to asg_icon("astral:servicios/repair_%{_state}%_%loop-number%", {_label})
+        set lore of {_tile} to lore of {_b}
+        set slot {_s} of {_inv} to {_tile}
 
 function asg_open(p: player, mode: text):
     close {_p}'s inventory
@@ -417,7 +435,7 @@ on inventory click:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
         stop
-    if {_slot} is __REP_SLOT__:
+    if {_slot} is between __REP_SLOT__ and __REP_END__:
         if {asg.mode::%{_id}%} is not "forge":
             stop
         if {asg.escrow::%{_id}%} is not set:
@@ -427,7 +445,7 @@ on inventory click:
             send "&eEse equipo no esta gastado o no es de AstralRPG." to player
             stop
         if "asgui.repmat" is not in scoreboard tags of player:
-            send "&cTe falta el material para reparar (mira el yunque)." to player
+            send "&cTe falta el material para reparar (mira el boton)." to player
             stop
         set {_c} to asg_rep_costo(asg_rep_tier(player))
         if balance of player < {_c}:
@@ -510,6 +528,7 @@ every 10 ticks:
         if {asg.gui::%uuid of loop-player%} is set:
             asg_refresh(loop-player)
 '''.replace('__MATERIALS__','\n'.join(render_mats)).replace('__REP_SLOT__',str(REPARAR_SLOT)).replace('__REP_COSTO__',rep_costo).replace('__REP_LORE__',rep_lore)
+    core=core.replace('__REP_END__',str(REPARAR_SLOT+2))
     core=re.sub(r'"([^"\n]+)" is not in scoreboard tags of (\{_p\}|player)',r'\2 does not have the scoreboard tag "\1"',core)
     core=re.sub(r'"([^"\n]+)" is in scoreboard tags of (\{_p\}|player)',r'\2 has the scoreboard tag "\1"',core)
     core=core.replace('shift left mouse button or shift right mouse button','left mouse button with shift or right mouse button with shift')

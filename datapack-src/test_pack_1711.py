@@ -46,10 +46,14 @@ class Tanda(unittest.TestCase):
         self.assertEqual(changes, set(delta['changed']))
         for n in changes:
             self.assertTrue(n.startswith(('assets/astral/items/', 'assets/astral/models/item/',
+                                          'assets/astral/models/servicios/repair_',
+                                          'assets/astral/textures/font/servicios/herrero_',
                                           'assets/astral/textures/item/')), n)
         # Guante, mochilas, resto del arte privado, shaders y fuentes deben permanecer identicos.
         for n, blob in self.before.items():
             if any(k in n for k in ('guantes_meteoro', 'mochila', 'bettermodel', '/shaders/', '/font/')):
+                if n.startswith('assets/astral/textures/font/servicios/herrero_'):
+                    continue
                 self.assertEqual(self.after[n], blob, n)
 
     def test_varita_item_animacion_y_geometria(self):
@@ -115,7 +119,8 @@ class Tanda(unittest.TestCase):
                 for ref in used:
                     model = C.resolve(self.after, ref)
                     self.assertEqual(model['parent'], 'minecraft:item/generated')
-                    self.assertEqual(model['display'][ctx]['scale'], [.5]*3)
+                    self.assertGreaterEqual(model['display'][ctx]['scale'][0], .60)
+                    self.assertEqual(model['display'][ctx]['rotation'], A.VANILLA['item/crossbow' if spec[0]=='ballesta' else 'item/bow'][ctx]['rotation'])
             for s in states:
                 path = f'assets/astral/models/item/{iid}{s}.json'
                 self.assertEqual(json.loads(self.after[path]), json.loads(self.before[path]), path)
@@ -126,6 +131,33 @@ class Tanda(unittest.TestCase):
         self.assertFalse(any('/armas_mod/' in n or '/cascos_planos/' in n for n in self.public))
         for family in ('ballestas', 'arcos'):
             self.assertTrue((OUT / f'previews/{family}_primera_persona.png').exists())
+
+    def test_medidas_ambas_manos_todos_estados(self):
+        measurements=json.loads((OUT/'previews/primera_persona_medidas.json').read_text())
+        self.assertEqual(len(measurements),84)
+        self.assertEqual({m['side'] for m in measurements},{'righthand','lefthand'})
+        for m in measurements:
+            self.assertTrue(.70 <= m['area_ratio'] <= 1.20,m)
+            self.assertLessEqual(m['center_distance'],40,m)
+            self.assertEqual(m['after'][3],225,m)
+
+    def test_reparar_pack_y_click(self):
+        import services as S
+        import services_ui as UI
+        script=S.script()
+        self.assertEqual(S.REPARAR_SLOT,48)
+        self.assertIn('if {_slot} is between 48 and 50:',script)
+        self.assertNotIn('__REP_',script)
+        self.assertNotIn('anvil named',script)
+        self.assertEqual(script,(ROOT/'build/services/astral_servicios.sk').read_text(encoding='utf8'))
+        self.assertIn('item modify entity @s weapon.mainhand astral:reparar',self.data['data/astral/function/mejora/gui/reparar.mcfunction'].decode())
+        ui,_=UI.assets()
+        for n,blob in ui.items():
+            if '/repair_' in n or n.startswith('assets/astral/textures/font/servicios/herrero_'):
+                self.assertEqual(self.after[n],blob,n)
+                self.assertEqual(self.public[n],blob,n)
+        self.assertTrue({48,49,50}.issubset(UI.USED['herrero']))
+        self.assertTrue({48,49,50}.isdisjoint({20,23,24,25,26,39,40,41,45,53}))
 
 
 if __name__ == '__main__':

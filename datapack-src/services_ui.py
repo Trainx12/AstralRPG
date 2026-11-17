@@ -118,7 +118,7 @@ BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
 # para que el menu se lea mas limpio (los recuadros grandes tienen su hueco).
 USED = {
     'bazar': {4, 8, 53},                                             # saldo, ayuda, volver
-    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 53},
+    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 53},
     'venta': {8, 20, 24, *range(28, 35), 41, 42, 43, 44, 45, 53},
 }
 
@@ -168,6 +168,8 @@ def panel(kind):
         text(out,'MATERIALES',(ox+132,oy+38),color='#eac58a')
         hole((25,71,150,88)) # estado / nivel / dinero / probabilidad
         hole((61,89,114,106)) # MEJORAR
+        # Fila inferior: tres casillas alineadas con MEJORAR; volver queda en 45.
+        out.alpha_composite(button('REPARAR',54,'#55504a'),(ox+61,oy+107))
     elif kind=='venta':
         box((24,34,77,70),fill='#1d1e20',outline='#a8a6a0')
         box((42,52,61,70),fill='#11151b',outline='#7fd39a')
@@ -241,6 +243,9 @@ def assets():
     for key,caption,sub in BAZAR_CARDS:
         tiles('bazar_'+key,picture_card(caption,sub,'bazar_'+key))
     for name,caption,width,color in [('improve','MEJORAR',54,'#366b48'),('blocked','MEJORAR',54,'#683c36'),
+                                     ('repair_off','REPARAR',54,'#55504a'),
+                                     ('repair_ready','REPARAR',54,'#366b48'),
+                                     ('repair_missing','REPARAR',54,'#93333a'),
                                      ('sell','VENDER',72,'#93333a'),('sell_blocked','VENDER',72,'#59434a')]:
         tiles(name,button(caption,width,color))
     bars={'empty':('COLOCA TU EQUIPO','#ddc699'),'invalid':('EQUIPO NO MEJORABLE','#ec998b'),'max':('NIVEL MAXIMO +10','#e8d475'),
@@ -268,6 +273,22 @@ def previews(folder):
             im.alpha_composite(banner('REVISA EL IMPORTE'),(24+25,40+71));im.alpha_composite(button('VENDER',72,'#93333a'),(24+97,40+89))
         text(im,'Inventario',(24+37,40+129),color='#383c40')
         target=folder/f'{kind}.png';temp=target.with_suffix('.png.tmp');temp.write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)));temp.replace(target)
+
+
+def repair_preview():
+    sheet=Image.new('RGBA',(SIZE[0]*3,SIZE[1]+24),'#252a28')
+    for col,(caption,color) in enumerate([('SIN EQUIPO','#55504a'),('LISTO / COSTO','#366b48'),('FALTAN RECURSOS','#93333a')]):
+        im=Image.new('RGBA',SIZE,'#252a28');im.alpha_composite(panel('herrero'))
+        im.alpha_composite(banner('COLOCA TU EQUIPO' if col==0 else '+1 / 300$ / 100%'),(49,111))
+        im.alpha_composite(button('MEJORAR'),(85,129))
+        im.alpha_composite(button('REPARAR',54,color),(85,147))
+        # El fondo completo permite revisar alineacion y distancia al inventario.
+        text(im,'Inventario',(61,169),color='#383c40')
+        sheet.alpha_composite(im,(col*SIZE[0],24))
+        text(sheet,caption,(col*SIZE[0]+112,8),color='#fff0cd')
+    path=ROOT.parent/'build/previews/herrero_reparar.png'
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_bytes(png(sheet.resize((2016,912),Image.Resampling.NEAREST)))
 
 
 if __name__=='__main__':previews(ROOT.parent/'build/Servicios-preview')

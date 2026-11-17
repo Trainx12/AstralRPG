@@ -9,6 +9,7 @@ import armas_mod as A
 import armas_planas3d as P
 import cascos_planos as C
 import varitas3d as V
+import services_ui as UI
 from terceros import ROOT, privado
 from pack_audit import audit
 
@@ -42,6 +43,10 @@ def build():
         if 'agua_arco' in n:
             ranged.files[n] = blob
     files.update(ranged.files)
+    # Delta propio de Reparar, sin reemplazar fuentes ni otras ventanas privadas.
+    ui, _ = UI.assets()
+    files.update({n: b for n, b in ui.items() if '/repair_' in n or
+                  n.startswith('assets/astral/textures/font/servicios/herrero_')})
     OUT.mkdir(parents=True, exist_ok=True)
     icons = C.normalize(files, OUT / 'previews/cascos_iconos.png')
     target = OUT / 'AstralRPG-Textures.zip'
@@ -59,6 +64,7 @@ def build():
     (OUT / 'delta.json').write_bytes(C.js(delta))
     (OUT / 'pack.sha1').write_text(sha + '\n')
     wand_preview()
+    UI.repair_preview()
     manifest(target, sha, len(delta['changed']), len(icons))
     print(target, sha, 'cambios', len(delta['changed']), 'iconos', len(icons))
     return target
@@ -80,12 +86,13 @@ def wand_preview():
 
 def manifest(target, sha, changed, icons):
     rel = target.relative_to(ROOT).as_posix()
-    text = f'''# Pack del 17/11: curacion, arcos, ballestas y cascos
+    text = f'''# Pack del 17/11: curacion, arcos, ballestas, cascos y Reparar
 
 Preparado localmente; SIN subir a R2 ni desplegar. Base instalada verificada: `{BASE_SHA}`.
 Un unico FINAL privado: `{rel}`. SHA-1: `{sha}`.
 {changed} entradas cambiadas/agregadas, ninguna eliminada; {icons} modelos con icono plano nuevo.
 Arte propio de la varita en el pack publico; mods y vistas derivadas SOLO en privado.
+Este FINAL reemplaza al de bcd2b3e (`e78c4e80...`, no desplegado); no instalar aquel.
 
 ## Instalacion conjunta con pendiente-17-11
 
@@ -96,11 +103,13 @@ Arte propio de la varita en el pack publico; mods y vistas derivadas SOLO en pri
    No usar `build/AstralRPG-Textures.zip`: es el pack publico sin arte privado.
 3. Respaldar archivos afectados y APAGAR. Instalar `build/AstralRPG-Items.zip`
    en `world/datapacks/AstralRPG-Items.zip`. Conservar todos los demas datapacks y mundos.
-   No cambia Skript en esta tanda; la lista acumulada conserva su actualizacion anterior.
+   Instalar `build/services/astral_servicios.sk` en `plugins/Skript/scripts/astral_servicios.sk`.
+   Reparar usa las casillas 48-50 (todas clicables), bajo MEJORAR, sin tocar Equipo/Materiales.
 4. En `server.properties`, conservar resource-pack con la URL fija y poner
    `resource-pack-sha1={sha}` SOLO despues de verificar la descarga.
 5. INICIAR (reinicio completo obligatorio; no hace falta mm reload ni bettermodel reload).
    Para los menus previos: `dm reload`; si se reinstala su Skript: `skript:skript reload special_weapons`.
+   Para Herrero: `skript:skript reload astral_servicios` (cero errores); el reinicio ya lo carga.
 6. Revisar consola, `datapack list enabled`, descarga del pack con cliente y texturas sin errores.
    Probar arcos T1-T10, Mareas y ballestas 3/4/5 en ambas manos, todos sus estados,
    sin tapar mira ni recortar bordes. Verificar cascos en cabeza/mano/GUI/suelo/marco.
@@ -119,14 +128,29 @@ Como OP se puede ejecutar `execute as <jugador> run function astral:upgrade/vari
 Los cascos y armas con item_model astral existente reciben el aspecto nuevo al aceptar el pack.
 
 Vista propia: `build/previews/varita_curacion_3d.png` (tambien GIF).
+Vista propia del Herrero: `build/previews/herrero_reparar.png`, tres estados.
+Reparar repite el sistema de MEJORAR: fondo propio y tres tiles con item_model,
+gris sin equipo, verde con equipo/material/saldo, rojo si faltan recursos.
+Nombre/lore conservan tier y costos; todas las casillas 48-50 responden al clic.
+No cambia el costo ni el modificador `astral:reparar`. Volver permanece en 45.
 Vistas privadas: `.local/terceros/AstralRPG-privado/build/entregas/pack-17-11/previews/`:
 `ballestas_primera_persona.png`, `arcos_primera_persona.png`, `cascos_iconos.png`.
-Son renders CPU; queda pendiente la validacion visual con cliente real y consola remota.
+Resumenes nuevos: `ballestas_revision.png`, `arcos_revision.png` (vanilla/base instalada/despues).
+Medidas privadas: `primera_persona_medidas.json`, 84 combinaciones de modelo/estado/mano.
+Area 76,22%-109,09% de vanilla, centro a <=15 px (ancho 400); todas tocan el borde inferior.
+Se normalizan los margenes transparentes del icono conservando su proporcion y orientacion
+vanilla; rotacion/reflejo de mano izquierda y UV de fotogramas animados corregidos en el render.
+Son renders CPU de los estados de reposo/tensado, sin animacion del brazo ni balanceo;
+queda pendiente la validacion visual con cliente real y consola remota.
 
-Verificaciones locales: 37 pruebas aprobadas (11 modelos/efectos, 20 fichas/oficios/cascos/
-requisitos/interruptores y 6 de esta tanda). La auditoria del FINAL y pack publico verifica
+Verificaciones locales: 48 pruebas aprobadas (ventanas, bazar, oficios, loops,
+modelos/efectos y 8 de esta tanda). La auditoria del FINAL y pack publico verifica
 modelos/texturas; las regresiones comprueban todos los estados, cabeza intacta, fallbacks
 planos, migracion puntual y preservacion de guante, mochilas, BetterModel, fuentes y shaders.
+Paper 26.1.2 local / Java 25 / Skript 2.17.1 / Vault 1.7.3 / Essentials 2.22:
+carga de 24 estructuras y recarga de `astral_servicios` sin errores. El ensayo usa
+un umbral de aviso de watchdog de 60 s solo en su carpeta aislada; no instalar esa config.
+No se simulo una compra ni clic con cliente: validar cobro, material y devolucion en remoto.
 
 ## Reproducir
 
@@ -140,6 +164,7 @@ python datapack-src/deploy_pack_1711.py
 python datapack-src/preview_pack_1711.py --client .local/pack-1711-client.jar
 python datapack-src/deploy_destello_guia.py
 python -m unittest discover -s datapack-src -p test_pack_1711.py
+python tools/probar_herrero_1711.py --java <JDK25/bin/java.exe> --base .local/interfaces-v2-test
 python tools/verificar_terceros.py
 ```
 '''

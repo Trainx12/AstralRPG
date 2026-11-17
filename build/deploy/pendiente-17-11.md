@@ -14,6 +14,7 @@ Incluye direccion/interruptores, T6/XP/suerte, Destello/pausa y la tanda visual 
 | `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `219c8b7cfc68fac7f02336a1792398d9f747e312612ac6136079d9b77dda6799` |
 | `.local/terceros/AstralRPG-privado/build/entregas/crop-kettle/CropAndKettle-Astral.zip` | `world/datapacks/CropAndKettle-Astral.zip` | `ebc22200ef9e0a5333716f8e9486fa3df1e5764d29e9a583f23a13aa55107e10` |
 | `build/gameplay/astral_armas_especiales.sk` | `plugins/Skript/scripts/special_weapons.sk` | `0805f366d3ce413a592764469c466fb9c3f6c8390a9c14433f1380259cdf021d` |
+| `build/services/astral_servicios.sk` | `plugins/Skript/scripts/astral_servicios.sk` | `2d930b05746e6fbde8b1dbe81aaeff95a774227d20c9cbf918abc30f2d74e88a` |
 | `build/menus/DeluxeMenus/gui_menus/configuraciones.yml` | `plugins/DeluxeMenus/gui_menus/configuraciones.yml` | `e51c83103d02179fb624d479f15c91cd8cc38bec06d946f33a4d6e5c905d47a3` |
 
 CNK permanece privado: no subir su ZIP al GitHub publico. La tanda visual posterior SI cambia el pack: usar el unico FINAL y el SHA-1 de [varita, arcos y cascos](varita-curacion-3d.md), subirlo a R2, verificar descarga y actualizar resource-pack-sha1 antes del mismo reinicio.
@@ -21,7 +22,7 @@ CNK permanece privado: no subir su ZIP al GitHub publico. La tanda visual poster
 ## Orden de instalacion y consola
 
 1. Cotejar esta tabla con los archivos actuales. Respaldar solo los archivos que se reemplazan y apagar el servidor.
-2. Reemplazar los seis archivos en los destinos indicados. Si CNK conserva el nombre original `CropAndKettle-v1.3.12-Data-Pack.zip`, reemplazar esa unica copia activa por la adaptada: no dejar ambos ZIP activos. Conservar los demas datapacks y configs.
+2. Reemplazar los siete archivos en los destinos indicados. Si CNK conserva el nombre original `CropAndKettle-v1.3.12-Data-Pack.zip`, reemplazar esa unica copia activa por la adaptada: no dejar ambos ZIP activos. Conservar los demas datapacks y configs.
 3. Mantener una sola copia activa de AstralDecor y special_weapons.sk. Conservar desactivada la copia duplicada astral_armas_especiales.sk registrada el 16/11. Nunca reemplazar mundos ni usar Worlds > Upload en world.
 4. Antes de iniciar, auditar las copias de TODOS los datapacks habilitados con `python tools/verificar_menu_pausa.py <Astral.zip> <CNK.zip> <otros-ZIP-o-carpetas-habilitados>`. La union en pausa y acciones rapidas debe ser solo astral:guia. Revisar tambien datapacks adicionales que no figuren en la documentacion.
 5. Iniciar: reinicio completo obligatorio por JAR y datapacks. No usar PlugMan ni recarga global. El arranque carga Skript; si solo se cambia despues: `skript:skript reload special_weapons` (cero errores).
@@ -65,13 +66,17 @@ python tools/verificar_terceros.py
 
 ## Pack FINAL unico de la tanda visual
 
+Reemplaza el FINAL de bcd2b3e (e78c4e80): NO instalar aquel ZIP. Incluye Reparar y primera persona corregida.
+
 Local: `.local/terceros/AstralRPG-privado/build/entregas/pack-17-11/AstralRPG-Textures.zip`. Destino R2: `AstralRPG-Textures.zip` (URL fija existente).
-SHA-1 FINAL: `e78c4e802679116eda7033807de4b8868086edd0`. Base instalada: `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42`.
+SHA-1 FINAL: `96286fbdc33d77b4ebcc11de8b15f7461631bac4`. Base instalada: `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42`.
 
 1. Subir con `python tools/subir_pack_r2.py .local/terceros/AstralRPG-privado/build/entregas/pack-17-11/AstralRPG-Textures.zip`. Descargar la URL publica y verificar ese SHA-1.
-2. Con el servidor apagado, actualizar `server.properties`: `resource-pack-sha1=e78c4e802679116eda7033807de4b8868086edd0`. Conservar resource-pack con su URL fija.
+2. Con el servidor apagado, actualizar `server.properties`: `resource-pack-sha1=96286fbdc33d77b4ebcc11de8b15f7461631bac4`. Conservar resource-pack con su URL fija.
 3. Instalar el datapack de la tabla actualizada de arriba y los demas pendientes en el mismo apagado; iniciar y revisar consola. Reinicio completo obligatorio.
 4. Aceptar el pack con cliente real y comprobar varita, arcos/ballestas en ambas manos y estados, cascos en cabeza y planos en mano/GUI/suelo/marco.
+
+5. Herrero: abrir la ventana, verificar Reparar en 48-50 (gris sin equipo, verde listo, rojo sin recursos), pasar el cursor para costo y material, probar clic en las tres casillas y comprobar cobro/reparacion una sola vez. El arranque carga el Skript; para una correccion posterior: `skript:skript reload astral_servicios`, cero errores. Revisar consola y devolucion del equipo al cerrar. Vista: `build/previews/herrero_reparar.png`.
 
 Detalle, migracion automatica de varitas existentes y vistas privadas: [varita-curacion-3d](varita-curacion-3d.md).
 R2, panel remoto y comprobacion con cliente siguen pendientes de Claude; esta entrega no afirma despliegue.

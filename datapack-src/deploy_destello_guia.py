@@ -11,6 +11,7 @@ def build():
         (ROOT/'build/AstralRPG-Items.zip', 'world/datapacks/AstralRPG-Items.zip'),
         (privado()/'build/entregas/crop-kettle/CropAndKettle-Astral.zip', 'world/datapacks/CropAndKettle-Astral.zip'),
         (ROOT/'build/gameplay/astral_armas_especiales.sk', 'plugins/Skript/scripts/special_weapons.sk'),
+        (ROOT/'build/services/astral_servicios.sk', 'plugins/Skript/scripts/astral_servicios.sk'),
         (ROOT/'build/menus/DeluxeMenus/gui_menus/configuraciones.yml', 'plugins/DeluxeMenus/gui_menus/configuraciones.yml'),
     ]
     lines = ['# Pendiente conjunto — 17/11/2026', '',
@@ -30,7 +31,7 @@ def build():
         'subirlo a R2, verificar descarga y actualizar resource-pack-sha1 antes del mismo reinicio.', '',
         '## Orden de instalacion y consola', '',
         '1. Cotejar esta tabla con los archivos actuales. Respaldar solo los archivos que se reemplazan y apagar el servidor.',
-        '2. Reemplazar los seis archivos en los destinos indicados. Si CNK conserva el nombre original '
+        '2. Reemplazar los siete archivos en los destinos indicados. Si CNK conserva el nombre original '
         '`CropAndKettle-v1.3.12-Data-Pack.zip`, reemplazar esa unica copia activa por la adaptada: '
         'no dejar ambos ZIP activos. Conservar los demas datapacks y configs.',
         '3. Mantener una sola copia activa de AstralDecor y special_weapons.sk. Conservar desactivada '
@@ -100,12 +101,17 @@ def build():
     final_sha=hashlib.sha1(final.read_bytes()).hexdigest()
     local=final.relative_to(ROOT).as_posix() if final.is_relative_to(ROOT) else final.as_posix()
     lines += ['## Pack FINAL unico de la tanda visual', '',
+        'Reemplaza el FINAL de bcd2b3e (e78c4e80): NO instalar aquel ZIP. Incluye Reparar y primera persona corregida.', '',
         f'Local: `{local}`. Destino R2: `AstralRPG-Textures.zip` (URL fija existente).',
         f'SHA-1 FINAL: `{final_sha}`. Base instalada: `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42`.', '',
         f'1. Subir con `python tools/subir_pack_r2.py {local}`. Descargar la URL publica y verificar ese SHA-1.',
         f'2. Con el servidor apagado, actualizar `server.properties`: `resource-pack-sha1={final_sha}`. Conservar resource-pack con su URL fija.',
         '3. Instalar el datapack de la tabla actualizada de arriba y los demas pendientes en el mismo apagado; iniciar y revisar consola. Reinicio completo obligatorio.',
         '4. Aceptar el pack con cliente real y comprobar varita, arcos/ballestas en ambas manos y estados, cascos en cabeza y planos en mano/GUI/suelo/marco.', '',
+        '5. Herrero: abrir la ventana, verificar Reparar en 48-50 (gris sin equipo, verde listo, rojo sin recursos), '
+        'pasar el cursor para costo y material, probar clic en las tres casillas y comprobar cobro/reparacion una sola vez. '
+        'El arranque carga el Skript; para una correccion posterior: `skript:skript reload astral_servicios`, cero errores. '
+        'Revisar consola y devolucion del equipo al cerrar. Vista: `build/previews/herrero_reparar.png`.', '',
         'Detalle, migracion automatica de varitas existentes y vistas privadas: [varita-curacion-3d](varita-curacion-3d.md).',
         'R2, panel remoto y comprobacion con cliente siguen pendientes de Claude; esta entrega no afirma despliegue.', '']
     target=ROOT/'build/deploy/pendiente-17-11.md'

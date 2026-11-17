@@ -5324,12 +5324,25 @@ function asg_reparar_boton(p: player):
     set {_inv} to {asg.gui::%uuid of {_p}%}
     asg_rep_ver({_p})
     if {_p} does not have the scoreboard tag "asgui.rep":
-        set {_b} to anvil named "&7Reparar"
+        set {_b} to asg_icon("astral:servicios/repair_off_0", "&7Reparar")
         set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
-        set slot 47 of {_inv} to {_b}
+        set slot 48 of {_inv} to {_b}
+        loop 2 times:
+            set {_s} to 48 + loop-number
+            set {_tile} to asg_icon("astral:servicios/repair_off_%loop-number%", "&7Reparar")
+            set lore of {_tile} to lore of {_b}
+            set slot {_s} of {_inv} to {_tile}
         stop
     set {_t} to asg_rep_tier({_p})
-    set {_b} to anvil named "&a&lReparar &7(tier %{_t}%)"
+    set {_state} to "ready"
+    set {_label} to "&a&lReparar &7(tier %{_t}%)"
+    if {_p} does not have the scoreboard tag "asgui.repmat":
+        set {_state} to "missing"
+        set {_label} to "&c&lReparar &7(tier %{_t}%) - faltan materiales"
+    if balance of {_p} < asg_rep_costo({_t}):
+        set {_state} to "missing"
+        set {_label} to "&c&lReparar &7(tier %{_t}%) - falta dinero"
+    set {_b} to asg_icon("astral:servicios/repair_%{_state}%_0", {_label})
     if {_t} is 1:
         set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 150$", "&eMaterial: Fragmento Astral x1" and "&8(el material se busca en tu inventario)"
     if {_t} is 2:
@@ -5350,7 +5363,12 @@ function asg_reparar_boton(p: player):
         set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 12000$", "&eMaterial: Esencia del Vacio x1" and "&8(el material se busca en tu inventario)"
     if {_t} is 10:
         set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 16000$", "&eMaterial: Corazon del Fin x1" and "&8(el material se busca en tu inventario)"
-    set slot 47 of {_inv} to {_b}
+    set slot 48 of {_inv} to {_b}
+    loop 2 times:
+        set {_s} to 48 + loop-number
+        set {_tile} to asg_icon("astral:servicios/repair_%{_state}%_%loop-number%", {_label})
+        set lore of {_tile} to lore of {_b}
+        set slot {_s} of {_inv} to {_tile}
 
 function asg_open(p: player, mode: text):
     close {_p}'s inventory
@@ -5493,7 +5511,7 @@ on inventory click:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
         stop
-    if {_slot} is 47:
+    if {_slot} is between 48 and 50:
         if {asg.mode::%{_id}%} is not "forge":
             stop
         if {asg.escrow::%{_id}%} is not set:
@@ -5503,7 +5521,7 @@ on inventory click:
             send "&eEse equipo no esta gastado o no es de AstralRPG." to player
             stop
         if player does not have the scoreboard tag "asgui.repmat":
-            send "&cTe falta el material para reparar (mira el yunque)." to player
+            send "&cTe falta el material para reparar (mira el boton)." to player
             stop
         set {_c} to asg_rep_costo(asg_rep_tier(player))
         if balance of player < {_c}:
