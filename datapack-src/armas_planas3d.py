@@ -53,7 +53,10 @@ def esculpido(S, name, im, glow, mc, fam, base):
     model = {'textures': {'t': t, 'particle': t}, 'elements': A.esculpir(a, g, fam, im.size[0]),
              'display': A.display_parado(disp, 1)}
     S.vista[name] = (model, girada, im)
-    return S.modelo(name, model)
+    solido = S.modelo(name, model)
+    if fam == 'arco':
+        solido = A.primera_persona(S, name, S.tex(name + '_icono_fp', im, mc), solido, fam)
+    return solido
 
 
 def cuchillos(S):

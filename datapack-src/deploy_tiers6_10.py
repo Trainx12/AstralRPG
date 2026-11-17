@@ -127,6 +127,8 @@ def armaduras():
                 files[f'assets/astral/models/item/{iid}.json'] = js(
                     {'parent': 'minecraft:item/generated', 'textures': {'layer0': f'astral:item/t6_10/{iid}'}})
                 files[f'assets/astral/items/{iid}.json'] = js({'model': {'type': 'minecraft:model', 'model': f'astral:item/{iid}'}})
+    from cascos_planos import normalize
+    normalize(files)
     return files
 
 

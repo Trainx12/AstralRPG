@@ -423,7 +423,32 @@ def astral():
     return w
 
 
-WANDS = [aprendiz(), hechicero(), invocador(), archimago(), astral()]
+def curacion():
+    """Arte propio: asta de crema y oro, corazon escalonado en ambos ejes."""
+    w = Wand('varita_curacion', 'Varita de Curacion', {
+        'gold': (hx('e9a63d'), 's'), 'dark': (hx('985524'), 's'),
+        'cream': (hx('fff0b5'), 's'), 'shine': (hx('fffbea'), 'pulse'),
+        'heart': (hx('ee426a'), 'pulse'), 'pink': (hx('ffb6d6'), 'pulse'),
+    })
+    w.shaft(-4, 3, 'gold', 1.5)
+    w.ring(-4, .8, 'dark', 2)
+    w.ring(2.6, .7, 'gold', 2)
+    w.shaft(3, 16, 'cream', 1.1)
+    w.box((7.45, 4, 7.35), (7.7, 15.5, 7.55), 'shine', glow=8)
+    w.ring(15.5, .8, 'gold', 1.8)
+    # Interseccion de siluetas: la hendidura queda abierta de frente Y de perfil.
+    for x0, x1 in ((-2, -.4), (.4, 2)):
+        for z0, z1 in ((-2, -.4), (.4, 2)):
+            w.box((8+x0, 19, 8+z0), (8+x1, 21, 8+z1), 'heart', glow=10)
+    for y0, y1, radius in ((18, 19.1, 2), (17.2, 18, 1.4), (16.3, 17.2, .65)):
+        w.box((8-radius, y0, 8-radius), (8+radius, y1, 8+radius), 'heart', glow=10)
+    w.box((6.35, 19.4, 5.95), (6.9, 20.4, 6.05), 'pink', glow=15)
+    w.box((5.95, 19.4, 6.35), (6.05, 20.4, 6.9), 'pink', glow=15)
+    w.refined_materials = True
+    return w
+
+
+WANDS = [aprendiz(), hechicero(), invocador(), archimago(), astral(), curacion()]
 
 
 # ---------------------------------------------------------------------------
@@ -599,6 +624,9 @@ def display(w):
             "firstperson_righthand": {"rotation": [0, -90, -20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
             "firstperson_lefthand": {"rotation": [0, 90, 20], "translation": [1.13, 3.2, 1.13], "scale": [0.68, 0.68, 0.68]},
         }
+    if w.hand == 'bow':
+        for side in ('righthand', 'lefthand'):
+            hands['firstperson_' + side].update(scale=[0.50] * 3, translation=[-0.5, 5.5, -1.0])
     return {
         **hands,
         "gui": {"rotation": gui_r, "translation": gui_t, "scale": [s, s, s]},

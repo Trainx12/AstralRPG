@@ -10,9 +10,9 @@ WEAPONS = {
         cost=[('c','cristal_refinado',3),('c','nucleo_eolico',1),('v','minecraft:ender_pearl',4)]),
     'hacha_terremoto': dict(name='Hacha del Sismo', base='netherite_axe', color='#dda65d', damage=11, speed=1.0,
         cost=[('c','netherita_reforzada',4),('c','gema_luminica',2),('v','minecraft:obsidian',8)]),
-    # Cura: no pega fuerte (dano 1). Modelo vanilla de palo con brillo hasta tener textura propia.
+    # Cura: arte propio de varitas3d, con corazon y brillo animado.
     'varita_curacion': dict(name='Varita de Curación', base='stick', color='#7dff9a', damage=1, speed=1.6,
-        model='minecraft:stick', glint=True,
+        model='astral:varita_curacion', glint=False,
         cost=[('c','cristal_refinado',2),('c','gema_luminica',1),('v','minecraft:ghast_tear',2)]),
     'varita_estallido': dict(name='Varita del Estallido', base='stick', color='#ff8673', damage=6, speed=1.5,
         cost=[('c','palo_reforzado',1),('c','cristal_arcano',3),('v','minecraft:blaze_powder',8)]),

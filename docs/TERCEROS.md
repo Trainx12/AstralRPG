@@ -1,3 +1,14 @@
+# Pack conjunto - 17/11/2026
+
+`deploy_pack_1711.py` conserva la base desplegada `6421c6d3` y genera un unico FINAL
+en `ASTRAL_PRIVADO/build/entregas/pack-17-11/`. Incorpora la varita propia, primera
+persona fina para arcos/ballestas y los iconos de cascos/sombreros de `cascos_planos.py`.
+Los iconos y comparaciones derivados de mods quedan exclusivamente en esa entrega
+privada. `preview_pack_1711.py --client <cliente-oficial.jar>` compara vanilla/antes/despues
+en una misma camara CPU. No publicar el cliente ni esas vistas en GitHub.
+Instalacion pendiente y SHA-1: [entrega](../build/deploy/varita-curacion-3d.md),
+acumulada en [pendiente-17-11](../build/deploy/pendiente-17-11.md).
+
 # Catalogo vigente - 16/11/2026
 
 El catalogo actual conserva solo el Fenix de la primera tanda mas las 17 mascotas nuevas de la tabla inferior.

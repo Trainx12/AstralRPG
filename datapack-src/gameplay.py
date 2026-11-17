@@ -48,7 +48,15 @@ def apply(files,items,version):
     fn('upgrade/carnivora_head',[
         f'execute unless items entity @s container.* {helmet_old} unless items entity @s armor.head {helmet_old} unless items entity @s weapon.offhand {helmet_old} run return 0',
     ]+[f'execute if items entity @s {slot} {helmet_old} run item modify entity @s {slot} astral:carnivora_head' for slot in slots])
-    fn('upgrade/check',['function astral:upgrade/carnivora_head']+[
+    wand_old='*[minecraft:custom_data~{astral:{id:"varita_curacion"}},!minecraft:item_model="astral:varita_curacion"]'
+    files['data/astral/item_modifier/varita_curacion_modelo.json']=json.dumps({
+        'function':'minecraft:set_components','components':{
+            'minecraft:item_model':'astral:varita_curacion', 'minecraft:enchantment_glint_override':False}})
+    fn('upgrade/varita_curacion_modelo',[
+        f'execute unless items entity @s container.* {wand_old} unless items entity @s weapon.offhand {wand_old} run return 0',
+    ]+[f'execute if items entity @s {slot} {wand_old} run item modify entity @s {slot} astral:varita_curacion_modelo'
+       for slot in slots])
+    fn('upgrade/check',['function astral:upgrade/carnivora_head', 'function astral:upgrade/varita_curacion_modelo']+[
         f'execute if items entity @s {slot} {old} run function astral:upgrade/slot/{slot.replace(".","_")}' for slot in slots])
     # El impulso lo aplica Skript con velocidad real; el datapack solo valida el objeto y solicita el uso.
     fn('grapple/use',['tag @s add astral.grapple.request'])

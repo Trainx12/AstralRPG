@@ -18,15 +18,16 @@ def build():
         'Empower es el principal documentado; Aternos es copia. Paper 26.1.2 / Java 25.',
         'Esta tabla reemplaza los hashes/listas del 17/11 en [bastones e interruptores](efectos-direccion-interruptores.md) '
         'y [tier T6, XP y suerte](tier6-suerte.md). Conservar sus instrucciones funcionales y pendientes.',
-        'Incluye las tres tandas: direccion/interruptores, T6/XP/suerte y Destello/pausa. '
+        'Incluye direccion/interruptores, T6/XP/suerte, Destello/pausa y la tanda visual de varita/arcos/cascos. '
         'No sustituye otras entregas anteriores que todavia no se hayan instalado.', '',
         '## Archivos actuales (SHA-256)', '', '| Local desde la raiz | Destino | SHA-256 |', '|---|---|---|']
     for path, dest in files:
         local = path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix()
         lines.append(f'| `{local}` | `{dest}` | `{hashlib.sha256(path.read_bytes()).hexdigest()}` |')
     lines += ['',
-        'CNK permanece privado: no subir su ZIP al GitHub publico. El cambio de pausa no modifica recursos, '
-        'la base FINAL ni texturas: no subir a R2 ni cambiar resource-pack-sha1.', '',
+        'CNK permanece privado: no subir su ZIP al GitHub publico. La tanda visual posterior SI cambia el pack: '
+        'usar el unico FINAL y el SHA-1 de [varita, arcos y cascos](varita-curacion-3d.md), '
+        'subirlo a R2, verificar descarga y actualizar resource-pack-sha1 antes del mismo reinicio.', '',
         '## Orden de instalacion y consola', '',
         '1. Cotejar esta tabla con los archivos actuales. Respaldar solo los archivos que se reemplazan y apagar el servidor.',
         '2. Reemplazar los seis archivos en los destinos indicados. Si CNK conserva el nombre original '
@@ -93,6 +94,20 @@ def build():
         'python tools/verificar_terceros.py', '```', '',
         '`--datapack-only` no selecciona ni reescribe el FINAL privado: usa los originales CNK conservados. '
         'Logs y plugins de ensayo permanecen exclusivamente en .local/.', '']
+    final=privado()/'build/entregas/pack-17-11/AstralRPG-Textures.zip'
+    if not final.exists():
+        raise FileNotFoundError('Generar primero deploy_pack_1711.py para la tanda visual acumulada')
+    final_sha=hashlib.sha1(final.read_bytes()).hexdigest()
+    local=final.relative_to(ROOT).as_posix() if final.is_relative_to(ROOT) else final.as_posix()
+    lines += ['## Pack FINAL unico de la tanda visual', '',
+        f'Local: `{local}`. Destino R2: `AstralRPG-Textures.zip` (URL fija existente).',
+        f'SHA-1 FINAL: `{final_sha}`. Base instalada: `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42`.', '',
+        f'1. Subir con `python tools/subir_pack_r2.py {local}`. Descargar la URL publica y verificar ese SHA-1.',
+        f'2. Con el servidor apagado, actualizar `server.properties`: `resource-pack-sha1={final_sha}`. Conservar resource-pack con su URL fija.',
+        '3. Instalar el datapack de la tabla actualizada de arriba y los demas pendientes en el mismo apagado; iniciar y revisar consola. Reinicio completo obligatorio.',
+        '4. Aceptar el pack con cliente real y comprobar varita, arcos/ballestas en ambas manos y estados, cascos en cabeza y planos en mano/GUI/suelo/marco.', '',
+        'Detalle, migracion automatica de varitas existentes y vistas privadas: [varita-curacion-3d](varita-curacion-3d.md).',
+        'R2, panel remoto y comprobacion con cliente siguen pendientes de Claude; esta entrega no afirma despliegue.', '']
     target=ROOT/'build/deploy/pendiente-17-11.md'
     target.write_text('\n'.join(lines),encoding='utf8')
     print(target)

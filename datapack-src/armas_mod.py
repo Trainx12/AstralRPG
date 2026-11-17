@@ -431,6 +431,22 @@ def por_contexto(plano, solido, cuando=('gui',)):
             'cases': [{'when': list(cuando), 'model': plano}], 'fallback': solido}
 
 
+def primera_persona(S, name, textura, solido, familia):
+    """Extrusion fina continua del motor vanilla, sin capas de voxeles superpuestas.
+
+    El icono sigue en diagonal: aplica el display vanilla sin display_parado.
+    Solo cambia las dos vistas en primera persona; conserva el resto del modelo.
+    """
+    base = VANILLA['item/crossbow' if familia == 'ballesta' else 'item/bow']
+    disp = {}
+    for side in ('righthand', 'lefthand'):
+        key = 'firstperson_' + side
+        disp[key] = dict(base[key], scale=[0.50] * 3, translation=[-0.5, 5.5, -1.0])
+    plano = S.modelo(name + '_primera_persona', {
+        'parent': 'minecraft:item/generated', 'textures': {'layer0': textura}, 'display': disp})
+    return por_contexto(plano, solido, ('firstperson_righthand', 'firstperson_lefthand'))
+
+
 def hacer_plano(S, name, ref, tex_ref=None, base='item/handheld'):
     """Devuelve (modelo plano para el inventario, modelo esculpido)."""
     disp, tex = resolver(ref) if ref else resolver(base)
@@ -443,7 +459,10 @@ def hacer_plano(S, name, ref, tex_ref=None, base='item/handheld'):
     model = {'textures': {'t': t, 'particle': t}, 'elements': els,
              'display': display_parado(disp, ESCALA.get(arma, 1))}
     S.vista.setdefault(name, (model, girada, im))
-    return S.plano_gui(name, ti, disp), S.modelo(name, model)
+    solido = S.modelo(name, model)
+    if _familia(name) in ('arco', 'ballesta'):
+        solido = primera_persona(S, name, ti, solido, _familia(name))
+    return S.plano_gui(name, ti, disp), solido
 
 
 # ------------------------------------------------------------------------------------- geo -> modelo de item

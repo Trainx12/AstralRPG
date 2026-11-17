@@ -488,6 +488,8 @@ _default = json.loads(files["assets/minecraft/font/default.json"])
 _default["providers"].extend(_vproviders)
 files["assets/minecraft/font/default.json"] = json.dumps(_default).encode()
 relocate_model_textures(files)
+from cascos_planos import normalize as normalize_helmets
+normalize_helmets(files)
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:
