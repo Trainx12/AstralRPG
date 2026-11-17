@@ -1472,6 +1472,7 @@ astral_creeper_nuclear:
   Display: '&e&lCreeper Nuclear'
   Health: 20
   Options:
+    Silent: true
     Glowing: false
     ExplosionRadius: 6
     PreventOtherDrops: true

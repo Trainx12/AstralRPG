@@ -25,7 +25,7 @@ def definitions():
     for kind in GOLEM_DUNGEONS.values():
         mid='astral_golem_'+kind
         mobs[mid]={'Type':'ZOMBIE','Display':'&aGolem de '+kind,'Health':20,'Damage':3,
-            'Options':dict(Glowing=True,MovementSpeed=.25,PreventSunburn=True,PreventOtherDrops=True,
+            'Options':dict(Silent=True,Glowing=True,MovementSpeed=.25,PreventSunburn=True,PreventOtherDrops=True,
                 PreventRandomEquipment=True,PreventItemPickup=True,Despawn=False,FollowRange=64),
             'AIGoalSelectors':['clear','meleeattack','randomstroll'],'AITargetSelectors':['clear','players'],
             'Skills':[f'model{{m={mid}}} @self ~onSpawn',f'model{{m={mid}}} @self ~onLoad',
@@ -60,7 +60,7 @@ def definitions():
                     f'summon{{type={mid};amount=1;radius=0;onSurface=false;sync=true}}','remove{sync=true}']}
     # Sin selector players ni hurtbytarget: el runtime asigna exclusivamente al agresor.
     mobs['astral_goblin_vendedor']={'Type':'ZOMBIE','Display':'&2Goblin Mercader','Health':10000000,'Damage':3,
-        'Options':dict(MovementSpeed=.32,PreventSunburn=True,PreventOtherDrops=True,PreventRandomEquipment=True,
+        'Options':dict(Silent=True,MovementSpeed=.32,PreventSunburn=True,PreventOtherDrops=True,PreventRandomEquipment=True,
             PreventItemPickup=True,Despawn=False,AlwaysShowName=True),
         'AIGoalSelectors':['clear','meleeattack','lookatplayers','randomstroll'],'AITargetSelectors':['clear'],
         'Skills':['addtag{tag=astral.mercader} @self ~onSpawn','addtag{tag=astral.seen} @self ~onSpawn',

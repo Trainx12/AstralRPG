@@ -38,7 +38,14 @@ final class AstralMerchant implements Listener {
         Bukkit.getScheduler().runTaskTimer(plugin,this::tick,20,20);
     }
     private int interval(){return (40*60+rng.nextInt(20*60+1))*20;}
-    private void cleanupOld(Entity e){if(e.getScoreboardTags().contains("astral.mercader") || e.getScoreboardTags().contains("astral.espalda"))e.remove();}
+    private void cleanupOld(Entity e){
+        if(e.getScoreboardTags().contains("astral.mercader")) {
+            // Un spawn manual no es una visita; avisar antes de retirar un duplicado.
+            for(Player p:e.getWorld().getPlayers())if(p.isOp() && p.getLocation().distanceSquared(e.getLocation())<=32*32)
+                p.sendMessage("§eSe retiro un Goblin Mercader sin visita activa. Usa /astralmercader visita [jugador].");
+            e.remove();
+        } else if(e.getScoreboardTags().contains("astral.espalda"))e.remove();
+    }
     @EventHandler public void load(org.bukkit.event.world.ChunkLoadEvent e){for(Entity x:e.getChunk().getEntities())if(x!=merchant && !backs.containsValue(x))cleanupOld(x);}
     private void leave(){if(merchant!=null)merchant.remove();merchant=null;aggressor=null;bought.clear();next=Bukkit.getCurrentTick()+interval();}
     private boolean isMerchant(Entity entity){return merchant!=null && merchant.getUniqueId().equals(entity.getUniqueId());}
@@ -49,22 +56,46 @@ final class AstralMerchant implements Listener {
             List<Player> players=Bukkit.getOnlinePlayers().stream().filter(p->p.getWorld().getName().equals("world") &&
                 p.getGameMode()==GameMode.SURVIVAL && !p.isDead()).map(p->(Player)p).toList();
             if(players.isEmpty()){next=now+1200;return;}
-            Player p=players.get(rng.nextInt(players.size()));
-            Location loc=p.getLocation().clone().add(6+rng.nextInt(7),0,6+rng.nextInt(7));
-            loc.setY(loc.getWorld().getHighestBlockYAt(loc)+1);
-            if(loc.getY()<p.getY()-8 || loc.getY()>p.getY()+8 || loc.getBlock().isLiquid() ||
-                loc.clone().subtract(0,1,0).getBlock().isLiquid()){next=now+1200;return;}
-            try {merchant=(LivingEntity)MythicBukkit.inst().getAPIHelper().spawnMythicMob("astral_goblin_vendedor",loc);}
-            catch(Exception ex){plugin.getLogger().warning("No se pudo invocar mercader: "+ex);next=now+1200;return;}
-            if(merchant==null){next=now+1200;return;}
-            expires=now+6000;
-            for(Player near:loc.getWorld().getPlayers())if(near.getLocation().distanceSquared(loc)<=64*64)
-                near.sendMessage("§2Goblin Mercader §aesta cerca de "+p.getName()+". Se va en cinco minutos. Clic derecho para comerciar.");
+            visit(players.get(rng.nextInt(players.size())));
         }
         updateBacks();
     }
+    private String visit(Player p) {
+        if(merchant!=null && merchant.isValid() && Bukkit.getCurrentTick()<expires)return "§eYa hay un mercader de visita. Usa /astralmercader irse para despedirlo.";
+        if(merchant!=null)leave();
+        if(!p.getWorld().getName().equals("world") || p.isDead())return "§cEl jugador debe estar vivo en world.";
+        int now=Bukkit.getCurrentTick();
+        Location loc=null;
+        for(int attempt=0;attempt<16;attempt++) {
+            Location candidate=p.getLocation().clone().add((rng.nextBoolean()?1:-1)*(6+rng.nextInt(7)),0,(rng.nextBoolean()?1:-1)*(6+rng.nextInt(7)));
+            if(!candidate.getWorld().getWorldBorder().isInside(candidate))continue;
+            candidate.setY(candidate.getWorld().getHighestBlockYAt(candidate)+1);
+            if(candidate.getY()<p.getY()-8 || candidate.getY()>p.getY()+8 ||
+                !candidate.clone().subtract(0,1,0).getBlock().getType().isSolid() ||
+                !candidate.getBlock().isPassable() || candidate.getBlock().isLiquid() ||
+                !candidate.clone().add(0,1,0).getBlock().isPassable() || candidate.clone().add(0,1,0).getBlock().isLiquid())continue;
+            Material floor=candidate.clone().subtract(0,1,0).getBlock().getType();
+            if(floor==Material.MAGMA_BLOCK || floor==Material.CAMPFIRE || floor==Material.SOUL_CAMPFIRE || floor==Material.CACTUS)continue;
+            loc=candidate;break;
+        }
+        if(loc==null){next=now+1200;return "§cNo se encontro un lugar seguro cerca del jugador. Acercate a terreno abierto.";}
+            try {merchant=(LivingEntity)MythicBukkit.inst().getAPIHelper().spawnMythicMob("astral_goblin_vendedor",loc);}
+            catch(Exception ex){plugin.getLogger().warning("No se pudo invocar mercader: "+ex);next=now+1200;return "§cNo se pudo invocar el mercader; revisa la consola.";}
+            if(merchant==null){next=now+1200;return "§cMythicMobs no pudo crear el mercader.";}
+            bought.clear();aggressor=null;
+            expires=now+6000;
+            for(Player near:loc.getWorld().getPlayers())if(near.getLocation().distanceSquared(loc)<=64*64)
+                near.sendMessage("§2Goblin Mercader §aesta cerca de "+p.getName()+". Se va en cinco minutos. Clic derecho para comerciar.");
+        return "§aVisita iniciada cerca de "+p.getName()+" por cinco minutos.";
+    }
     private boolean visitor(Player p){return plugin.authenticated(p) && merchant!=null && merchant.isValid() && aggressor==null &&
         Bukkit.getCurrentTick()<expires && p.getWorld()==merchant.getWorld() && p.getLocation().distanceSquared(merchant.getLocation())<=64 && !p.isDead();}
+    @EventHandler(priority=EventPriority.MONITOR) public void manualInteract(PlayerInteractEntityEvent e) {
+        // El aviso tambien debe llegar si Mythic u otra proteccion cancelo el clic.
+        if(!isMerchant(e.getRightClicked()) && e.getHand()==EquipmentSlot.HAND && e.getPlayer().isOp() &&
+            e.getRightClicked().getScoreboardTags().contains("astral.mercader"))
+            e.getPlayer().sendMessage("§eEste Goblin Mercader no esta de visita: usa /astralmercader visita [jugador].");
+    }
     @EventHandler(ignoreCancelled=true) public void interact(PlayerInteractEntityEvent e) {
         if(!isMerchant(e.getRightClicked()))return;
         e.setCancelled(true);
@@ -98,6 +129,17 @@ final class AstralMerchant implements Listener {
     @SuppressWarnings({"unchecked","rawtypes"})
     boolean command(org.bukkit.command.CommandSender sender,String[] args) {
         while(sender instanceof org.bukkit.command.ProxiedCommandSender proxy)sender=proxy.getCaller();
+        if(args.length>0 && (args[0].equalsIgnoreCase("visita") || args[0].equalsIgnoreCase("irse"))) {
+            if(!sender.isOp()){sender.sendMessage("§cSolo un administrador OP puede gestionar visitas.");return true;}
+            if(args[0].equalsIgnoreCase("irse")) {
+                if(args.length!=1){sender.sendMessage("§eUso: /astralmercader irse");return true;}
+                if(merchant==null){sender.sendMessage("§eNo hay un mercader de visita.");return true;}
+                leave();sender.sendMessage("§aEl Goblin Mercader se retiro.");return true;
+            }
+            Player target=args.length==1 && sender instanceof Player player?player:args.length==2?Bukkit.getPlayerExact(args[1]):null;
+            if(target==null){sender.sendMessage("§eUso: /astralmercader visita [jugador conectado]");return true;}
+            sender.sendMessage(visit(target));return true;
+        }
         if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=2)return true;
         Player p=Bukkit.getPlayerExact(args[0]);int[] offer=offers.get(args[1]);
         if(p==null || offer==null)return true;

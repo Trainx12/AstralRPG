@@ -113,7 +113,7 @@ astral_cumbre_yeti:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33

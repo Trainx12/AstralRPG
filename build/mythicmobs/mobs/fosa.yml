@@ -7,7 +7,7 @@ astral_fosa_cangrejo:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33

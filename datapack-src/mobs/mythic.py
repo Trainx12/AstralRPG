@@ -360,7 +360,7 @@ def mob_block(mid, d, model=None, elite=None):
         lines.append(f"  Damage: {round(d['damage'] * (1.6 if elite else 1), 1)}")
     if d.get("armor") or elite:
         lines.append(f"  Armor: {d.get('armor', 0) + (6 if elite else 0)}")
-    opts = ["    PreventOtherDrops: true", "    Silent: false", "    PreventSunburn: true", "    Despawn: false"
+    opts = ["    PreventOtherDrops: true", "    Silent: true", "    PreventSunburn: true", "    Despawn: false"
             if d["kind"] in ("montura", "jefe") else "    Despawn: true"]
     if d.get("speed"):
         opts.append(f"    MovementSpeed: {d['speed']}")

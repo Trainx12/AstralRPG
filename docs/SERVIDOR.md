@@ -599,6 +599,25 @@ muro norte, cuenta 3 s, sale a 0.16 bloques/tick y teletransporta al llegar el f
 al muro sur; reaparece quieto sin regreso vacio. Actualizar solo JAR y train.yml,
 conservar config de estacion y reiniciar. Valores del JAR salvo `viaje.manual: true`.
 Lista exacta y verificaciones: [tren-lobby.md](../build/deploy/tren-lobby.md).
+# Goblin Mercader: visitas de administrador (17/11, pendiente)
+
+AstralDecor 1.18.0: `/astralmercader visita [jugador]` fuerza una visita real cerca
+del jugador vivo en `world`, incluso en creativo. Solo OP; desde consola hay que
+indicar un jugador conectado. Busca piso seguro, dura cinco minutos y conserva
+stock individual por UUID. Si ya hay uno activo, avisa sin duplicarlo.
+`/astralmercader irse` lo despide y limpia el stock de esa visita.
+
+La visita natural sigue cada 40–60 minutos cerca de un jugador SURVIVAL en `world`.
+`/mm mobs spawn astral_goblin_vendedor` crea una entidad sin visita: no habilita
+comercio. Al hacer clic un OP recibe el comando correcto. La limpieza de entidades
+viejas al cargar chunks anuncia el retiro a OP cercanos antes de borrarlas.
+
+Entrega: [cascos, silencio y mercader](../build/deploy/cascos-silencio-mercader-17-11.md).
+Incluye 48 iconos privados nuevos y mobs modelados silenciosos; los sonidos de
+skills se conservan. Solo YAML: `mm reload`, sin reinicio, probar entidades nuevas.
+JAR y FINAL requieren apagar/reiniciar; R2, servidor y cliente pendientes de Claude.
+No reemplazar mundos. El principal documentado es Empower; Aternos es copia.
+
 # Mascotas y decoraciones del oceano — 17/11/2026 (pendiente)
 
 Entrega: [mascotas-oceano-panorama-17-11](../build/deploy/mascotas-oceano-panorama-17-11.md).

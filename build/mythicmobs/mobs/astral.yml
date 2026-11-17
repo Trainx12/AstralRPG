@@ -7,7 +7,7 @@ astral_mapache:
   Damage: 3
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -42,7 +42,7 @@ astral_pinguino:
   Damage: 3
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.22
@@ -78,7 +78,7 @@ astral_espantapajaros:
   Damage: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.25
@@ -105,7 +105,7 @@ astral_goblin:
   Damage: 3
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.34
@@ -136,7 +136,7 @@ astral_abejorro:
   Damage: 5
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -162,7 +162,7 @@ astral_arana:
   Damage: 5
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -189,7 +189,7 @@ astral_cara:
   Damage: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -214,7 +214,7 @@ astral_grillo:
   Health: 26
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.24
@@ -242,7 +242,7 @@ astral_chocobo:
   Health: 30
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.38
@@ -270,7 +270,7 @@ astral_escarabajo:
   Armor: 10
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.14
@@ -297,7 +297,7 @@ astral_lagarto:
   Health: 34
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.22
@@ -324,7 +324,7 @@ astral_ave:
   Health: 40
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.32
@@ -350,7 +350,7 @@ astral_pterodactilo:
   Health: 50
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.36
@@ -379,7 +379,7 @@ astral_momia:
   Damage: 10
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -437,7 +437,7 @@ astral_yeti:
   Damage: 14
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -496,7 +496,7 @@ astral_golem_forja:
   Damage: 16
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -556,7 +556,7 @@ astral_cangrejo:
   Damage: 9
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -612,7 +612,7 @@ astral_chaman:
   Damage: 8
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -672,7 +672,7 @@ astral_espantapajaros_elite:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.25
@@ -721,7 +721,7 @@ astral_abejorro_elite:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -769,7 +769,7 @@ astral_arana_elite:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -818,7 +818,7 @@ astral_cara_elite:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: true
     MovementSpeed: 0.3
@@ -866,7 +866,7 @@ astral_cangrejo_elite:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -938,7 +938,7 @@ astral_momia_ancestral:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -1032,7 +1032,7 @@ astral_yeti_ancestral:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -1127,7 +1127,7 @@ astral_golem_forja_ancestral:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -1223,7 +1223,7 @@ astral_cangrejo_ancestral:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -1314,7 +1314,7 @@ astral_chaman_ancestral:
   Armor: 6
   Options:
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33

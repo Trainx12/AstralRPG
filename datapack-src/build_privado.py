@@ -178,6 +178,9 @@ def private_configs(models):
             for skill in (f'PET_MODELO_{pid}', f'PET_{pid}_EVOLUCION'):
                 pet_skills[skill]['Skills'] = [s.replace('m=astral_pet_lobo', 'm=astral_pet_' + pid) for s in pet_skills[skill]['Skills']]
         mobs = yaml.safe_load((ROOT / 'build/mythicmobs/mobs/astral.yml').read_text(encoding='utf-8'))
+        # El circuito privado tambien debe silenciar las bases vanilla.
+        for mob in mobs.values():
+            mob.setdefault('Options', {})['Silent'] = True
         for mid in ('astral_abejorro', 'astral_abejorro_elite'):
             mobs[mid]['Skills'] = [s for s in mobs[mid]['Skills'] if not s.startswith('state{s=attack}')]
         skills['AST_VENDEDOR_PRIVADO'] = {'Skills': ['model{m=astral_vendedor} @self']}

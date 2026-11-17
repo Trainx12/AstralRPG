@@ -148,9 +148,14 @@ Paradise sigue pendiente de diagnostico en vivo; no se certifica largada/checkpo
 Despliegue, consola remota, cliente visual y reconexion/reinicio con lotes en curso siguen pendientes de Claude.
 Nunca sustituir mundos ni usar Worlds > Upload en world.
 
-## Mascotas, oceano y panorama (tanda actual)
+## Mascotas, oceano y panorama (entrega anterior)
 
 Lista y hashes vigentes: [mascotas-oceano-panorama-17-11](mascotas-oceano-panorama-17-11.md).
 Esta tanda reemplaza los mismos JAR/datapack/script de las tablas anteriores y agrega AstralProgression, AstralOceano y el YAML privado de mascotas. Conservar el resto de 054db88 pendiente.
-Unico FINAL para instalar: `.local/terceros/AstralRPG-privado/build/entregas/mascotas-oceano-panorama-17-11/AstralRPG-Textures.zip`; SHA-1 `d9ec25c013ccffd028bd384a189e9b3524fdda37`, encima de `96286fbdc33d77b4ebcc11de8b15f7461631bac4`.
+FINAL anterior, sustituido por la ultima entrega de cascos: `.local/terceros/AstralRPG-privado/build/entregas/mascotas-oceano-panorama-17-11/AstralRPG-Textures.zip`; SHA-1 `d9ec25c013ccffd028bd384a189e9b3524fdda37`, encima de `96286fbdc33d77b4ebcc11de8b15f7461631bac4`.
 Apagar y reiniciar. R2 e instalacion remota pendientes de Claude con navegador. Nunca reemplazar mundos. Instrucciones del dueno: [decoraciones](../../docs/OCEANO_DECORACIONES.md).
+
+## Cascos, silencio y mercader (ultima entrega)
+
+Lista exacta y hashes: [cascos-silencio-mercader-17-11](cascos-silencio-mercader-17-11.md). Sustituye AstralDecor por 1.18.0, YAML de mobs y FINAL de 98156c2; conservar sus demas archivos y 054db88.
+Unico FINAL `.local/terceros/AstralRPG-privado/build/entregas/cascos-silencio-mercader-17-11/AstralRPG-Textures.zip`; SHA-1 `9d83b49323139271250519fbfd7df7f65857d730`. Requiere apagar/reiniciar por JAR y pack. Solo YAML: `mm reload`. R2, servidor y cliente pendientes de Claude; sin despliegue verificado.

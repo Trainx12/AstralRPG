@@ -57,6 +57,30 @@ AstralOceano 1.4.0 deja de generar Aurora.
 Arte final de las seis ventanas: `ventanas_1611.py`; reservas de navegacion con marca P: `navegacion_provisoria.py`.
 Vistas publicas usan retratos de reserva; los retratos licenciados quedan solo en el FINAL privado.
 
+# Goblin Mercader e iconos de cascos — 17/11 (pendiente)
+
+Admin OP: `/astralmercader visita [jugador]` trae una visita comerciable de cinco
+minutos; `/astralmercader irse` la termina. Desde consola indicar jugador conectado.
+El destino debe estar vivo en `world`; creativo sirve para pruebas de OP. No usar
+`mm mobs spawn` para comerciar: esa entidad no pertenece a una visita.
+Los jugadores comunes no pueden forzar ni despedir visitas. Stock separado por UUID,
+sin duplicar el mercader activo; visita natural SURVIVAL cada 40–60 minutos.
+
+Generadores: `cascos_planos.py`, `mobs/mythic.py`, `mobs/mazmorra.py`,
+`mobs/tanda3b.py`, `correcciones_goblin.py` y `build_privado.py`.
+Regenerar Mythic, mazmorras y Fosa; compilar AstralDecor con `build_runtime.py`.
+Armar entrega con `python datapack-src/deploy_cascos_silencio.py --client <cliente-oficial.jar>`.
+El cliente, las vistas y los PNG derivados permanecen privados. El FINAL conserva
+el panorama/barril de 98156c2; no publicar el arte ni instalar el ZIP público.
+La auditoría de `mobs/silencio.py` sigue modelos directos y metaskills indirectas.
+Al agregar mobs modelados, incluir `Options: Silent: true`; conservar `sound{...}`.
+
+Archivos exactos, destinos y recargas en
+[cascos-silencio-mercader-17-11](../build/deploy/cascos-silencio-mercader-17-11.md),
+acumulado en [pendiente-17-11](../build/deploy/pendiente-17-11.md).
+AstralDecor 1.18.0 y SHA-1 del pack requieren apagar/reiniciar. Solo YAML:
+`mm reload`, sin reinicio, comprobar entidades nuevas. Despliegue pendiente de Claude.
+
 # Guía para agregar cosas a AstralRPG
 
 ## Cocina (Crop & Kettle)

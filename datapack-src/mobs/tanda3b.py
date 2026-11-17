@@ -66,7 +66,7 @@ def definitions():
                 'Skills':[f'removetag{{tag=ad.esq.{key}.{room};sync=true}}','randomskill{s='+','.join(choices)+';sync=true}','remove{sync=true}']}
     mid='astral_creeper_nuclear'
     mobs[mid]={'Type':'CREEPER','Display':'&e&lCreeper Nuclear','Health':20,
-        'Options':dict(Glowing=False,ExplosionRadius=NORMAL_POWER*NUCLEAR_POWER,PreventOtherDrops=True,Despawn=True),
+        'Options':dict(Silent=True,Glowing=False,ExplosionRadius=NORMAL_POWER*NUCLEAR_POWER,PreventOtherDrops=True,Despawn=True),
         'Skills':['addtag{tag=astral.nuclear} @self ~onSpawn',
             'command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn',
             'skill{s=AST_NUCLEAR_MODELO} @self ~onSpawn','skill{s=AST_NUCLEAR_MODELO} @self ~onLoad',

@@ -101,7 +101,7 @@ astral_santuario_coloso_musgoso_eco:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -183,7 +183,7 @@ astral_santuario_chaman_eco:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -272,7 +272,7 @@ astral_santuario_momia_eco:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -360,7 +360,7 @@ astral_santuario_yeti_eco:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
@@ -449,7 +449,7 @@ astral_santuario_golem_forja_eco:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33

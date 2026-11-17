@@ -12,6 +12,7 @@ astral_mina_guardian:
     Despawn: false
     FollowRange: 64
     Glowing: true
+    Silent: true
     KnockbackResistance: 0.8
   BossBar:
     Enabled: true

@@ -126,7 +126,7 @@ astral_forja_golem_forja:
   Options:
     Glowing: true
     PreventOtherDrops: true
-    Silent: false
+    Silent: true
     PreventSunburn: true
     Despawn: false
     MovementSpeed: 0.33
