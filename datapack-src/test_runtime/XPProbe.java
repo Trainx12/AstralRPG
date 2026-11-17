@@ -64,7 +64,10 @@ public final class XPProbe extends JavaPlugin {
         case "start" -> {
             player=fake();player.loadData();player.getInventory().clear();player.setLevel(0);player.setExp(0);player.setTotalExperience(0);
             check(Bukkit.getPluginManager().isPluginEnabled("AstralDecor"),"runtime habilitado");
-            check(Bukkit.getLootTable(NamespacedKey.fromString("astral:item/ballesta_10"))!=null,"datapack 10 ballestas carga");
+            for (int tier=1;tier<=10;tier++) {
+                boolean existe=Bukkit.getLootTable(NamespacedKey.fromString("astral:item/ballesta_"+tier))!=null;
+                check(existe==(tier>=3 && tier<=5),"catalogo vigente de ballestas T"+tier);
+            }
         }
         case "one" -> {
             player.setSneaking(false);player.getInventory().setItemInMainHand(item("frasco_xp_gigante",16));click(EquipmentSlot.HAND,false);click(EquipmentSlot.HAND,false);

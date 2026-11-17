@@ -1,16 +1,14 @@
 """Entrega "modelos 3D y efectos" (16/11/2026): pack FINAL privado por delta y lista de instalacion.
 
-FINAL = ultimo FINAL entregado (cargar-arte-16-11) + lo que cambio en el pack publico respecto de HEAD (dibujos de
-efectos y Fenix) + los modelos privados de esta tarea (mochilas, cuchillos y armas de las Mareas en 3D).
+FINAL = FINAL base + recursos actuales de efectos/Fenix + seis PNG finales
++ modelos privados de mochilas, cuchillos y armas de las Mareas.
 No sube nada: ni servidor, ni R2, ni push.
 
   python datapack-src/deploy_modelos_efectos.py [--base <FINAL.zip>]
 Antes: efectos.py, mobs/build_models.py, build_pack.py pack-source (con los assets de BetterModel del Fenix).
 """
 import hashlib
-import io
 import json
-import subprocess
 import sys
 import zipfile
 from pathlib import Path
@@ -27,17 +25,22 @@ STAMP = (2026, 11, 16, 0, 0, 0)
 PROPIOS = ('assets/astral/textures/item/fx/', 'assets/astral/models/item/fx/', 'assets/astral/items/fx/',
            'assets/bettermodel/items/model/astral_pet_fenix', 'assets/bettermodel/models/model/astral_pet_fenix',
            'assets/bettermodel/textures/item/astral_pet_fenix')
+ARTE_FINAL = ('assets/astral/textures/item/provisorias/boton_sin_datos.png',) + tuple(
+    f'assets/astral/textures/item/mascotas/rest_{i}.png' for i in range(5))
 
 
 def cambios_publicos():
-    """Entradas del pack publico nuevo que no estan o son distintas en el de HEAD."""
-    new = zipfile.ZipFile(ROOT / 'build/AstralRPG-Textures.zip')
-    old = zipfile.ZipFile(io.BytesIO(subprocess.check_output(
-        ['git', 'show', 'HEAD:build/AstralRPG-Textures.zip'], cwd=ROOT)))
-    viejos = set(old.namelist())
-    cambia = {n: new.read(n) for n in new.namelist() if n not in viejos or new.read(n) != old.read(n)}
-    sobran = sorted(n for n in viejos - set(new.namelist()))
-    return cambia, sobran
+    """Recursos actuales de la entrega, incluso despues de merge/commit.
+
+    HEAD no es una base de assets: tras publicar, el delta queda vacio. La lista
+    explicita evita tanto perder Fenix como pisar retratos/modelos privados.
+    """
+    with zipfile.ZipFile(ROOT / 'build/AstralRPG-Textures.zip') as new:
+        for name in ARTE_FINAL:
+            if name not in new.namelist():
+                raise ValueError(f'Falta arte final en el pack publico: {name}')
+        return {n: new.read(n) for n in new.namelist()
+                if n.startswith(PROPIOS) or n in ARTE_FINAL}
 
 
 def final(base=None):
@@ -46,20 +49,16 @@ def final(base=None):
         raise FileNotFoundError(f'Falta el FINAL base: {base}')
     with zipfile.ZipFile(base) as z:
         files = {n: z.read(n) for n in z.namelist()}
-    pub, sobran = cambios_publicos()
-    # Solo lo de esta tarea (dibujos de efectos y Fenix). El resto del pack publico puede diferir de HEAD por
-    # otras tandas (ventanas, iconos de reserva) y pisaria arte privado del FINAL: no se toca.
-    pub = {n: d for n, d in pub.items() if n.startswith(PROPIOS)}
+    pub = cambios_publicos()
+    # El resto del pack publico pisaria arte privado del FINAL: no se toca.
     S = armas_planas3d.generar(base)
     moch, vista, ps, pos = mochilas3d.archivos()
     priv = dict(S.files)
     priv.update(moch)
     files.update(pub)
     files.update(priv)
-    for n in sobran:                                  # piezas viejas de efectos o del Fenix que ya no existen
-        if n.startswith(PROPIOS):
-            files.pop(n, None)
-    for n in [n for n in files if n.startswith(PROPIOS[3:]) and n not in pub]:
+    removed = [n for n in files if n.startswith(PROPIOS) and n not in pub]
+    for n in removed:
         files.pop(n, None)                            # huesos viejos del Fenix (head_2, etc.)
     OUT.mkdir(parents=True, exist_ok=True)
     target = OUT / 'AstralRPG-Textures.zip'
@@ -74,7 +73,8 @@ def final(base=None):
     (OUT / 'pack.sha1').write_text(digest + '\n')
     base_sha = hashlib.sha1(base.read_bytes()).hexdigest()
     (OUT / 'delta.json').write_text(json.dumps({'base': base.parent.name, 'base_sha1': base_sha,
-                                                'publicos': sorted(pub), 'privados': sorted(priv)}, indent=1))
+                                                'publicos': sorted(pub), 'privados': sorted(priv),
+                                                'eliminados': sorted(removed)}, indent=1))
     mochilas3d.vistas(vista, ps, pos)
     armas_planas3d.vista_previa(S, OUT / 'previews/armas-3d.png')
     return target, digest, base_sha, len(pub), len(priv)
@@ -90,17 +90,19 @@ def configs_privadas():
     antes = {p: p.read_bytes() for p in comunes if p.exists()}
     guardar = B.write_json
     B.write_json = lambda *a, **k: None
-    dest = OUT / 'mythicmobs/skills'
-    dest.mkdir(parents=True, exist_ok=True)
+    dest = OUT / 'mythicmobs'
     try:
         B.private_configs({})
-        shutil.copy2(comunes[0], dest / 'astral.yml')
+        for source in comunes:
+            target = dest / source.relative_to(privado() / 'build/mythicmobs')
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
     finally:
         B.write_json = guardar
         for p in comunes:
             if p in antes:
                 p.write_bytes(antes[p])
-    shutil.copy2(ROOT / 'build/mythicmobs/skills/trainx.yml', dest / 'trainx.yml')
+    shutil.copy2(ROOT / 'build/mythicmobs/skills/trainx.yml', dest / 'skills/trainx.yml')
     return dest
 
 

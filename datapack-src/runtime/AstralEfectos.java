@@ -556,10 +556,15 @@ public final class AstralEfectos extends JavaPlugin implements Listener, TabExec
     /** Crea un dibujo que solo ven los jugadores con nivel entre min y max. adorno: se descarta primero si hay muchos. */
     private Fx fx(Location at, String modelo, Color col, float s0, float s1, int vida, int min, int max, boolean adorno) {
         if (fxs.size() >= (adorno ? TOPE_ADORNO : TOPE)) return null;
+        // Un dibujo no debe cargar chunks: una entidad creada fuera de los
+        // chunks activos puede quedar invalida al principio y aparecer mas tarde
+        // cuando ya salio de fxs, sin que nadie termine su animacion.
+        if (!at.getWorld().isChunkLoaded(at.getBlockX() >> 4, at.getBlockZ() >> 4)) return null;
         Fx f = new Fx();
         f.modelo = modelo; f.col = col; f.s0 = s0; f.s1 = s1; f.vida = vida;
         boolean rayo = modelo.equals("rayo");
         f.e = at.getWorld().spawn(at, ItemDisplay.class, x -> {
+            x.setPersistent(false);
             x.setVisibleByDefault(false);
             x.setPersistent(false);
             x.setItemStack(item(modelo, rayo ? -1 : 0, col));
@@ -588,7 +593,7 @@ public final class AstralEfectos extends JavaPlugin implements Listener, TabExec
     private void animar() {
         for (Iterator<Fx> it = fxs.iterator(); it.hasNext();) {
             Fx f = it.next();
-            if (!f.e.isValid()) { it.remove(); continue; }
+            if (!f.e.isValid()) { f.e.remove(); it.remove(); continue; }
             f.edad++;
             if (f.edad >= f.vida) { f.e.remove(); it.remove(); continue; }
             if (f.edad < 0) continue;                         // todavia esperando su turno (tamano 0)

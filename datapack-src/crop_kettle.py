@@ -59,6 +59,17 @@ def effective(files):
 def patch_datapack(original):
     files = effective(original)
     changed = []
+    # El pan de CNK usa BREAD: distinguirlo del pan comprado/crafteado vanilla
+    # evita comprar trigo barato y revender la coccion al precio vanilla.
+    # EconomyShopGUI debe conservar match-item-meta=true y no ignorar custom_data.
+    bread = 'data/cnk/loot_table/food/bread.json'
+    if bread in files:
+        obj = json.loads(files[bread])
+        obj.setdefault('functions', []).append({
+            'function': 'minecraft:set_custom_data',
+            'tag': {'astral_cnk': {'cocina': True}}})
+        files[bread] = encoded(obj)
+        changed.append(bread)
     # Guardar los triggers en survival; evita colocar bloques/cultivos o alterar NPC
     # en dimensiones de lobby, minas, mazmorras o plugins. No copia codigo CNK al repo.
     for name, data in list(files.items()):

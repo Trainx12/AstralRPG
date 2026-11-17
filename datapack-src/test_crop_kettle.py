@@ -7,6 +7,17 @@ from crop_kettle import ROOT, privado, read_zip, sha
 
 
 class CropKettleTests(unittest.TestCase):
+    def test_pan_de_cocina_conserva_material_y_se_distingue_para_ventas(self):
+        name = 'data/cnk/loot_table/food/bread.json'
+        recipe = {'pools': [{'rolls': 1, 'entries': [{'type': 'minecraft:item', 'name': 'minecraft:bread'}]}]}
+        raw = {'pack.mcmeta': encoded({}), name: encoded(recipe)}
+        patched, changed = patch_datapack(raw)
+        result = json.loads(patched[name])
+        self.assertEqual(result['pools'], recipe['pools'])
+        self.assertEqual(result['functions'][0]['tag'], {'astral_cnk': {'cocina': True}})
+        self.assertEqual(json.loads(raw[name]), recipe)
+        self.assertIn(name, changed)
+
     def test_overlay_101_applied_in_order(self):
         files = {'pack.mcmeta': encoded({'overlays': {'entries': [
             {'directory': 'old', 'min_format': [94, 1], 'max_format': [94, 1]},

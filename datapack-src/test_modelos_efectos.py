@@ -3,6 +3,8 @@ import json
 import sys
 import unittest
 import zipfile
+import tempfile
+from unittest.mock import patch
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -76,6 +78,23 @@ class Efectos(unittest.TestCase):
 
 
 class Modelos(unittest.TestCase):
+    def test_entrega_usa_recursos_actuales_y_limita_el_delta(self):
+        import deploy_modelos_efectos as deploy
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / 'build').mkdir()
+            expected = {n: b'arte-final' for n in deploy.ARTE_FINAL}
+            expected['assets/astral/items/fx/rayo.json'] = b'efecto'
+            expected['assets/bettermodel/items/model/astral_pet_fenix_tail_3.json'] = b'fenix'
+            with zipfile.ZipFile(root / 'build/AstralRPG-Textures.zip', 'w') as z:
+                for n, data in expected.items():
+                    z.writestr(n, data)
+                z.writestr('assets/astral/items/cuchillo_1.json', b'reserva-publica')
+                z.writestr('assets/astral/textures/item/mascotas/fenix.png', b'retrato-publico')
+            with patch.object(deploy, 'ROOT', root):
+                self.assertEqual(deploy.cambios_publicos(), expected)
+                self.assertEqual(deploy.cambios_publicos(), expected)
+
     def test_fenix(self):
         import pet_models
         m = pet_models.mascota_fenix()
@@ -149,7 +168,11 @@ class Privado(unittest.TestCase):
         for n in ('assets/astral/items/fx/rayo.json', 'assets/astral/items/fx/hongo_11.json',
                   'assets/astral/items/fx/onda_2.json', 'assets/bettermodel/items/model/astral_pet_fenix_tail_3.json'):
             self.assertIn(n, self.names)
-        self.assertFalse([n for n in delta['publicos'] if '/provisorias/' in n])
+        from deploy_modelos_efectos import ARTE_FINAL, PROPIOS
+        self.assertTrue(all(n.startswith(PROPIOS) or n in ARTE_FINAL for n in delta['publicos']))
+        for n in ARTE_FINAL:
+            with zipfile.ZipFile(ROOT / 'build/AstralRPG-Textures.zip') as public:
+                self.assertEqual(self.z.read(n), public.read(n))
 
 
 if __name__ == '__main__':

@@ -88,7 +88,7 @@ def assets(buttons=()):
 
 
 def shop_files():
-    return {'sections/Consumibles.yml': {'enable':True,'slot':43,'title':'Astral - Consumibles',
+    return {'sections/Consumibles.yml': {'enable':True,'slot':44,'title':'Astral - Consumibles',
                 'item':{'material':'EXPERIENCE_BOTTLE','name':'&aConsumibles Astrales'}},
             'shops/Consumibles.yml':{'pages':{'page1':{'gui-rows':3,'items':{'1':{'material':'PAPER','buy':-1,'sell':-1}}}}}}
 
