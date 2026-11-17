@@ -256,3 +256,46 @@ para interacciones y retiradas temporales. El ensayo local no certifica estos re
 - Ensayo reproducible: `python tools/probar_pp3_mecanismos_paper.py --java <java25> --base <Paper-local>`.
 Los originales, derivados, delta y logs quedan en `.local/`; no se publican mapas ni credenciales.
 <!-- PP3-SALA5-END -->
+
+<!-- MENU-EFECTOS-START -->
+## Icono Efectos del Menu Astral (ultimo FINAL)
+
+Arte propio elegido: fuegos artificiales violeta/cian/dorado de Gemini, opcion 3.
+Fuente publica `datapack-src/pack-source/ref/gemini/menu_configuraciones.png`, copia
+exacta del recorte elegido (394x385). Usa el mismo procesamiento de los iconos de
+las hojas 12/28: RGBA, 72x72 BOX, 18x18 LANCZOS y marco dorado; contraste x1,20 y
+saturacion x1,15 para mejorar su lectura a 1x. Sin redibujar ni
+cambiar fondo, modelo, ID, escala, slot 31, accion o configuracion del menu.
+
+Generador: `python datapack-src/deploy_menu_efectos.py`.
+Base mas nueva: `.local/terceros/AstralRPG-privado/build/entregas/bastones-golems-17-11/AstralRPG-Textures.zip`; SHA-1 `5448b7ff24d6da012cc08de16a0d74b11b23a2e0`.
+FINAL vigente: `.local/terceros/AstralRPG-privado/build/entregas/menu-efectos-17-11/AstralRPG-Textures.zip`.
+SHA-1 FINAL: `beb0d6d3b8fb1269e18d5910c0bc953518cc9abc`.
+Sustituye el FINAL de Bastones/golemcitos; conserva todos los otros pendientes.
+Unico cambio interno: `assets/astral/textures/item/menu/icon_configuraciones.png`; 17688 entradas conservadas byte
+por byte, sin altas ni bajas. Tambien regenerado ese PNG en el ZIP publico de
+texturas; instalar exclusivamente el FINAL privado, nunca el ZIP publico.
+
+Vistas publicas: `build/previews/menu_astral_efectos.png` (menu completo, 3x),
+`build/previews/menu_astral_efectos_icono_1x.png` (18x18) y
+`build/previews/menu_astral_efectos_icono_8x.png` (144x144).
+ZIP comprobados sin corrupcion; referencias de texturas auditadas en ambos packs.
+Falta comprobar la lectura a 1x con cliente Minecraft y consola remota.
+
+### Archivos, destino y reinicio (pendiente de Claude)
+
+- Unico archivo a publicar en R2: `.local/terceros/AstralRPG-privado/build/entregas/menu-efectos-17-11/AstralRPG-Textures.zip`,
+  destino `AstralRPG-Textures.zip` en la URL fija existente. SHA-1 indicado arriba.
+- Cuando corresponda desplegar: `python tools/subir_pack_r2.py ".local/terceros/AstralRPG-privado/build/entregas/menu-efectos-17-11/AstralRPG-Textures.zip"`;
+  verificar el SHA-1 de la descarga publica antes de actualizar el servidor.
+- Apagar y cambiar solo `resource-pack-sha1=beb0d6d3b8fb1269e18d5910c0bc953518cc9abc` en
+  `server.properties`, conservando `resource-pack` y las otras propiedades. Iniciar
+  de nuevo. Reinicio requerido para cargar la propiedad; no hacen falta `dm reload`,
+  `mm reload`, `bettermodel reload` ni subir menus, datapack o JAR por este icono.
+- Cliente: aceptar el pack nuevo, abrir `/menu`, comprobar Efectos en slot 31 y
+  su acceso al selector Bajo/Medio/Alto; revisar consola sin errores del pack.
+  Mantener las instrucciones acumuladas para las otras tareas.
+
+Preparado localmente; R2 y servidor NO modificados. No hay despliegue verificado.
+No sustituir mundos ni usar Worlds > Upload en la fila world.
+<!-- MENU-EFECTOS-END -->

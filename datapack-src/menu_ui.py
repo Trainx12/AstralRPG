@@ -1,7 +1,7 @@
 """Menu Astral (Estrella del slot 9): marco de Gemini e iconos pintados, sobre la grilla vanilla."""
 import json
 from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageEnhance
 from escape_menu import text
 from services_ui import png, SIZE, SPLIT, outlined, illustration
 from market_ui import band_color
@@ -36,7 +36,8 @@ def title():
 
 
 # Iconos pintados por Gemini (hojas 12 y 28): ganan sobre el pixel art de reserva.
-GEMINI_ICONS = ('fragmentos', 'duelos', 'cosmeticos', 'mochilas', 'proteccion', 'recetas', 'tren', 'santuario')
+GEMINI_ICONS = ('fragmentos', 'duelos', 'cosmeticos', 'mochilas', 'proteccion', 'recetas', 'tren', 'santuario',
+                'configuraciones')
 
 
 # Botones con arte de Gemini (pedido 12/11/2026: los dibujitos se veian pobres).
@@ -93,6 +94,9 @@ def icon(key):
         return painted_icon(key)
     art = illustration('menu_' + (key if key in GEMINI_ICONS else ICON_ART.get(key, key)))
     im = art.resize((72, 72), Image.Resampling.BOX).resize((18, 18), Image.Resampling.LANCZOS)
+    if key == 'configuraciones':
+        # Recuperar separacion de los fuegos al reducir, sin redibujar el arte elegido.
+        im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.2)).enhance(1.15)
     d = ImageDraw.Draw(im)
     d.rectangle((0, 0, 17, 17), outline=EDGE)
     return im
@@ -103,17 +107,7 @@ def painted_icon(key):
     im=Image.new('RGBA',(18,18),'#18202b');d=ImageDraw.Draw(im)
     g,c,w='#d6b264','#75dce0','#f6e6bd'
     d.rectangle((0,0,17,17),outline=g);d.line((2,1,15,1),fill=w)
-    if key=='configuraciones':
-        # Engranaje dorado con un destello violeta: ajustes de efectos visuales.
-        for box in ((7,2,10,4),(7,13,10,15),(2,7,4,10),(13,7,15,10),
-                    (4,4,6,6),(11,4,13,6),(4,11,6,13),(11,11,13,13)):
-            d.rectangle(box,fill=g)
-        d.ellipse((4,4,13,13),fill=g,outline=w)
-        d.ellipse((6,6,11,11),fill='#4c2b72')
-        d.polygon(((9,5),(10,8),(12,9),(10,10),(9,12),(8,10),(6,9),(8,8)),fill='#d2a6ff')
-        d.point((9,8),fill=w)
-        for point in ((3,3),(14,2),(15,13)):d.point(point,fill=c)
-    elif key=='fragmentos':
+    if key=='fragmentos':
         for x,y in ((5,8),(11,5),(12,12)):
             d.polygon(((x,y-3),(x+2,y),(x,y+3),(x-2,y)),fill=c,outline=g)
     elif key=='duelos':
@@ -288,14 +282,14 @@ def assets():
     return files, providers
 
 
-def preview(folder):
+def preview(folder, name='menu-astral.png'):
     folder = Path(folder); folder.mkdir(parents=True, exist_ok=True)
     im = Image.new('RGBA', SIZE, '#22242a'); im.alpha_composite(panel())
     for key, slot in zip(KEYS, SLOTS):
         im.alpha_composite(icon(key), (31 + slot % 9 * 18, 57 + slot // 9 * 18))
     im.alpha_composite(icon('configuraciones'), (31 + EFFECTS_SLOT % 9 * 18, 57 + EFFECTS_SLOT // 9 * 18))
     text(im, 'Inventario', (86, 169), color='#383c40')
-    (folder / 'menu-astral.png').write_bytes(png(im.resize((672, 840), Image.Resampling.NEAREST)))
+    (folder / name).write_bytes(png(im.resize((672, 840), Image.Resampling.NEAREST)))
 
 
 if __name__ == '__main__':
