@@ -170,67 +170,125 @@ def weapon(m, wand, bone, hand, grip_y, forward):
 
 
 def animations(m):
+    """Animaciones (rehechas 16/11/2026): cada ataque tiene preparacion, golpe y recuperacion; el cuerpo, las
+    piernas y el brazo libre acompanan, y los tiempos del golpe coinciden con el dano de skills_yaml()."""
     from animaciones import kf
     w = 'math.sin(q.anim_time * 360 * {s} + {p}) * {a}'
-    m.anim('idle', 2.0, {
-        'body': {'rotation': (w.format(s=0.5, p=0, a=1.5), 0, 0)},
-        'head': {'rotation': (w.format(s=0.5, p=90, a=2), w.format(s=0.25, p=0, a=6), 0)},
-        'arm_r': {'rotation': (f'12 + {w.format(s=0.5, p=0, a=3)}', 0, 4)},
-        'arm_l': {'rotation': (f'8 + {w.format(s=0.5, p=180, a=2)}', 0, -4)},
+    R, L = (12, 0, 4), (8, 0, -4)                    # brazos en reposo (espada / baston)
+    m.anim('idle', 4.0, {
+        'body': {'rotation': (w.format(s=0.25, p=0, a=2), w.format(s=0.25, p=90, a=3), 0),
+                 'position': (0, w.format(s=0.5, p=0, a=0.5), 0)},
+        'head': {'rotation': (w.format(s=0.5, p=90, a=2.5), w.format(s=0.25, p=0, a=9), 0)},
+        'arm_r': {'rotation': (f'14 + {w.format(s=0.5, p=0, a=4)}', w.format(s=0.25, p=0, a=4), f'5 + {w.format(s=0.5, p=90, a=1.5)}')},
+        'arm_l': {'rotation': (f'22 + {w.format(s=0.5, p=180, a=5)}', 0, f'-7 + {w.format(s=0.5, p=0, a=2)}')},
+        'baston': {'rotation': (w.format(s=0.5, p=0, a=6), w.format(s=0.25, p=0, a=20), 0)},
+        'espada': {'rotation': (w.format(s=0.25, p=90, a=4), 0, 0)},
+        'leg_r': {'rotation': (0, 0, 3)}, 'leg_l': {'rotation': (0, 0, -3)},
     })
     m.anim('walk', 1.0, {
-        'leg_r': {'rotation': (w.format(s=1, p=0, a=28), 0, 0)},
-        'leg_l': {'rotation': (w.format(s=1, p=180, a=28), 0, 0)},
-        'arm_r': {'rotation': (f'14 + {w.format(s=1, p=180, a=12)}', 0, 4)},
-        'arm_l': {'rotation': (f'8 + {w.format(s=1, p=0, a=10)}', 0, -4)},
-        'body': {'position': (0, f'(1 - math.cos(q.anim_time * 720)) * 0.8', 0)},
+        'leg_r': {'rotation': (w.format(s=1, p=0, a=34), 0, 0)},
+        'leg_l': {'rotation': (w.format(s=1, p=180, a=34), 0, 0)},
+        'arm_r': {'rotation': (f'24 + {w.format(s=1, p=180, a=16)}', 0, 6)},
+        'arm_l': {'rotation': (f'14 + {w.format(s=1, p=0, a=14)}', 0, -6)},
+        'body': {'position': (0, '(1 - math.cos(q.anim_time * 720)) * 0.9', 0),
+                 'rotation': (-6, w.format(s=1, p=0, a=7), w.format(s=1, p=90, a=1.5))},
+        'head': {'rotation': (5, w.format(s=1, p=180, a=5), 0)},
+        'espada': {'rotation': (w.format(s=1, p=0, a=6), 0, 0)},
     })
-    # Golpe comun de espada (~onAttack): tajo de arriba hacia abajo.
+    # Golpe comun de espada (~onAttack): paso adelante, tajo de arriba hacia abajo y rebote.
     m.anim('attack', 0.8, {
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.25, 165, 0, -10), (.42, 20, 0, 8), (.8, 12, 0, 4))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.25, 6, 14, 0), (.42, -14, -10, 0), (.8, 0, 0, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.25, -6, -8, 0), (.42, 10, 4, 0), (.8, 0, 0, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.12, 60, -20, -6), (.26, 172, -10, -12), (.4, 18, 14, 10), (.5, 30, 8, 8), (.8, *R))},
+        'arm_l': {'rotation': kf((0, *L), (.26, -30, 0, -22), (.4, 40, 0, -10), (.8, *L))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.26, 10, 18, 0), (.4, -20, -14, 0), (.52, -12, -8, 0), (.8, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.26, 0, 1, 1), (.4, 0, -2, -3), (.8, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.26, -10, -10, 0), (.4, 14, 6, 0), (.8, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.26, 12, 0, 0), (.4, -28, 0, 0), (.8, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.26, -8, 0, 0), (.4, 22, 0, 0), (.8, 0, 0, 0))},
+        'espada': {'rotation': kf((0, 0, 0, 0), (.26, -25, 0, 0), (.4, 30, 0, 0), (.8, 0, 0, 0))},
     }, loop='once')
-    # Combo: dos tajos cruzados.
+    # Combo: dos tajos cruzados (dano a 0,25 s y 0,6 s) y cierre girando la espada.
     m.anim('combo', 1.2, {
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.2, 150, -40, -20), (.38, 30, 40, 20), (.55, 120, 40, 30),
-                                 (.75, 25, -40, -10), (1.2, 12, 0, 4))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.2, 0, 20, 0), (.38, -8, -22, 0), (.55, 0, -18, 0), (.75, -10, 24, 0), (1.2, 0, 0, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.13, 150, -50, -25), (.25, 35, 50, 25), (.42, 130, 55, 35),
+                                 (.6, 22, -50, -14), (.8, 70, -20, 0), (1.2, *R))},
+        'arm_l': {'rotation': kf((0, *L), (.13, 30, 0, -30), (.25, -25, 0, -14), (.42, 35, 0, -28), (.6, -20, 0, -10), (1.2, *L))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.13, 4, 26, 0), (.25, -12, -28, 0), (.42, 2, -24, 0), (.6, -14, 30, 0), (.8, -4, 10, 0), (1.2, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.25, 0, -1.5, -2), (.42, 0, 0, -1), (.6, 0, -2, -3.5), (1.2, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.13, -4, -14, 0), (.25, 8, 14, 0), (.42, -4, 12, 0), (.6, 10, -14, 0), (1.2, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.25, -24, 0, 0), (.42, -10, 0, 0), (.6, 20, 0, 0), (1.2, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.25, 18, 0, 0), (.42, 8, 0, 0), (.6, -26, 0, 0), (1.2, 0, 0, 0))},
+        'espada': {'rotation': kf((0, 0, 0, 0), (.25, 35, 0, 0), (.42, -20, 0, 0), (.6, 35, 0, 0), (.9, 0, 0, 360), (1.2, 0, 0, 360))},
     }, loop='once')
-    # Barrido: gira con la espada extendida (el dano cae a los 0,6 s).
+    # Barrido: se agacha, carga la espada atras y gira entero (el dano cae a los 0,6 s).
     m.anim('barrido', 1.2, {
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.35, 90, 0, -20), (.6, 90, 0, 80), (.9, 60, 0, 40), (1.2, 12, 0, 4))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.35, 0, 50, 0), (.6, 0, -180, 0), (.9, 0, -330, 0), (1.2, 0, -360, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.3, 70, 60, -30), (.45, 92, 0, 60), (.6, 92, 0, 85), (.9, 70, 0, 50), (1.2, *R))},
+        'arm_l': {'rotation': kf((0, *L), (.3, 30, 0, -40), (.6, 80, 0, -70), (.9, 40, 0, -30), (1.2, *L))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.3, -10, 60, 0), (.6, -6, -180, 0), (.9, -4, -340, 0), (1.2, 0, -360, 0)),
+                 'position': kf((0, 0, 0, 0), (.3, 0, -3, 0), (.6, 0, -2, 0), (.9, 0, -1, 0), (1.2, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.3, 6, -20, 0), (.6, 0, 0, 0), (1.2, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.3, -22, 0, 8), (.6, 10, 0, 12), (.9, -10, 0, 6), (1.2, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.3, 26, 0, -8), (.6, -10, 0, -12), (.9, 10, 0, -6), (1.2, 0, 0, 0))},
     }, loop='once')
-    # Lanzar con el baston: lo levanta y apunta.
+    # Lanzar con el baston: lo gira atras, lo clava hacia adelante (sale a los 0,5 s) y retrocede.
     m.anim('cast', 1.0, {
-        'arm_l': {'rotation': kf((0, 8, 0, -4), (.35, 150, 0, -10), (.55, 95, 0, -4), (.75, 95, 0, -4), (1.0, 8, 0, -4))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.35, 6, -10, 0), (.55, -6, 6, 0), (1.0, 0, 0, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.35, -12, 0, 0), (.55, 4, 0, 0), (1.0, 0, 0, 0))},
+        'arm_l': {'rotation': kf((0, *L), (.2, 60, 30, -30), (.38, 165, 0, -14), (.5, 88, 0, -2), (.6, 96, 0, -2), (.78, 80, 0, -4), (1.0, *L))},
+        'arm_r': {'rotation': kf((0, *R), (.38, -25, 0, 18), (.5, 30, 0, 10), (1.0, *R))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.38, 10, -22, 0), (.5, -12, 14, 0), (.62, -6, 8, 0), (1.0, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.38, 0, .8, 1.5), (.5, 0, -1, -2.5), (.62, 0, -.5, -1), (1.0, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.38, -14, 10, 0), (.5, 6, -4, 0), (1.0, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.38, 10, 0, 0), (.5, 18, 0, 0), (1.0, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.38, -6, 0, 0), (.5, -22, 0, 0), (1.0, 0, 0, 0))},
+        'baston': {'rotation': kf((0, 0, 0, 0), (.38, 0, 0, -360), (.5, -20, 0, -360), (1.0, 0, 0, -360))},
     }, loop='once')
-    # Lluvia de estrellas: baston arriba con las dos manos.
+    # Lluvia de estrellas: se eleva, baston arriba girando y brazos abiertos; baja de golpe.
     m.anim('lluvia', 1.6, {
-        'arm_l': {'rotation': kf((0, 8, 0, -4), (.4, 175, 0, -6), (1.2, 175, 0, -6), (1.6, 8, 0, -4))},
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.4, 30, 0, 30), (1.2, 30, 0, 30), (1.6, 12, 0, 4))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.4, -25, 0, 0), (1.2, -25, 0, 0), (1.6, 0, 0, 0))},
-        'body': {'position': kf((0, 0, 0, 0), (.4, 0, 2, 0), (1.2, 0, 2, 0), (1.6, 0, 0, 0))},
+        'root': {'position': kf((0, 0, 0, 0), (.4, 0, 9, 0), (.8, 0, 11, 0), (1.2, 0, 9.5, 0), (1.45, 0, -1, 0), (1.6, 0, 0, 0))},
+        'arm_l': {'rotation': kf((0, *L), (.4, 178, 0, -8), (1.2, 172, 0, -12), (1.45, 60, 0, -20), (1.6, *L))},
+        'arm_r': {'rotation': kf((0, *R), (.4, 40, 0, 55), (1.2, 50, 0, 62), (1.45, 30, 0, 20), (1.6, *R))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.4, -28, 0, 0), (1.2, -30, 0, 0), (1.45, 12, 0, 0), (1.6, 0, 0, 0))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.4, 8, 0, 0), (1.2, 10, 0, 0), (1.45, -12, 0, 0), (1.6, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.4, 14, 0, 4), (1.2, 22, 0, 5), (1.45, -30, 0, 6), (1.6, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.4, -8, 0, -4), (1.2, -4, 0, -5), (1.45, -30, 0, -6), (1.6, 0, 0, 0))},
+        'baston': {'rotation': kf((0, 0, 0, 0), (.4, 0, 180, 0), (.8, 0, 540, 0), (1.2, 0, 900, 0), (1.6, 0, 1080, 0))},
     }, loop='once')
-    # Embestida.
+    # Embestida: se agazapa, sale con la espada de punta y remata con un tajo (dano a los 0,65 s).
     m.anim('dash', 0.8, {
-        'body': {'rotation': kf((0, 0, 0, 0), (.15, -25, 0, 0), (.6, -25, 0, 0), (.8, 0, 0, 0))},
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.15, 80, 0, 10), (.6, 80, 0, 10), (.8, 12, 0, 4))},
-        'leg_r': {'rotation': kf((0, 0, 0, 0), (.15, -30, 0, 0), (.6, -30, 0, 0), (.8, 0, 0, 0))},
-        'leg_l': {'rotation': kf((0, 0, 0, 0), (.15, 30, 0, 0), (.6, 30, 0, 0), (.8, 0, 0, 0))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.12, 14, 20, 0), (.2, -32, 0, 0), (.55, -30, 0, 0), (.65, -14, -24, 0), (.8, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.12, 0, -3, 2), (.2, 0, -1, -2), (.65, 0, -1, -2), (.8, 0, 0, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.12, 40, 40, -20), (.2, 88, 0, 6), (.55, 92, 0, 6), (.65, 20, 40, 20), (.8, *R))},
+        'arm_l': {'rotation': kf((0, *L), (.2, -50, 0, -20), (.55, -55, 0, -22), (.8, *L))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.2, 24, 0, 0), (.55, 24, 0, 0), (.8, 0, 0, 0))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.12, 20, 0, 0), (.2, -40, 0, 0), (.4, 30, 0, 0), (.55, -40, 0, 0), (.8, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.12, -20, 0, 0), (.2, 40, 0, 0), (.4, -30, 0, 0), (.55, 40, 0, 0), (.8, 0, 0, 0))},
     }, loop='once')
-    # Muerte: cae de rodillas y se inclina.
-    m.anim('death', 1.6, {
-        'root': {'position': kf((0, 0, 0, 0), (.6, 0, -12, 0), (1.6, 0, -14, 0))},
-        'leg_r': {'rotation': kf((0, 0, 0, 0), (.6, -80, 0, 0), (1.6, -85, 0, 0))},
-        'leg_l': {'rotation': kf((0, 0, 0, 0), (.6, -80, 0, 0), (1.6, -85, 0, 0))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.6, -10, 0, 0), (1.6, -35, 0, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.6, 10, 0, 0), (1.6, 30, 0, 0))},
-        'arm_r': {'rotation': kf((0, 12, 0, 4), (.6, 40, 0, 10), (1.6, 10, 0, 20))},
-        'arm_l': {'rotation': kf((0, 8, 0, -4), (.6, 40, 0, -10), (1.6, 10, 0, -20))},
+    # Aparece: cae del cielo, aterriza de rodillas con la espada clavada y se levanta.
+    m.anim('aparece', 2.0, {
+        'root': {'position': kf((0, 0, 70, 0), (.55, 0, 0, 0), (.7, 0, -5, 0), (1.3, 0, -5, 0), (2.0, 0, 0, 0))},
+        'body': {'rotation': kf((0, 14, 0, 0), (.55, -10, 0, 0), (.7, -34, 0, 0), (1.3, -30, 0, 0), (2.0, 0, 0, 0))},
+        'head': {'rotation': kf((0, -20, 0, 0), (.7, 30, 0, 0), (1.3, 26, 0, 0), (1.6, -8, 0, 0), (2.0, 0, 0, 0))},
+        'arm_r': {'rotation': kf((0, 170, 0, -10), (.55, 170, 0, -10), (.7, 28, 0, 6), (1.3, 30, 0, 6), (2.0, *R))},
+        'arm_l': {'rotation': kf((0, -30, 0, -50), (.55, -30, 0, -50), (.7, 40, 0, -20), (1.3, 40, 0, -20), (2.0, *L))},
+        'leg_r': {'rotation': kf((0, 10, 0, 0), (.55, 10, 0, 0), (.7, 70, 0, 0), (1.3, 66, 0, 0), (2.0, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, -10, 0, 0), (.55, -10, 0, 0), (.7, -40, 0, 0), (1.3, -36, 0, 0), (2.0, 0, 0, 0))},
+    }, loop='once')
+    # Furia (cambio de fase): junta las armas, tiembla y abre los brazos con un grito.
+    m.anim('furia', 1.6, {
+        'body': {'rotation': kf((0, 0, 0, 0), (.4, -22, 0, 0), (.55, -24, 3, 0), (.7, -22, -3, 0), (.85, 16, 0, 0), (1.3, 14, 0, 0), (1.6, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.4, 0, -3, 0), (.7, 0, -3, 0), (.85, 0, 2, 0), (1.3, 0, 1.5, 0), (1.6, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.4, 26, 0, 0), (.7, 26, 0, 0), (.85, -32, 0, 0), (1.3, -30, 0, 0), (1.6, 0, 0, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.4, 70, -40, -30), (.7, 72, -42, -30), (.85, 40, 0, 95), (1.3, 44, 0, 90), (1.6, *R))},
+        'arm_l': {'rotation': kf((0, *L), (.4, 70, 40, 30), (.7, 72, 42, 30), (.85, 40, 0, -95), (1.3, 44, 0, -90), (1.6, *L))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.4, -20, 0, 6), (.85, 0, 0, 10), (1.3, 0, 0, 10), (1.6, 0, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.4, 20, 0, -6), (.85, 0, 0, -10), (1.3, 0, 0, -10), (1.6, 0, 0, 0))},
+    }, loop='once')
+    # Muerte: retrocede tambaleando, suelta los brazos, cae de rodillas y se desploma hacia adelante.
+    m.anim('death', 2.0, {
+        'root': {'position': kf((0, 0, 0, 0), (.35, 0, 0, 4), (.9, 0, -12, 3), (1.4, 0, -13, 2), (2.0, 0, -22, -6))},
+        'leg_r': {'rotation': kf((0, 0, 0, 0), (.35, 14, 0, 0), (.9, -82, 0, 0), (1.4, -85, 0, 0), (2.0, -10, 0, 0))},
+        'leg_l': {'rotation': kf((0, 0, 0, 0), (.35, -10, 0, 0), (.9, -80, 0, 0), (1.4, -85, 0, 0), (2.0, -10, 0, 0))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.35, 18, 8, 0), (.9, -8, 0, 0), (1.4, -30, 0, 0), (2.0, -86, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.35, -24, 0, 0), (.9, 14, 0, 0), (1.4, 34, 0, 0), (2.0, 10, 20, 0))},
+        'arm_r': {'rotation': kf((0, *R), (.35, 60, 0, 40), (.9, 30, 0, 14), (1.4, 8, 0, 22), (2.0, 150, 0, 30))},
+        'arm_l': {'rotation': kf((0, *L), (.35, 50, 0, -40), (.9, 30, 0, -14), (1.4, 8, 0, -22), (2.0, 140, 0, -30))},
     }, loop='hold')
 
 
@@ -318,7 +376,8 @@ def skills_yaml():
                           f'command{{c="attribute <caster.uuid> minecraft:scale base set {scale}"}} @self',
                           'command{c="attribute <caster.uuid> minecraft:step_height base set 1.5"} @self',
                           'delay 2', 'command{c="execute as <caster.uuid> run function astral:mob/nombre_vplus"} @self'],
-        'TRAINX_APARECE': ['state{s=lluvia} @self',
+        'TRAINX_APARECE': ['state{s=aparece} @self', 'delay 11', __import__('efectos').mm_fx('golpe', '#d0306a', 7, 'vacio'),
+                           'sound{s=entity.generic.explode;v=1.6;p=0.6} @self',
                            'sound{s=entity.wither.spawn;v=2;p=0.8} @PlayersInRadius{r=64}',
                            'particles{p=end_rod;amount=200;hS=2;vS=6;y=4;speed=0.05} @self',
                            'particles{p=firework;amount=120;hS=3;vS=3;y=3;speed=0.1} @self',
@@ -329,6 +388,7 @@ def skills_yaml():
                          f'damage{{a={DANO_TAJO}}} @PlayersInRadius{{r={DISTANCIA_CERCA}}}', 'delay 7',
                          'sound{s=entity.player.attack.strong;v=1.5;p=0.6} @self',
                          'particles{p=sweep_attack;amount=6;hS=2;vS=0.6;y=2} @self',
+                         __import__('efectos').mm_fx('golpe', '#ff5fd2', 3.5, 'arcano'),
                          f'damage{{a={DANO_TAJO}}} @PlayersInRadius{{r={DISTANCIA_CERCA}}}',
                          'throw{velocity=4;velocityY=1.5} @PlayersInRadius{r=4}'],
         'TRAINX_BARRIDO': ['state{s=barrido} @self', 'sound{s=block.beacon.power_select;v=2;p=0.6} @self',
@@ -341,12 +401,14 @@ def skills_yaml():
                            f'damage{{a={DANO_BARRIDO}}} @PlayersInRadius{{r={DISTANCIA_CERCA + 1}}}',
                            f'throw{{velocity=8;velocityY=3}} @PlayersInRadius{{r={DISTANCIA_CERCA + 1}}}'],
         'TRAINX_RAYO': ['state{s=cast} @self', 'sound{s=block.amethyst_block.chime;v=2;p=0.6} @self', 'delay 10',
+                        __import__('efectos').mm_fx('estallido', '#4fd1ff', 0.8, 'luz'),
                         'sound{s=entity.illusioner.cast_spell;v=1.5;p=1.2} @self',
                         'projectile{onTick=TRAINX_RAYO_TICK;onHit=TRAINX_RAYO_HIT;v=18;i=1;hR=1;vR=1;mr=48;'
                         'bulletType=ITEM;material=NETHER_STAR;hnp=true;sy=3}'],
         'TRAINX_RAYO_TICK': ['particles{p=end_rod;amount=2;hS=0.05;vS=0.05;speed=0} @origin',
-                             'particles{p=dust;color=#4fd1ff;size=1.3;amount=2;hS=0.1;vS=0.1} @origin'],
-        'TRAINX_RAYO_HIT': [f'damage{{a={DANO_RAYO}}}', __import__('efectos').mm_fx('estallido', '#4fd1ff', 1, 'luz', 'target'), 'particles{p=firework;amount=25;hS=0.6;vS=0.6;speed=0.08} @origin',
+                             'particles{p=dust;color=#4fd1ff;size=1.3;amount=2;hS=0.1;vS=0.1} @origin',
+                             'command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fd1ff 1 luz"} @origin'],
+        'TRAINX_RAYO_HIT': [f'damage{{a={DANO_RAYO}}}', __import__('efectos').mm_fx('estallido', '#4fd1ff', 1.8, 'luz', 'target'), 'particles{p=firework;amount=25;hS=0.6;vS=0.6;speed=0.08} @origin',
                             'sound{s=entity.firework_rocket.blast;v=1.2;p=1.4} @origin'],
         'TRAINX_LLUVIA': ['state{s=lluvia} @self', 'sound{s=block.beacon.activate;v=2;p=1.4} @PlayersInRadius{r=40}',
                           'message{m="&d«Que caigan las estrellas.»"} @PlayersInRadius{r=40}', 'delay 10',
@@ -363,18 +425,19 @@ def skills_yaml():
         'TRAINX_DASH': ['state{s=dash} @self', 'sound{s=entity.ender_dragon.flap;v=2;p=0.8} @self', 'delay 3',
                         'lunge{velocity=3.2;velocityY=0.35} @target', 'delay 10',
                         'particles{p=sweep_attack;amount=8;hS=2;vS=0.5;y=2} @self',
+                        __import__('efectos').mm_fx('golpe', '#ff5fd2', 3, 'arcano'),
                         f'damage{{a={DANO_TAJO}}} @PlayersInRadius{{r=4}}'],
-        'TRAINX_FASE2': ['addtag{tag=trainx.f2} @self', 'state{s=lluvia} @self',
+        'TRAINX_FASE2': ['addtag{tag=trainx.f2} @self', 'state{s=furia} @self', __import__('efectos').mm_fx('golpe', '#ff5fd2', 6, 'arcano'),
                          'sound{s=entity.ender_dragon.growl;v=2;p=1.2} @PlayersInRadius{r=64}',
                          'message{m="&d«Bien. Entonces peleemos en serio.»"} @PlayersInRadius{r=64}'],
-        'TRAINX_FASE3': ['addtag{tag=trainx.f3} @self',
+        'TRAINX_FASE3': ['addtag{tag=trainx.f3} @self', 'state{s=furia} @self', __import__('efectos').mm_fx('golpe', '#b03cff', 8, 'vacio'),
                          'potion{type=SPEED;duration=2147483647;level=0;hasParticles=false} @self',
                          'sound{s=entity.wither.ambient;v=2;p=0.6} @PlayersInRadius{r=64}',
                          'particles{p=dragon_breath;amount=150;hS=2;vS=3;y=2;speed=0.05} @self',
                          'message{m="&5&l«¡Muestrenme la luz de la estrella!»"} @PlayersInRadius{r=64}'],
         'TRAINX_RESET': ['heal{a=2000000000} @self', 'removetag{tag=trainx.f2} @self', 'removetag{tag=trainx.f3} @self',
                          'potionclear @self', 'teleport @SpawnLocation'],
-        'TRAINX_MUERE': ['state{s=death} @self', 'sound{s=ui.toast.challenge_complete;v=2;p=0.8} @PlayersInRadius{r=64}',
+        'TRAINX_MUERE': ['state{s=death} @self', __import__('efectos').mm_fx('golpe', '#ffe9a0', 8, 'luz'), 'sound{s=ui.toast.challenge_complete;v=2;p=0.8} @PlayersInRadius{r=64}',
                          'particles{p=end_rod;amount=300;hS=2;vS=4;y=3;speed=0.1} @self',
                          'command{c="trainxfin <caster.l.w>"} @self'],
     }

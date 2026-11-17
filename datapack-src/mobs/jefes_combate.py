@@ -82,16 +82,19 @@ def metaskills():
                 *anim('throw'),
                 f'  - sound{{s={t["snd"]};v=1.2;p=1.2}} @self',
                 '  - delay 8',
+                # Fogonazo al lanzar y rastro dibujado del proyectil (AstralEfectos, Medio/Alto).
+                f'  - command{{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 0.7 {ELEM_JEFE.get(model, "")}"}}',
                 f'  - projectile{{onTick=AST_JEFE_DISPARO_TICK_{model};onHit=AST_JEFE_DISPARO_HIT_{model};v=16;i=1;hR=1;vR=1;mr=40;'
                 f'bulletType=ITEM;material={t["item"]};hnp=true}}',
                 '',
                 f'AST_JEFE_DISPARO_TICK_{model}:', '  Skills:',
                 f'  - particles{{p={t["trail"]};amount=3;hS=0.1;vS=0.1;speed=0}} @origin',
+                f'  - command{{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1 {ELEM_JEFE.get(model, "")}"}} @origin',
                 '',
                 f'AST_JEFE_DISPARO_HIT_{model}:', '  Skills:',
                 f'  - damage{{a={t["disparo"]}}}',
                 f'  - {t["extra"]}',
                 f'  - particles{{p={p};amount=20;hS=0.6;vS=0.6;speed=0.05}} @origin',
-                f'  - command{{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1 {ELEM_JEFE.get(model, "")}"}}',
+                f'  - command{{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1.7 {ELEM_JEFE.get(model, "")}"}}',
                 '']
     return '\n'.join(out) + '\n'

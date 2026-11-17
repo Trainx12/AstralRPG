@@ -166,7 +166,110 @@ def bird(fire=False):
 
 
 def mascota_cuervo(): return bird()
-def mascota_fenix(): return bird(True)
+def mascota_fenix():
+    """Fenix (rehecho 16/11/2026): cuello largo, cresta de llamas, alas en dos tramos y cola de cintas.
+    Colores en degrade: rojo en la base, naranja en el medio y oro en las puntas."""
+    m=Model('astral_pet_fenix');h=11
+    rojo,col,oro,claro,blanco='#b5271f','#ef6a1f','#ffb62e','#ffe07a','#fff6cf'
+    pico='#f2b23e'
+    m.bone('body',(0,h,0))
+    m.blob('body',(0,h+1,.2),(1.9,2.05,3.3),col,pat='feather',axis=2)
+    m.blob('body',(0,h+.5,-1.5),(1.6,1.85,2),oro,pat='feather')          # pecho dorado
+    m.blob('body',(0,h+1.6,2.2),(1.5,1.5,1.7),rojo,pat='feather',levels=2)   # lomo
+    for k,x in enumerate((-1,0,1)):                                       # babero de plumas claras
+        m.cube('body',(x-.42,h-1.3-.25*(k%2),-2.9),(x+.42,h+.2,-2.2),claro,pat='feather')
+    # Cuello en S y cabeza chica de rapaz.
+    m.bone('neck',(0,h+2,-2),'body')
+    m.blob('neck',(0,h+2.7,-2.6),(1.2,1.35,1.2),col,pat='feather',levels=2)
+    m.blob('neck',(0,h+4.1,-3.1),(1,1.3,1),col,pat='feather',levels=2)
+    m.cube('neck',(-.7,h+2.2,-3.75),(.7,h+4.6,-3.4),oro,pat='feather')
+    m.bone('head',(0,h+5,-3.2),'neck')
+    m.blob('head',(0,h+5.8,-3.8),(1.45,1.4,1.65),col,pat='feather')
+    m.rcube('head',(-.62,h+5.25,-6.5),(.62,h+6.05,-5.1),pico,r=.2)
+    m.cube('head',(-.42,h+4.75,-6.85),(.42,h+5.55,-6.25),pico)             # gancho del pico
+    m.cube('head',(-.2,h+4.5,-6.8),(.2,h+4.8,-6.45),'#c98524')
+    m.cube('head',(-.5,h+5.2,-6.3),(.5,h+5.33,-5.2),rojo)
+    # Un solo par de ojos, a los costados (ave): iris claro, pupila y brillo.
+    pair(m,'head',(1.36,h+5.75,-5),(1.5,h+6.5,-4.1),'#fff3b0')
+    pair(m,'head',(1.5,h+5.85,-4.8),(1.56,h+6.4,-4.4),'#151822')
+    pair(m,'head',(1.56,h+6.2,-4.8),(1.6,h+6.4,-4.62),'#ffffff')
+    pair(m,'head',(.45,h+6.62,-5.3),(1.5,h+6.9,-4.4),rojo,'feather')      # ceja
+    pair(m,'head',(1.2,h+5.2,-4.6),(1.62,h+6,-3.2),oro,'feather')         # mejilla
+    # Cresta: cinco llamas en abanico hacia atras (rojo -> naranja -> oro -> punta clara).
+    m.bone('crest',(0,h+6.9,-3.8),'head')
+    for k in range(5):
+        z=-4.6+k*.55;ang=-12-k*13;org=(0,h+6.9,z+.3);alto=2.9-abs(k-1.5)*.35
+        for j,(a,b,c) in enumerate(((0,.34,rojo),(.34,.7,col),(.7,.92,oro),(.92,1.12,claro))):
+            w=.36-j*.07
+            m.cube('crest',(-w,h+6.9+alto*a,z),(w,h+6.9+alto*b,z+.6-j*.08),c,rotation=(ang,0,0),origin=org)
+    for s in (-1,1):                                                       # dos plumas largas a los costados
+        org=(s*.7,h+6.6,-3.4)
+        m.cube('crest',(s*.7-.2,h+6.6,-3.6),(s*.7+.2,h+8.2,-3.1),oro,rotation=(-55,0,s*-14),origin=org)
+        m.cube('crest',(s*.7-.14,h+8.2,-3.55),(s*.7+.14,h+9.1,-3.15),claro,rotation=(-55,0,s*-14),origin=org)
+    # Alas: brazo + remeras internas (wing_*) y remeras externas en abanico (wing_*_tip).
+    for n,s in (('wing_l',1),('wing_r',-1)):
+        m.bone(n,(s*1.5,h+2.2,-.4),'body')
+        m.blob(n,(s*3.1,h+2.3,-.7),(1.9,.75,1.5),rojo,pat='feather',axis=0,levels=2)
+
+        def pluma(bone,x,z0,largo,ancho,y,rot=None,org=None):
+            a,b=sorted((s*x,s*(x+ancho)))
+            for j,(f0,f1,c) in enumerate(((0,.3,rojo),(.3,.62,col),(.62,.86,oro),(.86,1,claro))):
+                q=.12*j
+                m.cube(bone,(a+q,y+.04*j,z0+largo*f0),(b-q,y+.42-.04*j,z0+largo*f1),c,pat='feather',rotation=rot,origin=org)
+        for k in range(4):                                                  # cobertoras: fila corta arriba
+            a,b=sorted((s*(1.9+k*1.35),s*(3.3+k*1.35)))
+            m.rcube(n,(a,h+2.5,-1.5+k*.12),(b,h+3,.9+k*.25),col if k%2 else rojo,r=.2,pat='feather')
+            m.cube(n,(a+.15,h+2.55,.9+k*.25),(b-.15,h+2.9,1.5+k*.25),oro,pat='feather')
+        for k in range(4):
+            pluma(n,2+k*1.3,-.9+k*.1,4.6+k*.55,1.25,h+2.02-k*.03)
+        m.bone(n+'_tip',(s*7.2,h+2.2,-.4),n)
+        a,b=sorted((s*7,s*9.4))
+        m.rcube(n+'_tip',(a,h+2.15,-1.3),(b,h+2.75,.2),col,r=.2,pat='feather')
+        for k in range(5):
+            org=(s*(7.3+k*.75),h+2.1,-.4)
+            pluma(n+'_tip',7.1+k*.75,-.5,6.3-k*.5,1.05,h+1.95-k*.03,rot=(0,s*(6+k*11),0),org=org)
+    # Cola: cinco cintas en tres tramos que se abren, con "ojo" de llama en cada punta.
+    m.bone('tail',(0,h+.7,3),'body')
+    m.bone('tail_2',(0,h+.6,7.2),'tail')
+    m.bone('tail_3',(0,h+.5,11.4),'tail_2')
+    for k,x in enumerate((-1.5,-.75,0,.75,1.5)):
+        fin=15.6+(3.2-abs(k-2)*1.5)
+        m.rcube('tail',(x-.36,h+.3,2.8),(x+.36,h+1,7.2),rojo if k%2 else col,r=.15,pat='feather')
+        m.cube('tail',(x-.16,h+1.01,3.4),(x+.16,h+1.12,7.2),oro)
+        x2=x*1.45
+        m.cube('tail_2',(x2-.3,h+.3,7.2),(x2+.3,h+.85,11.4),col,pat='feather',rotation=(0,x*-3,0),origin=(x2,h+.5,7.2))
+        m.cube('tail_2',(x2-.12,h+.86,7.2),(x2+.12,h+.95,11.4),claro,rotation=(0,x*-3,0),origin=(x2,h+.5,7.2))
+        x3=x*2.05
+        m.cube('tail_3',(x3-.24,h+.3,11.4),(x3+.24,h+.75,fin-1.6),oro,pat='feather')
+        m.rcube('tail_3',(x3-.7,h+.15,fin-1.9),(x3+.7,h+.9,fin),col,r=.25,pat='feather')
+        m.cube('tail_3',(x3-.42,h+.91,fin-1.55),(x3+.42,h+1,fin-.35),oro)
+        m.cube('tail_3',(x3-.2,h+1.01,fin-1.2),(x3+.2,h+1.08,fin-.65),blanco)
+        m.cube('tail_3',(x3-.22,h+.3,fin),(x3+.22,h+.72,fin+.8),claro)
+    # Patas recogidas con garras.
+    for x in (-.8,.8):
+        m.cube('body',(x-.22,h-2.1,.2),(x+.22,h-.6,.7),pico)
+        for dx in (-.34,0,.34):
+            m.cube('body',(x+dx-.1,h-2.4,-.7),(x+dx+.1,h-2.08,.5),'#c98524')
+    # Brasas que flotan alrededor de la cola.
+    m.bone('brasas',(0,h+1,7),'body')
+    for i,(x,y,z) in enumerate(((-2.2,1.6,5.5),(2.4,.9,8.5),(-1.3,2.4,10.5),(1.6,2,13),(0,-.9,9.5),(-2.6,.2,13.5))):
+        g=.2 if i%2 else .28
+        m.cube('brasas',(x-g,h+y-g,z-g),(x+g,h+y+g,z+g),claro if i%2 else oro)
+
+    def vuelo(v,amp,amp2,cola):
+        """Aleteo con la punta atrasada (el ala se dobla) y cola que ondula de la base a la punta."""
+        return {'wing_l':{'rotation':(0,0,swing(amp,v))},'wing_r':{'rotation':(0,0,swing(-amp,v))},
+                'wing_l_tip':{'rotation':(0,0,swing(amp2,v,-70))},'wing_r_tip':{'rotation':(0,0,swing(-amp2,v,-70))},
+                'body':{'position':(0,swing(.6,v,90),0)},
+                'tail':{'rotation':(swing(cola,v/2),swing(round(cola*.8,2),v/2,90),0)},
+                'tail_2':{'rotation':(swing(round(cola*1.6,2),v/2,-70),swing(round(cola*1.3,2),v/2,20),0)},
+                'tail_3':{'rotation':(swing(round(cola*2.2,2),v/2,-140),swing(round(cola*1.8,2),v/2,-50),0)},
+                'crest':{'rotation':(swing(7,v),0,0)},
+                'brasas':{'position':(0,swing(.9,v/2),0),'rotation':(0,swing(14,v/2,90),0)}}
+    m.anim('walk',1,{**vuelo(2,34,30,4),'neck':{'rotation':(swing(3,2),0,0)},'head':{'rotation':(swing(-3,2),0,0)}})
+    m.anim('idle',4,{**vuelo(1,22,20,6),'neck':{'rotation':(swing(5,.5),swing(8,.25),0)},
+                     'head':{'rotation':(swing(-5,.5),swing(14,.25,30),swing(4,.5))}})
+    return m
 
 
 def mascota_dragon():

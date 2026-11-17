@@ -13,7 +13,10 @@ TRAINX_MODELO:
 
 TRAINX_APARECE:
   Skills:
-  - 'state{s=lluvia} @self'
+  - 'state{s=aparece} @self'
+  - 'delay 11'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> d0306a 7 vacio"}'
+  - 'sound{s=entity.generic.explode;v=1.6;p=0.6} @self'
   - 'sound{s=entity.wither.spawn;v=2;p=0.8} @PlayersInRadius{r=64}'
   - 'particles{p=end_rod;amount=200;hS=2;vS=6;y=4;speed=0.05} @self'
   - 'particles{p=firework;amount=120;hS=3;vS=3;y=3;speed=0.1} @self'
@@ -31,6 +34,7 @@ TRAINX_COMBO:
   - 'delay 7'
   - 'sound{s=entity.player.attack.strong;v=1.5;p=0.6} @self'
   - 'particles{p=sweep_attack;amount=6;hS=2;vS=0.6;y=2} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ff5fd2 3.5 arcano"}'
   - 'damage{a=28} @PlayersInRadius{r=6}'
   - 'throw{velocity=4;velocityY=1.5} @PlayersInRadius{r=4}'
 
@@ -55,6 +59,7 @@ TRAINX_RAYO:
   - 'state{s=cast} @self'
   - 'sound{s=block.amethyst_block.chime;v=2;p=0.6} @self'
   - 'delay 10'
+  - 'command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 4fd1ff 0.8 luz"}'
   - 'sound{s=entity.illusioner.cast_spell;v=1.5;p=1.2} @self'
   - 'projectile{onTick=TRAINX_RAYO_TICK;onHit=TRAINX_RAYO_HIT;v=18;i=1;hR=1;vR=1;mr=48;bulletType=ITEM;material=NETHER_STAR;hnp=true;sy=3}'
 
@@ -62,11 +67,12 @@ TRAINX_RAYO_TICK:
   Skills:
   - 'particles{p=end_rod;amount=2;hS=0.05;vS=0.05;speed=0} @origin'
   - 'particles{p=dust;color=#4fd1ff;size=1.3;amount=2;hS=0.1;vS=0.1} @origin'
+  - 'command{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fd1ff 1 luz"} @origin'
 
 TRAINX_RAYO_HIT:
   Skills:
   - 'damage{a=13}'
-  - 'command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fd1ff 1 luz"}'
+  - 'command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> 4fd1ff 1.8 luz"}'
   - 'particles{p=firework;amount=25;hS=0.6;vS=0.6;speed=0.08} @origin'
   - 'sound{s=entity.firework_rocket.blast;v=1.2;p=1.4} @origin'
 
@@ -106,18 +112,22 @@ TRAINX_DASH:
   - 'lunge{velocity=3.2;velocityY=0.35} @target'
   - 'delay 10'
   - 'particles{p=sweep_attack;amount=8;hS=2;vS=0.5;y=2} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ff5fd2 3 arcano"}'
   - 'damage{a=28} @PlayersInRadius{r=4}'
 
 TRAINX_FASE2:
   Skills:
   - 'addtag{tag=trainx.f2} @self'
-  - 'state{s=lluvia} @self'
+  - 'state{s=furia} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ff5fd2 6 arcano"}'
   - 'sound{s=entity.ender_dragon.growl;v=2;p=1.2} @PlayersInRadius{r=64}'
   - 'message{m="&d«Bien. Entonces peleemos en serio.»"} @PlayersInRadius{r=64}'
 
 TRAINX_FASE3:
   Skills:
   - 'addtag{tag=trainx.f3} @self'
+  - 'state{s=furia} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> b03cff 8 vacio"}'
   - 'potion{type=SPEED;duration=2147483647;level=0;hasParticles=false} @self'
   - 'sound{s=entity.wither.ambient;v=2;p=0.6} @PlayersInRadius{r=64}'
   - 'particles{p=dragon_breath;amount=150;hS=2;vS=3;y=2;speed=0.05} @self'
@@ -134,6 +144,7 @@ TRAINX_RESET:
 TRAINX_MUERE:
   Skills:
   - 'state{s=death} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> ffe9a0 8 luz"}'
   - 'sound{s=ui.toast.challenge_complete;v=2;p=0.8} @PlayersInRadius{r=64}'
   - 'particles{p=end_rod;amount=300;hS=2;vS=4;y=3;speed=0.1} @self'
   - 'command{c="trainxfin <caster.l.w>"} @self'

@@ -6,6 +6,13 @@ Tres paginas de seis; los retratos Gemini derivados de modelos privados se regen
 La entrega `deploy_mascotas_aurora_botones.py` conserva el FINAL de Crop & Kettle byte por byte fuera de su delta;
 no permite publicar ese pack ni sus vistas en el repositorio publico. Ver [entrega](../build/deploy/mascotas-aurora-botones.md).
 
+# Modelos 3D y efectos - 16/11/2026
+
+`mochilas3d.py` (forma del `explorer` de Wet Backpacks, texturas propias) y `armas_planas3d.py` (cuchillos con las
+texturas de mods elegidas y equipo de las Mareas) escriben solo en `build/entregas/modelos-3d-efectos/`. El pack publico
+conserva las mochilas y cuchillos provisorios. `deploy_modelos_efectos.py` arma el FINAL por delta y la `astral.yml`
+privada sin pisar la del build compartido. Ver [entrega](../build/deploy/modelos-3d-efectos.md).
+
 # Contenidos privados - tanda 4a
 
 Disenos del 12/11: `deploy_disenos.py` combina solo los cambios de esta tarea sobre

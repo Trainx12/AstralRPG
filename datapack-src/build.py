@@ -1084,7 +1084,8 @@ cast.append(f'data modify storage {NS}:tmp spell.fxp set value "witch"')
 for i, s in enumerate(STAFFS):
     t = i + 1
     sel = f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"baston_{t}"}}}}]'
-    _h = _CT[t].lstrip('#')
+    from efectos import COLOR_BASTON as _CB
+    _h = _CB[t].lstrip('#')
     _rgb = ','.join(f"{int(_h[k:k + 2], 16) / 255:.2f}" for k in (0, 2, 4))
     cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxh set value "{_h}"')
     cast.append(f'{sel} run data modify storage {NS}:tmp spell.fxc set value "[{_rgb}]"')
@@ -1134,27 +1135,30 @@ cast += [
     "tag @s add astral.caster",
     "scoreboard players set #steps astral.tmp 0",
     "playsound minecraft:entity.evoker.cast_spell player @a[distance=..16] ~ ~ ~ 0.8 1.6",
+    # Medio/Alto: el plugin AstralEfectos dibuja el rayo laser o la bola de fuego (marcador fx.rayo frente a los ojos).
+    f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/fx_rayo with storage {NS}:tmp spell",
     f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/ray with storage {NS}:tmp spell",
     "tag @s remove astral.caster",
 ]
 fn("spell/cast", cast)
 from minijuegos import arena_worlds as _arena_worlds
 ARENA_WORLDS = _arena_worlds()
-# Efectos (15/11/2026): Bajo ve lo de siempre (witch + end_rod); Medio suma un rayo del color del tier del baston;
-# Alto lo hace mas grueso con chispas y al impactar pide al plugin AstralEfectos un estallido (marcador astral.fx).
+# Efectos (16/11/2026): Bajo ve lo de siempre (witch + end_rod). En Medio y Alto el plugin AstralEfectos dibuja el
+# rayo laser / bola de fuego (marcador fx.rayo al lanzar) y la explosion del impacto (marcador fx.estallido).
 FX_MEDIO = "@a[scores={astral.fx=1..},distance=..96]"
 FX_ALTO = "@a[scores={astral.fx=2..},distance=..96]"
-FX_IMPACTO = ("$execute if entity " + FX_ALTO + " run summon marker ~ ~ ~ "
+FX_IMPACTO = ("$execute if entity " + FX_MEDIO + " run summon marker ~ ~ ~ "
               "{Tags:[\"astral.fx\",\"fx.estallido\",\"fxc.$(fxh)\",\"fxe.$(fxe)\"]}")
+fn("spell/fx_rayo", [
+    "$execute if entity " + FX_MEDIO + " run summon marker ~ ~ ~ "
+    "{Tags:[\"astral.fx\",\"fx.rayo\",\"fxc.$(fxh)\",\"fxe.$(fxe)\"]}",
+])
 fn("spell/ray", [
     "particle minecraft:witch ~ ~ ~ 0.05 0.05 0.05 0 2 force",
     "particle minecraft:end_rod ~ ~ ~ 0 0 0 0 1 force",
-    f"$particle minecraft:dust{{color:$(fxc),scale:1.3}} ~ ~ ~ 0.05 0.05 0.05 0 2 force {FX_MEDIO}",
-    f"$particle minecraft:dust{{color:$(fxc),scale:2.4}} ~ ~ ~ 0.14 0.14 0.14 0 2 force {FX_ALTO}",
-    f"particle minecraft:electric_spark ~ ~ ~ 0.1 0.1 0.1 0.05 1 force {FX_ALTO}",
-    # particula del elemento del baston (fuego, hielo, arcano...): una cada paso en Medio, mas en Alto
+    # particula del elemento del baston (fuego, hielo, arcano...) acompanando al rayo del plugin
     f"$particle minecraft:$(fxp) ~ ~ ~ 0.08 0.08 0.08 0.01 1 force {FX_MEDIO}",
-    f"$particle minecraft:$(fxp) ~ ~ ~ 0.18 0.18 0.18 0.02 2 force {FX_ALTO}",
+    f"$particle minecraft:$(fxp) ~ ~ ~ 0.18 0.18 0.18 0.02 1 force {FX_ALTO}",
     # nbt=!{NoAI:1b}: los NPC de MythicMobs (vendedores, gachas) estan quietos y no se pueden lastimar.
     # dx/dy/dz intersectan la caja, distance solo mide al origen (los pies).
     # dx=0 es un cubo de UN bloque en Java; centrado da tolerancia .5 sin huecos.

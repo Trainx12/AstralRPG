@@ -162,6 +162,10 @@ function asw_explode(p: player, center: location):
     play sound "entity.generic.explode" with volume 0.6 and pitch 1.5 at {_center}
     set {_dimension} to asw_dimension(world of {_center})
     execute console command "execute in %{_dimension}% run particle minecraft:explosion %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% 0.3 0.3 0.3 0 3"
+    # Medio/Alto (AstralEfectos): bola de fuego desde la varita, llamitas alrededor y hongo de explosion al llegar.
+    set {_eye} to eye location of {_p}
+    execute console command "astralfx rayo %{_dimension}% %x-coordinate of {_eye}% %(y-coordinate of {_eye}) - 0.3% %z-coordinate of {_eye}% %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% ff7a1a fuego"
+    execute console command "astralfx estallido %{_dimension}% %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% ff7a1a 1.6 fuego"
     asw_area({_p}, {_center}, 2, {@dano_estallido}, "explosion")
 
 function asw_dimension(w: world) :: text:
@@ -287,6 +291,7 @@ function asw_blink(p: player):
     set {_at} to location of {_p}
     set {_y} to y-coordinate of {_at} + 1
     execute console command "execute in %{_dimension}% run particle minecraft:portal %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% 0.3 0.5 0.3 0.4 20"
+    execute console command "astralfx estallido %{_dimension}% %x-coordinate of {_at}% %{_y}% %z-coordinate of {_at}% b45cff 1 vacio"
 
 # Varita de Curacion: {@cura_pct}% de la vida maxima por segundo durante {@cura_segundos} s, a vos y a los
 # jugadores cerca. Volver a usarla reinicia el tiempo (no se acumula).
@@ -299,6 +304,7 @@ function asw_heal(p: player):
         stop
     set {-asw.healcd::%{_id}%} to now
     play sound "entity.player.levelup" with volume 0.5 and pitch 1.8 at {_p}
+    execute console command "astralfx estallido %asw_dimension(world of {_p})% %x-coordinate of {_p}% %(y-coordinate of {_p}) + 1% %z-coordinate of {_p}% 5dff7a 1.2 naturaleza"
     loop all players in radius {@cura_radio} around {_p}:
         if loop-player is alive:
             set {-asw.regen::%uuid of loop-player%} to {@cura_segundos}
@@ -402,6 +408,7 @@ function asw_quake(p: player):
     __SISMO_MEJORAS__
     set {_center} to location of {_p}
     play sound "entity.iron_golem.attack" with volume 0.9 and pitch 0.5 at {_p}
+    execute console command "astralfx golpe %asw_dimension(world of {_p})% %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% c8a070 5 piedra"
     play sound "entity.generic.explode" with volume 0.4 and pitch 0.6 at {_p}
     loop 5 times:
         set {_r} to loop-number
@@ -525,6 +532,7 @@ function asw_hero(p: player):
     set {_lv} to enchantment level of {_mejora} on tool of {_p}
     __HERO_MEJORAS__
     asw_area({_p}, location of {_p}, 3, {_heroDamage}, "player")
+    execute console command "astralfx golpe %asw_dimension(world of {_p})% %x-coordinate of {_p}% %y-coordinate of {_p}% %z-coordinate of {_p}% ffe9a0 3 luz"
     play sound "entity.player.attack.sweep" with volume 1 and pitch 1 at {_p}
 
 on right click:
