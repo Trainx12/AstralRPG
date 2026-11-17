@@ -1,65 +1,159 @@
-menu_title: '&f'
+menu_title: '&8Configuraciones'
 open_command: configuraciones
-size: 27
+size: 45
 register_command: true
+update_interval: 1
 items:
-  titulo:
+  'titulo':
     material: COMPARATOR
     slot: 4
     amount: 1
     display_name: '&7&lConfiguraciones'
     lore:
     - '&7Elegi cuantos efectos ves.'
-    - '&7Solo cambia lo que ves vos:'
-    - '&7el dano y las habilidades son iguales.'
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7El dano y las habilidades son iguales.'
+    - '&7Avisos de jefes y particulas MythicMobs siguen.'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: astral:boton_info
-  efectos_bajo:
+    item_model: 'astral:menu/icon_titulos'
+  'efectos_bajo_activo':
+    material: GRAY_DYE
+    slot: 11
+    amount: 1
+    display_name: '&f&lEfectos: Bajo &a[ACTIVO]'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&a▶ Elegido'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_bajo_activo'
+  'efectos_bajo':
     material: GRAY_DYE
     slot: 11
     amount: 1
     display_name: '&f&lEfectos: Bajo'
-    lore: &id001
+    lore:
     - '&7El juego como siempre.'
     - '&7Sin efectos nuevos y solo 3 particulas'
     - '&7por golpe. Ideal para PCs flojas.'
     - ''
     - '&eClic para elegirlo.'
-    item_flags: &id002
+    item_flags:
     - HIDE_ATTRIBUTES
-    click_commands: &id003
+    priority: 2
+    update: true
+    click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos bajo'
-    - '[close]'
-    item_model: astral:boton_efectos_bajo
-    priority: 2
-  efectos_medio:
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_bajo'
+  'efectos_medio_activo':
+    material: LIME_DYE
+    slot: 13
+    amount: 1
+    display_name: '&a&lEfectos: Medio &a[ACTIVO]'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&a▶ Elegido'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_medio_activo'
+  'efectos_medio':
     material: LIME_DYE
     slot: 13
     amount: 1
     display_name: '&a&lEfectos: Medio'
-    lore: &id004
+    lore:
     - '&7Lo de siempre, mas:'
     - '&7- disparos de bastones de color'
     - '&7- anillos en los golpes de los jefes'
     - '&8(con el que arrancan todos)'
     - ''
     - '&eClic para elegirlo.'
-    item_flags: &id005
+    item_flags:
     - HIDE_ATTRIBUTES
-    click_commands: &id006
+    priority: 2
+    update: true
+    click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos medio'
-    - '[close]'
-    item_model: astral:boton_efectos_medio
-    priority: 2
-  efectos_alto:
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_medio'
+  'efectos_alto_activo':
+    material: MAGENTA_DYE
+    slot: 15
+    amount: 1
+    display_name: '&d&lEfectos: Alto &a[ACTIVO]'
+    lore:
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
+    - ''
+    - '&a▶ Elegido'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    priority: 1
+    update: true
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_alto_activo'
+  'efectos_alto':
     material: MAGENTA_DYE
     slot: 15
     amount: 1
     display_name: '&d&lEfectos: Alto'
-    lore: &id007
+    lore:
     - '&7Todo lo de Medio, mas:'
     - '&7- explosiones de los jefes'
     - '&7- rastros de armas al caminar'
@@ -67,73 +161,467 @@ items:
     - '&7- rastro de mascotas evolucionadas'
     - ''
     - '&eClic para elegirlo.'
-    item_flags: &id008
+    item_flags:
     - HIDE_ATTRIBUTES
-    click_commands: &id009
+    priority: 2
+    update: true
+    click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos alto'
-    - '[close]'
-    item_model: astral:boton_efectos_alto
+    - '[refresh]'
+    item_model: 'astral:boton_efectos_alto'
+  'interruptor_armaduras_false':
+    material: GRAY_DYE
+    slot: 29
+    amount: 1
+    display_name: '&c&lArmaduras: FALSE'
+    lore:
+    - '&7Estado: &cDesactivado'
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_true':
+    material: LIME_DYE
+    slot: 29
+    amount: 1
+    display_name: '&a&lArmaduras: TRUE'
+    lore:
+    - '&7Estado: &aActivado'
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
     priority: 2
-  volver:
+    update: true
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armas_false':
+    material: GRAY_DYE
+    slot: 30
+    amount: 1
+    display_name: '&c&lArmas: FALSE'
+    lore:
+    - '&7Estado: &cDesactivado'
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_true':
+    material: LIME_DYE
+    slot: 30
+    amount: 1
+    display_name: '&a&lArmas: TRUE'
+    lore:
+    - '&7Estado: &aActivado'
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_bastones_false':
+    material: GRAY_DYE
+    slot: 31
+    amount: 1
+    display_name: '&c&lBastones: FALSE'
+    lore:
+    - '&7Estado: &cDesactivado'
+    - '&7Rayos, fuego e impactos de bastones.'
+    - ''
+    - '&eClic para activar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_true':
+    material: LIME_DYE
+    slot: 31
+    amount: 1
+    display_name: '&a&lBastones: TRUE'
+    lore:
+    - '&7Estado: &aActivado'
+    - '&7Rayos, fuego e impactos de bastones.'
+    - ''
+    - '&eClic para desactivar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_mascotas_false':
+    material: GRAY_DYE
+    slot: 32
+    amount: 1
+    display_name: '&c&lMascotas: FALSE'
+    lore:
+    - '&7Estado: &cDesactivado'
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_true':
+    material: LIME_DYE
+    slot: 32
+    amount: 1
+    display_name: '&a&lMascotas: TRUE'
+    lore:
+    - '&7Estado: &aActivado'
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_jefes_false':
+    material: GRAY_DYE
+    slot: 33
+    amount: 1
+    display_name: '&c&lJefes: FALSE'
+    lore:
+    - '&7Estado: &cDesactivado'
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_true':
+    material: LIME_DYE
+    slot: 33
+    amount: 1
+    display_name: '&a&lJefes: TRUE'
+    lore:
+    - '&7Estado: &aActivado'
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'volver':
     material: ARROW
-    slot: 26
+    slot: 40
     amount: 1
     display_name: '&fVolver al menu'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
     - '[openguimenu] principal'
-    item_model: astral:boton_volver
-  efectos_bajo_activo:
-    material: GRAY_DYE
-    slot: 11
+    item_model: 'astral:menu/icon_back'
+  'vidrio_0':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 0
     amount: 1
-    display_name: '&f&lEfectos: Bajo &6[ACTIVO]'
-    lore: *id001
-    item_flags: *id002
-    click_commands: *id003
-    item_model: astral:boton_efectos_bajo_activo
-    priority: 1
-    update: true
-    view_requirement:
-      requirements:
-        activo:
-          type: ==
-          input: '%objective_score_{astral.fx}%'
-          output: '0'
-  efectos_medio_activo:
-    material: LIME_DYE
-    slot: 13
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 1
     amount: 1
-    display_name: '&a&lEfectos: Medio &6[ACTIVO]'
-    lore: *id004
-    item_flags: *id005
-    click_commands: *id006
-    item_model: astral:boton_efectos_medio_activo
-    priority: 1
-    update: true
-    view_requirement:
-      requirements:
-        activo:
-          type: ==
-          input: '%objective_score_{astral.fx}%'
-          output: '1'
-  efectos_alto_activo:
-    material: MAGENTA_DYE
-    slot: 15
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 2
     amount: 1
-    display_name: '&d&lEfectos: Alto &6[ACTIVO]'
-    lore: *id007
-    item_flags: *id008
-    click_commands: *id009
-    item_model: astral:boton_efectos_alto_activo
-    priority: 1
-    update: true
-    view_requirement:
-      requirements:
-        activo:
-          type: ==
-          input: '%objective_score_{astral.fx}%'
-          output: '2'
-update_interval: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_10':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 10
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_12':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 12
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_14':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 14
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_16':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 16
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_22':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 22
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_27':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 27
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_28':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 28
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_34':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 34
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_35':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 35
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_36':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 36
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_37':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 37
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_38':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 38
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_39':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_41':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_42':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 42
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_43':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 43
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_44':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 44
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES

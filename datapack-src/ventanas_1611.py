@@ -75,7 +75,8 @@ def title(kind):
 
 
 def apply(kind, data):
-    if kind not in WINDOWS:return data
+    # Configuraciones usa ahora 45 slots y fondo generico sin cambiar el pack.
+    if kind == 'configuraciones' or kind not in WINDOWS:return data
     data['menu_title']=title(kind)
     data['size']=WINDOWS[kind][1]*9
     items=data['items']
@@ -95,17 +96,6 @@ def apply(kind, data):
         alias={'confirmar_0':'renacer','volver':'volver','cerrar':'cerrar','titulo':'info'}.get(key,key)
         if kind=='deseo_lite' and key=='tier':alias='tier_lite'
         if (BUTTONS/f'boton_{alias}.png').exists():item['item_model']='astral:boton_'+alias
-    if kind=='configuraciones':
-        items['volver']['slot']=26
-        data['update_interval']=1
-        for n,key in enumerate(('bajo','medio','alto')):
-            base=items['efectos_'+key]
-            active=dict(base)
-            active.update(priority=1,update=True,item_model=f'astral:boton_efectos_{key}_activo',
-                          display_name=base['display_name']+' &6[ACTIVO]',
-                          view_requirement={'requirements':{'activo':{'type':'==','input':'%objective_score_{astral.fx}%','output':str(n)}}})
-            base['priority']=2
-            items['efectos_'+key+'_activo']=active
     return data
 
 

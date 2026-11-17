@@ -63,6 +63,9 @@ class RetiroVentanasTests(unittest.TestCase):
             if p['type']=='bitmap':self.assertLessEqual(p['height'],256)
         for kind,(_,rows,*_) in WINDOWS.items():
             data=yaml.safe_load((ROOT/f'build/menus/DeluxeMenus/gui_menus/{kind}.yml').read_text(encoding='utf8'))
+            if kind == 'configuraciones':
+                self.assertEqual(data['size'],45)
+                continue
             self.assertEqual(data['size'],rows*9)
             self.assertIn('\uf100',data['menu_title'])
             occupied={}
@@ -72,7 +75,7 @@ class RetiroVentanasTests(unittest.TestCase):
                 occupied[slot]=key
                 if any(k.endswith('commands') for k in item):self.assertTrue(item.get('item_model'),(kind,key))
         cfg=yaml.safe_load((ROOT/'build/menus/DeluxeMenus/gui_menus/configuraciones.yml').read_text(encoding='utf8'))
-        self.assertEqual(cfg['items']['volver']['slot'],26)  # deja libre el rotulo MEDIO
+        self.assertEqual(cfg['items']['volver']['slot'],40)  # quinta fila del menu ampliado
         for n,key in enumerate(('bajo','medio','alto')):
             active=cfg['items'][f'efectos_{key}_activo'];self.assertIn('[ACTIVO]',active['display_name'])
             self.assertEqual(active['view_requirement']['requirements']['activo']['output'],str(n))

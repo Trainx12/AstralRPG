@@ -1,3 +1,11 @@
+# Efectos: direccion e interruptores - 17/11/2026
+
+AstralEfectos 1.2.0 preparado, sin desplegar: [entrega y archivos exactos](../build/deploy/efectos-direccion-interruptores.md).
+Corrige la orientacion del rayo y agrega cinco preferencias por espectador en
+`/efectos` y Configuraciones (45 casillas). Las particulas nativas de MythicMobs
+y los avisos de ataque siguen visibles. Requiere JAR, menu y datapack nuevos,
+con apagado y reinicio completo; no cambia el resource pack ni los mundos.
+
 # Retiro de mascotas, Aurora y ventanas - 16/11/2026
 
 Estado acumulado vigente: [deploy-16-11](../build/deploy/deploy-16-11.md).

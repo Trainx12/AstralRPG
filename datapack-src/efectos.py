@@ -329,14 +329,14 @@ def config():
 
 
 PLUGIN_YML = """name: AstralEfectos
-version: 1.1.0
+version: 1.2.0
 main: astral.AstralEfectos
 api-version: '26.1.2'
 softdepend: [packetevents]
 commands:
   efectos:
     description: Elegir el nivel de efectos visuales (bajo, medio o alto)
-    usage: /efectos [bajo|medio|alto]
+    usage: /efectos [bajo|medio|alto|armaduras|armas|bastones|mascotas|jefes] [on|off]
   astralfx:
     description: Efecto visual (jefes y scripts)
     usage: /astralfx golpe|estallido|rayo <mundo> <x> <y> <z> ...

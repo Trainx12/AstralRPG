@@ -87,7 +87,7 @@ def menu(title, command, size, items, update=False):
         L.append("update_interval: 1")
     import yaml
     from ventanas_1611 import apply
-    if command not in ("configuraciones", "astralmenu_oficios"):
+    if command != "astralmenu_oficios":
         return "\n".join(L + ["items:"] + items) + "\n"
     data = yaml.safe_load("\n".join(L + ["items:"] + items))
     return yaml.safe_dump(apply({"astralmenu_oficios":"oficios"}.get(command, command), data), allow_unicode=True, sort_keys=False)
@@ -413,14 +413,42 @@ EFECTOS_NIVELES = [
 ]
 
 
+EFECTOS_CATEGORIAS = [
+    ('armaduras', 'armadura', 'Armaduras', 'Aura y destellos del set completo.'),
+    ('armas', 'armas', 'Armas', 'Rastros al caminar y correr.'),
+    ('bastones', 'bastones', 'Bastones', 'Rayos, fuego e impactos de bastones.'),
+    ('mascotas', 'mascotas', 'Mascotas', 'Rastro de mascotas evolucionadas.'),
+    ('jefes', 'jefes', 'Jefes', 'Adornos; los avisos de ataque siguen.')]
+
+
 def configuraciones_menu():
-    items = item('titulo', 'COMPARATOR', 4, '&7&lConfiguraciones', ['&7Elegi cuantos efectos ves.', '&7Solo cambia lo que ves vos:', '&7el dano y las habilidades son iguales.'])
-    for key, material, slot, name, lore in EFECTOS_NIVELES:
+    def requisito(obj, valor):
+        return ("\n      requirements:\n        activo:\n          type: '=='"
+                f"\n          input: '{SCORE.format(obj)}'\n          output: '{valor}'")
+    items = item('titulo', 'COMPARATOR', 4, '&7&lConfiguraciones',
+                 ['&7Elegi cuantos efectos ves.', '&7Los interruptores solo cambian lo que ves vos.',
+                  '&7El dano y las habilidades son iguales.', '&7Avisos de jefes y particulas MythicMobs siguen.'])
+    for n, (key, material, slot, name, lore) in enumerate(EFECTOS_NIVELES):
+        cmds = ['[sound] UI_BUTTON_CLICK', f'[player] efectos {key}', '[refresh]']
+        items += item(f'efectos_{key}_activo', material, slot, name + ' &a[ACTIVO]', lore + ['', '&a▶ Elegido'],
+                      glow=True, extra={'priority': 1, 'update': 'true',
+                      'view_requirement': requisito('astral.fx', n), 'click_commands': cmds})
         items += item(f'efectos_{key}', material, slot, name, lore + ['', '&eClic para elegirlo.'],
-                      extra={'click_commands': ['[sound] UI_BUTTON_CLICK', f'[player] efectos {key}', '[close]']})
-    items += item('volver', 'ARROW', 22, '&fVolver al menu', extra={'click_commands': ['[openguimenu] principal']})
-    items += relleno('GRAY_STAINED_GLASS_PANE', 27, {4, 11, 13, 15, 22})
-    return menu('&8Configuraciones', 'configuraciones', 27, items)
+                      extra={'priority': 2, 'update': 'true', 'click_commands': cmds})
+    for slot, (key, obj, nombre, descripcion) in enumerate(EFECTOS_CATEGORIAS, 29):
+        for activo in (False, True):
+            estado = 'true' if activo else 'false'
+            extra = {'priority': 2 if activo else 1, 'update': 'true',
+                     'click_commands': [f'[player] efectos {key} {"off" if activo else "on"}', '[refresh]']}
+            if not activo:
+                extra['view_requirement'] = requisito('astral.fx.' + obj, 0)
+            items += item(f'interruptor_{key}_{estado}', 'LIME_DYE' if activo else 'GRAY_DYE', slot,
+                          f'&{"a" if activo else "c"}&l{nombre}: {estado.upper()}',
+                          [f'&7Estado: &aActivado' if activo else '&7Estado: &cDesactivado',
+                           '&7' + descripcion, '', '&eClic para desactivar.' if activo else '&eClic para activar.'], extra=extra)
+    items += item('volver', 'ARROW', 40, '&fVolver al menu', extra={'click_commands': ['[openguimenu] principal']})
+    items += relleno('GRAY_STAINED_GLASS_PANE', 45, {4, 11, 13, 15, 29, 30, 31, 32, 33, 40})
+    return menu('&8Configuraciones', 'configuraciones', 45, items, update=True)
 
 
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
