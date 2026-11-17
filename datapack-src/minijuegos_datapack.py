@@ -289,6 +289,18 @@ class Adapter:
             start.append(f'forceload add {self.console[0]} {self.console[1]}')
         start += [f'function {f}' for f in loads]
         self.files[f'data/{m}/function/astral/start.mcfunction'] = '\n'.join(start)
+        if self.world == 'parkour_paradise3':
+            # Herramientas propias de diagnostico, sin sustituir bloques del mapa.
+            self.files[f'data/{m}/function/astral/diagnostico.mcfunction'] = '\n'.join([
+                f'execute in {world} run forceload query -34 766',
+                f'scoreboard players get #arranco {flag}',
+                f'execute in {world} run data get entity @e[type=marker,name=console,limit=1,distance=0..] Pos',
+                f'execute in {world} as @a[distance=0..] run scoreboard players get @s pp3_level',
+                f'execute in {world} as @a[distance=0..] run data get entity @s Pos',
+                f'execute in {world} as @a[distance=0..] run tag @s list'])
+            self.files[f'data/{m}/function/astral/reiniciar_tareas.mcfunction'] = '\n'.join([
+                '# Solo reprograma tareas; schedule replace evita duplicarlas. No cambia el mapa.',
+                f'execute in {world} run function {m}:astral/start'])
         for key, target in self.schedules.items():
             self.files[f'data/{m}/function/astral/s/{key}.mcfunction'] = f'execute in {world} run function {target}'
         salir = [f'tag @s remove {t}' for t in sorted(self.tags)]

@@ -35,10 +35,10 @@ class MarketUI(unittest.TestCase):
                     cmds=item['click_commands']
                     self.assertEqual([c for c in cmds if c.startswith('[takemoney]')],[f"[takemoney] {g['cost']*count}"])
                     opens=[c for c in cmds if 'astralgacha ' in c]
-                    self.assertEqual(len(opens),2)
+                    self.assertEqual(len(opens),1)
                     self.assertTrue(all(c.endswith('<delay=3>') for c in opens))
-                    # Las condiciones de garantia son mutuamente excluyentes.
-                    self.assertIn(' unless score ',opens[1])
+                    # El runtime evalua la garantia premio por premio, despues del cobro unico.
+                    self.assertNotIn('scoreboard players add', '\n'.join(cmds))
                     self.assertTrue(all(f'{gid} {count} ' in c for c in opens))
 
     def test_auction_navigation_and_no_automatic_listing(self):

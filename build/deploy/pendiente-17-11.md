@@ -10,8 +10,8 @@ Incluye direccion/interruptores, T6/XP/suerte, Destello/pausa y la tanda visual 
 | Local desde la raiz | Destino | SHA-256 |
 |---|---|---|
 | `build/runtime/AstralEfectos.jar` | `plugins/AstralEfectos.jar` | `ad7685d81bf03844792bb4d44cbbfbd11072a12e13e29ebe914b63e29b3b0557` |
-| `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `d5aa7720ad88bf86199ab243e596cbc39fc109646622bba2af8591e84d12093e` |
-| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `219c8b7cfc68fac7f02336a1792398d9f747e312612ac6136079d9b77dda6799` |
+| `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `34f8223dd14d7170e45efc01799425e6a7cd3b940717710d2b3b9ab2efaf3bfe` |
+| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `387ab506f7405c4f9fd9ee6ea5e2f7941d0c2fd5d2182c78186c3deed9714fff` |
 | `.local/terceros/AstralRPG-privado/build/entregas/crop-kettle/CropAndKettle-Astral.zip` | `world/datapacks/CropAndKettle-Astral.zip` | `ebc22200ef9e0a5333716f8e9486fa3df1e5764d29e9a583f23a13aa55107e10` |
 | `build/gameplay/astral_armas_especiales.sk` | `plugins/Skript/scripts/special_weapons.sk` | `0805f366d3ce413a592764469c466fb9c3f6c8390a9c14433f1380259cdf021d` |
 | `build/services/astral_servicios.sk` | `plugins/Skript/scripts/astral_servicios.sk` | `2d930b05746e6fbde8b1dbe81aaeff95a774227d20c9cbf918abc30f2d74e88a` |
@@ -110,3 +110,40 @@ Si falta tambien la Forja: `/mm mobs spawn astral_estatua_golem_forja`.
 Comprobar `mm mobs listactive`, persistencia tras cargar chunks y consola sin errores.
 No recrear una estatua que ya exista: verificar primero para evitar duplicados.
 La escala visual relativa necesita validacion con cliente en los pedestales.
+
+## Gachas, carteles y doble salto — tanda del 17/11
+
+Entrega adicional vigente: [gachas-carteles-17-11.md](gachas-carteles-17-11.md).
+AstralDecor **1.17.0** sustituye el 1.16.0 anterior; instalar los siguientes archivos en el mismo apagado.
+Conservar todos los otros pendientes y el pack FINAL. Las estatuas tanda3a ya estan instaladas segun el estado recibido.
+
+| Local | Destino | SHA-256 |
+|---|---|---|
+| `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `34f8223dd14d7170e45efc01799425e6a7cd3b940717710d2b3b9ab2efaf3bfe` |
+| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `387ab506f7405c4f9fd9ee6ea5e2f7941d0c2fd5d2182c78186c3deed9714fff` |
+| `build/gameplay/astral_gameplay.sk` | `plugins/Skript/scripts/astral_gameplay.sk` | `d2e3ded9f527d93d91e976e98d3f89ad4e526e661ef1dc89b44cbf43fc97fd87` |
+| `build/lobby/CrazyCrates/crates/gacha_cosmeticos.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos.yml` | `7d4335154fef0ae36435a1dee8f510b8aaf3fc7285e6eedc461ac9099e1e36d7` |
+| `build/lobby/CrazyCrates/crates/gacha_cosmeticos_garantia.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos_garantia.yml` | `8a6c324c9b550e682b8fa1f6bc32d6ea00adc3797992774406f2c93ab8beca5b` |
+| `build/lobby/CrazyCrates/crates/gacha_cosmeticos_garantia_suerte.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos_garantia_suerte.yml` | `8a6c324c9b550e682b8fa1f6bc32d6ea00adc3797992774406f2c93ab8beca5b` |
+| `build/lobby/CrazyCrates/crates/gacha_cosmeticos_suerte.yml` | `plugins/CrazyCrates/crates/gacha_cosmeticos_suerte.yml` | `c58181a7259f43a84b6688a941cd5d11855febeb22688e3481c255a29138a96d` |
+| `build/lobby/CrazyCrates/crates/gacha_monturas.yml` | `plugins/CrazyCrates/crates/gacha_monturas.yml` | `82c8e0f628cbed89928f1755f5d2f96a859d77799a06ebd1cff6791517da5344` |
+| `build/lobby/CrazyCrates/crates/gacha_monturas_garantia.yml` | `plugins/CrazyCrates/crates/gacha_monturas_garantia.yml` | `c373cfa12e6e2a0cea67026f6b066890dc96a193b246e7bfc2c88b4c39cd08ff` |
+| `build/lobby/CrazyCrates/crates/gacha_monturas_garantia_suerte.yml` | `plugins/CrazyCrates/crates/gacha_monturas_garantia_suerte.yml` | `c373cfa12e6e2a0cea67026f6b066890dc96a193b246e7bfc2c88b4c39cd08ff` |
+| `build/lobby/CrazyCrates/crates/gacha_monturas_suerte.yml` | `plugins/CrazyCrates/crates/gacha_monturas_suerte.yml` | `a27fa0a46b45b5db650a34bb63f18bc7ad9e296ebed1b0869e7317326473129c` |
+| `build/lobby/CrazyCrates/crates/gacha_rpg.yml` | `plugins/CrazyCrates/crates/gacha_rpg.yml` | `56dca58ab3d64a2c08dc96b0eacba5003452ad4169b0ce0e5c4a5fdc255ec1fa` |
+| `build/lobby/CrazyCrates/crates/gacha_rpg_garantia.yml` | `plugins/CrazyCrates/crates/gacha_rpg_garantia.yml` | `56c4ad346850dd1f294a341bd101875f0e1f975f8a4295f810562a4e1a2107a6` |
+| `build/lobby/CrazyCrates/crates/gacha_rpg_garantia_suerte.yml` | `plugins/CrazyCrates/crates/gacha_rpg_garantia_suerte.yml` | `56c4ad346850dd1f294a341bd101875f0e1f975f8a4295f810562a4e1a2107a6` |
+| `build/lobby/CrazyCrates/crates/gacha_rpg_suerte.yml` | `plugins/CrazyCrates/crates/gacha_rpg_suerte.yml` | `80d3c3840d0fc32343aad055a06968a6f5938cba4646f0d54fb9ac4a968206e9` |
+| `build/menus/DeluxeMenus/gui_menus/gacha_rpg.yml` | `plugins/DeluxeMenus/gui_menus/gacha_rpg.yml` | `d9e7e788f2b3194a3deee2759593bf40f1da333730937873a59a94d4b7bbda74` |
+| `build/menus/DeluxeMenus/gui_menus/gacha_monturas.yml` | `plugins/DeluxeMenus/gui_menus/gacha_monturas.yml` | `c001372a6ea23310ec36acf0b33effd6ae995e192a8bf67412233165f61047b0` |
+| `build/menus/DeluxeMenus/gui_menus/gacha_cosmeticos.yml` | `plugins/DeluxeMenus/gui_menus/gacha_cosmeticos.yml` | `f86e6d7e90ee86528ce43bcc88c35ebf384d4ede4cd23083e18ac8fb68a955eb` |
+| `.local/crazycrates-server/config-sin-menu.yml` | `plugins/CrazyCrates/config.yml` | `1e786a263d22ddd3bdf06ad7bec7c2900f88c8a57c076580a2981fb81910c255` |
+
+Reinicio completo por JAR/datapack. Luego `crates reload`, `dm reload` y consola sin errores.
+Ejecutar las lineas de `build/lobby/carteles-17-11.txt` para limpiar/recrear carteles (solo lobby).
+El config privado se prepara sobre una copia NUEVA del vigente con `tools/configurar_crazycrates.py`:
+solo `gui.toggle: false`; ese cambio aislado requiere `crates reload` y no requiere reinicio.
+Actualizacion opcional del datapack privado de Paradise y comandos de diagnostico en la entrega enlazada.
+Paradise sigue pendiente de diagnostico en vivo; no se certifica largada/checkpoints/meta ni boton reparado.
+Despliegue, consola remota, cliente visual y reconexion/reinicio con lotes en curso siguen pendientes de Claude.
+Nunca sustituir mundos ni usar Worlds > Upload en world.

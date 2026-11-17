@@ -486,6 +486,8 @@ on player jump key release:
 on player jump key press:
     if astral_dungeon(world of player) is true:
         stop
+    if name of world of player is __NO_DOUBLE_JUMP__:
+        stop
     if gamemode of player is not survival:
         if gamemode of player is not adventure:
             stop
@@ -603,7 +605,7 @@ on quit:
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
 __PVP__
-__VIDA__'''.replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
+__VIDA__'''.replace('__NO_DOUBLE_JUMP__',' or '.join('"'+w+'"' for w in dict.fromkeys(parkour_worlds()+arena_worlds()))).replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
 
 
 def realistic_hook():

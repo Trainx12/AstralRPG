@@ -86,7 +86,7 @@ def generate(files):
             facing="north" if reverse else "south"
             lines += [f'setblock ~{x} ~-2 ~{-2*sign} minecraft:stone_brick_stairs[facing={facing}] keep',
                       f'setblock ~{x} ~-1 ~{-sign} minecraft:stone_brick_stairs[facing={facing}] keep']
-        lines += [title(label,color,tag,z=2.5*sign),"return 1"]
+        lines += ([] if key == "expediciones" else [title(label,color,tag,z=2.5*sign)]) + ["return 1"]
         fn(name,[f'execute align xyz run function astral:ambiente/{name}/build']);fn(name+"/build",lines)
 
     for key,theme in THEMES.items():module(key,theme);module(key,theme,reverse=True)

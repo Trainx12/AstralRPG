@@ -131,6 +131,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Brujita Estelar',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "2":
       DisplayName: "<gold><bold>Montura voladora: Pterodactilo"
       DisplayItem: "phantom_spawn_egg"
@@ -158,6 +159,7 @@ Crate:
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "3":
       DisplayName: "<gold><bold>Mascota 3D: Fenix"
       DisplayItem: "paper"
@@ -186,6 +188,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "4":
       DisplayName: "<light_purple><bold>Mascota 3D: Bombardero Musgoso"
       DisplayItem: "creeper_spawn_egg"
@@ -214,6 +217,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Bombardero Musgoso',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "5":
       DisplayName: "<light_purple><bold>Mascota 3D: Zorro Encapuchado"
       DisplayItem: "fox_spawn_egg"
@@ -242,6 +246,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Zorro Encapuchado',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "6":
       DisplayName: "<light_purple><bold>Mascota 3D: Cubito de Micelio"
       DisplayItem: "mycelium"
@@ -270,6 +275,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Cubito de Micelio',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "7":
       DisplayName: "<light_purple><bold>Mascota 3D: Honguito Errante"
       DisplayItem: "red_mushroom"
@@ -298,6 +304,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Honguito Errante',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "8":
       DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
       DisplayItem: "parrot_spawn_egg"
@@ -325,6 +332,7 @@ Crate:
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "9":
       DisplayName: "<light_purple><bold>Barril de Experiencia"
       DisplayItem: "paper"
@@ -351,3 +359,4 @@ Crate:
         - "loot give %player% loot astral:item/barril_xp"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Barril de Experiencia',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"

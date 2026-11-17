@@ -131,6 +131,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Brujita Estelar',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "2":
       DisplayName: "<gold><bold>Montura voladora: Pterodactilo"
       DisplayItem: "phantom_spawn_egg"
@@ -158,6 +159,7 @@ Crate:
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Pterodactilo',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "3":
       DisplayName: "<gold><bold>Mascota 3D: Fenix"
       DisplayItem: "paper"
@@ -186,6 +188,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "4":
       DisplayName: "<light_purple><bold>Mascota 3D: Bombardero Musgoso"
       DisplayItem: "creeper_spawn_egg"
@@ -214,6 +217,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Bombardero Musgoso',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "5":
       DisplayName: "<light_purple><bold>Mascota 3D: Zorro Encapuchado"
       DisplayItem: "fox_spawn_egg"
@@ -242,6 +246,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Zorro Encapuchado',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "6":
       DisplayName: "<light_purple><bold>Mascota 3D: Cubito de Micelio"
       DisplayItem: "mycelium"
@@ -270,6 +275,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Cubito de Micelio',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "7":
       DisplayName: "<light_purple><bold>Mascota 3D: Honguito Errante"
       DisplayItem: "red_mushroom"
@@ -298,6 +304,7 @@ Crate:
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Honguito Errante',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "8":
       DisplayName: "<light_purple><bold>Montura voladora: Gran Ave"
       DisplayItem: "parrot_spawn_egg"
@@ -325,6 +332,7 @@ Crate:
         - "give %player% minecraft:saddle 1"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Montura voladora: Gran Ave',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "9":
       DisplayName: "<light_purple><bold>Barril de Experiencia"
       DisplayItem: "paper"
@@ -351,6 +359,7 @@ Crate:
         - "loot give %player% loot astral:item/barril_xp"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Barril de Experiencia',color:'white'}]"
+        - "astralgacha %player% gacha_monturas ack false"
     "10":
       DisplayName: "<aqua><bold>Mascota 3D: Ghastito de Nube"
       DisplayItem: "ghast_spawn_egg"
@@ -375,6 +384,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.ghastito true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "11":
       DisplayName: "<aqua><bold>Mascota 3D: Canonero de Bolsillo"
       DisplayItem: "fire_charge"
@@ -399,6 +409,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.canonero true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "12":
       DisplayName: "<aqua><bold>Mascota 3D: Saqueador Elegante"
       DisplayItem: "pillager_spawn_egg"
@@ -423,6 +434,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.saqueador true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "13":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de la Jungla"
       DisplayItem: "jungle_sapling"
@@ -447,6 +459,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.jungla true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "14":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito Frondoso"
       DisplayItem: "moss_block"
@@ -471,6 +484,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.frondoso true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "15":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de Nieve"
       DisplayItem: "snowball"
@@ -495,6 +509,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.nieve true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "16":
       DisplayName: "<aqua><bold>Mascota 3D: Cubito de Pantano"
       DisplayItem: "lily_pad"
@@ -519,6 +534,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.pantano true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "17":
       DisplayName: "<aqua><bold>Montura: Grillo Saltarin"
       DisplayItem: "silverfish_spawn_egg"
@@ -542,6 +558,7 @@ Crate:
       Commands:
         - "mm egg give %player% astral_grillo 1"
         - "give %player% minecraft:saddle 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "18":
       DisplayName: "<aqua><bold>Montura: Chocobo"
       DisplayItem: "camel_spawn_egg"
@@ -565,6 +582,7 @@ Crate:
       Commands:
         - "mm egg give %player% astral_chocobo 1"
         - "give %player% minecraft:saddle 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "19":
       DisplayName: "<green><bold>Montura: Lagarto (nada)"
       DisplayItem: "frog_spawn_egg"
@@ -588,6 +606,7 @@ Crate:
       Commands:
         - "mm egg give %player% astral_lagarto 1"
         - "give %player% minecraft:saddle 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "20":
       DisplayName: "<green><bold>Montura: Escarabajo Azul"
       DisplayItem: "endermite_spawn_egg"
@@ -611,6 +630,7 @@ Crate:
       Commands:
         - "mm egg give %player% astral_escarabajo 1"
         - "give %player% minecraft:saddle 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "21":
       DisplayName: "<green><bold>Frasco de Experiencia Grande"
       DisplayItem: "paper"
@@ -633,6 +653,7 @@ Crate:
       Weight: 2.4624
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_grande"
+        - "astralgacha %player% gacha_monturas ack false"
     "22":
       DisplayName: "<green><bold>Frasco de Experiencia Gigante"
       DisplayItem: "paper"
@@ -655,6 +676,7 @@ Crate:
       Weight: 1.368
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_gigante"
+        - "astralgacha %player% gacha_monturas ack false"
     "23":
       DisplayName: "<white><bold>Mascota 3D: Llamita Viajera"
       DisplayItem: "llama_spawn_egg"
@@ -679,6 +701,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.llamita true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "24":
       DisplayName: "<white><bold>Mascota 3D: Pequeno Hondero"
       DisplayItem: "slime_ball"
@@ -703,6 +726,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.hondero true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "25":
       DisplayName: "<white><bold>Mascota 3D: Cubito del Desierto"
       DisplayItem: "sand"
@@ -727,6 +751,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.desierto true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "26":
       DisplayName: "<white><bold>Mascota 3D: Cubito de Pradera"
       DisplayItem: "wheat"
@@ -751,6 +776,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.pradera true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "27":
       DisplayName: "<white><bold>Mascota 3D: Cubito de Sabana"
       DisplayItem: "acacia_sapling"
@@ -775,6 +801,7 @@ Crate:
         - "lp user %player% permission set astral.mascota.sabana true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "astralgacha %player% gacha_monturas ack false"
     "28":
       DisplayName: "<white><bold>Criatura: Mapache Rabioso"
       DisplayItem: "fox_spawn_egg"
@@ -797,6 +824,7 @@ Crate:
       Weight: 4.0445
       Commands:
         - "mm egg give %player% astral_mapache 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "29":
       DisplayName: "<white><bold>Criatura: Pinguino de Hielo"
       DisplayItem: "chicken_spawn_egg"
@@ -819,6 +847,7 @@ Crate:
       Weight: 4.0445
       Commands:
         - "mm egg give %player% astral_pinguino 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "30":
       DisplayName: "<white><bold>Montura extra (silla)"
       DisplayItem: "saddle"
@@ -841,6 +870,7 @@ Crate:
       Weight: 2.0222
       Commands:
         - "give %player% minecraft:saddle 2"
+        - "astralgacha %player% gacha_monturas ack false"
     "31":
       DisplayName: "<white><bold>Frasco de Experiencia Pequeno"
       DisplayItem: "paper"
@@ -863,6 +893,7 @@ Crate:
       Weight: 2.4267
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_pequeno"
+        - "astralgacha %player% gacha_monturas ack false"
     "32":
       DisplayName: "<dark_gray><bold>Un punado de tierra x4"
       DisplayItem: "dirt"
@@ -885,6 +916,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:dirt 4"
+        - "astralgacha %player% gacha_monturas ack false"
     "33":
       DisplayName: "<dark_gray><bold>Ramitas sueltas x3"
       DisplayItem: "stick"
@@ -907,6 +939,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:stick 3"
+        - "astralgacha %player% gacha_monturas ack false"
     "34":
       DisplayName: "<dark_gray><bold>Comida dudosa x2"
       DisplayItem: "rotten_flesh"
@@ -929,6 +962,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:rotten_flesh 2"
+        - "astralgacha %player% gacha_monturas ack false"
     "35":
       DisplayName: "<dark_gray><bold>Un hueso viejo x1"
       DisplayItem: "bone"
@@ -951,6 +985,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:bone 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "36":
       DisplayName: "<dark_gray><bold>Plumas sueltas x2"
       DisplayItem: "feather"
@@ -973,6 +1008,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:feather 2"
+        - "astralgacha %player% gacha_monturas ack false"
     "37":
       DisplayName: "<dark_gray><bold>Semillas al azar x5"
       DisplayItem: "wheat_seeds"
@@ -995,6 +1031,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:wheat_seeds 5"
+        - "astralgacha %player% gacha_monturas ack false"
     "38":
       DisplayName: "<dark_gray><bold>Retazo de cuero x1"
       DisplayItem: "leather"
@@ -1017,6 +1054,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:leather 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "39":
       DisplayName: "<dark_gray><bold>Bota perdida x1"
       DisplayItem: "leather_boots"
@@ -1039,6 +1077,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:leather_boots[damage=64] 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "40":
       DisplayName: "<dark_gray><bold>Botella vacia x1"
       DisplayItem: "glass_bottle"
@@ -1061,6 +1100,7 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:glass_bottle 1"
+        - "astralgacha %player% gacha_monturas ack false"
     "41":
       DisplayName: "<dark_gray><bold>Paja de consuelo x1"
       DisplayItem: "hay_block"
@@ -1083,3 +1123,4 @@ Crate:
       Weight: 5.1163
       Commands:
         - "give %player% minecraft:hay_block 1"
+        - "astralgacha %player% gacha_monturas ack false"

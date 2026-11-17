@@ -70,7 +70,7 @@ def carteles():
     from lobby import NPC_POS
     mx, my, mz, _ = NPC_POS['astral_npc_minas']
     # 15/11/2026: el dueno pidio borrar los de Infinita y Trainx del lobby; los vuelve a poner con /ranking cartel.
-    out += [('minas', 'minecraft:lobby', mx, my + 3.4, mz + 2.5)]
+    out += [('minas', 'minecraft:lobby', mx - 5, my + 2.8, mz + 1)]
     from santuario_azeroth import ARRIVAL, WORLD
     out.append(('trainx', f'minecraft:{WORLD}', ARRIVAL[0], ARRIVAL[1] + 2.5, ARRIVAL[2] + 3))
     from bosque_talar import SPAWN

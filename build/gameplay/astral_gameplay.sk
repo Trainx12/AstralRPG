@@ -278,6 +278,8 @@ on player jump key release:
 on player jump key press:
     if astral_dungeon(world of player) is true:
         stop
+    if name of world of player is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+        stop
     if gamemode of player is not survival:
         if gamemode of player is not adventure:
             stop

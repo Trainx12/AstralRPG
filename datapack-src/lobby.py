@@ -12,7 +12,7 @@ y en ../build/mythicmobs/skills/gachas.yml lo que hace el vendedor: cobra con Va
 """
 import os
 
-from minas import sidebar as mines_sidebar
+from minas import sidebar as mines_sidebar, LOBBY_NPC
 from sidebar import (MUTED, PURPLE, TEXT, board, condition, location_conditions,
                      meter, ref, score, section, steps, bar, weekday_replacements, playtime_conditions, TITLE, DIVIDER, SERVER_ROWS)
 
@@ -37,7 +37,7 @@ NPC_POS = {
     "astral_npc_gacha_cosmeticos": (208.5, 101, 197.5, 90),   # el del sur
     "astral_npc_viajero": (178.0, 98, 190.0, 180),      # union de los cuatro bloques marcados
     "astral_npc_cronista": (189.454, 102, 218.495, 90.7),
-    "astral_npc_minas": (146.511, 102, 237.506, 270.1),
+    "astral_npc_minas": LOBBY_NPC,
     "astral_npc_arena": (167.548, 102, 218.504, -89.6),
     "astral_npc_portales": (211.434, 105, 237.492, 90.0),
 }
@@ -320,7 +320,7 @@ def crate_yml(gid, g, garantia=False, suerte=False):
               "        - " + dq("<dark_gray>━━━━━━━━━━━━━━━━━━"),
               "        - " + dq("<dark_gray>Clic al vendedor para tirar (" + str(g["cost"]) + "$)"),
               "        - " + dq("<dark_purple>Garantia: <light_purple>Epico seguro cada " + str(PITY[gid]) + " tiradas"),
-              "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c2) for c2 in cm]
+              "      Weight: %s" % weight, "      Commands:"] + ["        - " + dq(c2) for c2 in cm + [f"astralgacha %player% {gid} ack false"]]
     return "\n".join(L) + "\n"
 
 
@@ -522,19 +522,20 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
 # 15/11/2026: Venta, Subastas, Tienda y Forja mas grandes (ESCALA_GRANDE), como los de Mini Juegos y Survival.
 ESCALA_GRANDE = 1.7
 NAME_HOLOS = {
-    "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.9),
+    "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.5),
     "astral_npc_subastas": ("Subastas", "#FFAA00", "Comprá y vendé entre jugadores", 3.0),
     "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", 3.0),
     "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
     "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
     "astral_npc_cronista": ("Cronista", "#55FFFF", "Misiones diarias e historia", 2.8),
-    "astral_npc_bazar": ("Bazar", "#FFAA00", "Mercado y subastas", 2.9),
-    "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", 2.6),
+    "astral_npc_bazar": ("Bazar del Refugio", "#55FF55", "Mercado y subastas", 2.5),
+    "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", 2.5),
 }
-GRANDES = {"astral_npc_venta", "astral_npc_subastas", "astral_npc_tienda", "astral_npc_herrero"}
+GRANDES = {"astral_npc_bazar", "astral_npc_venta", "astral_npc_subastas", "astral_npc_tienda", "astral_npc_herrero"}
 # Carteles sueltos (sin NPC), donde los pidio el dueno: (titulo, color, subtitulo, x, y, z).
 CARTELES_SUELTOS = {
+    "expediciones": ("Expediciones Astrales", "#FF7BD5", "Habla con el guardian", 178.699, 109.727, 225.649),
     "minijuegos": ("Mini Juegos", "#55FF55", "Parkour, droppers y Color Escape", 136.7, 109.4, 161.7),
     "survival": ("Mundo Survival", "#7ED957", "Tomá el tren", 109.0, 109.8, 191.9),
 }
@@ -543,7 +544,8 @@ CARTELES_SUELTOS = {
 def holo_cmds():
     import json
     out = ["# --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)",
-           f"execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral_holo]"]
+           f"execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral_holo]",
+           f'execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral.amb.expediciones]']
     for gid, g in GACHAS.items():
         x, y, z, _ = NPC_POS["astral_npc_" + gid]
         col = HOLO_COLOR[gid]
@@ -567,7 +569,8 @@ def holo_cmds():
         esc = ESCALA_GRANDE if npc in GRANDES else 1
         tr = (f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],"
               f"right_rotation:[0f,0f,0f,1f]}}," if esc != 1 else "")
-        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height + (0.4 if esc != 1 else 0)} {z} "
+        offset = 0.4 if esc != 1 and npc not in {'astral_npc_venta', 'astral_npc_bazar', 'astral_npc_tienda'} else 0
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height + offset} {z} "
                    f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,{tr}"
                    f"line_width:200,text:{comp}}}")
     for key, (title, color, sub, x, y, z) in CARTELES_SUELTOS.items():
@@ -737,6 +740,19 @@ def main():
     os.makedirs(mob_dir, exist_ok=True)
     with open(os.path.join(mob_dir, "lobby.yml"), "w", encoding="utf-8") as f:
         f.write(movement_mob())
+    from rankings import comandos as ranking_commands
+    ranking = next(line for line in ranking_commands().splitlines() if 'astral_rank_minas' in line)
+    with open(os.path.join(OUT, 'carteles-17-11.txt'), 'w', encoding='utf-8') as f:
+        f.write('\n'.join(holo_cmds() + [
+            'execute in minecraft:lobby run minecraft:kill @e[type=minecraft:text_display,tag=astral_rank_minas]', ranking]) + '\n')
+    with open(os.path.join(OUT, 'CrazyCrates', 'config-cambios.md'), 'w', encoding='utf-8') as f:
+        f.write('# CrazyCrates: retirar Menu de las vitrinas\n\n'
+                'Aplicar solo `gui.toggle: false` sobre el config vigente del servidor.\n'
+                'Conservar todas las demas claves y las flechas de paginacion.\n\n'
+                'Desde la raiz: `python tools/configurar_crazycrates.py <copia-config-vigente> '
+                '--output .local/crazycrates-server/config-sin-menu.yml`.\n'
+                'Subir esa copia a `plugins/CrazyCrates/config.yml` y ejecutar `crates reload`.\n'
+                'El config completo y el JAR de terceros permanecen privados.\n')
     n = sum(len(g["rewards"]()) for g in GACHAS.values())
     print(f"lobby: {len(GACHAS)} gachas ({n} premios), {len(NPC_POS)} vendedores -> {os.path.abspath(OUT)}")
 

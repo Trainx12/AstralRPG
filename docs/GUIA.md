@@ -1,3 +1,13 @@
+# Gachas, carteles y doble salto - 17/11/2026
+
+Entrega preparada, sin despliegue: [gachas-carteles-17-11](../build/deploy/gachas-carteles-17-11.md).
+AstralDecor 1.17.0 evalua el pity premio por premio y conserva los lotes pendientes;
+instalar junto a las doce cajas y los tres menus. Parche privado: solo `gui.toggle: false`.
+Carteles: ejecutar `build/lobby/carteles-17-11.txt`; no ejecutar el setup completo.
+Doble salto desactivado en todos los mini juegos y arenas registrados.
+Paradise 3 conserva su largada original: diagnostico remoto y prueba jugando pendientes.
+Lista acumulada, hashes y reinicio en [pendiente-17-11](../build/deploy/pendiente-17-11.md).
+
 # Destello y Guia en pausa - 17/11/2026
 
 Lista acumulada vigente: [pendiente-17-11](../build/deploy/pendiente-17-11.md).

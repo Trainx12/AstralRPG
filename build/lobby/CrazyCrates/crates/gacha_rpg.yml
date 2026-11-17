@@ -129,6 +129,7 @@ Crate:
         - "loot give %player% loot astral:item/espada_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Espada V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "2":
       DisplayName: "<gold><bold>Baston V"
       DisplayItem: "paper"
@@ -155,6 +156,7 @@ Crate:
         - "loot give %player% loot astral:item/baston_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Baston V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "3":
       DisplayName: "<gold><bold>Arco V"
       DisplayItem: "paper"
@@ -181,6 +183,7 @@ Crate:
         - "loot give %player% loot astral:item/arco_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Arco V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "4":
       DisplayName: "<gold><bold>Hacha V"
       DisplayItem: "paper"
@@ -207,6 +210,7 @@ Crate:
         - "loot give %player% loot astral:item/hacha_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Hacha V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "5":
       DisplayName: "<gold><bold>Lanza V"
       DisplayItem: "paper"
@@ -233,6 +237,7 @@ Crate:
         - "loot give %player% loot astral:item/lanza_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Lanza V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "6":
       DisplayName: "<gold><bold>Guadana V"
       DisplayItem: "paper"
@@ -259,6 +264,7 @@ Crate:
         - "loot give %player% loot astral:item/guadana_5"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Guadana V',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "7":
       DisplayName: "<gold><bold>Chispa Astral x2"
       DisplayItem: "paper"
@@ -286,6 +292,7 @@ Crate:
         - "loot give %player% loot astral:item/chispa_astral"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Chispa Astral x2',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "8":
       DisplayName: "<gold><bold>Nucleo de Furia Pura"
       DisplayItem: "paper"
@@ -312,6 +319,7 @@ Crate:
         - "loot give %player% loot astral:item/nucleo_furia_pura"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Nucleo de Furia Pura',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "9":
       DisplayName: "<gold><bold>Guadana Umbria"
       DisplayItem: "paper"
@@ -338,6 +346,7 @@ Crate:
         - "loot give %player% loot astral:item/guadana_umbria"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Guadana Umbria',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "10":
       DisplayName: "<light_purple><bold>Nucleo Astral"
       DisplayItem: "paper"
@@ -364,6 +373,7 @@ Crate:
         - "loot give %player% loot astral:item/nucleo_astral"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Nucleo Astral',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "11":
       DisplayName: "<light_purple><bold>Gema Umbria Perfecta"
       DisplayItem: "paper"
@@ -390,6 +400,7 @@ Crate:
         - "loot give %player% loot astral:item/gema_umbria_perfecta"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Gema Umbria Perfecta',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "12":
       DisplayName: "<light_purple><bold>Gema Luminica Perfecta"
       DisplayItem: "paper"
@@ -416,6 +427,7 @@ Crate:
         - "loot give %player% loot astral:item/gema_luminica_perfecta"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Gema Luminica Perfecta',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "13":
       DisplayName: "<light_purple><bold>Espada IV"
       DisplayItem: "paper"
@@ -442,6 +454,7 @@ Crate:
         - "loot give %player% loot astral:item/espada_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Espada IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "14":
       DisplayName: "<light_purple><bold>Baston IV"
       DisplayItem: "paper"
@@ -468,6 +481,7 @@ Crate:
         - "loot give %player% loot astral:item/baston_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Baston IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "15":
       DisplayName: "<light_purple><bold>Arco IV"
       DisplayItem: "paper"
@@ -494,6 +508,7 @@ Crate:
         - "loot give %player% loot astral:item/arco_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Arco IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "16":
       DisplayName: "<light_purple><bold>Hacha IV"
       DisplayItem: "paper"
@@ -520,6 +535,7 @@ Crate:
         - "loot give %player% loot astral:item/hacha_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Hacha IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "17":
       DisplayName: "<light_purple><bold>Lanza IV"
       DisplayItem: "paper"
@@ -546,6 +562,7 @@ Crate:
         - "loot give %player% loot astral:item/lanza_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Lanza IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "18":
       DisplayName: "<light_purple><bold>Guadana IV"
       DisplayItem: "paper"
@@ -572,6 +589,7 @@ Crate:
         - "loot give %player% loot astral:item/guadana_4"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Guadana IV',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "19":
       DisplayName: "<light_purple><bold>Talisman de Vida III"
       DisplayItem: "paper"
@@ -598,6 +616,7 @@ Crate:
         - "loot give %player% loot astral:item/talisman_vida_3"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Talisman de Vida III',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "20":
       DisplayName: "<light_purple><bold>Talisman de Furia III"
       DisplayItem: "paper"
@@ -624,6 +643,7 @@ Crate:
         - "loot give %player% loot astral:item/talisman_furia_3"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Talisman de Furia III',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "21":
       DisplayName: "<light_purple><bold>Talisman de Roca III"
       DisplayItem: "paper"
@@ -650,6 +670,7 @@ Crate:
         - "loot give %player% loot astral:item/talisman_roca_3"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Talisman de Roca III',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "22":
       DisplayName: "<light_purple><bold>Talisman de Viento III"
       DisplayItem: "paper"
@@ -676,6 +697,7 @@ Crate:
         - "loot give %player% loot astral:item/talisman_viento_3"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Talisman de Viento III',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "23":
       DisplayName: "<light_purple><bold>Barril de Experiencia"
       DisplayItem: "paper"
@@ -702,6 +724,7 @@ Crate:
         - "loot give %player% loot astral:item/barril_xp"
         - "scoreboard players set %player% pity_rpg 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Armas',color:'#B07CFF'},{text:': ',color:'gray'},{text:'Barril de Experiencia',color:'white'}]"
+        - "astralgacha %player% gacha_rpg ack false"
     "24":
       DisplayName: "<aqua><bold>Cristal Refinado x1"
       DisplayItem: "paper"
@@ -724,6 +747,7 @@ Crate:
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/cristal_refinado"
+        - "astralgacha %player% gacha_rpg ack false"
     "25":
       DisplayName: "<aqua><bold>Gema Luminica x1"
       DisplayItem: "paper"
@@ -746,6 +770,7 @@ Crate:
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/gema_luminica"
+        - "astralgacha %player% gacha_rpg ack false"
     "26":
       DisplayName: "<aqua><bold>Corazon Shulker x1"
       DisplayItem: "paper"
@@ -768,6 +793,7 @@ Crate:
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/corazon_shulker"
+        - "astralgacha %player% gacha_rpg ack false"
     "27":
       DisplayName: "<aqua><bold>Alma Corrupta x1"
       DisplayItem: "paper"
@@ -790,6 +816,7 @@ Crate:
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/alma_corrupta"
+        - "astralgacha %player% gacha_rpg ack false"
     "28":
       DisplayName: "<aqua><bold>Netherita Reforzada x1"
       DisplayItem: "paper"
@@ -812,6 +839,7 @@ Crate:
       Weight: 0.8871
       Commands:
         - "loot give %player% loot astral:item/netherita_reforzada"
+        - "astralgacha %player% gacha_rpg ack false"
     "29":
       DisplayName: "<aqua><bold>Espada II"
       DisplayItem: "paper"
@@ -834,6 +862,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/espada_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "30":
       DisplayName: "<aqua><bold>Espada III"
       DisplayItem: "paper"
@@ -856,6 +885,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/espada_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "31":
       DisplayName: "<aqua><bold>Baston II"
       DisplayItem: "paper"
@@ -878,6 +908,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/baston_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "32":
       DisplayName: "<aqua><bold>Baston III"
       DisplayItem: "paper"
@@ -900,6 +931,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/baston_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "33":
       DisplayName: "<aqua><bold>Arco II"
       DisplayItem: "paper"
@@ -922,6 +954,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/arco_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "34":
       DisplayName: "<aqua><bold>Arco III"
       DisplayItem: "paper"
@@ -944,6 +977,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/arco_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "35":
       DisplayName: "<aqua><bold>Hacha II"
       DisplayItem: "paper"
@@ -966,6 +1000,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/hacha_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "36":
       DisplayName: "<aqua><bold>Hacha III"
       DisplayItem: "paper"
@@ -988,6 +1023,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/hacha_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "37":
       DisplayName: "<aqua><bold>Lanza II"
       DisplayItem: "paper"
@@ -1010,6 +1046,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/lanza_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "38":
       DisplayName: "<aqua><bold>Lanza III"
       DisplayItem: "paper"
@@ -1032,6 +1069,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/lanza_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "39":
       DisplayName: "<aqua><bold>Guadana II"
       DisplayItem: "paper"
@@ -1054,6 +1092,7 @@ Crate:
       Weight: 0.5323
       Commands:
         - "loot give %player% loot astral:item/guadana_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "40":
       DisplayName: "<aqua><bold>Guadana III"
       DisplayItem: "paper"
@@ -1076,6 +1115,7 @@ Crate:
       Weight: 0.2661
       Commands:
         - "loot give %player% loot astral:item/guadana_3"
+        - "astralgacha %player% gacha_rpg ack false"
     "41":
       DisplayName: "<aqua><bold>Talisman de Vida II"
       DisplayItem: "paper"
@@ -1098,6 +1138,7 @@ Crate:
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "42":
       DisplayName: "<aqua><bold>Talisman de Furia II"
       DisplayItem: "paper"
@@ -1120,6 +1161,7 @@ Crate:
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "43":
       DisplayName: "<aqua><bold>Talisman de Roca II"
       DisplayItem: "paper"
@@ -1142,6 +1184,7 @@ Crate:
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "44":
       DisplayName: "<aqua><bold>Talisman de Viento II"
       DisplayItem: "paper"
@@ -1164,6 +1207,7 @@ Crate:
       Weight: 0.4435
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_2"
+        - "astralgacha %player% gacha_rpg ack false"
     "45":
       DisplayName: "<green><bold>Cristal Arcano x1"
       DisplayItem: "paper"
@@ -1186,6 +1230,7 @@ Crate:
       Weight: 2.1186
       Commands:
         - "loot give %player% loot astral:item/cristal_arcano"
+        - "astralgacha %player% gacha_rpg ack false"
     "46":
       DisplayName: "<green><bold>Gema Umbria x1"
       DisplayItem: "paper"
@@ -1208,6 +1253,7 @@ Crate:
       Weight: 2.1186
       Commands:
         - "loot give %player% loot astral:item/gema_umbria"
+        - "astralgacha %player% gacha_rpg ack false"
     "47":
       DisplayName: "<green><bold>Esencia Elite x2"
       DisplayItem: "paper"
@@ -1231,6 +1277,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/esencia_elite"
         - "loot give %player% loot astral:item/esencia_elite"
+        - "astralgacha %player% gacha_rpg ack false"
     "48":
       DisplayName: "<green><bold>Nucleo Furia x1"
       DisplayItem: "paper"
@@ -1253,6 +1300,7 @@ Crate:
       Weight: 2.1186
       Commands:
         - "loot give %player% loot astral:item/nucleo_furia"
+        - "astralgacha %player% gacha_rpg ack false"
     "49":
       DisplayName: "<green><bold>Fragmento Astral x3"
       DisplayItem: "paper"
@@ -1277,6 +1325,7 @@ Crate:
         - "loot give %player% loot astral:item/fragmento_astral"
         - "loot give %player% loot astral:item/fragmento_astral"
         - "loot give %player% loot astral:item/fragmento_astral"
+        - "astralgacha %player% gacha_rpg ack false"
     "50":
       DisplayName: "<green><bold>Nucleo Eolico x1"
       DisplayItem: "paper"
@@ -1299,6 +1348,7 @@ Crate:
       Weight: 2.1186
       Commands:
         - "loot give %player% loot astral:item/nucleo_eolico"
+        - "astralgacha %player% gacha_rpg ack false"
     "51":
       DisplayName: "<green><bold>Madera Estelar x4"
       DisplayItem: "paper"
@@ -1324,6 +1374,7 @@ Crate:
         - "loot give %player% loot astral:item/madera_estelar"
         - "loot give %player% loot astral:item/madera_estelar"
         - "loot give %player% loot astral:item/madera_estelar"
+        - "astralgacha %player% gacha_rpg ack false"
     "52":
       DisplayName: "<green><bold>Shadowsteel x2"
       DisplayItem: "paper"
@@ -1347,6 +1398,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/shadowsteel"
         - "loot give %player% loot astral:item/shadowsteel"
+        - "astralgacha %player% gacha_rpg ack false"
     "53":
       DisplayName: "<green><bold>Talisman de Vida I"
       DisplayItem: "paper"
@@ -1369,6 +1421,7 @@ Crate:
       Weight: 1.2712
       Commands:
         - "loot give %player% loot astral:item/talisman_vida_1"
+        - "astralgacha %player% gacha_rpg ack false"
     "54":
       DisplayName: "<green><bold>Talisman de Furia I"
       DisplayItem: "paper"
@@ -1391,6 +1444,7 @@ Crate:
       Weight: 1.2712
       Commands:
         - "loot give %player% loot astral:item/talisman_furia_1"
+        - "astralgacha %player% gacha_rpg ack false"
     "55":
       DisplayName: "<green><bold>Talisman de Roca I"
       DisplayItem: "paper"
@@ -1413,6 +1467,7 @@ Crate:
       Weight: 1.2712
       Commands:
         - "loot give %player% loot astral:item/talisman_roca_1"
+        - "astralgacha %player% gacha_rpg ack false"
     "56":
       DisplayName: "<green><bold>Talisman de Viento I"
       DisplayItem: "paper"
@@ -1435,6 +1490,7 @@ Crate:
       Weight: 1.2712
       Commands:
         - "loot give %player% loot astral:item/talisman_viento_1"
+        - "astralgacha %player% gacha_rpg ack false"
     "57":
       DisplayName: "<green><bold>Frasco de Experiencia Grande"
       DisplayItem: "paper"
@@ -1457,6 +1513,7 @@ Crate:
       Weight: 1.9068
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_grande"
+        - "astralgacha %player% gacha_rpg ack false"
     "58":
       DisplayName: "<green><bold>Frasco de Experiencia Gigante"
       DisplayItem: "paper"
@@ -1479,6 +1536,7 @@ Crate:
       Weight: 1.0593
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_gigante"
+        - "astralgacha %player% gacha_rpg ack false"
     "59":
       DisplayName: "<white><bold>Cuero Tratado x4"
       DisplayItem: "paper"
@@ -1504,6 +1562,7 @@ Crate:
         - "loot give %player% loot astral:item/cuero_tratado"
         - "loot give %player% loot astral:item/cuero_tratado"
         - "loot give %player% loot astral:item/cuero_tratado"
+        - "astralgacha %player% gacha_rpg ack false"
     "60":
       DisplayName: "<white><bold>Palo Reforzado x2"
       DisplayItem: "paper"
@@ -1527,6 +1586,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/palo_reforzado"
         - "loot give %player% loot astral:item/palo_reforzado"
+        - "astralgacha %player% gacha_rpg ack false"
     "61":
       DisplayName: "<white><bold>Fragmento Cristal x4"
       DisplayItem: "paper"
@@ -1552,6 +1612,7 @@ Crate:
         - "loot give %player% loot astral:item/fragmento_cristal"
         - "loot give %player% loot astral:item/fragmento_cristal"
         - "loot give %player% loot astral:item/fragmento_cristal"
+        - "astralgacha %player% gacha_rpg ack false"
     "62":
       DisplayName: "<white><bold>Gema Umbria Fragmentada x2"
       DisplayItem: "paper"
@@ -1575,6 +1636,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/gema_umbria_fragmentada"
         - "loot give %player% loot astral:item/gema_umbria_fragmentada"
+        - "astralgacha %player% gacha_rpg ack false"
     "63":
       DisplayName: "<white><bold>Polvo Astral x2"
       DisplayItem: "paper"
@@ -1598,6 +1660,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/polvo_astral"
         - "loot give %player% loot astral:item/polvo_astral"
+        - "astralgacha %player% gacha_rpg ack false"
     "64":
       DisplayName: "<white><bold>Fragmento Umbrio x3"
       DisplayItem: "paper"
@@ -1622,6 +1685,7 @@ Crate:
         - "loot give %player% loot astral:item/fragmento_umbrio"
         - "loot give %player% loot astral:item/fragmento_umbrio"
         - "loot give %player% loot astral:item/fragmento_umbrio"
+        - "astralgacha %player% gacha_rpg ack false"
     "65":
       DisplayName: "<white><bold>Netherita Fundida x1"
       DisplayItem: "paper"
@@ -1644,6 +1708,7 @@ Crate:
       Weight: 6.5217
       Commands:
         - "loot give %player% loot astral:item/netherita_fundida"
+        - "astralgacha %player% gacha_rpg ack false"
     "66":
       DisplayName: "<white><bold>Esencia Nether x2"
       DisplayItem: "paper"
@@ -1667,6 +1732,7 @@ Crate:
       Commands:
         - "loot give %player% loot astral:item/esencia_nether"
         - "loot give %player% loot astral:item/esencia_nether"
+        - "astralgacha %player% gacha_rpg ack false"
     "67":
       DisplayName: "<white><bold>Frasco de Experiencia Pequeno"
       DisplayItem: "paper"
@@ -1689,3 +1755,4 @@ Crate:
       Weight: 7.8261
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_pequeno"
+        - "astralgacha %player% gacha_rpg ack false"

@@ -110,13 +110,7 @@ def gacha_menu(gid, g):
     for (_, slots), t in zip(regions(gid), TIRADAS):
         costo = g["cost"] * t
         cmds = ["[close]", f"[takemoney] {costo}", "[sound] BLOCK_AMETHYST_BLOCK_CHIME",
-                f"[console] scoreboard players add {P} {o} {t}",
-                f"[console] scoreboard players set {P} gachaflag 0",
-                f"[console] execute if score {P} {o} matches {n}.. run scoreboard players set {P} gachaflag 1",
-                f"[console] execute if score {P} gachaflag matches 1 run minecraft:tellraw {P} "
-                "{text:'Tirada garantizada! (Epico o Legendario seguro)',color:'light_purple',bold:true}",
-                f"[console] execute if score {P} gachaflag matches 1 run astralgacha {P} {gid} {t} true",
-                f"[console] execute unless score {P} gachaflag matches 1 run astralgacha {P} {gid} {t} false"]
+                f"[console] astralgacha {P} {gid} {t} false"]
         if t > 1:
             cmds += [f"[message] &7Gira la ruleta... cuando termine te llegan los otros &e{t - 1}&7 premios.",
                      f"[message] &aListo: &f{t} tiradas &aen la {name}.<delay={RULETA_TICKS + 2}>"]

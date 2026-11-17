@@ -17,7 +17,7 @@ def build(jdk,server):
         raise FileNotFoundError('Faltan dependencias Paper locales')
     compiler = [str(jdk/('java.exe' if os.name=='nt' else 'java')), '-m','jdk.compiler/com.sun.tools.javac.Main']
     subprocess.run([*compiler, '-encoding','UTF-8','-source','25','-target','25',
-        '-classpath',os.pathsep.join(str(p) for p in jars),'-d',str(target),str(ROOT/'datapack-src/runtime/AstralDecor.java'),str(ROOT/'datapack-src/runtime/AstralMerchant.java'),str(ROOT/'datapack-src/runtime/AstralMounts.java')],check=True)
+        '-classpath',os.pathsep.join(str(p) for p in jars),'-d',str(target),str(ROOT/'datapack-src/runtime/AstralDecor.java'),str(ROOT/'datapack-src/runtime/AstralMerchant.java'),str(ROOT/'datapack-src/runtime/AstralMounts.java'),str(ROOT/'datapack-src/runtime/AstralGacha.java')],check=True)
     dest=ROOT/'build/runtime/AstralDecor.jar'; dest.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(dest,'w',zipfile.ZIP_DEFLATED) as z:
         from correcciones_goblin import MERCHANT, MERCHANT_SPECIAL
@@ -31,7 +31,7 @@ def build(jdk,server):
         for p in sorted((target/'astral').glob('Astral*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(),(2026,11,10,0,0,0)),p.read_bytes())
         z.writestr(zipfile.ZipInfo('mesa.json',(2026,11,10,0,0,0)), (ROOT/'build/runtime/mesa.json').read_bytes())
-        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.16.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI, AuthMe, SkinsRestorer, AuraSkills]\ncommands:\n  astralmount:\n    description: Interaccion interna de monturas\n  astralchill:\n    description: Golpe helado interno\n  astralblink:\n    description: Teletransporte interno en el mismo mundo (solo consola)\n  astralmercader:\n    description: Compra interna del Goblin Mercader\n  astralgacha:\n    description: Tirada interna de consola\n  astralcosmetic:\n    usage: /astralcosmetic <sombrero> <clave|quitar>\n')
+        z.writestr(zipfile.ZipInfo('plugin.yml',(2026,11,10,0,0,0)), 'name: AstralDecor\nversion: 1.17.0\nmain: astral.AstralDecor\napi-version: \'26.1.2\'\nsoftdepend: [CrazyCrates, WorldGuard, MythicMobs, BetterModel, Vault, EconomyShopGUI, AuthMe, SkinsRestorer, AuraSkills]\ncommands:\n  astralmount:\n    description: Interaccion interna de monturas\n  astralchill:\n    description: Golpe helado interno\n  astralblink:\n    description: Teletransporte interno en el mismo mundo (solo consola)\n  astralmercader:\n    description: Compra interna del Goblin Mercader\n  astralgacha:\n    description: Tirada interna de consola\n  astralcosmetic:\n    usage: /astralcosmetic <sombrero> <clave|quitar>\n')
         from mobs.tanda3c import NPC_MODELOS, MAQUINAS, MAZMORRAS
         models={mid:'astral_npc_'+name for mid,name in NPC_MODELOS.items()}
         skills={mid:'AST_NPC_'+name for mid,name in NPC_MODELOS.items()}

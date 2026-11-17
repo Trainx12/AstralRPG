@@ -130,6 +130,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Titulo ASTRAL desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «ASTRAL»',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "2":
       DisplayName: "<gold><bold>Cabeza de Dragon"
       DisplayItem: "dragon_head"
@@ -156,6 +157,7 @@ Crate:
         - "give %player% minecraft:dragon_head 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cabeza de Dragon',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "3":
       DisplayName: "<light_purple><bold>Titulo «Campeon»"
       DisplayItem: "name_tag"
@@ -183,6 +185,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Titulo Campeon desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Campeon»',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "4":
       DisplayName: "<light_purple><bold>Titulo «Senor del Abismo»"
       DisplayItem: "name_tag"
@@ -210,6 +213,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Titulo Senor del Abismo desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Titulo «Senor del Abismo»',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "5":
       DisplayName: "<light_purple><bold>Cabeza de Frankenstein"
       DisplayItem: "paper"
@@ -237,6 +241,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Cabeza de Frankenstein desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cabeza de Frankenstein',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "6":
       DisplayName: "<light_purple><bold>Sombrero de Bruja"
       DisplayItem: "paper"
@@ -264,6 +269,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Sombrero de Bruja desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Sombrero de Bruja',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "7":
       DisplayName: "<light_purple><bold>Cuernos de Diablo"
       DisplayItem: "paper"
@@ -291,6 +297,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Cuernos de Diablo desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Cuernos de Diablo',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "8":
       DisplayName: "<light_purple><bold>Capucha de Ilusionista"
       DisplayItem: "paper"
@@ -318,6 +325,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Capucha de Ilusionista desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Capucha de Ilusionista',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "9":
       DisplayName: "<light_purple><bold>Capucha de Vindicador"
       DisplayItem: "paper"
@@ -345,6 +353,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Capucha de Vindicador desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Capucha de Vindicador',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "10":
       DisplayName: "<light_purple><bold>Sombrero de Carnivora"
       DisplayItem: "paper"
@@ -372,6 +381,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Sombrero de Carnivora desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Sombrero de Carnivora',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "11":
       DisplayName: "<light_purple><bold>Barril Viajero"
       DisplayItem: "paper"
@@ -399,6 +409,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Barril Viajero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Barril Viajero',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "12":
       DisplayName: "<light_purple><bold>Rueda de Madera"
       DisplayItem: "paper"
@@ -426,6 +437,7 @@ Crate:
         - "tellraw %player% {\"text\":\"Rueda de Madera desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Rueda de Madera',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "13":
       DisplayName: "<light_purple><bold>Molde de adorno: silence"
       DisplayItem: "silence_armor_trim_smithing_template"
@@ -452,6 +464,7 @@ Crate:
         - "give %player% minecraft:silence_armor_trim_smithing_template 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Molde de adorno: silence',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"
     "14":
       DisplayName: "<light_purple><bold>Barril de Experiencia"
       DisplayItem: "paper"
@@ -478,3 +491,4 @@ Crate:
         - "loot give %player% loot astral:item/barril_xp"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Barril de Experiencia',color:'white'}]"
+        - "astralgacha %player% gacha_cosmeticos ack false"

@@ -26,6 +26,7 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 public final class AstralDecor extends JavaPlugin implements Listener {
     private AstralMounts mounts;
     private AstralMerchant merchant;
+    private AstralGacha gacha;
     private final Map<String,Integer> consumableXP = new HashMap<>();
     private int luckSeconds;
     private String luckFactor, luckDetail;
@@ -443,19 +444,13 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             while(sender instanceof org.bukkit.command.ProxiedCommandSender proxy)sender=proxy.getCaller();
             if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=4)return true;
             Player target=Bukkit.getPlayerExact(args[0]);
-            if(target==null || !authenticated(target) || !Set.of("gacha_rpg","gacha_monturas","gacha_cosmeticos").contains(args[1]))return true;
+            if(target==null || !Set.of("gacha_rpg","gacha_monturas","gacha_cosmeticos").contains(args[1]))return true;
+            if(args[2].equals("ack")){gacha.ack(target,args[1]);return true;}
+            if(!authenticated(target))return true;
             int count;
             try {count=Integer.parseInt(args[2]);}catch(NumberFormatException ex){return true;}
             if(!Set.of(1,10,25,50).contains(count))return true;
-            boolean lucky=target.getPersistentDataContainer().getOrDefault(luckUntilKey,PersistentDataType.LONG,0L)>System.currentTimeMillis();
-            String normal=args[1]+(lucky?"_suerte":"");
-            String first=args[1]+(Boolean.parseBoolean(args[3])?"_garantia":"")+(lucky?"_suerte":"");
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"crates forceopen "+first+" "+target.getName());
-            if(count>1)getServer().getScheduler().runTaskLater(this,()->{
-                // Snapshot del lote: no se mezclan llaves normales y con suerte al vencer el efecto.
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"crates give virtual "+normal+" "+(count-1)+" "+target.getName()+" -s");
-                if(target.isOnline())Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"sudo "+target.getName()+" crates mass-open "+normal+" virtual "+(count-1));
-            },140);
+            gacha.enqueue(target,args[1],count);
             return true;
         }
         if(!(sender instanceof Player p))return true;
@@ -630,6 +625,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
+        gacha=new AstralGacha(this);
         mounts=new AstralMounts(this);
         merchant=new AstralMerchant(this);
         loadConsumables();
@@ -812,7 +808,9 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             if(registry==null) continue;
             var tracker=registry.tracker(model);
             if(tracker==null) continue;
-            boolean visible=!getConfig().getStringList("hidden-npcs").contains(mid);
+            boolean lobbySign=Set.of("astral_npc_venta","astral_npc_bazar","astral_npc_tienda").contains(mid);
+            boolean visible=!lobbySign && !getConfig().getStringList("hidden-npcs").contains(mid);
+            if(lobbySign)entity.setCustomNameVisible(false);
             for(var bone:tracker.bones()) if(bone.getNametag()!=null) {
                 // BetterModel usa su propio flag, separado de CustomNameVisible de Bukkit.
                 bone.getNametag().alwaysVisible(visible);

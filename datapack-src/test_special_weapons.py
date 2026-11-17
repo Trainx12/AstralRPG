@@ -5,7 +5,7 @@ import unittest
 import zipfile
 from special_weapons import WEAPONS
 from special_weapons3d import MODELS
-from varitas3d import check
+from varitas3d import check, WANDS
 
 ROOT=Path(__file__).resolve().parent.parent
 
@@ -23,8 +23,9 @@ class SpecialWeaponTests(unittest.TestCase):
                 for iid in WEAPONS:self.assertNotIn('astral:item/'+iid+'"',data)
 
     def test_every_weapon_has_a_resolved_animated_model(self):
-        self.assertEqual({iid for iid, w in WEAPONS.items() if not w.get('model', '').startswith('minecraft:')}, {w.iid for w in MODELS})
-        self.assertEqual(check(MODELS),[])
+        models = {w.iid: w for w in [*MODELS, *WANDS] if w.iid in WEAPONS}
+        self.assertEqual({iid for iid, w in WEAPONS.items() if not w.get('model', '').startswith('minecraft:')}, set(models))
+        self.assertEqual(check(list(models.values())),[])
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as z:
             for iid, weapon in WEAPONS.items():
                 if weapon.get('model', '').startswith('minecraft:'):
@@ -32,7 +33,7 @@ class SpecialWeaponTests(unittest.TestCase):
                 item=json.loads(z.read(f'assets/astral/items/{iid}.json'))
                 model=item['model']['model'].replace('astral:','assets/astral/models/')+'.json'
                 self.assertTrue(json.loads(z.read(model))['elements'])
-                self.assertIn(f'assets/astral/textures/item/armas3d/{iid}.png.mcmeta',z.namelist())
+                self.assertIn(f'assets/astral/textures/{models[iid].tex_dir}/{iid}.png.mcmeta',z.namelist())
 
     def test_weapon_stats_and_auraskills_interaction_marker_survive_export(self):
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:

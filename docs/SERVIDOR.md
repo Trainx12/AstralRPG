@@ -1,3 +1,12 @@
+# Gachas y lobby - 17/11/2026 (sin desplegar)
+
+AstralDecor 1.17.0, doce cajas y tres menus nuevos se instalan juntos con reinicio.
+Pity en orden por premio, carteles del lobby corregidos y sin doble salto en mini juegos/arenas.
+`gui.toggle: false` retira Menu de las vitrinas (parche sobre el config vigente, `crates reload`).
+Archivos, comandos de limpieza y diagnostico pendiente de Paradise 3:
+[gachas-carteles-17-11](../build/deploy/gachas-carteles-17-11.md), incluido en la entrega acumulada.
+No se certifica despliegue ni reparacion del boton sin revisar el servidor con cliente.
+
 # Efectos: direccion e interruptores - 17/11/2026
 
 AstralEfectos 1.2.0 preparado, sin desplegar: [entrega y archivos exactos](../build/deploy/efectos-direccion-interruptores.md).
