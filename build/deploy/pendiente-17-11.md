@@ -163,3 +163,96 @@ Unico FINAL `.local/terceros/AstralRPG-privado/build/entregas/cascos-silencio-me
 ## Bastones perforantes y golemcitos (ultima entrega)
 
 Lista exacta y hashes: [bastones-golems-17-11](bastones-golems-17-11.md). AstralDecor 1.20.0, AstralEfectos 1.4.0, datapack v26 y script PvP. FINAL privado `.local/terceros/AstralRPG-privado/build/entregas/bastones-golems-17-11/AstralRPG-Textures.zip`; SHA-1 `5448b7ff24d6da012cc08de16a0d74b11b23a2e0`, encima de `9d83b49323139271250519fbfd7df7f65857d730`. Apagar y reiniciar. R2, servidor y cliente pendientes de Claude; no hay despliegue verificado. Ver la distincion tarea/acumulado antes de combinar con Chaman/hitboxes. No sustituir mundos.
+
+<!-- PP3-SALA5-START -->
+## Paradise 3: sala de Y45 (nivel 5) — 17/11/2026
+
+Implementacion local preparada; instalacion y prueba jugando pendientes de Claude con navegador.
+Original y copia preparada tienen el boton en `-52 45 858`, sobre cuarzo liso en Y44,
+`stone_button[face=floor,facing=south,powered=false]`. La conversion no lo perdio.
+El boton activa `-52 42 861` (redstone) desde `pp3_main:levels/level5/tick`;
+los pistones del pasillo dependen de esa salida. Primera placa: `-52 45 840`;
+segunda placa: `-37 45 865`. Ambas mitades habilitan el portal de `-45..-44 51 856..857`.
+El autor elimina boton/placas al completar la mitad: su ausencia puede ser normal.
+No hay command blocks en la caja x -60..-40, y 40..55, z 840..870; lo controla el datapack.
+
+Se agrega recuperacion antes del tick de sala 5: repone solo aire, con el piso original
+sin completar y sin el tag de progreso en el marcador console. No reinicia la sala,
+no apaga botones presionados ni pisa un bloque inesperado. La causa remota sigue sin confirmar.
+Inventario de los 83 controles, orientaciones y funciones: [pp3-mecanismos-17-11](pp3-mecanismos-17-11.md).
+Geometria completa identica y 23 command blocks correctamente traducidos en la copia local.
+Las reglas generadas ya incluyen `use allow` e `interact allow`; comprobar las vigentes.
+No se encontro otro control perdido en la conversion. Niveles 66/81 tambien retiran placas
+temporalmente: conservar sus secuencias, no restaurar el inventario en masa.
+
+### Archivos exactos y version
+
+Regenerar desde raiz: `python datapack-src/minijuegos_datapack.py parkour_paradise3`.
+Este delta es independiente de los JAR/Items/pack pendientes de otras tandas.
+No instalar el mundo ZIP ni el datapack completo para esta reparacion.
+
+Archivo privado `.local/mapas/subir/pp3-sala5-17-11.zip` (5 funciones). SHA-256:
+`b1a4f11f815347085860045ab2b65aae44b9022d2b006bd211e0ffa7e1a6d81d`.
+
+Con servidor apagado, respaldar los cinco destinos existentes desde Files y
+descomprimir el delta DENTRO de `world/datapacks/parkour_paradise3-datapack/`,
+o copiar estos archivos individualmente. No dejar el delta ZIP en `world/datapacks/`:
+no es un pack independiente y duplicaria funciones. Verificar que no exista otra copia activa de PP3.
+
+| Archivo local | Destino | SHA-256 |
+|---|---|---|
+| `.local/mapas/subir/pp3-sala5-17-11/data/pp3_main/function/levels/level5/tick.mcfunction` | `world/datapacks/parkour_paradise3-datapack/data/pp3_main/function/levels/level5/tick.mcfunction` | `86d473d232f441b392bd15f78e351eaf6fe3bde66f20fae96c349c6521360cd9` |
+| `.local/mapas/subir/pp3-sala5-17-11/data/pp3_main/function/astral/recuperar_sala5.mcfunction` | `world/datapacks/parkour_paradise3-datapack/data/pp3_main/function/astral/recuperar_sala5.mcfunction` | `e37c9396aba998fea894c370996ff3422bb9b26e36a23a045e980390e274a34f` |
+| `.local/mapas/subir/pp3-sala5-17-11/data/pp3_main/function/astral/reparar_sala5.mcfunction` | `world/datapacks/parkour_paradise3-datapack/data/pp3_main/function/astral/reparar_sala5.mcfunction` | `f810e7ff9a9687312641636d5ec03c4b0b678a3e9ec988a094f0adb54d429c73` |
+| `.local/mapas/subir/pp3-sala5-17-11/data/pp3_main/function/astral/diagnostico_sala5.mcfunction` | `world/datapacks/parkour_paradise3-datapack/data/pp3_main/function/astral/diagnostico_sala5.mcfunction` | `e6feb06a7b75fdefa6b0bc4998a0a7f16e11eb388b4483f40252f2b799b38224` |
+| `.local/mapas/subir/pp3-sala5-17-11/data/pp3_main/function/astral/diagnostico.mcfunction` | `world/datapacks/parkour_paradise3-datapack/data/pp3_main/function/astral/diagnostico.mcfunction` | `118b90e6d67e637597c494d1f8dbed41e762edb5048c8132524f9216c41be2e9` |
+
+Reiniciar tras copiar el datapack (apagado/inicio completo). No requiere R2 ni recargas de plugins.
+Solo corregir flags o reponer un bloque desde consola no requiere apagar ni reiniciar.
+No sustituir mundos, regiones ni `level.dat`; nunca Worlds > Upload en la fila world.
+
+### Consola y comprobacion remota
+
+Con el jugador cerca de la sala para cargar sus chunks, ejecutar primero el diagnostico
+y guardar su salida. Los comandos de funcion siguientes requieren los archivos nuevos:
+
+```text
+rg info -w parkour_paradise3 __global__
+rg flag -w parkour_paradise3 __global__ use allow
+rg flag -w parkour_paradise3 __global__ interact allow
+function pp3_main:astral/diagnostico_sala5
+function pp3_main:astral/reparar_sala5
+function pp3_main:astral/diagnostico_sala5
+```
+
+Conservar `build deny`, `block-place deny` y `block-break deny`: no hace falta colocar objetos.
+Si otra region se superpone, revisar `rg info` para esa region: un deny de mayor prioridad
+puede bloquear el uso aunque __global__ permita. No cambiar regiones ajenas sin diagnostico.
+Si console falta o las tareas estan detenidas, revisar consola/errores y el
+`forceload query -34 766` del diagnostico; no invocar la reparacion como jugador
+(los tags de progreso pertenecen al marcador). No inventar un marcador duplicado.
+
+Rescate minimo sin subir archivos, solo si diagnostico confirma boton ausente,
+cuarzo y primera mitad sin completar, y console sin lvl5_first. Con jugador en la sala:
+
+```text
+execute in minecraft:parkour_paradise3 as @e[type=marker,name=console,limit=1,distance=0..,tag=!lvl5_first] if block -52 44 858 minecraft:smooth_quartz if block -52 44 842 minecraft:air if block -52 45 858 minecraft:air run setblock -52 45 858 minecraft:stone_button[face=floor,facing=south,powered=false]
+```
+
+Si hay piedra u otro bloque donde iba el boton, el parche deliberadamente no lo pisa:
+confirmar primero ese estado remoto y compararlo con el inventario original.
+Si ya hay vidrio amarillo, la primera mitad esta completada y no corresponde reponer el boton.
+Probar con jugador SIN OP en aventura: presionar boton, comprobar pistones/temporizacion,
+alcanzar la placa norte, completar tramo de lava y cruzar portal. Revisar consola sin errores.
+Repetir una entrada posterior para verificar reset original y probar niveles 19/29/40/61/66/78/81
+para interacciones y retiradas temporales. El ensayo local no certifica estos recorridos remotos.
+
+### Verificaciones locales
+
+- Auditoria `python datapack-src/paradise3_mecanismos.py`: 83/83 controles, cero diferencias; geometria identica; 23 command blocks iguales a la traduccion esperada.
+- Paper 26.1.2 / Java 25: 11/11 comprobaciones, cero errores al cargar funciones adaptadas.
+  Recuperacion de tres controles, boton presionado, redstone encendida/apagada, tags/pisos completados, bloque inesperado y aislamiento entre mundos.
+- `python -m unittest discover -s datapack-src -p test_minijuegos.py`: 12 pruebas aprobadas.
+- Ensayo reproducible: `python tools/probar_pp3_mecanismos_paper.py --java <java25> --base <Paper-local>`.
+Los originales, derivados, delta y logs quedan en `.local/`; no se publican mapas ni credenciales.
+<!-- PP3-SALA5-END -->

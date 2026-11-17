@@ -290,6 +290,13 @@ class Adapter:
         start += [f'function {f}' for f in loads]
         self.files[f'data/{m}/function/astral/start.mcfunction'] = '\n'.join(start)
         if self.world == 'parkour_paradise3':
+            from paradise3_mecanismos import recovery_functions
+            self.files.update(recovery_functions(m, world))
+            # La recuperacion corre como el marcador original, antes de leer los controles.
+            # No reinicia la sala ni repone controles que el autor retira al completarla.
+            level_tick = f'data/{m}/function/levels/level5/tick.mcfunction'
+            self.files[level_tick] = (f'function {m}:astral/recuperar_sala5\n'
+                                      + self.files[level_tick])
             # Herramientas propias de diagnostico, sin sustituir bloques del mapa.
             self.files[f'data/{m}/function/astral/diagnostico.mcfunction'] = '\n'.join([
                 f'execute in {world} run forceload query -34 766',
@@ -349,6 +356,21 @@ def generate(world):
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as z:
         for name, content in sorted(files.items()):
             z.writestr(name, content)
+    if world == 'parkour_paradise3':
+        # Delta privado para la carpeta ya instalada: no reemplazar el mundo
+        # ni arrastrar otros cambios pendientes del datapack completo.
+        patch = out.with_name('pp3-sala5-17-11.zip')
+        names = ['levels/level5/tick', 'astral/recuperar_sala5', 'astral/reparar_sala5',
+                 'astral/diagnostico_sala5', 'astral/diagnostico']
+        with zipfile.ZipFile(patch, 'w', zipfile.ZIP_DEFLATED) as z:
+            for name in names:
+                path = f'data/{adapter.main}/function/{name}.mcfunction'
+                info = zipfile.ZipInfo(path, (2026, 11, 17, 0, 0, 0))
+                info.compress_type = zipfile.ZIP_DEFLATED
+                z.writestr(info, files[path])
+        from paradise3_mecanismos import write_deployment
+        write_deployment(patch)
+        print(f'Delta sala 5: {len(names)} funciones -> {patch}')
     print(f'{world}: {len(files)} archivos, {len(adapter.objectives)} puntajes, '
           f'{len(adapter.schedules)} schedules -> {out}')
     return adapter
