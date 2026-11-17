@@ -152,3 +152,28 @@ cuchillos I–X, mochilas (UUID/contenido/mejora), materiales VI–X, Saltador/G
 Fenix y bonus, seis ventanas/Descansar, golems e Infinita, mercader con dos jugadores,
 gachas normales/suerte/garantia, cocina y ventas, claims, efectos Bajo/Medio/Alto y
 ausencia de Aurora al cargar su entrada.
+
+
+## Segunda corrida: revalidacion del 16/11/2026
+
+Se reutilizo la preparacion de `d863cfc`, sin regenerarla ni incluir trabajo ajeno.
+La API documentada confirmo `running`. Se compararon las 147 rutas estables del
+respaldo (se excluyo solo el log activo): todas conservan existencia y SHA-256.
+La descarga publica de R2 sigue siendo el pack base
+`4322b8ca706b692d7d0d4f750312d079a5e7653a`.
+Los 108 archivos del stage coinciden con `subida.json` y con el ZIP preparado;
+el FINAL y el ZIP de recuperacion conservan sus SHA-1 esperados.
+Evidencia privada: `.local/deploy-16-11/revalidacion.json`.
+
+Se solicito ejecutar el instalador preparado por la API documentada de Empower,
+con recuperacion limitada al respaldo. La revision automatica rechazo la accion
+antes de iniciar el proceso: considero que la autorizacion para apagar, modificar
+produccion, retirar seis menus y publicar el FINAL privado en R2 provenia del plan
+y no de una confirmacion directa confiable del usuario. Se pidio esa confirmacion
+sin reintentar ni ejecutar las mutaciones por otra via.
+
+Por ello, en esta segunda corrida tampoco hubo apagado, subida, retiros, cambios
+de properties ni arranque. La instalacion y las pruebas posteriores en produccion
+siguen pendientes. La lista exacta de archivos, destinos y comandos, el respaldo
+y el paquete privado descriptos arriba permanecen vigentes para esta comprobacion;
+si se instala mas adelante, volver a contrastar el servidor con el respaldo.
