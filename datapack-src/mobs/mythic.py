@@ -28,12 +28,13 @@ from mobs.jefes_combate import VELOCIDAD as VELOCIDAD_JEFE, triggers as jefe_tri
 
 MOBS = {
     # ---------------- fauna
-    "astral_mapache": dict(kind="pasivo", type="FOX", name="&6Mapache", hp=14, speed=0.3,
+    "astral_mapache": dict(kind="hostil", type="ZOMBIE", name="&6Mapache Rabioso", hp=14, damage=3, speed=0.3, hostile_ai=True,
                            drops=["leather 1-2 0.8", "sweet_berries 1-3 0.5", "exp 3"],
                            astral=[("cuero_tratado", 0.15)],
                            spawn=dict(chance=0.06, biomes=["minecraft:forest", "minecraft:birch_forest", "minecraft:dark_forest",
                                                            "minecraft:old_growth_pine_taiga", "minecraft:taiga"])),
-    "astral_pinguino": dict(kind="pasivo", type="CHICKEN", name="&bPinguino de Cristal", hp=12, speed=0.22,
+    "astral_pinguino": dict(kind="hostil", type="ZOMBIE", name="&bPinguino de Hielo", hp=12, damage=3, speed=0.22, hostile_ai=True,
+                            skills=['- command{c="astralchill <trigger.uuid>"} @trigger ~onAttack ?~isplayer'],
                             drops=["cod 1-2 0.7", "feather 1-2 0.6", "exp 3"],
                             astral=[("fragmento_cristal", 0.12)],
                             spawn=dict(chance=0.08, biomes=["minecraft:snowy_plains", "minecraft:ice_spikes", "minecraft:frozen_ocean",
@@ -390,7 +391,21 @@ def mob_block(mid, d, model=None, elite=None):
     sk = [f"- skill{{s={model_skill}}} @self ~onSpawn", f"- skill{{s={model_skill}}} @self ~onLoad"]
     if d['kind'] == 'jefe' and not d.get('suppress_quest'):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn']
-    if d["kind"] == "montura":
+    if mid in ("astral_mapache", "astral_pinguino"):
+        sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn']
+    if d["kind"] == "montura" and not d.get("fly"):
+        # Caballo real: evita que un pasajero de BetterModel quede sentado sin conducir.
+        sk += [f'- command{{c="execute as <caster.uuid> run tag @s add {mid}"}} @self ~onSpawn',
+               f'- command{{c="execute as <caster.uuid> run tag @s add {mid}"}} @self ~onLoad',
+               '- command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn',
+               '- command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad',
+               f'- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn',
+               '- cancelevent @self ~onInteract',
+               '- command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract',
+               '- skill{s=AST_SILLA_VER} @self ~onLoad',
+               # PreventOtherDrops suprime tambien la silla nativa (ver ensayo Paper).
+               '- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}']
+    elif d["kind"] == "montura":
         mode = "flying" if d.get("fly") else "walking"
         sk += [f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
                "- skill{s=AST_SILLA_VER} @self ~onLoad",
@@ -478,7 +493,7 @@ def metaskills():
             "  - partvisibility{p=silla;v=false} @self ?!hastag{tag=astral.ensillado}",
             "  - partvisibility{p=silla;v=true} @self ?hastag{tag=astral.ensillado}",
             "AST_ENSILLAR:", "  Skills:",
-            "  - command{c=\"clear <trigger.name> minecraft:saddle 1\"} @self",
+            "  - command{c=\"minecraft:clear <trigger.name> minecraft:saddle 1\"} @self",
             "  - addtag{tag=astral.ensillado} @self",
             "  - partvisibility{p=silla;v=true} @self",
             "  - sound{s=entity.horse.saddle} @self"]

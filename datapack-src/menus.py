@@ -132,13 +132,13 @@ def gacha_menu(gid, g):
     items += item('saldo','GOLD_NUGGET',8,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     items += item('garantia','ENDER_EYE',47,'&dGarantia',[f'&7Tu progreso: &e{SCORE.format(o)}&7/{n}',
                   '&7Un Epico o Legendario reinicia el contador.'],extra={'update':'true'})
-    items += item('probabilidades','BOOK',51,'&bProbabilidades',['&fComun: 60%','&aPoco comun: 25%',
+    items += item('probabilidades','BOOK',51,'&bProbabilidades',((['&8Basura: 55%', '&fComun: 20%', '&aPoco comun: 10%'] if gid == 'gacha_monturas' else ['&fComun: 60%','&aPoco comun: 25%']) + [
                   '&bRaro: 11%','&dEpico: 3,5%','&6Legendario: 0,5%',
                   '&aManzana (5 min): pesos raros/epicos/legendarios x1,5.',
                   '&7Con suerte: 15,35% / 4,88% / 0,70%.',
                   '&7Frasco: poco comun; barril: epico.',
                   '&7Manzana: rara, solo Cosmeticos.',
-                  '&7Ver premios muestra chances individuales normales.'])
+                  '&7Ver premios muestra chances individuales normales.']))
     items += item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
     items += item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
     return menu(title(gid), f"astralmenu_{gid}", 54, items, update=True)

@@ -57,12 +57,12 @@ class Tanda4aTests(unittest.TestCase):
         self.assertEqual(seen, {p[0] for p in PETS})
 
     def test_rarity_totals_and_guarantee_unchanged(self):
-        from lobby import RARITY_WEIGHT, PITY, mount_rewards
+        from lobby import MOUNT_RARITY_WEIGHT, PITY, mount_rewards
         self.assertEqual(PITY['gacha_monturas'], 40)
-        for suffix, expected in [('', RARITY_WEIGHT), ('_garantia', {'epic': 87.5, 'legendary': 12.5})]:
+        for suffix, expected in [('', MOUNT_RARITY_WEIGHT), ('_garantia', {'epic': 87.5, 'legendary': 12.5})]:
             prizes = yaml.safe_load((ROOT / f'build/lobby/CrazyCrates/crates/gacha_monturas{suffix}.yml').read_text(encoding='utf-8'))['Crate']['Prizes']
             # Los premios se ordenan por rareza descendente, igual que el generador.
-            rewards = sorted(mount_rewards(), key=lambda r: list(RARITY_WEIGHT).index(r[0]), reverse=True)
+            rewards = sorted(mount_rewards(), key=lambda r: list(MOUNT_RARITY_WEIGHT).index(r[0]), reverse=True)
             if suffix:
                 rewards = [r for r in rewards if r[0] in expected]
             sums = defaultdict(float)

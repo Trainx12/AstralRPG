@@ -397,3 +397,12 @@ Todas las fichas muestran tier, estadísticas, requisitos y habilidades; la migr
 conserva encantamientos, mejoras y desgaste. El desgaste queda limitado a 1 por golpe.
 Las durabilidades cubren un presupuesto de 12 mazmorras de 200 golpes recibidos
 (o 600 usos de arma por partida); Infinita puede superar ese presupuesto.
+
+## Monturas y premios Basura (17/11, pendiente)
+
+Generadores: `mobs/mythic.py`, `lobby.py`, `menus.py`, `build_runtime.py` y `deploy_monturas.py`.
+Editar `runtime/AstralMounts.java` para silla/propiedad, nado y frio. Pesos de Monturas separados en
+`gacha_balance.py`; conservar los de Armas/Cosmeticos. Regenerar los cinco y seguir
+[monturas-17-11](../build/deploy/monturas-17-11.md). Requiere reinicio por AstralDecor 1.16.0;
+usar las copias privadas de los dos YAML para conservar los modelos de las entregas anteriores.
+El pack FINAL y los mundos no cambian por esta tarea.

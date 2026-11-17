@@ -413,7 +413,7 @@ Si cambia un ítem que los jugadores ya tienen, subí `ITEM_VERSION` en `build.p
 - **Arcos:** manteniendo clic derecho disparan solos.
 - **Élites:** la dificultad sube con tu equipo y con los días (ver `BALANCE.md`).
 - **Criaturas (MythicMobs):**
-  - Fauna: mapache y pingüino.
+  - Hostiles con tier: Mapache Rabioso y Pinguino de Hielo (Lentitud, copos y frio visual sin dano extra).
   - Hostiles: espantapájaros, Armored Grub, araña y cara voladora.
   - Monturas, que nacen sin silla y se ensillan: chocobo, grillo, escarabajo, lagarto, ave y pterodáctilo.
   - Jefes: momia, yeti, gólem de forja, cangrejo y chamán.
@@ -642,3 +642,32 @@ en `world/datapacks/`. Requiere apagado y reinicio completo.
 Archivos, hashes, pruebas, licencia y condiciones previas:
 [crop-kettle.md](../build/deploy/crop-kettle.md). El FINAL es privado;
 su publicación en R2 queda pendiente de permiso para redistribuir los assets.
+
+## Monturas y Basura — 17/11/2026 (despliegue pendiente)
+
+Entrega: [monturas-17-11](../build/deploy/monturas-17-11.md), acumulada en
+[pendiente-17-11](../build/deploy/pendiente-17-11.md). AstralDecor 1.16.0 requiere reinicio.
+Grillo, Chocobo, Escarabajo y Lagarto usan caballo nativo domado con silla real y propietario UUID.
+Los huevos usados sobre bloques o lanzados al aire asignan el usuario exacto del evento;
+las naturales nacen domadas sin dueno, y se reclaman al interactuar. No se usa NearestPlayer.
+Las sillas virtuales anteriores se migran al primer uso. Gran Ave/Pterodactilo conservan BetterModel.
+Lagarto permanece pacifico: WASD bajo agua, mirada para subir/bajar, espacio para subir y
+respiracion acuatica durante la monta sumergida. Velocidad solicitada maxima: 0,65 bloques/tick;
+falta medir desplazamiento real con cliente y revisar asiento/controles en el servidor remoto.
+Mapache y Pinguino son hostiles; se conservan drops y apariciones. Probar con huevos nuevos:
+las entidades ya existentes no cambian de especie base al recargar MythicMobs.
+
+Solo Monturas: Basura 55%, Comun 20%, Poco comun 10%, Raro 11%, Epico 3,5%, Legendario 0,5%.
+Basura es gris oscuro, sin estrellas llenas, al final de la vitrina; diez premios vanilla equiprobables.
+Con suerte: 51,16279% / 18,60465% / 9,30233% / 15,34884% / 4,88372% / 0,69767%.
+Garantia cada 40: 87,5% Epico y 12,5% Legendario; Basura no reinicia el contador.
+Animales/mascotas: 35,81596% por tirada normal, 17,90798 esperados en 50 antes del pity.
+Cuenta: 20×70/92 + 10×20/34 + 11×60/60 + 3,5×34/37 + 0,5×22/22.
+Armas y Cosmeticos conservan sus pesos y archivos. La tabla historica comun 60%/poco comun 25%
+de otras secciones ya no aplica a Monturas. No requiere cambiar el resource pack ni reemplazar mundos.
+
+Estatuas del Santuario: correccion preparada en `mobs/tanda3a.yml`, instalable sola con
+`mm reload`, sin reinicio. Las cinco bases pasan a IRON_GOLEM; el cangrejo se reemplaza
+por `astral_estatua_coloso_musgoso` (modelo y escala 2.0 del jefe de Minas).
+Conservar la Forja existente. Archivos y comandos de retiro/spawn en la entrega acumulada;
+detalle en [MAZMORRAS.md](MAZMORRAS.md#estatuas-de-los-jefes-tanda-3a).

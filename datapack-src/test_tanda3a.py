@@ -76,10 +76,17 @@ class Tanda3aTests(unittest.TestCase):
             if name.endswith('.mcfunction'): self.assertNotIn('mm ',content)
 
     def test_statues_only_model_and_cancel_events(self):
-        from mobs.mythic import MOBS
-        for mid,p in statues().items():
-            original='astral_'+mid.removeprefix('astral_estatua_')
-            self.assertEqual(p['Type'],MOBS[original]['type'])
+        data=statues()
+        self.assertEqual(len(data),5)
+        self.assertNotIn('astral_estatua_cangrejo',data)
+        coloso=data['astral_estatua_coloso_musgoso']
+        self.assertIn('Coloso Musgoso de las Profundidades',coloso['Display'])
+        self.assertIn('model{m=astral_coloso_musgoso;s=2.0} @self ~onSpawn',coloso['Skills'])
+        self.assertIn('model{m=astral_coloso_musgoso;s=2.0} @self ~onLoad',coloso['Skills'])
+        self.assertEqual(yaml.safe_load((ROOT/'build/mythicmobs/mobs/tanda3a.yml').read_text('utf8')),
+                         plant()|data)
+        for mid,p in data.items():
+            self.assertEqual(p['Type'],'IRON_GOLEM')
             self.assertNotIn('Drops',p); self.assertNotIn('BossBar',p)
             self.assertEqual(len(p['Skills']),4)
             for k in ('NoAI','Invincible','Silent','Persistent','NoGravity','PreventOtherDrops'):

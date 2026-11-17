@@ -579,12 +579,12 @@ Crate:
         - "<gray>Rareza: <green>Poco comun"
         - "<green>★★<dark_gray>★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.84%"
-        - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>2.74%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 6.8399
+      Weight: 2.736
       Commands:
         - "mm egg give %player% astral_lagarto 1"
         - "give %player% minecraft:saddle 1"
@@ -602,12 +602,12 @@ Crate:
         - "<gray>Rareza: <green>Poco comun"
         - "<green>★★<dark_gray>★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.84%"
-        - "<green>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>2.74%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 6.8399
+      Weight: 2.736
       Commands:
         - "mm egg give %player% astral_escarabajo 1"
         - "give %player% minecraft:saddle 1"
@@ -625,12 +625,12 @@ Crate:
         - "<gray>Rareza: <green>Poco comun"
         - "<green>★★<dark_gray>★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.16%"
-        - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>2.46%"
+        - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 6.156
+      Weight: 2.4624
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_grande"
     "22":
@@ -647,12 +647,12 @@ Crate:
         - "<gray>Rareza: <green>Poco comun"
         - "<green>★★<dark_gray>★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.42%"
-        - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.37%"
+        - "<green>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.42
+      Weight: 1.368
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_gigante"
     "23":
@@ -669,12 +669,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.64%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.21%"
+        - "<white>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.64
+      Weight: 1.2133
       Commands:
         - "lp user %player% permission set astral.mascota.llamita true"
         - "eco give %player% 1000"
@@ -693,12 +693,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.64%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.21%"
+        - "<white>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.64
+      Weight: 1.2133
       Commands:
         - "lp user %player% permission set astral.mascota.hondero true"
         - "eco give %player% 1000"
@@ -717,12 +717,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.64%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.21%"
+        - "<white>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.64
+      Weight: 1.2133
       Commands:
         - "lp user %player% permission set astral.mascota.desierto true"
         - "eco give %player% 1000"
@@ -741,12 +741,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.64%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.21%"
+        - "<white>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.64
+      Weight: 1.2133
       Commands:
         - "lp user %player% permission set astral.mascota.pradera true"
         - "eco give %player% 1000"
@@ -765,18 +765,18 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.64%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>1.21%"
+        - "<white>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 3.64
+      Weight: 1.2133
       Commands:
         - "lp user %player% permission set astral.mascota.sabana true"
         - "eco give %player% 1000"
         - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
     "28":
-      DisplayName: "<white><bold>Mascota: Mapache"
+      DisplayName: "<white><bold>Criatura: Mapache Rabioso"
       DisplayItem: "fox_spawn_egg"
       Settings:
         Custom-Model-Data: -1
@@ -789,16 +789,16 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>12.13%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>4.04%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 12.1335
+      Weight: 4.0445
       Commands:
         - "mm egg give %player% astral_mapache 1"
     "29":
-      DisplayName: "<white><bold>Mascota: Pinguino de Cristal"
+      DisplayName: "<white><bold>Criatura: Pinguino de Hielo"
       DisplayItem: "chicken_spawn_egg"
       Settings:
         Custom-Model-Data: -1
@@ -811,12 +811,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>12.13%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>4.04%"
+        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 12.1335
+      Weight: 4.0445
       Commands:
         - "mm egg give %player% astral_pinguino 1"
     "30":
@@ -833,12 +833,12 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.07%"
-        - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>2.02%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 6.0667
+      Weight: 2.0222
       Commands:
         - "give %player% minecraft:saddle 2"
     "31":
@@ -855,11 +855,231 @@ Crate:
         - "<gray>Rareza: <white>Comun"
         - "<white>★<dark_gray>★★★★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>7.28%"
-        - "<white>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
+        - "<gray>Probabilidad: <yellow><bold>2.43%"
+        - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (2500$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
-      Weight: 7.2801
+      Weight: 2.4267
       Commands:
         - "loot give %player% loot astral:item/frasco_xp_pequeno"
+    "32":
+      DisplayName: "<dark_gray><bold>Un punado de tierra x4"
+      DisplayItem: "dirt"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 4
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:dirt 4"
+    "33":
+      DisplayName: "<dark_gray><bold>Ramitas sueltas x3"
+      DisplayItem: "stick"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 3
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:stick 3"
+    "34":
+      DisplayName: "<dark_gray><bold>Comida dudosa x2"
+      DisplayItem: "rotten_flesh"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 2
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:rotten_flesh 2"
+    "35":
+      DisplayName: "<dark_gray><bold>Un hueso viejo x1"
+      DisplayItem: "bone"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:bone 1"
+    "36":
+      DisplayName: "<dark_gray><bold>Plumas sueltas x2"
+      DisplayItem: "feather"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 2
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:feather 2"
+    "37":
+      DisplayName: "<dark_gray><bold>Semillas al azar x5"
+      DisplayItem: "wheat_seeds"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 5
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:wheat_seeds 5"
+    "38":
+      DisplayName: "<dark_gray><bold>Retazo de cuero x1"
+      DisplayItem: "leather"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:leather 1"
+    "39":
+      DisplayName: "<dark_gray><bold>Bota perdida x1"
+      DisplayItem: "leather_boots"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:leather_boots[damage=64] 1"
+    "40":
+      DisplayName: "<dark_gray><bold>Botella vacia x1"
+      DisplayItem: "glass_bottle"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:glass_bottle 1"
+    "41":
+      DisplayName: "<dark_gray><bold>Paja de consuelo x1"
+      DisplayItem: "hay_block"
+      Settings:
+        Custom-Model-Data: -1
+        Model:
+          Namespace: ""
+          Id: ""
+      DisplayAmount: 1
+      DisplayLore:
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<gray>Rareza: <dark_gray>Basura"
+        - "<dark_gray>☆☆☆☆☆"
+        - ""
+        - "<gray>Probabilidad: <yellow><bold>5.12%"
+        - "<dark_gray>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
+        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
+        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
+      Weight: 5.1163
+      Commands:
+        - "give %player% minecraft:hay_block 1"

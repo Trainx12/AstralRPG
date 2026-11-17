@@ -7,17 +7,20 @@ from mobs.tamanos import skills as size_skills
 ROOT=Path(__file__).resolve().parents[2]
 PLANT_POINTS=((1448.5,102,1564.5),(1478.5,102,1561.5),(1425.5,102,1563.5))
 PLANT_COUNTS={2:2,3:3}
-STATUES=('cangrejo','chaman','momia','yeti','golem_forja')
+STATUES=('coloso_musgoso','chaman','momia','yeti','golem_forja')
 
 
 def statues():
     from mobs.mythic import MOBS
+    from mobs.mazmorra import MOBS as DUNGEON_MOBS
     data={}
     for name in STATUES:
-        model='astral_'+name; boss=MOBS[model]
+        model='astral_'+name
+        boss=DUNGEON_MOBS['astral_mina_guardian'] if name=='coloso_musgoso' else MOBS[model]
         title=re.sub(r'&[0-9a-fk-or]', '', boss['name'], flags=re.I)
         data['astral_estatua_'+name]={
-            'Type':boss['type'], 'Display':f'&6&l{title} &7- Guardian derrotado', 'Health':100,
+            # Los tipos hostiles desaparecen en el Santuario incluso sin IA.
+            'Type':'IRON_GOLEM', 'Display':f'&6&l{title} &7- Guardian derrotado', 'Health':100,
             'Options':dict(NoAI=True,Invincible=True,Silent=True,Despawn=False,Persistent=True,
                            Collidable=False,NoGravity=True,PreventItemPickup=True,PreventOtherDrops=True,
                            PreventSunburn=True,PreventRandomEquipment=True,AlwaysShowName=True),

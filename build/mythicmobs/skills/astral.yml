@@ -8,14 +8,14 @@ AST_MODEL_astral_mapache:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_mapache} @self
-  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 1.4375"} @self
-  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 0.862500"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 0.516026"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 0.600000"} @self
 AST_MODEL_astral_pinguino:
   Skills:
   - addtag{tag=astral.seen} @self
   - model{m=astral_pinguino} @self
-  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.223214"} @self
-  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.333928"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 0.798077"} @self
+  - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 0.600000"} @self
 AST_MODEL_astral_espantapajaros:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -151,7 +151,7 @@ AST_SILLA_VER:
   - partvisibility{p=silla;v=true} @self ?hastag{tag=astral.ensillado}
 AST_ENSILLAR:
   Skills:
-  - command{c="clear <trigger.name> minecraft:saddle 1"} @self
+  - command{c="minecraft:clear <trigger.name> minecraft:saddle 1"} @self
   - addtag{tag=astral.ensillado} @self
   - partvisibility{p=silla;v=true} @self
   - sound{s=entity.horse.saddle} @self

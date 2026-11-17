@@ -42,7 +42,7 @@ NPC_POS = {
     "astral_npc_portales": (211.434, 105, 237.492, 90.0),
 }
 
-from gacha_balance import RARITY_WEIGHT, FACTOR_SUERTE, RAREZAS_SUERTE
+from gacha_balance import RARITY_WEIGHT, MOUNT_RARITY_WEIGHT, FACTOR_SUERTE, RAREZAS_SUERTE
 # Pity (garantia): cada tirada suma 1 al contador del jugador (scoreboard 'pity_<gacha>').
 # Al llegar al numero, esa tirada sale de la caja "<gacha>_garantia" (solo Epico o Legendario).
 # Sacar Epico o Legendario (con o sin garantia) vuelve el contador a 0.
@@ -111,8 +111,8 @@ def mount_rewards():
         return c
     from terceros import PETS
     return [(rarity, 6, "Mascota 3D: " + name, mascota(pid)) for pid, name, rarity, *_ in PETS] + [
-        ("common", 20, "Mascota: Mapache", egg("astral_mapache", False)),
-        ("common", 20, "Mascota: Pinguino de Cristal", egg("astral_pinguino", False)),
+        ("common", 20, "Criatura: Mapache Rabioso", egg("astral_mapache", False)),
+        ("common", 20, "Criatura: Pinguino de Hielo", egg("astral_pinguino", False)),
         ("common", 10, "Montura extra (silla)", ["give %player% minecraft:saddle 2"]),
         ("uncommon", 10, "Montura: Lagarto (nada)", egg("astral_lagarto")),
         ("uncommon", 10, "Montura: Escarabajo Azul", egg("astral_escarabajo")),
@@ -164,7 +164,13 @@ def rpg_rewards():
     return _rpg_rewards()+xp_rewards()
 
 def mount_rewards():
-    return _mount_rewards()+xp_rewards()
+    trash = [('dirt',4,'Un punado de tierra'), ('stick',3,'Ramitas sueltas'),
+             ('rotten_flesh',2,'Comida dudosa'), ('bone',1,'Un hueso viejo'),
+             ('feather',2,'Plumas sueltas'), ('wheat_seeds',5,'Semillas al azar'),
+             ('leather',1,'Retazo de cuero'), ('leather_boots[damage=64]',1,'Bota perdida'),
+             ('glass_bottle',1,'Botella vacia'), ('hay_block',1,'Paja de consuelo')]
+    return _mount_rewards()+xp_rewards()+[
+        ('trash',1,f'{name} x{n}',[f'give %player% minecraft:{mat} {n}']) for mat,n,name in trash]
 
 def cosmetic_rewards():
     return _cosmetic_rewards()+xp_rewards(apple=True)
@@ -175,7 +181,7 @@ GACHAS = {
                       rewards=rpg_rewards),
     "gacha_monturas": dict(name="<gradient:#F4D24A:#E07A2A><b>Gacha de Monturas</b></gradient>", cost=2500,
                            desc=["<gray>Monturas y mascotas de AstralRPG.", "<gray>Las monturas traen silla."],
-                           rewards=mount_rewards),
+                           rewards=mount_rewards, rarity_weight=MOUNT_RARITY_WEIGHT),
     "gacha_cosmeticos": dict(name="<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>", cost=500,
                              desc=["<gray>Titulos y gorros.", "<gray>Equipalos desde /cosmeticos."],
                              rewards=cosmetic_rewards),
@@ -187,9 +193,9 @@ def q(s):
     return "'" + str(s).replace("'", "''") + "'"
 
 
-RARITY_MINI = {"common": "<white>Comun", "uncommon": "<green>Poco comun", "rare": "<aqua>Raro",
+RARITY_MINI = {"trash": "<dark_gray>Basura", "common": "<white>Comun", "uncommon": "<green>Poco comun", "rare": "<aqua>Raro",
                "epic": "<light_purple>Epico", "legendary": "<gold><bold>Legendario"}
-RARITY_AMP = {"common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
+RARITY_AMP = {"trash": "&8Basura", "common": "&fComun", "uncommon": "&aPoco comun", "rare": "&bRaro", "epic": "&dEpico",
               "legendary": "&6&lLegendario"}
 GACHA_MINI = {"gacha_rpg": "<#B07CFF><bold>Gacha de Armas", "gacha_monturas": "<#7ED957><bold>Gacha de Monturas",
               "gacha_cosmeticos": "<#FF7BD5><bold>Gacha de Cosmeticos"}
@@ -220,7 +226,7 @@ def icon(cmds):
         return EGG_ICON.get(c0.split()[4], "egg"), None, 1
     if c0.startswith("give "):
         p = c0.split()
-        return p[2].replace("minecraft:", ""), None, int(p[3]) if len(p) > 3 else 1
+        return p[2].replace("minecraft:", "").split("[")[0], None, int(p[3]) if len(p) > 3 else 1
     return "name_tag", None, 1
 
 
@@ -236,7 +242,7 @@ def crate_yml(gid, g, garantia=False, suerte=False):
     rewards = g["rewards"]()
     if garantia:
         rewards = [r for r in rewards if r[0] in PITY_RARITIES]
-    weights = {r:w*(FACTOR_SUERTE if suerte and r in RAREZAS_SUERTE else 1) for r,w in RARITY_WEIGHT.items()}
+    weights = {r:w*(FACTOR_SUERTE if suerte and r in RAREZAS_SUERTE else 1) for r,w in g.get("rarity_weight", RARITY_WEIGHT).items()}
     scale = 100 / sum(weights[r] for r in (PITY_RARITIES if garantia else weights))
     tot = {}
     for rar, w, _, _ in rewards:
@@ -274,9 +280,9 @@ def crate_yml(gid, g, garantia=False, suerte=False):
          "    Color: " + dq("transparent"), "    TextShadow: false", "    Message: []",
          "  buttons: {}",
          "  Prizes:"]
-    order = ["legendary", "epic", "rare", "uncommon", "common"]      # la vitrina arranca por lo mas raro
-    stars = {"legendary": 5, "epic": 4, "rare": 3, "uncommon": 2, "common": 1}
-    color = {"legendary": "<gold>", "epic": "<light_purple>", "rare": "<aqua>", "uncommon": "<green>", "common": "<white>"}
+    order = ["legendary", "epic", "rare", "uncommon", "common", "trash"]      # la vitrina arranca por lo mas raro
+    stars = {"trash": 0, "legendary": 5, "epic": 4, "rare": 3, "uncommon": 2, "common": 1}
+    color = {"trash": "<dark_gray>", "legendary": "<gold>", "epic": "<light_purple>", "rare": "<aqua>", "uncommon": "<green>", "common": "<white>"}
     ranked = sorted(rewards, key=lambda r: order.index(r[0]))
     for i, (rar, w, name, cmds) in enumerate(ranked):
         mat, model, amount = icon(cmds)
@@ -293,7 +299,7 @@ def crate_yml(gid, g, garantia=False, suerte=False):
                 t("(!) ", "gold", True), t("%player%", "yellow"), t(" saco ", "gray"), t(rname, rcol, rar == "legendary"),
                 t(" en la ", "gray"), t(HOLO_NAME[gid], HOLO_COLOR[gid]), t(": ", "gray"), t(name, "white")]))
         c = color[rar]
-        st = c + "★" * stars[rar] + "<dark_gray>" + "★" * (5 - stars[rar])
+        st = "<dark_gray>☆☆☆☆☆" if rar == "trash" else c + "★" * stars[rar] + "<dark_gray>" + "★" * (5 - stars[rar])
         # barra de probabilidad (escala logaritmica: 0,1% = 1 cuadradito, 10% o mas = 10)
         import math
         n = max(1, min(10, round(4 + 2 * math.log10(max(weight, 0.01)) * 1.5)))

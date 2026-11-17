@@ -1,9 +1,10 @@
 # Criaturas de AstralRPG (generado por datapack-src/mobs/mythic.py)
 
 astral_mapache:
-  Type: FOX
-  Display: '&6Mapache'
+  Type: ZOMBIE
+  Display: '&6Mapache Rabioso'
   Health: 14
+  Damage: 3
   Options:
     PreventOtherDrops: true
     Silent: false
@@ -11,6 +12,15 @@ astral_mapache:
     Despawn: true
     MovementSpeed: 0.3
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   Drops:
   - leather 1-2 0.8
   - sweet_berries 1-3 0.5
@@ -18,12 +28,18 @@ astral_mapache:
   Skills:
   - skill{s=AST_MODEL_astral_mapache} @self ~onSpawn
   - skill{s=AST_MODEL_astral_mapache} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cuero_tratado"} @self ~onDeath 0.15
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_pinguino:
-  Type: CHICKEN
-  Display: '&bPinguino de Cristal'
+  Type: ZOMBIE
+  Display: '&bPinguino de Hielo'
   Health: 12
+  Damage: 3
   Options:
     PreventOtherDrops: true
     Silent: false
@@ -31,6 +47,15 @@ astral_pinguino:
     Despawn: true
     MovementSpeed: 0.22
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   Drops:
   - cod 1-2 0.7
   - feather 1-2 0.6
@@ -38,7 +63,13 @@ astral_pinguino:
   Skills:
   - skill{s=AST_MODEL_astral_pinguino} @self ~onSpawn
   - skill{s=AST_MODEL_astral_pinguino} @self ~onLoad
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.12
+  - command{c="astralchill <trigger.uuid>"} @trigger ~onAttack ?~isplayer
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
+  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
 
 astral_espantapajaros:
   Type: VEX
@@ -195,13 +226,14 @@ astral_grillo:
   Skills:
   - skill{s=AST_MODEL_astral_grillo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_grillo} @self ~onLoad
+  - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onLoad
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_grillo} @self ~onSpawn
-  - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=walking} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
-  - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
+  - skill{s=AST_SILLA_VER} @self ~onLoad
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_chocobo:
@@ -221,13 +253,14 @@ astral_chocobo:
   Skills:
   - skill{s=AST_MODEL_astral_chocobo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chocobo} @self ~onLoad
+  - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onLoad
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_chocobo} @self ~onSpawn
-  - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=walking} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
-  - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
+  - skill{s=AST_SILLA_VER} @self ~onLoad
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_escarabajo:
@@ -248,13 +281,14 @@ astral_escarabajo:
   Skills:
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onLoad
+  - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onLoad
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_escarabajo} @self ~onSpawn
-  - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=walking} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
-  - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
+  - skill{s=AST_SILLA_VER} @self ~onLoad
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_lagarto:
@@ -274,13 +308,14 @@ astral_lagarto:
   Skills:
   - skill{s=AST_MODEL_astral_lagarto} @self ~onSpawn
   - skill{s=AST_MODEL_astral_lagarto} @self ~onLoad
+  - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onLoad
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
+  - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_lagarto} @self ~onSpawn
-  - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=walking} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
-  - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
+  - skill{s=AST_SILLA_VER} @self ~onLoad
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_ave:

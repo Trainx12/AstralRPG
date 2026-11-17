@@ -80,3 +80,33 @@ SHA-1 FINAL: `96286fbdc33d77b4ebcc11de8b15f7461631bac4`. Base instalada: `6421c6
 
 Detalle, migracion automatica de varitas existentes y vistas privadas: [varita-curacion-3d](varita-curacion-3d.md).
 R2, panel remoto y comprobacion con cliente siguen pendientes de Claude; esta entrega no afirma despliegue.
+
+## Monturas, criaturas y Basura (17/11)
+
+Entrega adicional: [monturas-17-11.md](monturas-17-11.md), con ocho archivos exactos y hashes.
+Instalar AstralDecor **1.16.0** (sustituye el 1.15.0 indicado arriba) en el mismo apagado/reinicio.
+Incluye las copias privadas de mobs/astral.yml y skills/astral.yml, las tres cajas de Monturas
+y su menu. Mantener todos los otros pendientes. No cambia el pack FINAL ni su SHA-1.
+Tras arrancar: consola limpia; para ajustes posteriores `mm reload`, `crates reload`, `dm reload`.
+Despliegue y validacion con cliente siguen pendientes; no se reemplazan mundos.
+
+### Estatuas del Santuario (instalable por separado, sin reinicio)
+
+Subir `build/mythicmobs/mobs/tanda3a.yml` a `plugins/MythicMobs/mobs/tanda3a.yml`.
+Conservar skills/tanda3a.yml: no cambia. Ejecutar en consola:
+```
+mm reload
+mm mobs kill astral_estatua_cangrejo
+```
+Las cinco estatuas ahora usan IRON_GOLEM; el modelo sigue a escala 2.0.
+Conservar la Forja existente. El dueno, parado en cada pedestal correspondiente:
+```
+/mm mobs spawn astral_estatua_coloso_musgoso
+/mm mobs spawn astral_estatua_chaman
+/mm mobs spawn astral_estatua_momia
+/mm mobs spawn astral_estatua_yeti
+```
+Si falta tambien la Forja: `/mm mobs spawn astral_estatua_golem_forja`.
+Comprobar `mm mobs listactive`, persistencia tras cargar chunks y consola sin errores.
+No recrear una estatua que ya exista: verificar primero para evitar duplicados.
+La escala visual relativa necesita validacion con cliente en los pedestales.

@@ -144,3 +144,7 @@ todas las texturas vanilla de `gui/` (ventanas, sprites, widgets, libro de recet
 salvo el inventario, que queda de piedra y oro. Sin OptiGUI: `assets/optigui` se descarta.
 `generic_54` (cofres y menus) va en gris neutro; el dibujo de cofre, cofre doble, barril y
 ender va como glifo en el titulo (`font-extra.json`, `lang-ocultar.json`). No publicar ese arte.
+
+Actualizacion 17/11: las probabilidades de Monturas de la seccion historica anterior quedan sustituidas
+por Basura 55 / Comun 20 / Poco comun 10 / Raro 11 / Epico 3,5 / Legendario 0,5.
+Los retratos y modelos privados permanecen intactos. Entrega [monturas-17-11](../build/deploy/monturas-17-11.md).

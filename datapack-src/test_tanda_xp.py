@@ -78,7 +78,8 @@ class TandaXPTests(unittest.TestCase):
                 for guaranteed in (False,True):
                     prizes=yaml.safe_load(crate_yml(gid,g,garantia=guaranteed,suerte=lucky))['Crate']['Prizes']
                     self.assertAlmostEqual(sum(p['Weight'] for p in prizes.values()),100,delta=.003)
-                    rewards=sorted(g['rewards'](),key=lambda r:list(RARITY_WEIGHT).index(r[0]),reverse=True)
+                    weights=g.get('rarity_weight',RARITY_WEIGHT)
+                    rewards=sorted(g['rewards'](),key=lambda r:list(weights).index(r[0]),reverse=True)
                     if guaranteed:rewards=[r for r in rewards if r[0] in ('epic','legendary')]
                     rare=sum(p['Weight'] for r,p in zip(rewards,prizes.values()) if r[0] in ('rare','epic','legendary'))
                     if guaranteed:self.assertAlmostEqual(rare,100,delta=.003)

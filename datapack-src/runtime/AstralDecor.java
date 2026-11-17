@@ -24,6 +24,7 @@ import io.papermc.paper.event.player.PrePlayerAttackEntityEvent;
 
 /** Runtime propio de la tanda 4b. Datos persistentes en entidades/chunks. */
 public final class AstralDecor extends JavaPlugin implements Listener {
+    private AstralMounts mounts;
     private AstralMerchant merchant;
     private final Map<String,Integer> consumableXP = new HashMap<>();
     private int luckSeconds;
@@ -410,6 +411,14 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         meta.setItemModel(NamespacedKey.fromString("astral:"+model));item.setItemMeta(meta);return item;
     }
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
+        if(command.getName().equals("astralmount") || command.getName().equals("astralchill")) {
+            if(!(sender instanceof org.bukkit.command.ConsoleCommandSender))return true;
+            try {
+                if(command.getName().equals("astralmount") && args.length==2)mounts.interact(UUID.fromString(args[0]),UUID.fromString(args[1]));
+                if(command.getName().equals("astralchill") && args.length==1)mounts.chill(UUID.fromString(args[0]));
+            } catch(IllegalArgumentException ex) {getLogger().warning("UUID de montura/hielo invalido");}
+            return true;
+        }
         if(command.getName().equals("astralblink")) {
             // Solo consola: el Skript valida trayectoria, requisitos y mana.
             if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=4)return true;
@@ -621,6 +630,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
+        mounts=new AstralMounts(this);
         merchant=new AstralMerchant(this);
         loadConsumables();
         getServer().getScheduler().runTaskTimer(this,()->Bukkit.getOnlinePlayers().forEach(p->{updateLuck(p);backpackModels(p);}),1,20);

@@ -1,5 +1,6 @@
 """Pesos y suerte compartidos por CrazyCrates y los mensajes del runtime."""
 RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}
+MOUNT_RARITY_WEIGHT = {"trash": 55, "common": 20, "uncommon": 10, "rare": 11, "epic": 3.5, "legendary": 0.5}
 FACTOR_SUERTE = 1.5
 RAREZAS_SUERTE = ('rare', 'epic', 'legendary')
 

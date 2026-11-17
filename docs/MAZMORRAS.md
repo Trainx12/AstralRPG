@@ -436,15 +436,22 @@ Vista previa obligatoria antes de instalar: `build/previews/tamanos-jefes.png`.
 Las pruebas locales interpretan la cola generada; faltan combate y consola reales de Paper.
 ## Estatuas de los jefes (Tanda 3a)
 
-Se generan cinco estatuas; no se colocan y el Santuario sigue en espera. Son
-`astral_estatua_cangrejo`, `astral_estatua_chaman`, `astral_estatua_momia`,
-`astral_estatua_yeti` y `astral_estatua_golem_forja`. Reutilizan el tipo y modelo
-del jefe, con modelo a `s=2.0`, pose idle, sin IA, dano, gravedad, colision,
+Correccion 17/11 preparada, sin desplegar: las cinco usan `IRON_GOLEM` porque los
+tipos hostiles desaparecen en el Santuario. El cangrejo se reemplaza por
+`astral_estatua_coloso_musgoso`; se conservan `astral_estatua_chaman`, `astral_estatua_momia`,
+`astral_estatua_yeti` y `astral_estatua_golem_forja`. Reutilizan el modelo
+del jefe, con modelo a `s=2.0` (tambien el Coloso), pose idle, sin IA, dano, gravedad, colision,
 BossBar ni drops. No llevan las etiquetas de las salas: RESET y las limpiezas
 de mazmorra no las incluyen. `mob/roll` excluye las entidades invulnerables.
 
-Tras instalar `plugins/MythicMobs/{mobs,skills}/tanda3a.yml` y recargar MythicMobs,
+Para esta correccion basta subir `build/mythicmobs/mobs/tanda3a.yml` a
+`plugins/MythicMobs/mobs/tanda3a.yml` y ejecutar `mm reload`, sin reiniciar.
+Retirar el anterior con `mm mobs kill astral_estatua_cangrejo`. Las skills no cambian.
+La estatua de Forja existente se conserva. Para las cuatro faltantes, una vez
 parado en el pedestal: `/mm mobs spawn astral_estatua_<jefe>`.
+Sufijos: `coloso_musgoso`, `chaman`, `momia`, `yeti`. Comandos completos en
+`build/deploy/pendiente-17-11.md`. Comprobar `mm mobs listactive` y persistencia
+tras descargar/cargar el chunk; la comparacion visual de tamanos requiere cliente.
 Para girar, primero identificar la entidad de esa estatua con F3+I y usar su UUID:
 `/execute as <UUID> at @s run minecraft:tp @s ~ ~ ~ <yaw> 0`.
 Para retirar solo esa instancia: `/minecraft:kill <UUID>` como administrador;

@@ -1167,8 +1167,9 @@ items:
     amount: 1
     display_name: '&bProbabilidades'
     lore:
-    - '&fComun: 60%'
-    - '&aPoco comun: 25%'
+    - '&8Basura: 55%'
+    - '&fComun: 20%'
+    - '&aPoco comun: 10%'
     - '&bRaro: 11%'
     - '&dEpico: 3,5%'
     - '&6Legendario: 0,5%'
