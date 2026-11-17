@@ -56,7 +56,7 @@ class Efectos(unittest.TestCase):
     def test_bastones_piden_rayo(self):
         with zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip') as z:
             cast = z.read('data/astral/function/spell/cast.mcfunction').decode()
-            rayo = z.read('data/astral/function/spell/fx_rayo.mcfunction').decode()
+            rayo = z.read('data/astral/function/spell/fx_perfora.mcfunction').decode()
             ray = z.read('data/astral/function/spell/ray.mcfunction').decode()
             hit = z.read('data/astral/function/spell/hit.mcfunction').decode()
         self.assertIn('spell/fx_rayo with storage', cast)

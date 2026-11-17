@@ -11,7 +11,7 @@ import zipfile
 
 from escala import VIDA_PIEZA, VIDA_JUGADOR_BASE, defensa_pieza, TIER_MAX
 from items_t6_10 import ARCO_AUTO, PUNTERIA, ARMA_MODELO, BALLESTAS, CARGA_VANILLA, VISUAL as ARMOR_VISUAL, SIN_CASCO as ARMOR_SIN_CASCO, CASCO_PLANO as ARMOR_CASCO_PLANO
-from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MANA_HECHIZO, HECHIZO,
+from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MANA_HECHIZO, HECHIZO, HECHIZO_PERFORA,
                     REGEN_POR_MANA, fmt)
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 25  # Arte final, materiales y Manzana de la Suerte (16/11).
+ITEM_VERSION = 26  # Bastones: ficha con perforacion (17/11).
 
 files = {}
 
@@ -2094,7 +2094,8 @@ dlg("guia/como", txt("Como se juega", "light_purple", bold=True), [
     msg("Berserker (Forja), Mago (Hechiceria) y Arquero (Arqueria) tienen 5 tiers de armadura y armas. "
         "Cada objeto pide un nivel de AuraSkills para usarlo: /skills para ver tus niveles.", "gray"),
     msg("ARMAS ESPECIALES", "gold"),
-    msg("Bastones: click derecho lanza un proyectil arcano. Arcos: mantene click derecho y disparan solos. "
+    msg(f"Bastones: click derecho lanza un proyectil arcano. Atraviesa hasta {len(HECHIZO_PERFORA)} enemigos "
+        f"(dano {'/'.join(f'{v:.0%}' for v in HECHIZO_PERFORA)}). Arcos: mantene click derecho y disparan solos. "
         "Saltador: click derecho para impulsarte. Gancho: lanzalo a un bloque y volve a pulsar para tirarte.", "gray"),
     msg("MOBS ELITE", "gold"),
     msg("Cuanto mejor es tu equipo y mas dias pasan, aparecen mas mobs elite (Veterano, Elite, Campeon, "
@@ -2678,6 +2679,8 @@ from tanda_xp import generate as generate_xp
 generate_xp(files)
 from correcciones_goblin import datapack
 datapack(files)
+from spell_perfora import generate as generate_spell_perfora
+generate_spell_perfora(files)
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)

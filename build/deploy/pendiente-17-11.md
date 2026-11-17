@@ -159,3 +159,7 @@ Apagar y reiniciar. R2 e instalacion remota pendientes de Claude con navegador. 
 
 Lista exacta y hashes: [cascos-silencio-mercader-17-11](cascos-silencio-mercader-17-11.md). Sustituye AstralDecor por 1.18.0, YAML de mobs y FINAL de 98156c2; conservar sus demas archivos y 054db88.
 Unico FINAL `.local/terceros/AstralRPG-privado/build/entregas/cascos-silencio-mercader-17-11/AstralRPG-Textures.zip`; SHA-1 `9d83b49323139271250519fbfd7df7f65857d730`. Requiere apagar/reiniciar por JAR y pack. Solo YAML: `mm reload`. R2, servidor y cliente pendientes de Claude; sin despliegue verificado.
+
+## Bastones perforantes y golemcitos (ultima entrega)
+
+Lista exacta y hashes: [bastones-golems-17-11](bastones-golems-17-11.md). AstralDecor 1.20.0, AstralEfectos 1.4.0, datapack v26 y script PvP. FINAL privado `.local/terceros/AstralRPG-privado/build/entregas/bastones-golems-17-11/AstralRPG-Textures.zip`; SHA-1 `5448b7ff24d6da012cc08de16a0d74b11b23a2e0`, encima de `9d83b49323139271250519fbfd7df7f65857d730`. Apagar y reiniciar. R2, servidor y cliente pendientes de Claude; no hay despliegue verificado. Ver la distincion tarea/acumulado antes de combinar con Chaman/hitboxes. No sustituir mundos.

@@ -690,6 +690,13 @@ on damage of player with priority highest:
     set {_pct} to {_pct} * {_f}
     if {_pct} > 25.0:
         set {_pct} to 25.0
+    if {_causa} contains "magic":
+        if scoreboard tags of victim contains "astral.spell.hit1":
+            set {_pct} to {_pct} * 1.0
+        if scoreboard tags of victim contains "astral.spell.hit2":
+            set {_pct} to {_pct} * 0.7
+        if scoreboard tags of victim contains "astral.spell.hit3":
+            set {_pct} to {_pct} * 0.7
     set damage to (max health of victim) * {_pct} / 100
 
 

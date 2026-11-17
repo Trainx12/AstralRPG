@@ -4,7 +4,7 @@ Armas, bastones, armaduras, arcos, taladros y motosierras. Los encantamientos na
 visibles para conservar los añadidos por yunque. Los números salen de items.py / escala.py.
 """
 import re
-from escala import fmt, REGEN_POR_MANA
+from escala import fmt, REGEN_POR_MANA, HECHIZO_PERFORA
 from items import MEJORA_DANO, MEJORA_VIDA
 
 RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
@@ -345,7 +345,9 @@ def abilities_for(source, level=0):
         return abilities
     if kind == 'staff':
         return [dict(name='Proyectil arcano', trigger='CLIC DERECHO',
-                     description=['Dispara un proyectil arcano.', 'El daño de hechizo sube con la armadura de Mago.'],
+                     description=[f'Atraviesa hasta {len(HECHIZO_PERFORA)} enemigos.',
+                                   'Daño: ' + '/'.join(f'{v:.0%}' for v in HECHIZO_PERFORA) + '.',
+                                   'El daño de hechizo sube con la armadura de Mago.'],
                      mana=data.get('mana_display'), cooldown=data['cd_display'])]
     if kind == 'bow' and data.get('auto'):
         return [dict(name='Disparo automático', trigger='MANTENER CLIC DERECHO',

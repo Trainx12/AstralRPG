@@ -1,3 +1,15 @@
+# Bastones perforantes y golemcitos - 17/11/2026
+
+Entrega preparada: [bastones-golems-17-11](../build/deploy/bastones-golems-17-11.md).
+Bastones I-X: tres objetivos distintos, dano 100/70/70; misma regla para fuego IV/VIII.
+`escala.HECHIZO_PERFORA`, `spell_perfora.py` y `runtime/AstralSpell.java` conservan
+hitboxes BetterModel, exclusiones y eventos normales de dano. Guia/fichas v26.
+AstralDecor 1.20.0 y AstralEfectos 1.4.0 requieren reinicio junto al datapack.
+Los golemcitos tenian 39 recursos fuera de `assets/`; `deploy_bastones_golems.py`
+corrige solo esas rutas sobre el ultimo FINAL. No cambia modelos ni YAML.
+Lista exacta, hashes y distincion tarea/acumulado en la entrega y en
+[pendiente-17-11](../build/deploy/pendiente-17-11.md). R2 y servidor pendientes.
+
 # Gachas, carteles y doble salto - 17/11/2026
 
 Tanda posterior preparada: [mascotas, oceano y panorama](../build/deploy/mascotas-oceano-panorama-17-11.md).

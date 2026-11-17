@@ -236,37 +236,43 @@ public final class AstralEfectos extends JavaPlugin implements Listener, TabExec
     @EventHandler(ignoreCancelled = true)
     public void marcador(EntitySpawnEvent e) {
         if (!(e.getEntity() instanceof Marker m) || !m.getScoreboardTags().contains("astral.fx")) return;
-        String tipo = null, elem = ""; Color col = Color.WHITE;
+        String tipo = null, elem = ""; Color col = Color.WHITE; double length = -1;
         for (String t : m.getScoreboardTags()) {
             if (t.startsWith("fx.")) tipo = t.substring(3);
             if (t.startsWith("fxc.")) col = hex(t.substring(4));
             if (t.startsWith("fxe.")) elem = t.substring(4);
+            if (t.startsWith("fxlen.")) try { length = Double.parseDouble(t.substring(6)); } catch(NumberFormatException ignored) {}
         }
         Location at = e.getLocation();
-        String tf = tipo, ef = elem; Color cf = col;
+        Player caster = "rayo".equals(tipo) ? at.getWorld().getPlayers().stream()
+            .filter(p -> p.getScoreboardTags().contains("astral.caster"))
+            .min(java.util.Comparator.comparingDouble(p -> p.getEyeLocation().distanceSquared(at))).orElse(null) : null;
+        Location eye = caster == null ? null : caster.getEyeLocation().clone();
+        String tf = tipo, ef = elem; Color cf = col; double lf = length;
         getServer().getScheduler().runTask(this, () -> {
             m.remove();
             if ("golpe".equals(tf)) golpe(Categoria.JEFES, at, cf, 4, ef);
             else if ("estallido".equals(tf)) estallido(Categoria.BASTONES, at, cf, 1f, ef);
-            else if ("rayo".equals(tf)) rayoDeBaston(at, cf, ef);
+            else if ("rayo".equals(tf)) rayoDeBaston(at, cf, ef, lf, caster, eye);
         });
     }
 
     // ------------------------------------------------------------------ bastones: rayo laser y bola de fuego
     /** El datapack deja el marcador frente a los ojos de quien lanza: se busca al mago y hasta donde llega. */
-    private void rayoDeBaston(Location marca, Color col, String elem) {
-        Player mago = null; double mejor = 9;
-        for (Player p : marca.getWorld().getPlayers()) {
+    private void rayoDeBaston(Location marca, Color col, String elem, double length, Player caster, Location eye) {
+        Player mago = caster; double mejor = 9;
+        if (mago == null) for (Player p : marca.getWorld().getPlayers()) {
             double d = p.getEyeLocation().distanceSquared(marca);
             if (d < mejor) { mejor = d; mago = p; }
         }
         if (mago == null || !hayVisor(Categoria.BASTONES, marca, MEDIO)) return;
-        Location ojos = mago.getEyeLocation();
+        Location ojos = eye == null ? mago.getEyeLocation() : eye;
         Vector dir = ojos.getDirection();
         Player yo = mago;
         RayTraceResult r = ojos.getWorld().rayTrace(ojos, dir, 25, FluidCollisionMode.NEVER, true, 0.45,
             x -> x instanceof LivingEntity && x != yo && !x.isInvulnerable() && !x.getScoreboardTags().contains("astral.pet") && !(x instanceof ArmorStand) && !(x instanceof Player pl && pl.getGameMode() == GameMode.SPECTATOR));
         Location fin = r == null ? ojos.clone().add(dir.clone().multiply(25)) : r.getHitPosition().toLocation(ojos.getWorld());
+        if(length >= 0) fin = marca.clone().add(dir.clone().multiply(length));
         // Sale de la punta del baston (a la derecha y abajo de la vista), no del medio de la pantalla.
         Vector der = dir.clone().crossProduct(new Vector(0, 1, 0));
         if (der.lengthSquared() < 1e-4) der = new Vector(1, 0, 0);

@@ -128,10 +128,13 @@ PVP_TOPE = 25.0      # % maximo de la vida por golpe
 
 def pvp():
     """Arena PvP: dano en % de la vida del rival (ver PVP_PCT); reemplaza la division por FACTOR_ARMA."""
-    from escala import DEFENSA_SET
+    from escala import DEFENSA_SET, HECHIZO_PERFORA
     tiers = chr(10).join(f'    if scoreboard tags of {{_a}} contains "astral.ht{t}":' + chr(10) + f'        return {t}' for t in range(10, 0, -1))
     # Tier de armadura por la Defensa: el mas alto cuyo set completo (90%) ya alcanza.
     armadura = chr(10).join(f'    if {{_d}} >= {round(DEFENSA_SET[t] * 0.9)}:' + chr(10) + f'        return {t}' for t in range(10, 0, -1))
+    perfora = '    if {_causa} contains "magic":\n' + '\n'.join(
+        f'        if scoreboard tags of victim contains "astral.spell.hit{i}":\n            set {{_pct}} to {{_pct}} * {factor}'
+        for i, factor in enumerate(HECHIZO_PERFORA, 1))
     arenas = ' or '.join(f'"{w}"' for w in arena_worlds())
     p = PVP_PCT
     return f'''# Arena PvP: stats propias contra jugadores (gameplay.py PVP_PCT). Corre al final, despues de la defensa.
@@ -169,6 +172,7 @@ on damage of player with priority highest:
     set {{_pct}} to {{_pct}} * {{_f}}
     if {{_pct}} > {PVP_TOPE}:
         set {{_pct}} to {PVP_TOPE}
+{perfora}
     set damage to (max health of victim) * {{_pct}} / 100
 '''
 

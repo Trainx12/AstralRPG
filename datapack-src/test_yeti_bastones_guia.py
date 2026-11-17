@@ -53,11 +53,12 @@ class YetiBastonesGuiaTests(unittest.TestCase):
     def test_spell_uses_box_instead_of_origin_and_keeps_npc_filter(self):
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:
             ray=z.read('data/astral/function/spell/ray.mcfunction').decode()
-        self.assertIn('dx=0,dy=0,dz=0',ray)
-        # distance solo en los que ven las particulas de efectos (astral.fx), nunca en quien recibe el hechizo
-        self.assertNotIn('distance=',''.join(l for l in ray.splitlines() if 'astral.fx' not in l))
-        self.assertIn('nbt=!{NoAI:1b}',ray)
-        self.assertIn('limit=1',ray)
+        java=(ROOT/'datapack-src/runtime/AstralSpell.java').read_text('utf8')
+        self.assertIn('e.getBoundingBox()',java)
+        self.assertIn('!e.hasAI()',java)
+        self.assertIn('b_astral_hitbox',java)
+        self.assertIn('e instanceof Villager',java)
+        self.assertIn('#spell.end',ray)
 
 
 if __name__=='__main__':unittest.main()

@@ -29,7 +29,8 @@ class Tanda17Tests(unittest.TestCase):
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as z:
             for n in range(6):self.assertEqual(Image.open(io.BytesIO(z.read(f'assets/minecraft/textures/gui/title/background/panorama_{n}.png'))).size,(1024,1024))
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Items.zip') as z:
-            self.assertIn('tag=!astral.pet',z.read('data/astral/function/spell/ray.mcfunction').decode())
+            self.assertIn('astral.spell.perfora',z.read('data/astral/function/spell/trace.mcfunction').decode())
+        self.assertIn('t.equals("astral.pet")',(ROOT/'datapack-src/runtime/AstralSpell.java').read_text('utf8'))
 
     def test_private_final_delta(self):
         folder=privado()/'build/entregas'/NAME

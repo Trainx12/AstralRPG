@@ -127,6 +127,7 @@ MANA_SET_MAGO = {1: 100, 2: 200, 3: 350, 4: 600, 5: 1150, 6: 1600, 7: 2200, 8: 3
 MANA_HECHIZO = {1: 30, 2: 50, 3: 90, 4: 150, 5: 200, 6: 250, 7: 300, 8: 360, 9: 430, 10: 500}
 # Daño base del hechizo = espada del mismo tier x 1,2 (sin bonus de dano magico).
 # Cuesta mana, asi que pega un poco mas que un espadazo, como las habilidades de Mago.
+HECHIZO_PERFORA = (1.0, 0.7, 0.7)  # Objetivos distintos en orden del disparo
 FACTOR_HECHIZO = 1.2
 HECHIZO = {t: round(DANO[t] * FACTOR_HECHIZO) for t in DANO}
 # Armas especiales: (mana, recarga en segundos). Destello = Aspect of the End (50, sin recarga);

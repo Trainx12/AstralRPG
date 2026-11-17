@@ -63,7 +63,7 @@ class Interruptores(unittest.TestCase):
                         else:
                             self.assertNotIn('astral.fx', linea)
                             self.assertNotIn('@a', linea)
-            for nombre in ('fx_rayo', 'hit', 'pared'):
+            for nombre in ('fx_perfora', 'hit', 'pared'):
                 self.assertIn('astral.fx.bastones=1..', z.read(f'data/astral/function/spell/{nombre}.mcfunction').decode())
 
     def test_menu_aclara_que_solo_apaga_efectos_nuevos(self):

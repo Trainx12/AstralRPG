@@ -625,6 +625,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
+        new AstralSpell(this);
         gacha=new AstralGacha(this);
         mounts=new AstralMounts(this);
         merchant=new AstralMerchant(this);

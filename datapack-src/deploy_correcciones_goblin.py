@@ -61,7 +61,7 @@ def final(assets,explicit=None):
     own={p.relative_to(out/'pack').as_posix():p.read_bytes() for p in (out/'pack').rglob('*') if p.is_file()}
     files.update(own)
     # Solo salida privada BetterModel de estos tres modelos; nunca superponer assets publicos de reserva.
-    converted={p.relative_to(assets).as_posix():p.read_bytes() for p in assets.rglob('*')
+    converted={'assets/'+p.relative_to(assets).as_posix():p.read_bytes() for p in assets.rglob('*')
                if p.is_file() and 'astral_pet_golem_' in p.name or p.is_file() and 'astral_golem_' in p.name and any(k in p.name for k in ('bosque','hielo','cristal'))}
     if not converted:raise ValueError('Falta la conversion BetterModel de golems')
     for kind in ('bosque','hielo','cristal'):
