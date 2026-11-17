@@ -1,5 +1,11 @@
 # Retiro de mascotas, Aurora y ventanas - 16/11/2026
 
+Estado acumulado vigente: [deploy-16-11](../build/deploy/deploy-16-11.md).
+Base instalada y R2 comprobados: `4322b8ca706b692d7d0d4f750312d079a5e7653a`.
+Respaldo remoto y paquete de instalacion preparados; ninguna mutacion remota ejecutada.
+El FINAL nuevo `6421c6d38ec1303051a44b3f42b52a2b3f3dcb42` y los 108 archivos
+requieren instalacion y reinicio completo; ver manifest, comandos y bloqueo de API en la entrega.
+
 Implementacion preparada, sin despliegue remoto. Lista exacta y limpieza limitada al Oceano:
 [entrega](../build/deploy/mascotas-aurora-botones.md). Requiere apagar y reiniciar por AstralOceano 1.4.0,
 datapack y resource pack. Conservar `config.yml` del Oceano y las variables de Skript.

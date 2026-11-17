@@ -1,5 +1,10 @@
 # Ventanas y mascotas - 16/11/2026
 
+Entrega acumulada lista para instalar: [deploy-16-11](../build/deploy/deploy-16-11.md).
+339 pruebas y ensayos locales aprobados; archivos publicos en GitHub. Empower y R2
+siguen pendientes: la revision automatica no autorizo la instalacion por API.
+Usar su manifest acumulado y FINAL, no los ZIP historicos de cada tanda.
+
 Arte final posterior preparado, sin desplegar: [cargar-arte-16-11](../build/deploy/cargar-arte-16-11.md).
 Items, materiales VI-X, Saltador, botella vanilla y navegacion con arte final;
 Manzana de la Suerte conserva el ID `manzana_esmeralda`. Generadores `arte_1611.py`

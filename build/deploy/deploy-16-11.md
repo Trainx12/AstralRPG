@@ -113,10 +113,36 @@ Si solo se corrige YAML posteriormente: `mm reload`, `dm reload`, `crates reload
 y `astral_duelos` (cada nombre como comando completo). No usar /reload general.
 El arranque normal carga todo sin repetir estas recargas.
 
-## Estado remoto
+## Publicacion y estado remoto
+
+Codigo, seis PNG autorizados y salidas publicas publicados en GitHub:
+`92e40b4eea453ae0b413149fb28054725564f03d`; push a main confirmado contra ls-remote.
+Auditoria del indice: sin arte privado en archivos versionados ni ZIP.
+El trabajo previo ajeno no se agrego al indice ni se publico.
 
 Instalacion, subida R2 del nuevo FINAL, cambio de properties y consola posterior:
-pendientes de completar tras la publicacion del codigo. Economia verificada con
+**pendientes**. La revision automatica rechazo la ejecucion del instalador por API
+porque la instruccion pide preparar para el navegador y no aprueba expresamente
+ese metodo para mutaciones remotas. El proceso instalador no llego a ejecutarse:
+no hubo apagado, subida, borrado, cambio de properties ni reinicio en Empower;
+R2 conserva el pack anterior. Los accesos remotos completados fueron de lectura y respaldo.
+Para continuar por API se requiere autorizacion explicita del dueno; Claude puede
+continuar por el navegador conforme al pedido original.
+
+Paquete privado listo para el navegador:
+`.local/deploy-16-11/astral-deploy-1611.zip`, 108 archivos (104 del manifest,
+tres configuraciones ya combinadas y server.properties con solo el hash nuevo).
+Sus rutas y SHA-256 estan en `.local/deploy-16-11/subida.json`; copia expandida en
+`.local/deploy-16-11/server-stage/`. No publicar ese ZIP: incluye derivados privados.
+Antes de usarlo, comprobar nuevamente base instalada y configuraciones actuales;
+las combinaciones se hicieron sobre el respaldo de esta ejecucion.
+Apagar, publicar/verificar R2, instalar el ZIP en Files y descomprimir desde la raiz,
+retirar solo los seis menus del manifest y sus registros, e iniciar Java 25.
+No hay carpetas de mundos ni regiones en ese paquete: solo plugins, dos datapacks
+y server.properties. El archivo de texturas FINAL se distribuye por R2, no dentro del paquete del servidor.
+No instalar ninguno de los plugins Probe.
+
+Economia verificada con
 EconomyShopGUI 7.3.4 y las tiendas actuales descargadas del panel; sus precios reales
 por unidad incluyen el ajuste stack-size del YAML. El proveedor Vault del ensayo es
 un doble local; no se modifico dinero de jugadores ni se compro/vendio en produccion.
