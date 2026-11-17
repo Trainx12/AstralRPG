@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 from PIL import Image
+from gacha_balance import FACTOR_SUERTE
 
 ROOT = Path(__file__).resolve().parents[1]
 XP = {'frasco_xp_pequeno': 60, 'frasco_xp_grande': 200, 'frasco_xp_gigante': 550, 'barril_xp': 5500}
@@ -19,7 +20,8 @@ def register(add, txt):
         extra = {'minecraft:max_stack_size': 16}
         if apple:
             extra.update({'minecraft:food': {'nutrition': 4, 'saturation': 2.4, 'can_always_eat': True}})
-        desc = (['Suerte en gachas durante 5 minutos.', 'Otra manzana renueva el tiempo; no lo acumula.'] if apple else
+        desc = ([f'Raro, Epico y Legendario x{str(FACTOR_SUERTE).replace(".", ",")} durante {SUERTE_SEGUNDOS // 60} minutos.',
+                 f'Cada manzana suma {SUERTE_SEGUNDOS // 60} minutos.'] if apple else
                 [f'Clic derecho: +{XP[iid]} puntos de XP vanilla.', 'Shift + clic: consume todo el stack de esa mano.'])
         add(iid, 'minecraft:apple' if apple else 'minecraft:paper', name, 'green', [txt(s) for s in desc],
             {'type': 'consumable'}, extra=extra, model='astral:'+iid,

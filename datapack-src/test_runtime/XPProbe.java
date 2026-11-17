@@ -19,6 +19,23 @@ import com.mojang.authlib.GameProfile;
 public final class XPProbe extends JavaPlugin {
     Player player;int failures;final List<String> crateCalls=new ArrayList<>();
     final NamespacedKey until=new NamespacedKey("astral","suerte_hasta");
+    final NamespacedKey total=new NamespacedKey("astral","suerte_total");
+    final List<String> messages=new ArrayList<>(),bars=new ArrayList<>();
+    Player observed;boolean op;int sounds,particles;
+    Player observe(Player real) {
+        return (Player)java.lang.reflect.Proxy.newProxyInstance(getClassLoader(),new Class[]{Player.class},(proxy,m,a)->{
+            if(m.getName().equals("isOp"))return op;
+            if(m.getName().equals("sendMessage") || m.getName().equals("sendActionBar")) {
+                Object value=a[a.length-1];
+                String text=value instanceof net.kyori.adventure.text.Component c?
+                    net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText().serialize(c):String.valueOf(value);
+                (m.getName().equals("sendMessage")?messages:bars).add(text);return null;
+            }
+            if(m.getName().equals("playSound")){sounds++;return null;}
+            if(m.getName().equals("spawnParticle")){particles++;return null;}
+            try{return m.invoke(real,a);}catch(java.lang.reflect.InvocationTargetException ex){throw ex.getCause();}
+        });
+    }
     void check(boolean ok,String text){if(!ok)failures++;getLogger().info("XP "+(ok?"PASS ":"FAIL ")+text);}
     Player fake() throws Exception {
         var server=((CraftServer)Bukkit.getServer()).getServer();
@@ -43,7 +60,7 @@ public final class XPProbe extends JavaPlugin {
         it.setAmount(n);return it;
     }
     void click(EquipmentSlot hand,boolean deny) {
-        var e=new PlayerInteractEvent(player,Action.RIGHT_CLICK_AIR,player.getInventory().getItem(hand),null,null,hand);
+        var e=new PlayerInteractEvent(observed,Action.RIGHT_CLICK_AIR,player.getInventory().getItem(hand),null,null,hand);
         if(deny)e.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
         Bukkit.getPluginManager().callEvent(e);
     }
@@ -62,7 +79,8 @@ public final class XPProbe extends JavaPlugin {
       try {
         switch(args[0]) {
         case "start" -> {
-            player=fake();player.loadData();player.getInventory().clear();player.setLevel(0);player.setExp(0);player.setTotalExperience(0);
+            player=fake();player.loadData();observed=observe(player);player.getInventory().clear();player.setLevel(0);player.setExp(0);player.setTotalExperience(0);
+            messages.clear();bars.clear();op=false;
             check(Bukkit.getPluginManager().isPluginEnabled("AstralDecor"),"runtime habilitado");
             for (int tier=1;tier<=10;tier++) {
                 boolean existe=Bukkit.getLootTable(NamespacedKey.fromString("astral:item/ballesta_"+tier))!=null;
@@ -75,11 +93,13 @@ public final class XPProbe extends JavaPlugin {
             check(player.getLevel()==20 || (player.getLevel()==19 && player.getExp()>.999f),
                   "550 puntos alcanzan aproximadamente nivel 20: nivel="+player.getLevel()+" barra="+player.getExp());
             check(player.getInventory().getItemInMainHand().getAmount()==15,"consume solo un frasco");
+            check(messages.isEmpty(),"no OP no recibe chat de XP");
         }
         case "stack" -> {
-            player.setSneaking(true);click(EquipmentSlot.HAND,false);
+            op=true;messages.clear();player.setSneaking(true);click(EquipmentSlot.HAND,false);
             check(player.getTotalExperience()==8800,"shift da exactamente 15 x 550 XP");
             check(player.getInventory().getItemInMainHand().getType().isAir(),"stack consumido");
+            check(messages.equals(List.of("Recibiste 8250 puntos de XP.")),"OP recibe un solo total del stack");op=false;
         }
         case "offhand" -> {
             player.setSneaking(false);player.getInventory().setItemInOffHand(item("barril_xp",2));click(EquipmentSlot.OFF_HAND,false);
@@ -91,16 +111,28 @@ public final class XPProbe extends JavaPlugin {
             check(player.getTotalExperience()==14300 && player.getInventory().getItemInMainHand().getAmount()==1,"evento denegado no consume ni da XP");
         }
         case "apple" -> {
-            var e=new PlayerItemConsumeEvent(player,item("manzana_esmeralda",1),EquipmentSlot.HAND);Bukkit.getPluginManager().callEvent(e);
+            player.getPersistentDataContainer().remove(until);player.getPersistentDataContainer().remove(total);messages.clear();
+            var e=new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND);Bukkit.getPluginManager().callEvent(e);
             long left=player.getPersistentDataContainer().getOrDefault(until,PersistentDataType.LONG,0L)-System.currentTimeMillis();
             check(left>299000 && left<=300000,"manzana activa cinco minutos");
-            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()+1000);
-            Bukkit.getPluginManager().callEvent(new PlayerItemConsumeEvent(player,item("manzana_esmeralda",1),EquipmentSlot.HAND));
+            check(messages.getFirst().contains("Manzana de la Suerte") && messages.getFirst().contains("+5:00") && messages.getFirst().contains("15,3%") && messages.getFirst().contains("4,9%") && messages.getFirst().contains("0,7%"),"mensaje nuevo con porcentajes calculados");
+            Bukkit.getPluginManager().callEvent(new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND));
             left=player.getPersistentDataContainer().getOrDefault(until,PersistentDataType.LONG,0L)-System.currentTimeMillis();
-            check(left>299000 && left<=300000,"renueva, no acumula");
-            e=new PlayerItemConsumeEvent(player,item("manzana_esmeralda",1),EquipmentSlot.HAND);e.setCancelled(true);
+            check(left>599000 && left<=600000,"dos manzanas acumulan diez minutos");
+            check(messages.getLast().contains("Suerte renovada") && messages.getLast().contains("10:00"),"renovacion informa tiempo acumulado");
+            check(player.getPersistentDataContainer().get(total,PersistentDataType.LONG)>599000,"maximo de racha persistente");
+            check(sounds==2 && particles==2,"un sonido y una emision por manzana");
+            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()+150000);
+            invoke("updateLuck",observed);
+            check(bars.getLast().contains("▯"),"barra se vacia respecto al maximo de la racha");
+            e=new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND);e.setCancelled(true);
             long before=player.getPersistentDataContainer().get(until,PersistentDataType.LONG);Bukkit.getPluginManager().callEvent(e);
             check(before==player.getPersistentDataContainer().get(until,PersistentDataType.LONG),"comida cancelada no activa");
+            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()-1000);messages.clear();
+            invoke("updateLuck",observed);invoke("updateLuck",observed);
+            check(messages.size()==1 && messages.getFirst().contains("se termino"),"vencimiento avisa una sola vez");
+            check(!player.getPersistentDataContainer().has(total),"racha se limpia al vencer");
+            Bukkit.getPluginManager().callEvent(new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND));
         }
         case "roll" -> {
             check(Bukkit.getPlayerExact("XPProbe")==player,"jugador resuelto por nombre");
@@ -130,10 +162,12 @@ public final class XPProbe extends JavaPlugin {
                 check(meta.getItemModel()!=null && meta.getItemModel().getKey().startsWith("mochila_"),"modelo mochila T"+t);
                 check(meta.getPersistentDataContainer().get(NamespacedKey.fromString("expendablebackpacks:backpack_uuid"),PersistentDataType.STRING).equals("preservar-"+t),"UUID conservado T"+t);
             }
-            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()+300000);player.saveData();
+            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()+300000);
+            player.getPersistentDataContainer().set(total,PersistentDataType.LONG,600000L);player.saveData();
         }
         case "persist" -> {
             check(player.getPersistentDataContainer().getOrDefault(until,PersistentDataType.LONG,0L)>System.currentTimeMillis(),"suerte persistida tras reinicio");
+            check(player.getPersistentDataContainer().getOrDefault(total,PersistentDataType.LONG,0L)>0,"maximo de racha persistido tras reinicio");
         }
         case "result" -> getLogger().info("XP RESULT failures="+failures);
         }

@@ -6,7 +6,7 @@ multiplica x5 el dano (100 / 500 / 2.500 / 12.500 / 62.500) y la vida de los mob
 sube un poco menos (5 golpes en T1 -> 4,2 en T5).
 
 - Mobs del mundo: se adaptan al arma de mayor tier del jugador mas cercano
-  (86% su tier, 4% uno mas, 10% uno menos). Mazmorras: tier fijo.
+  (4% uno mas en T1-T5, 10% desde T6; 10% uno menos). Mazmorras: tier fijo.
 - La vida del jugador y su armadura NO cambian. El dano de los mobs sube x1,5 por tier
   (pedido del dueno, 08/11/2026: un mob tier 5 casi no lastimaba a un jugador tier 3).
 - La particula de corazones al pegar es transparente (si no, salen miles) y la vida del
@@ -95,6 +95,8 @@ EXTRA_VIDA_MAZMORRA = _copias({"santuario": 1.5, "santuario_interstellar": 1.5, 
 
 # Probabilidades de tier en el mundo (en %).
 PROB_TIER_MAS = 4
+PROB_TIER_MAS_ALTO = 10  # Desde T6 aumenta solo la posibilidad de uno mas.
+TIER_PROB_ALTA = 6
 PROB_TIER_MENOS = 10
 PROB_MAZ_MAS = 3
 PROB_MAZ_MENOS = 10

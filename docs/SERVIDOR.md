@@ -605,7 +605,9 @@ EconomyShopGUI gratuito abre `consumibles` de DeluxeMenus por el título reserva
 
 La manzana se come incluso con hambre llena. AstralDecor guarda el vencimiento
 real en PDC `astral:suerte_hasta`, actualiza `astral.suerte` y la barra de acción.
-Dura cinco minutos, incluso si el jugador sale; otra manzana renueva el plazo.
+Cada manzana suma cinco minutos al tiempo restante, incluso si el jugador sale, sin tope.
+El maximo restante de la racha se conserva en `astral:suerte_total` para la barra.
+AstralDecor 1.14.0 muestra porcentajes calculados y solo informa XP por chat a OP.
 CrazyCrates usa cajas separadas `_suerte`: pesos raros, épicos y legendarios ×1,5
 antes de normalizar. Resultan 15,34884%, 4,88372% y 0,69767% respectivamente;
 comunes 55,81395% y poco comunes 23,25581%. La garantía sigue 87,5% épico y

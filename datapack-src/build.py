@@ -1506,11 +1506,12 @@ fn("player/vida_base", [
 
 # ---------------------------------------------------------------------------
 # Tier de cada mob nuevo (escala.py). Mundo: se adapta a la mejor arma del jugador
-# mas cercano (86% igual, 4% uno mas, 10% uno menos). Mazmorras: tier fijo.
+# mas cercano (4% uno mas en T1-T5, 10% desde T6; 10% uno menos). Mazmorras: tier fijo.
 # Despues puede salir elite (en mazmorras con la mitad de chance).
 # ---------------------------------------------------------------------------
 from escala import (VIDA_MOB, DANO_MOB, TIER_MAZMORRA, EXTRA_VIDA_MAZMORRA, PROB_TIER_MAS,
-                    PROB_TIER_MENOS, COLOR_TIER, PROB_MAZ_MAS, PROB_MAZ_MENOS, VIDA_REF)
+                    PROB_TIER_MENOS, PROB_TIER_MAS_ALTO, TIER_PROB_ALTA,
+                    COLOR_TIER, PROB_MAZ_MAS, PROB_MAZ_MENOS, VIDA_REF)
 # Ademas de los hostiles vanilla: criaturas de MythicMobs con tipos neutrales.
 put(f"data/{NS}/tags/entity_type/escalable.json",
     {"values": [f"#{NS}:hostile", "minecraft:iron_golem", "minecraft:vex"]})
@@ -1548,8 +1549,14 @@ fn("mob/tier_mundo", [
     "scoreboard players operation #mt astral.tmp = @p[distance=..128,gamemode=!spectator] astral.wt",
     "execute if score #mt astral.tmp matches 0 run return 0",
     "execute store result score #r astral.tmp run random value 1..100",
+    # Elegir rama ANTES de modificar #mt; return impide cruzar de T6 a la rama baja.
+    f"execute if score #mt astral.tmp matches {TIER_PROB_ALTA}.. run return run function {NS}:mob/tier_mundo_alto",
     f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS} if score #mt astral.tmp matches ..{TIER_MAX - 1} run return run scoreboard players add #mt astral.tmp 1",
-    f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS + PROB_TIER_MENOS} run scoreboard players remove #mt astral.tmp 1",
+    f"execute if score #r astral.tmp matches {PROB_TIER_MAS + 1}..{PROB_TIER_MAS + PROB_TIER_MENOS} run scoreboard players remove #mt astral.tmp 1",
+])
+fn("mob/tier_mundo_alto", [
+    f"execute if score #r astral.tmp matches ..{PROB_TIER_MAS_ALTO} if score #mt astral.tmp matches ..{TIER_MAX - 1} run return run scoreboard players add #mt astral.tmp 1",
+    f"execute if score #r astral.tmp matches {PROB_TIER_MAS_ALTO + 1}..{PROB_TIER_MAS_ALTO + PROB_TIER_MENOS} run scoreboard players remove #mt astral.tmp 1",
 ])
 fn('mob/tier_mazmorra', [
     'execute store result score #r astral.tmp run random value 1..100',

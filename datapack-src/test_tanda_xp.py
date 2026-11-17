@@ -27,6 +27,15 @@ class TandaXPTests(unittest.TestCase):
                 self.assertIn('astral:consumible',c['minecraft:custom_data'])
                 self.assertEqual(c['minecraft:item_model'],'astral:'+iid)
             self.assertTrue(self.item(z,'manzana_esmeralda')['minecraft:food']['can_always_eat'])
+            from gacha_balance import luck_data
+            data=json.loads(jar.read('consumibles.json'))
+            for key,value in luck_data().items():self.assertEqual(data[key],value)
+            self.assertIn('Raro 11% → 15,3%',data['suerte_detalle'])
+            self.assertIn('Epico 3,5% → 4,9%',data['suerte_detalle'])
+            self.assertIn('Legendario 0,5% → 0,7%',data['suerte_detalle'])
+            lore=str(self.item(z,'manzana_esmeralda')['minecraft:lore'])
+            self.assertIn('Cada manzana suma 5 minutos',lore)
+            self.assertIn('x1,5',lore)
 
     def test_knives_actual_attributes_and_recipes(self):
         self.assertEqual(len(CUCHILLOS),10)
@@ -76,7 +85,7 @@ class TandaXPTests(unittest.TestCase):
                     else:self.assertAlmostEqual(rare,100*22.5/107.5 if lucky else 15,delta=.003)
 
     def test_all_generated_clickable_buttons_have_models(self):
-        # Sin excepciones clickeables por ahora. Rellenos y cabezas reales no accionables pueden ser vanilla.
+        # Interruptores de efectos usan tintes vanilla segun el estado; no requieren arte del pack.
         missing=[]
         with zipfile.ZipFile(ROOT/'build/AstralRPG-Textures.zip') as z:
             names=set(z.namelist())
@@ -84,7 +93,10 @@ class TandaXPTests(unittest.TestCase):
                 data=yaml.safe_load(p.read_text(encoding='utf8'))
                 for key,item in data.get('items',{}).items():
                     clickable=any(k.endswith('commands') for k in item)
-                    if clickable and not item.get('item_model'):missing.append(f'{p.name}:{key}')
+                    vanilla_toggle=(p.name=='configuraciones.yml' and
+                        key in {f'interruptor_{category}_{state}' for category in ('armaduras','armas','bastones','mascotas','jefes') for state in ('true','false')} and
+                        item.get('material')==('LIME_DYE' if key.endswith('_true') else 'GRAY_DYE'))
+                    if clickable and not item.get('item_model') and not vanilla_toggle:missing.append(f'{p.name}:{key}')
                     model=item.get('item_model','')
                     if model.startswith('astral:'):
                         self.assertIn('assets/astral/items/'+model.split(':',1)[1]+'.json',names,f'{p.name}:{key}')

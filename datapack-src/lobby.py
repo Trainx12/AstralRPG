@@ -42,7 +42,7 @@ NPC_POS = {
     "astral_npc_portales": (211.434, 105, 237.492, 90.0),
 }
 
-RARITY_WEIGHT = {"common": 60, "uncommon": 25, "rare": 11, "epic": 3.5, "legendary": 0.5}
+from gacha_balance import RARITY_WEIGHT, FACTOR_SUERTE, RAREZAS_SUERTE
 # Pity (garantia): cada tirada suma 1 al contador del jugador (scoreboard 'pity_<gacha>').
 # Al llegar al numero, esa tirada sale de la caja "<gacha>_garantia" (solo Epico o Legendario).
 # Sacar Epico o Legendario (con o sin garantia) vuelve el contador a 0.
@@ -236,7 +236,7 @@ def crate_yml(gid, g, garantia=False, suerte=False):
     rewards = g["rewards"]()
     if garantia:
         rewards = [r for r in rewards if r[0] in PITY_RARITIES]
-    weights = {r:w*(1.5 if suerte and r in ('rare','epic','legendary') else 1) for r,w in RARITY_WEIGHT.items()}
+    weights = {r:w*(FACTOR_SUERTE if suerte and r in RAREZAS_SUERTE else 1) for r,w in RARITY_WEIGHT.items()}
     scale = 100 / sum(weights[r] for r in (PITY_RARITIES if garantia else weights))
     tot = {}
     for rar, w, _, _ in rewards:

@@ -43,7 +43,8 @@ armadura y el daño de los mobs **no cambian** (se probó mostrarlos grandes y a
 - Cada mob hostil nuevo (más golems y vex de MythicMobs; nunca los invulnerables) recibe un tier al
   aparecer (`mob/roll` del datapack, cada segundo) y la etiqueta `astral.mt#`.
 - **Mundo:** tier = mejor arma Astral del inventario del jugador más cercano (128 bloques, score
-  `astral.wt`): 86% ese tier, 4% uno más, 10% uno menos. Sin arma Astral: mob vanilla.
+  `astral.wt`): T1–T5, 86% ese tier, 4% uno más y 10% uno menos. Desde T6, 80% ese tier,
+  10% uno más y 10% uno menos. En T10 la subida conserva T10. Sin arma Astral: mob vanilla.
 - **Mazmorras:** tier fijo: bosque 1, mina 2, tumba 3, cumbre 4, forja 5, santuario 5 con ×1,5 de vida.
 - **Élites:** misma probabilidad que antes (6% + 5% por amenaza); en mazmorras la mitad. Multiplican la
   vida ya escalada (Élite ×1,9 … Astral ×5).
@@ -109,7 +110,7 @@ Todo sale de `escala.py` (`MANA_*`, `HECHIZO`, `REGEN_*`).
 
 Vida: Bosque 12.500; Minas 72.000; Tumba 460.000; Cumbre 2.475.000; Forja 13.125.000. Se genera desde `EZ_JEFE × VIDA_REF` en `escala.py`.
 
-Oleadas: 87% tier de la mazmorra, 3% uno mas y 10% uno menos (limites 1–5). Mundo abierto conserva 86/4/10. Jefes del mundo y Ancestrales fuera del Santuario: 25 EZ del tier calculado por `mob/tier_mundo` al aparecer; sin arma o sin jugador cercano, T1. No se vuelven a curar al cargar chunks. Santuario conserva sus atributos previos.
+Oleadas: 87% tier de la mazmorra, 3% uno mas y 10% uno menos (limites 1–5). Mundo abierto usa 86/4/10 en T1-T5 y 80/10/10 desde T6 (sin superar T10). Jefes del mundo y Ancestrales fuera del Santuario: 25 EZ del tier calculado por `mob/tier_mundo` al aparecer; sin arma o sin jugador cercano, T1. No se vuelven a curar al cargar chunks. Santuario conserva sus atributos previos.
 
 Medicion de todas las esquinas de los cubos existentes, con rotaciones, en pose de reposo. Se prioriza el alto: una sola escala no puede igualar proporciones distintas entre modelo y entidad. El ancho puede diferir. Las animaciones tampoco tienen una caja dinamica. Mascotas, monturas, NPC y estatuas quedan excluidos.
 

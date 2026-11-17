@@ -27,6 +27,8 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private AstralMerchant merchant;
     private final Map<String,Integer> consumableXP = new HashMap<>();
     private int luckSeconds;
+    private String luckFactor, luckDetail;
+    private static final net.kyori.adventure.text.minimessage.MiniMessage MM = net.kyori.adventure.text.minimessage.MiniMessage.miniMessage();
     private int asuraHits=4;
     private double asuraExtra=.5,asuraHeal=.05,carnivoraHeal=.03;
     private record Combo(int count,int tick,UUID target) {}
@@ -65,6 +67,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     }
     private final NamespacedKey consumableKey = new NamespacedKey("astral","consumible");
     private final NamespacedKey luckUntilKey = new NamespacedKey("astral","suerte_hasta");
+    private final NamespacedKey luckTotalKey = new NamespacedKey("astral","suerte_total");
     private final Map<UUID,Integer> xpClickTick = new HashMap<>();
     private String consumable(ItemStack it) {
         return it==null || !it.hasItemMeta()?"":it.getItemMeta().getPersistentDataContainer().getOrDefault(consumableKey,PersistentDataType.STRING,"");
@@ -74,6 +77,8 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             var obj=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
             obj.getAsJsonObject("xp").entrySet().forEach(e->consumableXP.put(e.getKey(),e.getValue().getAsInt()));
             luckSeconds=obj.get("suerte_segundos").getAsInt();
+            luckFactor=obj.get("suerte_factor").getAsString();
+            luckDetail=obj.get("suerte_detalle").getAsString();
         } catch(Exception ex) {throw new IllegalStateException("Consumibles sin datos",ex);}
         try(var in=getResource("balance.json")) {
             var b=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in)).getAsJsonObject();
@@ -99,20 +104,46 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         int count=p.isSneaking()?it.getAmount():1;
         it.setAmount(it.getAmount()-count);
         int amount=Math.multiplyExact(count,consumableXP.get(key));
-        p.giveExp(amount);p.sendMessage("Recibiste "+amount+" puntos de XP.");
+        p.giveExp(amount);
+        if(p.isOp())p.sendMessage("Recibiste "+amount+" puntos de XP.");
     }
     @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
     public void eatEmerald(PlayerItemConsumeEvent e) {
         if(!consumable(e.getItem()).equals("manzana_esmeralda"))return;
-        e.getPlayer().getPersistentDataContainer().set(luckUntilKey,PersistentDataType.LONG,System.currentTimeMillis()+luckSeconds*1000L);
-        e.getPlayer().sendMessage("Suerte en gachas renovada: 5 minutos. Mejora las probabilidades; no garantiza premios raros.");
-        updateLuck(e.getPlayer());
+        Player p=e.getPlayer();var data=p.getPersistentDataContainer();long now=System.currentTimeMillis();
+        long old=data.getOrDefault(luckUntilKey,PersistentDataType.LONG,0L);
+        boolean active=old>now;
+        long end=Math.max(now,old)+luckSeconds*1000L;
+        long remaining=(end-now+999)/1000;
+        // Denominador persistente: maximo restante alcanzado en esta racha, en milisegundos.
+        long total=active?Math.max(data.getOrDefault(luckTotalKey,PersistentDataType.LONG,0L),end-now):end-now;
+        data.set(luckUntilKey,PersistentDataType.LONG,end);
+        data.set(luckTotalKey,PersistentDataType.LONG,total);
+        p.sendMessage(MM.deserialize("<green><bold>✦ "+(active?"Suerte renovada":"Manzana de la Suerte")+" ✦</bold></green>\n"+
+            "<white>+"+luckTime(luckSeconds)+" de suerte — te quedan "+luckTime(remaining)+"</white>\n"+
+            "<aqua>"+luckDetail+"</aqua>\n<gray>Raro, Epico y Legendario x"+luckFactor+". Cada manzana suma tiempo.</gray>"));
+        p.playSound(p.getLocation(),Sound.BLOCK_AMETHYST_BLOCK_CHIME,.6f,1.2f);
+        p.spawnParticle(Particle.HAPPY_VILLAGER,p.getLocation().add(0,1,0),12,.35,.5,.35,0);
+        updateLuck(p);
     }
+    private static String luckTime(long seconds) {return seconds/60+":"+String.format(java.util.Locale.ROOT,"%02d",seconds%60);}
     private void updateLuck(Player p) {
-        long remaining=Math.max(0,(p.getPersistentDataContainer().getOrDefault(luckUntilKey,PersistentDataType.LONG,0L)-System.currentTimeMillis()+999)/1000);
+        var data=p.getPersistentDataContainer();
+        long until=data.getOrDefault(luckUntilKey,PersistentDataType.LONG,0L);
+        long remaining=Math.max(0,(until-System.currentTimeMillis()+999)/1000);
         var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.suerte");
-        if(objective!=null)objective.getScore(p.getName()).setScore((int)remaining);
-        if(remaining>0)p.sendActionBar(net.kyori.adventure.text.Component.text("Suerte en gachas: "+remaining/60+":"+String.format("%02d",remaining%60)));
+        if(objective!=null)objective.getScore(p.getName()).setScore((int)Math.min(Integer.MAX_VALUE,remaining));
+        if(remaining>0) {
+            long total=data.getOrDefault(luckTotalKey,PersistentDataType.LONG,luckSeconds*1000L);
+            int filled=(int)Math.max(0,Math.min(10,Math.ceil(10.0*remaining*1000/Math.max(1,total))));
+            String color=remaining<=30?"yellow":"green";
+            p.sendActionBar(MM.deserialize("<"+color+">✦ Suerte x"+luckFactor+"  "+"▮".repeat(filled)+
+                "<dark_gray>"+"▯".repeat(10-filled)+"</dark_gray>  <white>"+luckTime(remaining)+"</white></"+color+">"));
+        } else if(until!=0) {
+            data.remove(luckUntilKey);data.remove(luckTotalKey);
+            p.sendMessage(MM.deserialize("<gray>✦ La suerte de las gachas se termino.</gray>"));
+            p.sendActionBar(net.kyori.adventure.text.Component.empty());
+        }
     }
     private void backpackModels(Player p) {
         var uuid=NamespacedKey.fromString("expendablebackpacks:backpack_uuid");

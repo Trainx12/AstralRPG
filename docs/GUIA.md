@@ -1,6 +1,8 @@
 # Bastones e interruptores - 17/11/2026
 
 Entrega conjunta pendiente: [efectos-direccion-interruptores](../build/deploy/efectos-direccion-interruptores.md).
+Incluye ahora [tier T6, XP y suerte acumulable](../build/deploy/tier6-suerte.md),
+AstralDecor 1.14.0 y datapack nuevo. Comparacion real de mass-open pendiente del JAR exacto de CrazyCrates.
 Los interruptores apagan solo efectos nuevos de AstralEfectos y particulas de elemento
 de Medio/Alto. Las particulas tradicionales permanecen siempre visibles.
 El clic derecho de bastones exige Hechiceria antes de gastar mana; Espada de Agua y

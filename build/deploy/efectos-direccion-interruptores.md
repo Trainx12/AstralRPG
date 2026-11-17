@@ -3,19 +3,25 @@
 Preparado para Empower (servidor vigente); despliegue remoto pendiente.
 AstralEfectos 1.2.0, Paper 26.1.2, Java 25. Conservar PacketEvents instalado.
 
+Tanda combinada del mismo dia: [tier T6, XP y suerte](tier6-suerte.md).
+La lista conjunta ahora incluye AstralDecor 1.14.0 y el datapack actualizado de esa entrega.
+Requiere el mismo apagado y reinicio completo. Investigacion de mass-open/pity pendiente
+del JAR exacto de CrazyCrates; no se modificaron sus probabilidades ni flujo de lotes.
+
 ## Archivos exactos
 
 | Local (desde la raiz del repo) | Destino en el servidor | SHA-256 |
 |---|---|---|
 | `build/runtime/AstralEfectos.jar` | `plugins/AstralEfectos.jar` | `ad7685d81bf03844792bb4d44cbbfbd11072a12e13e29ebe914b63e29b3b0557` |
 | `build/menus/DeluxeMenus/gui_menus/configuraciones.yml` | `plugins/DeluxeMenus/gui_menus/configuraciones.yml` | `e51c83103d02179fb624d479f15c91cd8cc38bec06d946f33a4d6e5c905d47a3` |
-| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `b9bc34f9401b1f40e1a9751eff4333068ec1c1472601a4c2b26503aaa684f785` |
+| `build/AstralRPG-Items.zip` | `world/datapacks/AstralRPG-Items.zip` | `789766b0359a15cd0c27675e3c1253ec73eaeef0a91bc4da0b0033a1e5a9fec6` |
+| `build/runtime/AstralDecor.jar` | `plugins/AstralDecor.jar` | `e56ec68dac2513d22ebf97653ae6132f061726021935386ece5cec0d5e5bfcc6` |
 | `build/gameplay/astral_armas_especiales.sk` | `plugins/Skript/scripts/special_weapons.sk` | `8565a46741dd03d9756a8efe4be7672230161c4b5352e888d1a09d9cbd76a93c` |
 
 ## Instalacion
 
-1. Respaldar los cuatro archivos actuales del servidor y verificar Java 25. Apagar el servidor.
-2. Reemplazar solamente los cuatro archivos de la tabla. El datapack es la salida completa actual del repositorio; conservar los demas datapacks y archivos del servidor.
+1. Respaldar los cinco archivos actuales del servidor y verificar Java 25. Apagar el servidor.
+2. Reemplazar solamente los cinco archivos de la tabla. El datapack es la salida completa actual del repositorio; conservar los demas datapacks y archivos del servidor.
    Skript: usar el nombre real activo, special_weapons.sk. Verificar que no haya otra copia activa astral_armas_especiales.sk; conservar desactivada la copia duplicada registrada el 16/11, sin borrar scripts ajenos.
 3. Iniciar: hace falta reinicio completo por el JAR y el datapack. No usar PlugMan ni recarga global de Bukkit.
 4. En consola: `dm reload`. Si Configuraciones ya esta registrado no cambiar config.yml; si falta, agregar `configuraciones: {file: configuraciones.yml}` dentro de `gui_menus`, conservando las otras entradas, y repetir `dm reload`.
