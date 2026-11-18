@@ -55,6 +55,28 @@ class Client:
         finally:
             connection.close()
 
+    def download(self, remote, local):
+        """Descarga binaria oficial; nunca imprime la URL firmada ni la clave."""
+        if local.exists():
+            raise FileExistsError('No se sobrescriben descargas ni respaldos previos.')
+        signed = json.loads(self.request('GET', '/files/download?' + urlencode({'file': remote})))['attributes']['url']
+        if urlsplit(signed).scheme != 'https':
+            raise LocalError('El panel devolvio una URL de descarga insegura.')
+        local.parent.mkdir(parents=True, exist_ok=True)
+        # xb evita pisar originales o respaldos previos.
+        created = False
+        try:
+            with urlopen(Request(signed, headers={'User-Agent': USER_AGENT}), timeout=300) as response:
+                with local.open('xb') as stream:
+                    created = True
+                    for chunk in iter(lambda: response.read(1024 * 1024), b''):
+                        stream.write(chunk)
+        except BaseException:
+            # Solo retirar el archivo incompleto creado por ESTA llamada.
+            if created:
+                local.unlink()
+            raise
+
 
 def safe_path(value):
     path = PurePosixPath(value)
@@ -76,11 +98,14 @@ def main():
         cmd = sub.add_parser(action)
         cmd.add_argument('local', type=Path)
         cmd.add_argument('remote', type=safe_path, help='Archivo destino (write) o carpeta destino (upload)')
+    cmd = sub.add_parser('download')
+    cmd.add_argument('remote', type=safe_path)
+    cmd.add_argument('local', type=Path)
     sub.add_parser('command').add_argument('command')
     sub.add_parser('restart')
     args = parser.parse_args()
     try:
-        if hasattr(args, 'local') and not args.local.is_file():
+        if args.action != 'download' and hasattr(args, 'local') and not args.local.is_file():
             raise LocalError('No existe el archivo local indicado.')
         if not args.yes:
             print('DRY-RUN: ' + args.action + ' (sin red, sin leer claves ni contenido de archivos)')
@@ -88,7 +113,9 @@ def main():
                 print('Destino: ' + args.remote)
             return
         client = Client(require(fields('Clave de API del panel'), 'Clave'))
-        if args.action == 'upload':
+        if args.action == 'download':
+            client.download(args.remote, args.local)
+        elif args.action == 'upload':
             client.upload(args.local, args.remote)
         elif args.action == 'write':
             client.request('POST', '/files/write?' + urlencode({'file': args.remote}),
