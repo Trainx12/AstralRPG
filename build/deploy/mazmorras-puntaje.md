@@ -1,7 +1,7 @@
 # Puntaje de mazmorras y cofre con ruleta (7b / plan E2) — 18/11/2026
 
 Hecho por Claude directo. Cifras en `datapack-src/economia.py`; Skript en `datapack-src/mazmorras_puntaje.py`.
-**Sin desplegar.** No cambia el pack ni el datapack.
+**DESPLEGADO 18/11 ~19:47 (hora AR)** sin reiniciar (5efdabe): `skript reload` de los 3 scripts sin errores, `dm reload` (70 menus), `mm reload` (196 mobs). No cambia el pack ni el datapack.
 
 ## Que cambia para los jugadores
 - Al entrar una party nueva a una copia arranca el reloj. Cada muerte o caida (con party, a espectador) suma 1.
@@ -31,7 +31,8 @@ Hecho por Claude directo. Cifras en `datapack-src/economia.py`; Skript en `datap
 | `build/mythicmobs/mobs/fosa.yml` (el Cangrejo avisa el fin del puntaje) | `plugins/MythicMobs/mobs/` |
 
 ## Orden
-Subir, despues `sk reload astral_puntaje`, `sk reload astral_mazmorras_copias`, `sk reload astral_economia`,
+Subir, despues `skript reload astral_puntaje`, `skript reload astral_mazmorras_copias`, `skript reload astral_economia`
+(**no `sk reload`: en este server `/sk` es de AuraSkills**),
 `dm reload`, `mm reload` (o reiniciar). Requiere la expansion `objective_score` de PlaceholderAPI (ya la usan las gachas).
 Ojo: una party que ya este adentro al subir no tiene reloj; al ganar usa el tiempo objetivo (sin descuento por tiempo).
 
