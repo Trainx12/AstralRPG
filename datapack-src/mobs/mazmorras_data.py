@@ -14,6 +14,9 @@ except ImportError:
     import mythic
 
 # Lectura del terreno de los ZIP, no una recorrida dentro de Minecraft.
+# dueno 18/11: ampliar cuatro bloques por lado las DOS salas vigentes de tanda2.
+BOSQUE_RADIO_SALA = 44
+BOSQUE_RADIO_JEFE = 44
 DEFINITIONS = [
     dict(key="bosque", name="Bosque Sombrio", map="bosque.zip", boss="chaman", event="chaman", tier=2,
          points=[(1440.5, 104, 1568.5), (1504.5, 107, 1504.5), (1600.5, 97, 1440.5)],
@@ -222,7 +225,11 @@ def catalog():
         from mobs.tanda2 import configure
         if key == 'santuario':
             dungeon['rooms'][-1]['final_npcs'] = {'cofre': CHEST, 'guia': GUIDE}
-        out.append(configure(dungeon))
+        dungeon = configure(dungeon)
+        if key == 'bosque':
+            for room in dungeon['rooms']:
+                room['r'] = BOSQUE_RADIO_JEFE if room.get('boss_room') else BOSQUE_RADIO_SALA
+        out.append(dungeon)
     return out
 
 

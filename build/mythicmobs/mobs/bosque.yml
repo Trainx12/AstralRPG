@@ -13,13 +13,13 @@ astral_bosque_control_sala1:
     Persistent: true
     Collidable: false
   Skills:
-  - foreach{s=AST_GOLEM_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
-  - foreach{s=AST_ESQ_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
-  - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
+  - foreach{s=AST_GOLEM_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=76} ~onTimer:5 ?hastag{tag=bosque.on}
+  - foreach{s=AST_ESQ_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=76} ~onTimer:5 ?hastag{tag=bosque.on}
+  - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=44} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
   - skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
   - skill{s=BOSQUE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.ola3} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
   - skill{s=BOSQUE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola3} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
-  - skill{s=BOSQUE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=48}
+  - skill{s=BOSQUE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=52}
 astral_bosque_control_sala2:
   Type: ARMOR_STAND
   Display: Control Altar del Chaman
@@ -34,10 +34,10 @@ astral_bosque_control_sala2:
     Persistent: true
     Collidable: false
   Skills:
-  - foreach{s=AST_ESQ_CONVIERTE_bosque_sala2;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
-  - skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
+  - foreach{s=AST_ESQ_CONVIERTE_bosque_sala2;sync=true} @EntitiesInRadius{r=76} ~onTimer:5 ?hastag{tag=bosque.on}
+  - skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=44} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
   - skill{s=BOSQUE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala2.busy} ?hastag{tag=bosque.jefe.derrotado}
-  - skill{s=BOSQUE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=48}
+  - skill{s=BOSQUE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=52}
 astral_bosque_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Bosque Sombrio &7(clic)'

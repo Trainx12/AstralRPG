@@ -50,6 +50,48 @@ class PartyGeneration(unittest.TestCase):
             self.assertIn('wipe=3',z.read('party.properties').decode())
             self.assertNotIn(b'.local',z.read('party.properties'))
 
+    def test_fight_rooms_cover_all_copies(self):
+        import instancias, infinita, oceano_fosa
+        from viajes_mazmorras import destinations
+        rows = [line.split(',') for line in party.fight_rooms()]
+        worlds = {r[0] for r in rows}
+        expected = {instancias.bukkit(w) for d in destinations() if d.get('enabled')
+                    for w in instancias.copias(instancias.DUNGEON_WORLDS[d['key']])}
+        self.assertEqual(worlds, expected | set(infinita.WORLDS) | set(oceano_fosa.WORLDS))
+        for d in destinations():
+            if not d.get('enabled'): continue
+            for w in instancias.copias(instancias.DUNGEON_WORLDS[d['key']]):
+                self.assertEqual(len([r for r in rows if r[0]==instancias.bukkit(w)]),len(d['rooms']))
+        self.assertEqual(len(rows),len({tuple(r) for r in rows}))
+        with zipfile.ZipFile(party.ROOT/'build/runtime/AstralParty.jar') as z:
+            self.assertEqual(z.read('fight-rooms.csv').decode().splitlines(),party.fight_rooms())
+
+    def test_bosque_expands_real_rooms_preserving_safe_spawns(self):
+        from mobs.mazmorras_data import catalog
+        from mobs.salas_seguras import safe
+        from mobs.mazmorra import mob_yml, skill_yml
+        d=next(d for d in catalog() if d['key']=='bosque')
+        self.assertEqual([r['r'] for r in d['rooms']],[44,44])
+        for r in d['rooms']:
+            self.assertTrue(all(safe('bosque',p) for p in r['spawn_points']))
+            self.assertLessEqual(abs(r['llegada'][0]-r['centro'][0]),44)
+            self.assertLessEqual(abs(r['llegada'][2]-r['centro'][2]),44)
+        self.assertIn('playerwithin{d=44}',mob_yml(d))
+        self.assertIn('PlayersInRadius{r=52}',skill_yml(d))
+
+    def test_bosque_patch_is_only_three_wave_functions(self):
+        import bosque_bordes
+        import hashlib
+        base=party.ROOT/'build/AstralRPG-Items.zip'
+        before=hashlib.sha256(base.read_bytes()).digest()
+        data=bosque_bordes.contents()
+        self.assertEqual(hashlib.sha256(base.read_bytes()).digest(),before)
+        self.assertEqual(len(data),4)
+        for name,text in data.items():
+            if name=='pack.mcmeta':continue
+            self.assertTrue(name.startswith('data/astral/function/tanda2/bosque/sala1/wave'))
+            self.assertIn('@a[distance=..44,gamemode=!spectator]',text)
+
     def test_pack_delta(self):
         import json
         from terceros import privado

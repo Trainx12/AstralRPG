@@ -17,6 +17,7 @@ import com.mojang.authlib.GameProfile;
 public final class PartyProbe extends JavaPlugin {
     final Map<String,Player> players=new LinkedHashMap<>(); int failures,checks;
     AstralParty party;
+    final List<ArmorStand> borderControls=new ArrayList<>();
     World world(String n) {var w=Bukkit.getWorld(n);return w!=null?w:Bukkit.createWorld(new WorldCreator(n).type(WorldType.FLAT).generatorSettings("{\"layers\":[{\"block\":\"minecraft:bedrock\",\"height\":1}],\"biome\":\"minecraft:plains\"}").generateStructures(false));}
     @Override public void onEnable(){party=(AstralParty)Bukkit.getPluginManager().getPlugin("AstralParty");for(var n:List.of("lobby","mina","infinita")){var w=world(n);w.setSpawnLocation(0,100,0);w.setGameRule(GameRules.ADVANCE_TIME,false);}}
     void check(boolean ok,String label){checks++;if(!ok)failures++;getLogger().info("PARTY "+(ok?"PASS ":"FAIL ")+label);}
@@ -34,6 +35,23 @@ public final class PartyProbe extends JavaPlugin {
         var p=fake.getBukkitEntity();p.setGravity(false);p.setGameMode(GameMode.SURVIVAL);return p;
     }
     Player p(String n){return players.get(n);}
+    // Los plugins tienen classloaders distintos: usar reflexion solo en el ensayo.
+    void invoke(String name,Class<?>[] types,Object... args) {
+        try {var m=AstralParty.class.getDeclaredMethod(name,types);m.setAccessible(true);m.invoke(party,args);}
+        catch(Exception e){throw new RuntimeException(e);}
+    }
+    void memberMenu(Player p,Player t,boolean confirm){invoke("memberMenu",new Class<?>[]{Player.class,Player.class,boolean.class},p,t,confirm);}
+    void refreshBorders(){invoke("refreshFightRooms",new Class<?>[]{});}
+    void updateBorder(Player p){invoke("updateBorder",new Class<?>[]{Player.class},p);}
+    void action(AstralParty.View v,int slot) {
+        try {var f=AstralParty.View.class.getDeclaredField("actions");f.setAccessible(true);((Runnable)((Map)f.get(v)).get(slot)).run();}
+        catch(Exception e){throw new RuntimeException(e);}
+    }
+    String inviteToken(Player p) {
+        try {Object i=party.invites.get(p.getUniqueId());var m=i.getClass().getDeclaredMethod("token");m.setAccessible(true);return m.invoke(i).toString();}
+        catch(Exception e){throw new RuntimeException(e);}
+    }
+    boolean inside(AstralParty.FightRoom r,Location at){return at.getWorld().getName().equals(r.world())&&Math.abs(at.getX()-r.x())<r.side()/2&&Math.abs(at.getZ()-r.z())<r.side()/2;}
     // Paper encola comandos anidados hasta terminar partyprobe; ejecutar PluginCommand
     // permite comprobar cada transicion sin que las aserciones adelanten esa cola.
     void cmd(String n,String text){var a=text.split(" ");Bukkit.getPluginCommand(a[0]).execute(p(n),a[0],Arrays.copyOfRange(a,1,a.length));}
@@ -78,6 +96,78 @@ public final class PartyProbe extends JavaPlugin {
         }
         case "bridge" -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"mazentrar PartyA mina");
+        }
+        case "controls" -> {
+            cmd("A","party invitar PartyF");var oldToken=inviteToken(p("F"));
+            cmd("B","party cancelar PartyF");check(party.invites.containsKey(p("F").getUniqueId()),"otro miembro no cancela invitacion");
+            cmd("A","party cancelar PartyF");check(!party.invites.containsKey(p("F").getUniqueId()),"cancelar invitacion");
+            cmd("A","party invitar PartyF");
+            cmd("F","party aceptar "+p("A").getUniqueId()+" "+oldToken);
+            check(!party.inParty(p("F"))&&party.invites.containsKey(p("F").getUniqueId()),"boton viejo no acepta invitacion nueva");
+            cmd("A","party cancelar PartyF "+p("A").getUniqueId()+" "+oldToken);
+            check(party.invites.containsKey(p("F").getUniqueId()),"cancelar viejo no retira invitacion nueva");
+            cmd("F","party aceptar "+p("A").getUniqueId()+" "+inviteToken(p("F")));
+            check(party.inParty(p("F")),"aceptar con token del boton");cmd("F","party salir");
+            cmd("A","party invitar PartyF");cmd("F","party rechazar "+p("A").getUniqueId()+" "+inviteToken(p("F")));
+            check(!party.invites.containsKey(p("F").getUniqueId()),"rechazar con token del boton");
+            cmd("A","party invitar PartyF");cmd("A","party cancelar PartyF "+p("A").getUniqueId()+" "+inviteToken(p("F")));
+            check(!party.invites.containsKey(p("F").getUniqueId()),"cancelar con token del boton");
+            memberMenu(p("A"),p("B"),false);
+            var v=(AstralParty.View)p("A").getOpenInventory().getTopInventory().getHolder();
+            check(v.getInventory().getSize()==27,"submenu compacto");action(v,10);
+            check(party.inParty(p("B")),"echar requiere confirmar");
+            check(p("A").getOpenInventory().getTitle().contains("Confirmar"),"ventana de confirmacion");
+            memberMenu(p("A"),p("B"),false);
+            action((AstralParty.View)p("A").getOpenInventory().getTopInventory().getHolder(),16);
+            check(party.leader(p("B"))&&!party.leader(p("A")),"boton pasa liderazgo");
+            check(party.members(p("A")).size()==2,"traspaso conserva miembros");
+            cmd("A","party lider PartyA");check(party.leader(p("B")),"miembro no puede robar liderazgo");
+            cmd("B","party lider PartyA");check(party.leader(p("A")),"comando de liderazgo conserva API");
+            p("A").closeInventory();p("B").closeInventory();
+        }
+        case "prepareborders" -> {
+            var rooms=party.fightRooms.stream().filter(r->r.world().equals("mina")).toList();
+            var a=rooms.get(0);var b=rooms.get(2);var w=world("mina");
+            for(var r:List.of(a,b))w.getChunkAt(new Location(w,r.x(),r.y(),r.z())).load();
+            for(var e:w.getEntities())if(e instanceof ArmorStand&&e.getName().startsWith("Control "))e.remove();
+            for(var r:List.of(a,b)) {
+                var at=new Location(w,r.x(),r.y(),r.z());w.getChunkAt(at).load();
+                var stand=w.spawn(at,ArmorStand.class,e->e.setInvulnerable(true));
+                stand.setCustomName(r.controller());stand.setGravity(false);stand.setMarker(true);stand.addScoreboardTag("mina.on");borderControls.add(stand);
+            }
+            p("A").teleport(new Location(w,a.x(),a.y(),a.z()));p("B").teleport(new Location(w,b.x(),b.y(),b.z()));
+        }
+        case "borders" -> {
+            var rooms=party.fightRooms.stream().filter(r->r.world().equals("mina")).toList();
+            var a=rooms.get(0);var b=rooms.get(2);var w=world("mina");var controls=borderControls;
+            refreshBorders();updateBorder(p("A"));updateBorder(p("B"));
+            check(p("A").getWorldBorder()!=null&&p("A").getWorldBorder().getSize()==a.side(),"borde personal Paper");
+            check(p("B").getWorldBorder().getCenter().getX()==b.x(),"dos salas independientes en mismo mundo");
+            check(p("A").getWorldBorder().getDamageAmount()==0&&p("A").getWorldBorder().getDamageBuffer()==0,"borde sin dano ni buffer");
+            check(p("A").getWorldBorder().getWarningDistance()==3,"aviso tres bloques");
+            var from=p("A").getLocation();var out=from.clone().add(a.side(),0,0);
+            var move=new org.bukkit.event.player.PlayerMoveEvent(p("A"),from,out);
+            Bukkit.getPluginManager().callEvent(move);check(inside(a,move.getTo()),"movimiento y knockback no cruzan borde");
+            var pearl=new org.bukkit.event.player.PlayerTeleportEvent(p("A"),from,out,org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+            Bukkit.getPluginManager().callEvent(pearl);check(inside(a,pearl.getTo()),"perla no cruza borde");
+            // Simular desincronizacion sin lanzar un evento de teletransporte.
+            ((org.bukkit.craftbukkit.entity.CraftPlayer)p("A")).getHandle().setPos(out.getX(),out.getY(),out.getZ());
+            updateBorder(p("A"));check(inside(a,p("A").getLocation()),"tick recupera posicion exterior");
+            p("B").teleport(new Location(w,a.x()+1,a.y(),a.z()));updateBorder(p("B"));
+            invoke("fall",new Class<?>[]{Player.class},p("A"));updateBorder(p("A"));
+            check(p("A").getWorldBorder()!=null&&party.busy(p("A")),"caido conserva borde de companero");
+            invoke("revive",new Class<?>[]{Player.class,Location.class},p("A"),p("B").getLocation());
+            controls.getFirst().addScoreboardTag("mina.fin");refreshBorders();updateBorder(p("A"));
+            check(p("A").getWorldBorder()==null,"limpiar sala quita borde");
+            p("B").teleport(new Location(w,b.x(),b.y(),b.z()));updateBorder(p("B"));check(p("B").getWorldBorder()!=null,"limpiar una sala conserva la otra");
+            controls.forEach(Entity::remove);refreshBorders();
+            move("A","infinita");move("B","infinita");
+            p("A").teleport(new Location(world("infinita"),0.5,63,0.5));
+            var infAt=new Location(world("infinita"),1,63,1);world("infinita").getChunkAt(infAt).load();
+            var mob=world("infinita").spawn(infAt,Zombie.class);mob.setAI(false);mob.addScoreboardTag("inf.mob");
+            refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()!=null,"Infinita detecta inf.mob");
+            mob.remove();refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()==null,"Infinita limpia sin enemigos");
+            move("A","lobby");move("B","lobby");
         }
         case "fall" -> {
             check(p("A").getWorld().getName().equals("mina")&&p("B").getWorld().getName().equals("mina"),"mazentrar usa variables sincronizadas");

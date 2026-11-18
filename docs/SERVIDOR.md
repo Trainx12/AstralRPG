@@ -568,6 +568,26 @@ Entrega unica vigente: `build/deploy/urgente-mascotas-texturas.md`; requiere un 
 
 ## Copias de mazmorras y parties (12/11/2026)
 
+### Bordes de pelea (18/11/2026)
+
+AstralParty 1.1.0 muestra un borde de Minecraft por jugador, independiente por sala
+y copia (Minas, Bosque, Tumba, Cumbre, Forja, Santuario, Infinita y Fosa).
+El CSV del JAR sale de `party.py`: centro/radio del catalogo definitivo; los limites
+de aparicion `spawn_bounds` no se confunden con limites de pelea.
+En las mazmorras usa el controlador vivo con `<mazmorra>.on` y sin `.fin`, incluso
+entre oleadas; Infinita y Fosa usan enemigos vivos `inf.mob` / `fosa.mob` / `fosa.jefe`.
+En estas dos ultimas se oculta cuando no hay enemigos y reaparece con la siguiente oleada.
+El borde no hace dano, avisa a tres bloques y devuelve al ultimo punto interior
+al cruzarlo caminando, por empuje, perla o desincronizacion. Los viajes de salida
+del plugin y el cambio de mundo lo liberan; morir, desconectarse y apagar tambien.
+Los caidos conservan la camara y el limite de sus companeros.
+
+Bosque tiene dos salas vigentes (tanda2): ambas pasan de radio 40 a 44;
+los datos anteriores de tres salas y radios 18/28 quedaron reemplazados.
+No se modifican mapas ni se quitan barreras automaticamente. Centros, limites,
+archivos exactos y reinicio: [party-bordes-18-11](../build/deploy/party-bordes-18-11.md).
+Despliegue remoto y comprobacion visual con cliente real pendientes.
+
 Cada mazmorra tiene **6 copias** (`datapack-src/instancias.py`): `mina`, `mina_2` ... `mina_6`; igual `bosque`, `tumba`,
 `cumbre_hielo`, `forja_volcano` (clones de Multiverse) y `santuario_azeroth`..`_6` (dimensiones del datapack, misma region).
 - Entrada: los NPC y `/mazmorras` corren `mazentrar <jugador> <mazmorra>` (Skript `astral_mazmorras_copias.sk`, generado por

@@ -16,12 +16,15 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.title.Title;
 
 /** Party en memoria. Una caida letal se convierte en espera sin producir drops ni perder inventario. */
 public final class AstralParty extends JavaPlugin implements Listener {
     final Map<UUID, UUID> leaders = new LinkedHashMap<>();
     public final Map<UUID, LinkedHashSet<UUID>> groups = new LinkedHashMap<>();
-    record Invite(UUID leader, long until) {}
+    record Invite(UUID leader, long until, UUID token) {}
     public final Map<UUID, Invite> invites = new HashMap<>();
     public static final class Fallen {
         final World world; final Location origin; final GameMode mode; final long until;
@@ -34,11 +37,31 @@ public final class AstralParty extends JavaPlugin implements Listener {
     public final List<Wipe> wipes = new ArrayList<>();
     public record Boss(String world, double x, double y, double z, boolean boss) {}
     public final List<Boss> bosses = new ArrayList<>();
+    public record FightRoom(String world,double x,double y,double z,double radius,double side,String key,String controller) {
+        boolean contains(Location l) { return l.getWorld().getName().equals(world)&&Math.abs(l.getX()-x)<side/2&&Math.abs(l.getZ()-z)<side/2; }
+        boolean enters(Location l) { return contains(l)&&Math.pow(l.getX()-x,2)+Math.pow(l.getY()-y,2)+Math.pow(l.getZ()-z,2)<=radius*radius; }
+    }
+    public final List<FightRoom> fightRooms = new ArrayList<>();
+    final Set<FightRoom> activeRooms = new HashSet<>();
+    final Map<UUID,FightRoom> borders = new HashMap<>();
+    final Map<UUID,Location> borderSafe = new HashMap<>();
     Set<String> worlds;
     int waves, boss, wipeSeconds, max; public long clock;
     public NamespacedKey recovery; Expansion expansion;
     static String c(String s) { return ChatColor.translateAlternateColorCodes('&',s); }
     void msg(Player p,String s) { p.sendMessage(c("&d[Party] &f"+s)); }
+    Component link(String text,NamedTextColor color,String command,String hover) {
+        return Component.text(text,color).clickEvent(ClickEvent.runCommand(command)).hoverEvent(Component.text(hover));
+    }
+    Component openButton() { return link(" [Abrir Party]",NamedTextColor.LIGHT_PURPLE,"/party","Abrir los controles de tu party"); }
+    void notice(Player p,String text) { if(p!=null)p.sendMessage(Component.text("[Party] "+text).append(openButton())); }
+    void transfer(Player p,Player t) {
+        if(!leader(p)||t==null||t==p||!Objects.equals(leaders.get(t.getUniqueId()),p.getUniqueId())) {notice(p,"Elegi un companero de tu party.");return;}
+        var ids=groups.remove(p.getUniqueId()); groups.put(t.getUniqueId(),ids);
+        ids.forEach(id->leaders.put(id,t.getUniqueId()));
+        invites.values().removeIf(i->i.leader.equals(p.getUniqueId()));
+        sync(); for(var m:members(t))notice(m,t.getName()+" es el nuevo lider.");
+    }
     Player player(UUID id) { return id == null ? null : Bukkit.getPlayer(id); }
     public List<Player> members(Player p) {
         var ids=groups.get(leaders.get(p.getUniqueId()));
@@ -61,6 +84,10 @@ public final class AstralParty extends JavaPlugin implements Listener {
             try(var in=new Scanner(getResource("boss-rooms.csv"), java.nio.charset.StandardCharsets.UTF_8)) {
                 while(in.hasNextLine()) { var a=in.nextLine().split(","); if(a.length==5) bosses.add(new Boss(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Boolean.parseBoolean(a[4]))); }
             }
+            try(var in=new Scanner(getResource("fight-rooms.csv"),java.nio.charset.StandardCharsets.UTF_8)) {
+                while(in.hasNextLine()) {var a=in.nextLine().split(",",-1);if(a.length!=8)throw new IllegalArgumentException("Sala invalida");
+                    fightRooms.add(new FightRoom(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Double.parseDouble(a[4]),Double.parseDouble(a[5]),a[6],a[7]));}
+            }
         } catch(Exception e) { throw new IllegalStateException("Configuracion Party invalida",e); }
         recovery=new NamespacedKey(this,"recuperar");
         getServer().getPluginManager().registerEvents(this,this);
@@ -69,9 +96,70 @@ public final class AstralParty extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskLater(this,()->{ sync(); for(var p:Bukkit.getOnlinePlayers()) recover(p); },40);
     }
     @Override public void onDisable() {
+        for(var p:Bukkit.getOnlinePlayers())clearBorder(p);
         for(var id:new ArrayList<>(fallen.keySet())) { var p=player(id); if(p!=null) exit(p); }
         if(expansion!=null) expansion.unregister();
     }
+    void clearBorder(Player p) {
+        if(borders.remove(p.getUniqueId())!=null)p.setWorldBorder(null);
+        borderSafe.remove(p.getUniqueId());
+    }
+    boolean fighting(FightRoom r,List<Entity> entities) {
+        for(var e:entities) {
+            if(e.isDead())continue;
+            var tags=e.getScoreboardTags();
+            if(r.key.equals("inf")&&tags.contains("inf.mob"))return true;
+            if(r.key.equals("fosa")&&(tags.contains("fosa.mob")||tags.contains("fosa.jefe")))return true;
+            // El controlador conserva .on durante las esperas; .fin libera enseguida.
+            if(e instanceof ArmorStand&&Objects.equals(e.getName(),r.controller)
+                &&e.getLocation().distanceSquared(new Location(e.getWorld(),r.x,r.y,r.z))<4
+                &&tags.contains(r.key+".on")&&!tags.contains(r.key+".fin"))return true;
+        }
+        return false;
+    }
+    void refreshFightRooms() {
+        activeRooms.clear();var entities=new HashMap<String,List<Entity>>();
+        for(var r:fightRooms) {
+            var w=Bukkit.getWorld(r.world);if(w==null||w.getPlayers().isEmpty())continue;
+            if(fighting(r,entities.computeIfAbsent(r.world,k->w.getEntities())))activeRooms.add(r);
+        }
+    }
+    void updateBorder(Player p) {
+        var id=p.getUniqueId();var r=borders.get(id);
+        if(p.isDead()||(!busy(p)&&p.getGameMode()!=GameMode.SURVIVAL&&p.getGameMode()!=GameMode.ADVENTURE)) {clearBorder(p);return;}
+        if(r!=null&&(!activeRooms.contains(r)||!r.world.equals(p.getWorld().getName()))) {clearBorder(p);r=null;}
+        if(r==null) {
+            // Camara del caido: misma sala que su companero, incluso en modo libre.
+            var f=fallen.get(id);var target=f==null?null:player(f.target);
+            if(target!=null)r=borders.get(target.getUniqueId());
+            if(r==null)r=activeRooms.stream().filter(room->room.enters(p.getLocation()))
+                .min(Comparator.comparingDouble(room->Math.pow(room.x-p.getX(),2)+Math.pow(room.z-p.getZ(),2))).orElse(null);
+            if(r==null)return;
+            var border=Bukkit.createWorldBorder();border.setCenter(r.x,r.z);border.setSize(r.side);
+            border.setDamageAmount(0);border.setDamageBuffer(0);border.setWarningDistance(3);border.setWarningTime(0);
+            p.setWorldBorder(border);borders.put(id,r);
+            if(r.contains(p.getLocation()))borderSafe.put(id,p.getLocation());
+        }
+        if(!r.contains(p.getLocation())) {
+            var safe=borderSafe.get(id);
+            if(safe!=null&&r.contains(safe)) {p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());p.teleport(safe);}
+        } else borderSafe.put(id,p.getLocation());
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderMove(PlayerMoveEvent e) {
+        var p=e.getPlayer();var r=borders.get(p.getUniqueId());if(r==null||e.getTo()==null)return;
+        if(!activeRooms.contains(r)){clearBorder(p);return;}
+        if(e instanceof PlayerTeleportEvent t&&t.getCause()!=PlayerTeleportEvent.TeleportCause.ENDER_PEARL
+            &&t.getCause()!=PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT) {
+            if(!r.contains(e.getTo()))clearBorder(p);return;
+        }
+        if(!r.contains(e.getTo())) {
+            var safe=borderSafe.get(p.getUniqueId());
+            e.setTo(safe==null?e.getFrom():safe);p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());
+        } else borderSafe.put(p.getUniqueId(),e.getTo().clone());
+    }
+    @EventHandler public void borderWorld(PlayerChangedWorldEvent e) {clearBorder(e.getPlayer());}
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderTeleport(PlayerTeleportEvent e) {borderMove(e);}
+    @EventHandler(priority=EventPriority.MONITOR) public void borderDeath(PlayerDeathEvent e) {clearBorder(e.getEntity());}
     void create(Player p) { var id=p.getUniqueId(); leaders.put(id,id); groups.put(id,new LinkedHashSet<>(List.of(id))); }
     public boolean busy(Player p) { return fallen.containsKey(p.getUniqueId()); }
     void leave(Player p) {
@@ -99,23 +187,47 @@ public final class AstralParty extends JavaPlugin implements Listener {
         if(sub.equals("crear")) { if(!inParty(p)) { create(p); sync(); } menu(p,true,0); return true; }
         if(sub.equals("invitar")) {
             var t=a.length>1?Bukkit.getPlayerExact(a[1]):null;
-            if(t==null || t==p) { msg(p,"Elegi otro jugador conectado: /party invitar <jugador>"); return true; }
+            if(t==null || t==p) { notice(p,"Elegi otro jugador conectado desde el menu."); return true; }
             if(inParty(t)) { msg(p,"Ese jugador ya esta en una party."); return true; }
             if(!inParty(p)) create(p);
             if(!leader(p)) msg(p,"Solo el lider puede invitar.");
             else if(members(p).size()>=max) msg(p,"La party esta llena (maximo "+max+").");
-            else { invites.put(t.getUniqueId(),new Invite(p.getUniqueId(),clock+1200)); msg(p,"Invitaste a "+t.getName()+" (60 segundos)."); msg(t,p.getName()+" te invito. /party para aceptar o rechazar."); }
+            else {
+                var invite=new Invite(p.getUniqueId(),clock+1200,UUID.randomUUID());
+                var old=invites.put(t.getUniqueId(),invite);
+                if(old!=null)notice(player(old.leader),"La invitacion a "+t.getName()+" fue reemplazada.");
+                String token=" "+p.getUniqueId()+" "+invite.token;
+                p.sendMessage(Component.text("[Party] Invitaste a "+t.getName()+" (60 segundos).")
+                    .append(link(" [Cancelar]",NamedTextColor.RED,"/party cancelar "+t.getName()+token,"Retirar esta invitacion")));
+                t.sendMessage(Component.text("[Party] "+p.getName()+" te invito. ")
+                    .append(link("[✔ Aceptar]",NamedTextColor.GREEN,"/party aceptar"+token,"Unirte a la party de "+p.getName()))
+                    .append(link(" [✘ Rechazar]",NamedTextColor.RED,"/party rechazar"+token,"Rechazar esta invitacion")).append(openButton()));
+                t.showTitle(Title.title(Component.text("Invitacion de party"),Component.text("de "+p.getName())));
+                t.playSound(t.getLocation(),Sound.ENTITY_EXPERIENCE_ORB_PICKUP,0.8f,1.2f);
+            }
             sync(); return true;
+        }
+        if(sub.equals("cancelar")) {
+            var t=a.length>1?Bukkit.getPlayerExact(a[1]):null; var i=t==null?null:invites.get(t.getUniqueId());
+            if(i!=null&&i.leader.equals(p.getUniqueId())&&(a.length==2||(a.length==4&&a[2].equals(i.leader.toString())&&a[3].equals(i.token.toString())))) {
+                invites.remove(t.getUniqueId()); notice(p,"Invitacion cancelada.");notice(t,p.getName()+" cancelo la invitacion.");
+            } else notice(p,"Esa invitacion ya no esta disponible.");
+            return true;
+        }
+        if((sub.equals("aceptar")||sub.equals("rechazar"))&&a.length>1) {
+            var i=invites.get(p.getUniqueId());
+            if(i==null||a.length!=3||!a[1].equals(i.leader.toString())||!a[2].equals(i.token.toString())) {notice(p,"Ese boton pertenece a una invitacion anterior.");return true;}
         }
         if(sub.equals("aceptar")) {
             var i=invites.remove(p.getUniqueId());
             if(i==null || clock>=i.until || !groups.containsKey(i.leader)) msg(p,"La invitacion vencio o la party ya no existe.");
             else if(inParty(p)) msg(p,"Sali de tu party antes de aceptar otra.");
             else if(groups.get(i.leader).size()>=max) msg(p,"La party se lleno.");
-            else { leaders.put(p.getUniqueId(),i.leader); groups.get(i.leader).add(p.getUniqueId()); tell(p,p.getName()+" se unio a la party."); sync(); }
+            else { leaders.put(p.getUniqueId(),i.leader); groups.get(i.leader).add(p.getUniqueId()); for(var m:members(p))notice(m,p.getName()+" se unio a la party."); sync(); }
             menu(p,false,0); return true;
         }
-        if(sub.equals("rechazar")) { invites.remove(p.getUniqueId()); msg(p,"Invitacion rechazada."); return true; }
+        if(sub.equals("rechazar")) { var i=invites.remove(p.getUniqueId()); if(i!=null)notice(player(i.leader),p.getName()+" rechazo la invitacion."); notice(p,"Invitacion rechazada."); return true; }
+        if(sub.equals("lider")) { transfer(p,a.length>1?Bukkit.getPlayerExact(a[1]):null);return true; }
         if(sub.equals("salir") || sub.equals("disolver")) {
             if(sub.equals("disolver") && !leader(p)) msg(p,"Solo el lider puede disolver."); else leave(p);
             return true;
@@ -127,16 +239,19 @@ public final class AstralParty extends JavaPlugin implements Listener {
             else { leave(t); msg(t,"Te echaron de la party."); }
             return true;
         }
-        msg(p,"/party invitar <jugador>, aceptar, rechazar, salir, echar <jugador>, disolver, mirar"); return true;
+        notice(p,"Invita, acepta y administra tu grupo desde el menu."); return true;
     }
     public static final class View implements InventoryHolder {
         Inventory inventory; final Map<Integer,Runnable> actions=new HashMap<>();
         public Inventory getInventory(){return inventory;}
     }
     View view(Player p,String title) {
-        var v=new View(); v.inventory=Bukkit.createInventory(v,54,c(title));
+        return view(p,title,54);
+    }
+    View view(Player p,String title,int size) {
+        var v=new View(); v.inventory=Bukkit.createInventory(v,size,c(title));
         var filler=item(Material.GRAY_STAINED_GLASS_PANE," ");
-        for(int i=0;i<54;i++) v.inventory.setItem(i,filler);
+        for(int i=0;i<size;i++) v.inventory.setItem(i,filler);
         return v;
     }
     ItemStack item(Material m,String title,String... lore) {
@@ -163,7 +278,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
         } else {
             int slot=10;
             if(inParty(p)) for(var t:members(p)) {
-                button(v,slot++,head(t,(leader(t)?"&6♛ ":"&d")+t.getName(),"&f"+status(t,false),"&7"+t.getWorld().getName(),leader(p)&&t!=p?"&eClic para echar":"&7Companero de party"),()->{if(leader(p)&&t!=p) p.performCommand("party echar "+t.getName());menu(p,false,0);});
+                button(v,slot++,head(t,(leader(t)?"&6♛ ":"&d")+t.getName(),"&f"+status(t,false),"&7"+t.getWorld().getName(),leader(p)&&t!=p?"&eClic para administrar":"&7Companero de party"),()->{if(leader(p)&&t!=p) memberMenu(p,t,false);});
             }
             if(!inParty(p)||leader(p)) button(v,30,item(Material.EMERALD,"&dCrear / Invitar","&7Jugadores conectados, mismo mundo primero"),()->{if(!inParty(p)){create(p);sync();}menu(p,true,0);});
             if(inParty(p)) button(v,32,item(Material.RED_BED,leader(p)?"&cDisolver":"&cSalir"),()->{leave(p);menu(p,false,0);});
@@ -176,9 +291,19 @@ public final class AstralParty extends JavaPlugin implements Listener {
         }
         button(v,49,item(Material.BARRIER,"&cCerrar"),p::closeInventory); p.openInventory(v.inventory);
     }
+    void memberMenu(Player p,Player t,boolean confirm) {
+        if(!leader(p)||!Objects.equals(leaders.get(t.getUniqueId()),p.getUniqueId())||p==t)return;
+        var v=view(p,confirm?"&8Confirmar expulsion":"&8Administrar companero",27);
+        button(v,10,head(t,"&c"+(confirm?"Confirmar: echar a ":"Echar a ")+t.getName()),()->{
+            if(confirm){p.performCommand("party echar "+t.getName());menu(p,false,0);}else memberMenu(p,t,true);
+        });
+        if(!confirm)button(v,16,item(Material.GOLDEN_HELMET,"&6Pasar liderazgo"),()->{transfer(p,t);menu(p,false,0);});
+        button(v,22,item(Material.ARROW,"&fVolver"),()->menu(p,false,0));p.openInventory(v.inventory);
+    }
     @EventHandler public void click(InventoryClickEvent e) {
         if(e.getView().getTopInventory().getHolder() instanceof View v) {
             e.setCancelled(true);
+            if(!e.isLeftClick())return;
             if(e.getWhoClicked() instanceof Player p) { var action=v.actions.get(e.getRawSlot()); if(action!=null) { p.playSound(p.getLocation(),Sound.UI_BUTTON_CLICK,0.6f,1); Bukkit.getScheduler().runTask(this,action); } }
         }
     }
@@ -234,6 +359,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
     void spectateMenu(Player p) {
         var f=fallen.get(p.getUniqueId()); if(f==null) {menu(p,false,0);return;}
         var v=view(p,"&8✦ Elegi a quien mirar"); int slot=10;
+        button(v,4,item(Material.SPYGLASS,"&bMirar companeros","&7Elegi una cabeza o Mirar libre"),()->spectateMenu(p));
         for(var t:living(p,f.world)) button(v,slot++,head(t,"&d"+t.getName(),"&eClic: entrar a su camara"),()->{p.closeInventory();watch(p,t,false);});
         button(v,31,item(Material.ENDER_EYE,"&bMirar libre","&7Hasta 16 bloques de un companero vivo"),()->{p.closeInventory();var alive=living(p,f.world); if(!alive.isEmpty())watch(p,alive.getFirst(),true);});
         button(v,49,item(Material.BARRIER,"&cCerrar"),p::closeInventory);p.openInventory(v.inventory);
@@ -268,13 +394,17 @@ public final class AstralParty extends JavaPlugin implements Listener {
         var lobby=Bukkit.getWorld("lobby");p.teleport((lobby==null?Bukkit.getWorlds().getFirst():lobby).getSpawnLocation());p.getPersistentDataContainer().remove(recovery);p.removeScoreboardTag("astral.party.fallen");
     }
     @EventHandler public void join(PlayerJoinEvent e) { Bukkit.getScheduler().runTaskLater(this,()->recover(e.getPlayer()),2); }
-    @EventHandler public void quit(PlayerQuitEvent e) { var p=e.getPlayer();if(busy(p))exit(p);leave(p);invites.remove(p.getUniqueId());immunity.remove(p.getUniqueId()); }
+    @EventHandler public void quit(PlayerQuitEvent e) { var p=e.getPlayer();clearBorder(p);if(busy(p))exit(p);leave(p);invites.remove(p.getUniqueId());immunity.remove(p.getUniqueId()); }
     public void victory(World w) {
         if(w==null||wipes.stream().anyMatch(x->x.world==w))return;
         for(var id:new ArrayList<>(fallen.keySet())) { var p=player(id);var f=fallen.get(id);if(p==null||f.world!=w)continue;var alive=living(p,w); if(!alive.isEmpty()) {revive(p,alive.getFirst().getLocation());msg(p,"Tu party gano: reviviste y podes reclamar tu recompensa normal.");} }
     }
     public void tick() {
         clock++;
+        if(clock%5==0)refreshFightRooms();
+        // Primero vivos para que los espectadores puedan heredar el borde en este tick.
+        for(var p:Bukkit.getOnlinePlayers())if(!busy(p))updateBorder(p);
+        for(var p:Bukkit.getOnlinePlayers())if(busy(p))updateBorder(p);
         for(var w:new ArrayList<>(wipes)) if(clock>=w.until) {for(var id:w.members){var p=player(id);if(p!=null&&busy(p))exit(p);}wipes.remove(w);}
         for(var id:new ArrayList<>(fallen.keySet())) {
             var p=player(id);var f=fallen.get(id);if(p==null||p.isDead())continue;
@@ -286,9 +416,15 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(clock>=f.until){revive(p,target.getLocation());continue;}
             if(p.getWorld()!=f.world||alive.stream().noneMatch(t->t.getLocation().distanceSquared(p.getLocation())<=256))watch(p,target,f.free);
             if(!f.free&&p.getSpectatorTarget()!=target)watch(p,target,false);
-            if(clock%20==0){long seconds=(f.until-clock+19)/20;p.sendTitle(c("&dRevivis en "+seconds),c("&7Shift o /party mirar: elegir camara"),0,25,0);p.sendActionBar(Component.text("Mirando a "+target.getName()+" · Revivis en "+seconds+" s · Shift: camaras")); for(var t:alive)t.sendActionBar(Component.text(p.getName()+" revive en "+seconds+" s"));}
+            if(clock%20==0){long seconds=(f.until-clock+19)/20;p.sendTitle(c("&dRevivis en "+seconds),c("&7Shift: elegir camara"),0,25,0);p.sendActionBar(Component.text("Mirando a "+target.getName()+" · Revivis en "+seconds+" s · Shift: camaras")); for(var t:alive)t.sendActionBar(Component.text(p.getName()+" revive en "+seconds+" s"));}
         }
-        if(clock%20==0) {invites.values().removeIf(i->clock>=i.until);immunity.values().removeIf(until->clock>=until);}
+        if(clock%20==0) {
+            for(var entry:new ArrayList<>(invites.entrySet()))if(clock>=entry.getValue().until){
+                invites.remove(entry.getKey());var t=player(entry.getKey());
+                notice(t,"La invitacion vencio.");notice(player(entry.getValue().leader),"Vencio tu invitacion"+(t==null?".":" a "+t.getName()+"."));
+            }
+            immunity.values().removeIf(until->clock>=until);
+        }
     }
     String status(Player p,boolean compact) {
         var f=fallen.get(p.getUniqueId());if(f!=null)return "&c☠ "+Math.max(0,(f.until-clock+19)/20)+"s";

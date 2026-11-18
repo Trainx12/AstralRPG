@@ -31,8 +31,10 @@ class CopiasTests(unittest.TestCase):
         self.assertIn('execute in minecraft:%{_d}% run minecraft:tp', sk)
         self.assertIn(f'>= {mc.MINUTOS_FIN} minutes', sk)
         self.assertIn('execute console command "spawn %name of loop-player%"', sk)
-        for sub in ('"invitar"', '"aceptar"', '"rechazar"', '"salir"', '"echar"'):
-            self.assertIn(f'if arg-1 is {sub}:', sk)
+        # Los comandos ahora pertenecen a AstralParty; Skript conserva solo la API.
+        self.assertNotIn('command /party ', sk)
+        self.assertIn('command /astralpartysync', sk)
+        self.assertIn('astralpartyinternal sync', sk)
 
     def test_generated_dungeons_never_teleport_into_a_fixed_world(self):
         from pathlib import Path
