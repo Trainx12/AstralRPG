@@ -102,7 +102,8 @@ def main():
     cmd.add_argument('remote', type=safe_path)
     cmd.add_argument('local', type=Path)
     sub.add_parser('command').add_argument('command')
-    sub.add_parser('restart')
+    for action in ('restart', 'stop', 'start'):
+        sub.add_parser(action)
     args = parser.parse_args()
     try:
         if args.action != 'download' and hasattr(args, 'local') and not args.local.is_file():
@@ -130,7 +131,7 @@ def main():
                 # Lectura explicita: no usar sobre credenciales ni archivos privados.
                 print(data.decode('utf-8'))
         else:
-            route, data = ('command', {'command': args.command}) if args.action == 'command' else ('power', {'signal': 'restart'})
+            route, data = ('command', {'command': args.command}) if args.action == 'command' else ('power', {'signal': args.action})
             client.request('POST', '/' + route, json.dumps(data).encode())
         if args.action not in ('list', 'read'):
             print('Accion completada.')
