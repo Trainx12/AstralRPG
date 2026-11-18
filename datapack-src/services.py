@@ -79,11 +79,14 @@ def script():
     # metadatos, permisos, limites y hace la transaccion economica real.
     catalog=json.loads((ROOT/'services_catalog.json').read_text())
     setup=['on load:', '    delete {asg.gui::*}', '    delete {asg.mode::*}', '    delete {asg.busy::*}',
+           '    delete {-asg.saleprice::*}', '    delete {-asg.salemax::*}',
+           # Limpieza: la lista de precios antes se guardaba en disco (2.480 variables reescritas en
+           # cada arranque). Ahora vive en memoria; borrar la copia vieja persistente.
            '    delete {asg.saleprice::*}', '    delete {asg.salemax::*}']
     for material,price in catalog.items():
         setup += [f'    set {{_type}} to "minecraft:{material.lower()}" parsed as item type',
-                  '    if {_type} is set:',f'        set {{asg.saleprice::%{{_type}}%}} to {price["min"]}',
-                  f'        set {{asg.salemax::%{{_type}}%}} to {price["max"]}']
+                  '    if {_type} is set:',f'        set {{-asg.saleprice::%{{_type}}%}} to {price["min"]}',
+                  f'        set {{-asg.salemax::%{{_type}}%}} to {price["max"]}']
     setup += ['    send "[AstralRPG] Interfaces Herrero/Venta cargadas." to console','']
     options=['options:',f'    forge-title: {title("herrero")}',f'    sale-title: {title("venta")}','']
     cost=['function asg_cost(n: number) :: number:']
@@ -174,7 +177,7 @@ function asg_sale_allowed(i: item) :: boolean:
     if enchantments of {_i} is set:
         return false
     set {_type} to type of {_i}
-    if {asg.saleprice::%{_type}%} is not set:
+    if {-asg.saleprice::%{_type}%} is not set:
         return false
     return true
 
@@ -198,7 +201,7 @@ function asg_refresh(p: player):
             asg_action({_p}, "sell_blocked", "&cVENDER", "&7No se venden objetos RPG, renombrados o encantados.")
             stop
         set {_type} to type of {_held}
-        set {_price} to {asg.saleprice::%{_type}%}
+        set {_price} to {-asg.saleprice::%{_type}%}
         set {_amount} to item amount of {_held}
         set {_total} to {_price} * {_amount}
         set {_quote} to emerald named "&6&lTotal estimado: %{_total}%$"
