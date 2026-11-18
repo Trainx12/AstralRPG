@@ -81,10 +81,18 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
         }
         return true;
     }
-    Ventana ventana(Player p, String titulo) {
-        Ventana v = new Ventana(); v.inv = Bukkit.createInventory(v, 54, color("&8&lAstral &6| &8" + titulo));
-        for (int i = 0; i < 54; i++) if (i < 9 || i >= 45 || i % 9 == 0 || i % 9 == 8)
-            v.inv.setItem(i, item(Material.BLACK_STAINED_GLASS_PANE, " ", null));
+    // Ventanas ilustradas (arte de Gemini, duelos_party_ui.py): titulo = glifos del pack, botones = items.
+    final Properties titulos = new Properties();
+    static final int[] DESAFIAR = {0, 1, 2, 9, 10, 11, 18, 19, 20, 27, 28, 29}, PEDIDOS = {3, 4, 5, 12, 13, 14},
+        DATOS = {6, 7, 8, 15, 16, 17}, RANKING = {21, 22, 23, 30, 31, 32}, SALIR = {24, 25, 26, 33, 34, 35},
+        IZQ = {19, 20, 21, 28, 29, 30}, DER = {23, 24, 25, 32, 33, 34};
+    static final int CENTRO = 13;
+    String titulo(String clave, String respaldo) {
+        if (titulos.isEmpty()) try (var in = getResource("titulos-ui.properties")) { if (in != null) titulos.load(in); } catch (Exception ignored) {}
+        return titulos.getProperty(clave, color("&8&lAstral &6| &8" + respaldo));
+    }
+    Ventana ventana(Player p, String clave, String respaldo) {
+        Ventana v = new Ventana(); v.inv = Bukkit.createInventory(v, 54, titulo(clave, respaldo));
         boton(v, 45, Material.ARROW, "&fVolver a Duelos", "icon_back", () -> menu(p));
         boton(v, 53, Material.BARRIER, "&cCerrar", "icon_close", p::closeInventory);
         return v;
@@ -92,59 +100,71 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
     ItemStack item(Material m, String titulo, String modelo, String... lore) {
         ItemStack it = new ItemStack(m); ItemMeta meta = it.getItemMeta();
         meta.setDisplayName(color(titulo)); meta.setLore(Arrays.stream(lore).map(AstralDuelos::color).toList());
-        if (modelo != null) meta.setItemModel(NamespacedKey.fromString("astral:menu/" + modelo));
+        if (modelo != null) meta.setItemModel(NamespacedKey.fromString(modelo.contains(":") ? modelo : "astral:menu/" + modelo));
         it.setItemMeta(meta); return it;
     }
     void boton(Ventana v, int slot, Material m, String titulo, String modelo, Runnable r, String... lore) {
-        v.inv.setItem(slot, item(m, titulo, modelo, lore)); if (r != null) v.acciones.put(slot, r);
+        v.inv.setItem(slot, item(m, titulo, modelo, lore)); if (r != null) v.acciones.put(slot, r); else v.acciones.remove(slot);
+    }
+    /** Boton grande de Gemini partido en casillas: astral:duelparty/<nombre>_<i>. */
+    void tarjeta(Ventana v, int[] slots, String nombre, Runnable r, String titulo, String... lore) {
+        for (int i = 0; i < slots.length; i++) boton(v, slots[i], Material.PAPER, titulo, "astral:duelparty/" + nombre + "_" + i, r, lore);
     }
     public List<Pedido> recibidos(Player p) { vencer(); return pedidos.values().stream().filter(r -> r.para.equals(p.getUniqueId())).toList(); }
     void menu(Player p) {
-        if (duels.getArenaManager().isInMatch(p)) {
-            aviso(p, "&eEstas en duelo. Para rendirte: /duelos salir (cuenta como derrota)."); return;
-        }
-        Ventana v = ventana(p, "Duelos"); int n = recibidos(p).size();
-        boton(v, 20, Material.DIAMOND_SWORD, "&c&lDesafiar", "icon_duelos", () -> jugadores(p, 0), "&7Elegi rival y arena.", "&7Sin apuestas ni perdida de items.");
-        boton(v, 22, Material.WRITABLE_BOOK, "&e&lPedidos recibidos (" + n + ")", null, () -> recibidosMenu(p, 0));
-        if (n > 0) v.inv.getItem(22).setAmount(Math.min(n, 64));
-        boton(v, 24, Material.BOOK, "&bMis estadisticas", null, () -> estadisticas(p));
-        boton(v, 30, Material.GOLD_INGOT, "&6Ranking de duelos", null, () -> ranking(p, false));
-        boton(v, 32, Material.RED_DYE, "&cSalir de la cola / duelo", null, () -> salir(p));
+        if (duels.getArenaManager().isInMatch(p)) { rendirse(p); return; }
+        Ventana v = ventana(p, "duelos.menu.sin_perdida_de_items", "Duelos"); int n = recibidos(p).size();
+        tarjeta(v, DESAFIAR, "desafiar", () -> jugadores(p, 0), "&c&lDesafiar", "&7Elegi rival y arena.", "&7Sin apuestas ni perdida de items.");
+        tarjeta(v, PEDIDOS, "pedidos", () -> recibidosMenu(p, 0), "&e&lPedidos recibidos (" + n + ")", "&7Aceptar o rechazar desafios.");
+        if (n > 0) v.inv.getItem(PEDIDOS[2]).setAmount(Math.min(n, 64));
+        tarjeta(v, DATOS, "estadisticas", () -> estadisticas(p), "&bMis estadisticas", "&7Victorias, derrotas y racha.");
+        tarjeta(v, RANKING, "ranking", () -> ranking(p, false), "&6Ranking de duelos", "&7Total y semanal.");
+        tarjeta(v, SALIR, "salir_cola", () -> salir(p), "&cSalir de la cola", "&7Tambien cancela tus pedidos.");
         boton(v, 45, Material.ARROW, "&fVolver a Arenas", "icon_back", () -> { p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "dm open arenas " + p.getName()); });
         p.openInventory(v.inv);
     }
-    static int casilla(int i) { return 10 + i / 7 * 9 + i % 7; }
+    void rendirse(Player p) {
+        Ventana v = ventana(p, "duelos.dialogo.rendirse", "Rendirse");
+        boton(v, CENTRO, Material.WHITE_BANNER, "&fRendirse", null, null, "&7Cuenta como derrota.", "&7Conservas tus items.");
+        tarjeta(v, IZQ, "rendirse", () -> { p.closeInventory(); p.performCommand("duels:duel leave"); }, "&c&lRendirme", "&7Termina el duelo como derrota.");
+        tarjeta(v, DER, "seguir", p::closeInventory, "&a&lSeguir peleando");
+        v.acciones.remove(45); v.inv.setItem(45, null);
+        p.openInventory(v.inv);
+    }
+    static int casilla(int i) { return i; }
     void paginas(Ventana v, Player p, int pagina, int total, java.util.function.IntConsumer abrir) {
-        if (pagina > 0) boton(v, 48, Material.ARROW, "&fAnterior", "icon_back", () -> abrir.accept(pagina - 1));
-        if ((pagina + 1) * 28 < total) boton(v, 50, Material.ARROW, "&fSiguiente", null, () -> abrir.accept(pagina + 1));
+        if (pagina > 0) boton(v, 47, Material.ARROW, "&fAnterior", "icon_back", () -> abrir.accept(pagina - 1));
+        if ((pagina + 1) * 36 < total) boton(v, 51, Material.ARROW, "&fSiguiente", null, () -> abrir.accept(pagina + 1));
     }
     public void jugadores(Player p, int pagina) {
         var lista = Bukkit.getOnlinePlayers().stream().filter(t -> t != p && p.canSee(t)).sorted(Comparator.comparing(Player::getName)).toList();
-        int pag = Math.max(0, Math.min(pagina, Math.max(0, (lista.size() - 1) / 28)));
-        Ventana v = ventana(p, "Desafiar · " + (pag + 1));
-        for (int i = pag * 28; i < Math.min(lista.size(), (pag + 1) * 28); i++) {
-            Player t = lista.get(i); String estado = ocupado(t); int slot = casilla(i % 28);
+        int pag = Math.max(0, Math.min(pagina, Math.max(0, (lista.size() - 1) / 36)));
+        Ventana v = ventana(p, "duelos.lista.elegi_a_tu_rival", "Desafiar");
+        for (int i = pag * 36; i < Math.min(lista.size(), (pag + 1) * 36); i++) {
+            Player t = lista.get(i); String estado = ocupado(t); int slot = casilla(i % 36);
             boton(v, slot, Material.PLAYER_HEAD, "&e" + t.getName(), null, () -> { if (disponibles(p, t)) arenas(p, t.getUniqueId()); },
                 estado == null ? "&aDisponible · clic para desafiar" : "&c" + estado);
             var head = v.inv.getItem(slot); var meta = (SkullMeta) head.getItemMeta(); meta.setOwningPlayer(t); head.setItemMeta(meta);
         }
-        if (lista.isEmpty()) boton(v, 22, Material.BARRIER, "&7No hay otros jugadores conectados", null, null);
+        if (lista.isEmpty()) boton(v, 13, Material.BARRIER, "&7No hay otros jugadores conectados", null, null);
         paginas(v, p, pag, lista.size(), n -> jugadores(p, n)); p.openInventory(v.inv);
     }
     void arenas(Player p, UUID rival) {
-        Ventana v = ventana(p, "Elegi la arena");
+        Ventana v = ventana(p, "duelos.lista.elegi_la_arena", "Elegi la arena");
         for (int i = 0; i < ARENAS.size(); i++) {
             String a = ARENAS.get(i); boolean ok = libre(duels.getArenaManager().get(a));
-            boton(v, 19 + i * 2, Material.DIAMOND_SWORD, "&6" + a, "icon_duelos", () -> confirmar(p, rival, a), ok ? "&aLibre" : "&cOcupada / no disponible");
+            boton(v, 10 + i * 2, Material.DIAMOND_SWORD, "&6" + a, "icon_duelos", () -> confirmar(p, rival, a), ok ? "&aLibre" : "&cOcupada / no disponible");
         }
-        boton(v, 31, Material.ENDER_PEARL, "&dCualquiera", null, () -> confirmar(p, rival, "Cualquiera"), "&7La primera libre al aceptar.");
+        boton(v, 22, Material.ENDER_PEARL, "&dCualquiera", null, () -> confirmar(p, rival, "Cualquiera"), "&7La primera libre al aceptar.");
+        boton(v, 45, Material.ARROW, "&fVolver", "icon_back", () -> jugadores(p, 0));
         p.openInventory(v.inv);
     }
     void confirmar(Player p, UUID rival, String arena) {
-        Ventana v = ventana(p, "Confirmar desafio");
-        boton(v, 22, Material.DIAMOND_SWORD, "&e" + nombre(rival) + " · " + arena, "icon_duelos", null, "&7El pedido dura 60 segundos.", "&7Sin apuestas. Conservas tus items.");
-        boton(v, 30, Material.LIME_DYE, "&aEnviar pedido", null, () -> enviar(p, Bukkit.getPlayer(rival), arena));
-        boton(v, 32, Material.RED_DYE, "&cCancelar", null, () -> arenas(p, rival)); p.openInventory(v.inv);
+        Ventana v = ventana(p, "duelos.dialogo.confirmar_desafio", "Confirmar desafio");
+        boton(v, CENTRO, Material.DIAMOND_SWORD, "&e" + nombre(rival) + " · " + arena, "icon_duelos", null, "&7El pedido dura 60 segundos.", "&7Sin apuestas. Conservas tus items.");
+        tarjeta(v, IZQ, "enviar", () -> enviar(p, Bukkit.getPlayer(rival), arena), "&a&lEnviar pedido", "&7A " + nombre(rival) + " · " + arena);
+        tarjeta(v, DER, "cancelar", () -> arenas(p, rival), "&c&lCancelar", "&7Volver a elegir arena");
+        p.openInventory(v.inv);
     }
     public void enviar(Player a, Player b, String arena) {
         vencer(); if (!disponibles(a, b)) return;
@@ -163,20 +183,24 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
         b.playSound(b.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.8f, 1.3f);
     }
     void recibidosMenu(Player p, int pagina) {
-        var lista = recibidos(p); int pag = Math.max(0, Math.min(pagina, Math.max(0, (lista.size() - 1) / 28)));
-        Ventana v = ventana(p, "Pedidos recibidos");
-        for (int i = pag * 28; i < Math.min(lista.size(), (pag + 1) * 28); i++) {
+        var lista = recibidos(p); int pag = Math.max(0, Math.min(pagina, Math.max(0, (lista.size() - 1) / 36)));
+        Ventana v = ventana(p, "duelos.lista.pedidos_recibidos", "Pedidos recibidos");
+        for (int i = pag * 36; i < Math.min(lista.size(), (pag + 1) * 36); i++) {
             Pedido r = lista.get(i);
-            boton(v, casilla(i % 28), Material.PAPER, "&e" + nombre(r.de), null, () -> pedidoMenu(p, r), "&7Arena: " + r.arena, "&7Vence en " + Math.max(0, (r.vence - System.currentTimeMillis()) / 1000) + " s", "&7Clic: aceptar o rechazar.");
+            boton(v, casilla(i % 36), Material.PAPER, "&e" + nombre(r.de), null, () -> pedidoMenu(p, r), "&7Arena: " + r.arena, "&7Vence en " + Math.max(0, (r.vence - System.currentTimeMillis()) / 1000) + " s", "&7Clic: aceptar o rechazar.");
         }
-        if (lista.isEmpty()) boton(v, 22, Material.BOOK, "&7No tenes pedidos pendientes", null, null);
+        if (lista.isEmpty()) boton(v, 13, Material.BOOK, "&7No tenes pedidos pendientes", null, null);
         paginas(v, p, pag, lista.size(), n -> recibidosMenu(p, n)); p.openInventory(v.inv);
     }
     void pedidoMenu(Player p, Pedido r) {
-        Ventana v = ventana(p, "Responder desafio");
-        boton(v, 22, Material.DIAMOND_SWORD, "&e" + nombre(r.de) + " · " + r.arena, "icon_duelos", null);
-        boton(v, 30, Material.LIME_DYE, "&aAceptar", null, () -> responder(p, r.id, true));
-        boton(v, 32, Material.RED_DYE, "&cRechazar", null, () -> responder(p, r.id, false)); p.openInventory(v.inv);
+        Ventana v = ventana(p, "duelos.dialogo.responder_desafio", "Responder desafio");
+        boton(v, CENTRO, Material.PLAYER_HEAD, "&e" + nombre(r.de) + " · " + r.arena, null, null, "&7Te desafio a un duelo.");
+        Player de = Bukkit.getPlayer(r.de);
+        if (de != null) { var head = v.inv.getItem(CENTRO); var meta = (SkullMeta) head.getItemMeta(); meta.setOwningPlayer(de); head.setItemMeta(meta); }
+        tarjeta(v, IZQ, "aceptar", () -> responder(p, r.id, true), "&a&lAceptar", "&7Empieza el duelo");
+        tarjeta(v, DER, "rechazar", () -> responder(p, r.id, false), "&c&lRechazar");
+        boton(v, 45, Material.ARROW, "&fVolver", "icon_back", () -> recibidosMenu(p, 0));
+        p.openInventory(v.inv);
     }
     void responder(Player p, UUID id, boolean aceptar) {
         vencer(); Pedido r = pedidos.get(id);
@@ -212,12 +236,15 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
     public void estadisticas(Player p) {
         var u = duels.getUserManager().get(p); if (u == null) { aviso(p, "&eTus datos todavia estan cargando."); return; }
         int w = u.getWins(), l = u.getLosses();
-        Ventana v = ventana(p, "Mis estadisticas");
-        boton(v, 22, Material.BOOK, "&b" + p.getName(), null, null, "&aVictorias: " + w, "&cDerrotas: " + l,
-            "&eRacha Astral: " + getConfig().getInt("racha." + p.getUniqueId()), "&7Victorias: " + (w + l == 0 ? 0 : Math.round(w * 100.0 / (w + l))) + "%", "&8Racha registrada desde esta interfaz."); p.openInventory(v.inv);
+        Ventana v = ventana(p, "duelos.dialogo.mis_estadisticas", "Mis estadisticas");
+        boton(v, CENTRO, Material.BOOK, "&b" + p.getName(), null, null, "&aVictorias: " + w, "&cDerrotas: " + l,
+            "&eRacha Astral: " + getConfig().getInt("racha." + p.getUniqueId()), "&7Victorias: " + (w + l == 0 ? 0 : Math.round(w * 100.0 / (w + l))) + "%", "&8Racha registrada desde esta interfaz.");
+        tarjeta(v, IZQ, "seguir", () -> menu(p), "&a&lVolver a Duelos");
+        tarjeta(v, DER, "arenas", () -> { p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "dm open arenas " + p.getName()); }, "&f&lArenas");
+        p.openInventory(v.inv);
     }
     public void ranking(Player p, boolean semanal) {
-        Ventana v = ventana(p, semanal ? "Ranking semanal" : "Ranking total");
+        Ventana v = ventana(p, semanal ? "duelos.lista.ranking_semanal" : "duelos.lista.ranking_total", semanal ? "Ranking semanal" : "Ranking total");
         Map<String, Integer> tabla = new LinkedHashMap<>();
         if (semanal) {
             var sec = getConfig().getConfigurationSection("semanas." + semana());
@@ -228,14 +255,16 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
         }
         var rows = tabla.entrySet().stream().sorted(Map.Entry.<String,Integer>comparingByValue().reversed().thenComparing(Map.Entry.comparingByKey())).limit(10).toList();
         for (int i = 0; i < rows.size(); i++) {
-            var row = rows.get(i); boton(v, casilla(i), Material.GOLD_INGOT, "&6#" + (i + 1) + " " + row.getKey(), null, null, "&7Victorias: " + row.getValue());
+            var row = rows.get(i); boton(v, 9 + i, Material.GOLD_INGOT, "&6#" + (i + 1) + " " + row.getKey(), null, null, "&7Victorias: " + row.getValue());
         }
-        if (rows.isEmpty()) boton(v, 22, Material.PAPER, "&7Todavia no hay resultados", null, null);
+        if (rows.isEmpty()) boton(v, 13, Material.PAPER, "&7Todavia no hay resultados", null, null);
         boton(v, 49, Material.CLOCK, semanal ? "&eVer total" : "&eVer semanal", null, () -> ranking(p, !semanal), semanal ? "&7Desde el lunes (Argentina)." : "&7Duels actualiza el total cada 5 min.", "&7Semanal: duelos registrados desde esta instalacion."); p.openInventory(v.inv);
     }
     @EventHandler public void inicio(MatchStartEvent e) {
         for (Player p : e.getPlayers()) {
             quitar(p.getUniqueId()); inicios.put(p.getUniqueId(), System.currentTimeMillis());
+            p.sendMessage(Component.text("[Duelos] Si queres abandonar: ").append(Component.text("[Rendirse]")
+                .color(net.kyori.adventure.text.format.NamedTextColor.RED).clickEvent(ClickEvent.runCommand("/duelos"))));
             for (int i = 0; i <= 5; i++) {
                 int n = 5 - i;
                 Bukkit.getScheduler().runTaskLater(this, () -> {
@@ -269,10 +298,11 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
     void resultado(Player p) {
         Resultado r = resultados.get(p.getUniqueId()); if (r == null) { aviso(p, "&7Todavia no tenes un resultado reciente."); return; }
         if (duels.getArenaManager().isInMatch(p)) { aviso(p, "&eEspera a volver al lobby para abrir el resultado."); return; }
-        Ventana v = ventana(p, "Resultado");
-        boton(v, 22, Material.GOLD_INGOT, "&6Resultado", null, null, "&7" + r.texto);
-        boton(v, 30, Material.DIAMOND_SWORD, "&cRevancha", "icon_duelos", () -> confirmar(p, r.rival, r.arena), "&7Requiere un nuevo pedido aceptado.");
-        boton(v, 32, Material.ARROW, "&fVolver a Arenas", "icon_back", () -> { p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "dm open arenas " + p.getName()); }); p.openInventory(v.inv);
+        Ventana v = ventana(p, "duelos.dialogo.resultado", "Resultado");
+        boton(v, CENTRO, Material.GOLD_INGOT, "&6Resultado", null, null, "&7" + r.texto);
+        tarjeta(v, IZQ, "revancha", () -> confirmar(p, r.rival, r.arena), "&c&lRevancha", "&7Requiere un nuevo pedido aceptado.");
+        tarjeta(v, DER, "arenas", () -> { p.closeInventory(); Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "dm open arenas " + p.getName()); }, "&f&lVolver a Arenas");
+        p.openInventory(v.inv);
     }
     @EventHandler public void clic(InventoryClickEvent e) {
         if (!(e.getView().getTopInventory().getHolder() instanceof Ventana v)) return;

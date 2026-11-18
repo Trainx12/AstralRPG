@@ -98,10 +98,12 @@ def build(java, server, papi):
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralParty*.class')):
             z.writestr(zipfile.ZipInfo('astral/'+p.name, (2026,11,17,0,0,0)), p.read_bytes())
-        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.2.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
+        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.3.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
         z.writestr('party.properties', f'waves={REVIVE_WAVES}\nboss={REVIVE_BOSS}\nwipe={WIPE_SECONDS}\nmax={PARTY_MAX}\nworlds='+','.join(worlds)+'\n')
         z.writestr('boss-rooms.csv', '\n'.join(bosses))
         z.writestr('fight-rooms.csv', '\n'.join(fight_rooms())+'\n')
+        import duelos_party_ui   # titulos (glifos) de las ventanas ilustradas de Gemini
+        z.writestr('titulos-ui.properties', duelos_party_ui.titles_properties())
     return dest
 
 

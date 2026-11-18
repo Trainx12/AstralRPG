@@ -260,14 +260,16 @@ public final class AstralParty extends JavaPlugin implements Listener {
         Inventory inventory; final Map<Integer,Runnable> actions=new HashMap<>();
         public Inventory getInventory(){return inventory;}
     }
-    View view(Player p,String title) {
-        return view(p,title,54);
+    // Ventanas ilustradas (arte de Gemini, duelos_party_ui.py): titulos = glifos del pack, botones = items.
+    final Properties titles=new Properties();
+    static final int[] MEMBER_SLOTS={10,11,12,14,15,16};
+    static final int[] LEFT={18,19,20,21,27,28,29,30}, RIGHT={23,24,25,26,32,33,34,35};
+    String title(String key,String fallback) {
+        if(titles.isEmpty()) try(var in=getResource("titulos-ui.properties")){ if(in!=null)titles.load(in);}catch(Exception ignored){}
+        return titles.getProperty(key,c(fallback));
     }
-    View view(Player p,String title,int size) {
-        var v=new View(); v.inventory=Bukkit.createInventory(v,size,c(title));
-        var filler=item(Material.GRAY_STAINED_GLASS_PANE," ");
-        for(int i=0;i<size;i++) v.inventory.setItem(i,filler);
-        return v;
+    View view(Player p,String key,String fallback) {
+        var v=new View(); v.inventory=Bukkit.createInventory(v,54,title(key,fallback)); return v;
     }
     ItemStack item(Material m,String title,String... lore) {
         var i=new ItemStack(m); var meta=i.getItemMeta(); meta.setDisplayName(c(title));
@@ -276,44 +278,79 @@ public final class AstralParty extends JavaPlugin implements Listener {
     ItemStack head(Player p,String title,String... lore) {
         var i=item(Material.PLAYER_HEAD,title,lore); var meta=(SkullMeta)i.getItemMeta(); meta.setOwningPlayer(p); i.setItemMeta(meta); return i;
     }
-    void button(View v,int slot,ItemStack item,Runnable action) { v.inventory.setItem(slot,item); v.actions.put(slot,action); }
+    ItemStack icon(String model,Material m,String title,String... lore) {
+        var i=item(m,title,lore); var meta=i.getItemMeta(); meta.setItemModel(NamespacedKey.fromString(model)); i.setItemMeta(meta); return i;
+    }
+    void button(View v,int slot,ItemStack item,Runnable action) { v.inventory.setItem(slot,item); if(action!=null)v.actions.put(slot,action); }
+    /** Boton grande de Gemini partido en casillas: astral:duelparty/<nombre>_<i>. */
+    void card(View v,int[] slots,String name,Runnable action,String title,String... lore) {
+        for(int i=0;i<slots.length;i++) button(v,slots[i],icon("astral:duelparty/"+name+"_"+i,Material.PAPER,title,lore),action);
+    }
+    void nav(View v,Player p,Runnable back) {
+        button(v,45,icon("astral:menu/icon_back",Material.ARROW,"&fVolver"),back);
+        button(v,53,icon("astral:menu/icon_close",Material.BARRIER,"&cCerrar"),p::closeInventory);
+    }
+    boolean inDungeon(Player p) { return worlds.contains(p.getWorld().getName()); }
     void menu(Player p,boolean inviting,int page) {
         if(busy(p)) { spectateMenu(p); return; }
-        var v=view(p,"&8✦ Party Astral");
-        if(inviting) {
-            var choices=Bukkit.getOnlinePlayers().stream().filter(t->t!=p&&!inParty(t))
-                .sorted(Comparator.comparing((Player t)->t.getWorld()!=p.getWorld()).thenComparing(Player::getName)).toList();
-            int pages=Math.max(1,(choices.size()+27)/28), current=Math.max(0,Math.min(page,pages-1));
-            for(int i=current*28;i<Math.min(choices.size(),(current+1)*28);i++) {
-                var t=choices.get(i); int n=i%28,slot=10+(n/7)*9+n%7;
-                button(v,slot,head(t,"&d"+t.getName(),"&7"+t.getWorld().getName(),"&eClic para invitar"),()->{p.performCommand("party invitar "+t.getName());menu(p,true,current);});
+        if(inDungeon(p)) { msg(p,"La party se arma antes de entrar a la mazmorra."); return; }
+        if(inviting) { inviteMenu(p,page); return; }
+        var v=view(p,"party.menu.hasta_6_jugadores_por_party","&8Party");
+        if(inParty(p)) {
+            var list=members(p);
+            for(int i=0;i<Math.min(list.size(),MEMBER_SLOTS.length);i++) {
+                var t=list.get(i);
+                button(v,MEMBER_SLOTS[i],head(t,(leader(t)?"&6♛ ":"&d")+t.getName(),"&7"+t.getWorld().getName(),leader(p)&&t!=p?"&eClic para administrar":"&7Companero de party"),
+                    leader(p)&&t!=p?()->memberMenu(p,t,false):null);
             }
-            button(v,45,item(Material.ARROW,"&fAnterior"),()->menu(p,true,current-1));
-            button(v,53,item(Material.ARROW,"&fSiguiente"),()->menu(p,true,current+1));
+            if(leader(p)) {
+                card(v,LEFT,"p_invitar",()->inviteMenu(p,0),"&a&lInvitar","&7Jugadores conectados, mismo mundo primero");
+                card(v,RIGHT,"p_disolver",()->{leave(p);menu(p,false,0);},"&c&lDisolver","&7Termina la party para todos");
+            } else {
+                card(v,LEFT,"p_invitar_off",null,"&7Invitar","&7Solo el lider invita");
+                card(v,RIGHT,"p_salir",()->{leave(p);menu(p,false,0);},"&c&lSalir","&7Dejas la party");
+            }
         } else {
-            int slot=10;
-            if(inParty(p)) for(var t:members(p)) {
-                button(v,slot++,head(t,(leader(t)?"&6♛ ":"&d")+t.getName(),"&f"+status(t,false),"&7"+t.getWorld().getName(),leader(p)&&t!=p?"&eClic para administrar":"&7Companero de party"),()->{if(leader(p)&&t!=p) memberMenu(p,t,false);});
-            }
-            if(!inParty(p)||leader(p)) button(v,30,item(Material.EMERALD,"&dCrear / Invitar","&7Jugadores conectados, mismo mundo primero"),()->{if(!inParty(p)){create(p);sync();}menu(p,true,0);});
-            if(inParty(p)) button(v,32,item(Material.RED_BED,leader(p)?"&cDisolver":"&cSalir"),()->{leave(p);menu(p,false,0);});
             var invite=invites.get(p.getUniqueId());
             if(invite!=null && clock<invite.until && groups.containsKey(invite.leader)) {
-                var l=player(invite.leader);
-                button(v,39,item(Material.LIME_WOOL,"&aAceptar invitacion",l==null?"":l.getName()),()->p.performCommand("party aceptar"));
-                button(v,41,item(Material.RED_WOOL,"&cRechazar"),()->{p.performCommand("party rechazar");menu(p,false,0);});
+                var l=player(invite.leader); String from=l==null?"":l.getName();
+                card(v,LEFT,"p_aceptar",()->p.performCommand("party aceptar"),"&a&lAceptar","&7Unirte a la party de "+from);
+                card(v,RIGHT,"p_rechazar",()->{p.performCommand("party rechazar");menu(p,false,0);},"&c&lRechazar","&7Invitacion de "+from);
+            } else {
+                card(v,LEFT,"p_crear",()->{if(!inParty(p)){create(p);sync();}inviteMenu(p,0);},"&a&lCrear party","&7Crea tu grupo e invita jugadores");
+                card(v,RIGHT,"p_aceptar_off",null,"&7Sin invitaciones","&7Cuando te inviten, aceptas aca");
             }
         }
-        button(v,49,item(Material.BARRIER,"&cCerrar"),p::closeInventory); p.openInventory(v.inventory);
+        nav(v,p,()->{p.closeInventory();console("dm open principal "+p.getName());});
+        p.openInventory(v.inventory);
+    }
+    void inviteMenu(Player p,int page) {
+        if(inParty(p)&&!leader(p)) { menu(p,false,0); return; }
+        var choices=Bukkit.getOnlinePlayers().stream().filter(t->t!=p&&!inParty(t))
+            .sorted(Comparator.comparing((Player t)->t.getWorld()!=p.getWorld()).thenComparing(Player::getName)).collect(Collectors.toList());
+        int pages=Math.max(1,(choices.size()+35)/36), current=Math.max(0,Math.min(page,pages-1));
+        var v=view(p,"party.lista.invitar_jugadores","&8Invitar jugadores");
+        for(int i=current*36;i<Math.min(choices.size(),(current+1)*36);i++) {
+            var t=choices.get(i);
+            button(v,i%36,head(t,"&d"+t.getName(),"&7"+t.getWorld().getName(),"&eClic para invitar"),()->{p.performCommand("party invitar "+t.getName());inviteMenu(p,current);});
+        }
+        if(choices.isEmpty()) button(v,13,item(Material.PAPER,"&7No hay jugadores libres conectados"),null);
+        if(current>0) button(v,47,icon("astral:menu/icon_back",Material.ARROW,"&fAnterior"),()->inviteMenu(p,current-1));
+        if(current<pages-1) button(v,51,item(Material.ARROW,"&fSiguiente"),()->inviteMenu(p,current+1));
+        nav(v,p,()->menu(p,false,0)); p.openInventory(v.inventory);
     }
     void memberMenu(Player p,Player t,boolean confirm) {
         if(!leader(p)||!Objects.equals(leaders.get(t.getUniqueId()),p.getUniqueId())||p==t)return;
-        var v=view(p,confirm?"&8Confirmar expulsion":"&8Administrar companero",27);
-        button(v,10,head(t,"&c"+(confirm?"Confirmar: echar a ":"Echar a ")+t.getName()),()->{
-            if(confirm){p.performCommand("party echar "+t.getName());menu(p,false,0);}else memberMenu(p,t,true);
-        });
-        if(!confirm)button(v,16,item(Material.GOLDEN_HELMET,"&6Pasar liderazgo"),()->{transfer(p,t);menu(p,false,0);});
-        button(v,22,item(Material.ARROW,"&fVolver"),()->menu(p,false,0));p.openInventory(v.inventory);
+        var v=view(p,confirm?"party.dialogo.confirmar_expulsion":"party.dialogo.administrar_companero",confirm?"&8Confirmar expulsion":"&8Administrar companero");
+        button(v,13,head(t,"&d"+t.getName(),"&7Companero de party"),null);
+        if(confirm) {
+            card(v,LEFT,"p_echar",()->{p.performCommand("party echar "+t.getName());menu(p,false,0);},"&c&lConfirmar: echar","&7"+t.getName()+" sale de la party");
+            card(v,RIGHT,"p_rechazar",()->memberMenu(p,t,false),"&fCancelar");
+        } else {
+            card(v,LEFT,"p_echar",()->memberMenu(p,t,true),"&c&lEchar","&7Pide confirmacion");
+            card(v,RIGHT,"p_lider",()->{transfer(p,t);menu(p,false,0);},"&6&lDar lider","&7"+t.getName()+" pasa a ser el lider");
+        }
+        nav(v,p,()->menu(p,false,0)); p.openInventory(v.inventory);
     }
     @EventHandler public void click(InventoryClickEvent e) {
         if(e.getView().getTopInventory().getHolder() instanceof View v) {
@@ -373,11 +410,10 @@ public final class AstralParty extends JavaPlugin implements Listener {
     }
     void spectateMenu(Player p) {
         var f=fallen.get(p.getUniqueId()); if(f==null) {menu(p,false,0);return;}
-        var v=view(p,"&8✦ Elegi a quien mirar"); int slot=10;
-        button(v,4,item(Material.SPYGLASS,"&bMirar companeros","&7Elegi una cabeza o Mirar libre"),()->spectateMenu(p));
-        for(var t:living(p,f.world)) button(v,slot++,head(t,"&d"+t.getName(),"&eClic: entrar a su camara"),()->{p.closeInventory();watch(p,t,false);});
-        button(v,31,item(Material.ENDER_EYE,"&bMirar libre","&7Hasta 16 bloques de un companero vivo"),()->{p.closeInventory();var alive=living(p,f.world); if(!alive.isEmpty())watch(p,alive.getFirst(),true);});
-        button(v,49,item(Material.BARRIER,"&cCerrar"),p::closeInventory);p.openInventory(v.inventory);
+        var v=view(p,"party.lista.mirar_companeros","&8Elegi a quien mirar"); int slot=0;
+        for(var t:living(p,f.world)) { if(slot>=36)break; button(v,slot++,head(t,"&d"+t.getName(),"&eClic: entrar a su camara"),()->{p.closeInventory();watch(p,t,false);}); }
+        button(v,49,item(Material.ENDER_EYE,"&bMirar libre","&7Hasta 16 bloques de un companero vivo"),()->{p.closeInventory();var alive=living(p,f.world); if(!alive.isEmpty())watch(p,alive.getFirst(),true);});
+        button(v,53,icon("astral:menu/icon_close",Material.BARRIER,"&cCerrar"),p::closeInventory);p.openInventory(v.inventory);
     }
     @EventHandler public void sneak(PlayerToggleSneakEvent e) { if(busy(e.getPlayer())&&e.isSneaking()) Bukkit.getScheduler().runTask(this,()->spectateMenu(e.getPlayer())); }
     @EventHandler public void interact(PlayerInteractEvent e) { if(busy(e.getPlayer())) {e.setCancelled(true); spectateMenu(e.getPlayer());} }

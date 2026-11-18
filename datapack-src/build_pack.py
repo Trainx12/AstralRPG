@@ -286,6 +286,10 @@ from infinita_ui import assets as infinita_assets
 infinita_files, infinita_providers = infinita_assets()
 files.update(infinita_files)
 default_font['providers'] = infinita_providers + default_font['providers']
+from duelos_party_ui import assets as duelparty_assets   # ventanas de Duelos y Party (arte de Gemini, 18/11)
+duelparty_files, duelparty_providers = duelparty_assets()
+files.update(duelparty_files)
+default_font['providers'] = duelparty_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets
 gacha_files, gacha_providers = gacha_assets()
 files.update(gacha_files)
