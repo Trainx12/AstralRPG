@@ -375,7 +375,7 @@ def principal_menu():
         ('mascotas', 'BONE', '&6&lMascotas', ['&7Coleccion de 23 companeros en 3 paginas.', '&7Invoca, entrena o guarda a tu mascota.'], ['[openguimenu] mascotas']),
         ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tus titulos y gorros.'], ['[openguimenu] cosmeticos']),
         ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
-        ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[player] trigger astral.guia set 1<delay=3>']),
+        ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[openguimenu] guia_astral']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
@@ -456,7 +456,7 @@ COMANDOS = [
         ('mazmorras', 'NETHER_STAR', '/mazmorras', ['Viaja a las mazmorras que ya descubriste', 'hablando con su guardian.'], '/mazmorras', ['[close]', '[player] mazmorras<delay=3>']),
         ('expediciones', 'FILLED_MAP', '/expediciones', ['Destinos de exploracion: Reino,', 'Cavernas y las zonas de busqueda.'], '/expediciones', ['[close]', '[player] expediciones<delay=3>']),
         ('spawn', 'RED_BED', '/spawn', ['Vuelve a la plaza del lobby.', 'Sirve si te perdes o te trabas.'], '/spawn', ['[close]', '[player] spawn']),
-        ('guia', 'BOOK', 'Guia', ['Clases, equipo, recetas y la Forja.', 'Tambien desde /menu.'], 'Boton Guia en /menu', ['[close]', '[player] trigger astral.guia set 1']),
+        ('guia', 'BOOK', 'Guia', ['Clases, equipo, recetas y la Forja.', 'Tambien desde /menu.'], 'Boton Guia en /menu', ['[close]', '[openguimenu] guia_astral']),
     ]),
     ('Personaje', 'LIGHT_BLUE_STAINED_GLASS_PANE', [
         ('skills', 'EXPERIENCE_BOTTLE', '/skills', ['Tus habilidades (Forja, Hechiceria,', 'Arqueria, Combate...) y sus niveles.'], '/skills', ['[close]', '[player] skills<delay=3>']),
@@ -466,7 +466,7 @@ COMANDOS = [
         ('sb', 'ITEM_FRAME', '/sb', ['Muestra u oculta el panel de la', 'derecha (vida, oro, poder, nivel).'], '/sb', ['[close]', '[player] sb']),
         ('mochilas', 'CHEST', '/bp', ['Recetas y niveles de mochilas.', 'Se compran en /shop -> Mochilas.', 'Clic derecho con la mochila para abrirla.'], '/bp', ['[close]', '[player] bp<delay=3>']),
         ('proteccion', 'GOLDEN_SHOVEL', 'Proteccion de terreno', ['Compra area en /shop y marca', 'dos esquinas con una pala de oro.'], '/shop', ['[close]', '[player] economyshopgui:shop<delay=3>']),
-        ('recetas', 'BOOK', 'Recetas y Forja', ['Consulta materiales y recetas', 'en la Guia Astral.'], 'Guia Astral', ['[close]', '[player] trigger astral.guia set 1']),
+        ('recetas', 'BOOK', 'Recetas y Forja', ['Consulta materiales y recetas', 'en la Guia Astral.'], 'Guia Astral', ['[close]', '[openguimenu] guia_astral']),
     ]),
     ('Economia', 'YELLOW_STAINED_GLASS_PANE', [
         ('balance', 'GOLD_INGOT', '/balance', ['Cuanto oro tenes.'], '/balance', ['[close]', '[player] balance']),
