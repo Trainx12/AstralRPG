@@ -209,6 +209,52 @@ def dilate(mask, radius):
     return result
 
 
+SEE_THROUGH = ('cobweb', 'glass', 'leaves', 'water', 'lava', 'vine', 'air')
+
+
+def underside_palette(original, bounds, config):
+    """Piel real de abajo de la isla original: los 3 bloques mas bajos de cada columna."""
+    x0, z0, x1, z1 = bounds
+    ref = config.get('reference_bounds', bounds)
+    solid = np.array([base(n) not in {'air', 'cave_air', 'void_air'} for n in original.names])
+    low = np.full((z1-z0+1, x1-x0+1), 32767, dtype=np.int32)
+    for (cx, sy, cz), a in original.sections.items():
+        ax, bx = max(x0, cx*16), min(x1+1, cx*16+16)
+        az, bz = max(z0, cz*16), min(z1+1, cz*16+16)
+        if ax >= bx or az >= bz:
+            continue
+        m = solid[a[:, az-cz*16:bz-cz*16, ax-cx*16:bx-cx*16]]
+        has = m.any(axis=0)
+        view = low[az-z0:bz-z0, ax-x0:bx-x0]
+        view[has] = np.minimum(view[has], (np.argmax(m, axis=0)+sy*16)[has])
+    skin = Counter()
+    for z, x in zip(*np.nonzero(low < 32767)):
+        wx, wz = int(x+x0), int(z+z0)
+        if not (ref[0] <= wx <= ref[2] and ref[1] <= wz <= ref[3]):
+            continue
+        for y in range(int(low[z, x]), int(low[z, x])+3):
+            name = original.get(wx, y, wz)
+            if base(name) in PLANTS or any(t in base(name) for t in SEE_THROUGH):
+                continue
+            skin[name] += 1
+    # Solo materiales con presencia real (>=2%), sin restos sueltos de construcciones.
+    total = sum(skin.values())
+    return Counter({n: c for n, c in skin.items() if total and c/total >= .02})
+
+
+def edge_distance(mask):
+    """Distancia (en bloques, 4 vecinos) desde cada columna del mask hasta su borde exterior."""
+    d = np.zeros(mask.shape, dtype=np.int32)
+    cur = mask.copy()
+    k = 0
+    while cur.any():
+        k += 1
+        d[cur] = k
+        p = np.pad(cur, 1)
+        cur = cur & p[:-2, 1:-1] & p[2:, 1:-1] & p[1:-1, :-2] & p[1:-1, 2:]
+    return d
+
+
 def analyse(current, original, bounds, config=None):
     config = config or {}
     h, t = current.surface(bounds, ground=True)
@@ -283,9 +329,11 @@ def propose(world, original, bounds, config):
             inside ^= ((a[1]>zz)!=(b[1]>zz)) & (xx < (b[0]-a[0])*(zz-a[1])/(b[1]-a[1])+a[0])
     # Desplazar la cresta a ambos lados del poligono; evita una muralla regular.
     signed=distance*np.where(inside,-1,1)
+    outward=np.zeros(h.shape,dtype=bool)
     for z in range(h.shape[0]):
         for x in range(h.shape[1]):
-            distance[z,x]=abs(signed[z,x]+(noise(x+x0,z+z0,17,config['seed']+20)-.5)*12)
+            value=signed[z,x]+(noise(x+x0,z+z0,17,config['seed']+20)-.5)*12
+            distance[z,x]=abs(value);outward[z,x]=value>0
     mountain_mask=(distance < config['width']) & ~protected
     if mountain_mask[0].any() or mountain_mask[-1].any() or mountain_mask[:,0].any() or mountain_mask[:,-1].any():
         raise ValueError('Anillo cortado por los limites: ampliar bounds y descargar esos chunks')
@@ -313,29 +361,56 @@ def propose(world, original, bounds, config):
     # Unir el borde a la isla a nivel bajo; no dejar un foso de vacio entre
     # protecciones y montanas. Solo columnas totalmente vacias, sin construir
     # por encima del piso ni tocar el mapa existente.
-    foundation_columns=0
-    for z,x in zip(*np.nonzero(inside & (h == -32768) & ~excluded)):
+    # Base de isla FLOTANTE: la profundidad crece desde el borde exterior hacia
+    # adentro (medido en el original: ~30 bloques en el borde, ~50 al centro),
+    # con ruido y puntas colgantes. Evita el fondo plano y la pared vertical.
+    foundation_mask=inside & (h == -32768) & ~excluded
+    edge=edge_distance((h > -32768) | mountain_mask | foundation_mask)
+    under=underside_palette(original,bounds,config) or rock
+    smin=config.get('underside_min',6)
+    slope=config.get('underside_slope',1.6)
+    smax=min(config.get('underside_max',config['foundation_depth']),floor+64)
+    def underside_bottom(x,z):
         wx,wz=int(x+x0),int(z+z0)
-        bottom=floor-config['foundation_depth']
+        depth=min(smax,smin+slope*(int(edge[z,x])-1))
+        depth*=.7+.6*noise(wx,wz,11,config['seed']+30)
+        if noise(wx,wz,3,config['seed']+31) > .78:
+            depth+=3+9*noise(wx,wz,2,config['seed']+32)
+        return floor-int(max(smin,min(smax+12,depth)))
+    def under_state(wx,y,wz):
+        return choose(under,noise(wx+y*.3,wz-y*.3,3,config['seed']+33))
+    foundation_columns=0
+    for z,x in zip(*np.nonzero(foundation_mask)):
+        wx,wz=int(x+x0),int(z+z0)
+        bottom=underside_bottom(x,z)
         if all(base(world.get(wx,y,wz)) in {'air','cave_air','void_air'} for y in range(bottom,floor+1)):
             for y in range(bottom,floor+1):
-                changes[wx,y,wz]=choose(rock,noise(wx+y*.4,wz,4,config['seed']+2)) if y<floor else choose(cap,noise(wx,wz,7,config['seed']+3))
+                if y == floor:
+                    changes[wx,y,wz]=choose(cap,noise(wx,wz,7,config['seed']+3))
+                elif y < floor-4:
+                    changes[wx,y,wz]=under_state(wx,y,wz)
+                else:
+                    changes[wx,y,wz]=choose(rock,noise(wx+y*.4,wz,4,config['seed']+2))
             foundation_columns+=1
     for z,x in zip(*np.nonzero(mountain_mask)):
         wx,wz=int(x+x0),int(z+z0)
         f=1-distance[z,x]/config['width']
         rough=.48+.42*noise(wx,wz,13,config['seed']+1)+.1*noise(wx,wz,4,config['seed']+21)
-        top=floor+int((peak-floor)*f**.48*rough)
+        # Ladera exterior mas tendida: sin franja vertical debajo del borde.
+        top=floor+int((peak-floor)*f**(config.get('outer_exponent',1.1) if outward[z,x] else .48)*rough)
         # Extender desde abajo sin cavidades; nunca borrar bloques existentes.
-        bottom=int(h[z,x])+1 if h[z,x] > -32768 else floor-config['foundation_depth']
+        bottom=int(h[z,x])+1 if h[z,x] > -32768 else underside_bottom(x,z)
         if bottom > top:
             continue
         # Columna completa: si hay decoracion se omite, en vez de enterrarla.
         if any(base(world.get(wx,y,wz)) not in SOIL | ROCK | {'air','cave_air','void_air'} for y in range(bottom,top+1)):
             continue
         for y in range(bottom,top+1):
-            palette=bands.get(str(y//8*8),rock)
-            state=choose(palette,noise(wx+y*.4,wz,4,config['seed']+2))
+            if y < floor-4 and h[z,x] == -32768:
+                state=under_state(wx,y,wz)
+            else:
+                palette=bands.get(str(y//8*8),rock)
+                state=choose(palette,noise(wx+y*.4,wz,4,config['seed']+2))
             if y == top and f < .85 and noise(wx,wz,5,config['seed']+22) > .3:
                 state=choose(cap,noise(wx,wz,7,config['seed']+3))
             setblock(wx,y,wz,state,True)
@@ -724,6 +799,40 @@ def oblique(world,changes,bounds,path,label):
     im.save(path)
 
 
+ACCESS = ('rail', 'nether_portal', 'end_gateway', 'end_portal', 'end_portal_frame', 'oak_sign', 'wall_sign',
+          'hanging_sign', 'command_block')
+
+
+def accesses(world, bounds, changes, radius=3, clearance=6):
+    """Vias del tren, portales y carteles del lobby actual; ninguno puede quedar tapado."""
+    x0, z0, x1, z1 = bounds
+    want = np.array([any(base(n) == t or base(n).endswith('_' + t) for t in ACCESS) for n in world.names])
+    found = []
+    for (cx, sy, cz), a in world.sections.items():
+        if not want[a].any():
+            continue
+        for y, z, x in zip(*np.nonzero(want[a])):
+            wx, wy, wz = cx*16+int(x), sy*16+int(y), cz*16+int(z)
+            if x0 <= wx <= x1 and z0 <= wz <= z1:
+                found.append((wx, wy, wz, base(world.names[int(a[y, z, x])])))
+    blocked = []
+    for wx, wy, wz, kind in found:
+        for dx in range(-radius, radius+1):
+            for dz in range(-radius, radius+1):
+                for dy in range(0, clearance+1):
+                    if (wx+dx, wy+dy, wz+dz) in changes:
+                        blocked.append((wx, wy, wz, kind))
+                        break
+                else:
+                    continue
+                break
+            else:
+                continue
+            break
+    groups = Counter(kind for *_, kind in found)
+    return dict(total=len(found), por_tipo=dict(groups), tapados=blocked[:50], tapados_total=len(blocked))
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--actual',type=Path,required=True,help='Carpeta region descargada (solo lectura)')
@@ -743,6 +852,9 @@ def main():
             if (cx,cz) not in world.chunks:raise ValueError(f'Falta descargar chunk actual {cx},{cz}')
     changes,report=propose(world,original,bounds,config)
     if not changes:raise ValueError('Propuesta vacia')
+    report['accesos']=accesses(world,bounds,changes)
+    if report['accesos']['tapados_total']:
+        print('ATENCION: accesos con bloques nuevos encima/al lado:',report['accesos']['tapados'][:10])
     out.mkdir(parents=True)
     sectors=export(world,changes,out)
     verify_export(world,out,sectors,len(changes))

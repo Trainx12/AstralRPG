@@ -1,5 +1,17 @@
 # Terreno del lobby — propuesta del 17/11/2026
 
+> **18/11: VIGENTE la v4** en `.local/lobby/propuesta-v4/` (config `.local/lobby/config-v4.json`, 778 sectores,
+> 1.220.437 bloques). Pedido del dueno: base de isla flotante en vez de pared recta. La profundidad de las columnas
+> nuevas crece desde el borde (6 bloques) hacia adentro (hasta 50), con ruido y puntas colgantes, y la piel de abajo
+> usa los materiales medidos en el original (terracota cian, losas de pizarra, ladrillos de piedra negra, concreto
+> gris). Ladera exterior mas tendida (`outer_exponent` 1.1). Control de accesos: 55 vias, 21 bloques de portal y
+> 258 carteles detectados, ninguno con bloques nuevos a menos de 3 bloques al costado ni 6 arriba.
+> **PEGADO el 18/11 01:43** desde la consola (sin jugador): `//world lobby`, `//placement pos1`, y por sector
+> `//pos1 X,Y,Z` + `//schem load lobby_N_despues.schem` + `//paste -a`. Se uso `propuesta-v4b` (misma propuesta
+> regenerada con el lobby bajado el 18/11; resultado identico a v4). 778/778 sectores, 1.232.668 bloques segun
+> WorldEdit = bloques no-aire de los schematics. Respaldo del panel previo: "Antes terreno lobby 18-11" (851 MB).
+> Los `lobby_N_antes.schem` quedan en `plugins/WorldEdit/schematics/` para deshacer (`//paste` SIN `-a`).
+
 Generado por `datapack-src/lobby_terreno.py`. Estado: **borrador para aprobacion visual;
 no instalado ni pegado**. Solo Parte B. Doble salto del lobby conservado; Parte A
 ya instalada en `054db88`, no se genera ni se sube ningun Skript en esta entrega.
