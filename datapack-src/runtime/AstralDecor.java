@@ -86,6 +86,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             var b=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in)).getAsJsonObject();
             asuraHits=b.get("asura_golpes").getAsInt();asuraExtra=b.get("asura_extra").getAsDouble();
             asuraHeal=b.get("asura_cura").getAsDouble();carnivoraHeal=b.get("carnivora_cura").getAsDouble();
+            plushPrice=b.get("peluche").getAsDouble();
         } catch(Exception ex) {throw new IllegalStateException("Balance sin datos",ex);}
         var board=Bukkit.getScoreboardManager().getMainScoreboard();
         if(board.getObjective("astral.suerte")==null)board.registerNewObjective("astral.suerte",org.bukkit.scoreboard.Criteria.DUMMY,net.kyori.adventure.text.Component.text("Suerte"));
@@ -342,7 +343,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         return table.populateLoot(random,new org.bukkit.loot.LootContext.Builder(world.getSpawnLocation()).build()).iterator().next();
     }
     private void shop(Player p) {
-        PlushShop holder=new PlushShop(); holder.inventory=Bukkit.createInventory(holder,9,"Peluches - $2.500 c/u");
+        PlushShop holder=new PlushShop(); holder.inventory=Bukkit.createInventory(holder,9,"Peluches - "+money(plushPrice)+" c/u");
         for(int i=0;i<PLUSH_ORDER.size();i++) holder.inventory.setItem(i,plush(PLUSH_ORDER.get(i),p.getWorld()));
         p.openInventory(holder.inventory);
     }
@@ -372,11 +373,13 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             Object registration=getServer().getServicesManager().getRegistration(economy);
             if(registration==null) throw new IllegalStateException("Falta proveedor de economia");
             Object provider=registration.getClass().getMethod("getProvider").invoke(registration);
-            Object result=economy.getMethod("withdrawPlayer",OfflinePlayer.class,double.class).invoke(provider,p,2500d);
-            if(!(boolean)result.getClass().getMethod("transactionSuccess").invoke(result)) { p.sendMessage("No tenes $2.500 disponibles."); return; }
-            p.getInventory().addItem(item); p.sendMessage("Compraste un peluche por $2.500.");
+            Object result=economy.getMethod("withdrawPlayer",OfflinePlayer.class,double.class).invoke(provider,p,plushPrice);
+            if(!(boolean)result.getClass().getMethod("transactionSuccess").invoke(result)) { p.sendMessage("No tenes "+money(plushPrice)+" disponibles."); return; }
+            p.getInventory().addItem(item); p.sendMessage("Compraste un peluche por "+money(plushPrice)+".");
         } catch(ReflectiveOperationException | IllegalStateException ex) { p.sendMessage("La tienda de peluches no esta disponible."); getLogger().warning(ex.toString()); }
     }
+    private double plushPrice;
+    static String money(double v) { return "$"+String.format(java.util.Locale.ROOT,"%,.0f",v).replace(',','.'); }
     private NamespacedKey saved, display;
     private final Random random = new Random();
     private static final Set<String> PLUSH = Set.of("alex","creaking","ocelot","steve","tropical_fish","zombie_horse");

@@ -11,7 +11,7 @@
         "&7  se vuelven a conseguir).",
         "&7- La historia del Cronista.",
         "&7- Las Minas Astrales.",
-        "&7- Tu plata vuelve a &e0$&7."
+        "&7- Tu plata (y el Banco) vuelven a &e0$&7."
       ],
       "item_model": "astral:boton_pierdes"
     },

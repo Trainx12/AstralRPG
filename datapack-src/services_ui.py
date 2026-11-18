@@ -5,6 +5,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 from escape_menu import text
 from items import MEJORAS
+from economia import corto
 
 ROOT = Path(__file__).resolve().parent
 OFFSET = (24, 40)
@@ -253,7 +254,7 @@ def assets():
           'not_sold':('NO SE VENDIO EL ITEM','#ec998b'),
           'sale_invalid':('NO SE PUEDE VENDER','#ec998b')}
     for level,(money,chance,_) in MEJORAS.items():
-        bars[f'level{level}']=(f'+{level} / {money}$ / {round(chance*100)}%','#ddc699')
+        bars[f'level{level}']=(f'+{level} / {corto(money)}$ / {round(chance*100)}%','#ddc699')
         bars[f'ok{level}']=(f'MEJORA EXITOSA +{level}','#9ed7b0')
         bars[f'fail{level}']=(f'FALLO / EQUIPO INTACTO','#ec998b')
     for name,(caption,color) in bars.items():tiles('bar_'+name,banner(caption,color))

@@ -1,0 +1,116 @@
+pages:
+  page1:
+    items:
+      wooden_pickaxe:
+        material: WOODEN_PICKAXE
+        buy: 469
+        sell: 118
+      stone_pickaxe:
+        material: STONE_PICKAXE
+        buy: 336
+        sell: 84
+      copper_pickaxe:
+        material: COPPER_PICKAXE
+        buy: 415
+        sell: 97
+      iron_pickaxe:
+        material: IRON_PICKAXE
+        buy: 1858
+        sell: 465
+      golden_pickaxe:
+        material: GOLDEN_PICKAXE
+        buy: 2727
+        sell: 682
+      diamond_pickaxe:
+        material: DIAMOND_PICKAXE
+        buy: 16660
+        sell: 4165
+      netherite_pickaxe:
+        material: NETHERITE_PICKAXE
+        buy: 266092
+        sell: 10658.67
+      wooden_axe:
+        material: WOODEN_AXE
+        buy: 469
+        sell: 118
+      stone_axe:
+        material: STONE_AXE
+        buy: 336
+        sell: 84
+      copper_axe:
+        material: COPPER_AXE
+        buy: 415
+        sell: 97
+      iron_axe:
+        material: IRON_AXE
+        buy: 1858
+        sell: 465
+      golden_axe:
+        material: GOLDEN_AXE
+        buy: 2727
+        sell: 682
+      diamond_axe:
+        material: DIAMOND_AXE
+        buy: 16660
+        sell: 4165
+      netherite_axe:
+        material: NETHERITE_AXE
+        buy: 266092
+        sell: 10658.67
+      wooden_shovel:
+        material: WOODEN_SHOVEL
+        buy: 238
+        sell: 60
+      stone_shovel:
+        material: STONE_SHOVEL
+        buy: 193
+        sell: 49
+      copper_shovel:
+        material: COPPER_SHOVEL
+        buy: 217
+        sell: 54
+      iron_shovel:
+        material: IRON_SHOVEL
+        buy: 701
+        sell: 176
+      golden_shovel:
+        material: GOLDEN_SHOVEL
+        buy: 990
+        sell: 248
+      diamond_shovel:
+        material: DIAMOND_SHOVEL
+        buy: 5635
+        sell: 1409
+      netherite_shovel:
+        material: NETHERITE_SHOVEL
+        buy: 254516
+        sell: 7902.67
+      wooden_hoe:
+        material: WOODEN_HOE
+        buy: 354
+        sell: 89
+      stone_hoe:
+        material: STONE_HOE
+        buy: 265
+        sell: 67
+      copper_hoe:
+        material: COPPER_HOE
+        buy: 324
+        sell: 77
+      iron_hoe:
+        material: IRON_HOE
+        buy: 1280
+        sell: 320
+      golden_hoe:
+        material: GOLDEN_HOE
+        buy: 1858
+        sell: 465
+      diamond_hoe:
+        material: DIAMOND_HOE
+        buy: 11147
+        sell: 2787
+      netherite_hoe:
+        material: NETHERITE_HOE
+        buy: 260304
+        sell: 9280.67
+    gui-rows: 6

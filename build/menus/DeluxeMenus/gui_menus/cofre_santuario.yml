@@ -48,7 +48,7 @@
     "plata": {
       "material": "GOLD_INGOT",
       "slot": 21,
-      "display_name": "&e&l5000$",
+      "display_name": "&e&l500.000$",
       "lore": [
         "&7Cada vez que cobras el cofre."
       ],
@@ -116,7 +116,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.corazon true",
         "[message] &b&lNuevo fragmento: &fCorazon Astral&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -127,7 +127,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -159,7 +159,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -170,7 +170,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -213,7 +213,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.corazon true",
         "[message] &b&lNuevo fragmento: &fCorazon Astral&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -224,7 +224,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -256,7 +256,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -267,7 +267,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -310,7 +310,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.corazon true",
         "[message] &b&lNuevo fragmento: &fCorazon Astral&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -321,7 +321,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -353,7 +353,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -364,7 +364,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -407,7 +407,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.corazon true",
         "[message] &b&lNuevo fragmento: &fCorazon Astral&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -418,7 +418,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -450,7 +450,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -461,7 +461,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -504,7 +504,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.corazon true",
         "[message] &b&lNuevo fragmento: &fCorazon Astral&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -515,7 +515,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -547,7 +547,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 5000",
+        "[console] eco give %player_name% 500000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -558,7 +558,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.santuario.cd true 30m",
-        "[message] &6Cofre de Santuario Celestial: &e5000$&f, 2x Chispa Astral y materiales de elite.",
+        "[message] &6Cofre de Santuario Celestial: &e500.000$&f, 2x Chispa Astral y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",

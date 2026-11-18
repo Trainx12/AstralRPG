@@ -12,6 +12,8 @@ gui_menus:
     file: bazar.yml
   subastas:
     file: subastas.yml
+  subastas_inicio:
+    file: subastas_inicio.yml
   principal:
     file: principal.yml
   misiones:

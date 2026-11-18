@@ -17,11 +17,13 @@ from items_t6_10 import MATERIALES as MATERIALES_ALTOS
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT/'build/tanda5a'
 PROBABILIDADES = {1: .15, 2: .03, 3: .005, 4: .0004, 5: .000003}
-PAQUETES = [(25, 15000), (100, 50000), (1225, 500000), (2500, 950000), (10000, 3500000)]
+from economia import plata as _x
+PAQUETES = [(b, _x(p)) for b, p in [(25, 15000), (100, 50000), (1225, 500000), (2500, 950000), (10000, 3500000)]]
 # ExpendableBackpacks 1.2.0 (unico plugin de mochilas): nivel, nombre, espacios, precio.
 # La mochila es un item; tambien se fabrica/mejora con su receta. Netherite solo en herreria.
 MOCHILAS = [('leather', 'Cuero', 9, 5000), ('copper', 'Cobre', 18, 20000), ('iron', 'Hierro', 27, 50000),
             ('gold', 'Oro', 36, 100000), ('diamond', 'Diamante', 45, 175000)]
+MOCHILAS = [(k, n, s, _x(p)) for k, n, s, p in MOCHILAS]
 SLOT_MOCHILAS = 42  # 40 Proteccion, 41 misc (ocupados en el server)
 STRUCTURE_NAMESPACES = ['nova_structures', 'explorify', 'structory', 'structory_towers', 'cnk']
 MATERIAL_TIERS = {

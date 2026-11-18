@@ -53,6 +53,8 @@ GOALS = [0, 400, 600, 800, 1000, 1300, 1700, 2200, 2700, 3200, 3700, 4500, 5500,
 COSTS = [0, 80, 150, 300, 550, 1300, 2500, 4000, 7000, 13000, 25000, 60000, 120000,
          250000, 40000, 70000, 135000, 260000, 700000, 25000000]
 FINAL_MINUTES = 25 * 60
+from economia import plata as _x, NETHERITA_APERTURA, NETHERITA_BLOQUE  # noqa: E402
+COSTS = [_x(c) for c in COSTS[:-1]] + [NETHERITA_APERTURA]   # economia x100; Netherita III aparte
 MINES = [(*mix, goal, cost) for mix, goal, cost in zip(MIXES, GOALS, COSTS, strict=True)]
 
 # Precio de venta por unidad (oro). Incluye lo que suelta cada bloque (la piedra suelta roca, las
@@ -71,6 +73,8 @@ PRICES = {
     "ancient_debris": 600, "netherite_scrap": 600, "netherite_block": 4000,
     "redstone": 0.3, "lapis_lazuli": 0.3, "quartz": 0.4, "nether_quartz_ore": 0.4,
 }
+PRICES = {k: _x(v) for k, v in PRICES.items()}
+PRICES["netherite_block"] = NETHERITA_BLOQUE
 DROPS = {"stone": ("cobblestone", 1), "coal_ore": ("coal", 1), "copper_ore": ("raw_copper", 3.5),
          "iron_ore": ("raw_iron", 1), "gold_ore": ("raw_gold", 1), "emerald_ore": ("emerald", 1),
          "diamond_ore": ("diamond", 1)}

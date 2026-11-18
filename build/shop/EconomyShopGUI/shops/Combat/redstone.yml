@@ -1,0 +1,96 @@
+pages:
+  page1:
+    items:
+      redstone_torch:
+        material: REDSTONE_TORCH
+        buy: 429
+        sell: 108
+      redstone_lamp:
+        material: REDSTONE_LAMP
+        buy: 4557
+        sell: 1140
+      repeater:
+        material: REPEATER
+        buy: 1492
+        sell: 373
+      comparator:
+        material: COMPARATOR
+        buy: 2443
+        sell: 611
+      observer:
+        material: OBSERVER
+        buy: 2032
+        sell: 508
+      dispenser:
+        material: DISPENSER
+        buy: 3374
+        sell: 844
+      dropper:
+        material: DROPPER
+        buy: 868
+        sell: 217
+      hopper:
+        material: HOPPER
+        buy: 3867
+        sell: 967
+      piston:
+        material: PISTON
+        buy: 1580
+        sell: 395
+      sticky_piston:
+        material: STICKY_PISTON
+        buy: 2184
+        sell: 546
+      lever:
+        material: LEVER
+        buy: 133
+        sell: 34
+      tripwire_hook:
+        material: TRIPWIRE_HOOK
+        buy: 378
+        sell: 95
+      rail:
+        material: RAIL
+        buy: 221
+        sell: 56
+      powered_rail:
+        material: POWERED_RAIL
+        buy: 675
+        sell: 169
+      activator_rail:
+        material: ACTIVATOR_RAIL
+        buy: 675
+        sell: 169
+      detector_rail:
+        material: DETECTOR_RAIL
+        buy: 667
+        sell: 167
+      tnt:
+        material: TNT
+        buy: 10658
+        sell: 2665
+      daylight_detector:
+        material: DAYLIGHT_DETECTOR
+        buy: 4772
+        sell: 1193
+      note_block:
+        material: NOTE_BLOCK
+        buy: 1294
+        sell: 324
+      crafter:
+        material: CRAFTER
+        buy: 5026
+        sell: 1257
+      target:
+        material: TARGET
+        buy: 6432
+        sell: 1608
+      calibrated_sculk_sensor:
+        material: CALIBRATED_SCULK_SENSOR
+        buy: 1674
+        sell: 419
+      sculk_sensor:
+        material: SCULK_SENSOR
+        buy: 12500
+        sell: 3125
+    gui-rows: 6

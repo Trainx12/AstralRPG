@@ -260,7 +260,8 @@ def _pie(items):
 
 
 def cofre_menu(dungeon):
-    key, nombre, plata = dungeon['key'], dungeon['name'], dungeon['money']
+    from economia import plata as _x, texto
+    key, nombre, plata = dungeon['key'], dungeon['name'], _x(dungeon['money'])
     frag, (astral, n_astral) = PREMIOS[key]
     materiales = list(dungeon['reward'])
     items = {}
@@ -276,7 +277,7 @@ def cofre_menu(dungeon):
         'display_name': f'&8&l{NOMBRE[frag]}',
         'lore': ['&cYa reclamado.', '&7Solo se puede reclamar la primera vez.', '&7Lo tienes en &f/fragmentos&7.'],
         'item_flags': ['HIDE_ATTRIBUTES']}
-    items['plata'] = {'material': 'GOLD_INGOT', 'slot': SLOTS_PREMIO[1], 'display_name': f'&e&l{plata}$',
+    items['plata'] = {'material': 'GOLD_INGOT', 'slot': SLOTS_PREMIO[1], 'display_name': f'&e&l{texto(plata)}',
                       'lore': ['&7Cada vez que cobras el cofre.']}
     items['astral'] = {'material': 'PAPER', 'item_model': f'astral:{astral}', 'slot': SLOTS_PREMIO[2], 'amount': n_astral,
                        'display_name': f'&d&l{n_astral}x {ITEM_NOMBRE[astral]}',
@@ -292,7 +293,7 @@ def cofre_menu(dungeon):
         cobro += [f'[console] loot give %player_name% loot astral:item/{i}'] * n
     cobro += ['[console] execute as %player_name% run function astral:xp/cofre', '[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>',
               f'[console] lp user %player_name% permission settemp {espera(key)} true {COOLDOWN}',
-              f'[message] &6Cofre de {nombre}: &e{plata}$&f, {n_astral}x {ITEM_NOMBRE[astral]} y materiales de elite.',
+              f'[message] &6Cofre de {nombre}: &e{texto(plata)}&f, {n_astral}x {ITEM_NOMBRE[astral]} y materiales de elite.',
               '[sound] ENTITY_PLAYER_LEVELUP']
     primera = [f'[console] lp user %player_name% permission set {permiso(frag)} true',
                f'[message] &b&lNuevo fragmento: &f{NOMBRE[frag]}&7. Quedo guardado en &f/fragmentos&7.',

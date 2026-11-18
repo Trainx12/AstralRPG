@@ -78,8 +78,8 @@ Pala de oro: clic derecho en dos esquinas. Minimo 6x6, area 36. Todo de fondo a 
 Inicio 36, sin bloques por tiempo. Comprar SUMA: 36+25=61, no 11x11. Se reparte entre varias zonas (cada una minimo 36).
 `/trust jugador`, `/untrust jugador`, `/abandonclaim`; Bolt sigue controlando cofres y WorldGuard sigue controlando regiones.
 `/buyclaimblocks` y venta de bloques desactivados. Precio unico en tanda5a.py; compra desde EconomyShopGUI abre menu propio y ejecuta `adjustbonusclaimblocks jugador cantidad` desde consola.
-Paquetes: 25 bloques = $15,000, 100 bloques = $50,000, 1225 bloques = $500,000, 2500 bloques = $950,000, 10000 bloques = $3,500,000. Caros frente a minas: $80 → $700.000 → $25M.
-Mochilas (ExpendableBackpacks): Cuero 9 espacios $5,000, Cobre 18 espacios $20,000, Hierro 27 espacios $50,000, Oro 36 espacios $100,000, Diamante 45 espacios $175,000.
+Paquetes: 25 bloques = $1,500,000, 100 bloques = $5,000,000, 1225 bloques = $50,000,000, 2500 bloques = $95,000,000, 10000 bloques = $350,000,000. Caros frente a minas: $80 → $700.000 → $25M.
+Mochilas (ExpendableBackpacks): Cuero 9 espacios $500,000, Cobre 18 espacios $2,000,000, Hierro 27 espacios $5,000,000, Oro 36 espacios $10,000,000, Diamante 45 espacios $17,500,000.
 La tienda ejecuta `backpack give jugador nivel` desde consola: la mochila es un item (clic derecho abre). Pide un espacio libre antes de cobrar.
 Tambien se fabrican (cuero+hilo+cofre) y se mejoran rodeandolas con 8 lingotes; Netherite en herreria. `allow-backpack-inception: false`.
 Al morir la mochila cae como item (AxGraves la guarda en la tumba); el contenido queda ligado a la mochila.

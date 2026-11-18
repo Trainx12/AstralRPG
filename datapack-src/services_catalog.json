@@ -1,4978 +1,4978 @@
 {
  "ACACIA_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "ACACIA_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "ACACIA_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "ACACIA_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "ACACIA_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "ACACIA_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "ACACIA_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "ACACIA_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "ACACIA_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "ACACIA_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "ACACIA_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "ACACIA_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "ACACIA_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "ACACIA_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "ACACIA_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "ACACIA_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "ACACIA_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "ACTIVATOR_RAIL": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "ALLIUM": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "AMETHYST_BLOCK": {
-  "min": 1.38,
-  "max": 1.38
+  "min": 138.0,
+  "max": 138.0
  },
  "AMETHYST_CLUSTER": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "AMETHYST_SHARD": {
-  "min": 2.97,
-  "max": 2.97
+  "min": 33.0,
+  "max": 33.0
  },
  "ANCIENT_DEBRIS": {
-  "min": 132.25,
-  "max": 132.25
+  "min": 13225.0,
+  "max": 13225.0
  },
  "ANDESITE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "ANDESITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "ANDESITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "ANDESITE_WALL": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "ANGLER_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "ANVIL": {
-  "min": 46.82,
-  "max": 46.82
+  "min": 4682.0,
+  "max": 4682.0
  },
  "APPLE": {
-  "min": 10,
-  "max": 10
+  "min": 250.0,
+  "max": 250.0
  },
  "ARCHER_POTTERY_SHERD": {
-  "min": 7.02,
-  "max": 7.02
+  "min": 702.0,
+  "max": 702.0
  },
  "ARMADILLO_SCUTE": {
-  "min": 132.5,
-  "max": 132.5
+  "min": 13250.0,
+  "max": 13250.0
  },
  "ARMOR_STAND": {
-  "min": 1.02,
-  "max": 1.02
+  "min": 102.0,
+  "max": 102.0
  },
  "ARMS_UP_POTTERY_SHERD": {
-  "min": 6.01,
-  "max": 6.01
+  "min": 601.0,
+  "max": 601.0
  },
  "ARROW": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 57.0,
+  "max": 57.0
  },
  "AXOLOTL_BUCKET": {
-  "min": 4.87,
-  "max": 4.87
+  "min": 487.0,
+  "max": 487.0
  },
  "AZALEA": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "AZALEA_LEAVES": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "AZURE_BLUET": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "BAKED_POTATO": {
-  "min": 21.12,
-  "max": 21.12
+  "min": 132.0,
+  "max": 132.0
  },
  "BAMBOO": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "BAMBOO_BLOCK": {
-  "min": 0.24,
-  "max": 0.24
+  "min": 24.0,
+  "max": 24.0
  },
  "BAMBOO_BUTTON": {
-  "min": 0.14,
-  "max": 0.14
+  "min": 14.0,
+  "max": 14.0
  },
  "BAMBOO_CHEST_RAFT": {
-  "min": 3.09,
-  "max": 3.09
+  "min": 309.0,
+  "max": 309.0
  },
  "BAMBOO_DOOR": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "BAMBOO_FENCE": {
-  "min": 0.84,
-  "max": 0.84
+  "min": 28.0,
+  "max": 28.0
  },
  "BAMBOO_FENCE_GATE": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "BAMBOO_HANGING_SIGN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BAMBOO_MOSAIC": {
-  "min": 0.14,
-  "max": 0.14
+  "min": 14.0,
+  "max": 14.0
  },
  "BAMBOO_MOSAIC_SLAB": {
-  "min": 0.08,
-  "max": 0.08
+  "min": 8.0,
+  "max": 8.0
  },
  "BAMBOO_MOSAIC_STAIRS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "BAMBOO_PLANKS": {
-  "min": 0.52,
-  "max": 0.52
+  "min": 13.0,
+  "max": 13.0
  },
  "BAMBOO_PRESSURE_PLATE": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "BAMBOO_RAFT": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 66.0,
+  "max": 66.0
  },
  "BAMBOO_SIGN": {
-  "min": 0.32,
-  "max": 0.32
+  "min": 32.0,
+  "max": 32.0
  },
  "BAMBOO_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "BAMBOO_STAIRS": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 20.0,
+  "max": 20.0
  },
  "BAMBOO_TRAPDOOR": {
-  "min": 0.4,
-  "max": 0.4
+  "min": 40.0,
+  "max": 40.0
  },
  "BARREL": {
-  "min": 2.05,
-  "max": 2.05
+  "min": 205.0,
+  "max": 205.0
  },
  "BASALT": {
-  "min": 0.92,
-  "max": 0.92
+  "min": 92.0,
+  "max": 92.0
  },
  "BEACON": {
-  "min": 400.38,
-  "max": 400.38
+  "min": 40038.0,
+  "max": 40038.0
  },
  "BEEF": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "BEEHIVE": {
-  "min": 4.22,
-  "max": 4.22
+  "min": 422.0,
+  "max": 422.0
  },
  "BEETROOT": {
-  "min": 6,
-  "max": 6
+  "min": 150.0,
+  "max": 150.0
  },
  "BEETROOT_SEEDS": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BEETROOT_SOUP": {
-  "min": 9.68,
-  "max": 9.68
+  "min": 968.0,
+  "max": 968.0
  },
  "BEE_NEST": {
-  "min": 10,
-  "max": 10
+  "min": 1000.0,
+  "max": 1000.0
  },
  "BELL": {
-  "min": 250,
-  "max": 250
+  "min": 25000.0,
+  "max": 25000.0
  },
  "BIG_DRIPLEAF": {
-  "min": 2.5,
-  "max": 2.5
+  "min": 250.0,
+  "max": 250.0
  },
  "BIRCH_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "BIRCH_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "BIRCH_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "BIRCH_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "BIRCH_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "BIRCH_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "BIRCH_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "BIRCH_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BIRCH_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BIRCH_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "BIRCH_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "BIRCH_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BIRCH_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "BIRCH_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "BIRCH_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "BIRCH_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "BIRCH_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "BLACKSTONE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "BLACKSTONE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "BLACKSTONE_STAIRS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "BLACKSTONE_WALL": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "BLACK_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "BLACK_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "BLACK_BUNDLE": {
-  "min": 5.7,
-  "max": 5.7
+  "min": 570.0,
+  "max": 570.0
  },
  "BLACK_CANDLE": {
-  "min": 4.18,
-  "max": 4.18
+  "min": 418.0,
+  "max": 418.0
  },
  "BLACK_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "BLACK_CONCRETE": {
-  "min": 2.31,
-  "max": 2.31
+  "min": 231.0,
+  "max": 231.0
  },
  "BLACK_CONCRETE_POWDER": {
-  "min": 2.01,
-  "max": 2.01
+  "min": 201.0,
+  "max": 201.0
  },
  "BLACK_DYE": {
-  "min": 5.28,
-  "max": 5.28
+  "min": 132.0,
+  "max": 132.0
  },
  "BLACK_GLAZED_TERRACOTTA": {
-  "min": 6.25,
-  "max": 6.25
+  "min": 625.0,
+  "max": 625.0
  },
  "BLACK_SHULKER_BOX": {
-  "min": 7.79,
-  "max": 7.79
+  "min": 779.0,
+  "max": 779.0
  },
  "BLACK_STAINED_GLASS": {
-  "min": 1.83,
-  "max": 1.83
+  "min": 183.0,
+  "max": 183.0
  },
  "BLACK_STAINED_GLASS_PANE": {
-  "min": 0.72,
-  "max": 0.72
+  "min": 72.0,
+  "max": 72.0
  },
  "BLACK_TERRACOTTA": {
-  "min": 5.96,
-  "max": 5.96
+  "min": 596.0,
+  "max": 596.0
  },
  "BLACK_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "BLADE_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "BLAST_FURNACE": {
-  "min": 9.33,
-  "max": 9.33
+  "min": 933.0,
+  "max": 933.0
  },
  "BLAZE_POWDER": {
-  "min": 10.56,
-  "max": 10.56
+  "min": 66.0,
+  "max": 66.0
  },
  "BLAZE_ROD": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "BLUE_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "BLUE_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "BLUE_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "BLUE_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "BLUE_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "BLUE_CONCRETE": {
-  "min": 2.39,
-  "max": 2.39
+  "min": 239.0,
+  "max": 239.0
  },
  "BLUE_CONCRETE_POWDER": {
-  "min": 2.08,
-  "max": 2.08
+  "min": 208.0,
+  "max": 208.0
  },
  "BLUE_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "BLUE_GLAZED_TERRACOTTA": {
-  "min": 6.33,
-  "max": 6.33
+  "min": 633.0,
+  "max": 633.0
  },
  "BLUE_ICE": {
-  "min": 15.19,
-  "max": 15.19
+  "min": 1519.0,
+  "max": 1519.0
  },
  "BLUE_ORCHID": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "BLUE_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "BLUE_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "BLUE_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "BLUE_TERRACOTTA": {
-  "min": 6.03,
-  "max": 6.03
+  "min": 603.0,
+  "max": 603.0
  },
  "BLUE_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "BOLT_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 97.49,
-  "max": 97.49
+  "min": 9749.0,
+  "max": 9749.0
  },
  "BONE": {
-  "min": 24,
-  "max": 24
+  "min": 150.0,
+  "max": 150.0
  },
  "BONE_BLOCK": {
-  "min": 4.97,
-  "max": 4.97
+  "min": 497.0,
+  "max": 497.0
  },
  "BONE_MEAL": {
-  "min": 16.96,
-  "max": 16.96
+  "min": 53.0,
+  "max": 53.0
  },
  "BOOK": {
-  "min": 8.91,
-  "max": 8.91
+  "min": 891.0,
+  "max": 891.0
  },
  "BOOKSHELF": {
-  "min": 29.78,
-  "max": 29.78
+  "min": 2978.0,
+  "max": 2978.0
  },
  "BOW": {
-  "min": 5.97,
-  "max": 5.97
+  "min": 597.0,
+  "max": 597.0
  },
  "BOWL": {
-  "min": 0.22,
-  "max": 0.22
+  "min": 22.0,
+  "max": 22.0
  },
  "BRAIN_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "BRAIN_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "BRAIN_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BREAD": {
-  "min": 63.04,
-  "max": 63.04
+  "min": 394.0,
+  "max": 394.0
  },
  "BREEZE_ROD": {
-  "min": 20,
-  "max": 20
+  "min": 500.0,
+  "max": 500.0
  },
  "BREWER_POTTERY_SHERD": {
-  "min": 6.01,
-  "max": 6.01
+  "min": 601.0,
+  "max": 601.0
  },
  "BREWING_STAND": {
-  "min": 1.85,
-  "max": 1.85
+  "min": 185.0,
+  "max": 185.0
  },
  "BRICK": {
-  "min": 5.52,
-  "max": 5.52
+  "min": 552.0,
+  "max": 552.0
  },
  "BRICKS": {
-  "min": 23.16,
-  "max": 23.16
+  "min": 2316.0,
+  "max": 2316.0
  },
  "BRICK_SLAB": {
-  "min": 12.16,
-  "max": 12.16
+  "min": 1216.0,
+  "max": 1216.0
  },
  "BRICK_STAIRS": {
-  "min": 24.32,
-  "max": 24.32
+  "min": 2432.0,
+  "max": 2432.0
  },
  "BRICK_WALL": {
-  "min": 24.32,
-  "max": 24.32
+  "min": 2432.0,
+  "max": 2432.0
  },
  "BROWN_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "BROWN_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "BROWN_BUNDLE": {
-  "min": 5.4,
-  "max": 5.4
+  "min": 540.0,
+  "max": 540.0
  },
  "BROWN_CANDLE": {
-  "min": 4.46,
-  "max": 4.46
+  "min": 446.0,
+  "max": 446.0
  },
  "BROWN_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "BROWN_CONCRETE": {
-  "min": 2.35,
-  "max": 2.35
+  "min": 235.0,
+  "max": 235.0
  },
  "BROWN_CONCRETE_POWDER": {
-  "min": 2.04,
-  "max": 2.04
+  "min": 204.0,
+  "max": 204.0
  },
  "BROWN_DYE": {
-  "min": 6.32,
-  "max": 6.32
+  "min": 158.0,
+  "max": 158.0
  },
  "BROWN_GLAZED_TERRACOTTA": {
-  "min": 6.29,
-  "max": 6.29
+  "min": 629.0,
+  "max": 629.0
  },
  "BROWN_MUSHROOM": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "BROWN_MUSHROOM_BLOCK": {
-  "min": 0.02,
-  "max": 0.02
+  "min": 2.0,
+  "max": 2.0
  },
  "BROWN_SHULKER_BOX": {
-  "min": 8.07,
-  "max": 8.07
+  "min": 807.0,
+  "max": 807.0
  },
  "BROWN_STAINED_GLASS": {
-  "min": 1.87,
-  "max": 1.87
+  "min": 187.0,
+  "max": 187.0
  },
  "BROWN_STAINED_GLASS_PANE": {
-  "min": 0.74,
-  "max": 0.74
+  "min": 74.0,
+  "max": 74.0
  },
  "BROWN_TERRACOTTA": {
-  "min": 5.99,
-  "max": 5.99
+  "min": 599.0,
+  "max": 599.0
  },
  "BROWN_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "BRUSH": {
-  "min": 1.97,
-  "max": 1.97
+  "min": 197.0,
+  "max": 197.0
  },
  "BUBBLE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "BUBBLE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "BUBBLE_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "BUCKET": {
-  "min": 4.35,
-  "max": 4.35
+  "min": 435.0,
+  "max": 435.0
  },
  "BUNDLE": {
-  "min": 5.2,
-  "max": 5.2
+  "min": 520.0,
+  "max": 520.0
  },
  "BURN_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "CACTUS": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "CAKE": {
-  "min": 19.83,
-  "max": 19.83
+  "min": 1983.0,
+  "max": 1983.0
  },
  "CALCITE": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "CALIBRATED_SCULK_SENSOR": {
-  "min": 4.19,
-  "max": 4.19
+  "min": 419.0,
+  "max": 419.0
  },
  "CAMPFIRE": {
-  "min": 4.2,
-  "max": 4.2
+  "min": 420.0,
+  "max": 420.0
  },
  "CANDLE": {
-  "min": 2.67,
-  "max": 2.67
+  "min": 267.0,
+  "max": 267.0
  },
  "CARROT": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "CARROT_ON_A_STICK": {
-  "min": 1.77,
-  "max": 1.77
+  "min": 177.0,
+  "max": 177.0
  },
  "CARTOGRAPHY_TABLE": {
-  "min": 1.22,
-  "max": 1.22
+  "min": 122.0,
+  "max": 122.0
  },
  "CARVED_PUMPKIN": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "CAULDRON": {
-  "min": 7.24,
-  "max": 7.24
+  "min": 724.0,
+  "max": 724.0
  },
  "CHAIN": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 176.0,
+  "max": 176.0
  },
  "CHAINMAIL_BOOTS": {
-  "min": 10,
-  "max": 10
+  "min": 1000.0,
+  "max": 1000.0
  },
  "CHAINMAIL_CHESTPLATE": {
-  "min": 15,
-  "max": 15
+  "min": 1500.0,
+  "max": 1500.0
  },
  "CHAINMAIL_HELMET": {
-  "min": 10,
-  "max": 10
+  "min": 1000.0,
+  "max": 1000.0
  },
  "CHAINMAIL_LEGGINGS": {
-  "min": 15,
-  "max": 15
+  "min": 1500.0,
+  "max": 1500.0
  },
  "CHARCOAL": {
-  "min": 1.58,
-  "max": 1.58
+  "min": 158.0,
+  "max": 158.0
  },
  "CHERRY_BOAT": {
-  "min": 1.04,
-  "max": 1.04
+  "min": 104.0,
+  "max": 104.0
  },
  "CHERRY_BUTTON": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "CHERRY_CHEST_BOAT": {
-  "min": 3.52,
-  "max": 3.52
+  "min": 352.0,
+  "max": 352.0
  },
  "CHERRY_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "CHERRY_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "CHERRY_HANGING_SIGN": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "CHERRY_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "CHERRY_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "CHERRY_PLANKS": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 20.0,
+  "max": 20.0
  },
  "CHERRY_PRESSURE_PLATE": {
-  "min": 0.42,
-  "max": 0.42
+  "min": 42.0,
+  "max": 42.0
  },
  "CHERRY_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "CHERRY_SIGN": {
-  "min": 0.47,
-  "max": 0.47
+  "min": 47.0,
+  "max": 47.0
  },
  "CHERRY_SLAB": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 11.0,
+  "max": 11.0
  },
  "CHERRY_STAIRS": {
-  "min": 1.28,
-  "max": 1.28
+  "min": 32.0,
+  "max": 32.0
  },
  "CHERRY_TRAPDOOR": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "CHERRY_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "CHEST": {
-  "min": 2.32,
-  "max": 2.32
+  "min": 232.0,
+  "max": 232.0
  },
  "CHEST_MINECART": {
-  "min": 10.03,
-  "max": 10.03
+  "min": 1003.0,
+  "max": 1003.0
  },
  "CHICKEN": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "CHISELED_BOOKSHELF": {
-  "min": 2.2,
-  "max": 2.2
+  "min": 220.0,
+  "max": 220.0
  },
  "CHISELED_COPPER": {
-  "min": 0.26,
-  "max": 0.26
+  "min": 26.0,
+  "max": 26.0
  },
  "CHISELED_DEEPSLATE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "CHISELED_NETHER_BRICKS": {
-  "min": 0.13,
-  "max": 0.13
+  "min": 13.0,
+  "max": 13.0
  },
  "CHISELED_POLISHED_BLACKSTONE": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "CHISELED_QUARTZ_BLOCK": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 912.0,
+  "max": 912.0
  },
  "CHISELED_RED_SANDSTONE": {
-  "min": 8.82,
-  "max": 8.82
+  "min": 882.0,
+  "max": 882.0
  },
  "CHISELED_SANDSTONE": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "CHISELED_STONE_BRICKS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "CHISELED_TUFF": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "CHISELED_TUFF_BRICKS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "CHORUS_FLOWER": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "CHORUS_FRUIT": {
-  "min": 3,
-  "max": 3
+  "min": 75.0,
+  "max": 75.0
  },
  "CLAY": {
-  "min": 5.25,
-  "max": 5.25
+  "min": 525.0,
+  "max": 525.0
  },
  "CLAY_BALL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "COAL": {
-  "min": 11.88,
-  "max": 11.88
+  "min": 132.0,
+  "max": 132.0
  },
  "COAL_BLOCK": {
-  "min": 12.41,
-  "max": 12.41
+  "min": 1241.0,
+  "max": 1241.0
  },
  "COAL_ORE": {
-  "min": 1.93,
-  "max": 1.93
+  "min": 193.0,
+  "max": 193.0
  },
  "COARSE_DIRT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "COAST_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.33,
-  "max": 48.33
+  "min": 4833.0,
+  "max": 4833.0
  },
  "COBBLED_DEEPSLATE": {
-  "min": 0.17,
-  "max": 0.17
+  "min": 17.0,
+  "max": 17.0
  },
  "COBBLED_DEEPSLATE_SLAB": {
-  "min": 0.09,
-  "max": 0.09
+  "min": 9.0,
+  "max": 9.0
  },
  "COBBLED_DEEPSLATE_STAIRS": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "COBBLED_DEEPSLATE_WALL": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "COBBLESTONE": {
-  "min": 0.17,
-  "max": 0.17
+  "min": 17.0,
+  "max": 17.0
  },
  "COBBLESTONE_SLAB": {
-  "min": 0.09,
-  "max": 0.09
+  "min": 9.0,
+  "max": 9.0
  },
  "COBBLESTONE_STAIRS": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "COBBLESTONE_WALL": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "COBWEB": {
-  "min": 10,
-  "max": 10
+  "min": 1000.0,
+  "max": 1000.0
  },
  "COCOA_BEANS": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "COD": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "COD_BUCKET": {
-  "min": 6.45,
-  "max": 6.45
+  "min": 645.0,
+  "max": 645.0
  },
  "COMPARATOR": {
-  "min": 6.11,
-  "max": 6.11
+  "min": 611.0,
+  "max": 611.0
  },
  "COMPASS": {
-  "min": 6.71,
-  "max": 6.71
+  "min": 671.0,
+  "max": 671.0
  },
  "COMPOSTER": {
-  "min": 1.07,
-  "max": 1.07
+  "min": 107.0,
+  "max": 107.0
  },
  "CONDUIT": {
-  "min": 522.71,
-  "max": 522.71
+  "min": 52271.0,
+  "max": 52271.0
  },
  "COOKED_BEEF": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_CHICKEN": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_COD": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_MUTTON": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_PORKCHOP": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_RABBIT": {
-  "min": 6.32,
-  "max": 6.32
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKED_SALMON": {
-  "min": 12.64,
-  "max": 12.64
+  "min": 158.0,
+  "max": 158.0
  },
  "COOKIE": {
-  "min": 8.48,
-  "max": 8.48
+  "min": 53.0,
+  "max": 53.0
  },
  "COPPER_AXE": {
-  "min": 0.97,
-  "max": 0.97
+  "min": 97.0,
+  "max": 97.0
  },
  "COPPER_BLOCK": {
-  "min": 0.97,
-  "max": 0.97
+  "min": 97.0,
+  "max": 97.0
  },
  "COPPER_BOOTS": {
-  "min": 1.02,
-  "max": 1.02
+  "min": 102.0,
+  "max": 102.0
  },
  "COPPER_BULB": {
-  "min": 1.32,
-  "max": 1.32
+  "min": 132.0,
+  "max": 132.0
  },
  "COPPER_CHEST": {
-  "min": 5.82,
-  "max": 5.82
+  "min": 582.0,
+  "max": 582.0
  },
  "COPPER_CHESTPLATE": {
-  "min": 1.95,
-  "max": 1.95
+  "min": 195.0,
+  "max": 195.0
  },
  "COPPER_DOOR": {
-  "min": 2.03,
-  "max": 2.03
+  "min": 203.0,
+  "max": 203.0
  },
  "COPPER_GRATE": {
-  "min": 0.26,
-  "max": 0.26
+  "min": 26.0,
+  "max": 26.0
  },
  "COPPER_HELMET": {
-  "min": 1.27,
-  "max": 1.27
+  "min": 127.0,
+  "max": 127.0
  },
  "COPPER_HOE": {
-  "min": 0.77,
-  "max": 0.77
+  "min": 77.0,
+  "max": 77.0
  },
  "COPPER_HORSE_ARMOR": {
-  "min": 28.6,
-  "max": 28.6
+  "min": 2860.0,
+  "max": 2860.0
  },
  "COPPER_INGOT": {
-  "min": 2.07,
-  "max": 2.07
+  "min": 23.0,
+  "max": 23.0
  },
  "COPPER_LEGGINGS": {
-  "min": 1.72,
-  "max": 1.72
+  "min": 172.0,
+  "max": 172.0
  },
  "COPPER_NAUTILUS_ARMOR": {
-  "min": 42.5,
-  "max": 42.5
+  "min": 4250.0,
+  "max": 4250.0
  },
  "COPPER_PICKAXE": {
-  "min": 0.97,
-  "max": 0.97
+  "min": 97.0,
+  "max": 97.0
  },
  "COPPER_SHOVEL": {
-  "min": 0.54,
-  "max": 0.54
+  "min": 54.0,
+  "max": 54.0
  },
  "COPPER_SPEAR": {
-  "min": 0.54,
-  "max": 0.54
+  "min": 54.0,
+  "max": 54.0
  },
  "COPPER_SWORD": {
-  "min": 0.77,
-  "max": 0.77
+  "min": 77.0,
+  "max": 77.0
  },
  "COPPER_TRAPDOOR": {
-  "min": 3.04,
-  "max": 3.04
+  "min": 304.0,
+  "max": 304.0
  },
  "CORNFLOWER": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "CRACKED_DEEPSLATE_BRICKS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "CRACKED_DEEPSLATE_TILES": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "CRACKED_NETHER_BRICKS": {
-  "min": 0.24,
-  "max": 0.24
+  "min": 24.0,
+  "max": 24.0
  },
  "CRACKED_POLISHED_BLACKSTONE_BRICKS": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "CRACKED_STONE_BRICKS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "CRAFTER": {
-  "min": 12.57,
-  "max": 12.57
+  "min": 1257.0,
+  "max": 1257.0
  },
  "CRAFTING_TABLE": {
-  "min": 1.16,
-  "max": 1.16
+  "min": 116.0,
+  "max": 116.0
  },
  "CREEPER_BANNER_PATTERN": {
-  "min": 157.53,
-  "max": 157.53
+  "min": 15753.0,
+  "max": 15753.0
  },
  "CREEPER_HEAD": {
-  "min": 150,
-  "max": 150
+  "min": 15000.0,
+  "max": 15000.0
  },
  "CRIMSON_BUTTON": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "CRIMSON_DOOR": {
-  "min": 0.42,
-  "max": 0.42
+  "min": 42.0,
+  "max": 42.0
  },
  "CRIMSON_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "CRIMSON_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "CRIMSON_FUNGUS": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "CRIMSON_HANGING_SIGN": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "CRIMSON_HYPHAE": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "CRIMSON_NYLIUM": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "CRIMSON_PLANKS": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 20.0,
+  "max": 20.0
  },
  "CRIMSON_PRESSURE_PLATE": {
-  "min": 0.42,
-  "max": 0.42
+  "min": 42.0,
+  "max": 42.0
  },
  "CRIMSON_ROOTS": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "CRIMSON_SIGN": {
-  "min": 0.47,
-  "max": 0.47
+  "min": 47.0,
+  "max": 47.0
  },
  "CRIMSON_SLAB": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 11.0,
+  "max": 11.0
  },
  "CRIMSON_STAIRS": {
-  "min": 1.28,
-  "max": 1.28
+  "min": 32.0,
+  "max": 32.0
  },
  "CRIMSON_STEM": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "CRIMSON_TRAPDOOR": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "CROSSBOW": {
-  "min": 6.57,
-  "max": 6.57
+  "min": 657.0,
+  "max": 657.0
  },
  "CRYING_OBSIDIAN": {
-  "min": 15.63,
-  "max": 15.63
+  "min": 1563.0,
+  "max": 1563.0
  },
  "CUT_COPPER": {
-  "min": 1.02,
-  "max": 1.02
+  "min": 102.0,
+  "max": 102.0
  },
  "CUT_COPPER_SLAB": {
-  "min": 0.13,
-  "max": 0.13
+  "min": 13.0,
+  "max": 13.0
  },
  "CUT_COPPER_STAIRS": {
-  "min": 0.26,
-  "max": 0.26
+  "min": 26.0,
+  "max": 26.0
  },
  "CUT_RED_SANDSTONE": {
-  "min": 8.82,
-  "max": 8.82
+  "min": 882.0,
+  "max": 882.0
  },
  "CUT_RED_SANDSTONE_SLAB": {
-  "min": 4.41,
-  "max": 4.41
+  "min": 441.0,
+  "max": 441.0
  },
  "CUT_SANDSTONE": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "CUT_SANDSTONE_SLAB": {
-  "min": 1.58,
-  "max": 1.58
+  "min": 158.0,
+  "max": 158.0
  },
  "CYAN_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "CYAN_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "CYAN_BUNDLE": {
-  "min": 5.26,
-  "max": 5.26
+  "min": 526.0,
+  "max": 526.0
  },
  "CYAN_CANDLE": {
-  "min": 2.96,
-  "max": 2.96
+  "min": 296.0,
+  "max": 296.0
  },
  "CYAN_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "CYAN_CONCRETE": {
-  "min": 2.14,
-  "max": 2.14
+  "min": 214.0,
+  "max": 214.0
  },
  "CYAN_CONCRETE_POWDER": {
-  "min": 1.86,
-  "max": 1.86
+  "min": 186.0,
+  "max": 186.0
  },
  "CYAN_DYE": {
-  "min": 0.64,
-  "max": 0.64
+  "min": 16.0,
+  "max": 16.0
  },
  "CYAN_GLAZED_TERRACOTTA": {
-  "min": 6.1,
-  "max": 6.1
+  "min": 610.0,
+  "max": 610.0
  },
  "CYAN_SHULKER_BOX": {
-  "min": 6.58,
-  "max": 6.58
+  "min": 658.0,
+  "max": 658.0
  },
  "CYAN_STAINED_GLASS": {
-  "min": 1.68,
-  "max": 1.68
+  "min": 168.0,
+  "max": 168.0
  },
  "CYAN_STAINED_GLASS_PANE": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 66.0,
+  "max": 66.0
  },
  "CYAN_TERRACOTTA": {
-  "min": 5.81,
-  "max": 5.81
+  "min": 581.0,
+  "max": 581.0
  },
  "CYAN_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "DANDELION": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "DANGER_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "DARK_OAK_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "DARK_OAK_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "DARK_OAK_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "DARK_OAK_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "DARK_OAK_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "DARK_OAK_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "DARK_OAK_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "DARK_OAK_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DARK_OAK_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DARK_OAK_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "DARK_OAK_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "DARK_OAK_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DARK_OAK_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "DARK_OAK_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "DARK_OAK_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "DARK_OAK_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "DARK_OAK_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "DARK_PRISMARINE": {
-  "min": 16.02,
-  "max": 16.02
+  "min": 1602.0,
+  "max": 1602.0
  },
  "DARK_PRISMARINE_SLAB": {
-  "min": 8.41,
-  "max": 8.41
+  "min": 841.0,
+  "max": 841.0
  },
  "DARK_PRISMARINE_STAIRS": {
-  "min": 16.82,
-  "max": 16.82
+  "min": 1682.0,
+  "max": 1682.0
  },
  "DAYLIGHT_DETECTOR": {
-  "min": 11.93,
-  "max": 11.93
+  "min": 1193.0,
+  "max": 1193.0
  },
  "DEAD_BRAIN_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "DEAD_BRAIN_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "DEAD_BRAIN_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DEAD_BUBBLE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "DEAD_BUBBLE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "DEAD_BUBBLE_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DEAD_BUSH": {
-  "min": 7.5,
-  "max": 7.5
+  "min": 750.0,
+  "max": 750.0
  },
  "DEAD_FIRE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "DEAD_FIRE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "DEAD_FIRE_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DEAD_HORN_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "DEAD_HORN_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "DEAD_HORN_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DEAD_TUBE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "DEAD_TUBE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "DEAD_TUBE_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DECORATED_POT": {
-  "min": 23.16,
-  "max": 23.16
+  "min": 2316.0,
+  "max": 2316.0
  },
  "DEEPSLATE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "DEEPSLATE_BRICKS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "DEEPSLATE_BRICK_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "DEEPSLATE_BRICK_STAIRS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "DEEPSLATE_BRICK_WALL": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "DEEPSLATE_COAL_ORE": {
-  "min": 5,
-  "max": 5
+  "min": 500.0,
+  "max": 500.0
  },
  "DEEPSLATE_COPPER_ORE": {
-  "min": 3.75,
-  "max": 3.75
+  "min": 375.0,
+  "max": 375.0
  },
  "DEEPSLATE_DIAMOND_ORE": {
-  "min": 50,
-  "max": 50
+  "min": 5000.0,
+  "max": 5000.0
  },
  "DEEPSLATE_EMERALD_ORE": {
-  "min": 37.5,
-  "max": 37.5
+  "min": 3750.0,
+  "max": 3750.0
  },
  "DEEPSLATE_GOLD_ORE": {
-  "min": 7.5,
-  "max": 7.5
+  "min": 750.0,
+  "max": 750.0
  },
  "DEEPSLATE_IRON_ORE": {
-  "min": 5,
-  "max": 5
+  "min": 500.0,
+  "max": 500.0
  },
  "DEEPSLATE_LAPIS_ORE": {
-  "min": 13.75,
-  "max": 13.75
+  "min": 1375.0,
+  "max": 1375.0
  },
  "DEEPSLATE_REDSTONE_ORE": {
-  "min": 5,
-  "max": 5
+  "min": 500.0,
+  "max": 500.0
  },
  "DEEPSLATE_TILES": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "DEEPSLATE_TILE_SLAB": {
-  "min": 0.11,
-  "max": 0.11
+  "min": 11.0,
+  "max": 11.0
  },
  "DEEPSLATE_TILE_STAIRS": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "DEEPSLATE_TILE_WALL": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "DETECTOR_RAIL": {
-  "min": 1.67,
-  "max": 1.67
+  "min": 167.0,
+  "max": 167.0
  },
  "DIAMOND": {
-  "min": 118.17,
-  "max": 118.17
+  "min": 1313.0,
+  "max": 1313.0
  },
  "DIAMOND_AXE": {
-  "min": 41.65,
-  "max": 41.65
+  "min": 4165.0,
+  "max": 4165.0
  },
  "DIAMOND_BLOCK": {
-  "min": 124.04,
-  "max": 124.04
+  "min": 12404.0,
+  "max": 12404.0
  },
  "DIAMOND_BOOTS": {
-  "min": 55.13,
-  "max": 55.13
+  "min": 5513.0,
+  "max": 5513.0
  },
  "DIAMOND_CHESTPLATE": {
-  "min": 110.25,
-  "max": 110.25
+  "min": 11025.0,
+  "max": 11025.0
  },
  "DIAMOND_HELMET": {
-  "min": 68.91,
-  "max": 68.91
+  "min": 6891.0,
+  "max": 6891.0
  },
  "DIAMOND_HOE": {
-  "min": 27.87,
-  "max": 27.87
+  "min": 2787.0,
+  "max": 2787.0
  },
  "DIAMOND_HORSE_ARMOR": {
-  "min": 562.5,
-  "max": 562.5
+  "min": 56250.0,
+  "max": 56250.0
  },
  "DIAMOND_LEGGINGS": {
-  "min": 96.47,
-  "max": 96.47
+  "min": 9647.0,
+  "max": 9647.0
  },
  "DIAMOND_NAUTILUS_ARMOR": {
-  "min": 925,
-  "max": 925
+  "min": 92500.0,
+  "max": 92500.0
  },
  "DIAMOND_PICKAXE": {
-  "min": 41.65,
-  "max": 41.65
+  "min": 4165.0,
+  "max": 4165.0
  },
  "DIAMOND_SHOVEL": {
-  "min": 14.09,
-  "max": 14.09
+  "min": 1409.0,
+  "max": 1409.0
  },
  "DIAMOND_SPEAR": {
-  "min": 14.09,
-  "max": 14.09
+  "min": 1409.0,
+  "max": 1409.0
  },
  "DIAMOND_SWORD": {
-  "min": 27.72,
-  "max": 27.72
+  "min": 2772.0,
+  "max": 2772.0
  },
  "DIORITE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "DIORITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "DIORITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "DIORITE_WALL": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "DIRT": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "DISC_FRAGMENT": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "DISPENSER": {
-  "min": 8.44,
-  "max": 8.44
+  "min": 844.0,
+  "max": 844.0
  },
  "DRAGON_BREATH": {
-  "min": 27.49,
-  "max": 27.49
+  "min": 2749.0,
+  "max": 2749.0
  },
  "DRAGON_EGG": {
-  "min": 1250,
-  "max": 1250
+  "min": 125000.0,
+  "max": 125000.0
  },
  "DRAGON_HEAD": {
-  "min": 1250,
-  "max": 1250
+  "min": 125000.0,
+  "max": 125000.0
  },
  "DRIED_KELP": {
-  "min": 0.03,
-  "max": 0.03
+  "min": 3.0,
+  "max": 3.0
  },
  "DRIED_KELP_BLOCK": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "DRIPSTONE_BLOCK": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "DROPPER": {
-  "min": 2.17,
-  "max": 2.17
+  "min": 217.0,
+  "max": 217.0
  },
  "DUNE_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 49.81,
-  "max": 49.81
+  "min": 4981.0,
+  "max": 4981.0
  },
  "ECHO_SHARD": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "EGG": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "EMERALD": {
-  "min": 88.65,
-  "max": 88.65
+  "min": 985.0,
+  "max": 985.0
  },
  "EMERALD_BLOCK": {
-  "min": 93.03,
-  "max": 93.03
+  "min": 9303.0,
+  "max": 9303.0
  },
  "ENCHANTED_BOOK": {
-  "min": 40,
-  "max": 6063.75
+  "min": 4000.0,
+  "max": 606375.0
  },
  "ENCHANTED_GOLDEN_APPLE": {
-  "min": 2500,
-  "max": 2500
+  "min": 250000.0,
+  "max": 250000.0
  },
  "ENCHANTING_TABLE": {
-  "min": 69.73,
-  "max": 69.73
+  "min": 6973.0,
+  "max": 6973.0
  },
  "ENDER_CHEST": {
-  "min": 68.28,
-  "max": 68.28
+  "min": 6828.0,
+  "max": 6828.0
  },
  "ENDER_EYE": {
-  "min": 2.53,
-  "max": 2.53
+  "min": 253.0,
+  "max": 253.0
  },
  "ENDER_PEARL": {
-  "min": 7,
-  "max": 7
+  "min": 175.0,
+  "max": 175.0
  },
  "END_CRYSTAL": {
-  "min": 24.73,
-  "max": 24.73
+  "min": 2473.0,
+  "max": 2473.0
  },
  "END_ROD": {
-  "min": 0.54,
-  "max": 0.54
+  "min": 54.0,
+  "max": 54.0
  },
  "END_STONE": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "END_STONE_BRICKS": {
-  "min": 1.32,
-  "max": 1.32
+  "min": 132.0,
+  "max": 132.0
  },
  "END_STONE_BRICK_SLAB": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 66.0,
+  "max": 66.0
  },
  "END_STONE_BRICK_STAIRS": {
-  "min": 1.32,
-  "max": 1.32
+  "min": 132.0,
+  "max": 132.0
  },
  "END_STONE_BRICK_WALL": {
-  "min": 1.32,
-  "max": 1.32
+  "min": 132.0,
+  "max": 132.0
  },
  "EXPLORER_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "EXPOSED_CHISELED_COPPER": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "EXPOSED_COPPER": {
-  "min": 1.02,
-  "max": 1.02
+  "min": 102.0,
+  "max": 102.0
  },
  "EXPOSED_COPPER_BULB": {
-  "min": 1.36,
-  "max": 1.36
+  "min": 136.0,
+  "max": 136.0
  },
  "EXPOSED_COPPER_DOOR": {
-  "min": 2.13,
-  "max": 2.13
+  "min": 213.0,
+  "max": 213.0
  },
  "EXPOSED_COPPER_GRATE": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "EXPOSED_COPPER_TRAPDOOR": {
-  "min": 3.2,
-  "max": 3.2
+  "min": 320.0,
+  "max": 320.0
  },
  "EXPOSED_CUT_COPPER": {
-  "min": 1.07,
-  "max": 1.07
+  "min": 107.0,
+  "max": 107.0
  },
  "EXPOSED_CUT_COPPER_SLAB": {
-  "min": 0.04,
-  "max": 0.04
+  "min": 4.0,
+  "max": 4.0
  },
  "EXPOSED_CUT_COPPER_STAIRS": {
-  "min": 0.07,
-  "max": 0.07
+  "min": 7.0,
+  "max": 7.0
  },
  "EYE_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.9,
-  "max": 48.9
+  "min": 4890.0,
+  "max": 4890.0
  },
  "FEATHER": {
-  "min": 24,
-  "max": 24
+  "min": 150.0,
+  "max": 150.0
  },
  "FERMENTED_SPIDER_EYE": {
-  "min": 9.6,
-  "max": 9.6
+  "min": 240.0,
+  "max": 240.0
  },
  "FERN": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "FIREWORK": {
-  "min": 75,
-  "max": 75
+  "min": 7500.0,
+  "max": 7500.0
  },
  "FIREWORK_ROCKET": {
-  "min": 1.37,
-  "max": 1.37
+  "min": 137.0,
+  "max": 137.0
  },
  "FIREWORK_STAR": {
-  "min": 4.35,
-  "max": 4.35
+  "min": 435.0,
+  "max": 435.0
  },
  "FIRE_CHARGE": {
-  "min": 2.05,
-  "max": 2.05
+  "min": 205.0,
+  "max": 205.0
  },
  "FIRE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "FIRE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "FIRE_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "FISHING_ROD": {
-  "min": 4.14,
-  "max": 4.14
+  "min": 414.0,
+  "max": 414.0
  },
  "FLETCHING_TABLE": {
-  "min": 2.21,
-  "max": 2.21
+  "min": 221.0,
+  "max": 221.0
  },
  "FLINT": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "FLINT_AND_STEEL": {
-  "min": 1.98,
-  "max": 1.98
+  "min": 198.0,
+  "max": 198.0
  },
  "FLOWERING_AZALEA": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "FLOWERING_AZALEA_LEAVES": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "FLOWER_BANNER_PATTERN": {
-  "min": 0.3,
-  "max": 0.3
+  "min": 30.0,
+  "max": 30.0
  },
  "FLOWER_POT": {
-  "min": 17.37,
-  "max": 17.37
+  "min": 1737.0,
+  "max": 1737.0
  },
  "FLOW_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 101.72,
-  "max": 101.72
+  "min": 10172.0,
+  "max": 10172.0
  },
  "FLOW_BANNER_PATTERN": {
-  "min": 300,
-  "max": 300
+  "min": 30000.0,
+  "max": 30000.0
  },
  "FLOW_POTTERY_SHERD": {
-  "min": 8.02,
-  "max": 8.02
+  "min": 802.0,
+  "max": 802.0
  },
  "FRIEND_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "FURNACE": {
-  "min": 1.43,
-  "max": 1.43
+  "min": 143.0,
+  "max": 143.0
  },
  "FURNACE_MINECART": {
-  "min": 9.1,
-  "max": 9.1
+  "min": 910.0,
+  "max": 910.0
  },
  "GHAST_TEAR": {
-  "min": 10,
-  "max": 10
+  "min": 1000.0,
+  "max": 1000.0
  },
  "GILDED_BLACKSTONE": {
-  "min": 4.25,
-  "max": 4.25
+  "min": 425.0,
+  "max": 425.0
  },
  "GLASS": {
-  "min": 1.58,
-  "max": 1.58
+  "min": 158.0,
+  "max": 158.0
  },
  "GLASS_BOTTLE": {
-  "min": 14.94,
-  "max": 14.94
+  "min": 498.0,
+  "max": 498.0
  },
  "GLASS_PANE": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "GLISTERING_MELON_SLICE": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "GLOBE_BANNER_PATTERN": {
-  "min": 82.69,
-  "max": 82.69
+  "min": 8269.0,
+  "max": 8269.0
  },
  "GLOWSTONE": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "GLOWSTONE_DUST": {
-  "min": 15.75,
-  "max": 15.75
+  "min": 196.88,
+  "max": 196.88
  },
  "GLOW_BERRIES": {
-  "min": 1,
-  "max": 1
+  "min": 25.0,
+  "max": 25.0
  },
  "GLOW_INK_SAC": {
-  "min": 1.38,
-  "max": 1.38
+  "min": 138.0,
+  "max": 138.0
  },
  "GLOW_ITEM_FRAME": {
-  "min": 11.99,
-  "max": 11.99
+  "min": 1199.0,
+  "max": 1199.0
  },
  "GLOW_LICHEN": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "GOAT_HORN": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "GOLDEN_APPLE": {
-  "min": 19.99,
-  "max": 19.99
+  "min": 1999.0,
+  "max": 1999.0
  },
  "GOLDEN_AXE": {
-  "min": 6.82,
-  "max": 6.82
+  "min": 682.0,
+  "max": 682.0
  },
  "GOLDEN_BOOTS": {
-  "min": 8.69,
-  "max": 8.69
+  "min": 869.0,
+  "max": 869.0
  },
  "GOLDEN_CARROT": {
-  "min": 12.2,
-  "max": 12.2
+  "min": 305.0,
+  "max": 305.0
  },
  "GOLDEN_CHESTPLATE": {
-  "min": 17.37,
-  "max": 17.37
+  "min": 1737.0,
+  "max": 1737.0
  },
  "GOLDEN_HELMET": {
-  "min": 10.86,
-  "max": 10.86
+  "min": 1086.0,
+  "max": 1086.0
  },
  "GOLDEN_HOE": {
-  "min": 4.65,
-  "max": 4.65
+  "min": 465.0,
+  "max": 465.0
  },
  "GOLDEN_HORSE_ARMOR": {
-  "min": 193.75,
-  "max": 193.75
+  "min": 19375.0,
+  "max": 19375.0
  },
  "GOLDEN_LEGGINGS": {
-  "min": 15.2,
-  "max": 15.2
+  "min": 1520.0,
+  "max": 1520.0
  },
  "GOLDEN_NAUTILUS_ARMOR": {
-  "min": 450,
-  "max": 450
+  "min": 45000.0,
+  "max": 45000.0
  },
  "GOLDEN_PICKAXE": {
-  "min": 6.82,
-  "max": 6.82
+  "min": 682.0,
+  "max": 682.0
  },
  "GOLDEN_SHOVEL": {
-  "min": 2.48,
-  "max": 2.48
+  "min": 248.0,
+  "max": 248.0
  },
  "GOLDEN_SPEAR": {
-  "min": 2.48,
-  "max": 2.48
+  "min": 248.0,
+  "max": 248.0
  },
  "GOLDEN_SWORD": {
-  "min": 4.5,
-  "max": 4.5
+  "min": 450.0,
+  "max": 450.0
  },
  "GOLD_BLOCK": {
-  "min": 19.54,
-  "max": 19.54
+  "min": 1954.0,
+  "max": 1954.0
  },
  "GOLD_INGOT": {
-  "min": 18.63,
-  "max": 18.63
+  "min": 207.0,
+  "max": 207.0
  },
  "GOLD_NUGGET": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "GRANITE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "GRANITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "GRANITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "GRANITE_WALL": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "GRASS_BLOCK": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "GRAVEL": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "GRAY_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "GRAY_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "GRAY_BUNDLE": {
-  "min": 5.26,
-  "max": 5.26
+  "min": 526.0,
+  "max": 526.0
  },
  "GRAY_CANDLE": {
-  "min": 3.75,
-  "max": 3.75
+  "min": 375.0,
+  "max": 375.0
  },
  "GRAY_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "GRAY_CONCRETE": {
-  "min": 2.25,
-  "max": 2.25
+  "min": 225.0,
+  "max": 225.0
  },
  "GRAY_CONCRETE_POWDER": {
-  "min": 1.96,
-  "max": 1.96
+  "min": 196.0,
+  "max": 196.0
  },
  "GRAY_DYE": {
-  "min": 3.64,
-  "max": 3.64
+  "min": 91.0,
+  "max": 91.0
  },
  "GRAY_GLAZED_TERRACOTTA": {
-  "min": 6.21,
-  "max": 6.21
+  "min": 621.0,
+  "max": 621.0
  },
  "GRAY_SHULKER_BOX": {
-  "min": 7.36,
-  "max": 7.36
+  "min": 736.0,
+  "max": 736.0
  },
  "GRAY_STAINED_GLASS": {
-  "min": 1.78,
-  "max": 1.78
+  "min": 178.0,
+  "max": 178.0
  },
  "GRAY_STAINED_GLASS_PANE": {
-  "min": 0.7,
-  "max": 0.7
+  "min": 70.0,
+  "max": 70.0
  },
  "GRAY_TERRACOTTA": {
-  "min": 5.91,
-  "max": 5.91
+  "min": 591.0,
+  "max": 591.0
  },
  "GRAY_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "GREEN_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "GREEN_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "GREEN_BUNDLE": {
-  "min": 5.21,
-  "max": 5.21
+  "min": 521.0,
+  "max": 521.0
  },
  "GREEN_CANDLE": {
-  "min": 2.83,
-  "max": 2.83
+  "min": 283.0,
+  "max": 283.0
  },
  "GREEN_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "GREEN_CONCRETE": {
-  "min": 2.13,
-  "max": 2.13
+  "min": 213.0,
+  "max": 213.0
  },
  "GREEN_CONCRETE_POWDER": {
-  "min": 1.85,
-  "max": 1.85
+  "min": 185.0,
+  "max": 185.0
  },
  "GREEN_DYE": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "GREEN_GLAZED_TERRACOTTA": {
-  "min": 6.09,
-  "max": 6.09
+  "min": 609.0,
+  "max": 609.0
  },
  "GREEN_SHULKER_BOX": {
-  "min": 6.44,
-  "max": 6.44
+  "min": 644.0,
+  "max": 644.0
  },
  "GREEN_STAINED_GLASS": {
-  "min": 1.66,
-  "max": 1.66
+  "min": 166.0,
+  "max": 166.0
  },
  "GREEN_STAINED_GLASS_PANE": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 66.0,
+  "max": 66.0
  },
  "GREEN_TERRACOTTA": {
-  "min": 5.8,
-  "max": 5.8
+  "min": 580.0,
+  "max": 580.0
  },
  "GREEN_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "GRINDSTONE": {
-  "min": 0.99,
-  "max": 0.99
+  "min": 99.0,
+  "max": 99.0
  },
  "GUNPOWDER": {
-  "min": 62.08,
-  "max": 62.08
+  "min": 388.0,
+  "max": 388.0
  },
  "GUSTER_BANNER_PATTERN": {
-  "min": 200,
-  "max": 200
+  "min": 20000.0,
+  "max": 20000.0
  },
  "GUSTER_POTTERY_SHERD": {
-  "min": 8.02,
-  "max": 8.02
+  "min": 802.0,
+  "max": 802.0
  },
  "HANGING_ROOTS": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "HAY_BLOCK": {
-  "min": 11.82,
-  "max": 11.82
+  "min": 1182.0,
+  "max": 1182.0
  },
  "HEARTBREAK_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "HEART_OF_THE_SEA": {
-  "min": 137.82,
-  "max": 137.82
+  "min": 13782.0,
+  "max": 13782.0
  },
  "HEART_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "HEAVY_WEIGHTED_PRESSURE_PLATE": {
-  "min": 2.9,
-  "max": 2.9
+  "min": 290.0,
+  "max": 290.0
  },
  "HONEYCOMB": {
-  "min": 3.16,
-  "max": 3.16
+  "min": 79.0,
+  "max": 79.0
  },
  "HONEYCOMB_BLOCK": {
-  "min": 3.31,
-  "max": 3.31
+  "min": 331.0,
+  "max": 331.0
  },
  "HONEY_BLOCK": {
-  "min": 8.34,
-  "max": 8.34
+  "min": 834.0,
+  "max": 834.0
  },
  "HONEY_BOTTLE": {
-  "min": 1.99,
-  "max": 1.99
+  "min": 199.0,
+  "max": 199.0
  },
  "HOPPER": {
-  "min": 9.67,
-  "max": 9.67
+  "min": 967.0,
+  "max": 967.0
  },
  "HOPPER_MINECART": {
-  "min": 17.75,
-  "max": 17.75
+  "min": 1775.0,
+  "max": 1775.0
  },
  "HORN_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "HORN_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "HORN_CORAL_FAN": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "HOST_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 51.13,
-  "max": 51.13
+  "min": 5113.0,
+  "max": 5113.0
  },
  "HOWL_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "ICE": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "INK_SAC": {
-  "min": 1.25,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "IRON_AXE": {
-  "min": 4.65,
-  "max": 4.65
+  "min": 465.0,
+  "max": 465.0
  },
  "IRON_BARS": {
-  "min": 0.55,
-  "max": 0.55
+  "min": 55.0,
+  "max": 55.0
  },
  "IRON_BLOCK": {
-  "min": 13.03,
-  "max": 13.03
+  "min": 1303.0,
+  "max": 1303.0
  },
  "IRON_BOOTS": {
-  "min": 5.79,
-  "max": 5.79
+  "min": 579.0,
+  "max": 579.0
  },
  "IRON_CHESTPLATE": {
-  "min": 11.58,
-  "max": 11.58
+  "min": 1158.0,
+  "max": 1158.0
  },
  "IRON_DOOR": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "IRON_HELMET": {
-  "min": 7.24,
-  "max": 7.24
+  "min": 724.0,
+  "max": 724.0
  },
  "IRON_HOE": {
-  "min": 3.2,
-  "max": 3.2
+  "min": 320.0,
+  "max": 320.0
  },
  "IRON_HORSE_ARMOR": {
-  "min": 43.75,
-  "max": 43.75
+  "min": 4375.0,
+  "max": 4375.0
  },
  "IRON_INGOT": {
-  "min": 12.42,
-  "max": 12.42
+  "min": 138.0,
+  "max": 138.0
  },
  "IRON_LEGGINGS": {
-  "min": 10.13,
-  "max": 10.13
+  "min": 1013.0,
+  "max": 1013.0
  },
  "IRON_NAUTILUS_ARMOR": {
-  "min": 250,
-  "max": 250
+  "min": 25000.0,
+  "max": 25000.0
  },
  "IRON_NUGGET": {
-  "min": 0.15,
-  "max": 0.15
+  "min": 15.0,
+  "max": 15.0
  },
  "IRON_PICKAXE": {
-  "min": 4.65,
-  "max": 4.65
+  "min": 465.0,
+  "max": 465.0
  },
  "IRON_SHOVEL": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 176.0,
+  "max": 176.0
  },
  "IRON_SPEAR": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 176.0,
+  "max": 176.0
  },
  "IRON_SWORD": {
-  "min": 3.05,
-  "max": 3.05
+  "min": 305.0,
+  "max": 305.0
  },
  "IRON_TRAPDOOR": {
-  "min": 5.79,
-  "max": 5.79
+  "min": 579.0,
+  "max": 579.0
  },
  "ITEM_FRAME": {
-  "min": 10.04,
-  "max": 10.04
+  "min": 1004.0,
+  "max": 1004.0
  },
  "JACK_O_LANTERN": {
-  "min": 1.72,
-  "max": 1.72
+  "min": 172.0,
+  "max": 172.0
  },
  "JUKEBOX": {
-  "min": 16.1,
-  "max": 16.1
+  "min": 1610.0,
+  "max": 1610.0
  },
  "JUNGLE_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "JUNGLE_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "JUNGLE_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "JUNGLE_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "JUNGLE_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "JUNGLE_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "JUNGLE_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "JUNGLE_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "JUNGLE_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "JUNGLE_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "JUNGLE_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "JUNGLE_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "JUNGLE_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "JUNGLE_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "JUNGLE_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "JUNGLE_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "JUNGLE_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "KELP": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "LADDER": {
-  "min": 0.36,
-  "max": 0.36
+  "min": 36.0,
+  "max": 36.0
  },
  "LANTERN": {
-  "min": 1.63,
-  "max": 1.63
+  "min": 163.0,
+  "max": 163.0
  },
  "LAPIS_BLOCK": {
-  "min": 17.06,
-  "max": 17.06
+  "min": 1706.0,
+  "max": 1706.0
  },
  "LAPIS_LAZULI": {
-  "min": 16.29,
-  "max": 16.29
+  "min": 181.0,
+  "max": 181.0
  },
  "LARGE_AMETHYST_BUD": {
-  "min": 1,
-  "max": 1
+  "min": 100.0,
+  "max": 100.0
  },
  "LARGE_FERN": {
-  "min": 1.75,
-  "max": 1.75
+  "min": 175.0,
+  "max": 175.0
  },
  "LAVA_BUCKET": {
-  "min": 4.6,
-  "max": 4.6
+  "min": 460.0,
+  "max": 460.0
  },
  "LEAD": {
-  "min": 4.34,
-  "max": 4.34
+  "min": 434.0,
+  "max": 434.0
  },
  "LEATHER": {
-  "min": 33.6,
-  "max": 33.6
+  "min": 840.0,
+  "max": 840.0
  },
  "LEATHER_BOOTS": {
-  "min": 35.28,
-  "max": 35.28
+  "min": 3528.0,
+  "max": 3528.0
  },
  "LEATHER_CHESTPLATE": {
-  "min": 70.56,
-  "max": 70.56
+  "min": 7056.0,
+  "max": 7056.0
  },
  "LEATHER_HELMET": {
-  "min": 44.1,
-  "max": 44.1
+  "min": 4410.0,
+  "max": 4410.0
  },
  "LEATHER_HORSE_ARMOR": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "LEATHER_LEGGINGS": {
-  "min": 61.74,
-  "max": 61.74
+  "min": 6174.0,
+  "max": 6174.0
  },
  "LECTERN": {
-  "min": 31.88,
-  "max": 31.88
+  "min": 3188.0,
+  "max": 3188.0
  },
  "LEVER": {
-  "min": 0.34,
-  "max": 0.34
+  "min": 34.0,
+  "max": 34.0
  },
  "LIGHTNING_ROD": {
-  "min": 0.73,
-  "max": 0.73
+  "min": 73.0,
+  "max": 73.0
  },
  "LIGHT_BLUE_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "LIGHT_BLUE_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "LIGHT_BLUE_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "LIGHT_BLUE_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "LIGHT_BLUE_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "LIGHT_BLUE_CONCRETE": {
-  "min": 2.16,
-  "max": 2.16
+  "min": 216.0,
+  "max": 216.0
  },
  "LIGHT_BLUE_CONCRETE_POWDER": {
-  "min": 1.88,
-  "max": 1.88
+  "min": 188.0,
+  "max": 188.0
  },
  "LIGHT_BLUE_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "LIGHT_BLUE_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "LIGHT_BLUE_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "LIGHT_BLUE_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "LIGHT_BLUE_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "LIGHT_BLUE_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "LIGHT_BLUE_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "LIGHT_GRAY_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "LIGHT_GRAY_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "LIGHT_GRAY_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "LIGHT_GRAY_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "LIGHT_GRAY_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "LIGHT_GRAY_CONCRETE": {
-  "min": 2.16,
-  "max": 2.16
+  "min": 216.0,
+  "max": 216.0
  },
  "LIGHT_GRAY_CONCRETE_POWDER": {
-  "min": 1.88,
-  "max": 1.88
+  "min": 188.0,
+  "max": 188.0
  },
  "LIGHT_GRAY_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "LIGHT_GRAY_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "LIGHT_GRAY_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "LIGHT_GRAY_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "LIGHT_GRAY_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "LIGHT_GRAY_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "LIGHT_GRAY_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "LIGHT_WEIGHTED_PRESSURE_PLATE": {
-  "min": 4.35,
-  "max": 4.35
+  "min": 435.0,
+  "max": 435.0
  },
  "LILAC": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "LILY_OF_THE_VALLEY": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "LILY_PAD": {
-  "min": 7,
-  "max": 7
+  "min": 700.0,
+  "max": 700.0
  },
  "LIME_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "LIME_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "LIME_BUNDLE": {
-  "min": 5.28,
-  "max": 5.28
+  "min": 528.0,
+  "max": 528.0
  },
  "LIME_CANDLE": {
-  "min": 4.46,
-  "max": 4.46
+  "min": 446.0,
+  "max": 446.0
  },
  "LIME_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "LIME_CONCRETE": {
-  "min": 3.23,
-  "max": 3.23
+  "min": 323.0,
+  "max": 323.0
  },
  "LIME_CONCRETE_POWDER": {
-  "min": 2.81,
-  "max": 2.81
+  "min": 281.0,
+  "max": 281.0
  },
  "LIME_DYE": {
-  "min": 4.32,
-  "max": 4.32
+  "min": 108.0,
+  "max": 108.0
  },
  "LIME_GLAZED_TERRACOTTA": {
-  "min": 6.3,
-  "max": 6.3
+  "min": 630.0,
+  "max": 630.0
  },
  "LIME_SHULKER_BOX": {
-  "min": 8.07,
-  "max": 8.07
+  "min": 807.0,
+  "max": 807.0
  },
  "LIME_STAINED_GLASS": {
-  "min": 1.87,
-  "max": 1.87
+  "min": 187.0,
+  "max": 187.0
  },
  "LIME_STAINED_GLASS_PANE": {
-  "min": 0.74,
-  "max": 0.74
+  "min": 74.0,
+  "max": 74.0
  },
  "LIME_TERRACOTTA": {
-  "min": 6,
-  "max": 6
+  "min": 600.0,
+  "max": 600.0
  },
  "LIME_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "LINGERING_POTION": {
-  "min": 34.48,
-  "max": 921.47
+  "min": 3448.0,
+  "max": 92147.0
  },
  "LOOM": {
-  "min": 4.26,
-  "max": 4.26
+  "min": 426.0,
+  "max": 426.0
  },
  "MACE": {
-  "min": 5255.25,
-  "max": 5255.25
+  "min": 525525.0,
+  "max": 525525.0
  },
  "MAGENTA_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "MAGENTA_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "MAGENTA_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "MAGENTA_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "MAGENTA_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "MAGENTA_CONCRETE": {
-  "min": 3.23,
-  "max": 3.23
+  "min": 323.0,
+  "max": 323.0
  },
  "MAGENTA_CONCRETE_POWDER": {
-  "min": 2.81,
-  "max": 2.81
+  "min": 281.0,
+  "max": 281.0
  },
  "MAGENTA_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "MAGENTA_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "MAGENTA_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "MAGENTA_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "MAGENTA_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "MAGENTA_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "MAGENTA_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "MAGMA_BLOCK": {
-  "min": 8.41,
-  "max": 8.41
+  "min": 841.0,
+  "max": 841.0
  },
  "MAGMA_CREAM": {
-  "min": 8.04,
-  "max": 8.04
+  "min": 201.0,
+  "max": 201.0
  },
  "MANGROVE_BOAT": {
-  "min": 1.04,
-  "max": 1.04
+  "min": 104.0,
+  "max": 104.0
  },
  "MANGROVE_CHEST_BOAT": {
-  "min": 3.52,
-  "max": 3.52
+  "min": 352.0,
+  "max": 352.0
  },
  "MANGROVE_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "MANGROVE_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "MANGROVE_HANGING_SIGN": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "MANGROVE_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MANGROVE_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MANGROVE_PLANKS": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 20.0,
+  "max": 20.0
  },
  "MANGROVE_PROPAGULE": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MANGROVE_ROOTS": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MANGROVE_SIGN": {
-  "min": 0.47,
-  "max": 0.47
+  "min": 47.0,
+  "max": 47.0
  },
  "MANGROVE_SLAB": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 11.0,
+  "max": 11.0
  },
  "MANGROVE_STAIRS": {
-  "min": 1.28,
-  "max": 1.28
+  "min": 32.0,
+  "max": 32.0
  },
  "MANGROVE_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "MAP": {
-  "min": 7.27,
-  "max": 7.27
+  "min": 727.0,
+  "max": 727.0
  },
  "MEDIUM_AMETHYST_BUD": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MELON": {
-  "min": 9.48,
-  "max": 9.48
+  "min": 237.0,
+  "max": 237.0
  },
  "MELON_SEEDS": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MELON_SLICE": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "MILK_BUCKET": {
-  "min": 4.62,
-  "max": 4.62
+  "min": 462.0,
+  "max": 462.0
  },
  "MINECART": {
-  "min": 7.24,
-  "max": 7.24
+  "min": 724.0,
+  "max": 724.0
  },
  "MINER_POTTERY_SHERD": {
-  "min": 7.02,
-  "max": 7.02
+  "min": 702.0,
+  "max": 702.0
  },
  "MOJANG_BANNER_PATTERN": {
-  "min": 2625.03,
-  "max": 2625.03
+  "min": 262503.0,
+  "max": 262503.0
  },
  "MOSSY_COBBLESTONE": {
-  "min": 1.52,
-  "max": 1.52
+  "min": 152.0,
+  "max": 152.0
  },
  "MOSSY_COBBLESTONE_SLAB": {
-  "min": 0.56,
-  "max": 0.56
+  "min": 56.0,
+  "max": 56.0
  },
  "MOSSY_COBBLESTONE_STAIRS": {
-  "min": 1.62,
-  "max": 1.62
+  "min": 162.0,
+  "max": 162.0
  },
  "MOSSY_COBBLESTONE_WALL": {
-  "min": 1.52,
-  "max": 1.52
+  "min": 152.0,
+  "max": 152.0
  },
  "MOSSY_STONE_BRICKS": {
-  "min": 1.54,
-  "max": 1.54
+  "min": 154.0,
+  "max": 154.0
  },
  "MOSSY_STONE_BRICK_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "MOSSY_STONE_BRICK_STAIRS": {
-  "min": 1.64,
-  "max": 1.64
+  "min": 164.0,
+  "max": 164.0
  },
  "MOSSY_STONE_BRICK_WALL": {
-  "min": 1.54,
-  "max": 1.54
+  "min": 154.0,
+  "max": 154.0
  },
  "MOSS_BLOCK": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "MOSS_CARPET": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "MOURNER_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "MUD": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 80.0,
+  "max": 80.0
  },
  "MUDDY_MANGROVE_ROOTS": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "MUD_BRICKS": {
-  "min": 2.26,
-  "max": 2.26
+  "min": 226.0,
+  "max": 226.0
  },
  "MUD_BRICK_SLAB": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "MUD_BRICK_STAIRS": {
-  "min": 2.37,
-  "max": 2.37
+  "min": 237.0,
+  "max": 237.0
  },
  "MUD_BRICK_WALL": {
-  "min": 2.37,
-  "max": 2.37
+  "min": 237.0,
+  "max": 237.0
  },
  "MUSHROOM_STEM": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "MUSHROOM_STEW": {
-  "min": 1.28,
-  "max": 1.28
+  "min": 128.0,
+  "max": 128.0
  },
  "MUSIC_DISC_11": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_13": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_5": {
-  "min": 236.25,
-  "max": 236.25
+  "min": 23625.0,
+  "max": 23625.0
  },
  "MUSIC_DISC_BLOCKS": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_CAT": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_CHIRP": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_CREATOR": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "MUSIC_DISC_CREATOR_MUSIC_BOX": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "MUSIC_DISC_FAR": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_MALL": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_MELLOHI": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_OTHERSIDE": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_PIGSTEP": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_PRECIPICE": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "MUSIC_DISC_RELIC": {
-  "min": 25,
-  "max": 25
+  "min": 2500.0,
+  "max": 2500.0
  },
  "MUSIC_DISC_STAL": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_STRAD": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_WAIT": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUSIC_DISC_WARD": {
-  "min": 18.75,
-  "max": 18.75
+  "min": 1875.0,
+  "max": 1875.0
  },
  "MUTTON": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "MYCELIUM": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "NAME_TAG": {
-  "min": 0.65,
-  "max": 0.65
+  "min": 65.0,
+  "max": 65.0
  },
  "NAUTILUS_SHELL": {
-  "min": 45,
-  "max": 45
+  "min": 4500.0,
+  "max": 4500.0
  },
  "NETHERITE_AXE": {
-  "min": 665.23,
-  "max": 665.23
+  "min": 10658.67,
+  "max": 10658.67
  },
  "NETHERITE_BLOCK": {
-  "min": 5593.5,
-  "max": 5593.5
+  "min": 15000.0,
+  "max": 15000.0
  },
  "NETHERITE_BOOTS": {
-  "min": 679.39,
-  "max": 679.39
+  "min": 12006.67,
+  "max": 12006.67
  },
  "NETHERITE_CHESTPLATE": {
-  "min": 737.27,
-  "max": 737.27
+  "min": 17518.67,
+  "max": 17518.67
  },
  "NETHERITE_HELMET": {
-  "min": 693.86,
-  "max": 693.86
+  "min": 13384.67,
+  "max": 13384.67
  },
  "NETHERITE_HOE": {
-  "min": 650.76,
-  "max": 650.76
+  "min": 9280.67,
+  "max": 9280.67
  },
  "NETHERITE_HORSE_ARMOR": {
-  "min": 871,
-  "max": 871
+  "min": 87100.0,
+  "max": 87100.0
  },
  "NETHERITE_INGOT": {
-  "min": 5327.19,
-  "max": 5327.19
+  "min": 1666.67,
+  "max": 1666.67
  },
  "NETHERITE_LEGGINGS": {
-  "min": 722.8,
-  "max": 722.8
+  "min": 16140.67,
+  "max": 16140.67
  },
  "NETHERITE_NAUTILUS_ARMOR": {
-  "min": 1250,
-  "max": 1250
+  "min": 125000.0,
+  "max": 125000.0
  },
  "NETHERITE_PICKAXE": {
-  "min": 665.23,
-  "max": 665.23
+  "min": 10658.67,
+  "max": 10658.67
  },
  "NETHERITE_SCRAP": {
-  "min": 138.87,
-  "max": 138.87
+  "min": 13887.0,
+  "max": 13887.0
  },
  "NETHERITE_SHOVEL": {
-  "min": 636.29,
-  "max": 636.29
+  "min": 7902.67,
+  "max": 7902.67
  },
  "NETHERITE_SPEAR": {
-  "min": 636.29,
-  "max": 636.29
+  "min": 7902.67,
+  "max": 7902.67
  },
  "NETHERITE_SWORD": {
-  "min": 650.61,
-  "max": 650.61
+  "min": 9265.67,
+  "max": 9265.67
  },
  "NETHERITE_UPGRADE_SMITHING_TEMPLATE": {
-  "min": 48.27,
-  "max": 48.27
+  "min": 4827.0,
+  "max": 4827.0
  },
  "NETHERRACK": {
-  "min": 0.05,
-  "max": 0.05
+  "min": 5.0,
+  "max": 5.0
  },
  "NETHER_BRICK": {
-  "min": 0.06,
-  "max": 0.06
+  "min": 6.0,
+  "max": 6.0
  },
  "NETHER_BRICKS": {
-  "min": 0.23,
-  "max": 0.23
+  "min": 23.0,
+  "max": 23.0
  },
  "NETHER_BRICK_FENCE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "NETHER_BRICK_SLAB": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 12.0,
+  "max": 12.0
  },
  "NETHER_BRICK_STAIRS": {
-  "min": 0.24,
-  "max": 0.24
+  "min": 24.0,
+  "max": 24.0
  },
  "NETHER_BRICK_WALL": {
-  "min": 0.24,
-  "max": 0.24
+  "min": 24.0,
+  "max": 24.0
  },
  "NETHER_SPROUTS": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "NETHER_STAR": {
-  "min": 350,
-  "max": 350
+  "min": 35000.0,
+  "max": 35000.0
  },
  "NETHER_WART": {
-  "min": 3,
-  "max": 3
+  "min": 75.0,
+  "max": 75.0
  },
  "NETHER_WART_BLOCK": {
-  "min": 7.09,
-  "max": 7.09
+  "min": 709.0,
+  "max": 709.0
  },
  "NOTE_BLOCK": {
-  "min": 3.24,
-  "max": 3.24
+  "min": 324.0,
+  "max": 324.0
  },
  "OAK_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "OAK_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "OAK_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "OAK_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "OAK_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "OAK_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "OAK_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "OAK_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "OAK_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "OAK_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "OAK_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "OAK_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "OAK_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "OAK_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "OAK_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "OAK_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "OAK_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "OBSERVER": {
-  "min": 5.08,
-  "max": 5.08
+  "min": 508.0,
+  "max": 508.0
  },
  "OBSIDIAN": {
-  "min": 7.82,
-  "max": 7.82
+  "min": 782.0,
+  "max": 782.0
  },
  "OCHRE_FROGLIGHT": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "OMINOUS_BOTTLE": {
-  "min": 3875,
-  "max": 3875
+  "min": 387500.0,
+  "max": 387500.0
  },
  "OMINOUS_TRIAL_KEY": {
-  "min": 3750,
-  "max": 3750
+  "min": 375000.0,
+  "max": 375000.0
  },
  "ORANGE_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "ORANGE_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "ORANGE_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "ORANGE_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "ORANGE_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "ORANGE_CONCRETE": {
-  "min": 2.16,
-  "max": 2.16
+  "min": 216.0,
+  "max": 216.0
  },
  "ORANGE_CONCRETE_POWDER": {
-  "min": 1.88,
-  "max": 1.88
+  "min": 188.0,
+  "max": 188.0
  },
  "ORANGE_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "ORANGE_GLAZED_TERRACOTTA": {
-  "min": 7.72,
-  "max": 7.72
+  "min": 772.0,
+  "max": 772.0
  },
  "ORANGE_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "ORANGE_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "ORANGE_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "ORANGE_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "ORANGE_TULIP": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "ORANGE_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "OXEYE_DAISY": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "OXIDIZED_CHISELED_COPPER": {
-  "min": 0.3,
-  "max": 0.3
+  "min": 30.0,
+  "max": 30.0
  },
  "OXIDIZED_COPPER": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 112.0,
+  "max": 112.0
  },
  "OXIDIZED_COPPER_BULB": {
-  "min": 1.44,
-  "max": 1.44
+  "min": 144.0,
+  "max": 144.0
  },
  "OXIDIZED_COPPER_DOOR": {
-  "min": 2.35,
-  "max": 2.35
+  "min": 235.0,
+  "max": 235.0
  },
  "OXIDIZED_COPPER_GRATE": {
-  "min": 0.3,
-  "max": 0.3
+  "min": 30.0,
+  "max": 30.0
  },
  "OXIDIZED_COPPER_TRAPDOOR": {
-  "min": 3.52,
-  "max": 3.52
+  "min": 352.0,
+  "max": 352.0
  },
  "OXIDIZED_CUT_COPPER": {
-  "min": 1.18,
-  "max": 1.18
+  "min": 118.0,
+  "max": 118.0
  },
  "OXIDIZED_CUT_COPPER_SLAB": {
-  "min": 0.01,
-  "max": 0.01
+  "min": 1.0,
+  "max": 1.0
  },
  "OXIDIZED_CUT_COPPER_STAIRS": {
-  "min": 0.01,
-  "max": 0.01
+  "min": 1.0,
+  "max": 1.0
  },
  "PACKED_ICE": {
-  "min": 3.38,
-  "max": 3.38
+  "min": 338.0,
+  "max": 338.0
  },
  "PACKED_MUD": {
-  "min": 2.15,
-  "max": 2.15
+  "min": 215.0,
+  "max": 215.0
  },
  "PAINTING": {
-  "min": 8.94,
-  "max": 8.94
+  "min": 894.0,
+  "max": 894.0
  },
  "PALE_OAK_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "PALE_OAK_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "PALE_OAK_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "PALE_OAK_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "PALE_OAK_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "PALE_OAK_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "PALE_OAK_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "PAPER": {
-  "min": 0.03,
-  "max": 0.03
+  "min": 3.0,
+  "max": 3.0
  },
  "PEARLESCENT_FROGLIGHT": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "PEONY": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "PHANTOM_MEMBRANE": {
-  "min": 125.16,
-  "max": 125.16
+  "min": 3129.0,
+  "max": 3129.0
  },
  "PIGLIN_BANNER_PATTERN": {
-  "min": 2500,
-  "max": 2500
+  "min": 250000.0,
+  "max": 250000.0
  },
  "PIGLIN_HEAD": {
-  "min": 150,
-  "max": 150
+  "min": 15000.0,
+  "max": 15000.0
  },
  "PINK_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "PINK_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "PINK_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "PINK_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "PINK_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "PINK_CONCRETE": {
-  "min": 2.16,
-  "max": 2.16
+  "min": 216.0,
+  "max": 216.0
  },
  "PINK_CONCRETE_POWDER": {
-  "min": 1.88,
-  "max": 1.88
+  "min": 188.0,
+  "max": 188.0
  },
  "PINK_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "PINK_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "PINK_PETALS": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "PINK_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "PINK_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "PINK_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "PINK_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "PINK_TULIP": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "PINK_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "PISTON": {
-  "min": 3.95,
-  "max": 3.95
+  "min": 395.0,
+  "max": 395.0
  },
  "PITCHER_PLANT": {
-  "min": 5.19,
-  "max": 5.19
+  "min": 519.0,
+  "max": 519.0
  },
  "PITCHER_POD": {
-  "min": 5.13,
-  "max": 5.13
+  "min": 513.0,
+  "max": 513.0
  },
  "PLENTY_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "PODZOL": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "POINTED_DRIPSTONE": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "POISONOUS_POTATO": {
-  "min": 15,
-  "max": 15
+  "min": 1500.0,
+  "max": 1500.0
  },
  "POLISHED_ANDESITE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_ANDESITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_ANDESITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_BASALT": {
-  "min": 1.42,
-  "max": 1.42
+  "min": 142.0,
+  "max": 142.0
  },
  "POLISHED_BLACKSTONE": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_BLACKSTONE_BRICKS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_BLACKSTONE_BRICK_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_BLACKSTONE_BRICK_STAIRS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_BLACKSTONE_BRICK_WALL": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_BLACKSTONE_BUTTON": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "POLISHED_BLACKSTONE_PRESSURE_PLATE": {
-  "min": 0.42,
-  "max": 0.42
+  "min": 42.0,
+  "max": 42.0
  },
  "POLISHED_BLACKSTONE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_BLACKSTONE_STAIRS": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_BLACKSTONE_WALL": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "POLISHED_DEEPSLATE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "POLISHED_DEEPSLATE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_DEEPSLATE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_DEEPSLATE_WALL": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_DIORITE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_DIORITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_DIORITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_GRANITE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_GRANITE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "POLISHED_GRANITE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "POLISHED_TUFF": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "POLISHED_TUFF_SLAB": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "POLISHED_TUFF_STAIRS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "POLISHED_TUFF_WALL": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "POPPED_CHORUS_FRUIT": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "POPPY": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "PORKCHOP": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "POTATO": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "POTION": {
-  "min": 0.89,
-  "max": 790.3
+  "min": 89.0,
+  "max": 79030.0
  },
  "POWDER_SNOW_BUCKET": {
-  "min": 8.5,
-  "max": 8.5
+  "min": 850.0,
+  "max": 850.0
  },
  "POWERED_RAIL": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "PRISMARINE": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "PRISMARINE_BRICKS": {
-  "min": 16.54,
-  "max": 16.54
+  "min": 1654.0,
+  "max": 1654.0
  },
  "PRISMARINE_BRICK_SLAB": {
-  "min": 8.69,
-  "max": 8.69
+  "min": 869.0,
+  "max": 869.0
  },
  "PRISMARINE_BRICK_STAIRS": {
-  "min": 17.37,
-  "max": 17.37
+  "min": 1737.0,
+  "max": 1737.0
  },
  "PRISMARINE_CRYSTALS": {
-  "min": 1.75,
-  "max": 1.75
+  "min": 175.0,
+  "max": 175.0
  },
  "PRISMARINE_SHARD": {
-  "min": 1.75,
-  "max": 1.75
+  "min": 175.0,
+  "max": 175.0
  },
  "PRISMARINE_SLAB": {
-  "min": 3.86,
-  "max": 3.86
+  "min": 386.0,
+  "max": 386.0
  },
  "PRISMARINE_STAIRS": {
-  "min": 7.72,
-  "max": 7.72
+  "min": 772.0,
+  "max": 772.0
  },
  "PRISMARINE_WALL": {
-  "min": 7.72,
-  "max": 7.72
+  "min": 772.0,
+  "max": 772.0
  },
  "PRIZE_POTTERY_SHERD": {
-  "min": 7.02,
-  "max": 7.02
+  "min": 702.0,
+  "max": 702.0
  },
  "PUFFERFISH": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "PUFFERFISH_BUCKET": {
-  "min": 6.45,
-  "max": 6.45
+  "min": 645.0,
+  "max": 645.0
  },
  "PUMPKIN": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "PUMPKIN_PIE": {
-  "min": 10.64,
-  "max": 10.64
+  "min": 266.0,
+  "max": 266.0
  },
  "PUMPKIN_SEEDS": {
-  "min": 0.3,
-  "max": 0.3
+  "min": 30.0,
+  "max": 30.0
  },
  "PURPLE_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "PURPLE_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "PURPLE_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "PURPLE_CANDLE": {
-  "min": 3.09,
-  "max": 3.09
+  "min": 309.0,
+  "max": 309.0
  },
  "PURPLE_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "PURPLE_CONCRETE": {
-  "min": 3.23,
-  "max": 3.23
+  "min": 323.0,
+  "max": 323.0
  },
  "PURPLE_CONCRETE_POWDER": {
-  "min": 2.81,
-  "max": 2.81
+  "min": 281.0,
+  "max": 281.0
  },
  "PURPLE_DYE": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "PURPLE_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "PURPLE_SHULKER_BOX": {
-  "min": 6.71,
-  "max": 6.71
+  "min": 671.0,
+  "max": 671.0
  },
  "PURPLE_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "PURPLE_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "PURPLE_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "PURPLE_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "PURPUR_BLOCK": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "PURPUR_PILLAR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "PURPUR_SLAB": {
-  "min": 0.44,
-  "max": 0.44
+  "min": 44.0,
+  "max": 44.0
  },
  "PURPUR_STAIRS": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "QUARTZ": {
-  "min": 18.63,
-  "max": 18.63
+  "min": 207.0,
+  "max": 207.0
  },
  "QUARTZ_BLOCK": {
-  "min": 8.69,
-  "max": 8.69
+  "min": 869.0,
+  "max": 869.0
  },
  "QUARTZ_BRICKS": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 912.0,
+  "max": 912.0
  },
  "QUARTZ_PILLAR": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 912.0,
+  "max": 912.0
  },
  "QUARTZ_SLAB": {
-  "min": 4.56,
-  "max": 4.56
+  "min": 456.0,
+  "max": 456.0
  },
  "QUARTZ_STAIRS": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 912.0,
+  "max": 912.0
  },
  "RABBIT": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "RABBIT_FOOT": {
-  "min": 45,
-  "max": 45
+  "min": 4500.0,
+  "max": 4500.0
  },
  "RABBIT_HIDE": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "RABBIT_STEW": {
-  "min": 5.1,
-  "max": 5.1
+  "min": 510.0,
+  "max": 510.0
  },
  "RAIL": {
-  "min": 0.56,
-  "max": 0.56
+  "min": 56.0,
+  "max": 56.0
  },
  "RAISER_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 51.13,
-  "max": 51.13
+  "min": 5113.0,
+  "max": 5113.0
  },
  "RAW_COPPER": {
-  "min": 0.22,
-  "max": 0.22
+  "min": 22.0,
+  "max": 22.0
  },
  "RAW_COPPER_BLOCK": {
-  "min": 2.07,
-  "max": 2.07
+  "min": 207.0,
+  "max": 207.0
  },
  "RAW_GOLD": {
-  "min": 1.97,
-  "max": 1.97
+  "min": 197.0,
+  "max": 197.0
  },
  "RAW_GOLD_BLOCK": {
-  "min": 18.61,
-  "max": 18.61
+  "min": 1861.0,
+  "max": 1861.0
  },
  "RAW_IRON": {
-  "min": 1.32,
-  "max": 1.32
+  "min": 132.0,
+  "max": 132.0
  },
  "RAW_IRON_BLOCK": {
-  "min": 12.41,
-  "max": 12.41
+  "min": 1241.0,
+  "max": 1241.0
  },
  "RECOVERY_COMPASS": {
-  "min": 217.05,
-  "max": 217.05
+  "min": 21705.0,
+  "max": 21705.0
  },
  "REDSTONE": {
-  "min": 7.92,
-  "max": 7.92
+  "min": 88.0,
+  "max": 88.0
  },
  "REDSTONE_BLOCK": {
-  "min": 8.27,
-  "max": 8.27
+  "min": 827.0,
+  "max": 827.0
  },
  "REDSTONE_LAMP": {
-  "min": 11.4,
-  "max": 11.4
+  "min": 1140.0,
+  "max": 1140.0
  },
  "REDSTONE_TORCH": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 108.0,
+  "max": 108.0
  },
  "RED_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "RED_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "RED_BUNDLE": {
-  "min": 5.3,
-  "max": 5.3
+  "min": 530.0,
+  "max": 530.0
  },
  "RED_CANDLE": {
-  "min": 3.08,
-  "max": 3.08
+  "min": 308.0,
+  "max": 308.0
  },
  "RED_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "RED_CONCRETE": {
-  "min": 2.16,
-  "max": 2.16
+  "min": 216.0,
+  "max": 216.0
  },
  "RED_CONCRETE_POWDER": {
-  "min": 1.88,
-  "max": 1.88
+  "min": 188.0,
+  "max": 188.0
  },
  "RED_DYE": {
-  "min": 1.08,
-  "max": 1.08
+  "min": 27.0,
+  "max": 27.0
  },
  "RED_GLAZED_TERRACOTTA": {
-  "min": 6.12,
-  "max": 6.12
+  "min": 612.0,
+  "max": 612.0
  },
  "RED_MUSHROOM": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "RED_MUSHROOM_BLOCK": {
-  "min": 0.02,
-  "max": 0.02
+  "min": 2.0,
+  "max": 2.0
  },
  "RED_NETHER_BRICKS": {
-  "min": 2.04,
-  "max": 2.04
+  "min": 204.0,
+  "max": 204.0
  },
  "RED_NETHER_BRICK_SLAB": {
-  "min": 1.07,
-  "max": 1.07
+  "min": 107.0,
+  "max": 107.0
  },
  "RED_NETHER_BRICK_STAIRS": {
-  "min": 2.14,
-  "max": 2.14
+  "min": 214.0,
+  "max": 214.0
  },
  "RED_NETHER_BRICK_WALL": {
-  "min": 2.14,
-  "max": 2.14
+  "min": 214.0,
+  "max": 214.0
  },
  "RED_SAND": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "RED_SANDSTONE": {
-  "min": 8.4,
-  "max": 8.4
+  "min": 840.0,
+  "max": 840.0
  },
  "RED_SANDSTONE_SLAB": {
-  "min": 4.41,
-  "max": 4.41
+  "min": 441.0,
+  "max": 441.0
  },
  "RED_SANDSTONE_STAIRS": {
-  "min": 8.82,
-  "max": 8.82
+  "min": 882.0,
+  "max": 882.0
  },
  "RED_SANDSTONE_WALL": {
-  "min": 8.82,
-  "max": 8.82
+  "min": 882.0,
+  "max": 882.0
  },
  "RED_SHULKER_BOX": {
-  "min": 6.69,
-  "max": 6.69
+  "min": 669.0,
+  "max": 669.0
  },
  "RED_STAINED_GLASS": {
-  "min": 1.69,
-  "max": 1.69
+  "min": 169.0,
+  "max": 169.0
  },
  "RED_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "RED_TERRACOTTA": {
-  "min": 5.83,
-  "max": 5.83
+  "min": 583.0,
+  "max": 583.0
  },
  "RED_TULIP": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "RED_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "REPEATER": {
-  "min": 3.73,
-  "max": 3.73
+  "min": 373.0,
+  "max": 373.0
  },
  "RESIN_BLOCK": {
-  "min": 3.6,
-  "max": 3.6
+  "min": 360.0,
+  "max": 360.0
  },
  "RESIN_BRICK": {
-  "min": 3.6,
-  "max": 3.6
+  "min": 40.0,
+  "max": 40.0
  },
  "RESIN_BRICKS": {
-  "min": 1.62,
-  "max": 1.62
+  "min": 162.0,
+  "max": 162.0
  },
  "RESIN_BRICK_SLAB": {
-  "min": 1.62,
-  "max": 1.62
+  "min": 162.0,
+  "max": 162.0
  },
  "RESIN_BRICK_STAIRS": {
-  "min": 1.62,
-  "max": 1.62
+  "min": 162.0,
+  "max": 162.0
  },
  "RESIN_CLUMP": {
-  "min": 0.4,
-  "max": 0.4
+  "min": 40.0,
+  "max": 40.0
  },
  "RESPAWN_ANCHOR": {
-  "min": 121.59,
-  "max": 121.59
+  "min": 12159.0,
+  "max": 12159.0
  },
  "RIB_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.27,
-  "max": 48.27
+  "min": 4827.0,
+  "max": 4827.0
  },
  "ROOTED_DIRT": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "ROSE_BUSH": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "ROTTEN_FLESH": {
-  "min": 20,
-  "max": 20
+  "min": 125.0,
+  "max": 125.0
  },
  "SADDLE": {
-  "min": 15,
-  "max": 15
+  "min": 1500.0,
+  "max": 1500.0
  },
  "SALMON": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "SALMON_BUCKET": {
-  "min": 6.45,
-  "max": 6.45
+  "min": 645.0,
+  "max": 645.0
  },
  "SAND": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "SANDSTONE": {
-  "min": 3,
-  "max": 3
+  "min": 300.0,
+  "max": 300.0
  },
  "SANDSTONE_SLAB": {
-  "min": 1.58,
-  "max": 1.58
+  "min": 158.0,
+  "max": 158.0
  },
  "SANDSTONE_STAIRS": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "SANDSTONE_WALL": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "SCAFFOLDING": {
-  "min": 0.34,
-  "max": 0.34
+  "min": 34.0,
+  "max": 34.0
  },
  "SCRAPE_POTTERY_SHERD": {
-  "min": 8.02,
-  "max": 8.02
+  "min": 802.0,
+  "max": 802.0
  },
  "SCULK": {
-  "min": 3,
-  "max": 3
+  "min": 300.0,
+  "max": 300.0
  },
  "SCULK_CATALYST": {
-  "min": 1250,
-  "max": 1250
+  "min": 125000.0,
+  "max": 125000.0
  },
  "SCULK_SENSOR": {
-  "min": 31.25,
-  "max": 31.25
+  "min": 3125.0,
+  "max": 3125.0
  },
  "SCULK_SHRIEKER": {
-  "min": 5000,
-  "max": 5000
+  "min": 500000.0,
+  "max": 500000.0
  },
  "SCULK_VEIN": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "SCUTE": {
-  "min": 132.5,
-  "max": 132.5
+  "min": 13250.0,
+  "max": 13250.0
  },
  "SEAGRASS": {
-  "min": 1.75,
-  "max": 1.75
+  "min": 175.0,
+  "max": 175.0
  },
  "SEA_LANTERN": {
-  "min": 16.54,
-  "max": 16.54
+  "min": 1654.0,
+  "max": 1654.0
  },
  "SEA_PICKLE": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.33,
-  "max": 48.33
+  "min": 4833.0,
+  "max": 4833.0
  },
  "SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 51.13,
-  "max": 51.13
+  "min": 5113.0,
+  "max": 5113.0
  },
  "SHEAF_POTTERY_SHERD": {
-  "min": 7.35,
-  "max": 7.35
+  "min": 735.0,
+  "max": 735.0
  },
  "SHEARS": {
-  "min": 2.9,
-  "max": 2.9
+  "min": 290.0,
+  "max": 290.0
  },
  "SHELTER_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "SHIELD": {
-  "min": 3.19,
-  "max": 3.19
+  "min": 319.0,
+  "max": 319.0
  },
  "SHROOMLIGHT": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "SHULKER_BOX": {
-  "min": 6.11,
-  "max": 6.11
+  "min": 611.0,
+  "max": 611.0
  },
  "SHULKER_SHELL": {
-  "min": 7,
-  "max": 7
+  "min": 175.0,
+  "max": 175.0
  },
  "SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.33,
-  "max": 48.33
+  "min": 4833.0,
+  "max": 4833.0
  },
  "SKELETON_SKULL": {
-  "min": 150,
-  "max": 150
+  "min": 15000.0,
+  "max": 15000.0
  },
  "SKULL_BANNER_PATTERN": {
-  "min": 262.53,
-  "max": 262.53
+  "min": 26253.0,
+  "max": 26253.0
  },
  "SKULL_POTTERY_SHERD": {
-  "min": 7.02,
-  "max": 7.02
+  "min": 702.0,
+  "max": 702.0
  },
  "SLIME_BALL": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "SLIME_BLOCK": {
-  "min": 11.82,
-  "max": 11.82
+  "min": 1182.0,
+  "max": 1182.0
  },
  "SMALL_AMETHYST_BUD": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "SMALL_DRIPLEAF": {
-  "min": 2.5,
-  "max": 2.5
+  "min": 250.0,
+  "max": 250.0
  },
  "SMITHING_TABLE": {
-  "min": 4.06,
-  "max": 4.06
+  "min": 406.0,
+  "max": 406.0
  },
  "SMOKER": {
-  "min": 4.65,
-  "max": 4.65
+  "min": 465.0,
+  "max": 465.0
  },
  "SMOOTH_BASALT": {
-  "min": 1.42,
-  "max": 1.42
+  "min": 142.0,
+  "max": 142.0
  },
  "SMOOTH_QUARTZ": {
-  "min": 9.12,
-  "max": 9.12
+  "min": 912.0,
+  "max": 912.0
  },
  "SMOOTH_QUARTZ_SLAB": {
-  "min": 4.79,
-  "max": 4.79
+  "min": 479.0,
+  "max": 479.0
  },
  "SMOOTH_QUARTZ_STAIRS": {
-  "min": 9.58,
-  "max": 9.58
+  "min": 958.0,
+  "max": 958.0
  },
  "SMOOTH_RED_SANDSTONE": {
-  "min": 8.82,
-  "max": 8.82
+  "min": 882.0,
+  "max": 882.0
  },
  "SMOOTH_RED_SANDSTONE_SLAB": {
-  "min": 4.64,
-  "max": 4.64
+  "min": 464.0,
+  "max": 464.0
  },
  "SMOOTH_RED_SANDSTONE_STAIRS": {
-  "min": 9.27,
-  "max": 9.27
+  "min": 927.0,
+  "max": 927.0
  },
  "SMOOTH_SANDSTONE": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "SMOOTH_SANDSTONE_SLAB": {
-  "min": 1.66,
-  "max": 1.66
+  "min": 166.0,
+  "max": 166.0
  },
  "SMOOTH_SANDSTONE_STAIRS": {
-  "min": 3.31,
-  "max": 3.31
+  "min": 331.0,
+  "max": 331.0
  },
  "SMOOTH_STONE": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "SMOOTH_STONE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "SNIFFER_EGG": {
-  "min": 5.75,
-  "max": 5.75
+  "min": 575.0,
+  "max": 575.0
  },
  "SNORT_POTTERY_SHERD": {
-  "min": 7.48,
-  "max": 7.48
+  "min": 748.0,
+  "max": 748.0
  },
  "SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.34,
-  "max": 48.34
+  "min": 4834.0,
+  "max": 4834.0
  },
  "SNOW": {
-  "min": 1.66,
-  "max": 1.66
+  "min": 166.0,
+  "max": 166.0
  },
  "SNOWBALL": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "SNOW_BLOCK": {
-  "min": 3.15,
-  "max": 3.15
+  "min": 315.0,
+  "max": 315.0
  },
  "SOUL_CAMPFIRE": {
-  "min": 5.45,
-  "max": 5.45
+  "min": 545.0,
+  "max": 545.0
  },
  "SOUL_LANTERN": {
-  "min": 2.32,
-  "max": 2.32
+  "min": 232.0,
+  "max": 232.0
  },
  "SOUL_SAND": {
-  "min": 2.5,
-  "max": 2.5
+  "min": 250.0,
+  "max": 250.0
  },
  "SOUL_SOIL": {
-  "min": 2.5,
-  "max": 2.5
+  "min": 250.0,
+  "max": 250.0
  },
  "SOUL_TORCH": {
-  "min": 1.04,
-  "max": 1.04
+  "min": 104.0,
+  "max": 104.0
  },
  "SPECTRAL_ARROW": {
-  "min": 31.84,
-  "max": 31.84
+  "min": 398.0,
+  "max": 398.0
  },
  "SPIDER_EYE": {
-  "min": 14,
-  "max": 14
+  "min": 175.0,
+  "max": 175.0
  },
  "SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.67,
-  "max": 48.67
+  "min": 4867.0,
+  "max": 4867.0
  },
  "SPLASH_POTION": {
-  "min": 5.05,
-  "max": 841.83
+  "min": 505.0,
+  "max": 84183.0
  },
  "SPONGE": {
-  "min": 131.25,
-  "max": 131.25
+  "min": 13125.0,
+  "max": 13125.0
  },
  "SPORE_BLOSSOM": {
-  "min": 0.88,
-  "max": 0.88
+  "min": 88.0,
+  "max": 88.0
  },
  "SPRUCE_BOAT": {
-  "min": 1.45,
-  "max": 1.45
+  "min": 145.0,
+  "max": 145.0
  },
  "SPRUCE_BUTTON": {
-  "min": 0.29,
-  "max": 0.29
+  "min": 29.0,
+  "max": 29.0
  },
  "SPRUCE_CHEST_BOAT": {
-  "min": 3.96,
-  "max": 3.96
+  "min": 396.0,
+  "max": 396.0
  },
  "SPRUCE_DOOR": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "SPRUCE_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "SPRUCE_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "SPRUCE_HANGING_SIGN": {
-  "min": 0.91,
-  "max": 0.91
+  "min": 91.0,
+  "max": 91.0
  },
  "SPRUCE_LEAVES": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "SPRUCE_LOG": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "SPRUCE_PLANKS": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 28.0,
+  "max": 28.0
  },
  "SPRUCE_PRESSURE_PLATE": {
-  "min": 0.58,
-  "max": 0.58
+  "min": 58.0,
+  "max": 58.0
  },
  "SPRUCE_SAPLING": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "SPRUCE_SIGN": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "SPRUCE_SLAB": {
-  "min": 0.9,
-  "max": 0.9
+  "min": 15.0,
+  "max": 15.0
  },
  "SPRUCE_STAIRS": {
-  "min": 1.76,
-  "max": 1.76
+  "min": 44.0,
+  "max": 44.0
  },
  "SPRUCE_TRAPDOOR": {
-  "min": 0.87,
-  "max": 0.87
+  "min": 87.0,
+  "max": 87.0
  },
  "SPRUCE_WOOD": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "SPYGLASS": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "STICK": {
-  "min": 0.15,
-  "max": 0.15
+  "min": 15.0,
+  "max": 15.0
  },
  "STICKY_PISTON": {
-  "min": 5.46,
-  "max": 5.46
+  "min": 546.0,
+  "max": 546.0
  },
  "STONE": {
-  "min": 0.18,
-  "max": 0.18
+  "min": 18.0,
+  "max": 18.0
  },
  "STONECUTTER": {
-  "min": 2.01,
-  "max": 2.01
+  "min": 201.0,
+  "max": 201.0
  },
  "STONE_AXE": {
-  "min": 0.84,
-  "max": 0.84
+  "min": 84.0,
+  "max": 84.0
  },
  "STONE_BRICKS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "STONE_BRICK_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "STONE_BRICK_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "STONE_BRICK_WALL": {
-  "min": 0.2,
-  "max": 0.2
+  "min": 20.0,
+  "max": 20.0
  },
  "STONE_BUTTON": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "STONE_HOE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "STONE_PICKAXE": {
-  "min": 0.84,
-  "max": 0.84
+  "min": 84.0,
+  "max": 84.0
  },
  "STONE_PRESSURE_PLATE": {
-  "min": 0.38,
-  "max": 0.38
+  "min": 38.0,
+  "max": 38.0
  },
  "STONE_SHOVEL": {
-  "min": 0.49,
-  "max": 0.49
+  "min": 49.0,
+  "max": 49.0
  },
  "STONE_SLAB": {
-  "min": 0.1,
-  "max": 0.1
+  "min": 10.0,
+  "max": 10.0
  },
  "STONE_SPEAR": {
-  "min": 0.49,
-  "max": 0.49
+  "min": 49.0,
+  "max": 49.0
  },
  "STONE_STAIRS": {
-  "min": 0.19,
-  "max": 0.19
+  "min": 19.0,
+  "max": 19.0
  },
  "STONE_SWORD": {
-  "min": 0.51,
-  "max": 0.51
+  "min": 51.0,
+  "max": 51.0
  },
  "STRING": {
-  "min": 28,
-  "max": 28
+  "min": 175.0,
+  "max": 175.0
  },
  "STRIPPED_ACACIA_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_ACACIA_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_BIRCH_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_BIRCH_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_CRIMSON_HYPHAE": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_CRIMSON_STEM": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_DARK_OAK_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_DARK_OAK_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_JUNGLE_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_JUNGLE_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_OAK_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_OAK_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_SPRUCE_LOG": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "STRIPPED_SPRUCE_WOOD": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_WARPED_HYPHAE": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "STRIPPED_WARPED_STEM": {
-  "min": 0.79,
-  "max": 0.79
+  "min": 79.0,
+  "max": 79.0
  },
  "SUGAR": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "SUGAR_CANE": {
-  "min": 0.12,
-  "max": 0.12
+  "min": 3.0,
+  "max": 3.0
  },
  "SUNFLOWER": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "SWEET_BERRIES": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "TADPOLE_BUCKET": {
-  "min": 4.87,
-  "max": 4.87
+  "min": 487.0,
+  "max": 487.0
  },
  "TALL_GRASS": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "TARGET": {
-  "min": 16.08,
-  "max": 16.08
+  "min": 1608.0,
+  "max": 1608.0
  },
  "TERRACOTTA": {
-  "min": 5.52,
-  "max": 5.52
+  "min": 552.0,
+  "max": 552.0
  },
  "TIDE_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 52.1,
-  "max": 52.1
+  "min": 5210.0,
+  "max": 5210.0
  },
  "TINTED_GLASS": {
-  "min": 1.52,
-  "max": 1.52
+  "min": 152.0,
+  "max": 152.0
  },
  "TIPPED_ARROW": {
-  "min": 5.12,
-  "max": 121.54
+  "min": 512.0,
+  "max": 12154.0
  },
  "TNT": {
-  "min": 26.65,
-  "max": 26.65
+  "min": 2665.0,
+  "max": 2665.0
  },
  "TNT_MINECART": {
-  "min": 35.58,
-  "max": 35.58
+  "min": 3558.0,
+  "max": 3558.0
  },
  "TORCH": {
-  "min": 0.39,
-  "max": 0.39
+  "min": 39.0,
+  "max": 39.0
  },
  "TORCHFLOWER": {
-  "min": 5.19,
-  "max": 5.19
+  "min": 519.0,
+  "max": 519.0
  },
  "TORCHFLOWER_SEEDS": {
-  "min": 5.13,
-  "max": 5.13
+  "min": 513.0,
+  "max": 513.0
  },
  "TOTEM_OF_UNDYING": {
-  "min": 300,
-  "max": 300
+  "min": 30000.0,
+  "max": 30000.0
  },
  "TRAPPED_CHEST": {
-  "min": 3.43,
-  "max": 3.43
+  "min": 343.0,
+  "max": 343.0
  },
  "TRIAL_KEY": {
-  "min": 2500,
-  "max": 2500
+  "min": 250000.0,
+  "max": 250000.0
  },
  "TRIDENT": {
-  "min": 45,
-  "max": 45
+  "min": 4500.0,
+  "max": 4500.0
  },
  "TRIPWIRE_HOOK": {
-  "min": 0.95,
-  "max": 0.95
+  "min": 95.0,
+  "max": 95.0
  },
  "TROPICAL_FISH": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "TROPICAL_FISH_BUCKET": {
-  "min": 6.45,
-  "max": 6.45
+  "min": 645.0,
+  "max": 645.0
  },
  "TUBE_CORAL": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "TUBE_CORAL_BLOCK": {
-  "min": 4,
-  "max": 4
+  "min": 400.0,
+  "max": 400.0
  },
  "TUBE_CORAL_FAN": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "TUFF": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "TUFF_BRICKS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "TUFF_BRICK_SLAB": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "TUFF_BRICK_STAIRS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "TUFF_BRICK_WALL": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "TUFF_SLAB": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "TUFF_STAIRS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "TUFF_WALL": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "TURTLE_EGG": {
-  "min": 3.75,
-  "max": 3.75
+  "min": 375.0,
+  "max": 375.0
  },
  "TURTLE_HELMET": {
-  "min": 695.63,
-  "max": 695.63
+  "min": 69563.0,
+  "max": 69563.0
  },
  "TWISTING_VINES": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "VAULT": {
-  "min": 30000,
-  "max": 30000
+  "min": 3000000.0,
+  "max": 3000000.0
  },
  "VERDANT_FROGLIGHT": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "VEX_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.33,
-  "max": 48.33
+  "min": 4833.0,
+  "max": 4833.0
  },
  "VINE": {
-  "min": 1.75,
-  "max": 1.75
+  "min": 175.0,
+  "max": 175.0
  },
  "WARD_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 48.33,
-  "max": 48.33
+  "min": 4833.0,
+  "max": 4833.0
  },
  "WARPED_BUTTON": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "WARPED_DOOR": {
-  "min": 0.42,
-  "max": 0.42
+  "min": 42.0,
+  "max": 42.0
  },
  "WARPED_FENCE": {
-  "min": 1.47,
-  "max": 1.47
+  "min": 49.0,
+  "max": 49.0
  },
  "WARPED_FENCE_GATE": {
-  "min": 1.19,
-  "max": 1.19
+  "min": 119.0,
+  "max": 119.0
  },
  "WARPED_FUNGUS": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "WARPED_FUNGUS_ON_A_STICK": {
-  "min": 5.92,
-  "max": 5.92
+  "min": 592.0,
+  "max": 592.0
  },
  "WARPED_HANGING_SIGN": {
-  "min": 0.83,
-  "max": 0.83
+  "min": 83.0,
+  "max": 83.0
  },
  "WARPED_HYPHAE": {
-  "min": 1.05,
-  "max": 1.05
+  "min": 105.0,
+  "max": 105.0
  },
  "WARPED_NYLIUM": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "WARPED_PLANKS": {
-  "min": 0.8,
-  "max": 0.8
+  "min": 20.0,
+  "max": 20.0
  },
  "WARPED_PRESSURE_PLATE": {
-  "min": 0.21,
-  "max": 0.21
+  "min": 21.0,
+  "max": 21.0
  },
  "WARPED_ROOTS": {
-  "min": 1.25,
-  "max": 1.25
+  "min": 125.0,
+  "max": 125.0
  },
  "WARPED_SIGN": {
-  "min": 0.47,
-  "max": 0.47
+  "min": 47.0,
+  "max": 47.0
  },
  "WARPED_SLAB": {
-  "min": 0.66,
-  "max": 0.66
+  "min": 11.0,
+  "max": 11.0
  },
  "WARPED_STAIRS": {
-  "min": 1.28,
-  "max": 1.28
+  "min": 32.0,
+  "max": 32.0
  },
  "WARPED_STEM": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "WARPED_TRAPDOOR": {
-  "min": 0.63,
-  "max": 0.63
+  "min": 63.0,
+  "max": 63.0
  },
  "WARPED_WART_BLOCK": {
-  "min": 6.75,
-  "max": 6.75
+  "min": 675.0,
+  "max": 675.0
  },
  "WATER_BUCKET": {
-  "min": 4.59,
-  "max": 4.59
+  "min": 459.0,
+  "max": 459.0
  },
  "WAXED_CHISELED_COPPER": {
-  "min": 1.1,
-  "max": 1.1
+  "min": 110.0,
+  "max": 110.0
  },
  "WAXED_COPPER_BLOCK": {
-  "min": 1.84,
-  "max": 1.84
+  "min": 184.0,
+  "max": 184.0
  },
  "WAXED_COPPER_BULB": {
-  "min": 2.22,
-  "max": 2.22
+  "min": 222.0,
+  "max": 222.0
  },
  "WAXED_COPPER_DOOR": {
-  "min": 2.96,
-  "max": 2.96
+  "min": 296.0,
+  "max": 296.0
  },
  "WAXED_COPPER_GRATE": {
-  "min": 1.1,
-  "max": 1.1
+  "min": 110.0,
+  "max": 110.0
  },
  "WAXED_COPPER_TRAPDOOR": {
-  "min": 4.02,
-  "max": 4.02
+  "min": 402.0,
+  "max": 402.0
  },
  "WAXED_CUT_COPPER": {
-  "min": 0.49,
-  "max": 0.49
+  "min": 49.0,
+  "max": 49.0
  },
  "WAXED_CUT_COPPER_SLAB": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "WAXED_CUT_COPPER_STAIRS": {
-  "min": 0.49,
-  "max": 0.49
+  "min": 49.0,
+  "max": 49.0
  },
  "WAXED_EXPOSED_CHISELED_COPPER": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "WAXED_EXPOSED_COPPER": {
-  "min": 1.9,
-  "max": 1.9
+  "min": 190.0,
+  "max": 190.0
  },
  "WAXED_EXPOSED_COPPER_BULB": {
-  "min": 2.26,
-  "max": 2.26
+  "min": 226.0,
+  "max": 226.0
  },
  "WAXED_EXPOSED_COPPER_DOOR": {
-  "min": 3.07,
-  "max": 3.07
+  "min": 307.0,
+  "max": 307.0
  },
  "WAXED_EXPOSED_COPPER_GRATE": {
-  "min": 1.11,
-  "max": 1.11
+  "min": 111.0,
+  "max": 111.0
  },
  "WAXED_EXPOSED_COPPER_TRAPDOOR": {
-  "min": 4.18,
-  "max": 4.18
+  "min": 418.0,
+  "max": 418.0
  },
  "WAXED_EXPOSED_CUT_COPPER": {
-  "min": 1.23,
-  "max": 1.23
+  "min": 123.0,
+  "max": 123.0
  },
  "WAXED_EXPOSED_CUT_COPPER_SLAB": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "WAXED_EXPOSED_CUT_COPPER_STAIRS": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "WAXED_OXIDIZED_CHISELED_COPPER": {
-  "min": 1.14,
-  "max": 1.14
+  "min": 114.0,
+  "max": 114.0
  },
  "WAXED_OXIDIZED_COPPER": {
-  "min": 2,
-  "max": 2
+  "min": 200.0,
+  "max": 200.0
  },
  "WAXED_OXIDIZED_COPPER_BULB": {
-  "min": 2.34,
-  "max": 2.34
+  "min": 234.0,
+  "max": 234.0
  },
  "WAXED_OXIDIZED_COPPER_DOOR": {
-  "min": 3.29,
-  "max": 3.29
+  "min": 329.0,
+  "max": 329.0
  },
  "WAXED_OXIDIZED_COPPER_GRATE": {
-  "min": 1.14,
-  "max": 1.14
+  "min": 114.0,
+  "max": 114.0
  },
  "WAXED_OXIDIZED_COPPER_TRAPDOOR": {
-  "min": 4.53,
-  "max": 4.53
+  "min": 453.0,
+  "max": 453.0
  },
  "WAXED_OXIDIZED_CUT_COPPER": {
-  "min": 1.7,
-  "max": 1.7
+  "min": 170.0,
+  "max": 170.0
  },
  "WAXED_OXIDIZED_CUT_COPPER_SLAB": {
-  "min": 0.27,
-  "max": 0.27
+  "min": 27.0,
+  "max": 27.0
  },
  "WAXED_OXIDIZED_CUT_COPPER_STAIRS": {
-  "min": 0.53,
-  "max": 0.53
+  "min": 53.0,
+  "max": 53.0
  },
  "WAXED_WEATHERED_CHISELED_COPPER": {
-  "min": 1.13,
-  "max": 1.13
+  "min": 113.0,
+  "max": 113.0
  },
  "WAXED_WEATHERED_COPPER": {
-  "min": 1.95,
-  "max": 1.95
+  "min": 195.0,
+  "max": 195.0
  },
  "WAXED_WEATHERED_COPPER_BULB": {
-  "min": 2.3,
-  "max": 2.3
+  "min": 230.0,
+  "max": 230.0
  },
  "WAXED_WEATHERED_COPPER_DOOR": {
-  "min": 3.18,
-  "max": 3.18
+  "min": 318.0,
+  "max": 318.0
  },
  "WAXED_WEATHERED_COPPER_GRATE": {
-  "min": 1.13,
-  "max": 1.13
+  "min": 113.0,
+  "max": 113.0
  },
  "WAXED_WEATHERED_COPPER_TRAPDOOR": {
-  "min": 4.35,
-  "max": 4.35
+  "min": 435.0,
+  "max": 435.0
  },
  "WAXED_WEATHERED_CUT_COPPER": {
-  "min": 1.38,
-  "max": 1.38
+  "min": 138.0,
+  "max": 138.0
  },
  "WAXED_WEATHERED_CUT_COPPER_SLAB": {
-  "min": 0.26,
-  "max": 0.26
+  "min": 26.0,
+  "max": 26.0
  },
  "WAXED_WEATHERED_CUT_COPPER_STAIRS": {
-  "min": 0.52,
-  "max": 0.52
+  "min": 52.0,
+  "max": 52.0
  },
  "WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 51.13,
-  "max": 51.13
+  "min": 5113.0,
+  "max": 5113.0
  },
  "WEATHERED_CHISELED_COPPER": {
-  "min": 0.28,
-  "max": 0.28
+  "min": 28.0,
+  "max": 28.0
  },
  "WEATHERED_COPPER": {
-  "min": 1.07,
-  "max": 1.07
+  "min": 107.0,
+  "max": 107.0
  },
  "WEATHERED_COPPER_BULB": {
-  "min": 1.4,
-  "max": 1.4
+  "min": 140.0,
+  "max": 140.0
  },
  "WEATHERED_COPPER_DOOR": {
-  "min": 2.24,
-  "max": 2.24
+  "min": 224.0,
+  "max": 224.0
  },
  "WEATHERED_COPPER_GRATE": {
-  "min": 0.28,
-  "max": 0.28
+  "min": 28.0,
+  "max": 28.0
  },
  "WEATHERED_COPPER_TRAPDOOR": {
-  "min": 3.36,
-  "max": 3.36
+  "min": 336.0,
+  "max": 336.0
  },
  "WEATHERED_CUT_COPPER": {
-  "min": 1.12,
-  "max": 1.12
+  "min": 112.0,
+  "max": 112.0
  },
  "WEATHERED_CUT_COPPER_SLAB": {
-  "min": 0.01,
-  "max": 0.01
+  "min": 1.0,
+  "max": 1.0
  },
  "WEATHERED_CUT_COPPER_STAIRS": {
-  "min": 0.02,
-  "max": 0.02
+  "min": 2.0,
+  "max": 2.0
  },
  "WEEPING_VINES": {
-  "min": 1.5,
-  "max": 1.5
+  "min": 150.0,
+  "max": 150.0
  },
  "WET_SPONGE": {
-  "min": 125,
-  "max": 125
+  "min": 12500.0,
+  "max": 12500.0
  },
  "WHEAT": {
-  "min": 5,
-  "max": 5
+  "min": 125.0,
+  "max": 125.0
  },
  "WHEAT_SEEDS": {
-  "min": 0.75,
-  "max": 0.75
+  "min": 75.0,
+  "max": 75.0
  },
  "WHITE_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "WHITE_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "WHITE_BUNDLE": {
-  "min": 5.35,
-  "max": 5.35
+  "min": 535.0,
+  "max": 535.0
  },
  "WHITE_CANDLE": {
-  "min": 3.23,
-  "max": 3.23
+  "min": 323.0,
+  "max": 323.0
  },
  "WHITE_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "WHITE_CONCRETE": {
-  "min": 2.2,
-  "max": 2.2
+  "min": 220.0,
+  "max": 220.0
  },
  "WHITE_CONCRETE_POWDER": {
-  "min": 1.91,
-  "max": 1.91
+  "min": 191.0,
+  "max": 191.0
  },
  "WHITE_DYE": {
-  "min": 1.64,
-  "max": 1.64
+  "min": 41.0,
+  "max": 41.0
  },
  "WHITE_GLAZED_TERRACOTTA": {
-  "min": 6.15,
-  "max": 6.15
+  "min": 615.0,
+  "max": 615.0
  },
  "WHITE_SHULKER_BOX": {
-  "min": 6.84,
-  "max": 6.84
+  "min": 684.0,
+  "max": 684.0
  },
  "WHITE_STAINED_GLASS": {
-  "min": 1.71,
-  "max": 1.71
+  "min": 171.0,
+  "max": 171.0
  },
  "WHITE_STAINED_GLASS_PANE": {
-  "min": 0.68,
-  "max": 0.68
+  "min": 68.0,
+  "max": 68.0
  },
  "WHITE_TERRACOTTA": {
-  "min": 5.86,
-  "max": 5.86
+  "min": 586.0,
+  "max": 586.0
  },
  "WHITE_TULIP": {
-  "min": 0.25,
-  "max": 0.25
+  "min": 25.0,
+  "max": 25.0
  },
  "WHITE_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "WILD_ARMOR_TRIM_SMITHING_TEMPLATE": {
-  "min": 49.3,
-  "max": 49.3
+  "min": 4930.0,
+  "max": 4930.0
  },
  "WIND_CHARGE": {
-  "min": 10.56,
-  "max": 10.56
+  "min": 132.0,
+  "max": 132.0
  },
  "WITHER_ROSE": {
-  "min": 0.5,
-  "max": 0.5
+  "min": 50.0,
+  "max": 50.0
  },
  "WITHER_SKELETON_SKULL": {
-  "min": 250,
-  "max": 250
+  "min": 25000.0,
+  "max": 25000.0
  },
  "WOLF_ARMOR": {
-  "min": 834.75,
-  "max": 834.75
+  "min": 83475.0,
+  "max": 83475.0
  },
  "WOODEN_AXE": {
-  "min": 1.18,
-  "max": 1.18
+  "min": 118.0,
+  "max": 118.0
  },
  "WOODEN_HOE": {
-  "min": 0.89,
-  "max": 0.89
+  "min": 89.0,
+  "max": 89.0
  },
  "WOODEN_PICKAXE": {
-  "min": 1.18,
-  "max": 1.18
+  "min": 118.0,
+  "max": 118.0
  },
  "WOODEN_SHOVEL": {
-  "min": 0.6,
-  "max": 0.6
+  "min": 60.0,
+  "max": 60.0
  },
  "WOODEN_SPEAR": {
-  "min": 0.6,
-  "max": 0.6
+  "min": 60.0,
+  "max": 60.0
  },
  "WOODEN_SWORD": {
-  "min": 0.89,
-  "max": 0.89
+  "min": 89.0,
+  "max": 89.0
  },
  "WRITABLE_BOOK": {
-  "min": 12.24,
-  "max": 12.24
+  "min": 1224.0,
+  "max": 1224.0
  },
  "YELLOW_BANNER": {
-  "min": 46.46,
-  "max": 46.46
+  "min": 4646.0,
+  "max": 4646.0
  },
  "YELLOW_BED": {
-  "min": 24.03,
-  "max": 24.03
+  "min": 2403.0,
+  "max": 2403.0
  },
  "YELLOW_BUNDLE": {
-  "min": 5.27,
-  "max": 5.27
+  "min": 527.0,
+  "max": 527.0
  },
  "YELLOW_CANDLE": {
-  "min": 2.99,
-  "max": 2.99
+  "min": 299.0,
+  "max": 299.0
  },
  "YELLOW_CARPET": {
-  "min": 5.15,
-  "max": 5.15
+  "min": 515.0,
+  "max": 515.0
  },
  "YELLOW_CONCRETE": {
-  "min": 2.15,
-  "max": 2.15
+  "min": 215.0,
+  "max": 215.0
  },
  "YELLOW_CONCRETE_POWDER": {
-  "min": 1.87,
-  "max": 1.87
+  "min": 187.0,
+  "max": 187.0
  },
  "YELLOW_DYE": {
-  "min": 0.72,
-  "max": 0.72
+  "min": 18.0,
+  "max": 18.0
  },
  "YELLOW_GLAZED_TERRACOTTA": {
-  "min": 6.11,
-  "max": 6.11
+  "min": 611.0,
+  "max": 611.0
  },
  "YELLOW_SHULKER_BOX": {
-  "min": 6.6,
-  "max": 6.6
+  "min": 660.0,
+  "max": 660.0
  },
  "YELLOW_STAINED_GLASS": {
-  "min": 1.68,
-  "max": 1.68
+  "min": 168.0,
+  "max": 168.0
  },
  "YELLOW_STAINED_GLASS_PANE": {
-  "min": 0.67,
-  "max": 0.67
+  "min": 67.0,
+  "max": 67.0
  },
  "YELLOW_TERRACOTTA": {
-  "min": 5.82,
-  "max": 5.82
+  "min": 582.0,
+  "max": 582.0
  },
  "YELLOW_WOOL": {
-  "min": 16.48,
-  "max": 16.48
+  "min": 1648.0,
+  "max": 1648.0
  },
  "ZOMBIE_HEAD": {
-  "min": 150,
-  "max": 150
+  "min": 15000.0,
+  "max": 15000.0
  }
 }

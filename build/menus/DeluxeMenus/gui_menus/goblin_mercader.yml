@@ -7,7 +7,7 @@ items:
     slot: 10
     display_name: '&aFrasco de Experiencia Pequeno'
     lore:
-    - '&e2,550$'
+    - '&e255,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -19,7 +19,7 @@ items:
     slot: 11
     display_name: '&aFrasco de Experiencia Grande'
     lore:
-    - '&e7,650$'
+    - '&e765,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -31,7 +31,7 @@ items:
     slot: 12
     display_name: '&aFrasco de Experiencia Gigante'
     lore:
-    - '&e21,250$'
+    - '&e2,125,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -43,7 +43,7 @@ items:
     slot: 13
     display_name: '&aBarril de Experiencia'
     lore:
-    - '&e187,000$'
+    - '&e18,700,000$'
     - '&7Limite por visita: 1'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -55,7 +55,7 @@ items:
     slot: 14
     display_name: '&aManzana de la Suerte'
     lore:
-    - '&e51,000$'
+    - '&e5,100,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -67,7 +67,7 @@ items:
     slot: 15
     display_name: '&aCristal Arcano'
     lore:
-    - '&e1,800$'
+    - '&e180,000$'
     - '&7Limite por visita: 6'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -79,7 +79,7 @@ items:
     slot: 16
     display_name: '&aCristal Refinado'
     lore:
-    - '&e6,500$'
+    - '&e650,000$'
     - '&7Limite por visita: 3'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -91,7 +91,7 @@ items:
     slot: 17
     display_name: '&aEsencia Elite'
     lore:
-    - '&e2,500$'
+    - '&e250,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -103,7 +103,7 @@ items:
     slot: 18
     display_name: '&aLlave virtual de Gacha de Cosmeticos'
     lore:
-    - '&e425$'
+    - '&e42,500$'
     - '&7Limite por visita: 3'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -115,7 +115,7 @@ items:
     slot: 19
     display_name: '&aBalde de Madera (cosmetico raro)'
     lore:
-    - '&e12,000$'
+    - '&e1,200,000$'
     - '&7Limite por visita: 1'
     - '&7La compra valida cercania y stock.'
     click_commands:

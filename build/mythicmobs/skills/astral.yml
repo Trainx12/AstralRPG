@@ -1,3 +1,59 @@
+AST_PLATA_HOSTIL:
+  Skills:
+  - command{c="astralplatamob <trigger.name> hostil 1"} @self ?hastag{tag=astral.mt1}
+  - command{c="astralplatamob <trigger.name> hostil 2"} @self ?hastag{tag=astral.mt2}
+  - command{c="astralplatamob <trigger.name> hostil 3"} @self ?hastag{tag=astral.mt3}
+  - command{c="astralplatamob <trigger.name> hostil 4"} @self ?hastag{tag=astral.mt4}
+  - command{c="astralplatamob <trigger.name> hostil 5"} @self ?hastag{tag=astral.mt5}
+  - command{c="astralplatamob <trigger.name> hostil 6"} @self ?hastag{tag=astral.mt6}
+  - command{c="astralplatamob <trigger.name> hostil 7"} @self ?hastag{tag=astral.mt7}
+  - command{c="astralplatamob <trigger.name> hostil 8"} @self ?hastag{tag=astral.mt8}
+  - command{c="astralplatamob <trigger.name> hostil 9"} @self ?hastag{tag=astral.mt9}
+  - command{c="astralplatamob <trigger.name> hostil 10"} @self ?hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> hostil 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+
+AST_PLATA_ELITE:
+  Skills:
+  - command{c="astralplatamob <trigger.name> elite 1"} @self ?hastag{tag=astral.mt1}
+  - command{c="astralplatamob <trigger.name> elite 2"} @self ?hastag{tag=astral.mt2}
+  - command{c="astralplatamob <trigger.name> elite 3"} @self ?hastag{tag=astral.mt3}
+  - command{c="astralplatamob <trigger.name> elite 4"} @self ?hastag{tag=astral.mt4}
+  - command{c="astralplatamob <trigger.name> elite 5"} @self ?hastag{tag=astral.mt5}
+  - command{c="astralplatamob <trigger.name> elite 6"} @self ?hastag{tag=astral.mt6}
+  - command{c="astralplatamob <trigger.name> elite 7"} @self ?hastag{tag=astral.mt7}
+  - command{c="astralplatamob <trigger.name> elite 8"} @self ?hastag{tag=astral.mt8}
+  - command{c="astralplatamob <trigger.name> elite 9"} @self ?hastag{tag=astral.mt9}
+  - command{c="astralplatamob <trigger.name> elite 10"} @self ?hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> elite 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+
+AST_PLATA_JEFE:
+  Skills:
+  - command{c="astralplatamob <trigger.name> jefe 1"} @self ?hastag{tag=astral.mt1}
+  - command{c="astralplatamob <trigger.name> jefe 2"} @self ?hastag{tag=astral.mt2}
+  - command{c="astralplatamob <trigger.name> jefe 3"} @self ?hastag{tag=astral.mt3}
+  - command{c="astralplatamob <trigger.name> jefe 4"} @self ?hastag{tag=astral.mt4}
+  - command{c="astralplatamob <trigger.name> jefe 5"} @self ?hastag{tag=astral.mt5}
+  - command{c="astralplatamob <trigger.name> jefe 6"} @self ?hastag{tag=astral.mt6}
+  - command{c="astralplatamob <trigger.name> jefe 7"} @self ?hastag{tag=astral.mt7}
+  - command{c="astralplatamob <trigger.name> jefe 8"} @self ?hastag{tag=astral.mt8}
+  - command{c="astralplatamob <trigger.name> jefe 9"} @self ?hastag{tag=astral.mt9}
+  - command{c="astralplatamob <trigger.name> jefe 10"} @self ?hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> jefe 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+
+AST_PLATA_ANCESTRAL:
+  Skills:
+  - command{c="astralplatamob <trigger.name> ancestral 1"} @self ?hastag{tag=astral.mt1}
+  - command{c="astralplatamob <trigger.name> ancestral 2"} @self ?hastag{tag=astral.mt2}
+  - command{c="astralplatamob <trigger.name> ancestral 3"} @self ?hastag{tag=astral.mt3}
+  - command{c="astralplatamob <trigger.name> ancestral 4"} @self ?hastag{tag=astral.mt4}
+  - command{c="astralplatamob <trigger.name> ancestral 5"} @self ?hastag{tag=astral.mt5}
+  - command{c="astralplatamob <trigger.name> ancestral 6"} @self ?hastag{tag=astral.mt6}
+  - command{c="astralplatamob <trigger.name> ancestral 7"} @self ?hastag{tag=astral.mt7}
+  - command{c="astralplatamob <trigger.name> ancestral 8"} @self ?hastag{tag=astral.mt8}
+  - command{c="astralplatamob <trigger.name> ancestral 9"} @self ?hastag{tag=astral.mt9}
+  - command{c="astralplatamob <trigger.name> ancestral 10"} @self ?hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> ancestral 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+
 AST_MUERTE:
   Skills:
   - tint{c=FF5555} @self

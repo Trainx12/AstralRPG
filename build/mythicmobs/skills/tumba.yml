@@ -140,9 +140,9 @@ TUMBA_PREMIO:
   - command{c="loot give <target.name> loot astral:item/esencia_elite"}
   - command{c="loot give <target.name> loot astral:item/alma_corrupta"}
   - command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25
-  - command{c="eco give <target.name> 2000"}
+  - command{c="eco give <target.name> 200000"}
   - command{c="lp user <target.name> permission settemp astral.tumba.cd true 30m"}
-  - 'message{m="&6Cofre de Tumba del Rey de Arena: &fmateriales de elite y &e2000$&f. &7(el proximo cofre en 30 minutos)"}'
+  - 'message{m="&6Cofre de Tumba del Rey de Arena: &fmateriales de elite y &e200000$&f. &7(el proximo cofre en 30 minutos)"}'
 TUMBA_PREMIO_YA:
   TargetConditions:
   - haspermission{p=astral.tumba.cd} true

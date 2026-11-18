@@ -279,7 +279,7 @@ command /ranking [<text>] [<text>]:
         rk_resumen(player, "trainx")
         rk_resumen(player, "minas")
         rk_resumen(player, "bosque")
-        send "&7Premios cada lunes al top 3 (1°: 1.000.000$, 2°: 500.000$, 3°: 250.000$, tiradas, Chispas y titulos exclusivos: &f/trofeos&7)." to player
+        send "&7Premios cada lunes al top 3 (1°: 100.000.000$, 2°: 50.000.000$, 3°: 25.000.000$, tiradas, Chispas y titulos exclusivos: &f/trofeos&7)." to player
 
 function rk_resumen(p: player, r: text):
     set {_top::*} to rk_top({_r}, 3)
@@ -421,7 +421,7 @@ function rk_entregar(p: player):
 
 function rk_premio(p: player, n: text, pos: number):
     if {_pos} is 1:
-        execute console command "eco give %{_n}% 1000000"
+        execute console command "eco give %{_n}% 100000000"
         execute console command "crates give virtual gacha_cosmeticos 10 %{_n}% -s"
         wait 1 second
         execute console command "sudo %{_n}% crates mass-open gacha_cosmeticos virtual 10"
@@ -447,7 +447,7 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
     if {_pos} is 2:
-        execute console command "eco give %{_n}% 500000"
+        execute console command "eco give %{_n}% 50000000"
         execute console command "crates give virtual gacha_cosmeticos 5 %{_n}% -s"
         wait 1 second
         execute console command "sudo %{_n}% crates mass-open gacha_cosmeticos virtual 5"
@@ -467,7 +467,7 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
     if {_pos} is 3:
-        execute console command "eco give %{_n}% 250000"
+        execute console command "eco give %{_n}% 25000000"
         execute console command "crates give virtual gacha_cosmeticos 3 %{_n}% -s"
         wait 1 second
         execute console command "sudo %{_n}% crates mass-open gacha_cosmeticos virtual 3"

@@ -61,7 +61,7 @@ Crate:
   Glowing: "add_glow"
   Name: "<#7ED957><bold>Gacha de Monturas"
   Lore:
-    - "<gray>Tirada: <yellow>2500$"
+    - "<gray>Tirada: <yellow>250.000$"
   Preview:
     Name: "<#7ED957><bold>Gacha de Monturas<reset><gray> - premios"
     Toggle: true
@@ -122,13 +122,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.41%"
         - "<gold>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 3.4091
       Commands:
         - "lp user %player% permission set astral.mascota.brujita true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Brujita Estelar',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -151,7 +151,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>5.68%"
         - "<gold>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 5.6818
       Commands:
@@ -179,13 +179,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.41%"
         - "<gold>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 3.4091
       Commands:
         - "lp user %player% permission set astral.mascota.fenix true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Legendario',color:'gold',bold:true},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Fenix',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -208,13 +208,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>14.19%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 14.1892
       Commands:
         - "lp user %player% permission set astral.mascota.bombardero true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Bombardero Musgoso',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -237,13 +237,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>14.19%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 14.1892
       Commands:
         - "lp user %player% permission set astral.mascota.encapuchado true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Zorro Encapuchado',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -266,13 +266,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>14.19%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 14.1892
       Commands:
         - "lp user %player% permission set astral.mascota.micelio true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Cubito de Micelio',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -295,13 +295,13 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>14.19%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 14.1892
       Commands:
         - "lp user %player% permission set astral.mascota.honguito true"
-        - "eco give %player% 1000"
-        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"
+        - "eco give %player% 100000"
+        - "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 100.000$',color:'gold'}"
         - "scoreboard players set %player% pity_monturas 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Monturas',color:'#7ED957'},{text:': ',color:'gray'},{text:'Mascota 3D: Honguito Errante',color:'white'}]"
         - "astralgacha %player% gacha_monturas ack false"
@@ -324,7 +324,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>23.65%"
         - "<light_purple>▮▮▮▮▮▮▮▮<dark_gray>▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 23.6486
       Commands:
@@ -352,7 +352,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>7.09%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (2500$)"
+        - "<dark_gray>Clic al vendedor para tirar (250000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 40 tiradas"
       Weight: 7.0946
       Commands:

@@ -18,7 +18,7 @@ class Tanda5aTests(unittest.TestCase):
         self.assertAlmostEqual(XP_MOB[5]*250,57700)
 
     def test_shop_adds_area(self):
-        self.assertEqual(PAQUETES,[(25,15000),(100,50000),(1225,500000),(2500,950000),(10000,3500000)])
+        self.assertEqual(PAQUETES,[(25,1500000),(100,5000000),(1225,50000000),(2500,95000000),(10000,350000000)])  # economia E1 (x100)
         cfg=yaml.safe_load((ROOT/'build/tanda5a/GriefPreventionData/config.yml').read_text())['GriefPrevention']
         self.assertEqual(cfg['Claims']['InitialBlocks']+PAQUETES[0][0],61)
         self.assertEqual(cfg['Claims']['Claim Blocks Accrued Per Hour']['Default'],0)

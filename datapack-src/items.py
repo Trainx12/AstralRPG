@@ -380,17 +380,18 @@ SET_BONUS = {
 # MEJORA DE EQUIPO +1 a +10 (Herrero del lobby). Armas: mas dano. Armaduras: mas vida por pieza.
 # nivel: (plata, probabilidad de exito, materiales). Si falla se pierden los materiales, no la plata ni el item.
 # ---------------------------------------------------------------------------
+from economia import MEJORAS_PLATA  # noqa: E402  (plata de cada mejora)
 MEJORAS = {
-    1: (300, 1.0, [("esencia_elite", 1)]),
-    2: (600, 1.0, [("esencia_elite", 2)]),
-    3: (1000, 1.0, [("esencia_elite", 3), ("fragmento_astral", 1)]),
-    4: (1500, 1.0, [("esencia_elite", 3), ("alma_corrupta", 1)]),
-    5: (2000, 0.9, [("alma_corrupta", 2), ("esencia_elite", 3)]),
-    6: (3000, 0.8, [("chispa_astral", 1), ("alma_corrupta", 2)]),
-    7: (4000, 0.7, [("chispa_astral", 2), ("alma_corrupta", 2)]),
-    8: (5000, 0.6, [("chispa_astral", 3), ("alma_corrupta", 3)]),
-    9: (7500, 0.5, [("chispa_astral", 3), ("nucleo_astral", 1)]),
-    10: (10000, 0.4, [("chispa_astral", 5), ("nucleo_astral", 1)]),
+    1: (MEJORAS_PLATA[0], 1.0, [("esencia_elite", 1)]),
+    2: (MEJORAS_PLATA[1], 1.0, [("esencia_elite", 2)]),
+    3: (MEJORAS_PLATA[2], 1.0, [("esencia_elite", 3), ("fragmento_astral", 1)]),
+    4: (MEJORAS_PLATA[3], 1.0, [("esencia_elite", 3), ("alma_corrupta", 1)]),
+    5: (MEJORAS_PLATA[4], 0.9, [("alma_corrupta", 2), ("esencia_elite", 3)]),
+    6: (MEJORAS_PLATA[5], 0.8, [("chispa_astral", 1), ("alma_corrupta", 2)]),
+    7: (MEJORAS_PLATA[6], 0.7, [("chispa_astral", 2), ("alma_corrupta", 2)]),
+    8: (MEJORAS_PLATA[7], 0.6, [("chispa_astral", 3), ("alma_corrupta", 3)]),
+    9: (MEJORAS_PLATA[8], 0.5, [("chispa_astral", 3), ("nucleo_astral", 1)]),
+    10: (MEJORAS_PLATA[9], 0.4, [("chispa_astral", 5), ("nucleo_astral", 1)]),
 }
 MEJORA_DANO = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.32, 1.40]   # x dano del arma
 MEJORA_VIDA = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]                       # % de vida por pieza (4 piezas +10 = +21%)

@@ -164,6 +164,21 @@ def subastas_menu():
     return menu(title('subastas'),'astralmenu_subastas',54,lines,update=True)
 
 
+def subastas_inicio_menu():
+    """Lo abre el aldeano de Subastas: elegir Casa de Subastas o Banco Astral (economia.py, 18/11)."""
+    lines = relleno("GRAY_STAINED_GLASS_PANE", 27, {11, 15, 22})
+    lines += item('subastas', 'GOLD_INGOT', 11, '&e&lCasa de Subastas',
+                  ['&7Compra y vende objetos entre jugadores.', '', '&eClic para entrar.'],
+                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] subastas']})
+    lines += item('banco', 'GOLD_BLOCK', 15, '&6&lBanco Astral',
+                  ['&7Guarda y saca tu plata.', '&7Lo del banco no se pierde al morir', '&7y gana intereses cada dia.',
+                   '', '&eClic para entrar.'],
+                  extra={'item_model': q('astral:menu/icon_saldo'),
+                         'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]', '[player] banco<delay=2>']})
+    lines += item('cerrar', 'BARRIER', 22, '&cCerrar', extra={'click_commands': ['[close]']})
+    return menu('&8Subastas y Banco', 'astralmenu_subastas_inicio', 27, lines)
+
+
 def _pet_cards(pairs):
     P = "%player_name%"
     items = []
@@ -686,7 +701,7 @@ def main():
     for obsolete in [*(f"mascota_{pid}" for pid in RETIRADAS), "mascotas_4"]:
         (Path(OUT)/"gui_menus"/(obsolete+".yml")).unlink(missing_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
-    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu(),
+    menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "subastas_inicio": subastas_inicio_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu(),
                   "configuraciones": configuraciones_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
     menus.update({f"mascota_{pid}": mascota_detalle_menu(pid) for pid in MASCOTAS})

@@ -11,7 +11,7 @@ items:
     lore:
     - '&7Titulos y gorros'
     - ''
-    - '&7Precio: &e500$ &7por tirada'
+    - '&7Precio: &e50.000$ &7por tirada'
     - '&7Epico garantizado cada &f20 &7tiradas'
     - '&7Tu garantia: &e%objective_score_{pity_cosmeticos}%&7/20'
     enchantments:
@@ -28,7 +28,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -40,13 +40,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_1':
@@ -56,7 +56,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -68,13 +68,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_2':
@@ -84,7 +84,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -96,13 +96,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_3':
@@ -112,7 +112,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -124,13 +124,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_4':
@@ -140,7 +140,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -152,13 +152,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_5':
@@ -168,7 +168,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -180,13 +180,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_6':
@@ -196,7 +196,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -208,13 +208,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x1_7':
@@ -224,7 +224,7 @@ items:
     display_name: '&#FF7BD5&lTirar x1'
     lore:
     - ''
-    - '&7Precio: &e500$'
+    - '&7Precio: &e50.000$'
     - '&7Suma 1 tirada a tu garantia'
     - ''
     - ''
@@ -236,13 +236,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 500
+          amount: 50000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e50.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 500'
+    - '[takemoney] 50000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 1 false<delay=3>'
   'x10_0':
@@ -252,7 +252,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -264,13 +264,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -282,7 +282,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -294,13 +294,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -312,7 +312,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -324,13 +324,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -342,7 +342,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -354,13 +354,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -372,7 +372,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -384,13 +384,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -402,7 +402,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -414,13 +414,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -432,7 +432,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -444,13 +444,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -462,7 +462,7 @@ items:
     display_name: '&#FF7BD5&lTirar x10'
     lore:
     - ''
-    - '&7Precio: &e5.000$'
+    - '&7Precio: &e500.000$'
     - '&7Suma 10 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -474,13 +474,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 5000
+          amount: 500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e5.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 5000'
+    - '[takemoney] 500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 10 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e9&7 premios.'
@@ -492,7 +492,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -504,13 +504,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -522,7 +522,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -534,13 +534,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -552,7 +552,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -564,13 +564,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -582,7 +582,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -594,13 +594,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -612,7 +612,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -624,13 +624,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -642,7 +642,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -654,13 +654,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -672,7 +672,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -684,13 +684,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -702,7 +702,7 @@ items:
     display_name: '&#FF7BD5&lTirar x25'
     lore:
     - ''
-    - '&7Precio: &e12.500$'
+    - '&7Precio: &e1.250.000$'
     - '&7Suma 25 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -714,13 +714,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 12500
+          amount: 1250000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e12.500$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e1.250.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 12500'
+    - '[takemoney] 1250000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 25 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e24&7 premios.'
@@ -732,7 +732,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -744,13 +744,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -762,7 +762,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -774,13 +774,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -792,7 +792,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -804,13 +804,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -822,7 +822,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -834,13 +834,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -852,7 +852,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -864,13 +864,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -882,7 +882,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -894,13 +894,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -912,7 +912,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -924,13 +924,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'
@@ -942,7 +942,7 @@ items:
     display_name: '&#FF7BD5&lTirar x50'
     lore:
     - ''
-    - '&7Precio: &e25.000$'
+    - '&7Precio: &e2.500.000$'
     - '&7Suma 50 tiradas a tu garantia'
     - '&8Gira 1 ruleta y despues llegan los demas premios'
     - ''
@@ -954,13 +954,13 @@ items:
       requirements:
         plata:
           type: has money
-          amount: 25000
+          amount: 2500000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e25.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[close]'
-    - '[takemoney] 25000'
+    - '[takemoney] 2500000'
     - '[sound] BLOCK_AMETHYST_BLOCK_CHIME'
     - '[console] astralgacha %player_name% gacha_cosmeticos 50 false<delay=3>'
     - '[message] &7Gira la ruleta... cuando termine te llegan los otros &e49&7 premios.'

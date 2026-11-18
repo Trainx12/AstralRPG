@@ -38,7 +38,8 @@ def generate(files):
     m['Skills']=[s for s in m['Skills'] if not s.startswith('glowbone{')]
     m['Skills'][0]='skill{s=AST_PLANTA_SALVAJE_INICIO} @self ~onSpawn'
     m['Skills']+=['command{c="execute as <caster.uuid> at @s run function astral:tanda4b/planta/drop"} @self ~onDeath']
-    m['Drops']=['money 15 1']
+    from economia import plata as _x
+    m['Drops']=[f'money {_x(15)} 1']
     sk={'AST_PLANTA_SALVAJE_INICIO':{'Skills':['addtag{tag=astral.wildplant} @self',
         'command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self',
         'skill{s=AST_PLANTA_MODELO} @self']}}

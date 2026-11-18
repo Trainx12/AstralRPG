@@ -44,8 +44,8 @@ class TestRenacimiento(unittest.TestCase):
         from renacimiento import tope, tope_lite
         from minas import MINES
         self.assertEqual(tope(), MINES[-1][-1])
-        self.assertEqual(tope(), 25_000_000)
-        self.assertEqual(tope_lite(), 6_250_000)
+        self.assertEqual(tope(), 2_500_000_000)  # economia E1 (x100)
+        self.assertEqual(tope_lite(), 625_000_000)
 
     def test_script_valida_fragmentos_y_trainx(self):
         from renacimiento import skript, FRAGMENTOS

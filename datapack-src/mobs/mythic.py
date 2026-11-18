@@ -148,7 +148,6 @@ ANCESTRALES = {
     "astral_cangrejo": ("FF9AD0", "&d&lCangrejo Ancestral"),
     "astral_chaman": ("7CFF6A", "&2&lGran Chaman Ancestral"),
 }
-ANCESTRAL_MONEY = 3000
 ANCESTRAL_MINUTOS = 10
 
 
@@ -161,7 +160,6 @@ def ancestral_def(mid):
     d["hp"] = min(d["hp"] * 2, 400)
     d["damage"] = d["damage"]     # el elite ya lo sube x1.6
     d["ancestral"] = True
-    d["money"] = ANCESTRAL_MONEY
     d["astral"] = list(d.get("astral", [])) + [("frasco_xp_pequeno",0.65),("frasco_xp_grande",0.35),("frasco_xp_gigante",0.20),("barril_xp",0.025)] + [("chispa_astral", 1.0, 2), ("alma_corrupta", 1.0, 2)]
     d["skills"] = list(d.get("skills", [])) + [
         f"- 'message{{m=\"&6&l(!) &e{name} &7desperto en &f<caster.l.x> <caster.l.y> <caster.l.z> &7(&f<caster.l.w>&7). Tienen {ANCESTRAL_MINUTOS} minutos!\"}} @PlayersOnServer ~onSpawn'",
@@ -260,9 +258,9 @@ def con_condicion(skill, cond):
     return f"{skill} {cond}"
 
 
-# Monedas (EssentialsX) para quien mata: asi se gana plata para la tienda y las gachas del lobby
-MONEY = {"hostil": 15, "jefe": 750}
-ELITE_MONEY = 150
+# Plata para quien mata: la cifra sale de economia.py (tier del mob x categoria) y la paga
+# astral_economia.sk (mazmorras: tabla de oleada/jefe por tier del mundo).
+PLATA_CATEGORIAS = ("hostil", "elite", "jefe", "ancestral")
 
 # Vendedores del lobby: aldeanos quietos e invulnerables. Al hacerles clic abren su tienda o gacha.
 # (ubicacion de cada uno: datapack-src/lobby.py)
@@ -294,7 +292,8 @@ NPCS = {
     "astral_npc_guia_expediciones": ("&b&lExpediciones Astrales &7- elegir destino", "CARTOGRAPHER",
                                  ['command{c="dm open expediciones <trigger.name>"} @self ~onInteract']),
     "astral_npc_bazar": ("&6&lBazar &7(mercado y subastas)", "CARTOGRAPHER", _bazar()),
-    "astral_npc_subastas": ("&e&lSubastas", "ARMORER", ["command{c=\"dm open subastas <trigger.name>\"} @self ~onInteract"]),
+    # 18/11: elige Casa de Subastas o Banco Astral (menus.subastas_inicio_menu).
+    "astral_npc_subastas": ("&e&lSubastas y Banco", "ARMORER", ["command{c=\"dm open subastas_inicio <trigger.name>\"} @self ~onInteract"]),
     "astral_npc_herrero": ("&6&lHerrero &7- mejorar equipo", "WEAPONSMITH", _herrero()),
     "astral_npc_tienda": ("&6&lTienda", "TOOLSMITH",
                           ["command{c=\"sudo <trigger.name> economyshopgui:shop\"} @self ~onInteract"]),
@@ -459,17 +458,37 @@ def mob_block(mid, d, model=None, elite=None):
         for a in afijos_de(base):
             for x in AFIJOS[a][2]:
                 sk.append("- " + con_condicion(x.replace("<base>", base), f"?hastag{{tag=astral.af_{a}}}"))
-    money = d.get("money") or (ELITE_MONEY if elite else MONEY.get(d["kind"]))
-    if money:
-        # Plata del mob: x(1 + renacimientos del que lo mata), en astral_renacimiento.sk.
-        sk.append(f"- command{{c=\"astralplatamob <trigger.name> {money}\"}} @trigger ~onDeath ?~isplayer")
+    cat = plata_categoria(d, elite)
+    if cat:
+        # Plata del mob segun su tier (economia.py). x(1 + renacimientos) en astral_economia.sk.
+        sk.append(f"- skill{{s=AST_PLATA_{cat.upper()}}} @self ~onDeath ?~isplayer")
     lines.append("  Skills:")
     lines += ["  " + s for s in sk]
     return "\n".join(lines) + "\n"
 
 
+def plata_categoria(d, elite=None):
+    if d.get("ancestral"):
+        return "ancestral"
+    if elite:
+        return "elite"
+    return d["kind"] if d["kind"] in ("hostil", "jefe") else None
+
+
+def plata_metaskills():
+    """AST_PLATA_<CAT>: una linea por tier (etiqueta astral.mtN que pone mob/roll); sin tier = tier 1."""
+    out = []
+    for cat in PLATA_CATEGORIAS:
+        out += [f"AST_PLATA_{cat.upper()}:", "  Skills:"]
+        for t in range(1, 11):
+            out.append(f"  - command{{c=\"astralplatamob <trigger.name> {cat} {t}\"}} @self ?hastag{{tag=astral.mt{t}}}")
+        sin = " ".join(f"?!hastag{{tag=astral.mt{t}}}" for t in range(1, 11))
+        out += [f"  - command{{c=\"astralplatamob <trigger.name> {cat} 1\"}} @self {sin}", ""]
+    return out
+
+
 def metaskills():
-    out = ['AST_MUERTE:', '  Skills:', '  - tint{c=FF5555} @self',
+    out = plata_metaskills() + ['AST_MUERTE:', '  Skills:', '  - tint{c=FF5555} @self',
            '  - delay 16', '  - particles{p=poof;amount=14;hS=0.5;vS=0.5} @self', '']
     for mid, d in MOBS.items():
         scale = ';s=2.0' if d['kind'] == 'jefe' else ''

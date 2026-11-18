@@ -9,8 +9,9 @@ GOLEM_DUNGEONS = {'bosque': 'bosque', 'mina': 'cristal', 'cumbre': 'hielo'}
 # Tiradas independientes por muerte: pequeno / grande / gigante / barril.
 GOLEM_XP = {t: (min(.80,.20+.06*t), min(.55,.05+.045*t), min(.30,.01+.022*t), min(.08,.001+.004*t)) for t in range(1,11)}
 MERCHANT = [(iid, round(PRECIOS[iid]*.85), 4 if iid!='barril_xp' else 1) for iid in PRECIOS]
-MERCHANT += [('cristal_arcano', 1800, 6), ('cristal_refinado', 6500, 3), ('esencia_elite', 2500, 4)]
-MERCHANT += [('llave_cosmeticos', 425, 3), ('cosmetico_balde', 12000, 1)]
+from economia import plata as _x
+MERCHANT += [(i, _x(p), s) for i, p, s in [('cristal_arcano', 1800, 6), ('cristal_refinado', 6500, 3), ('esencia_elite', 2500, 4),
+                                          ('llave_cosmeticos', 425, 3), ('cosmetico_balde', 12000, 1)]]
 MERCHANT_SPECIAL = {
     'llave_cosmeticos': dict(name='Llave virtual de Gacha de Cosmeticos', model='cosmeticos/nav_gacha',
         command='crates give virtual gacha_cosmeticos 1 %player% -s', plugin='CrazyCrates'),

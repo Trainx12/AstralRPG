@@ -61,7 +61,7 @@ Crate:
   Glowing: "add_glow"
   Name: "<#FF7BD5><bold>Gacha de Cosmeticos"
   Lore:
-    - "<gray>Tirada: <yellow>500$"
+    - "<gray>Tirada: <yellow>50.000$"
   Preview:
     Name: "<#FF7BD5><bold>Gacha de Cosmeticos<reset><gray> - premios"
     Toggle: true
@@ -122,7 +122,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.44%"
         - "<gold>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.436
       Commands:
@@ -150,7 +150,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.26%"
         - "<gold>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.2616
       Commands:
@@ -177,7 +177,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6342
       Commands:
@@ -205,7 +205,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6342
       Commands:
@@ -233,7 +233,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -261,7 +261,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -289,7 +289,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -317,7 +317,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -345,7 +345,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -373,7 +373,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -401,7 +401,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -429,7 +429,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -457,7 +457,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.38%"
         - "<light_purple>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.3805
       Commands:
@@ -484,7 +484,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.19%"
         - "<light_purple>▮▮<dark_gray>▮▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.1903
       Commands:
@@ -509,7 +509,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.58%"
         - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5824
       Commands:
@@ -533,7 +533,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.58%"
         - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5824
       Commands:
@@ -557,7 +557,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.58%"
         - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5824
       Commands:
@@ -581,7 +581,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.58%"
         - "<aqua>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5824
       Commands:
@@ -605,7 +605,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -629,7 +629,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -653,7 +653,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -677,7 +677,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -701,7 +701,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -725,7 +725,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.95%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.9494
       Commands:
@@ -749,7 +749,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6329
       Commands:
@@ -772,7 +772,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6329
       Commands:
@@ -795,7 +795,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6329
       Commands:
@@ -818,7 +818,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.63%"
         - "<aqua>▮▮▮<dark_gray>▮▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.6329
       Commands:
@@ -841,7 +841,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>0.79%"
         - "<aqua>▮▮▮▮<dark_gray>▮▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 0.7912
       Commands:
@@ -864,7 +864,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.88%"
         - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.876
       Commands:
@@ -888,7 +888,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.88%"
         - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.876
       Commands:
@@ -912,7 +912,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.88%"
         - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.876
       Commands:
@@ -936,7 +936,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.55%"
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5504
       Commands:
@@ -959,7 +959,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.55%"
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5504
       Commands:
@@ -982,7 +982,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.55%"
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5504
       Commands:
@@ -1005,7 +1005,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.55%"
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.5504
       Commands:
@@ -1028,7 +1028,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.49%"
         - "<green>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.4884
       Commands:
@@ -1051,7 +1051,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>1.94%"
         - "<green>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 1.938
       Commands:
@@ -1074,7 +1074,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>4.43%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.4297
       Commands:
@@ -1098,7 +1098,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>4.43%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.4297
       Commands:
@@ -1122,7 +1122,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>4.43%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.4297
       Commands:
@@ -1146,7 +1146,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>4.43%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 4.4297
       Commands:
@@ -1170,7 +1170,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1194,7 +1194,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1218,7 +1218,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1242,7 +1242,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1266,7 +1266,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1290,7 +1290,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1314,7 +1314,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1338,7 +1338,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1362,7 +1362,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1386,7 +1386,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1410,7 +1410,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>3.54%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 3.5437
       Commands:
@@ -1433,7 +1433,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>2.66%"
         - "<white>▮▮▮▮▮<dark_gray>▮▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 2.6578
       Commands:
@@ -1456,7 +1456,7 @@ Crate:
         - "<gray>Probabilidad: <yellow><bold>5.32%"
         - "<white>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (500$)"
+        - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
       Weight: 5.3156
       Commands:

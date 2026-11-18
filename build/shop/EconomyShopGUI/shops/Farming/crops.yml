@@ -1,0 +1,165 @@
+pages:
+  page1:
+    items:
+      melon:
+        material: MELON
+        buy: 3780
+        sell: 948
+        stack-size: 4
+      pumpkin:
+        material: PUMPKIN
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      cactus:
+        material: CACTUS
+        buy: 40
+        sell: 12
+        stack-size: 4
+      wheat:
+        material: WHEAT
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      carrot:
+        material: CARROT
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      potato:
+        material: POTATO
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      kelp:
+        material: KELP
+        buy: 40
+        sell: 12
+        stack-size: 4
+      sugar_cane:
+        material: SUGAR_CANE
+        buy: 40
+        sell: 12
+        stack-size: 4
+      nether_wart:
+        material: NETHER_WART
+        buy: 1200
+        sell: 300
+        stack-size: 4
+      beetroot:
+        material: BEETROOT
+        buy: 2400
+        sell: 600
+        stack-size: 4
+      sweet_berries:
+        material: SWEET_BERRIES
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      glow_berries:
+        material: GLOW_BERRIES
+        buy: 400
+        sell: 100
+        stack-size: 4
+      honeycomb:
+        material: HONEYCOMB
+        buy: 1260
+        sell: 316
+        stack-size: 4
+      sugar:
+        material: SUGAR
+        buy: 44
+        sell: 12
+        stack-size: 4
+      chorus_fruit:
+        material: CHORUS_FRUIT
+        buy: 1200
+        sell: 300
+        stack-size: 4
+      bamboo:
+        material: BAMBOO
+        buy: 40
+        sell: 12
+        stack-size: 4
+      egg:
+        material: EGG
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      wheat_seeds:
+        material: WHEAT_SEEDS
+        buy: 300
+        sell: 75
+      beetroot_seeds:
+        material: BEETROOT_SEEDS
+        buy: 300
+        sell: 75
+      melon_seeds:
+        material: MELON_SEEDS
+        buy: 300
+        sell: 75
+      pumpkin_seeds:
+        material: PUMPKIN_SEEDS
+        buy: 119
+        sell: 30
+      cocoa_beans:
+        material: COCOA_BEANS
+        buy: 600
+        sell: 150
+      torchflower_seeds:
+        material: TORCHFLOWER_SEEDS
+        buy: 2050
+        sell: 513
+      pitcher_pod:
+        material: PITCHER_POD
+        buy: 2050
+        sell: 513
+      brown_mushroom:
+        material: BROWN_MUSHROOM
+        buy: 200
+        sell: 50
+      red_mushroom:
+        material: RED_MUSHROOM
+        buy: 200
+        sell: 50
+      crimson_fungus:
+        material: CRIMSON_FUNGUS
+        buy: 600
+        sell: 150
+      warped_fungus:
+        material: WARPED_FUNGUS
+        buy: 600
+        sell: 150
+    gui-rows: 6
+  page2:
+    items:
+      chorus_flower:
+        material: CHORUS_FLOWER
+        buy: 100
+        sell: 25
+      hay_block:
+        material: HAY_BLOCK
+        buy: 4725
+        sell: 1182
+      dried_kelp_block:
+        material: DRIED_KELP_BLOCK
+        buy: 100
+        sell: 25
+      bee_nest:
+        material: BEE_NEST
+        buy: -1
+        sell: 1000
+      beehive:
+        material: BEEHIVE
+        buy: 1687
+        sell: 422
+      dried_kelp:
+        material: DRIED_KELP
+        buy: 11
+        sell: 3
+      bone_meal:
+        material: BONE_MEAL
+        buy: 6720
+        sell: 1696
+        stack-size: 32
+    gui-rows: 6

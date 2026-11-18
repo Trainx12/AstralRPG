@@ -80,7 +80,8 @@ def tile_card(kind, key):
         caption, sub = {'mercado':('EXPLORAR','MERCADO'), 'publicaciones':('MIS VENTAS','EN VENTA'),
                         'retirar':('RETIRAR','OBJETOS'), 'publicar':('PUBLICAR','COMO VENDER')}[key]
     else:
-        caption,sub = 'TIRAR '+key.upper(),money(GACHAS[kind]['cost']*int(key[1:]))
+        from economia import corto
+        caption,sub = 'TIRAR '+key.upper(),corto(GACHAS[kind]['cost']*int(key[1:]))+'$'
     im=Image.new('RGBA',(72,36),fill); d=ImageDraw.Draw(im)
     d.rectangle((0,0,71,35),outline=edge);d.rectangle((2,2,69,33),outline='#100f19')
     if kind in TIER_ART:

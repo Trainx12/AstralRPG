@@ -7,10 +7,12 @@ from services_ui import title
 
 ROOT=Path(__file__).resolve().parent
 # Reparar en el Herrero (15/11/2026): plata y un material por tier (mas barato que una mejora).
+from economia import plata as _x
 REPARAR = {1: (150, 'fragmento_astral', 1), 2: (300, 'polvo_astral', 1), 3: (600, 'cristal_refinado', 1),
            4: (1200, 'chispa_astral', 1), 5: (2500, 'nucleo_astral', 1), 6: (4000, 'fragmento_ocaso', 1),
            7: (6000, 'esquirla_eclipse', 1), 8: (8500, 'nucleo_supernova', 1), 9: (12000, 'esencia_vacio', 1),
            10: (16000, 'corazon_fin', 1)}
+REPARAR = {t: (_x(m), mat, n) for t, (m, mat, n) in REPARAR.items()}
 REPARAR_SLOT = 48
 
 

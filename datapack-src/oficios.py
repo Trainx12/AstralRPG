@@ -24,8 +24,9 @@ SLOT = {'helmet': 'head', 'chestplate': 'chest', 'leggings': 'legs', 'boots': 'f
 ARMOR_SLOT = {'helmet': 'armor.head', 'chestplate': 'armor.chest', 'leggings': 'armor.legs', 'boots': 'armor.feet'}
 SHOP_TITLE = 'Astral - Oficios'
 SHOP_SLOT = 43          # libres en /shop: 1,13,15,21..35 ocupados; 39 Peluches, 40 Proteccion, 41 misc, 42 Mochilas
-PRECIO = {'helmet': 800, 'chestplate': 1200, 'leggings': 1200, 'boots': 800}
-PRECIO_SET = 3500
+from economia import plata as _x
+PRECIO = {k: _x(v) for k, v in {'helmet': 800, 'chestplate': 1200, 'leggings': 1200, 'boots': 800}.items()}
+PRECIO_SET = _x(3500)
 
 SETS = {
     'minero': {

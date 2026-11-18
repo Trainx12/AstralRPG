@@ -16,7 +16,8 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / 'build/rankings'
 
 # ============================ PREMIOS (ajustables) ============================
-PLATA = {1: 1_000_000, 2: 500_000, 3: 250_000}
+from economia import plata as _x
+PLATA = {1: _x(1_000_000), 2: _x(500_000), 3: _x(250_000)}
 TIRADAS = {1: (('gacha_cosmeticos', 10), ('gacha_rpg', 5)), 2: (('gacha_cosmeticos', 5), ('gacha_rpg', 3)),
            3: (('gacha_cosmeticos', 3), ('gacha_rpg', 1))}
 ITEMS = {1: (('chispa_astral', 2),), 2: (('chispa_astral', 1),), 3: (('gema_luminica', 1),)}

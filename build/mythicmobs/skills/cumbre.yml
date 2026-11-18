@@ -99,9 +99,9 @@ CUMBRE_PREMIO:
   - command{c="loot give <target.name> loot astral:item/esencia_elite"}
   - command{c="loot give <target.name> loot astral:item/alma_corrupta"}
   - command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25
-  - command{c="eco give <target.name> 2500"}
+  - command{c="eco give <target.name> 250000"}
   - command{c="lp user <target.name> permission settemp astral.cumbre.cd true 30m"}
-  - 'message{m="&6Cofre de Cumbre Helada: &fmateriales de elite y &e2500$&f. &7(el proximo cofre en 30 minutos)"}'
+  - 'message{m="&6Cofre de Cumbre Helada: &fmateriales de elite y &e250000$&f. &7(el proximo cofre en 30 minutos)"}'
 CUMBRE_PREMIO_YA:
   TargetConditions:
   - haspermission{p=astral.cumbre.cd} true

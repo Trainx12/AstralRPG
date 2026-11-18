@@ -164,7 +164,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] trigger astral.guia set 1<delay=3>'
+    - '[openguimenu] guia_astral'
   'comandos':
     material: OAK_SIGN
     slot: 24

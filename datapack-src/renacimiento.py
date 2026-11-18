@@ -82,7 +82,7 @@ def renacer_menu():
     items = {
         'pierdes': {'material': 'BARRIER', 'slot': SLOTS_RENACER[0], 'display_name': '&c&lSe reinicia',
                     'lore': ['&7- Las mazmorras (y sus fragmentos:', '&7  se vuelven a conseguir).', '&7- La historia del Cronista.',
-                             '&7- Las Minas Astrales.', '&7- Tu plata vuelve a &e0$&7.']},
+                             '&7- Las Minas Astrales.', '&7- Tu plata (y el Banco) vuelven a &e0$&7.']},
         'conservas': {'material': 'TOTEM_OF_UNDYING', 'slot': SLOTS_RENACER[1], 'display_name': '&a&lTe quedas con',
                       'lore': ['&7- Tus skills.', '&7- Cosmeticos, monturas y mascotas.', '&7- Tu equipo, tambien el tier V.']},
         'info': {'material': 'NETHER_STAR', 'slot': 22, 'display_name': '&d&lRenacer',
@@ -265,6 +265,8 @@ function astral_renacer(p: player):
     delete {{-am.b::%{{_id}}%}}
     # Plata a 0, insignia y contador para PlaceholderAPI.
     execute console command "eco set %{{_n}}% 0"
+    # El Banco Astral (economia.py) tambien vuelve a 0: si no, renacer no costaria nada.
+    delete {{astral.banco.saldo::%{{_id}}%}}
     execute console command "lp user %{{_n}}% meta set astral_renacimiento %{{_r}}%"
     execute console command "lp user %{{_n}}% meta setsuffix 50 "" &d✦%{{_r}}%"""
     set {{astral.deseo.tiene::%{{_id}}%}} to "completo"
@@ -303,16 +305,7 @@ on damage with priority highest:
     {{_r}} > 0
     set damage to damage / ({{_r}} + 2)
 
-# Plata de los mobs (mobs/mythic.py y mobs/mazmorra.py): +100 % por cada renacimiento del que lo mata.
-command /astralplatamob <text> <number>:
-    executable by: console
-    trigger:
-        set {{_m}} to 1
-        loop all players:
-            name of loop-player is arg-1
-            set {{_m}} to 1 + ({{-renac::%uuid of loop-player%}} ? 0)
-        set {{_n}} to round(arg-2 * {{_m}})
-        execute console command "eco give %arg-1% %{{_n}}%"
+# Plata de los mobs: astralplatamob vive en astral_economia.sk (economia.py).
 
 # ------------------------------------------------------------------ Deseos
 function astral_deseo_abrir(p: player):

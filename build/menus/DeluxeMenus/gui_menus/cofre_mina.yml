@@ -48,7 +48,7 @@
     "plata": {
       "material": "GOLD_INGOT",
       "slot": 21,
-      "display_name": "&e&l2500$",
+      "display_name": "&e&l250.000$",
       "lore": [
         "&7Cada vez que cobras el cofre."
       ],
@@ -118,7 +118,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.lampara true",
         "[message] &b&lNuevo fragmento: &fLampara del Minero&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -131,7 +131,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -163,7 +163,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -176,7 +176,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -219,7 +219,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.lampara true",
         "[message] &b&lNuevo fragmento: &fLampara del Minero&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -232,7 +232,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -264,7 +264,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -277,7 +277,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -320,7 +320,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.lampara true",
         "[message] &b&lNuevo fragmento: &fLampara del Minero&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -333,7 +333,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -365,7 +365,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -378,7 +378,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -421,7 +421,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.lampara true",
         "[message] &b&lNuevo fragmento: &fLampara del Minero&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -434,7 +434,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -466,7 +466,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -479,7 +479,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -522,7 +522,7 @@
         "[console] lp user %player_name% permission set astral.fragmento.lampara true",
         "[message] &b&lNuevo fragmento: &fLampara del Minero&7. Quedo guardado en &f/fragmentos&7.",
         "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -535,7 +535,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",
@@ -567,7 +567,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 2500",
+        "[console] eco give %player_name% 250000",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
         "[console] loot give %player_name% loot astral:item/esencia_elite",
@@ -580,7 +580,7 @@
         "[console] execute as %player_name% run function astral:xp/cofre",
         "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
         "[console] lp user %player_name% permission settemp astral.mina.cd true 30m",
-        "[message] &6Cofre de Minas Olvidadas: &e2500$&f, 1x Cristal Arcano Refinado y materiales de elite.",
+        "[message] &6Cofre de Minas Olvidadas: &e250.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
         "[sound] ENTITY_PLAYER_LEVELUP"
       ],
       "material": "PAPER",

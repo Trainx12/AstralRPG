@@ -210,9 +210,9 @@ class AcceptanceTransitions(unittest.TestCase):
         self.run_function('daily/claim/12',scores,effects)
         self.assertEqual(scores['@s','aq.done2'],1)
         self.assertEqual(scores['@s','aq.active2'],0)
-        self.assertEqual(scores['@s','aqmoney'],1500)
+        self.assertEqual(scores['@s','aqmoney'],150000)  # economia E1 (x100)
         self.run_function('daily/claim/12',scores,effects)
-        self.assertEqual(scores['@s','aqmoney'],1500)
+        self.assertEqual(scores['@s','aqmoney'],150000)
 
     def test_legacy_journal_does_not_auto_claim_counters(self):
         journal = self.files['data/astral/function/quest/cronista.mcfunction']

@@ -134,7 +134,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] trigger astral.guia set 1'
+    - '[openguimenu] guia_astral'
     item_model: 'astral:menu/icon_guia'
   'tema_2':
     material: LIGHT_BLUE_STAINED_GLASS_PANE
@@ -285,7 +285,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] trigger astral.guia set 1'
+    - '[openguimenu] guia_astral'
     item_model: 'astral:menu/icon_recetas'
   'tema_3':
     material: YELLOW_STAINED_GLASS_PANE

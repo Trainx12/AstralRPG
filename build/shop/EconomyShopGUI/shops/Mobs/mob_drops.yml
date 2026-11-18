@@ -1,0 +1,133 @@
+pages:
+  page1:
+    items:
+      rotten_flesh:
+        material: ROTTEN_FLESH
+        buy: 8000
+        sell: 2000
+        stack-size: 16
+      gunpowder:
+        material: GUNPOWDER
+        buy: 24800
+        sell: 6208
+        stack-size: 16
+      string:
+        material: STRING
+        buy: 11200
+        sell: 2800
+        stack-size: 16
+      feather:
+        material: FEATHER
+        buy: 9600
+        sell: 2400
+        stack-size: 16
+      bone:
+        material: BONE
+        buy: 9600
+        sell: 2400
+        stack-size: 16
+      wind_charge:
+        material: WIND_CHARGE
+        buy: 4200
+        sell: 1056
+        stack-size: 8
+      spider_eye:
+        material: SPIDER_EYE
+        buy: 5600
+        sell: 1400
+        stack-size: 8
+      ink_sac:
+        material: INK_SAC
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      leather:
+        material: LEATHER
+        buy: 13440
+        sell: 3360
+        stack-size: 4
+      phantom_membrane:
+        material: PHANTOM_MEMBRANE
+        buy: 50060
+        sell: 12516
+        stack-size: 4
+      shulker_shell:
+        material: SHULKER_SHELL
+        buy: 2800
+        sell: 700
+        stack-size: 4
+      blaze_rod:
+        material: BLAZE_ROD
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      breeze_rod:
+        material: BREEZE_ROD
+        buy: 8000
+        sell: 2000
+        stack-size: 4
+      fermented_spider_eye:
+        material: FERMENTED_SPIDER_EYE
+        buy: 3828
+        sell: 960
+        stack-size: 4
+      magma_cream:
+        material: MAGMA_CREAM
+        buy: 3204
+        sell: 804
+        stack-size: 4
+      slime_ball:
+        material: SLIME_BALL
+        buy: 2000
+        sell: 500
+        stack-size: 4
+      ender_pearl:
+        material: ENDER_PEARL
+        buy: 2800
+        sell: 700
+        stack-size: 4
+      scute:
+        material: SCUTE
+        buy: 53000
+        sell: 13250
+      armadillo_scute:
+        material: ARMADILLO_SCUTE
+        buy: 53000
+        sell: 13250
+      rabbit_hide:
+        material: RABBIT_HIDE
+        buy: 800
+        sell: 200
+      rabbit_foot:
+        material: RABBIT_FOOT
+        buy: 18000
+        sell: 4500
+      glow_ink_sac:
+        material: GLOW_INK_SAC
+        buy: 550
+        sell: 138
+      ghast_tear:
+        material: GHAST_TEAR
+        buy: 4000
+        sell: 1000
+      wither_skeleton_skull:
+        material: WITHER_SKELETON_SKULL
+        buy: -1
+        sell: 25000
+      skeleton_skull:
+        material: SKELETON_SKULL
+        buy: -1
+        sell: 15000
+      creeper_head:
+        material: CREEPER_HEAD
+        buy: -1
+        sell: 15000
+      zombie_head:
+        material: ZOMBIE_HEAD
+        buy: -1
+        sell: 15000
+      totem_of_undying:
+        material: TOTEM_OF_UNDYING
+        buy: 250000
+        sell: 30000
+    gui-rows: 6

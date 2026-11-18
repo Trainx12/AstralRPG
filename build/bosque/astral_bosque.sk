@@ -1,77 +1,77 @@
 on load:
     delete {-ab.price::*}
     set {_t} to "minecraft:oak_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_oak_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:oak_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_oak_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:oak_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:spruce_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_spruce_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:spruce_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_spruce_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:spruce_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:birch_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_birch_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:birch_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_birch_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:birch_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:jungle_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_jungle_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:jungle_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_jungle_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:jungle_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:acacia_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_acacia_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:acacia_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_acacia_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:acacia_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:dark_oak_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:stripped_dark_oak_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.79
+    set {-ab.price::%{_t}%} to 79.0
     set {_t} to "minecraft:dark_oak_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:stripped_dark_oak_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.11
+    set {-ab.price::%{_t}%} to 111.0
     set {_t} to "minecraft:dark_oak_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 1.12
+    set {-ab.price::%{_t}%} to 28.0
     set {_t} to "minecraft:cherry_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:cherry_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:cherry_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 0.8
+    set {-ab.price::%{_t}%} to 20.0
     set {_t} to "minecraft:mangrove_log" parsed as item type
-    set {-ab.price::%{_t}%} to 0.75
+    set {-ab.price::%{_t}%} to 75.0
     set {_t} to "minecraft:mangrove_wood" parsed as item type
-    set {-ab.price::%{_t}%} to 1.05
+    set {-ab.price::%{_t}%} to 105.0
     set {_t} to "minecraft:mangrove_planks" parsed as item type
-    set {-ab.price::%{_t}%} to 0.8
+    set {-ab.price::%{_t}%} to 20.0
 
 command /bosqueventa <player>:
     executable by: console

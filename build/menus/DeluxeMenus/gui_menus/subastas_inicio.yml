@@ -1,0 +1,215 @@
+menu_title: '&8Subastas y Banco'
+open_command: astralmenu_subastas_inicio
+size: 27
+items:
+  'vidrio_0':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 0
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_1':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 1
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_2':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 2
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_3':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 3
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_4':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 4
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_5':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 5
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_6':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 6
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_7':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 7
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_8':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 8
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_9':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 9
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_10':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 10
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_12':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 12
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_13':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 13
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_14':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 14
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_16':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 16
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_17':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 17
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_18':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 18
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_19':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 19
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_20':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 20
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_21':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 21
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_23':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 23
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_24':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 24
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_25':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 25
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'vidrio_26':
+    material: GRAY_STAINED_GLASS_PANE
+    slot: 26
+    amount: 1
+    display_name: ' '
+    item_flags:
+    - HIDE_ATTRIBUTES
+  'subastas':
+    material: GOLD_INGOT
+    slot: 11
+    amount: 1
+    display_name: '&e&lCasa de Subastas'
+    lore:
+    - '&7Compra y vende objetos entre jugadores.'
+    - ''
+    - '&eClic para entrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] subastas'
+    item_model: 'astral:menu/icon_subastas'
+  'banco':
+    material: GOLD_BLOCK
+    slot: 15
+    amount: 1
+    display_name: '&6&lBanco Astral'
+    lore:
+    - '&7Guarda y saca tu plata.'
+    - '&7Lo del banco no se pierde al morir'
+    - '&7y gana intereses cada dia.'
+    - ''
+    - '&eClic para entrar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:menu/icon_saldo'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] banco<delay=2>'
+  'cerrar':
+    material: BARRIER
+    slot: 22
+    amount: 1
+    display_name: '&cCerrar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+    item_model: 'astral:menu/icon_close'

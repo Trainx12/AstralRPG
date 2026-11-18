@@ -934,33 +934,33 @@ loot:
     chance: 0.0004
 claim-packages:
 - blocks: 25
-  price: 15000
+  price: 1500000
 - blocks: 100
-  price: 50000
+  price: 5000000
 - blocks: 1225
-  price: 500000
+  price: 50000000
 - blocks: 2500
-  price: 950000
+  price: 95000000
 - blocks: 10000
-  price: 3500000
+  price: 350000000
 backpack-packages:
 - tier: leather
   name: Cuero
   slots: 9
-  price: 5000
+  price: 500000
 - tier: copper
   name: Cobre
   slots: 18
-  price: 20000
+  price: 2000000
 - tier: iron
   name: Hierro
   slots: 27
-  price: 50000
+  price: 5000000
 - tier: gold
   name: Oro
   slots: 36
-  price: 100000
+  price: 10000000
 - tier: diamond
   name: Diamante
   slots: 45
-  price: 175000
+  price: 17500000

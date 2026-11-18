@@ -25,4 +25,4 @@ astral_planta_salvaje:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda4b/planta/drop"}
     @self ~onDeath
   Drops:
-  - money 15 1
+  - money 1500 1

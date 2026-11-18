@@ -1,0 +1,667 @@
+pages:
+  page1:
+    items:
+      glass:
+        material: GLASS
+        buy: 630
+        sell: 158
+      glass_pane:
+        material: GLASS_PANE
+        buy: 249
+        sell: 63
+      black_stained_glass:
+        material: BLACK_STAINED_GLASS
+        buy: 731
+        sell: 183
+      black_stained_glass_pane:
+        material: BLACK_STAINED_GLASS_PANE
+        buy: 288
+        sell: 72
+      blue_stained_glass:
+        material: BLUE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      blue_stained_glass_pane:
+        material: BLUE_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      brown_stained_glass:
+        material: BROWN_STAINED_GLASS
+        buy: 745
+        sell: 187
+      brown_stained_glass_pane:
+        material: BROWN_STAINED_GLASS_PANE
+        buy: 294
+        sell: 74
+      cyan_stained_glass:
+        material: CYAN_STAINED_GLASS
+        buy: 670
+        sell: 168
+      cyan_stained_glass_pane:
+        material: CYAN_STAINED_GLASS_PANE
+        buy: 264
+        sell: 66
+      gray_stained_glass:
+        material: GRAY_STAINED_GLASS
+        buy: 709
+        sell: 178
+      gray_stained_glass_pane:
+        material: GRAY_STAINED_GLASS_PANE
+        buy: 280
+        sell: 70
+      green_stained_glass:
+        material: GREEN_STAINED_GLASS
+        buy: 663
+        sell: 166
+      green_stained_glass_pane:
+        material: GREEN_STAINED_GLASS_PANE
+        buy: 262
+        sell: 66
+      light_blue_stained_glass:
+        material: LIGHT_BLUE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      light_blue_stained_glass_pane:
+        material: LIGHT_BLUE_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      light_gray_stained_glass:
+        material: LIGHT_GRAY_STAINED_GLASS
+        buy: 676
+        sell: 169
+      light_gray_stained_glass_pane:
+        material: LIGHT_GRAY_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      lime_stained_glass:
+        material: LIME_STAINED_GLASS
+        buy: 745
+        sell: 187
+      lime_stained_glass_pane:
+        material: LIME_STAINED_GLASS_PANE
+        buy: 294
+        sell: 74
+      magenta_stained_glass:
+        material: MAGENTA_STAINED_GLASS
+        buy: 676
+        sell: 169
+      magenta_stained_glass_pane:
+        material: MAGENTA_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      orange_stained_glass:
+        material: ORANGE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      orange_stained_glass_pane:
+        material: ORANGE_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      pink_stained_glass:
+        material: PINK_STAINED_GLASS
+        buy: 676
+        sell: 169
+      pink_stained_glass_pane:
+        material: PINK_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      purple_stained_glass:
+        material: PURPLE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      purple_stained_glass_pane:
+        material: PURPLE_STAINED_GLASS_PANE
+        buy: 267
+        sell: 67
+    gui-rows: 6
+  page2:
+    items:
+      red_stained_glass:
+        material: RED_STAINED_GLASS
+        buy: 676
+        sell: 169
+      red_stained_glass_pane:
+        material: RED_STAINED_GLASS_PANE
+        buy: 266
+        sell: 67
+      white_stained_glass:
+        material: WHITE_STAINED_GLASS
+        buy: 683
+        sell: 171
+      white_stained_glass_pane:
+        material: WHITE_STAINED_GLASS_PANE
+        buy: 269
+        sell: 68
+      yellow_stained_glass:
+        material: YELLOW_STAINED_GLASS
+        buy: 671
+        sell: 168
+      yellow_stained_glass_pane:
+        material: YELLOW_STAINED_GLASS_PANE
+        buy: 265
+        sell: 67
+      tinted_glass:
+        material: TINTED_GLASS
+        buy: 607
+        sell: 152
+      white_wool:
+        material: WHITE_WOOL
+        buy: 2996
+        sell: 1648
+      gray_wool:
+        material: GRAY_WOOL
+        buy: 2996
+        sell: 1648
+      black_wool:
+        material: BLACK_WOOL
+        buy: 2996
+        sell: 1648
+      brown_wool:
+        material: BROWN_WOOL
+        buy: 2996
+        sell: 1648
+      red_wool:
+        material: RED_WOOL
+        buy: 2996
+        sell: 1648
+      orange_wool:
+        material: ORANGE_WOOL
+        buy: 2996
+        sell: 1648
+      yellow_wool:
+        material: YELLOW_WOOL
+        buy: 2996
+        sell: 1648
+      lime_wool:
+        material: LIME_WOOL
+        buy: 2996
+        sell: 1648
+      green_wool:
+        material: GREEN_WOOL
+        buy: 2996
+        sell: 1648
+      cyan_wool:
+        material: CYAN_WOOL
+        buy: 2996
+        sell: 1648
+      light_blue_wool:
+        material: LIGHT_BLUE_WOOL
+        buy: 2996
+        sell: 1648
+      blue_wool:
+        material: BLUE_WOOL
+        buy: 2996
+        sell: 1648
+      purple_wool:
+        material: PURPLE_WOOL
+        buy: 2996
+        sell: 1648
+      magenta_wool:
+        material: MAGENTA_WOOL
+        buy: 2996
+        sell: 1648
+      light_gray_wool:
+        material: LIGHT_GRAY_WOOL
+        buy: 2996
+        sell: 1648
+      pink_wool:
+        material: PINK_WOOL
+        buy: 2996
+        sell: 1648
+      white_terracotta:
+        material: WHITE_TERRACOTTA
+        buy: 2343
+        sell: 586
+      light_gray_terracotta:
+        material: LIGHT_GRAY_TERRACOTTA
+        buy: 2330
+        sell: 583
+      gray_terracotta:
+        material: GRAY_TERRACOTTA
+        buy: 2363
+        sell: 591
+      brown_terracotta:
+        material: BROWN_TERRACOTTA
+        buy: 2394
+        sell: 599
+      red_terracotta:
+        material: RED_TERRACOTTA
+        buy: 2330
+        sell: 583
+    gui-rows: 6
+  page3:
+    items:
+      orange_terracotta:
+        material: ORANGE_TERRACOTTA
+        buy: 2330
+        sell: 583
+      yellow_terracotta:
+        material: YELLOW_TERRACOTTA
+        buy: 2325
+        sell: 582
+      lime_terracotta:
+        material: LIME_TERRACOTTA
+        buy: 2398
+        sell: 600
+      green_terracotta:
+        material: GREEN_TERRACOTTA
+        buy: 2317
+        sell: 580
+      cyan_terracotta:
+        material: CYAN_TERRACOTTA
+        buy: 2324
+        sell: 581
+      light_blue_terracotta:
+        material: LIGHT_BLUE_TERRACOTTA
+        buy: 2330
+        sell: 583
+      blue_terracotta:
+        material: BLUE_TERRACOTTA
+        buy: 2410
+        sell: 603
+      purple_terracotta:
+        material: PURPLE_TERRACOTTA
+        buy: 2330
+        sell: 583
+      magenta_terracotta:
+        material: MAGENTA_TERRACOTTA
+        buy: 2330
+        sell: 583
+      pink_terracotta:
+        material: PINK_TERRACOTTA
+        buy: 2330
+        sell: 583
+      black_terracotta:
+        material: BLACK_TERRACOTTA
+        buy: 2381
+        sell: 596
+      white_concrete:
+        material: WHITE_CONCRETE
+        buy: 877
+        sell: 220
+      light_gray_concrete:
+        material: LIGHT_GRAY_CONCRETE
+        buy: 861
+        sell: 216
+      gray_concrete:
+        material: GRAY_CONCRETE
+        buy: 900
+        sell: 225
+      black_concrete:
+        material: BLACK_CONCRETE
+        buy: 921
+        sell: 231
+      brown_concrete:
+        material: BROWN_CONCRETE
+        buy: 936
+        sell: 235
+      red_concrete:
+        material: RED_CONCRETE
+        buy: 861
+        sell: 216
+      orange_concrete:
+        material: ORANGE_CONCRETE
+        buy: 861
+        sell: 216
+      yellow_concrete:
+        material: YELLOW_CONCRETE
+        buy: 857
+        sell: 215
+      lime_concrete:
+        material: LIME_CONCRETE
+        buy: 1289
+        sell: 323
+      green_concrete:
+        material: GREEN_CONCRETE
+        buy: 848
+        sell: 213
+      cyan_concrete:
+        material: CYAN_CONCRETE
+        buy: 854
+        sell: 214
+      light_blue_concrete:
+        material: LIGHT_BLUE_CONCRETE
+        buy: 861
+        sell: 216
+      blue_concrete:
+        material: BLUE_CONCRETE
+        buy: 954
+        sell: 239
+      purple_concrete:
+        material: PURPLE_CONCRETE
+        buy: 1289
+        sell: 323
+      magenta_concrete:
+        material: MAGENTA_CONCRETE
+        buy: 1289
+        sell: 323
+      pink_concrete:
+        material: PINK_CONCRETE
+        buy: 861
+        sell: 216
+      white_concrete_powder:
+        material: WHITE_CONCRETE_POWDER
+        buy: 763
+        sell: 191
+    gui-rows: 6
+  page4:
+    items:
+      light_gray_concrete_powder:
+        material: LIGHT_GRAY_CONCRETE_POWDER
+        buy: 749
+        sell: 188
+      gray_concrete_powder:
+        material: GRAY_CONCRETE_POWDER
+        buy: 783
+        sell: 196
+      black_concrete_powder:
+        material: BLACK_CONCRETE_POWDER
+        buy: 801
+        sell: 201
+      brown_concrete_powder:
+        material: BROWN_CONCRETE_POWDER
+        buy: 814
+        sell: 204
+      red_concrete_powder:
+        material: RED_CONCRETE_POWDER
+        buy: 749
+        sell: 188
+      orange_concrete_powder:
+        material: ORANGE_CONCRETE_POWDER
+        buy: 749
+        sell: 188
+      yellow_concrete_powder:
+        material: YELLOW_CONCRETE_POWDER
+        buy: 745
+        sell: 187
+      lime_concrete_powder:
+        material: LIME_CONCRETE_POWDER
+        buy: 1121
+        sell: 281
+      green_concrete_powder:
+        material: GREEN_CONCRETE_POWDER
+        buy: 737
+        sell: 185
+      cyan_concrete_powder:
+        material: CYAN_CONCRETE_POWDER
+        buy: 743
+        sell: 186
+      light_blue_concrete_powder:
+        material: LIGHT_BLUE_CONCRETE_POWDER
+        buy: 749
+        sell: 188
+      blue_concrete_powder:
+        material: BLUE_CONCRETE_POWDER
+        buy: 830
+        sell: 208
+      purple_concrete_powder:
+        material: PURPLE_CONCRETE_POWDER
+        buy: 1121
+        sell: 281
+      magenta_concrete_powder:
+        material: MAGENTA_CONCRETE_POWDER
+        buy: 1121
+        sell: 281
+      pink_concrete_powder:
+        material: PINK_CONCRETE_POWDER
+        buy: 749
+        sell: 188
+      white_stained_glass:
+        material: WHITE_STAINED_GLASS
+        buy: 683
+        sell: 171
+      light_gray_stained_glass:
+        material: LIGHT_GRAY_STAINED_GLASS
+        buy: 676
+        sell: 169
+      gray_stained_glass:
+        material: GRAY_STAINED_GLASS
+        buy: 709
+        sell: 178
+      black_stained_glass:
+        material: BLACK_STAINED_GLASS
+        buy: 731
+        sell: 183
+      brown_stained_glass:
+        material: BROWN_STAINED_GLASS
+        buy: 745
+        sell: 187
+      red_stained_glass:
+        material: RED_STAINED_GLASS
+        buy: 676
+        sell: 169
+      orange_stained_glass:
+        material: ORANGE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      yellow_stained_glass:
+        material: YELLOW_STAINED_GLASS
+        buy: 671
+        sell: 168
+      lime_stained_glass:
+        material: LIME_STAINED_GLASS
+        buy: 745
+        sell: 187
+      green_stained_glass:
+        material: GREEN_STAINED_GLASS
+        buy: 663
+        sell: 166
+      cyan_stained_glass:
+        material: CYAN_STAINED_GLASS
+        buy: 670
+        sell: 168
+      light_blue_stained_glass:
+        material: LIGHT_BLUE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      blue_stained_glass:
+        material: BLUE_STAINED_GLASS
+        buy: 676
+        sell: 169
+    gui-rows: 6
+  page5:
+    items:
+      purple_stained_glass:
+        material: PURPLE_STAINED_GLASS
+        buy: 676
+        sell: 169
+      magenta_stained_glass:
+        material: MAGENTA_STAINED_GLASS
+        buy: 676
+        sell: 169
+      pink_stained_glass:
+        material: PINK_STAINED_GLASS
+        buy: 676
+        sell: 169
+      white_glazed_terracotta:
+        material: WHITE_GLAZED_TERRACOTTA
+        buy: 2460
+        sell: 615
+      light_gray_glazed_terracotta:
+        material: LIGHT_GRAY_GLAZED_TERRACOTTA
+        buy: 2446
+        sell: 612
+      gray_glazed_terracotta:
+        material: GRAY_GLAZED_TERRACOTTA
+        buy: 2481
+        sell: 621
+      black_glazed_terracotta:
+        material: BLACK_GLAZED_TERRACOTTA
+        buy: 2500
+        sell: 625
+      brown_glazed_terracotta:
+        material: BROWN_GLAZED_TERRACOTTA
+        buy: 2514
+        sell: 629
+      red_glazed_terracotta:
+        material: RED_GLAZED_TERRACOTTA
+        buy: 2446
+        sell: 612
+      orange_glazed_terracotta:
+        material: ORANGE_GLAZED_TERRACOTTA
+        buy: 3087
+        sell: 772
+      yellow_glazed_terracotta:
+        material: YELLOW_GLAZED_TERRACOTTA
+        buy: 2441
+        sell: 611
+      lime_glazed_terracotta:
+        material: LIME_GLAZED_TERRACOTTA
+        buy: 2518
+        sell: 630
+      green_glazed_terracotta:
+        material: GREEN_GLAZED_TERRACOTTA
+        buy: 2433
+        sell: 609
+      cyan_glazed_terracotta:
+        material: CYAN_GLAZED_TERRACOTTA
+        buy: 2440
+        sell: 610
+      light_blue_glazed_terracotta:
+        material: LIGHT_BLUE_GLAZED_TERRACOTTA
+        buy: 2446
+        sell: 612
+      blue_glazed_terracotta:
+        material: BLUE_GLAZED_TERRACOTTA
+        buy: 2531
+        sell: 633
+      purple_glazed_terracotta:
+        material: PURPLE_GLAZED_TERRACOTTA
+        buy: 2447
+        sell: 612
+      magenta_glazed_terracotta:
+        material: MAGENTA_GLAZED_TERRACOTTA
+        buy: 2446
+        sell: 612
+      pink_glazed_terracotta:
+        material: PINK_GLAZED_TERRACOTTA
+        buy: 2446
+        sell: 612
+      glowstone:
+        material: GLOWSTONE
+        buy: 2940
+        sell: 735
+      shroomlight:
+        material: SHROOMLIGHT
+        buy: 800
+        sell: 200
+      brain_coral_block:
+        material: BRAIN_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      bubble_coral_block:
+        material: BUBBLE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      dead_brain_coral_block:
+        material: DEAD_BRAIN_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      dead_bubble_coral_block:
+        material: DEAD_BUBBLE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      dead_fire_coral_block:
+        material: DEAD_FIRE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      dead_horn_coral_block:
+        material: DEAD_HORN_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      dead_tube_coral_block:
+        material: DEAD_TUBE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+    gui-rows: 6
+  page6:
+    items:
+      fire_coral_block:
+        material: FIRE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      horn_coral_block:
+        material: HORN_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      tube_coral_block:
+        material: TUBE_CORAL_BLOCK
+        buy: 1600
+        sell: 400
+      quartz_block:
+        material: QUARTZ_BLOCK
+        buy: 3473
+        sell: 869
+      quartz_stairs:
+        material: QUARTZ_STAIRS
+        buy: 3647
+        sell: 912
+      quartz_slab:
+        material: QUARTZ_SLAB
+        buy: 1824
+        sell: 456
+      quartz_bricks:
+        material: QUARTZ_BRICKS
+        buy: 3647
+        sell: 912
+      chiseled_quartz_block:
+        material: CHISELED_QUARTZ_BLOCK
+        buy: 3647
+        sell: 912
+      quartz_pillar:
+        material: QUARTZ_PILLAR
+        buy: 3647
+        sell: 912
+      smooth_quartz:
+        material: SMOOTH_QUARTZ
+        buy: 3647
+        sell: 912
+      smooth_quartz_stairs:
+        material: SMOOTH_QUARTZ_STAIRS
+        buy: 3829
+        sell: 958
+      smooth_quartz_slab:
+        material: SMOOTH_QUARTZ_SLAB
+        buy: 1915
+        sell: 479
+      purpur_pillar:
+        material: PURPUR_PILLAR
+        buy: 348
+        sell: 87
+      purpur_block:
+        material: PURPUR_BLOCK
+        buy: 331
+        sell: 83
+      purpur_stairs:
+        material: PURPUR_STAIRS
+        buy: 348
+        sell: 87
+      purpur_slab:
+        material: PURPUR_SLAB
+        buy: 174
+        sell: 44
+      copper_block:
+        material: COPPER_BLOCK
+        buy: 386
+        sell: 97
+      cut_copper:
+        material: CUT_COPPER
+        buy: 406
+        sell: 102
+      waxed_copper_block:
+        material: WAXED_COPPER_BLOCK
+        buy: 736
+        sell: 184
+      waxed_cut_copper:
+        material: WAXED_CUT_COPPER
+        buy: 194
+        sell: 49
+      bookshelf:
+        material: BOOKSHELF
+        buy: 11912
+        sell: 2978
+      jack_o_lantern:
+        material: JACK_O_LANTERN
+        buy: 686
+        sell: 172
+    gui-rows: 6

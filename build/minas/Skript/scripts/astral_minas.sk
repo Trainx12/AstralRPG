@@ -19,7 +19,7 @@ on load:
     set {-am.chance::1} to 22
     set {-am.goal::1} to 0
     set {-am.cost::1} to 0
-    set {-am.value::1} to 0.21
+    set {-am.value::1} to 21.0
     set {-am.slot::2} to 11
     set {-am.dest::11} to 2
     set {-am.name::2} to "I · Cobre"
@@ -30,8 +30,8 @@ on load:
     set {-am.baseid::2} to "minecraft:stone"
     set {-am.chance::2} to 22
     set {-am.goal::2} to 400
-    set {-am.cost::2} to 80
-    set {-am.value::2} to 0.27
+    set {-am.cost::2} to 8000
+    set {-am.value::2} to 27.05
     set {-am.slot::3} to 12
     set {-am.dest::12} to 3
     set {-am.name::3} to "I · Hierro"
@@ -42,8 +42,8 @@ on load:
     set {-am.baseid::3} to "minecraft:stone"
     set {-am.chance::3} to 22
     set {-am.goal::3} to 600
-    set {-am.cost::3} to 150
-    set {-am.value::3} to 0.41
+    set {-am.cost::3} to 15000
+    set {-am.value::3} to 40.8
     set {-am.slot::4} to 13
     set {-am.dest::13} to 4
     set {-am.name::4} to "I · Oro"
@@ -54,8 +54,8 @@ on load:
     set {-am.baseid::4} to "minecraft:stone"
     set {-am.chance::4} to 22
     set {-am.goal::4} to 800
-    set {-am.cost::4} to 300
-    set {-am.value::4} to 0.63
+    set {-am.cost::4} to 30000
+    set {-am.value::4} to 62.8
     set {-am.slot::5} to 14
     set {-am.dest::14} to 5
     set {-am.name::5} to "I · Esmeralda"
@@ -66,8 +66,8 @@ on load:
     set {-am.baseid::5} to "minecraft:stone"
     set {-am.chance::5} to 22
     set {-am.goal::5} to 1000
-    set {-am.cost::5} to 550
-    set {-am.value::5} to 1.18
+    set {-am.cost::5} to 55000
+    set {-am.value::5} to 117.8
     set {-am.slot::6} to 15
     set {-am.dest::15} to 6
     set {-am.name::6} to "I · Diamante"
@@ -78,8 +78,8 @@ on load:
     set {-am.baseid::6} to "minecraft:stone"
     set {-am.chance::6} to 22
     set {-am.goal::6} to 1300
-    set {-am.cost::6} to 1300
-    set {-am.value::6} to 1.84
+    set {-am.cost::6} to 130000
+    set {-am.value::6} to 183.8
     set {-am.slot::7} to 19
     set {-am.dest::19} to 7
     set {-am.name::7} to "II · Carbón"
@@ -90,8 +90,8 @@ on load:
     set {-am.baseid::7} to "minecraft:coal_ore"
     set {-am.chance::7} to 30
     set {-am.goal::7} to 1700
-    set {-am.cost::7} to 2500
-    set {-am.value::7} to 2.22
+    set {-am.cost::7} to 250000
+    set {-am.value::7} to 222.0
     set {-am.slot::8} to 20
     set {-am.dest::20} to 8
     set {-am.name::8} to "II · Cobre"
@@ -102,8 +102,8 @@ on load:
     set {-am.baseid::8} to "minecraft:copper_ore"
     set {-am.chance::8} to 30
     set {-am.goal::8} to 2200
-    set {-am.cost::8} to 4000
-    set {-am.value::8} to 3.31
+    set {-am.cost::8} to 400000
+    set {-am.value::8} to 331.25
     set {-am.slot::9} to 21
     set {-am.dest::21} to 9
     set {-am.name::9} to "II · Hierro"
@@ -114,8 +114,8 @@ on load:
     set {-am.baseid::9} to "minecraft:iron_ore"
     set {-am.chance::9} to 30
     set {-am.goal::9} to 2700
-    set {-am.cost::9} to 7000
-    set {-am.value::9} to 5.25
+    set {-am.cost::9} to 700000
+    set {-am.value::9} to 525.0
     set {-am.slot::10} to 22
     set {-am.dest::22} to 10
     set {-am.name::10} to "II · Oro"
@@ -126,8 +126,8 @@ on load:
     set {-am.baseid::10} to "minecraft:gold_ore"
     set {-am.chance::10} to 30
     set {-am.goal::10} to 3200
-    set {-am.cost::10} to 13000
-    set {-am.value::10} to 8.35
+    set {-am.cost::10} to 1300000
+    set {-am.value::10} to 835.0
     set {-am.slot::11} to 23
     set {-am.dest::23} to 11
     set {-am.name::11} to "II · Esmeralda"
@@ -138,8 +138,8 @@ on load:
     set {-am.baseid::11} to "minecraft:emerald_ore"
     set {-am.chance::11} to 30
     set {-am.goal::11} to 3700
-    set {-am.cost::11} to 25000
-    set {-am.value::11} to 17.0
+    set {-am.cost::11} to 2500000
+    set {-am.value::11} to 1700.0
     set {-am.slot::12} to 24
     set {-am.dest::24} to 12
     set {-am.name::12} to "II · Diamante"
@@ -150,8 +150,8 @@ on load:
     set {-am.baseid::12} to "minecraft:diamond_ore"
     set {-am.chance::12} to 30
     set {-am.goal::12} to 4500
-    set {-am.cost::12} to 60000
-    set {-am.value::12} to 27.2
+    set {-am.cost::12} to 6000000
+    set {-am.value::12} to 2720.0
     set {-am.slot::13} to 25
     set {-am.dest::25} to 13
     set {-am.name::13} to "II · Restos ancestrales"
@@ -162,8 +162,8 @@ on load:
     set {-am.baseid::13} to "minecraft:netherrack"
     set {-am.chance::13} to 8
     set {-am.goal::13} to 5500
-    set {-am.cost::13} to 120000
-    set {-am.value::13} to 48.18
+    set {-am.cost::13} to 12000000
+    set {-am.value::13} to 4818.4
     set {-am.slot::14} to 28
     set {-am.dest::28} to 14
     set {-am.name::14} to "III · Carbón"
@@ -174,8 +174,8 @@ on load:
     set {-am.baseid::14} to "minecraft:coal_block"
     set {-am.chance::14} to 0
     set {-am.goal::14} to 7000
-    set {-am.cost::14} to 250000
-    set {-am.value::14} to 6.0
+    set {-am.cost::14} to 25000000
+    set {-am.value::14} to 600.0
     set {-am.slot::15} to 29
     set {-am.dest::29} to 15
     set {-am.name::15} to "III · Cobre"
@@ -186,8 +186,8 @@ on load:
     set {-am.baseid::15} to "minecraft:copper_block"
     set {-am.chance::15} to 0
     set {-am.goal::15} to 8000
-    set {-am.cost::15} to 40000
-    set {-am.value::15} to 9.0
+    set {-am.cost::15} to 4000000
+    set {-am.value::15} to 900.0
     set {-am.slot::16} to 30
     set {-am.dest::30} to 16
     set {-am.name::16} to "III · Hierro"
@@ -198,8 +198,8 @@ on load:
     set {-am.baseid::16} to "minecraft:iron_block"
     set {-am.chance::16} to 0
     set {-am.goal::16} to 9500
-    set {-am.cost::16} to 70000
-    set {-am.value::16} to 14.0
+    set {-am.cost::16} to 7000000
+    set {-am.value::16} to 1400.0
     set {-am.slot::17} to 31
     set {-am.dest::31} to 17
     set {-am.name::17} to "III · Oro"
@@ -210,8 +210,8 @@ on load:
     set {-am.baseid::17} to "minecraft:gold_block"
     set {-am.chance::17} to 0
     set {-am.goal::17} to 12000
-    set {-am.cost::17} to 135000
-    set {-am.value::17} to 22.0
+    set {-am.cost::17} to 13500000
+    set {-am.value::17} to 2200.0
     set {-am.slot::18} to 32
     set {-am.dest::32} to 18
     set {-am.name::18} to "III · Esmeralda"
@@ -222,8 +222,8 @@ on load:
     set {-am.baseid::18} to "minecraft:emerald_block"
     set {-am.chance::18} to 0
     set {-am.goal::18} to 15000
-    set {-am.cost::18} to 260000
-    set {-am.value::18} to 45.0
+    set {-am.cost::18} to 26000000
+    set {-am.value::18} to 4500.0
     set {-am.slot::19} to 33
     set {-am.dest::33} to 19
     set {-am.name::19} to "III · Diamante"
@@ -234,8 +234,8 @@ on load:
     set {-am.baseid::19} to "minecraft:diamond_block"
     set {-am.chance::19} to 0
     set {-am.goal::19} to 20000
-    set {-am.cost::19} to 700000
-    set {-am.value::19} to 72.0
+    set {-am.cost::19} to 70000000
+    set {-am.value::19} to 7200.0
     set {-am.slot::20} to 34
     set {-am.dest::34} to 20
     set {-am.name::20} to "III · Netherita"
@@ -246,89 +246,89 @@ on load:
     set {-am.baseid::20} to "minecraft:netherite_block"
     set {-am.chance::20} to 0
     set {-am.goal::20} to 500000
-    set {-am.cost::20} to 25000000
-    set {-am.value::20} to 4000.0
+    set {-am.cost::20} to 2500000000
+    set {-am.value::20} to 15000.0
     delete {-am.price::*}
     set {_t} to "minecraft:stone" parsed as item type
-    set {-am.price::%{_t}%} to 0.1
+    set {-am.price::%{_t}%} to 10
     set {_t} to "minecraft:cobblestone" parsed as item type
-    set {-am.price::%{_t}%} to 0.1
+    set {-am.price::%{_t}%} to 10
     set {_t} to "minecraft:netherrack" parsed as item type
-    set {-am.price::%{_t}%} to 0.2
+    set {-am.price::%{_t}%} to 20
     set {_t} to "minecraft:coal" parsed as item type
-    set {-am.price::%{_t}%} to 0.6
+    set {-am.price::%{_t}%} to 60
     set {_t} to "minecraft:coal_ore" parsed as item type
-    set {-am.price::%{_t}%} to 0.6
+    set {-am.price::%{_t}%} to 60
     set {_t} to "minecraft:deepslate_coal_ore" parsed as item type
-    set {-am.price::%{_t}%} to 0.6
+    set {-am.price::%{_t}%} to 60
     set {_t} to "minecraft:coal_block" parsed as item type
-    set {-am.price::%{_t}%} to 6
+    set {-am.price::%{_t}%} to 600
     set {_t} to "minecraft:raw_copper" parsed as item type
-    set {-am.price::%{_t}%} to 0.25
+    set {-am.price::%{_t}%} to 25
     set {_t} to "minecraft:copper_ingot" parsed as item type
-    set {-am.price::%{_t}%} to 0.25
+    set {-am.price::%{_t}%} to 25
     set {_t} to "minecraft:copper_ore" parsed as item type
-    set {-am.price::%{_t}%} to 0.9
+    set {-am.price::%{_t}%} to 90
     set {_t} to "minecraft:deepslate_copper_ore" parsed as item type
-    set {-am.price::%{_t}%} to 0.9
+    set {-am.price::%{_t}%} to 90
     set {_t} to "minecraft:copper_block" parsed as item type
-    set {-am.price::%{_t}%} to 9
+    set {-am.price::%{_t}%} to 900
     set {_t} to "minecraft:raw_copper_block" parsed as item type
-    set {-am.price::%{_t}%} to 2.25
+    set {-am.price::%{_t}%} to 225
     set {_t} to "minecraft:raw_iron" parsed as item type
-    set {-am.price::%{_t}%} to 1.5
+    set {-am.price::%{_t}%} to 150
     set {_t} to "minecraft:iron_ingot" parsed as item type
-    set {-am.price::%{_t}%} to 1.5
+    set {-am.price::%{_t}%} to 150
     set {_t} to "minecraft:iron_ore" parsed as item type
-    set {-am.price::%{_t}%} to 1.5
+    set {-am.price::%{_t}%} to 150
     set {_t} to "minecraft:deepslate_iron_ore" parsed as item type
-    set {-am.price::%{_t}%} to 1.5
+    set {-am.price::%{_t}%} to 150
     set {_t} to "minecraft:iron_block" parsed as item type
-    set {-am.price::%{_t}%} to 14
+    set {-am.price::%{_t}%} to 1400
     set {_t} to "minecraft:raw_iron_block" parsed as item type
-    set {-am.price::%{_t}%} to 13.5
+    set {-am.price::%{_t}%} to 1350
     set {_t} to "minecraft:raw_gold" parsed as item type
-    set {-am.price::%{_t}%} to 2.5
+    set {-am.price::%{_t}%} to 250
     set {_t} to "minecraft:gold_ingot" parsed as item type
-    set {-am.price::%{_t}%} to 2.5
+    set {-am.price::%{_t}%} to 250
     set {_t} to "minecraft:gold_ore" parsed as item type
-    set {-am.price::%{_t}%} to 2.5
+    set {-am.price::%{_t}%} to 250
     set {_t} to "minecraft:deepslate_gold_ore" parsed as item type
-    set {-am.price::%{_t}%} to 2.5
+    set {-am.price::%{_t}%} to 250
     set {_t} to "minecraft:gold_block" parsed as item type
-    set {-am.price::%{_t}%} to 22
+    set {-am.price::%{_t}%} to 2200
     set {_t} to "minecraft:raw_gold_block" parsed as item type
-    set {-am.price::%{_t}%} to 22.5
+    set {-am.price::%{_t}%} to 2250
     set {_t} to "minecraft:emerald" parsed as item type
-    set {-am.price::%{_t}%} to 5
+    set {-am.price::%{_t}%} to 500
     set {_t} to "minecraft:emerald_ore" parsed as item type
-    set {-am.price::%{_t}%} to 5
+    set {-am.price::%{_t}%} to 500
     set {_t} to "minecraft:deepslate_emerald_ore" parsed as item type
-    set {-am.price::%{_t}%} to 5
+    set {-am.price::%{_t}%} to 500
     set {_t} to "minecraft:emerald_block" parsed as item type
-    set {-am.price::%{_t}%} to 45
+    set {-am.price::%{_t}%} to 4500
     set {_t} to "minecraft:diamond" parsed as item type
-    set {-am.price::%{_t}%} to 8
+    set {-am.price::%{_t}%} to 800
     set {_t} to "minecraft:diamond_ore" parsed as item type
-    set {-am.price::%{_t}%} to 8
+    set {-am.price::%{_t}%} to 800
     set {_t} to "minecraft:deepslate_diamond_ore" parsed as item type
-    set {-am.price::%{_t}%} to 8
+    set {-am.price::%{_t}%} to 800
     set {_t} to "minecraft:diamond_block" parsed as item type
-    set {-am.price::%{_t}%} to 72
+    set {-am.price::%{_t}%} to 7200
     set {_t} to "minecraft:ancient_debris" parsed as item type
-    set {-am.price::%{_t}%} to 600
+    set {-am.price::%{_t}%} to 60000
     set {_t} to "minecraft:netherite_scrap" parsed as item type
-    set {-am.price::%{_t}%} to 600
+    set {-am.price::%{_t}%} to 60000
     set {_t} to "minecraft:netherite_block" parsed as item type
-    set {-am.price::%{_t}%} to 4000
+    set {-am.price::%{_t}%} to 15000
     set {_t} to "minecraft:redstone" parsed as item type
-    set {-am.price::%{_t}%} to 0.3
+    set {-am.price::%{_t}%} to 30
     set {_t} to "minecraft:lapis_lazuli" parsed as item type
-    set {-am.price::%{_t}%} to 0.3
+    set {-am.price::%{_t}%} to 30
     set {_t} to "minecraft:quartz" parsed as item type
-    set {-am.price::%{_t}%} to 0.4
+    set {-am.price::%{_t}%} to 40
     set {_t} to "minecraft:nether_quartz_ore" parsed as item type
-    set {-am.price::%{_t}%} to 0.4
+    set {-am.price::%{_t}%} to 40
     delete {-am.off::*}
     set {-am.off::2::vn::1} to vector(0, 0, -1)
     set {-am.off::2::n0::1} to vector(0, -1, 0)

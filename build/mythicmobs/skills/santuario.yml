@@ -95,9 +95,9 @@ SANTUARIO_PREMIO:
   - 'command{c="loot give <target.name> loot astral:item/esencia_elite"}'
   - 'command{c="loot give <target.name> loot astral:item/alma_corrupta"}'
   - 'command{c="loot give <target.name> loot astral:item/chispa_astral"} 0.25'
-  - 'command{c="eco give <target.name> 5000"}'
+  - 'command{c="eco give <target.name> 500000"}'
   - 'command{c="lp user <target.name> permission settemp astral.santuario.cd true 30m"}'
-  - 'message{m="&6Cofre de Santuario Celestial: &fmateriales de elite y &e5000$&f. &7(el proximo cofre en 30 minutos)"}'
+  - 'message{m="&6Cofre de Santuario Celestial: &fmateriales de elite y &e500000$&f. &7(el proximo cofre en 30 minutos)"}'
 
 SANTUARIO_PREMIO_YA:
   TargetConditions:

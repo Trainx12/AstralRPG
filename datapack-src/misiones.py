@@ -6,6 +6,7 @@ intercambiable. Asi perderlos al morir no bloquea la historia.
 """
 import json
 from pathlib import Path
+from economia import plata
 
 ROOT = Path(__file__).resolve().parent.parent
 NS = "astral"
@@ -247,7 +248,7 @@ def generate(files, items):
         msg("Mision rechazada o pausada. Conservas tus avances y podes aceptarla mas tarde.", "yellow")])
     for state in range(10):
         chapter = max(1, state)
-        amount = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000][chapter - 1]
+        amount = plata([300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000][chapter - 1])
         fn(f"gui/details/story/{state}", [msg(CHAPTERS[chapter - 1], "aqua"),
             msg(f"Premio: {amount}$. Acepta la mision, completa el objetivo y usa Comprobar y cobrar.", "gold")])
     for page in range(5):
@@ -263,6 +264,7 @@ def generate(files, items):
                     "execute if score @s aq.state matches 8 run " + msg("Herrero: el ultimo fragmento esta en mi antiguo golem. Forja tier V y vence al Golem de Forja.", "gold"),
                     call("deliver/herrero")])
     def complete(state, amount, extra=()):
+        amount = plata(amount)
         fn(f"complete/{state}", [f"scoreboard players set @s aq.state {state + 1}", "scoreboard players set @s aq.accepted 0", money(amount)] + list(extra)
            + [msg(f"Capitulo terminado. Recompensa: {amount}$.", "green")]
            + ([msg(CHAPTERS[state], "aqua")] if state < 9 else []))
@@ -333,7 +335,7 @@ def generate(files, items):
             claim += [f'execute unless score @s aq.{counter} matches {goal}.. run return 0']
         claim += [f"scoreboard players set @s aq.done{tier} 1",
                   f"scoreboard players set @s aq.active{tier} 0",
-                  money([300,750,1500][tier]), msg(f"Diaria completada: {name}.", "green")]
+                  money(plata([300,750,1500][tier])), msg(f"Diaria completada: {name}.", "green")]
         if did in (11,12): claim.append("loot give @s loot astral:item/alma_corrupta")
         if did == 13:
             files["data/astral/predicate/quest/chispa.json"] = json.dumps({"condition":"minecraft:random_chance", "chance":0.25})

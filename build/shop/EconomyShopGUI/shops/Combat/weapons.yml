@@ -1,0 +1,97 @@
+pages:
+  page1:
+    items:
+      wooden_sword:
+        material: WOODEN_SWORD
+        buy: 354
+        sell: 89
+      stone_sword:
+        material: STONE_SWORD
+        buy: 204
+        sell: 51
+      copper_sword:
+        material: COPPER_SWORD
+        buy: 324
+        sell: 77
+      iron_sword:
+        material: IRON_SWORD
+        buy: 1219
+        sell: 305
+      golden_sword:
+        material: GOLDEN_SWORD
+        buy: 1798
+        sell: 450
+      diamond_sword:
+        material: DIAMOND_SWORD
+        buy: 11086
+        sell: 2772
+      netherite_sword:
+        material: NETHERITE_SWORD
+        buy: 260241
+        sell: 9265.67
+      wooden_spear:
+        material: WOODEN_SPEAR
+        buy: 238
+        sell: 60
+      stone_spear:
+        material: STONE_SPEAR
+        buy: 193
+        sell: 49
+      copper_spear:
+        material: COPPER_SPEAR
+        buy: 217
+        sell: 54
+      iron_spear:
+        material: IRON_SPEAR
+        buy: 701
+        sell: 176
+      golden_spear:
+        material: GOLDEN_SPEAR
+        buy: 990
+        sell: 248
+      diamond_spear:
+        material: DIAMOND_SPEAR
+        buy: 5635
+        sell: 1409
+      netherite_spear:
+        material: NETHERITE_SPEAR
+        buy: 254516
+        sell: 7902.67
+      arrow:
+        material: ARROW
+        buy: 3616
+        sell: 912
+        stack-size: 16
+        slot: 38
+      spectral_arrow:
+        material: SPECTRAL_ARROW
+        buy: 12712
+        sell: 3184
+        stack-size: 8
+        slot: 39
+      bow:
+        material: BOW
+        buy: 2388
+        sell: 597
+        slot: 40
+      crossbow:
+        material: CROSSBOW
+        buy: 2628
+        sell: 657
+        slot: 41
+      mace:
+        material: MACE
+        buy: 2102100
+        sell: 525525
+        slot: 42
+      trident:
+        material: TRIDENT
+        buy: 18000
+        sell: 4500
+        slot: 43
+      shield:
+        material: SHIELD
+        buy: 1274
+        sell: 319
+        slot: 44
+    gui-rows: 6

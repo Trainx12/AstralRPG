@@ -1,0 +1,310 @@
+pages:
+  page1:
+    items:
+      dirt:
+        material: DIRT
+        buy: 300
+        sell: 75
+      coarse_dirt:
+        material: COARSE_DIRT
+        buy: 578
+        sell: 145
+      rooted_dirt:
+        material: ROOTED_DIRT
+        buy: 100
+        sell: 25
+      grass_block:
+        material: GRASS_BLOCK
+        buy: 800
+        sell: 200
+      moss_block:
+        material: MOSS_BLOCK
+        buy: 100
+        sell: 25
+      podzol:
+        material: PODZOL
+        buy: 800
+        sell: 200
+      mycelium:
+        material: MYCELIUM
+        buy: 800
+        sell: 200
+      sand:
+        material: SAND
+        buy: 600
+        sell: 150
+      red_sand:
+        material: RED_SAND
+        buy: 800
+        sell: 200
+      gravel:
+        material: GRAVEL
+        buy: 800
+        sell: 200
+      clay:
+        material: CLAY
+        buy: 2100
+        sell: 525
+      mud:
+        material: MUD
+        buy: 319
+        sell: 80
+      packed_mud:
+        material: PACKED_MUD
+        buy: 860
+        sell: 215
+      mud_bricks:
+        material: MUD_BRICKS
+        buy: 903
+        sell: 226
+      mud_brick_stairs:
+        material: MUD_BRICK_STAIRS
+        buy: 948
+        sell: 237
+      mud_brick_slab:
+        material: MUD_BRICK_SLAB
+        buy: 474
+        sell: 119
+      crying_obsidian:
+        material: CRYING_OBSIDIAN
+        buy: 6250
+        sell: 1563
+      obsidian:
+        material: OBSIDIAN
+        buy: 3125
+        sell: 782
+      netherrack:
+        material: NETHERRACK
+        buy: 20
+        sell: 5
+      crimson_nylium:
+        material: CRIMSON_NYLIUM
+        buy: 600
+        sell: 150
+      warped_nylium:
+        material: WARPED_NYLIUM
+        buy: 600
+        sell: 150
+      soul_sand:
+        material: SOUL_SAND
+        buy: 1000
+        sell: 250
+      soul_soil:
+        material: SOUL_SOIL
+        buy: 1000
+        sell: 250
+      ice:
+        material: ICE
+        buy: 300
+        sell: 75
+      packed_ice:
+        material: PACKED_ICE
+        buy: 1350
+        sell: 338
+      blue_ice:
+        material: BLUE_ICE
+        buy: 6075
+        sell: 1519
+      sea_lantern:
+        material: SEA_LANTERN
+        buy: 6615
+        sell: 1654
+      snow_block:
+        material: SNOW_BLOCK
+        buy: 1260
+        sell: 315
+    gui-rows: 6
+  page2:
+    items:
+      ochre_froglight:
+        material: OCHRE_FROGLIGHT
+        buy: 600
+        sell: 150
+      pearlescent_froglight:
+        material: PEARLESCENT_FROGLIGHT
+        buy: 600
+        sell: 150
+      verdant_froglight:
+        material: VERDANT_FROGLIGHT
+        buy: 600
+        sell: 150
+      mangrove_roots:
+        material: MANGROVE_ROOTS
+        buy: 300
+        sell: 75
+      muddy_mangrove_roots:
+        material: MUDDY_MANGROVE_ROOTS
+        buy: 300
+        sell: 75
+      acacia_leaves:
+        material: ACACIA_LEAVES
+        buy: 300
+        sell: 75
+      azalea_leaves:
+        material: AZALEA_LEAVES
+        buy: 315
+        sell: 79
+      birch_leaves:
+        material: BIRCH_LEAVES
+        buy: 300
+        sell: 75
+      cherry_leaves:
+        material: CHERRY_LEAVES
+        buy: 300
+        sell: 75
+      dark_oak_leaves:
+        material: DARK_OAK_LEAVES
+        buy: 300
+        sell: 75
+      flowering_azalea_leaves:
+        material: FLOWERING_AZALEA_LEAVES
+        buy: 315
+        sell: 79
+      jungle_leaves:
+        material: JUNGLE_LEAVES
+        buy: 300
+        sell: 75
+      oak_leaves:
+        material: OAK_LEAVES
+        buy: 300
+        sell: 75
+      spruce_leaves:
+        material: SPRUCE_LEAVES
+        buy: 300
+        sell: 75
+      mangrove_leaves:
+        material: MANGROVE_LEAVES
+        buy: 300
+        sell: 75
+      dripstone_block:
+        material: DRIPSTONE_BLOCK
+        buy: 100
+        sell: 25
+      sponge:
+        material: SPONGE
+        buy: 52500
+        sell: 13125
+      slime_block:
+        material: SLIME_BLOCK
+        buy: 4725
+        sell: 1182
+      honey_block:
+        material: HONEY_BLOCK
+        buy: 3334
+        sell: 834
+      honeycomb_block:
+        material: HONEYCOMB_BLOCK
+        buy: 1323
+        sell: 331
+      magma_block:
+        material: MAGMA_BLOCK
+        buy: 3363
+        sell: 841
+      resin_bricks:
+        material: RESIN_BRICKS
+        buy: 1616
+        sell: 162
+      resin_brick_stairs:
+        material: RESIN_BRICK_STAIRS
+        buy: 1616
+        sell: 162
+      resin_brick_slab:
+        material: RESIN_BRICK_SLAB
+        buy: 1616
+        sell: 162
+      chiseled_sandstone:
+        material: CHISELED_SANDSTONE
+        buy: 1260
+        sell: 315
+      sandstone:
+        material: SANDSTONE
+        buy: 1200
+        sell: 300
+      sandstone_stairs:
+        material: SANDSTONE_STAIRS
+        buy: 1260
+        sell: 315
+      sandstone_slab:
+        material: SANDSTONE_SLAB
+        buy: 630
+        sell: 158
+    gui-rows: 6
+  page3:
+    items:
+      smooth_sandstone:
+        material: SMOOTH_SANDSTONE
+        buy: 1260
+        sell: 315
+      smooth_sandstone_stairs:
+        material: SMOOTH_SANDSTONE_STAIRS
+        buy: 1323
+        sell: 331
+      smooth_sandstone_slab:
+        material: SMOOTH_SANDSTONE_SLAB
+        buy: 662
+        sell: 166
+      chiseled_red_sandstone:
+        material: CHISELED_RED_SANDSTONE
+        buy: 3528
+        sell: 882
+      red_sandstone:
+        material: RED_SANDSTONE
+        buy: 3360
+        sell: 840
+      red_sandstone_stairs:
+        material: RED_SANDSTONE_STAIRS
+        buy: 3528
+        sell: 882
+      red_sandstone_slab:
+        material: RED_SANDSTONE_SLAB
+        buy: 1764
+        sell: 441
+      smooth_red_sandstone:
+        material: SMOOTH_RED_SANDSTONE
+        buy: 3528
+        sell: 882
+      smooth_red_sandstone_stairs:
+        material: SMOOTH_RED_SANDSTONE_STAIRS
+        buy: 3705
+        sell: 927
+      smooth_red_sandstone_slab:
+        material: SMOOTH_RED_SANDSTONE_SLAB
+        buy: 1853
+        sell: 464
+      prismarine:
+        material: PRISMARINE
+        buy: 2940
+        sell: 735
+      prismarine_stairs:
+        material: PRISMARINE_STAIRS
+        buy: 3087
+        sell: 772
+      prismarine_slab:
+        material: PRISMARINE_SLAB
+        buy: 1544
+        sell: 386
+      prismarine_bricks:
+        material: PRISMARINE_BRICKS
+        buy: 6615
+        sell: 1654
+      prismarine_brick_stairs:
+        material: PRISMARINE_BRICK_STAIRS
+        buy: 6946
+        sell: 1737
+      prismarine_brick_slab:
+        material: PRISMARINE_BRICK_SLAB
+        buy: 3473
+        sell: 869
+      dark_prismarine:
+        material: DARK_PRISMARINE
+        buy: 6405
+        sell: 1602
+      dark_prismarine_stairs:
+        material: DARK_PRISMARINE_STAIRS
+        buy: 6726
+        sell: 1682
+      dark_prismarine_slab:
+        material: DARK_PRISMARINE_SLAB
+        buy: 3363
+        sell: 841
+    gui-rows: 6

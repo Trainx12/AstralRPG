@@ -33,7 +33,7 @@ astral_mapache:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cuero_tratado"} @self ~onDeath 0.15
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_pinguino:
   Type: ZOMBIE
@@ -69,7 +69,7 @@ astral_pinguino:
   - command{c="astralchill <trigger.uuid>"} @trigger ~onAttack ?~isplayer
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_espantapajaros:
   Type: VEX
@@ -96,7 +96,7 @@ astral_espantapajaros:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_umbrio"} @self ~onDeath 0.1
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/espantapajaros"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_goblin:
   Type: ZOMBIE
@@ -127,7 +127,7 @@ astral_goblin:
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/hostil"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_abejorro:
   Type: VEX
@@ -153,7 +153,7 @@ astral_abejorro:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 0.06
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/abejorro"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_arana:
   Type: SPIDER
@@ -180,7 +180,7 @@ astral_arana:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_arcano"} @self ~onDeath 0.03
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/arana"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_cara:
   Type: PHANTOM
@@ -206,7 +206,7 @@ astral_cara:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.05
   - skill{s=AST_MUERTE} @self ~onDeath
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cara"} @self ~onDeath ?~isplayer
-  - command{c="astralplatamob <trigger.name> 15"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_grillo:
   Type: HORSE
@@ -428,7 +428,7 @@ astral_momia:
   - skill{s=AST_FASE_astral_momia_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_momia_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_momia_3_cura} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_yeti:
   Type: RAVAGER
@@ -487,7 +487,7 @@ astral_yeti:
   - skill{s=AST_FASE_astral_yeti_2_onda} @self ~onTimer:100 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_yeti_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_yeti_3_frio} @self ~onTimer:80 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_golem_forja:
   Type: IRON_GOLEM
@@ -547,7 +547,7 @@ astral_golem_forja:
   - skill{s=AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_golem_forja_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_golem_forja_3_empuje} @self ~onTimer:140 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_cangrejo:
   Type: SPIDER
@@ -603,7 +603,7 @@ astral_cangrejo:
   - skill{s=AST_FASE_astral_cangrejo_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_cangrejo_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_FASE_astral_cangrejo_3_pinza} @self ~onTimer:100 ?hastag{tag=astral.fase3} ?playerwithin{d=24}
-  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_chaman:
   Type: EVOKER
@@ -663,7 +663,7 @@ astral_chaman:
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
-  - command{c="astralplatamob <trigger.name> 750"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_espantapajaros_elite:
   Type: VEX
@@ -712,7 +712,7 @@ astral_espantapajaros_elite:
   - summon{type=astral_espantapajaros;amount=1;radius=3} @self ~onTimer:300 ?playerwithin{d=12} ?hastag{tag=astral.af_invoc} 0.5
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 150"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_abejorro_elite:
   Type: VEX
@@ -760,7 +760,7 @@ astral_abejorro_elite:
   - summon{type=astral_abejorro;amount=1;radius=3} @self ~onTimer:300 ?playerwithin{d=12} ?hastag{tag=astral.af_invoc} 0.5
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 150"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_arana_elite:
   Type: SPIDER
@@ -809,7 +809,7 @@ astral_arana_elite:
   - summon{type=astral_arana;amount=1;radius=3} @self ~onTimer:300 ?playerwithin{d=12} ?hastag{tag=astral.af_invoc} 0.5
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 150"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_cara_elite:
   Type: PHANTOM
@@ -857,7 +857,7 @@ astral_cara_elite:
   - summon{type=astral_cara;amount=1;radius=3} @self ~onTimer:300 ?playerwithin{d=12} ?hastag{tag=astral.af_invoc} 0.5
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 150"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_cangrejo_elite:
   Type: SPIDER
@@ -929,7 +929,7 @@ astral_cangrejo_elite:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 150"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_momia_ancestral:
   Type: HUSK
@@ -1023,7 +1023,7 @@ astral_momia_ancestral:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_yeti_ancestral:
   Type: RAVAGER
@@ -1118,7 +1118,7 @@ astral_yeti_ancestral:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_golem_forja_ancestral:
   Type: IRON_GOLEM
@@ -1214,7 +1214,7 @@ astral_golem_forja_ancestral:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_cangrejo_ancestral:
   Type: SPIDER
@@ -1305,7 +1305,7 @@ astral_cangrejo_ancestral:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_chaman_ancestral:
   Type: EVOKER
@@ -1401,7 +1401,7 @@ astral_chaman_ancestral:
   - potion{type=SPEED;duration=240;level=1} @self ~onTimer:200 ?hastag{tag=astral.af_veloz}
   - potion{type=WEAKNESS;duration=60;level=0} @PlayersInRadius{r=5} ~onTimer:60 ?hastag{tag=astral.af_mald}
   - particles{p=smoke;amount=30;hS=2;vS=1} @self ~onTimer:60 ?hastag{tag=astral.af_mald}
-  - command{c="astralplatamob <trigger.name> 3000"} @trigger ~onDeath ?~isplayer
+  - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_npc_expediciones:
   Type: VILLAGER
@@ -1521,7 +1521,7 @@ astral_npc_bazar:
 
 astral_npc_subastas:
   Type: VILLAGER
-  Display: '&e&lSubastas'
+  Display: '&e&lSubastas y Banco'
   Health: 100
   Options:
     NoAI: true
@@ -1540,7 +1540,7 @@ astral_npc_subastas:
   - skill{s=AST_NPC_subastas} @self ~onSpawn
   - skill{s=AST_NPC_subastas} @self ~onLoad
   - state{s=saludo} @self ~onInteract
-  - 'command{c="dm open subastas <trigger.name>"} @self ~onInteract'
+  - 'command{c="dm open subastas_inicio <trigger.name>"} @self ~onInteract'
 
 astral_npc_herrero:
   Type: VILLAGER

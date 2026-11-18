@@ -99,8 +99,9 @@ def rpg_rewards():
 
 # ------------------------------------------------------------------ gacha de monturas y mascotas
 def mascota(pid):
-    return [f"lp user %player% permission set astral.mascota.{pid} true", "eco give %player% 1000",
-            "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan 1000$)',color:'gold'}"]
+    from economia import plata, texto
+    return [f"lp user %player% permission set astral.mascota.{pid} true", f"eco give %player% {plata(1000)}",
+            "minecraft:tellraw %player% {text:'Nueva mascota: escribi /mascotas para invocarla (si ya la tenias, te quedan " + texto(plata(1000)) + "',color:'gold'}"]
 
 
 def mount_rewards():
@@ -175,14 +176,15 @@ def mount_rewards():
 def cosmetic_rewards():
     return _cosmetic_rewards()+xp_rewards(apple=True)
 
+from economia import GACHA_TIRADA  # noqa: E402
 GACHAS = {
-    "gacha_rpg": dict(name="<gradient:#B07CFF:#4FD1FF><b>Gacha de Armas</b></gradient>", cost=1000,
+    "gacha_rpg": dict(name="<gradient:#B07CFF:#4FD1FF><b>Gacha de Armas</b></gradient>", cost=GACHA_TIRADA["gacha_rpg"],
                       desc=["<gray>Materiales de forja, armas,", "<gray>talismanes y premios legendarios."],
                       rewards=rpg_rewards),
-    "gacha_monturas": dict(name="<gradient:#F4D24A:#E07A2A><b>Gacha de Monturas</b></gradient>", cost=2500,
+    "gacha_monturas": dict(name="<gradient:#F4D24A:#E07A2A><b>Gacha de Monturas</b></gradient>", cost=GACHA_TIRADA["gacha_monturas"],
                            desc=["<gray>Monturas y mascotas de AstralRPG.", "<gray>Las monturas traen silla."],
                            rewards=mount_rewards, rarity_weight=MOUNT_RARITY_WEIGHT),
-    "gacha_cosmeticos": dict(name="<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>", cost=500,
+    "gacha_cosmeticos": dict(name="<gradient:#FF7BD5:#7EC8FF><b>Gacha de Cosmeticos</b></gradient>", cost=GACHA_TIRADA["gacha_cosmeticos"],
                              desc=["<gray>Titulos y gorros.", "<gray>Equipalos desde /cosmeticos."],
                              rewards=cosmetic_rewards),
 }
@@ -266,7 +268,7 @@ def crate_yml(gid, g, garantia=False, suerte=False):
          "        Max-Cap: 20",
          "  Item: " + dq(frame), "  Hide-Flags: false", "  Components: []", "  Custom-Model-Data: -1",
          "  Model:", "    Namespace: " + dq(""), "    Id: " + dq(""), "  Glowing: " + dq("add_glow"),
-         "  Name: " + dq(GACHA_MINI[gid]), "  Lore:", "    - " + dq("<gray>Tirada: <yellow>" + str(g["cost"]) + "$"),
+         "  Name: " + dq(GACHA_MINI[gid]), "  Lore:", "    - " + dq("<gray>Tirada: <yellow>" + money(g["cost"])),
          "  Preview:", "    Name: " + dq(GACHA_MINI[gid] + "<reset><gray> - premios"), "    Toggle: true", "    Rows: 6",
          "    Glass:", "      Toggle: true", "      Name: " + dq(" "), "      Item: " + dq(glass), "      Custom-Model-Data: -1",
          "      Model:", "        Namespace: " + dq(""), "        Id: " + dq(""),
@@ -525,7 +527,7 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
 ESCALA_GRANDE = 1.7
 NAME_HOLOS = {
     "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.5),
-    "astral_npc_subastas": ("Subastas", "#FFAA00", "Comprá y vendé entre jugadores", 3.0),
+    "astral_npc_subastas": ("Subastas y Banco", "#FFAA00", "Comprá, vendé y guardá tu plata", 3.0),
     "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", 3.0),
     "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),

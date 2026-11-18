@@ -155,7 +155,9 @@ def mob_yml(dungeon=None):
             m, sc, col = d["model"]
             sk = ['skill{s=AST_MUERTE} @self ~onDeath', f"skill{{s=MINA_MODELO_{mid}}} @self ~onSpawn", f"skill{{s=MINA_MODELO_{mid}}} @self ~onLoad",
                   "state{s=attack} @self ~onAttack"] + sk
-        sk.append(f'command{{c="astralplatamob <trigger.name> {d["money"]}"}} @trigger ~onDeath ?~isplayer')
+        # Plata: tabla de la mazmorra por tier del mundo (economia.py / astral_economia.sk).
+        cat = d.get("plata") or ("jefe" if d.get("boss") and d.get("money", 0) >= 1000 else "elite" if d.get("boss") else "hostil")
+        sk.append(f'command{{c="astralplatamob <trigger.name> {cat}"}} @trigger ~onDeath ?~isplayer')
         L += ["  Skills:"] + ["  - " + q(s) for s in sk] + [""]
     # controladores de sala: armor stand invisible y quieto
     for i, s in enumerate(SALAS):
@@ -245,7 +247,8 @@ def skill_yml(dungeon=None):
     dungeon = dungeon or MINA
     exact_surface = ';onSurface=false' if dungeon.get('tanda2') or dungeon['key']=='santuario' else ''
     MOBS, SALAS, WORLD = dungeon["mobs"], dungeon["rooms"], dungeon["world"]
-    PREMIO, PREMIO_PLATA, COOLDOWN = dungeon["reward"], dungeon["money"], dungeon["cooldown"]
+    from economia import plata
+    PREMIO, PREMIO_PLATA, COOLDOWN = dungeon["reward"], plata(dungeon["money"]), dungeon["cooldown"]
     L = ["# Mazmorra Minas Olvidadas (generado por datapack-src/mobs/mazmorra.py)", ""]
     for mid, d in MOBS.items():
         if d.get("model"):
