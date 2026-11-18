@@ -311,12 +311,20 @@ def generate(files):
                                   f'if block ~ ~ ~ #astral:spawn_air if block ~ ~1 ~ #astral:spawn_air '
                                   f'if block ~ ~2 ~ #astral:spawn_air run return run function astral:{payload}')
                 return guards
+            # Cada invocacion va en su propia funcion: los guardias de spawn seguro
+            # usan `return`, que cortaria la lista entera tras el primer mob.
+            def group(name,count,mob,tag_):
+                calls=[]
+                for i in range(count):
+                    fn(p+f'/{name}/{i}',spawn(mob,r['spawn_points'][i%len(r['spawn_points'])],tag_))
+                    calls.append(f'function astral:{p}/{name}/{i}')
+                fn(p+'/'+name,calls)
             arrival='HUSK' if key=='tumba' else 'ZOMBIE'
-            fn(p+'/arrival', [line for i in range(LLEGADA_MOBS) for line in spawn(arrival,r['spawn_points'][i%len(r['spawn_points'])],'arrival')])
+            group('arrival',LLEGADA_MOBS,arrival,'arrival')
             if r.get('boss_room'):
                 m,n=r['companions']
-                fn(p+'/companions',[line for i in range(n) for line in spawn(m,r['spawn_points'][i%len(r['spawn_points'])],'companion')])
-                fn(p+'/helpers',[line for i in range(2) for line in spawn('HUSK' if key=='tumba' else 'SKELETON' if key=='mina' else 'ZOMBIE',r['spawn_points'][i%len(r['spawn_points'])],'companion')])
+                group('companions',n,m,'companion')
+                group('helpers',2,'HUSK' if key=='tumba' else 'SKELETON' if key=='mina' else 'ZOMBIE','companion')
             # Cola por indices en el controlador: ad.w = oleada, ad.q = proximo, ad.qm = total
             # (base + extra por jugadores). La extra repite la composicion base en orden.
             picks=[]

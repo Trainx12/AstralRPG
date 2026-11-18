@@ -37,6 +37,8 @@ final class AstralMerchant implements Listener {
         for(World w:Bukkit.getWorlds())for(Entity e:w.getEntities())cleanupOld(e);
         Bukkit.getScheduler().runTaskTimer(plugin,this::tick,20,20);
     }
+    // Visitas naturales: solo el mundo survival. La visita forzada por OP sirve en cualquier mundo (pruebas).
+    private static final Set<String> VISIT_WORLDS=Set.of("world");
     private int interval(){return (40*60+rng.nextInt(20*60+1))*20;}
     private void cleanupOld(Entity e){
         if(e.getScoreboardTags().contains("astral.mercader")) {
@@ -53,17 +55,18 @@ final class AstralMerchant implements Listener {
         int now=Bukkit.getCurrentTick();
         if(merchant!=null && (!merchant.isValid() || now>=expires))leave();
         if(merchant==null && now>=next) {
-            List<Player> players=Bukkit.getOnlinePlayers().stream().filter(p->p.getWorld().getName().equals("world") &&
+            List<Player> players=Bukkit.getOnlinePlayers().stream().filter(p->VISIT_WORLDS.contains(p.getWorld().getName()) &&
                 p.getGameMode()==GameMode.SURVIVAL && !p.isDead()).map(p->(Player)p).toList();
             if(players.isEmpty()){next=now+1200;return;}
             visit(players.get(rng.nextInt(players.size())));
         }
         updateBacks();
     }
-    private String visit(Player p) {
+    private String visit(Player p){return visit(p,false);}
+    private String visit(Player p,boolean forced) {
         if(merchant!=null && merchant.isValid() && Bukkit.getCurrentTick()<expires)return "§eYa hay un mercader de visita. Usa /astralmercader irse para despedirlo.";
         if(merchant!=null)leave();
-        if(!p.getWorld().getName().equals("world") || p.isDead())return "§cEl jugador debe estar vivo en world.";
+        if((!forced && !VISIT_WORLDS.contains(p.getWorld().getName())) || p.isDead())return "§cEl jugador debe estar vivo en world.";
         int now=Bukkit.getCurrentTick();
         Location loc=null;
         for(int attempt=0;attempt<16;attempt++) {
@@ -92,15 +95,21 @@ final class AstralMerchant implements Listener {
         Bukkit.getCurrentTick()<expires && p.getWorld()==merchant.getWorld() && p.getLocation().distanceSquared(merchant.getLocation())<=64 && !p.isDead();}
     @EventHandler(priority=EventPriority.MONITOR) public void manualInteract(PlayerInteractEntityEvent e) {
         // El aviso tambien debe llegar si Mythic u otra proteccion cancelo el clic.
-        if(!isMerchant(e.getRightClicked()) && e.getHand()==EquipmentSlot.HAND && e.getPlayer().isOp() &&
+        if(!isMerchant(e.getRightClicked()) && e.getHand()==EquipmentSlot.HAND &&
             e.getRightClicked().getScoreboardTags().contains("astral.mercader"))
-            e.getPlayer().sendMessage("§eEste Goblin Mercader no esta de visita: usa /astralmercader visita [jugador].");
+            e.getPlayer().sendMessage(e.getPlayer().isOp()?"§eEste Goblin Mercader no esta de visita: usa /astralmercader visita [jugador].":"§eEste Goblin Mercader no esta comerciando ahora.");
     }
-    @EventHandler(ignoreCancelled=true) public void interact(PlayerInteractEntityEvent e) {
+    // Sin ignoreCancelled: WorldGuard/GriefPrevention cancelan el clic en zonas protegidas
+    // (minas, spawn) y el comercio quedaba mudo. El evento se cancela igual.
+    @EventHandler(priority=EventPriority.HIGHEST) public void interact(PlayerInteractEntityEvent e) {
         if(!isMerchant(e.getRightClicked()))return;
         e.setCancelled(true);
-        if(e.getHand()==EquipmentSlot.HAND && visitor(e.getPlayer()))
+        if(e.getHand()!=EquipmentSlot.HAND)return;
+        if(visitor(e.getPlayer()))
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"dm open goblin_mercader "+e.getPlayer().getName());
+        else if(aggressor!=null)e.getPlayer().sendMessage("§cEl mercader esta ofendido y no comercia.");
+        else if(!plugin.authenticated(e.getPlayer()))e.getPlayer().sendMessage("§cInicia sesion para comerciar.");
+        else e.getPlayer().sendMessage("§eAcercate un poco mas al mercader.");
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void target(EntityTargetLivingEntityEvent e) {
         if(e.getEntity().getScoreboardTags().contains("astral.mercader") &&
@@ -138,7 +147,7 @@ final class AstralMerchant implements Listener {
             }
             Player target=args.length==1 && sender instanceof Player player?player:args.length==2?Bukkit.getPlayerExact(args[1]):null;
             if(target==null){sender.sendMessage("§eUso: /astralmercader visita [jugador conectado]");return true;}
-            sender.sendMessage(visit(target));return true;
+            sender.sendMessage(visit(target,true));return true;
         }
         if(!(sender instanceof org.bukkit.command.ConsoleCommandSender) || args.length!=2)return true;
         Player p=Bukkit.getPlayerExact(args[0]);int[] offer=offers.get(args[1]);
