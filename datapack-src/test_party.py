@@ -71,13 +71,14 @@ class PartyGeneration(unittest.TestCase):
         from mobs.salas_seguras import safe
         from mobs.mazmorra import mob_yml, skill_yml
         d=next(d for d in catalog() if d['key']=='bosque')
-        self.assertEqual([r['r'] for r in d['rooms']],[44,44])
+        self.assertEqual([r['r'] for r in d['rooms']],[108,103])
         for r in d['rooms']:
             self.assertTrue(all(safe('bosque',p) for p in r['spawn_points']))
             self.assertLessEqual(abs(r['llegada'][0]-r['centro'][0]),44)
             self.assertLessEqual(abs(r['llegada'][2]-r['centro'][2]),44)
         self.assertIn('playerwithin{d=44}',mob_yml(d))
-        self.assertIn('PlayersInRadius{r=52}',skill_yml(d))
+        self.assertNotIn('playerwithin{d=108}',mob_yml(d))
+        self.assertIn('PlayersInRadius{r=116}',skill_yml(d))
 
     def test_bosque_patch_is_only_three_wave_functions(self):
         import bosque_bordes
@@ -90,7 +91,7 @@ class PartyGeneration(unittest.TestCase):
         for name,text in data.items():
             if name=='pack.mcmeta':continue
             self.assertTrue(name.startswith('data/astral/function/tanda2/bosque/sala1/wave'))
-            self.assertIn('@a[distance=..44,gamemode=!spectator]',text)
+            self.assertIn('@a[distance=..108,gamemode=!spectator]',text)
 
     def test_pack_delta(self):
         import json

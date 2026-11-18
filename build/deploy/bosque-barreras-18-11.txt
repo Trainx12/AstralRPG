@@ -1,0 +1,190 @@
+# SOLO CONSOLA: un slash (world/pos1/pos2/replace/set son comandos / de WorldEdit).
+# En chat usar //world, //pos1, //pos2, //replace, //set.
+# Retiro/restauracion exacta de barreras; no modificar terreno entre ambas operaciones.
+# 35313 barreras originales; 10 regiones de retiro / 636 cuboides de restauracion por mundo.
+/world bosque
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air
+/world bosque_2
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air
+/world bosque_3
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air
+/world bosque_4
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air
+/world bosque_5
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air
+/world bosque_6
+/pos1 1414,106,1513
+/pos2 1491,154,1515
+/replace barrier air
+/pos1 1414,102,1516
+/pos2 1414,154,1599
+/replace barrier air
+/pos1 1415,97,1599
+/pos2 1491,134,1599
+/replace barrier air
+/pos1 1491,92,1516
+/pos2 1491,134,1598
+/replace barrier air
+/pos1 1545,107,1360
+/pos2 1546,140,1421
+/replace barrier air
+/pos1 1546,84,1359
+/pos2 1647,140,1359
+/replace barrier air
+/pos1 1547,82,1421
+/pos2 1647,140,1421
+/replace barrier air
+/pos1 1643,83,1395
+/pos2 1647,140,1398
+/replace barrier air
+/pos1 1643,84,1399
+/pos2 1645,140,1420
+/replace barrier air
+/pos1 1645,84,1360
+/pos2 1647,140,1394
+/replace barrier air

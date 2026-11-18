@@ -570,23 +570,35 @@ Entrega unica vigente: `build/deploy/urgente-mascotas-texturas.md`; requiere un 
 
 ### Bordes de pelea (18/11/2026)
 
-AstralParty 1.1.0 muestra un borde de Minecraft por jugador, independiente por sala
-y copia (Minas, Bosque, Tumba, Cumbre, Forja, Santuario, Infinita y Fosa).
-El CSV del JAR sale de `party.py`: centro/radio del catalogo definitivo; los limites
-de aparicion `spawn_bounds` no se confunden con limites de pelea.
-En las mazmorras usa el controlador vivo con `<mazmorra>.on` y sin `.fin`, incluso
-entre oleadas; Infinita y Fosa usan enemigos vivos `inf.mob` / `fosa.mob` / `fosa.jefe`.
-En estas dos ultimas se oculta cuando no hay enemigos y reaparece con la siguiente oleada.
-El borde no hace dano, avisa a tres bloques y devuelve al ultimo punto interior
-al cruzarlo caminando, por empuje, perla o desincronizacion. Los viajes de salida
-del plugin y el cambio de mundo lo liberan; morir, desconectarse y apagar tambien.
-Los caidos conservan la camara y el limite de sus companeros.
+AstralParty **1.2.0** reemplaza los cuadrados de 1.1.0 (05173b7, no desplegada)
+por rectangulos medidos en las copias de solo lectura del 18/11. Los controladores
+conservan centro y activacion; el JSON versionado permite compilar sin mapas locales.
+Cuadrados casi iguales (diferencia <=4): borde fijo de lado menor. Rectangulos
+alargados: cuadrado del lado corto, centro acotado que sigue al jugador en el eje
+largo, misma instancia y actualizacion desde 0,5 bloques. La recuperacion usa
+siempre el rectangulo completo. Aviso a tres bloques, dano y buffer cero.
 
-Bosque tiene dos salas vigentes (tanda2): ambas pasan de radio 40 a 44;
-los datos anteriores de tres salas y radios 18/28 quedaron reemplazados.
-No se modifican mapas ni se quitan barreras automaticamente. Centros, limites,
-archivos exactos y reinicio: [party-bordes-18-11](../build/deploy/party-bordes-18-11.md).
-Despliegue remoto y comprobacion visual con cliente real pendientes.
+Bosque sala 1: **X1411..1495 / Z1512..1603**. Jefe: **X1543..1649 / Z1356..1425**.
+Son cuatro bloques mas por lado que la envolvente interior de cada cerco real,
+no respecto del controlador. El conteo cubre las esquinas y +70 Y con radios
+**108 / 103**; la entrada/arranque siguen en 44. Las demas salas conservan el
+radio previo cuando no se identifica un cerco cerrado claro. No confundir con
+`spawn_bounds`, que solo define apariciones. Tabla completa y ocho diagramas:
+[entrega](../build/deploy/party-bordes-18-11.md) y [medicion](../build/deploy/zonas-pelea-medicion-18-11.md).
+
+Se conservan los controladores `.on` sin `.fin` entre oleadas; Infinita/Fosa usan
+enemigos etiquetados vivos y ocultan el borde durante pausas sin enemigos.
+Los caidos conservan camara y borde. Salir/cambiar mundo/morir/apagar libera el
+borde; movimientos, perlas, empujes y desincronizacion recuperan el ultimo interior.
+
+**Sin desplegar.** Requiere apagar y reiniciar para AstralParty.jar, ambos bosque.yml
+y el complemento de tres funciones, con prioridad sobre el datapack principal.
+No cambia resource pack ni scripts de Skript. Los TXT de WorldEdit retiran solo
+las paredes de ambos cercos del Bosque y tienen inverso exacto con `set barrier`.
+**Retiro pendiente de decision de Claude/dueno:** se detecto piso transitable fuera
+del +4 y vacio, sobre todo al norte del jefe. No hay cierre natural certificado;
+el borde protege durante la pelea, pero no evita caer ni protege entre combates.
+No tocar barreras de otras mazmorras ni sustituir mundos.
 
 Cada mazmorra tiene **6 copias** (`datapack-src/instancias.py`): `mina`, `mina_2` ... `mina_6`; igual `bosque`, `tumba`,
 `cumbre_hielo`, `forja_volcano` (clones de Multiverse) y `santuario_azeroth`..`_6` (dimensiones del datapack, misma region).

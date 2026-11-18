@@ -37,9 +37,19 @@ public final class AstralParty extends JavaPlugin implements Listener {
     public final List<Wipe> wipes = new ArrayList<>();
     public record Boss(String world, double x, double y, double z, boolean boss) {}
     public final List<Boss> bosses = new ArrayList<>();
-    public record FightRoom(String world,double x,double y,double z,double radius,double side,String key,String controller) {
-        boolean contains(Location l) { return l.getWorld().getName().equals(world)&&Math.abs(l.getX()-x)<side/2&&Math.abs(l.getZ()-z)<side/2; }
+    public record FightRoom(String world,double x,double y,double z,double radius,
+                            double x1,double z1,double x2,double z2,String key,String controller) {
+        public boolean contains(Location l) { return l.getWorld().getName().equals(world)
+            &&l.getX()>x1&&l.getX()<x2&&l.getZ()>z1&&l.getZ()<z2; }
         boolean enters(Location l) { return contains(l)&&Math.pow(l.getX()-x,2)+Math.pow(l.getY()-y,2)+Math.pow(l.getZ()-z,2)<=radius*radius; }
+        public double side() { return Math.min(x2-x1,z2-z1); }
+        static double clamp(double value,double lo,double hi) { return Math.max(lo,Math.min(hi,value)); }
+        public double centerX(double playerX) {
+            return Math.abs((x2-x1)-(z2-z1))<=4 || x2-x1<=z2-z1 ? (x1+x2)/2 : clamp(playerX,x1+side()/2,x2-side()/2);
+        }
+        public double centerZ(double playerZ) {
+            return Math.abs((x2-x1)-(z2-z1))<=4 || z2-z1<=x2-x1 ? (z1+z2)/2 : clamp(playerZ,z1+side()/2,z2-side()/2);
+        }
     }
     public final List<FightRoom> fightRooms = new ArrayList<>();
     final Set<FightRoom> activeRooms = new HashSet<>();
@@ -85,8 +95,8 @@ public final class AstralParty extends JavaPlugin implements Listener {
                 while(in.hasNextLine()) { var a=in.nextLine().split(","); if(a.length==5) bosses.add(new Boss(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Boolean.parseBoolean(a[4]))); }
             }
             try(var in=new Scanner(getResource("fight-rooms.csv"),java.nio.charset.StandardCharsets.UTF_8)) {
-                while(in.hasNextLine()) {var a=in.nextLine().split(",",-1);if(a.length!=8)throw new IllegalArgumentException("Sala invalida");
-                    fightRooms.add(new FightRoom(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Double.parseDouble(a[4]),Double.parseDouble(a[5]),a[6],a[7]));}
+                while(in.hasNextLine()) {var a=in.nextLine().split(",",-1);if(a.length!=11)throw new IllegalArgumentException("Sala invalida");
+                    fightRooms.add(new FightRoom(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Double.parseDouble(a[4]),Double.parseDouble(a[5]),Double.parseDouble(a[6]),Double.parseDouble(a[7]),Double.parseDouble(a[8]),a[9],a[10]));}
             }
         } catch(Exception e) { throw new IllegalStateException("Configuracion Party invalida",e); }
         recovery=new NamespacedKey(this,"recuperar");
@@ -135,10 +145,15 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(r==null)r=activeRooms.stream().filter(room->room.enters(p.getLocation()))
                 .min(Comparator.comparingDouble(room->Math.pow(room.x-p.getX(),2)+Math.pow(room.z-p.getZ(),2))).orElse(null);
             if(r==null)return;
-            var border=Bukkit.createWorldBorder();border.setCenter(r.x,r.z);border.setSize(r.side);
+            var border=Bukkit.createWorldBorder();border.setCenter(r.centerX(p.getX()),r.centerZ(p.getZ()));border.setSize(r.side());
             border.setDamageAmount(0);border.setDamageBuffer(0);border.setWarningDistance(3);border.setWarningTime(0);
             p.setWorldBorder(border);borders.put(id,r);
             if(r.contains(p.getLocation()))borderSafe.put(id,p.getLocation());
+        }
+        var visual=p.getWorldBorder();
+        if(visual!=null) {
+            double cx=r.centerX(p.getX()),cz=r.centerZ(p.getZ());var old=visual.getCenter();
+            if(Math.abs(cx-old.getX())>=.5||Math.abs(cz-old.getZ())>=.5)visual.setCenter(cx,cz);
         }
         if(!r.contains(p.getLocation())) {
             var safe=borderSafe.get(id);

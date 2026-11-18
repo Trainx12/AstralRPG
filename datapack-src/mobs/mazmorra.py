@@ -162,7 +162,7 @@ def mob_yml(dungeon=None):
         tipos = tipos_sala(s)
         r = s["r"]
         S = s["id"].upper()
-        sk = [f"skill{{s=MINA_{S}_INICIO}} @self ~onTimer:20 ?playerwithin{{d={r}}} ?!hastag{{tag=mina.on}}"]
+        sk = [f"skill{{s=MINA_{S}_INICIO}} @self ~onTimer:20 ?playerwithin{{d={s.get('entry_r', r)}}} ?!hastag{{tag=mina.on}}"]
         n = len(s["oleadas"])
         for k in range(2, n + 1):
             sk.append(f"skill{{s=MINA_{S}_OLA{k}}} @self ~onTimer:20 ?hastag{{tag=mina.ola{k - 1}}} ?!hastag{{tag=mina.ola{k}}} "

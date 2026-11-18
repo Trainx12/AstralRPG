@@ -13,16 +13,16 @@ BAD = ('air', 'water', 'lava', 'fire', 'leaves', 'fence', 'wall', 'slab', 'stair
        'trapdoor', 'button', 'rail', 'sign', 'cactus', 'campfire', 'soul_sand')
 
 @lru_cache(maxsize=32)
-def region(world, rx, rz):
-    path = ROOT / '.local/mapas/server' / world / 'region' / f'r.{rx}.{rz}.mca'
+def region(world, rx, rz, folder=None):
+    path = (Path(folder) if folder else ROOT / '.local/mapas/server') / world / 'region' / f'r.{rx}.{rz}.mca'
     if not path.exists():
         raise FileNotFoundError(f'Falta region local de {world}: {path.name}')
     return {(c['xPos'], c['zPos']): c for c in chunk_records(path.read_bytes())}
 
 @lru_cache(maxsize=500000)
-def get(world, x, y, z):
+def get(world, x, y, z, folder=None):
     x,y,z = math.floor(x), math.floor(y), math.floor(z)
-    chunk = region(world, x // 512, z // 512).get((x // 16,z // 16))
+    chunk = region(world, x // 512, z // 512, folder).get((x // 16,z // 16))
     return block(chunk, x % 16, y, z % 16) if chunk else 'minecraft:void_air'
 
 def solid(name):

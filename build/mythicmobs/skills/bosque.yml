@@ -4,30 +4,30 @@ BOSQUE_SALA1_INICIO:
   - removetag{tag=bosque.ready} @self
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
-  - message{m="&8[&7Bosque Sombrio&8] &fClaro de las raices &7- sala 1/2. &cAhi vienen!"} @PlayersInRadius{r=52}
-  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=52}
+  - message{m="&8[&7Bosque Sombrio&8] &fClaro de las raices &7- sala 1/2. &cAhi vienen!"} @PlayersInRadius{r=116}
+  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=116}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave1"} @self
 BOSQUE_SALA1_OLA2:
   Skills:
   - addtag{tag=bosque.ola2} @self
   - addtag{tag=bosque.espera} @self
-  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/3..."} @PlayersInRadius{r=52}
+  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/3..."} @PlayersInRadius{r=116}
   - skill{s=AST_PLANTAS_OLA2} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave2"} @self
 BOSQUE_SALA1_OLA3:
   Skills:
   - addtag{tag=bosque.ola3} @self
   - addtag{tag=bosque.espera} @self
-  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 3/3..."} @PlayersInRadius{r=52}
+  - message{m="&8[&7Bosque Sombrio&8] &7Oleada 3/3..."} @PlayersInRadius{r=116}
   - skill{s=AST_PLANTAS_OLA3} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave3"} @self
 BOSQUE_SALA1_LIMPIA:
   Skills:
   - addtag{tag=bosque.fin} @self
-  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAltar del Chaman"} @PlayersInRadius{r=52}'
-  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=52}
+  - 'message{m="&a&lSala limpia! &7En 5 segundos pasan a: &fAltar del Chaman"} @PlayersInRadius{r=116}'
+  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=116}
   - delay 100
-  - skill{s=BOSQUE_IR_SALA2} @PlayersInRadius{r=52}
+  - skill{s=BOSQUE_IR_SALA2} @PlayersInRadius{r=116}
   - delay 20
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
@@ -42,7 +42,7 @@ BOSQUE_IR_SALA2:
 BOSQUE_SALA1_RESET:
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/reset"} @self
-  - remove @MobsInRadius{r=52;types=SKELETON,SPIDER,WITCH,ZOMBIE}
+  - remove @MobsInRadius{r=116;types=SKELETON,SPIDER,WITCH,ZOMBIE}
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self
@@ -54,8 +54,8 @@ BOSQUE_SALA2_INICIO:
   - removetag{tag=bosque.ready} @self
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
-  - message{m="&8[&7Bosque Sombrio&8] &fAltar del Chaman &7- sala 2/2. &cAhi vienen!"} @PlayersInRadius{r=52}
-  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=52}
+  - message{m="&8[&7Bosque Sombrio&8] &fAltar del Chaman &7- sala 2/2. &cAhi vienen!"} @PlayersInRadius{r=111}
+  - sound{s=entity.warden.emerge;v=0.6;p=1.4} @PlayersInRadius{r=111}
   - removetag{tag=bosque.jefe.derrotado} @self
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/arrival"} @self
   - summon{type=astral_bosque_chaman;amount=1;radius=0;onSurface=false} @Location{x=1604.5;y=101;z=1382.5}
@@ -66,22 +66,22 @@ BOSQUE_SALA2_LIMPIA:
   Skills:
   - addtag{tag=bosque.fin} @self
   - command{c="mazfin <caster.l.w>"}
-  - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=52}
-  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=52}
-  - command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=52}
-  - command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=52}
-  - remove @MobsInRadius{r=52;types=astral_bosque_cofre,astral_bosque_guia}
+  - message{m="&6&lLa prueba termino! &7Abran el cofre..."} @PlayersInRadius{r=111}
+  - sound{s=ui.toast.challenge_complete} @PlayersInRadius{r=111}
+  - command{c="execute as <target.name> at @s run function astral:quest/event/chaman"} @PlayersInRadius{r=111}
+  - command{c="lp user <target.name> permission set astral.completada.bosque true"} @PlayersInRadius{r=111}
+  - remove @MobsInRadius{r=111;types=astral_bosque_cofre,astral_bosque_guia}
   - summon{type=astral_bosque_cofre;amount=1;radius=0;onSurface=false} @Location{x=1604.5;y=101;z=1382.5}
   - summon{type=astral_bosque_guia;amount=1;radius=0;onSurface=false} @Location{x=1606.5;y=101;z=1382.5}
   - delay 20
-  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=52}'
+  - 'message{m="&eAparecio el cofre del jefe: &fclic para ver el botin&e. &7El guia de Expediciones los lleva a donde quieran."} @PlayersInRadius{r=111}'
   Conditions:
   - hastag{tag=bosque.jefe.derrotado} true
   - hastag{tag=bosque.fin} false
 BOSQUE_SALA2_RESET:
   Skills:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/reset"} @self
-  - remove @MobsInRadius{r=52;types=astral_bosque_chaman,astral_bosque_cofre,astral_bosque_guia}
+  - remove @MobsInRadius{r=111;types=astral_bosque_chaman,astral_bosque_cofre,astral_bosque_guia}
   - removetag{tag=bosque.on} @self
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self

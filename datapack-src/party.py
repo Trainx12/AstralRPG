@@ -98,7 +98,7 @@ def build(java, server, papi):
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralParty*.class')):
             z.writestr(zipfile.ZipInfo('astral/'+p.name, (2026,11,17,0,0,0)), p.read_bytes())
-        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.1.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
+        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.2.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
         z.writestr('party.properties', f'waves={REVIVE_WAVES}\nboss={REVIVE_BOSS}\nwipe={WIPE_SECONDS}\nmax={PARTY_MAX}\nworlds='+','.join(worlds)+'\n')
         z.writestr('boss-rooms.csv', '\n'.join(bosses))
         z.writestr('fight-rooms.csv', '\n'.join(fight_rooms())+'\n')
@@ -106,32 +106,26 @@ def build(java, server, papi):
 
 
 def fight_rooms():
-    """Limites de pelea, no confundir spawn_bounds (solo apariciones) con la arena.
+    """CSV: mundo, controlador XYZ, radio entrada, rectangulo X1 Z1 X2 Z2, key, nombre.
 
-    CSV: mundo, centro xyz, radio de entrada, lado, prefijo del controlador,
-    nombre del controlador. Infinita/Fosa usan sus tags de enemigos vivos.
+    El controlador conserva su ubicacion: el centro visual sale del rectangulo.
+    La generacion no necesita mapas locales; valida el catalogo versionado.
     """
-    from viajes_mazmorras import destinations
-    from instancias import DUNGEON_WORLDS, copias, bukkit
+    from zonas_pelea import catalog, load
+    from instancias import copias, bukkit
     import infinita, oceano_fosa
+    zones = load()
     rows = []
-    for d in destinations():
-        if not d.get('enabled'): continue
-        for room in d['rooms']:
-            x, y, z = room['centro']
-            side = 2 * room['r']
-            if 'fight_bounds' in room:
-                lo, hi = room['fight_bounds']
-                x, z = (lo[0]+hi[0])/2, (lo[2]+hi[2])/2
-                side = max(hi[0]-lo[0], hi[2]-lo[2])
-            for dim in copias(DUNGEON_WORLDS[d['key']]):
-                rows.append(f"{bukkit(dim)},{x},{y},{z},{room['r']},{side},{d['key']},Control {room['name']}")
-    # Cupula: puntos de spawn a 30 bloques; borde a 32, dentro del recinto.
-    for world in infinita.WORLDS:
-        rows.append(f'{world},0.5,63,0.5,32,64,inf,')
-    # Recorte de la cueva documentado en oceano_fosa: x -50..54, z 35..153.
-    for world in oceano_fosa.WORLDS:
-        rows.append(f'{world},2,112,94,60,118,fosa,')
+    for r in catalog():
+        worlds = (infinita.WORLDS if r['key'] == 'inf' else
+                  oceano_fosa.WORLDS if r['key'] == 'fosa' else
+                  [bukkit(w) for w in copias(r['world'])])
+        x, y, z = r['center']
+        # Ampliar el conteo de mobs no cambia cuando se activa el borde.
+        entry = r['entry_radius']
+        rect = ','.join(map(str, zones[r['id']][:4]))
+        for w in worlds:
+            rows.append(f"{w},{x},{y},{z},{entry},{rect},{r['key']},{r['controller']}")
     return rows
 
 

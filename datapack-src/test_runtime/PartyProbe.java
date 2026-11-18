@@ -19,7 +19,7 @@ public final class PartyProbe extends JavaPlugin {
     AstralParty party;
     final List<ArmorStand> borderControls=new ArrayList<>();
     World world(String n) {var w=Bukkit.getWorld(n);return w!=null?w:Bukkit.createWorld(new WorldCreator(n).type(WorldType.FLAT).generatorSettings("{\"layers\":[{\"block\":\"minecraft:bedrock\",\"height\":1}],\"biome\":\"minecraft:plains\"}").generateStructures(false));}
-    @Override public void onEnable(){party=(AstralParty)Bukkit.getPluginManager().getPlugin("AstralParty");for(var n:List.of("lobby","mina","infinita")){var w=world(n);w.setSpawnLocation(0,100,0);w.setGameRule(GameRules.ADVANCE_TIME,false);}}
+    @Override public void onEnable(){party=(AstralParty)Bukkit.getPluginManager().getPlugin("AstralParty");for(var n:List.of("lobby","mina","infinita","fosa")){var w=world(n);w.setSpawnLocation(0,100,0);w.setGameRule(GameRules.ADVANCE_TIME,false);}}
     void check(boolean ok,String label){checks++;if(!ok)failures++;getLogger().info("PARTY "+(ok?"PASS ":"FAIL ")+label);}
     Player fake(String name) throws Exception {
         var server=((CraftServer)Bukkit.getServer()).getServer();var w=((CraftWorld)world("lobby")).getHandle();
@@ -51,7 +51,7 @@ public final class PartyProbe extends JavaPlugin {
         try {Object i=party.invites.get(p.getUniqueId());var m=i.getClass().getDeclaredMethod("token");m.setAccessible(true);return m.invoke(i).toString();}
         catch(Exception e){throw new RuntimeException(e);}
     }
-    boolean inside(AstralParty.FightRoom r,Location at){return at.getWorld().getName().equals(r.world())&&Math.abs(at.getX()-r.x())<r.side()/2&&Math.abs(at.getZ()-r.z())<r.side()/2;}
+    boolean inside(AstralParty.FightRoom r,Location at){return r.contains(at);}
     // Paper encola comandos anidados hasta terminar partyprobe; ejecutar PluginCommand
     // permite comprobar cada transicion sin que las aserciones adelanten esa cola.
     void cmd(String n,String text){var a=text.split(" ");Bukkit.getPluginCommand(a[0]).execute(p(n),a[0],Arrays.copyOfRange(a,1,a.length));}
@@ -142,7 +142,7 @@ public final class PartyProbe extends JavaPlugin {
             var a=rooms.get(0);var b=rooms.get(2);var w=world("mina");var controls=borderControls;
             refreshBorders();updateBorder(p("A"));updateBorder(p("B"));
             check(p("A").getWorldBorder()!=null&&p("A").getWorldBorder().getSize()==a.side(),"borde personal Paper");
-            check(p("B").getWorldBorder().getCenter().getX()==b.x(),"dos salas independientes en mismo mundo");
+            check(Math.abs(p("B").getWorldBorder().getCenter().getX()-b.centerX(p("B").getX()))<1e-6,"dos salas independientes en mismo mundo");
             check(p("A").getWorldBorder().getDamageAmount()==0&&p("A").getWorldBorder().getDamageBuffer()==0,"borde sin dano ni buffer");
             check(p("A").getWorldBorder().getWarningDistance()==3,"aviso tres bloques");
             var from=p("A").getLocation();var out=from.clone().add(a.side(),0,0);
@@ -167,7 +167,50 @@ public final class PartyProbe extends JavaPlugin {
             var mob=world("infinita").spawn(infAt,Zombie.class);mob.setAI(false);mob.addScoreboardTag("inf.mob");
             refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()!=null,"Infinita detecta inf.mob");
             mob.remove();refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()==null,"Infinita limpia sin enemigos");
+            move("A","fosa");p("A").teleport(new Location(world("fosa"),2,112,94));
+            var fosaAt=p("A").getLocation();world("fosa").getChunkAt(fosaAt).load();
+            var fosaMob=world("fosa").spawn(fosaAt,Zombie.class);fosaMob.setAI(false);fosaMob.addScoreboardTag("fosa.jefe");
+            refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()!=null,"Fosa detecta jefe vivo");
+            fosaMob.removeScoreboardTag("fosa.jefe");fosaMob.addScoreboardTag("fosa.mob");
+            refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()!=null,"Fosa conserva borde con ayudantes vivos");
+            fosaMob.remove();refreshBorders();updateBorder(p("A"));check(p("A").getWorldBorder()==null,"Fosa oculta borde entre oleadas");
             move("A","lobby");move("B","lobby");
+        }
+        case "rectangles" -> {
+            var w=world("mina");var p=p("A");
+            var r=new AstralParty.FightRoom("mina",500,100,500,150,400,480,600,520,"mina","Control Rectangulo");
+            var rz=new AstralParty.FightRoom("mina",800,100,800,150,780,700,820,900,"mina","Control Rectangulo Z");
+            var square=new AstralParty.FightRoom("mina",900,100,900,50,880,880,922,920,"mina","Control Cuadrado");
+            check(r.side()==40&&r.centerX(0)==420&&r.centerX(900)==580&&r.centerX(500)==500&&r.centerZ(0)==500,"clamp X en ambos extremos y eje corto fijo");
+            check(rz.side()==40&&rz.centerZ(0)==720&&rz.centerZ(999)==880&&rz.centerX(0)==800,"clamp Z en ambos extremos y eje corto fijo");
+            check(square.centerX(999)==901&&square.centerZ(0)==900&&square.side()==40,"casi cuadrado fijo dentro de rectangulo");
+            party.fightRooms.add(r);party.fightRooms.add(rz);
+            var controls=new ArrayList<ArmorStand>();
+            for(var room:List.of(r,rz)) {
+                var at=new Location(w,room.x(),room.y(),room.z());w.getChunkAt(at).load();
+                controls.add(w.spawn(at,ArmorStand.class,e->{e.setCustomName(room.controller());e.setGravity(false);e.setMarker(true);e.addScoreboardTag("mina.on");}));
+            }
+            p.teleport(new Location(w,500,100,500));refreshBorders();updateBorder(p);
+            var border=p.getWorldBorder();check(border!=null&&border.getSize()==40,"rectangulo crea borde de lado corto");
+            var handle=((org.bukkit.craftbukkit.entity.CraftPlayer)p).getHandle();
+            handle.setPos(500.3,100,500);updateBorder(p);
+            check(border.getCenter().getX()==500,"centro estable para cambio menor de medio bloque");
+            handle.setPos(501,100,500);updateBorder(p);
+            check(p.getWorldBorder()==border&&border.getCenter().getX()==501,"mismo borde actualiza centro sin recrear");
+            var from=p.getLocation();var far=new Location(w,595,100,500);
+            var ev=new org.bukkit.event.player.PlayerMoveEvent(p,from,far);Bukkit.getPluginManager().callEvent(ev);
+            check(ev.getTo().getX()==595,"recuperacion acepta eje largo fuera del cuadrado anterior");
+            handle.setPos(595,100,500);updateBorder(p);
+            check(border.getCenter().getX()==580&&p.getX()==595,"extremo largo acotado no devuelve jugador interior");
+            var pearl=new org.bukkit.event.player.PlayerTeleportEvent(p,p.getLocation(),new Location(w,595,100,521),org.bukkit.event.player.PlayerTeleportEvent.TeleportCause.ENDER_PEARL);
+            Bukkit.getPluginManager().callEvent(pearl);check(r.contains(pearl.getTo()),"perla usa rectangulo exacto en eje corto");
+            handle.setPos(601,100,500);updateBorder(p);check(r.contains(p.getLocation())&&p.getX()==595,"lag exterior recupera ultimo punto rectangular");
+            p.teleport(new Location(w,800,100,800));refreshBorders();updateBorder(p);
+            handle.setPos(800,100,895);updateBorder(p);
+            check(p.getWorldBorder().getCenter().getZ()==880&&p.getZ()==895,"rectangulo Z se desplaza hasta extremo");
+            controls.forEach(Entity::remove);party.fightRooms.remove(r);party.fightRooms.remove(rz);refreshBorders();updateBorder(p);
+            check(p.getWorldBorder()==null,"rectangulos limpian borde al terminar");
+            move("A","lobby");
         }
         case "fall" -> {
             check(p("A").getWorld().getName().equals("mina")&&p("B").getWorld().getName().equals("mina"),"mazentrar usa variables sincronizadas");

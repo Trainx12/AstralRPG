@@ -1,6 +1,6 @@
 """Parche minimo del radio de Bosque; no reescribe el datapack principal pendiente.
 
-Al regenerar el principal con build.py, estas mismas funciones ya salen con r=44.
+Al regenerar el principal con build.py, estas mismas funciones ya salen con r=108.
 El complemento debe habilitarse DESPUES del principal (datapack enable ... last).
 """
 import json
@@ -25,7 +25,7 @@ def contents():
     if len(selected) != 3:
         raise ValueError('Cambio la estructura del Bosque: revisar el parche')
     selected['pack.mcmeta'] = json.dumps({'pack': {
-        'description': 'AstralRPG - Bosque radio 44 (18/11/2026)',
+        'description': 'AstralRPG - Bosque conteo rectangular (18/11/2026)',
         **{key: pack[key] for key in ('min_format', 'max_format') if key in pack}}}, ensure_ascii=False)+'\n'
     return selected
 

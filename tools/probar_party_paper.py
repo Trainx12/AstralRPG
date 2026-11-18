@@ -40,7 +40,7 @@ def run(java,base,papi,copies=None,work=None):
                 time.sleep(1)
             else:raise TimeoutError('Paper no arranco')
             time.sleep(8)
-            for step,delay in [('setup',22),('controls',2),('prepareborders',2),('borders',2),('bridge',2),('fall',1),('wipe',1),('actualdeath',1),('checkactual',1),('cleanup',1)]:
+            for step,delay in [('setup',22),('controls',2),('prepareborders',2),('borders',2),('rectangles',2),('bridge',2),('fall',1),('wipe',1),('actualdeath',1),('checkactual',1),('cleanup',1)]:
                 cmd('partyprobe '+step);time.sleep(delay)
         finally:
             cmd('stop');process.wait(timeout=90)
