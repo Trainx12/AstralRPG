@@ -220,6 +220,21 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] desafiar<delay=3>'
+  'party':
+    material: PLAYER_HEAD
+    slot: 33
+    amount: 1
+    display_name: '&d&lParty'
+    lore:
+    - '&7Invita y mira la vida de tus companeros.'
+    - '&7Hasta 6 jugadores por grupo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:menu/icon_party
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] party<delay=3>'
   'info':
     material: NETHER_STAR
     slot: 4

@@ -314,7 +314,8 @@ def script(minutos=MINUTOS_FIN):
               '                        loop all players:',
               '                            world of loop-player is {_w}',
               '                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player']
-    return '\n'.join(L) + '\n'
+    from party import bridge
+    return bridge('\n'.join(L) + '\n')
 
 
 def generate():

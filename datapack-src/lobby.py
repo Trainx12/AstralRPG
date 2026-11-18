@@ -487,6 +487,8 @@ TAB_SECTIONS = mines_sidebar(TAB_SECTIONS)
 # Paneles por mundo: infinita, mini juegos, arenas y survival (panel_mundos.py).
 from panel_mundos import apply as panel_por_mundo
 TAB_SECTIONS = panel_por_mundo(TAB_SECTIONS)
+from party import tab_sections as party_tab_sections
+TAB_SECTIONS = party_tab_sections(TAB_SECTIONS)
 
 
 TAB_GROUPS = r'''# Nombres en el tabulador y arriba de la cabeza (generado por datapack-src/lobby.py)

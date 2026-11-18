@@ -15,8 +15,8 @@ GLYPHS = tuple(chr(0xea10 + i) for i in range(4))
 # Mismo orden que menus.principal_menu: casillas 10-16 y 19-25.
 KEYS = ('bazar', 'minas', 'mazmorras', 'expediciones', 'portales', 'parkour', 'arenas',
         'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn',
-        'fragmentos', 'duelos')
-SLOTS = tuple(range(10, 17)) + tuple(range(19, 26)) + (30, 32)
+        'fragmentos', 'duelos', 'party')
+SLOTS = tuple(range(10, 17)) + tuple(range(19, 26)) + (30, 32, 33)
 EFFECTS_SLOT = 31
 ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', peluches='mascotas',
                 subastas='bazar', vender='bazar', intercambio='bazar', gacha_rpg='skills',
@@ -28,7 +28,7 @@ EXTRA_KEYS = ('configuraciones','mochilas','proteccion','recetas','tren','santua
               'login','password','premium','panel','atlas','spiral','spiral2','paradise3',
               'colorescape','magmarun','batallanaval','dropper_facil','dropper_h4rs')
 EXTRA_KEYS += tuple(f'dropper_{kind}_{n}' for kind,count in (('facil',6),('h4rs',10)) for n in range(1,count+1))
-NEW_KEYS = ('fragmentos','duelos','cosmeticos',*EXTRA_KEYS)
+NEW_KEYS = ('fragmentos','duelos','cosmeticos','party',*EXTRA_KEYS)
 
 
 def title():
@@ -107,7 +107,11 @@ def painted_icon(key):
     im=Image.new('RGBA',(18,18),'#18202b');d=ImageDraw.Draw(im)
     g,c,w='#d6b264','#75dce0','#f6e6bd'
     d.rectangle((0,0,17,17),outline=g);d.line((2,1,15,1),fill=w)
-    if key=='fragmentos':
+    if key=='party':
+        for x,y in ((5,7),(12,7),(9,4)):
+            d.ellipse((x-2,y-2,x+2,y+2),fill=c,outline=g)
+            d.rounded_rectangle((x-2,y+3,x+2,y+6),1,fill='#9561b4',outline=g)
+    elif key=='fragmentos':
         for x,y in ((5,8),(11,5),(12,12)):
             d.polygon(((x,y-3),(x+2,y),(x,y+3),(x-2,y)),fill=c,outline=g)
     elif key=='duelos':

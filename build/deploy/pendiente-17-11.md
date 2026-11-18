@@ -299,3 +299,7 @@ Falta comprobar la lectura a 1x con cliente Minecraft y consola remota.
 Preparado localmente; R2 y servidor NO modificados. No hay despliegue verificado.
 No sustituir mundos ni usar Worlds > Upload en la fila world.
 <!-- MENU-EFECTOS-END -->
+
+## Party, vida de companeros y reaparicion - 17/11/2026
+
+[Archivos exactos y hashes](party-17-11.md): AstralParty 1.0.0, dos scripts, principal.yml, secciones TAB y FINAL privado SHA-1 `f676a363568343998f0badc4511e577312e9be65` sobre `beb0d6d3b8fb1269e18d5910c0bc953518cc9abc`. Apagar/reiniciar; R2 y servidor pendientes de Claude. Conservar el script acumulado de copias si se instala tambien Chaman/hitboxes. No cambiar datapack, AstralDecor, MythicMobs ni mundos por Party.

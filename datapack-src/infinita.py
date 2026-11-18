@@ -345,6 +345,8 @@ def script(primera=None, cada=None, aviso=None):
          '',
          '# Quien muere sale de la partida y vuelve al lobby (inventario conservado por keep_inventory).',
          'on death of player:',
+         '    if scoreboard tags of victim contains "astral.party.fallen":',
+         '        stop',
          '    if inf_mundo(world of victim) is true:',
          '        set {-inf.salio::%uuid of victim%} to true',
          '',

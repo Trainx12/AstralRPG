@@ -7,118 +7,21 @@ function party_miembros(p: player) :: players:
         return {_p}
     return {-party.miembros::%{_l}%::*}
 
-function party_avisar(l: text, m: text):
-    loop {-party.miembros::%{_l}%::*}:
-        send "&d[Party] &f%{_m}%" to loop-value
-
-function party_sacar(p: player):
-    set {_l} to {-party.lider::%uuid of {_p}%}
-    if {_l} is not set:
-        stop
-    if {_l} is "%uuid of {_p}%":
-        party_avisar({_l}, "%name of {_p}% disolvio la party.")
-        loop {-party.miembros::%{_l}%::*}:
-            delete {-party.lider::%uuid of loop-value%}
-        delete {-party.miembros::%{_l}%::*}
-        stop
-    delete {-party.miembros::%{_l}%::%uuid of {_p}%}
-    delete {-party.lider::%uuid of {_p}%}
-    party_avisar({_l}, "%name of {_p}% salio de la party.")
-    send "&dSaliste de la party." to {_p}
-
-command /party [<text>] [<text>]:
-    aliases: grupo
-    executable by: players
-    description: Grupo para entrar juntos a las mazmorras.
+# AstralParty mantiene la API que consumen mazentrar e Infinita.
+command /astralpartysync <text> <text> [<player>]:
+    executable by: console
     trigger:
-        set {_l} to {-party.lider::%uuid of player%}
-        if arg-1 is not set:
-            if {_l} is not set:
-                send "&dParty: &fno estas en ninguna. &7/party invitar <jugador> (hasta 6)." to player
-                stop
-            loop {-party.miembros::%{_l}%::*}:
-                add name of loop-value to {_n::*}
-            send "&dParty (%size of {_n::*}%): &f%{_n::*}%" to player
-            send "&7Entran juntos a la misma mazmorra. /party salir para dejarla." to player
-            stop
-        if arg-1 is "invitar":
-            set {_t} to arg-2 parsed as player
-            if {_t} is not set:
-                send "&cEse jugador no esta conectado. Uso: /party invitar <jugador>" to player
-                stop
-            if {_t} is player:
-                send "&cNo podes invitarte a vos mismo." to player
-                stop
-            if {-party.lider::%uuid of {_t}%} is set:
-                send "&c%name of {_t}% ya esta en una party." to player
-                stop
-            if {_l} is not set:
-                set {_l} to "%uuid of player%"
-                set {-party.lider::%uuid of player%} to {_l}
-                set {-party.miembros::%{_l}%::%uuid of player%} to player
-            if {_l} is not "%uuid of player%":
-                send "&cSolo el lider de la party puede invitar." to player
-                stop
-            if size of {-party.miembros::%{_l}%::*} >= 6:
-                send "&cLa party esta llena (maximo 6)." to player
-                stop
-            set {-party.inv::%uuid of {_t}%} to {_l}
-            set {-party.invt::%uuid of {_t}%} to now
-            send "&dInvitaste a &f%name of {_t}%&d. Tiene 60 segundos para aceptar." to player
-            send "&d%name of player% te invito a su party. &fEscribi &a/party aceptar &fo &c/party rechazar&f." to {_t}
-            stop
-        if arg-1 is "aceptar":
-            set {_i} to {-party.inv::%uuid of player%}
-            if {_i} is not set:
-                send "&cNo tenes invitaciones." to player
-                stop
-            delete {-party.inv::%uuid of player%}
-            if difference between {-party.invt::%uuid of player%} and now > 60 seconds:
-                send "&cLa invitacion vencio. Pedi otra." to player
-                stop
-            if {-party.lider::%{_i}%} is not set:
-                send "&cEsa party ya no existe." to player
-                stop
-            if {_l} is set:
-                party_sacar(player)
-            if size of {-party.miembros::%{_i}%::*} >= 6:
-                send "&cLa party se lleno." to player
-                stop
-            set {-party.lider::%uuid of player%} to {_i}
-            set {-party.miembros::%{_i}%::%uuid of player%} to player
-            party_avisar({_i}, "%name of player% se unio a la party.")
-            stop
-        if arg-1 is "rechazar":
-            delete {-party.inv::%uuid of player%}
-            send "&7Invitacion rechazada." to player
-            stop
-        if arg-1 is "salir":
-            if {_l} is not set:
-                send "&cNo estas en una party." to player
-                stop
-            party_sacar(player)
-            stop
-        if arg-1 is "echar":
-            if {_l} is not "%uuid of player%":
-                send "&cSolo el lider puede echar." to player
-                stop
-            set {_t} to arg-2 parsed as player
-            if {_t} is not set:
-                send "&cUso: /party echar <jugador>" to player
-                stop
-            if {-party.lider::%uuid of {_t}%} is not {_l}:
-                send "&cEse jugador no esta en tu party." to player
-                stop
-            if {_t} is player:
-                stop
-            party_sacar({_t})
-            send "&cTe echaron de la party." to {_t}
-            stop
-        send "&dParty: &f/party invitar <jugador>, aceptar, rechazar, salir, echar <jugador>" to player
+        if arg-1 is "clear":
+            delete {-party.lider::*}
+            delete {-party.miembros::*}
+        else if arg-1 is "add":
+            if arg-3 is set:
+                set {-party.lider::%uuid of arg-3%} to arg-2
+                set {-party.miembros::%arg-2%::%uuid of arg-3%} to arg-3
 
-on quit:
-    party_sacar(player)
-    delete {-party.inv::%uuid of player%}
+on load:
+    wait 1 tick
+    execute console command "astralpartyinternal sync"
 
 function maz_jugadores(w: world) :: number:
     set {_c} to 0
@@ -286,6 +189,7 @@ command /mazfin <text>:
     trigger:
         if {-maz.fin::%arg-1%} is set:
             stop
+        execute console command "astralpartyinternal victory %arg-1%"
         set {-maz.fin::%arg-1%} to now
         set {_w} to world(arg-1)
         if {_w} is set:

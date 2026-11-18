@@ -380,6 +380,7 @@ def principal_menu():
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
         ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&7Tambien desde Arenas PvP.'], ['[close]', '[player] desafiar<delay=3>']),
+        ('party', 'PLAYER_HEAD', '&d&lParty', ['&7Invita y mira la vida de tus companeros.', '&7Hasta 6 jugadores por grupo.'], ['[close]', '[player] party<delay=3>']),
     ]
     from menu_ui import SLOTS, KEYS, EFFECTS_SLOT, title as menu_title
     assert [b[0] for b in buttons] == list(KEYS)
