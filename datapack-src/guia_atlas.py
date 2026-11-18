@@ -10,10 +10,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'datapack-src/pack-source/guia_atlas'
 FONT = 'astral:guia_atlas'
+ENTRADA = 'astral:atlas/indice'  # dialogo que abre el boton Guia Astral de ESC
 
 
 def text(value, color='#30241b', **kw):
     return dict(text=value, color=color, italic=False, **kw)
+
+
+def line(*parts):
+    # Raiz vacia: en una lista JSON los hermanos HEREDAN el estilo del primero.
+    # Sin esto el texto toma la fuente de iconos y sale en cuadraditos.
+    return [''] + list(parts)
+
+
+# Minecraft guarda los glifos en hojas de 256 px: un dibujo mas ancho no carga
+# y sale un cuadradito. Se corta en tiras que se pegan con un espacio de -1.
+MAX_GLYPH = 240
+JOIN = ''
+
+
+def strips(width):
+    return -(-width // MAX_GLYPH)
 
 
 def message(value, width=330):
@@ -22,10 +39,14 @@ def message(value, width=330):
 
 def glyph(name):
     # La altura de linea del dialogo no crece con el bitmap de la fuente.
-    # Reservar lineas evita que el arte pise el siguiente cuerpo.
-    height = 48 if DECOR.index(name) >= 5 else 32
-    return message([text(chr(0xE900 + DECOR.index(name)), 'white', font=FONT),
-                    text('\n' * ((height + 8) // 9))], 360)
+    # El arte baja desde la primera linea (ascent normal) para que el dialogo
+    # no lo recorte arriba; las lineas vacias reservan su alto.
+    from PIL import Image
+    n = DECOR.index(name)
+    height = 48 if n >= 5 else 32
+    parts = strips(Image.open(ART / (name + '.png')).width)
+    chars = JOIN.join([chr(0xE900 + n)] + [chr(0xE980 + n * 4 + k) for k in range(1, parts)])
+    return message(line(text(chars, 'white', font=FONT), text('\n' * (height // 9))), 360)
 
 
 DECOR = ['cabecera', 'indice', 'catalogo', 'receta', 'ficha'] + [
@@ -34,7 +55,7 @@ DECOR = ['cabecera', 'indice', 'catalogo', 'receta', 'ficha'] + [
 
 
 def action(label, target=None, command=None, icon=None, width=170):
-    label = [text(icon, 'white', font=FONT), text(' ' + label)] if icon else text(label)
+    label = line(text(icon, 'white', font=FONT), text(' ' + label)) if icon else text(label)
     result = dict(label=label, width=width)
     if target:
         result['action'] = dict(type='show_dialog', dialog='astral:' + target)
@@ -114,8 +135,8 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
     for n, button in enumerate(original['actions']):
         button = json.loads(json.dumps(button))
         label = button['label']
-        button['label'] = [text(icons.get(section_icons[n % len(section_icons)], icons[ids[0]]), 'white', font=FONT),
-                           text(' '), label]
+        button['label'] = line(text(icons.get(section_icons[n % len(section_icons)], icons[ids[0]]), 'white', font=FONT),
+                               text(' '), label)
         button['width'] = 170
         a = button.get('action', {})
         target = a.get('dialog', '')
@@ -134,7 +155,13 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
             a['dialog'] = 'astral:atlas/seccion/' + name
         index.append(button)
     index += [action('Bestiario', 'atlas/bestiario/1'), action('Donde se consiguen', 'guia/drops')]
-    page('indice', 'Indice', [glyph('indice'), message('Prototipo · Elegi una seccion. Dos columnas; equipo real del pack.')], index, back=None)
+    page('indice', 'Indice', [glyph('indice'), message('Elegi una seccion.')], index, back=None)
+    # Boton "Guia Astral" del menu de pausa (ESC) y acciones rapidas: abre el Atlas.
+    indice = json.loads(files['data/astral/dialog/atlas/indice.json'])
+    indice['external_title'] = text('Guía Astral', '#8a4500')
+    put('dialog/atlas/indice.json', indice)
+    for tag in ('pause_screen_additions', 'quick_actions'):
+        files[f'data/minecraft/tags/dialog/{tag}.json'] = json.dumps({'values': [ENTRADA]})
 
     from tanda_xp import XP, SUERTE_SEGUNDOS
     from gacha_balance import FACTOR_SUERTE
@@ -203,7 +230,7 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
                 where += ' · De noche'
             if spawn.get('cave'):
                 where += ' · Cuevas'
-            portrait = message([text(chr(0xF000 + rows.index(row)), 'white', font=FONT), text('\n' * 8)]) if row['model'] else message('Criatura vanilla · aspecto del cliente.')
+            portrait = message(line(text(chr(0xF000 + rows.index(row)), 'white', font=FONT), text('\n' * 7))) if row['model'] else message('Criatura vanilla · aspecto del cliente.')
             body = [glyph('ficha'), portrait,
                     message(text(label, color, bold=True)), message(where),
                     message(f"{row['tier']} · Vida base {row['hp']} · Daño base {row['damage']} (antes del escalado)." if row['hp'] is not None else 'Vida y daño dependen de la especie vanilla y del tier.'),
@@ -248,13 +275,22 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
 
 def assets():
     """Solo arte propio normalizado y reemplazable, sin originales privados."""
-    files, providers = {}, []
+    import io
+    from PIL import Image
+    files, providers = {}, [dict(type='space', advances={JOIN: -1})]
     for n, name in enumerate(DECOR):
         path = ART / (name + '.png')
         if not path.exists():
             raise FileNotFoundError('Falta reserva Atlas: ' + str(path))
-        files[f'assets/astral/textures/gui/atlas/{name}.png'] = path.read_bytes()
-        providers.append(dict(type='bitmap', file=f'astral:gui/atlas/{name}.png', height=48 if n >= 5 else 32,
-                              ascent=32 if n >= 5 else 24, chars=[chr(0xE900 + n)]))
+        im = Image.open(path).convert('RGBA')
+        parts = strips(im.width)
+        for k in range(parts):
+            suffix = f'_{k}' if parts > 1 else ''
+            buf = io.BytesIO()
+            im.crop((im.width * k // parts, 0, im.width * (k + 1) // parts, im.height)).save(buf, 'PNG')
+            files[f'assets/astral/textures/gui/atlas/{name}{suffix}.png'] = buf.getvalue()
+            providers.append(dict(type='bitmap', file=f'astral:gui/atlas/{name}{suffix}.png',
+                                  height=48 if n >= 5 else 32, ascent=7,
+                                  chars=[chr(0xE900 + n) if k == 0 else chr(0xE980 + n * 4 + k)]))
     files['assets/astral/font/guia_atlas.json'] = json.dumps(dict(providers=providers)).encode()
     return files

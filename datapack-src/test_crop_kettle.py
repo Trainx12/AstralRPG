@@ -3,6 +3,7 @@ import json
 import unittest
 from pathlib import Path
 from crop_kettle import adapt_resource, effective, encoded, merge_pack, patch_datapack, recipe_key
+from guia_atlas import ENTRADA
 from crop_kettle import ROOT, privado, read_zip, sha
 
 
@@ -14,9 +15,9 @@ class CropKettleTests(unittest.TestCase):
                 {'directory': 'current', 'min_format': [101, 1], 'max_format': [101, 1]}]}}),
                 name: encoded({'values': ['cnk:main']}),
                 'current/' + name: encoded({'replace': True, 'values': [
-                    'cnk:main', {'id': 'smithed:main', 'required': False}, 'astral:guia']})}
+                    'cnk:main', {'id': 'smithed:main', 'required': False}, ENTRADA]})}
             patched, _ = patch_datapack(raw)
-            self.assertEqual(json.loads(patched[name]), {'values': ['astral:guia']})
+            self.assertEqual(json.loads(patched[name]), {'values': [ENTRADA]})
             self.assertIn(b'cnk:main', raw[name])
 
     def test_final_datapacks_have_only_astral_pause_and_quick_actions(self):
@@ -29,7 +30,7 @@ class CropKettleTests(unittest.TestCase):
                 obj = json.loads(files.get(f'data/minecraft/tags/dialog/{tag}.json', b'{}'))
                 self.assertFalse(obj.get('replace', False))
                 values.update(v['id'] if isinstance(v, dict) else v for v in obj.get('values', []))
-            self.assertEqual(values, {'astral:guia'})
+            self.assertEqual(values, {ENTRADA})
 
     def test_pan_de_cocina_conserva_material_y_se_distingue_para_ventas(self):
         name = 'data/cnk/loot_table/food/bread.json'

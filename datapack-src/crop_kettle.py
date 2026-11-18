@@ -13,6 +13,7 @@ import zipfile
 
 from terceros import ROOT, privado
 from final_base import select_base
+from guia_atlas import ENTRADA
 
 VERSION = '1.3.12'
 SOURCE = ROOT / '.local/terceros/crop-kettle'
@@ -66,7 +67,7 @@ def patch_datapack(original):
         if name in files:
             obj = json.loads(files[name])
             obj['values'] = [v for v in obj.get('values', [])
-                             if (v.get('id') if isinstance(v, dict) else v) == 'astral:guia']
+                             if (v.get('id') if isinstance(v, dict) else v) == ENTRADA]
             obj.pop('replace', None)
             files[name] = encoded(obj)
             changed.append(name)

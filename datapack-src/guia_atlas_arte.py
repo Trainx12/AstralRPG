@@ -138,7 +138,7 @@ def complete_assets(files, iconmap, rows, modelroot, private_models=None):
             ImageDraw.Draw(canvas).text((38, 38), '?', fill='#e8b24a')
         mid = row['id']
         out[f'assets/astral/textures/gui/atlas/mobs/{mid}.png'] = png(canvas)
-        font['providers'].append(dict(type='bitmap', file=f'astral:gui/atlas/mobs/{mid}.png', height=64, ascent=56, chars=[chr(0xF000 + n)]))
+        font['providers'].append(dict(type='bitmap', file=f'astral:gui/atlas/mobs/{mid}.png', height=64, ascent=7, chars=[chr(0xF000 + n)]))
     # Reserva invisible para iconos sin textura propia. El item vanilla sigue
     # mostrandose en el cuerpo nativo con su modelo real y tooltip.
     out['assets/astral/font/guia_atlas.json'] = json.dumps(font).encode()

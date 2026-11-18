@@ -17,7 +17,7 @@ class AtlasTest(unittest.TestCase):
 
     def test_production_entrypoints(self):
         for n in ('pause_screen_additions', 'quick_actions'):
-            self.assertEqual(json.loads(self.files[f'data/minecraft/tags/dialog/{n}.json'])['values'], ['astral:guia'])
+            self.assertEqual(json.loads(self.files[f'data/minecraft/tags/dialog/{n}.json'])['values'], ['astral:atlas/indice'])
         self.assertNotIn('atlas/', self.files['data/astral/dialog/guia.json'].decode())
 
     def test_new_trigger_is_independent(self):
