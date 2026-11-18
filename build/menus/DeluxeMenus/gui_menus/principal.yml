@@ -219,7 +219,7 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
-    - '[player] desafiar<delay=3>'
+    - '[player] duelos<delay=3>'
   'party':
     material: PLAYER_HEAD
     slot: 33

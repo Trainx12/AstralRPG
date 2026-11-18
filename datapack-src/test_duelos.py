@@ -16,13 +16,24 @@ class DuelosTests(unittest.TestCase):
             self.assertGreater(((a['x']-b['x'])**2 + (a['z']-b['z'])**2) ** .5, 10)
             self.assertEqual(abs(a['yaw'] - b['yaw']), 180)
 
-    def test_picker_runs_duel_and_never_gives_items(self):
+    def test_legacy_selector_is_retired_without_duplicate_commands(self):
         sk = duelos.script()
-        self.assertIn('command /desafiar:', sk)
-        self.assertIn('cancel event', sk)
-        self.assertIn('make player execute command "duel %{_t}%"', sk)
-        self.assertIn('loop-player is not {_p}', sk)
-        self.assertEqual(duelos.arenas_button()['click_commands'], ['[close]', '[player] desafiar<delay=3>'])
+        self.assertNotIn('command /', sk)
+        self.assertIn('AstralDuelos.jar', sk)
+        self.assertEqual(duelos.arenas_button()['click_commands'], ['[close]', '[player] duelos<delay=3>'])
+
+    def test_both_menu_entries_open_the_new_hub(self):
+        import menus
+        import yaml
+        hub = yaml.safe_load(menus.principal_menu())
+        commands = [c for v in hub['items'].values() for c in v.get('click_commands', [])]
+        self.assertIn('[player] duelos<delay=3>', commands)
+        arena = minijuegos.menu_data('arena')['items']['desafiar']
+        self.assertEqual(arena['display_name'], '&c&lDuelos')
+        self.assertEqual(arena['slot'], duelos.ARENAS_BUTTON_SLOT)
+
+    def test_generated_handoff_contains_no_runtime_commands(self):
+        self.assertTrue(all(line.startswith('#') for line in duelos.script().splitlines()))
 
 
 if __name__ == '__main__':

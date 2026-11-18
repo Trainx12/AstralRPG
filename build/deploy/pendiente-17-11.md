@@ -303,3 +303,54 @@ No sustituir mundos ni usar Worlds > Upload en la fila world.
 ## Party, vida de companeros y reaparicion - 17/11/2026
 
 [Archivos exactos y hashes](party-17-11.md): AstralParty 1.0.0, dos scripts, principal.yml, secciones TAB y FINAL privado SHA-1 `f676a363568343998f0badc4511e577312e9be65` sobre `beb0d6d3b8fb1269e18d5910c0bc953518cc9abc`. Apagar/reiniciar; R2 y servidor pendientes de Claude. Conservar el script acumulado de copias si se instala tambien Chaman/hitboxes. No cambiar datapack, AstralDecor, MythicMobs ni mundos por Party.
+
+<!-- DUELOS-UI-START -->
+## Interfaz propia de Duelos — 17/11/2026
+
+AstralDuelos 1.0.0 + Duels Optimised 8.3. Implementacion local; despliegue pendiente de Claude.
+Generadores: `python datapack-src/deploy_duelos.py`; compilar con
+`python datapack-src/build_duelos.py --java <java25> --server .local/testsrv`.
+No cambia el pack, datapack, AstralDecor, MythicMobs ni mundos. Conservar el ultimo FINAL.
+Iconos Astral existentes; libros/tintes/orbe son reservas vanilla reemplazables con arte Gemini.
+Las vistas `build/previews/duelos_*.png` son representativas, no capturas de cliente.
+
+| Local | Destino | SHA-256 |
+|---|---|---|
+| `build/runtime/AstralDuelos.jar` | `plugins/AstralDuelos.jar` | `587ccfcc45b3cc16b8c2840ee54f694d4b63e08807973c2d204df21597c2ce78` |
+| `build/duelos/astral_duelos.sk` | `plugins/Skript/scripts/astral_duelos.sk` | `80dd8046ee57dc57713addcbe65bec0dc3200d53c1f8d393c145dadbafca856a` |
+| `build/menus/DeluxeMenus/gui_menus/principal.yml` | `plugins/DeluxeMenus/gui_menus/principal.yml` | `7effc95d89f0954a6ee3961d52e3e69ba63f946886412b7cf44cfb874c58eebe` |
+| `build/menus/DeluxeMenus/gui_menus/arenas.yml` | `plugins/DeluxeMenus/gui_menus/arenas.yml` | `2692ad88cea53a8878b0e00c7cc6c05cb3b6d9d9afda321cc279c64521608ec5` |
+
+### Instalacion exacta (Empower principal; Aternos copia)
+
+1. Esperar que no haya duelos activos; apagar. Respaldar los cuatro destinos y `plugins/Duels/config.yml`.
+2. Copiar los cuatro archivos de la tabla. El Skript nuevo retira los comandos viejos;
+   verificar que no exista otra copia de ese selector. Mantener `plugins/Duels-Optimised-8.3.jar`.
+3. En `plugins/Duels/config.yml`, agregar a `duel.whitelisted-commands`, conservando las entradas:
+   `duelos`, `astralduelos:duelos`, `desafiar`, `astralduelos:desafiar`, `duels:duel`.
+   Esto permite `/duelos salir` y la rendicion oficial durante el combate.
+   Conservar `request.use-own-inventory.drop-inventory-items: false`, apuestas de items/dinero
+   desactivadas, `duel.prevent-item-drop: true`, `duel.prevent-item-pickup: true`.
+4. Iniciar (reinicio completo requerido por JAR nuevo). No usar PlugMan ni recargar todos los plugins.
+   El arranque carga Skript y menus; si luego se ajustan solo menus: `dm reload`.
+   Solo retiro del selector viejo en caliente: `skript:skript reload astral_duelos`.
+5. Revisar consola: Duels y AstralDuelos habilitados, Skript sin errores. Con dos cuentas survival:
+   `/menu` -> Duelos y `/arenas` -> Duelos; desafiar, elegir arena, confirmar; aceptar por chat y por ventana.
+   Rechazar, dejar vencer 60 s, desconectar un participante y disputar dos pedidos por una misma arena.
+   Probar Cualquiera, cuenta regresiva, muerte/rendicion y regreso al lobby; comparar inventarios completos,
+   resultado (tiempo incluye cuenta regresiva), corazones, revancha y rankings.
+6. Estadisticas totales y ranking total vienen de Duels (cache hasta 5 min). Racha y semana (lunes,
+   Argentina) comienzan con esta instalacion; persisten en `plugins/AstralDuelos/config.yml`.
+   Respaldar/conservar ese archivo en futuras actualizaciones. Pedidos y resultados recientes no persisten.
+   Aceptar valida disponibilidad otra vez: no reserva arenas durante los 60 s del pedido.
+   El inicio usa el comando oficial de consola tras consentimiento; solo survival en world/lobby/arenas,
+   respeta pedidos desactivados, cooldown, cola y jugadores ocultos. Dano PvP sigue en astral_gameplay.sk.
+
+No se instalaron archivos remotos ni se verifico consola remota. Claude continua con navegador.
+Nunca reemplazar mundos ni usar Worlds > Upload en la fila world. Aternos no permite subir un JAR
+propio: si solo se dispone de Aternos, este runtime requiere un host con carga de plugins (Empower).
+Verificacion local: 52/52 controles Paper 26.1.2 / Java 25 con Duels 8.3 y Skript 2.17.1.
+Incluye menus, pedidos, vencimiento, ocupacion, muerte, rendicion, revancha e inventarios.
+Tests de generadores: 4 de Duelos y 12 de minijuegos aprobados. Consola/cliente remotos pendientes.
+
+<!-- DUELOS-UI-END -->

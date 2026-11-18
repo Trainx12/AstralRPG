@@ -81,6 +81,39 @@ real** (posición, tamaño y que no tape nada): eso queda para el primer ingreso
 
 ## Duels
 
+### Interfaz Astral del 17/11/2026 (preparada, sin desplegar)
+
+`/duelos`, Duelos del Menu Astral y el boton de `/arenas` abren el menu propio.
+`/desafiar` abre directamente las cabezas (28 por pagina). Elegis rival, arena
+Astral/TFT1-3 o Cualquiera y confirmas. El destinatario recibe titulo, sonido y
+botones de chat; tambien puede aceptar/rechazar desde Pedidos recibidos.
+Los pedidos vencen a los 60 segundos y se limpian al salir o iniciar combate.
+La arena se comprueba al aceptar; Cualquiera usa la primera libre en ese momento.
+
+`AstralDuelos.jar` usa la API publica de Duels para estado, resultados y estadisticas;
+el comando oficial `duels:duels start <retador> <rival> own_inventory <arena>` inicia
+el combate tras el consentimiento. Duels conserva el inventario y controla las reglas;
+no se implementa un segundo motor de combate. La interfaz impide iniciar si Duels
+tiene activadas apuestas o perdida de inventario. Solo survival en world/lobby/arenas.
+El dano dividido del PvP sigue perteneciendo a `astral_gameplay.sk`.
+
+Resultado por chat y `/duelos resultado`: ganador, segundos (incluye cuenta regresiva),
+corazones restantes y botones Revancha/Volver a Arenas. La revancha requiere otro
+pedido aceptado. `/duelos salir` cancela pedidos, sale de cola o ejecuta la rendicion
+oficial (derrota; Duels impide rendirse durante la cuenta regresiva).
+Las estadisticas y top total vienen de Duels; top total tiene su cache de 5 minutos.
+Racha y victorias semanales propias desde esta instalacion se guardan por UUID en
+`plugins/AstralDuelos/config.yml`, con semana desde el lunes en Argentina.
+
+Generadores: `duelos.py`, `build_duelos.py`, `deploy_duelos.py`, `menus.py` y runtime
+`runtime/AstralDuelos.java`. No hay cambios de pack: iconos Astral existentes y
+reservas vanilla reemplazables con arte Gemini. Vistas representativas en
+`build/previews/duelos_*.png`; inspeccion visual con cliente real pendiente.
+Archivos, hashes, whitelist de comandos y reinicio obligatorio:
+[pendiente-17-11](../build/deploy/pendiente-17-11.md#interfaz-propia-de-duelos--17112026).
+Ensayo local: `python tools/probar_duelos_ui_paper.py --java <java25> --base .local/testsrv`.
+La documentacion siguiente describe la interfaz anterior, reemplazada por esta entrega.
+
 Vuelve Duels Optimised (Realizedd, BuiltByBit, gratis; la versión tiene que decir 26.1). Se sacó en Aternos
 por memoria; en Empower no hay ese límite. La config ya estaba lista en `datapack-src/plugin-presets/`
 (`Duels--config.yml` config-version 18: sin apuestas ni pérdida de inventario, duelos de hasta 10 minutos;
