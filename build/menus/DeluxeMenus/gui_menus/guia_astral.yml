@@ -1,0 +1,562 @@
+menu_title: '&f'
+size: 54
+open_command: guiaastral
+register_command: true
+items:
+  'b0_icono':
+    material: PAPER
+    slot: 0
+    display_name: '&bComo se juega'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/como<delay=2>'
+  'b0_1':
+    material: PAPER
+    slot: 1
+    display_name: '&bComo se juega'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/como<delay=2>'
+  'b0_2':
+    material: PAPER
+    slot: 2
+    display_name: '&bComo se juega'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/como<delay=2>'
+  'b0_3':
+    material: PAPER
+    slot: 3
+    display_name: '&bComo se juega'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/como<delay=2>'
+  'b1_icono':
+    material: PAPER
+    slot: 5
+    display_name: '&bGoblin y golemcitos'
+    item_model: 'astral:peluche_zombie_horse'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mercader<delay=2>'
+  'b1_1':
+    material: PAPER
+    slot: 6
+    display_name: '&bGoblin y golemcitos'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mercader<delay=2>'
+  'b1_2':
+    material: PAPER
+    slot: 7
+    display_name: '&bGoblin y golemcitos'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mercader<delay=2>'
+  'b1_3':
+    material: PAPER
+    slot: 8
+    display_name: '&bGoblin y golemcitos'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mercader<delay=2>'
+  'b2_icono':
+    material: PAPER
+    slot: 9
+    display_name: '&bExperiencia y suerte'
+    item_model: 'astral:frasco_xp_gigante'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/consumibles<delay=2>'
+  'b2_1':
+    material: PAPER
+    slot: 10
+    display_name: '&bExperiencia y suerte'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/consumibles<delay=2>'
+  'b2_2':
+    material: PAPER
+    slot: 11
+    display_name: '&bExperiencia y suerte'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/consumibles<delay=2>'
+  'b2_3':
+    material: PAPER
+    slot: 12
+    display_name: '&bExperiencia y suerte'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/consumibles<delay=2>'
+  'b3_icono':
+    material: PAPER
+    slot: 14
+    display_name: '&bTerrenos y mochilas'
+    item_model: 'astral:cuero_tratado'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/proteccion<delay=2>'
+  'b3_1':
+    material: PAPER
+    slot: 15
+    display_name: '&bTerrenos y mochilas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/proteccion<delay=2>'
+  'b3_2':
+    material: PAPER
+    slot: 16
+    display_name: '&bTerrenos y mochilas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/proteccion<delay=2>'
+  'b3_3':
+    material: PAPER
+    slot: 17
+    display_name: '&bTerrenos y mochilas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/proteccion<delay=2>'
+  'b4_icono':
+    material: APPLE
+    slot: 18
+    display_name: '&bCocina (Crop & Kettle)'
+    item_model: 'astral:manzana_esmeralda'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/cocina<delay=2>'
+  'b4_1':
+    material: PAPER
+    slot: 19
+    display_name: '&bCocina (Crop & Kettle)'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/cocina<delay=2>'
+  'b4_2':
+    material: PAPER
+    slot: 20
+    display_name: '&bCocina (Crop & Kettle)'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/cocina<delay=2>'
+  'b4_3':
+    material: PAPER
+    slot: 21
+    display_name: '&bCocina (Crop & Kettle)'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/cocina<delay=2>'
+  'b5_icono':
+    material: PAPER
+    slot: 23
+    display_name: '&bMisiones e historia'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger aq.journal<delay=2>'
+  'b5_1':
+    material: PAPER
+    slot: 24
+    display_name: '&bMisiones e historia'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger aq.journal<delay=2>'
+  'b5_2':
+    material: PAPER
+    slot: 25
+    display_name: '&bMisiones e historia'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger aq.journal<delay=2>'
+  'b5_3':
+    material: PAPER
+    slot: 26
+    display_name: '&bMisiones e historia'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger aq.journal<delay=2>'
+  'b6_icono':
+    material: PAPER
+    slot: 27
+    display_name: '&bMateriales'
+    item_model: 'astral:cristal_arcano'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/materiales<delay=2>'
+  'b6_1':
+    material: PAPER
+    slot: 28
+    display_name: '&bMateriales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/materiales<delay=2>'
+  'b6_2':
+    material: PAPER
+    slot: 29
+    display_name: '&bMateriales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/materiales<delay=2>'
+  'b6_3':
+    material: PAPER
+    slot: 30
+    display_name: '&bMateriales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/materiales<delay=2>'
+  'b7_icono':
+    material: IRON_SWORD
+    slot: 32
+    display_name: '&bBerserker'
+    item_model: 'astral:espada_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/berserker<delay=2>'
+  'b7_1':
+    material: PAPER
+    slot: 33
+    display_name: '&bBerserker'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/berserker<delay=2>'
+  'b7_2':
+    material: PAPER
+    slot: 34
+    display_name: '&bBerserker'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/berserker<delay=2>'
+  'b7_3':
+    material: PAPER
+    slot: 35
+    display_name: '&bBerserker'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/berserker<delay=2>'
+  'b8_icono':
+    material: CARROT_ON_A_STICK
+    slot: 36
+    display_name: '&bMago'
+    item_model: 'astral:baston_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mago<delay=2>'
+  'b8_1':
+    material: PAPER
+    slot: 37
+    display_name: '&bMago'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mago<delay=2>'
+  'b8_2':
+    material: PAPER
+    slot: 38
+    display_name: '&bMago'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mago<delay=2>'
+  'b8_3':
+    material: PAPER
+    slot: 39
+    display_name: '&bMago'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/mago<delay=2>'
+  'b9_icono':
+    material: BOW
+    slot: 41
+    display_name: '&bArquero'
+    item_model: 'astral:arco_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/arquero<delay=2>'
+  'b9_1':
+    material: PAPER
+    slot: 42
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/arquero<delay=2>'
+  'b9_2':
+    material: PAPER
+    slot: 43
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/arquero<delay=2>'
+  'b9_3':
+    material: PAPER
+    slot: 44
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[console] dialog show %player_name% astral:atlas/seccion/arquero<delay=2>'
+  'siguiente':
+    material: PAPER
+    slot: 53
+    display_name: '&eSiguiente pagina'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_2'
+  'cerrar_0':
+    material: PAPER
+    slot: 48
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+  'cerrar_1':
+    material: PAPER
+    slot: 49
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'
+  'cerrar_2':
+    material: PAPER
+    slot: 50
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    click_commands:
+    - '[close]'

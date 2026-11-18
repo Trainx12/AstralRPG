@@ -10,7 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'datapack-src/pack-source/guia_atlas'
 FONT = 'astral:guia_atlas'
-ENTRADA = 'astral:atlas/indice'  # dialogo que abre el boton Guia Astral de ESC
+ENTRADA = 'astral:guia_esc'  # dialogo del boton Guia Astral de ESC: abre la ventana de cofre
+GUIA_CMD = 'guiaastral'      # comando de DeluxeMenus (guia_cofre.py)
 
 
 def text(value, color='#30241b', **kw):
@@ -55,6 +56,8 @@ DECOR = ['cabecera', 'indice', 'catalogo', 'receta', 'ficha'] + [
 
 
 def action(label, target=None, command=None, icon=None, width=170):
+    if target == 'atlas/indice':      # el indice ahora es la ventana de cofre
+        target, command = None, GUIA_CMD
     label = line(text(icon, 'white', font=FONT), text(' ' + label)) if icon else text(label)
     result = dict(label=label, width=width)
     if target:
@@ -150,7 +153,7 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
                 source['body'].insert(0, glyph(name))
             for field in ('exit_action', 'action'):
                 if field in source:
-                    source[field] = action('Volver al Atlas', 'atlas/indice', width=200)
+                    source[field] = action('Volver a la Guia', command=GUIA_CMD, width=200)
             put('dialog/atlas/seccion/' + name + '.json', source)
             a['dialog'] = 'astral:atlas/seccion/' + name
         index.append(button)
@@ -160,6 +163,14 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
     indice = json.loads(files['data/astral/dialog/atlas/indice.json'])
     indice['external_title'] = text('Guía Astral', '#8a4500')
     put('dialog/atlas/indice.json', indice)
+    # ESC no puede abrir un cofre directo: un dialogo chico con un boton que lo abre.
+    put('dialog/guia_esc.json', dict(
+        type='minecraft:notice', title=text('Guía Astral', '#8a4500', bold=True),
+        external_title=text('Guía Astral', '#8a4500'),
+        body=[glyph('cabecera'), message('Clases, equipo, recetas, criaturas y mundos.')],
+        pause=False, after_action='close', can_close_with_escape=True,
+        action=dict(label=text('Abrir la Guía Astral', '#1a1a1a'), width=200,
+                    action=dict(type='run_command', command=GUIA_CMD))))
     for tag in ('pause_screen_additions', 'quick_actions'):
         files[f'data/minecraft/tags/dialog/{tag}.json'] = json.dumps({'values': [ENTRADA]})
 

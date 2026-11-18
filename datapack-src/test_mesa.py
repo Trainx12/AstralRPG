@@ -49,4 +49,4 @@ class MesaTests(unittest.TestCase):
 
     def test_quick_actions_preserves_existing_guide(self):
         with zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip') as z:
-            self.assertIn('astral:atlas/indice', json.loads(z.read('data/minecraft/tags/dialog/quick_actions.json'))['values'])
+            self.assertIn('astral:guia_esc', json.loads(z.read('data/minecraft/tags/dialog/quick_actions.json'))['values'])
