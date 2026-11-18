@@ -556,7 +556,7 @@ def holo_cmds():
         NL = chr(10)
         text = [{"text": "✦ " + HOLO_NAME[gid] + " ✦", "color": col, "bold": True},
                 {"text": NL + HOLO_DESC[gid], "color": "gray"},
-                {"text": NL + str(g["cost"]) + "$ por tirada", "color": "gold"},
+                {"text": NL + money(g["cost"]) + " por tirada", "color": "gold"},
                 {"text": NL + "Epico garantizado cada ", "color": "white"},
                 {"text": str(PITY[gid]) + " tiradas", "color": col, "bold": True},
                 {"text": NL + "Clic: tirar  -  Shift+clic: premios", "color": "dark_gray"}]

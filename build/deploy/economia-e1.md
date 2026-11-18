@@ -1,6 +1,6 @@
 # Economia E1 (7a): x100 estilo Hypixel, Netherita, muerte y Banco — 18/11/2026
 
-Hecho por Claude directo (sin Codex). Fuente unica: `datapack-src/economia.py`. **Sin desplegar.**
+Hecho por Claude directo (sin Codex). Fuente unica: `datapack-src/economia.py`. **DESPLEGADO 18/11 ~19:00 (hora AR): pack ecba9321, server reiniciado, Skript 22 scripts sin errores, 196 mobs, aldeano de Subastas y 16 carteles rehechos. Datapack = el del server + solo lo de economia (no se subio el cambio del Bosque). AstralProgression: config del server + precios x100. Rebase de saldos PENDIENTE.**
 
 ## Que cambia para los jugadores
 - Toda la plata x100: tienda, gachas (100k / 250k / 50k por tirada), minas, consumibles, oficios, peluches,
