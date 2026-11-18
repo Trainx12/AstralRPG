@@ -6,6 +6,7 @@ Revisa que el script cargue sin errores y prueba por consola: info del banco, re
 import argparse
 import shutil
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -32,7 +33,9 @@ def main(java):
     scripts.mkdir(parents=True, exist_ok=True)
     for old in scripts.glob('*.sk'):
         old.unlink()
-    shutil.copy2(ROOT / 'build/economia/Skript/scripts/astral_economia.sk', scripts / 'astral_economia.sk')
+    for src in (ROOT / 'build/economia/Skript/scripts/astral_economia.sk', ROOT / 'build/mazmorras/astral_puntaje.sk',
+                ROOT / 'build/mazmorras/astral_mazmorras_copias.sk'):
+        shutil.copy2(src, scripts / src.name)
     log = work / 'paper.log'
     with log.open('w', encoding='utf8') as out:
         p = subprocess.Popen([str(java), '-Xms256M', '-Xmx2G', '-jar', 'paper.jar', '--nogui'], cwd=srv,
@@ -53,13 +56,17 @@ def main(java):
             cmd('astralbanco info Prueba')
             cmd('astraleconomia rebase')
             cmd('astraleconomia rebase')
+            cmd('mazpuntaje inicio mina')
+            cmd('mazpuntaje fin mina')
+            cmd('scoreboard objectives list')
             cmd('stop', 15)
         finally:
             if p.poll() is None:
                 p.kill()
     text = log.read_text('utf8', errors='replace')
-    lines = [l for l in text.splitlines() if 'astral_economia' in l or '[Banco]' in l or '[Economia]' in l
-             or 'error' in l.lower() or 'Line ' in l]
+    lines = [l for l in text.splitlines() if 'astral_economia' in l or '[Banco]' in l or '[Economia]' in l or 'astral.nota' in l or 'mazpuntaje' in l or 'astral_puntaje' in l or 'mazmorras_copias' in l
+             or 'error' in l.lower() or 'Line ' in l or 'scripts loaded' in l]
+    sys.stdout.reconfigure(errors='replace')
     print('\n'.join(lines[-80:]))
 
 

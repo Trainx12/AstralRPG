@@ -106,6 +106,8 @@ class Skript(unittest.TestCase):
         mundos = E.mundos_con_perdida()
         for w in ('world', 'world_nether', 'astral_minas', 'astral_bosque', 'oceano', 'tumba', 'infinita', 'santuario'):
             self.assertIn(w, mundos)
+        self.assertIn('world_minecraft_santuario_azeroth_3', mundos)   # nombre Bukkit real
+        self.assertIn('world_minecraft_santuario_azeroth', E.mundos_mazmorra())
         for w in ('lobby', 'arena', 'arenas_tft', 'colorescape', 'portales_astrales'):
             self.assertNotIn(w, mundos)
         self.assertIn('on death of player:', self.sk)

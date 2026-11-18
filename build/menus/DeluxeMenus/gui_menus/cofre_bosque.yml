@@ -48,9 +48,17 @@
     "plata": {
       "material": "GOLD_INGOT",
       "slot": 21,
-      "display_name": "&e&l150.000$",
+      "display_name": "&e&lRuleta de plata",
       "lore": [
-        "&7Cada vez que cobras el cofre."
+        "&7Al reclamar gira una ruleta invisible:",
+        "&7Nota &6&lS&7: &e2.000$ &7a &e500.000$",
+        "&7Nota &a&lA&7: &e2.000$ &7a &e250.000$",
+        "&7Nota &b&lB&7: &e2.000$ &7a &e150.000$",
+        "&7Nota &e&lC&7: &e2.000$ &7a &e80.000$",
+        "&7Nota &c&lD&7: &e2.000$ &7a &e30.000$",
+        "&7Nota &4&lF&7: &e2.000$ &7a &e5.000$",
+        "&8Siempre puede tocar poco;",
+        "&8con mejor nota es mas facil lo alto."
       ],
       "item_model": "astral:boton_plata"
     },
@@ -59,10 +67,11 @@
       "item_model": "astral:cristal_refinado",
       "slot": 23,
       "amount": 1,
-      "display_name": "&d&l1x Cristal Arcano Refinado",
+      "display_name": "&d&lPremios del cofre",
       "lore": [
-        "&7Item Astral de esta mazmorra.",
-        "&7Cada vez que cobras el cofre."
+        "&7Tiradas segun la nota: &fS 3, A 3, B 2, C 2, D 1, F 1",
+        "&7Materiales Astral del tier, frascos,",
+        "&7y objetos valiosos. Mejor nota = mas raros."
       ],
       "item_flags": [
         "HIDE_ATTRIBUTES"
@@ -72,15 +81,162 @@
       "material": "PAPER",
       "item_model": "astral:alma_corrupta",
       "slot": 25,
-      "display_name": "&a&lMateriales de elite",
+      "display_name": "&6&lPremio especial",
       "lore": [
-        "&f4x Esencia de Elite",
-        "&f1x Alma Corrupta",
-        "&e25% &fChispa Astral",
-        "&7Cada vez que cobras el cofre."
+        "&7Solo con nota &a&lA&7 o &6&lS&7: muy rara vez,",
+        "&7una pieza de equipo de tier &f2&7.",
+        "&8(A 0.5% y S 1.5% por tirada)"
       ],
       "item_flags": [
         "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_F": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 6,
+      "display_name": "&4&lNota F",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "1"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_D": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 5,
+      "display_name": "&c&lNota D",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "2"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_C": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 4,
+      "display_name": "&e&lNota C",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "3"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_B": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 3,
+      "display_name": "&b&lNota B",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "4"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_A": {
+      "material": "NETHER_STAR",
+      "slot": 13,
+      "priority": 2,
+      "display_name": "&a&lNota A",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "5"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_S": {
+      "material": "NETHER_STAR",
+      "slot": 13,
+      "priority": 1,
+      "display_name": "&6&lNota S",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "6"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_ninguna": {
+      "material": "GRAY_DYE",
+      "slot": 13,
+      "priority": 9,
+      "display_name": "&7Sin nota pendiente",
+      "lore": [
+        "&7Gana la mazmorra para cobrar este cofre.",
+        "&8Cada victoria trae un cofre nuevo."
       ]
     },
     "reclamar_0": {
@@ -88,7 +244,7 @@
       "update": true,
       "priority": 1,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&bY guarda el Fragmento del Pantano."
       ],
       "view_requirement": {
@@ -113,21 +269,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] lp user %player_name% permission set astral.fragmento.pantano true",
-        "[message] &b&lNuevo fragmento: &fFragmento del Pantano&7. Quedo guardado en &f/fragmentos&7.",
-        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 38,
@@ -141,7 +283,7 @@
       "update": true,
       "priority": 2,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&8Se puede cobrar cada 30 minutos."
       ],
       "click_requirement": {
@@ -158,18 +300,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 38,
@@ -183,7 +314,7 @@
       "update": true,
       "priority": 1,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&bY guarda el Fragmento del Pantano."
       ],
       "view_requirement": {
@@ -208,21 +339,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] lp user %player_name% permission set astral.fragmento.pantano true",
-        "[message] &b&lNuevo fragmento: &fFragmento del Pantano&7. Quedo guardado en &f/fragmentos&7.",
-        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 39,
@@ -236,7 +353,7 @@
       "update": true,
       "priority": 2,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&8Se puede cobrar cada 30 minutos."
       ],
       "click_requirement": {
@@ -253,18 +370,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 39,
@@ -278,7 +384,7 @@
       "update": true,
       "priority": 1,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&bY guarda el Fragmento del Pantano."
       ],
       "view_requirement": {
@@ -303,21 +409,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] lp user %player_name% permission set astral.fragmento.pantano true",
-        "[message] &b&lNuevo fragmento: &fFragmento del Pantano&7. Quedo guardado en &f/fragmentos&7.",
-        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 40,
@@ -331,7 +423,7 @@
       "update": true,
       "priority": 2,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&8Se puede cobrar cada 30 minutos."
       ],
       "click_requirement": {
@@ -348,18 +440,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 40,
@@ -373,7 +454,7 @@
       "update": true,
       "priority": 1,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&bY guarda el Fragmento del Pantano."
       ],
       "view_requirement": {
@@ -398,21 +479,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] lp user %player_name% permission set astral.fragmento.pantano true",
-        "[message] &b&lNuevo fragmento: &fFragmento del Pantano&7. Quedo guardado en &f/fragmentos&7.",
-        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 41,
@@ -426,7 +493,7 @@
       "update": true,
       "priority": 2,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&8Se puede cobrar cada 30 minutos."
       ],
       "click_requirement": {
@@ -443,18 +510,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 41,
@@ -468,7 +524,7 @@
       "update": true,
       "priority": 1,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&bY guarda el Fragmento del Pantano."
       ],
       "view_requirement": {
@@ -493,21 +549,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] lp user %player_name% permission set astral.fragmento.pantano true",
-        "[message] &b&lNuevo fragmento: &fFragmento del Pantano&7. Quedo guardado en &f/fragmentos&7.",
-        "[sound] UI_TOAST_CHALLENGE_COMPLETE",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 42,
@@ -521,7 +563,7 @@
       "update": true,
       "priority": 2,
       "lore": [
-        "&7Cobra plata, item Astral y materiales.",
+        "&7Gira la ruleta y las tiradas de tu nota.",
         "&8Se puede cobrar cada 30 minutos."
       ],
       "click_requirement": {
@@ -538,18 +580,7 @@
       },
       "click_commands": [
         "[close]",
-        "[console] eco give %player_name% 150000",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/esencia_elite",
-        "[console] loot give %player_name% loot astral:item/alma_corrupta",
-        "[console] loot give %player_name% loot astral:item/cristal_refinado",
-        "[console] execute as %player_name% run function astral:xp/cofre",
-        "[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>",
-        "[console] lp user %player_name% permission settemp astral.bosque.cd true 30m",
-        "[message] &6Cofre de Bosque Sombrio: &e150.000$&f, 1x Cristal Arcano Refinado y materiales de elite.",
-        "[sound] ENTITY_PLAYER_LEVELUP"
+        "[console] astralcofre %player_name% bosque"
       ],
       "material": "PAPER",
       "slot": 42,

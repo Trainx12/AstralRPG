@@ -56,12 +56,12 @@ on load:
     set {-eco.tiermaz::forja_volcano_5} to 5
     set {-eco.tiermaz::forja_volcano_6} to 5
     set {-eco.tiermaz::santuario_interstellar} to 5
-    set {-eco.tiermaz::santuario_azeroth} to 5
-    set {-eco.tiermaz::santuario_azeroth_2} to 5
-    set {-eco.tiermaz::santuario_azeroth_3} to 5
-    set {-eco.tiermaz::santuario_azeroth_4} to 5
-    set {-eco.tiermaz::santuario_azeroth_5} to 5
-    set {-eco.tiermaz::santuario_azeroth_6} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth_2} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth_3} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth_4} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth_5} to 5
+    set {-eco.tiermaz::world_minecraft_santuario_azeroth_6} to 5
     set {-eco.tiermaz::fosa} to 3
     set {-eco.tiermaz::fosa_2} to 3
     set {-eco.tiermaz::fosa_3} to 3
@@ -129,12 +129,6 @@ on load:
     set {-eco.perdida::mina_6} to true
     set {-eco.perdida::oceano} to true
     set {-eco.perdida::santuario} to true
-    set {-eco.perdida::santuario_azeroth} to true
-    set {-eco.perdida::santuario_azeroth_2} to true
-    set {-eco.perdida::santuario_azeroth_3} to true
-    set {-eco.perdida::santuario_azeroth_4} to true
-    set {-eco.perdida::santuario_azeroth_5} to true
-    set {-eco.perdida::santuario_azeroth_6} to true
     set {-eco.perdida::santuario_interstellar} to true
     set {-eco.perdida::tumba} to true
     set {-eco.perdida::tumba_2} to true
@@ -143,6 +137,12 @@ on load:
     set {-eco.perdida::tumba_5} to true
     set {-eco.perdida::tumba_6} to true
     set {-eco.perdida::world} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth_2} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth_3} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth_4} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth_5} to true
+    set {-eco.perdida::world_minecraft_santuario_azeroth_6} to true
     set {-eco.perdida::world_nether} to true
     set {-eco.perdida::world_the_end} to true
     set {-eco.banco.nombre::1} to "Inicial"

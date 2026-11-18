@@ -64,6 +64,90 @@ ELITE_OLEADA = 10            # elite dentro de una mazmorra = 10 mobs de oleada
 ECO_SANTUARIO = 3_000_000    # cada eco del Santuario, a cada participante
 RADIO_PARTICIPANTES = 64
 
+# ------------------------------------------------------------------ puntaje de mazmorras (plan E2, 18/11)
+# Notas de peor a mejor; el numero es el que se guarda en el puntaje astral.nota (0 = sin nota).
+NOTAS = ['F', 'D', 'C', 'B', 'A', 'S']
+NOTA_MIN = {'S': 95, 'A': 85, 'B': 70, 'C': 55, 'D': 40, 'F': 0}
+NOTA_COLOR = {'S': '&6', 'A': '&a', 'B': '&b', 'C': '&e', 'D': '&c', 'F': '&4'}
+PUNTOS_MUERTE, PUNTOS_MUERTE_TOPE = 12, 60
+PUNTOS_MINUTO, PUNTOS_MINUTO_TOPE = 4, 40
+PUNTOS_SIN_MUERTES = 10
+# Minutos objetivo desde que la party entra hasta que muere el jefe (estimados por cantidad de salas y oleadas).
+# Para ajustar: mirar el tiempo que muestra el chat al ganar ("Tiempo: X min") y poner aca lo que tarda una
+# party normal. Despues: python mazmorras_puntaje.py y subir astral_puntaje.sk (sk reload).
+TIEMPO_OBJETIVO = {'bosque': 12, 'mina': 10, 'tumba': 14, 'cumbre': 12, 'forja': 10, 'santuario': 15, 'fosa': 10}
+
+
+def puntos(muertes, segundos, objetivo_min):
+    """Misma cuenta que astral_puntaje.sk (para las pruebas)."""
+    p = 100 - min(PUNTOS_MUERTE * muertes, PUNTOS_MUERTE_TOPE)
+    sobre = max(0, int((segundos - objetivo_min * 60) // 60))
+    p -= min(PUNTOS_MINUTO * sobre, PUNTOS_MINUTO_TOPE)
+    return p + (PUNTOS_SIN_MUERTES if muertes == 0 else 0)
+
+
+def nota(p):
+    return next(n for n in reversed(NOTAS) if p >= NOTA_MIN[n])
+
+
+# Ruleta invisible de plata del cofre: min + (max - min) * u^k (u al azar). Sesgada a lo bajo: siempre puede tocar poco.
+RULETA_MIN = 2_000
+RULETA_MAX = {'F': 5_000, 'D': 30_000, 'C': 80_000, 'B': 150_000, 'A': 250_000, 'S': 500_000}   # tier I
+RULETA_K = {'F': 3.0, 'D': 2.5, 'C': 2.0, 'B': 1.8, 'A': 1.6, 'S': 1.4}
+RULETA_MULT_TIER = {1: 1, 2: 3, 3: 8, 4: 18, 5: 40}
+RULETA_MULT_SANTUARIO = 60
+
+
+def ruleta_mult(key, tier):
+    return RULETA_MULT_SANTUARIO if key == 'santuario' else RULETA_MULT_TIER[tier]
+
+
+def ruleta_esperanza(n, mult=1):
+    lo, hi = RULETA_MIN * mult, RULETA_MAX[n] * mult
+    return lo + (hi - lo) / (RULETA_K[n] + 1)
+
+
+# Items del cofre: tiradas por nota y peso extra a lo raro con mejor nota (peso x (1 + bonus x rareza)).
+ITEM_TIRADAS = {'F': 1, 'D': 1, 'C': 2, 'B': 2, 'A': 3, 'S': 3}
+RAREZA_BONUS = {'F': 0, 'D': 0, 'C': 0.3, 'B': 0.6, 'A': 1.0, 'S': 1.6}
+# Equipo del tier SIGUIENTE (premio especial): probabilidad por tirada, solo A y S.
+ESPECIAL_PROB = {'A': 0.005, 'S': 0.015}
+EQUIPO_FAMILIAS = ['espada', 'hacha', 'arco', 'baston', 'guadana', 'lanza', 'cuchillo', 'ballesta'] + \
+    [f'{c}_{p}' for c in ('berserker', 'mago', 'arquero') for p in ('helmet', 'chestplate', 'leggings', 'boots')]
+EQUIPO_BALLESTA = (3, 4, 5)
+# (id, astral?, cantidad, peso, rareza 0-2, tier minimo, tier maximo)
+POOL_EXTRA = [
+    ('frasco_xp_pequeno', True, 2, 10, 0, 1, 3), ('frasco_xp_grande', True, 1, 8, 1, 2, 5),
+    ('frasco_xp_gigante', True, 1, 4, 2, 4, 5), ('manzana_esmeralda', True, 1, 3, 2, 4, 5),
+    ('barril_xp', True, 1, 1, 2, 5, 5),
+    ('diamond', False, 2, 8, 1, 1, 3), ('diamond', False, 4, 6, 1, 4, 5), ('emerald', False, 4, 8, 0, 1, 5),
+    ('golden_apple', False, 2, 6, 0, 1, 5), ('experience_bottle', False, 8, 8, 0, 1, 5),
+    ('netherite_scrap', False, 1, 3, 2, 3, 5), ('totem_of_undying', False, 1, 2, 2, 3, 5),
+    ('netherite_ingot', False, 1, 2, 2, 5, 5), ('enchanted_golden_apple', False, 1, 1, 2, 5, 5),
+]
+
+
+def equipo(tier):
+    return [f'{f}_{tier}' if '_' not in f else f.replace('_', f'_{tier}_', 1) for f in EQUIPO_FAMILIAS
+            if f != 'ballesta' or tier in EQUIPO_BALLESTA]
+
+
+def pool(tier):
+    """[(id, astral?, cantidad, peso, rareza)] del cofre de una mazmorra de ese tier."""
+    from tanda5a import MATERIAL_TIERS
+    out = []
+    for mid, mt in sorted(MATERIAL_TIERS.items()):
+        if mt <= tier + 1:
+            r = max(0, mt - tier + 1)
+            out.append((mid, True, 2 if r == 0 else 1, 10 if r < 2 else 4, r))
+    out += [(i, a, n, w, r) for i, a, n, w, r, lo, hi in POOL_EXTRA if lo <= tier <= hi]
+    return out
+
+
+def pesos(tier, n):
+    return [round(w * (1 + RAREZA_BONUS[n] * r) * 10) for _, _, _, w, r in pool(tier)]
+
+
 # ------------------------------------------------------------------ servicios
 # Mejora del Herrero +1..+10 (mas empinado que x100: late game caro).
 MEJORAS_PLATA = [30_000, 75_000, 150_000, 300_000, 600_000, 1_200_000, 2_500_000, 5_000_000, 10_000_000, 25_000_000]
@@ -86,7 +170,8 @@ def mundos_con_perdida():
     import minas, bosque_talar, oceano
     w = ['world', 'world_nether', 'world_the_end', minas.WORLD, bosque_talar.WORLD, oceano.WORLD]
     w += list(TIER_MAZMORRA) + list(TIER_FIJO) + list(INFINITA)
-    return sorted(set(w))
+    from instancias import bukkit   # nombre real en Bukkit (el Santuario lleva prefijo)
+    return sorted({bukkit(x) for x in w})
 
 
 def mundos_mazmorra():
@@ -94,7 +179,8 @@ def mundos_mazmorra():
     from escala import TIER_MAZMORRA, TIER_FIJO
     m = dict(TIER_MAZMORRA)
     m.update({w: t for w, t in TIER_FIJO.items() if w.startswith('fosa')})
-    return m
+    from instancias import bukkit   # nombre real en Bukkit (el Santuario lleva prefijo)
+    return {bukkit(w): t for w, t in m.items()}
 
 
 # ------------------------------------------------------------------ banco

@@ -78,15 +78,19 @@ class CofreMenuTests(unittest.TestCase):
             frag = PREMIOS[key][0]
             items = cofre_menu(dungeon)["items"]
             primera, despues = items["reclamar_0"], items["reclamar_ya_0"]
-            set_frag = f"[console] lp user %player_name% permission set {permiso(frag)} true"
-            self.assertIn(set_frag, primera["click_commands"])
-            self.assertNotIn(set_frag, despues["click_commands"])
+            # Plan E2 (18/11): el fragmento, la plata y la espera los da astral_puntaje.sk (astralcofre).
+            import mazmorras_puntaje
+            sk = mazmorras_puntaje.script()
+            self.assertIn(f'set {{-pz.cofre::{key}::perm}} to "{permiso(frag)}"', sk)
+            self.assertIn('if {_p} does not have permission {_perm}:', sk)
             self.assertEqual(primera["view_requirement"]["requirements"]["r"]["type"], "!has permission")
             self.assertLess(primera["priority"], despues["priority"])
             for boton in (primera, despues):
                 self.assertEqual(boton["click_commands"][0], "[close]")
                 self.assertEqual(boton["click_requirement"]["requirements"]["libre"]["permission"], espera(key))
-                self.assertTrue(any(f"settemp {espera(key)} true 30m" in c for c in boton["click_commands"]))
+                self.assertEqual(boton["click_commands"], ["[close]", f"[console] astralcofre %player_name% {key}"])
+            self.assertIn("permission settemp astral.%{_key}%.cd true {@cooldown}", sk)
+            self.assertEqual(espera(key), f"astral.{key}.cd")
             self.assertIn("&7Solo se puede reclamar la primera vez.", items["fragmento_apagado"]["lore"])
 
     def test_collection_permissions_default_to_false(self):

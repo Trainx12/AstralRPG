@@ -1,0 +1,2057 @@
+# Generado por datapack-src/mazmorras_puntaje.py (plan E2, 18/11/2026). No editar a mano.
+# Puntaje S..F por copia de mazmorra y cofre con ruleta invisible. Cifras: economia.py.
+
+options:
+    min: 2000
+    cooldown: 30m
+
+on load:
+    execute console command "scoreboard objectives add astral.nota dummy"
+    delete {-pz.key::*}
+    delete {-pz.obj::*}
+    set {-pz.key::bosque} to "bosque"
+    set {-pz.obj::bosque} to 12
+    set {-pz.key::bosque_2} to "bosque"
+    set {-pz.obj::bosque_2} to 12
+    set {-pz.key::bosque_3} to "bosque"
+    set {-pz.obj::bosque_3} to 12
+    set {-pz.key::bosque_4} to "bosque"
+    set {-pz.obj::bosque_4} to 12
+    set {-pz.key::bosque_5} to "bosque"
+    set {-pz.obj::bosque_5} to 12
+    set {-pz.key::bosque_6} to "bosque"
+    set {-pz.obj::bosque_6} to 12
+    set {-pz.key::mina} to "mina"
+    set {-pz.obj::mina} to 10
+    set {-pz.key::mina_2} to "mina"
+    set {-pz.obj::mina_2} to 10
+    set {-pz.key::mina_3} to "mina"
+    set {-pz.obj::mina_3} to 10
+    set {-pz.key::mina_4} to "mina"
+    set {-pz.obj::mina_4} to 10
+    set {-pz.key::mina_5} to "mina"
+    set {-pz.obj::mina_5} to 10
+    set {-pz.key::mina_6} to "mina"
+    set {-pz.obj::mina_6} to 10
+    set {-pz.key::tumba} to "tumba"
+    set {-pz.obj::tumba} to 14
+    set {-pz.key::tumba_2} to "tumba"
+    set {-pz.obj::tumba_2} to 14
+    set {-pz.key::tumba_3} to "tumba"
+    set {-pz.obj::tumba_3} to 14
+    set {-pz.key::tumba_4} to "tumba"
+    set {-pz.obj::tumba_4} to 14
+    set {-pz.key::tumba_5} to "tumba"
+    set {-pz.obj::tumba_5} to 14
+    set {-pz.key::tumba_6} to "tumba"
+    set {-pz.obj::tumba_6} to 14
+    set {-pz.key::cumbre_hielo} to "cumbre"
+    set {-pz.obj::cumbre_hielo} to 12
+    set {-pz.key::cumbre_hielo_2} to "cumbre"
+    set {-pz.obj::cumbre_hielo_2} to 12
+    set {-pz.key::cumbre_hielo_3} to "cumbre"
+    set {-pz.obj::cumbre_hielo_3} to 12
+    set {-pz.key::cumbre_hielo_4} to "cumbre"
+    set {-pz.obj::cumbre_hielo_4} to 12
+    set {-pz.key::cumbre_hielo_5} to "cumbre"
+    set {-pz.obj::cumbre_hielo_5} to 12
+    set {-pz.key::cumbre_hielo_6} to "cumbre"
+    set {-pz.obj::cumbre_hielo_6} to 12
+    set {-pz.key::forja_volcano} to "forja"
+    set {-pz.obj::forja_volcano} to 10
+    set {-pz.key::forja_volcano_2} to "forja"
+    set {-pz.obj::forja_volcano_2} to 10
+    set {-pz.key::forja_volcano_3} to "forja"
+    set {-pz.obj::forja_volcano_3} to 10
+    set {-pz.key::forja_volcano_4} to "forja"
+    set {-pz.obj::forja_volcano_4} to 10
+    set {-pz.key::forja_volcano_5} to "forja"
+    set {-pz.obj::forja_volcano_5} to 10
+    set {-pz.key::forja_volcano_6} to "forja"
+    set {-pz.obj::forja_volcano_6} to 10
+    set {-pz.key::world_minecraft_santuario_azeroth} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth} to 15
+    set {-pz.key::world_minecraft_santuario_azeroth_2} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth_2} to 15
+    set {-pz.key::world_minecraft_santuario_azeroth_3} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth_3} to 15
+    set {-pz.key::world_minecraft_santuario_azeroth_4} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth_4} to 15
+    set {-pz.key::world_minecraft_santuario_azeroth_5} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth_5} to 15
+    set {-pz.key::world_minecraft_santuario_azeroth_6} to "santuario"
+    set {-pz.obj::world_minecraft_santuario_azeroth_6} to 15
+    set {-pz.key::fosa} to "fosa"
+    set {-pz.obj::fosa} to 10
+    set {-pz.key::fosa_2} to "fosa"
+    set {-pz.obj::fosa_2} to 10
+    set {-pz.key::fosa_3} to "fosa"
+    set {-pz.obj::fosa_3} to 10
+    delete {-pz.pool::*}
+    delete {-pz.peso::*}
+    delete {-pz.total::*}
+    delete {-pz.eq::*}
+    delete {-pz.cofre::*}
+    delete {-pz.ruleta::*}
+    set {-pz.ruleta::1::letra} to "F"
+    set {-pz.ruleta::1::color} to "&4"
+    set {-pz.ruleta::1::max} to 5000
+    set {-pz.ruleta::1::k} to 3.0
+    set {-pz.ruleta::1::tiradas} to 1
+    set {-pz.ruleta::1::especial} to 0
+    set {-pz.ruleta::2::letra} to "D"
+    set {-pz.ruleta::2::color} to "&c"
+    set {-pz.ruleta::2::max} to 30000
+    set {-pz.ruleta::2::k} to 2.5
+    set {-pz.ruleta::2::tiradas} to 1
+    set {-pz.ruleta::2::especial} to 0
+    set {-pz.ruleta::3::letra} to "C"
+    set {-pz.ruleta::3::color} to "&e"
+    set {-pz.ruleta::3::max} to 80000
+    set {-pz.ruleta::3::k} to 2.0
+    set {-pz.ruleta::3::tiradas} to 2
+    set {-pz.ruleta::3::especial} to 0
+    set {-pz.ruleta::4::letra} to "B"
+    set {-pz.ruleta::4::color} to "&b"
+    set {-pz.ruleta::4::max} to 150000
+    set {-pz.ruleta::4::k} to 1.8
+    set {-pz.ruleta::4::tiradas} to 2
+    set {-pz.ruleta::4::especial} to 0
+    set {-pz.ruleta::5::letra} to "A"
+    set {-pz.ruleta::5::color} to "&a"
+    set {-pz.ruleta::5::max} to 250000
+    set {-pz.ruleta::5::k} to 1.6
+    set {-pz.ruleta::5::tiradas} to 3
+    set {-pz.ruleta::5::especial} to 0.005
+    set {-pz.ruleta::6::letra} to "S"
+    set {-pz.ruleta::6::color} to "&6"
+    set {-pz.ruleta::6::max} to 500000
+    set {-pz.ruleta::6::k} to 1.4
+    set {-pz.ruleta::6::tiradas} to 3
+    set {-pz.ruleta::6::especial} to 0.015
+    set {-pz.pool::1::1::id} to "cristal_arcano"
+    set {-pz.pool::1::1::astral} to true
+    set {-pz.pool::1::1::cant} to 1
+    set {-pz.pool::1::1::nombre} to "Cristal Arcano"
+    set {-pz.pool::1::2::id} to "cuero_tratado"
+    set {-pz.pool::1::2::astral} to true
+    set {-pz.pool::1::2::cant} to 1
+    set {-pz.pool::1::2::nombre} to "Cuero Tratado"
+    set {-pz.pool::1::3::id} to "esencia_elite"
+    set {-pz.pool::1::3::astral} to true
+    set {-pz.pool::1::3::cant} to 1
+    set {-pz.pool::1::3::nombre} to "Esencia de Elite"
+    set {-pz.pool::1::4::id} to "esencia_nether"
+    set {-pz.pool::1::4::astral} to true
+    set {-pz.pool::1::4::cant} to 1
+    set {-pz.pool::1::4::nombre} to "Esencia del Nether"
+    set {-pz.pool::1::5::id} to "fragmento_astral"
+    set {-pz.pool::1::5::astral} to true
+    set {-pz.pool::1::5::cant} to 1
+    set {-pz.pool::1::5::nombre} to "Fragmento Astral"
+    set {-pz.pool::1::6::id} to "fragmento_cristal"
+    set {-pz.pool::1::6::astral} to true
+    set {-pz.pool::1::6::cant} to 1
+    set {-pz.pool::1::6::nombre} to "Fragmento de Cristal Arcano"
+    set {-pz.pool::1::7::id} to "fragmento_umbrio"
+    set {-pz.pool::1::7::astral} to true
+    set {-pz.pool::1::7::cant} to 1
+    set {-pz.pool::1::7::nombre} to "Fragmento Umbrio"
+    set {-pz.pool::1::8::id} to "gema_luminica"
+    set {-pz.pool::1::8::astral} to true
+    set {-pz.pool::1::8::cant} to 1
+    set {-pz.pool::1::8::nombre} to "Gema Luminica"
+    set {-pz.pool::1::9::id} to "gema_umbria_fragmentada"
+    set {-pz.pool::1::9::astral} to true
+    set {-pz.pool::1::9::cant} to 1
+    set {-pz.pool::1::9::nombre} to "Gema Umbria Fragmentada"
+    set {-pz.pool::1::10::id} to "madera_estelar"
+    set {-pz.pool::1::10::astral} to true
+    set {-pz.pool::1::10::cant} to 1
+    set {-pz.pool::1::10::nombre} to "Madera Estelar"
+    set {-pz.pool::1::11::id} to "netherita_fundida"
+    set {-pz.pool::1::11::astral} to true
+    set {-pz.pool::1::11::cant} to 1
+    set {-pz.pool::1::11::nombre} to "Netherita Fundida"
+    set {-pz.pool::1::12::id} to "nucleo_eolico"
+    set {-pz.pool::1::12::astral} to true
+    set {-pz.pool::1::12::cant} to 1
+    set {-pz.pool::1::12::nombre} to "Nucleo Eolico"
+    set {-pz.pool::1::13::id} to "nucleo_furia"
+    set {-pz.pool::1::13::astral} to true
+    set {-pz.pool::1::13::cant} to 1
+    set {-pz.pool::1::13::nombre} to "Nucleo de Furia"
+    set {-pz.pool::1::14::id} to "palo_reforzado"
+    set {-pz.pool::1::14::astral} to true
+    set {-pz.pool::1::14::cant} to 1
+    set {-pz.pool::1::14::nombre} to "Palo Reforzado"
+    set {-pz.pool::1::15::id} to "polvo_astral"
+    set {-pz.pool::1::15::astral} to true
+    set {-pz.pool::1::15::cant} to 1
+    set {-pz.pool::1::15::nombre} to "Polvo Astral"
+    set {-pz.pool::1::16::id} to "shadowsteel"
+    set {-pz.pool::1::16::astral} to true
+    set {-pz.pool::1::16::cant} to 1
+    set {-pz.pool::1::16::nombre} to "Acero Sombrio"
+    set {-pz.pool::1::17::id} to "frasco_xp_pequeno"
+    set {-pz.pool::1::17::astral} to true
+    set {-pz.pool::1::17::cant} to 2
+    set {-pz.pool::1::17::nombre} to "Frasco de Experiencia Pequeno"
+    set {-pz.pool::1::18::id} to "diamond"
+    set {-pz.pool::1::18::astral} to false
+    set {-pz.pool::1::18::cant} to 2
+    set {-pz.pool::1::18::nombre} to "Diamante"
+    set {-pz.pool::1::19::id} to "emerald"
+    set {-pz.pool::1::19::astral} to false
+    set {-pz.pool::1::19::cant} to 4
+    set {-pz.pool::1::19::nombre} to "Esmeralda"
+    set {-pz.pool::1::20::id} to "golden_apple"
+    set {-pz.pool::1::20::astral} to false
+    set {-pz.pool::1::20::cant} to 2
+    set {-pz.pool::1::20::nombre} to "Manzana Dorada"
+    set {-pz.pool::1::21::id} to "experience_bottle"
+    set {-pz.pool::1::21::astral} to false
+    set {-pz.pool::1::21::cant} to 8
+    set {-pz.pool::1::21::nombre} to "Botella de Experiencia"
+    set {-pz.pooln::1} to 21
+    set {-pz.total::1::1} to 1400
+    set {-pz.peso::1::1::1} to 40
+    set {-pz.peso::1::1::2} to 100
+    set {-pz.peso::1::1::3} to 40
+    set {-pz.peso::1::1::4} to 100
+    set {-pz.peso::1::1::5} to 100
+    set {-pz.peso::1::1::6} to 100
+    set {-pz.peso::1::1::7} to 100
+    set {-pz.peso::1::1::8} to 40
+    set {-pz.peso::1::1::9} to 100
+    set {-pz.peso::1::1::10} to 40
+    set {-pz.peso::1::1::11} to 40
+    set {-pz.peso::1::1::12} to 40
+    set {-pz.peso::1::1::13} to 40
+    set {-pz.peso::1::1::14} to 40
+    set {-pz.peso::1::1::15} to 40
+    set {-pz.peso::1::1::16} to 40
+    set {-pz.peso::1::1::17} to 100
+    set {-pz.peso::1::1::18} to 80
+    set {-pz.peso::1::1::19} to 80
+    set {-pz.peso::1::1::20} to 60
+    set {-pz.peso::1::1::21} to 80
+    set {-pz.total::1::2} to 1400
+    set {-pz.peso::1::2::1} to 40
+    set {-pz.peso::1::2::2} to 100
+    set {-pz.peso::1::2::3} to 40
+    set {-pz.peso::1::2::4} to 100
+    set {-pz.peso::1::2::5} to 100
+    set {-pz.peso::1::2::6} to 100
+    set {-pz.peso::1::2::7} to 100
+    set {-pz.peso::1::2::8} to 40
+    set {-pz.peso::1::2::9} to 100
+    set {-pz.peso::1::2::10} to 40
+    set {-pz.peso::1::2::11} to 40
+    set {-pz.peso::1::2::12} to 40
+    set {-pz.peso::1::2::13} to 40
+    set {-pz.peso::1::2::14} to 40
+    set {-pz.peso::1::2::15} to 40
+    set {-pz.peso::1::2::16} to 40
+    set {-pz.peso::1::2::17} to 100
+    set {-pz.peso::1::2::18} to 80
+    set {-pz.peso::1::2::19} to 80
+    set {-pz.peso::1::2::20} to 60
+    set {-pz.peso::1::2::21} to 80
+    set {-pz.total::1::3} to 1844
+    set {-pz.peso::1::3::1} to 64
+    set {-pz.peso::1::3::2} to 130
+    set {-pz.peso::1::3::3} to 64
+    set {-pz.peso::1::3::4} to 130
+    set {-pz.peso::1::3::5} to 130
+    set {-pz.peso::1::3::6} to 130
+    set {-pz.peso::1::3::7} to 130
+    set {-pz.peso::1::3::8} to 64
+    set {-pz.peso::1::3::9} to 130
+    set {-pz.peso::1::3::10} to 64
+    set {-pz.peso::1::3::11} to 64
+    set {-pz.peso::1::3::12} to 64
+    set {-pz.peso::1::3::13} to 64
+    set {-pz.peso::1::3::14} to 64
+    set {-pz.peso::1::3::15} to 64
+    set {-pz.peso::1::3::16} to 64
+    set {-pz.peso::1::3::17} to 100
+    set {-pz.peso::1::3::18} to 104
+    set {-pz.peso::1::3::19} to 80
+    set {-pz.peso::1::3::20} to 60
+    set {-pz.peso::1::3::21} to 80
+    set {-pz.total::1::4} to 2288
+    set {-pz.peso::1::4::1} to 88
+    set {-pz.peso::1::4::2} to 160
+    set {-pz.peso::1::4::3} to 88
+    set {-pz.peso::1::4::4} to 160
+    set {-pz.peso::1::4::5} to 160
+    set {-pz.peso::1::4::6} to 160
+    set {-pz.peso::1::4::7} to 160
+    set {-pz.peso::1::4::8} to 88
+    set {-pz.peso::1::4::9} to 160
+    set {-pz.peso::1::4::10} to 88
+    set {-pz.peso::1::4::11} to 88
+    set {-pz.peso::1::4::12} to 88
+    set {-pz.peso::1::4::13} to 88
+    set {-pz.peso::1::4::14} to 88
+    set {-pz.peso::1::4::15} to 88
+    set {-pz.peso::1::4::16} to 88
+    set {-pz.peso::1::4::17} to 100
+    set {-pz.peso::1::4::18} to 128
+    set {-pz.peso::1::4::19} to 80
+    set {-pz.peso::1::4::20} to 60
+    set {-pz.peso::1::4::21} to 80
+    set {-pz.total::1::5} to 2880
+    set {-pz.peso::1::5::1} to 120
+    set {-pz.peso::1::5::2} to 200
+    set {-pz.peso::1::5::3} to 120
+    set {-pz.peso::1::5::4} to 200
+    set {-pz.peso::1::5::5} to 200
+    set {-pz.peso::1::5::6} to 200
+    set {-pz.peso::1::5::7} to 200
+    set {-pz.peso::1::5::8} to 120
+    set {-pz.peso::1::5::9} to 200
+    set {-pz.peso::1::5::10} to 120
+    set {-pz.peso::1::5::11} to 120
+    set {-pz.peso::1::5::12} to 120
+    set {-pz.peso::1::5::13} to 120
+    set {-pz.peso::1::5::14} to 120
+    set {-pz.peso::1::5::15} to 120
+    set {-pz.peso::1::5::16} to 120
+    set {-pz.peso::1::5::17} to 100
+    set {-pz.peso::1::5::18} to 160
+    set {-pz.peso::1::5::19} to 80
+    set {-pz.peso::1::5::20} to 60
+    set {-pz.peso::1::5::21} to 80
+    set {-pz.total::1::6} to 3768
+    set {-pz.peso::1::6::1} to 168
+    set {-pz.peso::1::6::2} to 260
+    set {-pz.peso::1::6::3} to 168
+    set {-pz.peso::1::6::4} to 260
+    set {-pz.peso::1::6::5} to 260
+    set {-pz.peso::1::6::6} to 260
+    set {-pz.peso::1::6::7} to 260
+    set {-pz.peso::1::6::8} to 168
+    set {-pz.peso::1::6::9} to 260
+    set {-pz.peso::1::6::10} to 168
+    set {-pz.peso::1::6::11} to 168
+    set {-pz.peso::1::6::12} to 168
+    set {-pz.peso::1::6::13} to 168
+    set {-pz.peso::1::6::14} to 168
+    set {-pz.peso::1::6::15} to 168
+    set {-pz.peso::1::6::16} to 168
+    set {-pz.peso::1::6::17} to 100
+    set {-pz.peso::1::6::18} to 208
+    set {-pz.peso::1::6::19} to 80
+    set {-pz.peso::1::6::20} to 60
+    set {-pz.peso::1::6::21} to 80
+    set {-pz.eqn::1} to 19
+    set {-pz.eq::1::1::id} to "espada_2"
+    set {-pz.eq::1::1::nombre} to "Espada II"
+    set {-pz.eq::1::2::id} to "hacha_2"
+    set {-pz.eq::1::2::nombre} to "Hacha II"
+    set {-pz.eq::1::3::id} to "arco_2"
+    set {-pz.eq::1::3::nombre} to "Arco II"
+    set {-pz.eq::1::4::id} to "baston_2"
+    set {-pz.eq::1::4::nombre} to "Baston II"
+    set {-pz.eq::1::5::id} to "guadana_2"
+    set {-pz.eq::1::5::nombre} to "Guadana II"
+    set {-pz.eq::1::6::id} to "lanza_2"
+    set {-pz.eq::1::6::nombre} to "Lanza II"
+    set {-pz.eq::1::7::id} to "cuchillo_2"
+    set {-pz.eq::1::7::nombre} to "Cuchillo II"
+    set {-pz.eq::1::8::id} to "berserker_2_helmet"
+    set {-pz.eq::1::8::nombre} to "Casco Berserker II"
+    set {-pz.eq::1::9::id} to "berserker_2_chestplate"
+    set {-pz.eq::1::9::nombre} to "Pechera Berserker II"
+    set {-pz.eq::1::10::id} to "berserker_2_leggings"
+    set {-pz.eq::1::10::nombre} to "Grebas Berserker II"
+    set {-pz.eq::1::11::id} to "berserker_2_boots"
+    set {-pz.eq::1::11::nombre} to "Botas Berserker II"
+    set {-pz.eq::1::12::id} to "mago_2_helmet"
+    set {-pz.eq::1::12::nombre} to "Casco Mago II"
+    set {-pz.eq::1::13::id} to "mago_2_chestplate"
+    set {-pz.eq::1::13::nombre} to "Pechera Mago II"
+    set {-pz.eq::1::14::id} to "mago_2_leggings"
+    set {-pz.eq::1::14::nombre} to "Grebas Mago II"
+    set {-pz.eq::1::15::id} to "mago_2_boots"
+    set {-pz.eq::1::15::nombre} to "Botas Mago II"
+    set {-pz.eq::1::16::id} to "arquero_2_helmet"
+    set {-pz.eq::1::16::nombre} to "Casco Arquero II"
+    set {-pz.eq::1::17::id} to "arquero_2_chestplate"
+    set {-pz.eq::1::17::nombre} to "Pechera Arquero II"
+    set {-pz.eq::1::18::id} to "arquero_2_leggings"
+    set {-pz.eq::1::18::nombre} to "Grebas Arquero II"
+    set {-pz.eq::1::19::id} to "arquero_2_boots"
+    set {-pz.eq::1::19::nombre} to "Botas Arquero II"
+    set {-pz.pool::2::1::id} to "alma_corrupta"
+    set {-pz.pool::2::1::astral} to true
+    set {-pz.pool::2::1::cant} to 1
+    set {-pz.pool::2::1::nombre} to "Alma Corrupta"
+    set {-pz.pool::2::2::id} to "corazon_shulker"
+    set {-pz.pool::2::2::astral} to true
+    set {-pz.pool::2::2::cant} to 1
+    set {-pz.pool::2::2::nombre} to "Corazon de Shulker"
+    set {-pz.pool::2::3::id} to "cristal_arcano"
+    set {-pz.pool::2::3::astral} to true
+    set {-pz.pool::2::3::cant} to 1
+    set {-pz.pool::2::3::nombre} to "Cristal Arcano"
+    set {-pz.pool::2::4::id} to "cristal_refinado"
+    set {-pz.pool::2::4::astral} to true
+    set {-pz.pool::2::4::cant} to 1
+    set {-pz.pool::2::4::nombre} to "Cristal Arcano Refinado"
+    set {-pz.pool::2::5::id} to "cuero_tratado"
+    set {-pz.pool::2::5::astral} to true
+    set {-pz.pool::2::5::cant} to 2
+    set {-pz.pool::2::5::nombre} to "Cuero Tratado"
+    set {-pz.pool::2::6::id} to "esencia_elite"
+    set {-pz.pool::2::6::astral} to true
+    set {-pz.pool::2::6::cant} to 1
+    set {-pz.pool::2::6::nombre} to "Esencia de Elite"
+    set {-pz.pool::2::7::id} to "esencia_nether"
+    set {-pz.pool::2::7::astral} to true
+    set {-pz.pool::2::7::cant} to 2
+    set {-pz.pool::2::7::nombre} to "Esencia del Nether"
+    set {-pz.pool::2::8::id} to "fragmento_astral"
+    set {-pz.pool::2::8::astral} to true
+    set {-pz.pool::2::8::cant} to 2
+    set {-pz.pool::2::8::nombre} to "Fragmento Astral"
+    set {-pz.pool::2::9::id} to "fragmento_cristal"
+    set {-pz.pool::2::9::astral} to true
+    set {-pz.pool::2::9::cant} to 2
+    set {-pz.pool::2::9::nombre} to "Fragmento de Cristal Arcano"
+    set {-pz.pool::2::10::id} to "fragmento_umbrio"
+    set {-pz.pool::2::10::astral} to true
+    set {-pz.pool::2::10::cant} to 2
+    set {-pz.pool::2::10::nombre} to "Fragmento Umbrio"
+    set {-pz.pool::2::11::id} to "gema_luminica"
+    set {-pz.pool::2::11::astral} to true
+    set {-pz.pool::2::11::cant} to 1
+    set {-pz.pool::2::11::nombre} to "Gema Luminica"
+    set {-pz.pool::2::12::id} to "gema_umbria"
+    set {-pz.pool::2::12::astral} to true
+    set {-pz.pool::2::12::cant} to 1
+    set {-pz.pool::2::12::nombre} to "Gema Umbria"
+    set {-pz.pool::2::13::id} to "gema_umbria_fragmentada"
+    set {-pz.pool::2::13::astral} to true
+    set {-pz.pool::2::13::cant} to 2
+    set {-pz.pool::2::13::nombre} to "Gema Umbria Fragmentada"
+    set {-pz.pool::2::14::id} to "madera_estelar"
+    set {-pz.pool::2::14::astral} to true
+    set {-pz.pool::2::14::cant} to 1
+    set {-pz.pool::2::14::nombre} to "Madera Estelar"
+    set {-pz.pool::2::15::id} to "netherita_fundida"
+    set {-pz.pool::2::15::astral} to true
+    set {-pz.pool::2::15::cant} to 1
+    set {-pz.pool::2::15::nombre} to "Netherita Fundida"
+    set {-pz.pool::2::16::id} to "nucleo_eolico"
+    set {-pz.pool::2::16::astral} to true
+    set {-pz.pool::2::16::cant} to 1
+    set {-pz.pool::2::16::nombre} to "Nucleo Eolico"
+    set {-pz.pool::2::17::id} to "nucleo_furia"
+    set {-pz.pool::2::17::astral} to true
+    set {-pz.pool::2::17::cant} to 1
+    set {-pz.pool::2::17::nombre} to "Nucleo de Furia"
+    set {-pz.pool::2::18::id} to "palo_reforzado"
+    set {-pz.pool::2::18::astral} to true
+    set {-pz.pool::2::18::cant} to 1
+    set {-pz.pool::2::18::nombre} to "Palo Reforzado"
+    set {-pz.pool::2::19::id} to "polvo_astral"
+    set {-pz.pool::2::19::astral} to true
+    set {-pz.pool::2::19::cant} to 1
+    set {-pz.pool::2::19::nombre} to "Polvo Astral"
+    set {-pz.pool::2::20::id} to "shadowsteel"
+    set {-pz.pool::2::20::astral} to true
+    set {-pz.pool::2::20::cant} to 1
+    set {-pz.pool::2::20::nombre} to "Acero Sombrio"
+    set {-pz.pool::2::21::id} to "frasco_xp_pequeno"
+    set {-pz.pool::2::21::astral} to true
+    set {-pz.pool::2::21::cant} to 2
+    set {-pz.pool::2::21::nombre} to "Frasco de Experiencia Pequeno"
+    set {-pz.pool::2::22::id} to "frasco_xp_grande"
+    set {-pz.pool::2::22::astral} to true
+    set {-pz.pool::2::22::cant} to 1
+    set {-pz.pool::2::22::nombre} to "Frasco de Experiencia Grande"
+    set {-pz.pool::2::23::id} to "diamond"
+    set {-pz.pool::2::23::astral} to false
+    set {-pz.pool::2::23::cant} to 2
+    set {-pz.pool::2::23::nombre} to "Diamante"
+    set {-pz.pool::2::24::id} to "emerald"
+    set {-pz.pool::2::24::astral} to false
+    set {-pz.pool::2::24::cant} to 4
+    set {-pz.pool::2::24::nombre} to "Esmeralda"
+    set {-pz.pool::2::25::id} to "golden_apple"
+    set {-pz.pool::2::25::astral} to false
+    set {-pz.pool::2::25::cant} to 2
+    set {-pz.pool::2::25::nombre} to "Manzana Dorada"
+    set {-pz.pool::2::26::id} to "experience_bottle"
+    set {-pz.pool::2::26::astral} to false
+    set {-pz.pool::2::26::cant} to 8
+    set {-pz.pool::2::26::nombre} to "Botella de Experiencia"
+    set {-pz.pooln::2} to 26
+    set {-pz.total::2::1} to 2240
+    set {-pz.peso::2::1::1} to 40
+    set {-pz.peso::2::1::2} to 40
+    set {-pz.peso::2::1::3} to 100
+    set {-pz.peso::2::1::4} to 40
+    set {-pz.peso::2::1::5} to 100
+    set {-pz.peso::2::1::6} to 100
+    set {-pz.peso::2::1::7} to 100
+    set {-pz.peso::2::1::8} to 100
+    set {-pz.peso::2::1::9} to 100
+    set {-pz.peso::2::1::10} to 100
+    set {-pz.peso::2::1::11} to 100
+    set {-pz.peso::2::1::12} to 40
+    set {-pz.peso::2::1::13} to 100
+    set {-pz.peso::2::1::14} to 100
+    set {-pz.peso::2::1::15} to 100
+    set {-pz.peso::2::1::16} to 100
+    set {-pz.peso::2::1::17} to 100
+    set {-pz.peso::2::1::18} to 100
+    set {-pz.peso::2::1::19} to 100
+    set {-pz.peso::2::1::20} to 100
+    set {-pz.peso::2::1::21} to 100
+    set {-pz.peso::2::1::22} to 80
+    set {-pz.peso::2::1::23} to 80
+    set {-pz.peso::2::1::24} to 80
+    set {-pz.peso::2::1::25} to 60
+    set {-pz.peso::2::1::26} to 80
+    set {-pz.total::2::2} to 2240
+    set {-pz.peso::2::2::1} to 40
+    set {-pz.peso::2::2::2} to 40
+    set {-pz.peso::2::2::3} to 100
+    set {-pz.peso::2::2::4} to 40
+    set {-pz.peso::2::2::5} to 100
+    set {-pz.peso::2::2::6} to 100
+    set {-pz.peso::2::2::7} to 100
+    set {-pz.peso::2::2::8} to 100
+    set {-pz.peso::2::2::9} to 100
+    set {-pz.peso::2::2::10} to 100
+    set {-pz.peso::2::2::11} to 100
+    set {-pz.peso::2::2::12} to 40
+    set {-pz.peso::2::2::13} to 100
+    set {-pz.peso::2::2::14} to 100
+    set {-pz.peso::2::2::15} to 100
+    set {-pz.peso::2::2::16} to 100
+    set {-pz.peso::2::2::17} to 100
+    set {-pz.peso::2::2::18} to 100
+    set {-pz.peso::2::2::19} to 100
+    set {-pz.peso::2::2::20} to 100
+    set {-pz.peso::2::2::21} to 100
+    set {-pz.peso::2::2::22} to 80
+    set {-pz.peso::2::2::23} to 80
+    set {-pz.peso::2::2::24} to 80
+    set {-pz.peso::2::2::25} to 60
+    set {-pz.peso::2::2::26} to 80
+    set {-pz.total::2::3} to 2684
+    set {-pz.peso::2::3::1} to 64
+    set {-pz.peso::2::3::2} to 64
+    set {-pz.peso::2::3::3} to 130
+    set {-pz.peso::2::3::4} to 64
+    set {-pz.peso::2::3::5} to 100
+    set {-pz.peso::2::3::6} to 130
+    set {-pz.peso::2::3::7} to 100
+    set {-pz.peso::2::3::8} to 100
+    set {-pz.peso::2::3::9} to 100
+    set {-pz.peso::2::3::10} to 100
+    set {-pz.peso::2::3::11} to 130
+    set {-pz.peso::2::3::12} to 64
+    set {-pz.peso::2::3::13} to 100
+    set {-pz.peso::2::3::14} to 130
+    set {-pz.peso::2::3::15} to 130
+    set {-pz.peso::2::3::16} to 130
+    set {-pz.peso::2::3::17} to 130
+    set {-pz.peso::2::3::18} to 130
+    set {-pz.peso::2::3::19} to 130
+    set {-pz.peso::2::3::20} to 130
+    set {-pz.peso::2::3::21} to 100
+    set {-pz.peso::2::3::22} to 104
+    set {-pz.peso::2::3::23} to 104
+    set {-pz.peso::2::3::24} to 80
+    set {-pz.peso::2::3::25} to 60
+    set {-pz.peso::2::3::26} to 80
+    set {-pz.total::2::4} to 3128
+    set {-pz.peso::2::4::1} to 88
+    set {-pz.peso::2::4::2} to 88
+    set {-pz.peso::2::4::3} to 160
+    set {-pz.peso::2::4::4} to 88
+    set {-pz.peso::2::4::5} to 100
+    set {-pz.peso::2::4::6} to 160
+    set {-pz.peso::2::4::7} to 100
+    set {-pz.peso::2::4::8} to 100
+    set {-pz.peso::2::4::9} to 100
+    set {-pz.peso::2::4::10} to 100
+    set {-pz.peso::2::4::11} to 160
+    set {-pz.peso::2::4::12} to 88
+    set {-pz.peso::2::4::13} to 100
+    set {-pz.peso::2::4::14} to 160
+    set {-pz.peso::2::4::15} to 160
+    set {-pz.peso::2::4::16} to 160
+    set {-pz.peso::2::4::17} to 160
+    set {-pz.peso::2::4::18} to 160
+    set {-pz.peso::2::4::19} to 160
+    set {-pz.peso::2::4::20} to 160
+    set {-pz.peso::2::4::21} to 100
+    set {-pz.peso::2::4::22} to 128
+    set {-pz.peso::2::4::23} to 128
+    set {-pz.peso::2::4::24} to 80
+    set {-pz.peso::2::4::25} to 60
+    set {-pz.peso::2::4::26} to 80
+    set {-pz.total::2::5} to 3720
+    set {-pz.peso::2::5::1} to 120
+    set {-pz.peso::2::5::2} to 120
+    set {-pz.peso::2::5::3} to 200
+    set {-pz.peso::2::5::4} to 120
+    set {-pz.peso::2::5::5} to 100
+    set {-pz.peso::2::5::6} to 200
+    set {-pz.peso::2::5::7} to 100
+    set {-pz.peso::2::5::8} to 100
+    set {-pz.peso::2::5::9} to 100
+    set {-pz.peso::2::5::10} to 100
+    set {-pz.peso::2::5::11} to 200
+    set {-pz.peso::2::5::12} to 120
+    set {-pz.peso::2::5::13} to 100
+    set {-pz.peso::2::5::14} to 200
+    set {-pz.peso::2::5::15} to 200
+    set {-pz.peso::2::5::16} to 200
+    set {-pz.peso::2::5::17} to 200
+    set {-pz.peso::2::5::18} to 200
+    set {-pz.peso::2::5::19} to 200
+    set {-pz.peso::2::5::20} to 200
+    set {-pz.peso::2::5::21} to 100
+    set {-pz.peso::2::5::22} to 160
+    set {-pz.peso::2::5::23} to 160
+    set {-pz.peso::2::5::24} to 80
+    set {-pz.peso::2::5::25} to 60
+    set {-pz.peso::2::5::26} to 80
+    set {-pz.total::2::6} to 4608
+    set {-pz.peso::2::6::1} to 168
+    set {-pz.peso::2::6::2} to 168
+    set {-pz.peso::2::6::3} to 260
+    set {-pz.peso::2::6::4} to 168
+    set {-pz.peso::2::6::5} to 100
+    set {-pz.peso::2::6::6} to 260
+    set {-pz.peso::2::6::7} to 100
+    set {-pz.peso::2::6::8} to 100
+    set {-pz.peso::2::6::9} to 100
+    set {-pz.peso::2::6::10} to 100
+    set {-pz.peso::2::6::11} to 260
+    set {-pz.peso::2::6::12} to 168
+    set {-pz.peso::2::6::13} to 100
+    set {-pz.peso::2::6::14} to 260
+    set {-pz.peso::2::6::15} to 260
+    set {-pz.peso::2::6::16} to 260
+    set {-pz.peso::2::6::17} to 260
+    set {-pz.peso::2::6::18} to 260
+    set {-pz.peso::2::6::19} to 260
+    set {-pz.peso::2::6::20} to 260
+    set {-pz.peso::2::6::21} to 100
+    set {-pz.peso::2::6::22} to 208
+    set {-pz.peso::2::6::23} to 208
+    set {-pz.peso::2::6::24} to 80
+    set {-pz.peso::2::6::25} to 60
+    set {-pz.peso::2::6::26} to 80
+    set {-pz.eqn::2} to 20
+    set {-pz.eq::2::1::id} to "espada_3"
+    set {-pz.eq::2::1::nombre} to "Espada III"
+    set {-pz.eq::2::2::id} to "hacha_3"
+    set {-pz.eq::2::2::nombre} to "Hacha III"
+    set {-pz.eq::2::3::id} to "arco_3"
+    set {-pz.eq::2::3::nombre} to "Arco III"
+    set {-pz.eq::2::4::id} to "baston_3"
+    set {-pz.eq::2::4::nombre} to "Baston III"
+    set {-pz.eq::2::5::id} to "guadana_3"
+    set {-pz.eq::2::5::nombre} to "Guadana III"
+    set {-pz.eq::2::6::id} to "lanza_3"
+    set {-pz.eq::2::6::nombre} to "Lanza III"
+    set {-pz.eq::2::7::id} to "cuchillo_3"
+    set {-pz.eq::2::7::nombre} to "Cuchillo III"
+    set {-pz.eq::2::8::id} to "ballesta_3"
+    set {-pz.eq::2::8::nombre} to "Ballesta III"
+    set {-pz.eq::2::9::id} to "berserker_3_helmet"
+    set {-pz.eq::2::9::nombre} to "Casco Berserker III"
+    set {-pz.eq::2::10::id} to "berserker_3_chestplate"
+    set {-pz.eq::2::10::nombre} to "Pechera Berserker III"
+    set {-pz.eq::2::11::id} to "berserker_3_leggings"
+    set {-pz.eq::2::11::nombre} to "Grebas Berserker III"
+    set {-pz.eq::2::12::id} to "berserker_3_boots"
+    set {-pz.eq::2::12::nombre} to "Botas Berserker III"
+    set {-pz.eq::2::13::id} to "mago_3_helmet"
+    set {-pz.eq::2::13::nombre} to "Casco Mago III"
+    set {-pz.eq::2::14::id} to "mago_3_chestplate"
+    set {-pz.eq::2::14::nombre} to "Pechera Mago III"
+    set {-pz.eq::2::15::id} to "mago_3_leggings"
+    set {-pz.eq::2::15::nombre} to "Grebas Mago III"
+    set {-pz.eq::2::16::id} to "mago_3_boots"
+    set {-pz.eq::2::16::nombre} to "Botas Mago III"
+    set {-pz.eq::2::17::id} to "arquero_3_helmet"
+    set {-pz.eq::2::17::nombre} to "Casco Arquero III"
+    set {-pz.eq::2::18::id} to "arquero_3_chestplate"
+    set {-pz.eq::2::18::nombre} to "Pechera Arquero III"
+    set {-pz.eq::2::19::id} to "arquero_3_leggings"
+    set {-pz.eq::2::19::nombre} to "Grebas Arquero III"
+    set {-pz.eq::2::20::id} to "arquero_3_boots"
+    set {-pz.eq::2::20::nombre} to "Botas Arquero III"
+    set {-pz.pool::3::1::id} to "alma_corrupta"
+    set {-pz.pool::3::1::astral} to true
+    set {-pz.pool::3::1::cant} to 1
+    set {-pz.pool::3::1::nombre} to "Alma Corrupta"
+    set {-pz.pool::3::2::id} to "chispa_astral"
+    set {-pz.pool::3::2::astral} to true
+    set {-pz.pool::3::2::cant} to 1
+    set {-pz.pool::3::2::nombre} to "Chispa Astral"
+    set {-pz.pool::3::3::id} to "corazon_shulker"
+    set {-pz.pool::3::3::astral} to true
+    set {-pz.pool::3::3::cant} to 1
+    set {-pz.pool::3::3::nombre} to "Corazon de Shulker"
+    set {-pz.pool::3::4::id} to "cristal_arcano"
+    set {-pz.pool::3::4::astral} to true
+    set {-pz.pool::3::4::cant} to 2
+    set {-pz.pool::3::4::nombre} to "Cristal Arcano"
+    set {-pz.pool::3::5::id} to "cristal_refinado"
+    set {-pz.pool::3::5::astral} to true
+    set {-pz.pool::3::5::cant} to 1
+    set {-pz.pool::3::5::nombre} to "Cristal Arcano Refinado"
+    set {-pz.pool::3::6::id} to "cuero_tratado"
+    set {-pz.pool::3::6::astral} to true
+    set {-pz.pool::3::6::cant} to 2
+    set {-pz.pool::3::6::nombre} to "Cuero Tratado"
+    set {-pz.pool::3::7::id} to "esencia_elite"
+    set {-pz.pool::3::7::astral} to true
+    set {-pz.pool::3::7::cant} to 2
+    set {-pz.pool::3::7::nombre} to "Esencia de Elite"
+    set {-pz.pool::3::8::id} to "esencia_nether"
+    set {-pz.pool::3::8::astral} to true
+    set {-pz.pool::3::8::cant} to 2
+    set {-pz.pool::3::8::nombre} to "Esencia del Nether"
+    set {-pz.pool::3::9::id} to "fragmento_astral"
+    set {-pz.pool::3::9::astral} to true
+    set {-pz.pool::3::9::cant} to 2
+    set {-pz.pool::3::9::nombre} to "Fragmento Astral"
+    set {-pz.pool::3::10::id} to "fragmento_cristal"
+    set {-pz.pool::3::10::astral} to true
+    set {-pz.pool::3::10::cant} to 2
+    set {-pz.pool::3::10::nombre} to "Fragmento de Cristal Arcano"
+    set {-pz.pool::3::11::id} to "fragmento_umbrio"
+    set {-pz.pool::3::11::astral} to true
+    set {-pz.pool::3::11::cant} to 2
+    set {-pz.pool::3::11::nombre} to "Fragmento Umbrio"
+    set {-pz.pool::3::12::id} to "gema_luminica"
+    set {-pz.pool::3::12::astral} to true
+    set {-pz.pool::3::12::cant} to 2
+    set {-pz.pool::3::12::nombre} to "Gema Luminica"
+    set {-pz.pool::3::13::id} to "gema_umbria"
+    set {-pz.pool::3::13::astral} to true
+    set {-pz.pool::3::13::cant} to 1
+    set {-pz.pool::3::13::nombre} to "Gema Umbria"
+    set {-pz.pool::3::14::id} to "gema_umbria_fragmentada"
+    set {-pz.pool::3::14::astral} to true
+    set {-pz.pool::3::14::cant} to 2
+    set {-pz.pool::3::14::nombre} to "Gema Umbria Fragmentada"
+    set {-pz.pool::3::15::id} to "madera_estelar"
+    set {-pz.pool::3::15::astral} to true
+    set {-pz.pool::3::15::cant} to 2
+    set {-pz.pool::3::15::nombre} to "Madera Estelar"
+    set {-pz.pool::3::16::id} to "netherita_fundida"
+    set {-pz.pool::3::16::astral} to true
+    set {-pz.pool::3::16::cant} to 2
+    set {-pz.pool::3::16::nombre} to "Netherita Fundida"
+    set {-pz.pool::3::17::id} to "netherita_reforzada"
+    set {-pz.pool::3::17::astral} to true
+    set {-pz.pool::3::17::cant} to 1
+    set {-pz.pool::3::17::nombre} to "Netherita Reforzada"
+    set {-pz.pool::3::18::id} to "nucleo_eolico"
+    set {-pz.pool::3::18::astral} to true
+    set {-pz.pool::3::18::cant} to 2
+    set {-pz.pool::3::18::nombre} to "Nucleo Eolico"
+    set {-pz.pool::3::19::id} to "nucleo_furia"
+    set {-pz.pool::3::19::astral} to true
+    set {-pz.pool::3::19::cant} to 2
+    set {-pz.pool::3::19::nombre} to "Nucleo de Furia"
+    set {-pz.pool::3::20::id} to "palo_reforzado"
+    set {-pz.pool::3::20::astral} to true
+    set {-pz.pool::3::20::cant} to 2
+    set {-pz.pool::3::20::nombre} to "Palo Reforzado"
+    set {-pz.pool::3::21::id} to "polvo_astral"
+    set {-pz.pool::3::21::astral} to true
+    set {-pz.pool::3::21::cant} to 2
+    set {-pz.pool::3::21::nombre} to "Polvo Astral"
+    set {-pz.pool::3::22::id} to "shadowsteel"
+    set {-pz.pool::3::22::astral} to true
+    set {-pz.pool::3::22::cant} to 2
+    set {-pz.pool::3::22::nombre} to "Acero Sombrio"
+    set {-pz.pool::3::23::id} to "frasco_xp_pequeno"
+    set {-pz.pool::3::23::astral} to true
+    set {-pz.pool::3::23::cant} to 2
+    set {-pz.pool::3::23::nombre} to "Frasco de Experiencia Pequeno"
+    set {-pz.pool::3::24::id} to "frasco_xp_grande"
+    set {-pz.pool::3::24::astral} to true
+    set {-pz.pool::3::24::cant} to 1
+    set {-pz.pool::3::24::nombre} to "Frasco de Experiencia Grande"
+    set {-pz.pool::3::25::id} to "diamond"
+    set {-pz.pool::3::25::astral} to false
+    set {-pz.pool::3::25::cant} to 2
+    set {-pz.pool::3::25::nombre} to "Diamante"
+    set {-pz.pool::3::26::id} to "emerald"
+    set {-pz.pool::3::26::astral} to false
+    set {-pz.pool::3::26::cant} to 4
+    set {-pz.pool::3::26::nombre} to "Esmeralda"
+    set {-pz.pool::3::27::id} to "golden_apple"
+    set {-pz.pool::3::27::astral} to false
+    set {-pz.pool::3::27::cant} to 2
+    set {-pz.pool::3::27::nombre} to "Manzana Dorada"
+    set {-pz.pool::3::28::id} to "experience_bottle"
+    set {-pz.pool::3::28::astral} to false
+    set {-pz.pool::3::28::cant} to 8
+    set {-pz.pool::3::28::nombre} to "Botella de Experiencia"
+    set {-pz.pool::3::29::id} to "netherite_scrap"
+    set {-pz.pool::3::29::astral} to false
+    set {-pz.pool::3::29::cant} to 1
+    set {-pz.pool::3::29::nombre} to "Fragmento de Netherita"
+    set {-pz.pool::3::30::id} to "totem_of_undying"
+    set {-pz.pool::3::30::astral} to false
+    set {-pz.pool::3::30::cant} to 1
+    set {-pz.pool::3::30::nombre} to "Totem de la Inmortalidad"
+    set {-pz.pooln::3} to 30
+    set {-pz.total::3::1} to 2610
+    set {-pz.peso::3::1::1} to 100
+    set {-pz.peso::3::1::2} to 40
+    set {-pz.peso::3::1::3} to 100
+    set {-pz.peso::3::1::4} to 100
+    set {-pz.peso::3::1::5} to 100
+    set {-pz.peso::3::1::6} to 100
+    set {-pz.peso::3::1::7} to 100
+    set {-pz.peso::3::1::8} to 100
+    set {-pz.peso::3::1::9} to 100
+    set {-pz.peso::3::1::10} to 100
+    set {-pz.peso::3::1::11} to 100
+    set {-pz.peso::3::1::12} to 100
+    set {-pz.peso::3::1::13} to 100
+    set {-pz.peso::3::1::14} to 100
+    set {-pz.peso::3::1::15} to 100
+    set {-pz.peso::3::1::16} to 100
+    set {-pz.peso::3::1::17} to 40
+    set {-pz.peso::3::1::18} to 100
+    set {-pz.peso::3::1::19} to 100
+    set {-pz.peso::3::1::20} to 100
+    set {-pz.peso::3::1::21} to 100
+    set {-pz.peso::3::1::22} to 100
+    set {-pz.peso::3::1::23} to 100
+    set {-pz.peso::3::1::24} to 80
+    set {-pz.peso::3::1::25} to 80
+    set {-pz.peso::3::1::26} to 80
+    set {-pz.peso::3::1::27} to 60
+    set {-pz.peso::3::1::28} to 80
+    set {-pz.peso::3::1::29} to 30
+    set {-pz.peso::3::1::30} to 20
+    set {-pz.total::3::2} to 2610
+    set {-pz.peso::3::2::1} to 100
+    set {-pz.peso::3::2::2} to 40
+    set {-pz.peso::3::2::3} to 100
+    set {-pz.peso::3::2::4} to 100
+    set {-pz.peso::3::2::5} to 100
+    set {-pz.peso::3::2::6} to 100
+    set {-pz.peso::3::2::7} to 100
+    set {-pz.peso::3::2::8} to 100
+    set {-pz.peso::3::2::9} to 100
+    set {-pz.peso::3::2::10} to 100
+    set {-pz.peso::3::2::11} to 100
+    set {-pz.peso::3::2::12} to 100
+    set {-pz.peso::3::2::13} to 100
+    set {-pz.peso::3::2::14} to 100
+    set {-pz.peso::3::2::15} to 100
+    set {-pz.peso::3::2::16} to 100
+    set {-pz.peso::3::2::17} to 40
+    set {-pz.peso::3::2::18} to 100
+    set {-pz.peso::3::2::19} to 100
+    set {-pz.peso::3::2::20} to 100
+    set {-pz.peso::3::2::21} to 100
+    set {-pz.peso::3::2::22} to 100
+    set {-pz.peso::3::2::23} to 100
+    set {-pz.peso::3::2::24} to 80
+    set {-pz.peso::3::2::25} to 80
+    set {-pz.peso::3::2::26} to 80
+    set {-pz.peso::3::2::27} to 60
+    set {-pz.peso::3::2::28} to 80
+    set {-pz.peso::3::2::29} to 30
+    set {-pz.peso::3::2::30} to 20
+    set {-pz.total::3::3} to 2856
+    set {-pz.peso::3::3::1} to 130
+    set {-pz.peso::3::3::2} to 64
+    set {-pz.peso::3::3::3} to 130
+    set {-pz.peso::3::3::4} to 100
+    set {-pz.peso::3::3::5} to 130
+    set {-pz.peso::3::3::6} to 100
+    set {-pz.peso::3::3::7} to 100
+    set {-pz.peso::3::3::8} to 100
+    set {-pz.peso::3::3::9} to 100
+    set {-pz.peso::3::3::10} to 100
+    set {-pz.peso::3::3::11} to 100
+    set {-pz.peso::3::3::12} to 100
+    set {-pz.peso::3::3::13} to 130
+    set {-pz.peso::3::3::14} to 100
+    set {-pz.peso::3::3::15} to 100
+    set {-pz.peso::3::3::16} to 100
+    set {-pz.peso::3::3::17} to 64
+    set {-pz.peso::3::3::18} to 100
+    set {-pz.peso::3::3::19} to 100
+    set {-pz.peso::3::3::20} to 100
+    set {-pz.peso::3::3::21} to 100
+    set {-pz.peso::3::3::22} to 100
+    set {-pz.peso::3::3::23} to 100
+    set {-pz.peso::3::3::24} to 104
+    set {-pz.peso::3::3::25} to 104
+    set {-pz.peso::3::3::26} to 80
+    set {-pz.peso::3::3::27} to 60
+    set {-pz.peso::3::3::28} to 80
+    set {-pz.peso::3::3::29} to 48
+    set {-pz.peso::3::3::30} to 32
+    set {-pz.total::3::4} to 3102
+    set {-pz.peso::3::4::1} to 160
+    set {-pz.peso::3::4::2} to 88
+    set {-pz.peso::3::4::3} to 160
+    set {-pz.peso::3::4::4} to 100
+    set {-pz.peso::3::4::5} to 160
+    set {-pz.peso::3::4::6} to 100
+    set {-pz.peso::3::4::7} to 100
+    set {-pz.peso::3::4::8} to 100
+    set {-pz.peso::3::4::9} to 100
+    set {-pz.peso::3::4::10} to 100
+    set {-pz.peso::3::4::11} to 100
+    set {-pz.peso::3::4::12} to 100
+    set {-pz.peso::3::4::13} to 160
+    set {-pz.peso::3::4::14} to 100
+    set {-pz.peso::3::4::15} to 100
+    set {-pz.peso::3::4::16} to 100
+    set {-pz.peso::3::4::17} to 88
+    set {-pz.peso::3::4::18} to 100
+    set {-pz.peso::3::4::19} to 100
+    set {-pz.peso::3::4::20} to 100
+    set {-pz.peso::3::4::21} to 100
+    set {-pz.peso::3::4::22} to 100
+    set {-pz.peso::3::4::23} to 100
+    set {-pz.peso::3::4::24} to 128
+    set {-pz.peso::3::4::25} to 128
+    set {-pz.peso::3::4::26} to 80
+    set {-pz.peso::3::4::27} to 60
+    set {-pz.peso::3::4::28} to 80
+    set {-pz.peso::3::4::29} to 66
+    set {-pz.peso::3::4::30} to 44
+    set {-pz.total::3::5} to 3430
+    set {-pz.peso::3::5::1} to 200
+    set {-pz.peso::3::5::2} to 120
+    set {-pz.peso::3::5::3} to 200
+    set {-pz.peso::3::5::4} to 100
+    set {-pz.peso::3::5::5} to 200
+    set {-pz.peso::3::5::6} to 100
+    set {-pz.peso::3::5::7} to 100
+    set {-pz.peso::3::5::8} to 100
+    set {-pz.peso::3::5::9} to 100
+    set {-pz.peso::3::5::10} to 100
+    set {-pz.peso::3::5::11} to 100
+    set {-pz.peso::3::5::12} to 100
+    set {-pz.peso::3::5::13} to 200
+    set {-pz.peso::3::5::14} to 100
+    set {-pz.peso::3::5::15} to 100
+    set {-pz.peso::3::5::16} to 100
+    set {-pz.peso::3::5::17} to 120
+    set {-pz.peso::3::5::18} to 100
+    set {-pz.peso::3::5::19} to 100
+    set {-pz.peso::3::5::20} to 100
+    set {-pz.peso::3::5::21} to 100
+    set {-pz.peso::3::5::22} to 100
+    set {-pz.peso::3::5::23} to 100
+    set {-pz.peso::3::5::24} to 160
+    set {-pz.peso::3::5::25} to 160
+    set {-pz.peso::3::5::26} to 80
+    set {-pz.peso::3::5::27} to 60
+    set {-pz.peso::3::5::28} to 80
+    set {-pz.peso::3::5::29} to 90
+    set {-pz.peso::3::5::30} to 60
+    set {-pz.total::3::6} to 3922
+    set {-pz.peso::3::6::1} to 260
+    set {-pz.peso::3::6::2} to 168
+    set {-pz.peso::3::6::3} to 260
+    set {-pz.peso::3::6::4} to 100
+    set {-pz.peso::3::6::5} to 260
+    set {-pz.peso::3::6::6} to 100
+    set {-pz.peso::3::6::7} to 100
+    set {-pz.peso::3::6::8} to 100
+    set {-pz.peso::3::6::9} to 100
+    set {-pz.peso::3::6::10} to 100
+    set {-pz.peso::3::6::11} to 100
+    set {-pz.peso::3::6::12} to 100
+    set {-pz.peso::3::6::13} to 260
+    set {-pz.peso::3::6::14} to 100
+    set {-pz.peso::3::6::15} to 100
+    set {-pz.peso::3::6::16} to 100
+    set {-pz.peso::3::6::17} to 168
+    set {-pz.peso::3::6::18} to 100
+    set {-pz.peso::3::6::19} to 100
+    set {-pz.peso::3::6::20} to 100
+    set {-pz.peso::3::6::21} to 100
+    set {-pz.peso::3::6::22} to 100
+    set {-pz.peso::3::6::23} to 100
+    set {-pz.peso::3::6::24} to 208
+    set {-pz.peso::3::6::25} to 208
+    set {-pz.peso::3::6::26} to 80
+    set {-pz.peso::3::6::27} to 60
+    set {-pz.peso::3::6::28} to 80
+    set {-pz.peso::3::6::29} to 126
+    set {-pz.peso::3::6::30} to 84
+    set {-pz.eqn::3} to 20
+    set {-pz.eq::3::1::id} to "espada_4"
+    set {-pz.eq::3::1::nombre} to "Espada IV"
+    set {-pz.eq::3::2::id} to "hacha_4"
+    set {-pz.eq::3::2::nombre} to "Hacha IV"
+    set {-pz.eq::3::3::id} to "arco_4"
+    set {-pz.eq::3::3::nombre} to "Arco IV"
+    set {-pz.eq::3::4::id} to "baston_4"
+    set {-pz.eq::3::4::nombre} to "Baston IV"
+    set {-pz.eq::3::5::id} to "guadana_4"
+    set {-pz.eq::3::5::nombre} to "Guadana IV"
+    set {-pz.eq::3::6::id} to "lanza_4"
+    set {-pz.eq::3::6::nombre} to "Lanza IV"
+    set {-pz.eq::3::7::id} to "cuchillo_4"
+    set {-pz.eq::3::7::nombre} to "Cuchillo IV"
+    set {-pz.eq::3::8::id} to "ballesta_4"
+    set {-pz.eq::3::8::nombre} to "Ballesta IV"
+    set {-pz.eq::3::9::id} to "berserker_4_helmet"
+    set {-pz.eq::3::9::nombre} to "Casco Berserker IV"
+    set {-pz.eq::3::10::id} to "berserker_4_chestplate"
+    set {-pz.eq::3::10::nombre} to "Pechera Berserker IV"
+    set {-pz.eq::3::11::id} to "berserker_4_leggings"
+    set {-pz.eq::3::11::nombre} to "Grebas Berserker IV"
+    set {-pz.eq::3::12::id} to "berserker_4_boots"
+    set {-pz.eq::3::12::nombre} to "Botas Berserker IV"
+    set {-pz.eq::3::13::id} to "mago_4_helmet"
+    set {-pz.eq::3::13::nombre} to "Casco Mago IV"
+    set {-pz.eq::3::14::id} to "mago_4_chestplate"
+    set {-pz.eq::3::14::nombre} to "Pechera Mago IV"
+    set {-pz.eq::3::15::id} to "mago_4_leggings"
+    set {-pz.eq::3::15::nombre} to "Grebas Mago IV"
+    set {-pz.eq::3::16::id} to "mago_4_boots"
+    set {-pz.eq::3::16::nombre} to "Botas Mago IV"
+    set {-pz.eq::3::17::id} to "arquero_4_helmet"
+    set {-pz.eq::3::17::nombre} to "Casco Arquero IV"
+    set {-pz.eq::3::18::id} to "arquero_4_chestplate"
+    set {-pz.eq::3::18::nombre} to "Pechera Arquero IV"
+    set {-pz.eq::3::19::id} to "arquero_4_leggings"
+    set {-pz.eq::3::19::nombre} to "Grebas Arquero IV"
+    set {-pz.eq::3::20::id} to "arquero_4_boots"
+    set {-pz.eq::3::20::nombre} to "Botas Arquero IV"
+    set {-pz.pool::4::1::id} to "alma_corrupta"
+    set {-pz.pool::4::1::astral} to true
+    set {-pz.pool::4::1::cant} to 2
+    set {-pz.pool::4::1::nombre} to "Alma Corrupta"
+    set {-pz.pool::4::2::id} to "chispa_astral"
+    set {-pz.pool::4::2::astral} to true
+    set {-pz.pool::4::2::cant} to 1
+    set {-pz.pool::4::2::nombre} to "Chispa Astral"
+    set {-pz.pool::4::3::id} to "corazon_shulker"
+    set {-pz.pool::4::3::astral} to true
+    set {-pz.pool::4::3::cant} to 2
+    set {-pz.pool::4::3::nombre} to "Corazon de Shulker"
+    set {-pz.pool::4::4::id} to "cristal_arcano"
+    set {-pz.pool::4::4::astral} to true
+    set {-pz.pool::4::4::cant} to 2
+    set {-pz.pool::4::4::nombre} to "Cristal Arcano"
+    set {-pz.pool::4::5::id} to "cristal_refinado"
+    set {-pz.pool::4::5::astral} to true
+    set {-pz.pool::4::5::cant} to 2
+    set {-pz.pool::4::5::nombre} to "Cristal Arcano Refinado"
+    set {-pz.pool::4::6::id} to "cuero_tratado"
+    set {-pz.pool::4::6::astral} to true
+    set {-pz.pool::4::6::cant} to 2
+    set {-pz.pool::4::6::nombre} to "Cuero Tratado"
+    set {-pz.pool::4::7::id} to "esencia_elite"
+    set {-pz.pool::4::7::astral} to true
+    set {-pz.pool::4::7::cant} to 2
+    set {-pz.pool::4::7::nombre} to "Esencia de Elite"
+    set {-pz.pool::4::8::id} to "esencia_nether"
+    set {-pz.pool::4::8::astral} to true
+    set {-pz.pool::4::8::cant} to 2
+    set {-pz.pool::4::8::nombre} to "Esencia del Nether"
+    set {-pz.pool::4::9::id} to "fragmento_astral"
+    set {-pz.pool::4::9::astral} to true
+    set {-pz.pool::4::9::cant} to 2
+    set {-pz.pool::4::9::nombre} to "Fragmento Astral"
+    set {-pz.pool::4::10::id} to "fragmento_cristal"
+    set {-pz.pool::4::10::astral} to true
+    set {-pz.pool::4::10::cant} to 2
+    set {-pz.pool::4::10::nombre} to "Fragmento de Cristal Arcano"
+    set {-pz.pool::4::11::id} to "fragmento_umbrio"
+    set {-pz.pool::4::11::astral} to true
+    set {-pz.pool::4::11::cant} to 2
+    set {-pz.pool::4::11::nombre} to "Fragmento Umbrio"
+    set {-pz.pool::4::12::id} to "gema_luminica"
+    set {-pz.pool::4::12::astral} to true
+    set {-pz.pool::4::12::cant} to 2
+    set {-pz.pool::4::12::nombre} to "Gema Luminica"
+    set {-pz.pool::4::13::id} to "gema_luminica_perfecta"
+    set {-pz.pool::4::13::astral} to true
+    set {-pz.pool::4::13::cant} to 1
+    set {-pz.pool::4::13::nombre} to "Gema Luminica Perfecta"
+    set {-pz.pool::4::14::id} to "gema_umbria"
+    set {-pz.pool::4::14::astral} to true
+    set {-pz.pool::4::14::cant} to 2
+    set {-pz.pool::4::14::nombre} to "Gema Umbria"
+    set {-pz.pool::4::15::id} to "gema_umbria_fragmentada"
+    set {-pz.pool::4::15::astral} to true
+    set {-pz.pool::4::15::cant} to 2
+    set {-pz.pool::4::15::nombre} to "Gema Umbria Fragmentada"
+    set {-pz.pool::4::16::id} to "gema_umbria_perfecta"
+    set {-pz.pool::4::16::astral} to true
+    set {-pz.pool::4::16::cant} to 1
+    set {-pz.pool::4::16::nombre} to "Gema Umbria Perfecta"
+    set {-pz.pool::4::17::id} to "madera_estelar"
+    set {-pz.pool::4::17::astral} to true
+    set {-pz.pool::4::17::cant} to 2
+    set {-pz.pool::4::17::nombre} to "Madera Estelar"
+    set {-pz.pool::4::18::id} to "netherita_fundida"
+    set {-pz.pool::4::18::astral} to true
+    set {-pz.pool::4::18::cant} to 2
+    set {-pz.pool::4::18::nombre} to "Netherita Fundida"
+    set {-pz.pool::4::19::id} to "netherita_reforzada"
+    set {-pz.pool::4::19::astral} to true
+    set {-pz.pool::4::19::cant} to 1
+    set {-pz.pool::4::19::nombre} to "Netherita Reforzada"
+    set {-pz.pool::4::20::id} to "nucleo_astral"
+    set {-pz.pool::4::20::astral} to true
+    set {-pz.pool::4::20::cant} to 1
+    set {-pz.pool::4::20::nombre} to "Nucleo Astral"
+    set {-pz.pool::4::21::id} to "nucleo_eolico"
+    set {-pz.pool::4::21::astral} to true
+    set {-pz.pool::4::21::cant} to 2
+    set {-pz.pool::4::21::nombre} to "Nucleo Eolico"
+    set {-pz.pool::4::22::id} to "nucleo_furia"
+    set {-pz.pool::4::22::astral} to true
+    set {-pz.pool::4::22::cant} to 2
+    set {-pz.pool::4::22::nombre} to "Nucleo de Furia"
+    set {-pz.pool::4::23::id} to "nucleo_furia_pura"
+    set {-pz.pool::4::23::astral} to true
+    set {-pz.pool::4::23::cant} to 1
+    set {-pz.pool::4::23::nombre} to "Nucleo de Furia Pura"
+    set {-pz.pool::4::24::id} to "palo_reforzado"
+    set {-pz.pool::4::24::astral} to true
+    set {-pz.pool::4::24::cant} to 2
+    set {-pz.pool::4::24::nombre} to "Palo Reforzado"
+    set {-pz.pool::4::25::id} to "polvo_astral"
+    set {-pz.pool::4::25::astral} to true
+    set {-pz.pool::4::25::cant} to 2
+    set {-pz.pool::4::25::nombre} to "Polvo Astral"
+    set {-pz.pool::4::26::id} to "shadowsteel"
+    set {-pz.pool::4::26::astral} to true
+    set {-pz.pool::4::26::cant} to 2
+    set {-pz.pool::4::26::nombre} to "Acero Sombrio"
+    set {-pz.pool::4::27::id} to "frasco_xp_grande"
+    set {-pz.pool::4::27::astral} to true
+    set {-pz.pool::4::27::cant} to 1
+    set {-pz.pool::4::27::nombre} to "Frasco de Experiencia Grande"
+    set {-pz.pool::4::28::id} to "frasco_xp_gigante"
+    set {-pz.pool::4::28::astral} to true
+    set {-pz.pool::4::28::cant} to 1
+    set {-pz.pool::4::28::nombre} to "Frasco de Experiencia Gigante"
+    set {-pz.pool::4::29::id} to "manzana_esmeralda"
+    set {-pz.pool::4::29::astral} to true
+    set {-pz.pool::4::29::cant} to 1
+    set {-pz.pool::4::29::nombre} to "Manzana de la Suerte"
+    set {-pz.pool::4::30::id} to "diamond"
+    set {-pz.pool::4::30::astral} to false
+    set {-pz.pool::4::30::cant} to 4
+    set {-pz.pool::4::30::nombre} to "Diamante"
+    set {-pz.pool::4::31::id} to "emerald"
+    set {-pz.pool::4::31::astral} to false
+    set {-pz.pool::4::31::cant} to 4
+    set {-pz.pool::4::31::nombre} to "Esmeralda"
+    set {-pz.pool::4::32::id} to "golden_apple"
+    set {-pz.pool::4::32::astral} to false
+    set {-pz.pool::4::32::cant} to 2
+    set {-pz.pool::4::32::nombre} to "Manzana Dorada"
+    set {-pz.pool::4::33::id} to "experience_bottle"
+    set {-pz.pool::4::33::astral} to false
+    set {-pz.pool::4::33::cant} to 8
+    set {-pz.pool::4::33::nombre} to "Botella de Experiencia"
+    set {-pz.pool::4::34::id} to "netherite_scrap"
+    set {-pz.pool::4::34::astral} to false
+    set {-pz.pool::4::34::cant} to 1
+    set {-pz.pool::4::34::nombre} to "Fragmento de Netherita"
+    set {-pz.pool::4::35::id} to "totem_of_undying"
+    set {-pz.pool::4::35::astral} to false
+    set {-pz.pool::4::35::cant} to 1
+    set {-pz.pool::4::35::nombre} to "Totem de la Inmortalidad"
+    set {-pz.pooln::4} to 35
+    set {-pz.total::4::1} to 2840
+    set {-pz.peso::4::1::1} to 100
+    set {-pz.peso::4::1::2} to 100
+    set {-pz.peso::4::1::3} to 100
+    set {-pz.peso::4::1::4} to 100
+    set {-pz.peso::4::1::5} to 100
+    set {-pz.peso::4::1::6} to 100
+    set {-pz.peso::4::1::7} to 100
+    set {-pz.peso::4::1::8} to 100
+    set {-pz.peso::4::1::9} to 100
+    set {-pz.peso::4::1::10} to 100
+    set {-pz.peso::4::1::11} to 100
+    set {-pz.peso::4::1::12} to 100
+    set {-pz.peso::4::1::13} to 40
+    set {-pz.peso::4::1::14} to 100
+    set {-pz.peso::4::1::15} to 100
+    set {-pz.peso::4::1::16} to 40
+    set {-pz.peso::4::1::17} to 100
+    set {-pz.peso::4::1::18} to 100
+    set {-pz.peso::4::1::19} to 100
+    set {-pz.peso::4::1::20} to 40
+    set {-pz.peso::4::1::21} to 100
+    set {-pz.peso::4::1::22} to 100
+    set {-pz.peso::4::1::23} to 40
+    set {-pz.peso::4::1::24} to 100
+    set {-pz.peso::4::1::25} to 100
+    set {-pz.peso::4::1::26} to 100
+    set {-pz.peso::4::1::27} to 80
+    set {-pz.peso::4::1::28} to 40
+    set {-pz.peso::4::1::29} to 30
+    set {-pz.peso::4::1::30} to 60
+    set {-pz.peso::4::1::31} to 80
+    set {-pz.peso::4::1::32} to 60
+    set {-pz.peso::4::1::33} to 80
+    set {-pz.peso::4::1::34} to 30
+    set {-pz.peso::4::1::35} to 20
+    set {-pz.total::4::2} to 2840
+    set {-pz.peso::4::2::1} to 100
+    set {-pz.peso::4::2::2} to 100
+    set {-pz.peso::4::2::3} to 100
+    set {-pz.peso::4::2::4} to 100
+    set {-pz.peso::4::2::5} to 100
+    set {-pz.peso::4::2::6} to 100
+    set {-pz.peso::4::2::7} to 100
+    set {-pz.peso::4::2::8} to 100
+    set {-pz.peso::4::2::9} to 100
+    set {-pz.peso::4::2::10} to 100
+    set {-pz.peso::4::2::11} to 100
+    set {-pz.peso::4::2::12} to 100
+    set {-pz.peso::4::2::13} to 40
+    set {-pz.peso::4::2::14} to 100
+    set {-pz.peso::4::2::15} to 100
+    set {-pz.peso::4::2::16} to 40
+    set {-pz.peso::4::2::17} to 100
+    set {-pz.peso::4::2::18} to 100
+    set {-pz.peso::4::2::19} to 100
+    set {-pz.peso::4::2::20} to 40
+    set {-pz.peso::4::2::21} to 100
+    set {-pz.peso::4::2::22} to 100
+    set {-pz.peso::4::2::23} to 40
+    set {-pz.peso::4::2::24} to 100
+    set {-pz.peso::4::2::25} to 100
+    set {-pz.peso::4::2::26} to 100
+    set {-pz.peso::4::2::27} to 80
+    set {-pz.peso::4::2::28} to 40
+    set {-pz.peso::4::2::29} to 30
+    set {-pz.peso::4::2::30} to 60
+    set {-pz.peso::4::2::31} to 80
+    set {-pz.peso::4::2::32} to 60
+    set {-pz.peso::4::2::33} to 80
+    set {-pz.peso::4::2::34} to 30
+    set {-pz.peso::4::2::35} to 20
+    set {-pz.total::4::3} to 3110
+    set {-pz.peso::4::3::1} to 100
+    set {-pz.peso::4::3::2} to 130
+    set {-pz.peso::4::3::3} to 100
+    set {-pz.peso::4::3::4} to 100
+    set {-pz.peso::4::3::5} to 100
+    set {-pz.peso::4::3::6} to 100
+    set {-pz.peso::4::3::7} to 100
+    set {-pz.peso::4::3::8} to 100
+    set {-pz.peso::4::3::9} to 100
+    set {-pz.peso::4::3::10} to 100
+    set {-pz.peso::4::3::11} to 100
+    set {-pz.peso::4::3::12} to 100
+    set {-pz.peso::4::3::13} to 64
+    set {-pz.peso::4::3::14} to 100
+    set {-pz.peso::4::3::15} to 100
+    set {-pz.peso::4::3::16} to 64
+    set {-pz.peso::4::3::17} to 100
+    set {-pz.peso::4::3::18} to 100
+    set {-pz.peso::4::3::19} to 130
+    set {-pz.peso::4::3::20} to 64
+    set {-pz.peso::4::3::21} to 100
+    set {-pz.peso::4::3::22} to 100
+    set {-pz.peso::4::3::23} to 64
+    set {-pz.peso::4::3::24} to 100
+    set {-pz.peso::4::3::25} to 100
+    set {-pz.peso::4::3::26} to 100
+    set {-pz.peso::4::3::27} to 104
+    set {-pz.peso::4::3::28} to 64
+    set {-pz.peso::4::3::29} to 48
+    set {-pz.peso::4::3::30} to 78
+    set {-pz.peso::4::3::31} to 80
+    set {-pz.peso::4::3::32} to 60
+    set {-pz.peso::4::3::33} to 80
+    set {-pz.peso::4::3::34} to 48
+    set {-pz.peso::4::3::35} to 32
+    set {-pz.total::4::4} to 3380
+    set {-pz.peso::4::4::1} to 100
+    set {-pz.peso::4::4::2} to 160
+    set {-pz.peso::4::4::3} to 100
+    set {-pz.peso::4::4::4} to 100
+    set {-pz.peso::4::4::5} to 100
+    set {-pz.peso::4::4::6} to 100
+    set {-pz.peso::4::4::7} to 100
+    set {-pz.peso::4::4::8} to 100
+    set {-pz.peso::4::4::9} to 100
+    set {-pz.peso::4::4::10} to 100
+    set {-pz.peso::4::4::11} to 100
+    set {-pz.peso::4::4::12} to 100
+    set {-pz.peso::4::4::13} to 88
+    set {-pz.peso::4::4::14} to 100
+    set {-pz.peso::4::4::15} to 100
+    set {-pz.peso::4::4::16} to 88
+    set {-pz.peso::4::4::17} to 100
+    set {-pz.peso::4::4::18} to 100
+    set {-pz.peso::4::4::19} to 160
+    set {-pz.peso::4::4::20} to 88
+    set {-pz.peso::4::4::21} to 100
+    set {-pz.peso::4::4::22} to 100
+    set {-pz.peso::4::4::23} to 88
+    set {-pz.peso::4::4::24} to 100
+    set {-pz.peso::4::4::25} to 100
+    set {-pz.peso::4::4::26} to 100
+    set {-pz.peso::4::4::27} to 128
+    set {-pz.peso::4::4::28} to 88
+    set {-pz.peso::4::4::29} to 66
+    set {-pz.peso::4::4::30} to 96
+    set {-pz.peso::4::4::31} to 80
+    set {-pz.peso::4::4::32} to 60
+    set {-pz.peso::4::4::33} to 80
+    set {-pz.peso::4::4::34} to 66
+    set {-pz.peso::4::4::35} to 44
+    set {-pz.total::4::5} to 3740
+    set {-pz.peso::4::5::1} to 100
+    set {-pz.peso::4::5::2} to 200
+    set {-pz.peso::4::5::3} to 100
+    set {-pz.peso::4::5::4} to 100
+    set {-pz.peso::4::5::5} to 100
+    set {-pz.peso::4::5::6} to 100
+    set {-pz.peso::4::5::7} to 100
+    set {-pz.peso::4::5::8} to 100
+    set {-pz.peso::4::5::9} to 100
+    set {-pz.peso::4::5::10} to 100
+    set {-pz.peso::4::5::11} to 100
+    set {-pz.peso::4::5::12} to 100
+    set {-pz.peso::4::5::13} to 120
+    set {-pz.peso::4::5::14} to 100
+    set {-pz.peso::4::5::15} to 100
+    set {-pz.peso::4::5::16} to 120
+    set {-pz.peso::4::5::17} to 100
+    set {-pz.peso::4::5::18} to 100
+    set {-pz.peso::4::5::19} to 200
+    set {-pz.peso::4::5::20} to 120
+    set {-pz.peso::4::5::21} to 100
+    set {-pz.peso::4::5::22} to 100
+    set {-pz.peso::4::5::23} to 120
+    set {-pz.peso::4::5::24} to 100
+    set {-pz.peso::4::5::25} to 100
+    set {-pz.peso::4::5::26} to 100
+    set {-pz.peso::4::5::27} to 160
+    set {-pz.peso::4::5::28} to 120
+    set {-pz.peso::4::5::29} to 90
+    set {-pz.peso::4::5::30} to 120
+    set {-pz.peso::4::5::31} to 80
+    set {-pz.peso::4::5::32} to 60
+    set {-pz.peso::4::5::33} to 80
+    set {-pz.peso::4::5::34} to 90
+    set {-pz.peso::4::5::35} to 60
+    set {-pz.total::4::6} to 4280
+    set {-pz.peso::4::6::1} to 100
+    set {-pz.peso::4::6::2} to 260
+    set {-pz.peso::4::6::3} to 100
+    set {-pz.peso::4::6::4} to 100
+    set {-pz.peso::4::6::5} to 100
+    set {-pz.peso::4::6::6} to 100
+    set {-pz.peso::4::6::7} to 100
+    set {-pz.peso::4::6::8} to 100
+    set {-pz.peso::4::6::9} to 100
+    set {-pz.peso::4::6::10} to 100
+    set {-pz.peso::4::6::11} to 100
+    set {-pz.peso::4::6::12} to 100
+    set {-pz.peso::4::6::13} to 168
+    set {-pz.peso::4::6::14} to 100
+    set {-pz.peso::4::6::15} to 100
+    set {-pz.peso::4::6::16} to 168
+    set {-pz.peso::4::6::17} to 100
+    set {-pz.peso::4::6::18} to 100
+    set {-pz.peso::4::6::19} to 260
+    set {-pz.peso::4::6::20} to 168
+    set {-pz.peso::4::6::21} to 100
+    set {-pz.peso::4::6::22} to 100
+    set {-pz.peso::4::6::23} to 168
+    set {-pz.peso::4::6::24} to 100
+    set {-pz.peso::4::6::25} to 100
+    set {-pz.peso::4::6::26} to 100
+    set {-pz.peso::4::6::27} to 208
+    set {-pz.peso::4::6::28} to 168
+    set {-pz.peso::4::6::29} to 126
+    set {-pz.peso::4::6::30} to 156
+    set {-pz.peso::4::6::31} to 80
+    set {-pz.peso::4::6::32} to 60
+    set {-pz.peso::4::6::33} to 80
+    set {-pz.peso::4::6::34} to 126
+    set {-pz.peso::4::6::35} to 84
+    set {-pz.eqn::4} to 20
+    set {-pz.eq::4::1::id} to "espada_5"
+    set {-pz.eq::4::1::nombre} to "Espada V"
+    set {-pz.eq::4::2::id} to "hacha_5"
+    set {-pz.eq::4::2::nombre} to "Hacha V"
+    set {-pz.eq::4::3::id} to "arco_5"
+    set {-pz.eq::4::3::nombre} to "Arco V"
+    set {-pz.eq::4::4::id} to "baston_5"
+    set {-pz.eq::4::4::nombre} to "Baston V"
+    set {-pz.eq::4::5::id} to "guadana_5"
+    set {-pz.eq::4::5::nombre} to "Guadana V"
+    set {-pz.eq::4::6::id} to "lanza_5"
+    set {-pz.eq::4::6::nombre} to "Lanza V"
+    set {-pz.eq::4::7::id} to "cuchillo_5"
+    set {-pz.eq::4::7::nombre} to "Cuchillo V"
+    set {-pz.eq::4::8::id} to "ballesta_5"
+    set {-pz.eq::4::8::nombre} to "Ballesta V"
+    set {-pz.eq::4::9::id} to "berserker_5_helmet"
+    set {-pz.eq::4::9::nombre} to "Casco Berserker V"
+    set {-pz.eq::4::10::id} to "berserker_5_chestplate"
+    set {-pz.eq::4::10::nombre} to "Pechera Berserker V"
+    set {-pz.eq::4::11::id} to "berserker_5_leggings"
+    set {-pz.eq::4::11::nombre} to "Grebas Berserker V"
+    set {-pz.eq::4::12::id} to "berserker_5_boots"
+    set {-pz.eq::4::12::nombre} to "Botas Berserker V"
+    set {-pz.eq::4::13::id} to "mago_5_helmet"
+    set {-pz.eq::4::13::nombre} to "Casco Mago V"
+    set {-pz.eq::4::14::id} to "mago_5_chestplate"
+    set {-pz.eq::4::14::nombre} to "Pechera Mago V"
+    set {-pz.eq::4::15::id} to "mago_5_leggings"
+    set {-pz.eq::4::15::nombre} to "Grebas Mago V"
+    set {-pz.eq::4::16::id} to "mago_5_boots"
+    set {-pz.eq::4::16::nombre} to "Botas Mago V"
+    set {-pz.eq::4::17::id} to "arquero_5_helmet"
+    set {-pz.eq::4::17::nombre} to "Casco Arquero V"
+    set {-pz.eq::4::18::id} to "arquero_5_chestplate"
+    set {-pz.eq::4::18::nombre} to "Pechera Arquero V"
+    set {-pz.eq::4::19::id} to "arquero_5_leggings"
+    set {-pz.eq::4::19::nombre} to "Grebas Arquero V"
+    set {-pz.eq::4::20::id} to "arquero_5_boots"
+    set {-pz.eq::4::20::nombre} to "Botas Arquero V"
+    set {-pz.pool::5::1::id} to "alma_corrupta"
+    set {-pz.pool::5::1::astral} to true
+    set {-pz.pool::5::1::cant} to 2
+    set {-pz.pool::5::1::nombre} to "Alma Corrupta"
+    set {-pz.pool::5::2::id} to "chispa_astral"
+    set {-pz.pool::5::2::astral} to true
+    set {-pz.pool::5::2::cant} to 2
+    set {-pz.pool::5::2::nombre} to "Chispa Astral"
+    set {-pz.pool::5::3::id} to "corazon_shulker"
+    set {-pz.pool::5::3::astral} to true
+    set {-pz.pool::5::3::cant} to 2
+    set {-pz.pool::5::3::nombre} to "Corazon de Shulker"
+    set {-pz.pool::5::4::id} to "cristal_arcano"
+    set {-pz.pool::5::4::astral} to true
+    set {-pz.pool::5::4::cant} to 2
+    set {-pz.pool::5::4::nombre} to "Cristal Arcano"
+    set {-pz.pool::5::5::id} to "cristal_refinado"
+    set {-pz.pool::5::5::astral} to true
+    set {-pz.pool::5::5::cant} to 2
+    set {-pz.pool::5::5::nombre} to "Cristal Arcano Refinado"
+    set {-pz.pool::5::6::id} to "cuero_tratado"
+    set {-pz.pool::5::6::astral} to true
+    set {-pz.pool::5::6::cant} to 2
+    set {-pz.pool::5::6::nombre} to "Cuero Tratado"
+    set {-pz.pool::5::7::id} to "esencia_elite"
+    set {-pz.pool::5::7::astral} to true
+    set {-pz.pool::5::7::cant} to 2
+    set {-pz.pool::5::7::nombre} to "Esencia de Elite"
+    set {-pz.pool::5::8::id} to "esencia_nether"
+    set {-pz.pool::5::8::astral} to true
+    set {-pz.pool::5::8::cant} to 2
+    set {-pz.pool::5::8::nombre} to "Esencia del Nether"
+    set {-pz.pool::5::9::id} to "fragmento_astral"
+    set {-pz.pool::5::9::astral} to true
+    set {-pz.pool::5::9::cant} to 2
+    set {-pz.pool::5::9::nombre} to "Fragmento Astral"
+    set {-pz.pool::5::10::id} to "fragmento_cristal"
+    set {-pz.pool::5::10::astral} to true
+    set {-pz.pool::5::10::cant} to 2
+    set {-pz.pool::5::10::nombre} to "Fragmento de Cristal Arcano"
+    set {-pz.pool::5::11::id} to "fragmento_umbrio"
+    set {-pz.pool::5::11::astral} to true
+    set {-pz.pool::5::11::cant} to 2
+    set {-pz.pool::5::11::nombre} to "Fragmento Umbrio"
+    set {-pz.pool::5::12::id} to "gema_luminica"
+    set {-pz.pool::5::12::astral} to true
+    set {-pz.pool::5::12::cant} to 2
+    set {-pz.pool::5::12::nombre} to "Gema Luminica"
+    set {-pz.pool::5::13::id} to "gema_luminica_perfecta"
+    set {-pz.pool::5::13::astral} to true
+    set {-pz.pool::5::13::cant} to 1
+    set {-pz.pool::5::13::nombre} to "Gema Luminica Perfecta"
+    set {-pz.pool::5::14::id} to "gema_umbria"
+    set {-pz.pool::5::14::astral} to true
+    set {-pz.pool::5::14::cant} to 2
+    set {-pz.pool::5::14::nombre} to "Gema Umbria"
+    set {-pz.pool::5::15::id} to "gema_umbria_fragmentada"
+    set {-pz.pool::5::15::astral} to true
+    set {-pz.pool::5::15::cant} to 2
+    set {-pz.pool::5::15::nombre} to "Gema Umbria Fragmentada"
+    set {-pz.pool::5::16::id} to "gema_umbria_perfecta"
+    set {-pz.pool::5::16::astral} to true
+    set {-pz.pool::5::16::cant} to 1
+    set {-pz.pool::5::16::nombre} to "Gema Umbria Perfecta"
+    set {-pz.pool::5::17::id} to "madera_estelar"
+    set {-pz.pool::5::17::astral} to true
+    set {-pz.pool::5::17::cant} to 2
+    set {-pz.pool::5::17::nombre} to "Madera Estelar"
+    set {-pz.pool::5::18::id} to "netherita_fundida"
+    set {-pz.pool::5::18::astral} to true
+    set {-pz.pool::5::18::cant} to 2
+    set {-pz.pool::5::18::nombre} to "Netherita Fundida"
+    set {-pz.pool::5::19::id} to "netherita_reforzada"
+    set {-pz.pool::5::19::astral} to true
+    set {-pz.pool::5::19::cant} to 2
+    set {-pz.pool::5::19::nombre} to "Netherita Reforzada"
+    set {-pz.pool::5::20::id} to "nucleo_astral"
+    set {-pz.pool::5::20::astral} to true
+    set {-pz.pool::5::20::cant} to 1
+    set {-pz.pool::5::20::nombre} to "Nucleo Astral"
+    set {-pz.pool::5::21::id} to "nucleo_eolico"
+    set {-pz.pool::5::21::astral} to true
+    set {-pz.pool::5::21::cant} to 2
+    set {-pz.pool::5::21::nombre} to "Nucleo Eolico"
+    set {-pz.pool::5::22::id} to "nucleo_furia"
+    set {-pz.pool::5::22::astral} to true
+    set {-pz.pool::5::22::cant} to 2
+    set {-pz.pool::5::22::nombre} to "Nucleo de Furia"
+    set {-pz.pool::5::23::id} to "nucleo_furia_pura"
+    set {-pz.pool::5::23::astral} to true
+    set {-pz.pool::5::23::cant} to 1
+    set {-pz.pool::5::23::nombre} to "Nucleo de Furia Pura"
+    set {-pz.pool::5::24::id} to "palo_reforzado"
+    set {-pz.pool::5::24::astral} to true
+    set {-pz.pool::5::24::cant} to 2
+    set {-pz.pool::5::24::nombre} to "Palo Reforzado"
+    set {-pz.pool::5::25::id} to "polvo_astral"
+    set {-pz.pool::5::25::astral} to true
+    set {-pz.pool::5::25::cant} to 2
+    set {-pz.pool::5::25::nombre} to "Polvo Astral"
+    set {-pz.pool::5::26::id} to "shadowsteel"
+    set {-pz.pool::5::26::astral} to true
+    set {-pz.pool::5::26::cant} to 2
+    set {-pz.pool::5::26::nombre} to "Acero Sombrio"
+    set {-pz.pool::5::27::id} to "frasco_xp_grande"
+    set {-pz.pool::5::27::astral} to true
+    set {-pz.pool::5::27::cant} to 1
+    set {-pz.pool::5::27::nombre} to "Frasco de Experiencia Grande"
+    set {-pz.pool::5::28::id} to "frasco_xp_gigante"
+    set {-pz.pool::5::28::astral} to true
+    set {-pz.pool::5::28::cant} to 1
+    set {-pz.pool::5::28::nombre} to "Frasco de Experiencia Gigante"
+    set {-pz.pool::5::29::id} to "manzana_esmeralda"
+    set {-pz.pool::5::29::astral} to true
+    set {-pz.pool::5::29::cant} to 1
+    set {-pz.pool::5::29::nombre} to "Manzana de la Suerte"
+    set {-pz.pool::5::30::id} to "barril_xp"
+    set {-pz.pool::5::30::astral} to true
+    set {-pz.pool::5::30::cant} to 1
+    set {-pz.pool::5::30::nombre} to "Barril de Experiencia"
+    set {-pz.pool::5::31::id} to "diamond"
+    set {-pz.pool::5::31::astral} to false
+    set {-pz.pool::5::31::cant} to 4
+    set {-pz.pool::5::31::nombre} to "Diamante"
+    set {-pz.pool::5::32::id} to "emerald"
+    set {-pz.pool::5::32::astral} to false
+    set {-pz.pool::5::32::cant} to 4
+    set {-pz.pool::5::32::nombre} to "Esmeralda"
+    set {-pz.pool::5::33::id} to "golden_apple"
+    set {-pz.pool::5::33::astral} to false
+    set {-pz.pool::5::33::cant} to 2
+    set {-pz.pool::5::33::nombre} to "Manzana Dorada"
+    set {-pz.pool::5::34::id} to "experience_bottle"
+    set {-pz.pool::5::34::astral} to false
+    set {-pz.pool::5::34::cant} to 8
+    set {-pz.pool::5::34::nombre} to "Botella de Experiencia"
+    set {-pz.pool::5::35::id} to "netherite_scrap"
+    set {-pz.pool::5::35::astral} to false
+    set {-pz.pool::5::35::cant} to 1
+    set {-pz.pool::5::35::nombre} to "Fragmento de Netherita"
+    set {-pz.pool::5::36::id} to "totem_of_undying"
+    set {-pz.pool::5::36::astral} to false
+    set {-pz.pool::5::36::cant} to 1
+    set {-pz.pool::5::36::nombre} to "Totem de la Inmortalidad"
+    set {-pz.pool::5::37::id} to "netherite_ingot"
+    set {-pz.pool::5::37::astral} to false
+    set {-pz.pool::5::37::cant} to 1
+    set {-pz.pool::5::37::nombre} to "Lingote de Netherita"
+    set {-pz.pool::5::38::id} to "enchanted_golden_apple"
+    set {-pz.pool::5::38::astral} to false
+    set {-pz.pool::5::38::cant} to 1
+    set {-pz.pool::5::38::nombre} to "Manzana Dorada Encantada"
+    set {-pz.pooln::5} to 38
+    set {-pz.total::5::1} to 3120
+    set {-pz.peso::5::1::1} to 100
+    set {-pz.peso::5::1::2} to 100
+    set {-pz.peso::5::1::3} to 100
+    set {-pz.peso::5::1::4} to 100
+    set {-pz.peso::5::1::5} to 100
+    set {-pz.peso::5::1::6} to 100
+    set {-pz.peso::5::1::7} to 100
+    set {-pz.peso::5::1::8} to 100
+    set {-pz.peso::5::1::9} to 100
+    set {-pz.peso::5::1::10} to 100
+    set {-pz.peso::5::1::11} to 100
+    set {-pz.peso::5::1::12} to 100
+    set {-pz.peso::5::1::13} to 100
+    set {-pz.peso::5::1::14} to 100
+    set {-pz.peso::5::1::15} to 100
+    set {-pz.peso::5::1::16} to 100
+    set {-pz.peso::5::1::17} to 100
+    set {-pz.peso::5::1::18} to 100
+    set {-pz.peso::5::1::19} to 100
+    set {-pz.peso::5::1::20} to 100
+    set {-pz.peso::5::1::21} to 100
+    set {-pz.peso::5::1::22} to 100
+    set {-pz.peso::5::1::23} to 100
+    set {-pz.peso::5::1::24} to 100
+    set {-pz.peso::5::1::25} to 100
+    set {-pz.peso::5::1::26} to 100
+    set {-pz.peso::5::1::27} to 80
+    set {-pz.peso::5::1::28} to 40
+    set {-pz.peso::5::1::29} to 30
+    set {-pz.peso::5::1::30} to 10
+    set {-pz.peso::5::1::31} to 60
+    set {-pz.peso::5::1::32} to 80
+    set {-pz.peso::5::1::33} to 60
+    set {-pz.peso::5::1::34} to 80
+    set {-pz.peso::5::1::35} to 30
+    set {-pz.peso::5::1::36} to 20
+    set {-pz.peso::5::1::37} to 20
+    set {-pz.peso::5::1::38} to 10
+    set {-pz.total::5::2} to 3120
+    set {-pz.peso::5::2::1} to 100
+    set {-pz.peso::5::2::2} to 100
+    set {-pz.peso::5::2::3} to 100
+    set {-pz.peso::5::2::4} to 100
+    set {-pz.peso::5::2::5} to 100
+    set {-pz.peso::5::2::6} to 100
+    set {-pz.peso::5::2::7} to 100
+    set {-pz.peso::5::2::8} to 100
+    set {-pz.peso::5::2::9} to 100
+    set {-pz.peso::5::2::10} to 100
+    set {-pz.peso::5::2::11} to 100
+    set {-pz.peso::5::2::12} to 100
+    set {-pz.peso::5::2::13} to 100
+    set {-pz.peso::5::2::14} to 100
+    set {-pz.peso::5::2::15} to 100
+    set {-pz.peso::5::2::16} to 100
+    set {-pz.peso::5::2::17} to 100
+    set {-pz.peso::5::2::18} to 100
+    set {-pz.peso::5::2::19} to 100
+    set {-pz.peso::5::2::20} to 100
+    set {-pz.peso::5::2::21} to 100
+    set {-pz.peso::5::2::22} to 100
+    set {-pz.peso::5::2::23} to 100
+    set {-pz.peso::5::2::24} to 100
+    set {-pz.peso::5::2::25} to 100
+    set {-pz.peso::5::2::26} to 100
+    set {-pz.peso::5::2::27} to 80
+    set {-pz.peso::5::2::28} to 40
+    set {-pz.peso::5::2::29} to 30
+    set {-pz.peso::5::2::30} to 10
+    set {-pz.peso::5::2::31} to 60
+    set {-pz.peso::5::2::32} to 80
+    set {-pz.peso::5::2::33} to 60
+    set {-pz.peso::5::2::34} to 80
+    set {-pz.peso::5::2::35} to 30
+    set {-pz.peso::5::2::36} to 20
+    set {-pz.peso::5::2::37} to 20
+    set {-pz.peso::5::2::38} to 10
+    set {-pz.total::5::3} to 3378
+    set {-pz.peso::5::3::1} to 100
+    set {-pz.peso::5::3::2} to 100
+    set {-pz.peso::5::3::3} to 100
+    set {-pz.peso::5::3::4} to 100
+    set {-pz.peso::5::3::5} to 100
+    set {-pz.peso::5::3::6} to 100
+    set {-pz.peso::5::3::7} to 100
+    set {-pz.peso::5::3::8} to 100
+    set {-pz.peso::5::3::9} to 100
+    set {-pz.peso::5::3::10} to 100
+    set {-pz.peso::5::3::11} to 100
+    set {-pz.peso::5::3::12} to 100
+    set {-pz.peso::5::3::13} to 130
+    set {-pz.peso::5::3::14} to 100
+    set {-pz.peso::5::3::15} to 100
+    set {-pz.peso::5::3::16} to 130
+    set {-pz.peso::5::3::17} to 100
+    set {-pz.peso::5::3::18} to 100
+    set {-pz.peso::5::3::19} to 100
+    set {-pz.peso::5::3::20} to 130
+    set {-pz.peso::5::3::21} to 100
+    set {-pz.peso::5::3::22} to 100
+    set {-pz.peso::5::3::23} to 130
+    set {-pz.peso::5::3::24} to 100
+    set {-pz.peso::5::3::25} to 100
+    set {-pz.peso::5::3::26} to 100
+    set {-pz.peso::5::3::27} to 104
+    set {-pz.peso::5::3::28} to 64
+    set {-pz.peso::5::3::29} to 48
+    set {-pz.peso::5::3::30} to 16
+    set {-pz.peso::5::3::31} to 78
+    set {-pz.peso::5::3::32} to 80
+    set {-pz.peso::5::3::33} to 60
+    set {-pz.peso::5::3::34} to 80
+    set {-pz.peso::5::3::35} to 48
+    set {-pz.peso::5::3::36} to 32
+    set {-pz.peso::5::3::37} to 32
+    set {-pz.peso::5::3::38} to 16
+    set {-pz.total::5::4} to 3636
+    set {-pz.peso::5::4::1} to 100
+    set {-pz.peso::5::4::2} to 100
+    set {-pz.peso::5::4::3} to 100
+    set {-pz.peso::5::4::4} to 100
+    set {-pz.peso::5::4::5} to 100
+    set {-pz.peso::5::4::6} to 100
+    set {-pz.peso::5::4::7} to 100
+    set {-pz.peso::5::4::8} to 100
+    set {-pz.peso::5::4::9} to 100
+    set {-pz.peso::5::4::10} to 100
+    set {-pz.peso::5::4::11} to 100
+    set {-pz.peso::5::4::12} to 100
+    set {-pz.peso::5::4::13} to 160
+    set {-pz.peso::5::4::14} to 100
+    set {-pz.peso::5::4::15} to 100
+    set {-pz.peso::5::4::16} to 160
+    set {-pz.peso::5::4::17} to 100
+    set {-pz.peso::5::4::18} to 100
+    set {-pz.peso::5::4::19} to 100
+    set {-pz.peso::5::4::20} to 160
+    set {-pz.peso::5::4::21} to 100
+    set {-pz.peso::5::4::22} to 100
+    set {-pz.peso::5::4::23} to 160
+    set {-pz.peso::5::4::24} to 100
+    set {-pz.peso::5::4::25} to 100
+    set {-pz.peso::5::4::26} to 100
+    set {-pz.peso::5::4::27} to 128
+    set {-pz.peso::5::4::28} to 88
+    set {-pz.peso::5::4::29} to 66
+    set {-pz.peso::5::4::30} to 22
+    set {-pz.peso::5::4::31} to 96
+    set {-pz.peso::5::4::32} to 80
+    set {-pz.peso::5::4::33} to 60
+    set {-pz.peso::5::4::34} to 80
+    set {-pz.peso::5::4::35} to 66
+    set {-pz.peso::5::4::36} to 44
+    set {-pz.peso::5::4::37} to 44
+    set {-pz.peso::5::4::38} to 22
+    set {-pz.total::5::5} to 3980
+    set {-pz.peso::5::5::1} to 100
+    set {-pz.peso::5::5::2} to 100
+    set {-pz.peso::5::5::3} to 100
+    set {-pz.peso::5::5::4} to 100
+    set {-pz.peso::5::5::5} to 100
+    set {-pz.peso::5::5::6} to 100
+    set {-pz.peso::5::5::7} to 100
+    set {-pz.peso::5::5::8} to 100
+    set {-pz.peso::5::5::9} to 100
+    set {-pz.peso::5::5::10} to 100
+    set {-pz.peso::5::5::11} to 100
+    set {-pz.peso::5::5::12} to 100
+    set {-pz.peso::5::5::13} to 200
+    set {-pz.peso::5::5::14} to 100
+    set {-pz.peso::5::5::15} to 100
+    set {-pz.peso::5::5::16} to 200
+    set {-pz.peso::5::5::17} to 100
+    set {-pz.peso::5::5::18} to 100
+    set {-pz.peso::5::5::19} to 100
+    set {-pz.peso::5::5::20} to 200
+    set {-pz.peso::5::5::21} to 100
+    set {-pz.peso::5::5::22} to 100
+    set {-pz.peso::5::5::23} to 200
+    set {-pz.peso::5::5::24} to 100
+    set {-pz.peso::5::5::25} to 100
+    set {-pz.peso::5::5::26} to 100
+    set {-pz.peso::5::5::27} to 160
+    set {-pz.peso::5::5::28} to 120
+    set {-pz.peso::5::5::29} to 90
+    set {-pz.peso::5::5::30} to 30
+    set {-pz.peso::5::5::31} to 120
+    set {-pz.peso::5::5::32} to 80
+    set {-pz.peso::5::5::33} to 60
+    set {-pz.peso::5::5::34} to 80
+    set {-pz.peso::5::5::35} to 90
+    set {-pz.peso::5::5::36} to 60
+    set {-pz.peso::5::5::37} to 60
+    set {-pz.peso::5::5::38} to 30
+    set {-pz.total::5::6} to 4496
+    set {-pz.peso::5::6::1} to 100
+    set {-pz.peso::5::6::2} to 100
+    set {-pz.peso::5::6::3} to 100
+    set {-pz.peso::5::6::4} to 100
+    set {-pz.peso::5::6::5} to 100
+    set {-pz.peso::5::6::6} to 100
+    set {-pz.peso::5::6::7} to 100
+    set {-pz.peso::5::6::8} to 100
+    set {-pz.peso::5::6::9} to 100
+    set {-pz.peso::5::6::10} to 100
+    set {-pz.peso::5::6::11} to 100
+    set {-pz.peso::5::6::12} to 100
+    set {-pz.peso::5::6::13} to 260
+    set {-pz.peso::5::6::14} to 100
+    set {-pz.peso::5::6::15} to 100
+    set {-pz.peso::5::6::16} to 260
+    set {-pz.peso::5::6::17} to 100
+    set {-pz.peso::5::6::18} to 100
+    set {-pz.peso::5::6::19} to 100
+    set {-pz.peso::5::6::20} to 260
+    set {-pz.peso::5::6::21} to 100
+    set {-pz.peso::5::6::22} to 100
+    set {-pz.peso::5::6::23} to 260
+    set {-pz.peso::5::6::24} to 100
+    set {-pz.peso::5::6::25} to 100
+    set {-pz.peso::5::6::26} to 100
+    set {-pz.peso::5::6::27} to 208
+    set {-pz.peso::5::6::28} to 168
+    set {-pz.peso::5::6::29} to 126
+    set {-pz.peso::5::6::30} to 42
+    set {-pz.peso::5::6::31} to 156
+    set {-pz.peso::5::6::32} to 80
+    set {-pz.peso::5::6::33} to 60
+    set {-pz.peso::5::6::34} to 80
+    set {-pz.peso::5::6::35} to 126
+    set {-pz.peso::5::6::36} to 84
+    set {-pz.peso::5::6::37} to 84
+    set {-pz.peso::5::6::38} to 42
+    set {-pz.eqn::5} to 19
+    set {-pz.eq::5::1::id} to "espada_6"
+    set {-pz.eq::5::1::nombre} to "Espada VI"
+    set {-pz.eq::5::2::id} to "hacha_6"
+    set {-pz.eq::5::2::nombre} to "Hacha VI"
+    set {-pz.eq::5::3::id} to "arco_6"
+    set {-pz.eq::5::3::nombre} to "Arco VI"
+    set {-pz.eq::5::4::id} to "baston_6"
+    set {-pz.eq::5::4::nombre} to "Baston VI"
+    set {-pz.eq::5::5::id} to "guadana_6"
+    set {-pz.eq::5::5::nombre} to "Guadana VI"
+    set {-pz.eq::5::6::id} to "lanza_6"
+    set {-pz.eq::5::6::nombre} to "Lanza VI"
+    set {-pz.eq::5::7::id} to "cuchillo_6"
+    set {-pz.eq::5::7::nombre} to "Cuchillo VI"
+    set {-pz.eq::5::8::id} to "berserker_6_helmet"
+    set {-pz.eq::5::8::nombre} to "Casco Berserker VI"
+    set {-pz.eq::5::9::id} to "berserker_6_chestplate"
+    set {-pz.eq::5::9::nombre} to "Pechera Berserker VI"
+    set {-pz.eq::5::10::id} to "berserker_6_leggings"
+    set {-pz.eq::5::10::nombre} to "Grebas Berserker VI"
+    set {-pz.eq::5::11::id} to "berserker_6_boots"
+    set {-pz.eq::5::11::nombre} to "Botas Berserker VI"
+    set {-pz.eq::5::12::id} to "mago_6_helmet"
+    set {-pz.eq::5::12::nombre} to "Casco Mago VI"
+    set {-pz.eq::5::13::id} to "mago_6_chestplate"
+    set {-pz.eq::5::13::nombre} to "Pechera Mago VI"
+    set {-pz.eq::5::14::id} to "mago_6_leggings"
+    set {-pz.eq::5::14::nombre} to "Grebas Mago VI"
+    set {-pz.eq::5::15::id} to "mago_6_boots"
+    set {-pz.eq::5::15::nombre} to "Botas Mago VI"
+    set {-pz.eq::5::16::id} to "arquero_6_helmet"
+    set {-pz.eq::5::16::nombre} to "Casco Arquero VI"
+    set {-pz.eq::5::17::id} to "arquero_6_chestplate"
+    set {-pz.eq::5::17::nombre} to "Pechera Arquero VI"
+    set {-pz.eq::5::18::id} to "arquero_6_leggings"
+    set {-pz.eq::5::18::nombre} to "Grebas Arquero VI"
+    set {-pz.eq::5::19::id} to "arquero_6_boots"
+    set {-pz.eq::5::19::nombre} to "Botas Arquero VI"
+    set {-pz.cofre::bosque::nombre} to "Bosque Sombrio"
+    set {-pz.cofre::bosque::tier} to 1
+    set {-pz.cofre::bosque::mult} to 1
+    set {-pz.cofre::bosque::perm} to "astral.fragmento.pantano"
+    set {-pz.cofre::bosque::frag} to "Fragmento del Pantano"
+    set {-pz.cofre::mina::nombre} to "Minas Olvidadas"
+    set {-pz.cofre::mina::tier} to 2
+    set {-pz.cofre::mina::mult} to 3
+    set {-pz.cofre::mina::perm} to "astral.fragmento.lampara"
+    set {-pz.cofre::mina::frag} to "Lampara del Minero"
+    set {-pz.cofre::tumba::nombre} to "Tumba del Rey de Arena"
+    set {-pz.cofre::tumba::tier} to 3
+    set {-pz.cofre::tumba::mult} to 8
+    set {-pz.cofre::tumba::perm} to "astral.fragmento.arena"
+    set {-pz.cofre::tumba::frag} to "Fragmento de la Arena"
+    set {-pz.cofre::cumbre::nombre} to "Cumbre Helada"
+    set {-pz.cofre::cumbre::tier} to 4
+    set {-pz.cofre::cumbre::mult} to 18
+    set {-pz.cofre::cumbre::perm} to "astral.fragmento.hielo"
+    set {-pz.cofre::cumbre::frag} to "Fragmento de Hielo"
+    set {-pz.cofre::forja::nombre} to "Corazon de la Forja"
+    set {-pz.cofre::forja::tier} to 5
+    set {-pz.cofre::forja::mult} to 40
+    set {-pz.cofre::forja::perm} to "astral.fragmento.fuego"
+    set {-pz.cofre::forja::frag} to "Fragmento de Fuego"
+    set {-pz.cofre::santuario::nombre} to "Santuario Celestial"
+    set {-pz.cofre::santuario::tier} to 5
+    set {-pz.cofre::santuario::mult} to 60
+    set {-pz.cofre::santuario::perm} to "astral.fragmento.corazon"
+    set {-pz.cofre::santuario::frag} to "Corazon Astral"
+    set {-pz.cofre::fosa::nombre} to "Fosa del Crustaceo"
+    set {-pz.cofre::fosa::tier} to 3
+    set {-pz.cofre::fosa::mult} to 8
+    set {-pz.cofre::fosa::perm} to "astral.fragmento.marea"
+    set {-pz.cofre::fosa::frag} to "Fragmento de la Marea"
+
+command /mazpuntaje <text> <text>:
+    executable by: console
+    trigger:
+        if arg-1 is "inicio":
+            pz_inicio(arg-2)
+        else if arg-1 is "fin":
+            pz_fin(arg-2)
+
+function pz_inicio(w: text):
+    set {-pz.ini::%{_w}%} to unix timestamp of now
+    set {-pz.muertes::%{_w}%} to 0
+    delete {-pz.hecho::%{_w}%}
+
+function pz_muerte(p: player):
+    set {_w} to name of world of {_p}
+    {-pz.ini::%{_w}%} is set
+    {-pz.hecho::%{_w}%} is not set
+    set {_u} to uuid of {_p}
+    set {_ahora} to unix timestamp of now
+    if {_ahora} - ({-pz.ult::%{_u}%} ? 0) < 10:
+        stop
+    set {-pz.ult::%{_u}%} to {_ahora}
+    add 1 to {-pz.muertes::%{_w}%}
+
+on death of player:
+    pz_muerte(victim)
+
+# Caida con party: AstralParty pasa al jugador a espectador sin evento de muerte.
+on gamemode change to spectator:
+    scoreboard tags of player contain "astral.party.fallen"
+    pz_muerte(player)
+
+function pz_fin(w: text):
+    set {_key} to {-pz.key::%{_w}%}
+    {_key} is set
+    {-pz.hecho::%{_w}%} is not set
+    set {-pz.hecho::%{_w}%} to true
+    set {_m} to {-pz.muertes::%{_w}%} ? 0
+    set {_obj} to {-pz.obj::%{_w}%}
+    set {_seg} to {_obj} * 60
+    if {-pz.ini::%{_w}%} is set:
+        set {_seg} to (unix timestamp of now) - {-pz.ini::%{_w}%}
+    set {_pts} to 100 - min({_m} * 12, 60)
+    set {_sobre} to floor(({_seg} - {_obj} * 60) / 60)
+    if {_sobre} > 0:
+        remove min({_sobre} * 4, 40) from {_pts}
+    if {_m} is 0:
+        add 10 to {_pts}
+    set {_n} to 1
+    if {_pts} >= 40:
+        set {_n} to 2
+    if {_pts} >= 55:
+        set {_n} to 3
+    if {_pts} >= 70:
+        set {_n} to 4
+    if {_pts} >= 85:
+        set {_n} to 5
+    if {_pts} >= 95:
+        set {_n} to 6
+    set {_tmin} to floor({_seg} / 60)
+    set {_tseg} to mod({_seg}, 60)
+    loop all players:
+        name of world of loop-player is {_w}
+        set {_u} to uuid of loop-player
+        set {pz.pend.key::%{_u}%} to {_key}
+        set {pz.pend.nota::%{_u}%} to {_n}
+        execute console command "scoreboard players set %name of loop-player% astral.nota %{_n}%"
+        if ({pz.mejor::%{_u}%::%{_key}%} ? 0) < {_n}:
+            set {pz.mejor::%{_u}%::%{_key}%} to {_n}
+        if {_n} is 1:
+            send title "&4&lF" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &4&lF &7(%{_pts}% puntos)" to loop-player
+        if {_n} is 2:
+            send title "&c&lD" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &c&lD &7(%{_pts}% puntos)" to loop-player
+        if {_n} is 3:
+            send title "&e&lC" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &e&lC &7(%{_pts}% puntos)" to loop-player
+        if {_n} is 4:
+            send title "&b&lB" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &b&lB &7(%{_pts}% puntos)" to loop-player
+        if {_n} is 5:
+            send title "&a&lA" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &a&lA &7(%{_pts}% puntos)" to loop-player
+        if {_n} is 6:
+            send title "&6&lS" with subtitle "&7Puntaje &f%{_pts}% &8| &7%{_tmin}%:%{_tseg}% min &8| &7%{_m}% caidas" to loop-player for 6 seconds
+            send "&6Nota de la mazmorra: &6&lS &7(%{_pts}% puntos)" to loop-player
+        send "&7Tiempo: &f%{_tmin}% min %{_tseg}% s &8(objetivo %{_obj}% min) &7| Muertes de la party: &f%{_m}%" to loop-player
+        send "&7Abri el cofre: la plata y los premios dependen de la nota." to loop-player
+
+# Boton RECLAMAR del cofre (DeluxeMenus cofre_<mazmorra>): una ruleta por jugador por victoria.
+command /astralcofre <player> <text>:
+    executable by: console
+    trigger:
+        set {_p} to arg-1
+        set {_u} to uuid of {_p}
+        if {pz.pend.key::%{_u}%} is not arg-2:
+            send "&cEste cofre se cobra al ganar la mazmorra. &7(Cada victoria trae un cofre nuevo.)" to {_p}
+            play sound "entity.villager.no" to {_p}
+            stop
+        set {_n} to {pz.pend.nota::%{_u}%}
+        delete {pz.pend.key::%{_u}%}
+        delete {pz.pend.nota::%{_u}%}
+        execute console command "scoreboard players set %name of {_p}% astral.nota 0"
+        log "%now% %name of {_p}% %{_u}% %arg-2% nota=%{_n}%" to "astral-cofres"
+        pz_cofre({_p}, arg-2, {_n})
+
+function pz_especial(p: player, t: number, maz: text):
+    set {_j} to random integer between 1 and {-pz.eqn::%{_t}%}
+    execute console command "loot give %name of {_p}% loot astral:item/%{-pz.eq::%{_t}%::%{_j}%::id}%"
+    broadcast "&6&l✦ &e%name of {_p}% &6saco &f&l%{-pz.eq::%{_t}%::%{_j}%::nombre}% &6del cofre de &f%{_maz}%&6!"
+    play sound "ui.toast.challenge_complete" to {_p}
+
+function pz_tirada(p: player, t: number, n: number, maz: text):
+    if random number between 0 and 1 < {-pz.ruleta::%{_n}%::especial}:
+        pz_especial({_p}, {_t}, {_maz})
+        stop
+    set {_r} to random integer between 1 and {-pz.total::%{_t}%::%{_n}%}
+    set {_acc} to 0
+    loop {-pz.pooln::%{_t}%} times:
+        set {_j} to loop-number
+        add {-pz.peso::%{_t}%::%{_n}%::%{_j}%} to {_acc}
+        if {_r} <= {_acc}:
+            set {_id} to {-pz.pool::%{_t}%::%{_j}%::id}
+            set {_c} to {-pz.pool::%{_t}%::%{_j}%::cant}
+            if {-pz.pool::%{_t}%::%{_j}%::astral} is true:
+                loop {_c} times:
+                    execute console command "loot give %name of {_p}% loot astral:item/%{_id}%"
+            else:
+                execute console command "give %name of {_p}% minecraft:%{_id}% %{_c}%"
+            send "&7  + &f%{_c}%x %{-pz.pool::%{_t}%::%{_j}%::nombre}%" to {_p}
+            stop
+
+function pz_cofre(p: player, key: text, n: number):
+    set {_maz} to {-pz.cofre::%{_key}%::nombre}
+    set {_t} to {-pz.cofre::%{_key}%::tier}
+    set {_perm} to {-pz.cofre::%{_key}%::perm}
+    if {_p} does not have permission {_perm}:
+        execute console command "lp user %name of {_p}% permission set %{_perm}% true"
+        send "&b&lNuevo fragmento: &f%{-pz.cofre::%{_key}%::frag}%&7. Quedo guardado en &f/fragmentos&7." to {_p}
+        play sound "ui.toast.challenge_complete" to {_p}
+    set {_mult} to {-pz.cofre::%{_key}%::mult}
+    set {_lo} to {@min} * {_mult}
+    set {_hi} to {-pz.ruleta::%{_n}%::max} * {_mult}
+    set {_v} to floor({_lo} + ({_hi} - {_lo}) * ((random number between 0 and 1) ^ {-pz.ruleta::%{_n}%::k}))
+    add {_v} to balance of {_p}
+    set {_letra} to {-pz.ruleta::%{_n}%::letra}
+    send "&6Cofre de %{_maz}% &7(nota &l%{_letra}%&7): &e+%{_v}%$" to {_p}
+    send title "&e+%{_v}%$" with subtitle "&7Ruleta del cofre (nota %{_letra}%)" to {_p} for 3 seconds
+    loop {-pz.ruleta::%{_n}%::tiradas} times:
+        pz_tirada({_p}, {_t}, {_n}, {_maz})
+    execute console command "execute as %name of {_p}% run function astral:xp/cofre"
+    execute console command "lp user %name of {_p}% permission settemp astral.%{_key}%.cd true {@cooldown}"
+    play sound "entity.player.levelup" to {_p}

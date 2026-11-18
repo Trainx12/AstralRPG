@@ -127,7 +127,7 @@ class TandaXPTests(unittest.TestCase):
         from rankings import ITEMS
         self.assertIn(('barril_xp',1),ITEMS[1])
         for place in (1,2,3):self.assertIn(('manzana_esmeralda',1),ITEMS[place])
-        self.assertIn('astral:xp/cofre',str(cofre_menu(MINA)))
+        self.assertIn('astral:xp/cofre',__import__('mazmorras_puntaje').script())  # el cobro vive en astral_puntaje.sk (plan E2)
         for mid,elite in ANCESTRALES.items():
             block=mob_block(mid+'_ancestral',ancestral_def(mid),model=mid,elite=elite)
             for iid,chance in [('frasco_xp_gigante',0.2),('barril_xp',0.025)]:

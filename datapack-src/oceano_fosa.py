@@ -51,6 +51,8 @@ def boss_block():
     block = re.sub(r"(?m)^(  Display: ).*$", "  Display: '&b&lCangrejo de la Fosa'", block, count=1)
     block = re.sub(r"(?m)^(    Title: ).*$", "    Title: '&b&lCangrejo de la Fosa'", block, count=1)
     extra = ['  - addtag{tag=fosa.jefe} @self ~onSpawn',
+             # Puntaje de la Fosa (mazmorras_puntaje.py): no pasa por mazfin, termina al morir el Cangrejo.
+             '  - command{c="mazpuntaje fin <caster.l.w>"} @self ~onDeath',
              '  - addtag{tag=fosa.jefe} @self ~onLoad',
              # Es una arana (cangrejo): sin esto se ahogaria en su propia fosa.
              '  - potion{type=WATER_BREATHING;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn',

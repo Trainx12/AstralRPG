@@ -30,6 +30,7 @@ astral_fosa_cangrejo:
   - exp 100
   Skills:
   - addtag{tag=fosa.jefe} @self ~onSpawn
+  - command{c="mazpuntaje fin <caster.l.w>"} @self ~onDeath
   - addtag{tag=fosa.jefe} @self ~onLoad
   - summon{type=DROWNED;amount=4;radius=4} @self ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}
   - message{m="&bEl Cangrejo llama a sus ahogados..."} @PlayersInRadius{r=60} ~onDamaged ?healthpercent{p=<0.5} ?!hastag{tag=fosa.f2}

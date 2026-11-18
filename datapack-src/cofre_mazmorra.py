@@ -260,8 +260,8 @@ def _pie(items):
 
 
 def cofre_menu(dungeon):
-    from economia import plata as _x, texto
-    key, nombre, plata = dungeon['key'], dungeon['name'], _x(dungeon['money'])
+    from economia import texto
+    key, nombre = dungeon['key'], dungeon['name']
     frag, (astral, n_astral) = PREMIOS[key]
     materiales = list(dungeon['reward'])
     items = {}
@@ -277,40 +277,52 @@ def cofre_menu(dungeon):
         'display_name': f'&8&l{NOMBRE[frag]}',
         'lore': ['&cYa reclamado.', '&7Solo se puede reclamar la primera vez.', '&7Lo tienes en &f/fragmentos&7.'],
         'item_flags': ['HIDE_ATTRIBUTES']}
-    items['plata'] = {'material': 'GOLD_INGOT', 'slot': SLOTS_PREMIO[1], 'display_name': f'&e&l{texto(plata)}',
-                      'lore': ['&7Cada vez que cobras el cofre.']}
+    # Plan E2 (18/11): nota de la mazmorra, ruleta invisible de plata y tiradas de items (mazmorras_puntaje.py).
+    import economia as E
+    from mazmorras_puntaje import mazmorras
+    tier = {k: t for k, _, t, _ in mazmorras()}[key]
+    mult = E.ruleta_mult(key, tier)
+    rango = [f'&7Nota {E.NOTA_COLOR[n]}&l{n}&7: &e{texto(E.RULETA_MIN * mult)} &7a &e{texto(E.RULETA_MAX[n] * mult)}'
+             for n in reversed(E.NOTAS)]
+    items['plata'] = {'material': 'GOLD_INGOT', 'slot': SLOTS_PREMIO[1], 'display_name': '&e&lRuleta de plata',
+                      'lore': ['&7Al reclamar gira una ruleta invisible:', *rango, '&8Siempre puede tocar poco;',
+                               '&8con mejor nota es mas facil lo alto.']}
+    tir = ', '.join(f'{n} {E.ITEM_TIRADAS[n]}' for n in reversed(E.NOTAS))
     items['astral'] = {'material': 'PAPER', 'item_model': f'astral:{astral}', 'slot': SLOTS_PREMIO[2], 'amount': n_astral,
-                       'display_name': f'&d&l{n_astral}x {ITEM_NOMBRE[astral]}',
-                       'lore': ['&7Item Astral de esta mazmorra.', '&7Cada vez que cobras el cofre.'],
+                       'display_name': '&d&lPremios del cofre',
+                       'lore': [f'&7Tiradas segun la nota: &f{tir}', '&7Materiales Astral del tier, frascos,',
+                                '&7y objetos valiosos. Mejor nota = mas raros.'],
                        'item_flags': ['HIDE_ATTRIBUTES']}
     items['materiales'] = {'material': 'PAPER', 'item_model': 'astral:alma_corrupta', 'slot': SLOTS_PREMIO[3],
-                           'display_name': '&a&lMateriales de elite',
-                           'lore': [f'&f{n}x {ITEM_NOMBRE.get(i, i)}' for i, n in materiales]
-                                   + ['&e25% &fChispa Astral', '&7Cada vez que cobras el cofre.'],
+                           'display_name': '&6&lPremio especial',
+                           'lore': [f'&7Solo con nota &a&lA&7 o &6&lS&7: muy rara vez,',
+                                    f'&7una pieza de equipo de tier &f{tier + 1}&7.',
+                                    f'&8(A {E.ESPECIAL_PROB["A"] * 100:g}% y S {E.ESPECIAL_PROB["S"] * 100:g}% por tirada)'],
                            'item_flags': ['HIDE_ATTRIBUTES']}
-    cobro = ['[close]', f'[console] eco give %player_name% {plata}']
-    for i, n in materiales + [(astral, n_astral)]:
-        cobro += [f'[console] loot give %player_name% loot astral:item/{i}'] * n
-    cobro += ['[console] execute as %player_name% run function astral:xp/cofre', '[console] loot give %player_name% loot astral:item/chispa_astral <chance=25>',
-              f'[console] lp user %player_name% permission settemp {espera(key)} true {COOLDOWN}',
-              f'[message] &6Cofre de {nombre}: &e{texto(plata)}&f, {n_astral}x {ITEM_NOMBRE[astral]} y materiales de elite.',
-              '[sound] ENTITY_PLAYER_LEVELUP']
-    primera = [f'[console] lp user %player_name% permission set {permiso(frag)} true',
-               f'[message] &b&lNuevo fragmento: &f{NOMBRE[frag]}&7. Quedo guardado en &f/fragmentos&7.',
-               '[sound] UI_TOAST_CHALLENGE_COMPLETE']
+    nota_score = '%objective_score_{astral.nota}%'
+    for n in E.NOTAS:
+        i = E.NOTAS.index(n) + 1
+        items[f'nota_{n}'] = {'material': 'NETHER_STAR' if n in 'SA' else 'PAPER', 'slot': 13, 'priority': 7 - i,
+                              'display_name': f'{E.NOTA_COLOR[n]}&lNota {n}', 'update': True,
+                              'lore': ['&7Tu nota en esta victoria.', '&7Decide la plata y los premios.'],
+                              'view_requirement': {'requirements': {'n': {'type': '==', 'input': nota_score, 'output': str(i)}}},
+                              'item_flags': ['HIDE_ATTRIBUTES']}
+    items['nota_ninguna'] = {'material': 'GRAY_DYE', 'slot': 13, 'priority': 9, 'display_name': '&7Sin nota pendiente',
+                             'lore': ['&7Gana la mazmorra para cobrar este cofre.', '&8Cada victoria trae un cofre nuevo.']}
+    cobro = ['[close]', f'[console] astralcofre %player_name% {key}']
     espera_txt = ['[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)',
                   '[sound] ENTITY_VILLAGER_NO']
     libre = {'type': '!has permission', 'permission': espera(key)}
     for n, slot in enumerate(SLOTS_BOTON):
         base = {'display_name': '&a&lRECLAMAR', 'update': True}
-        # Primera vez: tambien guarda el fragmento. Prioridad menor = se muestra primero.
+        # Primera vez: tambien guarda el fragmento (lo hace astral_puntaje.sk). Prioridad menor = se muestra primero.
         items[f'reclamar_{n}'] = _invisible(slot, dict(
-            base, priority=1, lore=['&7Cobra plata, item Astral y materiales.', f'&bY guarda el {NOMBRE[frag]}.'],
+            base, priority=1, lore=['&7Gira la ruleta y las tiradas de tu nota.', f'&bY guarda el {NOMBRE[frag]}.'],
             view_requirement=_req('!has permission', permiso(frag)),
             click_requirement={'requirements': {'libre': libre}, 'deny_commands': espera_txt},
-            click_commands=cobro[:1] + primera + cobro[1:]))
+            click_commands=cobro))
         items[f'reclamar_ya_{n}'] = _invisible(slot, dict(
-            base, priority=2, lore=['&7Cobra plata, item Astral y materiales.', '&8Se puede cobrar cada 30 minutos.'],
+            base, priority=2, lore=['&7Gira la ruleta y las tiradas de tu nota.', '&8Se puede cobrar cada 30 minutos.'],
             click_requirement={'requirements': {'libre': libre}, 'deny_commands': espera_txt},
             click_commands=cobro))
     items['coleccion'] = {'material': 'PAPER', 'item_model': 'astral:cofre/corazon', 'slot': 49,

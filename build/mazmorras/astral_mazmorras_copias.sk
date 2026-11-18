@@ -170,6 +170,8 @@ function maz_entrar(p: player, key: text):
     if {_nueva} is true:
         delete {-maz.fin::%{_mundo::%{_elegida}%}%}
         delete {-maz.aviso::%{_mundo::%{_elegida}%}%}
+        # Puntaje (mazmorras_puntaje.py): el reloj y las muertes empiezan con la party nueva.
+        execute console command "mazpuntaje inicio %{_mundo::%{_elegida}%}%"
         if {_key} is "mina":
             execute console command "execute in minecraft:%{_d}% run function astral:tanda2/mina/fresh"
         if {_key} is "bosque":
@@ -210,6 +212,7 @@ command /mazfin <text>:
             stop
         execute console command "astralpartyinternal victory %arg-1%"
         set {-maz.fin::%arg-1%} to now
+        execute console command "mazpuntaje fin %arg-1%"
         set {_w} to world(arg-1)
         if {_w} is set:
             loop all players:
