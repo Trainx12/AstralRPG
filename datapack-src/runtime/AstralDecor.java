@@ -469,6 +469,48 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         p.sendMessage(key.equals("quitar")?"Cosmetico quitado. Conservas tu coleccion.":"Cosmetico equipado.");
         return true;
     }
+
+    /** El rayo del datapack debe danar la entidad duena, no la entidad auxiliar
+     * de BetterModel. Solo se marca si es el primer impacto antes de una pared. */
+    @EventHandler(ignoreCancelled=true)
+    public void spellTraceMarker(EntitySpawnEvent event) {
+        if(event.getEntity() instanceof Marker && event.getEntity().getScoreboardTags().contains("astral.spell.trace")) spellModelTarget();
+    }
+    private void spellModelTarget() {
+        for(var world:Bukkit.getWorlds()) for(var e:world.getEntities())
+            if(e.getScoreboardTags().contains("astral.spell.model")) e.removeScoreboardTag("astral.spell.model");
+        if(!Bukkit.getPluginManager().isPluginEnabled("BetterModel"))return;
+        for(Player caster:Bukkit.getOnlinePlayers()) {
+            if(!caster.getScoreboardTags().contains("astral.caster"))continue;
+            var eye=caster.getEyeLocation();var direction=eye.getDirection();
+            double nearest=25; LivingEntity chosen=null;
+            var wall=eye.getWorld().rayTraceBlocks(eye,direction,25,FluidCollisionMode.NEVER,true);
+            if(wall!=null)nearest=wall.getHitPosition().distance(eye.toVector());
+            // Los enemigos vanilla delante tambien tapan el rayo.
+            for(var entity:eye.getWorld().getLivingEntities()) {
+                if(entity==caster || entity instanceof ArmorStand || entity.isInvulnerable() ||
+                   entity.getScoreboardTags().contains("astral.pet") || !entity.hasAI())continue;
+                if(entity instanceof Player p && (p.getGameMode()==GameMode.CREATIVE || p.getGameMode()==GameMode.SPECTATOR))continue;
+                var registry=BetterModel.registryOrNull(entity.getUniqueId());
+                var boxes=new ArrayList<org.bukkit.util.BoundingBox>();
+                boxes.add(entity.getBoundingBox());
+                boolean modeled=false;
+                if(registry!=null)for(var tracker:registry.trackers()) {
+                    var bone=tracker.bone("b_astral_hitbox");
+                    if(bone==null || bone.getHitBox()==null)continue;
+                    var physical=Bukkit.getEntity(bone.getHitBox().uuid());
+                    if(physical!=null) {boxes.add(physical.getBoundingBox());modeled=true;}
+                }
+                for(var box:boxes) {
+                    var hit=box.clone().expand(.45).rayTrace(eye.toVector(),direction,25);
+                    if(hit==null)continue;
+                    double distance=hit.getHitPosition().distance(eye.toVector());
+                    if(distance<nearest) {nearest=distance;chosen=modeled?entity:null;}
+                }
+            }
+            if(chosen!=null)chosen.addScoreboardTag("astral.spell.model");
+        }
+    }
     private void removeCosmetics(UUID id) {
         skinsApplied.remove(id);
         if(hats.remove(id)) {

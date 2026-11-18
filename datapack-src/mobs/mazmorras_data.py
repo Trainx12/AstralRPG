@@ -106,7 +106,8 @@ def variant(key, source, ancestral=False, boss=False):
         # Correa: como ahora persiguen, si no queda nadie cerca vuelven a donde aparecieron (centro de la sala).
         data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}']
         # 13/11: si cae al agua (el salto lo puede llevar al pantano), vuelve a donde aparecio.
-        data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}']
+        if key != 'bosque':
+            data['skills'] = list(data.get('skills', [])) + ['- teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}']
         if key == 'bosque':
             data['model_skill'] = 'AST_MODEL_astral_chaman_bosque'   # mas chico que el jefe del mundo (dueno 13/11)
         if key == 'forja':
@@ -132,7 +133,7 @@ def variant(key, source, ancestral=False, boss=False):
     if key == "bosque" and boss:
         # 13/11: el altar tiene un rio enfrente. Sin salto (lo tiraba en medio del agua) y con botas de
         # Paso helado: cruza caminando sobre hielo que se derrite solo. Las botas no se ven (modelo 3D)
-        # ni caen (PreventOtherDrops). Si igual cae al agua, vuelve a su lugar (respaldo de arriba).
+        # ni caen (PreventOtherDrops). El hielo explicito no depende de Frost Walker/IA vanilla.
         block = "".join(l for l in block.splitlines(keepends=True) if "AST_JEFE_SALTO" not in l)
         block += ("  - command{c=\"item replace entity <caster.uuid> armor.feet with "
                   "minecraft:leather_boots[enchantments={frost_walker:2}]\"} @self ~onSpawn\n")

@@ -11,10 +11,10 @@ execute in minecraft:bosque run forceload remove 1504 1504
 execute in minecraft:bosque run forceload add 1600 1440
 mm mobs kill astral_bosque_control_sala3
 execute in minecraft:bosque run forceload remove 1600 1440
-execute in minecraft:bosque run forceload add 1468 1570
+execute in minecraft:bosque run forceload add 1465 1573
 mm mobs kill astral_bosque_control_sala1
 execute in minecraft:bosque run function astral:tanda2/bosque/sala1/cleanup
-execute in minecraft:bosque run forceload remove 1468 1570
+execute in minecraft:bosque run forceload remove 1465 1573
 execute in minecraft:bosque run forceload add 1604 1382
 mm mobs kill astral_bosque_control_sala2
 execute in minecraft:bosque run function astral:tanda2/bosque/sala2/cleanup
@@ -25,9 +25,9 @@ mm mobs kill astral_bosque_abejorro
 mm mobs kill astral_bosque_cara
 mm mobs kill astral_bosque_chaman
 # Crear exactamente un controlador en cada punto nuevo.
-execute in minecraft:bosque run forceload add 1468 1570
-mm mobs spawn astral_bosque_control_sala1 1 bosque,1468.5,101,1570.5
-execute in minecraft:bosque run forceload remove 1468 1570
+execute in minecraft:bosque run forceload add 1465 1573
+mm mobs spawn astral_bosque_control_sala1 1 bosque,1465.5,101,1573.5
+execute in minecraft:bosque run forceload remove 1465 1573
 execute in minecraft:bosque run forceload add 1604 1382
 mm mobs spawn astral_bosque_control_sala2 1 bosque,1604.5,101,1382.5
 execute in minecraft:bosque run forceload remove 1604 1382

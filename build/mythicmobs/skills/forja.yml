@@ -1,6 +1,7 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 FORJA_SALA1_INICIO:
   Skills:
+  - removetag{tag=forja.ready} @self
   - addtag{tag=forja.on} @self
   - addtag{tag=forja.ola1} @self
   - message{m="&8[&7Corazon de la Forja&8] &fForja - sala 1 &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=72}
@@ -26,6 +27,7 @@ FORJA_SALA1_LIMPIA:
   - removetag{tag=forja.ola2} @self
 FORJA_IR_SALA2:
   Skills:
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Forja - sala 2',distance=0..] add forja.ready"}
   - command{c="execute as <target.name> at @s run minecraft:tp @s -125.5 13 -125.7 -13.4 0"}
   - sound{s=entity.enderman.teleport}
 FORJA_SALA1_RESET:
@@ -39,6 +41,7 @@ FORJA_SALA1_RESET:
   - removetag{tag=forja.ola2} @self
 FORJA_SALA2_INICIO:
   Skills:
+  - removetag{tag=forja.ready} @self
   - addtag{tag=forja.on} @self
   - addtag{tag=forja.ola1} @self
   - message{m="&8[&7Corazon de la Forja&8] &fForja - sala 2 &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=56}
@@ -64,6 +67,7 @@ FORJA_SALA2_LIMPIA:
   - removetag{tag=forja.ola2} @self
 FORJA_IR_SALA3:
   Skills:
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Nucleo de la Forja',distance=0..] add forja.ready"}
   - command{c="execute as <target.name> at @s run minecraft:tp @s 0.8 47 26 -178.2 0"}
   - sound{s=entity.enderman.teleport}
 FORJA_SALA2_RESET:
@@ -77,6 +81,7 @@ FORJA_SALA2_RESET:
   - removetag{tag=forja.ola2} @self
 FORJA_SALA3_INICIO:
   Skills:
+  - removetag{tag=forja.ready} @self
   - addtag{tag=forja.on} @self
   - addtag{tag=forja.ola1} @self
   - message{m="&8[&7Corazon de la Forja&8] &fNucleo de la Forja &7- sala 3/3. &cAhi vienen!"} @PlayersInRadius{r=64}

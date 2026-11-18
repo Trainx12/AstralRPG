@@ -19,13 +19,14 @@ def region(world, rx, rz):
         raise FileNotFoundError(f'Falta region local de {world}: {path.name}')
     return {(c['xPos'], c['zPos']): c for c in chunk_records(path.read_bytes())}
 
+@lru_cache(maxsize=500000)
 def get(world, x, y, z):
     x,y,z = math.floor(x), math.floor(y), math.floor(z)
     chunk = region(world, x // 512, z // 512).get((x // 16,z // 16))
     return block(chunk, x % 16, y, z % 16) if chunk else 'minecraft:void_air'
 
 def solid(name):
-    return name == 'minecraft:snow_block' or not any(s in name.removeprefix('minecraft:') for s in BAD)
+    return name in ('minecraft:snow_block','minecraft:grass_block') or not any(s in name.removeprefix('minecraft:') for s in BAD)
 
 def clear(world, x, y, z, width=1, height=3, allow_steps=False):
     offset=width//2 if width % 2 else 0

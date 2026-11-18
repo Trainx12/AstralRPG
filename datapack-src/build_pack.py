@@ -492,6 +492,12 @@ from cascos_planos import normalize as normalize_helmets
 normalize_helmets(files)
 from panorama import assets as panorama_assets
 files.update(panorama_assets())
+from guia_atlas_arte import complete_assets as atlas_assets
+from guia_atlas import ROOT as ATLAS_ROOT
+with zipfile.ZipFile(ATLAS_ROOT / 'build/AstralRPG-Items.zip') as _atlas_data:
+    _atlas_icons = json.loads(_atlas_data.read('data/astral/atlas/iconos.json'))
+    _atlas_rows = json.loads(_atlas_data.read('data/astral/atlas/bestiario.json'))
+files.update(atlas_assets(files, _atlas_icons, _atlas_rows, ATLAS_ROOT / 'build/models'))
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

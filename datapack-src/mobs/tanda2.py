@@ -127,6 +127,8 @@ def transform(text,d,kind):
             # consola Mythic imprime Running function / returned aun sin sala activa.
             for i,line in enumerate(sk):
                 line=re.sub(r'\?mobsinradius\{[^}]+\}',f'?!hastag{{tag={busy}}}',line)
+                if '_INICIO}' in line:
+                    line += f' ?hastag{{tag={key}.ready}}'
                 if key=='cumbre' and room.get('boss_room') and '_INICIO}' in line:
                     line+= ' ?hastag{tag=cumbre.unlocked}'
                 sk[i]=line
@@ -138,6 +140,14 @@ def transform(text,d,kind):
                         if f'?hastag{{tag={key}.jefe.derrotado}}' not in line: line+=f' ?hastag{{tag={key}.jefe.derrotado}}'
                         sk[i]=line
         else:
+            # Cada sala se habilita una sola vez por expedicion. No puede arrancar
+            # por el radio de otro controlador ni volver a empezar al avanzar.
+            data[S+'_INICIO']['Skills'].insert(0, f'removetag{{tag={key}.ready}} @self')
+            idx = d['rooms'].index(room)
+            if idx + 1 < len(d['rooms']):
+                following = d['rooms'][idx+1]
+                data[f'{prefix}_IR_{following["id"].upper()}']['Skills'].insert(0,
+                    f'command{{c="execute at <caster.uuid> run tag @e[type=armor_stand,name=\'Control {following["name"]}\',distance=0..] add {key}.ready"}}')
             for n in range(1,len(room['oleadas'])+1):
                 skill=data[S+('_INICIO' if n==1 else f'_OLA{n}')]['Skills']
                 skill[:]=[s for s in skill if not s.startswith(('summon{','randomskill{')) and 'GRUPO' not in s
@@ -181,6 +191,10 @@ def transform(text,d,kind):
                         line=line.replace(xyz+'"}',xyz+f' {target["yaw"]} 0'+'"}')
                     value['Skills'][i]=line
     if kind=='mobs':
+        for suffix in ('cofre','guia'):
+            npc=data.get(f'astral_{key}_{suffix}')
+            if npc:
+                npc.setdefault('Skills', []).extend(f'addtag{{tag=ad.{key}.end}} @self ~{event}' for event in ('onSpawn','onLoad'))
         # BetterModel 3.6.0: el flag vanilla de la base invisible no pinta
         # los ItemDisplay. glowbone actualiza los huesos del tracker.
         # Solo estas copias de mazmorra; no toca elites, mascotas ni estatuas.
@@ -222,12 +236,25 @@ def generate(files):
     from mobs.mazmorras_data import catalog
     ds=[configure(MINA)]+[d for d in catalog() if d['key']!='santuario']
     def fn(p,lines): files['data/astral/function/'+p+'.mcfunction']='\n'.join(lines)+'\n'
+    fn('boss/chaman_ice', [
+        f'execute positioned ~{x} ~-1 ~{z} if block ~ ~ ~ minecraft:water if block ~ ~1 ~ minecraft:air run setblock ~ ~ ~ minecraft:frosted_ice'
+        for x in range(-3,4) for z in range(-3,4) if x*x+z*z <= 9])
     # Objetivos propios: no dependen de ejecutar comandos de instalacion manuales.
     load='data/astral/function/load.mcfunction'
     files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive','ad.q','ad.qm','ad.w'))+'\n'
     maintenance=[]
     for d in ds:
         key=d['key']
+        fresh=[f'kill @e[tag=ad.{key}.end,distance=0..]']
+        for room in d['rooms']:
+            ctrl=f'@e[type=armor_stand,name={json.dumps("Control "+room["name"],ensure_ascii=False)},distance=0..]'
+            fresh += [f'execute as {ctrl} at @s run function astral:{path(d,room)}/reset']
+            fresh += [f'tag {ctrl} remove {key}.{tagname}' for tagname in
+                      ('on','fin','espera','jefe.derrotado','unlocked','ready',
+                       *[f'ola{i}' for i in range(1,len(room['oleadas'])+1)])]
+        first=d['rooms'][0]
+        fresh += [f'tag @e[type=armor_stand,name={json.dumps("Control "+first["name"],ensure_ascii=False)},distance=0..] add {key}.ready']
+        fn(f'tanda2/{key}/fresh',fresh)
         for r in d['rooms']:
             p=path(d,r); t=tag(d,r); store='astral:'+p; busy=f'{key}.{r["id"]}.busy'
             # El nombre ya identifica los controles persistentes (tambien en la UI).
@@ -242,6 +269,7 @@ def generate(files):
             sel=f'@e[tag={t},distance=0..,nbt=!{{Health:0.0f}}]'
             wave_sel=f'@e[tag={t}.wave,distance=0..,nbt=!{{Health:0.0f}}]'
             fn(p+'/reset',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0',
+                           'scoreboard players set @s ad.w 0','scoreboard players set @s ad.alive 0',
                            f'tag @s remove {busy}',f'scoreboard players set @s ad.clock 0'])
             fn(p+'/cleanup',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0'])
             def spawn(m,pt,suffix):
@@ -269,7 +297,20 @@ def generate(files):
                        f'execute as @e[tag={t},tag=!astral.seen,distance=0..] at @s run function astral:mob/roll']
                 if m=='ASTRAL_GOLEM': lines=lines[:1]  # Reserva: el mob final recibe la escala al convertirse.
                 if key=='forja': lines += [f'effect give @e[tag={t},distance=0..] minecraft:fire_resistance infinite 0 true']
-                return lines
+                # Validar otra vez en el mundo real: nunca invocar dentro de una
+                # barrier o sin piso, aunque el servidor difiera de la copia local.
+                from mobs.terreno import get
+                choices=[pt]+[v for v in r['spawn_points'] if v!=pt]
+                payload=p+f'/safe/{m.lower()}_{suffix}'
+                lines[0]=lines[0].replace(f' {x} {y} {z} ', ' ~ ~ ~ ', 1)
+                fn(payload,lines)
+                guards=[]
+                for px,py,pz in choices:
+                    floor=get(d['world'],px,py-1,pz)
+                    guards.append(f'execute positioned {px} {py} {pz} if block ~ ~-1 ~ {floor} '
+                                  f'if block ~ ~ ~ #astral:spawn_air if block ~ ~1 ~ #astral:spawn_air '
+                                  f'if block ~ ~2 ~ #astral:spawn_air run return run function astral:{payload}')
+                return guards
             arrival='HUSK' if key=='tumba' else 'ZOMBIE'
             fn(p+'/arrival', [line for i in range(LLEGADA_MOBS) for line in spawn(arrival,r['spawn_points'][i%len(r['spawn_points'])],'arrival')])
             if r.get('boss_room'):
@@ -325,13 +366,14 @@ def generate(files):
                           f'execute if score @s ad.q < @s ad.qm run tag @s add {busy}'])
 
     fn('tanda2/tick',maintenance)
+    files['data/astral/tags/block/spawn_air.json']=json.dumps({'values':['minecraft:air','minecraft:cave_air','minecraft:void_air']})+'\n'
     files['data/astral/tags/block/enterrado.json']=json.dumps({'values':[
         '#minecraft:dirt','#minecraft:base_stone_overworld','#minecraft:base_stone_nether','#minecraft:sand','#minecraft:logs',
         '#minecraft:stone_bricks','#minecraft:terracotta','#minecraft:nylium','minecraft:gravel','minecraft:cobblestone',
         'minecraft:mossy_cobblestone','minecraft:sandstone','minecraft:red_sandstone','minecraft:obsidian','minecraft:crying_obsidian',
         'minecraft:magma_block','minecraft:snow_block','minecraft:packed_ice','minecraft:blue_ice','minecraft:ice',
         'minecraft:nether_bricks','minecraft:polished_blackstone_bricks','minecraft:cobbled_deepslate','minecraft:deepslate_bricks',
-        'minecraft:smooth_basalt','minecraft:polished_basalt','minecraft:clay','minecraft:calcite']},indent=1)+'\n'
+        'minecraft:smooth_basalt','minecraft:polished_basalt','minecraft:clay','minecraft:calcite','minecraft:barrier']},indent=1)+'\n'
     files.setdefault('data/astral/function/loop/t20.mcfunction','')
     files['data/astral/function/loop/t20.mcfunction']+='function astral:tanda2/tick\n'
     from mobs.progreso_oleadas import generate as generate_progress

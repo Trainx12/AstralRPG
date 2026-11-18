@@ -14,7 +14,7 @@ astral_tumba_control_sala1:
     Collidable: false
   Skills:
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala1;sync=true} @EntitiesInRadius{r=60} ~onTimer:5 ?hastag{tag=tumba.on}
-  - skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on} ?hastag{tag=tumba.ready}
   - skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
   - skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
   - skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}
@@ -33,7 +33,7 @@ astral_tumba_control_sala2:
     Collidable: false
   Skills:
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala2;sync=true} @EntitiesInRadius{r=68} ~onTimer:5 ?hastag{tag=tumba.on}
-  - skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=36} ?!hastag{tag=tumba.on} ?hastag{tag=tumba.ready}
   - skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
   - skill{s=TUMBA_SALA2_OLA3} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.ola3} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
   - skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola3} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
@@ -53,7 +53,7 @@ astral_tumba_control_sala3:
     Collidable: false
   Skills:
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala3;sync=true} @EntitiesInRadius{r=88} ~onTimer:5 ?hastag{tag=tumba.on}
-  - skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on}
+  - skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on} ?hastag{tag=tumba.ready}
   - skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?hastag{tag=tumba.jefe.derrotado} ?!hastag{tag=tumba.sala3.busy}
   - skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=64}
 astral_tumba_cofre:
@@ -76,6 +76,8 @@ astral_tumba_cofre:
   - model{m=astral_cofre_rpg} @self ~onLoad
   - state{s=open} @self ~onInteract
   - command{c="dm open cofre_tumba <trigger.name>"} @self ~onInteract
+  - addtag{tag=ad.tumba.end} @self ~onSpawn
+  - addtag{tag=ad.tumba.end} @self ~onLoad
 astral_tumba_guia:
   Type: VILLAGER
   Display: '&b&lExpediciones Astrales &7- elegir destino'
@@ -98,6 +100,8 @@ astral_tumba_guia:
   - skill{s=AST_NPC_mago} @self ~onLoad
   - state{s=saludo} @self ~onInteract
   - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
+  - addtag{tag=ad.tumba.end} @self ~onSpawn
+  - addtag{tag=ad.tumba.end} @self ~onLoad
 astral_npc_tumba:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Tumba del Rey de Arena'

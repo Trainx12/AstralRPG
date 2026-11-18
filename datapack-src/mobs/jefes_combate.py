@@ -46,7 +46,9 @@ def triggers(model):
         return []
     return [f'skill{{s=AST_JEFE_SLAM_{model}}} @self ~onTimer:30 ?playerwithin{{d=6}}',
             f'skill{{s=AST_JEFE_DISPARO_{model}}} @PlayersInRing{{min=7;max=32}} ~onTimer:40',
-            'skill{s=AST_JEFE_SALTO} @target ~onTimer:40']
+            'skill{s=AST_JEFE_SALTO} @target ~onTimer:40'] + ([
+                'command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5'
+            ] if model == 'astral_chaman' else [])
 
 
 def metaskills():

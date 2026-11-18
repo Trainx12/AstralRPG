@@ -242,6 +242,12 @@ class Model:
 
 def save(model, path):
     data, img = model.export()
+    # Importaciones tardias: tambien se ejecuta como script desde mobs/.
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from mobs.hitboxes import attach
+    attach(data)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f)
     return img

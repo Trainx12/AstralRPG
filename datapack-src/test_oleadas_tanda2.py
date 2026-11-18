@@ -41,6 +41,11 @@ class VM:
             if self.line(line): break
     def line(self,line):
         if not line or line.startswith('#'): return False
+        m=re.fullmatch(r'execute positioned [-\d.]+ [-\d.]+ [-\d.]+ if block .* run return run function astral:(\S+)',line)
+        if m:
+            # Esta VM comprueba cantidades/cola. El terreno y el fallback se
+            # ensayan aparte, con regiones y con Paper real.
+            self.function(m[1]); return True
         m=re.fullmatch(r'execute (if|unless) score (\S+) (\S+) matches (\S+) run (.+)',line)
         if m:
             yes=self.match(self.score(m[2],m[3]),m[4])

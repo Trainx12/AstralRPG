@@ -57,8 +57,12 @@ class CascosSilencio(unittest.TestCase):
         self.assertGreater(total,200)
         # No se edita ninguna skill; en cada mob publico solo cambia Options.Silent.
         for p in (ROOT/'build/mythicmobs/mobs').glob('*.yml'):
-            previous=subprocess.run(['git','show','HEAD:'+p.relative_to(ROOT).as_posix()],capture_output=True,check=True).stdout
-            old=yaml.safe_load(previous);new=yaml.safe_load(p.read_text('utf8'))
+            # Contrato historico de la tanda de silencio, independiente de los
+            # cambios posteriores de combate/controladores de otras entregas.
+            relative=p.relative_to(ROOT).as_posix()
+            previous=subprocess.run(['git','show','0f0d23a^:'+relative],capture_output=True,check=True).stdout
+            current=subprocess.run(['git','show','0f0d23a:'+relative],capture_output=True,check=True).stdout
+            old=yaml.safe_load(previous);new=yaml.safe_load(current)
             for mid in old:
                 if new[mid].get('Options',{}).get('Silent') is True:
                     old[mid].setdefault('Options',{})['Silent']=True

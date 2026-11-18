@@ -5,7 +5,7 @@ import yaml
 from mobs.tamanos import skills as size_skills
 
 ROOT=Path(__file__).resolve().parents[2]
-PLANT_POINTS=((1448.5,102,1564.5),(1478.5,102,1561.5),(1425.5,102,1563.5))
+PLANT_POINTS=((1447.5,102,1571.5),(1471.5,102,1550.5),(1425.5,102,1563.5))
 PLANT_COUNTS={2:2,3:3}
 STATUES=('coloso_musgoso','chaman','momia','yeti','golem_forja')
 

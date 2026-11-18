@@ -1,6 +1,7 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 BOSQUE_SALA1_INICIO:
   Skills:
+  - removetag{tag=bosque.ready} @self
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
   - message{m="&8[&7Bosque Sombrio&8] &fClaro de las raices &7- sala 1/2. &cAhi vienen!"} @PlayersInRadius{r=48}
@@ -35,6 +36,7 @@ BOSQUE_SALA1_LIMPIA:
   - removetag{tag=bosque.ola3} @self
 BOSQUE_IR_SALA2:
   Skills:
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Altar del Chaman',distance=0..] add bosque.ready"}
   - command{c="execute as <target.name> at @s run minecraft:tp @s 1603.7 100 1413.4 -177.9 0"}
   - sound{s=entity.enderman.teleport}
 BOSQUE_SALA1_RESET:
@@ -49,6 +51,7 @@ BOSQUE_SALA1_RESET:
   - removetag{tag=bosque.ola3} @self
 BOSQUE_SALA2_INICIO:
   Skills:
+  - removetag{tag=bosque.ready} @self
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
   - message{m="&8[&7Bosque Sombrio&8] &fAltar del Chaman &7- sala 2/2. &cAhi vienen!"} @PlayersInRadius{r=48}

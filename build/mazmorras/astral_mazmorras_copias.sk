@@ -147,6 +147,7 @@ function maz_entrar(p: player, key: text):
     if {_elegida} > 0:
         set {_grupo::*} to {_p}
     else:
+        set {_nueva} to true
         # 2) Primera copia vacia (y vacia hace un rato, para que se reinicien las salas).
         loop 6 times:
             set {_w} to world({_mundo::%loop-number%})
@@ -166,6 +167,24 @@ function maz_entrar(p: player, key: text):
             else if name of world of loop-value is "lobby" or name of world of {_p}:
                 add loop-value to {_grupo::*}
     set {_d} to {_dim::%{_elegida}%}
+    if {_nueva} is true:
+        delete {-maz.fin::%{_mundo::%{_elegida}%}%}
+        delete {-maz.aviso::%{_mundo::%{_elegida}%}%}
+        if {_key} is "mina":
+            execute console command "execute in minecraft:%{_d}% run function astral:tanda2/mina/fresh"
+        if {_key} is "bosque":
+            execute console command "execute in minecraft:%{_d}% run function astral:tanda2/bosque/fresh"
+        if {_key} is "tumba":
+            execute console command "execute in minecraft:%{_d}% run function astral:tanda2/tumba/fresh"
+        if {_key} is "cumbre":
+            execute console command "execute in minecraft:%{_d}% run function astral:tanda2/cumbre/fresh"
+        if {_key} is "forja":
+            execute console command "execute in minecraft:%{_d}% run function astral:tanda2/forja/fresh"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:item,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+        execute console command "execute in minecraft:%{_d}% run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
     delete {-maz.vacia::%{_mundo::%{_elegida}%}%}
     loop {_grupo::*}:
         send "&8[&7%{_nombre}%&8] &7Entrando a la copia &f%{_elegida}%&7... &8(Para salir: /spawn)" to loop-value

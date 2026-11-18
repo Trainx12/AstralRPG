@@ -91,6 +91,8 @@ def adapted(data, mid):
         data['outliner'].append(tag)
     from mobs.muerte import adapted as death_animation
     death_animation(data, mid)
+    from mobs.hitboxes import attach
+    attach(data)
     # El resto conserva las animaciones originales, incluida idle del Grub.
     return data
 

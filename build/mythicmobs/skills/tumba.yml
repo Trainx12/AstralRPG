@@ -1,6 +1,7 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 TUMBA_SALA1_INICIO:
   Skills:
+  - removetag{tag=tumba.ready} @self
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
   - message{m="&8[&7Tumba del Rey de Arena&8] &fPatio de los olvidados &7- sala 1/3. &cAhi vienen!"} @PlayersInRadius{r=36}
@@ -26,6 +27,7 @@ TUMBA_SALA1_LIMPIA:
   - removetag{tag=tumba.ola2} @self
 TUMBA_IR_SALA2:
   Skills:
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Pasaje de los sellos',distance=0..] add tumba.ready"}
   - command{c="execute as <target.name> at @s run minecraft:tp @s -203.163 88 203.533 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA1_RESET:
@@ -39,6 +41,7 @@ TUMBA_SALA1_RESET:
   - removetag{tag=tumba.ola2} @self
 TUMBA_SALA2_INICIO:
   Skills:
+  - removetag{tag=tumba.ready} @self
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
   - message{m="&8[&7Tumba del Rey de Arena&8] &fPasaje de los sellos &7- sala 2/3. &cAhi vienen!"} @PlayersInRadius{r=44}
@@ -71,6 +74,7 @@ TUMBA_SALA2_LIMPIA:
   - removetag{tag=tumba.ola3} @self
 TUMBA_IR_SALA3:
   Skills:
+  - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,name='Control Trono del Rey de Arena',distance=0..] add tumba.ready"}
   - command{c="execute as <target.name> at @s run minecraft:tp @s 0.368 73 -44.104 0 0"}
   - sound{s=entity.enderman.teleport}
 TUMBA_SALA2_RESET:
@@ -85,6 +89,7 @@ TUMBA_SALA2_RESET:
   - removetag{tag=tumba.ola3} @self
 TUMBA_SALA3_INICIO:
   Skills:
+  - removetag{tag=tumba.ready} @self
   - removetag{tag=tumba.jefe.derrotado} @self
   - addtag{tag=tumba.espera} @self
   - addtag{tag=tumba.on} @self

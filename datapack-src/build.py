@@ -1137,10 +1137,16 @@ cast += [
     "playsound minecraft:entity.evoker.cast_spell player @a[distance=..16] ~ ~ ~ 0.8 1.6",
     # Medio/Alto: el plugin AstralEfectos dibuja el rayo laser o la bola de fuego (marcador fx.rayo frente a los ojos).
     f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/fx_rayo with storage {NS}:tmp spell",
-    f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/ray with storage {NS}:tmp spell",
+    f"execute anchored eyes positioned ^ ^ ^0.8 run function {NS}:spell/trace with storage {NS}:tmp spell",
     "tag @s remove astral.caster",
 ]
 fn("spell/cast", cast)
+fn("spell/trace", [
+    'summon minecraft:marker ~ ~ ~ {Tags:["astral.spell.trace"]}',
+    'kill @e[type=minecraft:marker,tag=astral.spell.trace,distance=0..]',
+    f"execute as @e[tag=astral.spell.model,distance=0..,limit=1] run return run function {NS}:spell/hit with storage {NS}:tmp spell",
+    f"function {NS}:spell/ray with storage {NS}:tmp spell",
+])
 from minijuegos import arena_worlds as _arena_worlds
 ARENA_WORLDS = _arena_worlds()
 # Efectos (16/11/2026): Bajo ve lo de siempre (witch + end_rod). En Medio y Alto el plugin AstralEfectos dibuja el
@@ -2681,6 +2687,9 @@ from correcciones_goblin import datapack
 datapack(files)
 from spell_perfora import generate as generate_spell_perfora
 generate_spell_perfora(files)
+
+from guia_atlas import generate as generate_guia_atlas
+generate_guia_atlas(files, ITEMS, RID, item_stack, ing_pred, ing_name)
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)

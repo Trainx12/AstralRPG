@@ -29,9 +29,9 @@ class Tanda2c(unittest.TestCase):
                     validate(line)
 
     def test_magma_never_splits_and_keeps_wave_contract(self):
-        paths = list((ROOT / 'build/AstralRPG-Items/data/astral/function/tanda2/forja').rglob('spawn*.mcfunction'))
+        paths = list((ROOT / 'build/AstralRPG-Items/data/astral/function/tanda2/forja').rglob('safe/magma_cube_wave.mcfunction'))
         magma = [p.read_text() for p in paths if 'summon minecraft:magma_cube' in p.read_text()]
-        self.assertEqual(len(magma), 4)
+        self.assertEqual(len(magma), 2)  # payload compartido por los puntos alternativos de cada sala
         for text in magma:
             for value in ('Size:0', 'minecraft:scale",base:4', 'minecraft:max_health",base:16',
                           'ad.vanilla', '.wave', 'astral:mob/roll', 'fire_resistance'):

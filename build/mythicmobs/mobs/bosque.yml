@@ -15,7 +15,7 @@ astral_bosque_control_sala1:
   Skills:
   - foreach{s=AST_GOLEM_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
   - foreach{s=AST_ESQ_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
-  - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on}
+  - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
   - skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
   - skill{s=BOSQUE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.ola3} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
   - skill{s=BOSQUE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola3} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
@@ -35,7 +35,7 @@ astral_bosque_control_sala2:
     Collidable: false
   Skills:
   - foreach{s=AST_ESQ_CONVIERTE_bosque_sala2;sync=true} @EntitiesInRadius{r=72} ~onTimer:5 ?hastag{tag=bosque.on}
-  - skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on}
+  - skill{s=BOSQUE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=40} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
   - skill{s=BOSQUE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala2.busy} ?hastag{tag=bosque.jefe.derrotado}
   - skill{s=BOSQUE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=48}
 astral_bosque_cofre:
@@ -58,6 +58,8 @@ astral_bosque_cofre:
   - model{m=astral_cofre_rpg} @self ~onLoad
   - state{s=open} @self ~onInteract
   - command{c="dm open cofre_bosque <trigger.name>"} @self ~onInteract
+  - addtag{tag=ad.bosque.end} @self ~onSpawn
+  - addtag{tag=ad.bosque.end} @self ~onLoad
 astral_bosque_guia:
   Type: VILLAGER
   Display: '&b&lExpediciones Astrales &7- elegir destino'
@@ -80,6 +82,8 @@ astral_bosque_guia:
   - skill{s=AST_NPC_mago} @self ~onLoad
   - state{s=saludo} @self ~onInteract
   - command{c="dm open expediciones <trigger.name>"} @self ~onInteract
+  - addtag{tag=ad.bosque.end} @self ~onSpawn
+  - addtag{tag=ad.bosque.end} @self ~onLoad
 astral_npc_bosque:
   Type: VILLAGER
   Display: '&8&lMazmorra: &7Bosque Sombrio'
@@ -154,10 +158,10 @@ astral_bosque_chaman:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
-  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
