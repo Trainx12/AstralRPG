@@ -1,6 +1,9 @@
 # Reforja de gemas (tanda 7d) — 19/11/2026
 
-Hecho por Claude directo (sin Codex). **Preparado, SIN commit, SIN push y SIN desplegar** (falta el OK del dueno).
+Hecho por Claude directo (sin Codex). **DESPLEGADO 19/11/2026 ~13:08 (hora del server)**: commit 76eefb8, pack FINAL
+de8fd0d4 en R2 + `resource-pack-sha1`, datapack c886c42b (server de economia-e1 + solo gemas), AstralGemas 1.1.0, 4 Skript.
+Consola: `Gemas cargadas: 20 con AuraSkills, 22 con efectos propios`, `Reforja de gemas cargada`, Skript sin errores,
+196 mobs, Done 228 s. Respaldos en `.local/deploy-gemas/respaldo/`. Falta probar con jugador.
 Fuente unica: `datapack-src/gemas.py` (costos en `datapack-src/economia.py`: `GEMA_PONER_TIER`, `GEMA_CALIDAD_MULT`,
 `GEMA_EXTRAER_MULT`). Entrega armada con `python datapack-src/deploy_gemas.py --base-pack <FINAL economia-e1>`.
 
@@ -153,7 +156,7 @@ Apagar el server antes (encantamientos nuevos del datapack y plugin nuevo).
 
 | # | Archivo local | Destino en el server | SHA-1 (12) |
 |---|---|---|---|
-| 1 | `.local/deploy-gemas/AstralRPG-Items.zip` (= datapack del server de economia-e1 + SOLO lo de gemas; lista en `datapack-cambios.txt`) | `/world/datapacks/AstralRPG-Items.zip` | bad2ec86f992 |
+| 1 | `.local/deploy-gemas/AstralRPG-Items.zip` (= datapack del server de economia-e1 + SOLO lo de gemas; lista en `datapack-cambios.txt`) | `/world/datapacks/AstralRPG-Items.zip` | c886c42b117c |
 | 2 | `build/gemas/AstralGemas.jar` | `/plugins/AstralGemas.jar` | 6dfb820e7440 |
 | 3 | `build/gemas/astral_gemas.sk` | `/plugins/Skript/scripts/astral_gemas.sk` | 914192f011b8 |
 | 4 | `build/services/astral_servicios.sk` | `/plugins/Skript/scripts/astral_servicios.sk` | c3609d40ecfa |
