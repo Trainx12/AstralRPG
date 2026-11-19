@@ -1,0 +1,10 @@
+# Cavernas de Cristal (cavernas.py). Con AstralCavernas instalado y el server encendido:
+mv create cavernas_cristal normal -g AstralCavernas
+execute in minecraft:cavernas_cristal run gamerule minecraft:advance_time false
+execute in minecraft:cavernas_cristal run gamerule minecraft:advance_weather false
+execute in minecraft:cavernas_cristal run gamerule minecraft:spawn_monsters false
+execute in minecraft:cavernas_cristal run gamerule minecraft:spawn_mobs false
+execute in minecraft:cavernas_cristal run worldborder center 0 0
+execute in minecraft:cavernas_cristal run worldborder set 1000
+rg flag -w cavernas_cristal __global__ pvp deny
+# (opcional) despues de recorrerlo: cavernas plantilla

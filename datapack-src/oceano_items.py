@@ -168,6 +168,11 @@ def own_textures():
         d = ImageDraw.Draw(im)
         for x, y in [(4, 4), (11, 5), (7, 11), (12, 12)]:
             d.ellipse((x - 2, y - 2, x + 1, y + 1), fill=colors[1], outline=colors[0]); d.point((x - 1, y - 1), fill=colors[2])
+        # Arte propio del dueno (19/11, arte_19_11.py): reemplaza el provisorio si esta.
+        from pathlib import Path
+        arte = Path(__file__).resolve().parent / 'pack-source/arte-19-11/mareas'
+        if (arte / f'{iid}_ore.png').exists():
+            im = Image.open(arte / f'{iid}_ore.png').convert('RGBA')
         png('block/' + iid + '_ore', im)
         put('astral/models/block/' + iid + '_ore', {'parent': 'minecraft:block/cube_all', 'textures': {'all': 'astral:block/' + iid + '_ore'}})
         it = Image.new('RGBA', (16, 16)); d = ImageDraw.Draw(it)
@@ -175,6 +180,8 @@ def own_textures():
             d.ellipse((3, 3, 12, 12), fill=colors[1], outline=colors[0]); d.ellipse((5, 5, 8, 8), fill=colors[2])
         else:
             d.line((8, 14, 8, 6), fill=colors[0], width=2); d.line((8, 9, 4, 4), fill=colors[1], width=2); d.line((8, 8, 12, 3), fill=colors[1], width=2)
+        if (arte / f'{iid}.png').exists():
+            it = Image.open(arte / f'{iid}.png').convert('RGBA')
         png('item/' + iid, it)
         put('astral/models/item/' + iid, {'parent': 'minecraft:item/generated', 'textures': {'layer0': 'astral:item/' + iid}})
         put('astral/items/' + iid, {'model': {'type': 'minecraft:model', 'model': 'astral:item/' + iid}})

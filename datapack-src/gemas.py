@@ -20,7 +20,7 @@ Ranuras por tier del equipo: T1-T3 1, T4-T7 2, T8-T10 3. Costos: economia.py (ge
 
 Salidas:
   datapack (lo llama build.py: register)            encantamientos, items de gema, funciones gemas/*
-  build/gemas/astral_gemas.sk                        ventana "Reforja de gemas", /astralgema, drop temporal del cofre
+  build/gemas/astral_gemas.sk                        ventana "Reforja de gemas", /astralgema, gemas del cofre por nota
   build/gemas/AstralGemas.jar (python gemas.py --jdk <bin>)   mana y critico via AuraSkills
   pack: pack_assets()                                 texturas PNG de las gemas (reemplazables) + modelos
 
@@ -106,8 +106,10 @@ TEXTO = {
 AURASKILLS = {'mana': ('max_mana', 'ADD_PERCENT'), 'mana_regen': ('mana_regen', 'ADD_PERCENT'),
               'crit': ('crit_chance', 'ADD'), 'crit_dano': ('crit_damage', 'ADD')}
 
-# Drop raro TEMPORAL (hasta las Cavernas de Cristal, tanda 7e): cofre de mazmorra con nota A o S.
-DROP_COFRE = {'A': 0.03, 'S': 0.08}
+# Gemas en el cofre de mazmorra segun la nota (pedido del dueno 19/11: queda fijo, ademas de las Cavernas).
+# Chance de una gema por cofre; con A o S la calidad usa la tabla del tier siguiente (DROP_BONUS_TIER).
+DROP_COFRE = {'F': 0, 'D': 0.05, 'C': 0.10, 'B': 0.18, 'A': 0.30, 'S': 0.45}
+DROP_BONUS_TIER = {'A': 1, 'S': 1}
 # Calidad segun el tier de la mazmorra: pesos de Cruda, Pulida, Impecable (Perfecta/Estelar: solo Vacio Estelar).
 DROP_CALIDAD = {1: (100, 0, 0), 2: (100, 0, 0), 3: (80, 20, 0), 4: (60, 35, 5), 5: (40, 45, 15)}
 
@@ -319,17 +321,17 @@ SUERTE_HOOK = f'$function {NS}:gemas/suerte {{id:"$(id)",name:"$(name)"}}'
 SLOT_ITEM, SLOT_GEMA, SLOT_COSTO = 19, 21, 26
 RANURAS_SLOTS = (23, 24, 25)
 BAR = tuple(range(28, 35))
-BTN_ENGARZAR, BTN_EXTRAER, BTN_HERRERO = (39, 40, 41), (48, 49, 50), (51, 52)
+BTN_ENGARZAR, BTN_EXTRAER, BTN_HERRERO = tuple(range(38, 43)), tuple(range(46, 50)), (50, 51, 52)
 SLOT_DEVOLVER, SLOT_CERRAR, SLOT_AYUDA = 45, 53, 8
 BARRAS = {'gem_empty': ('COLOCA EQUIPO Y GEMA', '#ddc699'), 'gem_invalid': ('NO ADMITE GEMAS', '#ec998b'),
           'gem_ok': ('GEMA ENGARZADA', '#9ed7b0'), 'gem_out': ('GEMA EXTRAIDA', '#9ed7b0'),
           'gem_confirm': ('CONFIRMA: SE DESTRUYE', '#ec998b'),
           **{f'gem_slots_{n}_{r}': (f'RANURAS {n}/{r}', '#ddc699') for r in (1, 2, 3) for n in range(r + 1)}}
-# Botones: (texto, ancho en pixeles del cofre, placa de Gemini pack-source/ref/gemini/gem_<placa>.png)
-BOTONES = {'gems': ('GEMAS', 36, 'violeta'), 'forge_back': ('FORJA', 36, 'marron'),
-           'gem_set_ready': ('ENGARZAR', 54, 'verde'), 'gem_set_blocked': ('ENGARZAR', 54, 'verde_off'),
-           'gem_set_confirm': ('CONFIRMA', 54, 'naranja'),
-           'gem_out_ready': ('EXTRAER', 54, 'azul'), 'gem_out_off': ('EXTRAER', 54, 'gris')}
+# Botones (diseno del dueno 19/11, ventanas_19_11.boton_forja): (pieza, casillas, estado)
+BOTONES = {'gems': ('gemas', 3, 'listo'), 'forge_back': ('forja', 3, 'listo'),
+           'gem_set_ready': ('engarzar', 5, 'listo'), 'gem_set_blocked': ('engarzar', 5, 'apagado'),
+           'gem_set_confirm': ('engarzar', 5, 'confirma'),
+           'gem_out_ready': ('extraer', 4, 'listo'), 'gem_out_off': ('extraer', 4, 'apagado')}
 
 
 def _sk(texto):
@@ -344,7 +346,7 @@ def _tags(cond_tag, player='{_p}'):
 def skript():
     from services_ui import title
     L = ['# Generado por datapack-src/gemas.py (plan E4 / 7d, 19/11/2026). No editar a mano.',
-         '# Ventana "Reforja de gemas" (boton GEMAS del Herrero), /astralgema (OP) y drop temporal del cofre A/S.',
+         '# Ventana "Reforja de gemas" (boton GEMAS del Herrero), /astralgema (OP) y gemas del cofre segun la nota.',
          '# El datapack hace los cambios sobre el item en la mano (gemas/*); Skript lo presta un instante y lo vuelve.',
          '', 'options:', f'    titulo: {title("reforja")}', '',
          'on load:', '    delete {-agem.gui::*}', '    delete {-agem.sel::*}', '    delete {-agem.conf::*}',
@@ -363,6 +365,7 @@ def skript():
         L.append(f'    set {{-agem.cal::{q}}} to "{CALIDAD_NOMBRE[q]}"')
     for n, p in DROP_COFRE.items():
         L.append(f'    set {{-agem.drop::{E.NOTAS.index(n) + 1}}} to {p}')
+        L.append(f'    set {{-agem.dropbonus::{E.NOTAS.index(n) + 1}}} to {DROP_BONUS_TIER.get(n, 0)}')
     for t, pesos in DROP_CALIDAD.items():
         L += [f'    set {{-agem.dropq::{t}::{q}}} to {w}' for q, w in enumerate(pesos, 1)]
     L += ['    send "[AstralRPG] Reforja de gemas cargada." to console', '']
@@ -446,9 +449,9 @@ function agem_bar(p: player, model: text, label: text):
         set {_slot} to loop-number + 27
         set slot {_slot} of {_inv} to agem_icon("astral:servicios/bar_%{_model}%_%loop-number - 1%", {_label})
 
-function agem_boton(p: player, start: number, model: text, label: text, lines: texts):
+function agem_boton(p: player, start: number, n: number, model: text, label: text, lines: texts):
     set {_inv} to {-agem.gui::%uuid of {_p}%}
-    loop 3 times:
+    loop {_n} times:
         set {_i} to agem_icon("astral:servicios/%{_model}%_%loop-number - 1%", {_label})
         set lore of {_i} to {_lines::*}
         set slot ({_start} + loop-number - 1) of {_inv} to {_i}
@@ -528,7 +531,7 @@ function agem_refresh(p: player):
             if {-agem.conf::%{_id}%} is set:
                 set {_m} to "gem_set_confirm"
                 set {_l} to "&c&lCONFIRMAR &7(la gema vieja se destruye)"
-    agem_boton({_p}, 39, {_m}, {_l}, {_lore::*})
+    agem_boton({_p}, 38, 5, {_m}, {_l}, {_lore::*})
     # Boton EXTRAER
     set {_m} to "gem_out_off"
     set {_l} to "&7EXTRAER"
@@ -540,7 +543,7 @@ function agem_refresh(p: player):
         if {-agem.has::%{_id}%::%{_st}%} is set:
             set {_m} to "gem_out_ready"
             set {_l} to "&b&lEXTRAER %{-agem.nombre::%{_st}%::%{-agem.has::%{_id}%::%{_st}%}%}% &7(%{-agem.extraer::%{-agem.t::%{_id}%}%::%{-agem.has::%{_id}%::%{_st}%}%}%$)"
-    agem_boton({_p}, 48, {_m}, {_l}, {_lore::*})
+    agem_boton({_p}, 46, 4, {_m}, {_l}, {_lore::*})
 
 function agem_open(p: player):
     close {_p}'s inventory
@@ -550,12 +553,12 @@ function agem_open(p: player):
     set {-agem.gui::%{_id}%} to {_inv}
     set slot 8 of {_inv} to book named "&eComo usar"
     set lore of slot 8 of {_inv} to "&71. Shift+clic en tu equipo y en una gema.", "&72. ENGARZAR la pone en una ranura (cobra plata).", "&73. Clic en una ranura para elegirla: EXTRAER o reemplazar.", "&7Reemplazar destruye la gema vieja; extraer cuesta mas." and "&7Cerrar o desconectarte devuelve todo."
-    set slot 45 of {_inv} to agem_icon("astral:menu/icon_back", "&eDevolver objetos")
-    set slot 53 of {_inv} to agem_icon("astral:menu/icon_close", "&cCerrar y devolver")
-    loop 2 times:
+    set slot 45 of {_inv} to agem_icon("astral:servicios/forja_atras_0", "&eDevolver objetos")
+    set slot 53 of {_inv} to agem_icon("astral:servicios/forja_cerrar_0", "&cCerrar y devolver")
+    loop 3 times:
         set {_b} to agem_icon("astral:servicios/forge_back_%loop-number - 1%", "&6Volver al Herrero")
         set lore of {_b} to "&7Mejorar y Reparar. Tus objetos vuelven a tu inventario."
-        set slot (50 + loop-number) of {_inv} to {_b}
+        set slot (49 + loop-number) of {_inv} to {_b}
     agem_refresh({_p})
     open {_inv} to {_p}
 
@@ -730,7 +733,7 @@ on inventory click:
         delete {-agem.aviso::%{_id}%}
         agem_refresh(player)
         stop
-    if {_slot} is between 51 and 52:
+    if {_slot} is between 50 and 52:
         close player's inventory
         wait 1 tick
         execute console command "astralherrero %name of player%"
@@ -791,12 +794,12 @@ on inventory click:
             delete {-agem.aviso::%{_id}%}
             agem_refresh(player)
         stop
-    if {_slot} is between 39 and 41:
+    if {_slot} is between 38 and 42:
         delete {-agem.aviso::%{_id}%}
         agem_engarzar(player)
         agem_refresh(player)
         stop
-    if {_slot} is between 48 and 50:
+    if {_slot} is between 46 and 49:
         delete {-agem.aviso::%{_id}%}
         agem_extraer(player)
         agem_refresh(player)
@@ -827,7 +830,7 @@ on unload:
             agem_return(loop-player)
             close loop-player's inventory
 
-# ------------------------------------------------------------------ OP y drop temporal
+# ------------------------------------------------------------------ OP y gemas del cofre
 # /astralgema dar <jugador> <tipo|azar> <calidad 1-5> [cantidad]   (OP o consola)
 # /astralgema cofre <jugador> <tier> <nota 1-6>                    (consola: cofre de mazmorra, astral_puntaje.sk)
 command /astralgema [<text>] [<text>] [<text>] [<text>] [<text>]:
@@ -873,6 +876,7 @@ command /astralgema [<text>] [<text>] [<text>] [<text>] [<text>]:
                 stop
             if random number between 0 and 1 >= {-agem.drop::%{_nota}%}:
                 stop
+            add ({-agem.dropbonus::%{_nota}%} ? 0) to {_tier}
             if {_tier} < 1:
                 set {_tier} to 1
             if {_tier} > 5:
@@ -1043,6 +1047,7 @@ def previews():
     from PIL import Image
     import services_ui as S
     from escape_menu import text
+    from ventanas_19_11 import boton_forja
     out = ROOT / 'build' / 'previews'
     out.mkdir(parents=True, exist_ok=True)
     asegurar_texturas()
@@ -1073,9 +1078,14 @@ def previews():
         im = Image.new('RGBA', S.SIZE, '#252a28')
         im.alpha_composite(S.panel('reforja'))
         im.alpha_composite(S.banner(*BARRAS[barra]), (S.OFFSET[0] + 25, S.OFFSET[1] + 71))
-        for name, start in ((b1, 39), (b2, 48)):
-            im.alpha_composite(S.placa(*BOTONES[name]), (pos(start)[0] - 1, pos(start)[1] - 1))
-        im.alpha_composite(S.placa(*BOTONES['forge_back']), (pos(51)[0] - 1, pos(51)[1] - 1))
+        for name, start in ((b1, 38), (b2, 46)):
+            bf = boton_forja(*BOTONES[name])
+            im.alpha_composite(bf.resize((bf.width // 2, 18), Image.Resampling.LANCZOS), (pos(start)[0] - 1, pos(start)[1] - 1))
+        bf = boton_forja(*BOTONES['forge_back'])
+        im.alpha_composite(bf.resize((bf.width // 2, 18), Image.Resampling.LANCZOS), (pos(50)[0] - 1, pos(50)[1] - 1))
+        for sl, pieza in ((45, 'atras'), (53, 'cerrar')):
+            bf = boton_forja(pieza, 1)
+            im.alpha_composite(bf.resize((18, 18), Image.Resampling.LANCZOS), (pos(sl)[0] - 1, pos(sl)[1] - 1))
         if r:
             icon(im, 19, espada())
         if en_gema:
@@ -1091,9 +1101,9 @@ def previews():
     sheet.resize((sheet.width * 3, sheet.height * 3), Image.Resampling.NEAREST).save(out / 'reforja_gemas.png')
     her = Image.new('RGBA', S.SIZE, '#252a28')
     her.alpha_composite(S.panel('herrero'))
-    her.alpha_composite(S.button('MEJORAR'), (S.OFFSET[0] + 61, S.OFFSET[1] + 89))
-    her.alpha_composite(S.button('REPARAR', 54, '#366b48'), (S.OFFSET[0] + 61, S.OFFSET[1] + 107))
-    her.alpha_composite(S.placa(*BOTONES['gems']), (pos(51)[0] - 1, pos(51)[1] - 1))
+    for nombre, sl in ((('mejorar', 5, 'listo'), 38), (('reparar', 4, 'listo'), 46), (BOTONES['gems'], 50), (('atras', 1), 45), (('cerrar', 1), 53)):
+        bf = boton_forja(*nombre)
+        her.alpha_composite(bf.resize((bf.width // 2, 18), Image.Resampling.LANCZOS), (pos(sl)[0] - 1, pos(sl)[1] - 1))
     her.resize((her.width * 3, her.height * 3), Image.Resampling.NEAREST).save(out / 'herrero_gemas.png')
     celda = 72
     hoja = Image.new('RGBA', (5 * celda + 90, 7 * celda + 24), '#1d1e20')

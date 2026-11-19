@@ -1,27 +1,12 @@
-menu_title: '&8Configuraciones'
+menu_title: '&f'
 open_command: configuraciones
-size: 45
+size: 54
 register_command: true
 update_interval: 1
 items:
-  'titulo':
-    material: COMPARATOR
-    slot: 4
-    amount: 1
-    display_name: '&7&lConfiguraciones'
-    lore:
-    - '&7Elegi cuantos efectos ves.'
-    - '&7Los interruptores solo cambian lo que ves vos.'
-    - '&7Solo apagan efectos nuevos.'
-    - '&7Las particulas de siempre siguen visibles.'
-    - '&7El dano y las habilidades son iguales.'
-    - '&7Avisos de jefes y particulas MythicMobs siguen.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:menu/icon_titulos'
-  'efectos_bajo_activo':
-    material: GRAY_DYE
-    slot: 11
+  'efectos_bajo_activo_0':
+    material: PAPER
+    slot: 0
     amount: 1
     display_name: '&f&lEfectos: Bajo &a[ACTIVO]'
     lore:
@@ -30,13 +15,11 @@ items:
     - '&7por golpe. Ideal para PCs flojas.'
     - ''
     - '&a▶ Elegido'
-    enchantments:
-    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
     priority: 1
     update: true
+    item_model: astral:ventanas1911/nivel_bajo_activo_0
     view_requirement:
       requirements:
         activo:
@@ -47,10 +30,9 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos bajo'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_bajo_activo'
-  'efectos_bajo':
-    material: GRAY_DYE
-    slot: 11
+  'efectos_bajo_0':
+    material: PAPER
+    slot: 0
     amount: 1
     display_name: '&f&lEfectos: Bajo'
     lore:
@@ -63,14 +45,106 @@ items:
     - HIDE_ATTRIBUTES
     priority: 2
     update: true
+    item_model: astral:ventanas1911/nivel_bajo_0
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos bajo'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_bajo'
-  'efectos_medio_activo':
-    material: LIME_DYE
-    slot: 13
+  'efectos_bajo_activo_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&f&lEfectos: Bajo &a[ACTIVO]'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&a▶ Elegido'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/nivel_bajo_activo_1
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[refresh]'
+  'efectos_bajo_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&f&lEfectos: Bajo'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_bajo_1
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[refresh]'
+  'efectos_bajo_activo_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&f&lEfectos: Bajo &a[ACTIVO]'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&a▶ Elegido'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/nivel_bajo_activo_2
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '0'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[refresh]'
+  'efectos_bajo_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&f&lEfectos: Bajo'
+    lore:
+    - '&7El juego como siempre.'
+    - '&7Sin efectos nuevos y solo 3 particulas'
+    - '&7por golpe. Ideal para PCs flojas.'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_bajo_2
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos bajo'
+    - '[refresh]'
+  'efectos_medio_activo_0':
+    material: PAPER
+    slot: 3
     amount: 1
     display_name: '&a&lEfectos: Medio &a[ACTIVO]'
     lore:
@@ -80,13 +154,11 @@ items:
     - '&8(con el que arrancan todos)'
     - ''
     - '&a▶ Elegido'
-    enchantments:
-    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
     priority: 1
     update: true
+    item_model: astral:ventanas1911/nivel_medio_activo_0
     view_requirement:
       requirements:
         activo:
@@ -97,10 +169,9 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos medio'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_medio_activo'
-  'efectos_medio':
-    material: LIME_DYE
-    slot: 13
+  'efectos_medio_0':
+    material: PAPER
+    slot: 3
     amount: 1
     display_name: '&a&lEfectos: Medio'
     lore:
@@ -114,14 +185,110 @@ items:
     - HIDE_ATTRIBUTES
     priority: 2
     update: true
+    item_model: astral:ventanas1911/nivel_medio_0
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos medio'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_medio'
-  'efectos_alto_activo':
-    material: MAGENTA_DYE
-    slot: 15
+  'efectos_medio_activo_1':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&a&lEfectos: Medio &a[ACTIVO]'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&a▶ Elegido'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/nivel_medio_activo_1
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[refresh]'
+  'efectos_medio_1':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&a&lEfectos: Medio'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_medio_1
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[refresh]'
+  'efectos_medio_activo_2':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&a&lEfectos: Medio &a[ACTIVO]'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&a▶ Elegido'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/nivel_medio_activo_2
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '1'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[refresh]'
+  'efectos_medio_2':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&a&lEfectos: Medio'
+    lore:
+    - '&7Lo de siempre, mas:'
+    - '&7- disparos de bastones de color'
+    - '&7- anillos en los golpes de los jefes'
+    - '&8(con el que arrancan todos)'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_medio_2
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos medio'
+    - '[refresh]'
+  'efectos_alto_activo_0':
+    material: PAPER
+    slot: 6
     amount: 1
     display_name: '&d&lEfectos: Alto &a[ACTIVO]'
     lore:
@@ -132,13 +299,11 @@ items:
     - '&7- rastro de mascotas evolucionadas'
     - ''
     - '&a▶ Elegido'
-    enchantments:
-    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
     priority: 1
     update: true
+    item_model: astral:ventanas1911/nivel_alto_activo_0
     view_requirement:
       requirements:
         activo:
@@ -149,10 +314,9 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos alto'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_alto_activo'
-  'efectos_alto':
-    material: MAGENTA_DYE
-    slot: 15
+  'efectos_alto_0':
+    material: PAPER
+    slot: 6
     amount: 1
     display_name: '&d&lEfectos: Alto'
     lore:
@@ -167,25 +331,129 @@ items:
     - HIDE_ATTRIBUTES
     priority: 2
     update: true
+    item_model: astral:ventanas1911/nivel_alto_0
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] efectos alto'
     - '[refresh]'
-    item_model: 'astral:boton_efectos_alto'
-  'interruptor_armaduras_false':
-    material: GRAY_DYE
-    slot: 29
+  'efectos_alto_activo_1':
+    material: PAPER
+    slot: 7
     amount: 1
-    display_name: '&c&lArmaduras: FALSE'
+    display_name: '&d&lEfectos: Alto &a[ACTIVO]'
     lore:
-    - '&7Estado: &cDesactivado'
-    - '&7Aura y destellos del set completo.'
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
     - ''
-    - '&eClic para activar.'
+    - '&a▶ Elegido'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 1
     update: true
+    item_model: astral:ventanas1911/nivel_alto_activo_1
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[refresh]'
+  'efectos_alto_1':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&d&lEfectos: Alto'
+    lore:
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_alto_1
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[refresh]'
+  'efectos_alto_activo_2':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&d&lEfectos: Alto &a[ACTIVO]'
+    lore:
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
+    - ''
+    - '&a▶ Elegido'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/nivel_alto_activo_2
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx}%'
+          output: '2'
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[refresh]'
+  'efectos_alto_2':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&d&lEfectos: Alto'
+    lore:
+    - '&7Todo lo de Medio, mas:'
+    - '&7- explosiones de los jefes'
+    - '&7- rastros de armas al caminar'
+    - '&7- auras de armaduras con el set'
+    - '&7- rastro de mascotas evolucionadas'
+    - ''
+    - '&eClic para elegirlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/nivel_alto_2
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] efectos alto'
+    - '[refresh]'
+  'interruptor_armaduras_false_0':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/efecto_armaduras
     click_commands:
     - '[player] efectos armaduras on'
     - '[refresh]'
@@ -195,37 +463,429 @@ items:
           type: '=='
           input: '%objective_score_{astral.fx.armadura}%'
           output: '0'
-  'interruptor_armaduras_true':
-    material: LIME_DYE
-    slot: 29
+  'interruptor_armaduras_false_1':
+    material: PAPER
+    slot: 10
     amount: 1
-    display_name: '&a&lArmaduras: TRUE'
+    display_name: '&c&lArmaduras: DESACTIVADO'
     lore:
-    - '&7Estado: &aActivado'
     - '&7Aura y destellos del set completo.'
     - ''
-    - '&eClic para desactivar.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    priority: 2
-    update: true
-    click_commands:
-    - '[player] efectos armaduras off'
-    - '[refresh]'
-  'interruptor_armas_false':
-    material: GRAY_DYE
-    slot: 30
-    amount: 1
-    display_name: '&c&lArmas: FALSE'
-    lore:
-    - '&7Estado: &cDesactivado'
-    - '&7Rastros al caminar y correr.'
-    - ''
     - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 1
     update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_3':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_4':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_5':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_6':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_0
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_7':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_1
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_false_8':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&c&lArmaduras: DESACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_2
+    click_commands:
+    - '[player] efectos armaduras on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armadura}%'
+          output: '0'
+  'interruptor_armaduras_true_0':
+    material: PAPER
+    slot: 9
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/efecto_armaduras
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_3':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_4':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_5':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_6':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_0
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_7':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_1
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armaduras_true_8':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&a&lArmaduras: ACTIVADO'
+    lore:
+    - '&7Aura y destellos del set completo.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_2
+    click_commands:
+    - '[player] efectos armaduras off'
+    - '[refresh]'
+  'interruptor_armas_false_0':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/efecto_armas
     click_commands:
     - '[player] efectos armas on'
     - '[refresh]'
@@ -235,37 +895,429 @@ items:
           type: '=='
           input: '%objective_score_{astral.fx.armas}%'
           output: '0'
-  'interruptor_armas_true':
-    material: LIME_DYE
-    slot: 30
+  'interruptor_armas_false_1':
+    material: PAPER
+    slot: 19
     amount: 1
-    display_name: '&a&lArmas: TRUE'
+    display_name: '&c&lArmas: DESACTIVADO'
     lore:
-    - '&7Estado: &aActivado'
     - '&7Rastros al caminar y correr.'
     - ''
-    - '&eClic para desactivar.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    priority: 2
-    update: true
-    click_commands:
-    - '[player] efectos armas off'
-    - '[refresh]'
-  'interruptor_bastones_false':
-    material: GRAY_DYE
-    slot: 31
-    amount: 1
-    display_name: '&c&lBastones: FALSE'
-    lore:
-    - '&7Estado: &cDesactivado'
-    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
-    - ''
     - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 1
     update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_2':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_3':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_4':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_5':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_6':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_0
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_7':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_1
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_false_8':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&c&lArmas: DESACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_2
+    click_commands:
+    - '[player] efectos armas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.armas}%'
+          output: '0'
+  'interruptor_armas_true_0':
+    material: PAPER
+    slot: 18
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/efecto_armas
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_1':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_2':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_3':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_4':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_5':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_6':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_0
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_7':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_1
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_armas_true_8':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&a&lArmas: ACTIVADO'
+    lore:
+    - '&7Rastros al caminar y correr.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_2
+    click_commands:
+    - '[player] efectos armas off'
+    - '[refresh]'
+  'interruptor_bastones_false_0':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/efecto_bastones
     click_commands:
     - '[player] efectos bastones on'
     - '[refresh]'
@@ -275,37 +1327,429 @@ items:
           type: '=='
           input: '%objective_score_{astral.fx.bastones}%'
           output: '0'
-  'interruptor_bastones_true':
-    material: LIME_DYE
-    slot: 31
+  'interruptor_bastones_false_1':
+    material: PAPER
+    slot: 28
     amount: 1
-    display_name: '&a&lBastones: TRUE'
+    display_name: '&c&lBastones: DESACTIVADO'
     lore:
-    - '&7Estado: &aActivado'
     - '&7Solo rayos y particulas nuevos de Medio/Alto.'
     - ''
-    - '&eClic para desactivar.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    priority: 2
-    update: true
-    click_commands:
-    - '[player] efectos bastones off'
-    - '[refresh]'
-  'interruptor_mascotas_false':
-    material: GRAY_DYE
-    slot: 32
-    amount: 1
-    display_name: '&c&lMascotas: FALSE'
-    lore:
-    - '&7Estado: &cDesactivado'
-    - '&7Rastro de mascotas evolucionadas.'
-    - ''
     - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 1
     update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_4':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_5':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_6':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_0
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_7':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_1
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_false_8':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&c&lBastones: DESACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_2
+    click_commands:
+    - '[player] efectos bastones on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.bastones}%'
+          output: '0'
+  'interruptor_bastones_true_0':
+    material: PAPER
+    slot: 27
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/efecto_bastones
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_4':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_5':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_6':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_0
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_7':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_1
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_bastones_true_8':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&a&lBastones: ACTIVADO'
+    lore:
+    - '&7Solo rayos y particulas nuevos de Medio/Alto.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_2
+    click_commands:
+    - '[player] efectos bastones off'
+    - '[refresh]'
+  'interruptor_mascotas_false_0':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/efecto_mascotas
     click_commands:
     - '[player] efectos mascotas on'
     - '[refresh]'
@@ -315,37 +1759,429 @@ items:
           type: '=='
           input: '%objective_score_{astral.fx.mascotas}%'
           output: '0'
-  'interruptor_mascotas_true':
-    material: LIME_DYE
-    slot: 32
+  'interruptor_mascotas_false_1':
+    material: PAPER
+    slot: 37
     amount: 1
-    display_name: '&a&lMascotas: TRUE'
+    display_name: '&c&lMascotas: DESACTIVADO'
     lore:
-    - '&7Estado: &aActivado'
     - '&7Rastro de mascotas evolucionadas.'
     - ''
-    - '&eClic para desactivar.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    priority: 2
-    update: true
-    click_commands:
-    - '[player] efectos mascotas off'
-    - '[refresh]'
-  'interruptor_jefes_false':
-    material: GRAY_DYE
-    slot: 33
-    amount: 1
-    display_name: '&c&lJefes: FALSE'
-    lore:
-    - '&7Estado: &cDesactivado'
-    - '&7Adornos; los avisos de ataque siguen.'
-    - ''
     - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 1
     update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_2':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_4':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_5':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_6':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_0
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_7':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_1
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_false_8':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&c&lMascotas: DESACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_2
+    click_commands:
+    - '[player] efectos mascotas on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.mascotas}%'
+          output: '0'
+  'interruptor_mascotas_true_0':
+    material: PAPER
+    slot: 36
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/efecto_mascotas
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_1':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_2':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_4':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_5':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_6':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_0
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_7':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_1
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_mascotas_true_8':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&a&lMascotas: ACTIVADO'
+    lore:
+    - '&7Rastro de mascotas evolucionadas.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_2
+    click_commands:
+    - '[player] efectos mascotas off'
+    - '[refresh]'
+  'interruptor_jefes_false_0':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/efecto_jefes
     click_commands:
     - '[player] efectos jefes on'
     - '[refresh]'
@@ -355,275 +2191,408 @@ items:
           type: '=='
           input: '%objective_score_{astral.fx.jefes}%'
           output: '0'
-  'interruptor_jefes_true':
-    material: LIME_DYE
-    slot: 33
+  'interruptor_jefes_false_1':
+    material: PAPER
+    slot: 46
     amount: 1
-    display_name: '&a&lJefes: TRUE'
+    display_name: '&c&lJefes: DESACTIVADO'
     lore:
-    - '&7Estado: &aActivado'
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_2':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_3':
+    material: PAPER
+    slot: 48
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_4':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_5':
+    material: PAPER
+    slot: 50
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_6':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_0
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_7':
+    material: PAPER
+    slot: 52
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_1
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_false_8':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&c&lJefes: DESACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para activar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    priority: 1
+    update: true
+    item_model: astral:ventanas1911/interruptor_off_2
+    click_commands:
+    - '[player] efectos jefes on'
+    - '[refresh]'
+    view_requirement:
+      requirements:
+        activo:
+          type: '=='
+          input: '%objective_score_{astral.fx.jefes}%'
+          output: '0'
+  'interruptor_jefes_true_0':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
     - '&7Adornos; los avisos de ataque siguen.'
     - ''
     - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
     priority: 2
     update: true
+    item_model: astral:ventanas1911/efecto_jefes
     click_commands:
     - '[player] efectos jefes off'
     - '[refresh]'
-  'volver':
-    material: ARROW
-    slot: 40
+  'interruptor_jefes_true_1':
+    material: PAPER
+    slot: 46
     amount: 1
-    display_name: '&fVolver al menu'
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
     click_commands:
-    - '[openguimenu] principal'
-    item_model: 'astral:menu/icon_back'
-  'vidrio_0':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 0
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_2':
+    material: PAPER
+    slot: 47
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_1':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 1
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_3':
+    material: PAPER
+    slot: 48
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_2':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 2
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_4':
+    material: PAPER
+    slot: 49
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_3':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 3
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_5':
+    material: PAPER
+    slot: 50
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_5':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 5
+    priority: 2
+    update: true
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_6':
+    material: PAPER
+    slot: 51
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_6':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 6
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_0
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_7':
+    material: PAPER
+    slot: 52
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_7':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 7
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_1
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'
+  'interruptor_jefes_true_8':
+    material: PAPER
+    slot: 53
     amount: 1
-    display_name: ' '
+    display_name: '&a&lJefes: ACTIVADO'
+    lore:
+    - '&7Adornos; los avisos de ataque siguen.'
+    - ''
+    - '&eClic para desactivar.'
+    - ''
+    - '&7Los interruptores solo cambian lo que ves vos.'
+    - '&7Solo apagan efectos nuevos; las particulas'
+    - '&7de siempre siguen. El dano no cambia.'
     item_flags:
     - HIDE_ATTRIBUTES
-  'vidrio_8':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 8
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_9':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 9
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_10':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 10
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_12':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 12
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_14':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 14
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_16':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 16
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_17':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 17
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_18':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 18
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_19':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 19
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_20':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 20
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_21':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 21
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_22':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 22
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_23':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 23
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_24':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 24
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_25':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 25
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_26':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 26
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_27':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 27
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_28':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 28
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_34':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 34
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_35':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 35
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_36':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 36
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_37':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 37
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_38':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 38
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_39':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 39
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_41':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 41
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_42':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 42
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_43':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 43
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
-  'vidrio_44':
-    material: GRAY_STAINED_GLASS_PANE
-    slot: 44
-    amount: 1
-    display_name: ' '
-    item_flags:
-    - HIDE_ATTRIBUTES
+    priority: 2
+    update: true
+    item_model: astral:ventanas1911/interruptor_on_2
+    click_commands:
+    - '[player] efectos jefes off'
+    - '[refresh]'

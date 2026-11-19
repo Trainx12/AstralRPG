@@ -13,7 +13,7 @@ REPARAR = {1: (150, 'fragmento_astral', 1), 2: (300, 'polvo_astral', 1), 3: (600
            7: (6000, 'esquirla_eclipse', 1), 8: (8500, 'nucleo_supernova', 1), 9: (12000, 'esencia_vacio', 1),
            10: (16000, 'corazon_fin', 1)}
 REPARAR = {t: (_x(m), mat, n) for t, (m, mat, n) in REPARAR.items()}
-REPARAR_SLOT = 48
+REPARAR_SLOT = 46   # REPARAR 46-49 (diseno del dueno 19/11)
 
 
 def _material_nombre(mid):
@@ -126,8 +126,8 @@ function asg_bar(p: player, model: text, label: text):
 
 function asg_action(p: player, model: text, label: text, lines: texts):
     set {_inv} to {asg.gui::%uuid of {_p}%}
-    set {_size} to 3
-    set {_start} to 39
+    set {_size} to 5
+    set {_start} to 38
     if {asg.mode::%uuid of {_p}%} is "sale":
         set {_size} to 4
         set {_start} to 41
@@ -275,7 +275,7 @@ function asg_reparar_boton(p: player):
         set {_b} to asg_icon("astral:servicios/repair_off_0", "&7Reparar")
         set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
         set slot __REP_SLOT__ of {_inv} to {_b}
-        loop 2 times:
+        loop 3 times:
             set {_s} to __REP_SLOT__ + loop-number
             set {_tile} to asg_icon("astral:servicios/repair_off_%loop-number%", "&7Reparar")
             set lore of {_tile} to lore of {_b}
@@ -293,7 +293,7 @@ function asg_reparar_boton(p: player):
     set {_b} to asg_icon("astral:servicios/repair_%{_state}%_0", {_label})
 __REP_LORE__
     set slot __REP_SLOT__ of {_inv} to {_b}
-    loop 2 times:
+    loop 3 times:
         set {_s} to __REP_SLOT__ + loop-number
         set {_tile} to asg_icon("astral:servicios/repair_%{_state}%_%loop-number%", {_label})
         set lore of {_tile} to lore of {_b}
@@ -315,10 +315,12 @@ function asg_open(p: player, mode: text):
     set slot 53 of {_inv} to asg_icon("astral:menu/icon_close", "&cCerrar y devolver")
     # Reforja de gemas (gemas.py, 7d): boton GEMAS en 51-52.
     if {_mode} is "forge":
-        loop 2 times:
+        loop 3 times:
             set {_g} to asg_icon("astral:servicios/gems_%loop-number - 1%", "&d&lReforja de gemas")
             set lore of {_g} to "&7Engarza gemas en tus armas y armaduras." and "&7Tu equipo vuelve a tu inventario."
-            set slot (50 + loop-number) of {_inv} to {_g}
+            set slot (49 + loop-number) of {_inv} to {_g}
+        set slot 45 of {_inv} to asg_icon("astral:servicios/forja_atras_0", "&eDevolver objeto")
+        set slot 53 of {_inv} to asg_icon("astral:servicios/forja_cerrar_0", "&cCerrar y devolver")
     asg_refresh({_p})
     open {_inv} to {_p}
 
@@ -446,7 +448,7 @@ on inventory click:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
         stop
-    if {_slot} is between 51 and 52:
+    if {_slot} is between 50 and 52:
         if {asg.mode::%{_id}%} is "forge":
             close player's inventory
             wait 1 tick
@@ -483,7 +485,7 @@ on inventory click:
         delete {asg.busy::%{_id}%}
         asg_refresh(player)
         stop
-    if {_slot} is between 39 and 41:
+    if {_slot} is between 38 and 42:
         if {asg.escrow::%{_id}%} is not set:
             stop
         asg_refresh(player)
@@ -545,7 +547,7 @@ every 10 ticks:
         if {asg.gui::%uuid of loop-player%} is set:
             asg_refresh(loop-player)
 '''.replace('__MATERIALS__','\n'.join(render_mats)).replace('__REP_SLOT__',str(REPARAR_SLOT)).replace('__REP_COSTO__',rep_costo).replace('__REP_LORE__',rep_lore)
-    core=core.replace('__REP_END__',str(REPARAR_SLOT+2))
+    core=core.replace('__REP_END__',str(REPARAR_SLOT+3))
     core=re.sub(r'"([^"\n]+)" is not in scoreboard tags of (\{_p\}|player)',r'\2 does not have the scoreboard tag "\1"',core)
     core=re.sub(r'"([^"\n]+)" is in scoreboard tags of (\{_p\}|player)',r'\2 has the scoreboard tag "\1"',core)
     core=core.replace('shift left mouse button or shift right mouse button','left mouse button with shift or right mouse button with shift')

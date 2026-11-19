@@ -5026,8 +5026,8 @@ function asg_bar(p: player, model: text, label: text):
 
 function asg_action(p: player, model: text, label: text, lines: texts):
     set {_inv} to {asg.gui::%uuid of {_p}%}
-    set {_size} to 3
-    set {_start} to 39
+    set {_size} to 5
+    set {_start} to 38
     if {asg.mode::%uuid of {_p}%} is "sale":
         set {_size} to 4
         set {_start} to 41
@@ -5328,9 +5328,9 @@ function asg_reparar_boton(p: player):
     if {_p} does not have the scoreboard tag "asgui.rep":
         set {_b} to asg_icon("astral:servicios/repair_off_0", "&7Reparar")
         set lore of {_b} to "&7Coloca un equipo gastado de AstralRPG."
-        set slot 48 of {_inv} to {_b}
-        loop 2 times:
-            set {_s} to 48 + loop-number
+        set slot 46 of {_inv} to {_b}
+        loop 3 times:
+            set {_s} to 46 + loop-number
             set {_tile} to asg_icon("astral:servicios/repair_off_%loop-number%", "&7Reparar")
             set lore of {_tile} to lore of {_b}
             set slot {_s} of {_inv} to {_tile}
@@ -5365,9 +5365,9 @@ function asg_reparar_boton(p: player):
         set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 1200000$", "&eMaterial: Esencia del Vacio x1" and "&8(el material se busca en tu inventario)"
     if {_t} is 10:
         set lore of {_b} to "&7Deja el equipo como nuevo.", "&eCosto: 1600000$", "&eMaterial: Corazon del Fin x1" and "&8(el material se busca en tu inventario)"
-    set slot 48 of {_inv} to {_b}
-    loop 2 times:
-        set {_s} to 48 + loop-number
+    set slot 46 of {_inv} to {_b}
+    loop 3 times:
+        set {_s} to 46 + loop-number
         set {_tile} to asg_icon("astral:servicios/repair_%{_state}%_%loop-number%", {_label})
         set lore of {_tile} to lore of {_b}
         set slot {_s} of {_inv} to {_tile}
@@ -5388,10 +5388,12 @@ function asg_open(p: player, mode: text):
     set slot 53 of {_inv} to asg_icon("astral:menu/icon_close", "&cCerrar y devolver")
     # Reforja de gemas (gemas.py, 7d): boton GEMAS en 51-52.
     if {_mode} is "forge":
-        loop 2 times:
+        loop 3 times:
             set {_g} to asg_icon("astral:servicios/gems_%loop-number - 1%", "&d&lReforja de gemas")
             set lore of {_g} to "&7Engarza gemas en tus armas y armaduras." and "&7Tu equipo vuelve a tu inventario."
-            set slot (50 + loop-number) of {_inv} to {_g}
+            set slot (49 + loop-number) of {_inv} to {_g}
+        set slot 45 of {_inv} to asg_icon("astral:servicios/forja_atras_0", "&eDevolver objeto")
+        set slot 53 of {_inv} to asg_icon("astral:servicios/forja_cerrar_0", "&cCerrar y devolver")
     asg_refresh({_p})
     open {_inv} to {_p}
 
@@ -5519,13 +5521,13 @@ on inventory click:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
         stop
-    if {_slot} is between 51 and 52:
+    if {_slot} is between 50 and 52:
         if {asg.mode::%{_id}%} is "forge":
             close player's inventory
             wait 1 tick
             execute console command "astralreforja %name of player%"
         stop
-    if {_slot} is between 48 and 50:
+    if {_slot} is between 46 and 49:
         if {asg.mode::%{_id}%} is not "forge":
             stop
         if {asg.escrow::%{_id}%} is not set:
@@ -5556,7 +5558,7 @@ on inventory click:
         delete {asg.busy::%{_id}%}
         asg_refresh(player)
         stop
-    if {_slot} is between 39 and 41:
+    if {_slot} is between 38 and 42:
         if {asg.escrow::%{_id}%} is not set:
             stop
         asg_refresh(player)

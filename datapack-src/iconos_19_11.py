@@ -173,14 +173,18 @@ def sprite(iid):
 
 
 # Taladro/motosierra en la mano: horizontal, la punta (que en el dibujo mira a la izquierda) hacia adelante.
-# Y=90 lleva la izquierda del dibujo hacia adelante (+Z), igual que el Y=-90 de las espadas lleva su derecha.
+# En la mano el "adelante" es el +Y del dibujo y el "arriba" es +Z (ItemInHandLayer gira X -90 e Y 180).
+# Por eso las espadas (punta a 45 grados) giran Z+55: la punta queda a ~100 grados, casi sobre +Y.
+# El 19/11 se uso Y=90 sin Z y los taladros quedaban apuntando para arriba. Ahora: mismo Y=-90 de las
+# espadas y Z=-90, que lleva la punta (izquierda del dibujo, 180 grados) a +Y y el mango (abajo) a -Z.
+# 1ra persona es el espacio de la camara (+Y arriba, -Z adelante): Y=-90 solo lleva la punta a -Z.
 # La empunadura queda ~(+4.4, -3.6) px del centro del dibujo: la traslacion la pone donde las espadas
-# vanilla tienen el mango (3ra persona ~(0, 0, 1); 1ra persona ~(1.13, 0, 0)).
+# vanilla tienen el mango (3ra persona ~(0, 0, 1.2); 1ra persona ~(1.13, 0, 0)).
 HAND_DISPLAY = {
-    'thirdperson_righthand': {'rotation': [0, 90, 0], 'translation': [0, 2.9, 4.5], 'scale': [0.8, 0.8, 0.8]},
-    'thirdperson_lefthand': {'rotation': [0, -90, 0], 'translation': [0, 2.9, 4.5], 'scale': [0.8, 0.8, 0.8]},
-    'firstperson_righthand': {'rotation': [0, 90, 0], 'translation': [1.13, 2.5, 3.1], 'scale': [0.7, 0.7, 0.7]},
-    'firstperson_lefthand': {'rotation': [0, -90, 0], 'translation': [1.13, 2.5, 3.1], 'scale': [0.7, 0.7, 0.7]},
+    'thirdperson_righthand': {'rotation': [0, -90, -90], 'translation': [0, 3.5, 4.1], 'scale': [0.8, 0.8, 0.8]},
+    'thirdperson_lefthand': {'rotation': [0, 90, 90], 'translation': [0, 3.5, 4.1], 'scale': [0.8, 0.8, 0.8]},
+    'firstperson_righthand': {'rotation': [0, -90, 0], 'translation': [1.13, 2.5, -3.1], 'scale': [0.7, 0.7, 0.7]},
+    'firstperson_lefthand': {'rotation': [0, 90, 0], 'translation': [1.13, 2.5, -3.1], 'scale': [0.7, 0.7, 0.7]},
 }
 
 

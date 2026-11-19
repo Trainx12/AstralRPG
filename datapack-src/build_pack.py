@@ -310,6 +310,11 @@ from travel_ui import assets as travel_assets
 travel_files, travel_providers = travel_assets()
 files.update(travel_files)
 default_font['providers'] = travel_providers + default_font['providers']
+# Ventanas del 19/11 (ventanas_19_11.py): Cavernas (entrada y comisiones), Forja, Efectos, Banco
+from ventanas_19_11 import assets as v1911_assets
+_v1911_files, _v1911_providers = v1911_assets()
+files.update(_v1911_files)
+default_font['providers'] = _v1911_providers + default_font['providers']
 put_json('assets/minecraft/font/default.json', default_font)
 
 # Arte nuevo de inventario: prevalece sobre las texturas antiguas.
@@ -496,6 +501,9 @@ files.update(arte_assets())
 # Gemas de la Reforja (gemas.py, 7d): PNG reemplazables en pack-source/assets/astral/textures/item/gemas/
 from gemas import pack_assets as gemas_assets
 files.update(gemas_assets())
+# Cavernas de Cristal (cavernas.py, 7e): vetas e items propios
+from cavernas import pack_assets as cavernas_assets
+files.update(cavernas_assets())
 from ventanas_1611 import assets as ventanas_assets
 _vfiles, _vproviders = ventanas_assets()
 files.update(_vfiles)

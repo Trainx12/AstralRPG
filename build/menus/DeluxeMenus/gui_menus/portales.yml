@@ -34,32 +34,34 @@
         "[player] umbrales end<delay=3>"
       ]
     },
-    "parkour": {
-      "material": "FEATHER",
+    "cavernas": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 5,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "arenas": {
-      "material": "IRON_SWORD",
+    "vacio": {
+      "material": "END_CRYSTAL",
       "slot": 7,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
     "lobby": {
@@ -379,200 +381,214 @@
         "[player] umbrales end<delay=3>"
       ]
     },
-    "parkour_6": {
-      "material": "FEATHER",
+    "cavernas_6": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 6,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_14": {
-      "material": "FEATHER",
+    "cavernas_14": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 14,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_15": {
-      "material": "FEATHER",
+    "cavernas_15": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 15,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_23": {
-      "material": "FEATHER",
+    "cavernas_23": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 23,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_24": {
-      "material": "FEATHER",
+    "cavernas_24": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 24,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_32": {
-      "material": "FEATHER",
+    "cavernas_32": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 32,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "parkour_33": {
-      "material": "FEATHER",
+    "cavernas_33": {
+      "material": "AMETHYST_CLUSTER",
       "slot": 33,
-      "display_name": "&d&lMini juegos",
+      "display_name": "&d&lCavernas de Cristal",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Parkour, droppers y Color Escape.",
+        "&7Vetas de gemas para la Reforja.",
+        "&7Equipo tier 4 o Tumba ganada.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] parkour"
+        "[openguimenu] cavernas_aviso"
       ]
     },
-    "arenas_8": {
-      "material": "IRON_SWORD",
+    "vacio_8": {
+      "material": "END_CRYSTAL",
       "slot": 8,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_16": {
-      "material": "IRON_SWORD",
+    "vacio_16": {
+      "material": "END_CRYSTAL",
       "slot": 16,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_17": {
-      "material": "IRON_SWORD",
+    "vacio_17": {
+      "material": "END_CRYSTAL",
       "slot": 17,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_25": {
-      "material": "IRON_SWORD",
+    "vacio_25": {
+      "material": "END_CRYSTAL",
       "slot": 25,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_26": {
-      "material": "IRON_SWORD",
+    "vacio_26": {
+      "material": "END_CRYSTAL",
       "slot": 26,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_34": {
-      "material": "IRON_SWORD",
+    "vacio_34": {
+      "material": "END_CRYSTAL",
       "slot": 34,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
-    "arenas_35": {
-      "material": "IRON_SWORD",
+    "vacio_35": {
+      "material": "END_CRYSTAL",
       "slot": 35,
-      "display_name": "&b&lArenas PvP",
+      "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Elegí una arena para combatir.",
+        "&7Gemas Perfectas y Estelares, meteoritos.",
+        "&dProximamente.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[openguimenu] arenas"
+        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
       ]
     },
     "lobby_46": {
@@ -647,6 +663,34 @@
         "[openguimenu] oceano_aviso"
       ],
       "item_model": "astral:boton_oceano"
+    },
+    "parkour": {
+      "material": "FEATHER",
+      "slot": 48,
+      "display_name": "&d&lMini juegos",
+      "lore": [
+        "&7Parkour, droppers y Color Escape.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ],
+      "item_model": "astral:menu/icon_parkour"
+    },
+    "arenas": {
+      "material": "IRON_SWORD",
+      "slot": 50,
+      "display_name": "&b&lArenas PvP",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ],
+      "item_model": "astral:menu/icon_arenas"
     }
   }
 }

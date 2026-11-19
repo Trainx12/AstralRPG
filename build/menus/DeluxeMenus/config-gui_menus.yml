@@ -128,3 +128,5 @@ gui_menus:
     file: infinita_vel.yml
   oceano_aviso:
     file: oceano_aviso.yml
+  cavernas_aviso:
+    file: cavernas_aviso.yml

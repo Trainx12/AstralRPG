@@ -172,6 +172,12 @@ GEMA_CALIDAD_MULT = {1: 1, 2: 2, 3: 4, 4: 8, 5: 15}     # Cruda, Pulida, Impecab
 GEMA_EXTRAER_MULT = 3
 
 
+# Cavernas de Cristal (plan E5 / 7e, 19/11/2026): venta de las menas propias (por unidad) y premios de comisiones.
+# Objetivo: entre Minas II y Minas III (~20-60M/h con taladro de mitad de juego). Cuenta en cavernas.py (plata_hora).
+CAVERNAS_PRECIO = {'cristal_caverna': 45_000, 'geoda_estelar': 400_000}
+CAVERNAS_COMISION = {'facil': 2_000_000, 'media': 4_000_000, 'dificil': 8_000_000}
+
+
 def gema_costo(tier, calidad, extraer=False):
     """Plata para engarzar (o extraer) una gema de esa calidad en un equipo de ese tier."""
     return GEMA_PONER_TIER[tier] * GEMA_CALIDAD_MULT[calidad] * (GEMA_EXTRAER_MULT if extraer else 1)
@@ -327,6 +333,8 @@ def skript():
     for i, (nombre, lim, costo) in enumerate(BANCO_NIVELES, 1):
         L += [f'    set {{-eco.banco.nombre::{i}}} to "{nombre}"', f'    set {{-eco.banco.lim::{i}}} to {lim}',
               f'    set {{-eco.banco.costo::{i}}} to {costo}']
+    import ventanas_19_11 as V
+    L += ['    delete {-banco.titulo::*}'] + [f'    set {{-banco.titulo::{v}}} to "{V.titulo("banco_" + v)}"' for v in V.BANCO_VISTAS]
     L += [f'    set {{-eco.banco.max}} to {len(BANCO_NIVELES)}',
           '    if {astral.banco.proximo} is not set:',
           '        set {astral.banco.proximo} to {@horas} hours after now', '']
@@ -448,29 +456,80 @@ function astral_banco_lim(p: offline player) :: number:
 function astral_banco_saldo(p: offline player) :: number:
     return {astral.banco.saldo::%uuid of {_p}%} ? 0
 
-function astral_banco_menu(p: player):
+# Ventanas con el diseno del dueno (19/11, ventanas_19_11.py): banco, depositar, retirar, mejorar, movimiento y cuenta.
+# Los importes van en vivo en las piezas (pasar el mouse); los botones ocupan varias casillas (modelo _0.._n).
+function astral_banco_pieza(model: text, label: text, lore: texts) :: item:
+    set {_i} to paper named colored {_label}
+    set item model of {_i} to "astral:ventanas1911/%{_model}%"
+    set lore of {_i} to {_lore::*}
+    return {_i}
+
+function astral_banco_tiles(inv: inventory, inicio: number, cols: number, filas: number, model: text, label: text, lore: texts):
+    set {_r} to 0
+    while {_r} < {_filas}:
+        set {_c} to 0
+        while {_c} < {_cols}:
+            set {_k} to {_r} * {_cols} + {_c}
+            set slot ({_inicio} + {_r} * 9 + {_c}) of {_inv} to astral_banco_pieza("%{_model}%_%{_k}%", {_label}, ({_lore::*}))
+            add 1 to {_c}
+        add 1 to {_r}
+
+function astral_banco_menu(p: player, vista: text = "banco"):
     set {_s} to astral_banco_saldo({_p})
     set {_n} to astral_banco_nivel({_p})
     set {_lim} to astral_banco_lim({_p})
     set {_i} to floor(min({_s} * {@interes}, {@interesmax}, {_lim} - {_s}))
     set {_falta} to difference between now and {astral.banco.proximo}
-    set {_inv} to chest inventory with 5 rows named "{@titulo}"
-    set slot 4 of {_inv} to gold block named "&6&lSaldo del Banco: &e%{_s}%$" with lore "&7Cuenta: &f%{-eco.banco.nombre::%{_n}%}% &7(limite &e%{_lim}%$&7)" and "&7Proximo interes: &a+%{_i}%$ &7en &f%{_falta}%" and "&8Interes: 2%% cada 24 h, hasta 2.000.000$." and "&8No se pierde al morir."
-    set slot 10 of {_inv} to lime dye named "&a&lDepositar todo" with lore "&7Tu plata encima: &e%balance of {_p}%$"
-    set slot 11 of {_inv} to lime dye named "&aDepositar la mitad"
-    set slot 12 of {_inv} to oak sign named "&aDepositar una cantidad" with lore "&7La escribis en el chat."
-    set slot 14 of {_inv} to red dye named "&c&lRetirar todo"
-    set slot 15 of {_inv} to red dye named "&cRetirar la mitad"
-    set slot 16 of {_inv} to oak sign named "&cRetirar una cantidad" with lore "&7La escribis en el chat."
-    if {_n} < {-eco.banco.max}:
+    if {_vista} is "mejorar":
+        if {_n} >= {-eco.banco.max}:
+            set {_vista} to "cuenta"
+    set {_inv} to chest inventory with 6 rows named {-banco.titulo::%{_vista}%}
+    set {_cuenta} to "&7Cuenta: &f%{-eco.banco.nombre::%{_n}%}% &7(limite &e%{_lim}%$&7)"
+    set {_int} to "&7Proximo interes: &a+%{_i}%$ &7en &f%{_falta}%"
+    if {_vista} is "banco":
+        set slot 5 of {_inv} to astral_banco_pieza("i_saldo", "&6&lSaldo del Banco: &e%{_s}%$", ({_cuenta}, {_int} and "&8No se pierde al morir."))
+        set slot 14 of {_inv} to astral_banco_pieza("i_encima", "&aPlata encima: &e%balance of {_p}%$", ("&8Se pierde la mitad al morir."))
+        set slot 23 of {_inv} to astral_banco_pieza("i_cuenta", "&fCuenta %{-eco.banco.nombre::%{_n}%}%", ("&7Limite: &e%{_lim}%$"))
+        astral_banco_tiles({_inv}, 27, 3, 2, "b_depositar", "&a&lDepositar", ("&7Guarda plata en el banco." and "&7Tu plata encima: &e%balance of {_p}%$"))
+        astral_banco_tiles({_inv}, 30, 3, 2, "b_retirar", "&6&lRetirar", ("&7Saca plata del banco." and "&7Saldo: &e%{_s}%$"))
+        astral_banco_tiles({_inv}, 33, 3, 2, "b_mejorar_cuenta", "&b&lMejorar cuenta", ("&7Mas limite para guardar."))
+    else if {_vista} is "depositar" or "retirar":
+        if {_vista} is "depositar":
+            set slot 5 of {_inv} to astral_banco_pieza("i_encima", "&aPlata encima: &e%balance of {_p}%$", ("&7Es lo que podes depositar."))
+            set slot 14 of {_inv} to astral_banco_pieza("i_limite", "&6Capacidad: &e%{_lim} - {_s}%$", ({_cuenta}))
+        else:
+            set slot 5 of {_inv} to astral_banco_pieza("i_saldo", "&6Saldo del Banco: &e%{_s}%$", ({_int}))
+            set slot 14 of {_inv} to astral_banco_pieza("i_encima", "&aPlata encima: &e%balance of {_p}%$", ("&8Se pierde la mitad al morir."))
+        set {_sel} to {-banco.sel::%uuid of {_p}%} ? "todo"
+        astral_banco_tiles({_inv}, 27, 3, 1, "b_todo", "&eTodo", ("&7Elegir todo." and "&8(despues CONFIRMAR)"))
+        astral_banco_tiles({_inv}, 30, 3, 1, "b_mitad", "&eMitad", ("&7Elegir la mitad." and "&8(despues CONFIRMAR)"))
+        astral_banco_tiles({_inv}, 33, 3, 1, "b_otra", "&eOtra cantidad", ("&7La escribis en el chat."))
+        set {_m} to "b_confirmar_dep"
+        if {_vista} is "retirar":
+            set {_m} to "b_confirmar_ret"
+        astral_banco_tiles({_inv}, 38, 5, 1, {_m}, "&a&lConfirmar: %{_sel}%", ("&7%{_vista}% %{_sel}% de tu plata." and "&7Elegido: &f%{_sel}%"))
+    else if {_vista} is "mejorar":
         set {_sig} to {_n} + 1
-        set slot 31 of {_inv} to emerald named "&b&lMejorar cuenta: %{-eco.banco.nombre::%{_sig}%}%" with lore "&7Limite: &e%{-eco.banco.lim::%{_sig}%}%$" and "&7Costo: &e%{-eco.banco.costo::%{_sig}%}%$ &7(de tu plata encima)" and "" and "&eClic para mejorar."
-    else:
-        set slot 31 of {_inv} to nether star named "&d&lCuenta Astral" with lore "&7Ya tenes la mejor cuenta."
-    set slot 36 of {_inv} to arrow named "&fVolver" with lore "&7A Subastas y Banco."
-    set slot 40 of {_inv} to barrier named "&cCerrar"
+        set slot 5 of {_inv} to astral_banco_pieza("i_limite", "&bNuevo limite: &e%{-eco.banco.lim::%{_sig}%}%$", ("&7Cuenta %{-eco.banco.nombre::%{_sig}%}%"))
+        set slot 14 of {_inv} to astral_banco_pieza("i_saldo", "&6Costo: &e%{-eco.banco.costo::%{_sig}%}%$", ("&7Se paga con tu plata encima."))
+        set slot 23 of {_inv} to astral_banco_pieza("i_cuenta", "&fCuenta actual: %{-eco.banco.nombre::%{_n}%}%", ("&7Limite: &e%{_lim}%$"))
+        astral_banco_tiles({_inv}, 38, 5, 1, "b_mejorar", "&b&lMejorar a %{-eco.banco.nombre::%{_sig}%}%", ("&7Costo: &e%{-eco.banco.costo::%{_sig}%}%$"))
+    else if {_vista} is "cuenta":
+        set slot 5 of {_inv} to astral_banco_pieza("i_limite", "&dLimite: &e%{_lim}%$", ("&7Nivel maximo."))
+        set slot 14 of {_inv} to astral_banco_pieza("i_saldo", "&6Interes: &e2%% cada 24 h", ({_int}))
+        set slot 23 of {_inv} to astral_banco_pieza("i_encima", "&aTope de interes: &e{@interesmax}$", ("&8Ahorros protegidos en la Banca Astral."))
+    else if {_vista} is "movimiento":
+        set {_u} to {-banco.ultimo::%uuid of {_p}%} ? "Sin movimientos"
+        set {_k} to 0
+        while {_k} < 15:
+            set slot (floor({_k} / 5) * 9 + 2 + mod({_k}, 5)) of {_inv} to astral_banco_pieza("blank", "&a&l%{_u}%", ("&7Nuevo saldo: &e%{_s}%$"))
+            add 1 to {_k}
+        astral_banco_tiles({_inv}, 38, 5, 1, "b_volver_banco", "&eVolver al banco", ("&7Saldo: &e%{_s}%$"))
+    if {_vista} is not "movimiento":
+        set slot 45 of {_inv} to astral_banco_pieza("b_atras_0", "&fVolver", ("&7Atras."))
+    set slot 53 of {_inv} to astral_banco_pieza("b_cerrar_0", "&cCerrar", (""))
     open {_inv} to {_p}
-    set {-banco.gui::%uuid of {_p}%} to true
+    set {-banco.gui::%uuid of {_p}%} to {_vista}
 
 function astral_banco_mover(p: player, modo: text, v: number):
     set {_u} to uuid of {_p}
@@ -483,6 +542,7 @@ function astral_banco_mover(p: player, modo: text, v: number):
         remove {_v} from balance of {_p}
         set {astral.banco.saldo::%{_u}%} to {_s} + {_v}
         send "&aDepositaste &e%{_v}%$&a. Saldo del banco: &e%{_s} + {_v}%$" to {_p}
+        set {-banco.ultimo::%{_u}%} to "Depositaste %{_v}%$"
     else:
         set {_v} to floor(min({_v}, {_s}))
         if {_v} < 1:
@@ -491,6 +551,7 @@ function astral_banco_mover(p: player, modo: text, v: number):
         set {astral.banco.saldo::%{_u}%} to {_s} - {_v}
         add {_v} to balance of {_p}
         send "&aRetiraste &e%{_v}%$&a. Saldo del banco: &e%{_s} - {_v}%$" to {_p}
+        set {-banco.ultimo::%{_u}%} to "Retiraste %{_v}%$"
     log "%now% %name of {_p}% %{_u}% %{_modo}% %{_v}% saldo_antes=%{_s}%" to "astral-banco"
     play sound "block.chain.place" to {_p}
 
@@ -535,33 +596,60 @@ on inventory click:
     cancel event
     clicked inventory is not player's inventory
     set {_slot} to index of event-slot
-    if {_slot} is 40:
+    set {_v} to {-banco.gui::%uuid of player%}
+    set {_id} to uuid of player
+    if {_slot} is 53:
         close inventory of player
-    else if {_slot} is 36:
-        close inventory of player
-        execute console command "dm open subastas_inicio %name of player%"
-    else if {_slot} is 10:
-        astral_banco_mover(player, "depositar", balance of player)
-        astral_banco_menu(player)
-    else if {_slot} is 11:
-        astral_banco_mover(player, "depositar", balance of player / 2)
-        astral_banco_menu(player)
-    else if {_slot} is 14:
-        astral_banco_mover(player, "retirar", astral_banco_saldo(player))
-        astral_banco_menu(player)
-    else if {_slot} is 15:
-        astral_banco_mover(player, "retirar", astral_banco_saldo(player) / 2)
-        astral_banco_menu(player)
-    else if {_slot} is 12 or 16:
-        close inventory of player
-        if {_slot} is 12:
-            set {-banco.espera::%uuid of player%} to "depositar"
+        stop
+    if {_slot} is 45:
+        if {_v} is "banco":
+            close inventory of player
+            execute console command "dm open subastas_inicio %name of player%"
         else:
-            set {-banco.espera::%uuid of player%} to "retirar"
-        send "&6Escribi en el chat cuanto queres %{-banco.espera::%uuid of player%}% &7(solo el numero, o &fcancelar&7)." to player
-    else if {_slot} is 31:
-        astral_banco_mejorar(player)
-        astral_banco_menu(player)
+            astral_banco_menu(player, "banco")
+        stop
+    if {_v} is "banco":
+        set {_c} to mod({_slot}, 9)
+        if {_slot} >= 27:
+            if {_slot} <= 44:
+                delete {-banco.sel::%{_id}%}
+                if {_c} <= 2:
+                    astral_banco_menu(player, "depositar")
+                else if {_c} <= 5:
+                    astral_banco_menu(player, "retirar")
+                else:
+                    astral_banco_menu(player, "mejorar")
+        stop
+    if {_v} is "depositar" or "retirar":
+        if {_slot} is between 27 and 29:
+            set {-banco.sel::%{_id}%} to "todo"
+            astral_banco_menu(player, {_v})
+        else if {_slot} is between 30 and 32:
+            set {-banco.sel::%{_id}%} to "mitad"
+            astral_banco_menu(player, {_v})
+        else if {_slot} is between 33 and 35:
+            close inventory of player
+            set {-banco.espera::%{_id}%} to {_v}
+            send "&6Escribi en el chat cuanto queres %{_v}% &7(solo el numero, o &fcancelar&7)." to player
+        else if {_slot} is between 38 and 42:
+            set {_base} to balance of player
+            if {_v} is "retirar":
+                set {_base} to astral_banco_saldo(player)
+            set {_m} to {_base}
+            if {-banco.sel::%{_id}%} is "mitad":
+                set {_m} to {_base} / 2
+            delete {-banco.sel::%{_id}%}
+            astral_banco_mover(player, {_v}, {_m})
+            astral_banco_menu(player, "movimiento")
+        stop
+    if {_v} is "mejorar":
+        if {_slot} is between 38 and 42:
+            astral_banco_mejorar(player)
+            astral_banco_menu(player, "mejorar")
+        stop
+    if {_v} is "movimiento":
+        if {_slot} is between 38 and 42:
+            astral_banco_menu(player, "banco")
 
 on inventory close:
     delete {-banco.gui::%uuid of player%}
@@ -582,7 +670,7 @@ on chat:
         send "&cEso no es un numero. Abri el banco de nuevo con &f/banco&c." to player
         stop
     astral_banco_mover(player, {_m}, {_v})
-    astral_banco_menu(player)
+    astral_banco_menu(player, "movimiento")
 
 on quit:
     delete {-banco.espera::%uuid of player%}

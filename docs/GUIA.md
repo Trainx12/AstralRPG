@@ -1,3 +1,10 @@
+# Cavernas de Cristal (7e) - 19/11/2026
+
+Entrega preparada, sin desplegar: [cavernas-cristal](../build/deploy/cavernas-cristal.md).
+Fuente unica `datapack-src/cavernas.py`; plugin `runtime/AstralCavernas.java` (generador, campamento, mobs y
+guardianes, comisiones, venta, regeneracion). Vetas = bloque de nota en campana (bell 0-15): no usar ese estado para
+otra cosa. Ensayo: `tools/probar_cavernas_paper.py` (mide densidad y plata/hora con `/cavernas medir`).
+
 # Reforja de gemas (7d) - 19/11/2026
 
 Entrega preparada, sin desplegar: [reforja-gemas](../build/deploy/reforja-gemas.md).

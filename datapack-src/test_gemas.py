@@ -160,7 +160,12 @@ class Skript(unittest.TestCase):
     def test_drop_cofre(self):
         sk = (ROOT / 'build/mazmorras/astral_puntaje.sk').read_text(encoding='utf-8')
         self.assertIn('astralgema cofre', sk)
-        self.assertEqual(set(G.DROP_COFRE), {'A', 'S'})
+        import economia as E
+        self.assertEqual(list(G.DROP_COFRE), E.NOTAS)              # todas las notas, de peor a mejor
+        chances = [G.DROP_COFRE[n] for n in E.NOTAS]
+        self.assertEqual(chances, sorted(chances))
+        self.assertEqual(G.DROP_COFRE['F'], 0)
+        self.assertIn('add ({-agem.dropbonus::%{_nota}%} ? 0) to {_tier}', G.skript())
 
     def test_plata_topacio(self):
         sk = (ROOT / 'build/economia/Skript/scripts/astral_economia.sk').read_text(encoding='utf-8')

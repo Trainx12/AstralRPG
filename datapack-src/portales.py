@@ -65,8 +65,8 @@ def menu_data():
     for key, material, slot, name, lore, commands in (
         ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
         ('end', 'END_PORTAL_FRAME', 12, '&e&lEnd', ['&7Una isla al otro lado del vacío.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales end<delay=3>']),
-        ('parkour', 'FEATHER', 14, '&d&lMini juegos', ['&7Parkour, droppers y Color Escape.'], ['[openguimenu] parkour']),
-        ('arenas', 'IRON_SWORD', 16, '&b&lArenas PvP', ['&7Elegí una arena para combatir.'], ['[openguimenu] arenas']),
+        ('cavernas', 'AMETHYST_CLUSTER', 14, '&d&lCavernas de Cristal', ['&7Vetas de gemas para la Reforja.', '&7Equipo tier 4 o Tumba ganada.'], ['[openguimenu] cavernas_aviso']),
+        ('vacio', 'END_CRYSTAL', 16, '&5&lVacio Estelar', ['&7Gemas Perfectas y Estelares, meteoritos.', '&dProximamente.'], ['[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente.']),
         ('lobby', 'ENDER_PEARL', 22, '&aVolver al lobby', ['&7Volvé al punto de aparición.'], ['[close]', '[player] umbrales lobby<delay=3>']),
         ('cerrar', 'BARRIER', 26, '&cCerrar', ['&7Seguí explorando por tu cuenta.'], ['[close]']),
     ):
@@ -81,9 +81,14 @@ def menu_data():
         for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
     # Lobby: la primera casilla muestra la barrera vanilla.
     items['lobby']['material']='BARRIER';del items['lobby']['item_model']
-    # Oceano Astral (oceano.py): casilla 49, abre la ventana de aviso.
+    # Oceano Astral (oceano.py): casilla 49, abre la ventana de aviso. Mini juegos (48) y Arenas (50) a sus costados
+    # desde que sus tarjetas pasaron a Cavernas y Vacio Estelar (diseno del dueno 19/11).
     from oceano import portales_button
     items['oceano']=portales_button()
+    items['parkour']={'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
+                      'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
+    items['arenas']={'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
+                     'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
     return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
 
 

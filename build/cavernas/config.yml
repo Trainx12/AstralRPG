@@ -1,0 +1,220 @@
+mundo: cavernas_cristal
+radio: 500
+regenerar-cada-horas: 72
+avisos-minutos:
+- 10
+- 5
+- 1
+proxima-regeneracion: 0
+corazon: 150
+campamento:
+- 0
+- -300
+camp-y: 12
+taladro-tier: 4
+polvo-minutos: 10
+mobs-cerca: 5
+mobs-tope: 60
+jefe-cada-seg: 60
+jefe-prob: 0.25
+jefe-espera-min: 8
+permiso-tumba: astral.fragmento.arena
+zonas:
+  amatista:
+    nombre: Jardin de Amatista
+    color: '&5'
+    gemas:
+    - amatista
+  jade:
+    nombre: Grietas de Jade
+    color: '&a'
+    gemas:
+    - jade
+  rubi:
+    nombre: Forja de Rubi
+    color: '&c'
+    gemas:
+    - rubi
+    - topacio
+  zafiro:
+    nombre: Lago de Zafiro
+    color: '&9'
+    gemas:
+    - zafiro
+  corazon:
+    nombre: Corazon de Opalo y Onix
+    color: '&8'
+    gemas:
+    - opalo
+    - onix
+notas:
+  gema_rubi: 0
+  gema_zafiro: 2
+  gema_jade: 4
+  gema_topacio: 6
+  gema_amatista: 8
+  gema_opalo: 10
+  gema_onix: 12
+  gema_rubi_honda: 1
+  gema_zafiro_honda: 3
+  gema_jade_honda: 5
+  gema_topacio_honda: 7
+  gema_amatista_honda: 9
+  gema_opalo_honda: 11
+  gema_onix_honda: 13
+  cristal_caverna: 14
+  geoda_estelar: 15
+mobs:
+  astral_cav_golem_amatista:
+    zonas:
+    - amatista
+    clase: golem
+  astral_cav_golem_jade:
+    zonas:
+    - jade
+    clase: golem
+  astral_cav_golem_rubi:
+    zonas:
+    - rubi
+    clase: golem
+  astral_cav_golem_zafiro:
+    zonas:
+    - zafiro
+    clase: golem
+  astral_cav_golem_onix:
+    zonas:
+    - corazon
+    clase: golem
+  astral_cav_arana:
+    zonas:
+    - amatista
+    - jade
+    - rubi
+    - zafiro
+    - corazon
+    clase: arana
+jefes:
+  astral_cav_jefe_amatista:
+    zona: amatista
+    nombre: '&5&lGuardian de Amatista'
+  astral_cav_jefe_jade:
+    zona: jade
+    nombre: '&a&lGuardian de Jade'
+  astral_cav_jefe_rubi:
+    zona: rubi
+    nombre: '&c&lGuardian de la Forja'
+  astral_cav_jefe_zafiro:
+    zona: zafiro
+    nombre: '&9&lGuardian del Lago'
+  astral_cav_jefe_corazon:
+    zona: corazon
+    nombre: '&8&lCorazón de Ónix'
+precios:
+  cristal_caverna: 45000
+  geoda_estelar: 400000
+titulo-comisiones: '&f'
+comisiones:
+- clave: amatista
+  texto: Pica 60 vetas de Amatista
+  tipo: veta
+  objetivo: amatista
+  cantidad: 60
+  plata: 2000000
+  polvo: 1
+  icono: astral:gemas/amatista_2
+- clave: jade
+  texto: Pica 60 vetas de Jade
+  tipo: veta
+  objetivo: jade
+  cantidad: 60
+  plata: 2000000
+  polvo: 1
+  icono: astral:gemas/jade_2
+- clave: rubi
+  texto: Pica 50 vetas de Rubi
+  tipo: veta
+  objetivo: rubi
+  cantidad: 50
+  plata: 2000000
+  polvo: 1
+  icono: astral:gemas/rubi_2
+- clave: topacio
+  texto: Pica 50 vetas de Topacio
+  tipo: veta
+  objetivo: topacio
+  cantidad: 50
+  plata: 2000000
+  polvo: 1
+  icono: astral:gemas/topacio_2
+- clave: zafiro
+  texto: Pica 60 vetas de Zafiro
+  tipo: veta
+  objetivo: zafiro
+  cantidad: 60
+  plata: 2000000
+  polvo: 1
+  icono: astral:gemas/zafiro_2
+- clave: opalo
+  texto: Pica 40 vetas de Opalo
+  tipo: veta
+  objetivo: opalo
+  cantidad: 40
+  plata: 4000000
+  polvo: 2
+  icono: astral:gemas/opalo_2
+- clave: onix
+  texto: Pica 40 vetas de Onix
+  tipo: veta
+  objetivo: onix
+  cantidad: 40
+  plata: 4000000
+  polvo: 2
+  icono: astral:gemas/onix_2
+- clave: cristal
+  texto: Pica 200 Cristales Astrales
+  tipo: veta
+  objetivo: cristal_caverna
+  cantidad: 200
+  plata: 4000000
+  polvo: 2
+  icono: astral:cavernas/cristal_caverna
+- clave: geoda
+  texto: Pica 15 Geodas Estelares
+  tipo: veta
+  objetivo: geoda_estelar
+  cantidad: 15
+  plata: 8000000
+  polvo: 3
+  icono: astral:cavernas/geoda_estelar
+- clave: golems
+  texto: Mata 25 golems de cristal
+  tipo: matar
+  objetivo: golem
+  cantidad: 25
+  plata: 2000000
+  polvo: 1
+  icono: astral:ventanas1911/cristal_violeta
+- clave: aranas
+  texto: Mata 20 aranas de cristal
+  tipo: matar
+  objetivo: arana
+  cantidad: 20
+  plata: 2000000
+  polvo: 1
+  icono: astral:ventanas1911/cristal_azul
+- clave: corazon
+  texto: Mata 15 mobs en el Corazon
+  tipo: matar
+  objetivo: corazon
+  cantidad: 15
+  plata: 4000000
+  polvo: 2
+  icono: astral:ventanas1911/cristal_rojo
+- clave: jefe
+  texto: Derrota a un guardian de zona
+  tipo: jefe
+  objetivo: any
+  cantidad: 1
+  plata: 8000000
+  polvo: 3
+  icono: astral:gemas/onix_5

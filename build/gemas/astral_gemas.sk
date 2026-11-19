@@ -1,5 +1,5 @@
 # Generado por datapack-src/gemas.py (plan E4 / 7d, 19/11/2026). No editar a mano.
-# Ventana "Reforja de gemas" (boton GEMAS del Herrero), /astralgema (OP) y drop temporal del cofre A/S.
+# Ventana "Reforja de gemas" (boton GEMAS del Herrero), /astralgema (OP) y gemas del cofre segun la nota.
 # El datapack hace los cambios sobre el item en la mano (gemas/*); Skript lo presta un instante y lo vuelve.
 
 options:
@@ -236,8 +236,18 @@ on load:
     set {-agem.cal::3} to "Impecable"
     set {-agem.cal::4} to "Perfecta"
     set {-agem.cal::5} to "Estelar"
-    set {-agem.drop::5} to 0.03
-    set {-agem.drop::6} to 0.08
+    set {-agem.drop::1} to 0
+    set {-agem.dropbonus::1} to 0
+    set {-agem.drop::2} to 0.05
+    set {-agem.dropbonus::2} to 0
+    set {-agem.drop::3} to 0.1
+    set {-agem.dropbonus::3} to 0
+    set {-agem.drop::4} to 0.18
+    set {-agem.dropbonus::4} to 0
+    set {-agem.drop::5} to 0.3
+    set {-agem.dropbonus::5} to 1
+    set {-agem.drop::6} to 0.45
+    set {-agem.dropbonus::6} to 1
     set {-agem.dropq::1::1} to 100
     set {-agem.dropq::1::2} to 0
     set {-agem.dropq::1::3} to 0
@@ -551,9 +561,9 @@ function agem_bar(p: player, model: text, label: text):
         set {_slot} to loop-number + 27
         set slot {_slot} of {_inv} to agem_icon("astral:servicios/bar_%{_model}%_%loop-number - 1%", {_label})
 
-function agem_boton(p: player, start: number, model: text, label: text, lines: texts):
+function agem_boton(p: player, start: number, n: number, model: text, label: text, lines: texts):
     set {_inv} to {-agem.gui::%uuid of {_p}%}
-    loop 3 times:
+    loop {_n} times:
         set {_i} to agem_icon("astral:servicios/%{_model}%_%loop-number - 1%", {_label})
         set lore of {_i} to {_lines::*}
         set slot ({_start} + loop-number - 1) of {_inv} to {_i}
@@ -633,7 +643,7 @@ function agem_refresh(p: player):
             if {-agem.conf::%{_id}%} is set:
                 set {_m} to "gem_set_confirm"
                 set {_l} to "&c&lCONFIRMAR &7(la gema vieja se destruye)"
-    agem_boton({_p}, 39, {_m}, {_l}, {_lore::*})
+    agem_boton({_p}, 38, 5, {_m}, {_l}, {_lore::*})
     # Boton EXTRAER
     set {_m} to "gem_out_off"
     set {_l} to "&7EXTRAER"
@@ -645,7 +655,7 @@ function agem_refresh(p: player):
         if {-agem.has::%{_id}%::%{_st}%} is set:
             set {_m} to "gem_out_ready"
             set {_l} to "&b&lEXTRAER %{-agem.nombre::%{_st}%::%{-agem.has::%{_id}%::%{_st}%}%}% &7(%{-agem.extraer::%{-agem.t::%{_id}%}%::%{-agem.has::%{_id}%::%{_st}%}%}%$)"
-    agem_boton({_p}, 48, {_m}, {_l}, {_lore::*})
+    agem_boton({_p}, 46, 4, {_m}, {_l}, {_lore::*})
 
 function agem_open(p: player):
     close {_p}'s inventory
@@ -655,12 +665,12 @@ function agem_open(p: player):
     set {-agem.gui::%{_id}%} to {_inv}
     set slot 8 of {_inv} to book named "&eComo usar"
     set lore of slot 8 of {_inv} to "&71. Shift+clic en tu equipo y en una gema.", "&72. ENGARZAR la pone en una ranura (cobra plata).", "&73. Clic en una ranura para elegirla: EXTRAER o reemplazar.", "&7Reemplazar destruye la gema vieja; extraer cuesta mas." and "&7Cerrar o desconectarte devuelve todo."
-    set slot 45 of {_inv} to agem_icon("astral:menu/icon_back", "&eDevolver objetos")
-    set slot 53 of {_inv} to agem_icon("astral:menu/icon_close", "&cCerrar y devolver")
-    loop 2 times:
+    set slot 45 of {_inv} to agem_icon("astral:servicios/forja_atras_0", "&eDevolver objetos")
+    set slot 53 of {_inv} to agem_icon("astral:servicios/forja_cerrar_0", "&cCerrar y devolver")
+    loop 3 times:
         set {_b} to agem_icon("astral:servicios/forge_back_%loop-number - 1%", "&6Volver al Herrero")
         set lore of {_b} to "&7Mejorar y Reparar. Tus objetos vuelven a tu inventario."
-        set slot (50 + loop-number) of {_inv} to {_b}
+        set slot (49 + loop-number) of {_inv} to {_b}
     agem_refresh({_p})
     open {_inv} to {_p}
 
@@ -835,7 +845,7 @@ on inventory click:
         delete {-agem.aviso::%{_id}%}
         agem_refresh(player)
         stop
-    if {_slot} is between 51 and 52:
+    if {_slot} is between 50 and 52:
         close player's inventory
         wait 1 tick
         execute console command "astralherrero %name of player%"
@@ -896,12 +906,12 @@ on inventory click:
             delete {-agem.aviso::%{_id}%}
             agem_refresh(player)
         stop
-    if {_slot} is between 39 and 41:
+    if {_slot} is between 38 and 42:
         delete {-agem.aviso::%{_id}%}
         agem_engarzar(player)
         agem_refresh(player)
         stop
-    if {_slot} is between 48 and 50:
+    if {_slot} is between 46 and 49:
         delete {-agem.aviso::%{_id}%}
         agem_extraer(player)
         agem_refresh(player)
@@ -932,7 +942,7 @@ on unload:
             agem_return(loop-player)
             close loop-player's inventory
 
-# ------------------------------------------------------------------ OP y drop temporal
+# ------------------------------------------------------------------ OP y gemas del cofre
 # /astralgema dar <jugador> <tipo|azar> <calidad 1-5> [cantidad]   (OP o consola)
 # /astralgema cofre <jugador> <tier> <nota 1-6>                    (consola: cofre de mazmorra, astral_puntaje.sk)
 command /astralgema [<text>] [<text>] [<text>] [<text>] [<text>]:
@@ -978,6 +988,7 @@ command /astralgema [<text>] [<text>] [<text>] [<text>] [<text>]:
                 stop
             if random number between 0 and 1 >= {-agem.drop::%{_nota}%}:
                 stop
+            add ({-agem.dropbonus::%{_nota}%} ? 0) to {_tier}
             if {_tier} < 1:
                 set {_tier} to 1
             if {_tier} > 5:

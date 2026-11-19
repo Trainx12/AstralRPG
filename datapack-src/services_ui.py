@@ -121,8 +121,9 @@ BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
 # para que el menu se lea mas limpio (los recuadros grandes tienen su hueco).
 USED = {
     'bazar': {4, 8, 53},                                             # saldo, ayuda, volver
-    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 51, 52, 53},  # 51-52: GEMAS
-    'reforja': {8, 19, 21, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 51, 52, 53},
+    # Forja con el diseno del dueno (19/11): MEJORAR/ENGARZAR 38-42, REPARAR/EXTRAER 46-49, GEMAS/FORJA 50-52.
+    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), *range(38, 43), *range(45, 54)},
+    'reforja': {8, 19, 21, 23, 24, 25, 26, *range(28, 35), *range(38, 43), *range(45, 54)},
     'venta': {8, 20, 24, *range(28, 35), 41, 42, 43, 44, 45, 53},
 }
 
@@ -171,9 +172,7 @@ def panel(kind, used=None):
             box((x,y,x+17,y+17),fill=fill,outline=edge);hole((x+1,y+1,x+16,y+16))
         text(out,'MATERIALES',(ox+132,oy+38),color='#eac58a')
         hole((25,71,150,88)) # estado / nivel / dinero / probabilidad
-        hole((61,89,114,106)) # MEJORAR
-        # Fila inferior: tres casillas alineadas con MEJORAR; volver queda en 45.
-        out.alpha_composite(button('REPARAR',54,'#55504a'),(ox+61,oy+107))
+        hole((43,89,132,106)) # MEJORAR (5 casillas)
     elif kind=='reforja':
         # EQUIPO (19) y GEMA (21) en un recuadro; RANURAS (23-25) y costo (26) en el otro.
         box((6,34,87,70),fill='#1d1e20',outline='#aa7947')
@@ -188,7 +187,7 @@ def panel(kind, used=None):
             box((x,y,x+17,y+17),fill=fill,outline=edge);hole((x+1,y+1,x+16,y+16))
         text(out,'RANURAS',(ox+132,oy+38),color='#eac58a')
         hole((25,71,150,88))
-        hole((61,89,114,106))
+        hole((43,89,132,106))   # ENGARZAR (5 casillas)
     elif kind=='venta':
         box((24,34,77,70),fill='#1d1e20',outline='#a8a6a0')
         box((42,52,61,70),fill='#11151b',outline='#7fd39a')
@@ -284,16 +283,17 @@ def assets():
     for key,caption,sub in BAZAR_CARDS:
         tiles('bazar_'+key,picture_card(caption,sub,'bazar_'+key))
     from gemas import BOTONES as GEM_BOTONES, BARRAS as GEM_BARRAS
-    # Reforja (gemas.py): placas de Gemini al doble de resolucion; ranuras 64x64 mostradas a 16.
-    for name,(caption,width,plate) in GEM_BOTONES.items():
-        tiles(name,placa(caption,width,plate,escala=2),escala=2)
+    # Forja (Herrero y Reforja) con el diseno del dueno (19/11): botones con icono, flecha y X propias.
+    from ventanas_19_11 import boton_forja
+    for name,(pieza,casillas,estado) in GEM_BOTONES.items():
+        tiles(name,boton_forja(pieza,casillas,estado),escala=2)
+    for name,(pieza,casillas,estado) in {'improve':('mejorar',5,'listo'),'blocked':('mejorar',5,'apagado'),
+            'repair_off':('reparar',4,'apagado'),'repair_ready':('reparar',4,'listo'),'repair_missing':('reparar',4,'falta'),
+            'forja_atras':('atras',1,'listo'),'forja_cerrar':('cerrar',1,'listo')}.items():
+        tiles(name,boton_forja(pieza,casillas,estado),escala=2)
     model('gem_socket_empty',socket(False,64),gui=16)
     model('gem_socket_locked',socket(True,64),gui=16)
-    for name,caption,width,color in [('improve','MEJORAR',54,'#366b48'),('blocked','MEJORAR',54,'#683c36'),
-                                     ('repair_off','REPARAR',54,'#55504a'),
-                                     ('repair_ready','REPARAR',54,'#366b48'),
-                                     ('repair_missing','REPARAR',54,'#93333a'),
-                                     ('sell','VENDER',72,'#93333a'),('sell_blocked','VENDER',72,'#59434a')]:
+    for name,caption,width,color in [('sell','VENDER',72,'#93333a'),('sell_blocked','VENDER',72,'#59434a')]:
         tiles(name,button(caption,width,color))
     bars={'empty':('COLOCA TU EQUIPO','#ddc699'),'invalid':('EQUIPO NO MEJORABLE','#ec998b'),'max':('NIVEL MAXIMO +10','#e8d475'),
           'sale_empty':('ELIGE QUE VENDER','#ddc699'),'sale_ready':('REVISA EL IMPORTE','#9ed7b0'),'sold':('VENTA COMPLETADA','#9ed7b0'),

@@ -143,6 +143,9 @@ register_xp(add_item, txt)
 # Reforja de gemas (7d, 19/11/2026): items, encantamientos astral:gema_* y funciones gemas/* (fuente: gemas.py)
 import gemas as GEMAS
 GEMAS.register(put, fn, add_item, txt)
+# Cavernas de Cristal (7e): Cristal, Geoda, Polvo y funciones cavernas/* (fuente: cavernas.py)
+import cavernas as CAVERNAS
+CAVERNAS.register(put, fn, add_item, txt)
 
 # Gancho de escalada
 for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
@@ -1548,6 +1551,7 @@ from escala import TIER_FIJO
 for w, t in TIER_FIJO.items():  # Oceano Astral: tier fijo, sin depender del inventario (dg 2 = no es mazmorra)
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 2")
+mob_roll.append(CAVERNAS.mob_roll_corazon())   # Corazon de las Cavernas: tier 5
 mob_roll += [
     f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
@@ -2261,6 +2265,7 @@ KITS = [
      [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q <= 3]),
     ("gemas_altas", "Gemas Perfecta y Estelar", "light_purple", "minecraft:magenta_shulker_box",
      [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q >= 4]),
+    ("cavernas", "Cavernas de Cristal", "light_purple", "minecraft:purple_shulker_box", list(CAVERNAS.ITEMS)),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:
@@ -2364,6 +2369,8 @@ fn("tool/mine", [
     f"execute unless block ~ ~ ~ #{NS}:drillable unless block ~ ~ ~ #{NS}:tree_logs run return 0",
     # Menas del Oceano Astral: solo taladro de amatista (tier 3) o mejor (oceano_items.py).
     *__import__('oceano_items').drill_guard(),
+    # Vetas de las Cavernas de Cristal (cavernas.py): taladro tier 4+ y conteo para comisiones.
+    *CAVERNAS.tool_mine_lines(),
     'execute if dimension minecraft:astral_bosque run function astral:tool/bosque_loot',
     'execute unless dimension minecraft:astral_bosque run loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand',
     "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
@@ -2580,6 +2587,7 @@ load.append("scoreboard objectives add astraldef dummy")
 # Nivel de efectos visuales por jugador (plugin AstralEfectos): 0 Bajo, 1 Medio, 2 Alto.
 load.append("scoreboard objectives add astral.fx dummy")
 load.append("scoreboard objectives add astral.defp dummy")
+load.append(f"function {NS}:cavernas/load")   # cavernas.py: conteo de vetas para comisiones
 fn("load", load)
 fn("tick", [
     "# taladros y motosierras: primero ver si rompiste el bloque apuntado, despues apuntar de nuevo",
@@ -2686,6 +2694,7 @@ from tanda4b_world import generate as generate_tanda4b_world
 generate_tanda4b_world(files)
 from oceano_items import generate as generate_oceano_items
 generate_oceano_items(files)
+CAVERNAS.tabla_note_block(files)
 from santuario_azeroth import generate as generate_sanctuary
 generate_sanctuary(files)
 from infinita import generate as generate_infinita

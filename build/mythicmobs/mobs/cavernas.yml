@@ -1,0 +1,481 @@
+# Generado por datapack-src/cavernas.py (plan E5 / 7e). Mobs de las Cavernas de Cristal Astrales.
+# Los aparece AstralCavernas (no hay apariciones naturales en el mundo). Vida base x tier: mob/roll.
+
+astral_cav_golem_amatista:
+  Type: ZOMBIE
+  Display: '&5Golem de Amatista'
+  Health: 34
+  Damage: 6
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.24
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_golem_cristal;s=1.6} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=1.6} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.golem} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_golem_jade:
+  Type: ZOMBIE
+  Display: '&aGolem de Jade'
+  Health: 34
+  Damage: 6
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.24
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_golem_bosque;s=1.6} @self ~onSpawn
+  - model{m=astral_golem_bosque;s=1.6} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.golem} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_golem_rubi:
+  Type: ZOMBIE
+  Display: '&cGolem de Rubi'
+  Health: 34
+  Damage: 7
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.24
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_golem_cristal;s=1.6} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=1.6} @self ~onLoad
+  - tint{c=FF5A5A} @self ~onSpawn
+  - tint{c=FF5A5A} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.golem} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_golem_zafiro:
+  Type: ZOMBIE
+  Display: '&9Golem de Zafiro'
+  Health: 34
+  Damage: 6
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.24
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_golem_hielo;s=1.6} @self ~onSpawn
+  - model{m=astral_golem_hielo;s=1.6} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.golem} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_golem_onix:
+  Type: ZOMBIE
+  Display: '&8Golem de Onix'
+  Health: 40
+  Damage: 7
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.25
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_golem_cristal;s=1.8} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=1.8} @self ~onLoad
+  - tint{c=4A4060} @self ~onSpawn
+  - tint{c=4A4060} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.golem} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_arana:
+  Type: SPIDER
+  Display: '&dArana de Cristal'
+  Health: 28
+  Damage: 6
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.32
+    Despawn: true
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  Skills:
+  - model{m=astral_arana;s=1.2} @self ~onSpawn
+  - model{m=astral_arana;s=1.2} @self ~onLoad
+  - tint{c=D9A8FF} @self ~onSpawn
+  - tint{c=D9A8FF} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.arana} @self ~onSpawn
+  - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cristal_caverna"} @self ~onDeath 0.35
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
+
+astral_cav_jefe_amatista:
+  Type: ZOMBIE
+  Display: '&5&lGuardian de Amatista'
+  Health: 500
+  Damage: 12
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.27
+    Despawn: false
+    FollowRange: 40
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&5&lGuardian de Amatista'
+    Range: 48
+    Color: PURPLE
+    Style: SEGMENTED_10
+  Skills:
+  - model{m=astral_golem_cristal;s=3.0} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=3.0} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.jefe} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run function astral:cavernas/jefe/4"} @self ~onSpawn
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_3"} @self ~onDeath 0.35
+  - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
+
+astral_cav_jefe_jade:
+  Type: ZOMBIE
+  Display: '&a&lGuardian de Jade'
+  Health: 500
+  Damage: 12
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.27
+    Despawn: false
+    FollowRange: 40
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&a&lGuardian de Jade'
+    Range: 48
+    Color: GREEN
+    Style: SEGMENTED_10
+  Skills:
+  - model{m=astral_golem_bosque;s=3.0} @self ~onSpawn
+  - model{m=astral_golem_bosque;s=3.0} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.jefe} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run function astral:cavernas/jefe/4"} @self ~onSpawn
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_3"} @self ~onDeath 0.35
+  - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
+
+astral_cav_jefe_rubi:
+  Type: ZOMBIE
+  Display: '&c&lGuardian de la Forja'
+  Health: 500
+  Damage: 12
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.27
+    Despawn: false
+    FollowRange: 40
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&c&lGuardian de la Forja'
+    Range: 48
+    Color: RED
+    Style: SEGMENTED_10
+  Skills:
+  - model{m=astral_golem_cristal;s=3.0} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=3.0} @self ~onLoad
+  - tint{c=FF4A3A} @self ~onSpawn
+  - tint{c=FF4A3A} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.jefe} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run function astral:cavernas/jefe/4"} @self ~onSpawn
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_rubi_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_2"} @self ~onDeath 0.6
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_rubi_3"} @self ~onDeath 0.3
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_3"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
+
+astral_cav_jefe_zafiro:
+  Type: ZOMBIE
+  Display: '&9&lGuardian del Lago'
+  Health: 500
+  Damage: 12
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.27
+    Despawn: false
+    FollowRange: 40
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&9&lGuardian del Lago'
+    Range: 48
+    Color: BLUE
+    Style: SEGMENTED_10
+  Skills:
+  - model{m=astral_golem_hielo;s=3.0} @self ~onSpawn
+  - model{m=astral_golem_hielo;s=3.0} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.jefe} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run function astral:cavernas/jefe/4"} @self ~onSpawn
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_3"} @self ~onDeath 0.35
+  - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
+
+astral_cav_jefe_corazon:
+  Type: ZOMBIE
+  Display: '&8&lCorazón de Ónix'
+  Health: 500
+  Damage: 12
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventSunburn: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+    MovementSpeed: 0.27
+    Despawn: false
+    FollowRange: 40
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&8&lCorazón de Ónix'
+    Range: 48
+    Color: WHITE
+    Style: SEGMENTED_10
+  Skills:
+  - model{m=astral_golem_cristal;s=3.6} @self ~onSpawn
+  - model{m=astral_golem_cristal;s=3.6} @self ~onLoad
+  - tint{c=2E2840} @self ~onSpawn
+  - tint{c=2E2840} @self ~onLoad
+  - state{s=attack} @self ~onAttack
+  - skill{s=AST_MUERTE} @self ~onDeath
+  - sound{s=block.amethyst_block.hit;v=0.8} @self ~onDamaged
+  - sound{s=block.amethyst_cluster.break;v=1;p=0.7} @self ~onDeath
+  - addtag{tag=cav.mob} @self ~onSpawn
+  - addtag{tag=cav.jefe} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run function astral:cavernas/jefe/5"} @self ~onSpawn
+  - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
+  - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_onix_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_2"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_onix_3"} @self ~onDeath 0.4
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_3"} @self ~onDeath 0.4
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5

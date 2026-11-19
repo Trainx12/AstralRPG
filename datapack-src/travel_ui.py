@@ -12,7 +12,8 @@ ROWS={'portales':6,'minas':6,'minas-venta':5,'arenas':6}
 CAPTIONS={'portales':'PORTALES ASTRALES','minas':'MINAS ASTRALES','minas-venta':'VENTA RAPIDA','arenas':'ARENAS PvP'}
 # 4 tarjetas de 40 px sobre las 9 columnas: cada columna va a la tarjeta que tiene su centro.
 CARD_COLS=((0,1),(2,3,4),(5,6),(7,8))
-CARD_SLOTS={key:[r*9+c for r in (0,1,2,3) for c in CARD_COLS[i]] for i,key in enumerate(('nether','end','parkour','arenas'))}
+# Tarjetas de Portales (19/11): Nether, End, Cavernas de Cristal y Vacio Estelar. Mini juegos, Oceano y Arenas: 48-50.
+CARD_SLOTS={key:[r*9+c for r in (0,1,2,3) for c in CARD_COLS[i]] for i,key in enumerate(('nether','end','cavernas','vacio'))}
 ARENA_SLOTS=dict(zip(('clasica','tft1','tft2','tft3'),CARD_SLOTS.values()))
 SALE_SLOTS=tuple(range(28,35))
 # Tira de la venta: items vanilla reales en la fila superior (solo muestran que se vende).
@@ -22,7 +23,7 @@ VANILLA=['item/coal','item/copper_ingot','item/iron_ingot','item/gold_ingot','it
          'block/coal_ore','block/copper_ore','block/iron_ore','block/gold_ore','block/emerald_ore','block/diamond_ore','block/ancient_debris_side',
          'block/coal_block','block/copper_block','block/iron_block','block/gold_block','block/emerald_block','block/diamond_block','block/netherite_block']
 FRAME_COLORS={'open':'#71e07a','next':'#f2c94c','locked':'#656171'}
-USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,49,51,52,53},  # 49: Oceano Astral
+USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,48,49,50,51,52,53},  # 48 juegos, 49 Oceano, 50 arenas
       'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
       'minas':{4,9,18,27,45,47,49,53,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP)}
 GRID_Y=57
@@ -71,6 +72,8 @@ def label(im,caption,center,width=32):
             parts.append(g.crop(b) if b else Image.new('RGBA',(3,8)))
         art=Image.new('RGBA',(sum(x.width for x in parts),max(x.height for x in parts)));x=0
         for part in parts:art.alpha_composite(part,(x,art.height-part.height));x+=part.width
+        # Si ni sin espacios entra ("Cavernas"), se angosta apenas lo justo.
+        if art.width>width:art=art.resize((width,art.height),Image.Resampling.LANCZOS)
     im.alpha_composite(art,(center[0]-art.width//2,center[1]))
 
 
@@ -80,15 +83,22 @@ def panel(kind):
     text(im,CAPTIONS[kind],(112,ty),color='#fff0cd')
     d.rectangle((24,56,199,257),fill=fill)
     if kind in ('portales','arenas'):
-        labels=('Nether','End','Juegos','Arenas') if kind=='portales' else ('Coliseo','Ruinas','Vacio','Volcan')
+        labels=('Nether','End','Cavernas','Vacio Estelar') if kind=='portales' else ('Coliseo','Ruinas','Vacio','Volcan')
         for i,caption in enumerate(labels):
             x,y=31+round(i*40.5),GRID_Y
             # Tarjeta de 40x72: pintura arriba y nombre abajo, borde dorado como el concepto.
             plaque=Image.new('RGBA',(40,72),'#302738');pd=ImageDraw.Draw(plaque)
-            plaque.alpha_composite(illustration(kind,i),(2,2))
-            pd.rectangle((1,59,38,70),fill='#1d1726')
-            pd.rectangle((0,0,39,71),outline='#c3a25d');pd.line((1,58,38,58),fill='#c3a25d')
-            label(plaque,caption,(20,61),37)
+            dos=' ' in caption and kind=='portales'   # "Vacio Estelar" en dos lineas (diseno del dueno 19/11)
+            pintura=illustration(kind,i)
+            if dos:pintura=pintura.crop((0,0,36,48))
+            plaque.alpha_composite(pintura,(2,2))
+            corte=50 if dos else 58
+            pd.rectangle((1,corte+1,38,70),fill='#1d1726')
+            pd.rectangle((0,0,39,71),outline='#c3a25d');pd.line((1,corte,38,corte),fill='#c3a25d')
+            if dos:
+                a,b=caption.split(' ',1);label(plaque,a,(20,52),37);label(plaque,b,(20,61),37)
+            else:
+                label(plaque,caption,(20,61),37)
             im.alpha_composite(plaque,(x,y))
         label(im,'Elegi tu campo de batalla' if kind=='arenas' else 'Cruza tu proximo umbral',(112,135),160)
         im.alpha_composite(button('',54,'#60432b'),(31,147))
@@ -96,6 +106,9 @@ def panel(kind):
         text(im,'Lobby',(67,152),color='#fff0cd')
         im.alpha_composite(button('',54,'#683c36'),(139,147))
         im.alpha_composite(icon('cerrar'),(158,148))
+        if kind=='portales':   # casillas chicas 48-50: Mini juegos, Oceano y Arenas (items reales encima)
+            for col in (3,4,5):
+                bx=31+col*18;d.rectangle((bx,147,bx+17,164),fill='#24182f',outline='#c3a25d')
     elif kind=='minas':
         # Banner de saldo: el importe sigue en el nombre/lore del item real.
         im.alpha_composite(banner('TU ORO ($)'),(49,57))

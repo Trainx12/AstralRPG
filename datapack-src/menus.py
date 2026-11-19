@@ -432,34 +432,39 @@ EFECTOS_CATEGORIAS = [
 
 
 def configuraciones_menu():
+    """Efectos (diseno del dueno 19/11, ventanas_19_11.py): fila 1 Bajo/Medio/Alto, filas 2-6 las 5 categorias."""
+    import ventanas_19_11 as V
+
     def requisito(obj, valor):
         return ("\n      requirements:\n        activo:\n          type: '=='"
                 f"\n          input: '{SCORE.format(obj)}'\n          output: '{valor}'")
-    items = item('titulo', 'COMPARATOR', 4, '&7&lConfiguraciones',
-                 ['&7Elegi cuantos efectos ves.', '&7Los interruptores solo cambian lo que ves vos.',
-                  '&7Solo apagan efectos nuevos.', '&7Las particulas de siempre siguen visibles.',
-                  '&7El dano y las habilidades son iguales.', '&7Avisos de jefes y particulas MythicMobs siguen.'])
-    for n, (key, material, slot, name, lore) in enumerate(EFECTOS_NIVELES):
+    info = ['&7Los interruptores solo cambian lo que ves vos.', '&7Solo apagan efectos nuevos; las particulas',
+            '&7de siempre siguen. El dano no cambia.']
+    items = []
+    for n, (key, material, _slot, name, lore) in enumerate(EFECTOS_NIVELES):
         cmds = ['[sound] UI_BUTTON_CLICK', f'[player] efectos {key}', '[refresh]']
-        items += item(f'efectos_{key}_activo', material, slot, name + ' &a[ACTIVO]', lore + ['', '&a▶ Elegido'],
-                      glow=True, extra={'priority': 1, 'update': 'true',
-                      'view_requirement': requisito('astral.fx', n), 'click_commands': cmds})
-        items += item(f'efectos_{key}', material, slot, name, lore + ['', '&eClic para elegirlo.'],
-                      extra={'priority': 2, 'update': 'true', 'click_commands': cmds})
-    for slot, (key, obj, nombre, descripcion) in enumerate(EFECTOS_CATEGORIAS, 29):
+        for t in range(3):
+            slot = n * 3 + t
+            items += item(f'efectos_{key}_activo_{t}', 'PAPER', slot, name + ' &a[ACTIVO]', lore + ['', '&a▶ Elegido'],
+                          extra={'priority': 1, 'update': 'true', 'item_model': f'astral:ventanas1911/nivel_{key}_activo_{t}',
+                                 'view_requirement': requisito('astral.fx', n), 'click_commands': cmds})
+            items += item(f'efectos_{key}_{t}', 'PAPER', slot, name, lore + ['', '&eClic para elegirlo.'],
+                          extra={'priority': 2, 'update': 'true', 'item_model': f'astral:ventanas1911/nivel_{key}_{t}',
+                                 'click_commands': cmds})
+    for fila, (key, obj, nombre, descripcion) in enumerate(EFECTOS_CATEGORIAS, 1):
         for activo in (False, True):
             estado = 'true' if activo else 'false'
-            extra = {'priority': 2 if activo else 1, 'update': 'true',
-                     'click_commands': [f'[player] efectos {key} {"off" if activo else "on"}', '[refresh]']}
-            if not activo:
-                extra['view_requirement'] = requisito('astral.fx.' + obj, 0)
-            items += item(f'interruptor_{key}_{estado}', 'LIME_DYE' if activo else 'GRAY_DYE', slot,
-                          f'&{"a" if activo else "c"}&l{nombre}: {estado.upper()}',
-                          [f'&7Estado: &aActivado' if activo else '&7Estado: &cDesactivado',
-                           '&7' + descripcion, '', '&eClic para desactivar.' if activo else '&eClic para activar.'], extra=extra)
-    items += item('volver', 'ARROW', 40, '&fVolver al menu', extra={'click_commands': ['[openguimenu] principal']})
-    items += relleno('GRAY_STAINED_GLASS_PANE', 45, {4, 11, 13, 15, 29, 30, 31, 32, 33, 40})
-    return menu('&8Configuraciones', 'configuraciones', 45, items, update=True)
+            cmds = [f'[player] efectos {key} {"off" if activo else "on"}', '[refresh]']
+            titulo = f'&{"a" if activo else "c"}&l{nombre}: {"ACTIVADO" if activo else "DESACTIVADO"}'
+            lore = ['&7' + descripcion, '', '&eClic para desactivar.' if activo else '&eClic para activar.'] + [''] + info
+            for col in range(9):
+                modelo = (f'astral:ventanas1911/efecto_{key}' if col == 0 else
+                          f'astral:ventanas1911/interruptor_{"on" if activo else "off"}_{col - 6}' if col >= 6 else 'astral:viajes/blank')
+                extra = {'priority': 2 if activo else 1, 'update': 'true', 'item_model': modelo, 'click_commands': cmds}
+                if not activo:
+                    extra['view_requirement'] = requisito('astral.fx.' + obj, 0)
+                items += item(f'interruptor_{key}_{estado}_{col}', 'PAPER', fila * 9 + col, titulo, lore, extra=extra)
+    return menu(V.titulo('efectos'), 'configuraciones', 54, items, update=True)
 
 
 # (comando, material, nombre, para que sirve, como se usa, acciones al hacer clic o None si hay que escribirlo)
@@ -732,6 +737,8 @@ def main():
     lista += [f'  {n}:\n    file: {n}.yml' for n in write_infinita()]
     from oceano import generate as generate_oceano
     lista += [f'  {n}:\n    file: {n}.yml' for n in generate_oceano()]
+    from cavernas import generate as generate_cavernas   # Cavernas de Cristal (7e): ventana de aviso
+    lista += [f'  {n}:\n    file: {n}.yml' for n in generate_cavernas()]
     open(os.path.join(OUT, "config-gui_menus.yml"), "w", encoding="utf-8").write("\n".join(lista) + "\n")
     from correcciones_goblin import generate as generate_correcciones
     generate_correcciones()

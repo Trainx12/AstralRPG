@@ -79,10 +79,10 @@ def own_textures():
     png('block/asura_ore',im)
     def put(name,obj): files['assets/' + name + '.json']=json.dumps(obj).encode()
     put('astral/models/block/asura_ore',{'parent':'minecraft:block/cube_all','textures':{'all':'astral:block/asura_ore'}})
-    put('minecraft/blockstates/note_block',{'multipart':[
+    put('minecraft/blockstates/note_block',__import__('cavernas').parchar_note_block({'multipart':[
         {'when':{'instrument':'banjo','note':'24'},'apply':{'model':'astral:block/asura_ore'}},
         {'when':{'OR':[{'instrument':'|'.join(['harp','basedrum','snare','hat','bass','flute','bell','guitar','chime','xylophone','iron_xylophone','cow_bell','didgeridoo','bit','pling','zombie','skeleton','creeper','dragon','wither_skeleton','piglin','custom_head'])},{'note':'|'.join(str(n) for n in range(22))}]},'apply':{'model':'minecraft:block/note_block'}},
-        *__import__('oceano_items').note_block_variants()]})
+        *__import__('oceano_items').note_block_variants()]}))   # + vetas de las Cavernas (cavernas.py)
     put('astral/models/item/colmillo_carnivoro',{'parent':'minecraft:item/generated','textures':{'layer0':'astral:item/colmillo_carnivoro'}})
     put('astral/items/colmillo_carnivoro',{'model':{'type':'minecraft:model','model':'astral:item/colmillo_carnivoro'}})
     return files

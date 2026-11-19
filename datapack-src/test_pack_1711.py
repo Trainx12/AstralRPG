@@ -145,8 +145,8 @@ class Tanda(unittest.TestCase):
         import services as S
         import services_ui as UI
         script=S.script()
-        self.assertEqual(S.REPARAR_SLOT,48)
-        self.assertIn('if {_slot} is between 48 and 50:',script)
+        self.assertEqual(S.REPARAR_SLOT,46)   # Forja nueva (19/11): REPARAR 46-49
+        self.assertIn('if {_slot} is between 46 and 49:',script)
         self.assertNotIn('__REP_',script)
         self.assertNotIn('anvil named',script)
         self.assertEqual(script,(ROOT/'build/services/astral_servicios.sk').read_text(encoding='utf8'))
@@ -156,11 +156,10 @@ class Tanda(unittest.TestCase):
         from deploy_gemas import herrero_viejo
         viejo=herrero_viejo()
         for n,blob in ui.items():
+            # Forja nueva (19/11): REPARAR y el fondo del Herrero cambiaron a proposito; solo se compara con el pack publico.
             if '/repair_' in n or n.startswith('assets/astral/textures/font/servicios/herrero_'):
-                self.assertEqual(self.after[n],viejo.get(n,blob),n)
                 self.assertEqual(self.public[n],blob,n)
-        self.assertTrue({48,49,50}.issubset(UI.USED['herrero']))
-        self.assertTrue({48,49,50}.isdisjoint({20,23,24,25,26,39,40,41,45,53}))
+        self.assertTrue({46,47,48,49}.issubset(UI.USED['herrero']))
 
 
 if __name__ == '__main__':
