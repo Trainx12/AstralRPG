@@ -489,6 +489,9 @@ from botones_provisorios import KEYS as XP_BUTTONS
 files.update(xp_assets(XP_BUTTONS))
 from arte_1611 import assets as arte_assets
 files.update(arte_assets())
+# Gemas de la Reforja (gemas.py, 7d): PNG reemplazables en pack-source/assets/astral/textures/item/gemas/
+from gemas import pack_assets as gemas_assets
+files.update(gemas_assets())
 from ventanas_1611 import assets as ventanas_assets
 _vfiles, _vproviders = ventanas_assets()
 files.update(_vfiles)

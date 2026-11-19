@@ -163,6 +163,18 @@ SECRETO_NOTA_PESOS = 'B'
 MEJORAS_PLATA = [30_000, 75_000, 150_000, 300_000, 600_000, 1_200_000, 2_500_000, 5_000_000, 10_000_000, 25_000_000]
 GACHA_TIRADA = {'gacha_rpg': 100_000, 'gacha_monturas': 250_000, 'gacha_cosmeticos': 50_000}
 
+# Reforja de gemas (plan E4 / 7d, 19/11/2026): engarzar = base por tier del equipo x multiplicador de la calidad.
+# Reemplazar cuesta lo mismo que engarzar (la gema vieja se destruye). Extraer sin romperla cuesta x GEMA_EXTRAER_MULT.
+GEMA_PONER_TIER = {1: 10_000, 2: 25_000, 3: 50_000, 4: 100_000, 5: 200_000,
+                   6: 400_000, 7: 700_000, 8: 1_200_000, 9: 2_000_000, 10: 3_500_000}
+GEMA_CALIDAD_MULT = {1: 1, 2: 2, 3: 4, 4: 8, 5: 15}     # Cruda, Pulida, Impecable, Perfecta, Estelar
+GEMA_EXTRAER_MULT = 3
+
+
+def gema_costo(tier, calidad, extraer=False):
+    """Plata para engarzar (o extraer) una gema de esa calidad en un equipo de ese tier."""
+    return GEMA_PONER_TIER[tier] * GEMA_CALIDAD_MULT[calidad] * (GEMA_EXTRAER_MULT if extraer else 1)
+
 # Minas: todo x100 salvo la Netherita III.
 NETHERITA_BLOQUE = 15_000
 NETHERITA_APERTURA = 2_500_000_000
@@ -326,8 +338,24 @@ SK_CUERPO = r'''
 function astral_eco_mult(p: player) :: number:
     return 1 + ({-renac::%uuid of {_p}%} ? 0)
 
+# Gemas de Topacio (gemas.py, 7d): el plugin AstralGemas deja el % extra en binario (etiquetas astral.gp0..gp5)
+# al revisar el equipo cada segundo. Aca solo se leen: ningun comando por baja.
+function astral_eco_gema(p: player) :: number:
+    set {_g} to 0
+    set {_b} to 1
+    loop 6 times:
+        set {_tag} to "astral.gp%loop-number - 1%"
+        if {_p} has the scoreboard tag {_tag}:
+            add {_b} to {_g}
+        set {_b} to {_b} * 2
+    return {_g}
+
+function astral_eco_valor(p: player, n: number) :: number:
+    return floor({_n} * astral_eco_mult({_p}) * (1 + astral_eco_gema({_p}) / 100))
+
 function astral_eco_dar(p: player, n: number):
-    set {_v} to floor({_n} * astral_eco_mult({_p}))
+    set {_v} to astral_eco_valor({_p}, {_n})
+    set {-eco.ultimo::%uuid of {_p}%} to {_v}
     {_v} > 0
     add {_v} to balance of {_p}
     send action bar "&6+%{_v}%$" to {_p}
@@ -337,7 +365,7 @@ function astral_eco_participantes(p: player, n: number):
         world of loop-player is world of {_p}
         gamemode of loop-player is survival or adventure
         astral_eco_dar(loop-player, {_n})
-        send "&6Recompensa del jefe: &e+%floor({_n} * astral_eco_mult(loop-player))%$" to loop-player
+        send "&6Recompensa del jefe: &e+%{-eco.ultimo::%uuid of loop-player%}%$" to loop-player
 
 # Lo llaman los mobs de MythicMobs (mythic.py, mazmorra.py): astralplatamob <jugador> <categoria> [tier]
 # categoria: hostil, elite, jefe, ancestral (o un numero fijo, ya en la escala nueva).

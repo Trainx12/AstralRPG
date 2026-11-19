@@ -1,3 +1,12 @@
+# Reforja de gemas (7d) - 19/11/2026
+
+Entrega preparada, sin desplegar: [reforja-gemas](../build/deploy/reforja-gemas.md).
+Fuente unica `datapack-src/gemas.py` (tabla, ranuras por tier, ventana Skript, drop temporal, plugin
+AstralGemas); costos en `economia.py`. Cada gema es un encantamiento `astral:gema_<tipo>_<arma|armadura>_<q>`.
+Texturas 64x64 de Gemini (`gemas_arte.py` recorta la hoja): `pack-source/assets/astral/textures/item/gemas/<tipo>_<q>.png`.
+Marco y botones de Gemini: `pack-source/ref/reforja-frame.png` y `ref/gemini/gem_*.png`.
+Herrero: boton GEMAS (51-52). OP: `/astralgema dar`. Ensayo: `tools/probar_gemas_paper.py`.
+
 # Bastones perforantes y golemcitos - 17/11/2026
 
 Entrega preparada: [bastones-golems-17-11](../build/deploy/bastones-golems-17-11.md).

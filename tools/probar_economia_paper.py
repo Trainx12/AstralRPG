@@ -34,7 +34,8 @@ def main(java):
     for old in scripts.glob('*.sk'):
         old.unlink()
     for src in (ROOT / 'build/economia/Skript/scripts/astral_economia.sk', ROOT / 'build/mazmorras/astral_puntaje.sk',
-                ROOT / 'build/mazmorras/astral_mazmorras_copias.sk', ROOT / 'build/secretos/astral_secretos.sk'):
+                ROOT / 'build/mazmorras/astral_mazmorras_copias.sk', ROOT / 'build/secretos/astral_secretos.sk',
+                ROOT / 'build/services/astral_servicios.sk', ROOT / 'build/gemas/astral_gemas.sk'):
         shutil.copy2(src, scripts / src.name)
     log = work / 'paper.log'
     with log.open('w', encoding='utf8') as out:
@@ -60,12 +61,14 @@ def main(java):
             cmd('mazpuntaje fin mina')
             cmd('scoreboard objectives list')
             cmd('secretos')
+            cmd('astralgema')
+            cmd('astralgema dar Nadie rubi 3')
             cmd('stop', 15)
         finally:
             if p.poll() is None:
                 p.kill()
     text = log.read_text('utf8', errors='replace')
-    lines = [l for l in text.splitlines() if 'astral_economia' in l or '[Banco]' in l or '[Economia]' in l or 'astral.nota' in l or 'mazpuntaje' in l or 'astral_puntaje' in l or 'mazmorras_copias' in l
+    lines = [l for l in text.splitlines() if 'astral_economia' in l or '[Banco]' in l or '[Economia]' in l or 'astral.nota' in l or 'mazpuntaje' in l or 'astral_puntaje' in l or 'mazmorras_copias' in l or 'astral_gemas' in l or 'Reforja' in l or 'astralgema' in l
              or 'error' in l.lower() or 'Line ' in l or 'scripts loaded' in l]
     sys.stdout.reconfigure(errors='replace')
     print('\n'.join(lines[-80:]))

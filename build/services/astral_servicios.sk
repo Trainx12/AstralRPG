@@ -5386,6 +5386,12 @@ function asg_open(p: player, mode: text):
     set lore of slot 8 of {_inv} to "&71. Coloca el objeto en el recuadro.", "&72. Revisa los requisitos o el precio.", "&73. Pulsa el boton para confirmar." and "&7Cerrar o desconectarte devuelve tu objeto."
     set slot 45 of {_inv} to asg_icon("astral:menu/icon_back", "&eDevolver objeto")
     set slot 53 of {_inv} to asg_icon("astral:menu/icon_close", "&cCerrar y devolver")
+    # Reforja de gemas (gemas.py, 7d): boton GEMAS en 51-52.
+    if {_mode} is "forge":
+        loop 2 times:
+            set {_g} to asg_icon("astral:servicios/gems_%loop-number - 1%", "&d&lReforja de gemas")
+            set lore of {_g} to "&7Engarza gemas en tus armas y armaduras." and "&7Tu equipo vuelve a tu inventario."
+            set slot (50 + loop-number) of {_inv} to {_g}
     asg_refresh({_p})
     open {_inv} to {_p}
 
@@ -5512,6 +5518,12 @@ on inventory click:
             else:
                 send "&eNo se pudo vender. Tu objeto se conserva en el recuadro." to player
             asg_refresh(player)
+        stop
+    if {_slot} is between 51 and 52:
+        if {asg.mode::%{_id}%} is "forge":
+            close player's inventory
+            wait 1 tick
+            execute console command "astralreforja %name of player%"
         stop
     if {_slot} is between 48 and 50:
         if {asg.mode::%{_id}%} is not "forge":

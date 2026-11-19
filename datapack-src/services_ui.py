@@ -19,6 +19,8 @@ THEMES = {
     'compra': ('tienda2', (214, 286, 1584, 1982), 'COMPRAR', 27, '#2a2017', '#a07a3c'),
     'venta': ('venta2', (164, 559, 1641, 2110), 'VENTA RAPIDA', 34, '#242329', '#b8913f'),
     'venta_tienda': ('tienda2', (214, 286, 1584, 1982), 'VENDER', 27, '#2a2017', '#a07a3c'),
+    # Reforja de gemas (7d, 19/11/2026): mismo marco que el Herrero. Siempre AL FINAL (glifos e45c/e45d, e47c/e47d).
+    'reforja': ('reforja', (218, 282, 1638, 2095), 'REFORJA DE GEMAS', 30, '#25272a', '#776345'),  # marco de Gemini (19/11)
 }
 GLYPHS = {name: (chr(0xe450+i*2), chr(0xe451+i*2)) for i,name in enumerate(THEMES)}
 START, BACK, END = '\ue460', '\ue461', '\ue462'
@@ -119,15 +121,16 @@ BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
 # para que el menu se lea mas limpio (los recuadros grandes tienen su hueco).
 USED = {
     'bazar': {4, 8, 53},                                             # saldo, ayuda, volver
-    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 53},
+    'herrero': {8, 20, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 51, 52, 53},  # 51-52: GEMAS
+    'reforja': {8, 19, 21, 23, 24, 25, 26, *range(28, 35), 39, 40, 41, 45, 48, 49, 50, 51, 52, 53},
     'venta': {8, 20, 24, *range(28, 35), 41, 42, 43, 44, 45, 53},
 }
 
 
-def panel(kind):
+def panel(kind, used=None):
     out=frame(kind);d=ImageDraw.Draw(out);ox,oy=OFFSET
     fill,edge=THEMES[kind][4:]
-    used=USED.get(kind)
+    used=USED.get(kind) if used is None else used
     d.rectangle((ox,oy+16,ox+175,oy+218),fill=fill)
     def box(rect,**kw):d.rectangle(tuple(v+(ox if i%2==0 else oy) for i,v in enumerate(rect)),**kw)
     def shown(slot):return used is None or slot in used
@@ -171,6 +174,21 @@ def panel(kind):
         hole((61,89,114,106)) # MEJORAR
         # Fila inferior: tres casillas alineadas con MEJORAR; volver queda en 45.
         out.alpha_composite(button('REPARAR',54,'#55504a'),(ox+61,oy+107))
+    elif kind=='reforja':
+        # EQUIPO (19) y GEMA (21) en un recuadro; RANURAS (23-25) y costo (26) en el otro.
+        box((6,34,87,70),fill='#1d1e20',outline='#aa7947')
+        for slot,color in ((19,'#67c7d2'),(21,'#c08cff')):
+            x=7+(slot%9)*18
+            box((x-1,52,x+18,70),fill='#090d11',outline=color);hole((x+1,54,x+16,69))
+        text(out,'EQUIPO',(ox+34,oy+38),color='#eac58a')
+        text(out,'GEMA',(ox+70,oy+38),color='#d6b8ff')
+        box((96,34,169,70),fill='#1d1e20',outline='#aa7947')
+        for slot in (23,24,25,26):
+            x,y=7+(slot%9)*18,17+(slot//9)*18
+            box((x,y,x+17,y+17),fill=fill,outline=edge);hole((x+1,y+1,x+16,y+16))
+        text(out,'RANURAS',(ox+132,oy+38),color='#eac58a')
+        hole((25,71,150,88))
+        hole((61,89,114,106))
     elif kind=='venta':
         box((24,34,77,70),fill='#1d1e20',outline='#a8a6a0')
         box((42,52,61,70),fill='#11151b',outline='#7fd39a')
@@ -202,6 +220,25 @@ def button(caption,width=54,color='#366b48'):
     d.line((2,2,width-3,2),fill='#d5d3ba');text(im,caption,(width//2,5),color='#ffffff');return im
 
 
+GEMINI = ROOT / 'pack-source/ref/gemini'
+
+
+def placa(caption, width, plate, escala=1):
+    """Boton con placa de Gemini (gem_<plate>.png) y texto nitido de la letra del server encima."""
+    art = Image.open(GEMINI / f'gem_{plate}.png').convert('RGBA')
+    im = art.resize((width * escala, 18 * escala), Image.Resampling.LANCZOS)
+    capa = Image.new('RGBA', (width, 18))
+    outlined(capa, caption, (width // 2, 5), color='#ffffff', outline='#1a1208')
+    im.alpha_composite(capa.resize(im.size, Image.Resampling.NEAREST))
+    return im
+
+
+def socket(locked, lado=16):
+    """Ranura de gema de Gemini: engaste vacio o bloqueado (candado)."""
+    art = Image.open(GEMINI / f"gem_{'ranura_bloqueada' if locked else 'ranura'}.png").convert('RGBA')
+    return art.resize((lado, lado), Image.Resampling.LANCZOS)
+
+
 def banner(caption,color='#ddc699'):
     im=Image.new('RGBA',(126,18),'#24272b');d=ImageDraw.Draw(im)
     d.rectangle((0,0,125,17),outline='#a17e44');text(im,caption,(63,5),color=color);return im
@@ -221,18 +258,21 @@ def title(kind):
 
 def assets():
     files,providers={},[]
-    def model(name,im):
+    def model(name,im,gui=None):
+        # gui: tamano en pixeles del cofre (16 = un item). Por defecto, 1 pixel de textura = 1 pixel del cofre.
+        gui=gui or im.width
         resource=f'astral:item/servicios/{name}'
         files[f'assets/astral/textures/item/servicios/{name}.png']=png(im)
         files[f'assets/astral/models/servicios/{name}.json']=json.dumps({'parent':'minecraft:item/generated','gui_light':'front',
-            'textures':{'layer0':resource},'display':{'gui':{'scale':[im.width/16,im.height/16,1]}}}).encode()
-        files[f'assets/astral/items/servicios/{name}.json']=json.dumps({'oversized_in_gui':max(im.size)>16,
+            'textures':{'layer0':resource},'display':{'gui':{'scale':[gui/16,gui/16,1]}}}).encode()
+        files[f'assets/astral/items/servicios/{name}.json']=json.dumps({'oversized_in_gui':gui>16,
             'model':{'type':'minecraft:model','model':f'astral:servicios/{name}'}}).encode()
-    def tiles(name,im):
-        for row in range(im.height//18):
-            for col in range(im.width//18):
-                index=row*(im.width//18)+col
-                model(f'{name}_{index}',im.crop((col*18,row*18,col*18+18,row*18+18)))
+    def tiles(name,im,escala=1):
+        px=18*escala
+        for row in range(im.height//px):
+            for col in range(im.width//px):
+                index=row*(im.width//px)+col
+                model(f'{name}_{index}',im.crop((col*px,row*px,col*px+px,row*px+px)),gui=18)
     advances={START:-32,END:32}
     for kind,chars in GLYPHS.items():
         image=panel(kind)
@@ -243,6 +283,12 @@ def assets():
     providers.append({'type':'space','advances':advances})
     for key,caption,sub in BAZAR_CARDS:
         tiles('bazar_'+key,picture_card(caption,sub,'bazar_'+key))
+    from gemas import BOTONES as GEM_BOTONES, BARRAS as GEM_BARRAS
+    # Reforja (gemas.py): placas de Gemini al doble de resolucion; ranuras 64x64 mostradas a 16.
+    for name,(caption,width,plate) in GEM_BOTONES.items():
+        tiles(name,placa(caption,width,plate,escala=2),escala=2)
+    model('gem_socket_empty',socket(False,64),gui=16)
+    model('gem_socket_locked',socket(True,64),gui=16)
     for name,caption,width,color in [('improve','MEJORAR',54,'#366b48'),('blocked','MEJORAR',54,'#683c36'),
                                      ('repair_off','REPARAR',54,'#55504a'),
                                      ('repair_ready','REPARAR',54,'#366b48'),
@@ -257,6 +303,7 @@ def assets():
         bars[f'level{level}']=(f'+{level} / {corto(money)}$ / {round(chance*100)}%','#ddc699')
         bars[f'ok{level}']=(f'MEJORA EXITOSA +{level}','#9ed7b0')
         bars[f'fail{level}']=(f'FALLO / EQUIPO INTACTO','#ec998b')
+    bars.update(GEM_BARRAS)
     for name,(caption,color) in bars.items():tiles('bar_'+name,banner(caption,color))
     return files,providers
 
@@ -272,6 +319,8 @@ def previews(folder):
             im.alpha_composite(banner('+1 / 300$ / 100%'),(24+25,40+71));im.alpha_composite(button('MEJORAR'),(24+61,40+89))
         elif kind=='venta':
             im.alpha_composite(banner('REVISA EL IMPORTE'),(24+25,40+71));im.alpha_composite(button('VENDER',72,'#93333a'),(24+97,40+89))
+        elif kind=='reforja':
+            im.alpha_composite(banner('RANURAS 1/2'),(24+25,40+71));im.alpha_composite(button('ENGARZAR'),(24+61,40+89))
         text(im,'Inventario',(24+37,40+129),color='#383c40')
         target=folder/f'{kind}.png';temp=target.with_suffix('.png.tmp');temp.write_bytes(png(im.resize((672,840),Image.Resampling.NEAREST)));temp.replace(target)
 

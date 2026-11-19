@@ -142,6 +142,9 @@ function pz_cofre(p: player, key: text, n: number):
     send title "&e+%{_v}%$" with subtitle "&7Ruleta del cofre (nota %{_letra}%)" to {_p} for 3 seconds
     loop {-pz.ruleta::%{_n}%::tiradas} times:
         pz_tirada({_p}, {_t}, {_n}, {_maz})
+    # Gemas (gemas.py, 7d): drop raro TEMPORAL con nota A o S, hasta las Cavernas de Cristal (7e).
+    if {_n} >= 5:
+        execute console command "astralgema cofre %name of {_p}% %{_t}% %{_n}%"
     execute console command "execute as %name of {_p}% run function astral:xp/cofre"
     execute console command "lp user %name of {_p}% permission settemp astral.%{_key}%.cd true {@cooldown}"
     play sound "entity.player.levelup" to {_p}

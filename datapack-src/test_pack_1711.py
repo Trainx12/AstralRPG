@@ -152,9 +152,12 @@ class Tanda(unittest.TestCase):
         self.assertEqual(script,(ROOT/'build/services/astral_servicios.sk').read_text(encoding='utf8'))
         self.assertIn('item modify entity @s weapon.mainhand astral:reparar',self.data['data/astral/function/mejora/gui/reparar.mcfunction'].decode())
         ui,_=UI.assets()
+        # El fondo del Herrero suma el boton GEMAS (7d): el FINAL de 17/11 tiene el fondo sin ese boton.
+        from deploy_gemas import herrero_viejo
+        viejo=herrero_viejo()
         for n,blob in ui.items():
             if '/repair_' in n or n.startswith('assets/astral/textures/font/servicios/herrero_'):
-                self.assertEqual(self.after[n],blob,n)
+                self.assertEqual(self.after[n],viejo.get(n,blob),n)
                 self.assertEqual(self.public[n],blob,n)
         self.assertTrue({48,49,50}.issubset(UI.USED['herrero']))
         self.assertTrue({48,49,50}.isdisjoint({20,23,24,25,26,39,40,41,45,53}))

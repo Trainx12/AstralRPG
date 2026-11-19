@@ -126,7 +126,8 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
 
     # Numeracion estable, compartida por los dos packs. Los iconos se derivan
     # del mismo PNG que usa el item; el cuerpo sigue usando su modelo completo.
-    ids = sorted(items)
+    # Las gemas (gemas.py, 7d) no van al Atlas: si entraran correrian los glifos de todos los demas.
+    ids = sorted(i for i in items if items[i].get('kind') != 'gema')
     icons = {iid: chr(0xEA00 + n) for n, iid in enumerate(ids)}
     put('atlas/iconos.json', icons)
     original = json.loads(files['data/astral/dialog/guia.json'])

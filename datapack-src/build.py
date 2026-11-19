@@ -140,6 +140,10 @@ for mid, (name, color, model, glint, desc) in MATERIALS.items():
 from tanda_xp import register as register_xp
 register_xp(add_item, txt)
 
+# Reforja de gemas (7d, 19/11/2026): items, encantamientos astral:gema_* y funciones gemas/* (fuente: gemas.py)
+import gemas as GEMAS
+GEMAS.register(put, fn, add_item, txt)
+
 # Gancho de escalada
 for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
     add_item(mid, "minecraft:paper", name, color, [txt(desc), txt("Recuerdo de la Estrella Astral", "dark_gray")],
@@ -1382,6 +1386,8 @@ fn("drop/give", [
     f"$loot give @s loot {NS}:item/$(id)",
     "$title @s actionbar " + json.dumps([txt("Conseguiste: ", "gray"), txt("$(name)", "light_purple")]),
     "playsound minecraft:entity.experience_orb.pickup player @s ~ ~ ~ 0.6 0.7",
+    # Topacio engarzado (gemas.py): chance de duplicar el drop.
+    GEMAS.SUERTE_HOOK,
 ])
 # Cualquier muerte: guadanas que reinician el enfriamiento
 put(f"data/{NS}/advancement/kill/any.json", {
@@ -1495,6 +1501,8 @@ fn("player/def", [
     "scoreboard players operation #bar astral.tmp *= #pct astral.tmp",
     "scoreboard players operation #bar astral.tmp /= #base astral.tmp",
     "scoreboard players operation #v astral.tmp -= #bar astral.tmp",
+    # Opalo engarzado (gemas.py): % de la Defensa de cada pieza, despues del Talisman de Roca.
+    GEMAS.DEFENSA_HOOK,
     "scoreboard players operation @s astraldef = #d astral.tmp",
     "scoreboard players operation @s astraldef += #v astral.tmp",
     "execute if score @s astral.defp = #d astral.tmp run return 0",
@@ -2248,6 +2256,11 @@ KITS = [
      [i for i in ITEMS if i.startswith(("taladro_", "motosierra_"))]),
     ("oficios", "Ropa de Minero y Talador", "gold", "minecraft:brown_shulker_box",
      [i for i in ITEMS if i.startswith(("minero_", "talador_"))]),
+    # Gemas de la Reforja (gemas.py): Cruda a Impecable y Perfecta/Estelar en dos cajas.
+    ("gemas", "Gemas Cruda a Impecable", "light_purple", "minecraft:purple_shulker_box",
+     [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q <= 3]),
+    ("gemas_altas", "Gemas Perfecta y Estelar", "light_purple", "minecraft:magenta_shulker_box",
+     [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q >= 4]),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:

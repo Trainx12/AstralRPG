@@ -1,0 +1,1003 @@
+# Generado por datapack-src/gemas.py (plan E4 / 7d, 19/11/2026). No editar a mano.
+# Ventana "Reforja de gemas" (boton GEMAS del Herrero), /astralgema (OP) y drop temporal del cofre A/S.
+# El datapack hace los cambios sobre el item en la mano (gemas/*); Skript lo presta un instante y lo vuelve.
+
+options:
+    titulo: &f
+
+on load:
+    delete {-agem.gui::*}
+    delete {-agem.sel::*}
+    delete {-agem.conf::*}
+    delete {-agem.busy::*}
+    delete {-agem.aviso::*}
+    set {-agem.cargado} to true
+    set {-agem.poner::1::1} to 10000
+    set {-agem.extraer::1::1} to 30000
+    set {-agem.poner::1::2} to 20000
+    set {-agem.extraer::1::2} to 60000
+    set {-agem.poner::1::3} to 40000
+    set {-agem.extraer::1::3} to 120000
+    set {-agem.poner::1::4} to 80000
+    set {-agem.extraer::1::4} to 240000
+    set {-agem.poner::1::5} to 150000
+    set {-agem.extraer::1::5} to 450000
+    set {-agem.poner::2::1} to 25000
+    set {-agem.extraer::2::1} to 75000
+    set {-agem.poner::2::2} to 50000
+    set {-agem.extraer::2::2} to 150000
+    set {-agem.poner::2::3} to 100000
+    set {-agem.extraer::2::3} to 300000
+    set {-agem.poner::2::4} to 200000
+    set {-agem.extraer::2::4} to 600000
+    set {-agem.poner::2::5} to 375000
+    set {-agem.extraer::2::5} to 1125000
+    set {-agem.poner::3::1} to 50000
+    set {-agem.extraer::3::1} to 150000
+    set {-agem.poner::3::2} to 100000
+    set {-agem.extraer::3::2} to 300000
+    set {-agem.poner::3::3} to 200000
+    set {-agem.extraer::3::3} to 600000
+    set {-agem.poner::3::4} to 400000
+    set {-agem.extraer::3::4} to 1200000
+    set {-agem.poner::3::5} to 750000
+    set {-agem.extraer::3::5} to 2250000
+    set {-agem.poner::4::1} to 100000
+    set {-agem.extraer::4::1} to 300000
+    set {-agem.poner::4::2} to 200000
+    set {-agem.extraer::4::2} to 600000
+    set {-agem.poner::4::3} to 400000
+    set {-agem.extraer::4::3} to 1200000
+    set {-agem.poner::4::4} to 800000
+    set {-agem.extraer::4::4} to 2400000
+    set {-agem.poner::4::5} to 1500000
+    set {-agem.extraer::4::5} to 4500000
+    set {-agem.poner::5::1} to 200000
+    set {-agem.extraer::5::1} to 600000
+    set {-agem.poner::5::2} to 400000
+    set {-agem.extraer::5::2} to 1200000
+    set {-agem.poner::5::3} to 800000
+    set {-agem.extraer::5::3} to 2400000
+    set {-agem.poner::5::4} to 1600000
+    set {-agem.extraer::5::4} to 4800000
+    set {-agem.poner::5::5} to 3000000
+    set {-agem.extraer::5::5} to 9000000
+    set {-agem.poner::6::1} to 400000
+    set {-agem.extraer::6::1} to 1200000
+    set {-agem.poner::6::2} to 800000
+    set {-agem.extraer::6::2} to 2400000
+    set {-agem.poner::6::3} to 1600000
+    set {-agem.extraer::6::3} to 4800000
+    set {-agem.poner::6::4} to 3200000
+    set {-agem.extraer::6::4} to 9600000
+    set {-agem.poner::6::5} to 6000000
+    set {-agem.extraer::6::5} to 18000000
+    set {-agem.poner::7::1} to 700000
+    set {-agem.extraer::7::1} to 2100000
+    set {-agem.poner::7::2} to 1400000
+    set {-agem.extraer::7::2} to 4200000
+    set {-agem.poner::7::3} to 2800000
+    set {-agem.extraer::7::3} to 8400000
+    set {-agem.poner::7::4} to 5600000
+    set {-agem.extraer::7::4} to 16800000
+    set {-agem.poner::7::5} to 10500000
+    set {-agem.extraer::7::5} to 31500000
+    set {-agem.poner::8::1} to 1200000
+    set {-agem.extraer::8::1} to 3600000
+    set {-agem.poner::8::2} to 2400000
+    set {-agem.extraer::8::2} to 7200000
+    set {-agem.poner::8::3} to 4800000
+    set {-agem.extraer::8::3} to 14400000
+    set {-agem.poner::8::4} to 9600000
+    set {-agem.extraer::8::4} to 28800000
+    set {-agem.poner::8::5} to 18000000
+    set {-agem.extraer::8::5} to 54000000
+    set {-agem.poner::9::1} to 2000000
+    set {-agem.extraer::9::1} to 6000000
+    set {-agem.poner::9::2} to 4000000
+    set {-agem.extraer::9::2} to 12000000
+    set {-agem.poner::9::3} to 8000000
+    set {-agem.extraer::9::3} to 24000000
+    set {-agem.poner::9::4} to 16000000
+    set {-agem.extraer::9::4} to 48000000
+    set {-agem.poner::9::5} to 30000000
+    set {-agem.extraer::9::5} to 90000000
+    set {-agem.poner::10::1} to 3500000
+    set {-agem.extraer::10::1} to 10500000
+    set {-agem.poner::10::2} to 7000000
+    set {-agem.extraer::10::2} to 21000000
+    set {-agem.poner::10::3} to 14000000
+    set {-agem.extraer::10::3} to 42000000
+    set {-agem.poner::10::4} to 28000000
+    set {-agem.extraer::10::4} to 84000000
+    set {-agem.poner::10::5} to 52500000
+    set {-agem.extraer::10::5} to 157500000
+    set {-agem.tipo::1} to "rubi"
+    set {-agem.color::rubi} to "&c"
+    set {-agem.nombre::rubi::1} to "Rubí Crudo"
+    set {-agem.efecto::arma::rubi::1} to "+4%% daño"
+    set {-agem.efecto::armadura::rubi::1} to "+1,5%% vida máxima (por pieza)"
+    set {-agem.nombre::rubi::2} to "Rubí Pulido"
+    set {-agem.efecto::arma::rubi::2} to "+7%% daño"
+    set {-agem.efecto::armadura::rubi::2} to "+2,5%% vida máxima (por pieza)"
+    set {-agem.nombre::rubi::3} to "Rubí Impecable"
+    set {-agem.efecto::arma::rubi::3} to "+11%% daño"
+    set {-agem.efecto::armadura::rubi::3} to "+3,5%% vida máxima (por pieza)"
+    set {-agem.nombre::rubi::4} to "Rubí Perfecto"
+    set {-agem.efecto::arma::rubi::4} to "+16%% daño, +1%% vida máxima"
+    set {-agem.efecto::armadura::rubi::4} to "+5%% vida máxima, +1%% daño del arma (por pieza)"
+    set {-agem.nombre::rubi::5} to "Rubí Estelar"
+    set {-agem.efecto::arma::rubi::5} to "+22%% daño, +2%% vida máxima"
+    set {-agem.efecto::armadura::rubi::5} to "+6,5%% vida máxima, +2%% daño del arma (por pieza)"
+    set {-agem.tipo::2} to "zafiro"
+    set {-agem.color::zafiro} to "&9"
+    set {-agem.nombre::zafiro::1} to "Zafiro Crudo"
+    set {-agem.efecto::arma::zafiro::1} to "+4%% maná máximo, +5%% regeneración de maná"
+    set {-agem.efecto::armadura::zafiro::1} to "+3%% regeneración de maná (por pieza)"
+    set {-agem.nombre::zafiro::2} to "Zafiro Pulido"
+    set {-agem.efecto::arma::zafiro::2} to "+7%% maná máximo, +8%% regeneración de maná"
+    set {-agem.efecto::armadura::zafiro::2} to "+5%% regeneración de maná (por pieza)"
+    set {-agem.nombre::zafiro::3} to "Zafiro Impecable"
+    set {-agem.efecto::arma::zafiro::3} to "+11%% maná máximo, +12%% regeneración de maná"
+    set {-agem.efecto::armadura::zafiro::3} to "+8%% regeneración de maná (por pieza)"
+    set {-agem.nombre::zafiro::4} to "Zafiro Perfecto"
+    set {-agem.efecto::arma::zafiro::4} to "+16%% maná máximo, +18%% regeneración de maná, +2%% daño"
+    set {-agem.efecto::armadura::zafiro::4} to "+11%% regeneración de maná, +2%% maná máximo (por pieza)"
+    set {-agem.nombre::zafiro::5} to "Zafiro Estelar"
+    set {-agem.efecto::arma::zafiro::5} to "+22%% maná máximo, +25%% regeneración de maná, +3%% daño"
+    set {-agem.efecto::armadura::zafiro::5} to "+15%% regeneración de maná, +4%% maná máximo (por pieza)"
+    set {-agem.tipo::3} to "jade"
+    set {-agem.color::jade} to "&a"
+    set {-agem.nombre::jade::1} to "Jade Crudo"
+    set {-agem.efecto::arma::jade::1} to "+3%% velocidad de ataque"
+    set {-agem.efecto::armadura::jade::1} to "+1%% velocidad (por pieza)"
+    set {-agem.nombre::jade::2} to "Jade Pulido"
+    set {-agem.efecto::arma::jade::2} to "+5%% velocidad de ataque"
+    set {-agem.efecto::armadura::jade::2} to "+1,5%% velocidad (por pieza)"
+    set {-agem.nombre::jade::3} to "Jade Impecable"
+    set {-agem.efecto::arma::jade::3} to "+8%% velocidad de ataque"
+    set {-agem.efecto::armadura::jade::3} to "+2%% velocidad (por pieza)"
+    set {-agem.nombre::jade::4} to "Jade Perfecto"
+    set {-agem.efecto::arma::jade::4} to "+11%% velocidad de ataque, +1%% velocidad"
+    set {-agem.efecto::armadura::jade::4} to "+2,5%% velocidad, +1%% velocidad de ataque (por pieza)"
+    set {-agem.nombre::jade::5} to "Jade Estelar"
+    set {-agem.efecto::arma::jade::5} to "+15%% velocidad de ataque, +2%% velocidad"
+    set {-agem.efecto::armadura::jade::5} to "+3,5%% velocidad, +2%% velocidad de ataque (por pieza)"
+    set {-agem.tipo::4} to "topacio"
+    set {-agem.color::topacio} to "&6"
+    set {-agem.nombre::topacio::1} to "Topacio Crudo"
+    set {-agem.efecto::arma::topacio::1} to "+5%% plata por baja"
+    set {-agem.efecto::armadura::topacio::1} to "+1%% de duplicar drops Astral (por pieza)"
+    set {-agem.nombre::topacio::2} to "Topacio Pulido"
+    set {-agem.efecto::arma::topacio::2} to "+8%% plata por baja"
+    set {-agem.efecto::armadura::topacio::2} to "+2%% de duplicar drops Astral (por pieza)"
+    set {-agem.nombre::topacio::3} to "Topacio Impecable"
+    set {-agem.efecto::arma::topacio::3} to "+12%% plata por baja"
+    set {-agem.efecto::armadura::topacio::3} to "+3%% de duplicar drops Astral (por pieza)"
+    set {-agem.nombre::topacio::4} to "Topacio Perfecto"
+    set {-agem.efecto::arma::topacio::4} to "+17%% plata por baja, +1%% de duplicar drops Astral"
+    set {-agem.efecto::armadura::topacio::4} to "+4%% de duplicar drops Astral, +2%% plata por baja (por pieza)"
+    set {-agem.nombre::topacio::5} to "Topacio Estelar"
+    set {-agem.efecto::arma::topacio::5} to "+25%% plata por baja, +2%% de duplicar drops Astral"
+    set {-agem.efecto::armadura::topacio::5} to "+5%% de duplicar drops Astral, +3%% plata por baja (por pieza)"
+    set {-agem.tipo::5} to "amatista"
+    set {-agem.color::amatista} to "&5"
+    set {-agem.nombre::amatista::1} to "Amatista Cruda"
+    set {-agem.efecto::arma::amatista::1} to "+2%% prob. crítica"
+    set {-agem.efecto::armadura::amatista::1} to "+3%% daño crítico (por pieza)"
+    set {-agem.nombre::amatista::2} to "Amatista Pulida"
+    set {-agem.efecto::arma::amatista::2} to "+3%% prob. crítica"
+    set {-agem.efecto::armadura::amatista::2} to "+5%% daño crítico (por pieza)"
+    set {-agem.nombre::amatista::3} to "Amatista Impecable"
+    set {-agem.efecto::arma::amatista::3} to "+5%% prob. crítica"
+    set {-agem.efecto::armadura::amatista::3} to "+7%% daño crítico (por pieza)"
+    set {-agem.nombre::amatista::4} to "Amatista Perfecta"
+    set {-agem.efecto::arma::amatista::4} to "+7%% prob. crítica, +5%% daño crítico"
+    set {-agem.efecto::armadura::amatista::4} to "+10%% daño crítico, +0,5%% prob. crítica (por pieza)"
+    set {-agem.nombre::amatista::5} to "Amatista Estelar"
+    set {-agem.efecto::arma::amatista::5} to "+10%% prob. crítica, +10%% daño crítico"
+    set {-agem.efecto::armadura::amatista::5} to "+14%% daño crítico, +1%% prob. crítica (por pieza)"
+    set {-agem.tipo::6} to "opalo"
+    set {-agem.color::opalo} to "&b"
+    set {-agem.nombre::opalo::1} to "Ópalo Crudo"
+    set {-agem.efecto::arma::opalo::1} to "+6%% daño a élites y jefes"
+    set {-agem.efecto::armadura::opalo::1} to "+3%% Defensa de la pieza (por pieza)"
+    set {-agem.nombre::opalo::2} to "Ópalo Pulido"
+    set {-agem.efecto::arma::opalo::2} to "+10%% daño a élites y jefes"
+    set {-agem.efecto::armadura::opalo::2} to "+5%% Defensa de la pieza (por pieza)"
+    set {-agem.nombre::opalo::3} to "Ópalo Impecable"
+    set {-agem.efecto::arma::opalo::3} to "+15%% daño a élites y jefes"
+    set {-agem.efecto::armadura::opalo::3} to "+8%% Defensa de la pieza (por pieza)"
+    set {-agem.nombre::opalo::4} to "Ópalo Perfecto"
+    set {-agem.efecto::arma::opalo::4} to "+21%% daño a élites y jefes, +2%% daño"
+    set {-agem.efecto::armadura::opalo::4} to "+11%% Defensa de la pieza, +5%% resistencia al empuje (por pieza)"
+    set {-agem.nombre::opalo::5} to "Ópalo Estelar"
+    set {-agem.efecto::arma::opalo::5} to "+28%% daño a élites y jefes, +3%% daño"
+    set {-agem.efecto::armadura::opalo::5} to "+15%% Defensa de la pieza, +10%% resistencia al empuje (por pieza)"
+    set {-agem.tipo::7} to "onix"
+    set {-agem.color::onix} to "&8"
+    set {-agem.nombre::onix::1} to "Ónix Crudo"
+    set {-agem.efecto::arma::onix::1} to "40%% de curar 1%% de tu vida al golpear"
+    set {-agem.efecto::armadura::onix::1} to "devuelve 0,2%% de la vida del atacante (por pieza)"
+    set {-agem.nombre::onix::2} to "Ónix Pulido"
+    set {-agem.efecto::arma::onix::2} to "40%% de curar 1,25%% de tu vida al golpear"
+    set {-agem.efecto::armadura::onix::2} to "devuelve 0,35%% de la vida del atacante (por pieza)"
+    set {-agem.nombre::onix::3} to "Ónix Impecable"
+    set {-agem.efecto::arma::onix::3} to "40%% de curar 1,5%% de tu vida al golpear"
+    set {-agem.efecto::armadura::onix::3} to "devuelve 0,5%% de la vida del atacante (por pieza)"
+    set {-agem.nombre::onix::4} to "Ónix Perfecto"
+    set {-agem.efecto::arma::onix::4} to "40%% de curar 2%% de tu vida al golpear, +1%% vida máxima"
+    set {-agem.efecto::armadura::onix::4} to "devuelve 0,7%% de la vida del atacante, +1%% vida máxima (por pieza)"
+    set {-agem.nombre::onix::5} to "Ónix Estelar"
+    set {-agem.efecto::arma::onix::5} to "40%% de curar 2,5%% de tu vida al golpear, +2%% vida máxima"
+    set {-agem.efecto::armadura::onix::5} to "devuelve 1%% de la vida del atacante, +2%% vida máxima (por pieza)"
+    set {-agem.cal::1} to "Cruda"
+    set {-agem.cal::2} to "Pulida"
+    set {-agem.cal::3} to "Impecable"
+    set {-agem.cal::4} to "Perfecta"
+    set {-agem.cal::5} to "Estelar"
+    set {-agem.drop::5} to 0.03
+    set {-agem.drop::6} to 0.08
+    set {-agem.dropq::1::1} to 100
+    set {-agem.dropq::1::2} to 0
+    set {-agem.dropq::1::3} to 0
+    set {-agem.dropq::2::1} to 100
+    set {-agem.dropq::2::2} to 0
+    set {-agem.dropq::2::3} to 0
+    set {-agem.dropq::3::1} to 80
+    set {-agem.dropq::3::2} to 20
+    set {-agem.dropq::3::3} to 0
+    set {-agem.dropq::4::1} to 60
+    set {-agem.dropq::4::2} to 35
+    set {-agem.dropq::4::3} to 5
+    set {-agem.dropq::5::1} to 40
+    set {-agem.dropq::5::2} to 45
+    set {-agem.dropq::5::3} to 15
+    send "[AstralRPG] Reforja de gemas cargada." to console
+
+function agem_leer(p: player):
+    set {_id} to uuid of {_p}
+    delete {-agem.t::%{_id}%}
+    delete {-agem.r::%{_id}%}
+    delete {-agem.var::%{_id}%}
+    delete {-agem.has::%{_id}%::*}
+    delete {-agem.ran::%{_id}%::*}
+    delete {-agem.gt::%{_id}%}
+    delete {-agem.gq::%{_id}%}
+    set {_it} to {agem.item::%{_id}%}
+    if {_it} is set:
+        agem_run({_p}, {_it}, "gemas/gui/ver")
+        if {_p} has the scoreboard tag "asgem.valid":
+            set {-agem.var::%{_id}%} to "arma"
+            if {_p} has the scoreboard tag "asgem.armadura":
+                set {-agem.var::%{_id}%} to "armadura"
+            if {_p} has the scoreboard tag "asgem.t1":
+                set {-agem.t::%{_id}%} to 1
+                set {-agem.r::%{_id}%} to 1
+            if {_p} has the scoreboard tag "asgem.t2":
+                set {-agem.t::%{_id}%} to 2
+                set {-agem.r::%{_id}%} to 1
+            if {_p} has the scoreboard tag "asgem.t3":
+                set {-agem.t::%{_id}%} to 3
+                set {-agem.r::%{_id}%} to 1
+            if {_p} has the scoreboard tag "asgem.t4":
+                set {-agem.t::%{_id}%} to 4
+                set {-agem.r::%{_id}%} to 2
+            if {_p} has the scoreboard tag "asgem.t5":
+                set {-agem.t::%{_id}%} to 5
+                set {-agem.r::%{_id}%} to 2
+            if {_p} has the scoreboard tag "asgem.t6":
+                set {-agem.t::%{_id}%} to 6
+                set {-agem.r::%{_id}%} to 2
+            if {_p} has the scoreboard tag "asgem.t7":
+                set {-agem.t::%{_id}%} to 7
+                set {-agem.r::%{_id}%} to 2
+            if {_p} has the scoreboard tag "asgem.t8":
+                set {-agem.t::%{_id}%} to 8
+                set {-agem.r::%{_id}%} to 3
+            if {_p} has the scoreboard tag "asgem.t9":
+                set {-agem.t::%{_id}%} to 9
+                set {-agem.r::%{_id}%} to 3
+            if {_p} has the scoreboard tag "asgem.t10":
+                set {-agem.t::%{_id}%} to 10
+                set {-agem.r::%{_id}%} to 3
+            set {_k} to 0
+            if {_p} has the scoreboard tag "asgem.has.rubi":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "rubi"
+                if {_p} has the scoreboard tag "asgem.q.rubi.1":
+                    set {-agem.has::%{_id}%::rubi} to 1
+                if {_p} has the scoreboard tag "asgem.q.rubi.2":
+                    set {-agem.has::%{_id}%::rubi} to 2
+                if {_p} has the scoreboard tag "asgem.q.rubi.3":
+                    set {-agem.has::%{_id}%::rubi} to 3
+                if {_p} has the scoreboard tag "asgem.q.rubi.4":
+                    set {-agem.has::%{_id}%::rubi} to 4
+                if {_p} has the scoreboard tag "asgem.q.rubi.5":
+                    set {-agem.has::%{_id}%::rubi} to 5
+            if {_p} has the scoreboard tag "asgem.has.zafiro":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "zafiro"
+                if {_p} has the scoreboard tag "asgem.q.zafiro.1":
+                    set {-agem.has::%{_id}%::zafiro} to 1
+                if {_p} has the scoreboard tag "asgem.q.zafiro.2":
+                    set {-agem.has::%{_id}%::zafiro} to 2
+                if {_p} has the scoreboard tag "asgem.q.zafiro.3":
+                    set {-agem.has::%{_id}%::zafiro} to 3
+                if {_p} has the scoreboard tag "asgem.q.zafiro.4":
+                    set {-agem.has::%{_id}%::zafiro} to 4
+                if {_p} has the scoreboard tag "asgem.q.zafiro.5":
+                    set {-agem.has::%{_id}%::zafiro} to 5
+            if {_p} has the scoreboard tag "asgem.has.jade":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "jade"
+                if {_p} has the scoreboard tag "asgem.q.jade.1":
+                    set {-agem.has::%{_id}%::jade} to 1
+                if {_p} has the scoreboard tag "asgem.q.jade.2":
+                    set {-agem.has::%{_id}%::jade} to 2
+                if {_p} has the scoreboard tag "asgem.q.jade.3":
+                    set {-agem.has::%{_id}%::jade} to 3
+                if {_p} has the scoreboard tag "asgem.q.jade.4":
+                    set {-agem.has::%{_id}%::jade} to 4
+                if {_p} has the scoreboard tag "asgem.q.jade.5":
+                    set {-agem.has::%{_id}%::jade} to 5
+            if {_p} has the scoreboard tag "asgem.has.topacio":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "topacio"
+                if {_p} has the scoreboard tag "asgem.q.topacio.1":
+                    set {-agem.has::%{_id}%::topacio} to 1
+                if {_p} has the scoreboard tag "asgem.q.topacio.2":
+                    set {-agem.has::%{_id}%::topacio} to 2
+                if {_p} has the scoreboard tag "asgem.q.topacio.3":
+                    set {-agem.has::%{_id}%::topacio} to 3
+                if {_p} has the scoreboard tag "asgem.q.topacio.4":
+                    set {-agem.has::%{_id}%::topacio} to 4
+                if {_p} has the scoreboard tag "asgem.q.topacio.5":
+                    set {-agem.has::%{_id}%::topacio} to 5
+            if {_p} has the scoreboard tag "asgem.has.amatista":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "amatista"
+                if {_p} has the scoreboard tag "asgem.q.amatista.1":
+                    set {-agem.has::%{_id}%::amatista} to 1
+                if {_p} has the scoreboard tag "asgem.q.amatista.2":
+                    set {-agem.has::%{_id}%::amatista} to 2
+                if {_p} has the scoreboard tag "asgem.q.amatista.3":
+                    set {-agem.has::%{_id}%::amatista} to 3
+                if {_p} has the scoreboard tag "asgem.q.amatista.4":
+                    set {-agem.has::%{_id}%::amatista} to 4
+                if {_p} has the scoreboard tag "asgem.q.amatista.5":
+                    set {-agem.has::%{_id}%::amatista} to 5
+            if {_p} has the scoreboard tag "asgem.has.opalo":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "opalo"
+                if {_p} has the scoreboard tag "asgem.q.opalo.1":
+                    set {-agem.has::%{_id}%::opalo} to 1
+                if {_p} has the scoreboard tag "asgem.q.opalo.2":
+                    set {-agem.has::%{_id}%::opalo} to 2
+                if {_p} has the scoreboard tag "asgem.q.opalo.3":
+                    set {-agem.has::%{_id}%::opalo} to 3
+                if {_p} has the scoreboard tag "asgem.q.opalo.4":
+                    set {-agem.has::%{_id}%::opalo} to 4
+                if {_p} has the scoreboard tag "asgem.q.opalo.5":
+                    set {-agem.has::%{_id}%::opalo} to 5
+            if {_p} has the scoreboard tag "asgem.has.onix":
+                add 1 to {_k}
+                set {-agem.ran::%{_id}%::%{_k}%} to "onix"
+                if {_p} has the scoreboard tag "asgem.q.onix.1":
+                    set {-agem.has::%{_id}%::onix} to 1
+                if {_p} has the scoreboard tag "asgem.q.onix.2":
+                    set {-agem.has::%{_id}%::onix} to 2
+                if {_p} has the scoreboard tag "asgem.q.onix.3":
+                    set {-agem.has::%{_id}%::onix} to 3
+                if {_p} has the scoreboard tag "asgem.q.onix.4":
+                    set {-agem.has::%{_id}%::onix} to 4
+                if {_p} has the scoreboard tag "asgem.q.onix.5":
+                    set {-agem.has::%{_id}%::onix} to 5
+    set {_g} to {agem.gema::%{_id}%}
+    if {_g} is set:
+        agem_run({_p}, {_g}, "gemas/gui/gema")
+        if {_p} has the scoreboard tag "asgem.g.rubi.1":
+            set {-agem.gt::%{_id}%} to "rubi"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.rubi.2":
+            set {-agem.gt::%{_id}%} to "rubi"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.rubi.3":
+            set {-agem.gt::%{_id}%} to "rubi"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.rubi.4":
+            set {-agem.gt::%{_id}%} to "rubi"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.rubi.5":
+            set {-agem.gt::%{_id}%} to "rubi"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.zafiro.1":
+            set {-agem.gt::%{_id}%} to "zafiro"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.zafiro.2":
+            set {-agem.gt::%{_id}%} to "zafiro"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.zafiro.3":
+            set {-agem.gt::%{_id}%} to "zafiro"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.zafiro.4":
+            set {-agem.gt::%{_id}%} to "zafiro"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.zafiro.5":
+            set {-agem.gt::%{_id}%} to "zafiro"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.jade.1":
+            set {-agem.gt::%{_id}%} to "jade"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.jade.2":
+            set {-agem.gt::%{_id}%} to "jade"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.jade.3":
+            set {-agem.gt::%{_id}%} to "jade"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.jade.4":
+            set {-agem.gt::%{_id}%} to "jade"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.jade.5":
+            set {-agem.gt::%{_id}%} to "jade"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.topacio.1":
+            set {-agem.gt::%{_id}%} to "topacio"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.topacio.2":
+            set {-agem.gt::%{_id}%} to "topacio"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.topacio.3":
+            set {-agem.gt::%{_id}%} to "topacio"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.topacio.4":
+            set {-agem.gt::%{_id}%} to "topacio"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.topacio.5":
+            set {-agem.gt::%{_id}%} to "topacio"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.amatista.1":
+            set {-agem.gt::%{_id}%} to "amatista"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.amatista.2":
+            set {-agem.gt::%{_id}%} to "amatista"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.amatista.3":
+            set {-agem.gt::%{_id}%} to "amatista"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.amatista.4":
+            set {-agem.gt::%{_id}%} to "amatista"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.amatista.5":
+            set {-agem.gt::%{_id}%} to "amatista"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.opalo.1":
+            set {-agem.gt::%{_id}%} to "opalo"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.opalo.2":
+            set {-agem.gt::%{_id}%} to "opalo"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.opalo.3":
+            set {-agem.gt::%{_id}%} to "opalo"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.opalo.4":
+            set {-agem.gt::%{_id}%} to "opalo"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.opalo.5":
+            set {-agem.gt::%{_id}%} to "opalo"
+            set {-agem.gq::%{_id}%} to 5
+        if {_p} has the scoreboard tag "asgem.g.onix.1":
+            set {-agem.gt::%{_id}%} to "onix"
+            set {-agem.gq::%{_id}%} to 1
+        if {_p} has the scoreboard tag "asgem.g.onix.2":
+            set {-agem.gt::%{_id}%} to "onix"
+            set {-agem.gq::%{_id}%} to 2
+        if {_p} has the scoreboard tag "asgem.g.onix.3":
+            set {-agem.gt::%{_id}%} to "onix"
+            set {-agem.gq::%{_id}%} to 3
+        if {_p} has the scoreboard tag "asgem.g.onix.4":
+            set {-agem.gt::%{_id}%} to "onix"
+            set {-agem.gq::%{_id}%} to 4
+        if {_p} has the scoreboard tag "asgem.g.onix.5":
+            set {-agem.gt::%{_id}%} to "onix"
+            set {-agem.gq::%{_id}%} to 5
+
+
+function agem_icon(model: text, label: text) :: item:
+    set {_i} to paper named colored {_label}
+    set item model of {_i} to {_model}
+    return {_i}
+
+# Presta {_it} al jugador (en la mano), corre la funcion del datapack y devuelve como quedo el item.
+function agem_run(p: player, it: item, fn: text) :: item:
+    set {_original} to {_p}'s tool
+    set {_p}'s tool to {_it}
+    execute console command "execute as %name of {_p}% at @s run function astral:%{_fn}%"
+    set {_r} to {_p}'s tool
+    set {_p}'s tool to {_original}
+    return {_r}
+
+function agem_es_gema(p: player, i: item) :: boolean:
+    agem_run({_p}, {_i}, "gemas/gui/gema")
+    if {_p} has the scoreboard tag "asgem.gema":
+        return true
+    return false
+
+function agem_give(p: player, i: item):
+    {_i} is set
+    {_i} is not air
+    if {_p} has enough space for {_i}:
+        give {_i} to {_p}
+    else:
+        drop {_i} at location of {_p}
+
+function agem_return(p: player):
+    set {_id} to uuid of {_p}
+    set {_a} to {agem.item::%{_id}%}
+    set {_b} to {agem.gema::%{_id}%}
+    delete {agem.item::%{_id}%}
+    delete {agem.gema::%{_id}%}
+    delete {-agem.gui::%{_id}%}
+    delete {-agem.sel::%{_id}%}
+    delete {-agem.conf::%{_id}%}
+    delete {-agem.busy::%{_id}%}
+    delete {-agem.aviso::%{_id}%}
+    agem_give({_p}, {_a})
+    agem_give({_p}, {_b})
+
+function agem_bar(p: player, model: text, label: text):
+    set {_inv} to {-agem.gui::%uuid of {_p}%}
+    loop 7 times:
+        set {_slot} to loop-number + 27
+        set slot {_slot} of {_inv} to agem_icon("astral:servicios/bar_%{_model}%_%loop-number - 1%", {_label})
+
+function agem_boton(p: player, start: number, model: text, label: text, lines: texts):
+    set {_inv} to {-agem.gui::%uuid of {_p}%}
+    loop 3 times:
+        set {_i} to agem_icon("astral:servicios/%{_model}%_%loop-number - 1%", {_label})
+        set lore of {_i} to {_lines::*}
+        set slot ({_start} + loop-number - 1) of {_inv} to {_i}
+
+function agem_refresh(p: player):
+    set {_id} to uuid of {_p}
+    set {_inv} to {-agem.gui::%{_id}%}
+    {_inv} is set
+    agem_leer({_p})
+    set {_item} to {agem.item::%{_id}%}
+    set {_gema} to {agem.gema::%{_id}%}
+    set slot 19 of {_inv} to air
+    set slot 21 of {_inv} to air
+    if {_item} is set:
+        set slot 19 of {_inv} to {_item}
+    if {_gema} is set:
+        set slot 21 of {_inv} to {_gema}
+    set {_r} to {-agem.r::%{_id}%} ? 0
+    set {_var} to {-agem.var::%{_id}%} ? "arma"
+    set {_n} to size of {-agem.ran::%{_id}%::*}
+    # Ranuras: gema engarzada, libre o bloqueada por el tier.
+    set {_k} to 0
+    loop 23, 24 and 25:
+        add 1 to {_k}
+        set {_s} to loop-value
+        if {_item} is not set:
+            set {_i} to agem_icon("astral:servicios/gem_socket_empty", "&7Ranura")
+            set lore of {_i} to "&7Coloca un arma o armadura de AstralRPG."
+        else if {_k} > {_r}:
+            set {_i} to agem_icon("astral:servicios/gem_socket_locked", "&8Ranura bloqueada")
+            set lore of {_i} to "&7Tier 1-3: 1 ranura. Tier 4-7: 2. Tier 8-10: 3."
+        else if {-agem.ran::%{_id}%::%{_k}%} is set:
+            set {_t} to {-agem.ran::%{_id}%::%{_k}%}
+            set {_q} to {-agem.has::%{_id}%::%{_t}%}
+            set {_label} to "%{-agem.color::%{_t}%}%◆ %{-agem.nombre::%{_t}%::%{_q}%}%"
+            set {_sel} to "&eClic: seleccionar (para extraer o reemplazar)."
+            if {-agem.sel::%{_id}%} is {_t}:
+                set {_label} to "&a» %{_label}% &a«"
+                set {_sel} to "&a&lSELECCIONADA &7(clic de nuevo para soltar)"
+            set {_i} to agem_icon("astral:gemas/%{_t}%_%{_q}%", {_label})
+            set lore of {_i} to "&7%{-agem.efecto::%{_var}%::%{_t}%::%{_q}%}%", "&7Extraer: &e%{-agem.extraer::%{-agem.t::%{_id}%}%::%{_q}%}%$" and {_sel}
+        else:
+            set {_i} to agem_icon("astral:servicios/gem_socket_empty", "&7Ranura libre")
+            set lore of {_i} to "&7Pon una gema en el recuadro GEMA y pulsa ENGARZAR."
+        set slot {_s} of {_inv} to {_i}
+    # Costo y saldo
+    set {_c} to gold nugget named "&6Costos"
+    set {_gt} to {-agem.gt::%{_id}%}
+    set {_gq} to {-agem.gq::%{_id}%}
+    if {_r} > 0:
+        if {_gq} is set:
+            set lore of {_c} to "&7Engarzar esta gema: &e%{-agem.poner::%{-agem.t::%{_id}%}%::%{_gq}%}%$", "&7Extraer sin romperla: &ex3 el costo de engarzar" and "&7Tu saldo: &e%balance of {_p}%$"
+        else:
+            set lore of {_c} to "&7Coloca una gema para ver el costo." and "&7Tu saldo: &e%balance of {_p}%$"
+    else:
+        set lore of {_c} to "&7Primero coloca tu equipo." and "&7Tu saldo: &e%balance of {_p}%$"
+    set slot 26 of {_inv} to {_c}
+    # Barra de estado
+    if {_item} is not set:
+        agem_bar({_p}, "gem_empty", "&eColoca un equipo (recuadro EQUIPO) y una gema (recuadro GEMA).")
+    else if {_r} is 0:
+        agem_bar({_p}, "gem_invalid", "&cSolo armas, bastones y armaduras de AstralRPG con tier.")
+    else if {-agem.conf::%{_id}%} is set:
+        agem_bar({_p}, "gem_confirm", "&cLa gema que reemplazas se DESTRUYE. Pulsa CONFIRMAR.")
+    else if {-agem.aviso::%{_id}%} is set:
+        agem_bar({_p}, {-agem.aviso::%{_id}%}, "&eResultado de la ultima accion.")
+    else:
+        agem_bar({_p}, "gem_slots_%{_n}%_%{_r}%", "&eRanuras ocupadas de tu equipo.")
+    # Boton ENGARZAR
+    set {_m} to "gem_set_blocked"
+    set {_l} to "&cENGARZAR"
+    set {_lore::*} to "&7Pone la gema del recuadro en una ranura libre." and "&7Si el equipo ya tiene esa gema, o no hay lugar, reemplaza (la vieja se destruye)."
+    if {_r} > 0:
+        if {_gq} is set:
+            set {_m} to "gem_set_ready"
+            set {_l} to "&a&lENGARZAR &7(%{-agem.poner::%{-agem.t::%{_id}%}%::%{_gq}%}%$)"
+            if {-agem.conf::%{_id}%} is set:
+                set {_m} to "gem_set_confirm"
+                set {_l} to "&c&lCONFIRMAR &7(la gema vieja se destruye)"
+    agem_boton({_p}, 39, {_m}, {_l}, {_lore::*})
+    # Boton EXTRAER
+    set {_m} to "gem_out_off"
+    set {_l} to "&7EXTRAER"
+    set {_lore::*} to "&7Saca la gema seleccionada sin romperla." and "&7Cuesta x3 lo de engarzar. Deja libre el recuadro GEMA."
+    set {_st} to {-agem.sel::%{_id}%}
+    if {_n} is 1:
+        set {_st} to {-agem.ran::%{_id}%::1}
+    if {_st} is set:
+        if {-agem.has::%{_id}%::%{_st}%} is set:
+            set {_m} to "gem_out_ready"
+            set {_l} to "&b&lEXTRAER %{-agem.nombre::%{_st}%::%{-agem.has::%{_id}%::%{_st}%}%}% &7(%{-agem.extraer::%{-agem.t::%{_id}%}%::%{-agem.has::%{_id}%::%{_st}%}%}%$)"
+    agem_boton({_p}, 48, {_m}, {_l}, {_lore::*})
+
+function agem_open(p: player):
+    close {_p}'s inventory
+    agem_return({_p})
+    set {_id} to uuid of {_p}
+    set {_inv} to a new chest inventory with 6 rows named colored "{@titulo}"
+    set {-agem.gui::%{_id}%} to {_inv}
+    set slot 8 of {_inv} to book named "&eComo usar"
+    set lore of slot 8 of {_inv} to "&71. Shift+clic en tu equipo y en una gema.", "&72. ENGARZAR la pone en una ranura (cobra plata).", "&73. Clic en una ranura para elegirla: EXTRAER o reemplazar.", "&7Reemplazar destruye la gema vieja; extraer cuesta mas." and "&7Cerrar o desconectarte devuelve todo."
+    set slot 45 of {_inv} to agem_icon("astral:menu/icon_back", "&eDevolver objetos")
+    set slot 53 of {_inv} to agem_icon("astral:menu/icon_close", "&cCerrar y devolver")
+    loop 2 times:
+        set {_b} to agem_icon("astral:servicios/forge_back_%loop-number - 1%", "&6Volver al Herrero")
+        set lore of {_b} to "&7Mejorar y Reparar. Tus objetos vuelven a tu inventario."
+        set slot (50 + loop-number) of {_inv} to {_b}
+    agem_refresh({_p})
+    open {_inv} to {_p}
+
+function agem_avisar(p: player, aviso: text):
+    set {-agem.aviso::%uuid of {_p}%} to {_aviso}
+
+function agem_engarzar(p: player):
+    set {_id} to uuid of {_p}
+    agem_leer({_p})
+    set {_item} to {agem.item::%{_id}%}
+    set {_gema} to {agem.gema::%{_id}%}
+    if {_item} is not set:
+        send "&cColoca primero tu equipo." to {_p}
+        stop
+    if {-agem.r::%{_id}%} is not set:
+        send "&cEse objeto no admite gemas." to {_p}
+        stop
+    if {-agem.gq::%{_id}%} is not set:
+        send "&cColoca una gema en el recuadro GEMA." to {_p}
+        stop
+    set {_t} to {-agem.gt::%{_id}%}
+    set {_q} to {-agem.gq::%{_id}%}
+    set {_tier} to {-agem.t::%{_id}%}
+    set {_n} to size of {-agem.ran::%{_id}%::*}
+    set {_viejo} to ""
+    if {-agem.has::%{_id}%::%{_t}%} is set:
+        set {_viejo} to {_t}
+    else if {_n} >= {-agem.r::%{_id}%}:
+        if {-agem.sel::%{_id}%} is not set:
+            send "&eTodas las ranuras estan ocupadas: hace clic en la que queres reemplazar." to {_p}
+            stop
+        set {_viejo} to {-agem.sel::%{_id}%}
+    set {_costo} to {-agem.poner::%{_tier}%::%{_q}%}
+    if balance of {_p} < {_costo}:
+        send "&cNecesitas %{_costo}%$ para engarzar esa gema." to {_p}
+        stop
+    if {_viejo} is not "":
+        set {_clave} to "%{_viejo}%>%{_t}%%{_q}%"
+        if {-agem.conf::%{_id}%} is not {_clave}:
+            set {-agem.conf::%{_id}%} to {_clave}
+            send "&c&l¡Atencion! &7La gema de &f%{-agem.nombre::%{_viejo}%::%{-agem.has::%{_id}%::%{_viejo}%}%}% &7se &c&lDESTRUYE&7. Pulsa &cCONFIRMAR &7para seguir." to {_p}
+            play sound "block.note_block.bass" to {_p}
+            stop
+    set {-agem.busy::%{_id}%} to true
+    set {_nuevo} to {_item}
+    if {_viejo} is not "":
+        set {_nuevo} to agem_run({_p}, {_nuevo}, "gemas/quitar/%{_viejo}%")
+    set {_nuevo} to agem_run({_p}, {_nuevo}, "gemas/poner/%{_t}%/%{_q}%")
+    if {_p} has the scoreboard tag "asgem.ok":
+        remove {_costo} from balance of {_p}
+        set {agem.item::%{_id}%} to {_nuevo}
+        if item amount of {_gema} > 1:
+            set item amount of {_gema} to (item amount of {_gema}) - 1
+            set {agem.gema::%{_id}%} to {_gema}
+        else:
+            delete {agem.gema::%{_id}%}
+        send "&aGema engarzada: &f%{-agem.nombre::%{_t}%::%{_q}%}% &7(-%{_costo}%$)" to {_p}
+        play sound "block.amethyst_block.resonate" to {_p}
+        agem_avisar({_p}, "gem_ok")
+        log "%now% %name of {_p}% %{_id}% engarzar %{_t}% %{_q}% tier=%{_tier}% viejo=%{_viejo}% costo=%{_costo}%" to "astral-gemas"
+    else:
+        send "&cNo se pudo engarzar. Tu equipo y tu gema quedaron igual." to {_p}
+    delete {-agem.conf::%{_id}%}
+    delete {-agem.sel::%{_id}%}
+    delete {-agem.busy::%{_id}%}
+
+function agem_extraer(p: player):
+    set {_id} to uuid of {_p}
+    agem_leer({_p})
+    set {_item} to {agem.item::%{_id}%}
+    if {_item} is not set:
+        stop
+    set {_t} to {-agem.sel::%{_id}%}
+    if size of {-agem.ran::%{_id}%::*} is 1:
+        set {_t} to {-agem.ran::%{_id}%::1}
+    if {_t} is not set:
+        send "&eHace clic en la ranura de la gema que queres extraer." to {_p}
+        stop
+    set {_q} to {-agem.has::%{_id}%::%{_t}%}
+    if {_q} is not set:
+        stop
+    if {agem.gema::%{_id}%} is set:
+        send "&cVacia el recuadro GEMA: ahi vas a recibir la gema extraida." to {_p}
+        stop
+    set {_costo} to {-agem.extraer::%{-agem.t::%{_id}%}%::%{_q}%}
+    if balance of {_p} < {_costo}:
+        send "&cNecesitas %{_costo}%$ para extraerla sin romperla." to {_p}
+        stop
+    set {-agem.busy::%{_id}%} to true
+    set {_nuevo} to agem_run({_p}, {_item}, "gemas/quitar/%{_t}%")
+    if {_p} has the scoreboard tag "asgem.ok":
+        set {_g} to agem_run({_p}, air, "gemas/dar/%{_t}%/%{_q}%")
+        if {_g} is set:
+            if {_g} is not air:
+                remove {_costo} from balance of {_p}
+                set {agem.item::%{_id}%} to {_nuevo}
+                set {agem.gema::%{_id}%} to {_g}
+                send "&aGema extraida: &f%{-agem.nombre::%{_t}%::%{_q}%}% &7(-%{_costo}%$). Quedo en el recuadro GEMA." to {_p}
+                play sound "block.amethyst_cluster.break" to {_p}
+                agem_avisar({_p}, "gem_out")
+                log "%now% %name of {_p}% %{_id}% extraer %{_t}% %{_q}% costo=%{_costo}%" to "astral-gemas"
+    delete {-agem.sel::%{_id}%}
+    delete {-agem.conf::%{_id}%}
+    delete {-agem.busy::%{_id}%}
+
+command /astralreforja [<player>]:
+    trigger:
+        if arg-1 is set:
+            if sender is not console:
+                stop
+            agem_open(arg-1)
+        else:
+            if sender is a player:
+                agem_open(player)
+
+on inventory click:
+    set {_id} to uuid of player
+    set {_inv} to {-agem.gui::%{_id}%}
+    if {_inv} is not set:
+        stop
+    if player's current inventory is not {_inv}:
+        agem_return(player)
+        stop
+    cancel event
+    if {-agem.busy::%{_id}%} is true:
+        stop
+    if clicked inventory is player's inventory:
+        if click type is left mouse button or right mouse button:
+            uncancel event
+            stop
+        if click type is left mouse button with shift or right mouse button with shift:
+            set {_item} to event-slot
+            if {_item} is air:
+                stop
+            if agem_es_gema(player, {_item}) is true:
+                if {agem.gema::%{_id}%} is set:
+                    send "&cYa hay una gema en el recuadro GEMA." to player
+                    stop
+                set {agem.gema::%{_id}%} to {_item}
+            else:
+                if {agem.item::%{_id}%} is set:
+                    send "&cYa hay un equipo en el recuadro EQUIPO." to player
+                    stop
+                if item amount of {_item} is not 1:
+                    send "&cColoca una sola pieza de equipo." to player
+                    stop
+                set {agem.item::%{_id}%} to {_item}
+            set event-slot to air
+            delete {-agem.sel::%{_id}%}
+            delete {-agem.conf::%{_id}%}
+            delete {-agem.aviso::%{_id}%}
+            agem_refresh(player)
+        stop
+    if clicked inventory is not {_inv}:
+        stop
+    if click type is not left mouse button:
+        if click type is not right mouse button:
+            stop
+    set {_slot} to index of event-slot
+    if {_slot} is 53:
+        close player's inventory
+        stop
+    if {_slot} is 45:
+        set {_a} to {agem.item::%{_id}%}
+        set {_b} to {agem.gema::%{_id}%}
+        delete {agem.item::%{_id}%}
+        delete {agem.gema::%{_id}%}
+        agem_give(player, {_a})
+        agem_give(player, {_b})
+        delete {-agem.sel::%{_id}%}
+        delete {-agem.conf::%{_id}%}
+        delete {-agem.aviso::%{_id}%}
+        agem_refresh(player)
+        stop
+    if {_slot} is between 51 and 52:
+        close player's inventory
+        wait 1 tick
+        execute console command "astralherrero %name of player%"
+        stop
+    if {_slot} is 19:
+        set {_cursor} to cursor slot of player
+        set {_old} to {agem.item::%{_id}%}
+        if {_cursor} is air:
+            if {_old} is set:
+                delete {agem.item::%{_id}%}
+                set cursor slot of player to {_old}
+        else:
+            if agem_es_gema(player, {_cursor}) is true:
+                send "&cLas gemas van en el recuadro GEMA." to player
+                stop
+            if item amount of {_cursor} is not 1:
+                send "&cColoca una sola pieza de equipo." to player
+                stop
+            set {agem.item::%{_id}%} to {_cursor}
+            if {_old} is set:
+                set cursor slot of player to {_old}
+            else:
+                set cursor slot of player to air
+        delete {-agem.sel::%{_id}%}
+        delete {-agem.conf::%{_id}%}
+        delete {-agem.aviso::%{_id}%}
+        agem_refresh(player)
+        stop
+    if {_slot} is 21:
+        set {_cursor} to cursor slot of player
+        set {_old} to {agem.gema::%{_id}%}
+        if {_cursor} is air:
+            if {_old} is set:
+                delete {agem.gema::%{_id}%}
+                set cursor slot of player to {_old}
+        else:
+            if agem_es_gema(player, {_cursor}) is false:
+                send "&cEse recuadro es solo para gemas." to player
+                stop
+            set {agem.gema::%{_id}%} to {_cursor}
+            if {_old} is set:
+                set cursor slot of player to {_old}
+            else:
+                set cursor slot of player to air
+        delete {-agem.conf::%{_id}%}
+        delete {-agem.aviso::%{_id}%}
+        agem_refresh(player)
+        stop
+    if {_slot} is between 23 and 25:
+        set {_k} to {_slot} - 22
+        set {_t} to {-agem.ran::%{_id}%::%{_k}%}
+        if {_t} is set:
+            if {-agem.sel::%{_id}%} is {_t}:
+                delete {-agem.sel::%{_id}%}
+            else:
+                set {-agem.sel::%{_id}%} to {_t}
+            delete {-agem.conf::%{_id}%}
+            delete {-agem.aviso::%{_id}%}
+            agem_refresh(player)
+        stop
+    if {_slot} is between 39 and 41:
+        delete {-agem.aviso::%{_id}%}
+        agem_engarzar(player)
+        agem_refresh(player)
+        stop
+    if {_slot} is between 48 and 50:
+        delete {-agem.aviso::%{_id}%}
+        agem_extraer(player)
+        agem_refresh(player)
+
+on inventory drag:
+    if {-agem.gui::%uuid of player%} is set:
+        if player's current inventory is {-agem.gui::%uuid of player%}:
+            cancel event
+
+on inventory close:
+    if {-agem.gui::%uuid of player%} is set:
+        agem_return(player)
+
+on quit:
+    agem_return(player)
+
+on join:
+    if {agem.item::%uuid of player%} is set:
+        wait 1 tick
+        agem_return(player)
+    else if {agem.gema::%uuid of player%} is set:
+        wait 1 tick
+        agem_return(player)
+
+on unload:
+    loop all players:
+        if {-agem.gui::%uuid of loop-player%} is set:
+            agem_return(loop-player)
+            close loop-player's inventory
+
+# ------------------------------------------------------------------ OP y drop temporal
+# /astralgema dar <jugador> <tipo|azar> <calidad 1-5> [cantidad]   (OP o consola)
+# /astralgema cofre <jugador> <tier> <nota 1-6>                    (consola: cofre de mazmorra, astral_puntaje.sk)
+command /astralgema [<text>] [<text>] [<text>] [<text>] [<text>]:
+    trigger:
+        if sender is a player:
+            if player is not op:
+                send "&cSolo para OP." to player
+                stop
+        if arg-1 is "dar":
+            set {_p} to arg-2 parsed as player
+            if {_p} is not set:
+                send "&cUso: /astralgema dar <jugador> <rubi|zafiro|jade|topacio|amatista|opalo|onix|azar> <calidad 1-5> [cantidad]" to sender
+                stop
+            set {_q} to (arg-4 parsed as integer) ? 1
+            if {_q} < 1:
+                set {_q} to 1
+            if {_q} > 5:
+                set {_q} to 5
+            set {_c} to (arg-5 parsed as integer) ? 1
+            if {_c} < 1:
+                set {_c} to 1
+            if {_c} > 64:
+                set {_c} to 64
+            loop {_c} times:
+                set {_t} to arg-3
+                if {_t} is "azar":
+                    set {_t} to {-agem.tipo::%random integer between 1 and 7%}
+                if {-agem.color::%{_t}%} is not set:
+                    send "&cTipo de gema desconocido: %arg-3%" to sender
+                    stop
+                execute console command "loot give %name of {_p}% loot astral:item/gema_%{_t}%_%{_q}%"
+            send "&aGemas entregadas a %name of {_p}%." to sender
+            stop
+        if arg-1 is "cofre":
+            if sender is a player:
+                stop
+            set {_p} to arg-2 parsed as player
+            if {_p} is not set:
+                stop
+            set {_tier} to (arg-3 parsed as integer) ? 1
+            set {_nota} to (arg-4 parsed as integer) ? 0
+            if {-agem.drop::%{_nota}%} is not set:
+                stop
+            if random number between 0 and 1 >= {-agem.drop::%{_nota}%}:
+                stop
+            if {_tier} < 1:
+                set {_tier} to 1
+            if {_tier} > 5:
+                set {_tier} to 5
+            set {_total} to 0
+            loop 5 times:
+                add ({-agem.dropq::%{_tier}%::%loop-number%} ? 0) to {_total}
+            set {_r} to random integer between 1 and {_total}
+            set {_q} to 1
+            set {_acc} to 0
+            loop 5 times:
+                add ({-agem.dropq::%{_tier}%::%loop-number%} ? 0) to {_acc}
+                if {_r} <= {_acc}:
+                    set {_q} to loop-number
+                    exit loop
+            set {_t} to {-agem.tipo::%random integer between 1 and 7%}
+            execute console command "loot give %name of {_p}% loot astral:item/gema_%{_t}%_%{_q}%"
+            send "&d&l◆ &dEncontraste una gema en el cofre: %{-agem.color::%{_t}%}%%{-agem.nombre::%{_t}%::%{_q}%}%&d!" to {_p}
+            play sound "block.amethyst_block.chime" to {_p}
+            log "%now% %name of {_p}% %uuid of {_p}% cofre tier=%{_tier}% nota=%{_nota}% gema=%{_t}% q=%{_q}%" to "astral-gemas"
+            stop
+        send "&eUso: /astralgema dar <jugador> <tipo|azar> <calidad 1-5> [cantidad]" to sender
+
