@@ -315,6 +315,10 @@ put_json('assets/minecraft/font/default.json', default_font)
 # Arte nuevo de inventario: prevalece sobre las texturas antiguas.
 from item_redesign import assets as redesigned_item_assets, IDS as REDESIGN_IDS
 files.update(redesigned_item_assets())
+# Iconos 19/11 (laminas del dueno): taladros I-V y motosierras en 64x64 (en la mano como pistola),
+# materiales y materiales de elites en 32x32. Van despues de todo lo anterior para ganarle.
+from iconos_19_11 import assets as iconos_19_11_assets
+files.update(iconos_19_11_assets())
 
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {
