@@ -5,7 +5,7 @@ items:
     material: PAPER
     slot: 4
     amount: 1
-    display_name: '&fAtlas Celestial · Berserker I–X'
+    display_name: '&fBerserker I–X'
     item_model: 'astral:atlas_ui/ilus_berserker'
     item_flags:
     - HIDE_ATTRIBUTES

@@ -1,141 +1,9 @@
-menu_title: '&f&#ffe9a8cuchillo - 1/2'
+menu_title: '&f&#ffe9a8Cuchillos 1/2'
 size: 54
 items:
   'c0':
     material: IRON_SWORD
     slot: 1
-    amount: 1
-    display_name: '&fCuchillo de Aprendiz'
-    item_model: 'astral:cuchillo_1'
-    lore:
-    - '&7Cuchillo de Combate I'
-    - '&7Daño: &c+53'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 1'
-    - ''
-    - '&cRequiere: Combate 12'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&f&lCOMÚN CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c1':
-    material: IRON_SWORD
-    slot: 2
-    amount: 1
-    display_name: '&aCuchillo de Acero'
-    item_model: 'astral:cuchillo_2'
-    lore:
-    - '&7Cuchillo de Combate II'
-    - '&7Daño: &c+265'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 2'
-    - ''
-    - '&cRequiere: Combate 16'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&a&lPOCO COMÚN CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c2':
-    material: IRON_SWORD
-    slot: 3
-    amount: 1
-    display_name: '&#5555FFCuchillo de Zafiro'
-    item_model: 'astral:cuchillo_3'
-    lore:
-    - '&7Cuchillo de Combate III'
-    - '&7Daño: &c+1.325'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 3'
-    - ''
-    - '&cRequiere: Combate 20'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&#5555FF&lRARA CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c3':
-    material: IRON_SWORD
-    slot: 4
-    amount: 1
-    display_name: '&5Cuchillo del Nether'
-    item_model: 'astral:cuchillo_4'
-    lore:
-    - '&7Cuchillo de Combate IV'
-    - '&7Daño: &c+6.625'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 4'
-    - ''
-    - '&cRequiere: Combate 25'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&5&lÉPICA CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c4':
-    material: IRON_SWORD
-    slot: 5
-    amount: 1
-    display_name: '&6Cuchillo Celeste'
-    item_model: 'astral:cuchillo_5'
-    lore:
-    - '&7Cuchillo de Combate V'
-    - '&7Daño: &c+33.125'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 5'
-    - ''
-    - '&cRequiere: Combate 30'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&6&lLEGENDARIA CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c5':
-    material: IRON_SWORD
-    slot: 6
-    amount: 1
-    display_name: '&#ff5fd2Cuchillo del Ocaso'
-    item_model: 'astral:cuchillo_6'
-    lore:
-    - '&7Cuchillo de Combate VI'
-    - '&7Daño: &c+165.625'
-    - '&7Velocidad de ataque: &f3'
-    - ''
-    - '&7Ataque rapido: &a3&7 golpes por segundo'
-    - '&7Durabilidad: &f7.201'
-    - '&7Tier: 6'
-    - ''
-    - '&cRequiere: Combate 35'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&#ff5fd2&lMÍTICA CUCHILLO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c6':
-    material: IRON_SWORD
-    slot: 7
     amount: 1
     display_name: '&fCuchillo de Aprendiz'
     item_model: 'astral:cuchillo_1'
@@ -160,9 +28,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_147'
-  'c7':
+  'c1':
     material: IRON_SWORD
-    slot: 11
+    slot: 2
     amount: 1
     display_name: '&aCuchillo de Acero'
     item_model: 'astral:cuchillo_2'
@@ -187,9 +55,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_148'
-  'c8':
+  'c2':
     material: IRON_SWORD
-    slot: 12
+    slot: 3
     amount: 1
     display_name: '&#5555FFCuchillo de Zafiro'
     item_model: 'astral:cuchillo_3'
@@ -214,9 +82,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_149'
-  'c9':
+  'c3':
     material: IRON_SWORD
-    slot: 13
+    slot: 4
     amount: 1
     display_name: '&5Cuchillo del Nether'
     item_model: 'astral:cuchillo_4'
@@ -241,9 +109,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_150'
-  'c10':
+  'c4':
     material: IRON_SWORD
-    slot: 14
+    slot: 5
     amount: 1
     display_name: '&6Cuchillo Celeste'
     item_model: 'astral:cuchillo_5'
@@ -268,9 +136,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_151'
-  'c11':
+  'c5':
     material: IRON_SWORD
-    slot: 15
+    slot: 6
     amount: 1
     display_name: '&#ff5fd2Cuchillo del Ocaso'
     item_model: 'astral:cuchillo_6'

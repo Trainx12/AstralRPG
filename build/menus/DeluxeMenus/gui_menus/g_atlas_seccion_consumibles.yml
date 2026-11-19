@@ -5,7 +5,7 @@ items:
     material: PAPER
     slot: 4
     amount: 1
-    display_name: '&fAtlas Celestial · Experiencia y suerte'
+    display_name: '&fExperiencia y suerte'
     item_model: 'astral:atlas_ui/ilus_consumibles'
     item_flags:
     - HIDE_ATTRIBUTES

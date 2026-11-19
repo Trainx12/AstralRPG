@@ -1,121 +1,9 @@
-menu_title: '&f&#ffe9a8armadura 1 - 1/1'
+menu_title: '&f&#ffe9a8Armaduras I'
 size: 54
 items:
   'c0':
     material: CHAINMAIL_HELMET
-    slot: 1
-    amount: 1
-    display_name: '&fYelmo del Saqueador'
-    item_model: 'astral:berserker_1_helmet'
-    lore:
-    - '&7Berserker I'
-    - '&7Vida: &c+50'
-    - '&7Bonif. de vida: &c+2,5%'
-    - '&7Defensa: &a+7'
-    - '&7Daño: &c+1,25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f2.401'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 1'
-    - ''
-    - '&cRequiere: Defensa 6'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&f&lCOMÚN CASCO'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c1':
-    material: CHAINMAIL_CHESTPLATE
     slot: 2
-    amount: 1
-    display_name: '&fCoraza del Saqueador'
-    item_model: 'astral:berserker_1_chestplate'
-    lore:
-    - '&7Berserker I'
-    - '&7Vida: &c+50'
-    - '&7Bonif. de vida: &c+2,5%'
-    - '&7Defensa: &a+19'
-    - '&7Daño: &c+1,25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f3.000'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 1'
-    - ''
-    - '&cRequiere: Defensa 6'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&f&lCOMÚN PECHERA'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c2':
-    material: CHAINMAIL_LEGGINGS
-    slot: 3
-    amount: 1
-    display_name: '&fGrebas del Saqueador'
-    item_model: 'astral:berserker_1_leggings'
-    lore:
-    - '&7Berserker I'
-    - '&7Vida: &c+50'
-    - '&7Bonif. de vida: &c+2,5%'
-    - '&7Defensa: &a+14'
-    - '&7Daño: &c+1,25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f2.850'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 1'
-    - ''
-    - '&cRequiere: Defensa 6'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&f&lCOMÚN GREBAS'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c3':
-    material: CHAINMAIL_BOOTS
-    slot: 4
-    amount: 1
-    display_name: '&fBotas del Saqueador'
-    item_model: 'astral:berserker_1_boots'
-    lore:
-    - '&7Berserker I'
-    - '&7Vida: &c+50'
-    - '&7Bonif. de vida: &c+2,5%'
-    - '&7Defensa: &a+7'
-    - '&7Daño: &c+1,25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f2.550'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 1'
-    - ''
-    - '&cRequiere: Defensa 6'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&f&lCOMÚN BOTAS'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c4':
-    material: CHAINMAIL_HELMET
-    slot: 5
     amount: 1
     display_name: '&fYelmo del Saqueador'
     item_model: 'astral:berserker_1_helmet'
@@ -146,9 +34,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_16'
-  'c5':
+  'c1':
     material: CHAINMAIL_CHESTPLATE
-    slot: 6
+    slot: 3
     amount: 1
     display_name: '&fCoraza del Saqueador'
     item_model: 'astral:berserker_1_chestplate'
@@ -179,9 +67,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_17'
-  'c6':
+  'c2':
     material: CHAINMAIL_LEGGINGS
-    slot: 7
+    slot: 4
     amount: 1
     display_name: '&fGrebas del Saqueador'
     item_model: 'astral:berserker_1_leggings'
@@ -212,9 +100,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_18'
-  'c7':
+  'c3':
     material: CHAINMAIL_BOOTS
-    slot: 13
+    slot: 5
     amount: 1
     display_name: '&fBotas del Saqueador'
     item_model: 'astral:berserker_1_boots'

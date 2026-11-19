@@ -1,140 +1,9 @@
-menu_title: '&f&#ffe9a8armadura 10 - 1/1'
+menu_title: '&f&#ffe9a8Armaduras X'
 size: 54
 items:
   'c0':
     material: NETHERITE_HELMET
-    slot: 1
-    amount: 1
-    display_name: '&#b388ffYelmo del Destructor'
-    item_model: 'astral:berserker_10_helmet'
-    lore:
-    - '&7Berserker X'
-    - '&7Vida: &c+24.975'
-    - '&7Bonif. de vida: &c+25%'
-    - '&7Defensa: &a+191'
-    - '&7Daño: &c+20%'
-    - '&7Tiempo en llamas: &c-17,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f24.000'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 10'
-    - ''
-    - '&cRequiere: Defensa 42'
-    - '&7Se fabrica solo en la Forja (supera 3x3)'
-    - '&#b388ff&lASTRAL CASCO'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c1':
-    material: NETHERITE_CHESTPLATE
     slot: 2
-    amount: 1
-    display_name: '&#b388ffCoraza del Destructor'
-    item_model: 'astral:berserker_10_chestplate'
-    lore:
-    - '&7Berserker X'
-    - '&7Vida: &c+24.975'
-    - '&7Bonif. de vida: &c+25%'
-    - '&7Defensa: &a+510'
-    - '&7Daño: &c+20%'
-    - '&7Tiempo en llamas: &c-17,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&#5555FFRobo de vida V'
-    - '&a40%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
-    - '&#5555FFFuria II'
-    - '&a+5%&7 de daño por cada &a10%&7 de vida perdida (hasta &a+45%&7).'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f30.000'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 10'
-    - ''
-    - '&cRequiere: Defensa 42'
-    - '&7Se fabrica solo en la Forja (supera 3x3)'
-    - '&#b388ff&lASTRAL PECHERA'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c2':
-    material: NETHERITE_LEGGINGS
-    slot: 3
-    amount: 1
-    display_name: '&#b388ffGrebas del Destructor'
-    item_model: 'astral:berserker_10_leggings'
-    lore:
-    - '&7Berserker X'
-    - '&7Vida: &c+24.975'
-    - '&7Bonif. de vida: &c+25%'
-    - '&7Defensa: &a+382'
-    - '&7Daño: &c+20%'
-    - '&7Tiempo en llamas: &c-17,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f28.500'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 10'
-    - ''
-    - '&cRequiere: Defensa 42'
-    - '&7Se fabrica solo en la Forja (supera 3x3)'
-    - '&#b388ff&lASTRAL GREBAS'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c3':
-    material: NETHERITE_BOOTS
-    slot: 4
-    amount: 1
-    display_name: '&#b388ffBotas del Destructor'
-    item_model: 'astral:berserker_10_boots'
-    lore:
-    - '&7Berserker X'
-    - '&7Vida: &c+24.975'
-    - '&7Bonif. de vida: &c+25%'
-    - '&7Defensa: &a+191'
-    - '&7Daño: &c+20%'
-    - '&7Tiempo en llamas: &c-17,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f25.500'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 10'
-    - ''
-    - '&cRequiere: Defensa 42'
-    - '&7Se fabrica solo en la Forja (supera 3x3)'
-    - '&#b388ff&lASTRAL BOTAS'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c4':
-    material: NETHERITE_HELMET
-    slot: 5
     amount: 1
     display_name: '&#b388ffYelmo del Destructor'
     item_model: 'astral:berserker_10_helmet'
@@ -169,9 +38,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_52'
-  'c5':
+  'c1':
     material: NETHERITE_CHESTPLATE
-    slot: 6
+    slot: 3
     amount: 1
     display_name: '&#b388ffCoraza del Destructor'
     item_model: 'astral:berserker_10_chestplate'
@@ -209,9 +78,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_53'
-  'c6':
+  'c2':
     material: NETHERITE_LEGGINGS
-    slot: 7
+    slot: 4
     amount: 1
     display_name: '&#b388ffGrebas del Destructor'
     item_model: 'astral:berserker_10_leggings'
@@ -246,9 +115,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_54'
-  'c7':
+  'c3':
     material: NETHERITE_BOOTS
-    slot: 13
+    slot: 5
     amount: 1
     display_name: '&#b388ffBotas del Destructor'
     item_model: 'astral:berserker_10_boots'

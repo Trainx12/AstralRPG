@@ -1,138 +1,9 @@
-menu_title: '&f&#ffe9a8armadura 4 - 1/1'
+menu_title: '&f&#ffe9a8Armaduras IV'
 size: 54
 items:
   'c0':
     material: DIAMOND_HELMET
-    slot: 1
-    amount: 1
-    display_name: '&5Yelmo del Coloso'
-    item_model: 'astral:berserker_4_helmet'
-    lore:
-    - '&7Berserker IV'
-    - '&7Vida: &c+725'
-    - '&7Bonif. de vida: &c+8,75%'
-    - '&7Defensa: &a+46'
-    - '&7Daño: &c+6,25%'
-    - '&7Tiempo en llamas: &c-7,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f5.200'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 4'
-    - ''
-    - '&cRequiere: Defensa 18'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&5&lÉPICA CASCO'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c1':
-    material: DIAMOND_CHESTPLATE
     slot: 2
-    amount: 1
-    display_name: '&5Coraza del Coloso'
-    item_model: 'astral:berserker_4_chestplate'
-    lore:
-    - '&7Berserker IV'
-    - '&7Vida: &c+725'
-    - '&7Bonif. de vida: &c+8,75%'
-    - '&7Defensa: &a+123'
-    - '&7Daño: &c+6,25%'
-    - '&7Tiempo en llamas: &c-7,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&#5555FFRobo de vida I'
-    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f6.500'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 4'
-    - ''
-    - '&cRequiere: Defensa 18'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&5&lÉPICA PECHERA'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c2':
-    material: DIAMOND_LEGGINGS
-    slot: 3
-    amount: 1
-    display_name: '&5Grebas del Coloso'
-    item_model: 'astral:berserker_4_leggings'
-    lore:
-    - '&7Berserker IV'
-    - '&7Vida: &c+725'
-    - '&7Bonif. de vida: &c+8,75%'
-    - '&7Defensa: &a+92'
-    - '&7Daño: &c+6,25%'
-    - '&7Tiempo en llamas: &c-7,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f6.175'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 4'
-    - ''
-    - '&cRequiere: Defensa 18'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&5&lÉPICA GREBAS'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c3':
-    material: DIAMOND_BOOTS
-    slot: 4
-    amount: 1
-    display_name: '&5Botas del Coloso'
-    item_model: 'astral:berserker_4_boots'
-    lore:
-    - '&7Berserker IV'
-    - '&7Vida: &c+725'
-    - '&7Bonif. de vida: &c+8,75%'
-    - '&7Defensa: &a+46'
-    - '&7Daño: &c+6,25%'
-    - '&7Tiempo en llamas: &c-7,5%'
-    - '&7Resistencia al empuje: &a+25%'
-    - ''
-    - '&6Bono de set (2/4)'
-    - '&a+5%&7 de dano cuerpo a cuerpo.'
-    - '&6Bono de set (4/4)'
-    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
-    - '&7Durabilidad: &f5.525'
-    - '&7Velocidad: sin modificación'
-    - '&7Tier: 4'
-    - ''
-    - '&cRequiere: Defensa 18'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
-    - '&5&lÉPICA BOTAS'
-    enchantments:
-    - 'unbreaking;1'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-  'c4':
-    material: DIAMOND_HELMET
-    slot: 5
     amount: 1
     display_name: '&5Yelmo del Coloso'
     item_model: 'astral:berserker_4_helmet'
@@ -167,9 +38,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_28'
-  'c5':
+  'c1':
     material: DIAMOND_CHESTPLATE
-    slot: 6
+    slot: 3
     amount: 1
     display_name: '&5Coraza del Coloso'
     item_model: 'astral:berserker_4_chestplate'
@@ -205,9 +76,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_29'
-  'c6':
+  'c2':
     material: DIAMOND_LEGGINGS
-    slot: 7
+    slot: 4
     amount: 1
     display_name: '&5Grebas del Coloso'
     item_model: 'astral:berserker_4_leggings'
@@ -242,9 +113,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_receta_30'
-  'c7':
+  'c3':
     material: DIAMOND_BOOTS
-    slot: 13
+    slot: 5
     amount: 1
     display_name: '&5Botas del Coloso'
     item_model: 'astral:berserker_4_boots'

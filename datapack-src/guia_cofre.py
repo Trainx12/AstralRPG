@@ -722,11 +722,27 @@ def content_slots(count, top_reserved):
     return slots
 
 
+ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
+CATALOG = {'armadura': 'Armaduras', 'espada': 'Espadas', 'hacha': 'Hachas', 'cuchillo': 'Cuchillos'}
+
+
+def pretty_title(caption):
+    """'Atlas Celestial · armadura 1 · 1/1' -> 'Armaduras I'; 'espada · 1/2' -> 'Espadas 1/2'."""
+    caption = caption.replace('Atlas Celestial · ', '').replace('_', ' ')
+    caption = re.sub(r' · 1/1$', '', caption)
+    caption = re.sub(r' · (\d+/\d+)$', lambda m: ' ' + m.group(1), caption)
+    m = re.match(r'(armadura|espada|hacha|cuchillo)(?: (\d+)(?!/))?(.*)$', caption)
+    if m:
+        tier = ' ' + ROMAN[int(m.group(2))] if m.group(2) and int(m.group(2)) < len(ROMAN) else ''
+        caption = CATALOG[m.group(1)] + tier + m.group(3)
+    return caption[:1].upper() + caption[1:]
+
+
 def dialog_menus(data):
     out = {}
     for key, d in data['dialogs'].items():
         name = menu_name(key)
-        caption = plain(d.get('title', ''))
+        caption = pretty_title(plain(d.get('title', '')))
         rid = recipe_id(d)
         nav, cards, items, buttons, ilus, portrait = {}, [], [], [], None, None
         texts = []
@@ -782,6 +798,9 @@ def dialog_menus(data):
         if rid and rid in data['recetas']:
             out[name] = recipe_menu(name, caption, data['recetas'][rid], nav, cards)
             continue
+        # Si un objeto ya es un boton (abre su receta), no se muestra repetido como imagen suelta.
+        clickable = {it.get('model') for it, _ in buttons if it.get('model')}
+        items = [(it, cmds) for it, cmds in items if not it.get('model') or it['model'] not in clickable]
         content = [(c, []) for c in cards] + items + buttons
         reserved = bool(ilus or portrait)
         lines = [f"menu_title: {q(title(BG_CHARS['general'], caption))}", 'size: 54', 'items:']
