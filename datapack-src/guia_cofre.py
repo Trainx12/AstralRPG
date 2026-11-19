@@ -722,6 +722,20 @@ def content_slots(count, top_reserved):
     return slots
 
 
+# Secciones que solo tenian texto: se muestran con objetos reales (modelos del pack FINAL).
+SHOWCASE = {
+    'atlas/seccion/cocina': ('&6&lCocina - Crop & Kettle', [
+        ('cnk:cooking_pot_item', 'Olla', 'Se fabrica con un caldero y una fogata. Ahi se cocinan las recetas.'),
+        ('cnk.book:cookbook', 'Recetario', 'Muestra las recetas que vas descubriendo.'),
+        ('cnk:cutting_board_item', 'Tabla de cortar', 'Para picar ingredientes.'),
+        ('cnk:knife', 'Cuchillo', 'Se usa con la tabla de cortar.'),
+        ('cnk:mixing_bowl_item', 'Bol', 'Para mezclar masas y salsas.'),
+        ('cnk:grape_seeds', 'Semillas nuevas', 'Cultivos nuevos que crecen en survival.'),
+        ('cnk:beef_cutlets', 'Comidas', 'Mas de cien recetas para cocinar.'),
+        ('cnk:coffee', 'Bebidas', 'Cafe, vinos y mas.'),
+        ('cnk:chef_hat', 'Gorro de chef', 'Se consigue cocinando.'),
+    ]),
+}
 ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X']
 CATALOG = {'armadura': 'Armaduras', 'espada': 'Espadas', 'hacha': 'Hachas', 'cuchillo': 'Cuchillos'}
 
@@ -767,6 +781,12 @@ def dialog_menus(data):
                     portrait = data['retratos'][ch]
             texts.append(b['contents'])
         cards = cards_from_text(texts)
+        if key in SHOWCASE:
+            # Seccion de puro texto: una sola tarjeta con la explicacion y los objetos reales de muestra.
+            lore = wrap([l for c in cards for l in c['lore'] or [c['name']]])
+            cards = [dict(material='KNOWLEDGE_BOOK', model=INFO_MODEL, name=SHOWCASE[key][0], lore=lore)]
+            items += [(dict(material='PAPER', model=m, name='&f' + n, lore=['&7' + x for x in wrap([t], 36)]), [])
+                      for m, n, t in SHOWCASE[key][1]]
         actions = list(d.get('actions', []))
         for field in ('action', 'exit_action'):
             if field in d:
