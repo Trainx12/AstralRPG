@@ -396,8 +396,10 @@ def propose(world, original, bounds, config):
         wx,wz=int(x+x0),int(z+z0)
         f=1-distance[z,x]/config['width']
         rough=.48+.42*noise(wx,wz,13,config['seed']+1)+.1*noise(wx,wz,4,config['seed']+21)
-        # Ladera exterior mas tendida: sin franja vertical debajo del borde.
-        top=floor+int((peak-floor)*f**(config.get('outer_exponent',1.1) if outward[z,x] else .48)*rough)
+        # Exponente alto = ladera tendida (degrade); bajo = pared. Desde el 19/11
+        # el dueno quiere el degrade mirando al lobby: inner 1.1, outer .48.
+        exponent=config.get('outer_exponent',1.1) if outward[z,x] else config.get('inner_exponent',.48)
+        top=floor+int((peak-floor)*f**exponent*rough)
         # Extender desde abajo sin cavidades; nunca borrar bloques existentes.
         bottom=int(h[z,x])+1 if h[z,x] > -32768 else underside_bottom(x,z)
         if bottom > top:
