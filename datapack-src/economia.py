@@ -148,6 +148,16 @@ def pesos(tier, n):
     return [round(w * (1 + RAREZA_BONUS[n] * r) * 10) for _, _, _, w, r in pool(tier)]
 
 
+# ------------------------------------------------------------------ Secretos de Astral (plan E3, 18/11)
+# Ruleta invisible al reclamar un secreto: equipo +1 tier (muy raro), plata o premios del cofre.
+SECRETO_PROB_EQUIPO = 0.02
+SECRETO_PROB_PLATA = 0.38           # el resto (60%) son premios del pool de cofres del tier del jugador
+SECRETO_PLATA_PCT = (0.05, 0.20)    # de la plata que lleva encima
+SECRETO_PLATA_MIN, SECRETO_PLATA_MAX = 10_000, 5_000_000
+SECRETO_TIRADAS = 2                 # tiradas de premios (con pesos de nota B)
+SECRETO_NOTA_PESOS = 'B'
+
+
 # ------------------------------------------------------------------ servicios
 # Mejora del Herrero +1..+10 (mas empinado que x100: late game caro).
 MEJORAS_PLATA = [30_000, 75_000, 150_000, 300_000, 600_000, 1_200_000, 2_500_000, 5_000_000, 10_000_000, 25_000_000]

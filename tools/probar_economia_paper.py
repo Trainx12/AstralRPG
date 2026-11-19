@@ -34,7 +34,7 @@ def main(java):
     for old in scripts.glob('*.sk'):
         old.unlink()
     for src in (ROOT / 'build/economia/Skript/scripts/astral_economia.sk', ROOT / 'build/mazmorras/astral_puntaje.sk',
-                ROOT / 'build/mazmorras/astral_mazmorras_copias.sk'):
+                ROOT / 'build/mazmorras/astral_mazmorras_copias.sk', ROOT / 'build/secretos/astral_secretos.sk'):
         shutil.copy2(src, scripts / src.name)
     log = work / 'paper.log'
     with log.open('w', encoding='utf8') as out:
@@ -59,6 +59,7 @@ def main(java):
             cmd('mazpuntaje inicio mina')
             cmd('mazpuntaje fin mina')
             cmd('scoreboard objectives list')
+            cmd('secretos')
             cmd('stop', 15)
         finally:
             if p.poll() is None:
