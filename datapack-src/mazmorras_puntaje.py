@@ -216,7 +216,8 @@ def script():
           '    set {_n} to 1']
     for n in E.NOTAS[1:]:
         L += [f'    if {{_pts}} >= {E.NOTA_MIN[n]}:', f'        set {{_n}} to {_nota_idx(n)}']
-    L += ['    set {_tmin} to floor({_seg} / 60)',
+    L += ['    set {_nombre} to {-pz.cofre::%{_key}%::nombre}',
+          '    set {_tmin} to floor({_seg} / 60)',
           '    set {_tseg} to mod({_seg}, 60)',
           '    loop all players:',
           '        name of world of loop-player is {_w}',
@@ -229,7 +230,8 @@ def script():
     for n in E.NOTAS:
         c = E.NOTA_COLOR[n]
         L += [f'        if {{_n}} is {_nota_idx(n)}:',
-              f'            send title "{c}&l{n}" with subtitle "&7Puntaje &f%{{_pts}}% &8| &7%{{_tmin}}%:%{{_tseg}}% min &8| &7%{{_m}}% caidas" to loop-player for 6 seconds',
+              # Mismo cartel grande que mazfin ("X conquistada") con el puntaje abajo (dueno 19/11).
+              f'            send title "&b%{{_nombre}}% conquistada" with subtitle "{c}&lPuntaje {n}" to loop-player for 6 seconds',
               f'            send "&6Nota de la mazmorra: {c}&l{n} &7(%{{_pts}}% puntos)" to loop-player']
     L += ['        send "&7Tiempo: &f%{_tmin}% min %{_tseg}% s &8(objetivo %{_obj}% min) &7| Muertes de la party: &f%{_m}%" to loop-player',
           '        send "&7Abri el cofre: la plata y los premios dependen de la nota." to loop-player',

@@ -68,7 +68,8 @@ RADIO_PARTICIPANTES = 64
 # Notas de peor a mejor; el numero es el que se guarda en el puntaje astral.nota (0 = sin nota).
 NOTAS = ['F', 'D', 'C', 'B', 'A', 'S']
 NOTA_MIN = {'S': 95, 'A': 85, 'B': 70, 'C': 55, 'D': 40, 'F': 0}
-NOTA_COLOR = {'S': '&6', 'A': '&a', 'B': '&b', 'C': '&e', 'D': '&c', 'F': '&4'}
+# S dorado ... F rojo (pedido del dueno 19/11).
+NOTA_COLOR = {'S': '&6', 'A': '&d', 'B': '&a', 'C': '&b', 'D': '&9', 'F': '&c'}
 PUNTOS_MUERTE, PUNTOS_MUERTE_TOPE = 12, 60
 PUNTOS_MINUTO, PUNTOS_MINUTO_TOPE = 4, 40
 PUNTOS_SIN_MUERTES = 10

@@ -52,11 +52,11 @@
       "lore": [
         "&7Al reclamar gira una ruleta invisible:",
         "&7Nota &6&lS&7: &e6.000$ &7a &e1.500.000$",
-        "&7Nota &a&lA&7: &e6.000$ &7a &e750.000$",
-        "&7Nota &b&lB&7: &e6.000$ &7a &e450.000$",
-        "&7Nota &e&lC&7: &e6.000$ &7a &e240.000$",
-        "&7Nota &c&lD&7: &e6.000$ &7a &e90.000$",
-        "&7Nota &4&lF&7: &e6.000$ &7a &e15.000$",
+        "&7Nota &d&lA&7: &e6.000$ &7a &e750.000$",
+        "&7Nota &a&lB&7: &e6.000$ &7a &e450.000$",
+        "&7Nota &b&lC&7: &e6.000$ &7a &e240.000$",
+        "&7Nota &9&lD&7: &e6.000$ &7a &e90.000$",
+        "&7Nota &c&lF&7: &e6.000$ &7a &e15.000$",
         "&8Siempre puede tocar poco;",
         "&8con mejor nota es mas facil lo alto."
       ],
@@ -95,7 +95,7 @@
       "material": "PAPER",
       "slot": 13,
       "priority": 6,
-      "display_name": "&4&lNota F",
+      "display_name": "&c&lNota F",
       "update": true,
       "lore": [
         "&7Tu nota en esta victoria.",
@@ -118,7 +118,7 @@
       "material": "PAPER",
       "slot": 13,
       "priority": 5,
-      "display_name": "&c&lNota D",
+      "display_name": "&9&lNota D",
       "update": true,
       "lore": [
         "&7Tu nota en esta victoria.",
@@ -141,7 +141,7 @@
       "material": "PAPER",
       "slot": 13,
       "priority": 4,
-      "display_name": "&e&lNota C",
+      "display_name": "&b&lNota C",
       "update": true,
       "lore": [
         "&7Tu nota en esta victoria.",
@@ -164,7 +164,7 @@
       "material": "PAPER",
       "slot": 13,
       "priority": 3,
-      "display_name": "&b&lNota B",
+      "display_name": "&a&lNota B",
       "update": true,
       "lore": [
         "&7Tu nota en esta victoria.",
@@ -187,7 +187,7 @@
       "material": "NETHER_STAR",
       "slot": 13,
       "priority": 2,
-      "display_name": "&a&lNota A",
+      "display_name": "&d&lNota A",
       "update": true,
       "lore": [
         "&7Tu nota en esta victoria.",
