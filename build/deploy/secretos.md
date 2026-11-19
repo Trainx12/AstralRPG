@@ -1,6 +1,6 @@
 # Secretos de Astral (7c / plan E3) — 18/11/2026
 
-Hecho por Claude directo. Generador `datapack-src/secretos.py`, cifras en `economia.py`. **Sin desplegar.**
+Hecho por Claude directo. Generador `datapack-src/secretos.py`, cifras en `economia.py`. **DESPLEGADO 19/11 (1e2c61d): `skript reload astral_secretos` OK, sin reinicio.**
 No cambia el pack ni el datapack. Todavia NO hay secretos colocados: los elige el dueno.
 
 ## Como se usa
