@@ -1,6 +1,6 @@
 # Cavernas de Cristal Astrales (tanda 7e) - 19/11/2026
 
-Hecho por Claude directo (sin Codex). **Preparado, SIN commit y SIN desplegar** (falta el OK del dueno). Incluye las ventanas nuevas del 19/11 (abajo).
+Hecho por Claude directo (sin Codex). **DESPLEGADO 19/11 23:44** (commit 9dd5487, pack FINAL d19e121a = base del proximo pack; mundo creado con los comandos de abajo). Incluye las ventanas nuevas del 19/11 (abajo).
 Fuente unica: `datapack-src/cavernas.py` (precios y premios en `economia.py`: `CAVERNAS_PRECIO`, `CAVERNAS_COMISION`).
 Plugin propio nuevo: `datapack-src/runtime/AstralCavernas.java` (modelo: AstralOceano).
 
