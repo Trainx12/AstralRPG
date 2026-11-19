@@ -1,0 +1,189 @@
+menu_title: '&f&#ffe9a8Yeti de las Cumbres'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fYeti de las Cumbres'
+    item_model: 'astral:atlas_ui/mob_astral_yeti'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&#8a4500&lJefe'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:frozen_peaks,'
+    - '&7minecraft:snowy_slopes,'
+    - '&7minecraft:ice_spikes'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bBase · Vida base 450 · Daño base 14 (antes'
+    - '&#30241bdel escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7snow_block 4-10 1; leather 4-8 1; exp 150'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6Jefe de mundo I–X · Vida'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&71: 12,500; 2: 60,000; 3: 287,500; 4:'
+    - '&71,375,000; 5: 6,562,500; 6: 31,250,000; 7:'
+    - '&7148,437,500; 8: 703,125,000; 9:'
+    - '&73,320,312,500; 10: 15,625,000,000. Daño de'
+    - '&7skills segun su definicion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#c04fffAlma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
+    - ''
+    - '&#30241b2 × Alma Corrupta · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#ffe24dChispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
+    - ''
+    - '&#30241b1 × Chispa Astral · 45%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&#d9b8ffCristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&#30241b1 × Cristal Arcano Refinado · 80%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&#7fe0a0Esencia de Elite'
+    item_model: 'astral:esencia_elite'
+    lore:
+    - '&7Cae de mobs elite.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
+    - ''
+    - '&#30241b3 × Esencia de Elite · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

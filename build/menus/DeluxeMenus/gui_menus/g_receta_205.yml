@@ -1,0 +1,151 @@
+menu_title: '&f&#ffe9a8Varita del Estallido'
+size: 54
+items:
+  'resultado':
+    material: STICK
+    slot: 20
+    amount: 1
+    display_name: '&5Varita del Estallido'
+    item_model: 'astral:varita_estallido'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+18.750'
+    - '&7Velocidad de ataque: &f1,5'
+    - ''
+    - '&6Habilidad: Estallido&e&l  AL GOLPEAR'
+    - '&7Explosión de &a18.750&7 de daño en radio &a2&7.'
+    - '&7Costo de maná: &b30'
+    - ''
+    - '&6Habilidad: Proyectil Explosivo&e&l  CLIC DERECHO'
+    - '&7Disparo instantáneo hasta &a16&7 bloques.'
+    - '&7Explosión de &a18.750&7 de daño en radio &a2&7.'
+    - '&7Costo de maná: &b30'
+    - '&7Recarga: &a1s'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA VARITA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&f1x Palo Reforzado'
+    item_model: 'astral:palo_reforzado'
+    lore:
+    - '&7Mango para armas avanzadas.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Cristal Arcano'
+    item_model: 'astral:cristal_arcano'
+    lore:
+    - '&7Se procesa en 4 fragmentos.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: BLAZE_POWDER
+    slot: 16
+    amount: 8
+    display_name: '&f8x Polvo de blaze'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 205'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 205'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 205'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_especiales'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

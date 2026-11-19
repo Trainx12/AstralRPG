@@ -1,0 +1,170 @@
+menu_title: '&f&#ffe9a8Ballesta Pesada de Zafiro'
+size: 54
+items:
+  'resultado':
+    material: CROSSBOW
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFBallesta Pesada de Zafiro'
+    item_model: 'astral:ballesta_3'
+    lore:
+    - '&7Ballesta de Arquero III'
+    - '&7Daño: &c+2.957'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - '&#5555FFCarga Rápida I'
+    - '&7Carga la ballesta en &a0,9&7 s.'
+    - '&#5555FFPerforación I'
+    - '&7La flecha atraviesa &a1&7 enemigo.'
+    - ''
+    - '&7Dano de flecha: ~&a2.571'
+    - '&7Carga en &a0,90&7s'
+    - '&7Perforacion: la flecha atraviesa &a1&7 enemigo'
+    - '&7Durabilidad: &f7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&8Material para: Ballesta Rapida del Nether'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BALLESTA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: BOW
+    slot: 14
+    amount: 1
+    display_name: '&f1x Arco del Francotirador'
+    item_model: 'astral:arco_3'
+    lore:
+    - '&7Arco de Arquero III'
+    - '&7Daño: &c+2.957'
+    - '&7Velocidad de carga: &f+45%'
+    - '&7Disparo automático: &acada 0,6s'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - ''
+    - '&7Mayor precision'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,6&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&8Material para: Arco del Viento, Ballesta Pesada de Zafiro'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: CROSSBOW
+    slot: 16
+    amount: 1
+    display_name: '&f1x Crossbow'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 197'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 197'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 197'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_ballesta'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

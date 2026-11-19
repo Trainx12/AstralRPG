@@ -1,0 +1,185 @@
+menu_title: '&f&#ffe9a8Wither Skeleton'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bCriatura vanilla · aspecto del cliente.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&#b01c1c&lAgresivo'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bApariciones vanilla en sus biomas; drops'
+    - '&#30241bAstral del datapack.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bVida y daño dependen de la especie vanilla'
+    - '&#30241by del tier.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 5
+    amount: 1
+    display_name: '&#30241bDrops vanilla: '
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: KNOWLEDGE_BOOK
+    slot: 6
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bTier I–X · Multiplicadores sobre la base:'
+    - '&#30241b1: vida ×25, daño ×22; 2: vida ×120, daño'
+    - '&#30241b×48; 3: vida ×575, daño ×120; 4: vida'
+    - '&#30241b×2750, daño ×280; 5: vida ×13125, daño'
+    - '&#30241b×400; 6: vida ×62500, daño ×1120; 7: vida'
+    - '&#30241b×296875, daño ×2240; 8: vida ×1.40625e+06,'
+    - '&#30241bdaño ×4400; 9: vida ×6.64062e+06, daño'
+    - '&#30241b×8800; 10: vida ×3.125e+07, daño ×16000'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&#b3261eEsencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
+    - ''
+    - '&#30241b1 × Esencia del Nether · 8%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&#4a3360Fragmento Umbrio'
+    item_model: 'astral:fragmento_umbrio'
+    lore:
+    - '&7Cae de Wither Skeletons y Piglin Brutes.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
+    - ''
+    - '&#30241b1 × Fragmento Umbrio · 15%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#ff3b3bNucleo de Furia'
+    item_model: 'astral:nucleo_furia'
+    lore:
+    - '&7Cae de Piglin Brutes y Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
+    - ''
+    - '&#30241b1 × Nucleo de Furia · 6%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&#7d3cffGema Umbria'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Armas oscuras y mejoras.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&#30241b1 × Gema Umbria · 2%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_5'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

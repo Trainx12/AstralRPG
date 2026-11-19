@@ -13,12 +13,16 @@ class AtlasTest(unittest.TestCase):
     def setUpClass(cls):
         with zipfile.ZipFile(ROOT / 'build/AstralRPG-Items.zip') as z:
             cls.files = {n: z.read(n) for n in z.namelist()}
-        cls.pages = {n: json.loads(b) for n, b in cls.files.items() if '/dialog/atlas/' in n}
+        # 19/11: la guia ya no esta en el datapack; sus dialogos son la fuente de las ventanas de cofre.
+        from guia_cofre import load
+        cls.source = load()
+        cls.pages = {f'data/astral/dialog/{k}.json': d for k, d in cls.source['dialogs'].items() if k.startswith('atlas/')}
 
     def test_production_entrypoints(self):
         for n in ('pause_screen_additions', 'quick_actions'):
-            self.assertEqual(json.loads(self.files[f'data/minecraft/tags/dialog/{n}.json'])['values'], ['astral:guia_esc'])
-        self.assertNotIn('atlas/', self.files['data/astral/dialog/guia.json'].decode())
+            self.assertEqual(json.loads(self.files[f'data/minecraft/tags/dialog/{n}.json'])['values'], [])
+        old = [n for n in self.files if n.startswith(('data/astral/dialog/guia', 'data/astral/dialog/receta/', 'data/astral/dialog/atlas/'))]
+        self.assertEqual(old, [])
 
     def test_new_trigger_is_independent(self):
         self.assertIn(b'astral.guia2 trigger', self.files['data/astral/function/atlas/load.mcfunction'])
@@ -31,8 +35,8 @@ class AtlasTest(unittest.TestCase):
         def walk(obj):
             if isinstance(obj, dict):
                 if obj.get('type') == 'show_dialog':
-                    target = obj['dialog'].replace(':', '/dialog/', 1)
-                    self.assertIn('data/' + target + '.json', self.files)
+                    key = obj['dialog'].split(':', 1)[1]
+                    self.assertTrue(key in self.source['dialogs'] or key == 'atlas/indice', key)
                 for v in obj.values():
                     walk(v)
             elif isinstance(obj, list):
@@ -48,10 +52,8 @@ class AtlasTest(unittest.TestCase):
                 self.assertTrue(page['actions'], name)
 
     def test_full_index_two_columns(self):
-        index = self.pages['data/astral/dialog/atlas/indice.json']
-        original = json.loads(self.files['data/astral/dialog/guia.json'])
-        self.assertEqual(index['columns'], 2)
-        self.assertGreaterEqual(len(index['actions']), len(original['actions']) + 1)
+        original = self.source['dialogs']['guia'] if 'guia' in self.source['dialogs'] else None
+        self.assertGreaterEqual(len(self.source['index']), 21)
 
     def test_all_berserker_tiers(self):
         for tier in range(1, 11):

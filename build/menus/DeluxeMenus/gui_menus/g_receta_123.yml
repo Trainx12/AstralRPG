@@ -1,0 +1,177 @@
+menu_title: '&f&#ffe9a8Botas del Acechador'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_BOOTS
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Botas del Acechador'
+    item_model: 'astral:arquero_7_boots'
+    lore:
+    - '&7Arquero VII'
+    - '&7Vida: &c+6.225'
+    - '&7Defensa: &a+130'
+    - '&7Daño a distancia: &c+14%'
+    - '&7Prob. crítica: &9+8%'
+    - '&7Velocidad: &f+6,25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f13.175'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Defensa 30'
+    - '&8Material para: Botas del Cazador Celeste'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Botas del Andariego'
+    item_model: 'astral:arquero_6_boots'
+    lore:
+    - '&7Arquero VI'
+    - '&7Vida: &c+3.725'
+    - '&7Defensa: &a+108'
+    - '&7Daño a distancia: &c+12%'
+    - '&7Prob. crítica: &9+7%'
+    - '&7Velocidad: &f+5,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f10.200'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Defensa 26'
+    - '&8Material para: Botas del Acechador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 123'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 123'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 123'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_7'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

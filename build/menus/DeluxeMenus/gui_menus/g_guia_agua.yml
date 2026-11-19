@@ -1,0 +1,317 @@
+menu_title: '&f&#ffe9a8Equipo de Agua III'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: DIAMOND_SWORD
+    slot: 2
+    amount: 1
+    display_name: '&#5555FFEspada de las Mareas'
+    item_model: 'astral:agua_espada'
+    lore:
+    - '&7Espada de Agua III'
+    - '&7Daño: &c+2.500'
+    - '&7Velocidad de ataque: &f1,6'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFFuria I'
+    - '&7Hasta &a+15%&7 de daño cuanto menos vida tengas.'
+    - ''
+    - '&6Habilidad: Proyectil de agua&e&l  CLIC DERECHO'
+    - '&7Proyectil de &a3.186&7 de daño (bastón T&a3&7 -&a10%&7).'
+    - '&7Costo de maná: &b90'
+    - '&7Recarga: &a1,1s'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_261'
+  'c2':
+    material: DIAMOND_AXE
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFHacha de las Mareas'
+    item_model: 'astral:agua_hacha'
+    lore:
+    - '&7Hacha de Agua III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - ''
+    - '&6Habilidad: Fuerza de las Mareas&e&l  BAJO EL AGUA'
+    - '&a+25%&7 de daño con golpes directos.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_262'
+  'c3':
+    material: BOW
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFArco de Agua'
+    item_model: 'astral:agua_arco'
+    lore:
+    - '&7Arco de Agua III'
+    - '&7Daño: &c+2.957'
+    - '&7Velocidad de carga: &f+45%'
+    - '&7Disparo automático: &acada 0,6s'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - ''
+    - '&7Mayor precision'
+    - ''
+    - '&6Habilidad: Flecha de las Mareas&e&l  AL DISPARAR'
+    - '&7Flechas con el mismo rozamiento en agua que en aire.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA ARCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_263'
+  'c4':
+    material: DIAMOND_HELMET
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFCasco de Agua'
+    item_model: 'astral:agua_helmet'
+    lore:
+    - '&7Armadura de Agua III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+30'
+    - '&7Eficiencia acuática: &b+25%'
+    - '&7Minado bajo el agua: &b+20%'
+    - '&7Aire extra: &b+1'
+    - ''
+    - '&7Nadas y minas mas rapido bajo el agua.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Respiras sin limite; nado x&a1,5&7 y vision nocturna solo bajo el agua.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_264'
+  'c5':
+    material: DIAMOND_CHESTPLATE
+    slot: 6
+    amount: 1
+    display_name: '&#5555FFPechera de Agua'
+    item_model: 'astral:agua_chestplate'
+    lore:
+    - '&7Armadura de Agua III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+80'
+    - '&7Eficiencia acuática: &b+25%'
+    - '&7Minado bajo el agua: &b+20%'
+    - '&7Aire extra: &b+1'
+    - ''
+    - '&7Nadas y minas mas rapido bajo el agua.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Respiras sin limite; nado x&a1,5&7 y vision nocturna solo bajo el agua.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_265'
+  'c6':
+    material: DIAMOND_LEGGINGS
+    slot: 7
+    amount: 1
+    display_name: '&#5555FFGrebas de Agua'
+    item_model: 'astral:agua_leggings'
+    lore:
+    - '&7Armadura de Agua III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+60'
+    - '&7Eficiencia acuática: &b+25%'
+    - '&7Minado bajo el agua: &b+20%'
+    - '&7Aire extra: &b+1'
+    - ''
+    - '&7Nadas y minas mas rapido bajo el agua.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Respiras sin limite; nado x&a1,5&7 y vision nocturna solo bajo el agua.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_266'
+  'c7':
+    material: DIAMOND_BOOTS
+    slot: 12
+    amount: 1
+    display_name: '&#5555FFBotas de Agua'
+    item_model: 'astral:agua_boots'
+    lore:
+    - '&7Armadura de Agua III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+30'
+    - '&7Eficiencia acuática: &b+25%'
+    - '&7Minado bajo el agua: &b+20%'
+    - '&7Aire extra: &b+1'
+    - ''
+    - '&7Nadas y minas mas rapido bajo el agua.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Respiras sin limite; nado x&a1,5&7 y vision nocturna solo bajo el agua.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_267'
+  'c8':
+    material: DIAMOND_PICKAXE
+    slot: 13
+    amount: 1
+    display_name: '&#4fd8e8Pico de las Mareas'
+    item_model: 'astral:agua_pico'
+    lore:
+    - '&7Equipo de Agua III'
+    - '&7Durabilidad: 7.201'
+    - '&7Minado bajo el agua: &b+80%'
+    - ''
+    - '&#5555FFEficiencia IV'
+    - '&#5555FFIrrompibilidad III'
+    - ''
+    - '&7Mina rapido bajo el agua.'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&#5555FF&lRARA PICO'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_268'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

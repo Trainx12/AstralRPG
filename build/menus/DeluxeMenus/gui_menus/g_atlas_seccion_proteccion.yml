@@ -1,0 +1,142 @@
+menu_title: '&f&#ffe9a8Terrenos y mochilas'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fTerrenos y mochilas'
+    item_model: 'astral:atlas_ui/ilus_proteccion'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&6Solo en survival'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7pala de oro, clic derecho en dos esquinas.'
+    - '&7Protege todo de fondo a techo. Minimo 6x6'
+    - '&7(36 bloques).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Empezas con 36 bloques de area, sin ganar'
+    - '&7por tiempo. /shop -> Proteccion suma area:'
+    - '&736 + 25 = 61, no 11x11. Podes repartirla'
+    - '&7entre zonas de minimo 36 cada una.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7/trust jugador comparte; /untrust jugador'
+    - '&7retira acceso; /abandonclaim libera la'
+    - '&7zona. WorldGuard y los candados de Bolt'
+    - '&7siguen vigentes.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Mochilas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7se compran en /shop -> Mochilas: Cuero 9'
+    - '&7espacios ($5.000), Cobre 18 ($20.000),'
+    - '&7Hierro 27 ($50.000), Oro 36 ($100.000) y'
+    - '&7Diamante 45 ($175.000). Necesitas un lugar'
+    - '&7libre en el inventario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6La mochila es un objeto'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7tenela en la mano y hace clic derecho para'
+    - '&7abrirla. Tambien se fabrican (cuero + hilo'
+    - '&7+ cofre) y se mejoran rodeandolas con 8'
+    - '&7lingotes del nivel siguiente; Netherite'
+    - '&7(54) en la mesa de herreria. /bp muestra'
+    - '&7las recetas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: KNOWLEDGE_BOOK
+    slot: 24
+    amount: 1
+    display_name: '&6Cuidado'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7si moris, la mochila cae con tus cosas a'
+    - '&7la tumba y su contenido va con ella. No se'
+    - '&7puede meter una mochila dentro de otra.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

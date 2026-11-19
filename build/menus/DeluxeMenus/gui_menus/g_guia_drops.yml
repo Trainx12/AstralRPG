@@ -1,0 +1,316 @@
+menu_title: '&f&#ffe9a8Donde se consiguen'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Materiales que se consiguen en el mundo:'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#b3261eEsencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
+    - ''
+    - '&7&l  Wither Skeleton (8%)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#4a3360Fragmento Umbrio'
+    item_model: 'astral:fragmento_umbrio'
+    lore:
+    - '&7Cae de Wither Skeletons y Piglin Brutes.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
+    - ''
+    - '&7&l  Wither Skeleton (15%); Piglin Brute'
+    - '&7&l(15%)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&#ff3b3bNucleo de Furia'
+    item_model: 'astral:nucleo_furia'
+    lore:
+    - '&7Cae de Piglin Brutes y Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
+    - ''
+    - '&7&l  Wither Skeleton (6%); Piglin Brute (6%)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&#7d3cffGema Umbria'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Armas oscuras y mejoras.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&7&l  mobs del Nether (2%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&#b07cffCristal Arcano'
+    item_model: 'astral:cristal_arcano'
+    lore:
+    - '&7Se procesa en 4 fragmentos.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
+    - ''
+    - '&7&l  Enderman (5%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&#7ec8ffFragmento Astral'
+    item_model: 'astral:fragmento_astral'
+    lore:
+    - '&7Cae de Endermans en el End.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Polvo Astral'
+    - ''
+    - '&7&l  Enderman (20%, en el End)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&#c58cffCorazon de Shulker'
+    item_model: 'astral:corazon_shulker'
+    lore:
+    - '&7Cae de Shulkers.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Astral, Capucha del Archimago, Tunica del Archimago, Faldones del Archimago, Sandalias del Archimago, Baston del Archimago'
+    - ''
+    - '&7&l  Shulker (10%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&#bff5e6Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&7&l  Vindicator (10%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&#ffe066Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
+    - ''
+    - '&7&l  cofres de estructuras del Overworld'
+    - '&7&l(25%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#c9a6ffFragmento de Cristal Arcano'
+    item_model: 'astral:fragmento_cristal'
+    lore:
+    - '&74 forman un Cristal Refinado.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&7&l  picando end stone en el End (4%)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: PAPER
+    slot: 14
+    amount: 1
+    display_name: '&#9fd8ffMadera Estelar'
+    item_model: 'astral:madera_estelar'
+    lore:
+    - '&7Madera de los arboles del End.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
+    - ''
+    - '&7&l  talando arboles o chorus en el End'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c12':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&#c0582fNetherita Fundida'
+    item_model: 'astral:netherita_fundida'
+    lore:
+    - '&7Netherita fundida en un horno.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
+    - ''
+    - '&7&l  lingote de netherita en el horno'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&#7fe0a0Esencia de Elite'
+    item_model: 'astral:esencia_elite'
+    lore:
+    - '&7Cae de mobs elite.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
+    - ''
+    - '&7&l  mobs elite (todos los tiers)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&#c04fffAlma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
+    - ''
+    - '&7&l  mobs elite Campeon, Pesadilla y Astral'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c15':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&#ffe24dChispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
+    - ''
+    - '&7&l  mobs elite Astral (60%)'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_materiales'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

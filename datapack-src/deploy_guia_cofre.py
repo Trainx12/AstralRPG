@@ -1,4 +1,4 @@
-"""Guia Astral en cofre (18/11): FINAL nuevo = ultimo FINAL + fondo de la guia en la fuente default.
+"""Guia Astral en cofre (18-19/11): FINAL nuevo = ultimo FINAL + fondos, ilustraciones y retratos de la guia.
 
 Uso: python deploy_guia_cofre.py [--base <FINAL.zip>]
 """
@@ -8,15 +8,18 @@ import json
 from pathlib import Path
 from deploy_guia_esc import rewrite
 from final_base import select_base
-from guia_cofre import assets
+from guia_cofre import assets, portrait_assets
 from terceros import privado
 
-OUT = privado() / 'build/entregas/guia-cofre-18-11'
+OUT = privado() / 'build/entregas/guia-cofre-19-11'
 DATAPACK = Path(__file__).resolve().parents[1] / 'build/AstralRPG-Items.zip'
 
 
 def change(names, z):
-    files, providers = assets(DATAPACK)
+    files, providers = assets()
+    # Retratos del Bestiario desde las texturas privadas que ya tiene el FINAL base.
+    mobs = {n: z.read(n) for n in names if n.startswith('assets/astral/textures/gui/atlas/mobs/')}
+    files.update(portrait_assets(mobs))
     font = json.loads(z.read('assets/minecraft/font/default.json'))
     mine = {p['file'] for p in providers if 'file' in p}
     chars = {c for p in providers for c in (p.get('chars') or []) + list(p.get('advances', {}))}

@@ -1,0 +1,180 @@
+menu_title: '&f&#ffe9a8Chaqueta del Viento'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&5Chaqueta del Viento'
+    item_model: 'astral:arquero_4_chestplate'
+    lore:
+    - '&7Arquero IV'
+    - '&7Vida: &c+725'
+    - '&7Defensa: &a+145'
+    - '&7Daño a distancia: &c+6,25%'
+    - '&7Prob. crítica: &9+3,75%'
+    - '&7Velocidad: &f+3,75%'
+    - '&7Velocidad de carga: &f+10%'
+    - ''
+    - '&#5555FFPuntería del Set IV'
+    - '&a+18%&7 de daño con arco.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f6.500'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Defensa 18'
+    - '&8Material para: Chaqueta del Halcon Astral'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Chaqueta del Francotirador'
+    item_model: 'astral:arquero_3_chestplate'
+    lore:
+    - '&7Arquero III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+85'
+    - '&7Daño a distancia: &c+4,5%'
+    - '&7Prob. crítica: &9+2,5%'
+    - '&7Velocidad: &f+2,5%'
+    - ''
+    - '&#5555FFPuntería del Set III'
+    - '&a+12%&7 de daño con arco.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f4.500'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Chaqueta del Viento'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&f1x Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 109'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 109'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 109'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_4'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

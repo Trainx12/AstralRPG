@@ -1,0 +1,204 @@
+menu_title: '&f&#ffe9a8Berserker: armadura IV'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: DIAMOND_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&5Yelmo del Coloso'
+    item_model: 'astral:berserker_4_helmet'
+    lore:
+    - '&7Berserker IV'
+    - '&7Vida: &c+725'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+46'
+    - '&7Daño: &c+6,25%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f5.200'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Defensa 18'
+    - '&8Material para: Yelmo del Dios de la Guerra'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_28'
+  'c2':
+    material: DIAMOND_CHESTPLATE
+    slot: 4
+    amount: 1
+    display_name: '&5Coraza del Coloso'
+    item_model: 'astral:berserker_4_chestplate'
+    lore:
+    - '&7Berserker IV'
+    - '&7Vida: &c+725'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+123'
+    - '&7Daño: &c+6,25%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f6.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Defensa 18'
+    - '&8Material para: Coraza del Dios de la Guerra'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_29'
+  'c3':
+    material: DIAMOND_LEGGINGS
+    slot: 5
+    amount: 1
+    display_name: '&5Grebas del Coloso'
+    item_model: 'astral:berserker_4_leggings'
+    lore:
+    - '&7Berserker IV'
+    - '&7Vida: &c+725'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+92'
+    - '&7Daño: &c+6,25%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f6.175'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Defensa 18'
+    - '&8Material para: Grebas del Dios de la Guerra'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_30'
+  'c4':
+    material: DIAMOND_BOOTS
+    slot: 6
+    amount: 1
+    display_name: '&5Botas del Coloso'
+    item_model: 'astral:berserker_4_boots'
+    lore:
+    - '&7Berserker IV'
+    - '&7Vida: &c+725'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+46'
+    - '&7Daño: &c+6,25%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f5.525'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Defensa 18'
+    - '&8Material para: Botas del Dios de la Guerra'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_31'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_berserker'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

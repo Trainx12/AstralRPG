@@ -1,0 +1,260 @@
+menu_title: '&f&#ffe9a8Mago'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fMago'
+    item_model: 'astral:atlas_ui/ilus_mago'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Equipo de Mago. Cada tier se forja con la'
+    - '&7pieza del tier anterior.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: LEATHER_HELMET
+    slot: 20
+    amount: 1
+    display_name: '&bArmadura I - del Aprendiz'
+    item_model: 'astral:mago_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_1'
+  'c2':
+    material: LEATHER_HELMET
+    slot: 21
+    amount: 1
+    display_name: '&bArmadura II - del Hechicero'
+    item_model: 'astral:mago_2_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_2'
+  'c3':
+    material: LEATHER_HELMET
+    slot: 22
+    amount: 1
+    display_name: '&bArmadura III - del Invocador'
+    item_model: 'astral:mago_3_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_3'
+  'c4':
+    material: LEATHER_HELMET
+    slot: 23
+    amount: 1
+    display_name: '&bArmadura IV - del Archimago'
+    item_model: 'astral:mago_4_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_4'
+  'c5':
+    material: LEATHER_HELMET
+    slot: 24
+    amount: 1
+    display_name: '&bArmadura V - del Sabio Astral'
+    item_model: 'astral:mago_5_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_5'
+  'c6':
+    material: LEATHER_HELMET
+    slot: 25
+    amount: 1
+    display_name: '&bArmadura VI - del Glaciar'
+    item_model: 'astral:mago_6_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_6'
+  'c7':
+    material: LEATHER_HELMET
+    slot: 28
+    amount: 1
+    display_name: '&bArmadura VII - Escarlata'
+    item_model: 'astral:mago_7_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_7'
+  'c8':
+    material: LEATHER_HELMET
+    slot: 29
+    amount: 1
+    display_name: '&bArmadura VIII - de la Escarcha'
+    item_model: 'astral:mago_8_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_8'
+  'c9':
+    material: LEATHER_HELMET
+    slot: 30
+    amount: 1
+    display_name: '&bArmadura IX - de la Nebulosa'
+    item_model: 'astral:mago_9_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_9'
+  'c10':
+    material: LEATHER_HELMET
+    slot: 31
+    amount: 1
+    display_name: '&bArmadura X - de la Absolucion'
+    item_model: 'astral:mago_10_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_10'
+  'c11':
+    material: CARROT_ON_A_STICK
+    slot: 32
+    amount: 1
+    display_name: '&bBastones'
+    item_model: 'astral:baston_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_baston'
+  'c12':
+    material: IRON_HOE
+    slot: 33
+    amount: 1
+    display_name: '&bGuadanas'
+    item_model: 'astral:guadana_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_guadana'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

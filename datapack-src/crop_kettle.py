@@ -67,7 +67,7 @@ def patch_datapack(original):
         if name in files:
             obj = json.loads(files[name])
             obj['values'] = [v for v in obj.get('values', [])
-                             if (v.get('id') if isinstance(v, dict) else v) == ENTRADA]
+                             if (v.get('id') if isinstance(v, dict) else v) == None]  # 19/11: ESC sin botones de guia
             obj.pop('replace', None)
             files[name] = encoded(obj)
             changed.append(name)

@@ -1,0 +1,434 @@
+menu_title: '&f&#ffe9a8Mago: Bastones'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: CARROT_ON_A_STICK
+    slot: 2
+    amount: 1
+    display_name: '&fBaston del Aprendiz'
+    item_model: 'astral:baston_1'
+    lore:
+    - '&7Baston de Mago I'
+    - '&7Daño de hechizo: &d+126'
+    - '&7Daño mágico: &d+5%'
+    - '&7Maná: &b+100'
+    - '&7Regeneración de maná: &b+2/s'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b30'
+    - '&7Recarga: &a1,25s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Hechiceria 8'
+    - '&8Material para: Baston del Hechicero'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_167'
+  'c2':
+    material: CARROT_ON_A_STICK
+    slot: 3
+    amount: 1
+    display_name: '&aBaston del Hechicero'
+    item_model: 'astral:baston_2'
+    lore:
+    - '&7Baston de Mago II'
+    - '&7Daño de hechizo: &d+660'
+    - '&7Daño mágico: &d+10%'
+    - '&7Maná: &b+180'
+    - '&7Regeneración de maná: &b+3,78/s'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b50'
+    - '&7Recarga: &a1,2s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Hechiceria 14'
+    - '&8Material para: Baston del Invocador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_168'
+  'c3':
+    material: CARROT_ON_A_STICK
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFBaston del Invocador'
+    item_model: 'astral:baston_3'
+    lore:
+    - '&7Baston de Mago III'
+    - '&7Daño de hechizo: &d+3.540'
+    - '&7Daño mágico: &d+18%'
+    - '&7Maná: &b+250'
+    - '&7Regeneración de maná: &b+5/s'
+    - ''
+    - '&7Hechizos cuestan menos'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b90'
+    - '&7Recarga: &a1,1s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&8Material para: Baston del Archimago'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_169'
+  'c4':
+    material: CARROT_ON_A_STICK
+    slot: 5
+    amount: 1
+    display_name: '&5Baston del Archimago'
+    item_model: 'astral:baston_4'
+    lore:
+    - '&7Baston de Mago IV'
+    - '&7Daño de hechizo: &d+18.750'
+    - '&7Daño mágico: &d+25%'
+    - '&7Maná: &b+300'
+    - '&7Regeneración de maná: &b+6/s'
+    - ''
+    - '&7-&a10%&7 de enfriamiento'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b150'
+    - '&7Recarga: &a0,95s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Hechiceria 26'
+    - '&8Material para: Baston Astral'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_170'
+  'c5':
+    material: CARROT_ON_A_STICK
+    slot: 6
+    amount: 1
+    display_name: '&6Baston Astral'
+    item_model: 'astral:baston_5'
+    lore:
+    - '&7Baston de Mago V'
+    - '&7Daño de hechizo: &d+120.000'
+    - '&7Daño mágico: &d+40%'
+    - '&7Maná: &b+350'
+    - '&7Regeneración de maná: &b+7/s'
+    - ''
+    - '&7Ignora &a20%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b200'
+    - '&7Recarga: &a1s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Hechiceria 32'
+    - '&8Material para: Cetro de Amatista Arcana'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_171'
+  'c6':
+    material: CARROT_ON_A_STICK
+    slot: 7
+    amount: 1
+    display_name: '&#ff5fd2Cetro de Amatista Arcana'
+    item_model: 'astral:baston_6'
+    lore:
+    - '&7Baston de Mago VI'
+    - '&7Daño de hechizo: &d+648.750'
+    - '&7Daño mágico: &d+48%'
+    - '&7Maná: &b+400'
+    - '&7Regeneración de maná: &b+8/s'
+    - ''
+    - '&7Ignora &a25%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b250'
+    - '&7Recarga: &a0,95s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Hechiceria 37'
+    - '&8Material para: Baston de Brasa Solar'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_172'
+  'c7':
+    material: CARROT_ON_A_STICK
+    slot: 11
+    amount: 1
+    display_name: '&#ff5fd2Baston de Brasa Solar'
+    item_model: 'astral:baston_7'
+    lore:
+    - '&7Baston de Mago VII'
+    - '&7Daño de hechizo: &d+3.487.500'
+    - '&7Daño mágico: &d+56%'
+    - '&7Maná: &b+450'
+    - '&7Regeneración de maná: &b+9/s'
+    - ''
+    - '&7Ignora &a30%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b300'
+    - '&7Recarga: &a0,9s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Hechiceria 42'
+    - '&8Material para: Baston del Cristal Celeste'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_173'
+  'c8':
+    material: CARROT_ON_A_STICK
+    slot: 12
+    amount: 1
+    display_name: '&bBaston del Cristal Celeste'
+    item_model: 'astral:baston_8'
+    lore:
+    - '&7Baston de Mago VIII'
+    - '&7Daño de hechizo: &d+18.656.250'
+    - '&7Daño mágico: &d+64%'
+    - '&7Maná: &b+500'
+    - '&7Regeneración de maná: &b+10/s'
+    - ''
+    - '&7Ignora &a35%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b360'
+    - '&7Recarga: &a0,85s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Hechiceria 47'
+    - '&8Material para: Baston de la Calavera Errante'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_174'
+  'c9':
+    material: CARROT_ON_A_STICK
+    slot: 13
+    amount: 1
+    display_name: '&bBaston de la Calavera Errante'
+    item_model: 'astral:baston_9'
+    lore:
+    - '&7Baston de Mago IX'
+    - '&7Daño de hechizo: &d+99.375.000'
+    - '&7Daño mágico: &d+72%'
+    - '&7Maná: &b+550'
+    - '&7Regeneración de maná: &b+11/s'
+    - ''
+    - '&7Ignora &a40%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b430'
+    - '&7Recarga: &a0,8s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Hechiceria 52'
+    - '&8Material para: Cetro del Llamahuesos'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_175'
+  'c10':
+    material: CARROT_ON_A_STICK
+    slot: 14
+    amount: 1
+    display_name: '&#b388ffCetro del Llamahuesos'
+    item_model: 'astral:baston_10'
+    lore:
+    - '&7Baston de Mago X'
+    - '&7Daño de hechizo: &d+527.343.750'
+    - '&7Daño mágico: &d+80%'
+    - '&7Maná: &b+600'
+    - '&7Regeneración de maná: &b+12/s'
+    - ''
+    - '&7Ignora &a45%&7 de resistencia magica'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b500'
+    - '&7Recarga: &a0,75s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 10'
+    - ''
+    - '&cRequiere: Hechiceria 57'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#b388ff&lASTRAL BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_176'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

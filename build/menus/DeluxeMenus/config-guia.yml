@@ -1,0 +1,993 @@
+# Guia Astral (guia_cofre.py): pegar en config.yml, dentro de gui_menus:
+  guia_astral:
+    file: guia_astral.yml
+  guia_astral_2:
+    file: guia_astral_2.yml
+  guia_astral_3:
+    file: guia_astral_3.yml
+  g_atlas_berserker:
+    file: g_atlas_berserker.yml
+  g_atlas_bestiario_1:
+    file: g_atlas_bestiario_1.yml
+  g_atlas_bestiario_2:
+    file: g_atlas_bestiario_2.yml
+  g_atlas_bestiario_3:
+    file: g_atlas_bestiario_3.yml
+  g_atlas_bestiario_4:
+    file: g_atlas_bestiario_4.yml
+  g_atlas_bestiario_5:
+    file: g_atlas_bestiario_5.yml
+  g_atlas_bestiario_6:
+    file: g_atlas_bestiario_6.yml
+  g_atlas_bestiario_7:
+    file: g_atlas_bestiario_7.yml
+  g_atlas_catalogo_armadura_1_1:
+    file: g_atlas_catalogo_armadura_1_1.yml
+  g_atlas_catalogo_armadura_10_1:
+    file: g_atlas_catalogo_armadura_10_1.yml
+  g_atlas_catalogo_armadura_2_1:
+    file: g_atlas_catalogo_armadura_2_1.yml
+  g_atlas_catalogo_armadura_3_1:
+    file: g_atlas_catalogo_armadura_3_1.yml
+  g_atlas_catalogo_armadura_4_1:
+    file: g_atlas_catalogo_armadura_4_1.yml
+  g_atlas_catalogo_armadura_5_1:
+    file: g_atlas_catalogo_armadura_5_1.yml
+  g_atlas_catalogo_armadura_6_1:
+    file: g_atlas_catalogo_armadura_6_1.yml
+  g_atlas_catalogo_armadura_7_1:
+    file: g_atlas_catalogo_armadura_7_1.yml
+  g_atlas_catalogo_armadura_8_1:
+    file: g_atlas_catalogo_armadura_8_1.yml
+  g_atlas_catalogo_armadura_9_1:
+    file: g_atlas_catalogo_armadura_9_1.yml
+  g_atlas_catalogo_cuchillo_1:
+    file: g_atlas_catalogo_cuchillo_1.yml
+  g_atlas_catalogo_cuchillo_2:
+    file: g_atlas_catalogo_cuchillo_2.yml
+  g_atlas_catalogo_espada_1:
+    file: g_atlas_catalogo_espada_1.yml
+  g_atlas_catalogo_espada_2:
+    file: g_atlas_catalogo_espada_2.yml
+  g_atlas_catalogo_hacha_1:
+    file: g_atlas_catalogo_hacha_1.yml
+  g_atlas_catalogo_hacha_2:
+    file: g_atlas_catalogo_hacha_2.yml
+  g_atlas_criatura_astral_abejorro:
+    file: g_atlas_criatura_astral_abejorro.yml
+  g_atlas_criatura_astral_abejorro_elite:
+    file: g_atlas_criatura_astral_abejorro_elite.yml
+  g_atlas_criatura_astral_arana:
+    file: g_atlas_criatura_astral_arana.yml
+  g_atlas_criatura_astral_arana_elite:
+    file: g_atlas_criatura_astral_arana_elite.yml
+  g_atlas_criatura_astral_ave:
+    file: g_atlas_criatura_astral_ave.yml
+  g_atlas_criatura_astral_cangrejo:
+    file: g_atlas_criatura_astral_cangrejo.yml
+  g_atlas_criatura_astral_cangrejo_ancestral:
+    file: g_atlas_criatura_astral_cangrejo_ancestral.yml
+  g_atlas_criatura_astral_cangrejo_elite:
+    file: g_atlas_criatura_astral_cangrejo_elite.yml
+  g_atlas_criatura_astral_cara:
+    file: g_atlas_criatura_astral_cara.yml
+  g_atlas_criatura_astral_cara_elite:
+    file: g_atlas_criatura_astral_cara_elite.yml
+  g_atlas_criatura_astral_chaman:
+    file: g_atlas_criatura_astral_chaman.yml
+  g_atlas_criatura_astral_chaman_ancestral:
+    file: g_atlas_criatura_astral_chaman_ancestral.yml
+  g_atlas_criatura_astral_chocobo:
+    file: g_atlas_criatura_astral_chocobo.yml
+  g_atlas_criatura_astral_escarabajo:
+    file: g_atlas_criatura_astral_escarabajo.yml
+  g_atlas_criatura_astral_espantapajaros:
+    file: g_atlas_criatura_astral_espantapajaros.yml
+  g_atlas_criatura_astral_espantapajaros_elite:
+    file: g_atlas_criatura_astral_espantapajaros_elite.yml
+  g_atlas_criatura_astral_goblin:
+    file: g_atlas_criatura_astral_goblin.yml
+  g_atlas_criatura_astral_golem_forja:
+    file: g_atlas_criatura_astral_golem_forja.yml
+  g_atlas_criatura_astral_golem_forja_ancestral:
+    file: g_atlas_criatura_astral_golem_forja_ancestral.yml
+  g_atlas_criatura_astral_grillo:
+    file: g_atlas_criatura_astral_grillo.yml
+  g_atlas_criatura_astral_lagarto:
+    file: g_atlas_criatura_astral_lagarto.yml
+  g_atlas_criatura_astral_mapache:
+    file: g_atlas_criatura_astral_mapache.yml
+  g_atlas_criatura_astral_momia:
+    file: g_atlas_criatura_astral_momia.yml
+  g_atlas_criatura_astral_momia_ancestral:
+    file: g_atlas_criatura_astral_momia_ancestral.yml
+  g_atlas_criatura_astral_pinguino:
+    file: g_atlas_criatura_astral_pinguino.yml
+  g_atlas_criatura_astral_pterodactilo:
+    file: g_atlas_criatura_astral_pterodactilo.yml
+  g_atlas_criatura_astral_yeti:
+    file: g_atlas_criatura_astral_yeti.yml
+  g_atlas_criatura_astral_yeti_ancestral:
+    file: g_atlas_criatura_astral_yeti_ancestral.yml
+  g_atlas_criatura_vanilla_blaze:
+    file: g_atlas_criatura_vanilla_blaze.yml
+  g_atlas_criatura_vanilla_enderman:
+    file: g_atlas_criatura_vanilla_enderman.yml
+  g_atlas_criatura_vanilla_ghast:
+    file: g_atlas_criatura_vanilla_ghast.yml
+  g_atlas_criatura_vanilla_hoglin:
+    file: g_atlas_criatura_vanilla_hoglin.yml
+  g_atlas_criatura_vanilla_magma_cube:
+    file: g_atlas_criatura_vanilla_magma_cube.yml
+  g_atlas_criatura_vanilla_piglin:
+    file: g_atlas_criatura_vanilla_piglin.yml
+  g_atlas_criatura_vanilla_piglin_brute:
+    file: g_atlas_criatura_vanilla_piglin_brute.yml
+  g_atlas_criatura_vanilla_shulker:
+    file: g_atlas_criatura_vanilla_shulker.yml
+  g_atlas_criatura_vanilla_vindicator:
+    file: g_atlas_criatura_vanilla_vindicator.yml
+  g_atlas_criatura_vanilla_wither_skeleton:
+    file: g_atlas_criatura_vanilla_wither_skeleton.yml
+  g_atlas_criatura_vanilla_zombified_piglin:
+    file: g_atlas_criatura_vanilla_zombified_piglin.yml
+  g_atlas_receta_136:
+    file: g_atlas_receta_136.yml
+  g_atlas_receta_137:
+    file: g_atlas_receta_137.yml
+  g_atlas_receta_138:
+    file: g_atlas_receta_138.yml
+  g_atlas_receta_139:
+    file: g_atlas_receta_139.yml
+  g_atlas_receta_140:
+    file: g_atlas_receta_140.yml
+  g_atlas_receta_141:
+    file: g_atlas_receta_141.yml
+  g_atlas_receta_142:
+    file: g_atlas_receta_142.yml
+  g_atlas_receta_143:
+    file: g_atlas_receta_143.yml
+  g_atlas_receta_144:
+    file: g_atlas_receta_144.yml
+  g_atlas_receta_145:
+    file: g_atlas_receta_145.yml
+  g_atlas_receta_147:
+    file: g_atlas_receta_147.yml
+  g_atlas_receta_148:
+    file: g_atlas_receta_148.yml
+  g_atlas_receta_149:
+    file: g_atlas_receta_149.yml
+  g_atlas_receta_150:
+    file: g_atlas_receta_150.yml
+  g_atlas_receta_151:
+    file: g_atlas_receta_151.yml
+  g_atlas_receta_152:
+    file: g_atlas_receta_152.yml
+  g_atlas_receta_153:
+    file: g_atlas_receta_153.yml
+  g_atlas_receta_154:
+    file: g_atlas_receta_154.yml
+  g_atlas_receta_155:
+    file: g_atlas_receta_155.yml
+  g_atlas_receta_156:
+    file: g_atlas_receta_156.yml
+  g_atlas_receta_157:
+    file: g_atlas_receta_157.yml
+  g_atlas_receta_158:
+    file: g_atlas_receta_158.yml
+  g_atlas_receta_159:
+    file: g_atlas_receta_159.yml
+  g_atlas_receta_16:
+    file: g_atlas_receta_16.yml
+  g_atlas_receta_160:
+    file: g_atlas_receta_160.yml
+  g_atlas_receta_161:
+    file: g_atlas_receta_161.yml
+  g_atlas_receta_162:
+    file: g_atlas_receta_162.yml
+  g_atlas_receta_163:
+    file: g_atlas_receta_163.yml
+  g_atlas_receta_164:
+    file: g_atlas_receta_164.yml
+  g_atlas_receta_165:
+    file: g_atlas_receta_165.yml
+  g_atlas_receta_166:
+    file: g_atlas_receta_166.yml
+  g_atlas_receta_17:
+    file: g_atlas_receta_17.yml
+  g_atlas_receta_18:
+    file: g_atlas_receta_18.yml
+  g_atlas_receta_19:
+    file: g_atlas_receta_19.yml
+  g_atlas_receta_20:
+    file: g_atlas_receta_20.yml
+  g_atlas_receta_21:
+    file: g_atlas_receta_21.yml
+  g_atlas_receta_22:
+    file: g_atlas_receta_22.yml
+  g_atlas_receta_23:
+    file: g_atlas_receta_23.yml
+  g_atlas_receta_24:
+    file: g_atlas_receta_24.yml
+  g_atlas_receta_25:
+    file: g_atlas_receta_25.yml
+  g_atlas_receta_26:
+    file: g_atlas_receta_26.yml
+  g_atlas_receta_27:
+    file: g_atlas_receta_27.yml
+  g_atlas_receta_28:
+    file: g_atlas_receta_28.yml
+  g_atlas_receta_29:
+    file: g_atlas_receta_29.yml
+  g_atlas_receta_30:
+    file: g_atlas_receta_30.yml
+  g_atlas_receta_31:
+    file: g_atlas_receta_31.yml
+  g_atlas_receta_32:
+    file: g_atlas_receta_32.yml
+  g_atlas_receta_33:
+    file: g_atlas_receta_33.yml
+  g_atlas_receta_34:
+    file: g_atlas_receta_34.yml
+  g_atlas_receta_35:
+    file: g_atlas_receta_35.yml
+  g_atlas_receta_36:
+    file: g_atlas_receta_36.yml
+  g_atlas_receta_37:
+    file: g_atlas_receta_37.yml
+  g_atlas_receta_38:
+    file: g_atlas_receta_38.yml
+  g_atlas_receta_39:
+    file: g_atlas_receta_39.yml
+  g_atlas_receta_40:
+    file: g_atlas_receta_40.yml
+  g_atlas_receta_41:
+    file: g_atlas_receta_41.yml
+  g_atlas_receta_42:
+    file: g_atlas_receta_42.yml
+  g_atlas_receta_43:
+    file: g_atlas_receta_43.yml
+  g_atlas_receta_44:
+    file: g_atlas_receta_44.yml
+  g_atlas_receta_45:
+    file: g_atlas_receta_45.yml
+  g_atlas_receta_46:
+    file: g_atlas_receta_46.yml
+  g_atlas_receta_47:
+    file: g_atlas_receta_47.yml
+  g_atlas_receta_48:
+    file: g_atlas_receta_48.yml
+  g_atlas_receta_49:
+    file: g_atlas_receta_49.yml
+  g_atlas_receta_50:
+    file: g_atlas_receta_50.yml
+  g_atlas_receta_51:
+    file: g_atlas_receta_51.yml
+  g_atlas_receta_52:
+    file: g_atlas_receta_52.yml
+  g_atlas_receta_53:
+    file: g_atlas_receta_53.yml
+  g_atlas_receta_54:
+    file: g_atlas_receta_54.yml
+  g_atlas_receta_55:
+    file: g_atlas_receta_55.yml
+  g_atlas_seccion_agua:
+    file: g_atlas_seccion_agua.yml
+  g_atlas_seccion_arquero:
+    file: g_atlas_seccion_arquero.yml
+  g_atlas_seccion_asura:
+    file: g_atlas_seccion_asura.yml
+  g_atlas_seccion_carnivora:
+    file: g_atlas_seccion_carnivora.yml
+  g_atlas_seccion_cocina:
+    file: g_atlas_seccion_cocina.yml
+  g_atlas_seccion_como:
+    file: g_atlas_seccion_como.yml
+  g_atlas_seccion_consumibles:
+    file: g_atlas_seccion_consumibles.yml
+  g_atlas_seccion_especiales:
+    file: g_atlas_seccion_especiales.yml
+  g_atlas_seccion_lanzas:
+    file: g_atlas_seccion_lanzas.yml
+  g_atlas_seccion_mago:
+    file: g_atlas_seccion_mago.yml
+  g_atlas_seccion_mascotas_1:
+    file: g_atlas_seccion_mascotas_1.yml
+  g_atlas_seccion_materiales:
+    file: g_atlas_seccion_materiales.yml
+  g_atlas_seccion_mercader:
+    file: g_atlas_seccion_mercader.yml
+  g_atlas_seccion_motosierras:
+    file: g_atlas_seccion_motosierras.yml
+  g_atlas_seccion_oficios:
+    file: g_atlas_seccion_oficios.yml
+  g_atlas_seccion_proteccion:
+    file: g_atlas_seccion_proteccion.yml
+  g_atlas_seccion_taladros:
+    file: g_atlas_seccion_taladros.yml
+  g_atlas_seccion_talismanes:
+    file: g_atlas_seccion_talismanes.yml
+  g_guia:
+    file: g_guia.yml
+  g_guia_agua:
+    file: g_guia_agua.yml
+  g_guia_arquero:
+    file: g_guia_arquero.yml
+  g_guia_arquero_1:
+    file: g_guia_arquero_1.yml
+  g_guia_arquero_10:
+    file: g_guia_arquero_10.yml
+  g_guia_arquero_2:
+    file: g_guia_arquero_2.yml
+  g_guia_arquero_3:
+    file: g_guia_arquero_3.yml
+  g_guia_arquero_4:
+    file: g_guia_arquero_4.yml
+  g_guia_arquero_5:
+    file: g_guia_arquero_5.yml
+  g_guia_arquero_6:
+    file: g_guia_arquero_6.yml
+  g_guia_arquero_7:
+    file: g_guia_arquero_7.yml
+  g_guia_arquero_8:
+    file: g_guia_arquero_8.yml
+  g_guia_arquero_9:
+    file: g_guia_arquero_9.yml
+  g_guia_arquero_arco:
+    file: g_guia_arquero_arco.yml
+  g_guia_arquero_ballesta:
+    file: g_guia_arquero_ballesta.yml
+  g_guia_asura:
+    file: g_guia_asura.yml
+  g_guia_berserker:
+    file: g_guia_berserker.yml
+  g_guia_berserker_1:
+    file: g_guia_berserker_1.yml
+  g_guia_berserker_10:
+    file: g_guia_berserker_10.yml
+  g_guia_berserker_2:
+    file: g_guia_berserker_2.yml
+  g_guia_berserker_3:
+    file: g_guia_berserker_3.yml
+  g_guia_berserker_4:
+    file: g_guia_berserker_4.yml
+  g_guia_berserker_5:
+    file: g_guia_berserker_5.yml
+  g_guia_berserker_6:
+    file: g_guia_berserker_6.yml
+  g_guia_berserker_7:
+    file: g_guia_berserker_7.yml
+  g_guia_berserker_8:
+    file: g_guia_berserker_8.yml
+  g_guia_berserker_9:
+    file: g_guia_berserker_9.yml
+  g_guia_berserker_cuchillo:
+    file: g_guia_berserker_cuchillo.yml
+  g_guia_berserker_espada:
+    file: g_guia_berserker_espada.yml
+  g_guia_berserker_hacha:
+    file: g_guia_berserker_hacha.yml
+  g_guia_carnivora:
+    file: g_guia_carnivora.yml
+  g_guia_cocina:
+    file: g_guia_cocina.yml
+  g_guia_como:
+    file: g_guia_como.yml
+  g_guia_consumibles:
+    file: g_guia_consumibles.yml
+  g_guia_drops:
+    file: g_guia_drops.yml
+  g_guia_especiales:
+    file: g_guia_especiales.yml
+  g_guia_lanzas:
+    file: g_guia_lanzas.yml
+  g_guia_mago:
+    file: g_guia_mago.yml
+  g_guia_mago_1:
+    file: g_guia_mago_1.yml
+  g_guia_mago_10:
+    file: g_guia_mago_10.yml
+  g_guia_mago_2:
+    file: g_guia_mago_2.yml
+  g_guia_mago_3:
+    file: g_guia_mago_3.yml
+  g_guia_mago_4:
+    file: g_guia_mago_4.yml
+  g_guia_mago_5:
+    file: g_guia_mago_5.yml
+  g_guia_mago_6:
+    file: g_guia_mago_6.yml
+  g_guia_mago_7:
+    file: g_guia_mago_7.yml
+  g_guia_mago_8:
+    file: g_guia_mago_8.yml
+  g_guia_mago_9:
+    file: g_guia_mago_9.yml
+  g_guia_mago_baston:
+    file: g_guia_mago_baston.yml
+  g_guia_mago_guadana:
+    file: g_guia_mago_guadana.yml
+  g_guia_mascotas_1:
+    file: g_guia_mascotas_1.yml
+  g_guia_mascotas_2:
+    file: g_guia_mascotas_2.yml
+  g_guia_mascotas_3:
+    file: g_guia_mascotas_3.yml
+  g_guia_materiales:
+    file: g_guia_materiales.yml
+  g_guia_materiales_1:
+    file: g_guia_materiales_1.yml
+  g_guia_materiales_2:
+    file: g_guia_materiales_2.yml
+  g_guia_mercader:
+    file: g_guia_mercader.yml
+  g_guia_motosierras:
+    file: g_guia_motosierras.yml
+  g_guia_oficios:
+    file: g_guia_oficios.yml
+  g_guia_proteccion:
+    file: g_guia_proteccion.yml
+  g_guia_taladros:
+    file: g_guia_taladros.yml
+  g_guia_talisman_furia:
+    file: g_guia_talisman_furia.yml
+  g_guia_talisman_roca:
+    file: g_guia_talisman_roca.yml
+  g_guia_talisman_vida:
+    file: g_guia_talisman_vida.yml
+  g_guia_talisman_viento:
+    file: g_guia_talisman_viento.yml
+  g_guia_talismanes:
+    file: g_guia_talismanes.yml
+  g_receta_1:
+    file: g_receta_1.yml
+  g_receta_10:
+    file: g_receta_10.yml
+  g_receta_100:
+    file: g_receta_100.yml
+  g_receta_101:
+    file: g_receta_101.yml
+  g_receta_102:
+    file: g_receta_102.yml
+  g_receta_103:
+    file: g_receta_103.yml
+  g_receta_104:
+    file: g_receta_104.yml
+  g_receta_105:
+    file: g_receta_105.yml
+  g_receta_106:
+    file: g_receta_106.yml
+  g_receta_107:
+    file: g_receta_107.yml
+  g_receta_108:
+    file: g_receta_108.yml
+  g_receta_109:
+    file: g_receta_109.yml
+  g_receta_11:
+    file: g_receta_11.yml
+  g_receta_110:
+    file: g_receta_110.yml
+  g_receta_111:
+    file: g_receta_111.yml
+  g_receta_112:
+    file: g_receta_112.yml
+  g_receta_113:
+    file: g_receta_113.yml
+  g_receta_114:
+    file: g_receta_114.yml
+  g_receta_115:
+    file: g_receta_115.yml
+  g_receta_116:
+    file: g_receta_116.yml
+  g_receta_117:
+    file: g_receta_117.yml
+  g_receta_118:
+    file: g_receta_118.yml
+  g_receta_119:
+    file: g_receta_119.yml
+  g_receta_12:
+    file: g_receta_12.yml
+  g_receta_120:
+    file: g_receta_120.yml
+  g_receta_121:
+    file: g_receta_121.yml
+  g_receta_122:
+    file: g_receta_122.yml
+  g_receta_123:
+    file: g_receta_123.yml
+  g_receta_124:
+    file: g_receta_124.yml
+  g_receta_125:
+    file: g_receta_125.yml
+  g_receta_126:
+    file: g_receta_126.yml
+  g_receta_127:
+    file: g_receta_127.yml
+  g_receta_128:
+    file: g_receta_128.yml
+  g_receta_129:
+    file: g_receta_129.yml
+  g_receta_13:
+    file: g_receta_13.yml
+  g_receta_130:
+    file: g_receta_130.yml
+  g_receta_131:
+    file: g_receta_131.yml
+  g_receta_132:
+    file: g_receta_132.yml
+  g_receta_133:
+    file: g_receta_133.yml
+  g_receta_134:
+    file: g_receta_134.yml
+  g_receta_135:
+    file: g_receta_135.yml
+  g_receta_136:
+    file: g_receta_136.yml
+  g_receta_137:
+    file: g_receta_137.yml
+  g_receta_138:
+    file: g_receta_138.yml
+  g_receta_139:
+    file: g_receta_139.yml
+  g_receta_14:
+    file: g_receta_14.yml
+  g_receta_140:
+    file: g_receta_140.yml
+  g_receta_141:
+    file: g_receta_141.yml
+  g_receta_142:
+    file: g_receta_142.yml
+  g_receta_143:
+    file: g_receta_143.yml
+  g_receta_144:
+    file: g_receta_144.yml
+  g_receta_145:
+    file: g_receta_145.yml
+  g_receta_146:
+    file: g_receta_146.yml
+  g_receta_147:
+    file: g_receta_147.yml
+  g_receta_148:
+    file: g_receta_148.yml
+  g_receta_149:
+    file: g_receta_149.yml
+  g_receta_15:
+    file: g_receta_15.yml
+  g_receta_150:
+    file: g_receta_150.yml
+  g_receta_151:
+    file: g_receta_151.yml
+  g_receta_152:
+    file: g_receta_152.yml
+  g_receta_153:
+    file: g_receta_153.yml
+  g_receta_154:
+    file: g_receta_154.yml
+  g_receta_155:
+    file: g_receta_155.yml
+  g_receta_156:
+    file: g_receta_156.yml
+  g_receta_157:
+    file: g_receta_157.yml
+  g_receta_158:
+    file: g_receta_158.yml
+  g_receta_159:
+    file: g_receta_159.yml
+  g_receta_16:
+    file: g_receta_16.yml
+  g_receta_160:
+    file: g_receta_160.yml
+  g_receta_161:
+    file: g_receta_161.yml
+  g_receta_162:
+    file: g_receta_162.yml
+  g_receta_163:
+    file: g_receta_163.yml
+  g_receta_164:
+    file: g_receta_164.yml
+  g_receta_165:
+    file: g_receta_165.yml
+  g_receta_166:
+    file: g_receta_166.yml
+  g_receta_167:
+    file: g_receta_167.yml
+  g_receta_168:
+    file: g_receta_168.yml
+  g_receta_169:
+    file: g_receta_169.yml
+  g_receta_17:
+    file: g_receta_17.yml
+  g_receta_170:
+    file: g_receta_170.yml
+  g_receta_171:
+    file: g_receta_171.yml
+  g_receta_172:
+    file: g_receta_172.yml
+  g_receta_173:
+    file: g_receta_173.yml
+  g_receta_174:
+    file: g_receta_174.yml
+  g_receta_175:
+    file: g_receta_175.yml
+  g_receta_176:
+    file: g_receta_176.yml
+  g_receta_177:
+    file: g_receta_177.yml
+  g_receta_178:
+    file: g_receta_178.yml
+  g_receta_179:
+    file: g_receta_179.yml
+  g_receta_18:
+    file: g_receta_18.yml
+  g_receta_180:
+    file: g_receta_180.yml
+  g_receta_181:
+    file: g_receta_181.yml
+  g_receta_182:
+    file: g_receta_182.yml
+  g_receta_183:
+    file: g_receta_183.yml
+  g_receta_184:
+    file: g_receta_184.yml
+  g_receta_185:
+    file: g_receta_185.yml
+  g_receta_186:
+    file: g_receta_186.yml
+  g_receta_187:
+    file: g_receta_187.yml
+  g_receta_188:
+    file: g_receta_188.yml
+  g_receta_189:
+    file: g_receta_189.yml
+  g_receta_19:
+    file: g_receta_19.yml
+  g_receta_190:
+    file: g_receta_190.yml
+  g_receta_191:
+    file: g_receta_191.yml
+  g_receta_192:
+    file: g_receta_192.yml
+  g_receta_193:
+    file: g_receta_193.yml
+  g_receta_194:
+    file: g_receta_194.yml
+  g_receta_195:
+    file: g_receta_195.yml
+  g_receta_196:
+    file: g_receta_196.yml
+  g_receta_197:
+    file: g_receta_197.yml
+  g_receta_198:
+    file: g_receta_198.yml
+  g_receta_199:
+    file: g_receta_199.yml
+  g_receta_2:
+    file: g_receta_2.yml
+  g_receta_20:
+    file: g_receta_20.yml
+  g_receta_200:
+    file: g_receta_200.yml
+  g_receta_201:
+    file: g_receta_201.yml
+  g_receta_202:
+    file: g_receta_202.yml
+  g_receta_203:
+    file: g_receta_203.yml
+  g_receta_204:
+    file: g_receta_204.yml
+  g_receta_205:
+    file: g_receta_205.yml
+  g_receta_206:
+    file: g_receta_206.yml
+  g_receta_207:
+    file: g_receta_207.yml
+  g_receta_208:
+    file: g_receta_208.yml
+  g_receta_209:
+    file: g_receta_209.yml
+  g_receta_21:
+    file: g_receta_21.yml
+  g_receta_210:
+    file: g_receta_210.yml
+  g_receta_211:
+    file: g_receta_211.yml
+  g_receta_212:
+    file: g_receta_212.yml
+  g_receta_213:
+    file: g_receta_213.yml
+  g_receta_214:
+    file: g_receta_214.yml
+  g_receta_215:
+    file: g_receta_215.yml
+  g_receta_216:
+    file: g_receta_216.yml
+  g_receta_217:
+    file: g_receta_217.yml
+  g_receta_218:
+    file: g_receta_218.yml
+  g_receta_219:
+    file: g_receta_219.yml
+  g_receta_22:
+    file: g_receta_22.yml
+  g_receta_220:
+    file: g_receta_220.yml
+  g_receta_221:
+    file: g_receta_221.yml
+  g_receta_222:
+    file: g_receta_222.yml
+  g_receta_223:
+    file: g_receta_223.yml
+  g_receta_224:
+    file: g_receta_224.yml
+  g_receta_225:
+    file: g_receta_225.yml
+  g_receta_226:
+    file: g_receta_226.yml
+  g_receta_227:
+    file: g_receta_227.yml
+  g_receta_228:
+    file: g_receta_228.yml
+  g_receta_229:
+    file: g_receta_229.yml
+  g_receta_23:
+    file: g_receta_23.yml
+  g_receta_230:
+    file: g_receta_230.yml
+  g_receta_231:
+    file: g_receta_231.yml
+  g_receta_232:
+    file: g_receta_232.yml
+  g_receta_233:
+    file: g_receta_233.yml
+  g_receta_234:
+    file: g_receta_234.yml
+  g_receta_235:
+    file: g_receta_235.yml
+  g_receta_236:
+    file: g_receta_236.yml
+  g_receta_237:
+    file: g_receta_237.yml
+  g_receta_238:
+    file: g_receta_238.yml
+  g_receta_239:
+    file: g_receta_239.yml
+  g_receta_24:
+    file: g_receta_24.yml
+  g_receta_240:
+    file: g_receta_240.yml
+  g_receta_241:
+    file: g_receta_241.yml
+  g_receta_242:
+    file: g_receta_242.yml
+  g_receta_243:
+    file: g_receta_243.yml
+  g_receta_244:
+    file: g_receta_244.yml
+  g_receta_245:
+    file: g_receta_245.yml
+  g_receta_246:
+    file: g_receta_246.yml
+  g_receta_247:
+    file: g_receta_247.yml
+  g_receta_248:
+    file: g_receta_248.yml
+  g_receta_249:
+    file: g_receta_249.yml
+  g_receta_25:
+    file: g_receta_25.yml
+  g_receta_250:
+    file: g_receta_250.yml
+  g_receta_251:
+    file: g_receta_251.yml
+  g_receta_252:
+    file: g_receta_252.yml
+  g_receta_253:
+    file: g_receta_253.yml
+  g_receta_254:
+    file: g_receta_254.yml
+  g_receta_255:
+    file: g_receta_255.yml
+  g_receta_256:
+    file: g_receta_256.yml
+  g_receta_257:
+    file: g_receta_257.yml
+  g_receta_258:
+    file: g_receta_258.yml
+  g_receta_259:
+    file: g_receta_259.yml
+  g_receta_26:
+    file: g_receta_26.yml
+  g_receta_260:
+    file: g_receta_260.yml
+  g_receta_261:
+    file: g_receta_261.yml
+  g_receta_262:
+    file: g_receta_262.yml
+  g_receta_263:
+    file: g_receta_263.yml
+  g_receta_264:
+    file: g_receta_264.yml
+  g_receta_265:
+    file: g_receta_265.yml
+  g_receta_266:
+    file: g_receta_266.yml
+  g_receta_267:
+    file: g_receta_267.yml
+  g_receta_268:
+    file: g_receta_268.yml
+  g_receta_269:
+    file: g_receta_269.yml
+  g_receta_27:
+    file: g_receta_27.yml
+  g_receta_270:
+    file: g_receta_270.yml
+  g_receta_271:
+    file: g_receta_271.yml
+  g_receta_272:
+    file: g_receta_272.yml
+  g_receta_273:
+    file: g_receta_273.yml
+  g_receta_274:
+    file: g_receta_274.yml
+  g_receta_275:
+    file: g_receta_275.yml
+  g_receta_276:
+    file: g_receta_276.yml
+  g_receta_28:
+    file: g_receta_28.yml
+  g_receta_29:
+    file: g_receta_29.yml
+  g_receta_3:
+    file: g_receta_3.yml
+  g_receta_30:
+    file: g_receta_30.yml
+  g_receta_31:
+    file: g_receta_31.yml
+  g_receta_32:
+    file: g_receta_32.yml
+  g_receta_33:
+    file: g_receta_33.yml
+  g_receta_34:
+    file: g_receta_34.yml
+  g_receta_35:
+    file: g_receta_35.yml
+  g_receta_36:
+    file: g_receta_36.yml
+  g_receta_37:
+    file: g_receta_37.yml
+  g_receta_38:
+    file: g_receta_38.yml
+  g_receta_39:
+    file: g_receta_39.yml
+  g_receta_4:
+    file: g_receta_4.yml
+  g_receta_40:
+    file: g_receta_40.yml
+  g_receta_41:
+    file: g_receta_41.yml
+  g_receta_42:
+    file: g_receta_42.yml
+  g_receta_43:
+    file: g_receta_43.yml
+  g_receta_44:
+    file: g_receta_44.yml
+  g_receta_45:
+    file: g_receta_45.yml
+  g_receta_46:
+    file: g_receta_46.yml
+  g_receta_47:
+    file: g_receta_47.yml
+  g_receta_48:
+    file: g_receta_48.yml
+  g_receta_49:
+    file: g_receta_49.yml
+  g_receta_5:
+    file: g_receta_5.yml
+  g_receta_50:
+    file: g_receta_50.yml
+  g_receta_51:
+    file: g_receta_51.yml
+  g_receta_52:
+    file: g_receta_52.yml
+  g_receta_53:
+    file: g_receta_53.yml
+  g_receta_54:
+    file: g_receta_54.yml
+  g_receta_55:
+    file: g_receta_55.yml
+  g_receta_56:
+    file: g_receta_56.yml
+  g_receta_57:
+    file: g_receta_57.yml
+  g_receta_58:
+    file: g_receta_58.yml
+  g_receta_59:
+    file: g_receta_59.yml
+  g_receta_6:
+    file: g_receta_6.yml
+  g_receta_60:
+    file: g_receta_60.yml
+  g_receta_61:
+    file: g_receta_61.yml
+  g_receta_62:
+    file: g_receta_62.yml
+  g_receta_63:
+    file: g_receta_63.yml
+  g_receta_64:
+    file: g_receta_64.yml
+  g_receta_65:
+    file: g_receta_65.yml
+  g_receta_66:
+    file: g_receta_66.yml
+  g_receta_67:
+    file: g_receta_67.yml
+  g_receta_68:
+    file: g_receta_68.yml
+  g_receta_69:
+    file: g_receta_69.yml
+  g_receta_7:
+    file: g_receta_7.yml
+  g_receta_70:
+    file: g_receta_70.yml
+  g_receta_71:
+    file: g_receta_71.yml
+  g_receta_72:
+    file: g_receta_72.yml
+  g_receta_73:
+    file: g_receta_73.yml
+  g_receta_74:
+    file: g_receta_74.yml
+  g_receta_75:
+    file: g_receta_75.yml
+  g_receta_76:
+    file: g_receta_76.yml
+  g_receta_77:
+    file: g_receta_77.yml
+  g_receta_78:
+    file: g_receta_78.yml
+  g_receta_79:
+    file: g_receta_79.yml
+  g_receta_8:
+    file: g_receta_8.yml
+  g_receta_80:
+    file: g_receta_80.yml
+  g_receta_81:
+    file: g_receta_81.yml
+  g_receta_82:
+    file: g_receta_82.yml
+  g_receta_83:
+    file: g_receta_83.yml
+  g_receta_84:
+    file: g_receta_84.yml
+  g_receta_85:
+    file: g_receta_85.yml
+  g_receta_86:
+    file: g_receta_86.yml
+  g_receta_87:
+    file: g_receta_87.yml
+  g_receta_88:
+    file: g_receta_88.yml
+  g_receta_89:
+    file: g_receta_89.yml
+  g_receta_9:
+    file: g_receta_9.yml
+  g_receta_90:
+    file: g_receta_90.yml
+  g_receta_91:
+    file: g_receta_91.yml
+  g_receta_92:
+    file: g_receta_92.yml
+  g_receta_93:
+    file: g_receta_93.yml
+  g_receta_94:
+    file: g_receta_94.yml
+  g_receta_95:
+    file: g_receta_95.yml
+  g_receta_96:
+    file: g_receta_96.yml
+  g_receta_97:
+    file: g_receta_97.yml
+  g_receta_98:
+    file: g_receta_98.yml
+  g_receta_99:
+    file: g_receta_99.yml

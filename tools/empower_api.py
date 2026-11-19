@@ -102,6 +102,11 @@ def main():
     cmd.add_argument('remote', type=safe_path)
     cmd.add_argument('local', type=Path)
     sub.add_parser('command').add_argument('command')
+    # Descomprimir un ZIP ya subido (para subir muchos archivos de una) y borrar archivos sueltos.
+    cmd = sub.add_parser('decompress')
+    cmd.add_argument('remote', type=safe_path, help='ZIP en el servidor')
+    cmd = sub.add_parser('delete')
+    cmd.add_argument('remote', type=safe_path)
     for action in ('restart', 'stop', 'start'):
         sub.add_parser(action)
     args = parser.parse_args()
@@ -118,6 +123,10 @@ def main():
             client.download(args.remote, args.local)
         elif args.action == 'upload':
             client.upload(args.local, args.remote)
+        elif args.action in ('decompress', 'delete'):
+            path = PurePosixPath(args.remote)
+            body = {'root': str(path.parent), 'file': path.name} if args.action == 'decompress' else                 {'root': str(path.parent), 'files': [path.name]}
+            client.request('POST', '/files/' + args.action, json.dumps(body).encode())
         elif args.action == 'write':
             client.request('POST', '/files/write?' + urlencode({'file': args.remote}),
                            args.local.read_bytes(), 'text/plain')

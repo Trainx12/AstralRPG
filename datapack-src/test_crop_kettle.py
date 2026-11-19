@@ -17,7 +17,7 @@ class CropKettleTests(unittest.TestCase):
                 'current/' + name: encoded({'replace': True, 'values': [
                     'cnk:main', {'id': 'smithed:main', 'required': False}, ENTRADA]})}
             patched, _ = patch_datapack(raw)
-            self.assertEqual(json.loads(patched[name]), {'values': [ENTRADA]})
+            self.assertEqual(json.loads(patched[name]), {'values': []})
             self.assertIn(b'cnk:main', raw[name])
 
     def test_final_datapacks_have_only_astral_pause_and_quick_actions(self):
@@ -30,7 +30,7 @@ class CropKettleTests(unittest.TestCase):
                 obj = json.loads(files.get(f'data/minecraft/tags/dialog/{tag}.json', b'{}'))
                 self.assertFalse(obj.get('replace', False))
                 values.update(v['id'] if isinstance(v, dict) else v for v in obj.get('values', []))
-            self.assertEqual(values, {ENTRADA})
+            self.assertEqual(values, set())
 
     def test_pan_de_cocina_conserva_material_y_se_distingue_para_ventas(self):
         name = 'data/cnk/loot_table/food/bread.json'

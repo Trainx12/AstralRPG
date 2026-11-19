@@ -291,7 +291,7 @@ duelparty_files, duelparty_providers = duelparty_assets()
 files.update(duelparty_files)
 default_font['providers'] = duelparty_providers + default_font['providers']
 from guia_cofre import assets as guia_cofre_assets   # Guia Astral en cofre, diseno Atlas (18/11)
-guia_cofre_files, guia_cofre_providers = guia_cofre_assets(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'build', 'AstralRPG-Items.zip'))
+guia_cofre_files, guia_cofre_providers = guia_cofre_assets()  # lee build/runtime/guia_fuente.json
 files.update(guia_cofre_files)
 default_font['providers'] = guia_cofre_providers + default_font['providers']
 from gacha_ui import assets as gacha_assets

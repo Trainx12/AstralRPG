@@ -1,0 +1,358 @@
+menu_title: '&f&#ffe9a8Guia AstralRPG'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Elegi una seccion. Para forjar, abri la'
+    - '&7guia al lado de una Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: BOOK
+    slot: 2
+    amount: 1
+    display_name: '&bComo se juega'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_como'
+  'c2':
+    material: BOOK
+    slot: 3
+    amount: 1
+    display_name: '&bGoblin y golemcitos'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mercader'
+  'c3':
+    material: BOOK
+    slot: 4
+    amount: 1
+    display_name: '&bExperiencia y suerte'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_consumibles'
+  'c4':
+    material: BOOK
+    slot: 5
+    amount: 1
+    display_name: '&bTerrenos y mochilas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_proteccion'
+  'c5':
+    material: BOOK
+    slot: 6
+    amount: 1
+    display_name: '&bCocina (Crop & Kettle)'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_cocina'
+  'c6':
+    material: BOOK
+    slot: 7
+    amount: 1
+    display_name: '&bMisiones e historia'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] trigger aq.journal'
+  'c7':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&bMateriales'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_materiales'
+  'c8':
+    material: CHAINMAIL_HELMET
+    slot: 11
+    amount: 1
+    display_name: '&bBerserker'
+    item_model: 'astral:berserker_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_berserker'
+  'c9':
+    material: LEATHER_HELMET
+    slot: 12
+    amount: 1
+    display_name: '&bMago'
+    item_model: 'astral:mago_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago'
+  'c10':
+    material: LEATHER_HELMET
+    slot: 13
+    amount: 1
+    display_name: '&bArquero'
+    item_model: 'astral:arquero_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero'
+  'c11':
+    material: IRON_SPEAR
+    slot: 14
+    amount: 1
+    display_name: '&bLanzas'
+    item_model: 'astral:lanza_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_lanzas'
+  'c12':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&bTalismanes'
+    item_model: 'astral:talisman_vida_1'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_talismanes'
+  'c13':
+    material: CARROT_ON_A_STICK
+    slot: 16
+    amount: 1
+    display_name: '&bEspeciales'
+    item_model: 'astral:saltador'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_especiales'
+  'c14':
+    material: NETHERITE_PICKAXE
+    slot: 19
+    amount: 1
+    display_name: '&bTaladros'
+    item_model: 'astral:taladro_diamante'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_taladros'
+  'c15':
+    material: NETHERITE_AXE
+    slot: 20
+    amount: 1
+    display_name: '&bMotosierras'
+    item_model: 'astral:motosierra_basica'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_motosierras'
+  'c16':
+    material: DIAMOND_SWORD
+    slot: 21
+    amount: 1
+    display_name: '&bCarnivora III'
+    item_model: 'astral:carnivora_espada'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_carnivora'
+  'c17':
+    material: DIAMOND_SWORD
+    slot: 22
+    amount: 1
+    display_name: '&bAsura IV'
+    item_model: 'astral:asura_espada'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_asura'
+  'c18':
+    material: DIAMOND_SWORD
+    slot: 23
+    amount: 1
+    display_name: '&bAgua III'
+    item_model: 'astral:agua_espada'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_agua'
+  'c19':
+    material: IRON_HELMET
+    slot: 24
+    amount: 1
+    display_name: '&bMinero y Talador'
+    item_model: 'astral:minero_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_oficios'
+  'c20':
+    material: BOOK
+    slot: 25
+    amount: 1
+    display_name: '&b18 mascotas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mascotas_1'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -127,7 +127,7 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
     # Numeracion estable, compartida por los dos packs. Los iconos se derivan
     # del mismo PNG que usa el item; el cuerpo sigue usando su modelo completo.
     # Las gemas (gemas.py, 7d) no van al Atlas: si entraran correrian los glifos de todos los demas.
-    ids = sorted(i for i in items if items[i].get('kind') != 'gema')
+    ids = sorted(i for i in items if items[i].get('kind') not in ('gema', 'cavernas'))
     icons = {iid: chr(0xEA00 + n) for n, iid in enumerate(ids)}
     put('atlas/iconos.json', icons)
     original = json.loads(files['data/astral/dialog/guia.json'])
@@ -283,6 +283,27 @@ def generate(files, items, recipes, stack, ing_pred, ing_name):
         if value not in obj['values']:
             obj['values'].append(value)
         files[path] = json.dumps(obj)
+
+    # 19/11: la guia se muestra en ventanas de cofre (guia_cofre.py). Los dialogos de arriba quedan
+    # como FUENTE de esas ventanas y se sacan del datapack (la guia vieja ya no se abre).
+    from guia_cofre import capture, SHORT
+    indice = json.loads(files['data/astral/dialog/atlas/indice.json'])
+    index = []
+    for button in indice['actions']:
+        label = button['label']
+        caption = label[-1]['text'] if isinstance(label, list) else label['text']
+        act = button.get('action', {})
+        index.append(dict(caption=caption, dialog=act['dialog'].split(':', 1)[1] if act.get('type') == 'show_dialog' else None,
+                          command=act.get('command'),
+                          icons={iid: stack(iid) for _, iid in SHORT.values() if iid in items}))
+    recetas = {}
+    for rid, (out, n, ings) in recipes.items():
+        recetas[str(rid)] = dict(out=stack(out, n), ings=[
+            dict(stack=stack(ident, count), count=count) if kind == 'c'
+            else dict(id=ident, count=count, name=ing_name(kind, ident)) for kind, ident, count in ings])
+    retratos = {chr(0xF000 + n): row['id'] for n, row in enumerate(rows) if row['model']}
+    ilustraciones = {chr(0xE900 + n): name for n, name in enumerate(DECOR) if n >= 5}
+    capture(files, recetas, retratos, ilustraciones, index)
 
 
 def assets():

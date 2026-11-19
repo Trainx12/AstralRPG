@@ -1,0 +1,386 @@
+menu_title: '&f&#ffe9a8hacha - 1/2'
+size: 54
+items:
+  'c0':
+    material: IRON_AXE
+    slot: 1
+    amount: 1
+    display_name: '&fHacha del Desollador'
+    item_model: 'astral:hacha_1'
+    lore:
+    - '&7Hacha Berserker I'
+    - '&7Daño: &c+161'
+    - '&7Velocidad de ataque: &f0,81'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Combate 12'
+    - '&8Material para: Hacha del Verdugo'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: IRON_AXE
+    slot: 2
+    amount: 1
+    display_name: '&aHacha del Verdugo'
+    item_model: 'astral:hacha_2'
+    lore:
+    - '&7Hacha Berserker II'
+    - '&7Daño: &c+826'
+    - '&7Velocidad de ataque: &f0,9'
+    - ''
+    - '&#5555FFVerdugo I'
+    - '&a+10%&7 de daño a enemigos con armadura.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 16'
+    - '&8Material para: Hacha Carmesi'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: DIAMOND_AXE
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFHacha Carmesi'
+    item_model: 'astral:hacha_3'
+    lore:
+    - '&7Hacha Berserker III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&8Material para: Hacha del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: DIAMOND_AXE
+    slot: 4
+    amount: 1
+    display_name: '&5Hacha del Coloso'
+    item_model: 'astral:hacha_4'
+    lore:
+    - '&7Hacha Berserker IV'
+    - '&7Daño: &c+18.452'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&8Material para: Hacha del Apocalipsis'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: NETHERITE_AXE
+    slot: 5
+    amount: 1
+    display_name: '&6Hacha del Apocalipsis'
+    item_model: 'astral:hacha_5'
+    lore:
+    - '&7Hacha Berserker V'
+    - '&7Daño: &c+91.146'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&8Material para: Hacha Doble de Jade'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: NETHERITE_AXE
+    slot: 6
+    amount: 1
+    display_name: '&#ff5fd2Hacha Doble de Jade'
+    item_model: 'astral:hacha_6'
+    lore:
+    - '&7Hacha Berserker VI'
+    - '&7Daño: &c+463.867'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 35'
+    - '&8Material para: Hacha del Torbellino'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: IRON_AXE
+    slot: 7
+    amount: 1
+    display_name: '&fHacha del Desollador'
+    item_model: 'astral:hacha_1'
+    lore:
+    - '&7Hacha Berserker I'
+    - '&7Daño: &c+161'
+    - '&7Velocidad de ataque: &f0,81'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Combate 12'
+    - '&8Material para: Hacha del Verdugo'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_157'
+  'c7':
+    material: IRON_AXE
+    slot: 11
+    amount: 1
+    display_name: '&aHacha del Verdugo'
+    item_model: 'astral:hacha_2'
+    lore:
+    - '&7Hacha Berserker II'
+    - '&7Daño: &c+826'
+    - '&7Velocidad de ataque: &f0,9'
+    - ''
+    - '&#5555FFVerdugo I'
+    - '&a+10%&7 de daño a enemigos con armadura.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 16'
+    - '&8Material para: Hacha Carmesi'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_158'
+  'c8':
+    material: DIAMOND_AXE
+    slot: 12
+    amount: 1
+    display_name: '&#5555FFHacha Carmesi'
+    item_model: 'astral:hacha_3'
+    lore:
+    - '&7Hacha Berserker III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&8Material para: Hacha del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_159'
+  'c9':
+    material: DIAMOND_AXE
+    slot: 13
+    amount: 1
+    display_name: '&5Hacha del Coloso'
+    item_model: 'astral:hacha_4'
+    lore:
+    - '&7Hacha Berserker IV'
+    - '&7Daño: &c+18.452'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&8Material para: Hacha del Apocalipsis'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_160'
+  'c10':
+    material: NETHERITE_AXE
+    slot: 14
+    amount: 1
+    display_name: '&6Hacha del Apocalipsis'
+    item_model: 'astral:hacha_5'
+    lore:
+    - '&7Hacha Berserker V'
+    - '&7Daño: &c+91.146'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&8Material para: Hacha Doble de Jade'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_161'
+  'c11':
+    material: NETHERITE_AXE
+    slot: 15
+    amount: 1
+    display_name: '&#ff5fd2Hacha Doble de Jade'
+    item_model: 'astral:hacha_6'
+    lore:
+    - '&7Hacha Berserker VI'
+    - '&7Daño: &c+463.867'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 35'
+    - '&8Material para: Hacha del Torbellino'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_162'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_berserker'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_hacha_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

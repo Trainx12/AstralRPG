@@ -1,0 +1,187 @@
+menu_title: '&f&#ffe9a8Coraza del Titan'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Coraza del Titan'
+    item_model: 'astral:berserker_6_chestplate'
+    lore:
+    - '&7Berserker VI'
+    - '&7Vida: &c+3.725'
+    - '&7Bonif. de vida: &c+15%'
+    - '&7Defensa: &a+221'
+    - '&7Daño: &c+12%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFFuria I'
+    - '&7Hasta &a+15%&7 de daño cuanto menos vida tengas.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f12.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Defensa 26'
+    - '&8Material para: Coraza del Portador de Luz'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Coraza del Dios de la Guerra'
+    item_model: 'astral:berserker_5_chestplate'
+    lore:
+    - '&7Berserker V'
+    - '&7Vida: &c+1.975'
+    - '&7Bonif. de vida: &c+12,5%'
+    - '&7Defensa: &a+170'
+    - '&7Daño: &c+10%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFFuria I'
+    - '&7Hasta &a+15%&7 de daño cuanto menos vida tengas.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f9.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Defensa 22'
+    - '&8Material para: Coraza del Titan'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Fragmento de Ocaso'
+    item_model: 'astral:fragmento_ocaso'
+    lore:
+    - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Yelmo del Titan, Coraza del Titan, Grebas del Titan, Botas del Titan, Capucha del Glaciar, Tunica del Glaciar, Faldones del Glaciar, Sandalias del Gla'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 37'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 37'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 37'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_berserker_6'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

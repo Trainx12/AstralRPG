@@ -1,0 +1,138 @@
+menu_title: '&f&#ffe9a8Mapache Rabioso'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fMapache Rabioso'
+    item_model: 'astral:atlas_ui/mob_astral_mapache'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&#b01c1c&lAgresivo'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:forest, minecraft:birch_forest,'
+    - '&7minecraft:dark_forest,'
+    - '&7minecraft:old_growth_pine_taiga,'
+    - '&7minecraft:taiga'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bBase · Vida base 14 · Daño base 3 (antes'
+    - '&#30241bdel escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7leather 1-2 0.8; sweet_berries 1-3 0.5;'
+    - '&7exp 3'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bTier I–X · Multiplicadores sobre la base:'
+    - '&#30241b1: vida ×25, daño ×22; 2: vida ×120, daño'
+    - '&#30241b×48; 3: vida ×575, daño ×120; 4: vida'
+    - '&#30241b×2750, daño ×280; 5: vida ×13125, daño'
+    - '&#30241b×400; 6: vida ×62500, daño ×1120; 7: vida'
+    - '&#30241b×296875, daño ×2240; 8: vida ×1.40625e+06,'
+    - '&#30241bdaño ×4400; 9: vida ×6.64062e+06, daño'
+    - '&#30241b×8800; 10: vida ×3.125e+07, daño ×16000'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#c58b52Cuero Tratado'
+    item_model: 'astral:cuero_tratado'
+    lore:
+    - '&7Base de todas las armaduras.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&#30241b1 × Cuero Tratado · 15%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,156 @@
+menu_title: '&f&#ffe9a8Arquero: Ballestas'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: CROSSBOW
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFBallesta Pesada de Zafiro'
+    item_model: 'astral:ballesta_3'
+    lore:
+    - '&7Ballesta de Arquero III'
+    - '&7Daño: &c+2.957'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - '&#5555FFCarga Rápida I'
+    - '&7Carga la ballesta en &a0,9&7 s.'
+    - '&#5555FFPerforación I'
+    - '&7La flecha atraviesa &a1&7 enemigo.'
+    - ''
+    - '&7Dano de flecha: ~&a2.571'
+    - '&7Carga en &a0,90&7s'
+    - '&7Perforacion: la flecha atraviesa &a1&7 enemigo'
+    - '&7Durabilidad: &f7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&8Material para: Ballesta Rapida del Nether'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BALLESTA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_197'
+  'c2':
+    material: CROSSBOW
+    slot: 4
+    amount: 1
+    display_name: '&5Ballesta Rapida del Nether'
+    item_model: 'astral:ballesta_4'
+    lore:
+    - '&7Ballesta de Arquero IV'
+    - '&7Daño: &c+14.524'
+    - ''
+    - '&#5555FFPuntería IV, Carga Rápida II, Perforación I'
+    - '&#5555FFMultidisparo I'
+    - ''
+    - '&7Dano de flecha: ~&a11.905'
+    - '&7Carga en &a0,65&7s'
+    - '&7Multidisparo: &a3&7 flechas por tiro'
+    - '&7Durabilidad: &f7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Arqueria 25'
+    - '&8Material para: Ballesta Celeste Veloz'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA BALLESTA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_198'
+  'c3':
+    material: CROSSBOW
+    slot: 5
+    amount: 1
+    display_name: '&6Ballesta Celeste Veloz'
+    item_model: 'astral:ballesta_5'
+    lore:
+    - '&7Ballesta de Arquero V'
+    - '&7Daño: &c+60.938'
+    - ''
+    - '&#5555FFPuntería V, Carga Rápida III, Perforación II'
+    - '&#5555FFMultidisparo I'
+    - ''
+    - '&7Dano de flecha: ~&a46.875'
+    - '&7Carga en &a0,20&7s'
+    - '&7Carga casi instantanea'
+    - '&7Multidisparo: &a3&7 flechas por tiro'
+    - '&7Perforacion II: atraviesa &a2&7 enemigos'
+    - '&7No gasta flechas normales'
+    - '&7Durabilidad: &f7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Arqueria 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA BALLESTA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_199'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

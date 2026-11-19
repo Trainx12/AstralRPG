@@ -1,142 +1,170 @@
 menu_title: '&f'
 size: 54
 items:
-  'b0_icono':
+  'b0_0':
     material: ZOMBIE_HEAD
     slot: 0
+    amount: 1
     display_name: '&bBestiario'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/bestiario/1<delay=2>'
+    - '[openguimenu] g_atlas_bestiario_1'
   'b0_1':
     material: PAPER
     slot: 1
+    amount: 1
     display_name: '&bBestiario'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/bestiario/1<delay=2>'
+    - '[openguimenu] g_atlas_bestiario_1'
   'b0_2':
     material: PAPER
     slot: 2
+    amount: 1
     display_name: '&bBestiario'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/bestiario/1<delay=2>'
+    - '[openguimenu] g_atlas_bestiario_1'
   'b0_3':
     material: PAPER
     slot: 3
+    amount: 1
     display_name: '&bBestiario'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/bestiario/1<delay=2>'
-  'b1_icono':
+    - '[openguimenu] g_atlas_bestiario_1'
+  'b1_0':
     material: CHEST
     slot: 5
+    amount: 1
     display_name: '&bDonde se consiguen'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:guia/drops<delay=2>'
+    - '[openguimenu] g_guia_drops'
   'b1_1':
     material: PAPER
     slot: 6
+    amount: 1
     display_name: '&bDonde se consiguen'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:guia/drops<delay=2>'
+    - '[openguimenu] g_guia_drops'
   'b1_2':
     material: PAPER
     slot: 7
+    amount: 1
     display_name: '&bDonde se consiguen'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:guia/drops<delay=2>'
+    - '[openguimenu] g_guia_drops'
   'b1_3':
     material: PAPER
     slot: 8
+    amount: 1
     display_name: '&bDonde se consiguen'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:guia/drops<delay=2>'
+    - '[openguimenu] g_guia_drops'
   'anterior':
     material: PAPER
     slot: 45
+    amount: 1
     display_name: '&ePagina anterior'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] guia_astral_2'
   'cerrar_0':
     material: PAPER
     slot: 48
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'
   'cerrar_1':
     material: PAPER
     slot: 49
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'
   'cerrar_2':
     material: PAPER
     slot: 50
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'

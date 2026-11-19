@@ -1,0 +1,190 @@
+menu_title: '&f&#ffe9a8Arquero: armadura II'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: LEATHER_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&aCapucha del Explorador'
+    item_model: 'astral:arquero_2_helmet'
+    lore:
+    - '&7Arquero II'
+    - '&7Vida: &c+112,5'
+    - '&7Defensa: &a+15'
+    - '&7Daño a distancia: &c+2,5%'
+    - '&7Prob. crítica: &9+1,25%'
+    - '&7Velocidad: &f+2%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f2.800'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Defensa 10'
+    - '&8Material para: Capucha del Francotirador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_100'
+  'c2':
+    material: LEATHER_CHESTPLATE
+    slot: 4
+    amount: 1
+    display_name: '&aChaqueta del Explorador'
+    item_model: 'astral:arquero_2_chestplate'
+    lore:
+    - '&7Arquero II'
+    - '&7Vida: &c+112,5'
+    - '&7Defensa: &a+40'
+    - '&7Daño a distancia: &c+2,5%'
+    - '&7Prob. crítica: &9+1,25%'
+    - '&7Velocidad: &f+2%'
+    - ''
+    - '&#5555FFPuntería del Set II'
+    - '&a+8%&7 de daño con arco.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f3.500'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Defensa 10'
+    - '&8Material para: Chaqueta del Francotirador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_101'
+  'c3':
+    material: LEATHER_LEGGINGS
+    slot: 5
+    amount: 1
+    display_name: '&aPantalones del Explorador'
+    item_model: 'astral:arquero_2_leggings'
+    lore:
+    - '&7Arquero II'
+    - '&7Vida: &c+112,5'
+    - '&7Defensa: &a+30'
+    - '&7Daño a distancia: &c+2,5%'
+    - '&7Prob. crítica: &9+1,25%'
+    - '&7Velocidad: &f+2%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f3.325'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Defensa 10'
+    - '&8Material para: Pantalones del Francotirador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_102'
+  'c4':
+    material: LEATHER_BOOTS
+    slot: 6
+    amount: 1
+    display_name: '&aBotas del Explorador'
+    item_model: 'astral:arquero_2_boots'
+    lore:
+    - '&7Arquero II'
+    - '&7Vida: &c+112,5'
+    - '&7Defensa: &a+15'
+    - '&7Daño a distancia: &c+2,5%'
+    - '&7Prob. crítica: &9+1,25%'
+    - '&7Velocidad: &f+2%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f2.975'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Defensa 10'
+    - '&8Material para: Botas del Francotirador'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_103'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

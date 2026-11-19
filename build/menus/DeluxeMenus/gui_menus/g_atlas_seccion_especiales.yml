@@ -1,0 +1,338 @@
+menu_title: '&f&#ffe9a8Especiales'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fEspeciales'
+    item_model: 'astral:atlas_ui/ilus_especiales'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: CARROT_ON_A_STICK
+    slot: 20
+    amount: 1
+    display_name: '&#d0d0d0Saltador'
+    item_model: 'astral:saltador'
+    lore:
+    - '&7Movilidad Astral I'
+    - '&7Daño: 0 (movilidad)'
+    - '&7Velocidad: sin modificación'
+    - ''
+    - '&6Habilidad: Saltador  CLIC DERECHO'
+    - '&7Click derecho: impulso hacia donde miras'
+    - '&7Salto elevado sin dano de caida.'
+    - '&8Enfriamiento: 2 segundos.'
+    - '&7Tier: 1'
+    - ''
+    - '&7Requiere: sin nivel'
+    - '&f&lCOMÚN MOVILIDAD'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_1'
+  'c2':
+    material: NETHERITE_SWORD
+    slot: 21
+    amount: 1
+    display_name: '&#5555FFFilo de la Tormenta'
+    item_model: 'astral:espada_tormenta'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+2.500'
+    - '&7Velocidad de ataque: &f1,6'
+    - ''
+    - '&6Habilidad: Rayo de la Tormenta&e&l  AL GOLPEAR'
+    - '&a25%&7 de invocar un rayo.'
+    - '&7Daño: &a30%&7 del golpe (mínimo &a1&7), radio &a2&7 bloques.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_200'
+  'c3':
+    material: NETHERITE_SWORD
+    slot: 22
+    amount: 1
+    display_name: '&5Danza del Ender'
+    item_model: 'astral:espada_sombras'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+12.500'
+    - '&7Velocidad de ataque: &f1,6'
+    - ''
+    - '&6Habilidad: Danza del Ender&e&l  CLIC DERECHO'
+    - '&7Salta y golpea hasta &a6&7 enemigos a &a12&7 bloques.'
+    - '&7Cada golpe causa &a12.500&7 de daño; un salto cada &a4&7 ticks.'
+    - '&7Recarga: &a15s'
+    - '&8No atraviesa paredes. Usable en mazmorras.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_201'
+  'c4':
+    material: NETHERITE_SWORD
+    slot: 23
+    amount: 1
+    display_name: '&aFilo del Destello'
+    item_model: 'astral:espada_destello'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+500'
+    - '&7Velocidad de ataque: &f1,8'
+    - ''
+    - '&6Habilidad: Transmisión Instantánea&e&l  CLIC DERECHO'
+    - '&7Teletransporta hasta &a12&7 bloques hacia adelante'
+    - '&7y da &a+50&7 de Velocidad por &a3&7 segundos.'
+    - '&7Costo de maná: &b50'
+    - '&8Sin recarga. No usable en mazmorras.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_202'
+  'c5':
+    material: NETHERITE_AXE
+    slot: 24
+    amount: 1
+    display_name: '&#5555FFHacha del Sismo'
+    item_model: 'astral:hacha_terremoto'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&6Habilidad: Onda Sísmica&e&l  CLIC DERECHO'
+    - '&7Onda de &a7.200&7 de daño hasta &a5&7 bloques (x&a2&7 tu golpe, incluidas mejoras).'
+    - '&7Levanta el suelo a tu alrededor.'
+    - '&7Costo de maná: &b100'
+    - '&7Recarga: &a6s'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_203'
+  'c6':
+    material: STICK
+    slot: 25
+    amount: 1
+    display_name: '&#5555FFVarita de Curación'
+    item_model: 'astral:varita_curacion'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+286'
+    - '&7Velocidad de ataque: &f1,6'
+    - ''
+    - '&6Habilidad: Curación&e&l  CLIC DERECHO'
+    - '&7Cura el &a5%&7 de tu vida máxima por segundo'
+    - '&7durante &a5&7 s, a vos y a los jugadores a &a7&7 bloques.'
+    - '&7Costo de maná: &b60'
+    - '&7Recarga: &a1s'
+    - '&8Las curaciones de varita no se acumulan. Usable en el lobby.'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA VARITA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_204'
+  'c7':
+    material: STICK
+    slot: 30
+    amount: 1
+    display_name: '&5Varita del Estallido'
+    item_model: 'astral:varita_estallido'
+    lore:
+    - '&7Arma especial - cualquier clase'
+    - '&7Daño: &c+18.750'
+    - '&7Velocidad de ataque: &f1,5'
+    - ''
+    - '&6Habilidad: Estallido&e&l  AL GOLPEAR'
+    - '&7Explosión de &a18.750&7 de daño en radio &a2&7.'
+    - '&7Costo de maná: &b30'
+    - ''
+    - '&6Habilidad: Proyectil Explosivo&e&l  CLIC DERECHO'
+    - '&7Disparo instantáneo hasta &a16&7 bloques.'
+    - '&7Explosión de &a18.750&7 de daño en radio &a2&7.'
+    - '&7Costo de maná: &b30'
+    - '&7Recarga: &a1s'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA VARITA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_205'
+  'c8':
+    material: NETHERITE_HOE
+    slot: 31
+    amount: 1
+    display_name: '&#5555FFGuadana Umbria'
+    item_model: 'astral:guadana_umbria'
+    lore:
+    - '&7Clase Segador'
+    - '&7Daño: &c+2.571'
+    - '&7Velocidad de ataque: &f1,2'
+    - ''
+    - '&#5555FFCono I'
+    - '&7Golpea a todos en un cono frente a vos.'
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 16'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA GUADAÑA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_206'
+  'c9':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&#5555FFNudillos de Rubi'
+    item_model: 'astral:guantes_meteoro'
+    lore:
+    - '&7Clase Monje'
+    - '&7Daño: &c+2.000'
+    - '&7Velocidad de ataque: &f2,2'
+    - ''
+    - '&#5555FFPuño Ígneo I'
+    - '&7Prende fuego al enemigo por &a4&7 s.'
+    - ''
+    - '&7Mucho mas dano que a mano limpia'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 12'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA GUANTES'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_207'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

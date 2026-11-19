@@ -1,0 +1,199 @@
+menu_title: '&f&#ffe9a8Mago: armadura V'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: LEATHER_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&6Capucha del Sabio Astral'
+    item_model: 'astral:mago_5_helmet'
+    lore:
+    - '&7Mago V'
+    - '&7Vida: &c+1.975'
+    - '&7Defensa: &a+60'
+    - '&7Maná: &b+287,5'
+    - '&7Regeneración de maná: &b+7,19/s'
+    - '&7Daño mágico: &d+10%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f7.200'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Defensa 22'
+    - '&8Material para: Capucha del Glaciar'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_72'
+  'c2':
+    material: LEATHER_CHESTPLATE
+    slot: 4
+    amount: 1
+    display_name: '&6Tunica del Sabio Astral'
+    item_model: 'astral:mago_5_chestplate'
+    lore:
+    - '&7Mago V'
+    - '&7Vida: &c+1.975'
+    - '&7Defensa: &a+160'
+    - '&7Maná: &b+287,5'
+    - '&7Regeneración de maná: &b+7,19/s'
+    - '&7Daño mágico: &d+10%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f9.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Defensa 22'
+    - '&8Material para: Tunica del Glaciar'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_73'
+  'c3':
+    material: LEATHER_LEGGINGS
+    slot: 5
+    amount: 1
+    display_name: '&6Faldones del Sabio Astral'
+    item_model: 'astral:mago_5_leggings'
+    lore:
+    - '&7Mago V'
+    - '&7Vida: &c+1.975'
+    - '&7Defensa: &a+120'
+    - '&7Maná: &b+287,5'
+    - '&7Regeneración de maná: &b+7,19/s'
+    - '&7Daño mágico: &d+10%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f8.550'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Defensa 22'
+    - '&8Material para: Faldones del Glaciar'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_74'
+  'c4':
+    material: LEATHER_BOOTS
+    slot: 6
+    amount: 1
+    display_name: '&6Sandalias del Sabio Astral'
+    item_model: 'astral:mago_5_boots'
+    lore:
+    - '&7Mago V'
+    - '&7Vida: &c+1.975'
+    - '&7Defensa: &a+60'
+    - '&7Maná: &b+287,5'
+    - '&7Regeneración de maná: &b+7,19/s'
+    - '&7Daño mágico: &d+10%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f7.650'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Defensa 22'
+    - '&8Material para: Sandalias del Glaciar'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_75'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,319 @@
+menu_title: '&f&#ffe9a8armadura 3 - 1/1'
+size: 54
+items:
+  'c0':
+    material: IRON_HELMET
+    slot: 1
+    amount: 1
+    display_name: '&#5555FFYelmo del Ensangrentado'
+    item_model: 'astral:berserker_3_helmet'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+27'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f3.600'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Yelmo del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA CASCO'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: IRON_CHESTPLATE
+    slot: 2
+    amount: 1
+    display_name: '&#5555FFCoraza del Ensangrentado'
+    item_model: 'astral:berserker_3_chestplate'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+72'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f4.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Coraza del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: IRON_LEGGINGS
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFGrebas del Ensangrentado'
+    item_model: 'astral:berserker_3_leggings'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+54'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f4.275'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Grebas del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA GREBAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: IRON_BOOTS
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFBotas del Ensangrentado'
+    item_model: 'astral:berserker_3_boots'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+27'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f3.825'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Botas del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: IRON_HELMET
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFYelmo del Ensangrentado'
+    item_model: 'astral:berserker_3_helmet'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+27'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f3.600'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Yelmo del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_24'
+  'c5':
+    material: IRON_CHESTPLATE
+    slot: 6
+    amount: 1
+    display_name: '&#5555FFCoraza del Ensangrentado'
+    item_model: 'astral:berserker_3_chestplate'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+72'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f4.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Coraza del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_25'
+  'c6':
+    material: IRON_LEGGINGS
+    slot: 7
+    amount: 1
+    display_name: '&#5555FFGrebas del Ensangrentado'
+    item_model: 'astral:berserker_3_leggings'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+54'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f4.275'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Grebas del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_26'
+  'c7':
+    material: IRON_BOOTS
+    slot: 13
+    amount: 1
+    display_name: '&#5555FFBotas del Ensangrentado'
+    item_model: 'astral:berserker_3_boots'
+    lore:
+    - '&7Berserker III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+6,25%'
+    - '&7Defensa: &a+27'
+    - '&7Daño: &c+4,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f3.825'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Defensa 14'
+    - '&8Material para: Botas del Coloso'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_27'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_berserker'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,570 +1,669 @@
 menu_title: '&f'
 size: 54
 items:
-  'b0_icono':
+  'b0_0':
     material: IRON_SPEAR
     slot: 0
+    amount: 1
     display_name: '&bLanzas'
     item_model: 'astral:lanza_1'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/lanzas<delay=2>'
+    - '[openguimenu] g_atlas_seccion_lanzas'
   'b0_1':
     material: PAPER
     slot: 1
+    amount: 1
     display_name: '&bLanzas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/lanzas<delay=2>'
+    - '[openguimenu] g_atlas_seccion_lanzas'
   'b0_2':
     material: PAPER
     slot: 2
+    amount: 1
     display_name: '&bLanzas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/lanzas<delay=2>'
+    - '[openguimenu] g_atlas_seccion_lanzas'
   'b0_3':
     material: PAPER
     slot: 3
+    amount: 1
     display_name: '&bLanzas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/lanzas<delay=2>'
-  'b1_icono':
+    - '[openguimenu] g_atlas_seccion_lanzas'
+  'b1_0':
     material: PAPER
     slot: 5
+    amount: 1
     display_name: '&bTalismanes'
     item_model: 'astral:corazon_fin'
     lore:
     - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/talismanes<delay=2>'
+    - '[openguimenu] g_atlas_seccion_talismanes'
   'b1_1':
     material: PAPER
     slot: 6
+    amount: 1
     display_name: '&bTalismanes'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/talismanes<delay=2>'
+    - '[openguimenu] g_atlas_seccion_talismanes'
   'b1_2':
     material: PAPER
     slot: 7
+    amount: 1
     display_name: '&bTalismanes'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/talismanes<delay=2>'
+    - '[openguimenu] g_atlas_seccion_talismanes'
   'b1_3':
     material: PAPER
     slot: 8
+    amount: 1
     display_name: '&bTalismanes'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/talismanes<delay=2>'
-  'b2_icono':
+    - '[openguimenu] g_atlas_seccion_talismanes'
+  'b2_0':
     material: CARROT_ON_A_STICK
     slot: 9
+    amount: 1
     display_name: '&bEspeciales'
     item_model: 'astral:saltador'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/especiales<delay=2>'
+    - '[openguimenu] g_atlas_seccion_especiales'
   'b2_1':
     material: PAPER
     slot: 10
+    amount: 1
     display_name: '&bEspeciales'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/especiales<delay=2>'
+    - '[openguimenu] g_atlas_seccion_especiales'
   'b2_2':
     material: PAPER
     slot: 11
+    amount: 1
     display_name: '&bEspeciales'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/especiales<delay=2>'
+    - '[openguimenu] g_atlas_seccion_especiales'
   'b2_3':
     material: PAPER
     slot: 12
+    amount: 1
     display_name: '&bEspeciales'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/especiales<delay=2>'
-  'b3_icono':
+    - '[openguimenu] g_atlas_seccion_especiales'
+  'b3_0':
     material: NETHERITE_PICKAXE
     slot: 14
+    amount: 1
     display_name: '&bTaladros'
     item_model: 'astral:taladro_diamante'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/taladros<delay=2>'
+    - '[openguimenu] g_atlas_seccion_taladros'
   'b3_1':
     material: PAPER
     slot: 15
+    amount: 1
     display_name: '&bTaladros'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/taladros<delay=2>'
+    - '[openguimenu] g_atlas_seccion_taladros'
   'b3_2':
     material: PAPER
     slot: 16
+    amount: 1
     display_name: '&bTaladros'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/taladros<delay=2>'
+    - '[openguimenu] g_atlas_seccion_taladros'
   'b3_3':
     material: PAPER
     slot: 17
+    amount: 1
     display_name: '&bTaladros'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/taladros<delay=2>'
-  'b4_icono':
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'b4_0':
     material: NETHERITE_AXE
     slot: 18
+    amount: 1
     display_name: '&bMotosierras'
     item_model: 'astral:motosierra_basica'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/motosierras<delay=2>'
+    - '[openguimenu] g_atlas_seccion_motosierras'
   'b4_1':
     material: PAPER
     slot: 19
+    amount: 1
     display_name: '&bMotosierras'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/motosierras<delay=2>'
+    - '[openguimenu] g_atlas_seccion_motosierras'
   'b4_2':
     material: PAPER
     slot: 20
+    amount: 1
     display_name: '&bMotosierras'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/motosierras<delay=2>'
+    - '[openguimenu] g_atlas_seccion_motosierras'
   'b4_3':
     material: PAPER
     slot: 21
+    amount: 1
     display_name: '&bMotosierras'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/motosierras<delay=2>'
-  'b5_icono':
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'b5_0':
     material: DIAMOND_SWORD
     slot: 23
+    amount: 1
     display_name: '&bCarnivora III'
     item_model: 'astral:carnivora_espada'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/carnivora<delay=2>'
+    - '[openguimenu] g_atlas_seccion_carnivora'
   'b5_1':
     material: PAPER
     slot: 24
+    amount: 1
     display_name: '&bCarnivora III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/carnivora<delay=2>'
+    - '[openguimenu] g_atlas_seccion_carnivora'
   'b5_2':
     material: PAPER
     slot: 25
+    amount: 1
     display_name: '&bCarnivora III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/carnivora<delay=2>'
+    - '[openguimenu] g_atlas_seccion_carnivora'
   'b5_3':
     material: PAPER
     slot: 26
+    amount: 1
     display_name: '&bCarnivora III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/carnivora<delay=2>'
-  'b6_icono':
+    - '[openguimenu] g_atlas_seccion_carnivora'
+  'b6_0':
     material: DIAMOND_SWORD
     slot: 27
+    amount: 1
     display_name: '&bAsura IV'
     item_model: 'astral:asura_espada'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/asura<delay=2>'
+    - '[openguimenu] g_atlas_seccion_asura'
   'b6_1':
     material: PAPER
     slot: 28
+    amount: 1
     display_name: '&bAsura IV'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/asura<delay=2>'
+    - '[openguimenu] g_atlas_seccion_asura'
   'b6_2':
     material: PAPER
     slot: 29
+    amount: 1
     display_name: '&bAsura IV'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/asura<delay=2>'
+    - '[openguimenu] g_atlas_seccion_asura'
   'b6_3':
     material: PAPER
     slot: 30
+    amount: 1
     display_name: '&bAsura IV'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/asura<delay=2>'
-  'b7_icono':
+    - '[openguimenu] g_atlas_seccion_asura'
+  'b7_0':
     material: DIAMOND_SWORD
     slot: 32
+    amount: 1
     display_name: '&bAgua III'
     item_model: 'astral:agua_espada'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/agua<delay=2>'
+    - '[openguimenu] g_atlas_seccion_agua'
   'b7_1':
     material: PAPER
     slot: 33
+    amount: 1
     display_name: '&bAgua III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/agua<delay=2>'
+    - '[openguimenu] g_atlas_seccion_agua'
   'b7_2':
     material: PAPER
     slot: 34
+    amount: 1
     display_name: '&bAgua III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/agua<delay=2>'
+    - '[openguimenu] g_atlas_seccion_agua'
   'b7_3':
     material: PAPER
     slot: 35
+    amount: 1
     display_name: '&bAgua III'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/agua<delay=2>'
-  'b8_icono':
+    - '[openguimenu] g_atlas_seccion_agua'
+  'b8_0':
     material: PAPER
     slot: 36
+    amount: 1
     display_name: '&bMinero y Talador'
     item_model: 'minecraft:lantern'
     lore:
     - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/oficios<delay=2>'
+    - '[openguimenu] g_atlas_seccion_oficios'
   'b8_1':
     material: PAPER
     slot: 37
+    amount: 1
     display_name: '&bMinero y Talador'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/oficios<delay=2>'
+    - '[openguimenu] g_atlas_seccion_oficios'
   'b8_2':
     material: PAPER
     slot: 38
+    amount: 1
     display_name: '&bMinero y Talador'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/oficios<delay=2>'
+    - '[openguimenu] g_atlas_seccion_oficios'
   'b8_3':
     material: PAPER
     slot: 39
+    amount: 1
     display_name: '&bMinero y Talador'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/oficios<delay=2>'
-  'b9_icono':
+    - '[openguimenu] g_atlas_seccion_oficios'
+  'b9_0':
     material: PAPER
     slot: 41
+    amount: 1
     display_name: '&b18 mascotas'
     item_model: 'astral:peluche_ocelot'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/mascotas_1<delay=2>'
+    - '[openguimenu] g_atlas_seccion_mascotas_1'
   'b9_1':
     material: PAPER
     slot: 42
+    amount: 1
     display_name: '&b18 mascotas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/mascotas_1<delay=2>'
+    - '[openguimenu] g_atlas_seccion_mascotas_1'
   'b9_2':
     material: PAPER
     slot: 43
+    amount: 1
     display_name: '&b18 mascotas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/mascotas_1<delay=2>'
+    - '[openguimenu] g_atlas_seccion_mascotas_1'
   'b9_3':
     material: PAPER
     slot: 44
+    amount: 1
     display_name: '&b18 mascotas'
     item_model: 'astral:viajes/blank'
     lore:
     - '&7Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[close]'
-    - '[console] dialog show %player_name% astral:atlas/seccion/mascotas_1<delay=2>'
+    - '[openguimenu] g_atlas_seccion_mascotas_1'
   'anterior':
     material: PAPER
     slot: 45
+    amount: 1
     display_name: '&ePagina anterior'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] guia_astral'
   'siguiente':
     material: PAPER
     slot: 53
+    amount: 1
     display_name: '&eSiguiente pagina'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] guia_astral_3'
   'cerrar_0':
     material: PAPER
     slot: 48
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'
   'cerrar_1':
     material: PAPER
     slot: 49
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'
   'cerrar_2':
     material: PAPER
     slot: 50
+    amount: 1
     display_name: '&cCerrar'
     item_model: 'astral:viajes/blank'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
     click_commands:
     - '[close]'

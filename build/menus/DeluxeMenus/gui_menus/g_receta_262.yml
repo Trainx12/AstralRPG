@@ -1,0 +1,151 @@
+menu_title: '&f&#ffe9a8Hacha de las Mareas'
+size: 54
+items:
+  'resultado':
+    material: DIAMOND_AXE
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFHacha de las Mareas'
+    item_model: 'astral:agua_hacha'
+    lore:
+    - '&7Hacha de Agua III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFSangrado I'
+    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
+    - ''
+    - '&6Habilidad: Fuerza de las Mareas&e&l  BAJO EL AGUA'
+    - '&a+25%&7 de daño con golpes directos.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA HACHA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: PRISMARINE_CRYSTALS
+    slot: 14
+    amount: 6
+    display_name: '&f6x Perla Abisal'
+    item_model: 'astral:perla_abisal'
+    lore:
+    - '&7Material del Oceano Astral. Se mina con taladro de amatista o mejor.'
+    - '&8Material para: Espada de las Mareas, Hacha de las Mareas, Arco de Agua, Casco de Agua, Pechera de Agua, Grebas de Agua, Botas de Agua, Pico de las Mareas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PRISMARINE_SHARD
+    slot: 15
+    amount: 2
+    display_name: '&f2x Coral Astral'
+    item_model: 'astral:coral_astral'
+    lore:
+    - '&7Material del Oceano Astral. Se mina con taladro de amatista o mejor.'
+    - '&8Material para: Espada de las Mareas, Hacha de las Mareas, Arco de Agua, Casco de Agua, Pechera de Agua, Grebas de Agua, Botas de Agua, Pico de las Mareas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&8Material para: Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Yelmo del Coloso, Coraza del Coloso, Grebas del '
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 262'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 262'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 262'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_agua'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,305 @@
+menu_title: '&f&#ffe9a8Ropa de Minero y Talador I'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: IRON_HELMET
+    slot: 2
+    amount: 1
+    display_name: '&fCasco de Minero'
+    item_model: 'astral:minero_helmet'
+    lore:
+    - '&7Ropa de Minero I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+8'
+    - '&7Velocidad de rotura: &6+5%'
+    - '&7Eficiencia de minado: &6+1'
+    - ''
+    - '&7Picas mas rapido.'
+    - '&7Ves en la oscuridad.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa I y &a10%&7 de mineral extra en las Minas.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_269'
+  'c2':
+    material: IRON_CHESTPLATE
+    slot: 3
+    amount: 1
+    display_name: '&fChaleco de Minero'
+    item_model: 'astral:minero_chestplate'
+    lore:
+    - '&7Ropa de Minero I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+20'
+    - '&7Velocidad de rotura: &6+5%'
+    - '&7Eficiencia de minado: &6+1'
+    - ''
+    - '&7Picas mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa I y &a10%&7 de mineral extra en las Minas.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&f&lCOMÚN PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_270'
+  'c3':
+    material: IRON_LEGGINGS
+    slot: 4
+    amount: 1
+    display_name: '&fPantalon de Minero'
+    item_model: 'astral:minero_leggings'
+    lore:
+    - '&7Ropa de Minero I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+15'
+    - '&7Velocidad de rotura: &6+5%'
+    - '&7Eficiencia de minado: &6+1'
+    - ''
+    - '&7Picas mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa I y &a10%&7 de mineral extra en las Minas.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_271'
+  'c4':
+    material: IRON_BOOTS
+    slot: 5
+    amount: 1
+    display_name: '&fBotas de Minero'
+    item_model: 'astral:minero_boots'
+    lore:
+    - '&7Ropa de Minero I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+8'
+    - '&7Velocidad de rotura: &6+5%'
+    - '&7Eficiencia de minado: &6+1'
+    - ''
+    - '&7Picas mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa I y &a10%&7 de mineral extra en las Minas.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_272'
+  'c5':
+    material: IRON_HELMET
+    slot: 6
+    amount: 1
+    display_name: '&fGorro de Talador'
+    item_model: 'astral:talador_helmet'
+    lore:
+    - '&7Ropa de Talador I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+8'
+    - '&7Velocidad de rotura: &6+5%'
+    - ''
+    - '&7Rompes mas rapido.'
+    - '&7Con hacha en la mano: Prisa I.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa II y &a20%&7 de tronco extra en el Bosque.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_273'
+  'c6':
+    material: IRON_CHESTPLATE
+    slot: 7
+    amount: 1
+    display_name: '&fCamisa de Talador'
+    item_model: 'astral:talador_chestplate'
+    lore:
+    - '&7Ropa de Talador I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+20'
+    - '&7Velocidad de rotura: &6+5%'
+    - ''
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa II y &a20%&7 de tronco extra en el Bosque.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_274'
+  'c7':
+    material: IRON_LEGGINGS
+    slot: 12
+    amount: 1
+    display_name: '&fPantalon de Talador'
+    item_model: 'astral:talador_leggings'
+    lore:
+    - '&7Ropa de Talador I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+15'
+    - '&7Velocidad de rotura: &6+5%'
+    - ''
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa II y &a20%&7 de tronco extra en el Bosque.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_275'
+  'c8':
+    material: IRON_BOOTS
+    slot: 13
+    amount: 1
+    display_name: '&fBotas de Talador'
+    item_model: 'astral:talador_boots'
+    lore:
+    - '&7Ropa de Talador I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+8'
+    - '&7Velocidad de rotura: &6+5%'
+    - ''
+    - '&7Rompes mas rapido.'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Prisa II y &a20%&7 de tronco extra en el Bosque.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_276'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'
