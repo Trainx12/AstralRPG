@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arco del Explorador'
+menu_title: '&f&#ffe9a8Arco del Explorador'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Arqueria 14'
-    - '&8Material para: Arco del Francotirador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN ARCO'
     item_flags:
@@ -50,7 +49,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Arqueria 8'
-    - '&8Material para: Arco del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ARCO'
     item_flags:
@@ -66,7 +64,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     enchantments:
     - 'unbreaking;1'
     item_flags:

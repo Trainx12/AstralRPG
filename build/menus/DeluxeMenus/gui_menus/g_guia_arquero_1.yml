@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura I'
+menu_title: '&f&#ffe9a8Arquero: armadura I'
 size: 54
 items:
   'c0':
@@ -32,7 +32,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Capucha del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     - ''
@@ -68,7 +67,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Chaqueta del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN PECHERA'
     - ''
@@ -101,7 +99,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Pantalones del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     - ''
@@ -134,7 +131,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Botas del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN BOTAS'
     - ''

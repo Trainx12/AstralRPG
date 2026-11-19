@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Acero Sombrio'
+menu_title: '&f&#ffe9a8Acero Sombrio'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -36,7 +35,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

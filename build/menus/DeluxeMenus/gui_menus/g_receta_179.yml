@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana del Vacio'
+menu_title: '&f&#ffe9a8Guadana del Vacio'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Hechiceria 20'
-    - '&8Material para: Guadana del Archimago'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GUADAÑA'
     item_flags:
@@ -46,7 +45,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Hechiceria 16'
-    - '&8Material para: Guadana del Vacio'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GUADAÑA'
     item_flags:
@@ -62,7 +60,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -79,7 +76,6 @@ items:
     lore:
     - '&7Metal de nivel intermedio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Yelmo del Coloso, Coraza del Coloso, Grebas del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

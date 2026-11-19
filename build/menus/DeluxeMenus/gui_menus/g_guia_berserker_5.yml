@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura V'
+menu_title: '&f&#ffe9a8Berserker: armadura V'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Yelmo del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA CASCO'
     - ''
@@ -78,7 +77,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Coraza del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     - ''
@@ -114,7 +112,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Grebas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     - ''
@@ -152,7 +149,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Botas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     - ''

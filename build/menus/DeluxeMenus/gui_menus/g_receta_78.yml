@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Faldones del Glaciar'
+menu_title: '&f&#ffe9a8Faldones del Glaciar'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Faldones Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     enchantments:
@@ -57,7 +56,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Faldones del Glaciar'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     enchantments:
@@ -75,7 +73,6 @@ items:
     lore:
     - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Titan, Coraza del Titan, Grebas del Titan, Botas del Titan, Capucha del Glaciar, Tunica del Glaciar, Faldones del Glaciar, Sandalias del Gla'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -91,7 +88,6 @@ items:
     lore:
     - '&7Endgame Arquero y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Glaciar, Tunica del Glaciar, Fal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

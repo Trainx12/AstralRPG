@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arco Astral'
+menu_title: '&f&#ffe9a8Arco Astral'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Arqueria 30'
-    - '&8Material para: Arco de las Almas Perdidas'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA ARCO'
     item_flags:
@@ -56,7 +55,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Arqueria 25'
-    - '&8Material para: Arco Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA ARCO'
     item_flags:
@@ -72,7 +70,6 @@ items:
     lore:
     - '&7Endgame Arquero y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Glaciar, Tunica del Glaciar, Fal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -89,7 +86,6 @@ items:
     lore:
     - '&7Material endgame universal.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Luminica Perfecta, Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Halcon A'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

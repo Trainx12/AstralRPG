@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Cangrejo Ermitano Gigante'
+menu_title: '&f&#ffe9a8Cangrejo Ermitano Gigante'
 size: 54
 items:
   'retrato':
@@ -85,7 +85,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     - ''
     - '&#30241b1 × Alma Corrupta · 80%'
     enchantments:
@@ -103,7 +102,6 @@ items:
     lore:
     - '&7Cae de Shulkers.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Capucha del Archimago, Tunica del Archimago, Faldones del Archimago, Sandalias del Archimago, Baston del Archimago'
     - ''
     - '&#30241b1 × Corazon de Shulker · 30%'
     enchantments:
@@ -121,7 +119,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b2 × Esencia de Elite · 100%'
     enchantments:

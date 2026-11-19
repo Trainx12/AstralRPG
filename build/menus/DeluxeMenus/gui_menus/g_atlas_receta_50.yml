@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Grebas del Justiciero'
+menu_title: '&f&#ffe9a8Grebas del Justiciero'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Grebas del Destructor'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     enchantments:
@@ -58,7 +57,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Grebas del Justiciero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     enchantments:
@@ -76,7 +74,6 @@ items:
     lore:
     - '&7Cae de mobs tier 9 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Justiciero, Coraza del Justiciero, Grebas del Justiciero, Botas del Justiciero, Yelmo del Destructor, Coraza del Destructor, Grebas del Dest'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -92,7 +89,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -108,7 +104,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

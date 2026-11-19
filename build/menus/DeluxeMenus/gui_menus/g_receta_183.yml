@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana Osaria'
+menu_title: '&f&#ffe9a8Guadana Osaria'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Hechiceria 42'
-    - '&8Material para: Guadana de Piedra Antigua'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GUADAÑA'
     item_flags:
@@ -46,7 +45,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Hechiceria 37'
-    - '&8Material para: Guadana Osaria'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GUADAÑA'
     item_flags:
@@ -62,7 +60,6 @@ items:
     lore:
     - '&7Cae de mobs tier 7 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -78,7 +75,6 @@ items:
     lore:
     - '&7Endgame Berserker y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Guadana Astral, Guadana del Carc'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

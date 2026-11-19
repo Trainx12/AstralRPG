@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana de Escarcha'
+menu_title: '&f&#ffe9a8Guadana de Escarcha'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Hechiceria 52'
-    - '&8Material para: Guadana de la Pesadilla'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GUADAÑA'
     item_flags:
@@ -46,7 +45,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Hechiceria 47'
-    - '&8Material para: Guadana de Escarcha'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GUADAÑA'
     item_flags:
@@ -62,7 +60,6 @@ items:
     lore:
     - '&7Cae de mobs tier 9 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Justiciero, Coraza del Justiciero, Grebas del Justiciero, Botas del Justiciero, Yelmo del Destructor, Coraza del Destructor, Grebas del Dest'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -78,7 +75,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -94,7 +90,6 @@ items:
     lore:
     - '&7Endgame Berserker y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Guadana Astral, Guadana del Carc'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

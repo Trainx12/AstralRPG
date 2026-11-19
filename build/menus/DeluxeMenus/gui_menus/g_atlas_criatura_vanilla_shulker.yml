@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Shulker'
+menu_title: '&f&#ffe9a8Shulker'
 size: 54
 items:
   'c0':
@@ -87,7 +87,6 @@ items:
     lore:
     - '&7Cae de Shulkers.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Capucha del Archimago, Tunica del Archimago, Faldones del Archimago, Sandalias del Archimago, Baston del Archimago'
     - ''
     - '&#30241b1 × Corazon de Shulker · 10%'
     enchantments:

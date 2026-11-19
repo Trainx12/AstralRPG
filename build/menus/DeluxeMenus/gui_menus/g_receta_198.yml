@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Ballesta Rapida del Nether'
+menu_title: '&f&#ffe9a8Ballesta Rapida del Nether'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Arqueria 25'
-    - '&8Material para: Ballesta Celeste Veloz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BALLESTA'
     item_flags:
@@ -54,7 +53,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Arqueria 20'
-    - '&8Material para: Ballesta Rapida del Nether'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BALLESTA'
     item_flags:
@@ -70,7 +68,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

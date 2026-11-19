@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura VI'
+menu_title: '&f&#ffe9a8Mago: armadura VI'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Capucha Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Tunica Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     - ''
@@ -111,7 +109,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Faldones Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     - ''
@@ -149,7 +146,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Sandalias Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     - ''

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Pantalones del Rastreador'
+menu_title: '&f&#ffe9a8Pantalones del Rastreador'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Pantalones del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     item_flags:
@@ -47,7 +46,6 @@ items:
     lore:
     - '&7Base de todas las armaduras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -62,7 +60,6 @@ items:
     lore:
     - '&7Madera de los arboles del End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

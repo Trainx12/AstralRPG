@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Capucha del Ojo de Tormenta'
+menu_title: '&f&#ffe9a8Capucha del Ojo de Tormenta'
 size: 54
 items:
   'resultado':
@@ -23,7 +23,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Capucha del Manto Mortal'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA CASCO'
     enchantments:
@@ -54,7 +53,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Capucha del Ojo de Tormenta'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA CASCO'
     enchantments:
@@ -72,7 +70,6 @@ items:
     lore:
     - '&7Cae de mobs tier 9 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Justiciero, Coraza del Justiciero, Grebas del Justiciero, Botas del Justiciero, Yelmo del Destructor, Coraza del Destructor, Grebas del Dest'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -88,7 +85,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -104,7 +100,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

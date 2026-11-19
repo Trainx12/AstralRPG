@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: Ballestas'
+menu_title: '&f&#ffe9a8Arquero: Ballestas'
 size: 54
 items:
   'c0':
@@ -36,7 +36,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Arqueria 20'
-    - '&8Material para: Ballesta Rapida del Nether'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BALLESTA'
     - ''
@@ -69,7 +68,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Arqueria 25'
-    - '&8Material para: Ballesta Celeste Veloz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BALLESTA'
     - ''

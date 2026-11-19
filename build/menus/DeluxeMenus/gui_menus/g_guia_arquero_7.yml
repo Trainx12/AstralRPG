@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura VII'
+menu_title: '&f&#ffe9a8Arquero: armadura VII'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Capucha del Cazador Celeste'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Chaqueta del Cazador Celeste'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     - ''
@@ -107,7 +105,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Pantalones del Cazador Celeste'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     - ''
@@ -143,7 +140,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Botas del Cazador Celeste'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     - ''

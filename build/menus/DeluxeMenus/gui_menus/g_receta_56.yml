@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Capucha del Aprendiz'
+menu_title: '&f&#ffe9a8Capucha del Aprendiz'
 size: 54
 items:
   'resultado':
@@ -24,7 +24,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Capucha del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     item_flags:
@@ -49,7 +48,6 @@ items:
     lore:
     - '&7Base de todas las armaduras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -64,7 +62,6 @@ items:
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

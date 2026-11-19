@@ -34,8 +34,6 @@ PER_PAGE = 10
 TITLE_COLOR = '&#ffe9a8'
 # Rango libre de la fuente default (revisado contra el FINAL del 18/11).
 START, END = '', ''
-PAGE_CHARS = [(chr(0xf210 + 4 * n), chr(0xf211 + 4 * n), chr(0xf212 + 4 * n), chr(0xf213 + 4 * n)) for n in range(6)]
-BG_CHARS = {'general': tuple(chr(0xf230 + i) for i in range(4)), 'receta': tuple(chr(0xf234 + i) for i in range(4))}
 SHIFT = {1 << k: chr(0xf240 + k) for k in range(8)}          # espacios +1..+128 para centrar el titulo
 
 # Etiqueta corta (entra en el boton del indice) y objeto real que se muestra, por destino.
@@ -198,6 +196,9 @@ def stack_item(stack):
     name = ''.join(legacy(name)) if name else '&f' + stack['id'].split(':')[-1].replace('_', ' ').capitalize()
     lore = []
     for line in comps.get('minecraft:lore', []):
+        # En la guia no va la lista "Material para: ..." (hace el cartel larguisimo).
+        if plain(line).strip().lower().startswith(('material para', 'se usa en', 'sirve para')):
+            continue
         lore += legacy(line, 'dark_purple')
     count = stack.get('count', 1)
     it = dict(material=stack['id'].split(':')[-1].upper(), name=name, lore=lore, amount=max(1, min(64, count)))
@@ -284,40 +285,64 @@ def button_slots(n):
     return list(range(first, first + 4))
 
 
-def frame():
-    """Ventana vacia de Gemini en nueve partes, sin deformar esquinas (cristales y luna)."""
-    src = Image.open(GEMINI / 'reserva_atlas_ventana_vacia.png').convert('RGBA')
-    s = src.width / 825
-    sx = [0, round(100 * s), round(728 * s), src.width]
-    sy = [0, round(128 * s), round(918 * s), src.height]
-    k = 24 / sx[1]
-    dx = [0, 24, SIZE[0] - 24, SIZE[0]]
-    dy = [16, 16 + round(sy[1] * k), SIZE[1] - round((src.height - sy[2]) * k), SIZE[1]]
-    out = Image.new('RGBA', SIZE)
-    for r in range(3):
-        for c in range(3):
-            piece = src.crop((sx[c], sy[r], sx[c + 1], sy[r + 1]))
-            out.alpha_composite(piece.resize((dx[c + 1] - dx[c], dy[r + 1] - dy[r]), Image.Resampling.NEAREST), (dx[c], dy[r]))
+HI = 4                                   # el fondo se dibuja a 4x: el arte de Gemini se ve fino, no pixelado
+TILE = 256                               # Minecraft no carga glifos de mas de 256 px: el fondo va en cuadros
+ORIGINAL = GEMINI / 'original'
+
+
+def clean(im, tolerance=40):
+    """Quita el fondo liso de la hoja de Gemini (relleno desde los bordes)."""
+    from PIL import ImageDraw as _D
+    rgb = im.convert('RGB')
+    w, h = rgb.size
+    marker = (1, 254, 3)
+    for x, y in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)] + [(x, 0) for x in range(0, w, 37)] + \
+                [(x, h - 1) for x in range(0, w, 37)] + [(0, y) for y in range(0, h, 37)] + [(w - 1, y) for y in range(0, h, 37)]:
+        if rgb.getpixel((x, y)) != marker:
+            _D.floodfill(rgb, (x, y), marker, thresh=tolerance)
+    out = im.convert('RGBA')
+    px, src = out.load(), rgb.load()
+    for y in range(h):
+        for x in range(w):
+            if src[x, y] == marker:
+                px[x, y] = (0, 0, 0, 0)
     return out
 
 
-def compass():
-    src = Image.open(GEMINI / 'reserva_atlas_cabecera_botones_finos.png').convert('RGBA')
-    s = src.width / 928
-    art = src.crop((round(375 * s), 0, round(560 * s), round(185 * s)))
-    return art.resize((34, 34), Image.Resampling.NEAREST)
+_ART = {}
 
 
-def ribbon(caption):
-    src = Image.open(GEMINI / 'reserva_atlas_cabecera_botones_finos.png').convert('RGBA')
-    s = src.width / 928
-    art = src.crop((round(48 * s), 0, round(885 * s), round(300 * s)))
-    w = 168
-    art = art.resize((w, round(art.height * w / art.width)), Image.Resampling.NEAREST)
-    im = Image.new('RGBA', (w, art.height))
-    im.alpha_composite(art)
-    fit_text(im, caption, (w // 2, round(art.height * 0.62) - 4), w, '#ffe9a8')
-    return im
+def art(name):
+    if name not in _ART:
+        _ART[name] = clean(Image.open(ORIGINAL / f'{name}.png'))
+    return _ART[name]
+
+
+def frame_hi():
+    """Ventana vacia de Gemini (original) en nueve partes, a 4x."""
+    src = art('atlas_ventana_vacia')
+    sx, sy = [0, 100, 728, src.width], [0, 128, 918, src.height]
+    k = 24 * HI / sx[1]
+    W, H = SIZE[0] * HI, SIZE[1] * HI
+    dx = [0, 24 * HI, W - 24 * HI, W]
+    dy = [16 * HI, 16 * HI + round(sy[1] * k), H - round((src.height - sy[2]) * k), H]
+    out = Image.new('RGBA', (W, H))
+    for r in range(3):
+        for c in range(3):
+            piece = src.crop((sx[c], sy[r], sx[c + 1], sy[r + 1]))
+            out.alpha_composite(piece.resize((dx[c + 1] - dx[c], dy[r + 1] - dy[r]), Image.Resampling.LANCZOS), (dx[c], dy[r]))
+    return out
+
+
+def compass_hi():
+    src = art('atlas_cabecera_botones_finos')
+    return src.crop((375, 0, 560, 185)).resize((34 * HI, 34 * HI), Image.Resampling.LANCZOS)
+
+
+def ribbon_hi(width=168):
+    src = art('atlas_cabecera_botones_finos')
+    piece = src.crop((48, 0, 885, 300))
+    return piece.resize((width * HI, round(piece.height * width * HI / piece.width)), Image.Resampling.LANCZOS)
 
 
 def gold_button(caption, width):
@@ -351,23 +376,34 @@ def inventory(im):
             d.rectangle((x, y, x + 17, y + 17), fill='#0c1230', outline='#3a4a7a')
 
 
-def base(band=True):
-    im = frame()
-    d = ImageDraw.Draw(im)
+def overlay(band=True):
+    """Capa de 1x (casillas, textos, botones): se agranda sin suavizar para que quede nitida."""
+    ov = Image.new('RGBA', SIZE)
+    d = ImageDraw.Draw(ov)
     d.rectangle((24, 50, SIZE[0] - 25, SIZE[1] - 24), fill=NAVY)
     if band:
         # Cinta del titulo: el texto de la ventana cae en y 45-52 (cofre: x 8, y 6).
         d.rectangle((26, 42, SIZE[0] - 27, 55), fill='#0d1430', outline=GOLD)
         d.line((27, 43, SIZE[0] - 28, 43), fill='#f6d27a')
         d.line((27, 54, SIZE[0] - 28, 54), fill=GOLD2)
-        c = compass()
-        im.alpha_composite(c, ((SIZE[0] - c.width) // 2, 9))
-    return im
+    return ov
+
+
+def compose(ov, top=None, compass=False):   # la ventana de Gemini ya trae su brujula
+    hi = frame_hi()
+    hi.alpha_composite(ov.resize((SIZE[0] * HI, SIZE[1] * HI), Image.Resampling.NEAREST))
+    if top is not None:
+        art_im, (x, y) = top
+        hi.alpha_composite(art_im, (x, y))
+    if compass:
+        c = compass_hi()
+        hi.alpha_composite(c, ((SIZE[0] * HI - c.width) // 2, 9 * HI))
+    return hi
 
 
 def general_panel():
-    im = base()
-    d = ImageDraw.Draw(im)
+    ov = overlay()
+    d = ImageDraw.Draw(ov)
     for slot in range(45):
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), fill='#141d42', outline='#22305f')
@@ -375,8 +411,8 @@ def general_panel():
     for slot in (45, 47, 49, 51, 53):
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), fill='#1b2652', outline=GOLD2)
-    inventory(im)
-    return im
+    inventory(ov)
+    return compose(ov)
 
 
 INGREDIENTS = [14, 15, 16, 23, 24, 25, 32, 33, 34]
@@ -384,60 +420,83 @@ OUTPUT, FORGE = 20, (39, 40, 41)
 
 
 def receta_panel():
-    im = base()
-    d = ImageDraw.Draw(im)
-    # Marco dorado del resultado (3x3 casillas, el item va en el centro).
+    ov = overlay()
+    d = ImageDraw.Draw(ov)
     x0, y0 = slot_xy(10)
     d.rectangle((x0 - 1, y0 - 1, x0 + 54, y0 + 54), fill='#0d1430', outline=GOLD)
     d.rectangle((x0, y0, x0 + 53, y0 + 53), outline=GOLD2)
     x, y = slot_xy(OUTPUT)
     d.rectangle((x, y, x + 17, y + 17), fill='#24316a', outline='#f6d27a')
-    text(im, 'RESULTADO', (x0 + 27, Y0 - 1 + 4), color='#f6d27a')
-    # Flecha hacia el resultado.
+    text(ov, 'RESULTADO', (x0 + 27, Y0 - 1 + 4), color='#f6d27a')
     ax, ay = slot_xy(22)
     d.polygon(((ax + 15, ay + 4), (ax + 15, ay + 14), (ax + 3, ay + 9)), fill=GOLD, outline='#5a3610')
     d.rectangle((ax + 14, ay + 7, ax + 17, ay + 11), fill=GOLD)
     sx, sy = slot_xy(INGREDIENTS[0])
-    text(im, 'NECESITAS', (sx + 27, Y0 - 1 + 4), color='#9fdcf0')
+    text(ov, 'NECESITAS', (sx + 27, Y0 - 1 + 4), color='#9fdcf0')
     for slot in INGREDIENTS:
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), fill='#141d42', outline=CYAN2)
     fx, fy = slot_xy(FORGE[0])
-    im.alpha_composite(gold_button('FORJAR', 54), (fx, fy))
+    ov.alpha_composite(gold_button('FORJAR', 54), (fx, fy))
     d.rectangle((X0 - 1, Y0 + 5 * 18 - 1, X0 + 162, Y0 + 6 * 18), fill='#0d1430')
     for slot in (45, 53):
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), fill='#1b2652', outline=GOLD2)
-    inventory(im)
-    return im
+    inventory(ov)
+    return compose(ov)
 
 
 def index_panel(page_entries, page, total):
-    im = base(band=False)
-    rib = ribbon('GUIA ASTRAL')
-    im.alpha_composite(rib, ((SIZE[0] - rib.width) // 2, 0))
+    ov = overlay(band=False)
+    rib = ribbon_hi()
+    rh = rib.height // HI
+    # El texto va en la cinta azul del dibujo (62 % de su alto).
+    fit_text(ov, 'GUIA ASTRAL', (SIZE[0] // 2, round(rh * 0.62) - 4), 160, '#ffe9a8')
     for n, entry in enumerate(page_entries):
         x, y = slot_xy(button_slots(n)[0])
-        im.alpha_composite(cyan_button(entry['short']), (x, y))
+        ov.alpha_composite(cyan_button(entry['short']), (x, y))
     if page > 0:
-        im.alpha_composite(gold_button('<', 18), slot_xy(45))
+        ov.alpha_composite(gold_button('<', 18), slot_xy(45))
     if page < total - 1:
-        im.alpha_composite(gold_button('>', 18), slot_xy(53))
-    im.alpha_composite(gold_button('CERRAR', 54), slot_xy(48))
-    text(im, f'{page + 1}/{total}', (slot_xy(46)[0] + 18, slot_xy(46)[1] + 5), color='#9fdcf0')
-    inventory(im)
-    return im
+        ov.alpha_composite(gold_button('>', 18), slot_xy(53))
+    ov.alpha_composite(gold_button('CERRAR', 54), slot_xy(48))
+    text(ov, f'{page + 1}/{total}', (slot_xy(46)[0] + 18, slot_xy(46)[1] + 5), color='#9fdcf0')
+    inventory(ov)
+    hi = frame_hi()
+    hi.alpha_composite(rib, ((SIZE[0] * HI - rib.width) // 2, 0))
+    hi.alpha_composite(ov.resize((SIZE[0] * HI, SIZE[1] * HI), Image.Resampling.NEAREST))
+    return hi
 
 
-def glyph_pair(im, chars, name, files, providers, advances):
-    a, b, c, e = chars
-    for n, (part, ascent, char, rewind) in enumerate(((im.crop((0, 0, 224, SPLIT)), 53, a, b),
-                                                      (im.crop((0, SPLIT, 224, SIZE[1])), -3, c, e))):
-        resource = f'font/guia_astral/{name}_{n}.png'
-        files['assets/astral/textures/' + resource] = png(part)
-        providers.append({'type': 'bitmap', 'file': 'astral:' + resource, 'height': part.height,
-                          'ascent': ascent, 'chars': [char]})
-        advances[rewind] = -(part.getbbox()[2] + 1)
+# Fondo = 4 x 5 cuadros. Cada fondo tiene 20 caracteres; NEG pega los cuadros (los glifos dejan 1 px) y
+# ROW vuelve al principio de la fila.
+COLS, ROWS = -(-SIZE[0] * HI // TILE), -(-SIZE[1] * HI // TILE)
+NEG, ROW = '', ''
+BACKGROUNDS = ['pagina0', 'pagina1', 'pagina2', 'pagina3', 'pagina4', 'general', 'receta']
+
+
+def bg_chars(n):
+    return tuple(chr(0xf300 + n * 32 + i) for i in range(COLS * ROWS))
+
+
+PAGE_CHARS = [bg_chars(n) for n in range(5)]
+BG_CHARS = {'general': bg_chars(5), 'receta': bg_chars(6)}
+
+
+def tiles(hi, chars, name, files, providers):
+    for r in range(ROWS):
+        for c in range(COLS):
+            box = (c * TILE, r * TILE, min((c + 1) * TILE, hi.width), min((r + 1) * TILE, hi.height))
+            part = hi.crop(box)
+            # Punto casi invisible arriba a la derecha: el juego mide el ancho hasta el ultimo pixel no transparente.
+            if part.getpixel((part.width - 1, 0))[3] == 0:
+                part.putpixel((part.width - 1, 0), (0, 0, 0, 1))
+            resource = f'font/guia_astral/{name}_{r}_{c}.png'
+            files['assets/astral/textures/' + resource] = png(part)
+            # La fila r empieza en y = 64r (en pixeles de pantalla del juego); la parte de arriba del
+            # dibujo queda 53 px sobre la linea del titulo, igual que las demas ventanas.
+            providers.append({'type': 'bitmap', 'file': 'astral:' + resource, 'height': part.height // HI,
+                              'ascent': 53 - r * TILE // HI, 'chars': [chars[r * COLS + c]]})
 
 
 def big_model(files, name, texture, scale, down=0):
@@ -451,15 +510,17 @@ def big_model(files, name, texture, scale, down=0):
 
 def assets(source=None):
     data = load() if source is None else source
-    files, providers, advances = {}, [], {START: -32, END: 32}
+    files, providers = {}, []
+    advances = {START: -32, END: 32, NEG: -1, ROW: -SIZE[0]}
     advances.update({ch: n for n, ch in SHIFT.items()})
     groups = pages(entries(data))
+    if len(groups) > len(PAGE_CHARS):
+        raise ValueError('Mas paginas de indice que fondos reservados')
     for page, chunk in enumerate(groups):
-        glyph_pair(index_panel(chunk, page, len(groups)), PAGE_CHARS[page], f'pagina{page}', files, providers, advances)
-    glyph_pair(general_panel(), BG_CHARS['general'], 'general', files, providers, advances)
-    glyph_pair(receta_panel(), BG_CHARS['receta'], 'receta', files, providers, advances)
+        tiles(index_panel(chunk, page, len(groups)), PAGE_CHARS[page], f'pagina{page}', files, providers)
+    tiles(general_panel(), BG_CHARS['general'], 'general', files, providers)
+    tiles(receta_panel(), BG_CHARS['receta'], 'receta', files, providers)
     providers.append({'type': 'space', 'advances': advances})
-    # Ilustraciones de seccion (arte propio de Gemini): textura de item + modelo grande.
     for name in sorted(set(data['ilustraciones'].values())):
         path = GEMINI / (name + '.png')
         if path.exists():
@@ -482,9 +543,15 @@ def portrait_assets(pack_files, source=None):
     return files
 
 
+def background(chars):
+    out = ''
+    for r in range(ROWS):
+        out += ''.join(ch + NEG for ch in chars[r * COLS:(r + 1) * COLS]) + ROW
+    return out
+
+
 def title(chars, caption=''):
-    a, b, c, e = chars
-    out = '&f' + START + a + b + c + e + END
+    out = '&f' + START + background(chars) + END
     if caption:
         caption = caption.replace('Atlas Celestial · ', '')
         caption = ''.join(ch if ch in glyphs() else {'–': '-', '·': '-', '→': '>', '←': '<'}.get(ch, '') for ch in

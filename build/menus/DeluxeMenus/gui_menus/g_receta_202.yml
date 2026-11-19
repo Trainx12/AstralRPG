@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Filo del Destello'
+menu_title: '&f&#ffe9a8Filo del Destello'
 size: 54
 items:
   'resultado':
@@ -36,7 +36,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -53,7 +52,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

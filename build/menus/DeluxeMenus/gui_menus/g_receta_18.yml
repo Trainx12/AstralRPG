@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Grebas del Saqueador'
+menu_title: '&f&#ffe9a8Grebas del Saqueador'
 size: 54
 items:
   'resultado':
@@ -23,7 +23,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Grebas del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     item_flags:
@@ -48,7 +47,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -65,7 +63,6 @@ items:
     lore:
     - '&7Base de todas las armaduras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -80,7 +77,6 @@ items:
     lore:
     - '&7Gema oscura inicial.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Espada del Saqueador, Cuchillo de Aprendiz, Hacha d'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

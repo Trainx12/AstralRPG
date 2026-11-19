@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Talisman de Vida'
+menu_title: '&f&#ffe9a8Talisman de Vida'
 size: 54
 items:
   'c0':
@@ -26,7 +26,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: sin nivel'
-    - '&8Material para: Talisman de Vida II'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN TALISMÁN'
     - ''
@@ -55,7 +54,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: sin nivel'
-    - '&8Material para: Talisman de Vida III'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN TALISMÁN'
     - ''

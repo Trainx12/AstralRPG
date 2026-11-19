@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Chaqueta del Andariego'
+menu_title: '&f&#ffe9a8Chaqueta del Andariego'
 size: 54
 items:
   'resultado':
@@ -27,7 +27,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Chaqueta del Acechador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     item_flags:
@@ -60,7 +59,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Chaqueta del Andariego'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     item_flags:
@@ -76,7 +74,6 @@ items:
     lore:
     - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Titan, Coraza del Titan, Grebas del Titan, Botas del Titan, Capucha del Glaciar, Tunica del Glaciar, Faldones del Glaciar, Sandalias del Gla'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -92,7 +89,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

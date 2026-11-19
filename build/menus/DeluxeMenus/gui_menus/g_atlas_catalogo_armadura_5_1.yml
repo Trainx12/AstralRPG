@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8armadura 5 - 1/1'
+menu_title: '&f&#ffe9a8armadura 5 - 1/1'
 size: 54
 items:
   'c0':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Yelmo del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA CASCO'
     enchantments:
@@ -63,7 +62,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Coraza del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     item_flags:
@@ -94,7 +92,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Grebas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     enchantments:
@@ -127,7 +124,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Botas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     enchantments:
@@ -160,7 +156,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Yelmo del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA CASCO'
     - ''
@@ -203,7 +198,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Coraza del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     - ''
@@ -239,7 +233,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Grebas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     - ''
@@ -277,7 +270,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Botas del Titan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     - ''

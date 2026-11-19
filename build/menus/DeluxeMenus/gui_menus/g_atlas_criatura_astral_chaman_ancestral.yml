@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Gran Chaman Ancestral'
+menu_title: '&f&#ffe9a8Gran Chaman Ancestral'
 size: 54
 items:
   'retrato':
@@ -86,7 +86,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     - ''
     - '&#30241b2 × Alma Corrupta · 100%'
     enchantments:
@@ -104,7 +103,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     - ''
     - '&#30241b1 × Chispa Astral · 40%'
     enchantments:
@@ -122,7 +120,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Gema Umbria · 80%'
@@ -141,7 +138,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b3 × Esencia de Elite · 100%'
     enchantments:
@@ -219,7 +215,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     - ''
     - '&#30241b2 × Chispa Astral · 100%'
     enchantments:
@@ -237,7 +232,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     - ''
     - '&#30241b2 × Alma Corrupta · 100%'
     enchantments:

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Vindicator'
+menu_title: '&f&#ffe9a8Vindicator'
 size: 54
 items:
   'c0':
@@ -87,7 +87,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Nucleo Eolico · 10%'

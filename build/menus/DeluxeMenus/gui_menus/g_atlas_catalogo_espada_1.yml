@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8espada - 1/2'
+menu_title: '&f&#ffe9a8espada - 1/2'
 size: 54
 items:
   'c0':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Combate 12'
-    - '&8Material para: Espada del Carnicero, Espada del Heroe Errante'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ESPADA'
     item_flags:
@@ -44,7 +43,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Combate 16'
-    - '&8Material para: Espada Ensangrentada'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN ESPADA'
     item_flags:
@@ -70,7 +68,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Combate 20'
-    - '&8Material para: Espada del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA ESPADA'
     item_flags:
@@ -97,7 +94,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Combate 25'
-    - '&8Material para: Espada del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA ESPADA'
     item_flags:
@@ -123,7 +119,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Combate 30'
-    - '&8Material para: Hoja Siniestra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA ESPADA'
     item_flags:
@@ -149,7 +144,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Combate 35'
-    - '&8Material para: Daga del Rito Oscuro'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA ESPADA'
     item_flags:
@@ -173,7 +167,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Combate 12'
-    - '&8Material para: Espada del Carnicero, Espada del Heroe Errante'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ESPADA'
     - ''
@@ -204,7 +197,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Combate 16'
-    - '&8Material para: Espada Ensangrentada'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN ESPADA'
     - ''
@@ -235,7 +227,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Combate 20'
-    - '&8Material para: Espada del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA ESPADA'
     - ''
@@ -267,7 +258,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Combate 25'
-    - '&8Material para: Espada del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA ESPADA'
     - ''
@@ -298,7 +288,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Combate 30'
-    - '&8Material para: Hoja Siniestra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA ESPADA'
     - ''
@@ -329,7 +318,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Combate 35'
-    - '&8Material para: Daga del Rito Oscuro'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA ESPADA'
     - ''

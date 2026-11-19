@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Tunica del Hechicero'
+menu_title: '&f&#ffe9a8Tunica del Hechicero'
 size: 54
 items:
   'resultado':
@@ -24,7 +24,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Tunica del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN PECHERA'
     item_flags:
@@ -54,7 +53,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Tunica del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN PECHERA'
     item_flags:
@@ -70,7 +68,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -87,7 +84,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     enchantments:
     - 'unbreaking;1'
     item_flags:

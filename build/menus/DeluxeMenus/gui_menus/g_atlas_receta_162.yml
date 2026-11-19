@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha Doble de Jade'
+menu_title: '&f&#ffe9a8Hacha Doble de Jade'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Combate 35'
-    - '&8Material para: Hacha del Torbellino'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA HACHA'
     item_flags:
@@ -50,7 +49,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Combate 30'
-    - '&8Material para: Hacha Doble de Jade'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA HACHA'
     item_flags:
@@ -66,7 +64,6 @@ items:
     lore:
     - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Titan, Coraza del Titan, Grebas del Titan, Botas del Titan, Capucha del Glaciar, Tunica del Glaciar, Faldones del Glaciar, Sandalias del Gla'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -82,7 +79,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -99,7 +95,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

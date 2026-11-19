@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Gran Hacha del Verdugo'
+menu_title: '&f&#ffe9a8Gran Hacha del Verdugo'
 size: 54
 items:
   'resultado':
@@ -45,7 +45,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Combate 50'
-    - '&8Material para: Gran Hacha del Verdugo'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA HACHA'
     item_flags:
@@ -61,7 +60,6 @@ items:
     lore:
     - '&7Cae de mobs tier 10.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Destructor, Coraza del Destructor, Grebas del Destructor, Botas del Destructor, Capucha de la Absolucion, Tunica de la Absolucion, Faldones '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -77,7 +75,6 @@ items:
     lore:
     - '&7Cae de mobs tier 9 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Justiciero, Coraza del Justiciero, Grebas del Justiciero, Botas del Justiciero, Yelmo del Destructor, Coraza del Destructor, Grebas del Dest'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -93,7 +90,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -110,7 +106,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

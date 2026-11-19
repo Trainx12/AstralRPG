@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura I'
+menu_title: '&f&#ffe9a8Mago: armadura I'
 size: 54
 items:
   'c0':
@@ -34,7 +34,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Capucha del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     - ''
@@ -69,7 +68,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Tunica del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN PECHERA'
     - ''
@@ -104,7 +102,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Faldones del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     - ''
@@ -139,7 +136,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Sandalias del Hechicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN BOTAS'
     - ''

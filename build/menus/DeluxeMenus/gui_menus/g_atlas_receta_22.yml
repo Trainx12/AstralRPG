@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Grebas del Carnicero'
+menu_title: '&f&#ffe9a8Grebas del Carnicero'
 size: 54
 items:
   'resultado':
@@ -24,7 +24,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Grebas del Ensangrentado'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GREBAS'
     item_flags:
@@ -53,7 +52,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Grebas del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     item_flags:
@@ -69,7 +67,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -86,7 +83,6 @@ items:
     lore:
     - '&7Netherita fundida en un horno.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -102,7 +98,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

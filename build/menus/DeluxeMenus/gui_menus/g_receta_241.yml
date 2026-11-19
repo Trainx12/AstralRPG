@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Lanza del Principe Errante'
+menu_title: '&f&#ffe9a8Lanza del Principe Errante'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Combate 45'
-    - '&8Material para: Lanza del Heroe Dorado'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA LANZA'
     item_flags:
@@ -42,7 +41,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Combate 40'
-    - '&8Material para: Lanza del Principe Errante'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA LANZA'
     item_flags:
@@ -58,7 +56,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -74,7 +71,6 @@ items:
     lore:
     - '&7Cae de mobs tier 7 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -90,7 +86,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     enchantments:
     - 'unbreaking;1'
     item_flags:

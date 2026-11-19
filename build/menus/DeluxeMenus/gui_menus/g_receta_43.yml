@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Botas del Portador de Luz'
+menu_title: '&f&#ffe9a8Botas del Portador de Luz'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Botas de la Embestida'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     enchantments:
@@ -58,7 +57,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Botas del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     enchantments:
@@ -76,7 +74,6 @@ items:
     lore:
     - '&7Cae de mobs tier 7 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -92,7 +89,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

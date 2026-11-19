@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Pinguino de Hielo'
+menu_title: '&f&#ffe9a8Pinguino de Hielo'
 size: 54
 items:
   'retrato':
@@ -90,7 +90,6 @@ items:
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Fragmento de Cristal Arcano · 12%'

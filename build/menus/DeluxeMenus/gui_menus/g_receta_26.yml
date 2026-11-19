@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Grebas del Ensangrentado'
+menu_title: '&f&#ffe9a8Grebas del Ensangrentado'
 size: 54
 items:
   'resultado':
@@ -24,7 +24,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Grebas del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GREBAS'
     enchantments:
@@ -56,7 +55,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Grebas del Ensangrentado'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GREBAS'
     item_flags:
@@ -72,7 +70,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -89,7 +86,6 @@ items:
     lore:
     - '&7Metal de nivel intermedio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Yelmo del Coloso, Coraza del Coloso, Grebas del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -106,7 +102,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

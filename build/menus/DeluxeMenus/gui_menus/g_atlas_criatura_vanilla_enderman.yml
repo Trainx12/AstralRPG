@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Enderman'
+menu_title: '&f&#ffe9a8Enderman'
 size: 54
 items:
   'c0':
@@ -99,7 +99,6 @@ items:
     lore:
     - '&7Se procesa en 4 fragmentos.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
     - ''
     - '&#30241b1 × Cristal Arcano · 5%'
     enchantments:
@@ -117,7 +116,6 @@ items:
     lore:
     - '&7Cae de Endermans en el End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Polvo Astral'
     - ''
     - '&#30241b1 × Fragmento Astral · 20%'
     item_flags:

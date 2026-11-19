@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8armadura 4 - 1/1'
+menu_title: '&f&#ffe9a8armadura 4 - 1/1'
 size: 54
 items:
   'c0':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Yelmo del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA CASCO'
     enchantments:
@@ -61,7 +60,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Coraza del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     item_flags:
@@ -92,7 +90,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Grebas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GREBAS'
     enchantments:
@@ -125,7 +122,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Botas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BOTAS'
     enchantments:
@@ -158,7 +154,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Yelmo del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA CASCO'
     - ''
@@ -199,7 +194,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Coraza del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     - ''
@@ -235,7 +229,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Grebas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GREBAS'
     - ''
@@ -273,7 +266,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Botas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BOTAS'
     - ''

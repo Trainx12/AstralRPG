@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura IV'
+menu_title: '&f&#ffe9a8Berserker: armadura IV'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Yelmo del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA CASCO'
     - ''
@@ -76,7 +75,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Coraza del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     - ''
@@ -112,7 +110,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Grebas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GREBAS'
     - ''
@@ -150,7 +147,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Botas del Dios de la Guerra'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BOTAS'
     - ''

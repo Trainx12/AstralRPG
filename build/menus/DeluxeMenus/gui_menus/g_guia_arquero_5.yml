@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura V'
+menu_title: '&f&#ffe9a8Arquero: armadura V'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Capucha del Andariego'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Chaqueta del Andariego'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     - ''
@@ -107,7 +105,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Pantalones del Andariego'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     - ''
@@ -143,7 +140,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Botas del Andariego'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     - ''

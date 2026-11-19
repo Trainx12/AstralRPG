@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana del Carcelero'
+menu_title: '&f&#ffe9a8Guadana del Carcelero'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Hechiceria 37'
-    - '&8Material para: Guadana Osaria'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GUADAÑA'
     item_flags:
@@ -44,7 +43,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Hechiceria 32'
-    - '&8Material para: Guadana del Carcelero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GUADAÑA'
     item_flags:
@@ -60,7 +58,6 @@ items:
     lore:
     - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Titan, Coraza del Titan, Grebas del Titan, Botas del Titan, Capucha del Glaciar, Tunica del Glaciar, Faldones del Glaciar, Sandalias del Gla'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -76,7 +73,6 @@ items:
     lore:
     - '&7Endgame Berserker y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Guadana Astral, Guadana del Carc'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Taladro Divan'
+menu_title: '&f&#ffe9a8Taladro Divan'
 size: 54
 items:
   'resultado':
@@ -44,7 +44,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Mineria 35'
-    - '&8Material para: Taladro Divan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA TALADRO'
     item_flags:
@@ -60,7 +59,6 @@ items:
     lore:
     - '&7Material endgame universal.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Luminica Perfecta, Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Halcon A'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -77,7 +75,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     enchantments:
     - 'unbreaking;1'
     item_flags:

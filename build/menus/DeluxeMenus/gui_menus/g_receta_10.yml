@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Nucleo de Furia Pura'
+menu_title: '&f&#ffe9a8Nucleo de Furia Pura'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -27,7 +26,6 @@ items:
     lore:
     - '&7Cae de Piglin Brutes y Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Cristal Arcano Refinado'
+menu_title: '&f&#ffe9a8Cristal Arcano Refinado'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -27,7 +26,6 @@ items:
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

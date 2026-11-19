@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8armadura 6 - 1/1'
+menu_title: '&f&#ffe9a8armadura 6 - 1/1'
 size: 54
 items:
   'c0':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Yelmo del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     enchantments:
@@ -63,7 +62,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Coraza del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     item_flags:
@@ -94,7 +92,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Grebas del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     enchantments:
@@ -127,7 +124,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Botas del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     enchantments:
@@ -160,7 +156,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Yelmo del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     - ''
@@ -203,7 +198,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Coraza del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     - ''
@@ -239,7 +233,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Grebas del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     - ''
@@ -277,7 +270,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Botas del Portador de Luz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     - ''

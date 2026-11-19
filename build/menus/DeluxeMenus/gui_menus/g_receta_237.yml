@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Lanza del Vendaval'
+menu_title: '&f&#ffe9a8Lanza del Vendaval'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Combate 25'
-    - '&8Material para: Lanza Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA LANZA'
     item_flags:
@@ -48,7 +47,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Combate 20'
-    - '&8Material para: Lanza del Vendaval'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA LANZA'
     item_flags:
@@ -64,7 +62,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -80,7 +77,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

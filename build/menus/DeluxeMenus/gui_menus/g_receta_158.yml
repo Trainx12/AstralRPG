@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha del Verdugo'
+menu_title: '&f&#ffe9a8Hacha del Verdugo'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Combate 16'
-    - '&8Material para: Hacha Carmesi'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN HACHA'
     item_flags:
@@ -39,7 +38,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Combate 12'
-    - '&8Material para: Hacha del Verdugo'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN HACHA'
     item_flags:
@@ -55,7 +53,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -72,7 +69,6 @@ items:
     lore:
     - '&7Netherita fundida en un horno.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -88,7 +84,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

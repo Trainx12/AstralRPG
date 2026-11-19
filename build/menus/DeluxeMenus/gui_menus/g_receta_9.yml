@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Gema Umbria'
+menu_title: '&f&#ffe9a8Gema Umbria'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -27,7 +26,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons y Piglin Brutes.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -41,7 +39,6 @@ items:
     lore:
     - '&7Gema oscura inicial.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Espada del Saqueador, Cuchillo de Aprendiz, Hacha d'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Taladro de Gemas'
+menu_title: '&f&#ffe9a8Taladro de Gemas'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Mineria 35'
-    - '&8Material para: Taladro Divan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA TALADRO'
     item_flags:
@@ -42,7 +41,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Mineria 30'
-    - '&8Material para: Taladro de Gemas'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA TALADRO'
     item_flags:
@@ -58,7 +56,6 @@ items:
     lore:
     - '&7Endgame Arquero y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Glaciar, Tunica del Glaciar, Fal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -75,7 +72,6 @@ items:
     lore:
     - '&7Endgame Berserker y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Guadana Astral, Guadana del Carc'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -92,7 +88,6 @@ items:
     lore:
     - '&7Material de refinado astral.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Taladro de Gemas, Motosierra Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

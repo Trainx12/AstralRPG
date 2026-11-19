@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura VIII'
+menu_title: '&f&#ffe9a8Arquero: armadura VIII'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Capucha del Ojo de Tormenta'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Chaqueta del Ojo de Tormenta'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA PECHERA'
     - ''
@@ -107,7 +105,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Pantalones del Ojo de Tormenta'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GREBAS'
     - ''
@@ -143,7 +140,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Botas del Ojo de Tormenta'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA BOTAS'
     - ''

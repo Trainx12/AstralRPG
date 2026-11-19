@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura III'
+menu_title: '&f&#ffe9a8Berserker: armadura III'
 size: 54
 items:
   'c0':
@@ -34,7 +34,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Yelmo del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA CASCO'
     - ''
@@ -74,7 +73,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Coraza del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA PECHERA'
     - ''
@@ -109,7 +107,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Grebas del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GREBAS'
     - ''
@@ -146,7 +143,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Botas del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BOTAS'
     - ''

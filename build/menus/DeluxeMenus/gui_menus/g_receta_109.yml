@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Chaqueta del Viento'
+menu_title: '&f&#ffe9a8Chaqueta del Viento'
 size: 54
 items:
   'resultado':
@@ -27,7 +27,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Chaqueta del Halcon Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     item_flags:
@@ -59,7 +58,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Chaqueta del Viento'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA PECHERA'
     item_flags:
@@ -75,7 +73,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -92,7 +89,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     enchantments:
     - 'unbreaking;1'
     item_flags:

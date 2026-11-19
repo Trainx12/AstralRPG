@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana del Ritual'
+menu_title: '&f&#ffe9a8Guadana del Ritual'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Hechiceria 16'
-    - '&8Material para: Guadana del Vacio'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GUADAÑA'
     item_flags:
@@ -50,7 +49,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Hechiceria 12'
-    - '&8Material para: Guadana del Ritual'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GUADAÑA'
     item_flags:
@@ -66,7 +64,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -83,7 +80,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha del Coloso'
+menu_title: '&f&#ffe9a8Hacha del Coloso'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Combate 25'
-    - '&8Material para: Hacha del Apocalipsis'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA HACHA'
     item_flags:
@@ -44,7 +43,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Combate 20'
-    - '&8Material para: Hacha del Coloso'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA HACHA'
     item_flags:
@@ -60,7 +58,6 @@ items:
     lore:
     - '&7Metal de nivel intermedio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Yelmo del Coloso, Coraza del Coloso, Grebas del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -77,7 +74,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -94,7 +90,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

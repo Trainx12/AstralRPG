@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Piglin Brute'
+menu_title: '&f&#ffe9a8Piglin Brute'
 size: 54
 items:
   'c0':
@@ -87,7 +87,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons y Piglin Brutes.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
     - ''
     - '&#30241b1 × Fragmento Umbrio · 15%'
     item_flags:
@@ -103,7 +102,6 @@ items:
     lore:
     - '&7Cae de Piglin Brutes y Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
     - ''
     - '&#30241b1 × Nucleo de Furia · 6%'
     item_flags:
@@ -119,7 +117,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Gema Umbria · 2%'

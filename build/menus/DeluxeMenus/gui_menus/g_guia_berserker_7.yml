@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura VII'
+menu_title: '&f&#ffe9a8Berserker: armadura VII'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Yelmo de la Embestida'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     - ''
@@ -78,7 +77,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Coraza de la Embestida'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     - ''
@@ -114,7 +112,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Grebas de la Embestida'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     - ''
@@ -152,7 +149,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Botas de la Embestida'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA BOTAS'
     - ''

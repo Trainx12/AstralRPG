@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura II'
+menu_title: '&f&#ffe9a8Mago: armadura II'
 size: 54
 items:
   'c0':
@@ -34,7 +34,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Capucha del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN CASCO'
     - ''
@@ -69,7 +68,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Tunica del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN PECHERA'
     - ''
@@ -104,7 +102,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Faldones del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GREBAS'
     - ''
@@ -139,7 +136,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Sandalias del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN BOTAS'
     - ''

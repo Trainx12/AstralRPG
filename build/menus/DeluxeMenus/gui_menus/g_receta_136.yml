@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Espada del Saqueador'
+menu_title: '&f&#ffe9a8Espada del Saqueador'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Combate 12'
-    - '&8Material para: Espada del Carnicero, Espada del Heroe Errante'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ESPADA'
     item_flags:
@@ -34,7 +33,6 @@ items:
     lore:
     - '&7Gema oscura inicial.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Espada del Saqueador, Cuchillo de Aprendiz, Hacha d'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -49,7 +47,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura III'
+menu_title: '&f&#ffe9a8Arquero: armadura III'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Capucha del Viento'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA CASCO'
     - ''
@@ -72,7 +71,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Chaqueta del Viento'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA PECHERA'
     - ''
@@ -106,7 +104,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Pantalones del Viento'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GREBAS'
     - ''
@@ -142,7 +139,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Botas del Viento'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BOTAS'
     - ''

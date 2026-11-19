@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura VIII'
+menu_title: '&f&#ffe9a8Berserker: armadura VIII'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Yelmo del Justiciero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA CASCO'
     - ''
@@ -78,7 +77,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Coraza del Justiciero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA PECHERA'
     - ''
@@ -114,7 +112,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Grebas del Justiciero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     - ''
@@ -152,7 +149,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Botas del Justiciero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA BOTAS'
     - ''

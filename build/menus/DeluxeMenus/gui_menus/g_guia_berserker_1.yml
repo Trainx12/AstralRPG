@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker: armadura I'
+menu_title: '&f&#ffe9a8Berserker: armadura I'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Yelmo del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     - ''
@@ -67,7 +66,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Coraza del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN PECHERA'
     - ''
@@ -101,7 +99,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Grebas del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GREBAS'
     - ''
@@ -135,7 +132,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Botas del Carnicero'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN BOTAS'
     - ''

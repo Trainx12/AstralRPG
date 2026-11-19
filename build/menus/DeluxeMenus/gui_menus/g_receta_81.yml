@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Tunica Escarlata'
+menu_title: '&f&#ffe9a8Tunica Escarlata'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Defensa 30'
-    - '&8Material para: Tunica de la Escarcha'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     enchantments:
@@ -58,7 +57,6 @@ items:
     - '&7Tier: 6'
     - ''
     - '&cRequiere: Defensa 26'
-    - '&8Material para: Tunica Escarlata'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     enchantments:
@@ -76,7 +74,6 @@ items:
     lore:
     - '&7Cae de mobs tier 7 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -92,7 +89,6 @@ items:
     lore:
     - '&7Endgame Arquero y Mago.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Sabio Astral, Tunica del Sabio Astral, Faldones del Sabio Astral, Sandalias del Sabio Astral, Capucha del Glaciar, Tunica del Glaciar, Fal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

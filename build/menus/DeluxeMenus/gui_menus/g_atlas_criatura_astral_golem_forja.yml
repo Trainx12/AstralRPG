@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Golem de la Forja'
+menu_title: '&f&#ffe9a8Golem de la Forja'
 size: 54
 items:
   'retrato':
@@ -86,7 +86,6 @@ items:
     lore:
     - '&7Cae de Piglin Brutes y Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
     - ''
     - '&#30241b2 × Nucleo de Furia · 100%'
     item_flags:
@@ -102,7 +101,6 @@ items:
     lore:
     - '&7Netherita fundida en un horno.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
     - ''
     - '&#30241b1 × Netherita Fundida · 60%'
     enchantments:
@@ -120,7 +118,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     - ''
     - '&#30241b1 × Chispa Astral · 50%'
     enchantments:
@@ -138,7 +135,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b3 × Esencia de Elite · 100%'
     enchantments:

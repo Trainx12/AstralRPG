@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura IX'
+menu_title: '&f&#ffe9a8Mago: armadura IX'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Capucha de la Absolucion'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Tunica de la Absolucion'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA PECHERA'
     - ''
@@ -111,7 +109,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Faldones de la Absolucion'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     - ''
@@ -149,7 +146,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Defensa 38'
-    - '&8Material para: Sandalias de la Absolucion'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA BOTAS'
     - ''

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Motosierras (Tala)'
+menu_title: '&f&#ffe9a8Motosierras (Tala)'
 size: 54
 items:
   'c0':
@@ -28,7 +28,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Tala 5'
-    - '&8Material para: Motosierra Avanzada'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&f&lCOMÚN MOTOSIERRA'
     - ''
@@ -57,7 +56,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Tala 10'
-    - '&8Material para: Motosierra Industrial'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN MOTOSIERRA'
     - ''
@@ -86,7 +84,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Tala 16'
-    - '&8Material para: Motosierra Infernal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA MOTOSIERRA'
     - ''
@@ -115,7 +112,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Tala 24'
-    - '&8Material para: Motosierra Astral'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&5&lÉPICA MOTOSIERRA'
     - ''

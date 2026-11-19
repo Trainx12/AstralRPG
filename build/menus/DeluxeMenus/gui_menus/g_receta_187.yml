@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arco del Rastreador'
+menu_title: '&f&#ffe9a8Arco del Rastreador'
 size: 54
 items:
   'resultado':
@@ -22,7 +22,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Arqueria 8'
-    - '&8Material para: Arco del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ARCO'
     item_flags:
@@ -38,7 +37,6 @@ items:
     lore:
     - '&7Madera de los arboles del End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

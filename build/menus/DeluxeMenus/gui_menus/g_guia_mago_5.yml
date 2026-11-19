@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura V'
+menu_title: '&f&#ffe9a8Mago: armadura V'
 size: 54
 items:
   'c0':
@@ -34,7 +34,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Capucha del Glaciar'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA CASCO'
     - ''
@@ -71,7 +70,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Tunica del Glaciar'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     - ''
@@ -108,7 +106,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Faldones del Glaciar'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA GREBAS'
     - ''
@@ -145,7 +142,6 @@ items:
     - '&7Tier: 5'
     - ''
     - '&cRequiere: Defensa 22'
-    - '&8Material para: Sandalias del Glaciar'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     - ''

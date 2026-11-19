@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arco del Viento'
+menu_title: '&f&#ffe9a8Arco del Viento'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Arqueria 25'
-    - '&8Material para: Arco Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA ARCO'
     item_flags:
@@ -55,7 +54,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Arqueria 20'
-    - '&8Material para: Arco del Viento, Ballesta Pesada de Zafiro'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA ARCO'
     item_flags:
@@ -71,7 +69,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

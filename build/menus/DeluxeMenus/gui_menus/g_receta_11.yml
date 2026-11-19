@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Polvo Astral'
+menu_title: '&f&#ffe9a8Polvo Astral'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&7Material de refinado astral.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Taladro de Gemas, Motosierra Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -27,7 +26,6 @@ items:
     lore:
     - '&7Cae de Endermans en el End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Polvo Astral'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Tunica del Invocador'
+menu_title: '&f&#ffe9a8Tunica del Invocador'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Tunica del Archimago'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA PECHERA'
     enchantments:
@@ -57,7 +56,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Tunica del Invocador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN PECHERA'
     item_flags:
@@ -73,7 +71,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -90,7 +87,6 @@ items:
     lore:
     - '&7Madera de los arboles del End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Talisman de Roca II'
+menu_title: '&f&#ffe9a8Talisman de Roca II'
 size: 54
 items:
   'resultado':
@@ -16,7 +16,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: sin nivel'
-    - '&8Material para: Talisman de Roca III'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN TALISMÁN'
     enchantments:
@@ -40,7 +39,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: sin nivel'
-    - '&8Material para: Talisman de Roca II'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN TALISMÁN'
     enchantments:
@@ -58,7 +56,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -74,7 +71,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     enchantments:
     - 'unbreaking;1'
     item_flags:

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Momia Ancestral'
+menu_title: '&f&#ffe9a8Momia Ancestral'
 size: 54
 items:
   'retrato':
@@ -83,7 +83,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     - ''
     - '&#30241b1 × Alma Corrupta · 100%'
     enchantments:
@@ -101,7 +100,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     - ''
     - '&#30241b1 × Chispa Astral · 35%'
     enchantments:
@@ -119,7 +117,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     - ''
     - '&#30241b1 × Gema Luminica · 80%'
     enchantments:
@@ -137,7 +134,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b3 × Esencia de Elite · 100%'
     enchantments:

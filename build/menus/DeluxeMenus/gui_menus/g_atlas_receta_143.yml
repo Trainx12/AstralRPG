@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Espada Espectral Carmesi'
+menu_title: '&f&#ffe9a8Espada Espectral Carmesi'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Combate 45'
-    - '&8Material para: Mandoble de Obsidiana'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA ESPADA'
     item_flags:
@@ -50,7 +49,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Combate 40'
-    - '&8Material para: Espada Espectral Carmesi'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA ESPADA'
     item_flags:
@@ -66,7 +64,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -82,7 +79,6 @@ items:
     lore:
     - '&7Cae de mobs tier 7 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Portador de Luz, Coraza del Portador de Luz, Grebas del Portador de Luz, Botas del Portador de Luz, Yelmo de la Embestida, Coraza de la Embe'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -98,7 +94,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

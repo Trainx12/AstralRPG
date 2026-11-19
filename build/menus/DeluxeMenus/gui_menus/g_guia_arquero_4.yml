@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Arquero: armadura IV'
+menu_title: '&f&#ffe9a8Arquero: armadura IV'
 size: 54
 items:
   'c0':
@@ -33,7 +33,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Capucha del Halcon Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Chaqueta del Halcon Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     - ''
@@ -107,7 +105,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Pantalones del Halcon Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GREBAS'
     - ''
@@ -143,7 +140,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Botas del Halcon Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BOTAS'
     - ''

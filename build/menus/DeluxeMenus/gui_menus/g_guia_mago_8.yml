@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago: armadura VIII'
+menu_title: '&f&#ffe9a8Mago: armadura VIII'
 size: 54
 items:
   'c0':
@@ -35,7 +35,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Capucha de la Nebulosa'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA CASCO'
     - ''
@@ -73,7 +72,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Tunica de la Nebulosa'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA PECHERA'
     - ''
@@ -111,7 +109,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Faldones de la Nebulosa'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     - ''
@@ -149,7 +146,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Defensa 34'
-    - '&8Material para: Sandalias de la Nebulosa'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA BOTAS'
     - ''

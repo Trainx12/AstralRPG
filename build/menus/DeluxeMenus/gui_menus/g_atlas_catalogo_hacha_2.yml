@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8hacha - 2/2'
+menu_title: '&f&#ffe9a8hacha - 2/2'
 size: 54
 items:
   'c0':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Combate 40'
-    - '&8Material para: Hacha Doble Aurea'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA HACHA'
     item_flags:
@@ -42,7 +41,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Combate 45'
-    - '&8Material para: Hacha Marca de Fuego'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA HACHA'
     item_flags:
@@ -68,7 +66,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Combate 50'
-    - '&8Material para: Gran Hacha del Verdugo'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA HACHA'
     item_flags:
@@ -117,7 +114,6 @@ items:
     - '&7Tier: 7'
     - ''
     - '&cRequiere: Combate 40'
-    - '&8Material para: Hacha Doble Aurea'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA HACHA'
     - ''
@@ -146,7 +142,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Combate 45'
-    - '&8Material para: Hacha Marca de Fuego'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA HACHA'
     - ''
@@ -177,7 +172,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Combate 50'
-    - '&8Material para: Gran Hacha del Verdugo'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA HACHA'
     - ''

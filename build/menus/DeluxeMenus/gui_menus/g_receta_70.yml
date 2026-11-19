@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Faldones del Archimago'
+menu_title: '&f&#ffe9a8Faldones del Archimago'
 size: 54
 items:
   'resultado':
@@ -25,7 +25,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Defensa 18'
-    - '&8Material para: Faldones del Sabio Astral'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GREBAS'
     enchantments:
@@ -58,7 +57,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Defensa 14'
-    - '&8Material para: Faldones del Archimago'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GREBAS'
     enchantments:
@@ -76,7 +74,6 @@ items:
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hec'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -93,7 +90,6 @@ items:
     lore:
     - '&7Cae de Shulkers.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Capucha del Archimago, Tunica del Archimago, Faldones del Archimago, Sandalias del Archimago, Baston del Archimago'
     enchantments:
     - 'unbreaking;1'
     item_flags:

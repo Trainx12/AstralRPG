@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mapache Rabioso'
+menu_title: '&f&#ffe9a8Mapache Rabioso'
 size: 54
 items:
   'retrato':
@@ -90,7 +90,6 @@ items:
     lore:
     - '&7Base de todas las armaduras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Cuero Tratado · 15%'

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Donde se consiguen'
+menu_title: '&f&#ffe9a8Donde se consiguen'
 size: 54
 items:
   'c0':
@@ -22,7 +22,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
     - ''
     - '&7&l  Wither Skeleton (8%)'
     item_flags:
@@ -38,7 +37,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons y Piglin Brutes.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
     - ''
     - '&7&l  Wither Skeleton (15%); Piglin Brute'
     - '&7&l(15%)'
@@ -55,7 +53,6 @@ items:
     lore:
     - '&7Cae de Piglin Brutes y Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
     - ''
     - '&7&l  Wither Skeleton (6%); Piglin Brute (6%)'
     item_flags:
@@ -71,7 +68,6 @@ items:
     lore:
     - '&7Armas oscuras y mejoras.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Ensangrentado, Coraza del Ensangrentado, Grebas del Ensangrentado, Botas del Ensangrentado, Guadana del Ritual, Guadan'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&7&l  mobs del Nether (2%)'
@@ -90,7 +86,6 @@ items:
     lore:
     - '&7Se procesa en 4 fragmentos.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
     - ''
     - '&7&l  Enderman (5%)'
     enchantments:
@@ -108,7 +103,6 @@ items:
     lore:
     - '&7Cae de Endermans en el End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Polvo Astral'
     - ''
     - '&7&l  Enderman (20%, en el End)'
     item_flags:
@@ -124,7 +118,6 @@ items:
     lore:
     - '&7Cae de Shulkers.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Astral, Capucha del Archimago, Tunica del Archimago, Faldones del Archimago, Sandalias del Archimago, Baston del Archimago'
     - ''
     - '&7&l  Shulker (10%)'
     enchantments:
@@ -142,7 +135,6 @@ items:
     lore:
     - '&7Movilidad y arqueros.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Capucha del Viento, Chaqueta del Viento, Pantalones del Viento, Botas del Viento, Capucha del Andariego, Chaqueta del Andariego, Pantalones del Andari'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&7&l  Vindicator (10%)'
@@ -161,7 +153,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     - ''
     - '&7&l  cofres de estructuras del Overworld'
     - '&7&l(25%)'
@@ -180,7 +171,6 @@ items:
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&7&l  picando end stone en el End (4%)'
@@ -197,7 +187,6 @@ items:
     lore:
     - '&7Madera de los arboles del End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
     - ''
     - '&7&l  talando arboles o chorus en el End'
     item_flags:
@@ -213,7 +202,6 @@ items:
     lore:
     - '&7Netherita fundida en un horno.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
     - ''
     - '&7&l  lingote de netherita en el horno'
     enchantments:
@@ -231,7 +219,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&7&l  mobs elite (todos los tiers)'
     enchantments:
@@ -249,7 +236,6 @@ items:
     lore:
     - '&7Cae de Campeones y Pesadillas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Jaspe, Talisman de Vida II, Talisman de Furia II, Talisman del Viento II, Talisman de Roca II, Lanza Carmesi, Lanza del Vendaval'
     - ''
     - '&7&l  mobs elite Campeon, Pesadilla y Astral'
     enchantments:
@@ -267,7 +253,6 @@ items:
     lore:
     - '&7Cae de los mobs Astrales.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro Divan, Talisman de Vida III, Talisman de Furia III, Talisman del Viento III, Talisman de Roca III, Lanza Astral, Lanza de la Fortuna, Tridente'
     - ''
     - '&7&l  mobs elite Astral (60%)'
     enchantments:

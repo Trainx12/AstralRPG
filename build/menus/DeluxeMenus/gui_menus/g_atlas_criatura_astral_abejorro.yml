@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Armored Grub'
+menu_title: '&f&#ffe9a8Armored Grub'
 size: 54
 items:
   'retrato':
@@ -69,7 +69,6 @@ items:
     lore:
     - '&7Gema oscura inicial.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Espada del Saqueador, Cuchillo de Aprendiz, Hacha d'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Gema Umbria Fragmentada · 8%'
@@ -86,7 +85,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b1 × Esencia de Elite · 6%'
     enchantments:

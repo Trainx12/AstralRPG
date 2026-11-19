@@ -11,7 +11,7 @@ from final_base import select_base
 from guia_cofre import assets, portrait_assets
 from terceros import privado
 
-OUT = privado() / 'build/entregas/guia-cofre-19-11'
+OUT = privado() / 'build/entregas/guia-cofre-hd-19-11'
 DATAPACK = Path(__file__).resolve().parents[1] / 'build/AstralRPG-Items.zip'
 
 
@@ -25,9 +25,14 @@ def change(names, z):
     chars = {c for p in providers for c in (p.get('chars') or []) + list(p.get('advances', {}))}
     # Rearmar sin versiones viejas de la guia (si se corre dos veces sobre su propio FINAL).
     old = [p for p in font['providers'] if p.get('file') not in mine
+           and not p.get('file', '').startswith('astral:font/guia_astral/')
            and not ({c for c in (p.get('chars') or []) + list(p.get('advances', {}))} & chars)]
     font['providers'] = providers + old
     out = dict(files)
+    # Fondos viejos de la guia (version pixelada): se borran del pack.
+    for n in names:
+        if n.startswith('assets/astral/textures/font/guia_astral/') and n not in out:
+            out[n] = None
     out['assets/minecraft/font/default.json'] = json.dumps(font, ensure_ascii=False).encode()
     return out
 

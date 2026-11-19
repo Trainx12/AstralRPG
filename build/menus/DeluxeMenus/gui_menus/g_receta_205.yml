@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Varita del Estallido'
+menu_title: '&f&#ffe9a8Varita del Estallido'
 size: 54
 items:
   'resultado':
@@ -39,7 +39,6 @@ items:
     lore:
     - '&7Mango para armas avanzadas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Espada del Saqueador, Cuchillo de Aprendiz, Hacha del Desollador, Hacha del Verdugo, Hacha Carmesi, Hacha del Coloso, Hacha del Apocalipsis, Hacha Dob'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -54,7 +53,6 @@ items:
     lore:
     - '&7Se procesa en 4 fragmentos.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
     enchantments:
     - 'unbreaking;1'
     item_flags:

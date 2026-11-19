@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Capucha del Explorador'
+menu_title: '&f&#ffe9a8Capucha del Explorador'
 size: 54
 items:
   'resultado':
@@ -23,7 +23,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Defensa 10'
-    - '&8Material para: Capucha del Francotirador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN CASCO'
     item_flags:
@@ -51,7 +50,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Defensa 6'
-    - '&8Material para: Capucha del Explorador'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     item_flags:
@@ -67,7 +65,6 @@ items:
     lore:
     - '&7Madera de los arboles del End.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Capucha del Invocador, Tunica del Invocador, Faldones del Invocador, Sandalias del Invocador, Capucha del Rastreador, Chaqueta del Rast'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -81,7 +78,6 @@ items:
     lore:
     - '&7Se encuentra en cofres del Overworld.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo Eolico, Gema Luminica Perfecta, Capucha del Hechicero, Tunica del Hechicero, Faldones del Hechicero, Sandalias del Hechicero, Capucha del Explo'
     enchantments:
     - 'unbreaking;1'
     item_flags:

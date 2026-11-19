@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Fragmento de Cristal Arcano'
+menu_title: '&f&#ffe9a8Fragmento de Cristal Arcano'
 size: 54
 items:
   'resultado':
@@ -10,7 +10,6 @@ items:
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Cristal Arcano Refinado, Capucha del Aprendiz, Tunica del Aprendiz, Faldones del Aprendiz, Sandalias del Aprendiz, Baston del Aprendiz, Taladro de Ama'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -25,7 +24,6 @@ items:
     lore:
     - '&7Se procesa en 4 fragmentos.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Fragmento de Cristal Arcano, Varita del Estallido'
     enchantments:
     - 'unbreaking;1'
     item_flags:

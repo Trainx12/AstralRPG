@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Espada del Carnicero'
+menu_title: '&f&#ffe9a8Espada del Carnicero'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,6 @@ items:
     - '&7Tier: 2'
     - ''
     - '&cRequiere: Combate 16'
-    - '&8Material para: Espada Ensangrentada'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN ESPADA'
     item_flags:
@@ -44,7 +43,6 @@ items:
     - '&7Tier: 1'
     - ''
     - '&cRequiere: Combate 12'
-    - '&8Material para: Espada del Carnicero, Espada del Heroe Errante'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN ESPADA'
     item_flags:
@@ -60,7 +58,6 @@ items:
     lore:
     - '&7Equipamiento de Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Palo Reforzado, Yelmo del Saqueador, Coraza del Saqueador, Grebas del Saqueador, Botas del Saqueador, Yelmo del Carnicero, Coraza del Carnicero, Greba'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'
@@ -77,7 +74,6 @@ items:
     lore:
     - '&7Netherita fundida en un horno.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Netherita Reforzada, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Espada del Carnicero, Espada del Heroe Erra'
     enchantments:
     - 'unbreaking;1'
     item_flags:

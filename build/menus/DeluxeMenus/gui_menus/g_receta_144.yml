@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mandoble de Obsidiana'
+menu_title: '&f&#ffe9a8Mandoble de Obsidiana'
 size: 54
 items:
   'resultado':
@@ -21,7 +21,6 @@ items:
     - '&7Tier: 9'
     - ''
     - '&cRequiere: Combate 50'
-    - '&8Material para: Espada Esmeralda Nocturna'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA ESPADA'
     item_flags:
@@ -47,7 +46,6 @@ items:
     - '&7Tier: 8'
     - ''
     - '&cRequiere: Combate 45'
-    - '&8Material para: Mandoble de Obsidiana'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA ESPADA'
     item_flags:
@@ -63,7 +61,6 @@ items:
     lore:
     - '&7Cae de mobs tier 9 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo del Justiciero, Coraza del Justiciero, Grebas del Justiciero, Botas del Justiciero, Yelmo del Destructor, Coraza del Destructor, Grebas del Dest'
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -79,7 +76,6 @@ items:
     lore:
     - '&7Cae de mobs tier 8 o mas.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Yelmo de la Embestida, Coraza de la Embestida, Grebas de la Embestida, Botas de la Embestida, Yelmo del Justiciero, Coraza del Justiciero, Grebas del '
     enchantments:
     - 'unbreaking;1'
     item_flags:
@@ -95,7 +91,6 @@ items:
     lore:
     - '&7Endgame Berserker.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Perfecta, Yelmo del Dios de la Guerra, Coraza del Dios de la Guerra, Grebas del Dios de la Guerra, Botas del Dios de la Guerra, Yelmo del '
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     enchantments:
     - 'unbreaking;1'

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Motosierra Infernal'
+menu_title: '&f&#ffe9a8Motosierra Infernal'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,6 @@ items:
     - '&7Tier: 4'
     - ''
     - '&cRequiere: Tala 24'
-    - '&8Material para: Motosierra Astral'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&5&lÉPICA MOTOSIERRA'
     item_flags:
@@ -42,7 +41,6 @@ items:
     - '&7Tier: 3'
     - ''
     - '&cRequiere: Tala 16'
-    - '&8Material para: Motosierra Infernal'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA MOTOSIERRA'
     item_flags:
@@ -58,7 +56,6 @@ items:
     lore:
     - '&7Cae de Piglin Brutes y Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Nucleo de Furia Pura, Yelmo del Coloso, Coraza del Coloso, Grebas del Coloso, Botas del Coloso, Taladro de Rubi, Motosierra Infernal'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -72,7 +69,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Acero Sombrio, Yelmo del Carnicero, Coraza del Carnicero, Grebas del Carnicero, Botas del Carnicero, Motosierra Infernal'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

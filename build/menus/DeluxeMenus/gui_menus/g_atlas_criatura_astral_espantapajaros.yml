@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Espantapajaros Maldito'
+menu_title: '&f&#ffe9a8Espantapajaros Maldito'
 size: 54
 items:
   'retrato':
@@ -71,7 +71,6 @@ items:
     lore:
     - '&7Cae de mobs elite.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Taladro de Topacio, Motosierra Industrial, Talisman de Vida I, Talisman de Furia I, Talisman del Viento I, Talisman de Roca I, Lanza del Recluta, Lanz'
     - ''
     - '&#30241b1 × Esencia de Elite · 8%'
     enchantments:
@@ -89,7 +88,6 @@ items:
     lore:
     - '&7Cae de Wither Skeletons y Piglin Brutes.'
     - '&8Material de AstralRPG'
-    - '&8Material para: Gema Umbria Fragmentada, Gema Umbria'
     - ''
     - '&#30241b1 × Fragmento Umbrio · 10%'
     item_flags:
