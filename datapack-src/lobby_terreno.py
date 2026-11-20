@@ -392,6 +392,18 @@ def propose(world, original, bounds, config):
                 else:
                     changes[wx,y,wz]=choose(rock,noise(wx+y*.4,wz,4,config['seed']+2))
             foundation_columns+=1
+    # Junto a edificios/zonas protegidas la montaña se cortaba en pared recta
+    # (19/11). Con protected_slope la altura baja en pendiente hasta ese borde.
+    guard=config.get('protected_slope')
+    near=None
+    if guard:
+        limit=int((peak-floor)/guard)+2
+        near=np.full(h.shape,limit,dtype=np.int32)
+        reached=protected|excluded
+        for k in range(1,limit):
+            grown=dilate(reached,1)
+            near[grown & ~reached]=k
+            reached=grown
     for z,x in zip(*np.nonzero(mountain_mask)):
         wx,wz=int(x+x0),int(z+z0)
         f=1-distance[z,x]/config['width']
@@ -399,7 +411,21 @@ def propose(world, original, bounds, config):
         # Exponente alto = ladera tendida (degrade); bajo = pared. Desde el 19/11
         # el dueno quiere el degrade mirando al lobby: inner 1.1, outer .48.
         exponent=config.get('outer_exponent',1.1) if outward[z,x] else config.get('inner_exponent',.48)
-        top=floor+int((peak-floor)*f**exponent*rough)
+        top=(peak-floor)*f**exponent*rough
+        # detail (19/11): montañas desparejas, sin escalones regulares. Picos
+        # y pozos chicos + lomas medianas; mas fuerte arriba que al pie.
+        detail=config.get('detail',0)
+        if detail:
+            s=config['seed']
+            top+=(noise(wx,wz,3,s+40)-.5)*detail*(.5+f)
+            top+=(noise(wx,wz,7,s+41)-.5)*detail*1.6*f
+            top+=max(0,noise(wx,wz,5,s+44)-.72)*detail*5*f
+        top=floor+int(top)
+        if near is not None:
+            limit_top=guard*near[z,x]
+            if detail:
+                limit_top=limit_top*(.65+.7*noise(wx,wz,4,s+42))+(noise(wx,wz,2,s+43)-.5)*4
+            top=min(top,floor+int(limit_top))
         # Extender desde abajo sin cavidades; nunca borrar bloques existentes.
         bottom=int(h[z,x])+1 if h[z,x] > -32768 else underside_bottom(x,z)
         if bottom > top:
