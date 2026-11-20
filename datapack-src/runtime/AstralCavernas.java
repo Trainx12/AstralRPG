@@ -18,7 +18,11 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.block.BlockFace;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
@@ -285,6 +289,109 @@ public final class AstralCavernas extends JavaPlugin implements Listener {
         avance(e.getPlayer(), "veta", notaObjetivo.getOrDefault(n, ""), 1);
     }
 
+    // Taladro en area (20/11): en las Cavernas lo hace el plugin (el datapack no pica aca). Rompe TODO lo del plano como
+    // si lo picara el jugador (premios, comisiones, Polvo y campamento iguales). Piso/techo = cuadrado plano.
+    static final Pattern AREA = Pattern.compile("area:\\s*([0-9]+)");
+    boolean rompiendo;
+    static int[] rango(int n, boolean mas) {
+        int lo = n % 2 == 1 ? -(n / 2) : mas ? -(n / 2 - 1) : -(n / 2);
+        int[] r = new int[n]; for (int i = 0; i < n; i++) r[i] = lo + i; return r;
+    }
+    static BlockFace cardinal(float yaw) {
+        float y = ((yaw % 360) + 360) % 360;
+        return y >= 45 && y < 135 ? BlockFace.WEST : y >= 135 && y < 225 ? BlockFace.NORTH : y >= 225 && y < 315 ? BlockFace.EAST : BlockFace.SOUTH;
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true) public void area(BlockBreakEvent e) {
+        Player p = e.getPlayer();
+        if (rompiendo || !here(e.getBlock().getWorld()) || p.isSneaking() || p.getGameMode() == GameMode.SPECTATOR) return;
+        String c = comps(p.getInventory().getItemInMainHand());
+        if (!DRILL.matcher(c).find()) return;
+        Matcher m = AREA.matcher(c);
+        int a = m.find() ? Integer.parseInt(m.group(1)) : 1;
+        int[] d = switch (a) { case 2 -> new int[]{1, 2}; case 3 -> new int[]{2, 2}; case 4 -> new int[]{3, 3}; case 5 -> new int[]{4, 4}; default -> null; };
+        if (d == null) return;
+        Block b = e.getBlock(); Location eye = p.getEyeLocation();
+        BlockFace f = cardinal(eye.getYaw());
+        int fx = f.getModX(), fz = f.getModZ(), rx = -fz, rz = fx;      // adelante y derecha
+        List<int[]> offs = new ArrayList<>();
+        if (Math.abs(eye.getPitch()) >= 50) {                            // piso o techo: plano, crece hacia adelante
+            for (int u : rango(d[0], true)) for (int v : rango(d[1], true)) offs.add(new int[]{u * rx + v * fx, 0, u * rz + v * fz});
+        } else {                                                         // pared: crece hacia arriba salvo que este sobre la cabeza
+            boolean arriba = b.getY() <= p.getLocation().getBlockY() + 1;
+            for (int u : rango(d[0], true)) for (int v : rango(d[1], arriba)) offs.add(new int[]{u * rx, v, u * rz});
+        }
+        int bx = b.getX(), by = b.getY(), bz = b.getZ(); World w = b.getWorld();
+        Bukkit.getScheduler().runTask(this, () -> {
+            if (!p.isOnline() || !p.getWorld().equals(w)) return;
+            rompiendo = true;
+            try {
+                for (int[] o : offs) {
+                    if (o[0] == 0 && o[1] == 0 && o[2] == 0) continue;
+                    Block x = w.getBlockAt(bx + o[0], by + o[1], bz + o[2]);
+                    Material t = x.getType();
+                    if (t.isAir() || x.isLiquid() || t == Material.BEDROCK || t == Material.BARRIER || t.getHardness() < 0) continue;
+                    p.breakBlock(x);
+                }
+            } finally { rompiendo = false; }
+        });
+    }
+
+    // Picando una veta (20/11): la roca es oscura y las grietas casi no se ven. Mientras se pica: chispas del color de
+    // la gema, sonido de cristal y barra de avance en la barra de accion.
+    static final Color[] COLOR_GEMA = {Color.fromRGB(0xff3b4f), Color.fromRGB(0x3b7bff), Color.fromRGB(0x3bdc6a), Color.fromRGB(0xffb52e),
+        Color.fromRGB(0xb466ff), Color.fromRGB(0xf2ecff), Color.fromRGB(0x5a5a6e)};
+    static Color colorNota(int n) { return n == 14 ? Color.fromRGB(0xc7a0ff) : n == 15 ? Color.fromRGB(0x7fe0ff) : COLOR_GEMA[Math.min(6, n / 2)]; }
+    final Map<UUID, Integer> picando = new HashMap<>();
+    @EventHandler(ignoreCancelled = true) public void empieza(BlockDamageEvent e) {
+        Block b = e.getBlock(); Player p = e.getPlayer();
+        int n = nota(b);
+        if (!here(b.getWorld()) || n < 0 || e.getInstaBreak()) return;
+        Integer viejo = picando.remove(p.getUniqueId()); if (viejo != null) Bukkit.getScheduler().cancelTask(viejo);
+        Color col = colorNota(n); Location c = b.getLocation().add(.5, .5, .5);
+        Particle.DustOptions dust = new Particle.DustOptions(col, 1.1f);
+        float[] avance = {0}; int[] t = {0}; int[] id = {0};
+        id[0] = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            Block mira = p.isOnline() ? p.getTargetBlockExact(6) : null;
+            if (mira == null || !mira.equals(b) || nota(b) < 0 || t[0]++ > 400) { parar(p, id[0]); return; }
+            avance[0] = Math.min(1f, avance[0] + b.getBreakSpeed(p) * 2);
+            // chispas en la cara que mira el jugador
+            Location cara = c.clone().add(p.getEyeLocation().toVector().subtract(c.toVector()).normalize().multiply(0.55));
+            b.getWorld().spawnParticle(Particle.DUST, cara, 4, .22, .22, .22, 0, dust);
+            if (t[0] % 3 == 0) b.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, cara, 2, .15, .15, .15, .02);
+            if (t[0] % 2 == 0) b.getWorld().playSound(c, Sound.BLOCK_AMETHYST_BLOCK_HIT, .7f, .8f + avance[0] * .8f);
+            int llenos = Math.round(avance[0] * 12);
+            p.sendActionBar(color("&5⛏ &fPicando veta &8[" + "&d" + "|".repeat(llenos) + "&8" + "|".repeat(12 - llenos) + "&8]"));
+        }, 0, 2);
+        picando.put(p.getUniqueId(), id[0]);
+    }
+    void parar(Player p, int id) {
+        Bukkit.getScheduler().cancelTask(id);
+        picando.remove(p.getUniqueId(), id);
+    }
+    @EventHandler public void suelta(BlockDamageAbortEvent e) {
+        Integer id = picando.remove(e.getPlayer().getUniqueId()); if (id != null) Bukkit.getScheduler().cancelTask(id);
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true) public void rota(BlockBreakEvent e) {
+        int n = nota(e.getBlock());
+        if (!here(e.getBlock().getWorld()) || n < 0) return;
+        Integer id = picando.remove(e.getPlayer().getUniqueId()); if (id != null) Bukkit.getScheduler().cancelTask(id);
+        Location c = e.getBlock().getLocation().add(.5, .5, .5);
+        c.getWorld().spawnParticle(Particle.DUST, c, 25, .35, .35, .35, 0, new Particle.DustOptions(colorNota(n), 1.4f));
+        c.getWorld().playSound(c, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1f, 1f);
+    }
+
+    // Luz (20/11): la caverna es cerrada y muy oscura; adentro hay vision nocturna (sin particulas ni icono).
+    void luz(Player p) {
+        PotionEffect pe = p.getPotionEffect(PotionEffectType.NIGHT_VISION);
+        if (pe == null || pe.isAmbient() && pe.getDuration() < 300) p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 400, 0, true, false, false));
+    }
+    @EventHandler public void cambiaMundo(PlayerChangedWorldEvent e) {
+        Player p = e.getPlayer();
+        if (here(p.getWorld())) { luz(p); return; }
+        PotionEffect pe = p.getPotionEffect(PotionEffectType.NIGHT_VISION);
+        if (here(e.getFrom()) && pe != null && pe.isAmbient()) p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+    }
+
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void poner(BlockPlaceEvent e) {
         if (!here(e.getBlock().getWorld()) || builder(e.getPlayer())) return;
         Block b = e.getBlockPlaced();
@@ -314,6 +421,7 @@ public final class AstralCavernas extends JavaPlugin implements Listener {
     void polvoTick() {
         long ahora = System.currentTimeMillis();
         for (Player p : Bukkit.getOnlinePlayers()) {
+            if (here(p.getWorld())) luz(p);
             long hasta = p.getPersistentDataContainer().getOrDefault(polvoKey, PersistentDataType.LONG, 0L);
             if (hasta > ahora) {
                 p.addScoreboardTag("cav.polvo");

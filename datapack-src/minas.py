@@ -293,10 +293,17 @@ def install_commands():
           "mm reload",
           "#    Aldeanos de venta rapida y de viajes (dos por mina) desde la consola:"]
     for i in range(1, len(MINES) + 1):
-        x = (i - 1) * SPACING + VENDOR[0]
-        c.append(f"mm mobs spawn astral_npc_mina_venta 1 {WORLD},{x},{VENDOR[1]},{VENDOR[2]},{VENDOR[3]},0")
-        t = (i - 1) * SPACING + TRAVEL[0]
-        c.append(f"mm mobs spawn astral_npc_mina_viaje 1 {WORLD},{t},{TRAVEL[1]},{TRAVEL[2]},{TRAVEL[3]},0")
+        # 20/11: la decoracion del tier I (minas 1-6) subio el piso de la plataforma un bloque (Y 93 ocupado).
+        # Tier III (minas 14-20): sobre los faros de la decoracion (venta 98,93,63 / viajes 86,94,64).
+        dy = 1 if i <= len(ORES) else 0
+        b = (i - 1) * SPACING
+        if i > 2 * len(ORES) + 1:
+            v, t = (b + 98.5, 94, 63.5), (b + 86.5, 95, 64.5)
+        else:
+            v = (b + VENDOR[0], VENDOR[1] + dy, VENDOR[2])
+            t = (b + TRAVEL[0], TRAVEL[1] + dy, TRAVEL[2])
+        c.append(f"mm mobs spawn astral_npc_mina_venta 1 {WORLD},{v[0]},{v[1]},{v[2]},{VENDOR[3]},0")
+        c.append(f"mm mobs spawn astral_npc_mina_viaje 1 {WORLD},{t[0]},{t[1]},{t[2]},{TRAVEL[3]},0")
     lx, ly, lz, lyaw = LOBBY_NPC
     c += ["",
           "# 4) Aldeano del lobby (al lado de Expediciones). WorldGuard bloquea mobs en el lobby:",

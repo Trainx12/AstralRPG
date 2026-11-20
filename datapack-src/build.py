@@ -2324,6 +2324,8 @@ fn("tool/broke", [
     f"execute if predicate {NS}:sneaking run return 0",
     # Zonas protegidas: la misma lista que gameplay.py (mazmorras con sus mundos actuales).
     *[f'execute if dimension minecraft:{w} run return 0' for w in __import__('gameplay').PROTECTED],
+    # Cavernas de Cristal: el area la pica AstralCavernas (rompe todo, como el jugador).
+    f"execute if dimension minecraft:{CAVERNAS.WORLD} run return 0",
     "execute if score @s astral.tok matches ..0 run return 0",
     f"execute store result storage {NS}:tmp tool.x int 1 run scoreboard players get @s astral.tx",
     f"execute store result storage {NS}:tmp tool.y int 1 run scoreboard players get @s astral.ty",

@@ -140,18 +140,18 @@ rg flag -w astral_minas __global__ mob-spawning allow
 # 3) Subir build/mythicmobs/mobs/astral.yml (trae los aldeanos nuevos) y recargar:
 mm reload
 #    Aldeanos de venta rapida y de viajes (dos por mina) desde la consola:
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,94.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,84.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,606.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,596.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,1118.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1108.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,1630.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1620.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,2142.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2132.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,2654.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2644.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,94.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,84.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,606.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,596.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,1118.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1108.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,1630.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,1620.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,2142.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2132.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,2654.5,94,70.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,2644.5,94,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,3166.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,3156.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,3678.5,93,70.5,0,0

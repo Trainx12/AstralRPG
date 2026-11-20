@@ -990,6 +990,9 @@ function am_tool_area(tool: item) :: number:
         return 0
     loop lore of {_tool}:
         set {_l} to uncolored loop-value
+        # Ficha nueva (09/11): "Area de minado: 3x3" (con tilde) en lugar de "Rompe en area 3x3".
+        if {_l} contains "de minado":
+            set {_l} to "Rompe en area %{_l}%"
         if {_l} contains "Rompe en area":
             # Igual que AREA_NAMES en tools.py: 2 = 2x1, 3 = 2x2, 4 = 3x3, 5 = 4x4.
             if {_l} contains "4x4":
