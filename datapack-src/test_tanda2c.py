@@ -42,8 +42,8 @@ class Tanda2c(unittest.TestCase):
             self.assertIn('astral_npc_bosque_' + name, NPCS)
             x, y, z, yaw = pos
             self.assertEqual(y, bosque.GROUND + 1)
-            self.assertTrue(-8 <= math.floor(x) <= 119 and -8 <= math.floor(z) <= 119)
-            self.assertFalse(-7 <= math.floor(x) <= -3 and 53 <= math.floor(z) <= 59)
+            # Bosque nuevo 300x300 (20/11/2026): los NPC van sobre la plataforma del spawn.
+            self.assertTrue(0 <= math.floor(x) < bosque.SIZE and 0 <= math.floor(z) < bosque.SIZE)
             self.assertTrue(2 <= math.hypot(x - bosque.SPAWN[0], z - bosque.SPAWN[2]) <= 3)
             self.assertEqual(yaw, 90 if x > bosque.SPAWN[0] else -90)
         commands = bosque.install()
@@ -55,7 +55,7 @@ class Tanda2c(unittest.TestCase):
     def test_wood_prices_from_shop_only_and_shared_sale(self):
         catalog = json.loads((ROOT / 'datapack-src/services_catalog.json').read_text())
         prices, missing = bosque.wood_prices()
-        self.assertEqual(len(prices) + len(missing), 40)
+        self.assertEqual(len(prices) + len(missing), 5 * len(bosque.WOODS))
         for material, price in prices.items():
             self.assertEqual(price, catalog[material.upper()]['min'])
             self.assertNotIn('stem', material)

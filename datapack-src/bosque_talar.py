@@ -2,12 +2,13 @@
 
 python bosque_talar.py  ->  build/bosque/astral_bosque.sk y build/bosque/instalacion.txt
 
-Los arboles los genera Minecraft con `place feature` (formas naturales): no hay mapas de
-terceros. Cada arbol tiene un molde identico debajo (Y -60) en los mismos chunks; regenerar
-es un `clone ... masked` del molde a su lugar, 3 minutos despues de talarlo.
+Desde el 20/11/2026 el bosque es un recorte de 300 x 300 del mapa "Forested Plains" (terceros,
+privado): tools/bosque_mapa.py lo recorta y limpia, tools/bosque_armar.py arma el mundo en un Paper
+local y tools/bosque_arboles.py detecta los arboles. Todo el bosque tiene una copia identica 120
+bloques mas abajo (el molde). Regenerar un arbol es un `clone ... masked` de su caja del molde a su
+lugar, 3 minutos despues de talarlo. Las cajas salen de bosque_arboles.json (solo coordenadas).
 """
 import json
-import random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -15,20 +16,26 @@ OUT = ROOT / "build/bosque"
 WORLD = "astral_bosque"
 DIM = "minecraft:astral_bosque"
 
-CELL = 14            # cada arbol ocupa una celda de 14 x 14
-GRID = 8             # 8 x 8 = 64 arboles
-X0, Z0 = 0, 0        # esquina de la grilla
-GROUND = 64          # pasto del bosque; el arbol nace en Y 65
-MOLD = -60           # pasto de los moldes; el molde nace en Y -59
-HEIGHT = 41          # alto copiado (pasto + 40 de arbol)
-REGROW_MIN = 3       # minutos hasta que vuelve a crecer
-FALL_Y = 55
-SPAWN = (X0 - 4.5, GROUND + 1, Z0 + GRID * CELL / 2 + 0.5, -90)
-SEED = 87
-# Pasto dentro del piso -8..119; fuera de la plataforma de piedra (-7..-3, 53..59).
-VENDOR = (-1.5, 65, 56.5, 90)
-TRAVEL = (-7.5, 65, 56.5, -90)
-WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak', 'cherry', 'mangrove')
+SIZE = 300                     # el bosque ocupa x 0..299, z 0..299 (barreras en -1 y 300)
+LIVE_BOTTOM, LIVE_TOP = 58, 165
+MOLD_DY = -120                 # el molde de todo el bosque esta 120 bloques mas abajo (Y -62..45)
+# Arboles de Minecraft que se suman en los claros (el mapa trae roble, abeto, abedul, acacia,
+# roble oscuro y azalea).
+EXTRA_TREES = [("mega_spruce", 24), ("mega_pine", 12), ("cherry", 16), ("mega_jungle_tree", 6),
+               ("jungle_tree", 8), ("pale_oak", 8), ("super_birch_bees_0002", 10), ("fancy_oak", 8)]
+CLONE_LIMIT = 32768            # bloques por comando clone (gamerule por defecto)
+REGROW_MIN = 3                 # minutos hasta que vuelve a crecer
+FALL_Y = 50
+
+_DATA_FILE = Path(__file__).resolve().parent / 'bosque_arboles.json'
+_DATA = json.loads(_DATA_FILE.read_text(encoding='utf-8')) if _DATA_FILE.exists() else {'spawn': [80, 87, 218], 'arboles': []}
+ARBOLES = _DATA['arboles']
+GROUND = _DATA['spawn'][1]     # piso de la plataforma del spawn
+# Spawn mirando hacia el centro del bosque; venta y viajes a los costados, mirando al spawn.
+SPAWN = (_DATA['spawn'][0] + 0.5, GROUND + 1, _DATA['spawn'][2] + 0.5, -135)
+VENDOR = (SPAWN[0] + 3, GROUND + 1, SPAWN[2], 90)
+TRAVEL = (SPAWN[0] - 3, GROUND + 1, SPAWN[2], -90)
+WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak', 'cherry', 'mangrove', 'pale_oak')
 
 
 def wood_prices():
@@ -54,34 +61,62 @@ def services():
     return '\n'.join(lines) + '\n'
 
 
-# Pedido del dueno: muchos tipos, y los abetos gigantes son los que mas hay.
-TREES = [("mega_spruce", 22), ("mega_pine", 12), ("spruce", 4), ("pine", 2), ("oak", 4),
-         ("fancy_oak", 4), ("birch", 3), ("super_birch_bees_0002", 2), ("dark_oak", 3),
-         ("jungle_tree", 2), ("mega_jungle_tree", 2), ("acacia", 2), ("cherry", 3)]
 # Lo unico que se puede romper (texto del tipo de bloque en Skript, en ingles).
-BREAKABLE = ("log", "wood", "leaves", "stem", "hyphae", "vine", "cocoa", "bee nest")
+BREAKABLE = ("log", "wood", "leaves", "stem", "hyphae", "vine", "cocoa", "bee nest", "moss carpet", "hanging moss")
 
 
-def layout():
-    """Lista fija (semilla) de (i, j, feature): siempre el mismo bosque."""
-    names = [n for n, w in TREES for _ in range(w)]
-    rng = random.Random(SEED)
-    rng.shuffle(names)
-    while len(names) < GRID * GRID:
-        names.append(rng.choice([n for n, w in TREES for _ in range(w)]))
-    return [(i, j, names[i * GRID + j]) for i in range(GRID) for j in range(GRID)]
+def clones(box):
+    """Comandos clone (molde -> bosque) de la caja de un arbol, en tajadas si pasa el limite."""
+    x1, y1, z1, x2, y2, z2 = box
+    per = max(1, CLONE_LIMIT // ((x2 - x1 + 1) * (z2 - z1 + 1)))
+    out, y = [], y1
+    while y <= y2:
+        ye = min(y2, y + per - 1)
+        out.append(f"clone {x1} {y + MOLD_DY} {z1} {x2} {ye + MOLD_DY} {z2} {x1} {y} {z1} masked")
+        y = ye + 1
+    return out
 
 
-def center(i, j):
-    return X0 + i * CELL + CELL // 2, Z0 + j * CELL + CELL // 2
+def buckets():
+    """Chunk 'cx_cz' -> numeros de arbol cuya caja lo toca."""
+    out = {}
+    for n, t in enumerate(ARBOLES, 1):
+        x1, _, z1, x2, _, z2 = t['box']
+        for cx in range(x1 >> 4, (x2 >> 4) + 1):
+            for cz in range(z1 >> 4, (z2 >> 4) + 1):
+                out.setdefault(f"{cx}_{cz}", []).append(n)
+    return out
+
+
+def tree_data():
+    lines = ["on load:",
+             "    delete {-ab.x::*}", "    delete {-ab.y::*}", "    delete {-ab.z::*}",
+             "    delete {-ab.box::*}", "    delete {-ab.cl::*}", "    delete {-ab.k::*}"]
+    for n, t in enumerate(ARBOLES, 1):
+        bx, by, bz = t['base']
+        lines += [f"    set {{-ab.x::{n}}} to {bx}", f"    set {{-ab.y::{n}}} to {by}", f"    set {{-ab.z::{n}}} to {bz}",
+                  f'    set {{-ab.box::{n}}} to "{" ".join(map(str, t["box"]))}"']
+        for i, c in enumerate(clones(t['box']), 1):
+            lines.append(f'    set {{-ab.cl::{n}::{i}}} to "{c}"')
+    for k, ns in sorted(buckets().items()):
+        lines.append(f'    set {{-ab.k::{k}}} to "{",".join(map(str, ns))}"')
+    return lines
+
+
+def forceload(cmd):
+    """forceload de todo el bosque en cuatro partes (el comando acepta 256 chunks)."""
+    h = SIZE // 2
+    return [f'execute console command "execute in {DIM} run forceload {cmd} {xa} {za} {xb} {zb}"'
+            for xa, xb in ((0, h - 1), (h, SIZE - 1)) for za, zb in ((0, h - 1), (h, SIZE - 1))]
 
 
 def script():
-    size = GRID * CELL
     lines = [
         "# AstralRPG / Bosque Astral. Generado por datapack-src/bosque_talar.py: no editar a mano.",
-        f"# Arboles con molde en Y {MOLD}; regeneran {REGROW_MIN} min despues de talarlos (clone masked).",
-        "# Pendientes en memoria: {-ab.pend::i_j} = fecha en que se talo.",
+        f"# {len(ARBOLES)} arboles; molde de todo el bosque {-MOLD_DY} bloques mas abajo. Regeneran {REGROW_MIN} min",
+        "# despues de talarlos (clone masked de su caja). Pendientes en memoria: {-ab.pend::N} = fecha en que se talo.",
+        "",
+        *tree_data(),
         "",
         "function ab_world() :: world:",
         f'    return world "{WORLD}"',
@@ -89,14 +124,11 @@ def script():
         "function ab_spawn() :: location:",
         f"    return location({SPAWN[0]}, {SPAWN[1]}, {SPAWN[2]}, ab_world(), {SPAWN[3]}, 0)",
         "",
-        "# Celda del arbol (\"i_j\") o \"\" si esta fuera de la grilla.",
-        "function ab_cell(loc: location) :: text:",
-        f"    set {{_i}} to floor((x-coordinate of {{_loc}} - {X0}) / {CELL})",
-        f"    set {{_j}} to floor((z-coordinate of {{_loc}} - {Z0}) / {CELL})",
-        f"    if {{_i}} is between 0 and {GRID - 1}:",
-        f"        if {{_j}} is between 0 and {GRID - 1}:",
-        '            return "%{_i}%_%{_j}%"',
-        '    return ""',
+        "function ab_inside(loc: location) :: boolean:",
+        f"    if x-coordinate of {{_loc}} is between 0 and {SIZE}:",
+        f"        if z-coordinate of {{_loc}} is between 0 and {SIZE}:",
+        "            return true",
+        "    return false",
         "",
         "function ab_breakable(b: block) :: boolean:",
         '    set {_t} to "%type of {_b}%"',
@@ -105,17 +137,30 @@ def script():
     lines += [
         "    return false",
         "",
-        "# Copia el molde de la celda sobre el arbol. Devuelve true si el tronco volvio.",
-        "function ab_regrow(k: text) :: boolean:",
-        '    set {_p::*} to {_k} split at "_"',
-        "    set {_i} to {_p::1} parsed as integer",
-        "    set {_j} to {_p::2} parsed as integer",
-        f"    set {{_x}} to {X0} + {{_i}} * {CELL}",
-        f"    set {{_z}} to {Z0} + {{_j}} * {CELL}",
-        f"    set {{_x2}} to {{_x}} + {CELL - 1}",
-        f"    set {{_z2}} to {{_z}} + {CELL - 1}",
-        f'    execute console command "execute in {DIM} run clone %{{_x}}% {MOLD} %{{_z}}% %{{_x2}}% {MOLD + HEIGHT - 1} %{{_z2}}% %{{_x}}% {GROUND} %{{_z}}% masked"',
-        f"    set {{_c}} to location({{_x}} + {CELL // 2}, {GROUND + 1}, {{_z}} + {CELL // 2}, ab_world())",
+        "# Marca como talados los arboles cuya caja contiene el bloque. Si no es de ningun arbol",
+        "# (arbusto de hojas suelto), se anota el bloque solo y vuelve igual a los 3 minutos.",
+        "function ab_mark(loc: location):",
+        '    set {_ck} to "%floor(x-coordinate of {_loc} / 16)%_%floor(z-coordinate of {_loc} / 16)%"',
+        "    if {-ab.k::%{_ck}%} is set:",
+        '        loop split {-ab.k::%{_ck}%} at ",":',
+        "            set {_n} to loop-value",
+        '            set {_b::*} to split {-ab.box::%{_n}%} at " "',
+        "            if x-coordinate of {_loc} is between ({_b::1} parsed as number) and ({_b::4} parsed as number) + 1:",
+        "                if y-coordinate of {_loc} is between ({_b::2} parsed as number) and ({_b::5} parsed as number) + 1:",
+        "                    if z-coordinate of {_loc} is between ({_b::3} parsed as number) and ({_b::6} parsed as number) + 1:",
+        "                        set {_hit} to true",
+        "                        if {-ab.pend::%{_n}%} is not set:",
+        "                            set {-ab.pend::%{_n}%} to now",
+        "    if {_hit} is not set:",
+        '        set {-ab.suelto::%floor(x-coordinate of {_loc})% %floor(y-coordinate of {_loc})% %floor(z-coordinate of {_loc})%} to now',
+        "",
+        "# Copia el molde del arbol N sobre el. Devuelve true si el tronco volvio.",
+        "function ab_regrow(n: text) :: boolean:",
+        "    set {_c} to location({-ab.x::%{_n}%}, {-ab.y::%{_n}%}, {-ab.z::%{_n}%}, ab_world())",
+        "    if chunk at {_c} is not loaded:",
+        "        return false",
+        "    loop {-ab.cl::%{_n}%::*}:",
+        f'        execute console command "execute in {DIM} run %loop-value%"',
         "    if block at {_c} is air:",
         "        return false",
         "    return true",
@@ -136,15 +181,13 @@ def script():
         "    if player's gamemode is creative:",
         '        if player has permission "astral.minas.admin":',
         "            stop",
-        '    set {_k} to ab_cell(location of event-block)',
-        '    if {_k} is "":',
+        "    if ab_inside(location of event-block) is false:",
         "        cancel event",
         "        stop",
         "    if ab_breakable(event-block) is false:",
         "        cancel event",
         "        stop",
-        "    if {-ab.pend::%{_k}%} is not set:",
-        "        set {-ab.pend::%{_k}%} to now",
+        "    ab_mark(location of event-block)",
         "",
         "on uncancelled break with priority monitor:",
         f'    if name of world of event-block is not "{WORLD}":',
@@ -219,117 +262,70 @@ def script():
         "every 5 seconds:",
         "    if ab_world() is not set:",
         "        stop",
-        "    set {_i} to 0",
-        f"    while {{_i}} < {GRID}:",
-        "        set {_j} to 0",
-        f"        while {{_j}} < {GRID}:",
-        '            set {_k} to "%{_i}%_%{_j}%"',
-        "            if {-ab.pend::%{_k}%} is not set:",
-        f"                set {{_x}} to {X0} + {{_i}} * {CELL} + {CELL // 2}",
-        f"                set {{_z}} to {Z0} + {{_j}} * {CELL} + {CELL // 2}",
-        f"                set {{_live}} to location({{_x}}, {GROUND + 1}, {{_z}}, ab_world())",
-        f"                set {{_mold}} to location({{_x}}, {MOLD + 1}, {{_z}}, ab_world())",
-        "                if chunk at {_live} is loaded:",
-        "                    if block at {_live} is air:",
-        "                        if block at {_mold} is not air:",
-        "                            set {-ab.pend::%{_k}%} to now",
-        "            add 1 to {_j}",
-        "        add 1 to {_i}",
+        "    loop indices of {-ab.x::*}:",
+        "        set {_n} to loop-value",
+        "        if {-ab.pend::%{_n}%} is not set:",
+        "            set {_l} to location({-ab.x::%{_n}%}, {-ab.y::%{_n}%}, {-ab.z::%{_n}%}, ab_world())",
+        "            if chunk at {_l} is loaded:",
+        "                if block at {_l} is air:",
+        "                    set {-ab.pend::%{_n}%} to now",
         "    loop indices of {-ab.pend::*}:",
         "        set {_k} to loop-value",
         f"        if difference between {{-ab.pend::%{{_k}}%}} and now >= {REGROW_MIN} minutes:",
         "            if ab_regrow({_k}) is true:",
         "                delete {-ab.pend::%{_k}%}",
+        "    loop indices of {-ab.suelto::*}:",
+        "        set {_k} to loop-value",
+        f"        if difference between {{-ab.suelto::%{{_k}}%}} and now >= {REGROW_MIN} minutes:",
+        '            set {_p::*} to split {_k} at " "',
+        "            set {_l} to location(({_p::1} parsed as number), ({_p::2} parsed as number), ({_p::3} parsed as number), ab_world())",
+        "            if chunk at {_l} is loaded:",
+        f"                set {{_my}} to ({{_p::2}} parsed as number) + ({MOLD_DY})",
+        f'                execute console command "execute in {DIM} run clone %{{_p::1}}% %{{_my}}% %{{_p::3}}% %{{_p::1}}% %{{_my}}% %{{_p::3}}% %{{_k}}% masked"',
+        "                delete {-ab.suelto::%{_k}%}",
         "",
         "# ---------------------------------------------------------------- admin",
         "",
-        "command /bosquegenerar:",
+        "command /bosquereset:",
         '    permission: astral.minas.admin',
         "    trigger:",
-        f'        send "&eGenerando el Bosque Astral ({GRID * GRID} arboles)..." to command sender',
-        f'        execute console command "execute in {DIM} run forceload add {X0 - 16} {Z0 - 16} {X0 + size + 15} {Z0 + size + 15}"',
+        '        send "&eRegenerando todos los arboles del Bosque Astral..." to command sender',
+        *["        " + c for c in forceload("add")],
         "        wait 3 seconds",
+        "        set {_i} to 0",
+        "        loop indices of {-ab.x::*}:",
+        "            ab_regrow(loop-value)",
+        "            add 1 to {_i}",
+        "            if mod({_i}, 20) is 0:",
+        "                wait 1 tick",
+        *["        " + c for c in forceload("remove")],
+        "        delete {-ab.pend::*}",
+        '        send "&aArboles regenerados: %{_i}%." to command sender',
     ]
-    # Piso del bosque y de los moldes (en partes para no pasar el limite de fill).
-    lo, hi = X0 - 8, X0 + size + 7
-    half = (lo + hi) // 2
-    zl, zh = Z0 - 8, Z0 + size + 7
-    zhalf = (zl + zh) // 2
-    for xa, xb in ((lo, half), (half + 1, hi)):
-        for za, zb in ((zl, zhalf), (zhalf + 1, zh)):
-            lines += [f'        execute console command "execute in {DIM} run fill {xa} {GROUND - 3} {za} {xb} {GROUND - 1} {zb} minecraft:dirt"',
-                      f'        execute console command "execute in {DIM} run fill {xa} {GROUND} {za} {xb} {GROUND} {zb} minecraft:grass_block"']
-    sx, sy, sz, _ = SPAWN
-    lines += [f'        execute console command "execute in {DIM} run fill {int(sx) - 3} {GROUND} {int(sz) - 3} {int(sx) + 1} {GROUND} {int(sz) + 3} minecraft:mossy_stone_bricks"',
-              f'        execute console command "execute in {DIM} run fill {X0} {MOLD - 1} {Z0} {X0 + size - 1} {MOLD - 1} {Z0 + size - 1} minecraft:dirt"',
-              f'        execute console command "execute in {DIM} run fill {X0} {MOLD} {Z0} {X0 + size - 1} {MOLD} {Z0 + size - 1} minecraft:grass_block"',
-              "        wait 1 second"]
-    for i, j, feature in layout():
-        x, z = center(i, j)
-        lines += [f'        execute console command "execute in {DIM} run place feature minecraft:{feature} {x} {MOLD + 1} {z}"',
-                  "        wait 2 ticks"]
-    lines += ["        wait 1 second",
-              "        set {_i} to 0",
-              f"        while {{_i}} < {GRID}:",
-              "            set {_j} to 0",
-              f"            while {{_j}} < {GRID}:",
-              '                ab_regrow("%{_i}%_%{_j}%")',
-              "                wait 2 ticks",
-              "                add 1 to {_j}",
-              "            add 1 to {_i}",
-              f'        execute console command "execute in {DIM} run forceload remove {X0 - 16} {Z0 - 16} {X0 + size + 15} {Z0 + size + 15}"',
-              "        delete {-ab.pend::*}",
-              '        send "&aBosque generado. Revisar que no falten arboles (los que fallan quedan sin molde)." to command sender',
-              "",
-              "command /bosquereset:",
-              '    permission: astral.minas.admin',
-              "    trigger:",
-              "        set {_i} to 0",
-              f"        while {{_i}} < {GRID}:",
-              "            set {_j} to 0",
-              f"            while {{_j}} < {GRID}:",
-              '                ab_regrow("%{_i}%_%{_j}%")',
-              "                add 1 to {_j}",
-              "            add 1 to {_i}",
-              "        delete {-ab.pend::*}",
-              '        send "&aArboles regenerados." to command sender']
     return services() + "\n".join(lines) + "\n"
 
 
 def install():
     lines = [
         "# Bosque Astral (generado por datapack-src/bosque_talar.py). Ver docs/BOSQUE.md.",
-        "# 1) Crear el mundo vacio una sola vez, desde la consola:",
-        f'mv create {WORLD} normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {{"layers":[{{"block":"minecraft:air","height":1}}],"biome":"minecraft:the_void"}}',
-        f"mv modify {WORLD} set pvp false",
-        f"mv modify {WORLD} set hunger false",
-        f"mv modify {WORLD} set gamemode survival",
-        f"mv modify {WORLD} set allow-weather false",
-        f"mv gamerule set minecraft:spawn_mobs false {WORLD}",
-        f"mv gamerule set minecraft:keep_inventory true {WORLD}",
-        f"mv gamerule set minecraft:advance_time false {WORLD}",
+        "# Bosque nuevo 300x300 (20/11/2026). El mundo astral_bosque ya existe en el server: no se crea de nuevo.",
+        "# 1) Con el server APAGADO: borrar world/dimensions/minecraft/astral_bosque/{region,entities,poi}",
+        "#    y subir las regiones de .local/bosque-mapas/entrega/region/ (privadas, nunca al repo).",
+        "# 2) Subir build/bosque/astral_bosque.sk a plugins/Skript/scripts/ y prender el server.",
+        "# 3) Desde la consola:",
         f"mv gamerule set minecraft:random_tick_speed 0 {WORLD}",
-        f"rg flag -w {WORLD} __global__ chest-access deny",
-        f"rg flag -w {WORLD} __global__ pistons deny",
-        f"rg flag -w {WORLD} __global__ mob-spawning deny",
-        "",
-        "# 2) Subir build/bosque/astral_bosque.sk a plugins/Skript/scripts/ y el astral_minas.sk nuevo",
-        "#    (boton Bosque en /minas). Despues:",
-        "skript reload astral_bosque",
-        "skript reload astral_minas",
-        "# 3) Generar los arboles y sus moldes (unos 30 segundos):",
-        "bosquegenerar",
-        f"# 4) Revisar parado en el spawn ({SPAWN[0]} {SPAWN[1]} {SPAWN[2]}) que esten los {GRID * GRID} arboles.",
-        "#    Con /bosquereset se vuelven a copiar todos los moldes.",
+        f"rg flag -w {WORLD} __global__ mob-spawning allow",
     ]
-    lines += ["", "# Actualizacion: no regenerar el mundo ni los arboles existentes.",
-              "# Subir tambien build/mythicmobs/mobs/astral.yml y recargar:", "mm reload",
-              f"rg flag -w {WORLD} __global__ mob-spawning allow"]
     for name, pos in (("venta", VENDOR), ("viaje", TRAVEL)):
         x, y, z, yaw = pos
         lines += [f"mm mobs kill astral_npc_bosque_{name}",
                   f"mm mobs spawn astral_npc_bosque_{name} 1 {WORLD},{x},{y},{z},{yaw},0"]
     lines += [f"rg flag -w {WORLD} __global__ mob-spawning deny",
+              "# Cartel del ranking del Bosque (rankings.py):",
+              f"execute in {DIM} run summon text_display {SPAWN[0] - 3} {SPAWN[1] + 2.4} {SPAWN[2]} "
+              "{Tags:['astral_rank','astral_rank_bosque'],billboard:'center',alignment:'center',line_width:240,"
+              "background:1711276032,text:{text:'Ranking',color:'gold'}}",
+              "# Con /bosquereset se vuelven a copiar todos los arboles desde el molde.",
               "# Precios sin referencia fija en services_catalog.json (pendientes; no se venden):",
               "# " + ", ".join(wood_prices()[1])]
     return "\n".join(lines) + "\n"
@@ -339,10 +335,7 @@ def generate():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "astral_bosque.sk").write_text(script(), encoding="utf-8")
     (OUT / "instalacion.txt").write_text(install(), encoding="utf-8")
-    counts = {}
-    for _, _, f in layout():
-        counts[f] = counts.get(f, 0) + 1
-    print(f"bosque: {GRID * GRID} arboles {counts}")
+    print(f"bosque: {len(ARBOLES)} arboles, spawn {SPAWN}")
 
 
 if __name__ == "__main__":

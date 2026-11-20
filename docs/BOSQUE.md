@@ -1,5 +1,37 @@
 # Bosque Astral (tala con motosierras)
 
+## Bosque nuevo 300 x 300 (20/11/2026)
+
+El dueño pidió reemplazar la grilla de 64 árboles por un mapa. Se compararon tres mapas de
+terceros (Forest Island, Ambertry Forest y Forested Plains) y se eligió **Forested Plains**:
+árboles grandes y variados (roble, abeto, acacia, abedul, roble oscuro, azalea), lagunas y
+arroyos, sin cofres ni spawners. Forest Island era 1.12 y solo roble; Ambertry eran 4 arbolitos
+repetidos con estructuras vanilla abajo.
+
+- **Recorte:** x 210..509, z −510..−211 del mapa original → x 0..299, z 0..299 de `astral_bosque`
+  (Y 58..165). `tools/bosque_mapa.py` tapa cuevas, cambia la piedra oscura del suelo por tierra
+  gruesa/podzol/tierra con raíces/musgo, deja las hojas persistentes, arma la plataforma del spawn
+  y elige claros para **92 árboles de Minecraft extra** (abetos y pinos gigantes, cerezos, jungla,
+  roble pálido, abedul alto, roble grande). Mapa original y regiones: solo en `.local/bosque-mapas/`.
+- **Armado:** `tools/bosque_armar.py --java <java25> --base .local/testsrv` arma el mundo en un
+  Paper local: molde completo 120 bloques más abajo (Y −62..45), árboles extra en el molde, copia
+  arriba y **borde de barreras** en x/z −1 y 300 (Y 58..200), como en las mazmorras. Bioma forest.
+- **Árboles:** `tools/bosque_arboles.py` detecta 443 árboles (troncos unidos + sus hojas; ramas
+  sueltas se suman al árbol) y escribe `datapack-src/bosque_arboles.json` (solo coordenadas).
+- **Regeneración:** igual que antes, 3 minutos: tronco más bajo vacío o bloque roto a mano dentro
+  de la caja → `clone ... masked` de la caja desde el molde. Hojas sueltas (arbustos) rotas a mano
+  vuelven bloque por bloque. `/bosquereset` regenera todo.
+- **Spawn:** plataforma de piedra con musgo en (80.5, 88, 218.5) mirando al centro; venta y viajes
+  a 3 bloques a cada lado; cartel de ranking encima de viajes.
+- **Ensayo:** `tools/probar_bosque_paper.py` carga el script con Skript, tala 6 árboles sin eventos
+  (como la motosierra) y comprueba que vuelven. 20/11: sin errores, 2265 bloques recuperados.
+- **Instalar:** `build/deploy/bosque-nuevo-20-11.md`.
+
+Lo que sigue describe el bosque viejo (grilla 8 × 8); venta, motosierra, protección y recolección
+siguen igual.
+
+## Bosque viejo (08/11/2026)
+
 Pedido del dueño (08/11/2026): un bosque para talar, con muchos tipos de árboles, sobre todo abetos
 gigantes, que vuelven a crecer **3 minutos** después de talarlos. Todo sale de
 `datapack-src/bosque_talar.py` → `build/bosque/astral_bosque.sk` y `build/bosque/instalacion.txt`.

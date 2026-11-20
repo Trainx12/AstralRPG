@@ -1,35 +1,18 @@
 # Bosque Astral (generado por datapack-src/bosque_talar.py). Ver docs/BOSQUE.md.
-# 1) Crear el mundo vacio una sola vez, desde la consola:
-mv create astral_bosque normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
-mv modify astral_bosque set pvp false
-mv modify astral_bosque set hunger false
-mv modify astral_bosque set gamemode survival
-mv modify astral_bosque set allow-weather false
-mv gamerule set minecraft:spawn_mobs false astral_bosque
-mv gamerule set minecraft:keep_inventory true astral_bosque
-mv gamerule set minecraft:advance_time false astral_bosque
+# Bosque nuevo 300x300 (20/11/2026). El mundo astral_bosque ya existe en el server: no se crea de nuevo.
+# 1) Con el server APAGADO: borrar world/dimensions/minecraft/astral_bosque/{region,entities,poi}
+#    y subir las regiones de .local/bosque-mapas/entrega/region/ (privadas, nunca al repo).
+# 2) Subir build/bosque/astral_bosque.sk a plugins/Skript/scripts/ y prender el server.
+# 3) Desde la consola:
 mv gamerule set minecraft:random_tick_speed 0 astral_bosque
-rg flag -w astral_bosque __global__ chest-access deny
-rg flag -w astral_bosque __global__ pistons deny
-rg flag -w astral_bosque __global__ mob-spawning deny
-
-# 2) Subir build/bosque/astral_bosque.sk a plugins/Skript/scripts/ y el astral_minas.sk nuevo
-#    (boton Bosque en /minas). Despues:
-skript reload astral_bosque
-skript reload astral_minas
-# 3) Generar los arboles y sus moldes (unos 30 segundos):
-bosquegenerar
-# 4) Revisar parado en el spawn (-4.5 65 56.5) que esten los 64 arboles.
-#    Con /bosquereset se vuelven a copiar todos los moldes.
-
-# Actualizacion: no regenerar el mundo ni los arboles existentes.
-# Subir tambien build/mythicmobs/mobs/astral.yml y recargar:
-mm reload
 rg flag -w astral_bosque __global__ mob-spawning allow
 mm mobs kill astral_npc_bosque_venta
-mm mobs spawn astral_npc_bosque_venta 1 astral_bosque,-1.5,65,56.5,90,0
+mm mobs spawn astral_npc_bosque_venta 1 astral_bosque,83.5,88,218.5,90,0
 mm mobs kill astral_npc_bosque_viaje
-mm mobs spawn astral_npc_bosque_viaje 1 astral_bosque,-7.5,65,56.5,-90,0
+mm mobs spawn astral_npc_bosque_viaje 1 astral_bosque,77.5,88,218.5,-90,0
 rg flag -w astral_bosque __global__ mob-spawning deny
+# Cartel del ranking del Bosque (rankings.py):
+execute in minecraft:astral_bosque run summon text_display 77.5 90.4 218.5 {Tags:['astral_rank','astral_rank_bosque'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}
+# Con /bosquereset se vuelven a copiar todos los arboles desde el molde.
 # Precios sin referencia fija en services_catalog.json (pendientes; no se venden):
-# stripped_cherry_log, stripped_cherry_wood, stripped_mangrove_log, stripped_mangrove_wood
+# stripped_cherry_log, stripped_cherry_wood, stripped_mangrove_log, stripped_mangrove_wood, stripped_pale_oak_log, stripped_pale_oak_wood
