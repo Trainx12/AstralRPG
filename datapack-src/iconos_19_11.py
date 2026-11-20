@@ -73,8 +73,16 @@ MATERIALS = {
     'alma_corrupta': ('elites', (700, 120, 1080, 610)),
     'chispa_astral': ('elites', (1200, 120, 1735, 620)),
 }
+# Talismanes (lamina del dueno 20/11): columnas I-III, filas vida/furia/viento/roca. 32x32 como los materiales.
+_TAL_X = ((285, 495), (530, 800), (825, 1135))
+_TAL_Y = {'vida': (195, 410), 'furia': (410, 630), 'viento': (630, 875), 'roca': (875, 1160)}
+MATERIALS.update({
+    f'talisman_{kind}_{n + 1}': ('talismanes', (x0, y0, x1, y1))
+    for kind, (y0, y1) in _TAL_Y.items() for n, (x0, x1) in enumerate(_TAL_X)
+})
 TOOL_SIZE = 64
 MATERIAL_SIZE = 32
+HOLES = {'talismanes'}
 
 
 def _bg_mask(rgb, tol=12):
@@ -142,6 +150,11 @@ def cut(sheet, box):
     im = Image.open(REF / f'{sheet}.png').convert('RGB').crop(box)
     rgb = np.asarray(im)
     fg = ~_bg_mask(rgb)
+    if sheet in HOLES:
+        # Huecos de fondo encerrados por el dibujo (la pluma del Viento II): tambien son transparentes.
+        border = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]]).astype(int)
+        near = np.abs(rgb.astype(int) - np.median(border, axis=0)).max(axis=2) <= 12
+        fg &= ~_drop_specks(near & fg, 150)
     fg = _drop_specks(fg, 40)
     rgba = np.dstack([rgb, (fg * 255).astype(np.uint8)])
     out = Image.fromarray(rgba, 'RGBA')
@@ -183,8 +196,10 @@ def sprite(iid):
 HAND_DISPLAY = {
     'thirdperson_righthand': {'rotation': [0, -90, -90], 'translation': [0, 3.5, 4.1], 'scale': [0.8, 0.8, 0.8]},
     'thirdperson_lefthand': {'rotation': [0, 90, 90], 'translation': [0, 3.5, 4.1], 'scale': [0.8, 0.8, 0.8]},
-    'firstperson_righthand': {'rotation': [0, -90, 0], 'translation': [1.13, 2.5, -3.1], 'scale': [0.7, 0.7, 0.7]},
-    'firstperson_lefthand': {'rotation': [0, 90, 0], 'translation': [1.13, 2.5, -3.1], 'scale': [0.7, 0.7, 0.7]},
+    # 20/11: con Y=-90 y escala 0.7 se veia de canto, enorme y con el grosor negro. Y=-65 lo gira para mostrar
+    # el costado y apuntar hacia la mira; Z=-8 levanta un poco la punta; mas chico.
+    'firstperson_righthand': {'rotation': [0, -65, -8], 'translation': [0.1, 2.0, -2.2], 'scale': [0.55, 0.55, 0.55]},
+    'firstperson_lefthand': {'rotation': [0, 65, 8], 'translation': [0.1, 2.0, -2.2], 'scale': [0.55, 0.55, 0.55]},
 }
 
 
@@ -229,7 +244,7 @@ def preview():
     path.parent.mkdir(parents=True, exist_ok=True)
     out.save(path)
     # Cajas sobre las laminas, para ajustar recortes
-    for sheet in ('herramientas', 'taladros_6_9', 'materiales', 'elites'):
+    for sheet in ('herramientas', 'taladros_6_9', 'materiales', 'elites', 'talismanes'):
         im = Image.open(REF / f'{sheet}.png').convert('RGB')
         dd = ImageDraw.Draw(im)
         for iid, (s, box) in {**TOOLS, **MATERIALS}.items():

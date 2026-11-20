@@ -8,16 +8,10 @@ def fits(ingredients):
 
 
 def prepare(items, fichas, recipes, txt):
-    uses = {}
-    for out, _, ingredients, _ in recipes:
-        for kind, ident, _ in ingredients:
-            if kind == 'c':
-                uses.setdefault(ident, []).append(items[out]['name'])
+    # Sin la linea "Material para: ..." en los materiales: el dueno no la quiere (20/11).
     craftable = {out: fits(ingredients) for out, _, ingredients, _ in recipes}
-    for iid in set(uses) | set(craftable):
+    for iid in craftable:
         lines = []
-        if iid in uses:
-            lines.append(txt('Material para: ' + ', '.join(dict.fromkeys(uses[iid]))[:150], 'dark_gray'))
         if iid in craftable:
             lines.append(txt('Se fabrica en la mesa de crafteo o en la Forja' if craftable[iid]
                              else 'Se fabrica solo en la Forja (supera 3x3)', 'gray'))
