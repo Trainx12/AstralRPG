@@ -1,0 +1,166 @@
+niveles-maximo: 30
+particulas: true
+excluir-namespaces:
+- astral
+excluir: []
+botella:
+  costo-xp: 5
+conducto:
+  rotten_flesh: 2
+  bone: 3
+  spider_eye: 4
+  string: 1
+  gunpowder: 5
+  blaze_rod: 10
+  ender_pearl: 8
+  ghast_tear: 12
+  slime_ball: 6
+bastones:
+- minecraft:looting
+- excellentenchants:wisdom
+- excellentenchants:nimble
+- excellentenchants:decapitator
+- excellentenchants:thrifty
+- excellentenchants:soulbound
+- excellentenchants:restore
+- excellentenchants:curse_of_breaking
+- excellentenchants:curse_of_misfortune
+- excellentenchants:curse_of_mediocrity
+descripciones:
+  minecraft:protection: Reduce casi todo el daño que recibís.
+  minecraft:fire_protection: Reduce el daño de fuego y lava y te apaga más rápido.
+  minecraft:feather_falling: Reduce el daño por caída.
+  minecraft:blast_protection: Reduce el daño de explosiones y el empuje que te dan.
+  minecraft:projectile_protection: Reduce el daño de flechas, tridentes y bolas de
+    fuego.
+  minecraft:respiration: Aguantás más tiempo la respiración bajo el agua.
+  minecraft:aqua_affinity: Picás bajo el agua a la velocidad normal.
+  minecraft:thorns: Le devuelve daño a quien te pega (gasta más la armadura).
+  minecraft:depth_strider: Caminás más rápido bajo el agua.
+  minecraft:frost_walker: Congela el agua bajo tus pies para caminar arriba.
+  minecraft:binding_curse: 'Maldición: no te podés sacar la armadura (salvo al morir).'
+  minecraft:soul_speed: Corrés más rápido sobre arena y tierra de almas.
+  minecraft:swift_sneak: Te movés más rápido agachado.
+  minecraft:sharpness: Más daño a todos los enemigos.
+  minecraft:smite: Mucho más daño a muertos vivientes (zombis, esqueletos, wither).
+  minecraft:bane_of_arthropods: Mucho más daño a arañas, abejas y lepismas, y los
+    frena.
+  minecraft:knockback: Empuja más lejos a quien golpeás.
+  minecraft:fire_aspect: Prende fuego a quien golpeás.
+  minecraft:looting: Los mobs sueltan más botín.
+  minecraft:sweeping_edge: Más daño al golpe de barrido de la espada.
+  minecraft:efficiency: Picás, talás y cavás más rápido.
+  minecraft:silk_touch: Los bloques salen enteros (vidrio, minerales sin romper, etc.).
+  minecraft:unbreaking: El objeto se gasta más lento.
+  minecraft:fortune: Los minerales y cultivos sueltan más cosas.
+  minecraft:power: Las flechas hacen más daño.
+  minecraft:punch: Las flechas empujan más lejos.
+  minecraft:flame: Las flechas prenden fuego.
+  minecraft:infinity: Con una sola flecha en el inventario, disparás sin gastar.
+  minecraft:luck_of_the_sea: Pescás más tesoros y menos basura.
+  minecraft:lure: Los peces pican más rápido.
+  minecraft:loyalty: El tridente vuelve a tu mano después de tirarlo.
+  minecraft:impaling: Más daño del tridente a criaturas del agua.
+  minecraft:riptide: Con lluvia o en el agua, el tridente te lanza con él.
+  minecraft:channeling: Con tormenta, el tridente llama un rayo sobre el enemigo.
+  minecraft:multishot: La ballesta dispara 3 flechas a la vez.
+  minecraft:quick_charge: La ballesta carga más rápido.
+  minecraft:piercing: Las flechas de ballesta atraviesan varios enemigos.
+  minecraft:density: Más daño de la maza según la altura de la caída.
+  minecraft:breach: La maza ignora parte de la armadura del enemigo.
+  minecraft:wind_burst: Al golpear con la maza cayendo, salís impulsado hacia arriba.
+  minecraft:lunge: La lanza te impulsa hacia adelante al atacar.
+  minecraft:mending: La XP que juntás repara el objeto.
+  minecraft:vanishing_curse: 'Maldición: el objeto desaparece al morir.'
+  excellentenchants:auto_reel: Recoge la caña sola cuando pica un pez.
+  excellentenchants:bane_of_netherspawn: Más daño a mobs del Nether.
+  excellentenchants:blast_mining: Chance de picar con una explosión que rompe bloques
+    alrededor.
+  excellentenchants:blindness: Chance de dejar ciego al enemigo al golpearlo.
+  excellentenchants:bomber: Chance de que el arco dispare una TNT encendida.
+  excellentenchants:cold_steel: Chance de darle fatiga de minado a quien te pega.
+  excellentenchants:confusing_arrows: Chance de que la flecha maree (náusea) al enemigo.
+  excellentenchants:confusion: Chance de marear (náusea) al enemigo al golpearlo.
+  excellentenchants:cure: Chance de curar a piglins zombi y aldeanos zombi al golpearlos.
+  excellentenchants:curse_of_breaking: 'Maldición: chance de gastar durabilidad de
+    más.'
+  excellentenchants:curse_of_death: 'Maldición: al matar a un jugador podés morir
+    vos también.'
+  excellentenchants:curse_of_drowned: 'Maldición: chance de pescar un ahogado.'
+  excellentenchants:curse_of_fragility: 'Maldición: no se puede usar en yunque ni
+    piedra de afilar.'
+  excellentenchants:curse_of_mediocrity: 'Maldición: chance de que lo que sueltan
+    salga sin encantar.'
+  excellentenchants:curse_of_misfortune: 'Maldición: chance de que bloques y mobs
+    no suelten nada.'
+  excellentenchants:cutter: Chance de sacarle una pieza de armadura al enemigo y dañarla.
+  excellentenchants:darkness_arrows: Chance de que la flecha deje en oscuridad al
+    enemigo.
+  excellentenchants:darkness_cloak: Chance de dejar en oscuridad a quien te pega.
+  excellentenchants:decapitator: Chance de que el jugador o mob suelte su cabeza.
+  excellentenchants:double_catch: Chance de pescar el doble.
+  excellentenchants:double_strike: Chance de hacer doble daño.
+  excellentenchants:dragon_heart: Te da corazones extra (absorción) todo el tiempo.
+  excellentenchants:dragonfire_arrows: Chance de que la flecha deje fuego de dragón
+    donde cae.
+  excellentenchants:electrified_arrows: Chance de que la flecha llame un rayo con
+    daño extra.
+  excellentenchants:elemental_protection: Reduce el daño de pociones y elementos (fuego,
+    hielo, etc.).
+  excellentenchants:ender_bow: El arco dispara perlas de ender en vez de flechas.
+  excellentenchants:exhaust: Chance de darle hambre al enemigo al golpearlo.
+  excellentenchants:explosive_arrows: Chance de disparar una flecha explosiva.
+  excellentenchants:fire_shield: Chance de prender fuego a quien te pega.
+  excellentenchants:flame_walker: Caminás sobre lava y el magma no te hace daño.
+  excellentenchants:flare: Chance de poner una antorcha donde cae la flecha.
+  excellentenchants:ghast: El arco dispara bolas de fuego en vez de flechas.
+  excellentenchants:glassbreaker: Rompe el vidrio al instante.
+  excellentenchants:hardened: Chance de ganar resistencia al recibir daño.
+  excellentenchants:haste: Te da prisa minera mientras picás.
+  excellentenchants:hover: Chance de que la flecha haga levitar al enemigo.
+  excellentenchants:ice_aspect: Congela y frena al enemigo al golpearlo.
+  excellentenchants:ice_shield: Chance de congelar y frenar a quien te pega.
+  excellentenchants:infernus: El tridente prende fuego al enemigo que toca.
+  excellentenchants:jumping: Saltás más alto todo el tiempo.
+  excellentenchants:kamikadze: Chance de explotar al morir.
+  excellentenchants:lightweight: Podés pisar huevos de tortuga y cultivos sin romperlos.
+  excellentenchants:lingering: Chance de que las flechas con poción dejen una nube
+    del efecto.
+  excellentenchants:lucky_miner: Chance de ganar más XP de los minerales.
+  excellentenchants:night_vision: Visión nocturna todo el tiempo.
+  excellentenchants:nimble: Lo que sueltan los mobs va directo a tu inventario.
+  excellentenchants:paralyze: Chance de darle fatiga de minado al enemigo al golpearlo.
+  excellentenchants:poisoned_arrows: Chance de que la flecha envenene.
+  excellentenchants:rage: Chance de ganar fuerza al golpear.
+  excellentenchants:rebound: Rebotás al caer, como sobre un bloque de slime.
+  excellentenchants:regrowth: Te cura un poco de vida cada algunos segundos.
+  excellentenchants:replanter: Vuelve a plantar los cultivos al cosecharlos.
+  excellentenchants:restore: Chance de salvar el objeto cuando está por romperse.
+  excellentenchants:river_master: Tirás la caña más lejos.
+  excellentenchants:rocket: Chance de lanzar al enemigo por el aire.
+  excellentenchants:saturation: Te llena la comida cada algunos segundos.
+  excellentenchants:seasoned_angler: Ganás más XP pescando.
+  excellentenchants:silk_chest: Los cofres salen enteros con todo lo que tienen adentro.
+  excellentenchants:silk_spawner: Chance de llevarte el generador de mobs al picarlo.
+  excellentenchants:smelter: Chance de que lo que picás salga ya fundido.
+  excellentenchants:sniper: Las flechas vuelan más rápido.
+  excellentenchants:soulbound: No se te cae al morir.
+  excellentenchants:speed: Velocidad todo el tiempo.
+  excellentenchants:stopping_force: Chance de recibir menos empuje.
+  excellentenchants:survivalist: Los pescados salen ya cocinados.
+  excellentenchants:swiper: Chance de robarle XP a los jugadores al golpearlos.
+  excellentenchants:telekinesis: Lo que picás va directo a tu inventario.
+  excellentenchants:temper: Más daño cuanta menos vida te queda.
+  excellentenchants:thrifty: Chance de que los mobs suelten su huevo de aparición.
+  excellentenchants:thunder: Chance de llamar un rayo con daño extra al golpear.
+  excellentenchants:treefeller: Tala el árbol entero de un golpe.
+  excellentenchants:tunnel: Pica varios bloques a la vez (3x3).
+  excellentenchants:vampire: Chance de curarte al golpear.
+  excellentenchants:vampiric_arrows: Chance de curarte cuando la flecha pega.
+  excellentenchants:veinminer: Pica toda la veta de mineral de una.
+  excellentenchants:venom: Chance de envenenar al enemigo al golpearlo.
+  excellentenchants:village_defender: Más daño a los saqueadores (illagers).
+  excellentenchants:water_breathing: Respirás bajo el agua todo el tiempo.
+  excellentenchants:wisdom: Los mobs sueltan más XP.
+  excellentenchants:wither: Chance de darle efecto wither al enemigo al golpearlo.
+  excellentenchants:withered_arrows: Chance de que la flecha dé efecto wither.

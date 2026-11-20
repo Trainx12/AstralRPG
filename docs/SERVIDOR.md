@@ -76,11 +76,16 @@ llorona bajo un arco de prismarina oscura en el Oceano Astral (x -430, z 470), l
 AstralOceano (`fosa:` en su config). Adentro SOLO respira el set de agua completo. Recompensa: pendiente del dueno.
 Prueba: `tools/probar_fosa_paper.py`.
 
-Mesa de encantamientos: **LynExp 1.0.0** (`LynExp-1.0.0-mc26.1-26.1.2.jar`, github.com/lyn1dev/enchanting-table).
-Al abrir una mesa se elige el encantamiento (1395 puntos de XP cada uno; clic derecho con items de mobs da XP).
-Ofrece todo encantamiento cuyo `supported_items` acepte el objeto: por eso los nuestros usan el tag vacio
-`#astral:sin_mesa` (si no, vendia Mejora +10). Los efectos y el Herrero (set_enchantments) no dependen de eso.
-Prueba local: `tools/probar_lynexp_paper.py`.
+Mesa de encantamientos: **AstralMesa 1.2.0** (nuestro, `datapack-src/mesa_encantamientos.py`; reemplaza a LynExp desde el 20/11/2026).
+LynExp cortaba la lista en 48 libros y con ExcellentEnchants los vanilla quedaban afuera (una espada tiene 117).
+AstralMesa ofrece todo encantamiento que acepte el objeto (vanilla primero, despues ExcellentEnchants, maldiciones al final),
+con paginas, salvo el namespace `astral` (mejoras del Herrero; ademas usan el tag vacio `#astral:sin_mesa`).
+Mismo cobro que LynExp: nivel N de maximo M cuesta la XP de ceil(N/M*30) niveles (el maximo, 1395 puntos).
+Botella de vidrio en la mesa embotella XP; items de mobs en un conducto dan XP. Config en `plugins/AstralMesa/config.yml` (`astralmesa reload`).
+Cada libro explica que hace el encantamiento (textos en `mesa_encantamientos.py`, VANILLA y ESPECIALES; si se agrega un encantamiento nuevo, sumarle su texto).
+Bastones de mago (carrot_on_a_stick, `w:"staff"`): ademas de los que el juego permite, la lista `BASTONES` (Botin, Wisdom, Nimble, Decapitator, Thrifty, Soulbound, Restore y maldiciones): son los que actuan al matar o son pasivos, porque el hechizo es dano magico.
+Descripciones de ExcellentEnchants en espanol: `datapack-src/ee_descripciones.py <carpeta con enchants/*.yml del server>` -> `build/excellentenchants/enchants/`; subir a `plugins/ExcellentEnchants/enchants/` y reiniciar. Solo cambia `Description`.
+Prueba local: `tools/probar_mesa_paper.py` (avisa si alguno queda sin descripcion).
 
 Mochilas: **ExpendableBackpacks 1.2.0** (unico plugin de mochilas; BlzdBackpacks se descarto el 12/11/2026).
 La mochila es un item (cabeza): clic derecho la abre; `/bp` muestra recetas. Niveles cuero 9, cobre 18, hierro 27,

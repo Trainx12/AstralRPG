@@ -48,6 +48,8 @@ python armas_planas3d.py           # cuchillos T1-T10 y equipo de las Mareas en 
 python deploy_modelos_efectos.py   # FINAL privado de mochilas, cuchillos, efectos y Fenix (build/deploy/modelos-3d-efectos.md)
 python gemas.py --jdk <java25>     # Reforja de gemas: Skript, AstralGemas.jar, texturas; deploy_gemas.py arma la entrega
 python cavernas.py --jdk <java25>  # Cavernas de Cristal: plugin AstralCavernas, MythicMobs, aviso; deploy_cavernas.py arma la entrega
+python mesa_encantamientos.py --jdk <java25>  # mesa de encantamientos AstralMesa (reemplaza LynExp): todos los encantamientos menos las mejoras del Herrero
+python ee_descripciones.py <enchants del server>  # descripciones de ExcellentEnchants en espanol -> build/excellentenchants (subir y reiniciar)
 ```
 
 ## Trampas conocidas
