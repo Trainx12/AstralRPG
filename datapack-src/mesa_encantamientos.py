@@ -169,9 +169,126 @@ BASTONES = [
 ]
 
 
+# Encantamientos de datapacks del server (Stellarity y Dungeons and Taverns).
+DATAPACKS = {
+    'stellarity:ambush': 'Mucho más daño a mobs que todavía no te están atacando.',
+    'stellarity:critical_strike': 'Cada tanto da un golpe crítico de doble daño.',
+    'stellarity:dune_speed': 'Corrés más rápido sobre arena.',
+    'stellarity:levitation_shot': 'Las flechas hacen levitar al enemigo.',
+    'stellarity:plated': 'Elytra blindada: da armadura pero caés más rápido.',
+    'stellarity:soaring': 'Elytra liviana: planeás más lejos.',
+    'nova_structures:aerials_bane': 'Más daño a enemigos que están en el aire o vuelan.',
+    'nova_structures:antidote': 'Te protege del veneno y del wither (gasta la pechera).',
+    'nova_structures:conductivity_curse': 'Maldición: con tormenta te pueden caer rayos.',
+    'nova_structures:ghasted': 'La ballesta dispara bolas de fuego de ghast.',
+    'nova_structures:gravity': 'Los proyectiles atraen a los enemigos cercanos al punto de impacto.',
+    'nova_structures:hydro_veil': 'El arnés del ghast cura y protege con lluvia.',
+    'nova_structures:illagers_bane': 'Más daño a los saqueadores (illagers).',
+    'nova_structures:multishot': 'El arco dispara varias flechas a la vez.',
+    'nova_structures:outreach': 'Llegás a romper y poner bloques más lejos.',
+    'nova_structures:photosynthesis': 'El objeto se repara solo con la luz del sol.',
+    'nova_structures:piercing': 'Las flechas del arco atraviesan enemigos.',
+    'nova_structures:power': 'Más daño de las flechas de ballesta.',
+    'nova_structures:spiteful': 'Más daño a enemigos con fuerza; les saca el efecto.',
+    'nova_structures:swift_soar': 'El ghast con arnés vuela más rápido.',
+    'nova_structures:traveler': 'Al correr subís bloques sin saltar y vas más rápido.',
+    'nova_structures:wax_wings': 'La elytra no se gasta... salvo que vueles muy alto de día.',
+    'nova_structures:wither_coated': 'Da efecto wither al golpear (el arma se gasta más).',
+}
+
+# Claves internas de datapacks (jefes, jinetes, chequeos, objetos unicos): nunca en la mesa.
+EXCLUIR_CONTIENE = ['technical', 'jockey/', 'boss', 'level_checker', 'shulker_', 'stellarity:void_s']
+
+# Nombres en espanol para el tooltip (los vanilla los traduce el juego solo).
+NOMBRES = {
+    'excellentenchants:auto_reel': 'Auto Recoger', 'excellentenchants:bane_of_netherspawn': 'Azote del Nether',
+    'excellentenchants:blast_mining': 'Minería Explosiva', 'excellentenchants:blindness': 'Ceguera',
+    'excellentenchants:bomber': 'Bombardero', 'excellentenchants:cold_steel': 'Acero Frío',
+    'excellentenchants:confusing_arrows': 'Flechas Mareantes', 'excellentenchants:confusion': 'Confusión',
+    'excellentenchants:cure': 'Cura', 'excellentenchants:curse_of_breaking': 'Maldición de Rotura',
+    'excellentenchants:curse_of_death': 'Maldición de Muerte', 'excellentenchants:curse_of_drowned': 'Maldición del Ahogado',
+    'excellentenchants:curse_of_fragility': 'Maldición de Fragilidad', 'excellentenchants:curse_of_mediocrity': 'Maldición de Mediocridad',
+    'excellentenchants:curse_of_misfortune': 'Maldición de Desgracia', 'excellentenchants:cutter': 'Cortador',
+    'excellentenchants:darkness_arrows': 'Flechas Oscuras', 'excellentenchants:darkness_cloak': 'Manto Oscuro',
+    'excellentenchants:decapitator': 'Decapitador', 'excellentenchants:double_catch': 'Doble Pesca',
+    'excellentenchants:double_strike': 'Doble Golpe', 'excellentenchants:dragon_heart': 'Corazón de Dragón',
+    'excellentenchants:dragonfire_arrows': 'Flechas de Fuego de Dragón', 'excellentenchants:electrified_arrows': 'Flechas Eléctricas',
+    'excellentenchants:elemental_protection': 'Protección Elemental', 'excellentenchants:ender_bow': 'Arco de Ender',
+    'excellentenchants:exhaust': 'Agotamiento', 'excellentenchants:explosive_arrows': 'Flechas Explosivas',
+    'excellentenchants:fire_shield': 'Escudo de Fuego', 'excellentenchants:flame_walker': 'Caminante de Lava',
+    'excellentenchants:flare': 'Bengala', 'excellentenchants:ghast': 'Ghast', 'excellentenchants:glassbreaker': 'Rompevidrios',
+    'excellentenchants:hardened': 'Endurecido', 'excellentenchants:haste': 'Prisa', 'excellentenchants:hover': 'Levitación',
+    'excellentenchants:ice_aspect': 'Aspecto de Hielo', 'excellentenchants:ice_shield': 'Escudo de Hielo',
+    'excellentenchants:infernus': 'Infierno', 'excellentenchants:jumping': 'Salto', 'excellentenchants:kamikadze': 'Kamikaze',
+    'excellentenchants:lightweight': 'Liviano', 'excellentenchants:lingering': 'Persistente',
+    'excellentenchants:lucky_miner': 'Minero Suertudo', 'excellentenchants:night_vision': 'Visión Nocturna',
+    'excellentenchants:nimble': 'Ágil', 'excellentenchants:paralyze': 'Parálisis',
+    'excellentenchants:poisoned_arrows': 'Flechas Venenosas', 'excellentenchants:rage': 'Furia', 'excellentenchants:rebound': 'Rebote',
+    'excellentenchants:regrowth': 'Regeneración', 'excellentenchants:replanter': 'Replantador', 'excellentenchants:restore': 'Restaurar',
+    'excellentenchants:river_master': 'Maestro del Río', 'excellentenchants:rocket': 'Cohete', 'excellentenchants:saturation': 'Saciedad',
+    'excellentenchants:seasoned_angler': 'Pescador Experto', 'excellentenchants:silk_chest': 'Cofre de Seda',
+    'excellentenchants:silk_spawner': 'Generador de Seda', 'excellentenchants:smelter': 'Fundidor', 'excellentenchants:sniper': 'Francotirador',
+    'excellentenchants:soulbound': 'Alma Ligada', 'excellentenchants:speed': 'Velocidad', 'excellentenchants:stopping_force': 'Firmeza',
+    'excellentenchants:survivalist': 'Superviviente', 'excellentenchants:swiper': 'Ladrón de XP', 'excellentenchants:telekinesis': 'Telequinesis',
+    'excellentenchants:temper': 'Temple', 'excellentenchants:thrifty': 'Ahorrador', 'excellentenchants:thunder': 'Trueno',
+    'excellentenchants:treefeller': 'Leñador', 'excellentenchants:tunnel': 'Túnel', 'excellentenchants:vampire': 'Vampiro',
+    'excellentenchants:vampiric_arrows': 'Flechas Vampíricas', 'excellentenchants:veinminer': 'Minero de Vetas',
+    'excellentenchants:venom': 'Veneno', 'excellentenchants:village_defender': 'Defensor de Aldeas',
+    'excellentenchants:water_breathing': 'Respiración Acuática', 'excellentenchants:wisdom': 'Sabiduría', 'excellentenchants:wither': 'Wither',
+    'excellentenchants:withered_arrows': 'Flechas Wither',
+    'stellarity:ambush': 'Emboscada', 'stellarity:critical_strike': 'Golpe Crítico', 'stellarity:dune_speed': 'Velocidad de Duna',
+    'stellarity:levitation_shot': 'Tiro Levitante', 'stellarity:plated': 'Blindado', 'stellarity:soaring': 'Planeo',
+    'nova_structures:aerials_bane': 'Azote Aéreo', 'nova_structures:antidote': 'Antídoto',
+    'nova_structures:conductivity_curse': 'Maldición de Conductividad', 'nova_structures:ghasted': 'Ghasteado',
+    'nova_structures:gravity': 'Gravedad', 'nova_structures:hydro_veil': 'Velo de Agua', 'nova_structures:illagers_bane': 'Azote de Illagers',
+    'nova_structures:multishot': 'Multidisparo de Arco', 'nova_structures:outreach': 'Alcance', 'nova_structures:photosynthesis': 'Fotosíntesis',
+    'nova_structures:piercing': 'Perforación de Arco', 'nova_structures:power': 'Poder de Ballesta', 'nova_structures:spiteful': 'Rencoroso',
+    'nova_structures:swift_soar': 'Vuelo Veloz', 'nova_structures:traveler': 'Viajero', 'nova_structures:wax_wings': 'Alas de Cera',
+    'nova_structures:wither_coated': 'Bañado en Wither',
+}
+
+# Precio segun que tan bueno es: el nivel maximo cuesta la XP de estos niveles (normal = 30 = 1395 puntos).
+# 40 niveles = 2920 puntos, 50 = 5345. Las maldiciones son baratas.
+BUENO, MUY_BUENO, MALDICION = 40, 50, 10
+_MUY_BUENOS = '''minecraft:mending minecraft:infinity minecraft:silk_touch
+excellentenchants:soulbound excellentenchants:telekinesis excellentenchants:veinminer excellentenchants:treefeller
+excellentenchants:tunnel excellentenchants:blast_mining excellentenchants:nimble excellentenchants:double_strike
+excellentenchants:vampire excellentenchants:restore excellentenchants:wisdom excellentenchants:regrowth
+excellentenchants:dragon_heart excellentenchants:flame_walker excellentenchants:silk_spawner excellentenchants:smelter
+stellarity:critical_strike nova_structures:photosynthesis nova_structures:multishot'''.split()
+_BUENOS = '''minecraft:sharpness minecraft:protection minecraft:efficiency minecraft:fortune minecraft:looting
+minecraft:unbreaking minecraft:power minecraft:multishot minecraft:riptide minecraft:channeling minecraft:breach
+minecraft:density minecraft:wind_burst minecraft:swift_sneak minecraft:soul_speed minecraft:frost_walker
+excellentenchants:thunder excellentenchants:temper excellentenchants:rage excellentenchants:saturation
+excellentenchants:speed excellentenchants:jumping excellentenchants:night_vision excellentenchants:water_breathing
+excellentenchants:lucky_miner excellentenchants:haste excellentenchants:ice_aspect excellentenchants:venom
+excellentenchants:wither excellentenchants:electrified_arrows excellentenchants:explosive_arrows excellentenchants:sniper
+excellentenchants:vampiric_arrows excellentenchants:hardened excellentenchants:elemental_protection
+excellentenchants:decapitator excellentenchants:thrifty excellentenchants:silk_chest excellentenchants:replanter
+excellentenchants:cutter excellentenchants:paralyze excellentenchants:rocket excellentenchants:fire_shield
+excellentenchants:ice_shield excellentenchants:bomber excellentenchants:ghast excellentenchants:dragonfire_arrows
+stellarity:ambush stellarity:dune_speed stellarity:levitation_shot stellarity:plated stellarity:soaring
+nova_structures:illagers_bane nova_structures:spiteful nova_structures:wither_coated nova_structures:aerials_bane
+nova_structures:power nova_structures:piercing nova_structures:outreach nova_structures:traveler
+nova_structures:swift_soar nova_structures:hydro_veil nova_structures:antidote nova_structures:ghasted
+nova_structures:gravity nova_structures:wax_wings'''.split()
+
+
+def costos():
+    c = {k: MUY_BUENO for k in _MUY_BUENOS}
+    c.update({k: BUENO for k in _BUENOS})
+    for k in list(VANILLA) + list(ESPECIALES):
+        full = ('minecraft:' if k in VANILLA else 'excellentenchants:') + k
+        if 'curse' in k:
+            c[full] = MALDICION
+    c['nova_structures:conductivity_curse'] = MALDICION
+    return c
+
+
 def descripciones():
     d = {f'minecraft:{k}': v for k, v in VANILLA.items()}
     d.update({f'excellentenchants:{k}': v for k, v in ESPECIALES.items()})
+    d.update(DATAPACKS)
     return d
 
 
@@ -182,6 +299,13 @@ def config():
         # astral = mejoras del Herrero (Mejora +N): nunca en la mesa.
         'excluir-namespaces': ['astral'],
         'excluir': [],
+        'excluir-contiene': EXCLUIR_CONTIENE,
+        # Niveles que cuesta el nivel maximo de cada uno (si no esta, niveles-maximo).
+        'costos': costos(),
+        # Lista de encantamientos en el objeto, estilo Hypixel (la arma AstralMesa por paquetes).
+        # Con pocos: cada uno con su descripcion. Con muchos: varios por linea, en azul.
+        'tooltip': {'activo': True, 'con-descripcion-hasta': 4, 'por-linea': 3},
+        'nombres': NOMBRES,
         'botella': {'costo-xp': 5},
         'conducto': CONDUCTO,
         # Bastones de mago (carrot_on_a_stick): el juego solo les deja Irrompibilidad y Reparacion.
@@ -193,11 +317,11 @@ def config():
 
 
 PLUGIN_YML = """name: AstralMesa
-version: 1.2.0
+version: 1.3.1
 main: astral.AstralMesa
 api-version: '26.1.2'
 description: Mesa de encantamientos con todos los encantamientos (vanilla y de plugins) salvo las mejoras del Herrero
-softdepend: [ExcellentEnchants]
+softdepend: [ExcellentEnchants, packetevents]
 commands:
   astralmesa:
     description: Recarga la config de la mesa
@@ -209,12 +333,12 @@ permissions:
 """
 
 
-def build_plugin(jdk, server):
+def build_plugin(jdk, server, packetevents):
     import yaml
     jdk, server = Path(jdk), Path(server)
     classes = ROOT / '.local' / 'mesa-classes'
     classes.mkdir(parents=True, exist_ok=True)
-    deps = [*server.joinpath('libraries').rglob('*.jar'), *server.joinpath('versions').rglob('*.jar')]
+    deps = [*server.joinpath('libraries').rglob('*.jar'), *server.joinpath('versions').rglob('*.jar'), Path(packetevents)]
     javac = [str(jdk / ('java.exe' if os.name == 'nt' else 'java')), '-m', 'jdk.compiler/com.sun.tools.javac.Main']
     subprocess.run([*javac, '-encoding', 'UTF-8', '-source', '25', '-target', '25', '-nowarn', '-classpath',
                     os.pathsep.join(map(str, deps)), '-d', str(classes), str(HERE / 'runtime' / 'AstralMesa.java')], check=True)
@@ -258,8 +382,10 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--jdk')
     ap.add_argument('--server', default=str(ROOT / '.local' / 'testsrv'))
+    ap.add_argument('--packetevents', default=str(ROOT / '.local' / 'spam-paper-cs2dghr2' / 'plugins' / 'packetevents.jar'),
+                    help='jar de packetevents (solo para compilar)')
     a = ap.parse_args()
     generate()
     if a.jdk:
-        print('plugin ->', build_plugin(a.jdk, a.server))
+        print('plugin ->', build_plugin(a.jdk, a.server, a.packetevents))
     print('mesa ->', OUT)

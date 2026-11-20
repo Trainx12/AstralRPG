@@ -54,6 +54,31 @@ public final class MesaProbe extends JavaPlugin {
                 getLogger().info("MESA baston -> " + bn);
                 var gancho = Bukkit.getItemFactory().createItemStack("minecraft:carrot_on_a_stick");
                 getLogger().info("MESA cana zanahoria comun -> " + ((List<?>) m.invoke(mesa, gancho)).size() + " libros");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "astralmesa faltan");
+                var en = (java.util.function.Function<String, org.bukkit.enchantments.Enchantment>) k -> Registry.ENCHANTMENT.get(NamespacedKey.fromString(k));
+                var bt = mesa.getClass().getMethod("bloqueTexto", ItemStack.class);
+                var pocas = new ItemStack(Material.DIAMOND_SWORD);
+                pocas.addUnsafeEnchantment(en.apply("minecraft:sharpness"), 5);
+                pocas.addUnsafeEnchantment(en.apply("excellentenchants:vampire"), 2);
+                pocas.addUnsafeEnchantment(en.apply("nova_structures:illagers_bane"), 3);
+                getLogger().info("MESA tooltip pocas: " + bt.invoke(mesa, pocas));
+                var muchas = pocas.clone();
+                for (String k : List.of("minecraft:looting", "minecraft:unbreaking", "minecraft:mending", "excellentenchants:thunder", "stellarity:critical_strike", "minecraft:vanishing_curse"))
+                    muchas.addUnsafeEnchantment(en.apply(k), 2);
+                getLogger().info("MESA tooltip muchas: " + bt.invoke(mesa, muchas));
+                var dec = (ItemStack) mesa.getClass().getMethod("decorar", ItemStack.class).invoke(mesa, muchas);
+                var lim = (ItemStack) mesa.getClass().getMethod("limpiar", ItemStack.class).invoke(mesa, dec);
+                getLogger().info("MESA limpiar vuelve igual: " + lim.equals(muchas) + " ocultaAntes=" + muchas.getItemMeta().hasItemFlag(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS) + " ocultaDespues=" + lim.getItemMeta().hasItemFlag(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS));
+                var cn = mesa.getClass().getMethod("costoNiveles", org.bukkit.enchantments.Enchantment.class);
+                getLogger().info("MESA costos mending=" + cn.invoke(mesa, en.apply("minecraft:mending")) + " sharpness=" + cn.invoke(mesa, en.apply("minecraft:sharpness")) + " knockback=" + cn.invoke(mesa, en.apply("minecraft:knockback")) + " curse=" + cn.invoke(mesa, en.apply("minecraft:vanishing_curse")));
+                var todos = new TreeSet<String>();
+                for (Object o : (List<?>) m.invoke(mesa, new ItemStack(Material.DIAMOND_SWORD)))
+                    todos.add(((org.bukkit.enchantments.Enchantment) o.getClass().getMethod("ench").invoke(o)).getKey().getNamespace());
+                getLogger().info("MESA espada namespaces " + todos);
+                var tecnicos = new TreeSet<String>();
+                for (Object o : (List<?>) m.invoke(mesa, new ItemStack(Material.STICK)))
+                    tecnicos.add(((org.bukkit.enchantments.Enchantment) o.getClass().getMethod("ench").invoke(o)).getKey().toString());
+                getLogger().info("MESA palo (tecnicos?) " + tecnicos);
                 getLogger().info("MESA xp30 " + mesa.getClass().getMethod("xpHastaNivel", int.class).invoke(null, 30));
             } catch (Throwable t) { getLogger().warning("MESA FAIL " + t); t.printStackTrace(); }
             getLogger().info("MESA DONE");

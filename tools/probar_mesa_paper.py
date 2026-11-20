@@ -27,14 +27,23 @@ def run(java, base, jar, ee):
     packs = srv/'world/datapacks'
     packs.mkdir(parents=True)
     shutil.copy2(ROOT/'build/AstralRPG-Items.zip', packs/'AstralRPG-Items.zip')
+    for z in (ROOT/'.local/dp-server').glob('*.zip'):  # datapacks del server con encantamientos (Stellarity, DnT)
+        if 'Stellarity' in z.name or 'Dungeons and Taverns' in z.name:
+            shutil.copy2(z, packs/z.name)
     plugins = srv/'plugins'
     plugins.mkdir()
     shutil.copy2(jar, plugins/jar.name)
+    viejo = ROOT/'.local/mesa-config-server.yml'  # config.yml que ya tiene el server (de versiones viejas)
+    if viejo.exists():
+        (plugins/'AstralMesa').mkdir(exist_ok=True)
+        shutil.copy2(viejo, plugins/'AstralMesa/config.yml')
     for n in ('excellentenchants.jar', 'nightcore.jar', 'packetevents.jar'):
         shutil.copy2(ee/n, plugins/n)
     trad = ROOT/'build/excellentenchants/enchants'
     if trad.exists():  # descripciones en espanol (ee_descripciones.py)
         shutil.copytree(trad, plugins/'ExcellentEnchants/enchants')
+        if (trad.parent/'config.yml').exists():
+            shutil.copy2(trad.parent/'config.yml', plugins/'ExcellentEnchants/config.yml')
     deps = [*srv.joinpath('libraries').rglob('*.jar'), *srv.joinpath('versions').rglob('*.jar')]
     subprocess.run([str(java), '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-encoding', 'UTF-8', '-classpath',
                     os.pathsep.join(map(str, deps)), '-d', str(work), str(ROOT/'datapack-src/test_runtime/MesaProbe.java')], check=True)

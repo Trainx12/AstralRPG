@@ -6,6 +6,8 @@ Conserva los numeros de ExcellentEnchants (%...%), asi siempre coinciden con su 
 
   python ee_descripciones.py <carpeta con los .yml del server>  -> build/excellentenchants/enchants/*.yml
 Despues: subirlos a plugins/ExcellentEnchants/enchants/ y REINICIAR (EE no las toma con reload).
+Con --config <config.yml del server> tambien arma build/excellentenchants/config.yml con su tooltip apagado
+(la lista estilo Hypixel la hace AstralMesa).
 """
 import argparse
 from pathlib import Path
@@ -124,6 +126,17 @@ def traducir(texto, clave):
     return texto[:m.start(2)] + nuevo + texto[m.end(2):]
 
 
+def apagar_tooltip(cfg):
+    # La lista de encantamientos estilo Hypixel la arma AstralMesa (con estas mismas descripciones);
+    # si EE tambien agrega las suyas, salen dos veces.
+    texto = Path(cfg).read_bytes().decode('utf-8')
+    nuevo = texto.replace('  EnchantTooltip: true', '  EnchantTooltip: false', 1)
+    if nuevo == texto and 'EnchantTooltip: false' not in texto:
+        raise SystemExit('config.yml: no encontre Modules.EnchantTooltip')
+    (OUT.parent / 'config.yml').write_bytes(nuevo.encode('utf-8'))
+    print('  config.yml: Modules.EnchantTooltip = false')
+
+
 def main(src):
     src = Path(src)
     OUT.mkdir(parents=True, exist_ok=True)
@@ -143,4 +156,8 @@ def main(src):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('origen', help='carpeta con los enchants/*.yml bajados del server')
-    main(ap.parse_args().origen)
+    ap.add_argument('--config', help='plugins/ExcellentEnchants/config.yml bajado del server: apaga su tooltip')
+    a = ap.parse_args()
+    main(a.origen)
+    if a.config:
+        apagar_tooltip(a.config)

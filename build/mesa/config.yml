@@ -3,6 +3,220 @@ particulas: true
 excluir-namespaces:
 - astral
 excluir: []
+excluir-contiene:
+- technical
+- jockey/
+- boss
+- level_checker
+- shulker_
+- stellarity:void_s
+costos:
+  minecraft:mending: 50
+  minecraft:infinity: 50
+  minecraft:silk_touch: 50
+  excellentenchants:soulbound: 50
+  excellentenchants:telekinesis: 50
+  excellentenchants:veinminer: 50
+  excellentenchants:treefeller: 50
+  excellentenchants:tunnel: 50
+  excellentenchants:blast_mining: 50
+  excellentenchants:nimble: 50
+  excellentenchants:double_strike: 50
+  excellentenchants:vampire: 50
+  excellentenchants:restore: 50
+  excellentenchants:wisdom: 50
+  excellentenchants:regrowth: 50
+  excellentenchants:dragon_heart: 50
+  excellentenchants:flame_walker: 50
+  excellentenchants:silk_spawner: 50
+  excellentenchants:smelter: 50
+  stellarity:critical_strike: 50
+  nova_structures:photosynthesis: 50
+  nova_structures:multishot: 50
+  minecraft:sharpness: 40
+  minecraft:protection: 40
+  minecraft:efficiency: 40
+  minecraft:fortune: 40
+  minecraft:looting: 40
+  minecraft:unbreaking: 40
+  minecraft:power: 40
+  minecraft:multishot: 40
+  minecraft:riptide: 40
+  minecraft:channeling: 40
+  minecraft:breach: 40
+  minecraft:density: 40
+  minecraft:wind_burst: 40
+  minecraft:swift_sneak: 40
+  minecraft:soul_speed: 40
+  minecraft:frost_walker: 40
+  excellentenchants:thunder: 40
+  excellentenchants:temper: 40
+  excellentenchants:rage: 40
+  excellentenchants:saturation: 40
+  excellentenchants:speed: 40
+  excellentenchants:jumping: 40
+  excellentenchants:night_vision: 40
+  excellentenchants:water_breathing: 40
+  excellentenchants:lucky_miner: 40
+  excellentenchants:haste: 40
+  excellentenchants:ice_aspect: 40
+  excellentenchants:venom: 40
+  excellentenchants:wither: 40
+  excellentenchants:electrified_arrows: 40
+  excellentenchants:explosive_arrows: 40
+  excellentenchants:sniper: 40
+  excellentenchants:vampiric_arrows: 40
+  excellentenchants:hardened: 40
+  excellentenchants:elemental_protection: 40
+  excellentenchants:decapitator: 40
+  excellentenchants:thrifty: 40
+  excellentenchants:silk_chest: 40
+  excellentenchants:replanter: 40
+  excellentenchants:cutter: 40
+  excellentenchants:paralyze: 40
+  excellentenchants:rocket: 40
+  excellentenchants:fire_shield: 40
+  excellentenchants:ice_shield: 40
+  excellentenchants:bomber: 40
+  excellentenchants:ghast: 40
+  excellentenchants:dragonfire_arrows: 40
+  stellarity:ambush: 40
+  stellarity:dune_speed: 40
+  stellarity:levitation_shot: 40
+  stellarity:plated: 40
+  stellarity:soaring: 40
+  nova_structures:illagers_bane: 40
+  nova_structures:spiteful: 40
+  nova_structures:wither_coated: 40
+  nova_structures:aerials_bane: 40
+  nova_structures:power: 40
+  nova_structures:piercing: 40
+  nova_structures:outreach: 40
+  nova_structures:traveler: 40
+  nova_structures:swift_soar: 40
+  nova_structures:hydro_veil: 40
+  nova_structures:antidote: 40
+  nova_structures:ghasted: 40
+  nova_structures:gravity: 40
+  nova_structures:wax_wings: 40
+  minecraft:binding_curse: 10
+  minecraft:vanishing_curse: 10
+  excellentenchants:curse_of_breaking: 10
+  excellentenchants:curse_of_death: 10
+  excellentenchants:curse_of_drowned: 10
+  excellentenchants:curse_of_fragility: 10
+  excellentenchants:curse_of_mediocrity: 10
+  excellentenchants:curse_of_misfortune: 10
+  nova_structures:conductivity_curse: 10
+tooltip:
+  activo: true
+  con-descripcion-hasta: 4
+  por-linea: 3
+nombres:
+  excellentenchants:auto_reel: Auto Recoger
+  excellentenchants:bane_of_netherspawn: Azote del Nether
+  excellentenchants:blast_mining: Minería Explosiva
+  excellentenchants:blindness: Ceguera
+  excellentenchants:bomber: Bombardero
+  excellentenchants:cold_steel: Acero Frío
+  excellentenchants:confusing_arrows: Flechas Mareantes
+  excellentenchants:confusion: Confusión
+  excellentenchants:cure: Cura
+  excellentenchants:curse_of_breaking: Maldición de Rotura
+  excellentenchants:curse_of_death: Maldición de Muerte
+  excellentenchants:curse_of_drowned: Maldición del Ahogado
+  excellentenchants:curse_of_fragility: Maldición de Fragilidad
+  excellentenchants:curse_of_mediocrity: Maldición de Mediocridad
+  excellentenchants:curse_of_misfortune: Maldición de Desgracia
+  excellentenchants:cutter: Cortador
+  excellentenchants:darkness_arrows: Flechas Oscuras
+  excellentenchants:darkness_cloak: Manto Oscuro
+  excellentenchants:decapitator: Decapitador
+  excellentenchants:double_catch: Doble Pesca
+  excellentenchants:double_strike: Doble Golpe
+  excellentenchants:dragon_heart: Corazón de Dragón
+  excellentenchants:dragonfire_arrows: Flechas de Fuego de Dragón
+  excellentenchants:electrified_arrows: Flechas Eléctricas
+  excellentenchants:elemental_protection: Protección Elemental
+  excellentenchants:ender_bow: Arco de Ender
+  excellentenchants:exhaust: Agotamiento
+  excellentenchants:explosive_arrows: Flechas Explosivas
+  excellentenchants:fire_shield: Escudo de Fuego
+  excellentenchants:flame_walker: Caminante de Lava
+  excellentenchants:flare: Bengala
+  excellentenchants:ghast: Ghast
+  excellentenchants:glassbreaker: Rompevidrios
+  excellentenchants:hardened: Endurecido
+  excellentenchants:haste: Prisa
+  excellentenchants:hover: Levitación
+  excellentenchants:ice_aspect: Aspecto de Hielo
+  excellentenchants:ice_shield: Escudo de Hielo
+  excellentenchants:infernus: Infierno
+  excellentenchants:jumping: Salto
+  excellentenchants:kamikadze: Kamikaze
+  excellentenchants:lightweight: Liviano
+  excellentenchants:lingering: Persistente
+  excellentenchants:lucky_miner: Minero Suertudo
+  excellentenchants:night_vision: Visión Nocturna
+  excellentenchants:nimble: Ágil
+  excellentenchants:paralyze: Parálisis
+  excellentenchants:poisoned_arrows: Flechas Venenosas
+  excellentenchants:rage: Furia
+  excellentenchants:rebound: Rebote
+  excellentenchants:regrowth: Regeneración
+  excellentenchants:replanter: Replantador
+  excellentenchants:restore: Restaurar
+  excellentenchants:river_master: Maestro del Río
+  excellentenchants:rocket: Cohete
+  excellentenchants:saturation: Saciedad
+  excellentenchants:seasoned_angler: Pescador Experto
+  excellentenchants:silk_chest: Cofre de Seda
+  excellentenchants:silk_spawner: Generador de Seda
+  excellentenchants:smelter: Fundidor
+  excellentenchants:sniper: Francotirador
+  excellentenchants:soulbound: Alma Ligada
+  excellentenchants:speed: Velocidad
+  excellentenchants:stopping_force: Firmeza
+  excellentenchants:survivalist: Superviviente
+  excellentenchants:swiper: Ladrón de XP
+  excellentenchants:telekinesis: Telequinesis
+  excellentenchants:temper: Temple
+  excellentenchants:thrifty: Ahorrador
+  excellentenchants:thunder: Trueno
+  excellentenchants:treefeller: Leñador
+  excellentenchants:tunnel: Túnel
+  excellentenchants:vampire: Vampiro
+  excellentenchants:vampiric_arrows: Flechas Vampíricas
+  excellentenchants:veinminer: Minero de Vetas
+  excellentenchants:venom: Veneno
+  excellentenchants:village_defender: Defensor de Aldeas
+  excellentenchants:water_breathing: Respiración Acuática
+  excellentenchants:wisdom: Sabiduría
+  excellentenchants:wither: Wither
+  excellentenchants:withered_arrows: Flechas Wither
+  stellarity:ambush: Emboscada
+  stellarity:critical_strike: Golpe Crítico
+  stellarity:dune_speed: Velocidad de Duna
+  stellarity:levitation_shot: Tiro Levitante
+  stellarity:plated: Blindado
+  stellarity:soaring: Planeo
+  nova_structures:aerials_bane: Azote Aéreo
+  nova_structures:antidote: Antídoto
+  nova_structures:conductivity_curse: Maldición de Conductividad
+  nova_structures:ghasted: Ghasteado
+  nova_structures:gravity: Gravedad
+  nova_structures:hydro_veil: Velo de Agua
+  nova_structures:illagers_bane: Azote de Illagers
+  nova_structures:multishot: Multidisparo de Arco
+  nova_structures:outreach: Alcance
+  nova_structures:photosynthesis: Fotosíntesis
+  nova_structures:piercing: Perforación de Arco
+  nova_structures:power: Poder de Ballesta
+  nova_structures:spiteful: Rencoroso
+  nova_structures:swift_soar: Vuelo Veloz
+  nova_structures:traveler: Viajero
+  nova_structures:wax_wings: Alas de Cera
+  nova_structures:wither_coated: Bañado en Wither
 botella:
   costo-xp: 5
 conducto:
@@ -164,3 +378,28 @@ descripciones:
   excellentenchants:wisdom: Los mobs sueltan más XP.
   excellentenchants:wither: Chance de darle efecto wither al enemigo al golpearlo.
   excellentenchants:withered_arrows: Chance de que la flecha dé efecto wither.
+  stellarity:ambush: Mucho más daño a mobs que todavía no te están atacando.
+  stellarity:critical_strike: Cada tanto da un golpe crítico de doble daño.
+  stellarity:dune_speed: Corrés más rápido sobre arena.
+  stellarity:levitation_shot: Las flechas hacen levitar al enemigo.
+  stellarity:plated: 'Elytra blindada: da armadura pero caés más rápido.'
+  stellarity:soaring: 'Elytra liviana: planeás más lejos.'
+  nova_structures:aerials_bane: Más daño a enemigos que están en el aire o vuelan.
+  nova_structures:antidote: Te protege del veneno y del wither (gasta la pechera).
+  nova_structures:conductivity_curse: 'Maldición: con tormenta te pueden caer rayos.'
+  nova_structures:ghasted: La ballesta dispara bolas de fuego de ghast.
+  nova_structures:gravity: Los proyectiles atraen a los enemigos cercanos al punto
+    de impacto.
+  nova_structures:hydro_veil: El arnés del ghast cura y protege con lluvia.
+  nova_structures:illagers_bane: Más daño a los saqueadores (illagers).
+  nova_structures:multishot: El arco dispara varias flechas a la vez.
+  nova_structures:outreach: Llegás a romper y poner bloques más lejos.
+  nova_structures:photosynthesis: El objeto se repara solo con la luz del sol.
+  nova_structures:piercing: Las flechas del arco atraviesan enemigos.
+  nova_structures:power: Más daño de las flechas de ballesta.
+  nova_structures:spiteful: Más daño a enemigos con fuerza; les saca el efecto.
+  nova_structures:swift_soar: El ghast con arnés vuela más rápido.
+  nova_structures:traveler: Al correr subís bloques sin saltar y vas más rápido.
+  nova_structures:wax_wings: La elytra no se gasta... salvo que vueles muy alto de
+    día.
+  nova_structures:wither_coated: Da efecto wither al golpear (el arma se gasta más).

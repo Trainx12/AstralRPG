@@ -19,7 +19,12 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import java.lang.reflect.Method;
+import java.util.regex.Pattern;
 
 /**
  * Mesa de encantamientos de AstralRPG (reemplaza a LynExp).
@@ -49,14 +54,28 @@ public final class AstralMesa extends JavaPlugin implements Listener {
     final Map<Material, Integer> conducto = new EnumMap<>(Material.class);
     final Map<String, String> descripciones = new HashMap<>();
     Set<String> bastones = Set.of();
+    List<String> excluirContiene = List.of();
+    final Map<String, Integer> costos = new HashMap<>();
+    final Map<String, String> nombres = new HashMap<>();
+    boolean tooltipActivo = true;
+    int conDescHasta = 4, porLinea = 3;
+    NamespacedKey MARCA, ICONO;
+    Object paquetes;  // AstralMesaPaquetes si hay packetevents
 
     @Override public void onEnable() {
+        MARCA = new NamespacedKey(this, "tt");
+        ICONO = new NamespacedKey(this, "icono");
         saveDefaultConfig();
         cargar();
         getServer().getPluginManager().registerEvents(this, this);
+        if (tooltipActivo && getServer().getPluginManager().getPlugin("packetevents") != null) {
+            try { paquetes = AstralMesaPaquetes.registrar(this); getLogger().info("Lista de encantamientos estilo Hypixel activa."); }
+            catch (Throwable t) { getLogger().warning("No pude activar la lista de encantamientos: " + t); }
+        }
     }
 
     @Override public void onDisable() {
+        if (paquetes != null) try { AstralMesaPaquetes.quitar(paquetes); } catch (Throwable ignored) {}
         for (Player p : Bukkit.getOnlinePlayers())
             if (p.getOpenInventory().getTopInventory().getHolder() instanceof Mesa m) { devolver(p, m); p.closeInventory(); }
     }
@@ -70,21 +89,47 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         excluirNs = new HashSet<>(c.getStringList("excluir-namespaces"));
         excluir = new HashSet<>(c.getStringList("excluir"));
         bastones = new HashSet<>(c.getStringList("bastones"));
+        excluirContiene = c.getStringList("excluir-contiene");
+        tooltipActivo = c.getBoolean("tooltip.activo", true);
+        conDescHasta = c.getInt("tooltip.con-descripcion-hasta", 4);
+        porLinea = Math.max(1, c.getInt("tooltip.por-linea", 3));
+        costos.clear();
+        seccion(c, "costos").forEach((k, v) -> { try { costos.put(k, Integer.parseInt(v)); } catch (NumberFormatException ignored) {} });
+        nombres.clear();
+        nombres.putAll(seccion(c, "nombres"));
         descripciones.clear();
-        var des = c.getConfigurationSection("descripciones");
-        if (des != null) for (String k : des.getKeys(false)) descripciones.put(k, des.getString(k, ""));
+        descripciones.putAll(seccion(c, "descripciones"));
         conducto.clear();
-        var sec = c.getConfigurationSection("conducto");
-        if (sec != null) for (String k : sec.getKeys(false)) {
+        seccion(c, "conducto").forEach((k, v) -> {
             Material m = Material.matchMaterial(k);
-            if (m != null) conducto.put(m, sec.getInt(k));
-        }
+            if (m != null) try { conducto.put(m, Integer.parseInt(v)); } catch (NumberFormatException ignored) {}
+        });
+    }
+
+    /** Lo que trae el jar (textos al dia) y encima lo que el server haya cambiado en su config.yml.
+     *  getConfigurationSection no usa los valores por defecto: con un config.yml viejo quedaba vacio. */
+    static Map<String, String> seccion(org.bukkit.configuration.file.FileConfiguration c, String path) {
+        var out = new LinkedHashMap<String, String>();
+        var def = c.getDefaults() == null ? null : c.getDefaults().getConfigurationSection(path);
+        if (def != null) for (String k : def.getKeys(false)) out.put(k, String.valueOf(def.get(k)));
+        Object propio = c.get(path, null);
+        if (propio instanceof org.bukkit.configuration.ConfigurationSection s)
+            for (String k : s.getKeys(false)) out.put(k, String.valueOf(s.get(k)));
+        return out;
     }
 
     @Override public boolean onCommand(CommandSender s, Command cmd, String label, String[] args) {
         if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             cargar();
             s.sendMessage(Component.text("AstralMesa recargada.", NamedTextColor.GREEN));
+            return true;
+        }
+        if (args.length == 1 && args[0].equalsIgnoreCase("faltan")) {
+            var sin = new TreeSet<String>();
+            for (Enchantment e : Registry.ENCHANTMENT)
+                if (!excluida(e) && !descripciones.containsKey(clave(e)) && descEE(e, 1) == null) sin.add(clave(e));
+            s.sendMessage(Component.text("Sin descripcion (" + sin.size() + "): " + sin, NamedTextColor.YELLOW));
+            getLogger().info("Sin descripcion: " + sin);
             return true;
         }
         return false;
@@ -118,7 +163,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         var tiene = it.getEnchantments();
         boolean baston = esBaston(it);
         for (Enchantment e : Registry.ENCHANTMENT) {
-            if (excluirNs.contains(e.getKey().getNamespace()) || excluir.contains(clave(e))) continue;
+            if (excluida(e)) continue;
             if (!e.canEnchantItem(it) && !(baston && bastones.contains(clave(e)))) continue;
             int actual = tiene.getOrDefault(e, 0), max = e.getMaxLevel();
             if (actual >= max) continue;
@@ -127,7 +172,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
                 if (!o.equals(e) && (o.conflictsWith(e) || e.conflictsWith(o))) { choca = true; break; }
             if (choca) continue;
             for (int n = Math.max(actual + 1, e.getStartLevel()); n <= max; n++) {
-                int niveles = (int) Math.ceil(n / (double) max * nivelesMax);
+                int niveles = Math.max(1, (int) Math.ceil(n / (double) max * costoNiveles(e)));
                 lista.add(new Opcion(e, n, xpHastaNivel(niveles), niveles));
             }
         }
@@ -137,6 +182,183 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             .thenComparing(o -> o.ench().getKey().getKey())
             .thenComparingInt(Opcion::nivel));
         return lista;
+    }
+
+    public boolean excluida(Enchantment e) {
+        String k = clave(e);
+        if (excluirNs.contains(e.getKey().getNamespace()) || excluir.contains(k)) return true;
+        return excluidaTecnica(e);
+    }
+
+    boolean excluidaTecnica(Enchantment e) {
+        String k = clave(e);
+        for (String s : excluirContiene) if (k.contains(s)) return true;
+        return false;
+    }
+
+    public int costoNiveles(Enchantment e) { return costos.getOrDefault(clave(e), nivelesMax); }
+
+    Component calidad(Enchantment e) {
+        int c = costoNiveles(e);
+        if (e.isCursed() || c < nivelesMax) return Component.text("Maldición", NamedTextColor.RED);
+        if (c >= 50) return Component.text("Calidad: ★★★ Muy bueno", NamedTextColor.LIGHT_PURPLE);
+        if (c >= 40) return Component.text("Calidad: ★★ Bueno", NamedTextColor.AQUA);
+        return Component.text("Calidad: ★ Normal", NamedTextColor.GRAY);
+    }
+
+    // ---------- Nombres y descripciones ----------
+    static final String[] ROMANOS = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
+    static String romano(int n) { return n >= 0 && n < ROMANOS.length ? ROMANOS[n] : String.valueOf(n); }
+
+    public Component nombre(Enchantment e, int lvl) {
+        String n = nombres.get(clave(e));
+        Component c;
+        if (n != null && !n.isBlank()) c = Component.text(e.getMaxLevel() > 1 || lvl > 1 ? n + " " + romano(lvl) : n);
+        else c = e.displayName(lvl);
+        if (!e.getKey().getNamespace().equals("astral"))
+            c = Component.text().append(c).color(e.isCursed() ? NamedTextColor.RED : NamedTextColor.BLUE).build();
+        return c.decoration(TextDecoration.ITALIC, false);
+    }
+
+    Method eeGet, eeDesc; boolean eeBuscado;
+    /** Descripcion de ExcellentEnchants con los numeros del nivel (en espanol por ee_descripciones.py), o null. */
+    public String descEE(Enchantment e, int lvl) {
+        if (!"excellentenchants".equals(e.getKey().getNamespace())) return null;
+        try {
+            if (!eeBuscado) {
+                eeBuscado = true;
+                var ee = getServer().getPluginManager().getPlugin("ExcellentEnchants");
+                if (ee != null) {
+                    var cl = ee.getClass().getClassLoader();
+                    eeGet = Class.forName("su.nightexpress.excellentenchants.enchantment.EnchantRegistry", true, cl)
+                        .getMethod("getByBukkit", Enchantment.class);
+                    eeDesc = Class.forName("su.nightexpress.excellentenchants.api.enchantment.CustomEnchantment", true, cl)
+                        .getMethod("getDescription", int.class);
+                }
+            }
+            if (eeGet == null) return null;
+            Object ce = eeGet.invoke(null, e);
+            if (ce == null) return null;
+            @SuppressWarnings("unchecked") List<String> lineas = (List<String>) eeDesc.invoke(ce, lvl);
+            var sb = new StringBuilder();
+            for (String l : lineas) {
+                String plano = PlainTextComponentSerializer.plainText().serialize(MiniMessage.miniMessage().deserialize(l));
+                if (sb.length() > 0) sb.append(' ');
+                sb.append(plano.trim());
+            }
+            String r = sb.toString().trim();
+            return r.isEmpty() || r.matches(".*%[a-z_]+%.*") ? null : r;
+        } catch (Throwable t) { return null; }
+    }
+
+    public String textoDe(Enchantment e, int lvl) {
+        String ee = descEE(e, lvl);
+        return ee != null ? ee : descripciones.get(clave(e));
+    }
+
+    static final Pattern NUMERO = Pattern.compile("\\S*\\d\\S*");
+    /** Lineas de descripcion: gris con los numeros en verde, como Hypixel. */
+    static List<Component> lineasDesc(String texto, int ancho) {
+        var out = new ArrayList<Component>();
+        if (texto == null || texto.isBlank()) return out;
+        for (String l : partir(texto, ancho)) {
+            var b = Component.text();
+            String[] ws = l.split(" ");
+            for (int i = 0; i < ws.length; i++) {
+                String w = (i > 0 ? " " : "") + ws[i];
+                b.append(Component.text(w, NUMERO.matcher(ws[i]).matches() ? NamedTextColor.GREEN : NamedTextColor.GRAY));
+            }
+            out.add(b.build().decoration(TextDecoration.ITALIC, false));
+        }
+        return out;
+    }
+
+    // ---------- Lista de encantamientos estilo Hypixel ----------
+    int orden(Enchantment e) {
+        String ns = e.getKey().getNamespace();
+        return ns.equals("astral") ? 0 : e.isCursed() ? 3 : ns.equals("minecraft") ? 1 : 2;
+    }
+
+    /** Lineas que van arriba del lore. Vacio si no hay nada que mostrar. */
+    public List<Component> bloque(Map<Enchantment, Integer> ench) {
+        var lista = new ArrayList<>(ench.entrySet());
+        lista.removeIf(en -> excluidaTecnica(en.getKey()));
+        if (lista.isEmpty()) return List.of();
+        lista.sort(Comparator.<Map.Entry<Enchantment, Integer>>comparingInt(en -> orden(en.getKey()))
+            .thenComparing(en -> en.getKey().getKey().toString()));
+        var out = new ArrayList<Component>();
+        if (lista.size() <= conDescHasta) {
+            for (var en : lista) {
+                out.add(nombre(en.getKey(), en.getValue()));
+                out.addAll(lineasDesc(textoDe(en.getKey(), en.getValue()), 38));
+            }
+        } else {
+            for (int i = 0; i < lista.size(); i += porLinea) {
+                var b = Component.text();
+                for (int j = i; j < Math.min(i + porLinea, lista.size()); j++) {
+                    if (j > i) b.append(Component.text(", ", NamedTextColor.BLUE));
+                    b.append(nombre(lista.get(j).getKey(), lista.get(j).getValue()));
+                }
+                out.add(b.build().decoration(TextDecoration.ITALIC, false));
+            }
+        }
+        out.add(Component.empty());
+        return out;
+    }
+
+    /** Copia del objeto con la lista arriba del lore y los encantamientos vanilla ocultos; null si no cambia. */
+    public ItemStack decorar(ItemStack it) {
+        if (it == null || it.getType().isAir() || !it.hasItemMeta()) return null;
+        ItemMeta meta = it.getItemMeta();
+        var pdc = meta.getPersistentDataContainer();
+        if (pdc.has(MARCA) || pdc.has(ICONO)) return null;
+        boolean libro = meta instanceof EnchantmentStorageMeta;
+        Map<Enchantment, Integer> ench = libro ? ((EnchantmentStorageMeta) meta).getStoredEnchants() : meta.getEnchants();
+        if (ench.isEmpty()) return null;
+        ItemFlag flag = libro ? ItemFlag.HIDE_STORED_ENCHANTS : ItemFlag.HIDE_ENCHANTS;
+        boolean oculto = meta.hasItemFlag(flag);
+        var visibles = new LinkedHashMap<Enchantment, Integer>();
+        // Si el objeto ya ocultaba sus encantamientos (efectos Astral, gancho), solo se muestran los agregados.
+        ench.forEach((e, l) -> { if (!(oculto && e.getKey().getNamespace().equals("astral"))) visibles.put(e, l); });
+        var lineas = bloque(visibles);
+        if (lineas.isEmpty()) return null;
+        var lore = new ArrayList<Component>(lineas);
+        if (meta.lore() != null) lore.addAll(meta.lore());
+        meta.lore(lore);
+        meta.addItemFlags(flag);
+        pdc.set(MARCA, PersistentDataType.STRING, lineas.size() + ":" + (oculto ? 1 : 0));
+        var copia = it.clone();
+        copia.setItemMeta(meta);
+        return copia;
+    }
+
+    /** Deshace decorar (lo que vuelve del cliente en creativo); null si no estaba decorado. */
+    public ItemStack limpiar(ItemStack it) {
+        if (it == null || it.getType().isAir() || !it.hasItemMeta()) return null;
+        ItemMeta meta = it.getItemMeta();
+        var pdc = meta.getPersistentDataContainer();
+        String m = pdc.get(MARCA, PersistentDataType.STRING);
+        if (m == null) return null;
+        String[] p = m.split(":");
+        int n = Integer.parseInt(p[0]);
+        boolean oculto = p.length > 1 && p[1].equals("1");
+        var lore = meta.lore() == null ? new ArrayList<Component>() : new ArrayList<>(meta.lore());
+        for (int i = 0; i < n && !lore.isEmpty(); i++) lore.remove(0);
+        meta.lore(lore.isEmpty() ? null : lore);
+        if (!oculto) meta.removeItemFlags(meta instanceof EnchantmentStorageMeta ? ItemFlag.HIDE_STORED_ENCHANTS : ItemFlag.HIDE_ENCHANTS);
+        pdc.remove(MARCA);
+        var copia = it.clone();
+        copia.setItemMeta(meta);
+        return copia;
+    }
+
+    /** Lore decorado en texto plano (pruebas). */
+    public List<String> bloqueTexto(ItemStack it) {
+        var d = decorar(it);
+        if (d == null) return List.of();
+        var out = new ArrayList<String>();
+        for (Component c : d.getItemMeta().lore()) out.add(PlainTextComponentSerializer.plainText().serialize(c));
+        return out;
     }
 
     /** Bastones de mago: carrot_on_a_stick con custom_data astral w:"staff" (build.py). */
@@ -178,14 +400,13 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             var libro = new ItemStack(Material.ENCHANTED_BOOK);
             var meta = (EnchantmentStorageMeta) libro.getItemMeta();
             meta.addStoredEnchant(o.ench(), o.nivel(), true);
-            meta.displayName(o.ench().displayName(o.nivel()).decoration(TextDecoration.ITALIC, false));
+            meta.displayName(nombre(o.ench(), o.nivel()));
+            meta.getPersistentDataContainer().set(ICONO, PersistentDataType.BYTE, (byte) 1);
             boolean alcanza = tengo >= o.puntos();
             var lore = new ArrayList<Component>();
             lore.add(Component.text(o.ench().getKey().getNamespace().equals("minecraft") ? "Encantamiento normal" : "Encantamiento especial", NamedTextColor.DARK_GRAY));
-            String desc = descripciones.get(clave(o.ench()));
-            if (desc != null && !desc.isBlank()) {
-                for (String linea : partir(desc, 34)) lore.add(Component.text(linea, NamedTextColor.GRAY));
-            }
+            lore.add(calidad(o.ench()));
+            lore.addAll(lineasDesc(textoDe(o.ench(), o.nivel()), 34));
             if (o.ench().getMaxLevel() > 1)
                 lore.add(Component.text("Nivel " + o.nivel() + " de " + o.ench().getMaxLevel() + " (más nivel, más fuerte)", NamedTextColor.DARK_GRAY));
             lore.add(Component.empty());
@@ -324,7 +545,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             }
             p.playSound(p.getLocation(), Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1f, 1f);
             if (particulas) p.spawnParticle(Particle.ENCHANT, p.getLocation().add(0, 1, 0), 60, 0.5, 0.5, 0.5);
-            p.sendMessage(Component.text("Encantaste con ", NamedTextColor.GREEN).append(o.ench().displayName(o.nivel()))
+            p.sendMessage(Component.text("Encantaste con ", NamedTextColor.GREEN).append(nombre(o.ench(), o.nivel()))
                 .append(Component.text(" (-" + o.puntos() + " XP).", NamedTextColor.GREEN)));
             dibujar(p, mesa);
         }
@@ -343,5 +564,68 @@ public final class AstralMesa extends JavaPlugin implements Listener {
     @EventHandler
     public void alSalir(PlayerQuitEvent e) {
         if (e.getPlayer().getOpenInventory().getTopInventory().getHolder() instanceof Mesa m) devolver(e.getPlayer(), m);
+    }
+}
+
+/** Paquetes (PacketEvents): agrega la lista al mostrar objetos y la saca de lo que vuelve en creativo.
+ *  Clase aparte para que AstralMesa cargue igual sin packetevents. */
+final class AstralMesaPaquetes implements com.github.retrooper.packetevents.event.PacketListener {
+    final AstralMesa mesa;
+    AstralMesaPaquetes(AstralMesa mesa) { this.mesa = mesa; }
+
+    static Object registrar(AstralMesa m) {
+        return com.github.retrooper.packetevents.PacketEvents.getAPI().getEventManager().registerListener(
+            new AstralMesaPaquetes(m), com.github.retrooper.packetevents.event.PacketListenerPriority.NORMAL);
+    }
+    static void quitar(Object l) {
+        com.github.retrooper.packetevents.PacketEvents.getAPI().getEventManager().unregisterListener((com.github.retrooper.packetevents.event.PacketListenerCommon) l);
+    }
+
+    com.github.retrooper.packetevents.protocol.item.ItemStack pasar(com.github.retrooper.packetevents.protocol.item.ItemStack pe, boolean decorar) {
+        if (pe == null || pe.isEmpty()) return null;
+        try {
+            var b = io.github.retrooper.packetevents.util.SpigotConversionUtil.toBukkitItemStack(pe);
+            var r = decorar ? mesa.decorar(b) : mesa.limpiar(b);
+            return r == null ? null : io.github.retrooper.packetevents.util.SpigotConversionUtil.fromBukkitItemStack(r);
+        } catch (Throwable t) { return null; }
+    }
+
+    @Override public void onPacketSend(com.github.retrooper.packetevents.event.PacketSendEvent e) {
+        var t = e.getPacketType();
+        if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_SLOT) {
+            var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetSlot(e);
+            var n = pasar(w.getItem(), true);
+            if (n != null) { w.setItem(n); e.markForReEncode(true); }
+        } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.WINDOW_ITEMS) {
+            var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerWindowItems(e);
+            var items = new ArrayList<>(w.getItems());
+            boolean cambio = false;
+            for (int i = 0; i < items.size(); i++) {
+                var n = pasar(items.get(i), true);
+                if (n != null) { items.set(i, n); cambio = true; }
+            }
+            var carried = w.getCarriedItem();
+            if (carried.isPresent()) {
+                var n = pasar(carried.get(), true);
+                if (n != null) { w.setCarriedItem(n); cambio = true; }
+            }
+            if (cambio) { w.setItems(items); e.markForReEncode(true); }
+        } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_CURSOR_ITEM) {
+            var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetCursorItem(e);
+            var n = pasar(w.getStack(), true);
+            if (n != null) { w.setStack(n); e.markForReEncode(true); }
+        } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_PLAYER_INVENTORY) {
+            var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetPlayerInventory(e);
+            var n = pasar(w.getStack(), true);
+            if (n != null) { w.setStack(n); e.markForReEncode(true); }
+        }
+    }
+
+    @Override public void onPacketReceive(com.github.retrooper.packetevents.event.PacketReceiveEvent e) {
+        if (e.getPacketType() == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Client.CREATIVE_INVENTORY_ACTION) {
+            var w = new com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientCreativeInventoryAction(e);
+            var n = pasar(w.getItemStack(), false);
+            if (n != null) { w.setItemStack(n); e.markForReEncode(true); }
+        }
     }
 }

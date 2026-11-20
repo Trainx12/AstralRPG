@@ -76,7 +76,7 @@ llorona bajo un arco de prismarina oscura en el Oceano Astral (x -430, z 470), l
 AstralOceano (`fosa:` en su config). Adentro SOLO respira el set de agua completo. Recompensa: pendiente del dueno.
 Prueba: `tools/probar_fosa_paper.py`.
 
-Mesa de encantamientos: **AstralMesa 1.2.0** (nuestro, `datapack-src/mesa_encantamientos.py`; reemplaza a LynExp desde el 20/11/2026).
+Mesa de encantamientos: **AstralMesa 1.3.1** (nuestro, `datapack-src/mesa_encantamientos.py`; reemplaza a LynExp desde el 20/11/2026).
 LynExp cortaba la lista en 48 libros y con ExcellentEnchants los vanilla quedaban afuera (una espada tiene 117).
 AstralMesa ofrece todo encantamiento que acepte el objeto (vanilla primero, despues ExcellentEnchants, maldiciones al final),
 con paginas, salvo el namespace `astral` (mejoras del Herrero; ademas usan el tag vacio `#astral:sin_mesa`).
@@ -85,6 +85,10 @@ Botella de vidrio en la mesa embotella XP; items de mobs en un conducto dan XP. 
 Cada libro explica que hace el encantamiento (textos en `mesa_encantamientos.py`, VANILLA y ESPECIALES; si se agrega un encantamiento nuevo, sumarle su texto).
 Bastones de mago (carrot_on_a_stick, `w:"staff"`): ademas de los que el juego permite, la lista `BASTONES` (Botin, Wisdom, Nimble, Decapitator, Thrifty, Soulbound, Restore y maldiciones): son los que actuan al matar o son pasivos, porque el hechizo es dano magico.
 Descripciones de ExcellentEnchants en espanol: `datapack-src/ee_descripciones.py <carpeta con enchants/*.yml del server>` -> `build/excellentenchants/enchants/`; subir a `plugins/ExcellentEnchants/enchants/` y reiniciar. Solo cambia `Description`.
+Tambien ofrece los de datapacks (Stellarity, Dungeons and Taverns: `DATAPACKS`); los internos (jefes, jinetes, `_technical`) se excluyen con `EXCLUIR_CONTIENE`.
+Precio segun calidad (`costos`): normal 30 niveles (1395 XP), Bueno 40 (2920), Muy bueno 50 (5345), maldiciones 10. No hay limite de cuantos encantamientos lleva un objeto (solo los que chocan entre si).
+Lista estilo Hypixel (por paquetes, con packetevents): en el objeto se ocultan los encantamientos vanilla y arriba del lore va la lista; hasta 4 con su descripcion (numeros en verde), mas de 4 en azul, 3 por linea. Nombres en espanol (`NOMBRES`). Lo que vuelve del cliente en creativo se limpia (marca `astralmesa:tt`). ExcellentEnchants con `Modules.EnchantTooltip: false` (`ee_descripciones.py --config`) para que no se dupliquen.
+`astralmesa faltan` lista en consola los encantamientos sin descripcion (los textos salen del jar aunque el config.yml del server sea viejo).
 Prueba local: `tools/probar_mesa_paper.py` (avisa si alguno queda sin descripcion).
 
 Mochilas: **ExpendableBackpacks 1.2.0** (unico plugin de mochilas; BlzdBackpacks se descarto el 12/11/2026).
