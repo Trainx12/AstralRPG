@@ -226,28 +226,42 @@ def _borrar(im, caja):
     ImageDraw.Draw(im).rectangle((x0, y0, x1 - 1, y1 - 1), fill=tuple(int(v) for v in np.median(anillo, 0)))
 
 
-def _oro_sin_resaltar(im):
-    """En 'Mejorar' la hoja marca 'Oro' como elegido; en el juego el siguiente nivel cambia: se deja como los demas."""
-    from PIL import ImageFont
-    caja = (148, 637, 222, 668)
-    a = np.asarray(im.convert('RGB')).astype(int)
-    fondo = tuple(int(v) for v in np.median(a[645:660, 280:300].reshape(-1, 3), 0))   # caja de 'Diamante'
-    d = ImageDraw.Draw(im)
-    d.rectangle(caja, fill=(16, 24, 40))
-    d.rounded_rectangle((152, 641, 218, 664), 4, fill=fondo)
-    try:
-        f = ImageFont.truetype('arialbd.ttf', 17)
-    except OSError:
-        f = ImageFont.load_default()
-    d.text((185, 652), 'Oro', fill=(240, 236, 226), font=f, anchor='mm')
+# Fila de niveles de 'Mejorar' redibujada por Gemini (20/11): una hoja sin brillo y otra con brillo, mismos lugares.
+NIVELES_HOJA = {k: SRC / f'niveles_{k}.jpg' for k in ('normal', 'brillo')}
+NIVELES_CORTE = (60, 380, 2700, 1100)             # fila entera en la hoja (2752x1536)
+NIVELES_LIMITES = (60, 576, 1119, 1629, 2168, 2700)   # columnas de cada nivel
+NIVELES_DESTINO = (70, 566, 460, 670)               # lugar de la fila en la hoja del Banco (px de la referencia)
 
 
-def banco(vista):
+def _fila_niveles(ref, nivel=None):
+    """Pone la fila de niveles: todos sin brillo y el nivel actual (1..4) con brillo."""
+    fila = Image.open(NIVELES_HOJA['normal']).convert('RGB')
+    if nivel:
+        brillo = Image.open(NIVELES_HOJA['brillo']).convert('RGB')
+        x0, x1 = NIVELES_LIMITES[nivel - 1], NIVELES_LIMITES[nivel]
+        m = Image.new('L', fila.size, 0)
+        ImageDraw.Draw(m).rectangle((x0 + 20, NIVELES_CORTE[1], x1 - 20, NIVELES_CORTE[3]), fill=255)
+        fila.paste(brillo, (0, 0), m.filter(ImageFilter.GaussianBlur(14)))
+    fila = fila.crop(NIVELES_CORTE)
+    dx0, dy0, dx1, dy1 = NIVELES_DESTINO
+    fila = fila.resize((dx1 - dx0, dy1 - dy0), Image.Resampling.LANCZOS)
+    # se borra la fila vieja (el recuadro dorado de 'Oro')
+    a = np.asarray(fila).astype(int)
+    fondo = tuple(int(v) for v in np.median(a[:20, :].reshape(-1, 3), 0))   # el azul de la hoja de Gemini
+    ImageDraw.Draw(ref).rectangle((dx0 + 4, dy0 + 2, dx1 - 4, 669), fill=fondo)
+    # bordes suaves para que el fondo de la hoja de Gemini se funda con el del panel
+    m = Image.new('L', fila.size, 0)
+    ImageDraw.Draw(m).rectangle((6, 4, fila.width - 7, fila.height - 5), fill=255)
+    ref.paste(fila, (dx0, dy0), m.filter(ImageFilter.GaussianBlur(4)))
+
+
+def banco(vista, nivel=None):
+    """nivel (solo 'mejorar'): 1..4 = cuenta actual (Inicial..Esmeralda), se remarca en la fila de niveles."""
     ref = Image.open(BANCO_REF).convert('RGB')
     for caja in BANCO_BORRAR[vista]:
         _borrar(ref, caja)
     if vista == 'mejorar':
-        _oro_sin_resaltar(ref)
+        _fila_niveles(ref, nivel)
     src = ref.filter(ImageFilter.GaussianBlur(0.5))
     ox, oy = BANCO_ORIGEN[vista]
     s = BANCO_ESCALA_X
@@ -290,7 +304,8 @@ def banco(vista):
 
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
 PANELES = {'comisiones': comisiones, 'subastas_inicio': subastas_inicio,
-           **{f'banco_{v}': (lambda v=v: banco(v)) for v in BANCO_VISTAS}}
+           **{f'banco_{v}': (lambda v=v: banco(v)) for v in BANCO_VISTAS},
+           **{f'banco_mejorar{n}': (lambda n=n: banco('mejorar', n)) for n in (1, 2, 3, 4)}}
 
 
 def panel(kind):

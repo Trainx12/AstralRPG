@@ -23,9 +23,10 @@ START, END = '', ''
 W = 224
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
 VENTANAS = {'cavernas_aviso': 4, 'comisiones': 6, 'efectos': 6, **{f'banco_{v}': 6 for v in BANCO_VISTAS},
-            'subastas_inicio': 3}
+            'subastas_inicio': 3, **{f'banco_mejorar{n}': 6 for n in (1, 2, 3, 4)}}
 # Fondos nuevos a doble resolucion (disenos Gemini 20/11, ventanas_20_11.py): reemplazan al armado de aca.
-NUEVAS_2011 = ('comisiones', 'subastas_inicio', *(f'banco_{v}' for v in BANCO_VISTAS))
+NUEVAS_2011 = ('comisiones', 'subastas_inicio', *(f'banco_{v}' for v in BANCO_VISTAS),
+               *(f'banco_mejorar{n}' for n in (1, 2, 3, 4)))   # Mejorar con el nivel actual remarcado
 # Piezas del Banco que ahora estan dibujadas en el fondo (20/11): el item queda invisible (solo nombre y lore).
 BANCO_INVISIBLES = ('b_depositar', 'b_retirar', 'b_mejorar_cuenta', 'b_todo', 'b_mitad', 'b_otra', 'b_atras', 'b_cerrar',
                     'b_confirmar_dep', 'b_confirmar_ret', 'b_mejorar', 'b_volver_banco', 'i_saldo', 'i_encima', 'i_cuenta', 'i_limite')

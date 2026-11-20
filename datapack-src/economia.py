@@ -335,6 +335,7 @@ def skript():
               f'    set {{-eco.banco.costo::{i}}} to {costo}']
     import ventanas_19_11 as V
     L += ['    delete {-banco.titulo::*}'] + [f'    set {{-banco.titulo::{v}}} to "{V.titulo("banco_" + v)}"' for v in V.BANCO_VISTAS]
+    L += [f'    set {{-banco.titulo::mejorar{n}}} to "{V.titulo(f"banco_mejorar{n}")}"' for n in (1, 2, 3, 4)]
     L += [f'    set {{-eco.banco.max}} to {len(BANCO_NIVELES)}',
           '    if {astral.banco.proximo} is not set:',
           '        set {astral.banco.proximo} to {@horas} hours after now', '']
@@ -483,7 +484,10 @@ function astral_banco_menu(p: player, vista: text = "banco"):
     if {_vista} is "mejorar":
         if {_n} >= {-eco.banco.max}:
             set {_vista} to "cuenta"
-    set {_inv} to chest inventory with 6 rows named {-banco.titulo::%{_vista}%}
+    set {_tit} to {-banco.titulo::%{_vista}%}
+    if {_vista} is "mejorar":
+        set {_tit} to {-banco.titulo::mejorar%{_n}%} ? {_tit}
+    set {_inv} to chest inventory with 6 rows named {_tit}
     set {_cuenta} to "&7Cuenta: &f%{-eco.banco.nombre::%{_n}%}% &7(limite &e%{_lim}%$&7)"
     set {_int} to "&7Proximo interes: &a+%{_i}%$ &7en &f%{_falta}%"
     if {_vista} is "banco":

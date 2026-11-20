@@ -168,6 +168,10 @@ on load:
     set {-banco.titulo::mejorar} to "&f"
     set {-banco.titulo::movimiento} to "&f"
     set {-banco.titulo::cuenta} to "&f"
+    set {-banco.titulo::mejorar1} to "&f"
+    set {-banco.titulo::mejorar2} to "&f"
+    set {-banco.titulo::mejorar3} to "&f"
+    set {-banco.titulo::mejorar4} to "&f"
     set {-eco.banco.max} to 5
     if {astral.banco.proximo} is not set:
         set {astral.banco.proximo} to {@horas} hours after now
@@ -313,7 +317,10 @@ function astral_banco_menu(p: player, vista: text = "banco"):
     if {_vista} is "mejorar":
         if {_n} >= {-eco.banco.max}:
             set {_vista} to "cuenta"
-    set {_inv} to chest inventory with 6 rows named {-banco.titulo::%{_vista}%}
+    set {_tit} to {-banco.titulo::%{_vista}%}
+    if {_vista} is "mejorar":
+        set {_tit} to {-banco.titulo::mejorar%{_n}%} ? {_tit}
+    set {_inv} to chest inventory with 6 rows named {_tit}
     set {_cuenta} to "&7Cuenta: &f%{-eco.banco.nombre::%{_n}%}% &7(limite &e%{_lim}%$&7)"
     set {_int} to "&7Proximo interes: &a+%{_i}%$ &7en &f%{_falta}%"
     if {_vista} is "banco":
