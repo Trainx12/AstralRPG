@@ -751,3 +751,27 @@ Estatuas del Santuario: correccion preparada en `mobs/tanda3a.yml`, instalable s
 por `astral_estatua_coloso_musgoso` (modelo y escala 2.0 del jefe de Minas).
 Conservar la Forja existente. Archivos y comandos de retiro/spawn en la entrega acumulada;
 detalle en [MAZMORRAS.md](MAZMORRAS.md#estatuas-de-los-jefes-tanda-3a).
+
+## Plugins en español (20/11/2026)
+
+Todo lo que los plugins le dicen a los jugadores sale en español. Lo arma `datapack-src/traducciones.py`:
+
+- **Traducidos por nosotros** (archivo entero en `datapack-src/traducciones/<Plugin>/`, se copia a
+  `build/traducciones/plugins/` y se sube a `plugins/`): ClearLag (`messages.yml`), AxGraves (tumbas),
+  AxTrade (intercambios), CrazyAuctions, CrazyCrates, Duels (`lang.yml`: desafíos, rondas, menús; la parte
+  de kits personalizados, repeticiones y comandos de admin quedó en inglés), GriefPrevention, Sleep-Most y
+  TrainCarts (boletos y destinos).
+- **Ya traían español, solo se eligió el idioma** (parche sobre la config del servidor): AuthMe
+  (`messagesLanguage: es`, `perPlayerLocale: false`), EssentialsX (`locale: es`), Bolt, nonchat,
+  AuraSkills (`default_language: es`, más 38 textos de menús que le faltaban al español) y SkinsRestorer.
+  EconomyShopGUI ya estaba en español.
+- **Textos dentro de configs**: menús de CrazyAuctions y CrazyCrates, nombre de mundos y prefijo de AxGraves,
+  títulos AFK de ClearLag. ClearLag usa `countdown-use-formatted-time: true` para decir "10 minutos".
+- **WorldGuard**: `deny-message`, `entry-deny-message` y `exit-deny-message` en el `__global__` de cada mundo
+  (`build/traducciones/comandos.txt`). Un mundo nuevo necesita esas tres líneas.
+
+Para rehacerlo: bajar las configs del servidor a `.local/traduccion/orig/<Plugin>/...` (misma ruta que en
+`plugins/`), correr `python traducciones.py --parchar` y subir `build/traducciones/plugins` y
+`.local/traduccion/subir` (esta última fuera del repo porque las configs pueden tener claves). Reiniciar.
+Si se actualiza un plugin y trae textos nuevos, aparecen en inglés hasta sumarlos al archivo traducido.
+Respaldo de los originales del 20/11: `.local/traduccion/orig/`.

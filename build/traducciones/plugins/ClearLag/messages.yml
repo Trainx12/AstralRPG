@@ -1,0 +1,369 @@
+# Mensajes de ClearLag++ en espanol (AstralRPG). Fuente: datapack-src/traducciones/ClearLag/messages.yml
+prefix: '&e[Limpieza] &r'
+time-units:
+  year: año
+  years: años
+  month: mes
+  months: meses
+  day: dia
+  days: dias
+  hour: hora
+  hours: horas
+  minute: minuto
+  minutes: minutos
+  second: segundo
+  seconds: segundos
+common:
+  reload: '&a¡Configuracion de ClearLag recargada!'
+  player-only: '&cEste comando solo lo puede usar un jugador.'
+errors:
+  no-permission: '&cNo tenes permiso para usar este comando.'
+  feature-disabled: '&cEsta funcion esta apagada: &e{feature}&c.'
+  unknown-command: '&cEse comando no existe. Usa &e/clearlag &cpara ver la lista.'
+  usage: '&cUso: &e{usage}'
+  must-be-positive: '&c''{value}'' tiene que ser un numero positivo.'
+  must-be-number: '&c''{value}'' tiene que ser un numero.'
+  world-not-found: '&cNo se encontro el mundo ''{world}''.'
+  not-on-folia: '&cEsto no esta disponible en Folia: el servidor decide solo cuando
+    descarga chunks.'
+commands:
+  help-header: '&6--- Comandos de ClearLag ---'
+  help-lines:
+  - '&e/clearlag clear <items/entity/all> [--preview] &7- Borra entidades/objetos;
+    --preview solo muestra lo que borraria.'
+  - '&e/clearlag info &7- Informacion del plugin.'
+  - '&e/clearlag killmobs <evil/good/all> &7- Borra mobs.'
+  - '&e/clearlag reload &7- Recarga la configuracion.'
+  - '&e/clearlag nextclear &7- Cuanto falta para la proxima limpieza.'
+  - '&e/clearlag topworld &7- Mundos con mas entidades.'
+  - '&e/clearlag cpu &7- Uso reciente del procesador.'
+  - '&e/clearlag ram &7- Uso reciente de la memoria.'
+  - '&e/clearlag specs &7- Resumen del rendimiento.'
+  - '&e/clearlag togglemessages &7- Prende o apaga los avisos de la cuenta regresiva.'
+  - '&e/clearlag togglesound &7- Prende o apaga los sonidos de la cuenta regresiva.'
+  - '&e/clearlag togglemessage &7- Cambia donde sale el aviso (Chat/Titulo/Barra).'
+  - '&e/clearlag chunkfinder <cantidad> &7- Busca los chunks con mas lag.'
+  - '&e/clearlag unloadchunk <mundo> <x> <z> &7- Descarga un chunk.'
+  - '&e/clearlag nuke [radio] &7- Borra todas las entidades a tu alrededor.'
+  - '&e/clearlag bossbar &7- Prende o apaga la barra de rendimiento.'
+  - '&e/clearlag snapshot &7- Guarda una foto del rendimiento.'
+  - '&e/clearlag profile &7- Corre el analisis de Spark y pasa el link.'
+  - '&e/clearlag validate &7- Revisa que la configuracion este bien.'
+  - '&e/clearlag timerules <status/on/off/eventon/eventoff> &7- Reglas de dia/noche
+    y modo evento.'
+  - '&e/clearlag worldprofiles <status/on/off> &7- Prende o apaga los ajustes por
+    mundo.'
+  - '&e/clearlag worldprofiles world <mundo> <status/on/off> &7- Ajuste de un mundo.'
+  - '&e/clearlag history <30m/24h/7d> &7- Historial de TPS/RAM/entidades.'
+  - '&e/clearlag gui &7- Abre el panel con datos en vivo, acciones y modulos.'
+  - '&e/clearlag web [newtoken] &7- Link del panel web; newtoken anula los links
+    viejos.'
+  clear:
+    success: '&aSe borraron {count} entidades de tipo {type}.'
+    preview:
+      header: '&6--- Vista previa de limpieza ({type}) --- &7(no se borro nada)'
+      summary: '&eSe borrarian: &c{count} &7(objetos: &f{items}&7, entidades: &f{entities}&7,
+        pilas: &f{matched}&7, tiempo: &f{ms}ms&7)'
+      line: '&e{rank}. &f{type} &7x &c{count}'
+      more: '&7... y {count} tipo(s) mas.'
+      worlds: '&ePor mundo: &f{worlds}'
+      nothing: '&aAhora no se borraria nada.'
+      footer: '&7Usa el mismo comando sin &f--preview&7 para limpiar de verdad.'
+  web:
+    disabled: '&cEl panel web no esta prendido. Pone &fweb-dashboard.enabled: true&c
+      en config.yml y recarga.'
+    running: '&aEl panel web esta en &b{url}'
+    login-link: '&7Link para entrar (no lo compartas): &b{link}'
+    token-hint: '&7Cualquiera con este link puede ver los datos del server. Usa &f/clearlag
+      web newtoken&7 si se filtro.'
+    token-regenerated: '&eSe creo un link nuevo para el panel web. Los viejos ya no
+      andan.'
+  history:
+    querying: '&7Leyendo el historial de {window}...'
+    header: '&6--- Historial de rendimiento ({window}) ---'
+    no-data: '&7Todavia no hay datos para ese periodo.'
+    samples: '&e{samples} muestras &7({from} - {to})'
+    tps: '&eTPS: &fpromedio {avg}&7, &fminimo {min}'
+    trend: '&eTendencia: {sparkline}'
+    mspt: '&eMSPT: &fpromedio {avg}&7, &fmaximo {max}'
+    cpu: '&eCPU: &fpromedio {avg}%&7, &fmaximo {max}%'
+    ram: '&eRAM: &fpromedio {avg} MB&7, &fmaximo {max} MB'
+    entities: '&eEntidades: &fpromedio {avg}&7, &fmaximo {max} &7(objetos: promedio
+      {items_avg}, maximo {items_max})'
+    chunks: '&eChunks: &fpromedio {avg}&7, &fmaximo {max}'
+    players: '&eJugadores: &fpromedio {avg}&7, &fmaximo {max}'
+    worst: '&cPeor momento: &f{time} &7con &c{tps} TPS'
+  info:
+    header: '&6--- Info de ClearLag ---'
+    version: '&eVersion: &a{version}'
+    author: '&eAutor: &a{author}'
+    website: '&ePagina: &a{website}'
+    auto-clear: '&eLimpieza automatica: {status}'
+    interval: '&eCada: &a{time} segundos'
+    status-yes: '&aSi'
+    status-no: '&cNo'
+  killmobs:
+    success: '&aSe mataron {count} mobs de tipo {type}.'
+  nextclear:
+    disabled: '&cLa limpieza automatica esta apagada.'
+    in-progress: '&eHay una limpieza en curso o recien termino una.'
+    time-until: '&eProxima limpieza en &a{time}'
+  topworld:
+    header: '&6--- Mundos con mas entidades ---'
+    line: '&e{rank}. {world}: &a{count} entidades'
+  cpu:
+    header: '&6--- Uso del procesador ---'
+    no-data: '&cTodavia no hay datos del procesador. Espera un momento.'
+    line: '&eUltimos {time}: &a{value}%'
+  ram:
+    header: '&6--- Uso de memoria ---'
+    no-data: '&cTodavia no hay datos de memoria. Espera un momento.'
+    total: '&eMemoria total: &a{total} MB'
+    line: '&eUltimos {time}: &a{value} MB'
+  specs:
+    header: '&6--- Resumen del rendimiento ---'
+    tps: '&aTPS: &e{tps}'
+    cpu: '&eCPU (promedio 1m): &a{value}'
+    ram: '&eRAM (promedio 1m): &a{value}'
+    uptime: '&eTiempo prendido: &a{value}'
+    no-data: N/D
+  togglemessages:
+    enabled: '&aAvisos de la cuenta regresiva &lPRENDIDOS&a.'
+    disabled: '&aAvisos de la cuenta regresiva &lAPAGADOS&a.'
+  togglesound:
+    enabled: '&aSonidos de la cuenta regresiva &lPRENDIDOS&a.'
+    disabled: '&aSonidos de la cuenta regresiva &lAPAGADOS&a.'
+  togglemessage:
+    changed: '&aEl aviso ahora sale en: &e{location}'
+    no-permission: '&cNo tenes permiso para cambiar donde sale el aviso.'
+  chunkfinder:
+    header: '&6--- Los {count} chunks con mas lag (por entidades) ---'
+    no-chunks: '&7No hay chunks cargados.'
+    scanning: '&7Revisando chunks... (el resultado llega en un momento)'
+    busy: '&cYa hay demasiadas busquedas en curso. Proba de nuevo en un rato.'
+    line: '&e{rank}. Mundo: &a{world}&e, Chunk: [&a{x}, {z}&e] - Entidades: &c{count}
+      &7(objetos: {items}, mobs: {mobs})'
+  unloadchunk:
+    already-unloaded: '&eEl chunk [&a{x}, {z}&e] de {world} ya estaba descargado.'
+    success: '&aSe descargo el chunk [&a{x}, {z}&e] de {world}.'
+    fail: '&cNo se pudo descargar el chunk. Puede estar en uso o ser del spawn.'
+  nuke:
+    success: '&c&l¡BOOM! &aSe borraron {count} entidades en un radio de {radius} bloques.'
+  bossbar:
+    enabled: '&aBarra de rendimiento &lPRENDIDA&a.'
+    disabled: '&aBarra de rendimiento &lAPAGADA&a.'
+  snapshot:
+    success: '&a¡Foto del rendimiento guardada!'
+  validate:
+    ok: '&aLa configuracion esta bien. No hay problemas.'
+    found: '&eSe encontraron &c{count} &eproblema(s) en la configuracion.'
+    console: '&7El detalle tambien esta en la consola.'
+autoclear:
+  countdown: '&6¡Los objetos tirados en el piso se van a borrar en &c{time}&6! Levanta tus cosas.'
+  success: '&aSe limpiaron {count} objetos y entidades del piso.'
+warnings:
+  tps: '&c[Limpieza] ¡El server bajo a &e{tps}&c TPS! El rendimiento esta muy mal.'
+  fast-clock: '&cSe detecto un reloj de redstone muy rapido en tu chunk ({x}, {z}) y
+    se apago un rato para evitar lag.'
+update:
+  header: '&6========================================'
+  outdated: '&e¡Hay una version nueva de ClearLag!'
+  current-version: '&eTu version: &c{current}'
+  new-version: '&eVersion nueva: &a{new}'
+  download: '&eDescargala aca: &b{url}'
+papi:
+  disabled: Apagado
+  active: Activo
+profiler:
+  disabled: '&cEl analisis esta apagado en config.yml.'
+  spark-missing: '&c¡Falta el plugin Spark! Instalalo para usar esto.'
+  already-running: '&eYa hay un analisis en curso. Espera a que termine.'
+  started: '&a¡Analisis iniciado! El link sale aca en unos 60 segundos...'
+  finished: '&a¡Analisis terminado! Miralo aca: &b{url}'
+tile-entity-limit-reached: '&c¡Este chunk llego al limite de bloques especiales!'
+tile-entity-global-limit-reached: '&c¡Se llego al limite total de bloques especiales!'
+breeding-limit-reached: '&c¡Este chunk llego al limite de animales para criar!'
+breeding-global-limit-reached: '&c¡Se llego al limite total de animales para criar!'
+piston-limit-reached: '&c[Limpieza] Los pistones de este chunk quedan frenados {time}
+  segundos por usarse demasiado.'
+item-frame-limit-reached: '&c¡Este chunk llego al limite de marcos!'
+dispenser-limiter:
+  blocked: '&c[Limpieza] Un dispensador/soltador en {x}, {y}, {z} quedo frenado {time}s
+    por usarse demasiado.'
+packet-limiter:
+  admin-warn: '&c[Limpieza] &e{player} &7esta mandando demasiados paquetes (&e{packets}&7/&e{max}&7
+    por segundo, avisos: &e{violations}&7)'
+  player-warn: '&c[Limpieza] Estas mandando demasiadas acciones. Anda mas despacio.'
+  player-block: '&c[Limpieza] Tus acciones quedan frenadas {time} segundos por mandar
+    demasiadas.'
+  player-kick: |-
+    &c¡Estas mandando demasiadas acciones!
+    &7Apaga cualquier programa de trampas o maquina de lag.
+  admin-kick: '&c[Limpieza] &e{player} &cfue echado por mandar demasiados paquetes.'
+gui:
+  title-main: '&8Panel de ClearLag++'
+  title-worlds: '&8ClearLag++ Mundos'
+  title-chunks: '&8ClearLag++ Chunks con lag'
+  title-modules: '&8ClearLag++ Modulos'
+  close:
+  - '&cCerrar'
+  back:
+  - '&eVolver'
+  refresh:
+  - '&eActualizar'
+  - '&7Revisa los chunks de nuevo.'
+  merge-xp-done: '&aSe juntaron &e{count} &abolitas de experiencia.'
+  main:
+    tps:
+    - '{color}TPS: {value}'
+    - '&7Ticks por segundo (ideal: 20).'
+    mspt:
+    - '{color}MSPT: {value} ms'
+    - '&7Tiempo por tick (limite: 50 ms).'
+    cpu:
+    - '{color}CPU: {value}'
+    - '&7Uso del procesador.'
+    ram:
+    - '{color}RAM: {used} / {max} MB'
+    - '&7{percent}% de la memoria en uso.'
+    players:
+    - '&bJugadores: {value}/{max}'
+    chunks:
+    - '&bChunks cargados: {value}'
+    next-clear:
+    - '&eProxima limpieza: &f{value}'
+    - '&7Clic para mandarlo al chat.'
+    next-clear-off: '&capagada'
+    entities:
+    - '&bEntidades: {value}'
+    - '&7Todo menos los jugadores.'
+    items:
+    - '&bObjetos tirados: {value}'
+    mobs:
+    - '&bMobs: {value}'
+    xp-orbs:
+    - '&bBolitas de XP: {value}'
+    worlds:
+    - '&dMundos ({value})'
+    - '&7Entidades, objetos y chunks por mundo.'
+    top-chunks:
+    - '&dChunks con mas lag'
+    - '&7Los chunks con mas entidades.'
+    - '&7Clic en uno para ir ahi.'
+    clear-items:
+    - '&6Borrar objetos'
+    - '&7Clic izquierdo: borra los objetos tirados.'
+    - '&7Clic derecho: solo vista previa.'
+    clear-entities:
+    - '&6Borrar entidades'
+    - '&7Clic izquierdo: borra entidades.'
+    - '&7Clic derecho: solo vista previa.'
+    clear-all:
+    - '&cBorrar todo'
+    - '&7Clic izquierdo: borra objetos y entidades.'
+    - '&7Clic derecho: solo vista previa.'
+    kill-hostile:
+    - '&cMatar mobs hostiles'
+    - '&7Igual que /clearlag killmobs evil.'
+    merge-xp:
+    - '&aJuntar bolitas de XP'
+    - '&7Junta las bolitas de experiencia cercanas.'
+    - '&7Necesita optimizations.xp-orb-merge.'
+    snapshot:
+    - '&eFoto del lag'
+    - '&7Guarda el estado actual en un archivo.'
+    bossbar:
+    - '&eBarra de rendimiento'
+    - '&7Prenderla o apagarla para vos.'
+    modules:
+    - '&aModulos'
+    - '&7Prende y apaga funciones.'
+    - '&7Los cambios se guardan en config.yml.'
+    history:
+    - '&eHistorial de rendimiento'
+    - '&7Muestra las ultimas 24 horas en el chat.'
+    web:
+    - '&bPanel web'
+    - '&7Te da el link del panel en el navegador.'
+    reload:
+    - '&eRecargar configuracion'
+  worlds:
+    entry:
+    - '&a{world} &7({environment})'
+    - '&7Entidades: &f{entities}'
+    - '&7Objetos: &f{items}'
+    - '&7Mobs: &f{mobs}'
+    - '&7Bolitas de XP: &f{orbs}'
+    - '&7Chunks cargados: &f{chunks}'
+    - '&7Jugadores: &f{players}'
+  chunks:
+    entry:
+    - '&e#{rank} &f{world} &7[{x}, {z}]'
+    - '&7Entidades: &f{entities}'
+    - '&7Objetos: &f{items}'
+    - '&7Mobs: &f{mobs}'
+    - ''
+    - '&eClic para ir ahi.'
+    empty:
+    - '&aNo hay entidades en ningun chunk cargado.'
+    world-gone: '&cEl mundo {world} ya no esta cargado.'
+    teleported: '&aTe llevamos al chunk &e{x}, {z} &aen &e{world}&a.'
+    no-safe-spot: '&cNo hay un lugar seguro para pararse en el chunk &e{x}, {z} &cde
+      &e{world}&c (solo lava o aire).'
+  modules:
+    entry-on:
+    - '&a{module}: PRENDIDO'
+    - '&8{path}'
+    - ''
+    - '&7Clic para apagar.'
+    entry-off:
+    - '&c{module}: APAGADO'
+    - '&8{path}'
+    - ''
+    - '&7Clic para prender.'
+    enabled: '&a{module} prendido.'
+    disabled: '&c{module} apagado.'
+  module-names:
+    auto-clear: Limpieza automatica
+    skip-if-empty: Saltear si esta vacio
+    item-merge: Juntar objetos
+    xp-orb-merge: Juntar bolitas de XP
+    mob-stacking: Apilar mobs
+    ai-optimization: Optimizar IA
+    villager-optimization: Frenar IA de aldeanos
+    mob-spawn-limiter: Limite de apariciones
+    projectile-limiter: Limite de proyectiles
+    fast-clock-detector: Detector de relojes rapidos
+    hopper-optimization: Optimizar tolvas
+    farm-limiter: Limite de granjas
+    auto-unload: Descargar chunks solo
+    anti-crash-items: Objetos anti-crash
+    lag-snapshots: Fotos del lag
+    metrics-history: Historial de datos
+    web-dashboard: Panel web
+restart:
+  usage: '&cUso: &e/clearlag restart <10m|1h30m|04:30|now> [motivo] &co &e/clearlag
+    restart <cancel|status>'
+  invalid-time: '&c''{value}'' no es un tiempo. Ejemplos: &e90s&c, &e10m&c, &e1h30m&c,
+    &e04:30&c, &enow'
+  scheduled: '&c&lReinicio del server &7en &e{time}{reason}&7. &8(por {player})'
+  countdown: '&c&lReinicio del server &7en &e{time}{reason}'
+  cancelled: '&aSe cancelo el reinicio del server. &8(por {player})'
+  nothing-to-cancel: '&7No hay ningun reinicio pendiente.'
+  reason-format: ' &7- &f{reason}'
+  title: '&c&lReinicio'
+  subtitle: '&7en &e{time}'
+  actionbar: '&cReinicio del server en &e{time}'
+  bossbar: '&cReinicio del server en &e{time}'
+  kick: |-
+    &cEl server se esta reiniciando.
+    &7Volve a entrar en un minuto.
+    &f{reason}
+  status: '&eProximo reinicio: &f{at} &7(en {time}, {kind}){reason}'
+  status-none: '&7No hay ningun reinicio planeado.'
+  status-next-auto: '&7Despues de ese, el proximo automatico: &f{at}'
+  status-method: '&7Forma: &f{method}'
+  kind-manual: manual
+  kind-auto: automatico
+  today: hoy {time}
+  tomorrow: mañana {time}

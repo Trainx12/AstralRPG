@@ -49,7 +49,9 @@ python deploy_modelos_efectos.py   # FINAL privado de mochilas, cuchillos, efect
 python gemas.py --jdk <java25>     # Reforja de gemas: Skript, AstralGemas.jar, texturas; deploy_gemas.py arma la entrega
 python cavernas.py --jdk <java25>  # Cavernas de Cristal: plugin AstralCavernas, MythicMobs, aviso; deploy_cavernas.py arma la entrega
 python mesa_encantamientos.py --jdk <java25>  # mesa de encantamientos AstralMesa (reemplaza LynExp): todos los encantamientos menos las mejoras del Herrero
+python bosque_talar.py             # Bosque Astral 300x300: script (443 arboles de bosque_arboles.json); mapa con tools/bosque_mapa.py, bosque_armar.py, bosque_arboles.py
 python ee_descripciones.py <enchants del server>  # descripciones de ExcellentEnchants en espanol -> build/excellentenchants (subir y reiniciar)
+python traducciones.py --parchar  # plugins en espanol: mensajes traducidos -> build/traducciones + parches de idioma -> .local/traduccion/subir (docs/SERVIDOR.md)
 ```
 
 ## Trampas conocidas

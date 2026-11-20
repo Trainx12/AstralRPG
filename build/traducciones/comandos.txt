@@ -1,0 +1,247 @@
+# Consola, despues de subir build/traducciones/plugins y .local/traduccion/subir
+rg flag -w arena __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w arena __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w arena __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w arenas_tft __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w arenas_tft __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w arenas_tft __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w astral_bosque __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w astral_bosque __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w astral_bosque __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w astral_minas __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w astral_minas __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w astral_minas __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w battleship __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w battleship __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w battleship __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w bosque_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w bosque_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w bosque_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cavernas __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cavernas __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cavernas __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cavernas_cristal __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cavernas_cristal __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cavernas_cristal __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w colorescape __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w colorescape __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w colorescape __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w cumbre_hielo_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w cumbre_hielo_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w cumbre_hielo_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w dropper_facil __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w dropper_facil __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w dropper_facil __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w dropper_h4rs __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w dropper_h4rs __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w dropper_h4rs __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w exp_desierto __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w exp_desierto __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w exp_desierto __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w exp_hielo __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w exp_hielo __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w exp_hielo __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w exp_nieve __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w exp_nieve __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w exp_nieve __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w exp_santuario __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w exp_santuario __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w exp_santuario __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w forja_volcano_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w forja_volcano_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w forja_volcano_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w fosa __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w fosa __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w fosa __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w fosa_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w fosa_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w fosa_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w fosa_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w fosa_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w fosa_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w infinita_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w infinita_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w infinita_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w lobby __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w lobby __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w lobby __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w magmarun __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w magmarun __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w magmarun __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w mina_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w mina_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w mina_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w oceano __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w oceano __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w oceano __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w parkour_paradise3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w parkour_paradise3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w parkour_paradise3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w parkour_spiral __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w parkour_spiral __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w parkour_spiral __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w parkour_spiral2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w parkour_spiral2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w parkour_spiral2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w portales_astrales __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w portales_astrales __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w portales_astrales __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w reino __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w reino __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w reino __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w santuario __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w santuario __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w santuario __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w santuario_freemap9 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w santuario_freemap9 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w santuario_freemap9 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w santuario_interstellar __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w santuario_interstellar __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w santuario_interstellar __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w towerdefence __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w towerdefence __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w towerdefence __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w towerdefence_end __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w towerdefence_end __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w towerdefence_end __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w tumba_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w tumba_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w tumba_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth_2 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth_3 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth_4 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth_5 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_minecraft_santuario_azeroth_6 __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_nether __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_nether __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_nether __global__ exit-deny-message &cNo podes salir de aca.
+rg flag -w world_the_end __global__ deny-message &c¡No podes hacer eso aca!
+rg flag -w world_the_end __global__ entry-deny-message &cNo podes entrar aca.
+rg flag -w world_the_end __global__ exit-deny-message &cNo podes salir de aca.
+authme reload
+essentials reload
+nonchat reload
+clearlag reload
+axgraves reload
+axtrade reload
+crates reload
+ah reload
+duels reload
+sm reload
+gpreload
+train reload
+skills reload
+bolt reload
+sr reload

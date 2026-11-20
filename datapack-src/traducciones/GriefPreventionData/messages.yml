@@ -1,0 +1,540 @@
+# Mensajes de GriefPrevention en espanol (AstralRPG). Usar $ para colores.
+Messages:
+  CreateClaimSuccess:
+    Text: Zona protegida de fondo a techo. /trust <jugador> para compartir.
+  NoBuildPermission:
+    Text: No tenes permiso de {0} para construir aqui.
+    Notes: '0: owner name'
+  NoContainersPermission:
+    Text: Este contenedor pertenece a {0}.
+    Notes: '0: owner''s name.  containers also include crafting blocks'
+  ClaimStart:
+    Text: Primera esquina marcada. Marca la esquina opuesta con clic derecho.
+  ClaimTooNarrow:
+    Text: El ancho minimo es {0} bloques.
+  CreateClaimInsufficientBlocks:
+    Text: No tenes bloques suficientes. Compra area en /shop, Proteccion.
+    Notes: '0: additional blocks needed'
+  ResizeClaimTooNarrow:
+    Text: El ancho minimo es {0} bloques.
+    Notes: '0: minimum claim width'
+  ResizeClaimInsufficientArea:
+    Text: El area minima es {0} bloques.
+    Notes: '0: minimum claim area'
+  ClaimsDisabledWorld:
+    Text: Las zonas solo se protegen en survival.
+  NotEnoughBlocksForMinClaim:
+    Text: Necesitas al menos 36 bloques disponibles (6x6).
+  SuccessfulAbandon:
+    Text: Zona liberada. Te quedan {0} bloques.
+    Notes: '0: remaining blocks'
+  NoBuildOutsideClaims:
+    Text: Protege tu terreno con una pala de oro.
+  TrustListHeader:
+    Text: 'Permisos de esta zona:'
+    Notes: '0: The claim''s owner'
+  RemainingBlocks:
+    Text: Te quedan {0} bloques de proteccion.
+    Notes: '0: remaining blocks'
+  ResizeNeedMoreBlocks:
+    Text: Necesitas {0} bloques mas. Compra area en /shop, Proteccion.
+    Notes: '0: how many needed'
+  ClaimResizeSuccess:
+    Text: Zona redimensionada. Te quedan {0} bloques.
+    Notes: '0: remaining blocks'
+  ResizeStart:
+    Text: Marca la nueva posicion de esta esquina con la pala.
+  CreateClaimFailOverlap:
+    Text: La zona se superpone con otra tuya. Usa /abandonclaim o cambia las esquinas.
+  CreateClaimFailOverlapOtherPlayer:
+    Text: La zona se superpone con una de {0}.
+    Notes: '0: other claim owner'
+  CreateClaimFailOverlapShort:
+    Text: La zona se superpone con otra existente.
+  ResizeFailOverlap:
+    Text: 'No se puede ampliar: hay otra zona protegida.'
+  CreateClaimFailOverlapRegion:
+    Text: WorldGuard no permite construir en parte de esa zona.
+  ResizeFailOverlapRegion:
+    Text: No podes construir alli; no podes proteger esa area.
+  ClaimsExtendToSky:
+    Text: Las zonas protegen hasta el techo del mundo.
+  ClaimsAutoExtendDownward:
+    Text: En Astral las zonas ya protegen hasta el fondo del mundo.
+  BuildingOutsideClaims:
+    Text: Este terreno no esta protegido. Usa una pala de oro para marcar dos esquinas.
+  ChestClaimConfirmation:
+    Text: Este cofre esta protegido.
+  TrustListNoClaim:
+    Text: Parate dentro de tu zona para consultar los permisos.
+  ClaimsListHeader:
+    Text: 'Zonas protegidas:'
+  BuildPermission:
+    Text: construir
+  AccessPermission:
+    Text: acceder
+  ContainersPermission:
+    Text: usar contenedores
+  PermissionTrust:
+    Text: compartir permisos
+  NoPermissionTrust:
+    Text: No podes dar permisos aqui.
+    Notes: '0: claim owner''s name'
+  OnlyOwnersModifyClaims:
+    Text: Solo el propietario puede modificar esta zona.
+    Notes: '0: owner name'
+  OnlyOwnersAbandonClaims:
+    Text: Solo el propietario puede liberar esta zona.
+  YouHaveNoClaims:
+    Text: Todavia no tenes zonas protegidas.
+  NotYourClaim:
+    Text: Esta zona no es tuya.
+  UntrustIndividualAllClaims:
+    Text: Se retiro el acceso de {0} a tus zonas.
+    Notes: '0: untrusted player'
+  UntrustEveryoneAllClaims:
+    Text: Se retiraron los permisos compartidos de tus zonas.
+  RespectingClaims:
+    Text: Now respecting claims.
+  IgnoringClaims:
+    Text: Now ignoring claims.
+  RestoreNatureActivate:
+    Text: Listo para restaurar la naturaleza. Clic derecho para restaurar y /basicclaims para terminar.
+  RestoreNatureAggressiveActivate:
+    Text: Modo agresivo activado. ¡NO lo uses debajo de algo que quieras conservar! Clic derecho para restaurar y /basicclaims para terminar.
+  FillModeActive:
+    Text: Modo relleno activado con radio {0}. Clic derecho en una zona para rellenar.
+    Notes: '0: fill radius'
+  TransferClaimPermission:
+    Text: Ese comando necesita el permiso de zonas de admin.
+  TransferClaimMissing:
+    Text: There's no claim here.  Stand in the administrative claim you want to transfer.
+  TransferClaimAdminOnly:
+    Text: Solo las zonas de admin se pueden pasar a un jugador.
+  PlayerNotFound2:
+    Text: Ningun jugador con ese nombre entro hace poco.
+  TransferTopLevel:
+    Text: Solo se pueden pasar zonas principales (no subdivisiones). Salite de la subdivision y proba de nuevo.
+  TransferSuccess:
+    Text: Zona transferida.
+  ClearPermsOwnerOnly:
+    Text: Solo el dueño de la zona puede borrar todos los permisos.
+  ClearPermissionsOneClaim:
+    Text: Se borraron los permisos de esta zona. Para cambiar TODAS tus zonas, pararte afuera de ellas.
+  UntrustIndividualSingleClaim:
+    Text: Le sacaste el acceso a {0} en esta zona. Para cambiar TODAS tus zonas, pararte afuera de ellas.
+    Notes: '0: untrusted player'
+  OnlySellBlocks:
+    Text: Los bloques de proteccion solo se pueden vender, no comprar.
+  BlockPurchaseCost:
+    Text: Cada bloque de proteccion cuesta {0}. Tenes {1}.
+    Notes: '0: cost of one block; 1: player''s account balance'
+  ClaimBlockLimit:
+    Text: Llegaste al limite de bloques de proteccion. No podes comprar mas.
+  InsufficientFunds:
+    Text: No te alcanza la plata. Necesitas {0} y tenes {1}.
+    Notes: '0: total cost; 1: player''s account balance'
+  MaxBonusReached:
+    Text: No podes comprar {0} bloques mas. El limite del server es {1} bloques extra.
+    Notes: '0: block count; 1: bonus claims limit'
+  PurchaseConfirmation:
+    Text: Se descontaron {0}. Ahora tenes {1} bloques de proteccion disponibles.
+    Notes: '0: total cost; 1: remaining blocks'
+  OnlyPurchaseBlocks:
+    Text: Los bloques de proteccion solo se pueden comprar, no vender.
+  BlockSaleValue:
+    Text: Cada bloque de proteccion vale {0}. Tenes {1} para vender.
+    Notes: '0: block value; 1: available blocks'
+  NotEnoughBlocksForSale:
+    Text: No tenes tantos bloques de proteccion para vender.
+  BlockSaleConfirmation:
+    Text: Se depositaron {0}. Ahora tenes {1} bloques de proteccion disponibles.
+    Notes: '0: amount deposited; 1: remaining blocks'
+  AdminClaimsMode:
+    Text: Administrative claims mode active.  Any claims created will be free and editable by other administrators.
+  BasicClaimsMode:
+    Text: Volviste al modo normal de proteger zonas.
+  SubdivisionMode:
+    Text: Modo subdivision. Usa la pala para dividir tus zonas. /basicclaims para salir.
+  SubdivisionVideo2:
+    Text: 'Click for Subdivision Help: {0}'
+    Notes: 0:video URL
+  DeleteClaimMissing:
+    Text: There's no claim here.
+  DeletionSubdivisionWarning:
+    Text: Esta zona tiene subdivisiones. Si estas seguro de borrarla, usa /deleteclaim de nuevo.
+  DeleteSuccess:
+    Text: Zona borrada.
+  CantDeleteAdminClaim:
+    Text: No tenes permiso para borrar zonas de admin.
+  DeleteAllSuccess:
+    Text: Deleted all of {0}'s claims.
+    Notes: '0: owner''s name'
+  NoDeletePermission:
+    Text: No tenes permiso para borrar zonas.
+  AllAdminDeleted:
+    Text: Deleted all administrative claims.
+  AdjustBlocksSuccess:
+    Text: 'Se cambiaron los bloques extra de {0} en {1}. Total de bloques extra: {2}.'
+    Notes: '0: player; 1: adjustment; 2: new total'
+  NotTrappedHere:
+    Text: Aca podes construir. Salvate solo.
+  RescuePending:
+    Text: Si te quedas quieto 10 segundos, te sacamos de aca. Espera.
+  NonSiegeWorld:
+    Text: Los asedios estan apagados aca.
+  AlreadySieging:
+    Text: Ya estas en un asedio.
+  NotSiegableThere:
+    Text: '{0} isn''t protected there.'
+    Notes: '0: defending player'
+  SiegeTooFarAway:
+    Text: Estas muy lejos para asediar.
+  NoSiegeYourself:
+    Text: No podes asediarte a vos mismo.
+  NoSiegeDefenseless:
+    Text: Ese jugador esta indefenso. Busca a otro.
+  AlreadyUnderSiegePlayer:
+    Text: '{0} ya esta bajo asedio. ¡Sumate!'
+    Notes: '0: defending player'
+  AlreadyUnderSiegeArea:
+    Text: Esa zona ya esta bajo asedio. ¡Sumate!
+  NoSiegeAdminClaim:
+    Text: Los asedios estan apagados en esta zona.
+  SiegeOnCooldown:
+    Text: Todavia tenes que esperar para asediar a este jugador o zona. Busca a otro.
+  SiegeAlert:
+    Text: ¡Te estan asediando! Si te desconectas ahora, moris. Tenes que vencer a {0}, esperar que se rinda o escapar.
+    Notes: '0: attacker name'
+  SiegeConfirmed:
+    Text: ¡Empezo el asedio! Si te desconectas ahora, moris. Tenes que vencer a {0}, echarlo o rendirte e irte.
+    Notes: '0: defender name'
+  AbandonClaimMissing:
+    Text: Pararte dentro de la zona que queres borrar, o usa /abandonallclaims.
+  DeleteTopLevelClaim:
+    Text: Para borrar una subdivision, pararte adentro. Si no, usa /abandontoplevelclaim para borrar la zona y sus subdivisiones.
+  AbandonSuccess:
+    Text: Zona abandonada. Ahora tenes {0} bloques de proteccion disponibles.
+    Notes: '0: remaining claim blocks'
+  ConfirmAbandonAllClaims:
+    Text: ¿Seguro que queres abandonar TODAS tus zonas? Confirma con /abandonallclaims confirm
+  CantGrantThatPermission:
+    Text: No podes dar un permiso que vos no tenes.
+  GrantPermissionNoClaim:
+    Text: Pararte dentro de la zona donde queres dar el permiso.
+  GrantPermissionConfirmation:
+    Text: Le diste permiso de {0} a {1} {2}.
+    Notes: '0: target player; 1: permission description; 2: scope (changed claims)'
+  ManageUniversalPermissionsInstruction:
+    Text: Para manejar los permisos de TODAS tus zonas, pararte afuera de ellas.
+  ManageOneClaimPermissionsInstruction:
+    Text: Para manejar los permisos de una zona, pararte adentro.
+  CollectivePublic:
+    Text: todos
+    Notes: as in 'granted the public permission to...'
+  PermissionsPermission:
+    Text: manage permissions
+  LocationCurrentClaim:
+    Text: en esta zona
+  LocationAllClaims:
+    Text: en todas tus zonas
+  PvPImmunityStart:
+    Text: Nadie te puede atacar mientras tengas el inventario vacio.
+  SiegeNoDrop:
+    Text: No podes regalar objetos durante un asedio.
+  DonateItemsInstruction:
+    Text: Para regalar lo que tenes en la mano, clic izquierdo al cofre de nuevo.
+  ChestFull:
+    Text: Este cofre esta lleno.
+  DonationSuccess:
+    Text: ¡Objetos pasados al cofre!
+  PlayerTooCloseForFire2:
+    Text: No podes prender fuego tan cerca de otro jugador.
+  TooDeepToClaim:
+    Text: Este cofre no se puede proteger porque esta muy profundo. Proba moverlo.
+  AutomaticClaimNotification:
+    Text: Este cofre y los bloques cercanos quedaron protegidos contra robos y roturas.
+  AutomaticClaimOtherClaimTooClose:
+    Text: 'No se pudo proteger tu cofre: hay otra zona protegida muy cerca.'
+  UnprotectedChestWarning:
+    Text: Este cofre NO esta protegido. Usa una pala de oro para agrandar una zona o crear una nueva.
+  ThatPlayerPvPImmune:
+    Text: No podes lastimar a jugadores indefensos.
+  CantFightWhileImmune:
+    Text: No podes pelear mientras estas protegido del PvP.
+  NoDamageClaimedEntity:
+    Text: Eso es de {0}.
+    Notes: '0: owner name'
+  ShovelBasicClaimMode:
+    Text: La pala volvio al modo normal.
+  CreativeBasicsVideo2:
+    Text: 'Clic para ver la ayuda de zonas: {0}'
+    Notes: '{0}: video URL'
+  SurvivalBasicsVideo2:
+    Text: 'Clic para ver la ayuda de zonas: {0}'
+    Notes: '{0}: video URL'
+  TrappedChatKeyword:
+    Text: trapped;stuck
+    Notes: When mentioned in chat, players get information about the /trapped command (multiple words can be separated with semi-colons)
+  TrappedInstructions:
+    Text: ¿Quedaste atrapado en la zona de otro? Proba con /trapped.
+  PvPNoDrop:
+    Text: No podes tirar objetos mientras peleas con otro jugador.
+  SiegeNoTeleport:
+    Text: No podes teletransportarte fuera de una zona asediada.
+  BesiegedNoTeleport:
+    Text: No podes teletransportarte a una zona asediada.
+  SiegeNoContainers:
+    Text: No podes abrir cofres durante un asedio.
+  PvPNoContainers:
+    Text: No podes abrir cofres mientras peleas con otro jugador.
+  PvPImmunityEnd:
+    Text: Ya podes pelear con otros jugadores.
+  NoBedPermission:
+    Text: '{0} no te dio permiso para dormir aca.'
+    Notes: '0: claim owner'
+  NoWildernessBuckets:
+    Text: Solo podes vaciar baldes dentro de tus zonas o bajo tierra.
+  NoLavaNearOtherPlayer:
+    Text: No podes poner lava tan cerca de {0}.
+    Notes: '0: nearby player'
+  TooFarAway:
+    Text: Eso esta muy lejos.
+  BlockNotClaimed:
+    Text: Este bloque no es de nadie.
+  BlockClaimed:
+    Text: Este bloque es de {0}.
+    Notes: '0: claim owner'
+  SiegeNoShovel:
+    Text: No podes usar la pala durante un asedio.
+  RestoreNaturePlayerInChunk:
+    Text: No se puede restaurar. {0} esta en ese chunk.
+    Notes: '0: nearby player'
+  NoCreateClaimPermission:
+    Text: No tenes permiso para proteger zonas.
+  NoCreativeUnClaim:
+    Text: No podes desproteger esta zona. Solo podes agrandarla o crear otras.
+  ResizeFailOverlapSubdivision:
+    Text: No podes crear una subdivision aca porque se pisa con otra. Usa /abandonclaim para borrarla o la pala en una esquina para cambiarle el tamaño.
+  SubdivisionStart:
+    Text: ¡Esquina de la subdivision marcada! Usa la pala en la esquina opuesta.
+  CreateSubdivisionOverlap:
+    Text: La zona que marcaste se pisa con otra subdivision.
+  SubdivisionSuccess:
+    Text: ¡Subdivision creada! Usa /trust para compartirla con amigos.
+  NewClaimTooNarrow:
+    Text: La zona quedaria muy chica. Tiene que tener al menos {0} bloques de ancho.
+    Notes: '0: minimum claim width'
+  AbandonClaimAdvertisement:
+    Text: Para borrar otra zona y recuperar bloques, usa /abandonclaim.
+  SiegeWinDoorsOpen:
+    Text: Congratulations!  Buttons and levers are temporarily unlocked.
+  RescueAbortedMoved:
+    Text: ¡Te moviste! Se cancelo el rescate.
+  SiegeDoorsLockedEjection:
+    Text: ¡Se termino el tiempo de saqueo! Te sacamos de la zona.
+  NoModifyDuringSiege:
+    Text: No se pueden cambiar zonas durante un asedio.
+  NoBuildUnderSiege:
+    Text: '{0} esta asediando esta zona. Nadie puede construir aca.'
+    Notes: '0: attacker name'
+  NoBuildPvP:
+    Text: No podes construir en zonas mientras peleas con otro jugador.
+  NonSiegeMaterial:
+    Text: Ese material es demasiado duro para romperlo.
+  NoOwnerBuildUnderSiege:
+    Text: No podes hacer cambios durante un asedio.
+  NoAccessPermission:
+    Text: No tenes permiso de {0} para usar eso.
+    Notes: '0: owner name.  access permission controls buttons, levers, and beds'
+  NoContainersSiege:
+    Text: '{0} esta asediando esta zona. Nadie puede abrir cofres ahora.'
+    Notes: '0: attacker name'
+  OwnerNameForAdminClaims:
+    Text: an administrator
+    Notes: as in 'You don't have an administrator's permission to build here.'
+  UnknownPlayerName:
+    Text: someone
+    Notes: 'Name used for unknown players. UUID will be appended if available: "someone (01234567-0123-0123-0123-0123456789ab)"'
+  ClaimTooSmallForEntities:
+    Text: Esta zona es muy chica para eso. Agrandala.
+  TooManyEntitiesInClaim:
+    Text: Esta zona ya tiene demasiadas entidades. Agrandala o saca algunos animales, mobs, cuadros o vagonetas.
+  ConfirmFluidRemoval:
+    Text: Abandonar esta zona va a borrar la lava que tiene adentro. Si estas seguro, usa /abandonclaim de nuevo.
+  AutoBanNotify:
+    Text: Auto-banned {0}({1}).  See logs for details.
+  AdjustGroupBlocksSuccess:
+    Text: 'Se cambiaron los bloques extra de los jugadores con permiso {0} en {1}. Total: {2}.'
+    Notes: '0: permission; 1: adjustment amount; 2: new total bonus'
+  InvalidPermissionID:
+    Text: Escribi el nombre de un jugador o un permiso entre [corchetes].
+  HowToClaimRegex:
+    Text: (^|.*\W)how\W.*\W(claim|protect|lock)(\W.*|$)
+    Notes: This is a Java Regular Expression.  Look it up before editing!  It's used to tell players about the demo video when they ask how to claim land.
+  PlayerOfflineTime:
+    Text: '  Last login: {0} days ago.'
+    Notes: '0: number of full days since last login'
+  TrappedWontWorkHere:
+    Text: No encontramos un lugar seguro para llevarte. Avisale a un admin.
+  CommandBannedInPvP:
+    Text: No podes usar ese comando mientras peleas con otro jugador.
+  UnclaimCleanupWarning:
+    Text: La zona que desprotegiste la pueden cambiar otros jugadores o limpiarla los admins. Si construiste algo que queres conservar, protegela de nuevo.
+  BuySellNotConfigured:
+    Text: La compra y venta de bloques de proteccion esta apagada.
+  NoTeleportPvPCombat:
+    Text: No podes teletransportarte mientras peleas con otro jugador.
+  NoTNTDamageAboveSeaLevel:
+    Text: 'Warning: TNT will not destroy blocks above sea level.'
+  NoTNTDamageClaims:
+    Text: 'Warning: TNT will not destroy claimed blocks.'
+  IgnoreClaimsAdvertisement:
+    Text: Para saltear las zonas, usa /ignoreclaims.
+  NoPermissionForCommand:
+    Text: No tenes permiso para hacer eso.
+  ClaimsListNoPermission:
+    Text: No tenes permiso para ver las zonas de otro jugador.
+  ExplosivesDisabled:
+    Text: Esta zona ahora esta protegida de explosiones. Usa /claimexplosions de nuevo para cambiarlo.
+  ExplosivesEnabled:
+    Text: Las explosiones ahora pueden romper esta zona. Usa /claimexplosions de nuevo para protegerla.
+  ClaimExplosivesAdvertisement:
+    Text: Para que las explosiones puedan romper bloques en esta zona, usa /claimexplosions.
+  PlayerInPvPSafeZone:
+    Text: Ese jugador esta en una zona sin PvP.
+  NoPistonsOutsideClaims:
+    Text: 'Warning: Pistons won''t move blocks outside land claims.'
+  SoftMuted:
+    Text: Soft-muted {0}.
+    Notes: '0: The changed player''s name.'
+  UnSoftMuted:
+    Text: Un-soft-muted {0}.
+    Notes: '0: The changed player''s name.'
+  DropUnlockAdvertisement:
+    Text: Los demas no pueden agarrar tus cosas tiradas salvo que uses /unlockdrops.
+  PickupBlockedExplanation:
+    Text: No podes agarrar esto salvo que {0} use /unlockdrops.
+    Notes: '0: The item stack''s owner.'
+  DropUnlockConfirmation:
+    Text: Liberaste tus cosas. Otros jugadores las pueden agarrar (hasta que vuelvas a morir).
+  DropUnlockOthersConfirmation:
+    Text: Unlocked {0}'s drops.
+    Notes: '0: The owner of the unlocked drops.'
+  AdvertiseACandACB:
+    Text: Podes usar /acb para darte mas bloques de proteccion, o /adminclaims para crear una zona de admin gratis.
+  AdvertiseAdminClaims:
+    Text: Podes crear una zona de admin con /adminclaims, compartida con los demas admins.
+  AdvertiseACB:
+    Text: Podes usar /acb para darte mas bloques de proteccion.
+  NotYourPet:
+    Text: Eso es de {0} hasta que te lo de con /givepet.
+    Notes: '0: owner name'
+  PetGiveawayConfirmation:
+    Text: Pet transferred.
+  PetTransferCancellation:
+    Text: Pet giveaway cancelled.
+  ReadyToTransferPet:
+    Text: ¡Listo para pasar! Clic derecho a la mascota que queres regalar, o cancela con /givepet cancel.
+  AvoidGriefClaimLand:
+    Text: ¡Evita que te rompan las cosas! Protege tu terreno.
+  BecomeMayor:
+    Text: ¡Dividi tu terreno y converti en alcalde!
+  ClaimCreationFailedOverClaimCountLimit:
+    Text: Llegaste al limite de zonas. Usa /abandonclaim para borrar una antes de crear otra.
+  ShowNearbyClaims:
+    Text: Found {0} land claims.
+    Notes: '0: Number of claims found.'
+  NoChatUntilMove:
+    Text: Tenes que moverte un poco antes de poder hablar (asi frenamos a los bots).
+  SiegeImmune:
+    Text: Ese jugador no puede ser asediado.
+  SetClaimBlocksSuccess:
+    Text: Bloques de proteccion actualizados.
+  IgnoreConfirmation:
+    Text: Ya no vas a ver los mensajes de ese jugador.
+  NotIgnoringPlayer:
+    Text: No estas ignorando a ese jugador.
+  UnIgnoreConfirmation:
+    Text: You're no longer ignoring chat messages from that player.
+  SeparateConfirmation:
+    Text: Those players will now ignore each other in chat.
+  UnSeparateConfirmation:
+    Text: Those players will no longer ignore each other in chat.
+  NotIgnoringAnyone:
+    Text: No estas ignorando a nadie.
+  Manage:
+    Text: Manage
+  Build:
+    Text: Build
+  Containers:
+    Text: Containers
+  Access:
+    Text: Access
+  HasSubclaimRestriction:
+    Text: Esta subdivision no hereda los permisos de la zona principal
+  StartBlockMath:
+    Text: '{0} blocks from play + {1} bonus = {2} total.'
+  ContinueBlockMath:
+    Text: ' (-{0} blocks)'
+  EndBlockMath:
+    Text: ' = te quedan {0} bloques'
+  NoClaimDuringPvP:
+    Text: No podes proteger zonas mientras peleas con otro jugador.
+  UntrustAllOwnerOnly:
+    Text: Solo el dueño de la zona puede borrar todos sus permisos.
+  ManagersDontUntrustManagers:
+    Text: Solo el dueño de la zona puede sacar a un encargado.
+  BookAuthor:
+    Text: BigScary
+  BookTitle:
+    Text: Como proteger tu terreno
+  BookIntro:
+    Text: ¡Protege tu terreno para cuidar tus cosas! Toca el link de arriba para aprender en 3 minutos.
+  BookDisabledChestClaims:
+    Text: '  En este server, poner un cofre NO protege el terreno.'
+  BookUsefulCommands:
+    Text: 'Useful Commands:'
+  BookLink:
+    Text: 'Click: {0}'
+    Notes: '{0}: video URL'
+  BookTools:
+    Text: Las herramientas para proteger son {0} y {1}.
+    Notes: '0: claim modification tool name; 1:claim information tool name'
+  NoProfanity:
+    Text: Cuida el vocabulario, por favor.
+  PlayerNotIgnorable:
+    Text: No podes ignorar a ese jugador.
+  NoEnoughBlocksForChestClaim:
+    Text: Because you don't have any claim blocks available, no automatic land claim was created for you.  You can use /claimslist to monitor your available claim block total.
+  IsIgnoringYou:
+    Text: Ese jugador te esta ignorando.
+  MustHoldModificationToolForThat:
+    Text: Para eso tenes que tener una pala de oro en la mano.
+  StandInClaimToResize:
+    Text: Pararte dentro de la zona que queres cambiar de tamaño.
+  MinimumRadius:
+    Text: El radio minimo es {0}.
+    Notes: '0: minimum radius'
+  ClaimTooSmallForActiveBlocks:
+    Text: Esta zona es muy chica para bloques activos (tolvas, generadores, faros...). Agrandala primero.
+  TooManyActiveBlocksInClaim:
+    Text: Esta zona llego al limite de bloques activos (tolvas, generadores, faros...). Agrandala o saca algunos.
+  ConsoleOnlyCommand:
+    Text: Ese comando solo se puede usar desde la consola.
+  WorldNotFound:
+    Text: World not found.
+  AdjustBlocksAllSuccess:
+    Text: Se cambiaron los bloques extra de todos los conectados en {0}.
+    Notes: '0: adjustment amount'
+  TooMuchIpOverlap:
+    Text: Hay demasiados jugadores conectados desde tu misma IP.
+  StandInSubclaim:
+    Text: Tenes que estar parado en una subdivision para restringirla
+  SubclaimRestricted:
+    Text: This subclaim's permissions will no longer inherit from the parent claim
+  SubclaimUnrestricted:
+    Text: Esta subdivision ahora hereda los permisos de la zona principal
+  NetherPortalTrapDetectionMessage:
+    Text: Parece que quedaste trabado en un portal del Nether. ¡Si es asi, te sacamos en unos segundos!
+    Notes: Sent to player on join, if they left while inside a nether portal.

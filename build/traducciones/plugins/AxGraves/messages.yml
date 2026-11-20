@@ -1,0 +1,39 @@
+hologram:
+- '&#FF0000☠ &#FF0000Tumba de &l%player% &#FF0000☠'
+- '&#00CC00⌛ &#00FF00%despawn-time% &#00CC00⌛'
+- '&#00AAFF%item% &fᴏʙᴊᴇᴛᴏs &8| &#00AAFF%xp% &fxᴘ'
+help:
+- ' '
+- <gradient:#FF00FF:#DD00FF><b>Tumbas</b></gradient> <#FF55FF>Ayuda
+- ' <#FF55FF>➤ <white>/axgraves reload <#DDDDDD>| <#FFAAFF>Recargar el plugin'
+- ' <#FF55FF>➤ <white>/axgraves list <#DDDDDD>| <#FFAAFF>Ver las tumbas que hay'
+- ' <#FF55FF>➤ <white>/axgraves tp <#DDDDDD>| <#FFAAFF>Ir a tu ultima tumba'
+- ' '
+gui-name: '&0Tumba de %player%'
+unknown-player: Desconocido
+reload:
+  success: '&#33FF33¡Plugin recargado!'
+  failed: '&#FF3333¡No se pudo recargar! Hay un error en el archivo &f%file%&#FF3333,
+    mira la consola.'
+interact:
+  not-your-grave: '&#FFAAFF¡Solo podes abrir tu propia tumba!'
+death-message:
+  enabled: true
+  message: '&eMoriste en &f%world%&e, coordenadas &f%x%, %y%, %z%&e. Tus cosas quedaron en una tumba.'
+grave-list:
+  header: '&#FF00FF&l=== TUMBAS ==='
+  grave: '&#FF00FF[IR] &#FFAAFF%player% &7- &#FFAAFF%world% %x%, %y%, %z% &7(%time%)'
+  no-graves: '&#FFAAFF¡No hay tumbas!'
+commands:
+  invalid-value: '&#FF0000Dato invalido: &#BB0000%value%'
+  invalid-command: '&#FF0000¡Ese comando no existe!'
+  missing-argument: '&#FF0000¡Falta un dato! Tenes que poner &#BB0000%value%&#FF0000.'
+  no-permission: '&#FF0000¡No tenes permiso para usar este comando!'
+  out-of-range: '&#FF0000¡El numero &#BB0000%number% &#FF0000tiene que estar entre &#BB0000%min%
+    &#FF0000y &#BB0000%max%&#FF0000!'
+  player-only: '&#FF0000¡Este comando solo lo puede usar un jugador!'
+  invalid-player: '&#FF0000¡No se encontro al jugador &#BB0000%player%&#FF0000!'
+  invalid-selector: '&#FF0000¡No podes usar ese selector en este comando!'
+update-notifier: '&#FF88FFHay una version nueva de AxGraves &#DDDDDD(&#FFFFFFactual:
+  &#FF0000%current% &#DDDDDD| &#FFFFFFnueva: &#00FF00%latest%&#DDDDDD)'
+version: 6

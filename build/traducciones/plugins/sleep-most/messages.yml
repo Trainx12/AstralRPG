@@ -1,0 +1,63 @@
+# CUSTOMIZE MESSAGES FOR SLEEP-MOST.
+# To disable messages set the message to ''
+# Placeholders are available here --> https://sleepmost.pseudonova.com/placeholders/sleepmost-config
+# You need support? Join our Discord server --> https://discord.pseudonova.com/
+#
+# Add multiple messages to randomly select by doing the following:
+# messagetype:
+#  - 'message1'
+
+prefix: '&8[&dAstralRPG&8]'
+user:
+  night-skipped-chat: '&eAmanece en AstralRPG. Buena aventura, %player%!'
+  storm-skipped-chat: '&eLa tormenta termino. El cielo vuelve a despejarse.'
+  players-left-night: '&7Durmiendo para pasar la noche &d%sleeping%&7/&d%required%'
+  players-left-storm: '&7Durmiendo para pasar la tormenta &d%sleeping%&7/&d%required%'
+  sleep-prevented: '&cNo se puede dormir en este mundo.'
+  no-sleep-storm: '&cAhora no se puede dormir durante la tormenta.'
+  cannot-sleep-now: '&cAhora no podes dormir.'
+  sleep-success: '&7Estas descansando.'
+  no-longer-sleeping: '&7Dejaste de dormir.'
+  no-bed-location-set: '&cNo tenes una cama guardada'
+  teleported-to-bed: '&bTe llevamos a tu cama'
+  sleep-command-disabled: '&eUsa una cama para dormir.'
+  insomnia-not-sleepy: '&cTodavia no tenes sueño'
+  insomnia-feeling-sleepy: '&bEmpezas a tener sueño...'
+  kicked-player-from-bed: '&bSacaste a &a%player% &bde su cama'
+  kicked-from-bed: '&cTe sacaron de la cama'
+  kicking-not-allowed: '&cNo tenes permiso para sacar a este jugador de la cama'
+  night-skipped-title: '&eUn nuevo amanecer'
+  night-skipped-subtitle: '&dAstralRPG'
+  storm-skipped-title: '&eLa tormenta termino'
+  storm-skipped-subtitle: '&dVuelve la calma'
+  longer-night:
+    sleep-prevented: '&cLa noche es mas larga que de costumbre, todavia no tenes sueño'
+boss-bar:
+  title: '&bJugadores durmiendo para pasar la %skip-cause% &f[&c%sleeping-count%&f/&c%sleeping-required-count%&f]'
+admin:
+  no-console-command: '&cEste comando no se puede usar desde la consola'
+  no-permission-command: '&cNo tenes permiso para hacer esto'
+  unknown-command: '&cEse comando no existe'
+  config-reloaded: '&aSleep-Most recargado'
+  already-enabled-for-world: '&cSleep-Most ya esta activado en &a%world%'
+  already-disabled-for-world: '&cSleep-Most ya esta apagado en &a%world%'
+  enabled-for-world: '&bSleep-Most activado en &a%world%'
+  disabled-for-world: '&cSleep-Most apagado en &a%world%'
+  not-enabled-for-world: '&cSleep-Most no esta activado en &a%world%&c. Activalo con &a/sm enable'
+  currently-disabled: '&bSleep-Most esta &capagado &ben este mundo. Escribi &a/sm enable &bpara activarlo'
+  one-player-sleep-set: '&bListo: con que duerma un jugador alcanza'
+  specify-player: '&cEscribi el nombre del jugador'
+  target-not-sleeping: '&cEse jugador no esta durmiendo'
+  target-not-online: '&cEse jugador no esta conectado'
+  insomnia-already-enabled: '&cEl insomnio ya esta activado en este mundo'
+  insomnia-enabled: '&bInsomnio activado'
+  only-during-night-command: '&cEste comando solo se puede usar de noche'
+  kick-out-bed: '&c&l[sacar de la cama]'
+flag:
+  all-reset-success: '&cSe reiniciaron todas las opciones'
+  set-in-world: '&bLa opcion &e%flag% &ben tu mundo vale &e%value%&b.'
+  reset-in-world: '&bLa opcion &e%flag% &bvolvio a &e%default-value%'
+  not-exist: '&cEsa opcion no existe'
+clock:
+  title: '&b%time%'
+  subtitle: '&a>>>'

@@ -1,0 +1,119 @@
+# DOCUMENTATION: https://docs.artillex-studios.com/axtrade.html
+
+player-help:
+- ' '
+- <gradient:#00FFDD:#55FFFF><b>AxTrade</b></gradient> <#22FFDD>Ayuda
+- ' <#22FFDD>➤ <white>/trade <jugador> <#DDDDDD>| <#77FFFF>Pedir un intercambio'
+- ' <#22FFDD>➤ <white>/trade accept <jugador> <#DDDDDD>| <#77FFFF>Aceptar un intercambio'
+- ' <#22FFDD>➤ <white>/trade deny <jugador> <#DDDDDD>| <#77FFFF>Rechazar un intercambio'
+- ' '
+
+admin-help:
+- ' '
+- <gradient:#00FFDD:#55FFFF><b>AxTrade</b></gradient> <#22FFDD>Ayuda
+- ' <#22FFDD>➤ <white>/trade <jugador> <#DDDDDD>| <#77FFFF>Pedir un intercambio'
+- ' <#22FFDD>➤ <white>/trade accept <jugador> <#DDDDDD>| <#77FFFF>Aceptar un intercambio'
+- ' <#22FFDD>➤ <white>/trade deny <jugador> <#DDDDDD>| <#77FFFF>Rechazar un intercambio'
+- ' <#22FFDD>➤ <white>/axtrade reload <#DDDDDD>| <#77FFFF>Recargar el plugin'
+- ' <#22FFDD>➤ <white>/axtrade force <jugador> <#DDDDDD>| <#77FFFF>Forzar un intercambio'
+- ' <#22FFDD>➤ <white>/axtrade preview <#DDDDDD>| <#77FFFF>Abre el menu de prueba'
+- ' '
+
+reload:
+  success: '&#33FF33¡Plugin recargado!'
+  failed: '&#FF3333¡No se pudo recargar! Hay un error en &f%file%&#FF3333, mira la consola.'
+
+trade:
+  started: '&#CCFFEE¡Empezaste un intercambio con &#00FFDD%player%&#CCFFEE!'
+  completed: '&#CCFFEE¡Terminaste el intercambio con &#00FFDD%player%&#CCFFEE!'
+  aborted: '&#CCFFEESe cancelo el intercambio con &#00FFDD%player%&#CCFFEE.'
+  blacklisted-item: '&#CCFFEE¡Este objeto no se puede intercambiar!'
+  inventory-full: '&#CCFFEENo podes poner mas objetos: el otro jugador no tiene mas lugar en el inventario.'
+  preview-info: '&#CCFFEEEste es el menu de prueba: los botones pueden no andar.'
+
+toggle:
+  enabled: '&#CCFFEE¡Ahora recibis pedidos de intercambio!'
+  disabled: '&#CCFFEEYa no recibis pedidos de intercambio.'
+
+# summary after a successful trade
+summary:
+  get:
+    item: '&#00FF00&l+ &#00FF00%amount%x %item%'
+    currency: '&#00FF00&l+ &#00FF00%amount% %currency%'
+  give:
+    item: '&#FF0000&l- &#FF0000%amount%x %item%'
+    currency: '&#FF0000&l- &#FF0000%amount% %currency%'
+
+currency-editor:
+  success: '&#CCFFEE¡Cantidad cambiada!'
+  failed: '&#CCFFEE¡Cantidad invalida!'
+  not-enough: '&#CCFFEE¡No tenes tanto!'
+
+request:
+  sent-sender: '&#CCFFEE¡Le pediste un intercambio a &#00FFDD%player%&#CCFFEE!'
+  sent-receiver:
+    info: '&#00FFDD%player% &#CCFFEEte pide un intercambio.'
+    accept:
+      message: '&#00FF00/trade accept %player%'
+      hover: '&#00FF00¡Clic aca para &naceptar&#00FF00 el intercambio!'
+    deny:
+      message: '&#FF0000/trade deny %player%'
+      hover: '&#FF0000¡Clic aca para &nrechazar&#FF0000 el intercambio!'
+  no-request: '&#CCFFEENo tenes ningun pedido de intercambio de &#00FFDD%player%&#CCFFEE.'
+  deny-sender: '&#00FFDD%player% &#CCFFEErechazo tu pedido de intercambio.'
+  deny-receiver: '&#CCFFEERechazaste el intercambio de &#00FFDD%player%&#CCFFEE.'
+  cant-trade-self: '&#CCFFEE¡No podes intercambiar con vos mismo!'
+  already-in-trade: '&#CCFFEE¡Ese jugador ya esta intercambiando con alguien!'
+  already-sent: '&#CCFFEE¡Ya le pediste un intercambio a &#00FFDD%player% &#CCFFEEhace poco!'
+  too-far: '&#CCFFEE¡Estas muy lejos de &#00FFDD%player% &#CCFFEEpara intercambiar!'
+  not-accepting: '&#CCFFEE¡Ese jugador no acepta intercambios!'
+  disallowed-gamemode: '&#CCFFEE¡Vos o el otro jugador estan en un modo de juego que no permite intercambios!'
+  same-ip: '&#CCFFEE¡No podes intercambiar con una cuenta de tu misma IP!'
+  below-required-amount: '&#CCFFEE¡Tenes que intercambiar al menos &f%amount% %currency%&#CCFFEE!'
+  blacklisted-world: '&#CCFFEE¡En este mundo no se puede intercambiar!'
+  expired: '&#CCFFEEVencio tu pedido de intercambio a &#00FFDD%player%&#CCFFEE.'
+  disabled-trading: '&#CCFFEE¡Tenes los intercambios apagados! Usa &#00FFDD/trade toggle &#CCFFEEpara prenderlos.'
+
+# this must be 4 lines
+# note: currently the first line must be left empty
+currency-editor-sign:
+- ''
+- '-----------'
+- Escribi la cantidad
+- en la primera linea
+
+# list of sounds: https://www.digminecraft.com/lists/sound_list_pc.php
+# set to "" to disable
+sounds:
+  # trade sounds
+  started: entity.player.levelup
+  completed: entity.player.levelup
+  aborted: block.anvil.destroy
+  # trade requests
+  deny: block.anvil.land
+  requested: entity.experience_bottle.throw
+  # gui sounds
+  accept: ui.button.click
+  countdown: ui.button.click
+  cancel: ui.button.click
+
+# can be used in the gui title as %own-status% and %partner-status%
+placeholders:
+  ready: Listo
+  waiting: Esperando
+
+commands:
+  invalid-value: '&#FF0000Dato invalido: &#BB0000%value%'
+  invalid-command: '&#FF0000¡Ese comando no existe!'
+  missing-argument: '&#FF0000¡Falta un dato! Tenes que poner &#BB0000%value%&#FF0000.'
+  no-permission: '&#FF0000¡No tenes permiso para usar este comando!'
+  out-of-range: '&#FF0000¡El numero &#BB0000%number% &#FF0000tiene que estar entre &#BB0000%min% &#FF0000y &#BB0000%max%&#FF0000!'
+  player-only: '&#FF0000¡Este comando solo lo puede usar un jugador!'
+  invalid-player: '&#FF0000¡No se encontro al jugador &#BB0000%player%&#FF0000!'
+  invalid-selector: '&#FF0000¡No podes usar ese selector en este comando!'
+
+update-notifier: '&#AAFFCCThere is a new version of the plugin available! &#DDDDDD(&#FFFFFFcurrent: &#FF0000%current% &#DDDDDD| &#FFFFFFlatest: &#00FF00%latest%&#DDDDDD)'
+safety: '&#FF0000Esta funcion esta apagada por seguridad. Avisale a un admin.'
+
+# do not change this
+version: 9
