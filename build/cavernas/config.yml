@@ -112,7 +112,7 @@ jefes:
 precios:
   cristal_caverna: 45000
   geoda_estelar: 400000
-titulo-comisiones: '&f'
+titulo-comisiones: '&f'
 comisiones:
 - clave: amatista
   texto: Pica 60 vetas de Amatista

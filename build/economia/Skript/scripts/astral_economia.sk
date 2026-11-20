@@ -162,12 +162,12 @@ on load:
     set {-eco.banco.lim::5} to 1000000000
     set {-eco.banco.costo::5} to 200000000
     delete {-banco.titulo::*}
-    set {-banco.titulo::banco} to "&f"
-    set {-banco.titulo::depositar} to "&f"
-    set {-banco.titulo::retirar} to "&f"
-    set {-banco.titulo::mejorar} to "&f"
-    set {-banco.titulo::movimiento} to "&f"
-    set {-banco.titulo::cuenta} to "&f"
+    set {-banco.titulo::banco} to "&f"
+    set {-banco.titulo::depositar} to "&f"
+    set {-banco.titulo::retirar} to "&f"
+    set {-banco.titulo::mejorar} to "&f"
+    set {-banco.titulo::movimiento} to "&f"
+    set {-banco.titulo::cuenta} to "&f"
     set {-eco.banco.max} to 5
     if {astral.banco.proximo} is not set:
         set {astral.banco.proximo} to {@horas} hours after now
@@ -343,7 +343,7 @@ function astral_banco_menu(p: player, vista: text = "banco"):
         set slot 5 of {_inv} to astral_banco_pieza("i_limite", "&bNuevo limite: &e%{-eco.banco.lim::%{_sig}%}%$", ("&7Cuenta %{-eco.banco.nombre::%{_sig}%}%"))
         set slot 14 of {_inv} to astral_banco_pieza("i_saldo", "&6Costo: &e%{-eco.banco.costo::%{_sig}%}%$", ("&7Se paga con tu plata encima."))
         set slot 23 of {_inv} to astral_banco_pieza("i_cuenta", "&fCuenta actual: %{-eco.banco.nombre::%{_n}%}%", ("&7Limite: &e%{_lim}%$"))
-        astral_banco_tiles({_inv}, 38, 5, 1, "b_mejorar", "&b&lMejorar a %{-eco.banco.nombre::%{_sig}%}%", ("&7Costo: &e%{-eco.banco.costo::%{_sig}%}%$"))
+        astral_banco_tiles({_inv}, 40, 5, 1, "b_mejorar", "&b&lMejorar a %{-eco.banco.nombre::%{_sig}%}%", ("&7Costo: &e%{-eco.banco.costo::%{_sig}%}%$"))
     else if {_vista} is "cuenta":
         set slot 5 of {_inv} to astral_banco_pieza("i_limite", "&dLimite: &e%{_lim}%$", ("&7Nivel maximo."))
         set slot 14 of {_inv} to astral_banco_pieza("i_saldo", "&6Interes: &e2%% cada 24 h", ({_int}))
@@ -473,7 +473,7 @@ on inventory click:
             astral_banco_menu(player, "movimiento")
         stop
     if {_v} is "mejorar":
-        if {_slot} is between 38 and 42:
+        if {_slot} is between 40 and 44:
             astral_banco_mejorar(player)
             astral_banco_menu(player, "mejorar")
         stop

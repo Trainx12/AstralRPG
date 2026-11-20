@@ -22,13 +22,46 @@ ART = HERE / 'pack-source/arte-19-11/ventanas'
 START, END = '', ''
 W = 224
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
-VENTANAS = {'cavernas_aviso': 4, 'comisiones': 6, 'efectos': 6, **{f'banco_{v}': 6 for v in BANCO_VISTAS}}
+VENTANAS = {'cavernas_aviso': 4, 'comisiones': 6, 'efectos': 6, **{f'banco_{v}': 6 for v in BANCO_VISTAS},
+            'subastas_inicio': 3}
+# Fondos nuevos a doble resolucion (disenos Gemini 20/11, ventanas_20_11.py): reemplazan al armado de aca.
+NUEVAS_2011 = ('comisiones', 'subastas_inicio', *(f'banco_{v}' for v in BANCO_VISTAS))
+# Piezas del Banco que ahora estan dibujadas en el fondo (20/11): el item queda invisible (solo nombre y lore).
+BANCO_INVISIBLES = ('b_depositar', 'b_retirar', 'b_mejorar_cuenta', 'b_todo', 'b_mitad', 'b_otra', 'b_atras', 'b_cerrar',
+                    'b_confirmar_dep', 'b_confirmar_ret', 'b_mejorar', 'b_volver_banco', 'i_saldo', 'i_encima', 'i_cuenta', 'i_limite')
 CHARS = {k: tuple(chr(0xF310 + i * 4 + j) for j in range(4)) for i, k in enumerate(VENTANAS)}
 FONDO = (36, 22, 49, 255)
 ORO = '#c9a14f'
 
 
+def _tiles_hd(kind):
+    """Fondo a 2x partido en pedazos de hasta 224x224 px (el juego no carga glifos de mas de 256 px).
+    Devuelve [(char_glifo, char_vuelta, imagen, alto_gui, ascent, x_gui, avance)]."""
+    im = panel_hd(kind)
+    j = NUEVAS_2011.index(kind)
+    base = 0xF3E0 + 16 * j if j < 2 else 0xF410 + 16 * (j - 2)   # 0xF400 es el espacio de +112
+    alto = im.height // 2
+    filas = [(0, 56)] + [(y, min(y + 112, alto)) for y in range(56, alto, 112)]
+    out, t = [], 0
+    for y0, y1 in filas:
+        for x0 in (0, 112):
+            pieza = im.crop((x0 * 2, y0 * 2, (x0 + 112) * 2, y1 * 2))
+            caja = pieza.getbbox()
+            if caja:
+                avance = -(-caja[2] // 2) + 1
+                out.append((chr(base + t), chr(base + 8 + t), pieza, y1 - y0, 53 - y0, x0, avance))
+            t += 1
+    assert t <= 8
+    return out
+
+
+ADELANTE_112 = chr(0xF3E0 + 16 * 2)   # espacio de +112 para los pedazos de la derecha
+
+
 def titulo(kind):
+    if kind in NUEVAS_2011:
+        s = ''.join((ADELANTE_112 if x0 else '') + g + v for g, v, _, _, _, x0, _ in _tiles_hd(kind))
+        return '&f' + START + s + END
     c = CHARS[kind]
     return '&f' + START + c[0] + c[1] + c[2] + c[3] + END
 
@@ -70,6 +103,9 @@ def importar():
     bn = ref('banco').convert('RGBA')
     bn.crop((20, 85, 500, 500)).save(ART / 'marco_banco.png')
     for n, b in BANCO_CAJAS.items():
+        if n in BANCO_SIN_FONDO:   # botones: sin el azul del panel alrededor (20/11 se veian esquinas cortadas)
+            solo_pieza(sin_fondo(bn, b, tol=24)).save(ART / f'banco_{n}.png')
+            continue
         im = bn.crop(b)
         if n == 'ilu_movimiento':   # el pergamino trae importes de ejemplo: se tapan (el real va en el item)
             d = ImageDraw.Draw(im)
@@ -82,12 +118,34 @@ BANCO_CAJAS = {'cartel_banco': (95, 100, 430, 147), 'cartel_depositar': (605, 10
                'cartel_mejorar': (95, 525, 430, 572), 'cartel_movimiento': (590, 525, 940, 572), 'cartel_cuenta': (1100, 525, 1445, 572),
                'ilu_banco': (80, 157, 285, 290), 'ilu_depositar': (580, 150, 785, 272), 'ilu_retirar': (1095, 152, 1278, 275),
                'ilu_mejorar': (75, 670, 232, 822), 'ilu_movimiento': (597, 583, 935, 775), 'ilu_cuenta': (1085, 580, 1285, 765),
-               'b_depositar': (75, 307, 202, 397), 'b_retirar': (210, 307, 325, 397), 'b_mejorar_cuenta': (338, 307, 452, 397),
+               'b_depositar': (72, 284, 204, 402), 'b_retirar': (206, 284, 329, 402), 'b_mejorar_cuenta': (332, 278, 454, 402),
                'b_todo': (577, 280, 690, 328), 'b_mitad': (700, 280, 818, 328), 'b_otra': (828, 280, 957, 328),
                'b_confirmar_dep': (640, 338, 890, 397), 'b_confirmar_ret': (1150, 338, 1405, 397), 'b_mejorar': (238, 765, 455, 818),
-               'b_volver_banco': (618, 776, 918, 822), 'b_atras': (70, 416, 110, 456), 'b_cerrar': (414, 416, 456, 456),
+               'b_volver_banco': (618, 776, 918, 822), 'b_atras': (67, 412, 115, 458), 'b_cerrar': (413, 414, 453, 453),
                'banner_cuenta': (1105, 768, 1445, 822), 'i_saldo': (300, 163, 332, 190), 'i_encima': (300, 198, 332, 226),
                'i_cuenta': (300, 232, 332, 258), 'i_limite': (300, 264, 332, 292)}
+
+
+def solo_pieza(im):
+    """Deja solo lo opaco conectado con el centro (saca restos del marco que entraron en el recorte)."""
+    import numpy as np
+    from collections import deque
+    a = np.asarray(im.convert('RGBA')).copy()
+    op = a[..., 3] > 0
+    h, w = op.shape
+    seen = np.zeros_like(op)
+    q = deque([(h // 2, w // 2)])
+    while q:
+        y, x = q.popleft()
+        if 0 <= y < h and 0 <= x < w and op[y, x] and not seen[y, x]:
+            seen[y, x] = True
+            q += [(y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)]
+    a[~seen, 3] = 0
+    o = Image.fromarray(a)
+    return o.crop(o.getbbox())
+
+
+BANCO_SIN_FONDO = ('b_depositar', 'b_retirar', 'b_mejorar_cuenta', 'b_atras', 'b_cerrar')
 
 
 EFECTOS_CAJAS = {'cartel': (330, 85, 800, 165), 'nivel_bajo': (270, 280, 340, 335), 'nivel_medio': (480, 270, 640, 340),
@@ -163,7 +221,6 @@ def _inventario(im, filas):
     d = ImageDraw.Draw(im)
     end = 57 + filas * 18
     d.rectangle((31, end + 4, 192, end + 13), fill='#bab7aa')
-    text(im, 'Inventario', (61, end + 5), color='#383c40')
     for row in range(4):
         for col in range(9):
             x, y = 31 + 18 * col, end + 14 + (18 * row if row < 3 else 58)
@@ -215,10 +272,14 @@ def _banco(im, d, vista):
 
 def panel(kind):
     filas = VENTANAS[kind]
+    if kind in NUEVAS_2011:   # a 1x solo para las vistas previas; el pack usa panel_hd
+        im = panel_hd(kind)
+        return im.resize((im.width // 2, im.height // 2), Image.Resampling.LANCZOS)
     if kind == 'efectos':
         im = marco(_alto(filas), 230, 'marco_efectos', ((300, 330), (330, 360), (880, 920)), 34, EFECTOS_FONDO)
     elif kind.startswith('banco_'):
-        im = marco(_alto(filas), 60, 'marco_banco', ((20, 50), (120, 150), (300, 330)), 22, BANCO_FONDO)
+        # tiras lisas del marco (20/11: las de antes tomaban el medallon y una bisagra y se veian cortadas)
+        im = marco(_alto(filas), 60, 'marco_banco', ((412, 416), (240, 244), (205, 209)), 22, BANCO_FONDO)
     else:
         im = marco(_alto(filas))
     d = ImageDraw.Draw(im)
@@ -336,12 +397,27 @@ def piezas():
         sq = Image.new('RGBA', (max(ic.size),) * 2)
         sq.alpha_composite(ic, ((sq.width - ic.width) // 2, (sq.height - ic.height) // 2))
         out[f'cristal_{c}'] = sq.resize((32, 32), Image.Resampling.LANCZOS)
+    for n in BANCO_INVISIBLES:
+        out[n] = Image.new('RGBA', out[n].size)
     return out
+
+
+def panel_hd(kind):
+    from ventanas_20_11 import panel as p2011
+    return p2011(kind)
 
 
 def assets():
     files, providers, advances = {}, [], {START: -32, END: 32}
+    advances[ADELANTE_112] = 112
     for kind in VENTANAS:
+        if kind in NUEVAS_2011:
+            for i, (g, v, pieza, alto, ascent, x0, avance) in enumerate(_tiles_hd(kind)):
+                path = f'font/ventanas2011/{kind}_{i}.png'
+                files['assets/astral/textures/' + path] = png(pieza)
+                providers.append(dict(type='bitmap', file='astral:' + path, height=alto, ascent=ascent, chars=[g]))
+                advances[v] = -(avance + x0)
+            continue
         im = panel(kind)
         ch = CHARS[kind]
         for n, (part, ascent) in enumerate(((im.crop((0, 0, W, 56)), 53), (im.crop((0, 56, W, im.height)), -3))):

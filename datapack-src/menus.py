@@ -165,18 +165,23 @@ def subastas_menu():
 
 
 def subastas_inicio_menu():
-    """Lo abre el aldeano de Subastas: elegir Casa de Subastas o Banco Astral (economia.py, 18/11)."""
-    lines = relleno("GRAY_STAINED_GLASS_PANE", 27, {11, 15, 22})
-    lines += item('subastas', 'GOLD_INGOT', 11, '&e&lCasa de Subastas',
-                  ['&7Compra y vende objetos entre jugadores.', '', '&eClic para entrar.'],
-                  extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] subastas']})
-    lines += item('banco', 'GOLD_BLOCK', 15, '&6&lBanco Astral',
-                  ['&7Guarda y saca tu plata.', '&7Lo del banco no se pierde al morir', '&7y gana intereses cada dia.',
-                   '', '&eClic para entrar.'],
-                  extra={'item_model': q('astral:menu/icon_saldo'),
-                         'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]', '[player] banco<delay=2>']})
-    lines += item('cerrar', 'BARRIER', 22, '&cCerrar', extra={'click_commands': ['[close]']})
-    return menu('&8Subastas y Banco', 'astralmenu_subastas_inicio', 27, lines)
+    """Lo abre el aldeano de Subastas: elegir Casa de Subastas o Banco Astral (economia.py, 18/11).
+    Fondo con los botones dibujados (diseno Gemini 20/11, ventanas_20_11.py): los items son invisibles encima
+    del martillo + cartel 'Subastas' (11, 19-21), el cofre + cartel 'Banco' (15, 23-25) y la X (22)."""
+    from ventanas_19_11 import titulo
+    blank = q('astral:viajes/blank')
+    sub = dict(nombre='&e&lCasa de Subastas', lore=['&7Compra y vende objetos entre jugadores.', '', '&eClic para entrar.'],
+               cmds=['[sound] UI_BUTTON_CLICK', '[openguimenu] subastas'])
+    ban = dict(nombre='&6&lBanco Astral', lore=['&7Guarda y saca tu plata.', '&7Lo del banco no se pierde al morir',
+                                               '&7y gana intereses cada dia.', '', '&eClic para entrar.'],
+               cmds=['[sound] UI_BUTTON_CLICK', '[close]', '[player] banco<delay=2>'])
+    lines = []
+    for clave, d, slots in (('subastas', sub, (11, 19, 20, 21)), ('banco', ban, (15, 23, 24, 25))):
+        for i, slot in enumerate(slots):
+            lines += item(clave if i == 0 else f'{clave}_{i}', 'PAPER', slot, d['nombre'], d['lore'],
+                          extra={'item_model': blank, 'click_commands': d['cmds']})
+    lines += item('cerrar', 'PAPER', 22, '&cCerrar', extra={'item_model': blank, 'click_commands': ['[close]']})
+    return menu(titulo('subastas_inicio'), 'astralmenu_subastas_inicio', 27, lines)
 
 
 def _pet_cards(pairs):
