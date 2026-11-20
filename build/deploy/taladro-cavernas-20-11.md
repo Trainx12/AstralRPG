@@ -32,5 +32,8 @@ Pedido del dueno tras probar las Cavernas (7e). Hecho por Claude directo.
   758/190/50/2/0, hondas con Polvo 571/320/95/12/2. Guardianes: Perfecta 5 % y Estelar 0,5 % (repartido entre sus
   gemas). Cofres de mazmorra tier 4: 598/350/50/2/0; tier 5 (o tier 4 con nota A/S): 400/450/138/10/2.
 
+- **1.4.0 recoleccion directa**: en las Cavernas lo picado va al inventario (no al piso). La roca y los bloques comunes no
+  sueltan nada; los objetos Astral con el inventario lleno caen a los pies con aviso cada 10 s ("anda a vender al barril").
+
 ## Notas
 - En creativo romper un bloque no suelta nada (vanilla): probar premios en supervivencia.

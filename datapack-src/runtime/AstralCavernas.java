@@ -408,6 +408,28 @@ public final class AstralCavernas extends JavaPlugin implements Listener {
         c.getWorld().playSound(c, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1f, 1f);
     }
 
+    // Recoleccion (20/11): lo picado va directo al inventario para que no se llene el piso de items. La roca y los
+    // bloques comunes no sueltan nada; gemas, Cristal, Geoda y Polvo con el inventario lleno caen a los pies.
+    final Map<UUID, Long> avisoLleno = new HashMap<>();
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true) public void recoger(BlockDropItemEvent e) {
+        Player p = e.getPlayer();
+        if (!here(e.getBlock().getWorld()) || p.getGameMode() == GameMode.CREATIVE) return;
+        boolean lleno = false;
+        for (Iterator<org.bukkit.entity.Item> it = e.getItems().iterator(); it.hasNext(); ) {
+            ItemStack st = it.next().getItemStack();
+            it.remove();
+            if (astralId(st).isEmpty()) continue;                       // roca, bloques comunes: nada
+            for (ItemStack sobra : p.getInventory().addItem(st).values()) {
+                p.getWorld().dropItem(p.getLocation(), sobra); lleno = true;
+            }
+        }
+        if (lleno && System.currentTimeMillis() - avisoLleno.getOrDefault(p.getUniqueId(), 0L) > 10_000) {
+            avisoLleno.put(p.getUniqueId(), System.currentTimeMillis());
+            p.sendMessage(color("&5Cavernas: &cinventario lleno. &fLo que picas cae a tus pies: anda a vender al barril del campamento."));
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, .6f);
+        }
+    }
+
     // Luz (20/11): la caverna es cerrada y muy oscura; adentro hay vision nocturna (sin particulas ni icono).
     void luz(Player p) {
         PotionEffect pe = p.getPotionEffect(PotionEffectType.NIGHT_VISION);
