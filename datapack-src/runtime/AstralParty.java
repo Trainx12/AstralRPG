@@ -38,9 +38,14 @@ public final class AstralParty extends JavaPlugin implements Listener {
     public record Boss(String world, double x, double y, double z, boolean boss) {}
     public final List<Boss> bosses = new ArrayList<>();
     public record FightRoom(String world,double x,double y,double z,double radius,
-                            double x1,double z1,double x2,double z2,String key,String controller) {
+                            double x1,double z1,double x2,double z2,String key,String controller,double floor) {
+        public FightRoom(String world,double x,double y,double z,double radius,
+                         double x1,double z1,double x2,double z2,String key,String controller) {
+            this(world,x,y,z,radius,x1,z1,x2,z2,key,controller,Double.NEGATIVE_INFINITY);
+        }
+        // Piso: durante la pelea no se puede bajar a cuevas ni barrancos de la sala.
         public boolean contains(Location l) { return l.getWorld().getName().equals(world)
-            &&l.getX()>x1&&l.getX()<x2&&l.getZ()>z1&&l.getZ()<z2; }
+            &&l.getX()>x1&&l.getX()<x2&&l.getZ()>z1&&l.getZ()<z2&&l.getY()>=floor; }
         boolean enters(Location l) { return contains(l)&&Math.pow(l.getX()-x,2)+Math.pow(l.getY()-y,2)+Math.pow(l.getZ()-z,2)<=radius*radius; }
         public double side() { return Math.min(x2-x1,z2-z1); }
         static double clamp(double value,double lo,double hi) { return Math.max(lo,Math.min(hi,value)); }
@@ -95,8 +100,9 @@ public final class AstralParty extends JavaPlugin implements Listener {
                 while(in.hasNextLine()) { var a=in.nextLine().split(","); if(a.length==5) bosses.add(new Boss(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Boolean.parseBoolean(a[4]))); }
             }
             try(var in=new Scanner(getResource("fight-rooms.csv"),java.nio.charset.StandardCharsets.UTF_8)) {
-                while(in.hasNextLine()) {var a=in.nextLine().split(",",-1);if(a.length!=11)throw new IllegalArgumentException("Sala invalida");
-                    fightRooms.add(new FightRoom(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Double.parseDouble(a[4]),Double.parseDouble(a[5]),Double.parseDouble(a[6]),Double.parseDouble(a[7]),Double.parseDouble(a[8]),a[9],a[10]));}
+                while(in.hasNextLine()) {var a=in.nextLine().split(",",-1);if(a.length!=12)throw new IllegalArgumentException("Sala invalida");
+                    fightRooms.add(new FightRoom(a[0],Double.parseDouble(a[1]),Double.parseDouble(a[2]),Double.parseDouble(a[3]),Double.parseDouble(a[4]),Double.parseDouble(a[5]),Double.parseDouble(a[6]),Double.parseDouble(a[7]),Double.parseDouble(a[8]),a[9],a[10],
+                        a[11].isEmpty()?Double.NEGATIVE_INFINITY:Double.parseDouble(a[11])));}
             }
         } catch(Exception e) { throw new IllegalStateException("Configuracion Party invalida",e); }
         recovery=new NamespacedKey(this,"recuperar");
@@ -121,8 +127,9 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(r.key.equals("inf")&&tags.contains("inf.mob"))return true;
             if(r.key.equals("fosa")&&(tags.contains("fosa.mob")||tags.contains("fosa.jefe")))return true;
             // El controlador conserva .on durante las esperas; .fin libera enseguida.
-            if(e instanceof ArmorStand&&Objects.equals(e.getName(),r.controller)
-                &&e.getLocation().distanceSquared(new Location(e.getWorld(),r.x,r.y,r.z))<4
+            // El nombre identifica la sala; el soporte puede estar en la llegada y no en el centro.
+            if(e instanceof ArmorStand&&r.controller.equals(ChatColor.stripColor(e.getName()))
+                &&e.getX()>r.x1&&e.getX()<r.x2&&e.getZ()>r.z1&&e.getZ()<r.z2
                 &&tags.contains(r.key+".on")&&!tags.contains(r.key+".fin"))return true;
         }
         return false;
@@ -136,7 +143,8 @@ public final class AstralParty extends JavaPlugin implements Listener {
     }
     void updateBorder(Player p) {
         var id=p.getUniqueId();var r=borders.get(id);
-        if(p.isDead()||(!busy(p)&&p.getGameMode()!=GameMode.SURVIVAL&&p.getGameMode()!=GameMode.ADVENTURE)) {clearBorder(p);return;}
+        // Creativo tambien ve el borde: el dueno prueba las salas asi. Espectador libre queda afuera.
+        if(p.isDead()||(!busy(p)&&p.getGameMode()==GameMode.SPECTATOR)) {clearBorder(p);return;}
         if(r!=null&&(!activeRooms.contains(r)||!r.world.equals(p.getWorld().getName()))) {clearBorder(p);r=null;}
         if(r==null) {
             // Camara del caido: misma sala que su companero, incluso en modo libre.

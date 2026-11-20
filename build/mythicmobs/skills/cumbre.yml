@@ -50,6 +50,7 @@ CUMBRE_SALA1_RESET:
   - removetag{tag=cumbre.ola2} @self
   - removetag{tag=cumbre.ola3} @self
   - removetag{tag=cumbre.ola4} @self
+  - addtag{tag=cumbre.ready} @self
 CUMBRE_SALA2_INICIO:
   Skills:
   - removetag{tag=cumbre.ready} @self
@@ -87,8 +88,8 @@ CUMBRE_SALA2_RESET:
   - removetag{tag=cumbre.fin} @self
   - removetag{tag=cumbre.espera} @self
   - removetag{tag=cumbre.ola1} @self
+  - addtag{tag=cumbre.ready} @self
   - removetag{tag=cumbre.jefe.derrotado} @self
-  - removetag{tag=cumbre.unlocked} @self
 CUMBRE_PREMIO:
   TargetConditions:
   - haspermission{p=astral.cumbre.cd} false

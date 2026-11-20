@@ -39,7 +39,7 @@ PARKOURS = [dict(id='spiral', world='parkour_spiral', name='Spiral Parkour Chall
                  description='Hunde la flota rival: 2 jugadores.', difficulty='2 jugadores',
                  arrival=(19.5, 5, 37.5, 0, 0), rescue_y=-70, logic=True)]
 # Tower Defence se saco el 08/11/2026: su brujula "Game Menu" no abria el menu en el server
-# (el clic no llegaba ni al mapa ni a Skript). El mundo sigue en el server, sin datapack.
+# (el clic no llegaba ni al mapa ni a Skript). Sus mundos se borraron del server el 20/11/2026.
 # Droppers: cada nivel es un destino; se gana cayendo al agua y si te estrellas volves a empezar.
 # Salidas leidas de los command blocks de cada mapa (docs/IDEAS.md).
 # Cada nivel: (titulo, (x, y, z) de la salida original, Y de salida corregida, Y de llegada al fondo).

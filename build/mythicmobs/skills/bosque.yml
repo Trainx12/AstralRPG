@@ -49,6 +49,7 @@ BOSQUE_SALA1_RESET:
   - removetag{tag=bosque.ola1} @self
   - removetag{tag=bosque.ola2} @self
   - removetag{tag=bosque.ola3} @self
+  - addtag{tag=bosque.ready} @self
 BOSQUE_SALA2_INICIO:
   Skills:
   - removetag{tag=bosque.ready} @self
@@ -86,6 +87,7 @@ BOSQUE_SALA2_RESET:
   - removetag{tag=bosque.fin} @self
   - removetag{tag=bosque.espera} @self
   - removetag{tag=bosque.ola1} @self
+  - addtag{tag=bosque.ready} @self
   - removetag{tag=bosque.jefe.derrotado} @self
 BOSQUE_PREMIO:
   TargetConditions:

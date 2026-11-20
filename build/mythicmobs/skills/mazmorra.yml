@@ -74,6 +74,7 @@ MINA_SALA1_RESET:
   - removetag{tag=mina.espera} @self
   - removetag{tag=mina.ola1} @self
   - removetag{tag=mina.ola2} @self
+  - addtag{tag=mina.ready} @self
 MINA_SALA2_INICIO:
   Skills:
   - removetag{tag=mina.ready} @self
@@ -114,6 +115,7 @@ MINA_SALA2_RESET:
   - removetag{tag=mina.espera} @self
   - removetag{tag=mina.ola1} @self
   - removetag{tag=mina.ola2} @self
+  - addtag{tag=mina.ready} @self
 MINA_SALA3_INICIO:
   Skills:
   - removetag{tag=mina.ready} @self
@@ -154,6 +156,7 @@ MINA_SALA3_RESET:
   - removetag{tag=mina.espera} @self
   - removetag{tag=mina.ola1} @self
   - removetag{tag=mina.ola2} @self
+  - addtag{tag=mina.ready} @self
 MINA_SALA4_INICIO:
   Skills:
   - removetag{tag=mina.ready} @self
@@ -191,6 +194,7 @@ MINA_SALA4_RESET:
   - removetag{tag=mina.fin} @self
   - removetag{tag=mina.espera} @self
   - removetag{tag=mina.ola1} @self
+  - addtag{tag=mina.ready} @self
   - removetag{tag=mina.jefe.derrotado} @self
 MINA_PREMIO:
   TargetConditions:

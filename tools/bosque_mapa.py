@@ -6,7 +6,8 @@ Salida:  .local/bosque-mapas/datos/ (bloques + paleta + arboles extra + spawn) p
 
 Limpieza: tapa cuevas (todo lo de abajo del suelo queda piedra), cambia la piedra oscura del suelo
 (deepslate/tuff/basalto a la vista) por tierra gruesa, podzol, tierra con raices o musgo, deja las
-hojas persistentes y elige claros para sumar arboles de Minecraft que el mapa no tiene.
+hojas NO persistentes (la motosierra solo tala arboles con hojas naturales; no se caen
+porque el mundo tiene random_tick_speed 0 y el Skript cancela la caida) y elige claros para sumar arboles de Minecraft que el mapa no tiene.
 """
 import json
 import sys
@@ -45,7 +46,8 @@ def build():
     y0, y1 = B.LIVE_BOTTOM, B.LIVE_TOP
     arr, pal = load_box(SRC, SRC_X0, SRC_X0 + W - 1, SRC_Z0, SRC_Z0 + W - 1, y0, y1)
     pal = [RENAME.get(p.split('[')[0], p.split('[')[0]) + (p[p.index('['):] if '[' in p else '') for p in pal]
-    pal = [p.replace('persistent=false', 'persistent=true') for p in pal]
+    # Hojas naturales: el predicado natural_tree de la motosierra (build.py) exige persistent=false.
+    pal = [p.replace('persistent=true', 'persistent=false') for p in pal]
     index = {p: i for i, p in enumerate(pal)}
 
     def pid(state):

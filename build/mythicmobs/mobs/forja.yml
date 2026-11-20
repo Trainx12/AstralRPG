@@ -16,7 +16,7 @@ astral_forja_control_sala1:
   - skill{s=FORJA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=64} ?!hastag{tag=forja.on} ?hastag{tag=forja.ready}
   - skill{s=FORJA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=forja.ola1} ?!hastag{tag=forja.ola2} ?!hastag{tag=forja.espera} ?!hastag{tag=forja.sala1.busy}
   - skill{s=FORJA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=forja.ola2} ?!hastag{tag=forja.fin} ?!hastag{tag=forja.espera} ?!hastag{tag=forja.sala1.busy}
-  - skill{s=FORJA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=72}
+  - skill{s=FORJA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=99}
 astral_forja_control_sala2:
   Type: ARMOR_STAND
   Display: Control Forja - sala 2
@@ -34,7 +34,7 @@ astral_forja_control_sala2:
   - skill{s=FORJA_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=48} ?!hastag{tag=forja.on} ?hastag{tag=forja.ready}
   - skill{s=FORJA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=forja.ola1} ?!hastag{tag=forja.ola2} ?!hastag{tag=forja.espera} ?!hastag{tag=forja.sala2.busy}
   - skill{s=FORJA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=forja.ola2} ?!hastag{tag=forja.fin} ?!hastag{tag=forja.espera} ?!hastag{tag=forja.sala2.busy}
-  - skill{s=FORJA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=56}
+  - skill{s=FORJA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=77}
 astral_forja_control_sala3:
   Type: ARMOR_STAND
   Display: Control Nucleo de la Forja
@@ -51,7 +51,7 @@ astral_forja_control_sala3:
   Skills:
   - skill{s=FORJA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=forja.on} ?hastag{tag=forja.ready}
   - skill{s=FORJA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=forja.ola1} ?!hastag{tag=forja.fin} ?!hastag{tag=forja.espera} ?!hastag{tag=forja.sala3.busy} ?hastag{tag=forja.jefe.derrotado}
-  - skill{s=FORJA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=64}
+  - skill{s=FORJA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=forja.on} ?!playerwithin{d=88}
 astral_forja_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Corazon de la Forja &7(clic)'

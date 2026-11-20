@@ -1964,8 +1964,8 @@ on load:
     set {-ab.x::374} to 221
     set {-ab.y::374} to 89
     set {-ab.z::374} to 249
-    set {-ab.box::374} to "218 89 243 224 99 257"
-    set {-ab.cl::374::1} to "clone 218 -31 243 224 -21 257 218 89 243 masked"
+    set {-ab.box::374} to "218 89 242 224 99 257"
+    set {-ab.cl::374::1} to "clone 218 -31 242 224 -21 257 218 89 242 masked"
     set {-ab.x::375} to 256
     set {-ab.y::375} to 81
     set {-ab.z::375} to 249

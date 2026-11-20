@@ -39,6 +39,7 @@ FORJA_SALA1_RESET:
   - removetag{tag=forja.espera} @self
   - removetag{tag=forja.ola1} @self
   - removetag{tag=forja.ola2} @self
+  - addtag{tag=forja.ready} @self
 FORJA_SALA2_INICIO:
   Skills:
   - removetag{tag=forja.ready} @self
@@ -79,6 +80,7 @@ FORJA_SALA2_RESET:
   - removetag{tag=forja.espera} @self
   - removetag{tag=forja.ola1} @self
   - removetag{tag=forja.ola2} @self
+  - addtag{tag=forja.ready} @self
 FORJA_SALA3_INICIO:
   Skills:
   - removetag{tag=forja.ready} @self
@@ -116,6 +118,7 @@ FORJA_SALA3_RESET:
   - removetag{tag=forja.fin} @self
   - removetag{tag=forja.espera} @self
   - removetag{tag=forja.ola1} @self
+  - addtag{tag=forja.ready} @self
   - removetag{tag=forja.jefe.derrotado} @self
 FORJA_PREMIO:
   TargetConditions:

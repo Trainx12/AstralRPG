@@ -106,6 +106,20 @@ def configure(dungeon):
     secure_rooms(d)
     return d
 
+_ZONAS=[]
+def reset_reach(room):
+    """Distancia del controlador a la esquina mas lejana del borde (y al piso), mas 8."""
+    from zonas_pelea import catalog, load
+    if not _ZONAS: _ZONAS.append((load(),catalog()))
+    zones,rooms=_ZONAS[0]
+    for r in rooms:
+        if r['name']!=room['name'] or r['id'] not in zones: continue
+        x1,z1,x2,z2=zones[r['id']][:4]; x,y,z=room['centro'][:3]
+        dy=y-r['floor'] if r.get('floor')!='' else 0
+        far=math.sqrt(max(abs(x-x1),abs(x-x2))**2+max(abs(z-z1),abs(z-z2))**2+dy**2)
+        return math.ceil(far)+8
+    return 0
+
 def path(d,r): return f'tanda2/{d["key"]}/{r["id"]}'
 def tag(d,r): return 'ad.'+d['key']+'.'+r['id']
 def cmd(function): return f'command{{c="execute as <caster.uuid> at @s run function astral:{function}"}} @self'
@@ -125,7 +139,11 @@ def transform(text,d,kind):
                 sk.insert(0,f'foreach{{s=AST_GOLEM_CONVIERTE_{key}_{room["id"]};sync=true}} @EntitiesInRadius{{r={room["r"]+32}}} ~onTimer:5 ?hastag{{tag={key}.on}}')
             # El mantenimiento corre en loop/t20 del datapack. Pasarlo por
             # consola Mythic imprime Running function / returned aun sin sala activa.
+            reach=reset_reach(room)
             for i,line in enumerate(sk):
+                if f'{S}_RESET}}' in line and reach:
+                    # Nunca reiniciar con el jugador adentro del borde (esquinas y piso incluidos).
+                    line=re.sub(r'playerwithin\{d=(\d+)\}',lambda m:f'playerwithin{{d={max(int(m.group(1)),reach)}}}',line)
                 line=re.sub(r'\?mobsinradius\{[^}]+\}',f'?!hastag{{tag={busy}}}',line)
                 if '_INICIO}' in line:
                     line += f' ?hastag{{tag={key}.ready}}'
@@ -170,6 +188,8 @@ def transform(text,d,kind):
                     skill += [cmd(p+f'/wave{n}')]
             reset=data[S+'_RESET']['Skills']
             reset.insert(0,cmd(p+'/reset'))
+            # Si se fueron y vuelven, la sala arranca de nuevo (antes quedaba trabada sin .ready).
+            reset.append(f'addtag{{tag={key}.ready}} @self')
             if key=='cumbre' and not room.get('boss_room'):
                 limpia=data[S+'_LIMPIA']['Skills']
                 limpia[:]=[s for s in limpia if not s.startswith('removetag{')]
@@ -180,7 +200,6 @@ def transform(text,d,kind):
                 boss_id=room['oleadas'][0][0][0]
                 # Bloques de jefes se agregan en mob_yml, no aqui.
                 reset.append(f'removetag{{tag={key}.jefe.derrotado}} @self')
-                if key=='cumbre': reset.append('removetag{tag=cumbre.unlocked} @self')
             # Aplicar la orientacion elegida por el dueno en entradas y transiciones.
             targets=[r for r in d['rooms'] if r.get('yaw') is not None]
             for value in data.values():

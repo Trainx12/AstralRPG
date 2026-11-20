@@ -39,6 +39,7 @@ TUMBA_SALA1_RESET:
   - removetag{tag=tumba.espera} @self
   - removetag{tag=tumba.ola1} @self
   - removetag{tag=tumba.ola2} @self
+  - addtag{tag=tumba.ready} @self
 TUMBA_SALA2_INICIO:
   Skills:
   - removetag{tag=tumba.ready} @self
@@ -87,6 +88,7 @@ TUMBA_SALA2_RESET:
   - removetag{tag=tumba.ola1} @self
   - removetag{tag=tumba.ola2} @self
   - removetag{tag=tumba.ola3} @self
+  - addtag{tag=tumba.ready} @self
 TUMBA_SALA3_INICIO:
   Skills:
   - removetag{tag=tumba.ready} @self
@@ -129,6 +131,7 @@ TUMBA_SALA3_RESET:
   - removetag{tag=tumba.fin} @self
   - removetag{tag=tumba.espera} @self
   - removetag{tag=tumba.ola1} @self
+  - addtag{tag=tumba.ready} @self
   - removetag{tag=tumba.jefe.derrotado} @self
 TUMBA_PREMIO:
   TargetConditions:

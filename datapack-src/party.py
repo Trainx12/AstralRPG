@@ -98,7 +98,7 @@ def build(java, server, papi):
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target/'astral').glob('AstralParty*.class')):
             z.writestr(zipfile.ZipInfo('astral/'+p.name, (2026,11,17,0,0,0)), p.read_bytes())
-        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.3.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
+        z.writestr('plugin.yml', "name: AstralParty\nversion: 1.4.0\nmain: astral.AstralParty\napi-version: '26.1.2'\ndepend: [Skript, PlaceholderAPI]\ncommands:\n  party:\n    aliases: [grupo]\n  astralpartyinternal: {}\n")
         z.writestr('party.properties', f'waves={REVIVE_WAVES}\nboss={REVIVE_BOSS}\nwipe={WIPE_SECONDS}\nmax={PARTY_MAX}\nworlds='+','.join(worlds)+'\n')
         z.writestr('boss-rooms.csv', '\n'.join(bosses))
         z.writestr('fight-rooms.csv', '\n'.join(fight_rooms())+'\n')
@@ -108,7 +108,7 @@ def build(java, server, papi):
 
 
 def fight_rooms():
-    """CSV: mundo, controlador XYZ, radio entrada, rectangulo X1 Z1 X2 Z2, key, nombre.
+    """CSV: mundo, controlador XYZ, radio entrada, rectangulo X1 Z1 X2 Z2, key, nombre, piso Y.
 
     El controlador conserva su ubicacion: el centro visual sale del rectangulo.
     La generacion no necesita mapas locales; valida el catalogo versionado.
@@ -127,7 +127,7 @@ def fight_rooms():
         entry = r['entry_radius']
         rect = ','.join(map(str, zones[r['id']][:4]))
         for w in worlds:
-            rows.append(f"{w},{x},{y},{z},{entry},{rect},{r['key']},{r['controller']}")
+            rows.append(f"{w},{x},{y},{z},{entry},{rect},{r['key']},{r['controller']},{r.get('floor','')}")
     return rows
 
 

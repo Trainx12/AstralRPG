@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = Path(__file__).with_suffix('.json')
+PISO = 8  # bloques que se puede bajar durante una pelea antes de volver
 
 
 def catalog():
@@ -22,7 +23,10 @@ def catalog():
         if not d.get('enabled'):
             continue
         for i, r in enumerate(d['rooms']):
-            out.append(dict(id=f'{d["key"]}/{i+1}', world=DUNGEON_WORLDS[d['key']],
+            # Piso de pelea: 8 bloques bajo lo mas bajo de la sala (llegada, centro, apariciones).
+            ys = [r['centro'][1], r.get('llegada', r['centro'])[1], *(p[1] for p in r.get('spawn_points') or [])]
+            floor = min(ys) - PISO if r.get('spawn_points') else ''
+            out.append(dict(id=f'{d["key"]}/{i+1}', world=DUNGEON_WORLDS[d['key']], floor=floor,
                             key=d['key'], name=r['name'], center=list(r['centro']),
                             arrival=list(r.get('llegada', r['centro']))[:3], radius=r['r'],
                             entry_radius=r.get('entry_r',r['r']),

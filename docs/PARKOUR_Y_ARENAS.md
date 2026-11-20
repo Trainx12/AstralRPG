@@ -47,10 +47,9 @@ El selector de parkour se llama **Mini juegos** (`/minijuegos` o `/parkour`, ald
   `td_m` (sus @a/@p/@r la usan) y sus equipos `game.*` se conservan (solo dan color). Se quita
   `difficulty`. Los puntajes pueden tener puntos (`game.data.wave.mob_count`).
   **Sacado el 08/11/2026:** su brujula "Game Menu" (casillero 9) nunca abrio el menu en el server:
-  el clic no llegaba al mapa ni a Skript y teletransportaba (las ventanas si funcionan). El mundo
-  sigue en el server (`towerdefence`, `towerdefence_end`) y su datapack quedo apagado en
-  `mapas-subir/towerdefence-datapack-desactivado`. Para volver a probarlo, revisar primero que plugin
-  se queda con el clic derecho de la brujula.
+  el clic no llegaba al mapa ni a Skript y teletransportaba (las ventanas si funcionan).
+  **Borrado del server el 20/11/2026** (pedido del dueno): mundos `towerdefence` y `towerdefence_end`
+  (`mv delete`) y sus copias de `mapas-subir/`. El mapa original queda en `.local/mapas/towerdefence.zip`.
 - **Magma Run (Filip00_):** 301 command blocks, sin datapack, 26.2 bajado a 26.1 (sin bloques
   nuevos). Se prepara como Color Escape (selectores limitados, entidades conservadas) y se juega de
   a uno (`solo=True`). Sus 16 puntajes y la barra `minecraft:progress` estaban en los datos del mapa:

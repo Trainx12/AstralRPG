@@ -63,6 +63,11 @@ class PartyGeneration(unittest.TestCase):
             for w in instancias.copias(instancias.DUNGEON_WORLDS[d['key']]):
                 self.assertEqual(len([r for r in rows if r[0]==instancias.bukkit(w)]),len(d['rooms']))
         self.assertEqual(len(rows),len({tuple(r) for r in rows}))
+        self.assertTrue(all(len(r)==12 for r in rows))
+        # Piso de pelea: debajo de la llegada y del centro, nunca dentro de la sala.
+        for r in rows:
+            if r[11]: self.assertLessEqual(float(r[11]),float(r[2])-8)
+        self.assertEqual({r[11] for r in rows if r[0]=='bosque'},{'92'})
         with zipfile.ZipFile(party.ROOT/'build/runtime/AstralParty.jar') as z:
             self.assertEqual(z.read('fight-rooms.csv').decode().splitlines(),party.fight_rooms())
 

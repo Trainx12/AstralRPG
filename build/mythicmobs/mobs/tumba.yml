@@ -17,7 +17,7 @@ astral_tumba_control_sala1:
   - skill{s=TUMBA_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=28} ?!hastag{tag=tumba.on} ?hastag{tag=tumba.ready}
   - skill{s=TUMBA_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
   - skill{s=TUMBA_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala1.busy}
-  - skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=36}
+  - skill{s=TUMBA_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=49}
 astral_tumba_control_sala2:
   Type: ARMOR_STAND
   Display: Control Pasaje de los sellos
@@ -37,7 +37,7 @@ astral_tumba_control_sala2:
   - skill{s=TUMBA_SALA2_OLA2} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.ola2} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
   - skill{s=TUMBA_SALA2_OLA3} @self ~onTimer:20 ?hastag{tag=tumba.ola2} ?!hastag{tag=tumba.ola3} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
   - skill{s=TUMBA_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola3} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?!hastag{tag=tumba.sala2.busy}
-  - skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=44}
+  - skill{s=TUMBA_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=60}
 astral_tumba_control_sala3:
   Type: ARMOR_STAND
   Display: Control Trono del Rey de Arena
@@ -55,7 +55,7 @@ astral_tumba_control_sala3:
   - foreach{s=AST_ESQ_CONVIERTE_tumba_sala3;sync=true} @EntitiesInRadius{r=88} ~onTimer:5 ?hastag{tag=tumba.on}
   - skill{s=TUMBA_SALA3_INICIO} @self ~onTimer:20 ?playerwithin{d=56} ?!hastag{tag=tumba.on} ?hastag{tag=tumba.ready}
   - skill{s=TUMBA_SALA3_LIMPIA} @self ~onTimer:20 ?hastag{tag=tumba.ola1} ?!hastag{tag=tumba.fin} ?!hastag{tag=tumba.espera} ?hastag{tag=tumba.jefe.derrotado} ?!hastag{tag=tumba.sala3.busy}
-  - skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=64}
+  - skill{s=TUMBA_SALA3_RESET} @self ~onTimer:200 ?hastag{tag=tumba.on} ?!playerwithin{d=88}
 astral_tumba_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Tumba del Rey de Arena &7(clic)'

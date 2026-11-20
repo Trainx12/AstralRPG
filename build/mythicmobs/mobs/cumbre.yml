@@ -20,7 +20,7 @@ astral_cumbre_control_sala1:
   - skill{s=CUMBRE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=cumbre.ola2} ?!hastag{tag=cumbre.ola3} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
   - skill{s=CUMBRE_SALA1_OLA4} @self ~onTimer:20 ?hastag{tag=cumbre.ola3} ?!hastag{tag=cumbre.ola4} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
   - skill{s=CUMBRE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola4} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala1.busy}
-  - skill{s=CUMBRE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=42}
+  - skill{s=CUMBRE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=58}
 astral_cumbre_control_sala2:
   Type: ARMOR_STAND
   Display: Control Trono del Yeti
@@ -38,7 +38,7 @@ astral_cumbre_control_sala2:
   - foreach{s=AST_ESQ_CONVIERTE_cumbre_sala2;sync=true} @EntitiesInRadius{r=160} ~onTimer:5 ?hastag{tag=cumbre.on}
   - skill{s=CUMBRE_SALA2_INICIO} @self ~onTimer:20 ?playerwithin{d=128} ?!hastag{tag=cumbre.on} ?hastag{tag=cumbre.ready} ?hastag{tag=cumbre.unlocked}
   - skill{s=CUMBRE_SALA2_LIMPIA} @self ~onTimer:20 ?hastag{tag=cumbre.ola1} ?!hastag{tag=cumbre.fin} ?!hastag{tag=cumbre.espera} ?!hastag{tag=cumbre.sala2.busy} ?hastag{tag=cumbre.jefe.derrotado}
-  - skill{s=CUMBRE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=136}
+  - skill{s=CUMBRE_SALA2_RESET} @self ~onTimer:200 ?hastag{tag=cumbre.on} ?!playerwithin{d=190}
 astral_cumbre_cofre:
   Type: SHEEP
   Display: '&6&lCofre de Cumbre Helada &7(clic)'
