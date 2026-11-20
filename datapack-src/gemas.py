@@ -110,8 +110,9 @@ AURASKILLS = {'mana': ('max_mana', 'ADD_PERCENT'), 'mana_regen': ('mana_regen', 
 # Chance de una gema por cofre; con A o S la calidad usa la tabla del tier siguiente (DROP_BONUS_TIER).
 DROP_COFRE = {'F': 0, 'D': 0.05, 'C': 0.10, 'B': 0.18, 'A': 0.30, 'S': 0.45}
 DROP_BONUS_TIER = {'A': 1, 'S': 1}
-# Calidad segun el tier de la mazmorra: pesos de Cruda, Pulida, Impecable (Perfecta/Estelar: solo Vacio Estelar).
-DROP_CALIDAD = {1: (100, 0, 0), 2: (100, 0, 0), 3: (80, 20, 0), 4: (60, 35, 5), 5: (40, 45, 15)}
+# Calidad segun el tier de la mazmorra: pesos de Cruda, Pulida, Impecable, Perfecta, Estelar.
+DROP_CALIDAD = {1: (1000, 0, 0, 0, 0), 2: (1000, 0, 0, 0, 0), 3: (800, 200, 0, 0, 0), 4: (598, 350, 50, 2, 0),
+                5: (400, 450, 138, 10, 2)}   # por mil; 20/11: Perfecta y Estelar muy raras
 
 
 def ranuras(tier):

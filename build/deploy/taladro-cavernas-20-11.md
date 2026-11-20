@@ -23,5 +23,14 @@ Pedido del dueno tras probar las Cavernas (7e). Hecho por Claude directo.
   chispas del color de la gema, sonido de cristal y barra de avance "Picando veta" en la barra de accion; al romperse,
   estallido de color y sonido de cristal.
 
+- **1.3.0**: el avance va en una barra arriba (la barra de accion la pisa la de vida/mana); al romper un bloque, el server
+  reenvia las vetas de al lado (el cliente las mostraba un segundo como bloque de musica). Calidad de vetas con menos
+  Pulida: comun 88/10/2, honda 72/22/6, con Polvo 76/19/5 y 58/32/10 (Cruda/Pulida/Impecable).
+
+- **Perfecta y Estelar ya salen (muy raras)**, pedido del dueno (antes solo Vacio Estelar). Pesos por mil
+  (Cruda/Pulida/Impecable/Perfecta/Estelar): vetas comunes 879/100/20/1/0, hondas 719/220/55/5/1, comunes con Polvo
+  758/190/50/2/0, hondas con Polvo 571/320/95/12/2. Guardianes: Perfecta 5 % y Estelar 0,5 % (repartido entre sus
+  gemas). Cofres de mazmorra tier 4: 598/350/50/2/0; tier 5 (o tier 4 con nota A/S): 400/450/138/10/2.
+
 ## Notas
 - En creativo romper un bloque no suelta nada (vanilla): probar premios en supervivencia.

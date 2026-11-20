@@ -35,7 +35,9 @@ class Vetas(unittest.TestCase):
 
     def test_calidad(self):
         for k, pesos in C.CALIDAD.items():
-            self.assertEqual(len(pesos), 3, k)          # solo Cruda, Pulida, Impecable
+            self.assertEqual(len(pesos), 5, k)          # Cruda .. Estelar
+            self.assertEqual(sum(pesos), 1000, k)
+            self.assertLessEqual(pesos[3] + pesos[4], 15, k)   # Perfecta/Estelar muy raras
         self.assertGreater(C.CALIDAD['honda'][2], C.CALIDAD['normal'][2])
         self.assertGreater(C.CALIDAD['normal_polvo'][2], C.CALIDAD['normal'][2])
 

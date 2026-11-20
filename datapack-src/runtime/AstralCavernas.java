@@ -359,22 +359,50 @@ public final class AstralCavernas extends JavaPlugin implements Listener {
             b.getWorld().spawnParticle(Particle.DUST, cara, 4, .22, .22, .22, 0, dust);
             if (t[0] % 3 == 0) b.getWorld().spawnParticle(Particle.ELECTRIC_SPARK, cara, 2, .15, .15, .15, .02);
             if (t[0] % 2 == 0) b.getWorld().playSound(c, Sound.BLOCK_AMETHYST_BLOCK_HIT, .7f, .8f + avance[0] * .8f);
-            int llenos = Math.round(avance[0] * 12);
-            p.sendActionBar(color("&5⛏ &fPicando veta &8[" + "&d" + "|".repeat(llenos) + "&8" + "|".repeat(12 - llenos) + "&8]"));
+            barra(p).setProgress(Math.max(0, Math.min(1, avance[0])));
         }, 0, 2);
         picando.put(p.getUniqueId(), id[0]);
     }
+    // Avance arriba de la pantalla (la barra de accion la pisa la de vida/mana de AuraSkills). Nunca YELLOW (BetterHud).
+    final Map<UUID, org.bukkit.boss.BossBar> barras = new HashMap<>();
+    org.bukkit.boss.BossBar barra(Player p) {
+        return barras.computeIfAbsent(p.getUniqueId(), u -> {
+            org.bukkit.boss.BossBar b = Bukkit.createBossBar("⛏ Picando veta", org.bukkit.boss.BarColor.PURPLE, org.bukkit.boss.BarStyle.SEGMENTED_12);
+            b.addPlayer(p); return b; });
+    }
+    void sinBarra(Player p) { org.bukkit.boss.BossBar b = barras.remove(p.getUniqueId()); if (b != null) b.removeAll(); }
     void parar(Player p, int id) {
         Bukkit.getScheduler().cancelTask(id);
         picando.remove(p.getUniqueId(), id);
+        sinBarra(p);
     }
+    // El cliente adivina que la veta de al lado cambia de instrumento (el server ya no lo hace): se le reenvia la real.
+    void reenviarVecinas(Block b) {
+        List<Block> vs = new ArrayList<>();
+        for (BlockFace f : new BlockFace[]{BlockFace.UP, BlockFace.DOWN, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST}) {
+            Block v = b.getRelative(f); if (nota(v) >= 0) vs.add(v);
+        }
+        if (vs.isEmpty()) return;
+        for (long d : new long[]{1, 5}) Bukkit.getScheduler().runTaskLater(this, () -> {
+            for (Player q : b.getWorld().getPlayers()) {
+                if (q.getLocation().distanceSquared(b.getLocation()) > 64 * 64) continue;
+                for (Block v : vs) if (nota(v) >= 0) q.sendBlockChange(v.getLocation(), v.getBlockData());
+            }
+        }, d);
+    }
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true) public void vecinas(BlockBreakEvent e) {
+        if (here(e.getBlock().getWorld())) reenviarVecinas(e.getBlock());
+    }
+    @EventHandler public void sale(org.bukkit.event.player.PlayerQuitEvent e) { sinBarra(e.getPlayer()); }
     @EventHandler public void suelta(BlockDamageAbortEvent e) {
         Integer id = picando.remove(e.getPlayer().getUniqueId()); if (id != null) Bukkit.getScheduler().cancelTask(id);
+        sinBarra(e.getPlayer());
     }
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true) public void rota(BlockBreakEvent e) {
         int n = nota(e.getBlock());
         if (!here(e.getBlock().getWorld()) || n < 0) return;
         Integer id = picando.remove(e.getPlayer().getUniqueId()); if (id != null) Bukkit.getScheduler().cancelTask(id);
+        sinBarra(e.getPlayer());
         Location c = e.getBlock().getLocation().add(.5, .5, .5);
         c.getWorld().spawnParticle(Particle.DUST, c, 25, .35, .35, .35, 0, new Particle.DustOptions(colorNota(n), 1.4f));
         c.getWorld().playSound(c, Sound.BLOCK_AMETHYST_CLUSTER_BREAK, 1f, 1f);

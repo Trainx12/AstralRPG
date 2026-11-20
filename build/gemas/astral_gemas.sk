@@ -248,21 +248,31 @@ on load:
     set {-agem.dropbonus::5} to 1
     set {-agem.drop::6} to 0.45
     set {-agem.dropbonus::6} to 1
-    set {-agem.dropq::1::1} to 100
+    set {-agem.dropq::1::1} to 1000
     set {-agem.dropq::1::2} to 0
     set {-agem.dropq::1::3} to 0
-    set {-agem.dropq::2::1} to 100
+    set {-agem.dropq::1::4} to 0
+    set {-agem.dropq::1::5} to 0
+    set {-agem.dropq::2::1} to 1000
     set {-agem.dropq::2::2} to 0
     set {-agem.dropq::2::3} to 0
-    set {-agem.dropq::3::1} to 80
-    set {-agem.dropq::3::2} to 20
+    set {-agem.dropq::2::4} to 0
+    set {-agem.dropq::2::5} to 0
+    set {-agem.dropq::3::1} to 800
+    set {-agem.dropq::3::2} to 200
     set {-agem.dropq::3::3} to 0
-    set {-agem.dropq::4::1} to 60
-    set {-agem.dropq::4::2} to 35
-    set {-agem.dropq::4::3} to 5
-    set {-agem.dropq::5::1} to 40
-    set {-agem.dropq::5::2} to 45
-    set {-agem.dropq::5::3} to 15
+    set {-agem.dropq::3::4} to 0
+    set {-agem.dropq::3::5} to 0
+    set {-agem.dropq::4::1} to 598
+    set {-agem.dropq::4::2} to 350
+    set {-agem.dropq::4::3} to 50
+    set {-agem.dropq::4::4} to 2
+    set {-agem.dropq::4::5} to 0
+    set {-agem.dropq::5::1} to 400
+    set {-agem.dropq::5::2} to 450
+    set {-agem.dropq::5::3} to 138
+    set {-agem.dropq::5::4} to 10
+    set {-agem.dropq::5::5} to 2
     send "[AstralRPG] Reforja de gemas cargada." to console
 
 function agem_leer(p: player):

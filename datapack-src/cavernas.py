@@ -33,7 +33,7 @@ ROOT = HERE.parent
 OUT = ROOT / 'build' / 'cavernas'
 NS = 'astral'
 WORLD = 'cavernas_cristal'
-VERSION = '1.2.0'
+VERSION = '1.3.0'
 STAMP = (2026, 11, 19, 0, 0, 0)
 RADIO = 500                      # borde 1.000 x 1.000
 REGENERAR_HORAS = 72
@@ -65,8 +65,9 @@ def nota_gema(tipo, honda=False):
 
 MENAS = {'cristal_caverna': 14, 'geoda_estelar': 15}
 NOTAS = sorted([nota_gema(t, h) for t in G.TIPOS for h in (False, True)] + list(MENAS.values()))
-# Calidad de la gema de una veta (pesos de Cruda, Pulida, Impecable). Perfecta/Estelar: solo Vacio Estelar (7f).
-CALIDAD = {'normal': (85, 13, 2), 'honda': (65, 28, 7), 'normal_polvo': (70, 24, 6), 'honda_polvo': (50, 38, 12)}
+# Pesos por mil de Cruda, Pulida, Impecable, Perfecta, Estelar. 20/11: menos Pulida y Perfecta/Estelar muy raras.
+CALIDAD = {'normal': (879, 100, 20, 1, 0), 'honda': (719, 220, 55, 5, 1),
+           'normal_polvo': (758, 190, 50, 2, 0), 'honda_polvo': (571, 320, 95, 12, 2)}
 HONDA_Y = 0                      # una veta por debajo de esta altura es honda
 
 # ------------------------------------------------------------------ items propios
@@ -118,6 +119,7 @@ JEFES = {
     'astral_cav_jefe_corazon': ('&8&lCorazón de Ónix', 'astral_golem_cristal', 3.6, '2E2840', 'corazon', 'WHITE',
                                 [('onix', 2, 1.0), ('opalo', 2, 1.0), ('onix', 3, 0.4), ('opalo', 3, 0.4)]),
 }
+PERFECTA_JEFE, ESTELAR_JEFE = 0.05, 0.005   # 20/11: chance por guardian (se reparte entre sus gemas)
 VIDA_JEFE = 500                  # vida en MythicMobs; la real la pone cavernas/jefe/<t>: 25 x VIDA_REF (jefe del mundo)
 DANO_JEFE = 12
 MOBS_CERCA = 5                   # mobs propios alrededor de cada jugador (32 bloques)
@@ -279,6 +281,9 @@ def mythic_yaml():
                f'- command{{c="execute as <caster.uuid> run function astral:cavernas/jefe/{t}"}} @self ~onSpawn',
                '- skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer',
                '- skill{s=AST_JEFE_SALTO} @target ~onTimer:40']
+        propias = list(dict.fromkeys(g for g, _, _ in drops if g != 'azar'))
+        drops = list(drops) + [(g, 4, round(PERFECTA_JEFE / len(propias), 4)) for g in propias] + \
+            [(g, 5, round(ESTELAR_JEFE / len(propias), 4)) for g in propias]
         for gema, q, ch in drops:
             if gema == 'azar':
                 sk += [f'- command{{c="astralgema dar <trigger.name> azar {q} 1"}} @self ~onDeath ?~isplayer {ch}']

@@ -274,6 +274,8 @@ astral_cav_jefe_amatista:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_2"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_3"} @self ~onDeath 0.35
   - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_4"} @self ~onDeath 0.05
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_amatista_5"} @self ~onDeath 0.005
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
@@ -323,6 +325,8 @@ astral_cav_jefe_jade:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_2"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_3"} @self ~onDeath 0.35
   - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_4"} @self ~onDeath 0.05
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_jade_5"} @self ~onDeath 0.005
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
@@ -375,6 +379,10 @@ astral_cav_jefe_rubi:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_2"} @self ~onDeath 0.6
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_rubi_3"} @self ~onDeath 0.3
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_3"} @self ~onDeath 0.2
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_rubi_4"} @self ~onDeath 0.025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_4"} @self ~onDeath 0.025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_rubi_5"} @self ~onDeath 0.0025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_topacio_5"} @self ~onDeath 0.0025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
@@ -424,6 +432,8 @@ astral_cav_jefe_zafiro:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_2"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_3"} @self ~onDeath 0.35
   - command{c="astralgema dar <trigger.name> azar 2 1"} @self ~onDeath ?~isplayer 0.5
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_4"} @self ~onDeath 0.05
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_zafiro_5"} @self ~onDeath 0.005
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5
@@ -476,6 +486,10 @@ astral_cav_jefe_corazon:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_2"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_onix_3"} @self ~onDeath 0.4
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_3"} @self ~onDeath 0.4
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_onix_4"} @self ~onDeath 0.025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_4"} @self ~onDeath 0.025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_onix_5"} @self ~onDeath 0.0025
+  - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/gema_opalo_5"} @self ~onDeath 0.0025
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/geoda_estelar"} @self ~onDeath 0.5

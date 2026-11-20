@@ -16,8 +16,8 @@ Plugin propio nuevo: `datapack-src/runtime/AstralCavernas.java` (modelo: AstralO
   | Corazon de Opalo y Onix | centro, radio 150, hasta ~50 bloques mas hondo | Opalo y Onix | 5 |
 - Campamento (spawn) en 0, 12, -300: **atril** = comisiones, **barril** = venta. No se rompe ni se construye.
 - Vetas: bloque de nota en campana (bell, notas 0-15). Cada gema tiene veta comun y honda (debajo de Y 0, mejor
-  calidad). Calidad (Cruda/Pulida/Impecable): comun 85/13/2, honda 65/28/7; con **Polvo de Cristal** 70/24/6 y
-  50/38/12. Se pican con **taladro de Rubi (tier 4) o mejor**, a mano o en area; con otro taladro no sueltan nada.
+  calidad). Calidad (Cruda/Pulida/Impecable): comun 88/10/2, honda 72/22/6; con **Polvo de Cristal** 76/19/5 y
+  58/32/10 (bajadas el 20/11). Se pican con **taladro de Rubi (tier 4) o mejor**, a mano o en area; con otro taladro no sueltan nada.
 - Menas para vender en el barril: Cristal Astral en bruto **45.000$** y Geoda Estelar **400.000$** (solo hondas).
 - Mobs (MythicMobs `cavernas.yml`, los aparece el plugin; no hay apariciones naturales): golem de cada zona y Arana
   de Cristal. Un **guardian por zona** (barra de jefe, vida de jefe del mundo) cada ~8 min si hay alguien en la
