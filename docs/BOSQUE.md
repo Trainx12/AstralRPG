@@ -10,7 +10,9 @@ repetidos con estructuras vanilla abajo.
 
 - **Recorte:** x 210..509, z −510..−211 del mapa original → x 0..299, z 0..299 de `astral_bosque`
   (Y 58..165). `tools/bosque_mapa.py` tapa cuevas, cambia la piedra oscura del suelo por tierra
-  gruesa/podzol/tierra con raíces/musgo, deja las hojas persistentes, arma la plataforma del spawn
+  gruesa/podzol/tierra con raíces/musgo, deja las hojas **no persistentes** (la motosierra solo
+  tala árboles con hojas naturales: predicado `natural_tree` de build.py; no se caen porque el mundo
+  tiene random_tick_speed 0 y el Skript cancela la caída), arma la plataforma del spawn
   y elige claros para **92 árboles de Minecraft extra** (abetos y pinos gigantes, cerezos, jungla,
   roble pálido, abedul alto, roble grande). Mapa original y regiones: solo en `.local/bosque-mapas/`.
 - **Armado:** `tools/bosque_armar.py --java <java25> --base .local/testsrv` arma el mundo en un
