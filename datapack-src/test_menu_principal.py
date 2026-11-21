@@ -12,14 +12,19 @@ class PrincipalMenuTests(unittest.TestCase):
     def test_layout_and_icons(self):
         self.assertEqual(self.menu['open_command'], 'menu')
         self.assertTrue(self.menu['register_command'])
-        from menu_ui import title, SLOTS, KEYS
+        from menu_ui import title, SLOTS, KEYS, GUIA_SLOTS, CLOSE_SLOT
         self.assertEqual(self.menu['menu_title'], title())
         self.assertEqual(self.menu['size'], 54)
         # Sin relleno de vidrio: el marco de menu_ui dibuja el fondo.
-        self.assertEqual(sorted(i['slot'] for i in self.items.values()), sorted([*SLOTS, 4, 31, 49]))
+        # La Guia (21/11) es un cartel de 5 casillas abajo al medio; Cerrar en la esquina.
+        self.assertEqual(sorted(i['slot'] for i in self.items.values()),
+                         sorted({*SLOTS, *GUIA_SLOTS, 4, 31, CLOSE_SLOT}))
         for key in KEYS:
+            if key == 'guia': continue
             self.assertEqual(self.items[key]['item_model'], f'astral:menu/icon_{key}')
-        self.assertEqual(self.items['cerrar']['slot'], 49)
+        for s in GUIA_SLOTS:
+            self.assertTrue(any(i['slot'] == s and i['click_commands'][-1] == '[openguimenu] guia_astral' for i in self.items.values()))
+        self.assertEqual(self.items['cerrar']['slot'], 53)
         self.assertEqual(self.items['info']['slot'], 4)
         self.assertTrue(self.items['info']['update'])
         self.assertIn('%vault_eco_balance_formatted%$', ' '.join(self.items['info']['lore']))

@@ -402,17 +402,24 @@ def principal_menu():
         ('duelos', 'DIAMOND_SWORD', '&c&lDuelos', ['&7Desafia a otro jugador.', '&7Tambien desde Arenas PvP.'], ['[close]', '[player] duelos<delay=3>']),
         ('party', 'PLAYER_HEAD', '&d&lParty', ['&7Invita y mira la vida de tus companeros.', '&7Hasta 6 jugadores por grupo.'], ['[close]', '[player] party<delay=3>']),
     ]
-    from menu_ui import SLOTS, KEYS, EFFECTS_SLOT, title as menu_title
+    from menu_ui import SLOTS, KEYS, EFFECTS_SLOT, GUIA_SLOTS, CLOSE_SLOT, title as menu_title
     assert [b[0] for b in buttons] == list(KEYS)
     items = []
     for slot, (key, material, name, lore, commands) in zip(SLOTS, buttons):
+        if key == 'guia':
+            # Cartel grande dibujado en el fondo: casillas invisibles que abren la guia.
+            for n, s in enumerate(GUIA_SLOTS):
+                items += item(key if s == slot else f'{key}_{n}', material, s, '&6&lGuia Astral',
+                              ['&7Clases, equipo, recetas y Forja.', '', '&eClic para abrir.'],
+                              extra={'item_model': 'astral:viajes/blank', 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
+            continue
         # Icono de Gemini (menu_ui.py); el material queda por si falta el pack.
         items += item(key, material, slot, name, lore,
                       extra={'item_model': f'astral:menu/icon_{key}', 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
     items += item('info', 'NETHER_STAR', 4, '&b&l%player_name%',
                   ['&7Saldo: &e%vault_eco_balance_formatted%$', '&7Abri este menu con la Estrella del slot 9.'],
                   extra={'update': 'true'})
-    items += item('cerrar', 'BARRIER', 49, '&cCerrar',
+    items += item('cerrar', 'BARRIER', CLOSE_SLOT, '&cCerrar',
                   extra={'click_commands': ['[sound] UI_BUTTON_CLICK', '[close]']})
     # Configuraciones (15/11/2026): nivel de efectos visuales (plugin AstralEfectos).
     items += item('configuraciones', 'COMPARATOR', EFFECTS_SLOT, '&d&lEfectos', ['&7Efectos visuales: Bajo, Medio o Alto.'],
@@ -733,7 +740,7 @@ def main():
     from cofre_mazmorra import generate as generate_cofres
     lista += [f'  {k}:\n    file: {k}.yml' for k in generate_cofres()]
     lista += ['  expediciones:\n    file: expediciones.yml']
-    lista += ['  portales:\n    file: portales.yml']
+    lista += ['  portales:\n    file: portales.yml', '  portales2:\n    file: portales2.yml']
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]

@@ -151,16 +151,82 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[player] skills<delay=3>'
-  'guia':
+  'guia_0':
     material: BOOK
-    slot: 23
+    slot: 47
     amount: 1
-    display_name: '&b&lGuia'
+    display_name: '&6&lGuia Astral'
     lore:
     - '&7Clases, equipo, recetas y Forja.'
+    - ''
+    - '&eClic para abrir.'
     item_flags:
     - HIDE_ATTRIBUTES
-    item_model: astral:menu/icon_guia
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[openguimenu] guia_astral'
+  'guia_1':
+    material: BOOK
+    slot: 48
+    amount: 1
+    display_name: '&6&lGuia Astral'
+    lore:
+    - '&7Clases, equipo, recetas y Forja.'
+    - ''
+    - '&eClic para abrir.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[openguimenu] guia_astral'
+  'guia':
+    material: BOOK
+    slot: 49
+    amount: 1
+    display_name: '&6&lGuia Astral'
+    lore:
+    - '&7Clases, equipo, recetas y Forja.'
+    - ''
+    - '&eClic para abrir.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[openguimenu] guia_astral'
+  'guia_3':
+    material: BOOK
+    slot: 50
+    amount: 1
+    display_name: '&6&lGuia Astral'
+    lore:
+    - '&7Clases, equipo, recetas y Forja.'
+    - ''
+    - '&eClic para abrir.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:viajes/blank
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[openguimenu] guia_astral'
+  'guia_4':
+    material: BOOK
+    slot: 51
+    amount: 1
+    display_name: '&6&lGuia Astral'
+    lore:
+    - '&7Clases, equipo, recetas y Forja.'
+    - ''
+    - '&eClic para abrir.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: astral:viajes/blank
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -222,7 +288,7 @@ items:
     - '[player] duelos<delay=3>'
   'party':
     material: PLAYER_HEAD
-    slot: 33
+    slot: 23
     amount: 1
     display_name: '&d&lParty'
     lore:
@@ -249,7 +315,7 @@ items:
     item_model: 'astral:boton_info'
   'cerrar':
     material: BARRIER
-    slot: 49
+    slot: 53
     amount: 1
     display_name: '&cCerrar'
     item_flags:

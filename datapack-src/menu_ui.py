@@ -16,8 +16,12 @@ GLYPHS = tuple(chr(0xea10 + i) for i in range(4))
 KEYS = ('bazar', 'minas', 'mazmorras', 'expediciones', 'portales', 'parkour', 'arenas',
         'misiones', 'mascotas', 'cosmeticos', 'skills', 'guia', 'comandos', 'spawn',
         'fragmentos', 'duelos', 'party')
-SLOTS = tuple(range(10, 17)) + tuple(range(19, 26)) + (30, 32, 33)
+# Pedido 21/11: la Guia sale de la fila 2 a un cartel grande abajo al medio (GUIA_SLOTS);
+# Party ocupa su lugar (23) y Fragmentos-Efectos-Duelos quedan centrados (30-32). Cerrar pasa a 53.
+SLOTS = (10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 49, 24, 25, 30, 32, 23)
 EFFECTS_SLOT = 31
+GUIA_SLOTS = (47, 48, 49, 50, 51)
+CLOSE_SLOT = 53
 ICON_ART = dict(bosque='expediciones', fragmentos='skills', tienda='bazar', peluches='mascotas',
                 subastas='bazar', vender='bazar', intercambio='bazar', gacha_rpg='skills',
                 gacha_monturas='mascotas', gacha_cosmeticos='cosmeticos', duelos='arenas')
@@ -231,6 +235,28 @@ def decorate(data):
     return apply(kind, data)
 
 
+def guia_banner():
+    """Cartel dorado de la Guia Astral (5 casillas): libro + texto, con brillo para que destaque."""
+    w = len(GUIA_SLOTS) * 18
+    im = Image.new('RGBA', (w, 18))
+    d = ImageDraw.Draw(im)
+    d.rectangle((0, 0, w - 1, 17), fill='#3a2552', outline='#f3d27a')
+    d.rectangle((1, 1, w - 2, 16), outline='#8a6a2e')
+    for y in range(2, 16):   # degrade violeta: claro arriba, oscuro abajo
+        t = (y - 2) / 13
+        c = tuple(round(a + (b - a) * t) for a, b in ((0x6a, 0x2a), (0x45, 0x1a), (0x9a, 0x40)))
+        d.line((2, y, w - 3, y), fill=c)
+    d.line((2, 2, w - 3, 2), fill='#d9b8ff')
+    for x, y in ((24, 3), (80, 13), (70, 3), (30, 14)):
+        d.point((x, y), fill='#fff6c8')
+    for cx in (0, w - 1):
+        d.polygon(((cx, 6), (cx + (3 if cx == 0 else -3), 9), (cx, 12)), fill='#fff1a8')
+    book = icon('guia').resize((16, 16), Image.Resampling.LANCZOS)
+    im.alpha_composite(book, (3, 1))
+    outlined(im, 'GUIA ASTRAL', (w // 2 + 8, 5), color='#ffe9a3', outline='#1a1208')
+    return im
+
+
 def panel():
     art, (l, t, r, b) = FRAME
     source = Image.open(ROOT / f'pack-source/ref/{art}-frame.png').convert('RGBA')
@@ -248,10 +274,12 @@ def panel():
     d.rectangle((46, 73, 177, 148), fill='#140f1d', outline='#6c5a3a')
     for cx, cy in ((46, 73), (177, 73), (46, 148), (177, 148)):
         d.polygon(((cx, cy - 2), (cx + 2, cy), (cx, cy + 2), (cx - 2, cy)), fill=EDGE)
-    for slot in (*SLOTS, EFFECTS_SLOT, 4, 49):
+    for slot in (*SLOTS, EFFECTS_SLOT, 4, CLOSE_SLOT):
+        if slot in GUIA_SLOTS: continue
         x, y = 31 + slot % 9 * 18, 57 + slot // 9 * 18
         d.rectangle((x, y, x + 17, y + 17), outline=EDGE)
         d.rectangle((x + 1, y + 1, x + 16, y + 16), fill=(0, 0, 0, 0))
+    im.alpha_composite(guia_banner(), (31 + GUIA_SLOTS[0] % 9 * 18, 57 + GUIA_SLOTS[0] // 9 * 18))
     d.rectangle((31, 168, 192, 177), fill=band_color(EDGE))
     d.line((31, 167, 192, 167), fill=EDGE); d.line((31, 178, 192, 178), fill=EDGE)
     for row in (*range(3), 4):
@@ -290,6 +318,7 @@ def preview(folder, name='menu-astral.png'):
     folder = Path(folder); folder.mkdir(parents=True, exist_ok=True)
     im = Image.new('RGBA', SIZE, '#22242a'); im.alpha_composite(panel())
     for key, slot in zip(KEYS, SLOTS):
+        if key == 'guia': continue
         im.alpha_composite(icon(key), (31 + slot % 9 * 18, 57 + slot // 9 * 18))
     im.alpha_composite(icon('configuraciones'), (31 + EFFECTS_SLOT % 9 * 18, 57 + EFFECTS_SLOT // 9 * 18))
     text(im, 'Inventario', (86, 169), color='#383c40')

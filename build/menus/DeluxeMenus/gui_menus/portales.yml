@@ -649,20 +649,20 @@
         "[close]"
       ]
     },
-    "oceano": {
-      "material": "HEART_OF_THE_SEA",
-      "slot": 49,
-      "display_name": "&b&lOceano Astral",
+    "siguiente": {
+      "material": "ARROW",
+      "slot": 44,
+      "display_name": "&e&lSiguiente pagina",
+      "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Un mundo entero bajo el agua.",
-        "&cNo vas a poder respirar.",
+        "&7Oceano Astral y la Mazmorra del End.",
         "",
-        "&eClic para ver el aviso."
+        "&eClic para pasar."
       ],
       "click_commands": [
-        "[openguimenu] oceano_aviso"
-      ],
-      "item_model": "astral:boton_oceano"
+        "[sound] UI_BUTTON_CLICK",
+        "[openguimenu] portales2"
+      ]
     },
     "parkour": {
       "material": "FEATHER",

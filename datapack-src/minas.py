@@ -133,10 +133,17 @@ def config():
     return "\n".join(lines)
 
 
+def _lista(nums, union):
+    nums = [str(n) for n in nums]
+    return ", ".join(nums[:-1]) + f" {union} " + nums[-1]
+
+
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
-    from travel_ui import title
-    values = {"MENU_TITLE": title("minas"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
+    from travel_ui import title, PAGE2_SLOTS
+    values = {"MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
+              "BOSQUE_SLOTS": _lista(PAGE2_SLOTS["minas2"]["bosque"], "and"),
+              "BOSQUE_OR": _lista(PAGE2_SLOTS["minas2"]["bosque"], "or"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,
               "FALL_Y": FALL_Y, "PIT_H": PIT["y2"] - PIT["y1"] + 1, "PIT_W": PIT["x2"] - PIT["x1"] + 1}
     for key, v in PIT.items():

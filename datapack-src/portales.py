@@ -60,7 +60,7 @@ def build_plugin(jdk, server):
 
 def menu_data():
     from menu_ui import decorate
-    from travel_ui import title, CARD_SLOTS
+    from travel_ui import title, CARD_SLOTS, NEXT_SLOT
     items = {}
     for key, material, slot, name, lore, commands in (
         ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
@@ -83,14 +83,49 @@ def menu_data():
     items['lobby']['material']='BARRIER';del items['lobby']['item_model']
     # Oceano Astral (oceano.py): casilla 49, abre la ventana de aviso. Mini juegos (48) y Arenas (50) a sus costados
     # desde que sus tarjetas pasaron a Cavernas y Vacio Estelar (diseno del dueno 19/11).
-    from oceano import portales_button
-    items['oceano']=portales_button()
+    # 21/11: el Oceano paso a la segunda pagina (portales2), con la flecha de la casilla 44.
+    items['siguiente']={'material':'ARROW','slot':NEXT_SLOT,'display_name':'&e&lSiguiente pagina',
+                        'item_model':'astral:viajes/blank','lore':['&7Oceano Astral y la Mazmorra del End.','','&eClic para pasar.'],
+                        'click_commands':['[sound] UI_BUTTON_CLICK','[openguimenu] portales2']}
     items['parkour']={'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
                       'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
     items['arenas']={'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
                      'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
     return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
 
+
+
+def menu_data2():
+    """Segunda pagina de Portales (21/11): Oceano Astral y la futura Mazmorra del End (tarjetas Gemini)."""
+    from menu_ui import decorate
+    from travel_ui import title, PAGE2_SLOTS, BACK_SLOT
+    from oceano import portales_button
+    items = {}
+    cards = {
+        'oceano': dict(portales_button()),
+        'end_mazmorra': {'material': 'END_CRYSTAL', 'display_name': '&d&lMazmorra del End',
+                         'lore': ['&7Una nave perdida entre las estrellas', '&7del End. Pasillos de luz y una mano', '&7cosmica que vigila todo.', '', '&dProximamente.'],
+                         'click_commands': ['[message] &dMazmorra del End&7: todavia no abrio. &dProximamente.']},
+    }
+    for (key, item), slots in zip(cards.items(), PAGE2_SLOTS['portales2'].values()):
+        item = dict(item, item_model='astral:viajes/blank')
+        for n, slot in enumerate(slots):
+            items[key if n == 0 else f'{key}_{slot}'] = dict(item, slot=slot)
+    items['anterior'] = {'material': 'ARROW', 'slot': BACK_SLOT, 'display_name': '&e&lPagina anterior',
+                         'item_model': 'astral:viajes/blank', 'lore': ['&7Nether, End, Cavernas y Vacio.'],
+                         'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] portales']}
+    for slot in (45, 46, 47):
+        items['lobby' if slot == 45 else f'lobby_{slot}'] = {'material': 'BARRIER' if slot == 45 else 'ENDER_PEARL', 'slot': slot,
+            'display_name': '&aVolver al lobby', 'lore': ['&7Volvé al punto de aparición.', '', '&eClic para elegir.'],
+            'click_commands': ['[close]', '[player] umbrales lobby<delay=3>'], **({} if slot == 45 else {'item_model': 'astral:viajes/blank'})}
+    for slot in (51, 52, 53):
+        items['cerrar' if slot == 51 else f'cerrar_{slot}'] = {'material': 'BARRIER', 'slot': slot, 'display_name': '&cCerrar',
+            'item_model': 'astral:viajes/blank', 'lore': ['&7Seguí explorando por tu cuenta.'], 'click_commands': ['[close]']}
+    items['parkour'] = {'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
+                        'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
+    items['arenas'] = {'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
+                       'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
+    return decorate({'menu_title': title('portales2'), 'size': 54, 'items': items})
 
 
 def script():
@@ -153,6 +188,7 @@ def generate():
     from menu_ui import decorate
     outputs = {
         'menus/DeluxeMenus/gui_menus/portales.yml': json.dumps(decorate(menu_data()), ensure_ascii=False, indent=2) + '\n',
+        'menus/DeluxeMenus/gui_menus/portales2.yml': json.dumps(decorate(menu_data2()), ensure_ascii=False, indent=2) + '\n',
         'mapas_exploracion/astral_portales.sk': script(),
         'mythicmobs/mobs/portales.yml': npc(),
     }

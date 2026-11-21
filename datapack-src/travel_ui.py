@@ -7,9 +7,17 @@ from PIL import Image, ImageDraw, ImageEnhance
 from escape_menu import text
 from services_ui import ornament, button, banner, card
 
-KINDS=('portales','minas','minas-venta','arenas')
-ROWS={'portales':6,'minas':6,'minas-venta':5,'arenas':6}
-CAPTIONS={'portales':'PORTALES ASTRALES','minas':'MINAS ASTRALES','minas-venta':'VENTA RAPIDA','arenas':'ARENAS PvP'}
+# portales2 y minas2 (21/11): segundas paginas con flecha. Van al final para no mover los glifos de las otras.
+KINDS=('portales','minas','minas-venta','arenas','portales2','minas2')
+ROWS={'portales':6,'minas':6,'minas-venta':5,'arenas':6,'portales2':6,'minas2':6}
+CAPTIONS={'portales':'PORTALES ASTRALES','minas':'MINAS ASTRALES','minas-venta':'VENTA RAPIDA','arenas':'ARENAS PvP',
+          'portales2':'PORTALES ASTRALES','minas2':'MINAS ASTRALES'}
+# Flechas de pagina: siguiente a la derecha de la fila 4, volver a la izquierda.
+NEXT_SLOT,BACK_SLOT=44,36
+# Tarjetas anchas de la segunda pagina (3 columnas x 4 filas): arte Gemini 21/11 (arte_21_11.py).
+PAGE2={'portales2':(('oceano','Oceano','Astral',(1,2,3)),('end','Mazmorra','del End',(5,6,7))),
+       'minas2':(('bosque','Bosque','Astral',(3,4,5)),)}
+PAGE2_SLOTS={kind:{key:[r*9+c for r in range(4) for c in cols] for key,_,_,cols in cards} for kind,cards in PAGE2.items()}
 # 4 tarjetas de 40 px sobre las 9 columnas: cada columna va a la tarjeta que tiene su centro.
 CARD_COLS=((0,1),(2,3,4),(5,6),(7,8))
 # Tarjetas de Portales (19/11): Nether, End, Cavernas de Cristal y Vacio Estelar. Mini juegos, Oceano y Arenas: 48-50.
@@ -23,9 +31,11 @@ VANILLA=['item/coal','item/copper_ingot','item/iron_ingot','item/gold_ingot','it
          'block/coal_ore','block/copper_ore','block/iron_ore','block/gold_ore','block/emerald_ore','block/diamond_ore','block/ancient_debris_side',
          'block/coal_block','block/copper_block','block/iron_block','block/gold_block','block/emerald_block','block/diamond_block','block/netherite_block']
 FRAME_COLORS={'open':'#71e07a','next':'#f2c94c','locked':'#656171'}
-USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,48,49,50,51,52,53},  # 48 juegos, 49 Oceano, 50 arenas
+USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,48,50,51,52,53,NEXT_SLOT},  # 48 juegos, 50 arenas
       'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
-      'minas':{4,9,18,27,45,47,49,53,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP)}
+      'minas':{4,9,18,27,45,49,53,NEXT_SLOT,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP),
+      'portales2':set(sum(PAGE2_SLOTS['portales2'].values(),[]))|{45,46,47,48,50,51,52,53,BACK_SLOT},
+      'minas2':set(sum(PAGE2_SLOTS['minas2'].values(),[]))|{49,53,BACK_SLOT}}
 GRID_Y=57
 
 
@@ -53,6 +63,7 @@ THEMES={
     'arenas':('arenas',(150,375,975,1245),35,'#22252b','#787a80'),
     'minas-venta':('venta_minerales',(100,325,1030,1285),23,'#2a211a','#ac823d'),
 }
+THEMES['portales2']=THEMES['portales'];THEMES['minas2']=THEMES['minas']
 
 
 def illustration(kind,index):
@@ -75,6 +86,38 @@ def label(im,caption,center,width=32):
         # Si ni sin espacios entra ("Cavernas"), se angosta apenas lo justo.
         if art.width>width:art=art.resize((width,art.height),Image.Resampling.LANCZOS)
     im.alpha_composite(art,(center[0]-art.width//2,center[1]))
+
+
+def arrow(kind,back=False):
+    """Flecha de pagina de Gemini (flecha_<estilo>.png) en 16x16; volver = la misma espejada."""
+    style='portales' if kind.startswith('portales') else 'minas'
+    src=Path(__file__).parent/f'pack-source/ref/gemini/flecha_{style}.png'
+    if src.exists():
+        im=Image.open(src).convert('RGBA').resize((16,16),Image.Resampling.LANCZOS)
+    else:
+        im=Image.new('RGBA',(16,16),'#2b2036');d=ImageDraw.Draw(im)
+        d.rectangle((0,0,15,15),outline='#c3a25d');d.polygon(((4,3),(12,8),(4,12)),fill='#f2c94c')
+    return im.transpose(Image.Transpose.FLIP_LEFT_RIGHT) if back else im
+
+
+def page2_card(kind,index,name,width=54):
+    """Tarjeta ancha (3 columnas): pintura arriba y nombre en dos lineas, borde dorado como las de la pagina 1."""
+    src=Image.open(Path(__file__).parent/f'pack-source/ref/{kind}-cards.png').convert('RGBA')
+    art=src.crop((index*180,0,(index+1)*180,280))
+    # Recorte cuadrado de la pintura (el hueco es 50x50): la parte con el motivo de cada una.
+    top={'end':10,'oceano':70,'bosque':60}.get(name,40)
+    art=art.crop((0,top,180,top+180)).resize((width-4,50),Image.Resampling.LANCZOS)
+    plaque=Image.new('RGBA',(width,72),'#302738');pd=ImageDraw.Draw(plaque)
+    plaque.alpha_composite(art,(2,2))
+    pd.rectangle((1,53,width-2,70),fill='#1d1726')
+    pd.rectangle((0,0,width-1,71),outline='#c3a25d');pd.line((1,52,width-2,52),fill='#c3a25d')
+    return plaque
+
+
+def page_buttons(im):
+    d=ImageDraw.Draw(im)
+    for col in (3,5):
+        bx=31+col*18;d.rectangle((bx,147,bx+17,164),fill='#24182f',outline='#c3a25d')
 
 
 def panel(kind):
@@ -100,15 +143,30 @@ def panel(kind):
             else:
                 label(plaque,caption,(20,61),37)
             im.alpha_composite(plaque,(x,y))
-        label(im,'Elegi tu campo de batalla' if kind=='arenas' else 'Cruza tu proximo umbral',(112,135),160)
+        label(im,'Elegi tu campo de batalla' if kind=='arenas' else 'Cruza tu proximo umbral',(112,135),160 if kind=='arenas' else 122)
         im.alpha_composite(button('',54,'#60432b'),(31,147))
         # La casilla 45 muestra la barrera vanilla (item real); aca solo el texto.
         text(im,'Lobby',(67,152),color='#fff0cd')
         im.alpha_composite(button('',54,'#683c36'),(139,147))
         im.alpha_composite(icon('cerrar'),(158,148))
-        if kind=='portales':   # casillas chicas 48-50: Mini juegos, Oceano y Arenas (items reales encima)
-            for col in (3,4,5):
-                bx=31+col*18;d.rectangle((bx,147,bx+17,164),fill='#24182f',outline='#c3a25d')
+        if kind=='portales':   # casillas chicas 48 y 50: Mini juegos y Arenas (items reales encima); el Oceano paso a la pagina 2
+            page_buttons(im)
+    elif kind in PAGE2:
+        for i,(key,a,b,cols) in enumerate(PAGE2[kind]):
+            x=31+cols[0]*18
+            im.alpha_composite(page2_card(kind,i,key),(x,GRID_Y))
+            label(im,a,(x+27,GRID_Y+54),50);label(im,b,(x+27,GRID_Y+63),50)
+        label(im,'Mundos y eventos especiales' if kind=='portales2' else 'Mas zonas de recoleccion',(112,135),122)
+        if kind=='portales2':
+            im.alpha_composite(button('',54,'#60432b'),(31,147));text(im,'Lobby',(67,152),color='#fff0cd')
+            im.alpha_composite(button('',54,'#683c36'),(139,147));im.alpha_composite(icon('cerrar'),(158,148))
+            page_buttons(im)
+        else:
+            for slot in (49,53):
+                x,y=31+slot%9*18,GRID_Y+slot//9*18
+                d.rectangle((x,y,x+17,y+17),fill=fill,outline=edge);d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
+        x,y=31+BACK_SLOT%9*18,GRID_Y+BACK_SLOT//9*18
+        im.alpha_composite(arrow(kind,True),(x+1,y+1))
     elif kind=='minas':
         # Banner de saldo: el importe sigue en el nombre/lore del item real.
         im.alpha_composite(banner('TU ORO ($)'),(49,57))
@@ -117,7 +175,7 @@ def panel(kind):
             x,y=31+slot%9*18,GRID_Y+slot//9*18
             d.rectangle((x,y,x+17,y+17),fill=fill,outline=edge)
             d.rectangle((x+1,y+1,x+16,y+16),fill=(0,0,0,0))
-        label(im,'Abierta - Siguiente - Bloqueada',(112,134),162)
+        label(im,'Abierta - Proxima - Cerrada',(112,134),124)
     else:
         # Los minerales de la tira son items vanilla reales (SALE_STRIP); aca solo sus casilleros.
         for col in SALE_STRIP:
@@ -128,6 +186,9 @@ def panel(kind):
         im.alpha_composite(button('',18,'#683c36'),(175,111))
         im.alpha_composite(icon('cerrar'),(176,112))
         label(im,'Tu equipo Astral no se vende',(112,134),162)
+    if kind in ('portales','minas'):
+        x,y=31+NEXT_SLOT%9*18,GRID_Y+NEXT_SLOT//9*18
+        im.alpha_composite(arrow(kind),(x+1,y+1))
     inventory(im,rows,fill,edge)
     return im.resize((448,560),Image.Resampling.NEAREST)
 
@@ -296,15 +357,20 @@ def previews(folder,concept=None,kinds=None):
     folder=Path(folder);folder.mkdir(parents=True,exist_ok=True)
     for kind in KINDS if kinds is None else kinds:
         im=Image.new('RGBA',(448,560),'#252a28');im.alpha_composite(panel(kind))
+        if kind=='minas2':
+            from menu_ui import icon as menu_icon
+            for s,key in ((49,'spawn'),):
+                im.alpha_composite(menu_icon(key).resize((36,36),Image.Resampling.NEAREST),((31+s%9*18)*2,(GRID_Y+s//9*18)*2))
+            im.alpha_composite(icon('cerrar').resize((32,32),Image.Resampling.NEAREST),((32+53%9*18)*2,(GRID_Y+1+53//9*18)*2))
         if kind=='minas':
             mapping={9:icon('tier1'),18:icon('tier2'),27:icon('tier3'),45:icon('info'),53:icon('cerrar')}
             from menu_ui import icon as menu_icon
             mapping.update({slot(i):mine_icon(i,'open' if i<=5 else 'next' if i==6 else 'locked') for i in range(1,len(MINES)+1)})
             for s,art in mapping.items():im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+s%9*18)*2,(GRID_Y+1+s//9*18)*2))
             # Los dos modelos del menu miden 18 px y se dibujan a escala 1.125.
-            for s,key in ((47,'bosque'),(49,'spawn')):
+            for s,key in ((49,'spawn'),):
                 im.alpha_composite(menu_icon(key).resize((36,36),Image.Resampling.NEAREST),((31+s%9*18)*2,(GRID_Y+s//9*18)*2))
-        if kind in ('portales','arenas'):
+        if kind in ('portales','arenas','portales2'):
             art=vanilla_texture('item/barrier')
             if art is not None:im.alpha_composite(art.resize((32,32),Image.Resampling.NEAREST),((32+0*18)*2,(GRID_Y+1+5*18)*2))
         if kind=='minas-venta':

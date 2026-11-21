@@ -151,10 +151,25 @@ function am_menu(p: player):
     set item model of slot 45 of {_inv} to "astral:viajes/info"
     set slot 53 of {_inv} to barrier named "&cCerrar"
     set item model of slot 53 of {_inv} to "astral:viajes/cerrar"
-    set slot 47 of {_inv} to spruce sapling named "&2&lBosque Astral" with lore "&7Talá árboles con hacha o motosierra." and "&7Vuelven a crecer a los 3 minutos." and "" and "&aClic para viajar."
-    set item model of slot 47 of {_inv} to "astral:menu/icon_bosque"
+    # 21/11: el Bosque paso a la segunda pagina (flecha de la casilla 44).
+    set slot 44 of {_inv} to arrow named "&e&lSiguiente pagina" with lore "&7Bosque Astral y mas zonas." and "" and "&eClic para pasar."
+    set item model of slot 44 of {_inv} to "astral:viajes/blank"
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "menu"
+
+function am_menu2(p: player):
+    set {_inv} to chest inventory with 6 rows named "@MENU2_TITLE@"
+    loop @BOSQUE_SLOTS@:
+        set slot loop-value of {_inv} to spruce sapling named "&2&lBosque Astral" with lore "&7Talá árboles con hacha o motosierra." and "&7Vuelven a crecer a los 3 minutos." and "" and "&aClic para viajar."
+        set item model of slot loop-value of {_inv} to "astral:viajes/blank"
+    set slot 36 of {_inv} to arrow named "&e&lPagina anterior" with lore "&7Volver a las Minas Astrales."
+    set item model of slot 36 of {_inv} to "astral:viajes/blank"
+    set slot 49 of {_inv} to barrier named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
+    set item model of slot 49 of {_inv} to "astral:menu/icon_spawn"
+    set slot 53 of {_inv} to barrier named "&cCerrar"
+    set item model of slot 53 of {_inv} to "astral:viajes/cerrar"
+    open {_inv} to {_p}
+    set {-am.gui::%uuid of {_p}%} to "menu2"
 
 function am_travel(p: player, i: number):
     set {_rank} to am_rank({_p})
@@ -279,13 +294,23 @@ on inventory click:
             close inventory of player
             execute console command "spawn %name of player%"
             stop
-        if {_slot} is 47:
-            close inventory of player
-            make player execute command "/bosque"
+        if {_slot} is 44:
+            am_menu2(player)
             stop
         set {_dest} to {-am.dest::%{_slot}%}
         if {_dest} is set:
             am_travel(player, {_dest})
+    else if {_gui} is "menu2":
+        if {_slot} is 36:
+            am_menu(player)
+        else if {_slot} is 53:
+            close inventory of player
+        else if {_slot} is 49:
+            close inventory of player
+            execute console command "spawn %name of player%"
+        else if {_slot} is @BOSQUE_OR@:
+            close inventory of player
+            make player execute command "/bosque"
     else if {_gui} is "venta":
         if {_slot} is between 28 and 34:
             close inventory of player

@@ -1,0 +1,500 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "oceano": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 1,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_2": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 2,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_3": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 3,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_10": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 10,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_11": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 11,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_12": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 12,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_19": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 19,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_20": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 20,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_21": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 21,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_28": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 28,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_29": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 29,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_30": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 30,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "end_mazmorra": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 5
+    },
+    "end_mazmorra_6": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 6
+    },
+    "end_mazmorra_7": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 7
+    },
+    "end_mazmorra_14": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 14
+    },
+    "end_mazmorra_15": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 15
+    },
+    "end_mazmorra_16": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 16
+    },
+    "end_mazmorra_23": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 23
+    },
+    "end_mazmorra_24": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 24
+    },
+    "end_mazmorra_25": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 25
+    },
+    "end_mazmorra_32": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 32
+    },
+    "end_mazmorra_33": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 33
+    },
+    "end_mazmorra_34": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 34
+    },
+    "anterior": {
+      "material": "ARROW",
+      "slot": 36,
+      "display_name": "&e&lPagina anterior",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Nether, End, Cavernas y Vacio."
+      ],
+      "click_commands": [
+        "[sound] UI_BUTTON_CLICK",
+        "[openguimenu] portales"
+      ]
+    },
+    "lobby": {
+      "material": "BARRIER",
+      "slot": 45,
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "item_model": "astral:menu/icon_spawn"
+    },
+    "lobby_46": {
+      "material": "ENDER_PEARL",
+      "slot": 46,
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "lobby_47": {
+      "material": "ENDER_PEARL",
+      "slot": 47,
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 51,
+      "display_name": "&cCerrar",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Seguí explorando por tu cuenta."
+      ],
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "cerrar_52": {
+      "material": "BARRIER",
+      "slot": 52,
+      "display_name": "&cCerrar",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Seguí explorando por tu cuenta."
+      ],
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "cerrar_53": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "item_model": "astral:viajes/blank",
+      "lore": [
+        "&7Seguí explorando por tu cuenta."
+      ],
+      "click_commands": [
+        "[close]"
+      ]
+    },
+    "parkour": {
+      "material": "FEATHER",
+      "slot": 48,
+      "display_name": "&d&lMini juegos",
+      "lore": [
+        "&7Parkour, droppers y Color Escape.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ],
+      "item_model": "astral:menu/icon_parkour"
+    },
+    "arenas": {
+      "material": "IRON_SWORD",
+      "slot": 50,
+      "display_name": "&b&lArenas PvP",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ],
+      "item_model": "astral:menu/icon_arenas"
+    }
+  }
+}

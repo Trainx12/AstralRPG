@@ -102,6 +102,8 @@ gui_menus:
     file: expediciones.yml
   portales:
     file: portales.yml
+  portales2:
+    file: portales2.yml
   parkour:
     file: parkour.yml
   arenas:
