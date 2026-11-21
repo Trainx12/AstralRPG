@@ -91,7 +91,7 @@ public final class SpellProbe extends JavaPlugin implements Listener {
       Bukkit.getScheduler().runTaskLater(this,()->{
       var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.tmp");
       double base=objective.getScore("#base").getScore()*objective.getScore("#sk").getScore();
-      boolean protectedFirst=Set.of("pet","noai","invulnerable","owned").contains(mode);
+      boolean protectedFirst=Set.of("pet","invulnerable","owned").contains(mode);
       for(int n=0;n<4;n++) {
         int index=protectedFirst?n-1:n; double expected=(index<0||index>2||mode.equals("wall")&&n>0)?0:base*(index==0?1:.7);
         double actual=damage.getOrDefault(mobs.get(n).getUniqueId(),0.0);

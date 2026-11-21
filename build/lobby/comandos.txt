@@ -3,7 +3,7 @@
 #   mv create lobby normal --world-type FLAT --no-structures --no-adjust-spawn --generator-settings {"layers":[{"block":"minecraft:air","height":1}],"biome":"minecraft:the_void"}
 #   y despues se reemplaza world/dimensions/minecraft/lobby/region/r.0.0.mca por el de la isla (con el server apagado).
 # --- mundo lobby: sin mobs, sin hambre, protegido
-mvsetspawn lobby:180.5,98,190.5,180,0
+mvsetspawn lobby:178.268,99,191.602,0,0
 mv modify lobby set difficulty peaceful
 mv modify lobby set pvp false
 mv modify lobby set hunger false
@@ -85,7 +85,7 @@ mm mobs spawn astral_npc_viajero 1 lobby,178.0,98,190.0,180,0
 mm mobs kill astral_npc_cronista
 mm mobs spawn astral_npc_cronista 1 lobby,189.454,102,218.495,90.7,0
 mm mobs kill astral_npc_minas
-mm mobs spawn astral_npc_minas 1 lobby,174.636,100,225.735,180,0
+mm mobs spawn astral_npc_minas 1 lobby,146.511,102,237.506,270.1,0
 mm mobs kill astral_npc_arena
 mm mobs spawn astral_npc_arena 1 lobby,167.548,102,218.504,-89.6,0
 mm mobs kill astral_npc_portales
@@ -102,7 +102,7 @@ execute in minecraft:lobby run summon minecraft:text_display 208.5 102.55 197.5 
 execute in minecraft:lobby run summon minecraft:text_display 174.5 103.5 152.678 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "Venta Rápida", "color": "#55FF55", "bold": true}, {"text": "\nVendé tus objetos", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 205.466 103.4 175.476 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "Subastas y Banco", "color": "#FFAA00", "bold": true}, {"text": "\nComprá, vendé y guardá tu plata", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 198.657 103.4 181.429 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "Forja", "color": "#FF8A3D", "bold": true}, {"text": "\nMejorá y repará tu equipo", "color": "gray"}]}}
-execute in minecraft:lobby run summon minecraft:text_display 174.636 102.6 225.735 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:200,text:{"text": "", "extra": [{"text": "Minas Astrales", "color": "#55FFFF", "bold": true}, {"text": "\nElegí una mina", "color": "gray"}]}}
+execute in minecraft:lobby run summon minecraft:text_display 146.511 104.1 237.506 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:200,text:{"text": "", "extra": [{"text": "Minas Astrales", "color": "#55FFFF", "bold": true}, {"text": "\nElegí una mina", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 167.548 105.1 218.504 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:200,text:{"text": "", "extra": [{"text": "Arena PvP", "color": "#FF5555", "bold": true}, {"text": "\nPeleá sin perder tu equipo", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 211.434 107.9 237.492 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:200,text:{"text": "", "extra": [{"text": "Portales Astrales", "color": "#55FFFF", "bold": true}, {"text": "\nElegí tu destino", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 189.454 104.8 218.495 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:200,text:{"text": "", "extra": [{"text": "Cronista", "color": "#55FFFF", "bold": true}, {"text": "\nMisiones diarias e historia", "color": "gray"}]}}
@@ -111,11 +111,11 @@ execute in minecraft:lobby run summon minecraft:text_display 182.5 103.5 152.678
 execute in minecraft:lobby run summon minecraft:text_display 178.699 109.727 225.649 {Tags:["astral_holo","astral_holo_expediciones"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "✦ Expediciones Astrales ✦", "color": "#FF7BD5", "bold": true}, {"text": "\nHabla con el guardian", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 136.7 109.4 161.7 {Tags:["astral_holo","astral_holo_minijuegos"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "✦ Mini Juegos ✦", "color": "#55FF55", "bold": true}, {"text": "\nParkour, droppers y Color Escape", "color": "gray"}]}}
 execute in minecraft:lobby run summon minecraft:text_display 109.0 109.8 191.9 {Tags:["astral_holo","astral_holo_survival"],billboard:"center",shadow:1b,background:1073741824,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[1.7f,1.7f,1.7f],right_rotation:[0f,0f,0f,1f]},line_width:200,text:{"text": "", "extra": [{"text": "✦ Mundo Survival ✦", "color": "#7ED957", "bold": true}, {"text": "\nTomá el tren", "color": "gray"}]}}
-execute in minecraft:lobby run summon minecraft:text_display 178.0 102.7 190.0 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:320,text:{"text": "", "extra": [{"text": "\u00bfEst\u00e1s perdido y no sabes por d\u00f3nde empezar?", "color": "#FFD24A", "bold": true}, {"text": "\nPuedes revisar el men\u00fa de opciones usando ", "color": "white"}, {"text": "/menu", "color": "aqua", "bold": true}, {"text": "\no los comandos para cada situaci\u00f3n usando ", "color": "white"}, {"text": "/comandos", "color": "aqua", "bold": true}, {"text": "\nSi no entiendes algo, \u00a1puedes pedir ayuda a un administrador!", "color": "gray"}, {"text": "\n\u00a1Que tengas una gran aventura!", "color": "#B07CFF", "bold": true}]}}
+execute in minecraft:lobby run summon minecraft:text_display 178.473 102.237 191.5 {Tags:["astral_holo"],billboard:"center",shadow:1b,background:1073741824,line_width:320,text:{"text": "", "extra": [{"text": "\u00bfEst\u00e1s perdido y no sabes por d\u00f3nde empezar?", "color": "#FFD24A", "bold": true}, {"text": "\nPuedes revisar el men\u00fa de opciones usando ", "color": "white"}, {"text": "/menu", "color": "aqua", "bold": true}, {"text": "\no los comandos para cada situaci\u00f3n usando ", "color": "white"}, {"text": "/comandos", "color": "aqua", "bold": true}, {"text": "\nSi no entiendes algo, \u00a1puedes pedir ayuda a un administrador!", "color": "gray"}, {"text": "\n\u00a1Que tengas una gran aventura!", "color": "#B07CFF", "bold": true}]}}
 # ============================== BAZAR Y SUBASTAS ==============================
 # menus de DeluxeMenus (build/menus/): los abre el aldeano 'astral_npc_bazar' con 'dm open bazar <jugador>'
 #   /mm mobs spawn astral_npc_bazar      /mm mobs spawn astral_npc_subastas   (con mob-spawning allow en el lobby)
 # Velocidad II en todo el lobby. Instalar build/mythicmobs/mobs/lobby.yml y hacer mm reload.
 # Crear UNA sola vez el controlador invisible (no volver a spawnearlo si ya existe):
-execute in minecraft:lobby run forceload add 180 190
-mm mobs spawn astral_lobby_movimiento 1 lobby,180.5,98,190.5
+execute in minecraft:lobby run forceload add 178 191
+mm mobs spawn astral_lobby_movimiento 1 lobby,178.268,98,191.602

@@ -257,7 +257,12 @@ def skill_yml(dungeon=None):
                   *(["  - delay 2", f"  - tint{{c={col}}} @self"] if col else []), ""]
             if dungeon.get('tanda2'):
                 from mobs.tamanos import skills as size_skills
-                L[-1:-1] = ['  - '+x for x in size_skills(m,sc,d['type'],protect_sanctuary=(mid!='astral_mina_guardian'))]
+                if mid == 'astral_mina_guardian':
+                    # Con el agrandado vanilla el Coloso se ve desarmado (piezas separadas); el dueno probo
+                    # scale 1 en la pelea (21/11) y se ve bien. Los golpes usan la caja b_astral_hitbox del modelo.
+                    L[-1:-1] = ['  - command{c="attribute <caster.uuid> minecraft:scale base set 1"} @self']
+                else:
+                    L[-1:-1] = ['  - '+x for x in size_skills(m,sc,d['type'],protect_sanctuary=True)]
     model_skills = L[:]
     # ondas con aviso (1 segundo para alejarse)
     for nombre, dano, radio in (("GOLEM", 7, 5), ("GUARDIAN", 9, 6)):

@@ -8437,6 +8437,28 @@ every 5 seconds:
                 execute console command "execute in minecraft:astral_bosque run clone %{_p::1}% %{_my}% %{_p::3}% %{_p::1}% %{_my}% %{_p::3}% %{_k}% masked"
                 delete {-ab.suelto::%{_k}%}
 
+# Panel lateral (panel_mundos.py): arboles talados y cuanto falta para el proximo.
+on load:
+    execute console command "scoreboard objectives add ab.tal dummy"
+    execute console command "scoreboard objectives add ab.min dummy"
+    execute console command "scoreboard objectives add ab.seg dummy"
+
+every 1 second:
+    if ab_world() is not set:
+        stop
+    set {_t} to 0
+    set {_r} to 180
+    loop indices of {-ab.pend::*}:
+        add 1 to {_t}
+        set {_s} to 180 - (unix timestamp of now - unix timestamp of {-ab.pend::%loop-value%})
+        if {_s} < {_r}:
+            set {_r} to {_s}
+    set {_r} to max(0, ceil({_r}))
+    loop all players in ab_world():
+        execute console command "scoreboard players set %name of loop-player% ab.tal %{_t}%"
+        execute console command "scoreboard players set %name of loop-player% ab.min %floor({_r} / 60)%"
+        execute console command "scoreboard players set %name of loop-player% ab.seg %mod({_r}, 60)%"
+
 # ---------------------------------------------------------------- admin
 
 command /bosquereset:

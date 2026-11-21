@@ -98,6 +98,25 @@ scoreboard:
         - "%astral_party_fila1%"
         - "%astral_party_fila2%"
         - "%astral_party_fila3%"
+    bosque:
+      title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
+      display-condition: "%condition:pm_bosque%=true"
+      lines:
+        - "%condition:sidebar_world%"
+        - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
+        - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
+        - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
+        - "<#D6B4FF>☠ <#AA96C5>Monstruos <#F0E6FF>%statistic_mob_kills%"
+        - "<gradient:#5268C7:#D17AFF>────────────────</gradient>"
+        - "<gradient:#5268C7:#D17AFF><bold>♣ Bosque Astral</bold></gradient>"
+        - "<#D6B4FF>◷ <#AA96C5>Cada árbol vuelve en <#F0E6FF>3 min"
+        - "<#D6B4FF>✂ <#AA96C5>Talados ahora <#F0E6FF>%objective_score_{ab.tal}%"
+        - "<#D6B4FF>↻ %condition:pm_ab_prox%"
+        - "<#D6B4FF>» <#AA96C5>/spawn para salir"
+        - "%astral_party_titulo%"
+        - "%astral_party_fila1%"
+        - "%astral_party_fila2%"
+        - "%astral_party_fila3%"
     survival:
       title: "<gradient:#5268C7:#D17AFF><bold>✦ ASTRAL RPG ✦</bold></gradient>"
       display-condition: "%condition:pm_survival%=true"
@@ -213,6 +232,17 @@ conditions:
       - "%world%=world_the_end"
     true: "true"
     false: "false"
+  pm_bosque:
+    type: OR
+    conditions:
+      - "%world%=astral_bosque"
+    true: "true"
+    false: "false"
+  pm_ab_prox:
+    conditions:
+      - "%objective_score_{ab.tal}%>=1"
+    true: "<#AA96C5>Próximo vuelve en <#F0E6FF>%objective_score_{ab.min}%:%condition:pm_ab_seg%"
+    false: "<#AA96C5>Todos los árboles en pie"
   pm_inf_tier11:
     conditions:
       - "%objective_score_{inf.plus}%>=1"
@@ -283,6 +313,11 @@ conditions:
       - "%objective_score_{pk.seg}%>=10"
     true: "%objective_score_{pk.seg}%"
     false: "0%objective_score_{pk.seg}%"
+  pm_ab_seg:
+    conditions:
+      - "%objective_score_{ab.seg}%>=10"
+    true: "%objective_score_{ab.seg}%"
+    false: "0%objective_score_{ab.seg}%"
   am_bar_1:
     conditions:
       - "%objective_score_{am_segments}%>=1"

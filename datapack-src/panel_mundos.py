@@ -34,6 +34,7 @@ def _two(value):
 def boards_and_conditions():
     from infinita import WORLDS as INF, TIERS
     from minijuegos import parkour_worlds, arena_worlds
+    from bosque_talar import REGROW_MIN, WORLD as BOSQUE
     player = [ref('sidebar_world'), DIVIDER,
               f"{section('♟ Jugador')} {TEXT}%player%",
               f"{PURPLE}◷ {MUTED}Tiempo jugado {TEXT}{ref('playtime')}",
@@ -61,6 +62,13 @@ def boards_and_conditions():
             f"{PURPLE}☠ {MUTED}Muertes {TEXT}%statistic_deaths%",
             f"{PURPLE}» {MUTED}Duelo: /desafiar",
             *footer]),
+        _board('bosque', 'pm_bosque', player + [
+            f"{section('♣ Bosque Astral')}",
+            f"{PURPLE}◷ {MUTED}Cada árbol vuelve en {TEXT}{REGROW_MIN} min",
+            f"{PURPLE}✂ {MUTED}Talados ahora {TEXT}{score('ab.tal')}",
+            f"{PURPLE}↻ {ref('pm_ab_prox')}",
+            f"{PURPLE}» {MUTED}/spawn para salir",
+            *footer]),
         _board('survival', 'pm_survival', player + [
             f"{section('⚒ Survival')}",
             f"{PURPLE}✦ {MUTED}Nivel {TEXT}%player_level%  {PURPLE}☠ {MUTED}Muertes {TEXT}%statistic_deaths%",
@@ -69,7 +77,10 @@ def boards_and_conditions():
     ]
     tier_names = {t: n for t, n, _ in TIERS}
     conds = [_or('pm_infinita', INF), _or('pm_parkour', parkour_worlds()), _or('pm_arenas', arena_worlds()),
-             _or('pm_survival', SURVIVAL)]
+             _or('pm_survival', SURVIVAL), _or('pm_bosque', [BOSQUE])]
+    conds.append(condition('pm_ab_prox', f"{score('ab.tal')}>=1",
+                           f"{MUTED}Próximo vuelve en {TEXT}{score('ab.min')}:{ref('pm_ab_seg')}",
+                           f"{MUTED}Todos los árboles en pie"))
     # Nombre del tier (inf.tier 1..11; 11 = X+) y extra de X+ (inf.plus).
     top = max(tier_names)
     out = f"<#FF6B6B>{tier_names[top]} (+%objective_score_{{inf.plus}}%)"
@@ -81,7 +92,7 @@ def boards_and_conditions():
             conds.append(condition(f'pm_inf_tier{t}', f"{score('inf.tier')}<={t}", tier_names[t], nxt))
             nxt = ref(f'pm_inf_tier{t}')
     conds.append(f'  pm_inf_tier:\n    conditions:\n      - "{score("inf.tier")}>=1"\n    true: "{nxt}"\n    false: "-"\n')
-    for key, obj in (('pm_inf_seg', 'inf.seg'), ('pm_pk_seg', 'pk.seg')):
+    for key, obj in (('pm_inf_seg', 'inf.seg'), ('pm_pk_seg', 'pk.seg'), ('pm_ab_seg', 'ab.seg')):
         conds.append(condition(key, f"{score(obj)}>=10", score(obj), '0' + score(obj)))
     return ''.join(boards), ''.join(conds)
 

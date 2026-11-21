@@ -1,0 +1,87 @@
+//world astral_minas
+//pos1 512,64,0
+//pos2 712,185,185
+//gmask =!(x>=598&&x<=612&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore copper_ore
+//replace coal_block waxed_copper_block
+//pos1 1024,64,0
+//pos2 1224,185,185
+//gmask =!(x>=1110&&x<=1124&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore iron_ore
+//replace coal_block iron_block
+//pos1 1536,64,0
+//pos2 1736,185,185
+//gmask =!(x>=1622&&x<=1636&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore gold_ore
+//replace coal_block gold_block
+//pos1 2048,64,0
+//pos2 2248,185,185
+//gmask =!(x>=2134&&x<=2148&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore emerald_ore
+//replace coal_block emerald_block
+//pos1 2560,64,0
+//pos2 2760,185,185
+//gmask =!(x>=2646&&x<=2660&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore diamond_ore
+//replace coal_block diamond_block
+//pos1 3584,64,0
+//pos2 3784,185,185
+//gmask =!(x>=3670&&x<=3684&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore copper_ore
+//replace coal_block waxed_copper_block
+//pos1 4096,64,0
+//pos2 4296,185,185
+//gmask =!(x>=4182&&x<=4196&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore iron_ore
+//replace coal_block iron_block
+//pos1 4608,64,0
+//pos2 4808,185,185
+//gmask =!(x>=4694&&x<=4708&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore gold_ore
+//replace coal_block gold_block
+//pos1 5120,64,0
+//pos2 5320,185,185
+//gmask =!(x>=5206&&x<=5220&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore emerald_ore
+//replace coal_block emerald_block
+//pos1 5632,64,0
+//pos2 5832,185,185
+//gmask =!(x>=5718&&x<=5732&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore diamond_ore
+//replace coal_block diamond_block
+//pos1 6144,64,0
+//pos2 6344,185,185
+//gmask =!(x>=6230&&x<=6244&&y>=90&&y<=106&&z>=53&&z<=60)
+//replace coal_ore ancient_debris
+//replace coal_block netherite_block
+//pos1 7168,64,0
+//pos2 7368,185,185
+//gmask
+//replace coal_ore copper_ore
+//replace coal_block waxed_copper_block
+//pos1 7680,64,0
+//pos2 7880,185,185
+//gmask
+//replace coal_ore iron_ore
+//replace coal_block iron_block
+//pos1 8192,64,0
+//pos2 8392,185,185
+//gmask
+//replace coal_ore gold_ore
+//replace coal_block gold_block
+//pos1 8704,64,0
+//pos2 8904,185,185
+//gmask
+//replace coal_ore emerald_ore
+//replace coal_block emerald_block
+//pos1 9216,64,0
+//pos2 9416,185,185
+//gmask
+//replace coal_ore diamond_ore
+//replace coal_block diamond_block
+//pos1 9728,64,0
+//pos2 9928,185,185
+//gmask
+//replace coal_ore ancient_debris
+//replace coal_block netherite_block
+//gmask

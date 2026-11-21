@@ -27,7 +27,8 @@ public final class AstralSpell implements Listener {
             t.equals("astral.no_combat_xp") || t.equals("astral.mercader"))) return false;
         if(e instanceof Player p) return arenas.contains(p.getWorld().getName()) &&
             p.getGameMode()!=GameMode.CREATIVE && p.getGameMode()!=GameMode.SPECTATOR;
-        if(!e.hasAI() || (e instanceof Tameable tame && tame.getOwner()!=null)) return false;
+        // Monstruos quietos (planta carnivora, NoAI) tambien reciben el hechizo; decorados sin IA no.
+        if((!e.hasAI() && !(e instanceof Enemy)) || (e instanceof Tameable tame && tame.getOwner()!=null)) return false;
         if(Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
             var active=MythicBukkit.inst().getMobManager().getActiveMob(e.getUniqueId());
             if(active.isPresent()) {

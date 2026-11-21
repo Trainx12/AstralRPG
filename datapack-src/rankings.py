@@ -68,10 +68,9 @@ def carteles():
     out = []
     for pid, d in llegadas().items():
         out.append((f'parkour_{pid}', f'minecraft:{d["world"]}', *cartel_parkour(d)))
-    from lobby import NPC_POS
-    mx, my, mz, _ = NPC_POS['astral_npc_minas']
     # 15/11/2026: el dueno pidio borrar los de Infinita y Trainx del lobby; los vuelve a poner con /ranking cartel.
-    out += [('minas', 'minecraft:lobby', mx - 5, my + 2.8, mz + 1)]
+    # 20/11/2026: el de Minas va sobre el piso de minerales del lobby (antes quedaba atras del arbol del NPC).
+    out += [('minas', 'minecraft:lobby', 146.5, 106.4, 237.5)]
     from santuario_azeroth import ARRIVAL, WORLD
     out.append(('trainx', f'minecraft:{WORLD}', ARRIVAL[0], ARRIVAL[1] + 2.5, ARRIVAL[2] + 3))
     from bosque_talar import SPAWN

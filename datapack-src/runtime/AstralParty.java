@@ -116,7 +116,20 @@ public final class AstralParty extends JavaPlugin implements Listener {
         for(var id:new ArrayList<>(fallen.keySet())) { var p=player(id); if(p!=null) exit(p); }
         if(expansion!=null) expansion.unregister();
     }
+    // Registro temporal (20/11): por que aparece o desaparece el borde. Max 1 linea por motivo cada 2 s.
+    final Map<String,Long> borderLog = new HashMap<>();
+    final Map<UUID,Long> borderSent = new HashMap<>();
+    void borderDebug(Player p,String what) {
+        var k=p.getUniqueId()+what;var last=borderLog.get(k);
+        if(last!=null&&clock-last<40)return;borderLog.put(k,clock);
+        getLogger().info("[borde] "+p.getName()+" "+what+" @ "+p.getWorld().getName()+" "+p.getLocation().getBlockX()+","+p.getLocation().getBlockY()+","+p.getLocation().getBlockZ()+" "+p.getGameMode());
+    }
+    void clearBorder(Player p,String why) {
+        if(borders.containsKey(p.getUniqueId()))borderDebug(p,"SACA "+why+" sala="+borders.get(p.getUniqueId()).controller);
+        clearBorder(p);
+    }
     void clearBorder(Player p) {
+        borderSent.remove(p.getUniqueId());
         if(borders.remove(p.getUniqueId())!=null)p.setWorldBorder(null);
         borderSafe.remove(p.getUniqueId());
     }
@@ -141,11 +154,18 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(fighting(r,entities.computeIfAbsent(r.world,k->w.getEntities())))activeRooms.add(r);
         }
     }
+    org.bukkit.WorldBorder newBorder(FightRoom r,Player p) {
+        var border=Bukkit.createWorldBorder();border.setCenter(r.centerX(p.getX()),r.centerZ(p.getZ()));border.setSize(r.side());
+        border.setDamageAmount(0);border.setDamageBuffer(0);border.setWarningDistance(3);border.setWarningTime(0);
+        return border;
+    }
     void updateBorder(Player p) {
         var id=p.getUniqueId();var r=borders.get(id);
         // Creativo tambien ve el borde: el dueno prueba las salas asi. Espectador libre queda afuera.
-        if(p.isDead()||(!busy(p)&&p.getGameMode()==GameMode.SPECTATOR)) {clearBorder(p);return;}
-        if(r!=null&&(!activeRooms.contains(r)||!r.world.equals(p.getWorld().getName()))) {clearBorder(p);r=null;}
+        if(p.isDead()||(!busy(p)&&p.getGameMode()==GameMode.SPECTATOR)) {clearBorder(p,"muerto/espectador");return;}
+        if(r!=null&&(!activeRooms.contains(r)||!r.world.equals(p.getWorld().getName()))) {clearBorder(p,activeRooms.contains(r)?"otro mundo":"sala sin pelea");r=null;}
+        // Si algo (otro plugin, Paper) le saco el borde visual, volver a ponerlo.
+        if(r!=null&&p.getWorldBorder()==null) {borderDebug(p,"VISUAL PERDIDO sala="+r.controller);p.setWorldBorder(newBorder(r,p));}
         if(r==null) {
             // Camara del caido: misma sala que su companero, incluso en modo libre.
             var f=fallen.get(id);var target=f==null?null:player(f.target);
@@ -153,11 +173,13 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(r==null)r=activeRooms.stream().filter(room->room.enters(p.getLocation()))
                 .min(Comparator.comparingDouble(room->Math.pow(room.x-p.getX(),2)+Math.pow(room.z-p.getZ(),2))).orElse(null);
             if(r==null)return;
-            var border=Bukkit.createWorldBorder();border.setCenter(r.centerX(p.getX()),r.centerZ(p.getZ()));border.setSize(r.side());
-            border.setDamageAmount(0);border.setDamageBuffer(0);border.setWarningDistance(3);border.setWarningTime(0);
-            p.setWorldBorder(border);borders.put(id,r);
+            p.setWorldBorder(newBorder(r,p));borders.put(id,r);borderDebug(p,"PONE sala="+r.controller+" lado="+r.side());
             if(r.contains(p.getLocation()))borderSafe.put(id,p.getLocation());
         }
+        // Al llegar desde otro mundo, Minecraft le manda al cliente el borde del mundo despues del nuestro
+        // y lo tapa (Bosque y Mina, primera sala). Reenviarlo cada 2 s lo mantiene visible.
+        var sent=borderSent.get(id);
+        if(sent==null||clock-sent>=40) {p.setWorldBorder(newBorder(r,p));borderSent.put(id,clock);}
         var visual=p.getWorldBorder();
         if(visual!=null) {
             double cx=r.centerX(p.getX()),cz=r.centerZ(p.getZ());var old=visual.getCenter();
@@ -170,19 +192,19 @@ public final class AstralParty extends JavaPlugin implements Listener {
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderMove(PlayerMoveEvent e) {
         var p=e.getPlayer();var r=borders.get(p.getUniqueId());if(r==null||e.getTo()==null)return;
-        if(!activeRooms.contains(r)){clearBorder(p);return;}
+        if(!activeRooms.contains(r)){clearBorder(p,"mover: sala sin pelea");return;}
         if(e instanceof PlayerTeleportEvent t&&t.getCause()!=PlayerTeleportEvent.TeleportCause.ENDER_PEARL
             &&t.getCause()!=PlayerTeleportEvent.TeleportCause.CHORUS_FRUIT) {
-            if(!r.contains(e.getTo()))clearBorder(p);return;
+            if(!r.contains(e.getTo()))clearBorder(p,"teleport afuera "+t.getCause());return;
         }
         if(!r.contains(e.getTo())) {
             var safe=borderSafe.get(p.getUniqueId());
             e.setTo(safe==null?e.getFrom():safe);p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());
         } else borderSafe.put(p.getUniqueId(),e.getTo().clone());
     }
-    @EventHandler public void borderWorld(PlayerChangedWorldEvent e) {clearBorder(e.getPlayer());}
+    @EventHandler public void borderWorld(PlayerChangedWorldEvent e) {clearBorder(e.getPlayer(),"cambio de mundo");}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderTeleport(PlayerTeleportEvent e) {borderMove(e);}
-    @EventHandler(priority=EventPriority.MONITOR) public void borderDeath(PlayerDeathEvent e) {clearBorder(e.getEntity());}
+    @EventHandler(priority=EventPriority.MONITOR) public void borderDeath(PlayerDeathEvent e) {clearBorder(e.getEntity(),"muerte");}
     void create(Player p) { var id=p.getUniqueId(); leaders.put(id,id); groups.put(id,new LinkedHashSet<>(List.of(id))); }
     public boolean busy(Player p) { return fallen.containsKey(p.getUniqueId()); }
     void leave(Player p) {

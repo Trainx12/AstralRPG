@@ -100,3 +100,13 @@ Se copiaron los bloques de Hierro I al resto de las minas por chunks con `astral
 ## Tanda 1: acceso al menu
 
 `/minas` abre la interfaz desde cualquier mundo, incluidas mazmorras y expediciones. La restriccion anterior aparecio en `8771e8f` al quitar skript-reflect, sin motivo de combate documentado; se retiro sin agregar bloqueos de duelos. Regenerar con `python minas.py`; salida `build/minas/Skript/scripts/astral_minas.sk`.
+
+## Decoracion con el mineral de cada mina (20/11/2026)
+
+El 18/11 cada tier copio la decoracion de su mina de Carbon. `datapack-src/minas_decor.py` genera
+`build/minas/decor-menas.txt`: comandos de WorldEdit para consola que cambian SOLO el carbon de la decoracion
+(mena y bloque) por el mineral de la mina (cobre encerado, hierro, oro, esmeralda, diamante; Netherita usa restos
+ancestrales y bloque de netherita). Las minas de Carbon no se tocan. En los tiers I y II queda igual el monton de
+minerales mezclados detras del aldeano de venta rapida (mascara `//gmask`). Aplicado en el server el 20/11; respaldo
+de las regiones previas en `.local/minas/respaldo-decor-20-11`. Si algun dia se vuelve a copiar la decoracion de
+las minas de Carbon, hay que correr de nuevo estos comandos.

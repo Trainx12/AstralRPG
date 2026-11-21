@@ -21,7 +21,8 @@ OUT = os.path.join(HERE, "..", "build", "lobby")
 WORLD = "lobby"
 
 # Plaza: el piso del centro esta en y=97, el anillo de edificios en y=99.
-SPAWN = (180.5, 98, 190.5, 180)          # x, y, z, yaw (mirando al edificio grande del norte)
+SPAWN = (178.268, 99, 191.602, 0)        # x, y, z, yaw. 20/11/2026: centro nuevo, mirando al domo del sur
+AYUDA_POS = (178.473, 102.237, 191.5)     # cartel "¿Estás perdido...?" delante del spawn (antes arriba del Viajero)
 
 # id: (x, y, z, yaw)  -> yaw 0 = sur, 90 = oeste, -90 = este, 180 = norte
 NPC_POS = {
@@ -529,7 +530,7 @@ NAME_HOLOS = {
     "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.5),
     "astral_npc_subastas": ("Subastas y Banco", "#FFAA00", "Comprá, vendé y guardá tu plata", 3.0),
     "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", 3.0),
-    "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.6),
+    "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.1),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
     "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
     "astral_npc_cronista": ("Cronista", "#55FFFF", "Misiones diarias e historia", 2.8),
@@ -586,7 +587,7 @@ def holo_cmds():
                    f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],right_rotation:[0f,0f,0f,1f]}},"
                    f"line_width:200,text:{comp}}}")
     # Cartel de ayuda arriba del Viajero (por encima de su nombre)
-    x, y, z, _ = NPC_POS["astral_npc_viajero"]
+    x, y, z = AYUDA_POS
     NL = chr(10)
     text = [{"text": "¿Estás perdido y no sabes por dónde empezar?", "color": "#FFD24A", "bold": True},
             {"text": NL + "Puedes revisar el menú de opciones usando ", "color": "white"},
@@ -596,7 +597,7 @@ def holo_cmds():
             {"text": NL + "Si no entiendes algo, ¡puedes pedir ayuda a un administrador!", "color": "gray"},
             {"text": NL + "¡Que tengas una gran aventura!", "color": "#B07CFF", "bold": True}]
     comp = json.dumps({"text": "", "extra": text})
-    out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + 4.7} {z} "
+    out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y} {z} "
                f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
                f"line_width:320,text:{comp}}}")
     return out

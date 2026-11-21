@@ -105,3 +105,9 @@ no ejecutar `bosquegenerar`, no recrear mundos ni reemplazar moldes. Los comando
 los dos aldeanos están al final de `build/bosque/instalacion.txt`, rodeados de
 `mob-spawning allow` y `deny`. Falta confirmar en Paper la carga de Skript, ventas,
 Fortuna, inventario lleno, drops manuales y tala de dos jugadores a la vez.
+
+## Panel lateral (20/11/2026)
+
+En `astral_bosque` el TAB muestra su propio tablero (`panel_mundos.py`, condicion `pm_bosque`): cada cuanto vuelve un
+arbol, cuantos hay talados y cuanto falta para el proximo. Los numeros los pone `astral_bosque.sk` cada segundo en
+los objetivos `ab.tal`, `ab.min` y `ab.seg`.

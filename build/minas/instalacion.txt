@@ -166,24 +166,24 @@ mm mobs spawn astral_npc_mina_venta 1 astral_minas,5726.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,5716.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_venta 1 astral_minas,6238.5,93,70.5,0,0
 mm mobs spawn astral_npc_mina_viaje 1 astral_minas,6228.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,6750.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,6740.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,7262.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7252.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,7774.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7764.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,8286.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8276.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,8798.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8788.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,9310.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9300.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_venta 1 astral_minas,9822.5,93,70.5,0,0
-mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9812.5,93,70.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,6754.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,6742.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,7266.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7254.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,7778.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,7766.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,8290.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8278.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,8802.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,8790.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,9314.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9302.5,95,64.5,0,0
+mm mobs spawn astral_npc_mina_venta 1 astral_minas,9826.5,94,63.5,0,0
+mm mobs spawn astral_npc_mina_viaje 1 astral_minas,9814.5,95,64.5,0,0
 
 # 4) Aldeano del lobby (al lado de Expediciones). WorldGuard bloquea mobs en el lobby:
 rg flag -w lobby __global__ mob-spawning allow
-mm mobs spawn astral_npc_minas 1 lobby,174.636,100,225.735,180,0
+mm mobs spawn astral_npc_minas 1 lobby,146.511,102,237.506,270.1,0
 rg flag -w lobby __global__ mob-spawning deny
 
 # 5) Script y panel. Subir astral_minas.sk a plugins/Skript/scripts/ y la seccion de TAB.

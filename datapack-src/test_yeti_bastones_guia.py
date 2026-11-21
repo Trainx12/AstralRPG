@@ -55,7 +55,7 @@ class YetiBastonesGuiaTests(unittest.TestCase):
             ray=z.read('data/astral/function/spell/ray.mcfunction').decode()
         java=(ROOT/'datapack-src/runtime/AstralSpell.java').read_text('utf8')
         self.assertIn('e.getBoundingBox()',java)
-        self.assertIn('!e.hasAI()',java)
+        self.assertIn("!e.hasAI() && !(e instanceof Enemy)",java)
         self.assertIn('b_astral_hitbox',java)
         self.assertIn('e instanceof Villager',java)
         self.assertIn('#spell.end',ray)

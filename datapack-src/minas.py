@@ -28,7 +28,7 @@ TRAVEL = (84.5, 93, 70.5, 0)      # aldeano de viajes (lobby u otra mina), del o
 MOLD_Y, MOLD_STEP = -20, 25       # moldes de regeneracion debajo del pozo (y -20..-1 y -45..-26)
 RESET_MIN = 9                     # minutos entre regeneraciones de una mina con gente
 FALL_Y = 66
-LOBBY_NPC = (174.636, 100, 225.735, 180)   # 4 bloques al oeste de Expediciones Astrales
+LOBBY_NPC = (146.511, 102, 237.506, 270.1)   # sobre el piso de minerales del lobby (donde esta en el server, 20/11)
 
 ORES = [  # nombre, mena, bloque, mapa
     ("Carbón", "coal_ore", "coal_block", "carbon"),
