@@ -91,11 +91,16 @@ def buckets():
 def tree_data():
     lines = ["on load:",
              "    delete {-ab.x::*}", "    delete {-ab.y::*}", "    delete {-ab.z::*}",
-             "    delete {-ab.box::*}", "    delete {-ab.cl::*}", "    delete {-ab.k::*}"]
+             "    delete {-ab.box::*}", "    delete {-ab.cl::*}", "    delete {-ab.k::*}",
+             "    delete {-ab.cx::*}", "    delete {-ab.cy::*}", "    delete {-ab.cz::*}"]
     for n, t in enumerate(ARBOLES, 1):
         bx, by, bz = t['base']
         lines += [f"    set {{-ab.x::{n}}} to {bx}", f"    set {{-ab.y::{n}}} to {by}", f"    set {{-ab.z::{n}}} to {bz}",
                   f'    set {{-ab.box::{n}}} to "{" ".join(map(str, t["box"]))}"']
+        # Puntos de control (troncos de abajo a arriba): la motosierra puede dejar la base.
+        for i, (cx, cy, cz) in enumerate(t.get('checks') or [t['base']], 1):
+            lines += [f"    set {{-ab.cx::{n}::{i}}} to {cx}", f"    set {{-ab.cy::{n}::{i}}} to {cy}",
+                      f"    set {{-ab.cz::{n}::{i}}} to {cz}"]
         for i, c in enumerate(clones(t['box']), 1):
             lines.append(f'    set {{-ab.cl::{n}::{i}}} to "{c}"')
     for k, ns in sorted(buckets().items()):
@@ -163,6 +168,10 @@ def script():
         f'        execute console command "execute in {DIM} run %loop-value%"',
         "    if block at {_c} is air:",
         "        return false",
+        "    loop indices of {-ab.cx::%{_n}%::*}:",
+        "        set {_k} to location({-ab.cx::%{_n}%::%loop-value%}, {-ab.cy::%{_n}%::%loop-value%}, {-ab.cz::%{_n}%::%loop-value%}, ab_world())",
+        "        if block at {_k} is air:",
+        "            return false",
         "    return true",
         "",
         "command /bosque:",
@@ -217,6 +226,8 @@ def script():
         "        set {_p} to loop-player",
         "        loop all dropped items in radius 48 around {_p}:",
         '            if scoreboard tags of loop-dropped item contains "ab.saw":',
+        "                # La madera sale donde estaba el tronco: marca ese arbol como talado.",
+        "                ab_mark(location of loop-dropped item)",
         '                execute console command "minecraft:data remove entity %uuid of loop-dropped item% Item.components.minecraft:custom_data"',
         "                set {_it} to item of loop-dropped item",
         "                if \"%type of {_it}%\" contains \"log\" or \"stem\" or \"wood\":",
@@ -258,7 +269,8 @@ def script():
         "            if loop-player's gamemode is not creative:",
         "                teleport loop-player to ab_spawn()",
         "",
-        "# La motosierra del datapack no dispara eventos de Skript: se revisa el tronco de cada arbol.",
+        "# La motosierra del datapack no dispara eventos de Skript: se revisan varios troncos de cada",
+        "# arbol (de abajo a arriba). Si falta cualquiera, el arbol se talo, aunque quede la base.",
         "every 5 seconds:",
         "    if ab_world() is not set:",
         "        stop",
@@ -267,8 +279,12 @@ def script():
         "        if {-ab.pend::%{_n}%} is not set:",
         "            set {_l} to location({-ab.x::%{_n}%}, {-ab.y::%{_n}%}, {-ab.z::%{_n}%}, ab_world())",
         "            if chunk at {_l} is loaded:",
-        "                if block at {_l} is air:",
-        "                    set {-ab.pend::%{_n}%} to now",
+        "                loop indices of {-ab.cx::%{_n}%::*}:",
+        "                    set {_i} to loop-value-2",
+        "                    set {_c} to location({-ab.cx::%{_n}%::%{_i}%}, {-ab.cy::%{_n}%::%{_i}%}, {-ab.cz::%{_n}%::%{_i}%}, ab_world())",
+        "                    if block at {_c} is air:",
+        "                        set {-ab.pend::%{_n}%} to now",
+        "                        exit loop",
         "    loop indices of {-ab.pend::*}:",
         "        set {_k} to loop-value",
         f"        if difference between {{-ab.pend::%{{_k}}%}} and now >= {REGROW_MIN} minutes:",

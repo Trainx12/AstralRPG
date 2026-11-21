@@ -43,7 +43,7 @@ def ambiguous_references(script):
 class SkriptLoops(unittest.TestCase):
     def test_rejects_original_bosque_regression(self):
         broken = bosque_talar.script().replace('loop-dropped item', 'loop-entity')
-        self.assertEqual(len(ambiguous_references(broken)), 7)
+        self.assertEqual(len(ambiguous_references(broken)), 8)  # +1: ab_mark de la madera de motosierra (20/11)
 
     def test_nested_entities_and_values(self):
         for reference in ('loop-entity', 'loop-value'):

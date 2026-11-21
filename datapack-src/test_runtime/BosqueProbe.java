@@ -38,8 +38,9 @@ public final class BosqueProbe extends JavaPlugin {
             for (int[] b : boxes) {
                 for (int cx = b[0] >> 4; cx <= b[3] >> 4; cx++)
                     for (int cz = b[2] >> 4; cz <= b[5] >> 4; cz++) w.setChunkForceLoaded(cx, cz, true);
+                // Como la motosierra a mitad de tronco: la base (5 bloques de abajo) queda entera.
                 for (int x = b[0]; x <= b[3]; x++)
-                    for (int y = b[1]; y <= b[4]; y++)
+                    for (int y = b[1] + 5; y <= b[4]; y++)
                         for (int z = b[2]; z <= b[5]; z++) {
                             var bl = w.getBlockAt(x, y, z);
                             if (wood(bl.getType())) { bl.setType(Material.AIR, false); cut++; }

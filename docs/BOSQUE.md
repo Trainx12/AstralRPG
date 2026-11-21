@@ -23,7 +23,9 @@ repetidos con estructuras vanilla abajo.
 - **Regeneración:** igual que antes, 3 minutos: tronco más bajo vacío o bloque roto a mano dentro
   de la caja → `clone ... masked` de la caja desde el molde. Hojas sueltas (arbustos) rotas a mano
   vuelven bloque por bloque. `/bosquereset` regenera todo.
-- **Spawn:** plataforma de piedra con musgo en (80.5, 88, 218.5) mirando al centro; venta y viajes
+- **Spawn:** en (80.5, 88, 218.5) mirando al centro. El armado pone una plataforma de piedra con
+  musgo, pero el 20/11 el dueño la cambió a mano por pasto en el server: si se rearma el mundo,
+  respetar ese cambio (ningún árbol se regenera encima de la plataforma); venta y viajes
   a 3 bloques a cada lado; cartel de ranking encima de viajes.
 - **Ensayo:** `tools/probar_bosque_paper.py` carga el script con Skript, tala 6 árboles sin eventos
   (como la motosierra) y comprueba que vuelven. 20/11: sin errores, 2265 bloques recuperados.

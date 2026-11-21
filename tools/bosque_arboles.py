@@ -5,7 +5,7 @@ Lee .local/bosque-mapas/entrega/region (salida de tools/bosque_armar.py) y escri
 datapack-src/bosque_arboles.json: solo coordenadas (ningun bloque del mapa), lo usa bosque_talar.py.
 
 Arbol = troncos unidos (26 vecinos) + las hojas que les quedan mas cerca (camino por hojas).
-Punto de control = el tronco mas bajo: si queda vacio, el arbol se talo.
+Puntos de control = troncos repartidos de abajo a arriba: si alguno queda vacio, el arbol se talo.
 """
 import json
 import sys
@@ -24,6 +24,7 @@ REGION = ROOT / '.local/bosque-mapas/entrega/region'
 INFO = ROOT / '.local/bosque-mapas/datos/info.json'
 OUT = ROOT / 'datapack-src/bosque_arboles.json'
 TOP = 230
+CHECKS = 5          # puntos de control por arbol
 
 
 def detect(arr, pal, y0):
@@ -32,6 +33,9 @@ def detect(arr, pal, y0):
     is_leaf = np.array(['leaves' in n or n.endswith(('vine', 'vines', 'cocoa', 'pale_moss_carpet', 'pale_hanging_moss'))
                         for n in names])
     logm = is_log[arr]; leafm = is_leaf[arr]
+    # Troncos que corta la motosierra (tag tree_logs de build.py: *_log y *_stem, no *_wood).
+    is_saw = np.array([n.endswith(('_log', '_stem')) for n in names])
+    sawflat = is_saw[arr].ravel()
     H, L, W = arr.shape
     lab = np.zeros(arr.shape, np.int32)
     n = 0
@@ -73,7 +77,17 @@ def detect(arr, pal, y0):
             continue
         ly, lz, lx = ys[lg], zs[lg], xs[lg]
         k = np.lexsort((np.abs(lx - lx.mean()) + np.abs(lz - lz.mean()), ly))[0]
-        trees.append({'base': [int(lx[k]), int(ly[k]) + y0, int(lz[k])],
+        # Puntos de control: troncos repartidos de abajo a arriba. La motosierra puede cortar solo
+        # la parte de arriba y dejar la base: si falta cualquiera de estos, el arbol se talo.
+        sw = sawflat[sel]
+        cy, cz, cx = ys[sw], zs[sw], xs[sw]
+        checks = []
+        if len(cy):
+            o = np.argsort(cy, kind='stable')
+            for i in sorted(set(np.linspace(0, len(o) - 1, min(CHECKS, len(o))).round().astype(int))):
+                j = o[i]
+                checks.append([int(cx[j]), int(cy[j]) + y0, int(cz[j])])
+        trees.append({'base': [int(lx[k]), int(ly[k]) + y0, int(lz[k])], 'checks': checks,
                       'box': [int(xs.min()), int(ys.min()) + y0, int(zs.min()),
                               int(xs.max()), int(ys.max()) + y0, int(zs.max())],
                       'troncos': int(lg.sum()), 'bloques': int(len(sel))})
@@ -96,6 +110,8 @@ def merge_branches(trees):
             hb = host['box']
             host['box'] = [min(hb[i], bx[i]) for i in range(3)] + [max(hb[i], bx[i]) for i in range(3, 6)]
             host['troncos'] += t['troncos']; host['bloques'] += t['bloques']
+            if t['checks'] and len(host['checks']) < CHECKS + 3:
+                host['checks'] = host['checks'] + [t['checks'][-1]]
         else:
             out.append(dict(t))
     return out
@@ -107,7 +123,8 @@ def main():
     trees = detect(arr, pal, B.LIVE_BOTTOM)
     trees.sort(key=lambda t: (t['base'][2], t['base'][0]))
     info = json.loads(INFO.read_text(encoding='utf-8'))
-    data = {'spawn': info['spawn'], 'arboles': [{'base': t['base'], 'box': t['box']} for t in trees]}
+    data = {'spawn': info['spawn'], 'arboles': [{'base': t['base'], 'box': t['box'], 'checks': t['checks'] or [t['base']]}
+                                             for t in trees]}
     OUT.write_text(json.dumps(data, separators=(',', ':')) + '\n', encoding='utf-8')
     big = sorted(trees, key=lambda t: -t['bloques'])[:5]
     print('arboles', len(trees), 'troncos totales', sum(t['troncos'] for t in trees))
