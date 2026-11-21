@@ -395,7 +395,7 @@ def principal_menu():
         ('mascotas', 'BONE', '&6&lMascotas', ['&7Coleccion de 23 companeros en 3 paginas.', '&7Invoca, entrena o guarda a tu mascota.'], ['[openguimenu] mascotas']),
         ('cosmeticos', 'NAME_TAG', '&d&lCosmeticos y titulos', ['&7Elegi tus titulos y gorros.'], ['[openguimenu] cosmeticos']),
         ('skills', 'EXPERIENCE_BOTTLE', '&a&lHabilidades', ['&7Consulta tus niveles y habilidades.'], ['[close]', '[player] skills<delay=3>']),
-        ('guia', 'BOOK', '&b&lGuia', ['&7Clases, equipo, recetas y Forja.'], ['[close]', '[openguimenu] guia_astral']),
+        ('guia', 'BOOK', '&e&lGuia Astral', ['&7Clases, equipo, recetas y Forja.', '&7Empeza aca si sos nuevo.'], ['[close]', '[openguimenu] guia_astral']),
         ('comandos', 'OAK_SIGN', '&e&lComandos', ['&7Consulta como usar cada comando.'], ['[openguimenu] comandos']),
         ('spawn', 'RED_BED', '&f&lVolver al lobby', ['&7Volve a la plaza del Refugio.'], ['[close]', '[player] spawn<delay=3>']),
         ('fragmentos', 'AMETHYST_SHARD', '&d&lFragmentos Astrales', ['&7Coleccion y recompensas de los jefes.'], ['[openguimenu] fragmentos']),
@@ -407,7 +407,7 @@ def principal_menu():
     items = []
     for slot, (key, material, name, lore, commands) in zip(SLOTS, buttons):
         # Icono de Gemini (menu_ui.py); el material queda por si falta el pack.
-        items += item(key, material, slot, name, lore,
+        items += item(key, material, slot, name, lore, glow=(key == 'guia'),
                       extra={'item_model': f'astral:menu/icon_{key}', 'click_commands': ['[sound] UI_BUTTON_CLICK'] + commands})
     items += item('info', 'NETHER_STAR', 4, '&b&l%player_name%',
                   ['&7Saldo: &e%vault_eco_balance_formatted%$', '&7Abri este menu con la Estrella del slot 9.'],
@@ -733,7 +733,7 @@ def main():
     from cofre_mazmorra import generate as generate_cofres
     lista += [f'  {k}:\n    file: {k}.yml' for k in generate_cofres()]
     lista += ['  expediciones:\n    file: expediciones.yml']
-    lista += ['  portales:\n    file: portales.yml']
+    lista += ['  portales:\n    file: portales.yml', '  portales_2:\n    file: portales_2.yml']
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]

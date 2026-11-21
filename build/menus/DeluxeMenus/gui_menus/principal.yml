@@ -153,13 +153,17 @@ items:
     - '[player] skills<delay=3>'
   'guia':
     material: BOOK
-    slot: 23
+    slot: 40
     amount: 1
-    display_name: '&b&lGuia'
+    display_name: '&e&lGuia Astral'
     lore:
     - '&7Clases, equipo, recetas y Forja.'
+    - '&7Empeza aca si sos nuevo.'
+    enchantments:
+    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
     item_model: astral:menu/icon_guia
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
@@ -222,7 +226,7 @@ items:
     - '[player] duelos<delay=3>'
   'party':
     material: PLAYER_HEAD
-    slot: 33
+    slot: 23
     amount: 1
     display_name: '&d&lParty'
     lore:

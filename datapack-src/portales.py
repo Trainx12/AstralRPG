@@ -81,15 +81,56 @@ def menu_data():
         for slot in slots[1:]:items[f'{key}_{slot}']=dict(item,slot=slot)
     # Lobby: la primera casilla muestra la barrera vanilla.
     items['lobby']['material']='BARRIER';del items['lobby']['item_model']
-    # Oceano Astral (oceano.py): casilla 49, abre la ventana de aviso. Mini juegos (48) y Arenas (50) a sus costados
-    # desde que sus tarjetas pasaron a Cavernas y Vacio Estelar (diseno del dueno 19/11).
-    from oceano import portales_button
-    items['oceano']=portales_button()
-    items['parkour']={'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
-                      'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
-    items['arenas']={'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
-                     'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
+    # Mini juegos (48) y Arenas (50); el Oceano Astral paso a la pagina 2 (21/11/2026).
+    items.update(bottom_row())
+    from travel_ui import NEXT_SLOT
+    items['siguiente']={'material': 'ARROW', 'slot': NEXT_SLOT, 'display_name': '&e&lSiguiente pagina',
+                        'lore': ['&7Oceano Astral y Mazmorra del End.'],
+                        'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] portales_2']}
     return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
+
+
+def bottom_row():
+    return {'parkour': {'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
+                        'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']},
+            'arenas': {'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
+                       'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}}
+
+
+def menu_data_2():
+    """Pagina 2 (21/11/2026): Oceano Astral y la futura Mazmorra del End, con flecha para volver."""
+    from menu_ui import decorate
+    from travel_ui import title, PAGE2_SLOTS, BACK_SLOT
+    from oceano import portales_button
+    oceano = portales_button()
+    cards = {
+        'oceano': dict(oceano, material='HEART_OF_THE_SEA'),
+        'end_nave': {'material': 'END_CRYSTAL', 'display_name': '&5&lMazmorra del End',
+                     'lore': ['&7Una nave perdida al otro lado del vacio.', '&7Pasillos, salas y un jefe final.',
+                              '', '&dProximamente.'],
+                     'click_commands': ['[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente.']},
+    }
+    items = {}
+    for key, item in cards.items():
+        slots = PAGE2_SLOTS['portales2'][key]
+        item = dict(item, item_model='astral:viajes/blank')
+        items[key] = dict(item, slot=slots[0])
+        for slot in slots[1:]:
+            items[f'{key}_{slot}'] = dict(item, slot=slot)
+    for key, material, slots, name, lore, commands in (
+        ('lobby', 'ENDER_PEARL', (45, 46, 47), '&aVolver al lobby', ['&7Volvé al punto de aparición.'], ['[close]', '[player] umbrales lobby<delay=3>']),
+        ('cerrar', 'BARRIER', (51, 52, 53), '&cCerrar', ['&7Seguí explorando por tu cuenta.'], ['[close]'])):
+        item = {'material': material, 'display_name': name, 'lore': lore + ['', '&eClic para elegir.'],
+                'click_commands': commands, 'item_model': 'astral:viajes/blank'}
+        items[key] = dict(item, slot=slots[0])
+        for slot in slots[1:]:
+            items[f'{key}_{slot}'] = dict(item, slot=slot)
+    items['lobby']['material'] = 'BARRIER'; del items['lobby']['item_model']
+    items.update(bottom_row())
+    items['anterior'] = {'material': 'ARROW', 'slot': BACK_SLOT, 'display_name': '&e&lPagina anterior',
+                         'lore': ['&7Nether, End, Cavernas y Vacio Estelar.'],
+                         'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] portales']}
+    return decorate({'menu_title': title('portales2'), 'size': 54, 'items': items})
 
 
 
@@ -153,6 +194,7 @@ def generate():
     from menu_ui import decorate
     outputs = {
         'menus/DeluxeMenus/gui_menus/portales.yml': json.dumps(decorate(menu_data()), ensure_ascii=False, indent=2) + '\n',
+        'menus/DeluxeMenus/gui_menus/portales_2.yml': json.dumps(decorate(menu_data_2()), ensure_ascii=False, indent=2) + '\n',
         'mapas_exploracion/astral_portales.sk': script(),
         'mythicmobs/mobs/portales.yml': npc(),
     }

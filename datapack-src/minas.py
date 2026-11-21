@@ -135,8 +135,12 @@ def config():
 
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
-    from travel_ui import title
-    values = {"MENU_TITLE": title("minas"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
+    from travel_ui import title, NEXT_SLOT, BACK_SLOT, PAGE2_SLOTS, PAGE2_CARDS
+    bosque = PAGE2_SLOTS["minas2"]["bosque"]
+    cols = PAGE2_CARDS["minas2"]["bosque"][0]
+    values = {"MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"), "NEXT_SLOT": NEXT_SLOT, "BACK_SLOT": BACK_SLOT,
+              "BOSQUE_SLOTS": ", ".join(map(str, bosque[:-1])) + f" and {bosque[-1]}", "BOSQUE_FIRST": min(bosque), "BOSQUE_LAST": max(bosque),
+              "BOSQUE_COL1": cols[0], "BOSQUE_COL2": cols[-1], "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,
               "FALL_Y": FALL_Y, "PIT_H": PIT["y2"] - PIT["y1"] + 1, "PIT_W": PIT["x2"] - PIT["x1"] + 1}
     for key, v in PIT.items():

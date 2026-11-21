@@ -30,7 +30,7 @@ class PartyGeneration(unittest.TestCase):
     def test_menu(self):
         import menus,menu_ui
         data=yaml.safe_load(menus.principal_menu())
-        self.assertEqual(data['items']['party']['slot'],33)
+        self.assertEqual(data['items']['party']['slot'],23)   # 21/11: ocupa el lugar que dejo la Guia
         self.assertIn('[player] party<delay=3>',data['items']['party']['click_commands'])
         self.assertEqual(len(menu_ui.SLOTS),len(set(menu_ui.SLOTS)))
         self.assertNotIn(menu_ui.EFFECTS_SLOT,menu_ui.SLOTS)

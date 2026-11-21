@@ -20,6 +20,9 @@ class PrincipalMenuTests(unittest.TestCase):
         for key in KEYS:
             self.assertEqual(self.items[key]['item_model'], f'astral:menu/icon_{key}')
         self.assertEqual(self.items['cerrar']['slot'], 49)
+        # 21/11/2026: la Guia Astral sola al centro de abajo, con brillo.
+        self.assertEqual(self.items['guia']['slot'], 40)
+        self.assertIn('enchantments', self.items['guia'])
         self.assertEqual(self.items['info']['slot'], 4)
         self.assertTrue(self.items['info']['update'])
         self.assertIn('%vault_eco_balance_formatted%$', ' '.join(self.items['info']['lore']))

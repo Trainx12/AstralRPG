@@ -649,21 +649,6 @@
         "[close]"
       ]
     },
-    "oceano": {
-      "material": "HEART_OF_THE_SEA",
-      "slot": 49,
-      "display_name": "&b&lOceano Astral",
-      "lore": [
-        "&7Un mundo entero bajo el agua.",
-        "&cNo vas a poder respirar.",
-        "",
-        "&eClic para ver el aviso."
-      ],
-      "click_commands": [
-        "[openguimenu] oceano_aviso"
-      ],
-      "item_model": "astral:boton_oceano"
-    },
     "parkour": {
       "material": "FEATHER",
       "slot": 48,
@@ -691,6 +676,19 @@
         "[openguimenu] arenas"
       ],
       "item_model": "astral:menu/icon_arenas"
+    },
+    "siguiente": {
+      "material": "ARROW",
+      "slot": 44,
+      "display_name": "&e&lSiguiente pagina",
+      "lore": [
+        "&7Oceano Astral y Mazmorra del End."
+      ],
+      "click_commands": [
+        "[sound] UI_BUTTON_CLICK",
+        "[openguimenu] portales_2"
+      ],
+      "item_model": "astral:menu/icon_next"
     }
   }
 }

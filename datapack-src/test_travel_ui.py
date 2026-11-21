@@ -49,7 +49,8 @@ class TravelUI(unittest.TestCase):
         for key,item in data['items'].items():
             self.assertTrue(item['click_commands'],key)
             if key=='lobby':self.assertEqual(item['material'],'BARRIER')
-            elif key=='oceano':self.assertEqual(item['material'],'HEART_OF_THE_SEA')  # item vanilla visible
+            elif key=='siguiente':self.assertEqual(item['item_model'],'astral:menu/icon_next')
+            elif key in ('parkour','arenas'):self.assertEqual(item['item_model'],f'astral:menu/icon_{key}')
             else:self.assertEqual(item['item_model'],'astral:viajes/blank')
             base=key.split('_')[0]
             self.assertEqual(item['click_commands'],data['items'][base]['click_commands'])
@@ -57,13 +58,41 @@ class TravelUI(unittest.TestCase):
             self.assertIn(f'[player] umbrales {key}<delay=3>',data['items'][key]['click_commands'])
         for key in ('parkour','arenas'):
             self.assertEqual(data['items'][key]['click_commands'],[f'[openguimenu] {key}'])
+        self.assertNotIn('oceano',data['items'])
+        self.assertIn('[openguimenu] portales_2',data['items']['siguiente']['click_commands'])
+
+    def test_portal_page_two(self):
+        data=yaml.safe_load((ROOT/'build/menus/DeluxeMenus/gui_menus/portales_2.yml').read_text(encoding='utf-8'))
+        self.assertEqual(data,portales.menu_data_2())
+        self.assertEqual(data['menu_title'],ui.title('portales2'))
+        slots=[i['slot'] for i in data['items'].values()]
+        self.assertEqual(len(slots),len(set(slots)))
+        self.assertEqual(set(slots),ui.USED['portales2'])
+        for key,expected in ui.PAGE2_SLOTS['portales2'].items():
+            card=[v for k,v in data['items'].items() if k==key or k.startswith(key+'_')]
+            self.assertEqual({i['slot'] for i in card},set(expected))
+            for item in card:self.assertEqual(item['click_commands'],data['items'][key]['click_commands'])
+        self.assertEqual(data['items']['oceano']['click_commands'],['[openguimenu] oceano_aviso'])
+        self.assertIn('Proximamente',str(data['items']['end_nave']['lore']))
+        self.assertIn('[openguimenu] portales',data['items']['anterior']['click_commands'])
+        self.assertEqual(data['items']['anterior']['item_model'],'astral:menu/icon_back')
+        config=(ROOT/'build/menus/DeluxeMenus/config-gui_menus.yml').read_text(encoding='utf-8')
+        self.assertIn('  portales_2:\n    file: portales_2.yml',config)
 
     def test_mine_click_mapping_and_generated_script(self):
         script=minas.script()
         self.assertEqual(script,(ROOT/'build/minas/Skript/scripts/astral_minas.sk').read_text(encoding='utf-8'))
         destinations=dict((int(s),int(i)) for s,i in re.findall(r'set \{-am.dest::(\d+)\} to (\d+)',script))
         self.assertEqual(destinations,{minas.slot(i):i for i in range(1,21)})
-        self.assertEqual(set(destinations)|{4,9,18,27,45,47,49,53},ui.USED['minas'])
+        self.assertEqual(set(destinations)|{4,9,18,27,45,49,53,ui.NEXT_SLOT},ui.USED['minas'])
+        # Pagina 2: tarjeta del Bosque, flecha para volver, lobby y cerrar.
+        self.assertIn(ui.title('minas2'),script)
+        self.assertIn('am_menu2(player)',script)
+        self.assertIn('make player execute command "/bosque"',script)
+        self.assertNotIn('if {_slot} is 47:',script)
+        bosque=ui.PAGE2_SLOTS['minas2']['bosque']
+        self.assertEqual(set(bosque)|{ui.BACK_SLOT,49,53},ui.USED['minas2'])
+        for s in bosque:self.assertIn(f'{s}',script.split('function am_menu2')[1].split('\n')[2])
         for snippet in ('set {_dest} to {-am.dest::%{_slot}%}', 'am_travel(player, {_dest})',
                         'if {_slot} is 49:', 'if {_slot} is 53:', 'if {_slot} is between 28 and 34:',
                         'else if {_slot} is 35:', 'am_sell(player)', 'cancel event'):
@@ -182,7 +211,7 @@ class TravelUI(unittest.TestCase):
             for provider in json.loads(pack.read('assets/minecraft/font/default.json'))['providers']:
                 chars=provider.get('advances',{}) if provider['type']=='space' else ''.join(provider.get('chars',[]))
                 for char in chars:
-                    if 0xe900<=ord(char)<=0xe93f:
+                    if 0xe900<=ord(char)<=0xe95f:
                         self.assertNotIn(char,seen,'glifo de viajes repetido')
                         seen.add(char)
             self.assertEqual(len(seen),sum(len(ui.title(k))-2 for k in ui.KINDS))

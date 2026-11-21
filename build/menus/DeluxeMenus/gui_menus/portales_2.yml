@@ -1,0 +1,614 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "items": {
+    "oceano": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 0,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_1": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 1,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_2": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 2,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_3": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 3,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_9": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 9,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_10": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 10,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_11": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 11,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_12": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 12,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_18": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 18,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_19": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 19,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_20": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 20,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_21": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 21,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_27": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 27,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_28": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 28,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_29": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 29,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "oceano_30": {
+      "material": "HEART_OF_THE_SEA",
+      "slot": 30,
+      "display_name": "&b&lOceano Astral",
+      "lore": [
+        "&7Un mundo entero bajo el agua.",
+        "&cNo vas a poder respirar.",
+        "",
+        "&eClic para ver el aviso."
+      ],
+      "click_commands": [
+        "[openguimenu] oceano_aviso"
+      ],
+      "item_model": "astral:viajes/blank"
+    },
+    "end_nave": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 5
+    },
+    "end_nave_6": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 6
+    },
+    "end_nave_7": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 7
+    },
+    "end_nave_8": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 8
+    },
+    "end_nave_14": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 14
+    },
+    "end_nave_15": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 15
+    },
+    "end_nave_16": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 16
+    },
+    "end_nave_17": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 17
+    },
+    "end_nave_23": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 23
+    },
+    "end_nave_24": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 24
+    },
+    "end_nave_25": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 25
+    },
+    "end_nave_26": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 26
+    },
+    "end_nave_32": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 32
+    },
+    "end_nave_33": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 33
+    },
+    "end_nave_34": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 34
+    },
+    "end_nave_35": {
+      "material": "END_CRYSTAL",
+      "display_name": "&5&lMazmorra del End",
+      "lore": [
+        "&7Una nave perdida al otro lado del vacio.",
+        "&7Pasillos, salas y un jefe final.",
+        "",
+        "&dProximamente."
+      ],
+      "click_commands": [
+        "[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 35
+    },
+    "lobby": {
+      "material": "BARRIER",
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "slot": 45,
+      "item_model": "astral:menu/icon_spawn"
+    },
+    "lobby_46": {
+      "material": "ENDER_PEARL",
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 46
+    },
+    "lobby_47": {
+      "material": "ENDER_PEARL",
+      "display_name": "&aVolver al lobby",
+      "lore": [
+        "&7Volvé al punto de aparición.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] umbrales lobby<delay=3>"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 47
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "display_name": "&cCerrar",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 51
+    },
+    "cerrar_52": {
+      "material": "BARRIER",
+      "display_name": "&cCerrar",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 52
+    },
+    "cerrar_53": {
+      "material": "BARRIER",
+      "display_name": "&cCerrar",
+      "lore": [
+        "&7Seguí explorando por tu cuenta.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 53
+    },
+    "parkour": {
+      "material": "FEATHER",
+      "slot": 48,
+      "display_name": "&d&lMini juegos",
+      "lore": [
+        "&7Parkour, droppers y Color Escape.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] parkour"
+      ],
+      "item_model": "astral:menu/icon_parkour"
+    },
+    "arenas": {
+      "material": "IRON_SWORD",
+      "slot": 50,
+      "display_name": "&b&lArenas PvP",
+      "lore": [
+        "&7Elegí una arena para combatir.",
+        "",
+        "&eClic para elegir."
+      ],
+      "click_commands": [
+        "[openguimenu] arenas"
+      ],
+      "item_model": "astral:menu/icon_arenas"
+    },
+    "anterior": {
+      "material": "ARROW",
+      "slot": 36,
+      "display_name": "&e&lPagina anterior",
+      "lore": [
+        "&7Nether, End, Cavernas y Vacio Estelar."
+      ],
+      "click_commands": [
+        "[sound] UI_BUTTON_CLICK",
+        "[openguimenu] portales"
+      ],
+      "item_model": "astral:menu/icon_back"
+    }
+  }
+}
