@@ -73,7 +73,7 @@ class TravelUI(unittest.TestCase):
             self.assertEqual({i['slot'] for i in card},set(expected))
             for item in card:self.assertEqual(item['click_commands'],data['items'][key]['click_commands'])
         self.assertEqual(data['items']['oceano']['click_commands'],['[openguimenu] oceano_aviso'])
-        self.assertIn('Proximamente',str(data['items']['end_nave']['lore']))
+        self.assertNotIn('roximamente',str(data['items']['end_nave']))
         self.assertIn('[openguimenu] portales',data['items']['anterior']['click_commands'])
         self.assertEqual(data['items']['anterior']['item_model'],'astral:menu/icon_back')
         config=(ROOT/'build/menus/DeluxeMenus/config-gui_menus.yml').read_text(encoding='utf-8')

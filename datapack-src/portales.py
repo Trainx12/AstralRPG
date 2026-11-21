@@ -106,9 +106,8 @@ def menu_data_2():
     cards = {
         'oceano': dict(oceano, material='HEART_OF_THE_SEA'),
         'end_nave': {'material': 'END_CRYSTAL', 'display_name': '&5&lMazmorra del End',
-                     'lore': ['&7Una nave perdida al otro lado del vacio.', '&7Pasillos, salas y un jefe final.',
-                              '', '&dProximamente.'],
-                     'click_commands': ['[message] &5Mazmorra del End&7: todavia no abrio. &dProximamente.']},
+                     'lore': ['&7Una nave perdida al otro lado del vacio.', '&7Pasillos, salas y un jefe final.'],
+                     'click_commands': ['[message] &5Mazmorra del End&7: la entrada todavia esta cerrada.']},
     }
     items = {}
     for key, item in cards.items():

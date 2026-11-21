@@ -267,17 +267,14 @@ def panel():
 
 
 def guia_highlight(im):
-    """Placa de la Guia Astral: brillo violeta, doble marco dorado y alas con su nombre a los costados."""
+    """Guia Astral destacada: brillo violeta y doble marco dorado (sin texto, pedido del dueno 21/11)."""
     d = ImageDraw.Draw(im)
     x, y = 31 + GUIA_SLOT % 9 * 18, 57 + GUIA_SLOT // 9 * 18
-    d.rectangle((52, y + 1, 171, y + 16), fill='#241a33', outline='#6c5a3a')
     for i, color in enumerate(('#3b2a55', '#5b3f86', '#8a63c4')):
         d.rectangle((x - 4 + i, y - 4 + i, x + 21 - i, y + 21 - i), outline=color)
     d.rectangle((x - 1, y - 1, x + 18, y + 18), outline='#f3d27a')
     for cx, cy in ((x - 4, y - 4), (x + 21, y - 4), (x - 4, y + 21), (x + 21, y + 21)):
         d.polygon(((cx, cy - 2), (cx + 2, cy), (cx, cy + 2), (cx - 2, cy)), fill='#f3d27a')
-    outlined(im, 'GUIA', (77, y + 5))
-    outlined(im, 'ASTRAL', (148, y + 5))
 
 
 def assets():

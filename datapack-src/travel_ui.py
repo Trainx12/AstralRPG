@@ -15,7 +15,7 @@ CAPTIONS={'portales':'PORTALES ASTRALES','minas':'MINAS ASTRALES','minas-venta':
 NEXT_SLOT,BACK_SLOT=44,36
 # Tarjetas grandes de la pagina 2: clave -> (columnas, nombre en dos lineas, proximamente).
 PAGE2_CARDS={'portales2':{'oceano':((0,1,2,3),('Oceano','Astral'),False),
-                          'end_nave':((5,6,7,8),('Mazmorra','del End'),True)},
+                          'end_nave':((5,6,7,8),('Mazmorra','del End'),False)},
              'minas2':{'bosque':((2,3,4,5,6),('Bosque','Astral'),False)}}
 PAGE2_SLOTS={kind:{key:[r*9+c for r in (0,1,2,3) for c in cols] for key,(cols,_,_) in cards.items()}
              for kind,cards in PAGE2_CARDS.items()}
