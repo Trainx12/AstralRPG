@@ -167,7 +167,7 @@ TANDA2_tumba_AST_FASE_astral_momia_2_onda:
   - sound{s=entity.husk.converted_to_zombie;v=1.5} @self
   - delay 20
   - particles{p=cloud;amount=120;hS=5;vS=0.6;speed=0.1} @self
-  - damage{a=5} @PlayersInRadius{r=5}
+  - basedamage{multiplier=2} @PlayersInRadius{r=5}
 TANDA2_tumba_AST_FASE_astral_momia_3:
   Skills:
   - addtag{tag=astral.fase3} @self

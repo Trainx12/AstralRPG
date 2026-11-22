@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Cuchillo de Acero'
+menu_title: '&f&#ffe9a8Cuchillo de Acero'
 size: 54
 items:
   'resultado':
@@ -8,11 +8,14 @@ items:
     display_name: '&aCuchillo de Acero'
     item_model: 'astral:cuchillo_2'
     lore:
-    - '&7Cuchillo de Combate II'
+    - '&7Cuchillo de Asesino II'
     - '&7Daño: &c+265'
     - '&7Velocidad de ataque: &f3'
     - ''
     - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 2'
     - ''
@@ -30,11 +33,14 @@ items:
     display_name: '&f1x Cuchillo de Aprendiz'
     item_model: 'astral:cuchillo_1'
     lore:
-    - '&7Cuchillo de Combate I'
+    - '&7Cuchillo de Asesino I'
     - '&7Daño: &c+53'
     - '&7Velocidad de ataque: &f3'
     - ''
     - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 1'
     - ''

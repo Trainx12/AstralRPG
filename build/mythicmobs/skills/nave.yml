@@ -5,8 +5,8 @@ NAVE_CAP_MODELO:
   - 'addtag{tag=astral.seen} @self'
   - 'addtag{tag=astral.mt5} @self'
   - 'addtag{tag=nave.jefe} @self'
-  - 'model{m=astral_capitan_vacio;s=4.992} @self'
-  - 'command{c="attribute <caster.uuid> minecraft:scale base set 6.0"} @self'
+  - 'model{m=astral_capitan_vacio;s=5.009} @self'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.3"} @self'
   - 'command{c="attribute <caster.uuid> minecraft:step_height base set 2"} @self'
 
 NAVE_CAP_APARECE:
@@ -25,7 +25,7 @@ NAVE_CAP_CUBO:
   - 'state{s=throw} @self'
   - 'sound{s=entity.shulker.shoot;v=2;p=0.6} @self'
   - 'delay 9'
-  - 'projectile{onTick=NAVE_CUBO_TICK;onHit=NAVE_CUBO_HIT;onEnd=NAVE_CUBO_FIN;v=12;i=1;hR=1.2;vR=1.2;mr=44;bulletType=ITEM;material=CRYING_OBSIDIAN;hnp=true;sy=6}'
+  - 'projectile{onTick=NAVE_CUBO_TICK;onHit=NAVE_CUBO_HIT;onEnd=NAVE_CUBO_FIN;v=12;i=1;hR=1.2;vR=1.2;mr=44;bulletType=ITEM;material=CRYING_OBSIDIAN;hnp=true;sy=2.5}'
 
 NAVE_CUBO_TICK:
   Skills:
@@ -34,7 +34,7 @@ NAVE_CUBO_TICK:
 
 NAVE_CUBO_HIT:
   Skills:
-  - 'damage{a=14}'
+  - 'damage{a=36}'
   - 'command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> c43bff 2 vacio"}'
   - 'sound{s=block.respawn_anchor.deplete;v=1.5;p=0.8} @origin'
 
@@ -82,7 +82,7 @@ NAVE_CAP_BARRIDO:
   - 'particlering{p=sweep_attack;radius=5;points=16;amount=1;y=3} @self'
   - 'particlering{p=dust;color=#e25aff;size=2;radius=6;points=40;amount=1;y=2} @self'
   - 'sound{s=entity.wither.break_block;v=1.2;p=1.4} @self'
-  - 'damage{a=26} @PlayersInRadius{r=7}'
+  - 'damage{a=60} @PlayersInRadius{r=7}'
   - 'throw{velocity=7;velocityY=1.5} @PlayersInRadius{r=7}'
 
 NAVE_CAP_FASE2:
@@ -118,7 +118,7 @@ NAVE_CAP_PULSO:
   - 'delay 22'
   - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 10 vacio"}'
   - 'sound{s=entity.generic.explode;v=2;p=0.6} @self'
-  - 'damage{a=18} @PlayersInRadius{r=10}'
+  - 'damage{a=45} @PlayersInRadius{r=10}'
   - 'throw{velocity=10;velocityY=2} @PlayersInRadius{r=10}'
 
 NAVE_CAP_ZONAS:

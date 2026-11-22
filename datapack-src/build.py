@@ -22,7 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
-ITEM_VERSION = 26  # Bastones: ficha con perforacion (17/11).
+ITEM_VERSION = 28  # 23/11: sin sangrado, nivel minimo en armas especiales, mago/berserker T5<->T6.
 
 files = {}
 
@@ -139,6 +139,8 @@ for mid, (name, color, model, glint, desc) in MATERIALS.items():
 
 from tanda_xp import register as register_xp
 register_xp(add_item, txt)
+from manzanas import register as register_manzanas
+register_manzanas(add_item, txt)  # Manzanas de Mazmorra T2-T10
 
 # Reforja de gemas (7d, 19/11/2026): items, encantamientos astral:gema_* y funciones gemas/* (fuente: gemas.py)
 import gemas as GEMAS
@@ -151,6 +153,10 @@ CAVERNAS.register(put, fn, add_item, txt)
 for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
     add_item(mid, "minecraft:paper", name, color, [txt(desc), txt("Recuerdo de la Estrella Astral", "dark_gray")],
              {"type": "quest"}, model=model, glint=glint, kind="quest")
+
+# Items del Modo Historia (Gomera y premios de capitulo; solo los da el Cronista)
+from historia_items import register as register_historia
+register_historia(add_item, txt)
 
 add_item("gancho", "minecraft:carrot_on_a_stick", "Saltador", "#d0d0d0",
          [txt("Click derecho: impulso hacia donde miras"), txt("Salto elevado sin dano de caida."),
@@ -308,7 +314,7 @@ def weapon_mods(iid, dmg_total, speed, extra=None):
 
 
 def weapon_item(iid, base, name, color, clase, tier, desc, skill, lvl, mods, ench, astral, model=None,
-                traits=None, more_lore=None):
+                traits=None, more_lore=None, extra_pdc=None):
     lore = [txt(f"{clase} {ROMAN[tier - 1]}", color)]
     real = next((m["amount"] + 1 for m in (mods or []) if m["type"] == "minecraft:attack_damage"), None)
     if real is not None:
@@ -324,8 +330,10 @@ def weapon_item(iid, base, name, color, clase, tier, desc, skill, lvl, mods, enc
             extra["minecraft:tooltip_display"] = {"hidden_components": ["minecraft:attribute_modifiers"]}
     if ench:
         extra["minecraft:enchantments"] = ench
+    pdc = aura_pdc("item", skill, lvl, traits)
+    pdc.update(extra_pdc or {})
     add_item(iid, base, name, color, lore, dict({"type": "weapon", "tier": tier}, **astral), extra=extra,
-             pdc=aura_pdc("item", skill, lvl, traits), model=model, kind="weapon")
+             pdc=pdc, model=model, kind="weapon")
 
 
 FX_ENCH = {"lifesteal": "robo_vida", "furia": "furia", "remate": "remate", "verdugo": "verdugo",
@@ -335,6 +343,8 @@ FX_ENCH = {"lifesteal": "robo_vida", "furia": "furia", "remate": "remate", "verd
 def fx_to_ench(fx, exec_kind=None):
     e = {}
     for k, v in fx.items():
+        if k == "sangrado":   # 23/11: sangrado retirado por pedido del dueno (ni mobs ni jugadores sangran)
+            continue
         if k == "ejecucion":
             e[f"{NS}:ejecucion" if v == 1 else f"{NS}:ejecucion_astral"] = 1
         else:
@@ -371,10 +381,14 @@ from items import CUCHILLOS
 from escala import DANO, CUCHILLO_DANO, CUCHILLO_VELOCIDAD
 for t,s in enumerate(CUCHILLOS,1):
     iid=f'cuchillo_{t}'
-    weapon_item(iid, 'minecraft:iron_sword', s['name'], BERS, 'Cuchillo de Combate', t,
-                ['Ataque rapido: 3 golpes por segundo'], 'fighting', s['lvl'],
-                weapon_mods(iid,DANO[t]*CUCHILLO_DANO,CUCHILLO_VELOCIDAD), {}, {'w':'knife'}, model=f'astral:{iid}')
-    RECIPES.append((iid,1, ([] if t==1 else [('c',f'cuchillo_{t-1}',1)])+s['cost'],'Armas Berserker'))
+    # 22/11: los cuchillos son del Asesino (clases.py): espalda, veneno e invisibilidad en AstralClases.
+    from clases import SETS as _CL
+    weapon_item(iid, 'minecraft:iron_sword', s['name'], _CL['asesino']['color'], 'Cuchillo de Asesino', t,
+                ['Ataque rapido: 3 golpes por segundo', 'Por la espalda: +50% de dano', 'Envenena: 8% del golpe por segundo, 3 s',
+                 'Agachado + clic derecho: invisible 2 s (no en PvP)'], 'fighting', s['lvl'],
+                weapon_mods(iid,DANO[t]*CUCHILLO_DANO,CUCHILLO_VELOCIDAD), {}, {'w':'knife'}, model=f'astral:{iid}',
+                extra_pdc={'astral:clase_arma': 'cuchillo', 'astral:clase_tier': t})
+    RECIPES.append((iid,1, ([] if t==1 else [('c',f'cuchillo_{t-1}',1)])+s['cost'],'Armas Asesino'))
 
 for i, s in enumerate(AXES):
     t = i + 1
@@ -414,16 +428,20 @@ for i, s in enumerate(STAFFS):
 for i, s in enumerate(SCYTHES):
     t = i + 1
     iid = f"guadana_{t}"
-    ench = fx_to_ench(s["fx"])
+    # 22/11: las guadanas son del Segador (clases.py). El area es el barrido en semicirculo de AstralClases,
+    # asi que el "golpe en cono" del datapack ya no va (serian dos areas juntas).
+    from clases import SETS as _CL
+    ench = fx_to_ench({k: v for k, v in s["fx"].items() if k != "cono"})
     ench[f"{NS}:filo_arcano"] = t
     astral = {"w": "scythe"}
     if s.get("reset_cd"):
         astral["reset_cd"] = 1
-    desc = ([f"+{s['mdmg']}% dano magico"] if s["mdmg"] else []) + s["desc"]
-    weapon_item(iid, s["base"], s["name"], MAGO, "Guadana de Mago", t, desc, "sorcery", s["lvl"],
-                weapon_mods(iid, s["dmg"] * FACTOR_ARMA[t], 1.3), ench, astral)
+    desc = ["Tajo en area: 60% del golpe a hasta 8 mobs adelante", "Cada baja te cura 0,5% de vida"] + [d for d in s["desc"] if "cono" not in d.lower()]
+    weapon_item(iid, s["base"], s["name"], _CL['segador']['color'], "Guadana del Segador", t, desc, "fighting", s["lvl"],
+                weapon_mods(iid, s["dmg"] * FACTOR_ARMA[t], 1.3), ench, astral,
+                extra_pdc={'astral:clase_arma': 'guadana', 'astral:clase_tier': t})
     ings = list(s["cost"]) if t == 1 else [("c", f"guadana_{t - 1}", 1)] + s["cost"]
-    RECIPES.append((iid, 1, ings, "Armas de Mago"))
+    RECIPES.append((iid, 1, ings, "Armas Segador"))
 
 ARQ = ARMOR_SETS["arquero"]["color"]
 for i, s in enumerate(BOWS):
@@ -620,6 +638,11 @@ from oceano_items import register as register_oceano
 register_oceano(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
 from oficios import register as register_oficios
 register_oficios(ITEMS, FICHAS, RECIPES, add_item, txt, armor_attrs)
+# Clases nuevas (22/11): Segador, Invocador y Asesino (armaduras y libros; habilidades en AstralClases).
+from clases import register as register_clases
+from escala import VIDA_PIEZA as _VIDA_PIEZA, defensa_pieza as _defensa_pieza
+register_clases(add_item, RECIPES, txt, armor_attrs, aura_pdc, _defensa_pieza, req_line, ARMOR_SETS, ARMOR_DURABILITY,
+                _VIDA_PIEZA, STAFFS)
 from mesa import prepare as prepare_mesa, export as export_mesa
 from balance_equipo import finalize as finalize_balance
 finalize_balance(ITEMS, FICHAS)
@@ -1024,20 +1047,10 @@ for thr in (15, 20):
         f"function {NS}:fx/extra_hit {{dmg:1.0E9}}",
     ])
 fn("fx/bleed_start", [
-    "scoreboard players set @s astral.bleed 5",
-    f"function {NS}:fx/attacker_tier",
-    *[f"execute if score #ht astral.tmp matches {t} run scoreboard players set @s astral.bleedd {round(15 * FACTOR_ARMA[t])}"
-      for t in range(0, 6)],
-    "particle minecraft:dust{color:[0.7,0.0,0.0],scale:1.2} ~ ~1 ~ 0.3 0.4 0.3 0 15",
+    # 23/11: sin sangrado. Las armas viejas que todavia tengan el encantamiento no hacen nada.
+    "scoreboard players reset @s astral.bleed",
 ])
-fn("fx/bleed_tick", [
-    "scoreboard players remove @s astral.bleed 1",
-    "particle minecraft:dust{color:[0.7,0.0,0.0],scale:1.0} ~ ~1 ~ 0.3 0.4 0.3 0 8",
-    "tag @s add astral.nohit",
-    f"execute store result storage {NS}:tmp hit.dmg float 0.1 run scoreboard players get @s astral.bleedd",
-    f"function {NS}:fx/generic_hit with storage {NS}:tmp hit",
-    "tag @s remove astral.nohit",
-])
+fn("fx/bleed_tick", ["scoreboard players reset @s astral.bleed"])
 fn("fx/generic_hit", ["$damage @s $(dmg) minecraft:generic"])
 fn("fx/cleave", [
     "tag @s add astral.src",
@@ -1300,7 +1313,7 @@ fn("bow/apply", [
 # Arcos: disparo automatico al mantener click derecho.
 # Cada tier dispara una flecha a maxima potencia cada N ticks (vanilla = 20).
 # ---------------------------------------------------------------------------
-BOW_TICKS = [18, 15, 12, 10, 8]
+BOW_TICKS = ARCO_AUTO   # 23/11: los 10 tiers (antes solo I-V; VI-X tiraban cada 20 ticks)
 put(f"data/{NS}/advancement/bow/hold.json", {
     "criteria": {"hold": {"trigger": "minecraft:using_item", "conditions": {"item": {
         "items": "minecraft:bow", "predicates": {"minecraft:custom_data": f"{{{NS}:{{w:\"bow\"}}}}"}}}}},
@@ -1326,7 +1339,8 @@ fn("bow/fire", [
     "# necesita flechas (salvo creativo o Arco Astral)",
     "scoreboard players set #free astral.tmp 0",
     "execute if entity @s[gamemode=creative] run scoreboard players set #free astral.tmp 1",
-    f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"arco_5"}}}}] run scoreboard players set #free astral.tmp 1',
+    *[f'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{{{NS}:{{id:"arco_{t}"}}}}] run scoreboard players set #free astral.tmp 1'
+      for t in range(5, len(ARCO_AUTO) + 1)],
     "execute if score #free astral.tmp matches 0 unless items entity @s container.* minecraft:arrow unless items entity @s weapon.offhand minecraft:arrow run return 0",
     "execute if score #free astral.tmp matches 0 run clear @s minecraft:arrow 1",
     "tag @s add astral.archer",
@@ -1339,6 +1353,8 @@ fn("bow/setup", [
     "data modify entity @s Owner set from entity @a[tag=astral.archer,limit=1] UUID",
     "data modify entity @s crit set value 1b",
     "data modify entity @s damage set value 2.0d",
+    # 23/11: el arco viaja con la flecha: asi aplica Punteria del tier (sin esto pegaba como flecha vanilla).
+    "data modify entity @s weapon set from entity @a[tag=astral.archer,limit=1] SelectedItem",
     "execute if score #free astral.tmp matches 1 run data modify entity @s pickup set value 2b",
     "execute if score #free astral.tmp matches 0 run data modify entity @s pickup set value 1b",
     f"execute summon minecraft:marker run function {NS}:bow/vec2",
@@ -1493,6 +1509,7 @@ fn("player/def", [
      for slot, bar in (("head", 3), ("chest", 8), ("legs", 6), ("feet", 3))] + [
     "scoreboard players set #pct astral.tmp 100",
     *[f'execute if items entity @s weapon.offhand *[minecraft:custom_data~{{astral:{{id:"talisman_roca_{lv}"}}}}] run scoreboard players set #pct astral.tmp {100+int(pct*100)}' for lv,pct in enumerate(__import__('balance_equipo').TALISMAN_PCT,1)],
+    f'execute if items entity @s weapon.offhand *[minecraft:custom_data~{{astral:{{id:"eco_estrella"}}}}] run scoreboard players set #pct astral.tmp {100+round(__import__("historia_items").ECO_DEFENSA*100)}',
     "scoreboard players operation #d astral.tmp *= #pct astral.tmp",
     "scoreboard players set #base astral.tmp 100",
     "scoreboard players operation #d astral.tmp /= #base astral.tmp",
@@ -1555,8 +1572,11 @@ mob_roll.append(CAVERNAS.mob_roll_corazon())   # Corazon de las Cavernas: tier 5
 mob_roll += [
     f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
+    # 23/11 (dueno): minimo tier 1 en todas las dimensiones (estructuras de datapacks, spawners, jugadores sin arma Astral).
+    "execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1",
 ] + [f"execute if score #mt astral.tmp matches {t} run function {NS}:mob/t{t}" for t in range(1, TIER_MAX + 1)] + [
     f"execute if score #dg astral.tmp matches 1 run function {NS}:mob/extra_mazmorra",
+    *__import__("manzanas").mob_roll_tag(None),  # astral.maz: caen Manzanas de Mazmorra
     "scoreboard players operation @s astral.mt = #mt astral.tmp",
     f"function {NS}:mob/elite_chance",
     "data modify entity @s Health set value 1.0E30f",
@@ -1791,6 +1811,10 @@ for _t in range(5, TIER_MAX + 1):
             _call = f"function {NS}:drop/give {{id:\"{_mid}\",name:\"{MATERIALS[_mid][0]}\"}}"
             _dl.append(_call if _p >= 1 else f"execute if predicate {chance(_p)} run {_call}")
         fn(f"drop/tier{_t}_{_kind}", _dl)
+
+# Manzanas de Mazmorra: caen de mobs de su tier en mazmorras y la Infinita (manzanas.py).
+from manzanas import generate as generate_manzanas
+generate_manzanas(put, fn, chance)
 
 fn("elite/fx", [
     "# elites viejos que quedaron persistentes: liberarlos una vez para que puedan desaparecer",
@@ -2041,8 +2065,8 @@ leaves = {}
 mats = rids_where(lambda o: ITEMS[o]["kind"] == "material")
 recipe_leaf("guia/materiales_1", "Forja: Materiales (1/2)", mats[:7], "guia/materiales")
 recipe_leaf("guia/materiales_2", "Forja: Materiales (2/2)", mats[7:], "guia/materiales")
-CLASSES = [("berserker", "Berserker", "#ff4d4d", [("espada_", "Espadas"), ("hacha_", "Hachas"), ("cuchillo_", "Cuchillos")]),
-           ("mago", "Mago", "#b26bff", [("baston_", "Bastones"), ("guadana_", "Guadanas")]),
+CLASSES = [("berserker", "Berserker", "#ff4d4d", [("espada_", "Espadas"), ("hacha_", "Hachas")]),
+           ("mago", "Mago", "#b26bff", [("baston_", "Bastones")]),
            ("arquero", "Arquero", "#5ee08a", [("arco_", "Arcos"), ("ballesta_", "Ballestas")])]
 for cid, cname, ccol, weps in CLASSES:
     sub = []
@@ -2057,6 +2081,21 @@ for cid, cname, ccol, weps in CLASSES:
         sub.append(btn(txt(wname, "gold"), dialog=f"guia/{cid}_{pre[:-1]}", width=300))
     dlg(f"guia/{cid}", txt(cname, ccol, bold=True),
         [msg(f"Equipo de {cname}. Cada tier se forja con la pieza del tier anterior.")], sub, back="guia")
+# Clases nuevas (22/11, clases.py): armaduras solo en sus tiers y su arma.
+from clases import SETS as _CL_SETS
+for cid, cdef in _CL_SETS.items():
+    sub = []
+    for t, (_vid, tname) in sorted(cdef["tiers"].items()):
+        r = rids_where(lambda o, t=t, cid=cid: o.startswith(f"{cid}_{t}_"))
+        recipe_leaf(f"guia/{cid}_{t}", f"{cdef['clase']}: armadura {ROMAN[t - 1]}", r, f"guia/{cid}")
+        sub.append(btn(txt(f"Armadura {ROMAN[t - 1]} - {tname}", cdef["color"]), dialog=f"guia/{cid}_{t}", width=300))
+    pre, wname = {"segador": ("guadana_", "Guadanas"), "invocador": ("libro_invocador_", "Libros"),
+                  "asesino": ("cuchillo_", "Cuchillos")}[cid]
+    r = rids_where(lambda o, pre=pre: o.startswith(pre) and o[-1].isdigit())
+    recipe_leaf(f"guia/{cid}_arma", f"{cdef['clase']}: {wname}", r, f"guia/{cid}")
+    sub.append(btn(txt(wname, "gold"), dialog=f"guia/{cid}_arma", width=300))
+    dlg(f"guia/{cid}", txt(cdef["clase"], cdef["color"], bold=True),
+        [msg(f"Equipo de {cdef['clase']}. Cada tier se forja con la pieza del tier anterior.")], sub, back="guia")
 recipe_leaf("guia/lanzas", "Lanzas (Combate)", rids_where(lambda o: o.startswith("lanza_")), "guia")
 recipe_leaf("guia/carnivora", "Equipo Carnivora III", rids_where(lambda o: o.startswith("carnivora_")), "guia")
 recipe_leaf("guia/asura", "Equipo Asura IV", rids_where(lambda o: o in ("asura_espada", "asura_alas")), "guia")
@@ -2150,6 +2189,14 @@ dlg("guia/cocina", txt("Cocina (Crop & Kettle)", "gold", bold=True), [
     msg("En survival: nuevos cultivos, comidas y mas de cien recetas. La olla se fabrica con un caldero y una fogata. Consulta los avances y el recetario de Crop & Kettle para progresar.", "gray"),
     msg("Los cultivos y las interacciones de cocina se usan en survival. Conserva los ingredientes nuevos para descubrir mas recetas.", "gray"),
 ], [], back="guia")
+dlg("guia/datapacks", txt("Mundo y datapacks", "gold", bold=True), [
+    msg("El Survival usa datapacks que cambian el mundo. Todo lo que encontres ahi tambien sube de tier: los mobs aparecen como minimo en Tier I.", "gray"),
+    msg("Stellarity (End): islas nuevas, biomas, criaturas y botin del End. El End no tiene dragon: el portal de salida y los portales a las islas exteriores ya estan abiertos. En la piedra del End aparece la Mena de Asura (monedas para el Equipo Asura IV).", "gray"),
+    msg("Incendium (Nether): biomas, fortalezas y jefes nuevos del Nether, con armas y botin propios.", "gray"),
+    msg("Dungeons and Taverns, Structory y Explorify: tabernas, torres, ruinas, criptas y fortalezas nuevas por todo el mundo, con cofres y mobs propios. DnT Stronghold Overhaul renueva las fortalezas del End.", "gray"),
+    msg("Crop & Kettle: cultivos y comidas nuevas (ver Cocina).", "gray"),
+    msg("Los encantamientos de estos datapacks tambien salen en la Mesa de Encantamientos y en sus cofres.", "gray"),
+], [], back="guia")
 
 dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     msg("Elegi una seccion. Para forjar, abri la guia al lado de una Mesa de Herreria.", "gray")], [
@@ -2159,11 +2206,15 @@ dlg("guia", txt("Guia AstralRPG", "light_purple", bold=True), [
     btn(txt("Experiencia y suerte", "#1c7d2c"), dialog="guia/consumibles"),
     btn(txt("Terrenos y mochilas", "#7a3a10"), dialog="guia/proteccion"),
     btn(txt("Cocina (Crop & Kettle)", "#7a3a10"), dialog="guia/cocina"),
+    btn(txt("Datapacks", "#7a3a10"), dialog="guia/datapacks"),
     btn(txt("Misiones e historia", "#006e78"), command="/trigger aq.journal"),
     btn(txt("Materiales", "#a0177a"), dialog="guia/materiales"),
     btn(txt("Berserker", "#b8141c"), dialog="guia/berserker"),
     btn(txt("Mago", "#5a24c8"), dialog="guia/mago"),
     btn(txt("Arquero", "#1c7d2c"), dialog="guia/arquero"),
+    btn(txt("Segador", "#b23a48"), dialog="guia/segador"),
+    btn(txt("Invocador", "#7b5cff"), dialog="guia/invocador"),
+    btn(txt("Asesino", "#3fbf8f"), dialog="guia/asesino"),
     btn(txt("Lanzas", "#c04800"), dialog="guia/lanzas"),
     btn(txt("Talismanes", "#1a5cc0"), dialog="guia/talismanes"),
     btn(txt("Especiales", "#4a3a30"), dialog="guia/especiales"),
@@ -2220,7 +2271,7 @@ def _tier_de(iid):
 
 KITS = [
     ("cuchillos", "Cuchillos I-X", "red", "minecraft:red_shulker_box", [i for i in ITEMS if i.startswith("cuchillo_")]),
-    ("consumibles", "Consumibles Astrales", "green", "minecraft:green_shulker_box", list(__import__("tanda_xp").PRECIOS)),
+    ("consumibles", "Consumibles Astrales", "green", "minecraft:green_shulker_box", list(__import__("tanda_xp").PRECIOS) + [f"manzana_t{t}" for t in range(2, 11)]),
     ("historia", "Recuerdos de historia", "aqua", "minecraft:light_blue_shulker_box",
      [i for i in ITEMS if ITEMS[i]["kind"] == "quest"]),
     ("materiales", "Materiales", "light_purple", "minecraft:purple_shulker_box",
@@ -2266,6 +2317,17 @@ KITS = [
     ("gemas_altas", "Gemas Perfecta y Estelar", "light_purple", "minecraft:magenta_shulker_box",
      [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q >= 4]),
     ("cavernas", "Cavernas de Cristal", "light_purple", "minecraft:purple_shulker_box", list(CAVERNAS.ITEMS)),
+    ("historia", "Items del Modo Historia", "gold", "minecraft:orange_shulker_box", list(__import__("historia_items").ITEMS_HISTORIA)),
+    # Clases nuevas (clases.py, 22/11)
+    ("segador", "Armaduras del Segador", "red", "minecraft:red_shulker_box", [i for i in ITEMS if i.startswith("segador_")]),
+    ("invocador", "Armaduras del Invocador", "dark_purple", "minecraft:purple_shulker_box",
+     [i for i in ITEMS if i.startswith("invocador_")]),
+    ("libros", "Libros del Invocador", "dark_purple", "minecraft:magenta_shulker_box",
+     [i for i in ITEMS if i.startswith("libro_invocador_")]),
+    ("asesino_bajo", "Armaduras del Asesino I-V", "dark_green", "minecraft:green_shulker_box",
+     [i for i in ITEMS if i.startswith("asesino_") and _tier_de(i) <= 5]),
+    ("asesino_alto", "Armaduras del Asesino VI-X", "dark_green", "minecraft:lime_shulker_box",
+     [i for i in ITEMS if i.startswith("asesino_") and _tier_de(i) >= 6]),
 ]
 _kitted = set()
 for kid, kname, kcolor, box, ids in KITS:
@@ -2480,6 +2542,7 @@ load = [
     f"schedule function {NS}:loop/t5 5t replace",
     f"schedule function {NS}:loop/t10 10t replace",
     f"schedule function {NS}:loop/t20 20t replace",
+    f"schedule function {NS}:tanda4b/asura/tick 200t replace",   # 23/11: mena de Asura en el End
 ]
 
 # ---------------------------------------------------------------------------

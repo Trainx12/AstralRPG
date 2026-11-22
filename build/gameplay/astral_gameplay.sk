@@ -688,6 +688,9 @@ on damage of player with priority highest:
     if {_f} > 2.5:
         set {_f} to 2.5
     set {_pct} to {_pct} * {_f}
+    # Asesino por la espalda (AstralClases pone la etiqueta en ese golpe; clases.ASESINO['espalda_pvp_pct']).
+    if scoreboard tags of attacker contains "astral.espalda":
+        set {_pct} to {_pct} * 1.15
     if {_pct} > 25.0:
         set {_pct} to 25.0
     if {_causa} contains "magic":
@@ -706,19 +709,19 @@ on damage of player with priority highest:
 # - Todo lo demas (caidas, lava, ahogo, mobs sin tier, PvP): x (vida maxima / 20), como en vanilla.
 function astral_dano_tier(e: entity) :: number:
     if scoreboard tags of {_e} contains "astral.mt10":
-        return 16000.0
+        return 53200.0
     if scoreboard tags of {_e} contains "astral.mt9":
-        return 8800.0
+        return 29200.0
     if scoreboard tags of {_e} contains "astral.mt8":
-        return 4400.0
+        return 14680.0
     if scoreboard tags of {_e} contains "astral.mt7":
-        return 2240.0
+        return 7500.0
     if scoreboard tags of {_e} contains "astral.mt6":
-        return 1120.0
+        return 3760.0
     if scoreboard tags of {_e} contains "astral.mt5":
-        return 400.0
+        return 1600.0
     if scoreboard tags of {_e} contains "astral.mt4":
-        return 280.0
+        return 440.0
     if scoreboard tags of {_e} contains "astral.mt3":
         return 120.0
     if scoreboard tags of {_e} contains "astral.mt2":
@@ -858,3 +861,13 @@ on heal of player:
         set {_k} to {_k} * 0.2
     if {_k} > 1:
         set heal amount to heal amount * {_k}
+
+
+# End sin dragon (gameplay.py SIN_DRAGON): no se puede resucitar.
+on right click with end crystal:
+    name of world of player is "world_the_end"
+    event-block is set
+    event-block is bedrock or obsidian
+    distance between location of event-block and location(0, y-coordinate of event-block, 0, world of player) < 12
+    cancel event
+    send "&5El dragon del End ya no vuelve: &7el portal de salida y los portales a las islas estan abiertos." to player

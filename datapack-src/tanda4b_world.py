@@ -13,10 +13,24 @@ DROP_CHANCE={1:.30,2:.45,3:.60,4:.75,5:.90}
 def generate(files):
     def put(path,value):
         files[path]=json.dumps(value,ensure_ascii=False,indent=1)
+    # 23/11: la mena nunca aparecia (faltaba ubicarla; no tocamos los biomas de Stellarity). Ahora cada 10 s,
+    # alrededor de cada jugador del End (fuera de la isla central), se prueba colocarla en piedra del End
+    # ya existente (place feature solo reemplaza end_stone; si queda al aire se descarta un 60%).
     put('data/astral/worldgen/configured_feature/asura_ore.json',{
-        'type':'minecraft:ore','config':{'size':3,'discard_chance_on_air_exposure':.25,
+        'type':'minecraft:ore','config':{'size':4,'discard_chance_on_air_exposure':.6,
         'targets':[{'target':{'predicate_type':'minecraft:block_match','block':'minecraft:end_stone'},
         'state':{'Name':'minecraft:note_block','Properties':ORE_STATE}}]}})
+    NL = chr(10)
+    files['data/astral/function/tanda4b/asura/tick.mcfunction'] = NL.join([
+        'schedule function astral:tanda4b/asura/tick 10s replace',
+        'execute as @a[gamemode=!spectator] at @s if dimension minecraft:the_end unless entity @s[x=-400,z=-400,dx=800,dz=800] run function astral:tanda4b/asura/jugador',
+    ]) + NL
+    azar = [f'execute store result storage astral:tmp asura.{k} int 1 run random value {r}'
+            for k, r in (('x', '-56..56'), ('y', '-24..16'), ('z', '-56..56'))]
+    files['data/astral/function/tanda4b/asura/jugador.mcfunction'] = NL.join(
+        (azar + ['function astral:tanda4b/asura/poner with storage astral:tmp asura']) * 2) + NL
+    files['data/astral/function/tanda4b/asura/poner.mcfunction'] = (
+        '$execute positioned ~$(x) ~$(y) ~$(z) if block ~ ~ ~ minecraft:end_stone run place feature astral:asura_ore ~ ~ ~' + NL)
     state={'condition':'minecraft:block_state_property','block':'minecraft:note_block','properties':{'instrument':'banjo','note':'24'}}
     def loot(iid):
         return {'type':'minecraft:loot_table','value':'astral:item/' + iid}
@@ -76,6 +90,9 @@ def own_textures():
     draw=ImageDraw.Draw(im)
     for x,y in [(3,3),(10,4),(6,10),(12,12)]:
         draw.rectangle((x-1,y-1,x+1,y+1),fill='#546957'); draw.point((x,y),fill='#78ffcb'); draw.point((x+1,y),fill='#e6fff1')
+    # 23/11: textura del dueno (pack-source/asura_ore_dueno.png, 32x32): piedra del End con vetas doradas.
+    dueno=ROOT/'datapack-src/pack-source/asura_ore_dueno.png'
+    if dueno.exists(): im=Image.open(dueno).convert('RGB')
     png('block/asura_ore',im)
     def put(name,obj): files['assets/' + name + '.json']=json.dumps(obj).encode()
     put('astral/models/block/asura_ore',{'parent':'minecraft:block/cube_all','textures':{'all':'astral:block/asura_ore'}})

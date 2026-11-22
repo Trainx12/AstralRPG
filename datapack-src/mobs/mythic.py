@@ -181,7 +181,8 @@ def _onda(dano, radio, part, sonido):
     return [f"particles{{p={part};amount=60;hS={radio};vS=0.2;speed=0}} @self",
             f"sound{{s={sonido};v=1.5}} @self", "delay 20",
             f"particles{{p={part};amount=120;hS={radio};vS=0.6;speed=0.1}} @self",
-            f"damage{{a={dano}}} @PlayersInRadius{{r={radio}}}"]
+            # 23/11: golpe en area = doble del golpe del jefe (su Damage); el x tier lo pone astral_gameplay.sk.
+            f"basedamage{{multiplier=2}} @PlayersInRadius{{r={radio}}}"]
 
 
 FASES = {
@@ -561,8 +562,8 @@ def metaskills():
     out += ['AST_YETI_PISOTON:', '  Skills:',
             '  - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self', '  - delay 20',
             '  - ' + __import__('efectos').mm_fx('golpe', '#bfefff', 8, 'hielo'),
-            '  - damage{a=12} @PlayersInRadius{r=20}', '  - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}',
-            'AST_YETI_HIELO:', '  Skills:', '  - damage{a=8} @PlayersNearOrigin{r=3}',
+            '  - basedamage{multiplier=2} @PlayersInRadius{r=20}', '  - throw{velocity=8;velocityY=3} @PlayersInRadius{r=20}',
+            'AST_YETI_HIELO:', '  Skills:', '  - basedamage{multiplier=1.25} @PlayersNearOrigin{r=3}',
             '  - potion{type=SLOWNESS;duration=60;level=1} @PlayersNearOrigin{r=3}']
     return "\n".join(out) + "\n" + jefe_metaskills()
 

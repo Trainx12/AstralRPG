@@ -68,6 +68,12 @@ PARCHES: dict[str, list[tuple[str, str]]] = {
     ],
     'CrazyAuctions/config.yml': [
         ("Prefix: '<gray>[<dark_red>Crazy <aqua>Auctions<gray>]: '", "Prefix: '<gray>[<gold>Subastas<gray>]: '"),
+        # 23/11: sonidos en MAYUSCULAS cortaban la compra despues de cobrar (vendedor conectado): el item no llegaba.
+        ("Sold-Item-Sound: 'UI_BUTTON_CLICK'", "Sold-Item-Sound: 'entity.experience_orb.pickup'"),
+        ("    Sound: 'UI_BUTTON_CLICK'", "    Sound: 'ui.button.click'"),
+        # Sin tope practico de precio (el dueno: 1 millon es poco).
+        ("Max-Beginning-Sell-Price: 1000000 ", "Max-Beginning-Sell-Price: 1000000000000000 "),
+        ("Max-Beginning-Bid-Price: 1000000 ", "Max-Beginning-Bid-Price: 1000000000000000 "),
         ("'&8Purchase Item: Are You Sure?'", "'&8Comprar: ¿Seguro?'"),
         ("'&8You Are Bidding On This Item.'", "'&8Estas ofertando por este objeto'"),
         ("Categories: '&8Categories'", "Categories: '&8Categorias'"),

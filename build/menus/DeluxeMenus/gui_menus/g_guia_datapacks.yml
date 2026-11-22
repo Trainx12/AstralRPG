@@ -1,0 +1,129 @@
+menu_title: '&f&#ffe9a8Mundo y datapacks'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7El Survival usa datapacks que cambian el'
+    - '&7mundo. Todo lo que encontres ahi tambien'
+    - '&7sube de tier: los mobs aparecen como'
+    - '&7minimo en Tier I.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&6Stellarity (End)'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7islas nuevas, biomas, criaturas y botin'
+    - '&7del End. El End no tiene dragon: el portal'
+    - '&7de salida y los portales a las islas'
+    - '&7exteriores ya estan abiertos. En la piedra'
+    - '&7del End aparece la Mena de Asura (monedas'
+    - '&7para el Equipo Asura IV).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&6Incendium (Nether)'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7biomas, fortalezas y jefes nuevos del'
+    - '&7Nether, con armas y botin propios.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Dungeons and Taverns, Structory y'
+    - '&7Explorify: tabernas, torres, ruinas,'
+    - '&7criptas y fortalezas nuevas por todo el'
+    - '&7mundo, con cofres y mobs propios. DnT'
+    - '&7Stronghold Overhaul renueva las fortalezas'
+    - '&7del End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 5
+    amount: 1
+    display_name: '&6Crop & Kettle'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7cultivos y comidas nuevas (ver Cocina).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: KNOWLEDGE_BOOK
+    slot: 6
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Los encantamientos de estos datapacks'
+    - '&7tambien salen en la Mesa de Encantamientos'
+    - '&7y en sus cofres.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

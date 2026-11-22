@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Talismanes'
+menu_title: '&f&#ffe9a8Talismanes'
 size: 54
 items:
   'ilustracion':
@@ -104,7 +104,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] guia_astral'
+    - '[openguimenu] guia_astral_2'
   'indice':
     material: PAPER
     slot: 49

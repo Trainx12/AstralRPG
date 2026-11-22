@@ -421,7 +421,8 @@ astral_momia:
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -480,7 +481,8 @@ astral_yeti:
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -540,7 +542,8 @@ astral_golem_forja:
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -595,7 +598,8 @@ astral_cangrejo:
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
@@ -656,7 +660,8 @@ astral_chaman:
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
@@ -914,7 +919,8 @@ astral_cangrejo_elite:
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
@@ -1006,7 +1012,8 @@ astral_momia_ancestral:
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/momia"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_momia_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -1101,7 +1108,8 @@ astral_yeti_ancestral:
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/yeti"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_yeti_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -1197,7 +1205,8 @@ astral_golem_forja_ancestral:
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/golem_forja"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
@@ -1287,7 +1296,8 @@ astral_cangrejo_ancestral:
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/cangrejo"} @self ~onDeath ?~isplayer
   - 'message{m="&b&lNuevo fragmento: &fFragmento de la Marea&7. Quedo guardado en &f/fragmentos&7."} @trigger ~onDeath ?~isplayer ?~!haspermission{p=astral.fragmento.marea}'
@@ -1384,7 +1394,8 @@ astral_chaman_ancestral:
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer

@@ -459,8 +459,23 @@ def piezas():
     return [taladro(i, c) for i, c in TALADROS.items()] + [motosierra(i, c) for i, c in MOTOSIERRAS.items()]
 
 
+# 23/11 (dueno): en el inventario (y en el piso o marcos) el icono plano de antes (iconos_19_11); 3D solo en la mano.
+PLANO_EN = ('gui', 'ground', 'fixed')
+
+
 def assets():
-    return P.assets(piezas())
+    import json
+    out = {}
+    for ruta, data in P.assets(piezas(), items_json=False).items():
+        if ruta.startswith('assets/astral/models/item/') and ruta.endswith('.json'):
+            ruta = ruta[:-5] + '_3d.json'
+        out[ruta] = data
+    for p in piezas():
+        out[f'assets/astral/items/{p.iid}.json'] = json.dumps({'model': {
+            'type': 'minecraft:select', 'property': 'minecraft:display_context',
+            'cases': [{'when': list(PLANO_EN), 'model': {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}'}}],
+            'fallback': {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}_3d'}}}, indent=1).encode()
+    return out
 
 
 def check():

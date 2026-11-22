@@ -181,6 +181,7 @@ function maz_entrar(p: player, key: text):
         delete {-maz.aviso::%{_mundo::%{_elegida}%}%}
         # Puntaje (mazmorras_puntaje.py): el reloj y las muertes empiezan con la party nueva.
         execute console command "mazpuntaje inicio %{_mundo::%{_elegida}%}%"
+        execute console command "astralpartyinternal fresh %{_mundo::%{_elegida}%}%"
         if {_key} is "mina":
             execute console command "execute in minecraft:%{_d}% run function astral:tanda2/mina/fresh"
         if {_key} is "bosque":
@@ -227,7 +228,6 @@ command /mazfin <text>:
             loop all players:
                 world of loop-player is {_w}
                 send "&6Ganaron! &fTienen 8 minutos para abrir el cofre. Despues vuelven al spawn." to loop-player
-                send title "&b%maz_nombre(arg-1)% conquistada" with subtitle "&7Derrotaron al jefe: el cofre los espera" to loop-player for 5 seconds
                 play sound "ui.toast.challenge_complete" with volume 1 to loop-player
 
 function maz_nombre(w: text) :: text:

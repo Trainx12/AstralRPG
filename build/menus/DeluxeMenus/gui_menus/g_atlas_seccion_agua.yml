@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Equipo de Agua III'
+menu_title: '&f&#ffe9a8Equipo de Agua III'
 size: 54
 items:
   'c0':
@@ -56,9 +56,6 @@ items:
     - '&7Hacha de Agua III'
     - '&7Daño: &c+3.600'
     - '&7Velocidad de ataque: &f1'
-    - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - ''
     - '&6Habilidad: Fuerza de las Mareas&e&l  BAJO EL AGUA'
     - '&a+25%&7 de daño con golpes directos.'
@@ -289,7 +286,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] guia_astral'
+    - '[openguimenu] guia_astral_3'
   'indice':
     material: PAPER
     slot: 49

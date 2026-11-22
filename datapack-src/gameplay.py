@@ -170,6 +170,9 @@ on damage of player with priority highest:
     if {{_f}} > {PVP_MAX}:
         set {{_f}} to {PVP_MAX}
     set {{_pct}} to {{_pct}} * {{_f}}
+    # Asesino por la espalda (AstralClases pone la etiqueta en ese golpe; clases.ASESINO['espalda_pvp_pct']).
+    if scoreboard tags of attacker contains "astral.espalda":
+        set {{_pct}} to {{_pct}} * {1 + __import__('clases').ASESINO['espalda_pvp_pct'] / 100}
     if {{_pct}} > {PVP_TOPE}:
         set {{_pct}} to {PVP_TOPE}
 {perfora}
@@ -182,13 +185,14 @@ REGEN_COMIDA = 0.2   # fraccion de la regeneracion natural por comida (1 = como 
 
 def vida():
     """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
-    from escala import DANO_MOB, TIER_MAZMORRA
+    from escala import DANO_MOB, DANO_JEFE, TIER_MAZMORRA
     tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
                       for t in range(10, 0, -1))
     # Las dimensiones del datapack se llaman world_minecraft_<dim> en Bukkit (el Santuario y sus copias).
-    mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}" or "world_minecraft_{w}":\n        return {DANO_MOB[t]}'
+    # Jefes de mazmorra (sin tier): escala propia DANO_JEFE (23/11); los mobs con tier usan DANO_MOB.
+    mundos = '\n'.join(f'    if {{_n}} is "{w}" or "minecraft:{w}" or "world_minecraft_{w}":\n        return {DANO_JEFE[t]}'
                        for w, t in TIER_MAZMORRA.items())
-    mundos += f'\n    if {{_n}} is "{SANCTUARY_BUKKIT_WORLD}":\n        return {DANO_MOB[5]}'
+    mundos += f'\n    if {{_n}} is "{SANCTUARY_BUKKIT_WORLD}":\n        return {DANO_JEFE[5]}'
     return r'''
 # Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.
 # - Mob con tier (astral.mt#): su golpe, flecha o explosion x DANO_MOB del tier.
@@ -319,6 +323,20 @@ on uncancelled damage of living entity with priority monitor:
 on load:
     execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
 '''.replace('__FACTORES__', factores)
+
+
+# 23/11: el End queda sin dragon (Stellarity + escala Astral: el dragon vanilla moria de un golpe o no aparecia).
+# No se puede volver a invocar: se cancelan los cristales sobre el portal de salida.
+SIN_DRAGON = r'''
+# End sin dragon (gameplay.py SIN_DRAGON): no se puede resucitar.
+on right click with end crystal:
+    name of world of player is "world_the_end"
+    event-block is set
+    event-block is bedrock or obsidian
+    distance between location of event-block and location(0, y-coordinate of event-block, 0, world of player) < 12
+    cancel event
+    send "&5El dragon del End ya no vuelve: &7el portal de salida y los portales a las islas estan abiertos." to player
+'''
 
 
 def script():
@@ -609,7 +627,8 @@ on quit:
     delete {-astral.launch.air::%uuid of player%}
 __INDICADOR__
 __PVP__
-__VIDA__'''.replace('__NO_DOUBLE_JUMP__',' or '.join('"'+w+'"' for w in dict.fromkeys(parkour_worlds()+arena_worlds()))).replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
+__VIDA__
+__SIN_DRAGON__'''.replace('__SIN_DRAGON__',SIN_DRAGON).replace('__NO_DOUBLE_JUMP__',' or '.join('"'+w+'"' for w in dict.fromkeys(parkour_worlds()+arena_worlds()))).replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
 
 
 def realistic_hook():

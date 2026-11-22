@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana del Ritual'
+menu_title: '&f&#ffe9a8Guadana del Ritual'
 size: 54
 items:
   'resultado':
@@ -8,7 +8,7 @@ items:
     display_name: '&aGuadana del Ritual'
     item_model: 'astral:guadana_2'
     lore:
-    - '&7Guadana de Mago II'
+    - '&7Guadana del Segador II'
     - '&7Daño: &c+494'
     - '&7Velocidad de ataque: &f1,3'
     - ''
@@ -18,10 +18,13 @@ items:
     - '&7Aplica Lentitud y Debilidad por &a2&7 a &a3&7 s.'
     - '&#5555FFFilo Arcano II'
     - '&a+1&7 de daño por golpe.'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 2'
     - ''
-    - '&cRequiere: Hechiceria 16'
+    - '&cRequiere: Combate 16'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GUADAÑA'
     item_flags:
@@ -35,7 +38,7 @@ items:
     display_name: '&f1x Guadana Umbria Menor'
     item_model: 'astral:guadana_1'
     lore:
-    - '&7Guadana de Mago I'
+    - '&7Guadana del Segador I'
     - '&7Daño: &c+91'
     - '&7Velocidad de ataque: &f1,3'
     - ''
@@ -44,11 +47,13 @@ items:
     - '&#5555FFFilo Arcano I'
     - '&a+0,5&7 de daño por golpe.'
     - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Dano magico cuerpo a cuerpo'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 1'
     - ''
-    - '&cRequiere: Hechiceria 12'
+    - '&cRequiere: Combate 12'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN GUADAÑA'
     item_flags:
@@ -153,7 +158,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] g_guia_mago_guadana'
+    - '[openguimenu] g_guia_segador_arma'
   'cerrar':
     material: PAPER
     slot: 53

@@ -23,10 +23,12 @@ START, END = '', ''
 W = 224
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
 VENTANAS = {'cavernas_aviso': 4, 'comisiones': 6, 'efectos': 6, **{f'banco_{v}': 6 for v in BANCO_VISTAS},
-            'subastas_inicio': 3, **{f'banco_mejorar{n}': 6 for n in (1, 2, 3, 4)}}
+            'subastas_inicio': 6, **{f'banco_mejorar{n}': 6 for n in (1, 2, 3, 4)},
+            'oceano_aviso': 6, 'trade': 6}   # 23/11: /trade de AxTrade (ventana_trade.py)
 # Fondos nuevos a doble resolucion (disenos Gemini 20/11, ventanas_20_11.py): reemplazan al armado de aca.
 NUEVAS_2011 = ('comisiones', 'subastas_inicio', *(f'banco_{v}' for v in BANCO_VISTAS),
-               *(f'banco_mejorar{n}' for n in (1, 2, 3, 4)))   # Mejorar con el nivel actual remarcado
+               *(f'banco_mejorar{n}' for n in (1, 2, 3, 4)),   # Mejorar con el nivel actual remarcado
+               'efectos', 'oceano_aviso', 'trade')   # 21/11: diseno nuevo del dueno (ventanas_20_11.efectos)
 # Piezas del Banco que ahora estan dibujadas en el fondo (20/11): el item queda invisible (solo nombre y lore).
 BANCO_INVISIBLES = ('b_depositar', 'b_retirar', 'b_mejorar_cuenta', 'b_todo', 'b_mitad', 'b_otra', 'b_atras', 'b_cerrar',
                     'b_confirmar_dep', 'b_confirmar_ret', 'b_mejorar', 'b_volver_banco', 'i_saldo', 'i_encima', 'i_cuenta', 'i_limite')
@@ -400,6 +402,10 @@ def piezas():
         out[f'cristal_{c}'] = sq.resize((32, 32), Image.Resampling.LANCZOS)
     for n in BANCO_INVISIBLES:
         out[n] = Image.new('RGBA', out[n].size)
+    from ventanas_20_11 import efectos_piezas   # 21/11: pestanas e interruptores del diseno nuevo
+    out.update(efectos_piezas())
+    for f in sorted((HERE / 'pack-source/arte-23-11').glob('trade_*.png')):   # botones del /trade (ventana_trade.py)
+        out[f.stem] = Image.open(f).convert('RGBA')
     return out
 
 

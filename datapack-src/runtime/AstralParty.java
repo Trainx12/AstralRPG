@@ -223,12 +223,14 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(!(sender instanceof ConsoleCommandSender)) return true;
             if(a.length>0 && a[0].equals("sync")) sync();
             if(a.length==2 && a[0].equals("victory")) victory(Bukkit.getWorld(a[1]));
+            if(a.length==2 && a[0].equals("fresh")) freshCopy(a[1]);
             return true;
         }
         if(!(sender instanceof Player p)) return true;
         String sub=a.length==0?"menu":a[0].toLowerCase(Locale.ROOT);
         if(sub.equals("menu")) { menu(p,false,0); return true; }
         if(sub.equals("mirar")) { spectateMenu(p); return true; }
+        if(sub.equals("volver")) { rejoin(p); return true; }
         if(sub.equals("crear")) { if(!inParty(p)) { create(p); sync(); } menu(p,true,0); return true; }
         if(sub.equals("invitar")) {
             var t=a.length>1?Bukkit.getPlayerExact(a[1]):null;
@@ -401,6 +403,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
     void fall(Player p) {
         var f=new Fallen(p,clock+20L*delay(p)); fallen.put(p.getUniqueId(),f);
         p.addScoreboardTag("astral.party.fallen");
+        countDeath(p);
         p.getPersistentDataContainer().set(recovery,PersistentDataType.STRING,f.mode.name());
         p.closeInventory(); p.setGameMode(GameMode.SPECTATOR); p.setHealth(p.getAttribute(Attribute.MAX_HEALTH).getValue());
         var alive=living(p,f.world);
@@ -419,6 +422,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
         var p=e.getEntity(); if(!inParty(p)||!worlds.contains(p.getWorld().getName())) return;
         e.setKeepInventory(true);e.getDrops().clear();e.setKeepLevel(true);e.setDroppedExp(0);
         p.addScoreboardTag("astral.party.fallen");
+        if(!busy(p)) countDeath(p);
         if(!busy(p)) { var f=new Fallen(p,clock+20L*delay(p)); fallen.put(p.getUniqueId(),f); p.getPersistentDataContainer().set(recovery,PersistentDataType.STRING,f.mode.name()); }
         Bukkit.getScheduler().runTask(this,()->p.spigot().respawn());
     }
@@ -474,8 +478,60 @@ public final class AstralParty extends JavaPlugin implements Listener {
         try {p.setGameMode(GameMode.valueOf(mode));}catch(Exception e){p.setGameMode(GameMode.SURVIVAL);}
         var lobby=Bukkit.getWorld("lobby");p.teleport((lobby==null?Bukkit.getWorlds().getFirst():lobby).getSpawnLocation());p.getPersistentDataContainer().remove(recovery);p.removeScoreboardTag("astral.party.fallen");
     }
-    @EventHandler public void join(PlayerJoinEvent e) { Bukkit.getScheduler().runTaskLater(this,()->recover(e.getPlayer()),2); }
-    @EventHandler public void quit(PlayerQuitEvent e) { var p=e.getPlayer();clearBorder(p);if(busy(p))exit(p);leave(p);invites.remove(p.getUniqueId());immunity.remove(p.getUniqueId()); }
+    /** Muerte o caida dentro de una mazmorra: suma al puntaje de la copia (mazmorras_puntaje.py). */
+    void countDeath(Player p) { if(inDungeon(p)) console("mazpuntaje muerte "+p.getName()); }
+    // Desconexion en plena mazmorra (23/11): al volver va al lobby y puede volver a ayudar SIN cofre.
+    record Rejoin(String world, UUID leader, long until) {}
+    final Map<UUID,Rejoin> rejoins = new HashMap<>();
+    static final String NO_CHEST="astral.sincofre";
+    @EventHandler public void join(PlayerJoinEvent e) {
+        var p=e.getPlayer();
+        Bukkit.getScheduler().runTaskLater(this,()->{
+            recover(p);
+            if(!p.isOnline()) return;
+            var r=rejoins.get(p.getUniqueId());
+            if(!inDungeon(p)&&(r==null||clock>r.until)) return;
+            if(inDungeon(p)) {
+                // Tras un reinicio no hay registro: se arma con el mundo donde aparecio.
+                if(r==null) rejoins.put(p.getUniqueId(),new Rejoin(p.getWorld().getName(),null,clock+20L*60*15));
+                if(p.getGameMode()==GameMode.SPECTATOR)p.setGameMode(GameMode.SURVIVAL);
+                var lobby=Bukkit.getWorld("lobby"); p.teleport((lobby==null?Bukkit.getWorlds().getFirst():lobby).getSpawnLocation());
+            }
+            p.sendTitle(c("&eTe sacamos de la mazmorra"),c("&7Te desconectaste en plena partida"),5,70,15);
+            p.sendMessage(c("&8&m                                                  "));
+            p.sendMessage(c("&e&l⚠ &eAl salirte del juego te sacamos de la mazmorra."));
+            p.sendMessage(Component.text("   ").append(link("[▶ Volver a ayudar a mi party]",NamedTextColor.GREEN,"/party volver","Volves con tus companeros. Esta vez NO recibis cofre."))
+                .append(Component.text("  (sin cofre)",NamedTextColor.GRAY)));
+            p.sendMessage(c("&8&m                                                  "));
+        },3);
+    }
+    @EventHandler public void quit(PlayerQuitEvent e) {
+        var p=e.getPlayer();
+        if(inDungeon(p)) rejoins.put(p.getUniqueId(),new Rejoin(p.getWorld().getName(),leaders.get(p.getUniqueId()),clock+20L*60*15));
+        clearBorder(p);if(busy(p))exit(p);leave(p);invites.remove(p.getUniqueId());immunity.remove(p.getUniqueId());
+    }
+    /** /party volver: vuelve con un companero vivo de esa copia, marcado sin cofre. */
+    void rejoin(Player p) {
+        var r=rejoins.get(p.getUniqueId());
+        if(r==null||clock>r.until) {rejoins.remove(p.getUniqueId());msg(p,"No tenes una mazmorra a la que volver.");return;}
+        if(inDungeon(p)||busy(p)) {msg(p,"Ya estas en una mazmorra.");return;}
+        var w=Bukkit.getWorld(r.world);
+        var alive=w==null?List.<Player>of():w.getPlayers().stream().filter(t->!busy(t)&&t.getGameMode()!=GameMode.SPECTATOR&&!t.getUniqueId().equals(p.getUniqueId())).toList();
+        if(alive.isEmpty()) {rejoins.remove(p.getUniqueId());msg(p,"Tu party ya no esta en esa mazmorra (termino o salieron todos).");return;}
+        if(!inParty(p)&&r.leader!=null) {
+            // Volver a la misma party si sigue armada (el lider puede haber cambiado: se busca por companero).
+            UUID l=groups.containsKey(r.leader)?r.leader:alive.stream().map(t->leaders.get(t.getUniqueId())).filter(Objects::nonNull).findFirst().orElse(null);
+            if(l!=null&&groups.get(l).size()<max) { leaders.put(p.getUniqueId(),l); groups.get(l).add(p.getUniqueId()); sync(); for(var m:members(p))notice(m,p.getName()+" volvio a ayudar (sin cofre)."); }
+        }
+        var target=alive.stream().filter(t->inParty(p)&&Objects.equals(leaders.get(t.getUniqueId()),leaders.get(p.getUniqueId()))).findFirst().orElse(alive.getFirst());
+        rejoins.remove(p.getUniqueId());
+        p.addScoreboardTag(NO_CHEST);
+        p.teleport(target.getLocation());
+        p.sendTitle(c("&aVolviste a ayudar"),c("&7Esta vez no recibis cofre"),5,50,10);
+    }
+    // La marca "sin cofre" dura hasta salir de las mazmorras; una party nueva en esa copia borra los regresos pendientes.
+    @EventHandler public void noChestWorld(PlayerChangedWorldEvent e) { if(!inDungeon(e.getPlayer()))e.getPlayer().removeScoreboardTag(NO_CHEST); }
+    void freshCopy(String world) { rejoins.values().removeIf(r->r.world.equals(world)); }
     public void victory(World w) {
         if(w==null||wipes.stream().anyMatch(x->x.world==w))return;
         for(var id:new ArrayList<>(fallen.keySet())) { var p=player(id);var f=fallen.get(id);if(p==null||f.world!=w)continue;var alive=living(p,w); if(!alive.isEmpty()) {revive(p,alive.getFirst().getLocation());msg(p,"Tu party gano: reviviste y podes reclamar tu recompensa normal.");} }
@@ -497,7 +553,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(clock>=f.until){revive(p,target.getLocation());continue;}
             if(p.getWorld()!=f.world||alive.stream().noneMatch(t->t.getLocation().distanceSquared(p.getLocation())<=256))watch(p,target,f.free);
             if(!f.free&&p.getSpectatorTarget()!=target)watch(p,target,false);
-            if(clock%20==0){long seconds=(f.until-clock+19)/20;p.sendTitle(c("&dRevivis en "+seconds),c("&7Shift: elegir camara"),0,25,0);p.sendActionBar(Component.text("Mirando a "+target.getName()+" · Revivis en "+seconds+" s · Shift: camaras")); for(var t:alive)t.sendActionBar(Component.text(p.getName()+" revive en "+seconds+" s"));}
+            if(clock%20==0){long seconds=(f.until-clock+19)/20;p.sendTitle(c("&dRevivis en "+seconds),c("&7Shift: elegir camara"),0,25,0);p.sendActionBar(Component.text("Mirando a "+target.getName()+" · Revivis en "+seconds+" s · Shift: camaras"));}
         }
         if(clock%20==0) {
             for(var entry:new ArrayList<>(invites.entrySet()))if(clock>=entry.getValue().until){

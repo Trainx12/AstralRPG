@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha Marca de Fuego'
+menu_title: '&f&#ffe9a8Hacha Marca de Fuego'
 size: 54
 items:
   'resultado':
@@ -12,8 +12,12 @@ items:
     - '&7Daño: &c+60.392.681'
     - '&7Velocidad de ataque: &f1,05'
     - ''
-    - '&#5555FFSangrado I, Hendidura I, Ejecución Astral I'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución Astral I'
+    - '&7Ejecuta enemigos con menos del &a20%&7 de vida.'
     - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
     - ''
     - '&7Ejecuta enemigos con menos del &a20%&7 de vida'
     - '&7Durabilidad: &f7.201'
@@ -37,8 +41,12 @@ items:
     - '&7Daño: &c+11.935.764'
     - '&7Velocidad de ataque: &f1,05'
     - ''
-    - '&#5555FFSangrado I, Hendidura I, Ejecución I'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
     - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 8'
     - ''

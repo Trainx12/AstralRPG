@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana del Archimago'
+menu_title: '&f&#ffe9a8Guadana del Archimago'
 size: 54
 items:
   'resultado':
@@ -8,18 +8,24 @@ items:
     display_name: '&5Guadana del Archimago'
     item_model: 'astral:guadana_4'
     lore:
-    - '&7Guadana de Mago IV'
+    - '&7Guadana del Segador IV'
     - '&7Daño: &c+11.905'
     - '&7Velocidad de ataque: &f1,3'
     - ''
-    - '&#5555FFRobo de vida I, Maldición I, Cono I'
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFMaldición I'
+    - '&7Aplica Lentitud y Debilidad por &a2&7 a &a3&7 s.'
     - '&#5555FFFilo Arcano IV'
+    - '&a+3&7 de daño por golpe.'
     - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Matar mobs reinicia el enfriamiento de hechizos'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 4'
     - ''
-    - '&cRequiere: Hechiceria 26'
+    - '&cRequiere: Combate 26'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA GUADAÑA'
     item_flags:
@@ -33,16 +39,23 @@ items:
     display_name: '&f1x Guadana del Vacio'
     item_model: 'astral:guadana_3'
     lore:
-    - '&7Guadana de Mago III'
+    - '&7Guadana del Segador III'
     - '&7Daño: &c+2.286'
     - '&7Velocidad de ataque: &f1,3'
     - ''
-    - '&#5555FFRobo de vida I, Maldición I, Cono I'
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFMaldición I'
+    - '&7Aplica Lentitud y Debilidad por &a2&7 a &a3&7 s.'
     - '&#5555FFFilo Arcano III'
+    - '&a+1,8&7 de daño por golpe.'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Hechiceria 20'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GUADAÑA'
     item_flags:
@@ -163,7 +176,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] g_guia_mago_guadana'
+    - '[openguimenu] g_guia_segador_arma'
   'cerrar':
     material: PAPER
     slot: 53

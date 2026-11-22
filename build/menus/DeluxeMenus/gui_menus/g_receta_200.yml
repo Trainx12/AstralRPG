@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Filo de la Tormenta'
+menu_title: '&f&#ffe9a8Filo de la Tormenta'
 size: 54
 items:
   'resultado':
@@ -18,7 +18,7 @@ items:
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA ESPADA'
     item_flags:

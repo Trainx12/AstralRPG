@@ -271,7 +271,7 @@ def skill_yml(dungeon=None):
               "  - " + q("sound{s=entity.ravager.roar;v=1.5;p=0.7} @self"), "  - delay 20",
               "  - " + q(f"particles{{p=explosion;amount=12;hS={radio};vS=0.3}} @self"),
               "  - " + __import__('efectos').mm_fx('golpe', '#c8c8c8', radio, 'piedra'),
-              "  - " + q(f"damage{{a={dano}}} @PlayersInRadius{{r={radio}}}"),
+              "  - " + q(f"basedamage{{multiplier=2}} @PlayersInRadius{{r={radio}}}"),   # 23/11: doble del golpe
               "  - " + q(f"throw{{velocity=4;velocityY=2}} @PlayersInRadius{{r={radio}}}"), ""]
     L += ["MINA_GUARDIAN_F2:", "  Skills:", "  - addtag{tag=mina.f2} @self",
           "  - " + q('message{m="&8&lEl Guardian golpea la roca: los mineros corruptos despiertan!"} @PlayersInRadius{r=48}'),

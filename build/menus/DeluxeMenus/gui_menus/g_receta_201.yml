@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Danza del Ender'
+menu_title: '&f&#ffe9a8Danza del Ender'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,7 @@ items:
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 4'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Combate 25'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&5&lÉPICA ESPADA'
     item_flags:

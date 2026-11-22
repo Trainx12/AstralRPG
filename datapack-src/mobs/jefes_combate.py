@@ -16,6 +16,12 @@ from efectos import COLOR_JEFE, ELEM_JEFE
 
 VELOCIDAD = 0.33
 RADIO_SLAM = 5
+# 23/11 (dueno): el golpe al piso pega el DOBLE del golpe cuerpo a cuerpo del jefe y el disparo algo mas que un golpe.
+# basedamage usa el Damage de cada jefe (el mismo modelo tiene distinto dano en cada mazmorra); despues
+# astral_gameplay.sk lo multiplica por el tier igual que el golpe.
+SLAM_X = 2.0
+DISPARO_X = 1.25
+DISPARO_MIN, DISPARO_MAX = 4, 48
 IMPACTO_TICKS = round(SLAM_IMPACTO * 20)
 
 # modelo: particula, particula del proyectil, item del proyectil, sonido de aviso, dano slam, dano disparo, efecto extra del disparo
@@ -45,7 +51,9 @@ def triggers(model):
     if model not in TEMAS:
         return []
     return [f'skill{{s=AST_JEFE_SLAM_{model}}} @self ~onTimer:30 ?playerwithin{{d=6}}',
-            f'skill{{s=AST_JEFE_DISPARO_{model}}} @PlayersInRing{{min=7;max=32}} ~onTimer:40',
+            # 23/11: a TODOS los jugadores de la sala (no solo al que persigue) y cambia al mas cercano.
+            f'skill{{s=AST_JEFE_DISPARO_{model}}} @PlayersInRing{{min={DISPARO_MIN};max={DISPARO_MAX}}} ~onTimer:40',
+            'settarget @NearestPlayer{r=40} ~onTimer:30',
             'skill{s=AST_JEFE_SALTO} @target ~onTimer:40'] + ([
                 'command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5'
             ] if model == 'astral_chaman' else [])
@@ -77,7 +85,7 @@ def metaskills():
                 '  - particles{p=explosion;amount=4;hS=1.5;vS=0.2} @self',
                 # Efectos (AstralEfectos): Medio anillos de color, Alto explosiones dibujadas (solo a quien lo eligio).
                 f'  - command{{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} {RADIO_SLAM} {ELEM_JEFE.get(model, "")}"}}',
-                f'  - damage{{a={t["slam"]}}} @PlayersInRadius{{r={RADIO_SLAM}}}',
+                f'  - basedamage{{multiplier={SLAM_X}}} @PlayersInRadius{{r={RADIO_SLAM}}}',
                 f'  - throw{{velocity=2;velocityY=4}} @PlayersInRadius{{r={RADIO_SLAM}}}',
                 '']
         out += [f'AST_JEFE_DISPARO_{model}:', '  Cooldown: 5', '  Skills:',
@@ -86,7 +94,7 @@ def metaskills():
                 '  - delay 8',
                 # Fogonazo al lanzar y rastro dibujado del proyectil (AstralEfectos, Medio/Alto).
                 f'  - command{{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 0.7 {ELEM_JEFE.get(model, "")}"}}',
-                f'  - projectile{{onTick=AST_JEFE_DISPARO_TICK_{model};onHit=AST_JEFE_DISPARO_HIT_{model};v=16;i=1;hR=1;vR=1;mr=40;'
+                f'  - projectile{{onTick=AST_JEFE_DISPARO_TICK_{model};onHit=AST_JEFE_DISPARO_HIT_{model};v=16;i=1;hR=1;vR=1;mr=52;'
                 f'bulletType=ITEM;material={t["item"]};hnp=true}}',
                 '',
                 f'AST_JEFE_DISPARO_TICK_{model}:', '  Skills:',
@@ -94,7 +102,7 @@ def metaskills():
                 f'  - command{{c="astralfx estela <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1 {ELEM_JEFE.get(model, "")}"}} @origin',
                 '',
                 f'AST_JEFE_DISPARO_HIT_{model}:', '  Skills:',
-                f'  - damage{{a={t["disparo"]}}}',
+                f'  - basedamage{{multiplier={DISPARO_X}}}',
                 f'  - {t["extra"]}',
                 f'  - particles{{p={p};amount=20;hS=0.6;vS=0.6;speed=0.05}} @origin',
                 f'  - command{{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> {COLOR_JEFE.get(model, "#ffffff").lstrip("#")} 1.7 {ELEM_JEFE.get(model, "")}"}}',

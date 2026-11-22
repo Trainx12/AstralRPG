@@ -663,34 +663,6 @@
         "[sound] UI_BUTTON_CLICK",
         "[openguimenu] portales2"
       ]
-    },
-    "parkour": {
-      "material": "FEATHER",
-      "slot": 48,
-      "display_name": "&d&lMini juegos",
-      "lore": [
-        "&7Parkour, droppers y Color Escape.",
-        "",
-        "&eClic para elegir."
-      ],
-      "click_commands": [
-        "[openguimenu] parkour"
-      ],
-      "item_model": "astral:menu/icon_parkour"
-    },
-    "arenas": {
-      "material": "IRON_SWORD",
-      "slot": 50,
-      "display_name": "&b&lArenas PvP",
-      "lore": [
-        "&7Elegí una arena para combatir.",
-        "",
-        "&eClic para elegir."
-      ],
-      "click_commands": [
-        "[openguimenu] arenas"
-      ],
-      "item_model": "astral:menu/icon_arenas"
     }
   }
 }

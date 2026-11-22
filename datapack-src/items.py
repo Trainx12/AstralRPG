@@ -229,13 +229,13 @@ AXES = [
      "fx": {"verdugo": 1}, "cost": [("c", "shadowsteel", 2), ("c", "netherita_fundida", 1), ("c", "palo_reforzado", 1)],
      "desc": ["+10% de dano a enemigos con armadura"]},
     {"name": "Hacha Carmesi", "base": "minecraft:diamond_axe", "dmg": 9, "bonus": 40, "spd": 1.0, "lvl": 20,
-     "fx": {"sangrado": 1}, "cost": [("c", "shadowsteel", 2), ("c", "netherita_reforzada", 1), ("c", "palo_reforzado", 1)],
-     "desc": ["10% de probabilidad de causar sangrado"]},
+     "fx": {}, "cost": [("c", "shadowsteel", 2), ("c", "netherita_reforzada", 1), ("c", "palo_reforzado", 1)],
+     "desc": []},
     {"name": "Hacha del Coloso", "base": "minecraft:diamond_axe", "dmg": 9, "bonus": 55, "spd": 1.0, "lvl": 25,
-     "fx": {"sangrado": 1, "hendidura": 1}, "cost": [("c", "netherita_reforzada", 2), ("c", "cristal_refinado", 1), ("c", "palo_reforzado", 1)],
+     "fx": {"hendidura": 1}, "cost": [("c", "netherita_reforzada", 2), ("c", "cristal_refinado", 1), ("c", "palo_reforzado", 1)],
      "desc": ["Golpes en area pequena"]},
     {"name": "Hacha del Apocalipsis", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 75, "spd": 1.0, "lvl": 30,
-     "fx": {"sangrado": 1, "hendidura": 1, "ejecucion": 1}, "cost": [("c", "netherita_reforzada", 2), ("c", "nucleo_furia_pura", 1), ("c", "palo_reforzado", 1)],
+     "fx": {"hendidura": 1, "ejecucion": 1}, "cost": [("c", "netherita_reforzada", 2), ("c", "nucleo_furia_pura", 1), ("c", "palo_reforzado", 1)],
      "desc": ["Ejecuta enemigos con menos del 15% de vida"]},
 ]
 # Bastones: mana (AuraSkills), dano magico %, enfriamiento (ticks)
@@ -306,7 +306,9 @@ HOSTILE = ["minecraft:zombie", "minecraft:husk", "minecraft:drowned", "minecraft
            "minecraft:guardian", "minecraft:breeze", "minecraft:enderman", "minecraft:endermite",
            "minecraft:shulker", "minecraft:silverfish",
            # Nether (15/11/2026): los mas comunes no tenian tier, nombre ni vida.
-           "minecraft:zombified_piglin", "minecraft:piglin", "minecraft:slime"]
+           "minecraft:zombified_piglin", "minecraft:piglin", "minecraft:slime",
+           # 23/11: tier minimo para todos (estructuras de datapacks como Stellarity).
+           "minecraft:elder_guardian", "minecraft:creaking"]
 # Drops de elites por tier: (material, probabilidad, cantidad)
 ELITE_DROPS = [
     [("esencia_elite", 0.5, 1)],
@@ -350,13 +352,13 @@ SPEARS = [
     {"name": "Lanza del Centinela", "base": "minecraft:iron_spear", "lvl": 15, "bonus": 2,
      "fx": {"lifesteal": 1}, "cost": [("c", "esencia_elite", 3), ("c", "shadowsteel", 2)], "desc": ["Robo de vida"]},
     {"name": "Lanza Carmesi", "base": "minecraft:diamond_spear", "lvl": 20, "bonus": 3,
-     "fx": {"lifesteal": 1, "sangrado": 1}, "cost": [("c", "alma_corrupta", 1), ("c", "netherita_reforzada", 1)],
-     "desc": ["10% de probabilidad de causar sangrado"]},
+     "fx": {"lifesteal": 1}, "cost": [("c", "alma_corrupta", 1), ("c", "netherita_reforzada", 1)],
+     "desc": []},
     {"name": "Lanza del Vendaval", "base": "minecraft:diamond_spear", "lvl": 25, "bonus": 4,
-     "fx": {"lifesteal": 2, "sangrado": 1, "hendidura": 1}, "cost": [("c", "alma_corrupta", 2), ("c", "nucleo_eolico", 1)],
+     "fx": {"lifesteal": 2, "hendidura": 1}, "cost": [("c", "alma_corrupta", 2), ("c", "nucleo_eolico", 1)],
      "desc": ["Golpes en area pequena"]},
     {"name": "Lanza Astral", "base": "minecraft:netherite_spear", "lvl": 30, "bonus": 6,
-     "fx": {"lifesteal": 3, "sangrado": 1, "hendidura": 1, "ejecucion": 1},
+     "fx": {"lifesteal": 3, "hendidura": 1, "ejecucion": 1},
      "cost": [("c", "chispa_astral", 1), ("c", "nucleo_astral", 1)], "desc": ["Ejecuta enemigos con menos del 15% de vida"]},
 ]
 

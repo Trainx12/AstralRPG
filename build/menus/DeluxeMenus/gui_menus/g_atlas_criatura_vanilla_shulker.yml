@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Shulker'
+menu_title: '&f&#ffe9a8Shulker'
 size: 54
 items:
   'c0':
@@ -69,11 +69,11 @@ items:
     - '&#30241bTier I–X · Multiplicadores sobre la base:'
     - '&#30241b1: vida ×25, daño ×22; 2: vida ×120, daño'
     - '&#30241b×48; 3: vida ×575, daño ×120; 4: vida'
-    - '&#30241b×2750, daño ×280; 5: vida ×13125, daño'
-    - '&#30241b×400; 6: vida ×62500, daño ×1120; 7: vida'
-    - '&#30241b×296875, daño ×2240; 8: vida ×1.40625e+06,'
-    - '&#30241bdaño ×4400; 9: vida ×6.64062e+06, daño'
-    - '&#30241b×8800; 10: vida ×3.125e+07, daño ×16000'
+    - '&#30241b×2750, daño ×440; 5: vida ×13125, daño'
+    - '&#30241b×1600; 6: vida ×62500, daño ×3760; 7: vida'
+    - '&#30241b×296875, daño ×7500; 8: vida ×1.40625e+06,'
+    - '&#30241bdaño ×14680; 9: vida ×6.64062e+06, daño'
+    - '&#30241b×29200; 10: vida ×3.125e+07, daño ×53200'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

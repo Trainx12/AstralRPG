@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Berserker'
+menu_title: '&f&#ffe9a8Berserker'
 size: 54
 items:
   'c0':
@@ -210,21 +210,6 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_berserker_hacha'
-  'c13':
-    material: IRON_SWORD
-    slot: 16
-    amount: 1
-    display_name: '&bCuchillos'
-    item_model: 'astral:cuchillo_1'
-    lore:
-    - '&7Clic para abrir'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] g_guia_berserker_cuchillo'
   'volver':
     material: PAPER
     slot: 45

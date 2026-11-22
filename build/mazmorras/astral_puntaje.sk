@@ -1917,6 +1917,11 @@ command /mazpuntaje <text> <text>:
             pz_inicio(arg-2)
         else if arg-1 is "fin":
             pz_fin(arg-2)
+        else if arg-1 is "muerte":
+            # AstralParty avisa cada caida/muerte (23/11: el evento de Skript no las contaba).
+            set {_pm} to arg-2 parsed as player
+            if {_pm} is set:
+                pz_muerte({_pm})
 
 function pz_inicio(w: text):
     set {-pz.ini::%{_w}%} to unix timestamp of now
@@ -1929,10 +1934,11 @@ function pz_muerte(p: player):
     {-pz.hecho::%{_w}%} is not set
     set {_u} to uuid of {_p}
     set {_ahora} to unix timestamp of now
-    if {_ahora} - ({-pz.ult::%{_u}%} ? 0) < 10:
+    if {_ahora} - ({-pz.ult::%{_u}%} ? 0) < 4:
         stop
     set {-pz.ult::%{_u}%} to {_ahora}
     add 1 to {-pz.muertes::%{_w}%}
+    log "%now% %name of {_p}% %{_w}% muertes=%{-pz.muertes::%{_w}%}%" to "astral-puntaje"
 
 on death of player:
     pz_muerte(victim)
@@ -1971,9 +1977,17 @@ function pz_fin(w: text):
         set {_n} to 6
     set {_nombre} to {-pz.cofre::%{_key}%::nombre}
     set {_tmin} to floor({_seg} / 60)
-    set {_tseg} to mod({_seg}, 60)
+    set {_tseg} to floor(mod({_seg}, 60))
+    set {_tseg2} to "%{_tseg}%"
+    if {_tseg} < 10:
+        set {_tseg2} to "0%{_tseg}%"
     loop all players:
         name of world of loop-player is {_w}
+        scoreboard tags of loop-player contain "astral.sincofre"
+        send "&7Volviste a ayudar despues de desconectarte: &festa vez no hay cofre para vos." to loop-player
+    loop all players:
+        name of world of loop-player is {_w}
+        scoreboard tags of loop-player do not contain "astral.sincofre"
         set {_u} to uuid of loop-player
         set {pz.pend.key::%{_u}%} to {_key}
         set {pz.pend.nota::%{_u}%} to {_n}
@@ -1981,25 +1995,33 @@ function pz_fin(w: text):
         if ({pz.mejor::%{_u}%::%{_key}%} ? 0) < {_n}:
             set {pz.mejor::%{_u}%::%{_key}%} to {_n}
         if {_n} is 1:
-            send title "&b%{_nombre}% conquistada" with subtitle "&c&lPuntaje F" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &c&lF &7(%{_pts}% puntos)" to loop-player
+            set {_letra} to "&c&lF"
         if {_n} is 2:
-            send title "&b%{_nombre}% conquistada" with subtitle "&9&lPuntaje D" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &9&lD &7(%{_pts}% puntos)" to loop-player
+            set {_letra} to "&9&lD"
         if {_n} is 3:
-            send title "&b%{_nombre}% conquistada" with subtitle "&b&lPuntaje C" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &b&lC &7(%{_pts}% puntos)" to loop-player
+            set {_letra} to "&b&lC"
         if {_n} is 4:
-            send title "&b%{_nombre}% conquistada" with subtitle "&a&lPuntaje B" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &a&lB &7(%{_pts}% puntos)" to loop-player
+            set {_letra} to "&a&lB"
         if {_n} is 5:
-            send title "&b%{_nombre}% conquistada" with subtitle "&d&lPuntaje A" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &d&lA &7(%{_pts}% puntos)" to loop-player
+            set {_letra} to "&d&lA"
         if {_n} is 6:
-            send title "&b%{_nombre}% conquistada" with subtitle "&6&lPuntaje S" to loop-player for 6 seconds
-            send "&6Nota de la mazmorra: &6&lS &7(%{_pts}% puntos)" to loop-player
-        send "&7Tiempo: &f%{_tmin}% min %{_tseg}% s &8(objetivo %{_obj}% min) &7| Muertes de la party: &f%{_m}%" to loop-player
-        send "&7Abri el cofre: la plata y los premios dependen de la nota." to loop-player
+            set {_letra} to "&6&lS"
+        set {-pz.cartel::%{_u}%} to {_letra}
+        send "&6&m                                                  " to loop-player
+        send "&6&l  ✦ %{_nombre}% CONQUISTADA ✦" to loop-player
+        send "&7  Nota: %{_letra}% &7(%{_pts}% puntos)" to loop-player
+        send "&7  Tiempo: &f%{_tmin}% min %{_tseg2}% s &8(objetivo %{_obj}% min)" to loop-player
+        send "&7  Muertes de la party: &c%{_m}%" to loop-player
+        send "&e  Abri el cofre: la plata y los premios dependen de la nota." to loop-player
+        send "&6&m                                                  " to loop-player
+        send title "&b&l%{_nombre}%" with subtitle "&6&lCONQUISTADA" to loop-player for 3 seconds
+    wait 3 seconds
+    loop all players:
+        name of world of loop-player is {_w}
+        set {_u} to uuid of loop-player
+        {-pz.cartel::%{_u}%} is set
+        send title "&fNota %{-pz.cartel::%{_u}%}%" with subtitle "&e⏱ %{_tmin}%m %{_tseg2}%s &8| &c☠ %{_m}% muertes &8| &7%{_pts}% pts" to loop-player for 6 seconds
+        delete {-pz.cartel::%{_u}%}
 
 # Boton RECLAMAR del cofre (DeluxeMenus cofre_<mazmorra>): una ruleta por jugador por victoria.
 command /astralcofre <player> <text>:

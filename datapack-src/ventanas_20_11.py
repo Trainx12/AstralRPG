@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw, ImageFilter
 HERE = Path(__file__).resolve().parent
 SRC = HERE.parent / '.local/gemini/refs-20-11/gemini'
 OUT = HERE / 'pack-source/arte-20-11'
+COMERCIO = HERE.parent / '.local/gemini/refs-21-11b/gemini/comercio_v1.png'
 K = 2            # resolucion: 2 pixeles de imagen por pixel de la ventana
 W = 224
 
@@ -160,32 +161,153 @@ S_CARTEL = {'subastas': (522, 855, 912, 912), 'banco': (1330, 855, 1720, 912)}
 
 
 def subastas_inicio():
-    src = _fuente('subastas_banco_v1')
-    alto = _alto(3)
+    """21/11/2026: 'Casa de Comercio' (ref del dueno rehecha por Gemini, .local/gemini/refs-21-11b/gemini/comercio_v1.png).
+    6 filas: tarjeta BANCO en columnas 0-3 y SUBASTAS en 5-8 (filas 0-4), VOLVER en 45-46 y la X en 53."""
+    src = Image.open(COMERCIO).convert('RGB').filter(ImageFilter.GaussianBlur(1.0))
+    alto = _alto(6)
     im = Image.new('RGBA', (W * K, alto * K))
-    fin = 57 + 3 * 18 - 1      # 110
+    fin = 57 + 6 * 18 - 1      # 164
     gx = _rejilla(31, 9)
-    x_cofre = ([0, S_MARCO_X[0]] + S_COFRE_X + [S_MARCO_X[1], 2172], [-14, 19] + gx + [204, 238])
-    x_inv = ([0, S_MARCO_X[0]] + S_INV_X + [S_MARCO_X[1], 2172], [-14, 19] + gx + [204, 238])
-    _banda(im, src, *x_cofre, [0, 120, 196, S_COFRE_Y[0], S_COFRE_Y[1], S_COFRE_Y[2], S_COFRE_Y[3], 849],
-           [0, 14, 33, 55.5, 73.5, 91.5, 109.5, 112])
-    _banda(im, src, *x_inv, [849, 862, 950, 1051], [112, 113, 113.01, fin + 14])
-    _banda(im, src, *x_inv, S_INV_Y + S_HOT_Y + [1796, 1830, 1952],
-           [fin + 14, fin + 32, fin + 50, fin + 68, fin + 72, fin + 90, fin + 100, fin + 103, fin + 116])
-    im = _recorte_fondo(im, (51, 51, 51), tol=30)
-    # Carteles Subastas / Banco en la fila 3 (casillas 19-21 y 23-25), a los lados de la X.
-    full = Image.open(SRC / 'subastas_banco_v1.jpg').convert('RGB')
-    for nombre, col in (('subastas', 0), ('banco', 5)):
-        c = full.crop(S_CARTEL[nombre]).filter(ImageFilter.GaussianBlur(1.2))
-        ancho = 3 * 18 * K - 2 * K
-        alto_c = round(c.height * ancho / c.width)
-        c = c.resize((ancho, alto_c), Image.Resampling.LANCZOS).convert('RGBA')
-        x = (31 + 18 * (col + 1) - 1) * K + K
-        y = (57 + 36) * K + (18 * K - alto_c) // 2 - K
-        im.alpha_composite(c, (x, y))
-    _casillas(im, 31, fin + 15, 3, (32, 30, 30, 255), (92, 74, 58, 255))
-    _casillas(im, 31, fin + 73, 1, (28, 22, 22, 255), (92, 74, 58, 255))
-    _tira_inventario(im, fin, (216, 196, 148, 255), (120, 78, 40, 255))
+    borde = ([0, 25], [16, 22]), ([800, 825], [201, 207.5])
+    x_top = ([*borde[0][0], 54.5, 393, 431, 768.5, *borde[1][0]], [*borde[0][1], gx[0], gx[4], gx[5], gx[9], *borde[1][1]])
+    x_fila6 = ([*borde[0][0], 54.5, 215, 722, 770, *borde[1][0]], [*borde[0][1], gx[0], gx[2], gx[8], gx[9], *borde[1][1]])
+    x_inv = ([*borde[0][0]] + [61.5 + 77.67 * i for i in range(10)] + [*borde[1][0]], [*borde[0][1]] + gx + [*borde[1][1]])
+    _banda(im, src, *x_top, [0, 176, 515], [15.5, 56.5, 146.5])
+    _banda(im, src, *x_fila6, [515, 590], [146.5, fin + 0.5])
+    _banda(im, src, *x_inv, [590, 656.5, 736, 814.5, 893, 906.5, 987.5, 1024],
+           [fin + 0.5, fin + 14, fin + 32, fin + 50, fin + 68, fin + 72, fin + 90, fin + 99])
+    im = _recorte_fondo(im, (68, 68, 68), tol=36)
+    _casillas(im, 31, fin + 15, 3, (24, 25, 38, 255), (176, 132, 62, 255))
+    _casillas(im, 31, fin + 73, 1, (24, 25, 38, 255), (176, 132, 62, 255))
+    _tira_inventario(im, fin, (232, 220, 190, 255), (150, 110, 50, 255))
+    return im
+
+
+# ------------------------------------------------------------------ Efectos (6 filas), diseno del dueno 21/11
+# Referencia: .local/gemini/refs-21-11b/efectos.png (1086x1448). Fila 1 = pestanas BAJO/MEDIO/ALTO (3 casillas
+# cada una), filas 2-6 = Armaduras, Armas, Bastones, Mascotas, Jefes con el interruptor en las columnas 6-8.
+# Las pestanas y los interruptores son items (cambian); se recortan del mismo dibujo ya deformado.
+EFECTOS_REF = HERE.parent / '.local/gemini/refs-21-11b/efectos.png'
+E_TABS = {'bajo': (128, 228, 392, 300), 'medio': (408, 228, 677, 300), 'alto': (694, 228, 957, 300)}
+E_X = ([0] + [134, 228.5, 319.5, 410.5, 501.5, 589.5, 677.5, 766.5, 855.5, 951] + [1086],
+       [4] + _rejilla(31, 9) + [219])
+E_Y = ([0, 218, 310, 420, 522, 624, 726, 830, 895, 982.5, 1070.5, 1158, 1187, 1279, 1290, 1395, 1448],
+       [10, 56.5, 74.5, 92.5, 110.5, 128.5, 146.5, 164.5, 178, 196, 214, 232, 236, 254, 256, 256.01, 264])
+
+
+_G = _rejilla(31, 9)
+E_TABS_X = ([0, 117, 128, 392, 408, 677, 694, 957, 968, 1086],
+            [4, 27.1, _G[0] + 0.5, _G[3] - 0.5, _G[3] + 0.5, _G[6] - 0.5, _G[6] + 0.5, _G[9] - 0.5, 195.9, 219])
+
+
+def _texto_pestana(im, caja):
+    """(marco sin texto, capa del texto) de una pestana de la referencia."""
+    c = im.crop(caja).convert('RGBA')
+    a = np.asarray(c).astype(np.int32)
+    lum = a[..., :3].mean(-1)
+    w, h = c.size
+    dentro = np.zeros(lum.shape, bool)
+    dentro[14:h - 14, 18:w - 18] = True
+    letra = dentro & (lum > 95)
+    m = Image.fromarray((letra * 255).astype(np.uint8), 'L').filter(ImageFilter.MaxFilter(5))
+    texto = c.copy()
+    texto.putalpha(Image.fromarray(np.clip((lum - 60) * 3, 0, 255).astype(np.uint8)) if False else m)
+    fondo = np.median(a[dentro & ~(np.asarray(m) > 0)][:, :3], 0)
+    marco = np.asarray(c).copy()
+    marco[np.asarray(m) > 0, :3] = fondo
+    return Image.fromarray(marco, 'RGBA'), texto
+
+
+def _efectos_fuente(activa):
+    """Referencia con la pestana `activa` remarcada (marco dorado de MEDIO) y las otras apagadas (marco de BAJO)."""
+    ref = Image.open(EFECTOS_REF).convert('RGBA')
+    marcos = {k: _texto_pestana(ref, c) for k, c in E_TABS.items()}
+    on, off = marcos['medio'][0], marcos['bajo'][0]
+    out = ref.copy()
+    for k, caja in E_TABS.items():
+        tam = (caja[2] - caja[0], caja[3] - caja[1])
+        out.paste((on if k == activa else off).resize(tam, Image.Resampling.LANCZOS), caja[:2])
+        txt = marcos[k][1]
+        out.alpha_composite(txt, caja[:2])
+    return out.convert('RGB').filter(ImageFilter.GaussianBlur(1.3))
+
+
+def _efectos_deformado(activa='medio'):
+    src = _efectos_fuente(activa)
+    im = Image.new('RGBA', (W * K, _alto(6) * K))
+    ys, yd = E_Y
+    _banda(im, src, *E_X, ys[:2], yd[:2])
+    _banda(im, src, *E_TABS_X, ys[1:3], yd[1:3])     # pestanas justo sobre sus 3 casillas
+    _banda(im, src, *E_X, ys[2:], yd[2:])
+    return _recorte_fondo(im, (0, 0, 0), tol=24)
+
+
+def efectos():
+    im = _efectos_deformado()
+    fin = 57 + 6 * 18 - 1
+    _casillas(im, 31, fin + 15, 3, (14, 22, 40, 255), (190, 150, 70, 255))
+    _casillas(im, 31, fin + 73, 1, (14, 22, 40, 255), (190, 150, 70, 255))
+    _tira_inventario(im, fin, (232, 220, 190, 255), (150, 110, 50, 255))
+    return im
+
+
+def _recorte(im, slot, n=1):
+    # 23/11: la pieza de 18 px se dibuja desde el borde de la casilla (no 1 px antes): con -1 el interruptor
+    # quedaba 1 px abajo y a la derecha del fondo (las lineas de cada fila no coincidian).
+    x, y = (31 + 18 * (slot % 9)) * K, (57 + 18 * (slot // 9)) * K
+    return im.crop((x, y, x + 18 * n * K, y + 18 * K))
+
+
+def efectos_piezas():
+    """Piezas (x2) para ventanas_19_11.piezas(): pestanas, interruptores e iconos, recortados del dibujo."""
+    out = {}
+    for activa in E_TABS:
+        im = _efectos_deformado(activa)
+        for i, k in enumerate(E_TABS):
+            out[f'nivel_{k}' + ('_activo' if k == activa else '')] = _recorte(im, i * 3, 3)
+    im = _efectos_deformado()
+    out['interruptor_on'] = _recorte(im, 9 + 6, 3)        # Armaduras: ACTIVADO
+    out['interruptor_off'] = _recorte(im, 4 * 9 + 6, 3)   # Mascotas: DESACTIVADO
+    for fila, cat in enumerate(('armaduras', 'armas', 'bastones', 'mascotas', 'jefes'), 1):
+        # el icono ocupa parte de la columna 1: queda dibujado en el fondo y el item es invisible
+        out[f'efecto_{cat}'] = Image.new('RGBA', (16 * K, 16 * K))
+    return out
+
+
+# ------------------------------------------------------------------ Oceano Astral (aviso, 6 filas), diseno del dueno 21/11
+# Referencia: .local/gemini/refs-21-11b/oceano.png (935x1024, captura con el fondo del juego borroso detras).
+# ENTRAR AL OCEANO cae en las filas 3-4 (columnas 1-7) y VOLVER en la fila 5 (columnas 3-5).
+OCEANO_REF = HERE.parent / '.local/gemini/refs-21-11b/oceano.png'
+O_X = ([0, 126.5, 202, 278, 354.5, 429, 506.5, 582.5, 658.5, 732.5, 806, 935], [0.3] + _rejilla(31, 9) + [223.3])
+O_Y = ([0, 180, 386, 484, 538, 592.5, 657, 722, 786, 807.5, 880, 1024],
+       [12, 56.5, 110.5, 146.5, 164.5, 178, 196, 214, 232, 236, 254, 279])
+
+
+def _sin_fondo_borroso(im):
+    """El dibujo vino sobre el juego borroso: se borra todo lo liso que toca el borde (el marco tiene detalle)."""
+    L = np.asarray(im.convert('L')).astype(float)
+    g = np.maximum(np.abs(np.diff(L, axis=1, prepend=L[:, :1])), np.abs(np.diff(L, axis=0, prepend=L[:1])))
+    m = Image.fromarray(((g > 22) * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.MinFilter(5))
+    m = m.point(lambda v: 255 - v)
+    w, h = m.size
+    for x, y in [(x, y) for x in range(0, w, 4) for y in (0, h - 1)] + [(x, y) for y in range(0, h, 4) for x in (0, w - 1)]:
+        if m.getpixel((x, y)) == 255:
+            ImageDraw.floodfill(m, (x, y), 128)
+    out = im.convert('RGBA')
+    out.putalpha(Image.fromarray(np.where(np.asarray(m) == 128, 0, 255).astype(np.uint8)))
+    return out
+
+
+def oceano():
+    ref = Image.open(OCEANO_REF).convert('RGB')
+    src = ref.filter(ImageFilter.GaussianBlur(1.0)).convert('RGBA')
+    src.putalpha(_sin_fondo_borroso(ref).getchannel('A'))
+    im = Image.new('RGBA', (W * K, _alto(6) * K))
+    _banda(im, src, *O_X, *O_Y)
+    fin = 57 + 6 * 18 - 1
+    _casillas(im, 31, fin + 15, 3, (16, 22, 40, 255), (70, 78, 104, 255))
+    _casillas(im, 31, fin + 73, 1, (16, 22, 40, 255), (70, 78, 104, 255))
+    _tira_inventario(im, fin, (226, 222, 204, 255), (120, 130, 140, 255))
     return im
 
 
@@ -303,7 +425,7 @@ def banco(vista, nivel=None):
 
 
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
-PANELES = {'comisiones': comisiones, 'subastas_inicio': subastas_inicio,
+PANELES = {'comisiones': comisiones, 'subastas_inicio': subastas_inicio, 'efectos': efectos, 'oceano_aviso': oceano,
            **{f'banco_{v}': (lambda v=v: banco(v)) for v in BANCO_VISTAS},
            **{f'banco_mejorar{n}': (lambda n=n: banco('mejorar', n)) for n in (1, 2, 3, 4)}}
 

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha de las Mareas'
+menu_title: '&f&#ffe9a8Hacha de las Mareas'
 size: 54
 items:
   'resultado':
@@ -11,9 +11,6 @@ items:
     - '&7Hacha de Agua III'
     - '&7Daño: &c+3.600'
     - '&7Velocidad de ataque: &f1'
-    - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - ''
     - '&6Habilidad: Fuerza de las Mareas&e&l  BAJO EL AGUA'
     - '&a+25%&7 de daño con golpes directos.'

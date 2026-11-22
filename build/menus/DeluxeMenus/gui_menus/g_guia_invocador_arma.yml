@@ -1,0 +1,201 @@
+menu_title: '&f&#ffe9a8Invocador: Libros'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: BOOK
+    slot: 2
+    amount: 1
+    display_name: '&#7b5cffLibro Podrido'
+    item_model: 'astral:libro_invocador_1'
+    lore:
+    - '&#7b5cffInvocador I'
+    - '&7Clic derecho: invoca 1 esqueleto por 20 s'
+    - '&7Cada uno: 75 de vida, 30 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 80 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+60 de mana en la mano'
+    - '&cRequiere: Hechiceria 8'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_361'
+  'c2':
+    material: BOOK
+    slot: 3
+    amount: 1
+    display_name: '&#7b5cffLibro del Muneco Maldito'
+    item_model: 'astral:libro_invocador_3'
+    lore:
+    - '&#7b5cffInvocador III'
+    - '&7Clic derecho: invoca 2 esqueletos por 20 s'
+    - '&7Cada uno: 250 de vida, 750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 180 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+150 de mana en la mano'
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_362'
+  'c3':
+    material: BOOK
+    slot: 4
+    amount: 1
+    display_name: '&#7b5cffLibro del Evocador'
+    item_model: 'astral:libro_invocador_5'
+    lore:
+    - '&#7b5cffInvocador V'
+    - '&7Clic derecho: invoca 2 esqueletos por 20 s'
+    - '&7Cada uno: 2.000 de vida, 18.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 400 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+210 de mana en la mano'
+    - '&cRequiere: Hechiceria 32'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_363'
+  'c4':
+    material: BOOK
+    slot: 5
+    amount: 1
+    display_name: '&#7b5cffLibro de Piel de Dragon'
+    item_model: 'astral:libro_invocador_7'
+    lore:
+    - '&#7b5cffInvocador VII'
+    - '&7Clic derecho: invoca 3 esqueletos por 20 s'
+    - '&7Cada uno: 6.250 de vida, 468.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 650 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+270 de mana en la mano'
+    - '&cRequiere: Hechiceria 42'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_364'
+  'c5':
+    material: BOOK
+    slot: 6
+    amount: 1
+    display_name: '&#7b5cffNecronomicon'
+    item_model: 'astral:libro_invocador_9'
+    lore:
+    - '&#7b5cffInvocador IX'
+    - '&7Clic derecho: invoca 3 esqueletos por 20 s'
+    - '&7Cada uno: 16.250 de vida, 11.718.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 1100 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+330 de mana en la mano'
+    - '&cRequiere: Hechiceria 52'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_365'
+  'c6':
+    material: BOOK
+    slot: 7
+    amount: 1
+    display_name: '&#7b5cffLibro de Oro'
+    item_model: 'astral:libro_invocador_10'
+    lore:
+    - '&#7b5cffInvocador X'
+    - '&7Clic derecho: invoca 4 esqueletos por 20 s'
+    - '&7Cada uno: 25.000 de vida, 58.593.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 1400 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+360 de mana en la mano'
+    - '&cRequiere: Hechiceria 57'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_366'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_invocador'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

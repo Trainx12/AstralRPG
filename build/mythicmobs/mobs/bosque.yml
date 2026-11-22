@@ -160,7 +160,8 @@ astral_bosque_chaman:
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}

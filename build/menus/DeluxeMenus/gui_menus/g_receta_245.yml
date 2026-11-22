@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha Carnivora'
+menu_title: '&f&#ffe9a8Hacha Carnivora'
 size: 54
 items:
   'resultado':
@@ -12,8 +12,6 @@ items:
     - '&7Daño: &c+3.600'
     - '&7Velocidad de ataque: &f1'
     - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&#5555FFEficiencia III'
     - '&#5555FFIrrompibilidad II'
     - '&7Durabilidad: &f7.201'

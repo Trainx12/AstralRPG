@@ -11,7 +11,7 @@ MINA_ONDA_GOLEM:
   - delay 20
   - particles{p=explosion;amount=12;hS=5;vS=0.3} @self
   - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c8c8c8 5 piedra"}
-  - damage{a=7} @PlayersInRadius{r=5}
+  - basedamage{multiplier=2} @PlayersInRadius{r=5}
   - throw{velocity=4;velocityY=2} @PlayersInRadius{r=5}
 MINA_ONDA_GUARDIAN:
   Skills:
@@ -20,7 +20,7 @@ MINA_ONDA_GUARDIAN:
   - delay 20
   - particles{p=explosion;amount=12;hS=6;vS=0.3} @self
   - command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c8c8c8 6 piedra"}
-  - damage{a=9} @PlayersInRadius{r=6}
+  - basedamage{multiplier=2} @PlayersInRadius{r=6}
   - throw{velocity=4;velocityY=2} @PlayersInRadius{r=6}
 MINA_GUARDIAN_F2:
   Skills:

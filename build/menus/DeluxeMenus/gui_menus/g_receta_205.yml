@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Varita del Estallido'
+menu_title: '&f&#ffe9a8Varita del Estallido'
 size: 54
 items:
   'resultado':
@@ -23,7 +23,7 @@ items:
     - '&7Recarga: &a1s'
     - '&7Tier: 4'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Hechiceria 26'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&5&lÉPICA VARITA'
     item_flags:

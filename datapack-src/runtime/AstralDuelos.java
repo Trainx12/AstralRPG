@@ -280,7 +280,8 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
         if (!ARENAS.contains(match.getArena().getName()) || match.getStartingPlayers().size() != 2) return;
         UUID ganador = e.getWinner(), perdedor = e.getLoser();
         Player win = ganador == null ? null : Bukkit.getPlayer(ganador);
-        double vida = win == null ? 0 : win.getHealth() / 2;
+        // 23/11: vida en % (con la escala de vida los "corazones" no decian nada).
+        double vida = win == null ? 0 : 100 * win.getHealth() / Math.max(1, win.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue());
         if (ganador != null && perdedor != null) {
             String r = "racha." + ganador; getConfig().set(r, getConfig().getInt(r) + 1); getConfig().set("racha." + perdedor, 0);
             String w = "semanas." + semana() + "." + ganador; getConfig().set(w, getConfig().getInt(w) + 1); saveConfig();
@@ -289,10 +290,21 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
             UUID otro = match.getStartingPlayers().stream().map(Player::getUniqueId).filter(id -> !id.equals(p.getUniqueId())).findFirst().orElse(null);
             long segundos = Math.max(0, (System.currentTimeMillis() - inicios.getOrDefault(p.getUniqueId(), System.currentTimeMillis())) / 1000);
             inicios.remove(p.getUniqueId());
-            String texto = (ganador == null ? "Sin ganador" : "Gano " + nombre(ganador)) + " · " + segundos + " s · " + String.format(Locale.ROOT, "%.1f", vida) + " corazones";
+            String tiempo = (segundos / 60) + "m " + String.format(Locale.ROOT, "%02d", segundos % 60) + "s";
+            String texto = (ganador == null ? "Sin ganador" : "Gano " + nombre(ganador)) + " · " + tiempo + " · le quedo " + Math.round(vida) + "% de vida";
             resultados.put(p.getUniqueId(), new Resultado(otro, match.getArena().getName(), texto));
-            aviso(p, "&6" + texto);
-            p.sendMessage(Component.text("[Ver resultado / Revancha]").clickEvent(ClickEvent.runCommand("/duelos resultado")));
+            // 23/11 (dueno): el resultado en pantalla unos segundos (tambien al que murio y vuelve al lobby) y el chat destacado.
+            boolean gano = p.getUniqueId().equals(ganador);
+            String grande = ganador == null ? "&e&lEMPATE" : gano ? "&a&l¡GANASTE!" : "&c&lPERDISTE";
+            String chico = "&e⏱ " + tiempo + " &8| &c❤ " + Math.round(vida) + "% " + (ganador == null ? "" : gano ? "&7te quedo" : "&7le quedo a " + nombre(ganador));
+            p.sendTitle(color(grande), color(chico), 5, 90, 20);
+            Bukkit.getScheduler().runTaskLater(this, () -> { if (p.isOnline()) p.sendTitle(color(grande), color(chico), 0, 70, 20); }, 40L);
+            p.sendMessage(color("&6&m                                                  "));
+            p.sendMessage(color("  " + grande + " &7en &f" + match.getArena().getName()));
+            p.sendMessage(color("  &7Tiempo: &f" + tiempo + "  &7Vida del ganador: &c" + Math.round(vida) + "%"));
+            p.sendMessage(Component.text("  ").append(Component.text("[Ver resultado / Revancha]").color(net.kyori.adventure.text.format.NamedTextColor.GOLD)
+                .clickEvent(ClickEvent.runCommand("/duelos resultado"))));
+            p.sendMessage(color("&6&m                                                  "));
         }
     }
     void resultado(Player p) {

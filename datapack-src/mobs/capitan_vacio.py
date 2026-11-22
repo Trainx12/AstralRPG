@@ -27,18 +27,18 @@ TIMONEL_MOB = 'astral_nave_timonel'
 ZONA_MOB = 'astral_nave_zona'
 
 # ============================ NUMEROS DE LA PELEA (ajustables) ============================
-ALTO = 11.7               # bloques de alto en juego
-ESCALA = 6.0              # escala de la entidad (ZOMBIE 1,95 x 6 = 11,7 de caja para pegarle)
+ALTO = 4.5                # bloques de alto en juego (23/11: con 11,7 no se lo veia)
+ESCALA = 2.3              # escala de la entidad (ZOMBIE 1,95 x 2,3 = 4,5 de caja para pegarle)
 VIDA_FACTOR = 1.5         # x el jefe de la Forja (13.125.000): 19.687.500, como el Santuario (x1,5)
 OJOS = 3
 OJO_VIDA = 0.03           # cada Ojo Vigia: 3% de la vida del Capitan (590.625)
 ESCUDO = 0.2              # con Ojos vivos recibe solo el 20% del dano
 DANO_ZARPAZO = 30         # golpe cuerpo a cuerpo (antes del x tier de astral_gameplay.sk, como Trainx)
-DANO_CUBO = 14            # cubo de vacio (proyectil)
+DANO_CUBO = 36            # cubo de vacio (proyectil)
 DANO_ZONA = 5             # cada medio segundo dentro de una zona de vacio
 DANO_RAYO_OJO = 8         # rayo de cada Ojo Vigia
-DANO_PULSO = 18           # pulso de gravedad (fase 3)
-DANO_BARRIDO = 26         # barrido del vacio: gira 360 con las garras (radio 7)
+DANO_PULSO = 45           # pulso de gravedad (fase 3)
+DANO_BARRIDO = 60         # barrido del vacio: gira 360 con las garras (radio 7)
 VELOCIDAD = 0.27
 TIMONEL_EZ = 12           # minijefe: 12 zombis T5 de vida (x1,5 de la mazmorra)
 # ==========================================================================================
@@ -566,7 +566,7 @@ def mobs_yaml():
         '  BossBar:', '    Enabled: true', "    Title: '&5✦ Tier V ✦ &d&lTimonel del Vacio'", '    Range: 48',
         '    Color: PINK', '    Style: SEGMENTED_10',
         '  Skills:', "  - 'addtag{tag=astral.seen} @self ~onSpawn'", "  - 'addtag{tag=astral.mt5} @self ~onSpawn'",
-        "  - 'command{c=\"attribute <caster.uuid> minecraft:scale base set 2.5\"} @self ~onSpawn'",
+        "  - 'command{c=\"attribute <caster.uuid> minecraft:scale base set 1.4\"} @self ~onSpawn'",
         "  - 'skill{s=NAVE_TIM_SALTO} @PlayersInRadius{r=30;sort=RANDOM;limit=1} ~onTimer:200'",
         "  - 'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=30;sort=RANDOM;limit=1} ~onTimer:160'",
         '',
@@ -593,7 +593,7 @@ def skills_yaml():
                              'message{m="&d«Esta nave no vuelve a la estrella. Ustedes tampoco.»"} @PlayersInRadius{r=64}'],
         'NAVE_CAP_CUBO': ['state{s=throw} @self', 'sound{s=entity.shulker.shoot;v=2;p=0.6} @self', 'delay 9',
                           'projectile{onTick=NAVE_CUBO_TICK;onHit=NAVE_CUBO_HIT;onEnd=NAVE_CUBO_FIN;v=12;i=1;hR=1.2;vR=1.2;mr=44;'
-                          'bulletType=ITEM;material=CRYING_OBSIDIAN;hnp=true;sy=6}'],
+                          'bulletType=ITEM;material=CRYING_OBSIDIAN;hnp=true;sy=2.5}'],
         'NAVE_CUBO_TICK': ['particles{p=dust;color=#c43bff;size=2;amount=3;hS=0.2;vS=0.2} @origin',
                            'particles{p=reverse_portal;amount=3;hS=0.1;vS=0.1;speed=0.05} @origin'],
         'NAVE_CUBO_HIT': [f'damage{{a={DANO_CUBO}}}', fx('estallido', '#c43bff', 2, 'vacio', 'target'),

@@ -176,7 +176,8 @@ astral_forja_golem_forja:
   - potion{type=FIRE_RESISTANCE;duration=2147483647;level=0;hasParticles=false} @self ~onSpawn
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
-  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=7;max=32} ~onTimer:40
+  - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
+  - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
   - skill{s=TANDA2_forja_AST_FASE_astral_golem_forja_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_forja_AST_FASE_astral_golem_forja_2_onda} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}

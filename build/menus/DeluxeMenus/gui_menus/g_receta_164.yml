@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha Doble Aurea'
+menu_title: '&f&#ffe9a8Hacha Doble Aurea'
 size: 54
 items:
   'resultado':
@@ -12,8 +12,12 @@ items:
     - '&7Daño: &c+11.935.764'
     - '&7Velocidad de ataque: &f1,05'
     - ''
-    - '&#5555FFSangrado I, Hendidura I, Ejecución I'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
     - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 8'
     - ''
@@ -35,8 +39,12 @@ items:
     - '&7Daño: &c+2.355.239'
     - '&7Velocidad de ataque: &f1'
     - ''
-    - '&#5555FFSangrado I, Hendidura I, Ejecución I'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
     - '&#5555FFRobo de vida II'
+    - '&a15%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 7'
     - ''

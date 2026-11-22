@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Motosierras (Tala)'
+menu_title: '&f&#ffe9a8Motosierras (Tala)'
 size: 54
 items:
   'c0':
@@ -163,7 +163,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] guia_astral'
+    - '[openguimenu] guia_astral_2'
   'indice':
     material: PAPER
     slot: 49

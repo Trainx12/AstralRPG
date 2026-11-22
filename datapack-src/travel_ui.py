@@ -31,10 +31,10 @@ VANILLA=['item/coal','item/copper_ingot','item/iron_ingot','item/gold_ingot','it
          'block/coal_ore','block/copper_ore','block/iron_ore','block/gold_ore','block/emerald_ore','block/diamond_ore','block/ancient_debris_side',
          'block/coal_block','block/copper_block','block/iron_block','block/gold_block','block/emerald_block','block/diamond_block','block/netherite_block']
 FRAME_COLORS={'open':'#71e07a','next':'#f2c94c','locked':'#656171'}
-USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,48,50,51,52,53,NEXT_SLOT},  # 48 juegos, 50 arenas
+USED={'portales':set(sum(CARD_SLOTS.values(),[]))|{45,46,47,51,52,53,NEXT_SLOT},  # 23/11: sin Mini juegos ni Arenas (tienen su boton)
       'arenas':set(sum(ARENA_SLOTS.values(),[]))|{45,46,47,51,52,53},
       'minas':{4,9,18,27,45,49,53,NEXT_SLOT,*range(10,16),*range(19,26),*range(28,35)},'minas-venta':set(SALE_SLOTS)|{35}|set(SALE_STRIP),
-      'portales2':set(sum(PAGE2_SLOTS['portales2'].values(),[]))|{45,46,47,48,50,51,52,53,BACK_SLOT},
+      'portales2':set(sum(PAGE2_SLOTS['portales2'].values(),[]))|{45,46,47,51,52,53,BACK_SLOT},
       'minas2':set(sum(PAGE2_SLOTS['minas2'].values(),[]))|{49,53,BACK_SLOT}}
 GRID_Y=57
 
@@ -149,8 +149,6 @@ def panel(kind):
         text(im,'Lobby',(67,152),color='#fff0cd')
         im.alpha_composite(button('',54,'#683c36'),(139,147))
         im.alpha_composite(icon('cerrar'),(158,148))
-        if kind=='portales':   # casillas chicas 48 y 50: Mini juegos y Arenas (items reales encima); el Oceano paso a la pagina 2
-            page_buttons(im)
     elif kind in PAGE2:
         for i,(key,a,b,cols) in enumerate(PAGE2[kind]):
             x=31+cols[0]*18
@@ -160,7 +158,6 @@ def panel(kind):
         if kind=='portales2':
             im.alpha_composite(button('',54,'#60432b'),(31,147));text(im,'Lobby',(67,152),color='#fff0cd')
             im.alpha_composite(button('',54,'#683c36'),(139,147));im.alpha_composite(icon('cerrar'),(158,148))
-            page_buttons(im)
         else:
             for slot in (49,53):
                 x,y=31+slot%9*18,GRID_Y+slot//9*18

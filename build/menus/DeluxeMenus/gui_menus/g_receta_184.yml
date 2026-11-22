@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guadana de Piedra Antigua'
+menu_title: '&f&#ffe9a8Guadana de Piedra Antigua'
 size: 54
 items:
   'resultado':
@@ -8,18 +8,20 @@ items:
     display_name: '&bGuadana de Piedra Antigua'
     item_model: 'astral:guadana_8'
     lore:
-    - '&7Guadana de Mago VIII'
+    - '&7Guadana del Segador VIII'
     - '&7Daño: &c+7.595.486'
     - '&7Velocidad de ataque: &f1,3'
     - ''
-    - '&#5555FFRobo de vida III, Maldición I, Cono I'
-    - '&#5555FFEjecución Astral I, Filo Arcano VIII'
+    - '&#5555FFRobo de vida III, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano VIII'
     - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Matar mobs reinicia el enfriamiento de hechizos'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 8'
     - ''
-    - '&cRequiere: Hechiceria 47'
+    - '&cRequiere: Combate 47'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GUADAÑA'
     item_flags:
@@ -33,18 +35,20 @@ items:
     display_name: '&f1x Guadana Osaria'
     item_model: 'astral:guadana_7'
     lore:
-    - '&7Guadana de Mago VII'
+    - '&7Guadana del Segador VII'
     - '&7Daño: &c+1.493.566'
     - '&7Velocidad de ataque: &f1,3'
     - ''
-    - '&#5555FFRobo de vida III, Maldición I, Cono I'
-    - '&#5555FFEjecución Astral I, Filo Arcano VII'
+    - '&#5555FFRobo de vida III, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano VII'
     - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
     - '&7Matar mobs reinicia el enfriamiento de hechizos'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Hechiceria 42'
+    - '&cRequiere: Combate 42'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GUADAÑA'
     item_flags:
@@ -163,7 +167,7 @@ items:
     - HIDE_DYE
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] g_guia_mago_guadana'
+    - '[openguimenu] g_guia_segador_arma'
   'cerrar':
     material: PAPER
     slot: 53

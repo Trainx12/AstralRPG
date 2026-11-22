@@ -259,6 +259,7 @@ def script(minutos=MINUTOS_FIN):
           '        delete {-maz.aviso::%{_mundo::%{_elegida}%}%}',
           '        # Puntaje (mazmorras_puntaje.py): el reloj y las muertes empiezan con la party nueva.',
           '        execute console command "mazpuntaje inicio %{_mundo::%{_elegida}%}%"',
+          '        execute console command "astralpartyinternal fresh %{_mundo::%{_elegida}%}%"',
           *[f'        if {{_key}} is "{key}":\n            execute console command "execute in minecraft:%{{_d}}% run function astral:tanda2/{key}/fresh"' for key in ('mina','bosque','tumba','cumbre','forja')],
           *limpiar('%{_d}%', '        '),
           '    delete {-maz.vacia::%{_mundo::%{_elegida}%}%}',
@@ -288,7 +289,6 @@ def script(minutos=MINUTOS_FIN):
           '                world of loop-player is {_w}',
           f'                send "&6Ganaron! &fTienen {MINUTOS_FIN} minutos para abrir el cofre. Despues vuelven al spawn." to loop-player',
           # 15/11/2026: el cartel grande de la Fosa ("Fosa conquistada") en todas las mazmorras.
-          '                send title "&b%maz_nombre(arg-1)% conquistada" with subtitle "&7Derrotaron al jefe: el cofre los espera" to loop-player for 5 seconds',
           '                play sound "ui.toast.challenge_complete" with volume 1 to loop-player',
           '',
           'function maz_nombre(w: text) :: text:',

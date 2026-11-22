@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Guia AstralRPG'
+menu_title: '&f&#ffe9a8Guia AstralRPG'
 size: 54
 items:
   'c0':
@@ -93,6 +93,21 @@ items:
     material: BOOK
     slot: 7
     amount: 1
+    display_name: '&bDatapacks'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_datapacks'
+  'c7':
+    material: BOOK
+    slot: 10
+    amount: 1
     display_name: '&bMisiones e historia'
     item_model: 'astral:menu/icon_guia'
     lore:
@@ -104,9 +119,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[player] trigger aq.journal'
-  'c7':
+  'c8':
     material: PAPER
-    slot: 10
+    slot: 11
     amount: 1
     display_name: '&bMateriales'
     item_model: 'astral:netherita_reforzada'
@@ -121,9 +136,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_materiales'
-  'c8':
+  'c9':
     material: CHAINMAIL_HELMET
-    slot: 11
+    slot: 12
     amount: 1
     display_name: '&bBerserker'
     item_model: 'astral:berserker_1_helmet'
@@ -136,9 +151,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_berserker'
-  'c9':
+  'c10':
     material: LEATHER_HELMET
-    slot: 12
+    slot: 13
     amount: 1
     display_name: '&bMago'
     item_model: 'astral:mago_1_helmet'
@@ -151,9 +166,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_mago'
-  'c10':
+  'c11':
     material: LEATHER_HELMET
-    slot: 13
+    slot: 14
     amount: 1
     display_name: '&bArquero'
     item_model: 'astral:arquero_1_helmet'
@@ -166,9 +181,54 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_arquero'
-  'c11':
+  'c12':
+    material: IRON_HELMET
+    slot: 15
+    amount: 1
+    display_name: '&bSegador'
+    item_model: 'astral:segador_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador'
+  'c13':
+    material: IRON_HELMET
+    slot: 16
+    amount: 1
+    display_name: '&bInvocador'
+    item_model: 'astral:invocador_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_invocador'
+  'c14':
+    material: IRON_HELMET
+    slot: 19
+    amount: 1
+    display_name: '&bAsesino'
+    item_model: 'astral:asesino_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_asesino'
+  'c15':
     material: IRON_SPEAR
-    slot: 14
+    slot: 20
     amount: 1
     display_name: '&bLanzas'
     item_model: 'astral:lanza_1'
@@ -181,9 +241,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_lanzas'
-  'c12':
+  'c16':
     material: PAPER
-    slot: 15
+    slot: 21
     amount: 1
     display_name: '&bTalismanes'
     item_model: 'astral:talisman_vida_1'
@@ -198,9 +258,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_talismanes'
-  'c13':
+  'c17':
     material: CARROT_ON_A_STICK
-    slot: 16
+    slot: 22
     amount: 1
     display_name: '&bEspeciales'
     item_model: 'astral:saltador'
@@ -213,9 +273,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_especiales'
-  'c14':
+  'c18':
     material: NETHERITE_PICKAXE
-    slot: 19
+    slot: 23
     amount: 1
     display_name: '&bTaladros'
     item_model: 'astral:taladro_diamante'
@@ -228,9 +288,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_taladros'
-  'c15':
+  'c19':
     material: NETHERITE_AXE
-    slot: 20
+    slot: 24
     amount: 1
     display_name: '&bMotosierras'
     item_model: 'astral:motosierra_basica'
@@ -243,9 +303,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_motosierras'
-  'c16':
+  'c20':
     material: DIAMOND_SWORD
-    slot: 21
+    slot: 25
     amount: 1
     display_name: '&bCarnivora III'
     item_model: 'astral:carnivora_espada'
@@ -258,9 +318,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_carnivora'
-  'c17':
+  'c21':
     material: DIAMOND_SWORD
-    slot: 22
+    slot: 29
     amount: 1
     display_name: '&bAsura IV'
     item_model: 'astral:asura_espada'
@@ -273,9 +333,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_asura'
-  'c18':
+  'c22':
     material: DIAMOND_SWORD
-    slot: 23
+    slot: 30
     amount: 1
     display_name: '&bAgua III'
     item_model: 'astral:agua_espada'
@@ -288,9 +348,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_agua'
-  'c19':
+  'c23':
     material: IRON_HELMET
-    slot: 24
+    slot: 31
     amount: 1
     display_name: '&bMinero y Talador'
     item_model: 'astral:minero_helmet'
@@ -303,9 +363,9 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_oficios'
-  'c20':
+  'c24':
     material: BOOK
-    slot: 25
+    slot: 32
     amount: 1
     display_name: '&b18 mascotas'
     item_model: 'astral:menu/icon_guia'

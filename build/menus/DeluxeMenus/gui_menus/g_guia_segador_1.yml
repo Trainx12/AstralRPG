@@ -1,0 +1,195 @@
+menu_title: '&f&#ffe9a8Segador: armadura I'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: IRON_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&fCapucha del Picaro'
+    item_model: 'astral:segador_1_helmet'
+    lore:
+    - '&7Segador I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+1,25%'
+    - '&7Defensa: &a+8'
+    - ''
+    - '&a+5%&7 dano con guadana'
+    - '&a+0,25&7 bloques de barrido'
+    - '&a+10%&7 dano del tajo en area'
+    - '&a+0%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Defensa 6'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_277'
+  'c2':
+    material: IRON_CHESTPLATE
+    slot: 4
+    amount: 1
+    display_name: '&fManto del Picaro'
+    item_model: 'astral:segador_1_chestplate'
+    lore:
+    - '&7Segador I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+1,25%'
+    - '&7Defensa: &a+20'
+    - ''
+    - '&a+5%&7 dano con guadana'
+    - '&a+0,25&7 bloques de barrido'
+    - '&a+10%&7 dano del tajo en area'
+    - '&a+0%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f3.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Defensa 6'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_278'
+  'c3':
+    material: IRON_LEGGINGS
+    slot: 5
+    amount: 1
+    display_name: '&fFaldar del Picaro'
+    item_model: 'astral:segador_1_leggings'
+    lore:
+    - '&7Segador I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+1,25%'
+    - '&7Defensa: &a+15'
+    - ''
+    - '&a+5%&7 dano con guadana'
+    - '&a+0,25&7 bloques de barrido'
+    - '&a+10%&7 dano del tajo en area'
+    - '&a+0%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f2.850'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Defensa 6'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_279'
+  'c4':
+    material: IRON_BOOTS
+    slot: 6
+    amount: 1
+    display_name: '&fBotas del Picaro'
+    item_model: 'astral:segador_1_boots'
+    lore:
+    - '&7Segador I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+1,25%'
+    - '&7Defensa: &a+8'
+    - ''
+    - '&a+5%&7 dano con guadana'
+    - '&a+0,25&7 bloques de barrido'
+    - '&a+10%&7 dano del tajo en area'
+    - '&a+0%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f2.550'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Defensa 6'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_280'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

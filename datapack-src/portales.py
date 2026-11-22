@@ -87,10 +87,7 @@ def menu_data():
     items['siguiente']={'material':'ARROW','slot':NEXT_SLOT,'display_name':'&e&lSiguiente pagina',
                         'item_model':'astral:viajes/blank','lore':['&7Oceano Astral y la Mazmorra del End.','','&eClic para pasar.'],
                         'click_commands':['[sound] UI_BUTTON_CLICK','[openguimenu] portales2']}
-    items['parkour']={'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
-                      'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
-    items['arenas']={'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
-                     'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
+    # 23/11: Mini juegos y Arenas PvP salieron de Portales (ya tienen su propio boton en /menu).
     return decorate({'menu_title': title('portales'), 'size': 54, 'items': items})
 
 
@@ -130,10 +127,7 @@ def menu_data2():
     for slot in (51, 52, 53):
         items['cerrar' if slot == 51 else f'cerrar_{slot}'] = {'material': 'BARRIER', 'slot': slot, 'display_name': '&cCerrar',
             'item_model': 'astral:viajes/blank', 'lore': ['&7Seguí explorando por tu cuenta.'], 'click_commands': ['[close]']}
-    items['parkour'] = {'material': 'FEATHER', 'slot': 48, 'display_name': '&d&lMini juegos',
-                        'lore': ['&7Parkour, droppers y Color Escape.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] parkour']}
-    items['arenas'] = {'material': 'IRON_SWORD', 'slot': 50, 'display_name': '&b&lArenas PvP',
-                       'lore': ['&7Elegí una arena para combatir.', '', '&eClic para elegir.'], 'click_commands': ['[openguimenu] arenas']}
+    # 23/11: Mini juegos y Arenas PvP salieron de Portales (ya tienen su propio boton en /menu).
     return decorate({'menu_title': title('portales2'), 'size': 54, 'items': items})
 
 

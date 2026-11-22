@@ -476,7 +476,8 @@ BACKGROUNDS = ['pagina0', 'pagina1', 'pagina2', 'pagina3', 'pagina4', 'general',
 
 
 def bg_chars(n):
-    return tuple(chr(0xf300 + n * 32 + i) for i in range(COLS * ROWS))
+    # 23/11: antes 0xF300+, que choca con ventanas_19_11 (0xF300/F301 y 0xF310+: Cavernas tapaba la pagina 1).
+    return tuple(chr(0xE200 + n * 32 + i) for i in range(COLS * ROWS))
 
 
 PAGE_CHARS = [bg_chars(n) for n in range(5)]
@@ -590,6 +591,9 @@ def pages(items):
     return [items[i:i + PER_PAGE] for i in range(0, len(items), PER_PAGE)]
 
 
+PAGINA_DE = {}
+
+
 def index_menus(data):
     groups = pages(entries(data))
     out = {}
@@ -603,6 +607,9 @@ def index_menus(data):
             cmds = ['[sound] UI_BUTTON_CLICK', entry['command']]
             icon = stack_item(entry['icon'])
             icon.update(name='&b' + entry['caption'], lore=['&7Clic para abrir'])
+            dest = entry['command'].split('[openguimenu] ', 1)[-1].strip()
+            if page > 0 and entry['command'].startswith('[openguimenu] '):
+                PAGINA_DE[dest] = menu_id(page)   # 23/11: Volver de una seccion vuelve a SU pagina del indice
             for k, slot in enumerate(button_slots(n)):
                 it = icon if k == 0 else dict(name=icon['name'], lore=icon['lore'], model='astral:viajes/blank')
                 lines += yaml_item(f'b{n}_{k}', slot, it, cmds)
@@ -835,14 +842,20 @@ def dialog_menus(data):
             raise ValueError(f'{key}: {len(content)} cosas no entran en una ventana')
         for n, ((it, cmds), slot) in enumerate(zip(content, slots)):
             lines += yaml_item(f'c{n}', slot, it, (['[sound] UI_BUTTON_CLICK'] + cmds) if cmds else ())
-        lines += nav_items(nav)
+        lines += nav_items(nav, name)
         out[name] = '\n'.join(lines) + '\n'
     return out
 
 
-def nav_items(nav):
+def volver_pagina(name, back):
+    if name in PAGINA_DE:
+        return [PAGINA_DE[name] and f'[openguimenu] {PAGINA_DE[name]}' if x.strip() == f'[openguimenu] {MENU}' else x for x in back]
+    return back
+
+
+def nav_items(nav, name=None):
     lines = []
-    back = nav.get('back', [f'[openguimenu] {MENU}'])
+    back = volver_pagina(name, nav.get('back', [f'[openguimenu] {MENU}']))
     lines += yaml_item('volver', 45, dict(name='&eVolver', model=NAV_MODELS['back']), ['[sound] UI_BUTTON_CLICK'] + back)
     if 'prev' in nav:
         lines += yaml_item('anterior', 47, dict(name='&eAnterior', model=NAV_MODELS['back']), ['[sound] UI_BUTTON_CLICK'] + nav['prev'])
@@ -875,7 +888,7 @@ def recipe_menu(name, caption, recipe, nav, cards):
                            ['[sound] UI_BUTTON_CLICK', '[close]'] + nav.get('forge', []))
     nav = {k: v for k, v in nav.items() if k != 'forge'}
     lines += yaml_item('volver', 45, dict(name='&eVolver', model=NAV_MODELS['back']),
-                       ['[sound] UI_BUTTON_CLICK'] + nav.get('back', [f'[openguimenu] {MENU}']))
+                       ['[sound] UI_BUTTON_CLICK'] + volver_pagina(name, nav.get('back', [f'[openguimenu] {MENU}'])))
     lines += yaml_item('cerrar', 53, dict(name='&cCerrar', model=NAV_MODELS['close']), ['[close]'])
     return '\n'.join(lines) + '\n'
 

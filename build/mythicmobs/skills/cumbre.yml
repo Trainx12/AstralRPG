@@ -123,7 +123,7 @@ TANDA2_cumbre_AST_FASE_astral_yeti_2_onda:
   - sound{s=entity.ravager.roar;v=1.5} @self
   - delay 20
   - particles{p=snowflake;amount=120;hS=6;vS=0.6;speed=0.1} @self
-  - damage{a=6} @PlayersInRadius{r=6}
+  - basedamage{multiplier=2} @PlayersInRadius{r=6}
 TANDA2_cumbre_AST_FASE_astral_yeti_3:
   Skills:
   - addtag{tag=astral.fase3} @self

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Lanza del Heroe Dorado'
+menu_title: '&f&#ffe9a8Lanza del Heroe Dorado'
 size: 54
 items:
   'resultado':
@@ -12,8 +12,12 @@ items:
     - '&7Daño: &c+35.156.250'
     - '&7Velocidad de ataque: &f1,1'
     - ''
-    - '&#5555FFRobo de vida III, Sangrado I, Hendidura I'
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
     - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 9'
     - ''
@@ -35,8 +39,12 @@ items:
     - '&7Daño: &c+7.031.250'
     - '&7Velocidad de ataque: &f1,1'
     - ''
-    - '&#5555FFRobo de vida III, Sangrado I, Hendidura I'
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
     - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 8'
     - ''

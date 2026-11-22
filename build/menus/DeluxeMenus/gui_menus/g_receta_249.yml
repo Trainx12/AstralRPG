@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Lanza Carnivora'
+menu_title: '&f&#ffe9a8Lanza Carnivora'
 size: 54
 items:
   'resultado':
@@ -14,8 +14,6 @@ items:
     - ''
     - '&#5555FFRobo de vida I'
     - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''

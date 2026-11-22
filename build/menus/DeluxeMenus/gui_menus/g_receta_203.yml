@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hacha del Sismo'
+menu_title: '&f&#ffe9a8Hacha del Sismo'
 size: 54
 items:
   'resultado':
@@ -20,7 +20,7 @@ items:
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#5555FF&lRARA HACHA'
     item_flags:

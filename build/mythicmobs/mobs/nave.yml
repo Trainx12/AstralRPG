@@ -121,7 +121,7 @@ astral_nave_timonel:
   Skills:
   - 'addtag{tag=astral.seen} @self ~onSpawn'
   - 'addtag{tag=astral.mt5} @self ~onSpawn'
-  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.5"} @self ~onSpawn'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 1.4"} @self ~onSpawn'
   - 'skill{s=NAVE_TIM_SALTO} @PlayersInRadius{r=30;sort=RANDOM;limit=1} ~onTimer:200'
   - 'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=30;sort=RANDOM;limit=1} ~onTimer:160'
 

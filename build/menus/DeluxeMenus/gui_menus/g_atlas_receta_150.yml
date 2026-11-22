@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Cuchillo del Nether'
+menu_title: '&f&#ffe9a8Cuchillo del Nether'
 size: 54
 items:
   'resultado':
@@ -8,11 +8,14 @@ items:
     display_name: '&5Cuchillo del Nether'
     item_model: 'astral:cuchillo_4'
     lore:
-    - '&7Cuchillo de Combate IV'
+    - '&7Cuchillo de Asesino IV'
     - '&7Daño: &c+6.625'
     - '&7Velocidad de ataque: &f3'
     - ''
     - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 4'
     - ''
@@ -30,11 +33,14 @@ items:
     display_name: '&f1x Cuchillo de Zafiro'
     item_model: 'astral:cuchillo_3'
     lore:
-    - '&7Cuchillo de Combate III'
+    - '&7Cuchillo de Asesino III'
     - '&7Daño: &c+1.325'
     - '&7Velocidad de ataque: &f3'
     - ''
     - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''

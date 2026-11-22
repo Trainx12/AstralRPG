@@ -68,13 +68,18 @@ def defensa_pieza(tier, piece, def_pct=0, extra=0):
 
 
 # Golpe de un mob comun (un zombi) de cada tier, antes de la defensa. Golpes para matar a un jugador
-# del mismo tier con el set completo: T1 8, T2 9, T3 10, T4 19, T5 48. Un T5 mata a un T3 en 3 golpes.
-# T6-T10: ~40 golpes a un jugador del mismo tier con set completo.
-DANO_GOLPE = {1: 55, 2: 120, 3: 300, 4: 700, 5: 1000, 6: 2800, 7: 5600, 8: 11000, 9: 22000, 10: 40000}
+# del mismo tier con el set completo: T1 8, T2 9 y ~10 desde T3 (23/11, dueno: en la Cumbre T4 hacian
+# falta 19 golpes y en el End un enderman T5 casi no lastimaba; antes T4 19, T5 48, T6-T10 ~40).
+# T4+: ~12 golpes de zombi (VIDA_SET x (DEFENSA_SET + 100) / 100 / 12); los mobs de MythicMobs (Damage 3-8) en 3-6.
+DANO_GOLPE = {1: 55, 2: 120, 3: 300, 4: 1100, 5: 4000, 6: 9400, 7: 18750, 8: 36700, 9: 73000, 10: 133000}
+# Jefes de mazmorra (MythicMobs sin tier): conservan la escala anterior; su Damage ya esta pensado para ella
+# (Capitan 30, Golem del Santuario 41). Con DANO_GOLPE mataban de un golpe a un jugador T5.
+DANO_GOLPE_JEFE = {1: 55, 2: 120, 3: 300, 4: 700, 5: 1000, 6: 2800, 7: 5600, 8: 11000, 9: 22000, 10: 40000}
 # Golpe de un zombi en dificultad facil (la del server); el resto de los mobs escala igual.
 GOLPE_VANILLA = 2.5
 # Multiplicador del dano de los mobs con tier (lo aplica astral_gameplay.sk a golpes, flechas y explosiones).
 DANO_MOB = {0: 1.0, **{t: round(DANO_GOLPE[t] / GOLPE_VANILLA, 3) for t in DANO_GOLPE}}
+DANO_JEFE = {0: 1.0, **{t: round(DANO_GOLPE_JEFE[t] / GOLPE_VANILLA, 3) for t in DANO_GOLPE_JEFE}}
 # Caidas, lava, ahogo, mobs sin tier y PvP: se multiplican por (vida maxima / 20), asi pegan lo mismo
 # en proporcion que en Minecraft normal. La regeneracion natural y las pociones tambien.
 # Los numeros ya son reales: lo que se ve es lo real.

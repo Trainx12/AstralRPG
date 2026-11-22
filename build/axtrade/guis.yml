@@ -1,0 +1,94 @@
+# Generado (23/11): ventana_trade.py (fondo Gemini) + botones trade_*. Base: config del server.
+title: '&f&#3b2412Vos&#3b2412%player%'
+rows: 6
+own-slots:
+- 9-12
+- 18-21
+- 27-30
+- 36-39
+- 45-48
+partner-slots:
+- 14-17
+- 23-26
+- 32-35
+- 41-44
+- 50-53
+own:
+  confirm-item:
+    slot: 0
+    accept:
+      material: PAPER
+      name: '&#00ffdd&lCONFIRMAR INTERCAMBIO'
+      lore:
+      - ''
+      - ' &7- &fRevisa ambos lados antes de confirmar.'
+      - ''
+      - '&#00ffdd&l> &#00ffddClick &8- &#00ffddConfirmar intercambio'
+      item-model: astral:ventanas1911/trade_confirmar
+    cancel:
+      material: PAPER
+      name: '&#00ffdd&lCANCELAR CONFIRMACION'
+      lore:
+      - ''
+      - ' &7- &fRetira tu confirmacion para cambiar la oferta.'
+      - ''
+      - '&#00ffdd&l> &#00ffddClick &8- &#00ffddRetirar confirmacion'
+      item-model: astral:ventanas1911/trade_listo
+  currency1:
+    slot: 3
+    currency: Vault
+    material: PAPER
+    name: '&#00ffdd&lORO'
+    lore:
+    - '&7Tu oferta'
+    - ''
+    - ' &7- &fCantidad: &#00ffdd%amount%$'
+    - ''
+    - '&#00ffdd&l> &#00ffddClick &8- &#00ffddCambiar cantidad'
+    item-model: astral:ventanas1911/trade_oro
+partner:
+  confirm-item:
+    slot: 8
+    accept:
+      material: PAPER
+      name: '&#00ffdd&lESPERANDO AL OTRO JUGADOR'
+      lore:
+      - ''
+      - ' &7- &f%partner-name% todavia no confirmo.'
+      - ''
+      item-model: astral:ventanas1911/trade_esperando
+    cancel:
+      material: PAPER
+      name: '&#00ffdd&lCONFIRMADO'
+      lore:
+      - ''
+      - ' &7- &f%partner-name% ya confirmo.'
+      item-model: astral:ventanas1911/trade_listo
+  currency1:
+    slot: 5
+    currency: Vault
+    material: PAPER
+    name: '&#00ffdd&lORO'
+    lore:
+    - '&7Oferta de %partner-name%'
+    - ''
+    - ' &7- &fCantidad: &#00ffdd%amount%$'
+    - ''
+    - '&#00ffdd&l> &#00ffddClick &8- &#00ffddCambiar cantidad'
+    item-model: astral:ventanas1911/trade_oro
+version: 1
+decoracion:
+  slot:
+  - 1
+  - 2
+  - 4
+  - 6
+  - 7
+  - 13
+  - 22
+  - 31
+  - 40
+  - 49
+  material: PAPER
+  item-model: astral:viajes/blank
+  name: ' '

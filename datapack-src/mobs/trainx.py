@@ -35,9 +35,9 @@ VIDA_FACTOR = 4 * 1.0 * 1.3
 # 36 -> ~30 %, 28 -> ~23 %, 13 -> ~11 % (antes de su defensa). El Golem del Santuario pega 41.
 DANO_ESPADA = 36          # golpe cuerpo a cuerpo
 DANO_TAJO = 28            # cada tajo del combo y la embestida
-DANO_BARRIDO = 30         # barrido circular con aviso
-DANO_RAYO = 13            # proyectil del baston
-DANO_ESTRELLA = 15        # cada estrella de la lluvia
+DANO_BARRIDO = 72         # barrido circular con aviso
+DANO_RAYO = 45            # proyectil del baston
+DANO_ESTRELLA = 30        # cada estrella de la lluvia
 DISTANCIA_CERCA = 6       # bloques: de cerca espada, de lejos baston
 JUGADORES_PENSADOS = 4
 VELOCIDAD = 0.31

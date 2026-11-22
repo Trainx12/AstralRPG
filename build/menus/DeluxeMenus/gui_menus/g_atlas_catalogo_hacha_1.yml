@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Hachas 1/2'
+menu_title: '&f&#ffe9a8Hachas 1/2'
 size: 54
 items:
   'c0':
@@ -64,9 +64,6 @@ items:
     - '&7Hacha Berserker III'
     - '&7Daño: &c+3.600'
     - '&7Velocidad de ataque: &f1'
-    - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 3'
     - ''
@@ -93,8 +90,6 @@ items:
     - '&7Daño: &c+18.452'
     - '&7Velocidad de ataque: &f1'
     - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&#5555FFHendidura I'
     - '&7También golpea a los enemigos a &a2,5&7 bloques.'
     - '&7Durabilidad: &f7.201'
@@ -123,8 +118,6 @@ items:
     - '&7Daño: &c+91.146'
     - '&7Velocidad de ataque: &f1'
     - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&#5555FFHendidura I'
     - '&7También golpea a los enemigos a &a2,5&7 bloques.'
     - '&#5555FFEjecución I'
@@ -155,8 +148,6 @@ items:
     - '&7Daño: &c+463.867'
     - '&7Velocidad de ataque: &f1'
     - ''
-    - '&#5555FFSangrado I'
-    - '&a10%&7 de causar sangrado: &a5&7 golpes de daño extra.'
     - '&#5555FFHendidura I'
     - '&7También golpea a los enemigos a &a2,5&7 bloques.'
     - '&#5555FFEjecución I'

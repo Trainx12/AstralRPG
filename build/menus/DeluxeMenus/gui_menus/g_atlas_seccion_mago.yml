@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Mago'
+menu_title: '&f&#ffe9a8Mago'
 size: 54
 items:
   'ilustracion':
@@ -124,7 +124,7 @@ items:
     - '[openguimenu] g_guia_mago_6'
   'c7':
     material: LEATHER_HELMET
-    slot: 28
+    slot: 29
     amount: 1
     display_name: '&bArmadura VII - Escarlata'
     item_model: 'astral:mago_7_helmet'
@@ -141,7 +141,7 @@ items:
     - '[openguimenu] g_guia_mago_7'
   'c8':
     material: LEATHER_HELMET
-    slot: 29
+    slot: 30
     amount: 1
     display_name: '&bArmadura VIII - de la Escarcha'
     item_model: 'astral:mago_8_helmet'
@@ -158,7 +158,7 @@ items:
     - '[openguimenu] g_guia_mago_8'
   'c9':
     material: LEATHER_HELMET
-    slot: 30
+    slot: 31
     amount: 1
     display_name: '&bArmadura IX - de la Nebulosa'
     item_model: 'astral:mago_9_helmet'
@@ -175,7 +175,7 @@ items:
     - '[openguimenu] g_guia_mago_9'
   'c10':
     material: LEATHER_HELMET
-    slot: 31
+    slot: 32
     amount: 1
     display_name: '&bArmadura X - de la Absolucion'
     item_model: 'astral:mago_10_helmet'
@@ -192,7 +192,7 @@ items:
     - '[openguimenu] g_guia_mago_10'
   'c11':
     material: CARROT_ON_A_STICK
-    slot: 32
+    slot: 33
     amount: 1
     display_name: '&bBastones'
     item_model: 'astral:baston_1'
@@ -205,21 +205,6 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_mago_baston'
-  'c12':
-    material: IRON_HOE
-    slot: 33
-    amount: 1
-    display_name: '&bGuadanas'
-    item_model: 'astral:guadana_1'
-    lore:
-    - '&7Clic para abrir'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    - HIDE_ENCHANTS
-    - HIDE_DYE
-    click_commands:
-    - '[sound] UI_BUTTON_CLICK'
-    - '[openguimenu] g_guia_mago_guadana'
   'volver':
     material: PAPER
     slot: 45
