@@ -92,8 +92,9 @@ def datos():
     for key, nombre, tier, _ in mazmorras():
         frag = PREMIOS[key][0]
         L += [f'    set {{-pz.cofre::{key}::nombre}} to "{nombre}"', f'    set {{-pz.cofre::{key}::tier}} to {tier}',
-              f'    set {{-pz.cofre::{key}::mult}} to {E.ruleta_mult(key, tier)}',
-              f'    set {{-pz.cofre::{key}::perm}} to "{permiso(frag)}"', f'    set {{-pz.cofre::{key}::frag}} to "{NOMBRE[frag]}"']
+              f'    set {{-pz.cofre::{key}::mult}} to {E.ruleta_mult(key, tier)}']
+        if frag:   # la Nave del Vacio no da fragmento
+            L += [f'    set {{-pz.cofre::{key}::perm}} to "{permiso(frag)}"', f'    set {{-pz.cofre::{key}::frag}} to "{NOMBRE[frag]}"']
     return L
 
 
@@ -128,10 +129,11 @@ function pz_cofre(p: player, key: text, n: number):
     set {_maz} to {-pz.cofre::%{_key}%::nombre}
     set {_t} to {-pz.cofre::%{_key}%::tier}
     set {_perm} to {-pz.cofre::%{_key}%::perm}
-    if {_p} does not have permission {_perm}:
-        execute console command "lp user %name of {_p}% permission set %{_perm}% true"
-        send "&b&lNuevo fragmento: &f%{-pz.cofre::%{_key}%::frag}%&7. Quedo guardado en &f/fragmentos&7." to {_p}
-        play sound "ui.toast.challenge_complete" to {_p}
+    if {_perm} is set:
+        if {_p} does not have permission {_perm}:
+            execute console command "lp user %name of {_p}% permission set %{_perm}% true"
+            send "&b&lNuevo fragmento: &f%{-pz.cofre::%{_key}%::frag}%&7. Quedo guardado en &f/fragmentos&7." to {_p}
+            play sound "ui.toast.challenge_complete" to {_p}
     set {_mult} to {-pz.cofre::%{_key}%::mult}
     set {_lo} to {@min} * {_mult}
     set {_hi} to {-pz.ruleta::%{_n}%::max} * {_mult}

@@ -33,6 +33,9 @@ def dungeons():
     # Fosa del Crustaceo (oceano_fosa.py): 3 copias, entrada escondida en el Oceano Astral (no esta en /mazmorras).
     import oceano_fosa
     out.append(dict(key='fosa', name=oceano_fosa.NOMBRE, dims=list(oceano_fosa.WORLDS), arrival=oceano_fosa.LLEGADA))
+    # Nave del Vacio (nave.py): 3 copias; la vista desde afuera y las salas las maneja AstralNave.
+    import nave
+    out.append(dict(key='nave', name=nave.NOMBRE, dims=list(nave.WORLDS), arrival=nave.llegada()))
     return out
 
 

@@ -1,0 +1,189 @@
+# Generado por nave.py: Nave del Vacio (tier 5).
+astral_nave_capitan:
+  Type: ZOMBIE
+  Display: '&5&lCapitan del Vacio'
+  Health: 19687500
+  Damage: 30
+  Options:
+    Glowing: true
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    Silent: true
+    Despawn: false
+    MovementSpeed: 0.27
+    KnockbackResistance: 1
+    FollowRange: 48
+    PreventRandomEquipment: true
+    Baby: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&5✦ Tier V ✦ &d&lCapitan del Vacio'
+    Range: 64
+    Color: PURPLE
+    Style: SEGMENTED_20
+  Drops:
+  - exp 500
+  Skills:
+  - 'skill{s=NAVE_CAP_MODELO} @self ~onSpawn'
+  - 'skill{s=NAVE_CAP_MODELO} @self ~onLoad'
+  - 'skill{s=NAVE_CAP_APARECE} @self ~onSpawn'
+  - 'state{s=attack} @self ~onAttack'
+  - 'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=40;sort=RANDOM;limit=1} ~onTimer:120'
+  - 'skill{s=NAVE_CAP_SALTO} @PlayersInRadius{r=40;sort=RANDOM;limit=1} ~onTimer:260'
+  - 'skill{s=NAVE_CAP_FASE2} @self ~onDamaged ?healthpercent{p=<0.7} ?!hastag{tag=nave.f2}'
+  - 'skill{s=NAVE_CAP_FASE3} @self ~onDamaged ?healthpercent{p=<0.4} ?!hastag{tag=nave.f3}'
+  - 'skill{s=NAVE_CAP_CRIAS} @self ~onTimer:400 ?hastag{tag=nave.f2}'
+  - 'skill{s=NAVE_CAP_PULSO} @self ~onTimer:220 ?hastag{tag=nave.f3} ?playerwithin{d=40}'
+  - 'skill{s=NAVE_CAP_ZONAS} @PlayersInRadius{r=40} ~onTimer:160 ?hastag{tag=nave.f3}'
+  - 'skill{s=NAVE_CAP_RESET} @self ~onTimer:600 ?!playerwithin{d=48}'
+  - 'teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=48}'
+  - 'skill{s=NAVE_CAP_MUERE} @self ~onDeath'
+
+astral_nave_ojo:
+  Type: VEX
+  Display: '&a&lOjo Vigia'
+  Health: 590625
+  Damage: 0
+  Options:
+    Glowing: true
+    Silent: true
+    Despawn: false
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    MovementSpeed: 0.2
+    KnockbackResistance: 1
+  AIGoalSelectors:
+  - clear
+  - lookatplayers
+  Skills:
+  - 'model{m=astral_ojo_vigia;s=2} @self ~onSpawn'
+  - 'model{m=astral_ojo_vigia;s=2} @self ~onLoad'
+  - 'addtag{tag=astral.seen} @self ~onSpawn'
+  - 'addtag{tag=nave.ojo} @self ~onSpawn'
+  - 'addtag{tag=astral.mt5} @self ~onSpawn'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2"} @self ~onSpawn'
+  - 'skill{s=NAVE_OJO_RAYO} @PlayersInRadius{r=32;sort=RANDOM;limit=1} ~onTimer:70'
+  - 'skill{s=NAVE_OJO_MUERE} @self ~onDeath'
+
+astral_nave_cria:
+  Type: ENDERMITE
+  Display: '&dCria del Vacio'
+  Health: 20
+  Damage: 4
+  Options:
+    Glowing: true
+    Despawn: false
+    MovementSpeed: 0.32
+    PreventOtherDrops: true
+  Skills:
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.2"} @self ~onSpawn'
+  - 'particles{p=portal;amount=6;hS=0.4;vS=0.3} @self ~onTimer:20'
+
+astral_nave_timonel:
+  Type: ENDERMAN
+  Display: '&d&lTimonel del Vacio'
+  Health: 4725000
+  Damage: 22
+  Options:
+    Glowing: true
+    Despawn: false
+    PreventTeleport: true
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    PreventBlockPickup: true
+    MovementSpeed: 0.3
+    KnockbackResistance: 1
+    FollowRange: 40
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
+  BossBar:
+    Enabled: true
+    Title: '&5✦ Tier V ✦ &d&lTimonel del Vacio'
+    Range: 48
+    Color: PINK
+    Style: SEGMENTED_10
+  Skills:
+  - 'addtag{tag=astral.seen} @self ~onSpawn'
+  - 'addtag{tag=astral.mt5} @self ~onSpawn'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.5"} @self ~onSpawn'
+  - 'skill{s=NAVE_TIM_SALTO} @PlayersInRadius{r=30;sort=RANDOM;limit=1} ~onTimer:200'
+  - 'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=30;sort=RANDOM;limit=1} ~onTimer:160'
+
+astral_nave_zona:
+  Type: ARMOR_STAND
+  Display: 'Vacio'
+  Health: 1
+  Options:
+    Invisible: true
+    Marker: true
+    Invincible: true
+    NoGravity: true
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    AlwaysShowName: false
+  Skills:
+  - 'skill{s=NAVE_ZONA} @self ~onSpawn'
+
+
+astral_nave_cofre:
+  Type: SHEEP
+  Display: '&6&lCofre de la Nave del Vacio &7(clic)'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+  Skills:
+  - addtag{tag=nave.premio} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - model{m=astral_cofre_rpg} @self ~onSpawn
+  - model{m=astral_cofre_rpg} @self ~onLoad
+  - state{s=open} @self ~onInteract
+  - command{c="dm open cofre_nave <trigger.name>"} @self ~onInteract
+astral_nave_guia:
+  Type: VILLAGER
+  Display: '&b&lExpediciones Astrales &7- elegir destino'
+  Health: 100
+  Options:
+    NoAI: true
+    Invincible: true
+    Silent: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    AlwaysShowName: true
+    Profession: CARTOGRAPHER
+    VillagerType: PLAINS
+  Skills:
+  - addtag{tag=nave.premio} @self ~onSpawn
+  - addtag{tag=astral.seen} @self ~onSpawn
+  - cancelevent @self ~onInteract
+  - skill{s=AST_NPC_mago} @self ~onSpawn
+  - skill{s=AST_NPC_mago} @self ~onLoad
+  - state{s=saludo} @self ~onInteract
+  - command{c="dm open expediciones <trigger.name>"} @self ~onInteract

@@ -1,0 +1,390 @@
+{
+  "menu_title": "&f",
+  "size": 54,
+  "update_interval": 1,
+  "items": {
+    "plata": {
+      "material": "GOLD_INGOT",
+      "slot": 21,
+      "display_name": "&e&lRuleta de plata",
+      "lore": [
+        "&7Al reclamar gira una ruleta invisible:",
+        "&7Nota &6&lS&7: &e80.000$ &7a &e20.000.000$",
+        "&7Nota &d&lA&7: &e80.000$ &7a &e10.000.000$",
+        "&7Nota &a&lB&7: &e80.000$ &7a &e6.000.000$",
+        "&7Nota &b&lC&7: &e80.000$ &7a &e3.200.000$",
+        "&7Nota &9&lD&7: &e80.000$ &7a &e1.200.000$",
+        "&7Nota &c&lF&7: &e80.000$ &7a &e200.000$",
+        "&8Siempre puede tocar poco;",
+        "&8con mejor nota es mas facil lo alto."
+      ],
+      "item_model": "astral:boton_plata"
+    },
+    "astral": {
+      "material": "PAPER",
+      "item_model": "astral:chispa_astral",
+      "slot": 23,
+      "amount": 2,
+      "display_name": "&d&lPremios del cofre",
+      "lore": [
+        "&7Tiradas segun la nota: &fS 3, A 3, B 2, C 2, D 1, F 1",
+        "&7Materiales Astral del tier, frascos,",
+        "&7y objetos valiosos. Mejor nota = mas raros."
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "materiales": {
+      "material": "PAPER",
+      "item_model": "astral:alma_corrupta",
+      "slot": 25,
+      "display_name": "&6&lPremio especial",
+      "lore": [
+        "&7Solo con nota &a&lA&7 o &6&lS&7: muy rara vez,",
+        "&7una pieza de equipo de tier &f6&7.",
+        "&8(A 0.5% y S 1.5% por tirada)"
+      ],
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_F": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 6,
+      "display_name": "&c&lNota F",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "1"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_D": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 5,
+      "display_name": "&9&lNota D",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "2"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_C": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 4,
+      "display_name": "&b&lNota C",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "3"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_B": {
+      "material": "PAPER",
+      "slot": 13,
+      "priority": 3,
+      "display_name": "&a&lNota B",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "4"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_A": {
+      "material": "NETHER_STAR",
+      "slot": 13,
+      "priority": 2,
+      "display_name": "&d&lNota A",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "5"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_S": {
+      "material": "NETHER_STAR",
+      "slot": 13,
+      "priority": 1,
+      "display_name": "&6&lNota S",
+      "update": true,
+      "lore": [
+        "&7Tu nota en esta victoria.",
+        "&7Decide la plata y los premios."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "n": {
+            "type": "==",
+            "input": "%objective_score_{astral.nota}%",
+            "output": "6"
+          }
+        }
+      },
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "nota_ninguna": {
+      "material": "GRAY_DYE",
+      "slot": 13,
+      "priority": 9,
+      "display_name": "&7Sin nota pendiente",
+      "lore": [
+        "&7Gana la mazmorra para cobrar este cofre.",
+        "&8Cada victoria trae un cofre nuevo."
+      ]
+    },
+    "reclamar_ya_0": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Gira la ruleta y las tiradas de tu nota.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.nave.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] astralcofre %player_name% nave"
+      ],
+      "material": "PAPER",
+      "slot": 38,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_1": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Gira la ruleta y las tiradas de tu nota.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.nave.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] astralcofre %player_name% nave"
+      ],
+      "material": "PAPER",
+      "slot": 39,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_2": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Gira la ruleta y las tiradas de tu nota.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.nave.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] astralcofre %player_name% nave"
+      ],
+      "material": "PAPER",
+      "slot": 40,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_3": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Gira la ruleta y las tiradas de tu nota.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.nave.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] astralcofre %player_name% nave"
+      ],
+      "material": "PAPER",
+      "slot": 41,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "reclamar_ya_4": {
+      "display_name": "&a&lRECLAMAR",
+      "update": true,
+      "priority": 2,
+      "lore": [
+        "&7Gira la ruleta y las tiradas de tu nota.",
+        "&8Se puede cobrar cada 30 minutos."
+      ],
+      "click_requirement": {
+        "requirements": {
+          "libre": {
+            "type": "!has permission",
+            "permission": "astral.nave.cd"
+          }
+        },
+        "deny_commands": [
+          "[message] &7Ya cobraste este cofre hace poco. &8(se puede cobrar cada 30 minutos)",
+          "[sound] ENTITY_VILLAGER_NO"
+        ]
+      },
+      "click_commands": [
+        "[close]",
+        "[console] astralcofre %player_name% nave"
+      ],
+      "material": "PAPER",
+      "slot": 42,
+      "item_model": "astral:viajes/blank",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ]
+    },
+    "coleccion": {
+      "material": "PAPER",
+      "item_model": "astral:cofre/corazon",
+      "slot": 49,
+      "display_name": "&b&lFragmentos Astrales",
+      "lore": [
+        "&7Mira los fragmentos que ya guardaste."
+      ],
+      "click_commands": [
+        "[openguimenu] fragmentos"
+      ]
+    },
+    "lobby": {
+      "material": "NETHER_STAR",
+      "slot": 45,
+      "display_name": "&a&lVolver al lobby",
+      "lore": [
+        "&7Sales de la mazmorra."
+      ],
+      "click_commands": [
+        "[close]",
+        "[player] spawn"
+      ],
+      "item_model": "astral:menu/icon_spawn"
+    },
+    "cerrar": {
+      "material": "BARRIER",
+      "slot": 53,
+      "display_name": "&cCerrar",
+      "click_commands": [
+        "[close]"
+      ],
+      "item_model": "astral:menu/icon_close"
+    }
+  }
+}

@@ -130,6 +130,15 @@ function maz_entrar(p: player, key: text):
         set {_mundo::2} to "fosa_2"
         set {_dim::3} to "fosa_3"
         set {_mundo::3} to "fosa_3"
+    if {_key} is "nave":
+        set {_nombre} to "Nave del Vacio"
+        set {_tp} to "-38.5 80 -17.5 -10 0"
+        set {_dim::1} to "nave"
+        set {_mundo::1} to "nave"
+        set {_dim::2} to "nave_2"
+        set {_mundo::2} to "nave_2"
+        set {_dim::3} to "nave_3"
+        set {_mundo::3} to "nave_3"
     if {_nombre} is not set:
         stop
     # 1) Si un companero de party ya esta adentro, va a su copia.
@@ -236,6 +245,8 @@ function maz_nombre(w: text) :: text:
         return "Santuario Celestial"
     if {_w} is "fosa" or "fosa_2" or "fosa_3":
         return "Fosa del Crustaceo"
+    if {_w} is "nave" or "nave_2" or "nave_3":
+        return "Nave del Vacio"
     return "Mazmorra"
 
 
@@ -455,6 +466,24 @@ function maz_noche(reglas: boolean):
     if {_w} is set:
         if {_reglas} is true:
             execute console command "execute in minecraft:santuario_azeroth_6 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("nave")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:nave run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("nave_2")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:nave_2 run gamerule minecraft:advance_time false"
+        if time in {_w} is not 0:00:
+            set time in {_w} to 0:00
+    set {_w} to world("nave_3")
+    if {_w} is set:
+        if {_reglas} is true:
+            execute console command "execute in minecraft:nave_3 run gamerule minecraft:advance_time false"
         if time in {_w} is not 0:00:
             set time in {_w} to 0:00
     set {_w} to world("infinita")
@@ -1673,6 +1702,96 @@ every 5 seconds:
                 else if {_t} >= 7 minutes:
                     if {-maz.aviso::fosa_3} is not set:
                         set {-maz.aviso::fosa_3} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("nave")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::nave} is not set:
+                set {-maz.vacia::nave} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:nave run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:nave run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:nave run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:nave run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:nave run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
+            delete {-maz.fin::nave}
+            delete {-maz.aviso::nave}
+        else:
+            delete {-maz.vacia::nave}
+            if {-maz.fin::nave} is set:
+                set {_t} to difference between {-maz.fin::nave} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::nave}
+                    delete {-maz.aviso::nave}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::nave} is not set:
+                        set {-maz.aviso::nave} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("nave_2")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::nave_2} is not set:
+                set {-maz.vacia::nave_2} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:nave_2 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:nave_2 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:nave_2 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:nave_2 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:nave_2 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
+            delete {-maz.fin::nave_2}
+            delete {-maz.aviso::nave_2}
+        else:
+            delete {-maz.vacia::nave_2}
+            if {-maz.fin::nave_2} is set:
+                set {_t} to difference between {-maz.fin::nave_2} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::nave_2}
+                    delete {-maz.aviso::nave_2}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::nave_2} is not set:
+                        set {-maz.aviso::nave_2} to true
+                        loop all players:
+                            world of loop-player is {_w}
+                            send "&eQueda 1 minuto: despues volves al spawn." to loop-player
+    set {_w} to world("nave_3")
+    if {_w} is set:
+        if maz_jugadores({_w}) is 0:
+            if {-maz.vacia::nave_3} is not set:
+                set {-maz.vacia::nave_3} to now
+                # recien vacia: las salas siguen cargadas, se borra lo que quedo de la pelea
+                execute console command "execute in minecraft:nave_3 run minecraft:kill @e[type=minecraft:item,distance=0..]"
+                execute console command "execute in minecraft:nave_3 run minecraft:kill @e[type=minecraft:arrow,distance=0..]"
+                execute console command "execute in minecraft:nave_3 run minecraft:kill @e[type=minecraft:spectral_arrow,distance=0..]"
+                execute console command "execute in minecraft:nave_3 run minecraft:kill @e[type=minecraft:trident,distance=0..]"
+                execute console command "execute in minecraft:nave_3 run minecraft:kill @e[type=minecraft:experience_orb,distance=0..]"
+            delete {-maz.fin::nave_3}
+            delete {-maz.aviso::nave_3}
+        else:
+            delete {-maz.vacia::nave_3}
+            if {-maz.fin::nave_3} is set:
+                set {_t} to difference between {-maz.fin::nave_3} and now
+                if {_t} >= 8 minutes:
+                    loop all players:
+                        world of loop-player is {_w}
+                        send "&eSe termino el tiempo en la mazmorra: volviste al spawn." to loop-player
+                        execute console command "spawn %name of loop-player%"
+                    delete {-maz.fin::nave_3}
+                    delete {-maz.aviso::nave_3}
+                else if {_t} >= 7 minutes:
+                    if {-maz.aviso::nave_3} is not set:
+                        set {-maz.aviso::nave_3} to true
                         loop all players:
                             world of loop-player is {_w}
                             send "&eQueda 1 minuto: despues volves al spawn." to loop-player

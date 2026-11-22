@@ -1,0 +1,160 @@
+# Generado por datapack-src/mobs/capitan_vacio.py: Capitan del Vacio (Nave del Vacio).
+
+NAVE_CAP_MODELO:
+  Skills:
+  - 'addtag{tag=astral.seen} @self'
+  - 'addtag{tag=astral.mt5} @self'
+  - 'addtag{tag=nave.jefe} @self'
+  - 'model{m=astral_capitan_vacio;s=4.847} @self'
+  - 'command{c="attribute <caster.uuid> minecraft:scale base set 6.0"} @self'
+  - 'command{c="attribute <caster.uuid> minecraft:step_height base set 2"} @self'
+
+NAVE_CAP_APARECE:
+  Skills:
+  - 'state{s=aparece} @self'
+  - 'sound{s=entity.wither.spawn;v=2;p=0.6} @PlayersInRadius{r=64}'
+  - 'particles{p=reverse_portal;amount=300;hS=3;vS=6;y=4;speed=0.2} @self'
+  - 'delay 24'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 8 vacio"}'
+  - 'message{m="&5✦ &d&lCapitan del Vacio &5✦ &7se levanta del nucleo de la nave."} @PlayersInRadius{r=64}'
+  - 'message{m="&d«Esta nave no vuelve a la estrella. Ustedes tampoco.»"} @PlayersInRadius{r=64}'
+
+NAVE_CAP_CUBO:
+  Cooldown: 4
+  Skills:
+  - 'state{s=throw} @self'
+  - 'sound{s=entity.shulker.shoot;v=2;p=0.6} @self'
+  - 'delay 9'
+  - 'projectile{onTick=NAVE_CUBO_TICK;onHit=NAVE_CUBO_HIT;onEnd=NAVE_CUBO_FIN;v=12;i=1;hR=1.2;vR=1.2;mr=44;bulletType=ITEM;material=CRYING_OBSIDIAN;hnp=true;sy=6}'
+
+NAVE_CUBO_TICK:
+  Skills:
+  - 'particles{p=dust;color=#c43bff;size=2;amount=3;hS=0.2;vS=0.2} @origin'
+  - 'particles{p=reverse_portal;amount=3;hS=0.1;vS=0.1;speed=0.05} @origin'
+
+NAVE_CUBO_HIT:
+  Skills:
+  - 'damage{a=14}'
+  - 'command{c="astralfx estallido <target.l.w> <target.l.x> <target.l.y> <target.l.z> c43bff 2 vacio"}'
+  - 'sound{s=block.respawn_anchor.deplete;v=1.5;p=0.8} @origin'
+
+NAVE_CUBO_FIN:
+  Skills:
+  - 'summon{type=astral_nave_zona;amount=1;radius=0} @origin'
+
+NAVE_ZONA:
+  Skills:
+  - 'particlering{p=dust;color=#c43bff;size=2;radius=3;points=30;amount=1;y=0.2} @self'
+  - 'delay 10'
+  - 'particlering{p=dust;color=#c43bff;size=2;radius=3;points=30;amount=1;y=0.2} @self'
+  - 'delay 10'
+  - 'skill{s=NAVE_ZONA_TICK;repeat=8;repeatInterval=10} @self'
+  - 'delay 82'
+  - 'remove @self'
+
+NAVE_ZONA_TICK:
+  Skills:
+  - 'particles{p=dragon_breath;amount=25;hS=2.5;vS=0.2;y=0.3;speed=0.01} @self'
+  - 'damage{a=5;ignoreArmor=true} @PlayersInRadius{r=3}'
+
+NAVE_CAP_SALTO:
+  Cooldown: 8
+  Skills:
+  - 'state{s=salto} @self'
+  - 'sound{s=entity.enderman.teleport;v=2;p=0.5} @self'
+  - 'delay 10'
+  - 'teleport{spreadh=0} @Forward{f=-4;y=0}'
+  - 'delay 2'
+  - 'sound{s=entity.enderman.scream;v=2;p=0.6} @self'
+  - 'delay 4'
+  - 'state{s=attack} @self'
+  - 'delay 8'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 4 vacio"}'
+  - 'damage{a=30} @PlayersInRadius{r=5}'
+  - 'throw{velocity=6;velocityY=2} @PlayersInRadius{r=5}'
+
+NAVE_CAP_FASE2:
+  Skills:
+  - 'addtag{tag=nave.f2} @self'
+  - 'state{s=furia} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 1fd38a 6 arcano"}'
+  - 'sound{s=entity.elder_guardian.curse;v=2;p=0.8} @PlayersInRadius{r=64}'
+  - 'message{m="&a«Vigias. Abran los ojos.» &7(rompe los Ojos Vigias para danar al Capitan)"} @PlayersInRadius{r=64}'
+  - 'summon{type=astral_nave_ojo;amount=3;radius=6;yOffset=6} @self'
+
+NAVE_CAP_FASE3:
+  Skills:
+  - 'addtag{tag=nave.f3} @self'
+  - 'state{s=furia} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 9 vacio"}'
+  - 'potion{type=SPEED;duration=2147483647;level=0;hasParticles=false} @self'
+  - 'sound{s=entity.ender_dragon.growl;v=2;p=0.7} @PlayersInRadius{r=64}'
+  - 'particles{p=reverse_portal;amount=250;hS=3;vS=5;y=4;speed=0.3} @self'
+  - 'message{m="&5&l«¡Falla de gravedad! Que el vacio los trague.»"} @PlayersInRadius{r=64}'
+
+NAVE_CAP_CRIAS:
+  Skills:
+  - 'sound{s=entity.endermite.ambient;v=2;p=0.5} @self'
+  - 'summon{type=astral_nave_cria;amount=4;radius=6} @self'
+
+NAVE_CAP_PULSO:
+  Cooldown: 8
+  Skills:
+  - 'state{s=pulso} @self'
+  - 'sound{s=block.beacon.power_select;v=2;p=0.5} @PlayersInRadius{r=40}'
+  - 'potion{type=LEVITATION;duration=24;level=1;hasParticles=false} @PlayersInRadius{r=30}'
+  - 'delay 22'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 10 vacio"}'
+  - 'sound{s=entity.generic.explode;v=2;p=0.6} @self'
+  - 'damage{a=18} @PlayersInRadius{r=10}'
+  - 'throw{velocity=10;velocityY=2} @PlayersInRadius{r=10}'
+
+NAVE_CAP_ZONAS:
+  Skills:
+  - 'summon{type=astral_nave_zona;amount=1;radius=0} @target'
+
+NAVE_OJO_RAYO:
+  Skills:
+  - 'state{s=attack} @self'
+  - 'sound{s=entity.guardian.attack;v=1.5;p=1.4} @self'
+  - 'delay 6'
+  - 'projectile{onTick=NAVE_OJO_TICK;onHit=NAVE_OJO_HIT;v=20;i=1;hR=0.8;vR=0.8;mr=36;hnp=true}'
+
+NAVE_OJO_TICK:
+  Skills:
+  - 'particles{p=dust;color=#1fd38a;size=1.4;amount=3;hS=0.05;vS=0.05} @origin'
+
+NAVE_OJO_HIT:
+  Skills:
+  - 'damage{a=8}'
+  - 'particles{p=happy_villager;amount=10;hS=0.4;vS=0.4} @origin'
+
+NAVE_OJO_MUERE:
+  Skills:
+  - 'state{s=death} @self'
+  - 'command{c="astralfx estallido <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> 1fd38a 3 arcano"}'
+  - 'sound{s=entity.elder_guardian.death;v=1.5;p=1.2} @self'
+  - 'message{m="&aUn Ojo Vigia se apaga."} @PlayersInRadius{r=48}'
+
+NAVE_TIM_SALTO:
+  Skills:
+  - 'sound{s=entity.enderman.teleport;v=2;p=0.7} @self'
+  - 'teleport @Forward{f=-3;y=0}'
+  - 'delay 6'
+  - 'damage{a=18} @PlayersInRadius{r=4}'
+  - 'particles{p=portal;amount=60;hS=1;vS=2;y=1.5} @self'
+
+NAVE_CAP_RESET:
+  Skills:
+  - 'heal{a=2000000000} @self'
+  - 'removetag{tag=nave.f2} @self'
+  - 'removetag{tag=nave.f3} @self'
+  - 'potionclear @self'
+  - 'teleport @SpawnLocation'
+
+NAVE_CAP_MUERE:
+  Skills:
+  - 'state{s=death} @self'
+  - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> f0a0ff 10 vacio"}'
+  - 'sound{s=ui.toast.challenge_complete;v=2;p=0.8} @PlayersInRadius{r=64}'
+  - 'particles{p=reverse_portal;amount=400;hS=3;vS=6;y=4;speed=0.3} @self'

@@ -185,6 +185,7 @@
     "end_mazmorra": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -201,6 +202,7 @@
     "end_mazmorra_6": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -217,6 +219,7 @@
     "end_mazmorra_7": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -233,6 +236,7 @@
     "end_mazmorra_14": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -249,6 +253,7 @@
     "end_mazmorra_15": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -265,6 +270,7 @@
     "end_mazmorra_16": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -281,6 +287,7 @@
     "end_mazmorra_23": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -297,6 +304,7 @@
     "end_mazmorra_24": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -313,6 +321,7 @@
     "end_mazmorra_25": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -329,6 +338,7 @@
     "end_mazmorra_32": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -345,6 +355,7 @@
     "end_mazmorra_33": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -361,6 +372,7 @@
     "end_mazmorra_34": {
       "material": "END_CRYSTAL",
       "display_name": "&d&lMazmorra del End",
+      "priority": 2,
       "lore": [
         "&7Una nave perdida entre las estrellas",
         "&7del End. Pasillos de luz y una mano",
@@ -370,6 +382,342 @@
       ],
       "click_commands": [
         "[message] &dMazmorra del End&7: todavia no abrio. &dProximamente."
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 34
+    },
+    "end_abierta": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 5
+    },
+    "end_abierta_6": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 6
+    },
+    "end_abierta_7": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 7
+    },
+    "end_abierta_14": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 14
+    },
+    "end_abierta_15": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 15
+    },
+    "end_abierta_16": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 16
+    },
+    "end_abierta_23": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 23
+    },
+    "end_abierta_24": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 24
+    },
+    "end_abierta_25": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 25
+    },
+    "end_abierta_32": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 32
+    },
+    "end_abierta_33": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
+      ],
+      "item_model": "astral:viajes/blank",
+      "slot": 33
+    },
+    "end_abierta_34": {
+      "material": "END_CRYSTAL",
+      "display_name": "&d&lNave del Vacio &7(Mazmorra del End)",
+      "priority": 1,
+      "lore": [
+        "&7Una nave perdida entre las estrellas",
+        "&7del End. Pasillos de luz y una mano",
+        "&7cosmica que vigila todo.",
+        "",
+        "&5Tier V &7- jefe: &d&lCapitan del Vacio",
+        "",
+        "&eClic para entrar &7(con tu party)."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "abierta": {
+            "type": "has permission",
+            "permission": "astral.nave.abierta"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[console] mazentrar %player_name% nave"
       ],
       "item_model": "astral:viajes/blank",
       "slot": 34

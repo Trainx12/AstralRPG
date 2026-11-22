@@ -809,6 +809,12 @@ function astral_dano_mundo(w: world) :: number:
         return 400.0
     if {_n} is "santuario_azeroth_6" or "minecraft:santuario_azeroth_6" or "world_minecraft_santuario_azeroth_6":
         return 400.0
+    if {_n} is "nave" or "minecraft:nave" or "world_minecraft_nave":
+        return 400.0
+    if {_n} is "nave_2" or "minecraft:nave_2" or "world_minecraft_nave_2":
+        return 400.0
+    if {_n} is "nave_3" or "minecraft:nave_3" or "world_minecraft_nave_3":
+        return 400.0
     if {_n} is "world_minecraft_santuario_azeroth":
         return 400.0
     return 0

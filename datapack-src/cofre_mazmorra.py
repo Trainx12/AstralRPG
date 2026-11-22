@@ -37,6 +37,8 @@ PREMIOS = {
     "santuario": ("corazon", ("chispa_astral", 2)),
     # Fosa del Crustaceo (15/11/2026): el fragmento de la Marea es del Cangrejo.
     "fosa": ("marea", ("gema_luminica", 1)),
+    # Nave del Vacio (nave.py, 22/11/2026): evento del End, sin fragmento propio (no cambia el Renacimiento).
+    "nave": (None, ("chispa_astral", 2)),
 }
 ITEM_NOMBRE = {"cristal_refinado": "Cristal Arcano Refinado", "gema_luminica": "Gema Luminica",
                "chispa_astral": "Chispa Astral", "esencia_elite": "Esencia de Elite",
@@ -265,18 +267,19 @@ def cofre_menu(dungeon):
     frag, (astral, n_astral) = PREMIOS[key]
     materiales = list(dungeon['reward'])
     items = {}
-    items['fragmento'] = {
-        'material': 'PAPER', 'item_model': MODELO[frag], 'slot': SLOTS_PREMIO[0], 'priority': 1,
-        'display_name': f'&b&l{NOMBRE[frag]}',
-        'lore': ['&aSe consigue la primera vez.', '&7Se guarda en tus &bFragmentos Astrales&7:',
-                 '&7no ocupa lugar y no se puede perder.'],
-        'view_requirement': _req('!has permission', permiso(frag)), 'enchantments': ['unbreaking;1'],
-        'item_flags': ['HIDE_ATTRIBUTES', 'HIDE_ENCHANTS']}
-    items['fragmento_apagado'] = {
-        'material': 'PAPER', 'item_model': f'astral:cofre/{frag}_apagado', 'slot': SLOTS_PREMIO[0], 'priority': 2,
-        'display_name': f'&8&l{NOMBRE[frag]}',
-        'lore': ['&cYa reclamado.', '&7Solo se puede reclamar la primera vez.', '&7Lo tienes en &f/fragmentos&7.'],
-        'item_flags': ['HIDE_ATTRIBUTES']}
+    if frag:
+        items['fragmento'] = {
+            'material': 'PAPER', 'item_model': MODELO[frag], 'slot': SLOTS_PREMIO[0], 'priority': 1,
+            'display_name': f'&b&l{NOMBRE[frag]}',
+            'lore': ['&aSe consigue la primera vez.', '&7Se guarda en tus &bFragmentos Astrales&7:',
+                     '&7no ocupa lugar y no se puede perder.'],
+            'view_requirement': _req('!has permission', permiso(frag)), 'enchantments': ['unbreaking;1'],
+            'item_flags': ['HIDE_ATTRIBUTES', 'HIDE_ENCHANTS']}
+        items['fragmento_apagado'] = {
+            'material': 'PAPER', 'item_model': f'astral:cofre/{frag}_apagado', 'slot': SLOTS_PREMIO[0], 'priority': 2,
+            'display_name': f'&8&l{NOMBRE[frag]}',
+            'lore': ['&cYa reclamado.', '&7Solo se puede reclamar la primera vez.', '&7Lo tienes en &f/fragmentos&7.'],
+            'item_flags': ['HIDE_ATTRIBUTES']}
     # Plan E2 (18/11): nota de la mazmorra, ruleta invisible de plata y tiradas de items (mazmorras_puntaje.py).
     import economia as E
     from mazmorras_puntaje import mazmorras
@@ -316,7 +319,7 @@ def cofre_menu(dungeon):
     for n, slot in enumerate(SLOTS_BOTON):
         base = {'display_name': '&a&lRECLAMAR', 'update': True}
         # Primera vez: tambien guarda el fragmento (lo hace astral_puntaje.sk). Prioridad menor = se muestra primero.
-        items[f'reclamar_{n}'] = _invisible(slot, dict(
+        if frag: items[f'reclamar_{n}'] = _invisible(slot, dict(
             base, priority=1, lore=['&7Gira la ruleta y las tiradas de tu nota.', f'&bY guarda el {NOMBRE[frag]}.'],
             view_requirement=_req('!has permission', permiso(frag)),
             click_requirement={'requirements': {'libre': libre}, 'deny_commands': espera_txt},
@@ -369,7 +372,8 @@ def generate():
     out.mkdir(parents=True, exist_ok=True)
     nombres = []
     from oceano_fosa import dungeon as fosa
-    for dungeon in [MINA] + catalog() + [fosa()]:
+    from nave import dungeon as nave
+    for dungeon in [MINA] + catalog() + [fosa(), nave()]:
         name = f"cofre_{dungeon['key']}"
         (out / f'{name}.yml').write_text(json.dumps(decorate(cofre_menu(dungeon)), ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         nombres.append(name)

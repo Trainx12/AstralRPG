@@ -76,7 +76,7 @@ PUNTOS_SIN_MUERTES = 10
 # Minutos objetivo desde que la party entra hasta que muere el jefe (estimados por cantidad de salas y oleadas).
 # Para ajustar: mirar el tiempo que muestra el chat al ganar ("Tiempo: X min") y poner aca lo que tarda una
 # party normal. Despues: python mazmorras_puntaje.py y subir astral_puntaje.sk (sk reload).
-TIEMPO_OBJETIVO = {'bosque': 12, 'mina': 10, 'tumba': 14, 'cumbre': 12, 'forja': 10, 'santuario': 15, 'fosa': 10}
+TIEMPO_OBJETIVO = {'bosque': 12, 'mina': 10, 'tumba': 14, 'cumbre': 12, 'forja': 10, 'santuario': 15, 'fosa': 10, 'nave': 18}
 
 
 def puntos(muertes, segundos, objetivo_min):

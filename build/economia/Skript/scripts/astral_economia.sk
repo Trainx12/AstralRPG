@@ -62,6 +62,9 @@ on load:
     set {-eco.tiermaz::world_minecraft_santuario_azeroth_4} to 5
     set {-eco.tiermaz::world_minecraft_santuario_azeroth_5} to 5
     set {-eco.tiermaz::world_minecraft_santuario_azeroth_6} to 5
+    set {-eco.tiermaz::nave} to 5
+    set {-eco.tiermaz::nave_2} to 5
+    set {-eco.tiermaz::nave_3} to 5
     set {-eco.tiermaz::fosa} to 3
     set {-eco.tiermaz::fosa_2} to 3
     set {-eco.tiermaz::fosa_3} to 3
@@ -128,6 +131,9 @@ on load:
     set {-eco.perdida::mina_4} to true
     set {-eco.perdida::mina_5} to true
     set {-eco.perdida::mina_6} to true
+    set {-eco.perdida::nave} to true
+    set {-eco.perdida::nave_2} to true
+    set {-eco.perdida::nave_3} to true
     set {-eco.perdida::oceano} to true
     set {-eco.perdida::santuario} to true
     set {-eco.perdida::santuario_interstellar} to true

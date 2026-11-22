@@ -93,6 +93,10 @@ TIER_MAZMORRA = _copias({"bosque": 1, "mina": 2, "tumba": 3, "cumbre": 4, "forja
 TIER_FIJO = {"oceano": 2, "fosa": 3, "fosa_2": 3, "fosa_3": 3,  # oceano abierto y Fosa del Crustaceo
              "cavernas_cristal": 4}  # Cavernas de Cristal (cavernas.py); el Corazon es tier 5 (build.py mob/roll)
 EXTRA_VIDA_MAZMORRA = _copias({"santuario": 1.5, "santuario_interstellar": 1.5, "santuario_azeroth": 1.5})
+# Nave del Vacio (nave.py, evento del End): 3 copias, tier 5 con vida x1,5 como el Santuario.
+from nave import WORLDS as _NAVE, TIER as _NAVE_TIER, EXTRA_VIDA as _NAVE_VIDA
+TIER_MAZMORRA.update({w: _NAVE_TIER for w in _NAVE})
+EXTRA_VIDA_MAZMORRA.update({w: _NAVE_VIDA for w in _NAVE})
 
 # Probabilidades de tier en el mundo (en %).
 PROB_TIER_MAS = 4

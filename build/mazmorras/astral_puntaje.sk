@@ -87,6 +87,12 @@ on load:
     set {-pz.obj::fosa_2} to 10
     set {-pz.key::fosa_3} to "fosa"
     set {-pz.obj::fosa_3} to 10
+    set {-pz.key::nave} to "nave"
+    set {-pz.obj::nave} to 18
+    set {-pz.key::nave_2} to "nave"
+    set {-pz.obj::nave_2} to 18
+    set {-pz.key::nave_3} to "nave"
+    set {-pz.obj::nave_3} to 18
     delete {-pz.pool::*}
     delete {-pz.peso::*}
     delete {-pz.total::*}
@@ -1900,6 +1906,9 @@ on load:
     set {-pz.cofre::fosa::mult} to 8
     set {-pz.cofre::fosa::perm} to "astral.fragmento.marea"
     set {-pz.cofre::fosa::frag} to "Fragmento de la Marea"
+    set {-pz.cofre::nave::nombre} to "Nave del Vacio"
+    set {-pz.cofre::nave::tier} to 5
+    set {-pz.cofre::nave::mult} to 40
 
 command /mazpuntaje <text> <text>:
     executable by: console
@@ -2039,10 +2048,11 @@ function pz_cofre(p: player, key: text, n: number):
     set {_maz} to {-pz.cofre::%{_key}%::nombre}
     set {_t} to {-pz.cofre::%{_key}%::tier}
     set {_perm} to {-pz.cofre::%{_key}%::perm}
-    if {_p} does not have permission {_perm}:
-        execute console command "lp user %name of {_p}% permission set %{_perm}% true"
-        send "&b&lNuevo fragmento: &f%{-pz.cofre::%{_key}%::frag}%&7. Quedo guardado en &f/fragmentos&7." to {_p}
-        play sound "ui.toast.challenge_complete" to {_p}
+    if {_perm} is set:
+        if {_p} does not have permission {_perm}:
+            execute console command "lp user %name of {_p}% permission set %{_perm}% true"
+            send "&b&lNuevo fragmento: &f%{-pz.cofre::%{_key}%::frag}%&7. Quedo guardado en &f/fragmentos&7." to {_p}
+            play sound "ui.toast.challenge_complete" to {_p}
     set {_mult} to {-pz.cofre::%{_key}%::mult}
     set {_lo} to {@min} * {_mult}
     set {_hi} to {-pz.ruleta::%{_n}%::max} * {_mult}

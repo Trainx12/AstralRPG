@@ -90,6 +90,8 @@ gui_menus:
     file: cofre_santuario.yml
   cofre_fosa:
     file: cofre_fosa.yml
+  cofre_nave:
+    file: cofre_nave.yml
   fragmentos:
     file: fragmentos.yml
   renacer:

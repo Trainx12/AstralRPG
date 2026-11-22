@@ -82,6 +82,10 @@ def metadata():
     x,y,z,*_ = oceano_fosa.LLEGADA
     for dim in oceano_fosa.WORLDS:
         bosses.append(f'{bukkit(dim)},{x},{y},{z},True')
+    import nave   # Nave del Vacio: sala del jefe = Palma
+    x,y,z = nave.salas()[-1]['centro']
+    for dim in nave.WORLDS:
+        bosses.append(f'{dim},{x},{y},{z},True')
     return worlds, bosses
 
 

@@ -1,0 +1,59 @@
+# Nave del Vacio (nave.py). Con AstralNave y WorldEdit; subir antes .local/nave/spaceship.schem a plugins/WorldEdit/schematics/spaceship.schem
+# 1) Crear los mundos (vacios, el generador es el de AstralOceano):
+mv create nave normal --generator AstralOceano:vacio --no-structures
+mv create nave_2 normal --generator AstralOceano:vacio --no-structures
+mv create nave_3 normal --generator AstralOceano:vacio --no-structures
+# 2) Pegar la nave en cada uno (consola). La schematic carga en segundo plano: esperar el mensaje
+#    "spaceship.schem loaded" antes de //paste. Despues del paste, revisar un bloque de piso.
+//world nave
+//pos1 -80,40,-100
+//schem load spaceship.schem
+//placement pos1
+//paste -a
+//world nave_2
+//pos1 -80,40,-100
+//schem load spaceship.schem
+//placement pos1
+//paste -a
+//world nave_3
+//pos1 -80,40,-100
+//schem load spaceship.schem
+//placement pos1
+//paste -a
+# 3) Reglas de cada mundo:
+execute in minecraft:nave run setworldspawn -39 80 -18
+execute in minecraft:nave run gamerule minecraft:spawn_mobs false
+execute in minecraft:nave run gamerule minecraft:mob_griefing false
+execute in minecraft:nave run gamerule minecraft:advance_time false
+execute in minecraft:nave run gamerule minecraft:advance_weather false
+execute in minecraft:nave run gamerule minecraft:keep_inventory true
+execute in minecraft:nave run gamerule minecraft:fall_damage false
+rg flag -w nave __global__ block-break deny
+rg flag -w nave __global__ block-place deny
+rg flag -w nave __global__ pvp deny
+rg flag -w nave __global__ enderpearl deny
+rg flag -w nave __global__ chorus-fruit-teleport deny
+execute in minecraft:nave_2 run setworldspawn -39 80 -18
+execute in minecraft:nave_2 run gamerule minecraft:spawn_mobs false
+execute in minecraft:nave_2 run gamerule minecraft:mob_griefing false
+execute in minecraft:nave_2 run gamerule minecraft:advance_time false
+execute in minecraft:nave_2 run gamerule minecraft:advance_weather false
+execute in minecraft:nave_2 run gamerule minecraft:keep_inventory true
+execute in minecraft:nave_2 run gamerule minecraft:fall_damage false
+rg flag -w nave_2 __global__ block-break deny
+rg flag -w nave_2 __global__ block-place deny
+rg flag -w nave_2 __global__ pvp deny
+rg flag -w nave_2 __global__ enderpearl deny
+rg flag -w nave_2 __global__ chorus-fruit-teleport deny
+execute in minecraft:nave_3 run setworldspawn -39 80 -18
+execute in minecraft:nave_3 run gamerule minecraft:spawn_mobs false
+execute in minecraft:nave_3 run gamerule minecraft:mob_griefing false
+execute in minecraft:nave_3 run gamerule minecraft:advance_time false
+execute in minecraft:nave_3 run gamerule minecraft:advance_weather false
+execute in minecraft:nave_3 run gamerule minecraft:keep_inventory true
+execute in minecraft:nave_3 run gamerule minecraft:fall_damage false
+rg flag -w nave_3 __global__ block-break deny
+rg flag -w nave_3 __global__ block-place deny
+rg flag -w nave_3 __global__ pvp deny
+rg flag -w nave_3 __global__ enderpearl deny
+rg flag -w nave_3 __global__ chorus-fruit-teleport deny

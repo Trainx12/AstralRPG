@@ -103,11 +103,20 @@ def menu_data2():
     items = {}
     cards = {
         'oceano': dict(portales_button()),
-        'end_mazmorra': {'material': 'END_CRYSTAL', 'display_name': '&d&lMazmorra del End',
+        # Nave del Vacio (nave.py): cerrada hasta el evento. `/nave abrir` le da a todos astral.nave.abierta.
+        'end_mazmorra': {'material': 'END_CRYSTAL', 'display_name': '&d&lMazmorra del End', 'priority': 2,
                          'lore': ['&7Una nave perdida entre las estrellas', '&7del End. Pasillos de luz y una mano', '&7cosmica que vigila todo.', '', '&dProximamente.'],
                          'click_commands': ['[message] &dMazmorra del End&7: todavia no abrio. &dProximamente.']},
+        'end_abierta': {'material': 'END_CRYSTAL', 'display_name': '&d&lNave del Vacio &7(Mazmorra del End)', 'priority': 1,
+                        'lore': ['&7Una nave perdida entre las estrellas', '&7del End. Pasillos de luz y una mano', '&7cosmica que vigila todo.',
+                                 '', '&5Tier V &7- jefe: &d&lCapitan del Vacio', '', '&eClic para entrar &7(con tu party).'],
+                        'view_requirement': {'requirements': {'abierta': {'type': 'has permission', 'permission': 'astral.nave.abierta'}}},
+                        'click_commands': ['[close]', '[console] mazentrar %player_name% nave']},
     }
-    for (key, item), slots in zip(cards.items(), PAGE2_SLOTS['portales2'].values()):
+    slots_de = dict(zip(('oceano', 'end_mazmorra'), PAGE2_SLOTS['portales2'].values()))
+    slots_de['end_abierta'] = slots_de['end_mazmorra']
+    for key, item in cards.items():
+        slots = slots_de[key]
         item = dict(item, item_model='astral:viajes/blank')
         for n, slot in enumerate(slots):
             items[key if n == 0 else f'{key}_{slot}'] = dict(item, slot=slot)
