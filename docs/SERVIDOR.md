@@ -261,6 +261,24 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
 | CrazyCrates (26.1.2) | Ruleta animada tipo CS:GO de las gachas del lobby |
 | DeluxeMenus 1.14.1 | Menús de cofre: `/menu`, `/mascotas`, gachas y bazar (los genera `datapack-src/menus.py`) |
 | CrazyAuctions (26.1.2) | Subastas entre jugadores (`/ah`), 5% de impuesto por venta |
+| GrimAC 2.3.74 | Anti-trampas en **solo avisa** (ver abajo). Trae su propio PacketEvents adentro: no choca con el nuestro |
+
+### Anti-trampas: GrimAC en solo avisa (22/11/2026)
+
+- Revisa volar, correr de más, killaura, golpear de lejos, nofall, timer, etc. **No echa, no banea, no tira para
+  atrás y no cancela golpes ni bloques** hasta que el dueño pida castigos.
+- Config: `python datapack-src/anticheat.py <carpeta GrimAC que genera Grim al primer arranque>` -> `build/anticheat/GrimAC/`
+  (se sube a `plugins/GrimAC/`). Además `lp group default permission set grim.nosetback true` (`build/anticheat/comandos.txt`).
+- Avisos: los OP los ven en el chat con prefijo `[AntiTrampas]` y quedan en consola. `/grim alerts` prende/apaga
+  para uno (`/grim` lista el resto de los comandos).
+- Las mecánicas del server (armadura de arquero, Transmisión, doble salto, gancho, empujes de jefes, elytras) en
+  teoría no dan aviso porque Grim calcula con los atributos y empujes que manda el server. Las que pueden dar
+  avisos falsos: **monturas que nadan** (AstralMounts) y **elytras con encantamientos de Stellarity**. Anotar qué
+  avisa las primeras semanas antes de activar castigos.
+- Activar castigos (solo cuando el dueño lo pida): sacar `grim.nosetback` del grupo default, volver a los valores
+  de Grim en config.yml (correr Grim sin nuestro config) y agregar comandos `kick`/`ban` en punishments.yml.
+- Pendiente del plan `docs/planes/anticheat.md` (rama `claude/gifted-ramanujan-hir9nd`): anti-xray de Paper y
+  aviso de minado sospechoso. **No** instalados todavía.
 
 ## Lobby (mundo `lobby`)
 

@@ -13,3 +13,6 @@ build/previews/planta-carnivora-comparacion.png
 build/previews/astral_esq_*-comparacion.png
 build/previews/astral_creeper_*-comparacion.png
 build/previews/npc-*-comparacion.png
+
+# Config de GrimAC generada desde los archivos de Grim (se arma con datapack-src/anticheat.py)
+build/anticheat/

@@ -52,6 +52,7 @@ python mesa_encantamientos.py --jdk <java25>  # mesa de encantamientos AstralMes
 python bosque_talar.py             # Bosque Astral 300x300: script (443 arboles de bosque_arboles.json); mapa con tools/bosque_mapa.py, bosque_armar.py, bosque_arboles.py
 python minas_decor.py              # decoracion de cada Mina Astral con su mineral (comandos WorldEdit de consola, ver docs/MINAS.md)
 python ee_descripciones.py <enchants del server>  # descripciones de ExcellentEnchants en espanol -> build/excellentenchants (subir y reiniciar)
+python anticheat.py <plugins/GrimAC generado>  # GrimAC SOLO AVISA (sin castigos ni setbacks) -> build/anticheat (docs/SERVIDOR.md)
 python traducciones.py --parchar  # plugins en espanol: mensajes traducidos -> build/traducciones + parches de idioma -> .local/traduccion/subir (docs/SERVIDOR.md)
 ```
 
