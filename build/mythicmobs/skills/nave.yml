@@ -5,7 +5,7 @@ NAVE_CAP_MODELO:
   - 'addtag{tag=astral.seen} @self'
   - 'addtag{tag=astral.mt5} @self'
   - 'addtag{tag=nave.jefe} @self'
-  - 'model{m=astral_capitan_vacio;s=4.847} @self'
+  - 'model{m=astral_capitan_vacio;s=4.992} @self'
   - 'command{c="attribute <caster.uuid> minecraft:scale base set 6.0"} @self'
   - 'command{c="attribute <caster.uuid> minecraft:step_height base set 2"} @self'
 
@@ -72,6 +72,18 @@ NAVE_CAP_SALTO:
   - 'command{c="astralfx golpe <caster.l.w> <caster.l.x> <caster.l.y> <caster.l.z> c43bff 4 vacio"}'
   - 'damage{a=30} @PlayersInRadius{r=5}'
   - 'throw{velocity=6;velocityY=2} @PlayersInRadius{r=5}'
+
+NAVE_CAP_BARRIDO:
+  Cooldown: 8
+  Skills:
+  - 'state{s=barrido} @self'
+  - 'sound{s=entity.player.attack.sweep;v=2;p=0.5} @self'
+  - 'delay 11'
+  - 'particlering{p=sweep_attack;radius=5;points=16;amount=1;y=3} @self'
+  - 'particlering{p=dust;color=#e25aff;size=2;radius=6;points=40;amount=1;y=2} @self'
+  - 'sound{s=entity.wither.break_block;v=1.2;p=1.4} @self'
+  - 'damage{a=26} @PlayersInRadius{r=7}'
+  - 'throw{velocity=7;velocityY=1.5} @PlayersInRadius{r=7}'
 
 NAVE_CAP_FASE2:
   Skills:

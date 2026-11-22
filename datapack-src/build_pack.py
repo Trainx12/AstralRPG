@@ -324,6 +324,14 @@ files.update(redesigned_item_assets())
 # materiales y materiales de elites en 32x32. Van despues de todo lo anterior para ganarle.
 from iconos_19_11 import assets as iconos_19_11_assets
 files.update(iconos_19_11_assets())
+# Modelos 3D del 22/11 (piezas3d.py): taladros y motosierras esculpidos, gomera 3D (3 estados) y libros del
+# Invocador. Van al final: reemplazan los modelos planos de iconos_19_11 e historia_arte (las texturas quedan).
+from herramientas3d import assets as herramientas3d_assets
+from gomera3d import assets as gomera3d_assets
+from libros3d import assets as libros3d_assets
+files.update(herramientas3d_assets())
+files.update(gomera3d_assets())
+files.update(libros3d_assets())
 
 # pack.mcmeta y pack.png
 files["pack.mcmeta"] = json.dumps({"pack": {

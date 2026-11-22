@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Capitan del Vacio: jefe de la Nave del Vacio (nave.py), diseno propio del 22/11/2026.
-
-Figura de obsidiana viva que flota (de la cintura para abajo se deshace en jirones), cabeza con tres ojos y corona
-de fuego magenta, nucleo de cristal en el pecho con grietas, cuatro brazos (dos con garras arriba, dos abajo con
-cubos de vacio) y alas de fragmentos. Lo acompanan los Ojos Vigias (cubos con un ojo) que lo protegen.
+"""Capitan del Vacio: jefe de la Nave del Vacio (nave.py), 22/11/2026. Rehecho a la tarde con el dibujo del dueno:
+rey calavera que flota, corona de cristales violetas, seis brazos de mangas violetas con brazaletes dorados y manos de
+hueso con puntas que brillan, costillas a la vista con una estrella de luz, cinturon de hebillas y tunica larga rasgada.
+Lo acompanan los Ojos Vigias (cubos con un ojo) que lo protegen.
 
     python mobs/capitan_vacio.py   -> build/models/astral_capitan_vacio.bbmodel, astral_ojo_vigia.bbmodel + vista previa
 
@@ -39,6 +38,7 @@ DANO_CUBO = 14            # cubo de vacio (proyectil)
 DANO_ZONA = 5             # cada medio segundo dentro de una zona de vacio
 DANO_RAYO_OJO = 8         # rayo de cada Ojo Vigia
 DANO_PULSO = 18           # pulso de gravedad (fase 3)
+DANO_BARRIDO = 26         # barrido del vacio: gira 360 con las garras (radio 7)
 VELOCIDAD = 0.27
 TIMONEL_EZ = 12           # minijefe: 12 zombis T5 de vida (x1,5 de la mazmorra)
 # ==========================================================================================
@@ -46,103 +46,294 @@ TIMONEL_EZ = 12           # minijefe: 12 zombis T5 de vida (x1,5 de la mazmorra)
 NEGRO, NEGRO2, VIOLETA, MAGENTA, ROSA, BLANCO = '#17101f', '#21162c', '#5a1694', '#c43bff', '#f0a0ff', '#fff4ff'
 VERDE, VERDE_OSC, TEAL = '#1fd38a', '#06140f', '#123b33'
 
+# Diseno del dueno (22/11 tarde, dibujo de referencia): rey calavera del vacio con corona de cristales, seis brazos de
+# mangas violetas con brazaletes dorados y manos de hueso con puntas que brillan, costillas a la vista con una estrella
+# de luz, cinturon de hebillas doradas y tunica larga rasgada con tabardos de borde dorado. Flota.
+# Lo que brilla va en huesos glow_ (BetterModel los muestra con brillo propio).
+TUN, TUN_L, TUN_D, TUN_O = '#5b2c92', '#7a44b8', '#3c1a62', '#24103c'
+ORO, ORO_D, ORO_L = '#d9a845', '#8a6420', '#f2d27a'
+HUESO, HUESO_D, HUESO_O = '#e6dcec', '#b4a6c6', '#4a3a5e'
+LUZ, LUZ2, VACIO = '#e040ff', '#ffb0ff', '#1a0b2a'
+CRISTAL, CRISTAL_L = '#9a3ae0', '#d08cff'
+AME, AME_L, AME_D, AME_H, AME_O = '#9a5ce6', '#cfa4ff', '#6a35b0', '#f3e2ff', '#432078'
+CUENCA = '#170a22'
 
-def _grietas(w, h, seed):
-    """Grietas magenta en una cara de w x h pixeles."""
+# Pose de cada brazo (rotacion base del hueso; las animaciones suman sobre esto). s=-1: lado -X.
+# X positivo = hacia adelante; Z = s * angulo abre hacia afuera.
+BRAZOS = {  # nombre: (pivote, rot brazo, rot antebrazo)
+    'u': ((17, 66, 2), (15, 0, 130), (0, 0, 35)),     # par de arriba: alzados, manos arriba
+    'm': ((21, 61, -1), (20, 0, 95), (0, 0, 55)),      # par del medio: abiertos, antebrazo hacia arriba
+    'l': ((12, 50, -1), (55, 0, 30), (30, 0, 0)),      # par de abajo: hacia adelante
+}
+
+
+def _pose(n, s, which=1):
+    r = BRAZOS[n][which]
+    return (r[0], r[1] * s, r[2] * s)
+
+
+def _borde(w, h, col=ORO):
+    return [(0, 0, w, 1, col), (0, h - 1, w, 1, col), (0, 0, 1, h, col), (w - 1, 0, 1, h, col)]
+
+
+def _tela(w, h, seed, col=TUN_L, col2=TUN_D):
+    """Motas de la tela violeta (como el dibujo)."""
     import random
     r = random.Random(seed)
-    out, x = [], r.randint(1, max(1, w - 2))
-    for y in range(0, h, 2):
-        x = max(0, min(w - 1, x + r.choice((-1, 0, 1))))
-        out.append((x, y, 1, 2, MAGENTA))
-        if r.random() < .25:
-            out.append((max(0, x - 1), y, 1, 1, ROSA))
+    out = []
+    for _ in range(max(2, w * h // 9)):
+        out.append((r.randrange(max(1, w)), r.randrange(max(1, h)), 1, 1, col if r.random() < .5 else col2))
     return out
+
+
+def _guarda(w, h, seed):
+    """Tabardo: tela oscura con borde dorado y cruces doradas."""
+    d = _borde(w, h) + _tela(w, h, seed, TUN, TUN_O)
+    cx = w // 2
+    for y in range(4, h - 4, 7):
+        d += [(cx, y, 1, 3, ORO), (cx - 1, y + 1, 3, 1, ORO)]
+    return d
 
 
 def build():
     m = Model(MODEL_ID)
-    m.bone('root', (0, 0, 0))
-    m.bone('jirones', (0, 34, 0), 'root')
-    m.bone('body', (0, 34, 0), 'root')
-    m.bone('head', (0, 70, 0), 'body')
-    m.bone('corona', (0, 88, 0), 'head')
-    m.bone('arm_ur', (-20, 68, 0), 'body')
-    m.bone('arm_ul', (20, 68, 0), 'body')
-    m.bone('arm_lr', (-15, 56, 0), 'body')
-    m.bone('arm_ll', (15, 56, 0), 'body')
-    m.bone('cubo_r', (-15, 36, -3), 'arm_lr')
-    m.bone('cubo_l', (15, 36, -3), 'arm_ll')
-    m.bone('ala_r', (-8, 62, 8), 'body')
-    m.bone('ala_l', (8, 62, 8), 'body')
-    m.bone('nucleo', (0, 51, -8), 'body')
-    m.bone('mtag_nombre', (0, 108, 0), 'root')
+    B = m.bone
+    B('root', (0, 0, 0))
+    B('body', (0, 40, 0), 'root')
+    B('glow_nucleo', (0, 49.5, -5), 'body')
+    # la tunica se abre un poco hacia abajo (vuelo)
+    for k, piv, rot in (('f', (0, 40, -6), (7, 0, 0)), ('b', (0, 40, 6), (-9, 0, 0)), ('r', (-9, 40, 0), (0, 0, -9)),
+                        ('l', (9, 40, 0), (0, 0, 9))):
+        B(f'cola_{k}', piv, 'body', rotation=rot)
+        B(f'glow_cola_{k}', piv, f'cola_{k}')
+    B('head', (0, 66, 0), 'body')
+    B('jaw', (0, 70, -1.5), 'head')
+    B('glow_ojos', (0, 76, -8), 'head')
+    B('corona', (0, 82, 0), 'head')
+    B('glow_corona', (0, 82, 0), 'corona')
+    for n, (piv, rot, rot2) in BRAZOS.items():
+        for s, lado in ((-1, 'r'), (1, 'l')):
+            x, y, z = piv[0] * s, piv[1], piv[2]
+            B(f'arm_{n}{lado}', (x, y, z), 'body', rotation=_pose(n, s, 1))
+            B(f'ante_{n}{lado}', (x, y - 14, z), f'arm_{n}{lado}', rotation=_pose(n, s, 2))
+    B('mtag_nombre', (0, 112, 0), 'root')
+    C, R = m.cube, m.rcube
 
-    # Jirones: la parte de abajo se deshace (cada vez mas finos y violetas).
-    for (w, y0, y1, d, col) in ((22, 26, 36, 14, NEGRO), (16, 17, 26, 11, NEGRO2), (10, 9, 17, 8, VIOLETA), (5, 2, 9, 5, MAGENTA)):
-        m.cube('jirones', (-w / 2, y0, -d / 2), (w / 2, y1, d / 2), col, pat='stone',
-               decals={'north': _grietas(w, y1 - y0, f'j{y0}'), 'south': _grietas(w, y1 - y0, f'js{y0}')})
-    for sx in (-1, 1):   # tiras sueltas a los costados
-        m.cube('jirones', (sx * 9 - 2, 12, -2), (sx * 9 + 2, 26, 2), NEGRO2, decals={'north': [(1, 2, 1, 8, VIOLETA)]})
-        m.cube('jirones', (sx * 6 - 1.5, 4, 3), (sx * 6 + 1.5, 14, 6), VIOLETA)
+    # ------------------------------------------------------------------ torso: costillas, esternon corto y estrella a la vista
+    C('body', (-7, 43, -4), (7, 64, 5), VACIO)
+    C('body', (-1.2, 42, 2.5), (1.2, 64, 4.5), HUESO_D)                                    # columna
+    for k, y in enumerate((46.5, 49.5, 52.5, 55.5, 58.5)):
+        w = 6.4 - abs(k - 2.6) * 0.35
+        x_in = 2.2 if k < 2 else 0.9                                                       # las de abajo dejan ver la estrella
+        for s in (-1, 1):
+            x0, x1 = sorted((s * x_in, s * (0.9 + w)))
+            C('body', (x0, y, -5.4), (x1, y + 1.7, -4.0), HUESO, decals={'north': [(0, 0, int(abs(x1 - x0)), 1, '#ffffff')]})
+            x0, x1 = sorted((s * (0.9 + w - 1.2), s * (0.9 + w)))
+            C('body', (x0, y - 0.6, -4.4), (x1, y + 1.4, 3.2), HUESO_D)
+    C('body', (-1.3, 54.2, -5.9), (1.3, 61.5, -4.2), HUESO, decals={'north': [(1, 0, 1, 7, '#ffffff')]})  # esternon (termina arriba)
+    C('body', (-1.6, 53.4, -6.0), (1.6, 54.6, -4.4), HUESO_D)
+    for s in (-1, 1):                                                                      # claviculas
+        C('body', (s * 5.5 - 4.5, 61.2, -5.4), (s * 5.5 + 4.5, 62.8, -3.8), HUESO, rotation=[0, 0, s * 22.5],
+          origin=[s * 5.5, 62, -4.6])
+    C('glow_nucleo', (-4.2, 44.6, -4.3), (4.2, 54.2, -3.9), '#4a1478')                     # luz adentro del pecho
+    C('glow_nucleo', (-0.55, 45.2, -6.9), (0.55, 53.8, -6.1), '#ffffff')
+    C('glow_nucleo', (-3.9, 48.95, -6.9), (3.9, 50.05, -6.1), '#ffffff')
+    C('glow_nucleo', (-2.0, 47.5, -6.6), (2.0, 51.5, -5.8), LUZ, rotation=[0, 0, 45])
+    C('glow_nucleo', (-2.9, 46.6, -6.2), (2.9, 52.4, -5.5), '#a020d0', rotation=[0, 0, 45])
 
-    # Torso: pelvis, pecho ancho con grietas y el nucleo de cristal.
-    m.rcube('body', (-11, 34, -7), (11, 42, 7), NEGRO, pat='stone')
-    pecho = _grietas(28, 26, 'pecho') + _grietas(28, 26, 'pecho2') + [(12, 0, 4, 26, MAGENTA), (13, 0, 2, 26, ROSA)]
-    m.rcube('body', (-14, 42, -8), (14, 68, 8), NEGRO, pat='stone',
-            decals={'north': pecho, 'south': _grietas(28, 26, 'espalda'), 'east': _grietas(16, 26, 'ce'), 'west': _grietas(16, 26, 'cw')})
-    m.cube('nucleo', (-5, 46, -9.5), (5, 56, -7.5), ROSA, decals={'north': [(2, 2, 6, 6, BLANCO), (3, 3, 4, 4, '#ffffff')]})
-    m.cube('nucleo', (-7, 48, -9), (7, 54, -8), MAGENTA)
-    m.cube('nucleo', (-3, 44, -9), (3, 58, -8), MAGENTA)
-    # Hombreras con puntas.
-    for sx in (-1, 1):
-        x0, x1 = sorted((sx * 12, sx * 26))
-        m.rcube('body', (x0, 60, -8), (x1, 71, 8), NEGRO2, pat='stone', decals={'up': [(2, 4, 10, 2, VIOLETA)]})
-        px0, px1 = sorted((sx * 20, sx * 25))
-        m.cube('body', (px0, 71, -2), (px1, 80, 3), NEGRO, decals={'north': [(1, 0, 3, 3, MAGENTA)]})
-        m.cube('body', (px0 + 1, 80, -1), (px1 - 1, 84, 2), MAGENTA)
+    # ------------------------------------------------------------------ tunica alrededor del pecho (solapas y espalda)
+    for s in (-1, 1):
+        x0, x1 = sorted((s * 7, s * 12.5))
+        C('body', (x0, 40, -6.6), (x1, 64, 6), TUN, pat='cloth',
+          decals={'north': [(0 if s > 0 else 4, 0, 1, 24, ORO), (1 if s > 0 else 3, 0, 1, 24, ORO_D)] + _tela(5, 24, f's{s}'),
+                  'east': _tela(12, 24, f'e{s}'), 'west': _tela(12, 24, f'w{s}')})
+        for y in (44, 50, 56):
+            C('body', (s * 7.6 - 0.7, y, -7.2), (s * 7.6 + 0.7, y + 1.4, -6.5), ORO)
+    C('body', (-12.5, 40, 5), (12.5, 66, 8), TUN, pat='cloth', decals={'south': _borde(25, 26) + _tela(25, 26, 'esp')})
+    C('body', (-2.4, 66.2, 7.6), (2.4, 70.6, 8.6), ORO, rotation=[0, 0, 45], origin=[0, 68.4, 8.1])   # gema de la espalda
+    C('body', (-1.2, 67.4, 8.4), (1.2, 69.4, 9.0), LUZ)
+    # cuello alto de la tunica
+    C('body', (-10.5, 62, 4), (10.5, 76, 7.5), TUN, pat='cloth', decals={'north': [(0, 0, 21, 1, ORO)] + _tela(21, 14, 'c1'),
+                                                                        'south': _borde(21, 14) + _tela(21, 14, 'c2')})
+    for s in (-1, 1):
+        x0, x1 = sorted((s * 9, s * 12))
+        C('body', (x0, 62, -4), (x1, 75, 6), TUN, pat='cloth', decals={'up': [(0, 0, 3, 10, ORO)], 'north': _borde(3, 13)},
+          rotation=[0, s * -22.5, 0], origin=[s * 10.5, 68, 1])
 
-    # Cabeza: tres ojos (uno vertical en la frente) y boca con colmillos de luz.
-    ojos = [(2, 7, 5, 3, MAGENTA), (11, 7, 5, 3, MAGENTA), (3, 8, 2, 1, BLANCO), (13, 8, 2, 1, BLANCO),
-            (8, 1, 2, 5, MAGENTA), (8, 2, 2, 2, BLANCO),
-            (4, 13, 10, 2, '#0a0410'), (5, 13, 1, 1, MAGENTA), (8, 13, 1, 1, MAGENTA), (11, 13, 1, 1, MAGENTA)]
-    m.rcube('head', (-9, 70, -9), (9, 88, 9), NEGRO, pat='stone', decals={'north': ojos, 'east': _grietas(18, 18, 'he'), 'west': _grietas(18, 18, 'hw')})
-    for sx in (-1, 1):   # cuernos
-        x0, x1 = sorted((sx * 8, sx * 12))
-        m.cube('head', (x0, 84, -2), (x1, 90, 2), NEGRO2)
-        x0, x1 = sorted((sx * 11, sx * 14))
-        m.cube('head', (x0, 89, -1.5), (x1, 96, 1.5), NEGRO2, decals={'north': [(0, 0, 3, 2, MAGENTA)]})
-    # Corona de fuego magenta.
-    for (x, h, col) in ((-7, 7, MAGENTA), (-3.5, 11, MAGENTA), (0, 15, ROSA), (3.5, 10, MAGENTA), (7, 6, MAGENTA)):
-        m.cube('corona', (x - 1.75, 88, -3), (x + 1.75, 88 + h, 3), col, decals={'north': [(1, int(h * .4), 1, int(h * .6), ROSA)]})
-    m.cube('corona', (-8.5, 88, -4), (8.5, 90, 4), VIOLETA)
+    # ------------------------------------------------------------------ hombreras en capas con borde dorado
+    for s in (-1, 1):
+        x0, x1 = sorted((s * 10, s * 25))
+        R('body', (x0, 61.5, -8.5), (x1, 66.5, 8.5), TUN, pat='cloth', decals={'up': _borde(15, 17) + _tela(15, 17, f'h{s}'),
+                                                                                'north': _borde(15, 5)})
+        x0, x1 = sorted((s * 11, s * 22))
+        R('body', (x0, 66, -6.5), (x1, 69.5, 6.5), TUN_L, pat='cloth', decals={'up': _borde(11, 13) + _tela(11, 13, f'g{s}', TUN, TUN_D)})
+        x0, x1 = sorted((s * 12.5, s * 21.5))
+        C('body', (x0, 54.5, -9.6), (x1, 62, -8.4), TUN, pat='cloth', decals={'north': _borde(9, 8) + _tela(9, 8, f'p{s}')})
+        C('body', (s * 17 - 2.6, 52.6, -9.5), (s * 17 + 2.6, 57.8, -8.5), TUN, rotation=[0, 0, 45], origin=[s * 17, 55.2, -9])
+        C('body', (s * 17 - 1.7, 53.5, -9.8), (s * 17 + 1.7, 56.9, -8.8), ORO, rotation=[0, 0, 45], origin=[s * 17, 55.2, -9])
+        C('body', (s * 17 - 0.8, 54.4, -10.1), (s * 17 + 0.8, 56.0, -9.4), LUZ)
+        for k in range(4):                                                                 # flecos dorados
+            x = s * (12.8 + k * 2.6)
+            C('body', (x - 0.4, 57.5 - (k % 2) * 1.5, -10.0), (x + 0.4, 61.6, -9.5), ORO_L if k % 2 else ORO)
 
-    # Brazos de arriba: largos, con garras de tres dedos.
-    for bone, sx in (('arm_ur', -1), ('arm_ul', 1)):
-        x = sx * 20
-        m.rcube(bone, (x - 4, 48, -4), (x + 4, 70, 4), NEGRO2, pat='stone', decals={'north': _grietas(8, 22, bone)})
-        m.rcube(bone, (x - 3.5, 30, -3.5), (x + 3.5, 49, 3.5), NEGRO, pat='stone', decals={'north': [(3, 2, 1, 14, MAGENTA)]})
-        m.cube(bone, (x - 4.5, 26, -4.5), (x + 4.5, 31, 4.5), NEGRO2)
-        for dx in (-3, 0, 3):
-            m.cube(bone, (x + dx - 1, 14, -4.5), (x + dx + 1, 26, -2.5), NEGRO, decals={'north': [(0, 9, 2, 3, MAGENTA)]})
-        m.cube(bone, (x - sx * 4.5 - 1, 18, -1), (x - sx * 4.5 + 1, 27, 1), NEGRO)   # pulgar
-    # Brazos de abajo: mas cortos, cada mano sostiene un cubo de vacio.
-    for bone, cubo, sx in (('arm_lr', 'cubo_r', -1), ('arm_ll', 'cubo_l', 1)):
-        x = sx * 15
-        m.rcube(bone, (x - 3, 40, -3), (x + 3, 58, 3), NEGRO2, pat='stone')
-        m.cube(bone, (x - 3.5, 36, -3.5), (x + 3.5, 41, 3.5), NEGRO)
-        m.cube(cubo, (x - 5, 26, -8), (x + 5, 36, 2), '#0a0410',
-               decals={f: [(1, 1, 8, 8, VIOLETA), (3, 3, 4, 4, MAGENTA), (4, 4, 2, 2, BLANCO)] for f in ('north', 'south', 'east', 'west', 'up', 'down')})
+    # ------------------------------------------------------------------ cinturon con hebillas
+    C('body', (-11, 38, -7), (11, 42, 6.5), TUN_O, decals={'north': [(0, 0, 22, 1, ORO), (0, 3, 22, 1, ORO)]})
+    for (x, w) in ((-6.6, 3.6), (0, 4.6), (6.6, 3.6)):
+        C('body', (x - w / 2, 40 - w / 2, -7.8), (x + w / 2, 40 + w / 2, -6.8), ORO,
+          decals={'north': [(1, 1, int(w) - 2, int(w) - 2, TUN_O)]})
+    C('body', (-0.9, 39.1, -8.1), (0.9, 40.9, -7.5), LUZ)
+    C('body', (-1.6, 34, -7.6), (1.6, 38, -6.8), ORO, decals={'north': [(1, 1, 1, 2, TUN_O)]})
+    C('body', (-1.1, 32.6, -7.6), (1.1, 34.8, -6.8), ORO, rotation=[0, 0, 45], origin=[0, 33.7, -7.2])
 
-    # Alas de fragmentos: escalones de placas finas que se abren hacia afuera y arriba.
-    for bone, sx in (('ala_r', -1), ('ala_l', 1)):
-        for i, (dx, y0, y1, w) in enumerate(((8, 52, 74, 10), (17, 60, 86, 10), (26, 66, 96, 9), (34, 70, 100, 7), (40, 76, 98, 5))):
-            x0, x1 = sorted((sx * dx, sx * (dx + w)))
-            m.cube(bone, (x0, y0, 9 + i), (x1, y1, 11 + i), NEGRO2 if i % 2 else NEGRO,
-                   decals={'south': [(1, 2, 1, y1 - y0 - 4, MAGENTA)], 'north': [(w // 2, 3, 1, y1 - y0 - 8, VIOLETA)]})
-        for (dx, y0, y1) in ((14, 44, 54), (25, 52, 62), (36, 62, 70)):   # puntas que cuelgan
-            x0, x1 = sorted((sx * dx, sx * (dx + 4)))
-            m.cube(bone, (x0, y0, 11), (x1, y1, 13), MAGENTA)
+    # ------------------------------------------------------------------ tunica en tres capas (4 partes que se mueven)
+    import random
+
+    def capa(bone, eje, a0, a1, f0, f1, seed, fondo, colores, cara, oro=True, brilla=False, top=38.2):
+        """Una capa: tiras con largos distintos entre f0..f1 de profundidad; borde dorado abajo y/o punta que brilla."""
+        r = random.Random(seed)
+        a = a0
+        while a < a1 - 0.3:
+            w = min(a1 - a, r.choice((1.8, 2.2, 2.6, 3.0)))
+            bot = fondo + r.choice((0, 1.5, 3, 4.5))
+            col = r.choice(colores)
+            hh = int(top - bot)
+            dec = _tela(int(w) + 1, hh, f'{seed}{a}', TUN_L, TUN_O)
+            if oro:
+                dec += [(0, hh - 1, int(w) + 1, 1, ORO), (0, hh - 2, int(w) + 1, 1, ORO_D)]
+            if eje == 'x':
+                frm, to = (a, bot, f0), (a + w, top, f1)
+                gfrm, gto = (a + 0.25, bot - 2.0, f0 + 0.1), (a + w - 0.25, bot + 0.4, f1 - 0.1)
+            else:
+                frm, to = (f0, bot, a), (f1, top, a + w)
+                gfrm, gto = (f0 + 0.1, bot - 2.0, a + 0.25), (f1 - 0.1, bot + 0.4, a + w - 0.25)
+            C(bone, frm, to, col, pat='cloth', decals={cara: dec})
+            if oro and r.random() < .45:                                                   # punta dorada de la capa
+                c = ((a + w / 2, bot, (f0 + f1) / 2) if eje == 'x' else ((f0 + f1) / 2, bot, a + w / 2))
+                C(bone, (c[0] - 0.7, c[1] - 0.7, c[2] - 0.45), (c[0] + 0.7, c[1] + 0.7, c[2] + 0.45), ORO,
+                  rotation=[0, 0, 45] if eje == 'x' else [45, 0, 0])
+            if brilla and r.random() < .75:
+                C('glow_' + bone, gfrm, gto, LUZ if r.random() < .6 else '#a030e0')
+            a += w
+    CL = (TUN_L, TUN, TUN)
+    CM = (TUN, TUN, TUN_D)
+    CB = (TUN_D, TUN_O, TUN)
+    # frente (a los costados del tabardo)
+    for (a0, a1) in ((-12, -3.9), (3.9, 12)):
+        capa('cola_f', 'x', a0, a1, -8.6, -7.6, f'fA{a0}', 27, CL, 'north')
+        capa('cola_f', 'x', a0 - 0.4, a1 + 0.4, -7.6, -6.6, f'fB{a0}', 16, CM, 'north')
+    capa('cola_f', 'x', -12.6, 12.6, -6.6, -5.6, 'fC', 5, CB, 'north', oro=False, brilla=True)
+    # atras
+    capa('cola_b', 'x', -12.5, 12.5, 8.2, 9.2, 'bA', 28, CL, 'south')
+    capa('cola_b', 'x', -13, 13, 7.2, 8.2, 'bB', 16, CM, 'south')
+    capa('cola_b', 'x', -13.4, 13.4, 6.2, 7.2, 'bC', 4, CB, 'south', oro=False, brilla=True)
+    # costados
+    for bone, sgn, cara in (('cola_r', -1, 'west'), ('cola_l', 1, 'east')):
+        for k, (fondo, cols, oro, brilla) in enumerate(((28, CL, True, False), (16, CM, True, False), (6, CB, False, True))):
+            f0, f1 = sorted((sgn * (14.0 - k), sgn * (13.0 - k)))
+            capa(bone, 'z', -6.8 - k * 0.4, 6.8 + k * 0.4, f0, f1, f'{bone}{k}', fondo, cols, cara, oro=oro, brilla=brilla)
+    # tabardo del frente (encima de todo: borde dorado, cruces y punta)
+    C('cola_f', (-3.9, 7, -9.5), (3.9, 38.2, -8.5), TUN_O, decals={'north': _guarda(8, 31, 'tab')})
+    C('cola_f', (-2.7, 4.3, -9.4), (2.7, 9.7, -8.6), TUN_O, decals={'north': _borde(5, 5)}, rotation=[0, 0, 45], origin=[0, 7, -9.0])
+    C('cola_f', (-1.2, 5.8, -9.7), (1.2, 8.2, -9.2), ORO, rotation=[0, 0, 45], origin=[0, 7, -9.45])
+    C('glow_cola_f', (-0.6, 2.6, -9.2), (0.6, 4.6, -8.8), LUZ)
+    # capa de atras: panel con borde dorado, emblema y punta
+    C('cola_b', (-8, 9, 9.2), (8, 38.2, 10.2), TUN, pat='cloth', decals={'south': _borde(16, 29) + _tela(16, 29, 'capa')})
+    C('cola_b', (-3.6, 12, 10.1), (3.6, 36, 10.6), TUN_O, decals={'south': _guarda(7, 24, 'capa2')})
+    C('cola_b', (-2.8, 9.2, 10.0), (2.8, 14.8, 10.5), ORO, rotation=[0, 0, 45], origin=[0, 12, 10.25])
+
+    # ------------------------------------------------------------------ cabeza: calavera (cuencas hundidas, nariz, pomulos, dientes)
+    C('head', (-1.6, 63, -1.6), (1.6, 68, 1.6), HUESO_D)                                    # vertebras
+    R('head', (-7.2, 71.5, -6.6), (7.2, 84.5, 7), HUESO, decals={'east': [(5, 3, 6, 1, HUESO_D), (9, 4, 1, 4, HUESO_D)],
+                                                                 'west': [(5, 3, 6, 1, HUESO_D)], 'up': [(3, 2, 1, 6, HUESO_D)]})
+    C('head', (-6.8, 77.5, -7.3), (6.8, 83.2, -6.2), HUESO, decals={'north': [(9, 0, 1, 2, HUESO_O), (10, 2, 1, 2, HUESO_O), (3, 1, 1, 2, HUESO_D)]})
+    for s in (-1, 1):
+        sx = s * 4.1
+        C('head', (sx - 2.3, 73.2, -7.6), (sx + 2.3, 77.6, -6.7), CUENCA)                   # cuenca hundida
+        x0, x1 = sorted((s * 0.9, s * 7.2))
+        C('head', (x0, 77.4, -8.4), (x1, 79.0, -6.6), HUESO_D, rotation=[0, 0, s * -22.5], origin=[s * 4.0, 78.2, -7.5])  # ceja
+        x0, x1 = sorted((s * 1.6, s * 7.0))
+        C('head', (x0, 72.2, -7.9), (x1, 73.4, -5.8), HUESO, decals={'north': [(0, 0, 5, 1, '#ffffff')]})               # borde de abajo
+        x0, x1 = sorted((s * 6.4, s * 7.4))
+        C('head', (x0, 72.2, -7.7), (x1, 77.6, -5.8), HUESO)                                # borde de afuera
+        x0, x1 = sorted((s * 5.2, s * 8.0))
+        C('head', (x0, 70.6, -6.4), (x1, 73.0, 3.0), HUESO_D)                               # pomulo
+        C('glow_ojos', (sx - 0.8, 74.6, -7.75), (sx + 0.8, 76.2, -7.5), LUZ)                # pupila que brilla
+        C('glow_ojos', (sx - 0.3, 75.1, -7.85), (sx + 0.3, 75.7, -7.7), '#ffffff')
+    C('head', (-1.2, 71.0, -7.7), (1.2, 73.8, -6.6), CUENCA)                                # nariz
+    for s in (-1, 1):
+        C('head', (s * 0.6 - 0.6, 72.9, -7.8), (s * 0.6 + 0.6, 74.1, -6.7), CUENCA, rotation=[0, 0, 45], origin=[s * 0.6, 73.5, -7.2])
+    C('head', (-5.2, 68.4, -7.3), (5.2, 71.4, -2.0), HUESO, decals={'north': [(0, 0, 10, 1, HUESO_D)]})   # maxilar
+    for k in range(8):                                                                      # dientes de arriba
+        x = -4.6 + k * 1.3
+        largo = 1.9 if k in (1, 6) else 1.4
+        C('head', (x, 69.0 - largo, -7.55), (x + 1.05, 69.2, -6.7), '#fbf6ff', decals={'north': [(0, 0, 1, 1, HUESO_D)]})
+    # mandibula (se mueve): dientes de abajo, menton y ramas que suben a la cara
+    C('jaw', (-5.4, 64.6, -7.2), (5.4, 66.6, -1.8), HUESO, decals={'north': [(0, 1, 11, 1, HUESO_D)]})
+    C('jaw', (-2.8, 63.6, -7.5), (2.8, 64.8, -5.6), HUESO_D)
+    for k in range(7):
+        x = -4.2 + k * 1.3
+        C('jaw', (x, 66.4, -7.45), (x + 1.05, 67.9, -6.6), '#fbf6ff')
+    for s in (-1, 1):
+        x0, x1 = sorted((s * 4.6, s * 6.0))
+        C('jaw', (x0, 64.6, -4.6), (x1, 71.0, -0.6), HUESO_D)
+    # corona: aro dorado con gema y un racimo de AMATISTAS facetadas (rombo de frente, punta clara que brilla)
+    C('corona', (-8.0, 81, -8.0), (8.0, 85, 7.6), ORO, decals={f: [(1, 1, w - 2, 2, AME_O)] for f, w in (('north', 16), ('south', 16), ('east', 15), ('west', 15))})
+    C('corona', (-8.6, 84.4, -8.6), (8.6, 85.6, 8.2), ORO_D)
+    C('corona', (-8.6, 80.4, -8.6), (8.6, 81.4, 8.2), ORO_D)
+    C('corona', (-2.8, 80.6, -9.4), (2.8, 86.2, -8.2), ORO, decals={'north': _borde(6, 6, ORO_D)}, rotation=[0, 0, 45], origin=[0, 83.4, -8.8])
+    C('glow_corona', (-1.6, 81.8, -9.8), (1.6, 85.0, -9.1), AME_L, rotation=[0, 0, 45], origin=[0, 83.4, -9.45])
+
+    def amatista(x, z, h, w, base=85.0, rot=None, glow=True):
+        """Cristal de amatista: cuerpo violeta con cara clara (faceta), tramo de arriba mas fino y punta brillante."""
+        r = rot or [0, 45, 0]
+        org = [x, base, z]
+        hb = max(1, int(h * .62))
+        C('corona', (x - w / 2, base, z - w / 2), (x + w / 2, base + h * 0.62, z + w / 2), AME,
+          decals={'north': [(0, 0, 1, hb, AME_L), (max(0, int(w) - 1), 0, 1, hb, AME_D)],
+                  'east': [(0, 0, 1, hb, AME_H)], 'west': [(0, 0, 1, hb, AME_D)],
+                  'south': [(0, 0, 1, hb, AME_D)]}, rotation=r, origin=org)
+        C('corona', (x - w * .34, base + h * 0.6, z - w * .34), (x + w * .34, base + h * 0.88, z + w * .34), AME_L,
+          decals={'east': [(0, 0, 1, int(h * .28) + 1, AME_H)]}, rotation=r, origin=org)
+        if glow:
+            C('glow_corona', (x - w * .17, base + h * 0.86, z - w * .17), (x + w * .17, base + h, z + w * .17), AME_H, rotation=r, origin=org)
+    # grandes (parados, rombo) y chicos inclinados alrededor, como un racimo
+    for (x, z, h, w) in ((0, -7.2, 15, 3.4), (-4.3, -6.8, 11, 2.8), (4.3, -6.8, 11, 2.8), (-7.0, -2.8, 9, 2.4), (7.0, -2.8, 9, 2.4),
+                         (-6.6, 3.2, 8, 2.2), (6.6, 3.2, 8, 2.2), (-2.8, 6.6, 10, 2.6), (2.8, 6.6, 10, 2.6), (0, 0, 7, 2.6)):
+        amatista(x, z, h, w)
+    for (x, z, h, w, rot) in ((-2.2, -8.2, 6, 1.6, [0, 0, 22.5]), (2.2, -8.2, 6, 1.6, [0, 0, -22.5]), (-8.2, 0, 5, 1.5, [0, 0, 22.5]),
+                              (8.2, 0, 5, 1.5, [0, 0, -22.5]), (-5.5, -7.8, 5, 1.4, [-22.5, 0, 0]), (5.5, -7.8, 5, 1.4, [-22.5, 0, 0]),
+                              (0, 8.2, 6, 1.6, [22.5, 0, 0])):
+        amatista(x, z, h, w, rot=rot, glow=False)
+    for s in (-1, 1):                                                                       # cuernitos de hueso a los costados
+        C('corona', (s * 9.6 - 1.2, 82, -2), (s * 9.6 + 1.2, 88, 0.4), HUESO_D, rotation=[0, 0, s * -45], origin=[s * 8.5, 83, -0.8])
+        C('corona', (s * 11.8 - 0.7, 86, -1.5), (s * 11.8 + 0.7, 89.5, -0.1), HUESO, rotation=[0, 0, s * -22.5], origin=[s * 11.8, 86, -0.8])
+
+    # ------------------------------------------------------------------ seis brazos: manga, brazalete y mano de hueso
+    for n, (piv, rot, rot2) in BRAZOS.items():
+        for s, lado in ((-1, 'r'), (1, 'l')):
+            x, y, z = piv[0] * s, piv[1], piv[2]
+            a, f = f'arm_{n}{lado}', f'ante_{n}{lado}'
+            R(a, (x - 3, y - 14.5, z - 3), (x + 3, y + 1.5, z + 3), TUN, pat='cloth', decals={'north': _tela(6, 16, a), 'south': _tela(6, 16, a + 's')})
+            C(a, (x - 3.4, y - 14.8, z - 3.4), (x + 3.4, y - 12.6, z + 3.4), ORO, decals={'north': [(0, 1, 7, 1, ORO_D)]})
+            C(f, (x - 2.8, y - 24, z - 2.8), (x + 2.8, y - 14, z + 2.8), TUN_L, pat='cloth', decals={'north': _tela(6, 10, f)})
+            C(f, (x - 3.8, y - 24.6, z - 3.8), (x + 3.8, y - 20.4, z + 3.8), ORO,
+              decals={g: [(0, 0, 8, 1, ORO_L), (0, 3, 8, 1, ORO_D), (3, 1, 2, 2, LUZ)] for g in ('north', 'south', 'east', 'west')})
+            # mano de hueso: palma con nudillos, cuatro dedos de tres falanges que se curvan y pulgar
+            C(f, (x - 2.2, y - 28, z - 1.4), (x + 2.2, y - 24.4, z + 1.4), HUESO, decals={'north': [(0, 0, 4, 1, HUESO_D), (1, 2, 1, 1, HUESO_D)]})
+            C(f, (x - 2.4, y - 28.6, z - 1.2), (x + 2.4, y - 27.4, z + 0.6), HUESO_D)
+            for k, dx in enumerate((-1.65, -0.55, 0.55, 1.65)):
+                l1, l2, l3 = ((2.6, 2.0, 1.8), (3.0, 2.4, 2.0), (2.9, 2.2, 1.9), (2.4, 1.8, 1.6))[k]
+                y1 = y - 28.4
+                C(f, (x + dx - 0.45, y1 - l1, z - 0.9), (x + dx + 0.45, y1, z), HUESO)
+                C(f, (x + dx - 0.55, y1 - l1 - 0.45, z - 1.0), (x + dx + 0.55, y1 - l1 + 0.45, z + 0.1), HUESO_D)   # nudillo
+                o2 = [x + dx, y1 - l1, z - 0.45]
+                C(f, (x + dx - 0.4, o2[1] - l2, z - 0.85), (x + dx + 0.4, o2[1], z - 0.05), HUESO, rotation=[22.5, 0, 0], origin=o2)
+                o3 = [x + dx, o2[1] - l2 * 0.9239, o2[2] - l2 * 0.3827]
+                C(f, (x + dx - 0.32, o3[1] - l3, o3[2] - 0.32), (x + dx + 0.32, o3[1], o3[2] + 0.32), '#f6f0fa',
+                  decals={'north': [(0, max(0, int(l3) - 1), 1, 1, HUESO_D)]}, rotation=[45, 0, 0], origin=o3)
+            C(f, (x - s * 2.6 - 0.45, y - 30.5, z - 2.2), (x - s * 2.6 + 0.45, y - 26, z - 1.2), HUESO_D)
+            C(f, (x - s * 2.6 - 0.35, y - 32.4, z - 2.7), (x - s * 2.6 + 0.35, y - 30.4, z - 2.0), HUESO, rotation=[22.5, 0, 0],
+              origin=[x - s * 2.6, y - 30.5, z - 1.7])
 
     animations(m)
     return m
@@ -151,87 +342,129 @@ def build():
 def animations(m):
     from animaciones import kf
     w = 'math.sin(q.anim_time * 360 * {s} + {p}) * {a}'
-    UR, UL, LR, LL = (-30, 0, 18), (-30, 0, -18), (24, 0, 6), (24, 0, -6)      # brazos de arriba levantados con garras
+    ARMS = [(n, s, l) for n in 'uml' for s, l in ((-1, 'r'), (1, 'l'))]
+
+    def colas(base=0, amp=5, s=0.5):
+        r = lambda x: round(x, 2)   # BetterModel no lee numeros con muchos decimales
+        return {'cola_b': {'rotation': (f'{r(base)} + {w.format(s=s, p=0, a=r(amp))}', 0, 0)},
+                'cola_f': {'rotation': (f'{r(-base * .4)} + {w.format(s=s, p=90, a=r(amp * .6))}', 0, 0)},
+                'cola_r': {'rotation': (f'{r(base * .3)}', 0, f'{w.format(s=s, p=60, a=r(amp * .7))}')},
+                'cola_l': {'rotation': (f'{r(base * .3)}', 0, f'{w.format(s=s, p=240, a=r(amp * .7))}')}}
+
+    def brazos(fn):
+        """fn(n, s) -> {bone: channels} sumando sobre la pose base."""
+        out = {}
+        for n, s, l in ARMS:
+            out.update(fn(n, s, l))
+        return out
+
+    def hang(n, s, k=1.0):
+        """Delta que lleva el brazo de la pose a colgar (k=1) - para aparecer/morir."""
+        p = _pose(n, s, 1)
+        return (-p[0] * k, 0, -p[2] * k)
+
+    fase = {'ur': 0, 'ul': 180, 'mr': 90, 'ml': 270, 'lr': 45, 'll': 225}
     m.anim('idle', 4.0, {
         'root': {'position': (0, f'3 + {w.format(s=0.5, p=0, a=2)}', 0)},
-        'jirones': {'rotation': (w.format(s=0.5, p=90, a=6), w.format(s=0.25, p=0, a=10), w.format(s=0.5, p=0, a=4))},
-        'body': {'rotation': (w.format(s=0.25, p=0, a=2), w.format(s=0.25, p=90, a=3), 0)},
-        'head': {'rotation': (w.format(s=0.5, p=90, a=3), w.format(s=0.25, p=0, a=10), 0)},
-        'corona': {'position': (0, w.format(s=2, p=0, a=0.8), 0)},
-        'arm_ur': {'rotation': (f'{UR[0]} + {w.format(s=0.5, p=0, a=6)}', 0, f'{UR[2]} + {w.format(s=0.5, p=90, a=4)}')},
-        'arm_ul': {'rotation': (f'{UL[0]} + {w.format(s=0.5, p=180, a=6)}', 0, f'{UL[2]} + {w.format(s=0.5, p=270, a=4)}')},
-        'arm_lr': {'rotation': (f'{LR[0]} + {w.format(s=0.5, p=90, a=4)}', 0, LR[2])},
-        'arm_ll': {'rotation': (f'{LL[0]} + {w.format(s=0.5, p=270, a=4)}', 0, LL[2])},
-        'cubo_r': {'rotation': (0, 'q.anim_time * 90', 0)}, 'cubo_l': {'rotation': (0, 'q.anim_time * -90', 0)},
-        'ala_r': {'rotation': (0, f'-10 + {w.format(s=0.5, p=0, a=6)}', 0)},
-        'ala_l': {'rotation': (0, f'10 + {w.format(s=0.5, p=180, a=6)}', 0)},
-        'nucleo': {'position': (0, 0, w.format(s=1, p=0, a=0.4))},
+        'body': {'rotation': (w.format(s=0.25, p=0, a=2), w.format(s=0.25, p=90, a=4), 0)},
+        'head': {'rotation': (w.format(s=0.5, p=90, a=4), w.format(s=0.25, p=0, a=12), w.format(s=0.25, p=45, a=3))},
+        'jaw': {'rotation': (f'-3 + {w.format(s=0.5, p=0, a=3)}', 0, 0)},
+        'glow_nucleo': {'scale': (f'1 + {w.format(s=1, p=0, a=0.15)}', f'1 + {w.format(s=1, p=0, a=0.15)}', 1)},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': (w.format(s=0.5, p=fase[n + l], a=6), 0, w.format(s=0.5, p=fase[n + l] + 90, a=7))},
+            f'ante_{n}{l}': {'rotation': (w.format(s=0.5, p=fase[n + l] + 45, a=8), 0, w.format(s=0.5, p=fase[n + l], a=6))}}),
+        **colas(),
     })
     m.anim('walk', 2.0, {
         'root': {'position': (0, f'3 + {w.format(s=0.5, p=0, a=2)}', 0)},
-        'jirones': {'rotation': (f'22 + {w.format(s=1, p=0, a=6)}', 0, w.format(s=0.5, p=0, a=6))},
-        'body': {'rotation': (-8, w.format(s=0.5, p=0, a=4), 0)},
-        'arm_ur': {'rotation': (f'{UR[0] - 10} + {w.format(s=0.5, p=0, a=8)}', 0, UR[2])},
-        'arm_ul': {'rotation': (f'{UL[0] - 10} + {w.format(s=0.5, p=180, a=8)}', 0, UL[2])},
-        'arm_lr': {'rotation': (LR[0], 0, LR[2])}, 'arm_ll': {'rotation': (LL[0], 0, LL[2])},
-        'cubo_r': {'rotation': (0, 'q.anim_time * 90', 0)}, 'cubo_l': {'rotation': (0, 'q.anim_time * -90', 0)},
-        'ala_r': {'rotation': (0, f'-18 + {w.format(s=1, p=0, a=8)}', 0)},
-        'ala_l': {'rotation': (0, f'18 + {w.format(s=1, p=180, a=8)}', 0)},
+        'body': {'rotation': (-10, w.format(s=0.5, p=0, a=5), 0)},
+        'head': {'rotation': (8, w.format(s=0.5, p=180, a=4), 0)},
+        **brazos(lambda n, s, l: {f'arm_{n}{l}': {'rotation': (f'-12 + {w.format(s=0.5, p=fase[n + l], a=8)}', 0, 0)}}),
+        **colas(-24, 7, 1),
     })
-    # Zarpazo (~onAttack): levanta las dos garras y las cruza hacia abajo (dano a los 0,4 s).
-    m.anim('attack', 0.9, {
-        'arm_ur': {'rotation': kf((0, *UR), (.25, -150, 0, 30), (.4, 30, 0, -10), (.55, 20, 0, -6), (.9, *UR))},
-        'arm_ul': {'rotation': kf((0, *UL), (.25, -150, 0, -30), (.4, 30, 0, 10), (.55, 20, 0, 6), (.9, *UL))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.25, 12, 0, 0), (.4, -20, 0, 0), (.9, 0, 0, 0)),
-                 'position': kf((0, 0, 0, 0), (.25, 0, 2, 2), (.4, 0, -2, -4), (.9, 0, 0, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.25, -14, 0, 0), (.4, 16, 0, 0), (.9, 0, 0, 0))},
+    # Combo (~onAttack): los de arriba suben y golpean hacia abajo, los de abajo pinchan adelante (dano ~0,45 s).
+    m.anim('attack', 1.1, {
+        'body': {'rotation': kf((0, 0, 0, 0), (.25, 12, 0, 0), (.45, -16, 0, 0), (.7, -10, 0, 0), (1.1, 0, 0, 0)),
+                 'position': kf((0, 0, 0, 0), (.45, 0, -1, -5), (.8, 0, -1, -4), (1.1, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.25, 14, 0, 0), (.45, -12, 0, 0), (1.1, 0, 0, 0))},
+        'jaw': {'rotation': kf((0, -3, 0, 0), (.3, -35, 0, 0), (.8, -32, 0, 0), (1.1, -3, 0, 0))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.25, -25, 0, s * 20) if n != 'l' else (.25, -45, 0, 0),
+                                            (.45, 70, 0, -s * 70) if n == 'u' else (.45, 55, 0, -s * 45) if n == 'm' else (.45, 45, 0, -s * 10),
+                                            (.7, 55, 0, -s * 55) if n == 'u' else (.7, 40, 0, -s * 30) if n == 'm' else (.7, 35, 0, 0),
+                                            (1.1, 0, 0, 0))},
+            f'ante_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.25, 0, 0, s * 15), (.45, 25, 0, -s * 20), (1.1, 0, 0, 0))}}),
+        **colas(10, 4, 1),
     }, loop='once')
-    # Cubo de vacio: echa un brazo de abajo atras y lo lanza (sale a los 0,45 s).
+    # Barrido del vacio: gira 360 grados con los seis brazos abiertos (dano a los 0,55 s).
+    m.anim('barrido', 1.4, {
+        'root': {'rotation': kf((0, 0, 0, 0), (.25, 0, -25, 0), (.85, 0, 360, 0), (1.4, 0, 360, 0)),
+                 'position': kf((0, 0, 3, 0), (.25, 0, 1, 0), (.55, 0, 6, 0), (.85, 0, 3, 0), (1.4, 0, 3, 0))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.25, -_pose(n, s)[0], 0, s * 90 - _pose(n, s)[2] + s * (25 if n == 'u' else 0 if n == 'm' else -25)),
+                                            (.85, -_pose(n, s)[0], 0, s * 90 - _pose(n, s)[2] + s * (25 if n == 'u' else 0 if n == 'm' else -25)),
+                                            (1.4, 0, 0, 0))},
+            f'ante_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.25, -_pose(n, s, 2)[0], 0, -_pose(n, s, 2)[2]),
+                                             (.85, -_pose(n, s, 2)[0], 0, -_pose(n, s, 2)[2]), (1.4, 0, 0, 0))}}),
+        'cola_b': {'rotation': kf((0, 0, 0, 0), (.55, -45, 0, 0), (.85, -35, 0, 0), (1.4, 0, 0, 0))},
+        'cola_f': {'rotation': kf((0, 0, 0, 0), (.55, 25, 0, 0), (.85, 20, 0, 0), (1.4, 0, 0, 0))},
+        'cola_r': {'rotation': kf((0, 0, 0, 0), (.55, 0, 0, -40), (.85, 0, 0, -30), (1.4, 0, 0, 0))},
+        'cola_l': {'rotation': kf((0, 0, 0, 0), (.55, 0, 0, 40), (.85, 0, 0, 30), (1.4, 0, 0, 0))},
+        'jaw': {'rotation': kf((0, -3, 0, 0), (.3, -30, 0, 0), (1.0, -30, 0, 0), (1.4, -3, 0, 0))},
+    }, loop='once')
+    # Lanzamiento: un brazo de abajo va atras y tira (sale a los 0,45 s).
     m.anim('throw', 0.8, {
-        'arm_lr': {'rotation': kf((0, *LR), (.3, -70, 0, 20), (.45, 80, 0, 0), (.8, *LR))},
-        'arm_ll': {'rotation': kf((0, *LL), (.3, -70, 0, -20), (.45, 80, 0, 0), (.8, *LL))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.3, 8, 0, 0), (.45, -12, 0, 0), (.8, 0, 0, 0))},
-        'cubo_r': {'position': kf((0, 0, 0, 0), (.44, 0, 0, 0), (.46, 0, -200, 0), (.79, 0, -200, 0), (.8, 0, 0, 0))},
-        'cubo_l': {'position': kf((0, 0, 0, 0), (.44, 0, 0, 0), (.46, 0, -200, 0), (.79, 0, -200, 0), (.8, 0, 0, 0))},
+        'arm_lr': {'rotation': kf((0, 0, 0, 0), (.3, -95, 0, 0), (.45, 40, 0, 0), (.8, 0, 0, 0))},
+        'arm_ll': {'rotation': kf((0, 0, 0, 0), (.3, -70, 0, 0), (.5, 30, 0, 0), (.8, 0, 0, 0))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.3, 10, 12, 0), (.45, -14, -10, 0), (.8, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.3, 10, 0, 0), (.45, -12, 0, 0), (.8, 0, 0, 0))},
     }, loop='once')
-    # Salto del vacio: se encoge en el nucleo y desaparece (la skill lo lleva detras del jugador a los 0,5 s).
+    # Salto del vacio: se encoge girando y reaparece (la skill lo lleva detras del jugador a los 0,5 s).
     m.anim('salto', 1.0, {
-        'root': {'scale': kf((0, 1, 1, 1), (.45, .15, 1.4, .15), (.5, .05, .05, .05), (.6, .05, .05, .05), (.8, 1.15, 1.15, 1.15), (1.0, 1, 1, 1))},
+        'root': {'scale': kf((0, 1, 1, 1), (.45, .15, 1.4, .15), (.5, .05, .05, .05), (.6, .05, .05, .05), (.8, 1.15, 1.15, 1.15), (1.0, 1, 1, 1)),
+                 'rotation': kf((0, 0, 0, 0), (.45, 0, 180, 0), (.5, 0, 180, 0), (.8, 0, 360, 0), (1.0, 0, 360, 0))},
     }, loop='once')
-    # Furia (fases): abre las alas y los cuatro brazos y grita.
+    # Furia (cambio de fase): ruge mirando arriba y abre los seis brazos; la estrella del pecho se agranda.
     m.anim('furia', 1.6, {
-        'body': {'rotation': kf((0, 0, 0, 0), (.4, -16, 0, 0), (.8, 14, 0, 0), (1.3, 12, 0, 0), (1.6, 0, 0, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.4, 20, 0, 0), (.8, -34, 0, 0), (1.3, -30, 0, 0), (1.6, 0, 0, 0))},
-        'arm_ur': {'rotation': kf((0, *UR), (.8, -160, 0, 60), (1.3, -158, 0, 58), (1.6, *UR))},
-        'arm_ul': {'rotation': kf((0, *UL), (.8, -160, 0, -60), (1.3, -158, 0, -58), (1.6, *UL))},
-        'arm_lr': {'rotation': kf((0, *LR), (.8, 20, 0, 70), (1.3, 20, 0, 66), (1.6, *LR))},
-        'arm_ll': {'rotation': kf((0, *LL), (.8, 20, 0, -70), (1.3, 20, 0, -66), (1.6, *LL))},
-        'ala_r': {'rotation': kf((0, 0, -10, 0), (.8, 0, -55, -15), (1.3, 0, -52, -14), (1.6, 0, -10, 0))},
-        'ala_l': {'rotation': kf((0, 0, 10, 0), (.8, 0, 55, 15), (1.3, 0, 52, 14), (1.6, 0, 10, 0))},
-        'nucleo': {'scale': kf((0, 1, 1, 1), (.8, 1.6, 1.6, 1.6), (1.3, 1.5, 1.5, 1.5), (1.6, 1, 1, 1))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.4, -14, 0, 0), (.8, 14, 0, 0), (1.3, 12, 0, 0), (1.6, 0, 0, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.4, -15, 0, 0), (.8, 30, 0, 0), (1.3, 26, 0, 0), (1.6, 0, 0, 0))},
+        'jaw': {'rotation': kf((0, -3, 0, 0), (.4, -3, 0, 0), (.8, -42, 0, 0), (1.3, -40, 0, 0), (1.6, -3, 0, 0))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.4, 10, 0, -s * 15), (.8, -20, 0, s * 25), (1.3, -18, 0, s * 22), (1.6, 0, 0, 0))},
+            f'ante_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.8, 0, 0, -s * 20), (1.3, 0, 0, -s * 18), (1.6, 0, 0, 0))}}),
+        'glow_nucleo': {'scale': kf((0, 1, 1, 1), (.8, 2.0, 2.0, 2.0), (1.3, 1.8, 1.8, 1.8), (1.6, 1, 1, 1))},
+        'corona': {'position': kf((0, 0, 0, 0), (.8, 0, 1.5, 0), (1.3, 0, 1.2, 0), (1.6, 0, 0, 0))},
+        'cola_b': {'rotation': kf((0, 0, 0, 0), (.8, -30, 0, 0), (1.3, -26, 0, 0), (1.6, 0, 0, 0))},
     }, loop='once')
-    # Pulso de gravedad: se eleva con los brazos abiertos y baja de golpe (dano a los 1,1 s).
+    # Pulso de gravedad: se eleva con los brazos arriba y baja de golpe (dano a los 1,1 s).
     m.anim('pulso', 1.4, {
         'root': {'position': kf((0, 0, 3, 0), (.6, 0, 22, 0), (.95, 0, 24, 0), (1.1, 0, 0, 0), (1.4, 0, 3, 0))},
-        'arm_ur': {'rotation': kf((0, *UR), (.6, -175, 0, 20), (1.1, 40, 0, 10), (1.4, *UR))},
-        'arm_ul': {'rotation': kf((0, *UL), (.6, -175, 0, -20), (1.1, 40, 0, -10), (1.4, *UL))},
-        'jirones': {'rotation': kf((0, 0, 0, 0), (.6, 30, 0, 0), (1.1, -10, 0, 0), (1.4, 0, 0, 0))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.6, -10, 0, s * 25), (1.1, 45, 0, -s * 50), (1.4, 0, 0, 0))}}),
+        'cola_b': {'rotation': kf((0, 0, 0, 0), (.6, 20, 0, 0), (1.1, -45, 0, 0), (1.4, 0, 0, 0))},
+        'cola_f': {'rotation': kf((0, 0, 0, 0), (.6, -15, 0, 0), (1.1, 30, 0, 0), (1.4, 0, 0, 0))},
+        'glow_nucleo': {'scale': kf((0, 1, 1, 1), (.95, 1.8, 1.8, 1.8), (1.1, .8, .8, .8), (1.4, 1, 1, 1))},
     }, loop='once')
-    # Aparece: sale del suelo desde el nucleo.
+    # Aparece: sube desde abajo con los brazos colgando y los va abriendo; la corona se enciende.
     m.anim('aparece', 2.0, {
         'root': {'position': kf((0, 0, -100, 0), (1.2, 0, 0, 0), (1.5, 0, 6, 0), (2.0, 0, 3, 0))},
-        'head': {'rotation': kf((0, 30, 0, 0), (1.2, 30, 0, 0), (1.5, -30, 0, 0), (2.0, 0, 0, 0))},
-        'arm_ur': {'rotation': kf((0, 0, 0, 0), (1.2, 0, 0, 0), (1.5, -170, 0, 40), (2.0, *UR))},
-        'arm_ul': {'rotation': kf((0, 0, 0, 0), (1.2, 0, 0, 0), (1.5, -170, 0, -40), (2.0, *UL))},
+        'head': {'rotation': kf((0, -30, 0, 0), (1.2, -30, 0, 0), (1.5, 30, 0, 0), (2.0, 0, 0, 0))},
+        'jaw': {'rotation': kf((0, -3, 0, 0), (1.3, -3, 0, 0), (1.5, -40, 0, 0), (2.0, -3, 0, 0))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, *hang(n, s, 0.9)), (1.2, *hang(n, s, 0.9)), (1.6, 0, 0, s * 15), (2.0, 0, 0, 0))}}),
+        'corona': {'scale': kf((0, .1, .1, .1), (1.3, .1, .1, .1), (1.6, 1.3, 1.3, 1.3), (2.0, 1, 1, 1))},
     }, loop='once')
-    # Muerte: el nucleo se apaga, se desarma hacia abajo y queda flotando quieto.
+    # Muerte: la estrella estalla, se le cae la corona, los brazos caen y se hunde.
     m.anim('death', 2.2, {
         'root': {'position': kf((0, 0, 3, 0), (.5, 0, 8, 0), (1.4, 0, -10, 0), (2.2, 0, -40, 0))},
-        'body': {'rotation': kf((0, 0, 0, 0), (.5, -20, 0, 0), (1.4, 30, 10, 0), (2.2, 70, 20, 0))},
-        'head': {'rotation': kf((0, 0, 0, 0), (.5, -40, 0, 0), (1.4, 30, 0, 0), (2.2, 40, 0, 0))},
-        'arm_ur': {'rotation': kf((0, *UR), (.5, -170, 0, 50), (1.4, 10, 0, 30), (2.2, 20, 0, 40))},
-        'arm_ul': {'rotation': kf((0, *UL), (.5, -170, 0, -50), (1.4, 10, 0, -30), (2.2, 20, 0, -40))},
-        'nucleo': {'scale': kf((0, 1, 1, 1), (.5, 1.8, 1.8, 1.8), (1.4, .4, .4, .4), (2.2, .1, .1, .1))},
+        'body': {'rotation': kf((0, 0, 0, 0), (.5, 15, 0, 0), (1.4, -30, 10, 0), (2.2, -70, 20, 0))},
+        'head': {'rotation': kf((0, 0, 0, 0), (.5, 35, 0, 0), (1.4, -30, 0, 0), (2.2, -40, 0, 0))},
+        'jaw': {'rotation': kf((0, -3, 0, 0), (.5, -45, 0, 0), (2.2, -35, 0, 0))},
+        'corona': {'position': kf((0, 0, 0, 0), (.5, 0, 5, 0), (1.4, 0, -20, 6), (2.2, 0, -60, 12)),
+                   'rotation': kf((0, 0, 0, 0), (.5, -15, 0, 10), (1.4, 50, 30, 40), (2.2, 90, 60, 80))},
+        **brazos(lambda n, s, l: {
+            f'arm_{n}{l}': {'rotation': kf((0, 0, 0, 0), (.5, -10, 0, s * 20), (1.4, *hang(n, s, 0.6)), (2.2, *hang(n, s, 0.85)))}}),
+        'glow_nucleo': {'scale': kf((0, 1, 1, 1), (.5, 2.4, 2.4, 2.4), (1.4, .4, .4, .4), (2.2, .05, .05, .05))},
     }, loop='hold')
 
 
@@ -240,7 +473,10 @@ def build_ojo():
     m = Model(OJO_ID)
     m.bone('root', (0, 0, 0))
     m.bone('body', (0, 10, 0), 'root')
+    m.bone('glow_ojo', (0, 10, 0), 'body')
     m.bone('mtag_nombre', (0, 22, 0), 'root')
+    for (a, b) in (((-3, 7, -6.4), (3, 13, -6.05)), ((-3, 7, 6.05), (3, 13, 6.4)), ((-6.4, 7, -3), (-6.05, 13, 3)), ((6.05, 7, -3), (6.4, 13, 3))):
+        m.cube('glow_ojo', a, b, '#5affc0', decals={f: [(2, 2, 2, 2, VERDE_OSC), (2, 2, 1, 1, '#ffffff')] for f in ('north', 'south', 'east', 'west')})
     ojo = [(1, 1, 10, 10, VERDE), (3, 3, 6, 6, '#9dffd4'), (4, 4, 4, 4, VERDE_OSC), (5, 5, 1, 1, '#ffffff')]
     m.rcube('body', (-6, 4, -6), (6, 16, 6), TEAL, pat='stone', decals={f: ojo for f in ('north', 'south', 'east', 'west')})
     for (a, b) in (((-8, 8, -1), (-6, 12, 1)), ((6, 8, -1), (8, 12, 1)), ((-1, 16, -1), (1, 19, 1)), ((-1, 1, -1), (1, 4, 1))):
@@ -285,6 +521,7 @@ def mobs_yaml():
         'state{s=attack} @self ~onAttack',
         'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=40;sort=RANDOM;limit=1} ~onTimer:120',
         'skill{s=NAVE_CAP_SALTO} @PlayersInRadius{r=40;sort=RANDOM;limit=1} ~onTimer:260',
+        'skill{s=NAVE_CAP_BARRIDO} @self ~onTimer:180 ?playerwithin{d=7}',
         # Escudo de los Ojos: con un Ojo Vigia vivo recibe el 20% del dano (lo descuenta AstralNave).
         'skill{s=NAVE_CAP_FASE2} @self ~onDamaged ?healthpercent{p=<0.7} ?!hastag{tag=nave.f2}',
         'skill{s=NAVE_CAP_FASE3} @self ~onDamaged ?healthpercent{p=<0.4} ?!hastag{tag=nave.f3}',
@@ -374,6 +611,12 @@ def skills_yaml():
                            'sound{s=entity.enderman.scream;v=2;p=0.6} @self', 'delay 4', 'state{s=attack} @self', 'delay 8',
                            fx('golpe', '#c43bff', 4, 'vacio'), f'damage{{a={DANO_ZARPAZO}}} @PlayersInRadius{{r=5}}',
                            'throw{velocity=6;velocityY=2} @PlayersInRadius{r=5}'],
+        # Barrido del vacio: gira 360 grados con las garras abiertas (animacion barrido, golpe a los 0,55 s).
+        'NAVE_CAP_BARRIDO': ['state{s=barrido} @self', 'sound{s=entity.player.attack.sweep;v=2;p=0.5} @self', 'delay 11',
+                             'particlering{p=sweep_attack;radius=5;points=16;amount=1;y=3} @self',
+                             'particlering{p=dust;color=#e25aff;size=2;radius=6;points=40;amount=1;y=2} @self',
+                             'sound{s=entity.wither.break_block;v=1.2;p=1.4} @self',
+                             f'damage{{a={DANO_BARRIDO}}} @PlayersInRadius{{r=7}}', 'throw{velocity=7;velocityY=1.5} @PlayersInRadius{r=7}'],
         'NAVE_CAP_FASE2': ['addtag{tag=nave.f2} @self', 'state{s=furia} @self', fx('golpe', '#1fd38a', 6, 'arcano'),
                            'sound{s=entity.elder_guardian.curse;v=2;p=0.8} @PlayersInRadius{r=64}',
                            'message{m="&a«Vigias. Abran los ojos.» &7(rompe los Ojos Vigias para danar al Capitan)"} @PlayersInRadius{r=64}',
@@ -410,7 +653,7 @@ def skills_yaml():
         out += [f'{name}:']
         if name in ('NAVE_CAP_CUBO',):
             out += ['  Cooldown: 4']
-        if name in ('NAVE_CAP_SALTO', 'NAVE_CAP_PULSO'):
+        if name in ('NAVE_CAP_SALTO', 'NAVE_CAP_PULSO', 'NAVE_CAP_BARRIDO'):
             out += ['  Cooldown: 8']
         out += ['  Skills:', *['  - ' + q(s.strip()) for s in skills], '']
     return '\n'.join(out)

@@ -39,6 +39,7 @@ astral_nave_capitan:
   - 'state{s=attack} @self ~onAttack'
   - 'skill{s=NAVE_CAP_CUBO} @PlayersInRing{min=5;max=40;sort=RANDOM;limit=1} ~onTimer:120'
   - 'skill{s=NAVE_CAP_SALTO} @PlayersInRadius{r=40;sort=RANDOM;limit=1} ~onTimer:260'
+  - 'skill{s=NAVE_CAP_BARRIDO} @self ~onTimer:180 ?playerwithin{d=7}'
   - 'skill{s=NAVE_CAP_FASE2} @self ~onDamaged ?healthpercent{p=<0.7} ?!hastag{tag=nave.f2}'
   - 'skill{s=NAVE_CAP_FASE3} @self ~onDamaged ?healthpercent{p=<0.4} ?!hastag{tag=nave.f3}'
   - 'skill{s=NAVE_CAP_CRIAS} @self ~onTimer:400 ?hastag{tag=nave.f2}'

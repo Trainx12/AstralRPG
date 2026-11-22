@@ -26,7 +26,7 @@ module:
   # Enables general entity models.
   model: true
   # Enables player-specific animations and models (e.g., custom limbs).
-  player-animation: false
+  player-animation: true
   # Enables player armor in player model.
   player-armor: false
 
