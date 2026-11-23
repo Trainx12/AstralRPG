@@ -212,6 +212,34 @@ on place:
         if astral_builder(player) is false:
             cancel event
 
+# Arenas PvP intactas (23/11/2026): ademas de romper/poner a mano, nada indirecto las cambia.
+# Cancelar la explosion solo saca los bloques: el dano a jugadores ya se aplico.
+on explode:
+    if name of world of event-location is "arena" or "arenas_tft":
+        cancel event
+
+on bucket empty:
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+on bucket fill:
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+on burn:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
+on ignition:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
+on leaves decay:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
 on right click:
     if astral_dungeon(world of player) is true:
         if astral_builder(player) is false:

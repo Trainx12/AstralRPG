@@ -83,7 +83,13 @@ def apply(files,items,version):
                      f'rg flag -w {world} __global__ build deny']
     for world in arena_worlds():
         commands += [f'rg flag -w {world} __global__ block-break deny',
-                     f'rg flag -w {world} __global__ block-place deny']
+                     f'rg flag -w {world} __global__ block-place deny',
+                     f'rg flag -w {world} __global__ build deny']
+        # 23/11/2026: que nada indirecto rompa la arena (fuego, mobs, pisoteo, escarcha).
+        commands += [f'rg flag -w {world} __global__ {flag} deny'
+                     for flag in ('fire-spread', 'lava-fire', 'enderman-grief', 'ravager-grief',
+                                  'block-trampling', 'leaf-decay', 'frosted-ice-form',
+                                  'snowman-trails', 'crop-growth', 'vine-growth')]
     commands += ['lp group default permission set axgraves.allowgraves true']
     (output/'comandos.txt').write_text('\n'.join(commands)+'\n',encoding='utf-8')
 
@@ -441,6 +447,34 @@ on place:
     if name of world of player is __ARENAS__:
         if astral_builder(player) is false:
             cancel event
+
+# Arenas PvP intactas (23/11/2026): ademas de romper/poner a mano, nada indirecto las cambia.
+# Cancelar la explosion solo saca los bloques: el dano a jugadores ya se aplico.
+on explode:
+    if name of world of event-location is __ARENAS__:
+        cancel event
+
+on bucket empty:
+    if name of world of player is __ARENAS__:
+        if astral_builder(player) is false:
+            cancel event
+
+on bucket fill:
+    if name of world of player is __ARENAS__:
+        if astral_builder(player) is false:
+            cancel event
+
+on burn:
+    if name of world of event-block is __ARENAS__:
+        cancel event
+
+on ignition:
+    if name of world of event-block is __ARENAS__:
+        cancel event
+
+on leaves decay:
+    if name of world of event-block is __ARENAS__:
+        cancel event
 
 on right click:
     if astral_dungeon(world of player) is true:
