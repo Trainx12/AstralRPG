@@ -1,5 +1,5 @@
 # Generado por datapack-src/rankings.py. No editar a mano (docs/DESEOS_Y_RANKINGS.md).
-# Rankings semanales: parkour, Infinita, Santuario vs Trainx, Minas y Bosque. Cierre: lunes 00:00 (Argentina).
+# Rankings semanales: parkour, Infinita, Santuario, Minas y Bosque. Cierre: lunes 00:00 (Argentina).
 
 # ------------------------------------------------------------------ utilidades
 function rk_nombre(r: text) :: text:
@@ -12,7 +12,7 @@ function rk_nombre(r: text) :: text:
     if {_r} is "infinita":
         return "Mazmorra Infinita"
     if {_r} is "trainx":
-        return "Santuario vs Trainx"
+        return "Vencer Santuario"
     if {_r} is "minas":
         return "Minas Astrales"
     if {_r} is "bosque":
@@ -130,7 +130,39 @@ function rk_top(r: text, n: number) :: texts:
     return {_out::*}
 
 # ------------------------------------------------------------------ carteles
+function rk_cartel_campeones():
+    set {_t} to "['',{text:'✦ Campeones de la semana ✦\n',color:'gold',bold:true},{text:'Ganadores del ultimo cierre\n',color:'gray'}"
+    set {_i} to 0
+    if {astral.rk.campeon::parkour_spiral} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Parkour Spiral: ',color:'yellow'},{text:'%{astral.rk.campeon::parkour_spiral}%\n',color:'white'}"
+    if {astral.rk.campeon::parkour_spiral2} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Parkour Spiral 2: ',color:'yellow'},{text:'%{astral.rk.campeon::parkour_spiral2}%\n',color:'white'}"
+    if {astral.rk.campeon::parkour_paradise3} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Parkour Paradise 3: ',color:'yellow'},{text:'%{astral.rk.campeon::parkour_paradise3}%\n',color:'white'}"
+    if {astral.rk.campeon::infinita} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Mazmorra Infinita: ',color:'yellow'},{text:'%{astral.rk.campeon::infinita}%\n',color:'white'}"
+    if {astral.rk.campeon::trainx} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Vencer Santuario: ',color:'yellow'},{text:'%{astral.rk.campeon::trainx}%\n',color:'white'}"
+    if {astral.rk.campeon::minas} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Minas Astrales: ',color:'yellow'},{text:'%{astral.rk.campeon::minas}%\n',color:'white'}"
+    if {astral.rk.campeon::bosque} is set:
+        add 1 to {_i}
+        set {_t} to "%{_t}%,{text:'Bosque: ',color:'yellow'},{text:'%{astral.rk.campeon::bosque}%\n',color:'white'}"
+    if {_i} is 0:
+        set {_t} to "%{_t}%,{text:'Todavia no hubo cierre.\n',color:'gray',italic:true}"
+    set {_t} to "%{_t}%]"
+    execute console command "execute as @e[type=text_display,tag=astral_rank_campeones] run data merge entity @s {text:%{_t}%}"
+
 function rk_cartel(r: text):
+    if {_r} is "campeones":
+        rk_cartel_campeones()
+        stop
     set {_t} to "['',{text:'✦ %rk_nombre({_r})% ✦\n',color:'gold',bold:true},{text:'Top 10 de la semana\n',color:'gray'}"
     set {_top::*} to rk_top({_r}, 10)
     set {_i} to 0
@@ -166,6 +198,7 @@ every 30 seconds:
     rk_cartel("trainx")
     rk_cartel("minas")
     rk_cartel("bosque")
+    rk_cartel_campeones()
 
 # ------------------------------------------------------------------ parkour
 function rk_pk_entrar(p: player):
@@ -185,10 +218,63 @@ function rk_pk_entrar(p: player):
 on world change:
     wait 5 ticks
     rk_pk_entrar(player)
+    wait 2 seconds
+    player is online
+    rk_aviso(player)
 
 on join:
     wait 2 seconds
     rk_pk_entrar(player)
+
+function rk_aviso(p: player):
+    set {_w} to name of world of {_p}
+    if {_w} is "parkour_spiral":
+        set {_r} to "parkour_spiral"
+    if {_w} is "parkour_spiral2":
+        set {_r} to "parkour_spiral2"
+    if {_w} is "parkour_paradise3":
+        set {_r} to "parkour_paradise3"
+    if {_w} is "astral_minas":
+        set {_r} to "minas"
+    if {_w} is "astral_bosque":
+        set {_r} to "bosque"
+    if {_w} is "infinita":
+        set {_r} to "infinita"
+    if {_w} is "infinita_2":
+        set {_r} to "infinita"
+    if {_w} is "infinita_3":
+        set {_r} to "infinita"
+    if {_w} is "infinita_4":
+        set {_r} to "infinita"
+    if {_w} is "infinita_5":
+        set {_r} to "infinita"
+    if {_w} is "infinita_6":
+        set {_r} to "infinita"
+    if {_w} is "santuario_azeroth":
+        set {_r} to "trainx"
+    if {_w} is "santuario_azeroth_2":
+        set {_r} to "trainx"
+    if {_w} is "santuario_azeroth_3":
+        set {_r} to "trainx"
+    if {_w} is "santuario_azeroth_4":
+        set {_r} to "trainx"
+    if {_w} is "santuario_azeroth_5":
+        set {_r} to "trainx"
+    if {_w} is "santuario_azeroth_6":
+        set {_r} to "trainx"
+    {_r} is set
+    # Solo al entrar a la zona (cada vez que entra), nunca repetido mientras esta adentro.
+    send " " to {_p}
+    send "&6&l✦ Ranking semanal: &e&l%rk_nombre({_r})%" to {_p}
+    rk_resumen({_p}, {_r})
+    send "&7Cierra cada lunes 00:00. Premios para los 3 primeros:" to {_p}
+    send "&6&l1° &7100.000.000$, 10 tiradas Cosmeticos, 5 tiradas RPG, 2 Chispas Astrales, Barril de XP, Manzana Esmeralda, frascos de XP, titulo exclusivo, Aura de Campeon" to {_p}
+    send "&f&l2° &750.000.000$, 5 tiradas Cosmeticos, 3 tiradas RPG, Chispa Astral, Manzana Esmeralda, frascos de XP, titulo exclusivo" to {_p}
+    send "&c3° &725.000.000$, 3 tiradas Cosmeticos, 1 tirada RPG, Gema Luminica, Manzana Esmeralda, frascos de XP, titulo exclusivo" to {_p}
+    if {_r} starts with "parkour_":
+        send "&6✦ &7El 1° de cada parkour gana ademas la mascota &f&lFenix&7." to {_p}
+    send "&7Mira todos con &f/ranking &7y tus titulos con &f/trofeos&7." to {_p}
+
 
 every 5 ticks:
     loop all players:
@@ -266,6 +352,16 @@ command /ranking [<text>] [<text>]:
             execute console command "execute as %uuid of player% at @s run summon text_display ~ ~2.2 ~ {Tags:['astral_rank','astral_rank_%arg-2%'],billboard:'center',alignment:'center',line_width:240,background:1711276032,text:{text:'Ranking',color:'gold'}}"
             rk_cartel(arg-2)
             send "&aCartel de &f%arg-2% &apuesto aca (se borro el anterior)." to player
+            stop
+        if arg-1 is "reiniciar":
+            # Todo a 0 sin dar premios (tambien desde consola: ranking reiniciar).
+            sender has permission "astral.admin.ranking"
+            rk_borrar_puntajes()
+            delete {astral.rk.historial::*}
+            delete {astral.rk.campeon::*}
+            delete {astral.rk.premio::*}
+            set {astral.rk.semana} to rk_semana()
+            send "&aRankings reiniciados: todo en 0." to sender
             stop
         if arg-1 is "cerrar":
             player has permission "astral.admin.ranking"
@@ -362,8 +458,16 @@ function rk_cerrar():
     rk_cerrar_uno("trainx")
     rk_cerrar_uno("minas")
     rk_cerrar_uno("bosque")
+    rk_borrar_puntajes()
+
+# 23/11: al cerrar todo vuelve a 0 (puntajes de la semana, grupos y record), no queda nada de la semana anterior.
+function rk_borrar_puntajes():
     delete {astral.rk.sem::*}
     delete {astral.rk.grupo::*}
+    delete {astral.rk.rec::*}
+    delete {astral.rk.recnom::*}
+    delete {astral.rk.nom::*}
+    set {astral.rk.grupos} to 0
 
 function rk_cerrar_uno(r: text):
     set {_top::*} to rk_top({_r}, 3)
@@ -373,6 +477,8 @@ function rk_cerrar_uno(r: text):
         set {_k} to loop-value
         broadcast "&e%rk_nombre({_r})% &7%{_pos}%°: &f%{astral.rk.nom::%{_k}%}% &b(%rk_valor({_r}, {astral.rk.sem::%{_r}%::%{_k}%})%)"
         add "%rk_semana()%: %rk_nombre({_r})% %{_pos}%° %{astral.rk.nom::%{_k}%}%" to {astral.rk.historial::*}
+        if {_pos} is 1:
+            set {astral.rk.campeon::%{_r}%} to {astral.rk.nom::%{_k}%}
         if {_r} is "trainx":
             loop {astral.rk.grupo::%{_k}%::*}:
                 rk_premio_pendiente(loop-value-2, {_r}, {_pos})
@@ -407,6 +513,8 @@ function rk_entregar(p: player):
         send "&7Titulo exclusivo desbloqueado: %rk_titulo_texto({_t})% &7(equipalo con &f/trofeos&7)" to {_p}
         if {_pos} is 1:
             execute console command "lp user %{_n}% permission set astral.ranking.aura true"
+            execute console command "lp user %{_n}% permission settemp astral.ranking.titulo.campeon_de_la_semana true 7d replace"
+            send "&7Titulo de 7 dias: &e&l«Campeon de la Semana» &7(&f/trofeos&7)." to {_p}
             send "&7Cosmetico exclusivo: &d&lAura de Campeon &7(&f/trofeos aura&7)." to {_p}
             if {_r} starts with "parkour_":
                 if {_p} has permission "astral.mascota.fenix":
@@ -446,6 +554,9 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
+        execute console command "loot give %{_n}% loot astral:item/gema_luminica_perfecta"
+        execute console command "lp user %{_n}% permission settemp auraskills.multiplier.10 true 7d replace"
+        send "&b✦ +10%% de experiencia de skills por 7 dias." to {_p}
     if {_pos} is 2:
         execute console command "eco give %{_n}% 50000000"
         execute console command "crates give virtual gacha_cosmeticos 5 %{_n}% -s"
@@ -466,6 +577,10 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
+        execute console command "loot give %{_n}% loot astral:item/cristal_refinado"
+        execute console command "loot give %{_n}% loot astral:item/cristal_refinado"
+        execute console command "lp user %{_n}% permission settemp auraskills.multiplier.5 true 7d replace"
+        send "&b✦ +5%% de experiencia de skills por 7 dias." to {_p}
     if {_pos} is 3:
         execute console command "eco give %{_n}% 25000000"
         execute console command "crates give virtual gacha_cosmeticos 3 %{_n}% -s"
@@ -482,6 +597,9 @@ function rk_premio(p: player, n: text, pos: number):
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_grande"
         execute console command "loot give %{_n}% loot astral:item/frasco_xp_gigante"
         execute console command "loot give %{_n}% loot astral:item/manzana_esmeralda"
+        execute console command "loot give %{_n}% loot astral:item/cristal_refinado"
+        execute console command "lp user %{_n}% permission settemp auraskills.multiplier.5 true 7d replace"
+        send "&b✦ +5%% de experiencia de skills por 7 dias." to {_p}
 
 # ------------------------------------------------------------------ trofeos: titulos y aura
 function rk_titulo_texto(k: text) :: text:
@@ -515,6 +633,8 @@ function rk_titulo_texto(k: text) :: text:
         return "&7«Hacha de Plata»"
     if {_k} is "guardabosques":
         return "&c«Guardabosques»"
+    if {_k} is "campeon_de_la_semana":
+        return "&e&l«Campeon de la Semana»"
     return {_k}
 
 command /trofeos [<text>]:
@@ -536,6 +656,7 @@ command /trofeos [<text>]:
                 send "&cTodavia no ganaste ese titulo." to player
                 stop
             execute console command "lp user %name of player% meta setprefix 100 ""%rk_titulo_texto(arg-1)%"""
+            set {astral.rk.equipado::%uuid of player%} to arg-1
             send "&aTitulo equipado: %rk_titulo_texto(arg-1)%" to player
             stop
         send "&6&l--- Tus trofeos ---" to player
@@ -585,10 +706,21 @@ command /trofeos [<text>]:
         if player has permission "astral.ranking.titulo.guardabosques":
             add 1 to {_c}
             execute console command "tellraw %name of player% [{text:'  «Guardabosques» ',color:'red'},{text:'[Equipar]',color:'green',click_event:{action:'run_command',command:'/trofeos guardabosques'}}]"
+        if player has permission "astral.ranking.titulo.campeon_de_la_semana":
+            add 1 to {_c}
+            execute console command "tellraw %name of player% [{text:'  «Campeon de la Semana» ',color:'yellow'},{text:'[Equipar]',color:'green',click_event:{action:'run_command',command:'/trofeos campeon_de_la_semana'}}]"
         if {_c} is 0:
             send "&7Todavia no tenes titulos de ranking. Se ganan cada lunes en el top 3 de &f/ranking&7." to player
         if player has permission "astral.ranking.aura":
             send "&d✦ Aura de Campeon: &f/trofeos aura &7(prender o apagar)" to player
+
+every 1 minute:
+    loop all players:
+        {astral.rk.equipado::%uuid of loop-player%} is "campeon_de_la_semana"
+        loop-player does not have permission "astral.ranking.titulo.campeon_de_la_semana"
+        delete {astral.rk.equipado::%uuid of loop-player%}
+        execute console command "lp user %name of loop-player% meta removeprefix 100"
+        send "&7Tu titulo &e&l«Campeon de la Semana» &7vencio." to loop-player
 
 every 10 ticks:
     loop all players:

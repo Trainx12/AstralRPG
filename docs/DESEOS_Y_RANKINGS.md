@@ -48,7 +48,12 @@
 - **Metas de parkour**: un OP parado en la meta: `/ranking meta parkour_spiral` (y spiral2, paradise3).
   Sin meta no cuenta tiempos (el cartel dice "Meta sin fijar").
 - `/ranking`: resumen. Cierre: **lunes 00:00 (Argentina)**; `/ranking cerrar` lo fuerza (admin).
+  Al cerrar todo vuelve a 0: puntajes, grupos de Santuario y record (desde 23/11). `ranking reiniciar` (admin o consola)
+  borra todo sin dar premios: puntajes, records, historial, campeones y premios pendientes (las metas de parkour quedan).
 - Premios top 3 (constantes arriba de `rankings.py`): 1.000.000$ / 500.000$ / 250.000$, tiradas de gachas,
   Chispas o Gema, **titulos que solo salen de rankings** (oro, plata, bronce; se equipan con `/trofeos`) y al
   1° el **Aura de Campeon** (`/trofeos aura`). El 1° de parkour gana el **Fenix** (o 10 tiradas de Monturas).
   Desconectados: se entrega al entrar.
+- Extra (23/11): 1° Gema Luminica Perfecta, 2° 2 Cristal Refinado, 3° 1; +10% (1°) / +5% (2° y 3°) de XP de skills
+  por 7 dias (`auraskills.multiplier.<n>` temporal); 1° titulo de 7 dias **Campeon de la Semana** (se saca solo al vencer).
+  Cartel **Campeones de la semana** con el 1° de cada ranking del ultimo cierre: `/ranking cartel campeones`.
