@@ -8,7 +8,7 @@ AstralMinasLimite 1.0.0 + Skript de esta entrega se instalan juntos.
 
 | Archivo local, relativo al worktree AstralRPG-minas-limite | Destino | SHA-256 |
 |---|---|---|
-| `build/minas/AstralMinasLimite.jar` | `plugins/AstralMinasLimite.jar` | `e3de83c369d526ab90ad757a3d9008af8ed4fe97d3f83341fdc6192ec0b2236c` |
+| `build/minas/AstralMinasLimite.jar` | `plugins/AstralMinasLimite.jar` | `d02835ae0a1734b94d9e735f9a4a1daf94ec2a6e2f5a596732b87b2f47ab7ef1` |
 | `build/minas/Skript/scripts/astral_minas.sk` | `plugins/Skript/scripts/astral_minas.sk` | `a9bd244b44a6ef2a5d51ff4e319a4783f452cc8f7a8b5f4aa6d58f5ad5db31c1` |
 
 No subir fuentes, tests, plugin MinasLimiteProbe, `.local`, logs ni mapas.

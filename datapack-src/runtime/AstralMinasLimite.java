@@ -159,9 +159,15 @@ public final class AstralMinasLimite extends JavaPlugin implements Listener {
     @EventHandler(priority=EventPriority.LOWEST)
     public void deathBeforeGrave(PlayerDeathEvent e) { e.getDrops().removeIf(AstralMinasLimite::marked); }
     @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
-    public void interact(PlayerInteractEvent e) { if (marked(e.getItem())) e.setCancelled(true); }
+    public void interact(PlayerInteractEvent e) {
+        // Solo clic derecho sobre bloques (macetas, tocadiscos, estantes): el clic izquierdo pica.
+        if (e.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK && marked(e.getItem())) e.setCancelled(true);
+    }
     @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
     public void entity(PlayerInteractEntityEvent e) {
+        // Solo entidades que guardan items. Los aldeanos de Venta/Viajes (MythicMobs) se pueden clickear.
+        Entity t = e.getRightClicked();
+        if (!(t instanceof ItemFrame || t instanceof Allay)) return;
         if (marked(e.getPlayer().getInventory().getItem(e.getHand()))) e.setCancelled(true);
     }
     @EventHandler(priority=EventPriority.HIGHEST, ignoreCancelled=true)
