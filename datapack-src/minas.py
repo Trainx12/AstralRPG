@@ -401,8 +401,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--schematic", type=Path, help="copia original de mina.schem")
     parser.add_argument("--test-world", help="genera una copia para el server de prueba en otro mundo")
+    parser.add_argument("--script-only", action="store_true", help="regenera solo el Skript, sin importar TAB ni mapas privados")
     args = parser.parse_args()
-    if args.test_world:
+    if args.script_only:
+        target = OUT / "Skript/scripts/astral_minas.sk"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(script(), encoding="utf-8")
+        print(target)
+    elif args.test_world:
         print(script(args.test_world, "minecraft:overworld"))
     else:
         generate()

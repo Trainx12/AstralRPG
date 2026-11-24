@@ -36,6 +36,8 @@ El FINAL conserva Crop & Kettle y hereda su condicion pendiente de distribucion.
 
 # AstralRPG: cómo está armado el servidor
 
+Minas: `/minaslimite publico | privado` (`astral.minas.admin`), persistente y privado para ByTrainx por defecto. Requiere AstralMinasLimite 1.0.0 y el Skript juntos; [entrega pendiente](../build/deploy/minas-limite.md).
+
 Disenos y cosmeticos preparados, sin desplegar: [archivos, SHA-1 y reinicio](../build/deploy/disenos-pendientes.md).
 AstralDecor 1.6.0 retira las alas (tambien de segunda mano) y muestra gorros mediante
 equipo visual HEAD, sin ocupar el casco. Permisos antiguos de alas habilitan Carnivora/Diablo.

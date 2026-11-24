@@ -3,7 +3,7 @@
 Todo sale de `datapack-src/minas.py` (números, precios, instalación, panel de TAB) y `datapack-src/minas.sk`
 (lógica). Correr `python minas.py` y `python lobby.py` desde `datapack-src/`.
 
-**Solo usa Skript + Vault (EssentialsX).** La primera versión necesitaba skript-reflect, que Aternos no tiene en su
+**Usa Skript + Vault (EssentialsX) y AstralMinasLimite.** La primera versión necesitaba skript-reflect, que Aternos no tiene en su
 catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera en Skript puro (03/11/2026).
 
 ## Las 20 minas
@@ -46,6 +46,57 @@ catálogo (y no se pueden subir `.jar` a mano), así que se reescribió entera e
   adentro, cada 9 minutos (aviso 10 s antes; los que están en el pozo suben a la plataforma).
 - **Panel lateral (TAB):** en el mundo de minas el panel es el mismo, pero en lugar de las misiones diarias muestra
   la mina actual, la siguiente, bloques picados / necesarios, el costo y (en Diamante III) los minutos.
+
+## Minerales que no salen de las minas
+
+Entrega del 24/11/2026, pendiente de instalar y de prueba del dueño:
+[minas-limite.md](../build/deploy/minas-limite.md).
+
+Por defecto es **privado**: solamente ByTrainx recibe minerales marcados y se le
+aplica el borrado. `/minaslimite publico | privado`, permiso `astral.minas.admin`,
+guarda el modo en `plugins/AstralMinasLimite/config.yml`. No habilitar público
+hasta que el dueño pruebe. Los jugadores ajenos al circuito privado reciben los
+ítems originales, sin marca. No se marcan existencias anteriores a la instalación.
+
+La procedencia es un byte PDC `astral:minas_origen=1`, igual para todos los lotes:
+apilan entre sí, sin nombre, lore, textura ni custom_model_data. Los materiales
+idénticos del Survival conservan su identidad y no se borran. Skript 2.17.1 tiene
+elementos PDC; se eligió un plugin pequeño para compartir el interruptor, entregar
+los drops y controlar todos los eventos con la API de Paper, sin addons ni comandos
+de consola por bloque. `am_give` llama al efecto `astral mine give`; Fortuna, taladro
+y el extra del set Minero conservan el cálculo anterior. El sobrante que no entra
+al inventario cae marcado. La Venta rápida conserva sus precios y filtros.
+
+Al salir de `astral_minas` se eliminan los marcados del inventario, barra,
+secundaria, armadura, cursor, grilla personal/mesa abierta y Ender. Solo se avisa
+si hubo borrado. También se revisa al entrar al servidor, abrir/cerrar inventarios,
+recoger objetos, reaparecer y cada cinco segundos fuera de las minas. Al entrar
+se recuerda vender antes de salir.
+
+No se pueden transferir marcados a contenedores o ventanas externas (incluye
+Ender, shulkers, mochilas e intercambios ya abiertos), ni usarlos para craftear,
+colocar bloques o ponerlos en entidades. Tolvas tampoco los recogen ni trasladan.
+Los drops marcados se retiran de la muerte antes de las tumbas. Con marcados encima
+se bloquean los comandos de comercio conocidos: AxTrade, CrazyAuctions, Bazar y
+venta/tienda, incluidos namespace y alias registrados. `/minas` y los viajes siguen
+disponibles. Se puede tirar el mineral; un jugador fuera del circuito privado no
+puede recoger esos drops de prueba (sí sus propios minerales sin marca).
+
+No cambia Bosque, Cavernas, precios, XP, comisiones, colecciones, rankings ni
+`eco.perdida`: solo la procedencia de lo que entrega `am_give` en `astral_minas`.
+Si se vuelve de público a privado, no se quitan las marcas ya emitidas: los
+controles de transferencia siguen protegiéndolas; el borrado vuelve a ByTrainx.
+
+Generar el script sin requerir los mapas privados de mazmorras:
+`python datapack-src/minas.py --script-only`.
+Compilar: `python datapack-src/minas_limite.py --jdk <bin-JDK25> --server <Paper-local>`.
+Ensayo: `python tools/probar_minas_limite_paper.py --java <java.exe> --base <Paper-local>`.
+El ensayo usa jugadores NMS simulados; no reemplaza la prueba del dueño con cliente
+real ni la compatibilidad del conjunto completo de plugins remoto.
+Resultado local 24/11: 32 comprobaciones Paper aprobadas, scripts de Minas y rankings
+sin errores de carga, y 4 tests nuevos aprobados. Los 4 fallos y 8 errores de las 37
+regresiones existentes se reprodujeron también en una exportación limpia del commit
+base (mapas/previews ausentes y salidas de UI desactualizadas); no se corrigieron aquí.
 
 ## Mapas
 

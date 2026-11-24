@@ -1,5 +1,5 @@
 # AstralRPG / Minas Astrales. Generado por datapack-src/minas.py: no editar a mano.
-# Solo Skript + Vault (EssentialsX). No usa skript-reflect.
+# Skript + Vault (EssentialsX) + AstralMinasLimite. No usa skript-reflect.
 #
 # Variables guardadas: {am.rank::uuid} (mina mas alta abierta), {am.blocks::uuid} (bloques picados
 # en esa mina para abrir la siguiente) y {am.enabled}. El contador vive en memoria ({-am.b::uuid})
@@ -389,10 +389,8 @@ function am_drill_area(p: player) :: number:
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
 function am_give(p: player, items: items):
     loop {_items::*}:
-        if {_p}'s inventory has enough space for loop-value:
-            give loop-value to {_p}
-        else:
-            drop loop-value at {_p}
+        # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
+        astral mine give loop-value to {_p}
 
 function am_drill(p: player, origin: location, area: number, dir: text):
     set {_i} to am_id({_origin})
