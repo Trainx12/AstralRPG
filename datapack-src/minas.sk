@@ -305,9 +305,9 @@ function am_sell_value(p: player, sell: boolean) :: number:
             # Los objetos con nombre o descripcion (equipo Astral, items custom) no se venden.
             if name of {_it} is not set:
                 if lore of {_it} is not set:
-                    set {_price} to {-am.price::%type of {_it}%}
+                    set {_price} to {-am.price::%am_material(type of {_it})%}
                     if {_rc} is false:
-                        set {_price} to {-am.pricev::%type of {_it}%}
+                        set {_price} to {-am.pricev::%am_material(type of {_it})%}
                     if name of world of {_p} is "astral_bosque":
                         set {_price} to {-ab.price::%type of {_it}%}
                     if {_price} is set:
@@ -438,6 +438,20 @@ on inventory close:
 
 # ---------------------------------------------------------------- picar
 
+# Cobre compacto: las ocho variantes representan el mismo mineral; nunca cortes/escaleras.
+function am_material(t: itemtype) :: itemtype:
+    if {-am.copper::%{_t}%} is true:
+        return copper block
+    return {_t}
+
+function am_drops(b: block, tool: item) :: items:
+    set {_d::*} to drops of {_b} using {_tool}
+    if am_material(type of {_b}) is copper block:
+        # Conservar el requisito de herramienta: sin drops vanilla no regalar cobre.
+        if {_d::1} is set:
+            return copper block
+    return {_d::*}
+
 function am_can_break(b: block, p: player) :: boolean:
     set {_i} to am_id(location of {_b})
     if {_i} is 0:
@@ -446,9 +460,10 @@ function am_can_break(b: block, p: player) :: boolean:
         return false
     if am_in_pit(location of {_b}, {_i}) is false:
         return false
-    if type of {_b} is {-am.base::%{_i}%}:
+    set {_t} to am_material(type of {_b})
+    if {_t} is {-am.base::%{_i}%}:
         return true
-    if type of {_b} is {-am.ore::%{_i}%}:
+    if {_t} is {-am.ore::%{_i}%}:
         return true
     return false
 
@@ -506,6 +521,7 @@ function am_give(p: player, items: items):
 # 25/11 (dueno): los bloques extra del taladro y del Minero de Vetas se borran a mano y AuraSkills
 # no los ve. Se les da la misma XP de Mineria que en plugins/AuraSkills/sources/mining.yml.
 function am_xp(t: itemtype) :: number:
+    set {_t} to am_material({_t})
     if {_t} is stone:
         return 0.2
     if {_t} is netherrack:
@@ -552,7 +568,7 @@ function am_drill(p: player, origin: location, area: number, dir: text) :: numbe
     loop {-am.off::%{_area}%::%{_dir}%::*}:
         set {_b} to block at ({_origin} ~ loop-value)
         if am_can_break({_b}, {_p}) is true:
-            set {_d::*} to drops of {_b} using {_p}'s tool
+            set {_d::*} to am_drops({_b}, {_p}'s tool)
             add am_xp(type of {_b}) to {_x}
             set block at {_b} to air
             am_give({_p}, {_d::*})
@@ -571,9 +587,9 @@ function am_vein(p: player, origin: location, max: number, t: itemtype):
         stop
     set {_n} to 0
     loop blocks in radius 3.5 around {_origin}:
-        if type of loop-block is {_t}:
+        if am_material(type of loop-block) is am_material({_t}):
             if am_can_break(loop-block, {_p}) is true:
-                set {_d::*} to drops of loop-block using {_p}'s tool
+                set {_d::*} to am_drops(loop-block, {_p}'s tool)
                 add am_xp(type of loop-block) to {_x}
                 set block at loop-block to air
                 am_give({_p}, {_d::*})
@@ -593,6 +609,11 @@ on break with priority highest:
             stop
     if am_can_break(event-block, player) is false:
         cancel event
+        stop
+    # AuraSkills observa el evento normal en MONITOR: ve cobre comun y concede su XP habitual.
+    # Solo se normaliza despues de comprobar mundo, pozo y rango; los bloques extra usan am_xp.
+    if am_material(type of event-block) is copper block:
+        set block at event-block to copper block
 
 on uncancelled break with priority monitor:
     if name of world of event-block is not "@WORLD@":
@@ -601,7 +622,7 @@ on uncancelled break with priority monitor:
         stop
     set {_i} to am_id(location of event-block)
     am_count(player, {_i}, 1)
-    set {_d::*} to drops of event-block using player's tool
+    set {_d::*} to am_drops(event-block, player's tool)
     # Ropa de Minero (oficios.py): con el set completo, 10% de mineral extra.
     if scoreboard tags of player contains "astral.ofi_minero":
         if {_d::1} is set:
@@ -614,7 +635,7 @@ on uncancelled break with priority monitor:
     set {_vein} to false
     if player's tool is enchanted with excellentenchants:veinminer:
         # Mineral raro de la mina o una mena (en Esmeralda/Diamante la mena es la roca de la mina).
-        set {_vt} to type of event-block
+        set {_vt} to am_material(type of event-block)
         if {_vt} is {-am.ore::%{_i}%}:
             set {_vein} to true
         else if "%{_vt}%" contains " ore":
@@ -805,6 +826,11 @@ function am_build_mold(i: number, m: number):
     set {_y0} to @MOLD_Y@ - {_m} * @MOLD_STEP@
     set {_base} to {-am.base::%{_i}%}
     set {_ore} to {-am.ore::%{_i}%}
+    # Mismo aspecto que el cobre nuevo; los moldes futuros ya no se oxidan.
+    if {_base} is copper block:
+        set {_base} to waxed copper block
+    if {_ore} is copper block:
+        set {_ore} to waxed copper block
     set {_chance} to {-am.chance::%{_i}%}
     execute console command "minecraft:execute in @DIM@ run forceload add %{_x0}% @PIT_Z1@ %{_x0} + @PIT_X2@ - @PIT_X1@% @PIT_Z2@"
     wait 10 ticks

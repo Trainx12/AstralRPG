@@ -143,8 +143,16 @@ def slot(i):
     return 19 + (i - 7) if i <= 13 else 28 + (i - 14)
 
 
+COPPER_BLOCKS = ("copper_block", "exposed_copper", "weathered_copper", "oxidized_copper",
+                 "waxed_copper_block", "waxed_exposed_copper", "waxed_weathered_copper", "waxed_oxidized_copper")
+
+
 def config():
     lines = [f"    set {{-am.count}} to {len(MINES)}", f"    set {{-am.finalMinutes}} to {FINAL_MINUTES}"]
+    lines.append("    delete {-am.copper::*}")
+    for material in COPPER_BLOCKS:
+        lines.append(f'    set {{_t}} to "minecraft:{material}" parsed as item type')
+        lines.append("    set {-am.copper::%{_t}%} to true")
     for i, (name, base, ore, chance, _map, desc, goal, cost) in enumerate(MINES, 1):
         s = slot(i)
         lines += [f"    set {{-am.slot::{i}}} to {s}", f"    set {{-am.dest::{s}}} to {i}",
@@ -152,7 +160,7 @@ def config():
                   f'    set {{-am.base::{i}}} to "minecraft:{base}" parsed as item type',
                   f'    set {{-am.ore::{i}}} to "minecraft:{ore}" parsed as item type',
                   f'    set {{-am.icon::{i}}} to "minecraft:{ore}" parsed as item type',
-                  f'    set {{-am.baseid::{i}}} to "minecraft:{base}"',
+                  f'    set {{-am.baseid::{i}}} to "minecraft:{"waxed_copper_block" if base == "copper_block" else base}"',
                   f"    set {{-am.chance::{i}}} to {chance}", f"    set {{-am.goal::{i}}} to {goal}",
                   f"    set {{-am.cost::{i}}} to {cost}", f"    set {{-am.costv::{i}}} to {COSTS_VIEJOS[i - 1]}",
                   f"    set {{-am.value::{i}}} to {mine_value(base, ore, chance)}",
