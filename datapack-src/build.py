@@ -22,6 +22,7 @@ OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
 NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
+STACK_VERSION_BASE = 31  # NO CAMBIAR: version inicial de los apilables (25/11); despues cada uno sube solo si cambia (item_versions.json)
 ITEM_VERSION = 28  # 23/11: sin sangrado, nivel minimo en armas especiales, mago/berserker T5<->T6.
 
 files = {}
@@ -646,6 +647,45 @@ register_clases(add_item, RECIPES, txt, armor_attrs, aura_pdc, _defensa_pieza, r
 from mesa import prepare as prepare_mesa, export as export_mesa
 from balance_equipo import finalize as finalize_balance
 finalize_balance(ITEMS, FICHAS)
+# 25/11 (dueno: "no se juntan los items iguales"): los items que se APILAN (materiales, manzanas, frascos...)
+# llevan SU PROPIA version: solo cambia si cambia ese item. Antes todos llevaban ITEM_VERSION y cada subida
+# dejaba los del cofre (v viejo) sin juntarse con los del inventario (actualizados). Ver item_versions.json.
+# El chequeo separa por minecraft:max_stack_size=1 (armas/armaduras/talismanes: ITEM_VERSION de siempre)
+# y apilables (su version), asi pueden compartir numeros sin confundirse.
+import hashlib as _hl
+_VER_FILE = os.path.join(HERE, "item_versions.json")
+_vers = json.load(open(_VER_FILE, encoding="utf-8")) if os.path.exists(_VER_FILE) else {}
+_vtag = lambda v: f'id:"{{}}",v:{v}'
+_NO_APILA = ("minecraft:fishing_rod", "minecraft:carrot_on_a_stick", "minecraft:warped_fungus_on_a_stick",
+             "minecraft:book", "minecraft:potion", "minecraft:shield", "minecraft:bow", "minecraft:crossbow")
+for _iid, _it in ITEMS.items():
+    _c = _it["components"]
+    _cd = _c.get("minecraft:custom_data", "")
+    _cur = _vtag(ITEM_VERSION).format(_iid)
+    if (_iid in FICHAS or _it["kind"] in ("weapon", "armor") or "minecraft:max_damage" in _c or _cur not in _cd
+            or _c.get("minecraft:max_stack_size", 2) == 1 or _it["base"] in _NO_APILA):
+        continue
+    _h = _hl.sha1(json.dumps(dict(_c, **{"minecraft:custom_data": _cd.replace(_cur, f'id:"{_iid}"')}),
+                             sort_keys=True, ensure_ascii=False, default=str).encode()).hexdigest()[:12]
+    _old = _vers.get(_iid)
+    _v = STACK_VERSION_BASE if not _old else (_old["v"] if _old["h"] == _h else _old["v"] + 1)
+    _vers[_iid] = {"v": _v, "h": _h}
+    _c["minecraft:custom_data"] = _cd.replace(_cur, _vtag(_v).format(_iid))
+_vers = {k: v for k, v in _vers.items() if k in ITEMS}
+with open(_VER_FILE, "w", encoding="utf-8") as _f:
+    json.dump(dict(sorted(_vers.items())), _f, indent=1)
+ITEM_VERSIONS = {_iid: (_vers[_iid]["v"] if _iid in _vers else ITEM_VERSION) for _iid in ITEMS}
+_ASTRAL = "minecraft:custom_data~{astral:{}}"
+_UNO = "minecraft:max_stack_size=1"
+# Selectores de "item viejo": no apilables, apilables en general y uno por apilable que ya cambio (lista corta).
+OLD_PREDS = [f"*[{_ASTRAL},{_UNO},!minecraft:custom_data~{{astral:{{v:{ITEM_VERSION}}}}}]",
+             f"*[{_ASTRAL},!{_UNO}" + "".join(f",!minecraft:custom_data~{{astral:{{v:{_v}}}}}"
+                                              for _v in sorted({_vers[_i]["v"] for _i in _vers})) + "]"] + [
+    f'*[minecraft:custom_data~{{astral:{{id:"{_i}"}}}},!minecraft:custom_data~{{astral:{{v:{_vers[_i]["v"]}}}}}]'
+    for _i in sorted(_vers) if _vers[_i]["v"] != STACK_VERSION_BASE]
+if len(OLD_PREDS) == 2 and {_vers[_i]["v"] for _i in _vers} <= {ITEM_VERSION}:
+    # Mientras apilables y no apilables compartan la misma version alcanza un solo chequeo por casilla (menos CPU).
+    OLD_PREDS = [f"*[{_ASTRAL},!minecraft:custom_data~{{astral:{{v:{ITEM_VERSION}}}}}]"]
 MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
 export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
 for iid, it in ITEMS.items():
@@ -663,11 +703,11 @@ def comp_arg(k, v):
     return f"{k}={snbt(v)}"
 
 
-OLD = f"*[minecraft:custom_data~{{{NS}:{{}}}},!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSION}}}}}]"
+OLD = OLD_PREDS[0]
 upd = []
 for iid, it in ITEMS.items():
     sel = (f"*[minecraft:custom_data~{{{NS}:{{id:\"{iid}\"}}}},"
-           f"!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSION}}}}}]")
+           f"!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSIONS[iid]}}}}}]")
     keep = []
     if it["kind"] in ("armor", "weapon"):
         mej = "mejora_armadura" if it["kind"] == "armor" else "mejora_arma"
@@ -2738,7 +2778,7 @@ generate_ambience(files)
 from services import generate as generate_services
 generate_services(files, ITEMS)
 from gameplay import apply as apply_gameplay
-apply_gameplay(files, ITEMS, ITEM_VERSION)
+apply_gameplay(files, ITEMS, ITEM_VERSIONS, OLD_PREDS)
 from ficha import modifier as ficha_modifier, render as render_ficha
 for iid, source in FICHAS.items():
     for L in (range(11) if ITEMS[iid]["mejorable"] else [0]):

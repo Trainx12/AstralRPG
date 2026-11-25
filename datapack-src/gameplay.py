@@ -18,9 +18,9 @@ RESCUE_HEIGHTS=expand_map({'lobby':60, 'bosque':0, 'tumba':0, 'mina':-60,
                 'cumbre':0, 'forja':0, 'santuario':0, 'santuario_azeroth':0, SANCTUARY_BUKKIT_WORLD:0})
 RESCUE_HEIGHTS.update({w:40 for w in INFINITA})  # Mazmorra Infinita: caer = volver al spawn
 
-def apply(files,items,version):
+def apply(files,items,versions,old_preds):
+    # versions: id -> version propia (apilables: item_versions.json; resto ITEM_VERSION); old_preds: selectores de item viejo (build.py)
     def fn(name,lines):files[f'data/astral/function/{name}.mcfunction']='\n'.join(lines)+'\n'
-    old=f'*[minecraft:custom_data~{{astral:{{}}}},!minecraft:custom_data~{{astral:{{v:{version}}}}}]'
     slots=[f'container.{n}' for n in range(36)]+['armor.head','armor.chest','armor.legs','armor.feet','weapon.offhand']
     for iid,item in items.items():
         components={k:v for k,v in item['components'].items() if k!='minecraft:enchantments'}
@@ -33,7 +33,7 @@ def apply(files,items,version):
     for slot in slots:
         lines=[]
         for iid,item in items.items():
-            selector=f'*[minecraft:custom_data~{{astral:{{id:"{iid}"}}}},!minecraft:custom_data~{{astral:{{v:{version}}}}}]'
+            selector=f'*[minecraft:custom_data~{{astral:{{id:"{iid}"}}}},!minecraft:custom_data~{{astral:{{v:{versions[iid]}}}}}]'
             if item.get('mejorable'):
                 mej='mejora_armadura' if item['kind']=='armor' else 'mejora_arma'
                 for level in range(1,11):
@@ -57,7 +57,8 @@ def apply(files,items,version):
     ]+[f'execute if items entity @s {slot} {wand_old} run item modify entity @s {slot} astral:varita_curacion_modelo'
        for slot in slots])
     fn('upgrade/check',['function astral:upgrade/carnivora_head', 'function astral:upgrade/varita_curacion_modelo']+[
-        f'execute if items entity @s {slot} {old} run function astral:upgrade/slot/{slot.replace(".","_")}' for slot in slots])
+        f'execute if items entity @s {slot} {old} run function astral:upgrade/slot/{slot.replace(".","_")}'
+        for slot in slots for old in old_preds])
     # El impulso lo aplica Skript con velocidad real; el datapack solo valida el objeto y solicita el uso.
     fn('grapple/use',['tag @s add astral.grapple.request'])
     fn('grapple/tick',['scoreboard players reset @s astral.grap'])

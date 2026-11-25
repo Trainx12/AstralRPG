@@ -1,0 +1,426 @@
+{
+ "alma_corrupta": {
+  "v": 31,
+  "h": "80ca785b7ed2"
+ },
+ "asura_moneda_card": {
+  "v": 31,
+  "h": "58a71b675882"
+ },
+ "asura_moneda_circle": {
+  "v": 31,
+  "h": "861ce3f0b1e1"
+ },
+ "asura_moneda_emerald": {
+  "v": 31,
+  "h": "769f6d6ce48c"
+ },
+ "asura_moneda_square": {
+  "v": 31,
+  "h": "f37563ed034b"
+ },
+ "asura_moneda_triangle": {
+  "v": 31,
+  "h": "f0fd5bcefde2"
+ },
+ "barril_xp": {
+  "v": 31,
+  "h": "42e965dee390"
+ },
+ "brebaje_chaman": {
+  "v": 31,
+  "h": "120d57f8e9ce"
+ },
+ "chispa_astral": {
+  "v": 31,
+  "h": "6607f8295931"
+ },
+ "colmillo_carnivoro": {
+  "v": 31,
+  "h": "4b08b8f6876e"
+ },
+ "coral_astral": {
+  "v": 31,
+  "h": "535205ae9516"
+ },
+ "corazon_fin": {
+  "v": 31,
+  "h": "383186d11761"
+ },
+ "corazon_shulker": {
+  "v": 31,
+  "h": "99ddc768448c"
+ },
+ "cristal_arcano": {
+  "v": 31,
+  "h": "cb2c97da2c7f"
+ },
+ "cristal_caverna": {
+  "v": 31,
+  "h": "3fa61cb00b11"
+ },
+ "cristal_refinado": {
+  "v": 31,
+  "h": "c59304c88b5e"
+ },
+ "cuero_tratado": {
+  "v": 31,
+  "h": "4a3dfa40897e"
+ },
+ "esencia_elite": {
+  "v": 31,
+  "h": "f5eddd1d0e04"
+ },
+ "esencia_nether": {
+  "v": 31,
+  "h": "e27685d3013f"
+ },
+ "esencia_vacio": {
+  "v": 31,
+  "h": "363ab987cff7"
+ },
+ "esquirla_eclipse": {
+  "v": 31,
+  "h": "c74376794b6d"
+ },
+ "fragmento_arena": {
+  "v": 31,
+  "h": "93dd8ed88510"
+ },
+ "fragmento_astral": {
+  "v": 31,
+  "h": "48fd0f7b0cf2"
+ },
+ "fragmento_cristal": {
+  "v": 31,
+  "h": "793a15b8b037"
+ },
+ "fragmento_estelar": {
+  "v": 31,
+  "h": "ff4719e6c570"
+ },
+ "fragmento_fuego": {
+  "v": 31,
+  "h": "2dc260fca504"
+ },
+ "fragmento_hielo": {
+  "v": 31,
+  "h": "ad5a43eee151"
+ },
+ "fragmento_marea": {
+  "v": 31,
+  "h": "61f4a75baa53"
+ },
+ "fragmento_ocaso": {
+  "v": 31,
+  "h": "a8789d363ef9"
+ },
+ "fragmento_pantano": {
+  "v": 31,
+  "h": "66e3bb289937"
+ },
+ "fragmento_umbrio": {
+  "v": 31,
+  "h": "963813161630"
+ },
+ "frasco_xp_gigante": {
+  "v": 31,
+  "h": "81ab6f23cde4"
+ },
+ "frasco_xp_grande": {
+  "v": 31,
+  "h": "fb34eca2b648"
+ },
+ "frasco_xp_pequeno": {
+  "v": 31,
+  "h": "7dbdb3ddd714"
+ },
+ "gema_amatista_1": {
+  "v": 31,
+  "h": "05360edfe4f0"
+ },
+ "gema_amatista_2": {
+  "v": 31,
+  "h": "fb50e61646db"
+ },
+ "gema_amatista_3": {
+  "v": 31,
+  "h": "8f3eaa8dfed8"
+ },
+ "gema_amatista_4": {
+  "v": 31,
+  "h": "32c0381eda94"
+ },
+ "gema_amatista_5": {
+  "v": 31,
+  "h": "b5a93bb048c4"
+ },
+ "gema_jade_1": {
+  "v": 31,
+  "h": "bfa495d2e665"
+ },
+ "gema_jade_2": {
+  "v": 31,
+  "h": "0e1a30d91562"
+ },
+ "gema_jade_3": {
+  "v": 31,
+  "h": "481ed6bfc932"
+ },
+ "gema_jade_4": {
+  "v": 31,
+  "h": "6c24b98f3a89"
+ },
+ "gema_jade_5": {
+  "v": 31,
+  "h": "f0072f49e7c0"
+ },
+ "gema_luminica": {
+  "v": 31,
+  "h": "14cc49fbbc05"
+ },
+ "gema_luminica_perfecta": {
+  "v": 31,
+  "h": "67f923348c84"
+ },
+ "gema_onix_1": {
+  "v": 31,
+  "h": "3e619650ff67"
+ },
+ "gema_onix_2": {
+  "v": 31,
+  "h": "d2a3d8c85222"
+ },
+ "gema_onix_3": {
+  "v": 31,
+  "h": "0c8cf927cf97"
+ },
+ "gema_onix_4": {
+  "v": 31,
+  "h": "0bb1eb0875ee"
+ },
+ "gema_onix_5": {
+  "v": 31,
+  "h": "cc661ca4dc7d"
+ },
+ "gema_opalo_1": {
+  "v": 31,
+  "h": "53a14a4ee145"
+ },
+ "gema_opalo_2": {
+  "v": 31,
+  "h": "19c1352155e8"
+ },
+ "gema_opalo_3": {
+  "v": 31,
+  "h": "0fbc636c8294"
+ },
+ "gema_opalo_4": {
+  "v": 31,
+  "h": "6e298f1307fc"
+ },
+ "gema_opalo_5": {
+  "v": 31,
+  "h": "a2320f52f847"
+ },
+ "gema_rubi_1": {
+  "v": 31,
+  "h": "320e31cba580"
+ },
+ "gema_rubi_2": {
+  "v": 31,
+  "h": "a1574b22b3b0"
+ },
+ "gema_rubi_3": {
+  "v": 31,
+  "h": "ca47d66fe332"
+ },
+ "gema_rubi_4": {
+  "v": 31,
+  "h": "000e09fbb7fc"
+ },
+ "gema_rubi_5": {
+  "v": 31,
+  "h": "b7d4b8748b0b"
+ },
+ "gema_topacio_1": {
+  "v": 31,
+  "h": "ae6df6e80d3e"
+ },
+ "gema_topacio_2": {
+  "v": 31,
+  "h": "b3f8e2649094"
+ },
+ "gema_topacio_3": {
+  "v": 31,
+  "h": "51aa650615c7"
+ },
+ "gema_topacio_4": {
+  "v": 31,
+  "h": "bf5a3a4efa64"
+ },
+ "gema_topacio_5": {
+  "v": 31,
+  "h": "a12b48db585a"
+ },
+ "gema_umbria": {
+  "v": 31,
+  "h": "b54513de5a79"
+ },
+ "gema_umbria_fragmentada": {
+  "v": 31,
+  "h": "064ba47fcb25"
+ },
+ "gema_umbria_perfecta": {
+  "v": 31,
+  "h": "c3080171ad1f"
+ },
+ "gema_zafiro_1": {
+  "v": 31,
+  "h": "87e620db8a66"
+ },
+ "gema_zafiro_2": {
+  "v": 31,
+  "h": "3533a59c8739"
+ },
+ "gema_zafiro_3": {
+  "v": 31,
+  "h": "3ab4aaf8d5f4"
+ },
+ "gema_zafiro_4": {
+  "v": 31,
+  "h": "7e01b6b158f9"
+ },
+ "gema_zafiro_5": {
+  "v": 31,
+  "h": "5a51214234ed"
+ },
+ "geoda_estelar": {
+  "v": 31,
+  "h": "5b471073101c"
+ },
+ "lampara_minero": {
+  "v": 31,
+  "h": "fa5cff223751"
+ },
+ "madera_estelar": {
+  "v": 31,
+  "h": "6b08c3316eb0"
+ },
+ "manzana_esmeralda": {
+  "v": 31,
+  "h": "3396d9db17e9"
+ },
+ "manzana_t10": {
+  "v": 31,
+  "h": "20fd30af4503"
+ },
+ "manzana_t2": {
+  "v": 31,
+  "h": "dc0d0214fece"
+ },
+ "manzana_t3": {
+  "v": 31,
+  "h": "13a4e4d6ff5c"
+ },
+ "manzana_t4": {
+  "v": 31,
+  "h": "0656fbfd83d6"
+ },
+ "manzana_t5": {
+  "v": 31,
+  "h": "5715526fcd44"
+ },
+ "manzana_t6": {
+  "v": 31,
+  "h": "ddaf68a1fe66"
+ },
+ "manzana_t7": {
+  "v": 31,
+  "h": "803babcc9424"
+ },
+ "manzana_t8": {
+  "v": 31,
+  "h": "17e0aba8fdec"
+ },
+ "manzana_t9": {
+  "v": 31,
+  "h": "8277f74319f6"
+ },
+ "netherita_fundida": {
+  "v": 31,
+  "h": "1b7b73c5ee1a"
+ },
+ "netherita_reforzada": {
+  "v": 31,
+  "h": "1c720daf00ad"
+ },
+ "nucleo_astral": {
+  "v": 31,
+  "h": "0c4491d309d8"
+ },
+ "nucleo_eolico": {
+  "v": 31,
+  "h": "2d0857212cfd"
+ },
+ "nucleo_furia": {
+  "v": 31,
+  "h": "35681911fbcc"
+ },
+ "nucleo_furia_pura": {
+  "v": 31,
+  "h": "1d112d31e676"
+ },
+ "nucleo_meteorito": {
+  "v": 31,
+  "h": "471eb83759c0"
+ },
+ "nucleo_supernova": {
+  "v": 31,
+  "h": "5c08f2844b26"
+ },
+ "palo_reforzado": {
+  "v": 31,
+  "h": "7dae3ed135ef"
+ },
+ "peluche_alex": {
+  "v": 31,
+  "h": "e41d42c50be1"
+ },
+ "peluche_creaking": {
+  "v": 31,
+  "h": "2299494c6fd3"
+ },
+ "peluche_ocelot": {
+  "v": 31,
+  "h": "c60b8973422a"
+ },
+ "peluche_steve": {
+  "v": 31,
+  "h": "cc86ffd9c1ed"
+ },
+ "peluche_tropical_fish": {
+  "v": 31,
+  "h": "1067c59a02c6"
+ },
+ "peluche_zombie_horse": {
+  "v": 31,
+  "h": "59204a301f57"
+ },
+ "perla_abisal": {
+  "v": 31,
+  "h": "abc154610de0"
+ },
+ "polvo_astral": {
+  "v": 31,
+  "h": "b35f6d097230"
+ },
+ "polvo_cristal": {
+  "v": 31,
+  "h": "354b2c6143a6"
+ },
+ "shadowsteel": {
+  "v": 31,
+  "h": "d6d681638348"
+ }
+}
