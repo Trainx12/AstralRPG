@@ -50,6 +50,7 @@ python armas_planas3d.py           # cuchillos T1-T10 y equipo de las Mareas en 
 python deploy_modelos_efectos.py   # FINAL privado de mochilas, cuchillos, efectos y Fenix (build/deploy/modelos-3d-efectos.md)
 python gemas.py --jdk <java25>     # Reforja de gemas: Skript, AstralGemas.jar, texturas; deploy_gemas.py arma la entrega
 python cavernas.py --jdk <java25>  # Cavernas de Cristal: plugin AstralCavernas, MythicMobs, aviso; deploy_cavernas.py arma la entrega
+python bazar.py --jdk <java25>     # Bazar privado: AstralBazar.jar, config/productos y entrega; docs/BAZAR_FASE1.md
 python llegada_survival.py         # 3 s sin dano al llegar/reaparecer/conectarse en el Survival -> build/gameplay/astral_llegada.sk
 python ancestral_evento.py         # jefe ancestral cada 3 h al lado de un jugador del Survival; se va si el elegido se aleja/cambia de mundo (solo ByTrainx hasta /ancestral publico) -> build/gameplay/astral_ancestral.sk (+ mobs/mythic.py)
 python tpa_survival.py            # /tpa solo dentro del Survival (sin Nether Hub) -> build/gameplay/astral_tpa.sk + permisos en tpa_comandos.txt

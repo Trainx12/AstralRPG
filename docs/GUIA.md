@@ -475,3 +475,14 @@ Editar `runtime/AstralMounts.java` para silla/propiedad, nado y frio. Pesos de M
 [monturas-17-11](../build/deploy/monturas-17-11.md). Requiere reinicio por AstralDecor 1.16.0;
 usar las copias privadas de los dos YAML para conservar los modelos de las entregas anteriores.
 El pack FINAL y los mundos no cambian por esta tarea.
+
+
+## Bazar Astral privado (fase 1, 25/11/2026)
+
+Desde `datapack-src/`: `python bazar.py --jdk <bin Java 25>` genera exclusivamente
+`build/bazar/AstralBazar.jar`, `config.yml`, `productos.yml` y la entrega
+`build/deploy/bazar-fase1.md`. Especificación vigente: [BAZAR_FASE1.md](BAZAR_FASE1.md).
+Solo productos Astrales; equipo únicamente se liquida al servidor. `publico: false`
+y permiso default false. No cambia el NPC ni DeluxeMenus. Requiere reinicio;
+despliegue pendiente, solo ByTrainx hasta prueba y diseño. Ensayo local:
+`python tools/probar_bazar_paper.py --java <bin Java 25>` desde la raíz.
