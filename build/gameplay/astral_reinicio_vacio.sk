@@ -1,0 +1,48 @@
+# Generado por datapack-src/reinicio_vacio.py: no editar a mano.
+# Reinicia solo si hay cambios pendientes y el server queda vacio 5 minutos seguidos.
+
+command /reiniciopendiente [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is not set:
+            send "&eUso: reiniciopendiente <motivo> | ver | quitar"
+            stop
+        if arg-1 is "ver":
+            if {astral::reinicio::pendiente} is true:
+                send "&6[Reinicio] &ePendiente: &f%{astral::reinicio::motivos::*}%"
+                send "&6[Reinicio] &eMinutos vacio: &f%{-astral::reinicio::vacio} ? 0%/5"
+            else:
+                send "&6[Reinicio] &aNo hay cambios pendientes."
+            stop
+        if arg-1 is "quitar":
+            delete {astral::reinicio::pendiente}
+            delete {astral::reinicio::motivos::*}
+            delete {-astral::reinicio::vacio}
+            send "&6[Reinicio] &aMarca quitada."
+            stop
+        set {astral::reinicio::pendiente} to true
+        add "%now% %arg-1%" to {astral::reinicio::motivos::*}
+        send "&6[Reinicio] &aAnotado. Se reinicia cuando el server quede vacio 5 minutos."
+
+on skript start:
+    delete {astral::reinicio::pendiente}
+    delete {astral::reinicio::motivos::*}
+    delete {-astral::reinicio::vacio}
+
+every 1 minute:
+    if {astral::reinicio::pendiente} is not true:
+        delete {-astral::reinicio::vacio}
+        stop
+    if size of all players > 0:
+        delete {-astral::reinicio::vacio}
+        stop
+    add 1 to {-astral::reinicio::vacio}
+    if {-astral::reinicio::vacio} < 5:
+        stop
+    delete {-astral::reinicio::vacio}
+    log "Reinicio por server vacio: %{astral::reinicio::motivos::*}%" to "astral_reinicio.log"
+    execute console command "save-all"
+    wait 5 seconds
+    if size of all players > 0:
+        stop
+    execute console command "minecraft:stop"

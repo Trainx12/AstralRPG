@@ -19,6 +19,7 @@ Servidor de Minecraft RPG sin mods (Paper 26.1.2 en Empower Servers, nodo Argent
 - El datapack nuevo se toma al reiniciar. Las configs de plugins se editan con el editor de Files y se recargan (`mm reload`, `crates reload`, `tab reload`, `papi reload`, `essentials reload`, `bettermodel reload`).
 - Si cambia `build/AstralRPG-Textures.zip`: subir a R2 con `python tools/subir_pack_r2.py` (mismo nombre y URL fija), verificar descarga publica y actualizar `resource-pack-sha1` en `server.properties`. Reiniciar. El push sigue publicando el codigo; no actualiza R2 solo.
 - Commit y push solo cuando el dueño lo pide o lo aprueba para subir al server.
+- **Reinicio por server vacío (25/11/2026):** al terminar de subir algo que necesita reinicio (plugins/update, datapack, pack ya en R2 con su sha1, MythicMobs sin reload), correr por consola `reiniciopendiente <motivo>`. Con la marca puesta, el server se apaga solo tras 5 min sin nadie y la tarea del panel "Arranque automatico" (power start cada minuto) lo vuelve a prender. Poner la marca SOLO cuando está todo subido (si el pack nuevo no está en R2, no marcar). Ver `reiniciopendiente ver` / `quitar`. Un `stop` manual también vuelve a prender en 1 min: para dejarlo apagado, `python tools/arranque_automatico.py --yes --apagar`.
 
 ## Comandos de generación (desde `datapack-src/`)
 ```
@@ -54,6 +55,7 @@ python bazar.py --jdk <java25>     # Bazar privado: AstralBazar.jar, config/prod
 python llegada_survival.py         # 3 s sin dano al llegar/reaparecer/conectarse en el Survival -> build/gameplay/astral_llegada.sk
 python ancestral_evento.py         # jefe ancestral cada 3 h al lado de un jugador del Survival; se va si el elegido se aleja/cambia de mundo (solo ByTrainx hasta /ancestral publico) -> build/gameplay/astral_ancestral.sk (+ mobs/mythic.py)
 python tpa_survival.py            # /tpa solo dentro del Survival (sin Nether Hub) -> build/gameplay/astral_tpa.sk + permisos en tpa_comandos.txt
+python reinicio_vacio.py           # reinicio cuando el server queda vacio 5 min con cambios pendientes (reiniciopendiente) -> build/gameplay/astral_reinicio_vacio.sk; arranque: tools/arranque_automatico.py
 python regen_fuera_pelea.py        # curacion fuera de pelea (20 s sin dano, 4%/s, sin comida; solo ByTrainx hasta /regenfuera publico) -> build/gameplay/astral_regen.sk
 python mesa_encantamientos.py --jdk <java25>  # mesa de encantamientos AstralMesa (reemplaza LynExp): todos los encantamientos menos las mejoras del Herrero
 python bosque_talar.py             # Bosque Astral 300x300: script (443 arboles de bosque_arboles.json); mapa con tools/bosque_mapa.py, bosque_armar.py, bosque_arboles.py
