@@ -55,7 +55,7 @@ MOBS = {
                             skills=[],
                             spawn=dict(chance=0.04, biomes=["minecraft:flower_forest", "minecraft:dark_forest", "minecraft:swamp",
                                                             "minecraft:mangrove_swamp"])),
-    "astral_arana": dict(kind="hostil", type="SPIDER", name="&5Arana Amatista", hp=26, damage=5, speed=0.3,
+    "astral_arana": dict(kind="hostil", type="ZOGLIN", hostile_ai=True, name="&5Arana Amatista", hp=26, damage=5, speed=0.3,
                          drops=["string 1-3 0.9", "spider_eye 1 0.5", "amethyst_shard 1-2 0.5", "exp 8"],
                          astral=[("fragmento_cristal", 0.15), ("cristal_arcano", 0.03)],
                          spawn=dict(chance=0.05, cave=True, biomes=["minecraft:dripstone_caves", "minecraft:lush_caves",
@@ -114,7 +114,7 @@ MOBS = {
                                        "- message{m=\"&cEl suelo arde, el Golem de la Forja se levanta.\"} @PlayersInRadius{r=40} ~onSpawn"],
                                spawn=dict(chance=0.002, world="world_nether", biomes=["minecraft:basalt_deltas", "minecraft:nether_wastes",
                                                                                        "minecraft:crimson_forest"])),
-    "astral_cangrejo": dict(kind="jefe", type="SPIDER", name="&6&lCangrejo Ermitano Gigante", hp=260, damage=9, speed=VELOCIDAD_JEFE,
+    "astral_cangrejo": dict(kind="jefe", type="ZOGLIN", name="&6&lCangrejo Ermitano Gigante", hp=260, damage=9, speed=VELOCIDAD_JEFE,
                             bar="PINK", drops=["nautilus_shell 1 0.6", "prismarine_shard 2-5 1", "exp 100"],
                             astral=[("alma_corrupta", 0.8), ("corazon_shulker", 0.3), ("esencia_elite", 1.0, 2)],
                             skills=["- throw{velocity=8;velocityY=4} @target ~onAttack 0.35",
@@ -167,6 +167,10 @@ def ancestral_def(mid):
         "- potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn",
         "- potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200",
         f"- skill{{s=AST_ANCESTRAL_SEVA_{mid}}} @self ~onTimer:{ANCESTRAL_MINUTOS * 1200}",
+        # Evento cada X horas (ancestral_evento.py): si el jugador elegido se aleja o cambia de mundo,
+        # el Skript le pone esta etiqueta y el jefe se va (sin premios).
+        f"- skill{{s=AST_ANCESTRAL_FUERA_{mid}}} @self ~onTimer:20 ?hastag{{tag=astral.ancestral.fuera}}",
+        f"- skill{{s=AST_ANCESTRAL_FUERA_{mid}}} @self ~onLoad ?hastag{{tag=astral.ancestral.fuera}}",
         f"- 'message{{m=\"&6&l(!) &e<trigger.name> &7derroto a {name}&7!\"}} @PlayersOnServer ~onDeath ?isplayer'",
     ]
     d["spawn"] = dict(d["spawn"], chance=round(d["spawn"]["chance"] * 0.25, 6))
@@ -335,12 +339,17 @@ NPC_COFRE = {"astral_npc_gacha_rpg": "astral_cofre_rpg", "astral_npc_gacha_montu
              "astral_npc_gacha_cosmeticos": "astral_cofre_cosmeticos"}
 
 
+# 23/11/2026: estos llevan cartel grande de lobby.NAME_HOLOS en el lugar de su nombre; sin nombre de MythicMobs.
+NOMBRE_EN_CARTEL = {"astral_npc_bazar", "astral_npc_subastas", "astral_npc_herrero", "astral_npc_tienda", "astral_npc_venta"}
+
+
 def npc_block(mid, name, prof, skills):
     cofre = NPC_COFRE.get(mid)
-    lines = [f"{mid}:", f"  Type: {'SHEEP' if cofre else 'VILLAGER'}", f"  Display: '{name}'", "  Health: 100", "  Options:",
+    sin_nombre = mid in NOMBRE_EN_CARTEL
+    lines = [f"{mid}:", f"  Type: {'SHEEP' if cofre else 'VILLAGER'}"] + ([] if sin_nombre else [f"  Display: '{name}'"]) + ["  Health: 100", "  Options:",
              "    NoAI: true", "    Invincible: true", "    Silent: true", "    Despawn: false", "    Persistent: true",
              "    Collidable: false", "    PreventItemPickup: true", "    PreventOtherDrops: true",
-             f"    AlwaysShowName: {'false' if cofre else 'true'}"]
+             f"    AlwaysShowName: {'false' if cofre or sin_nombre else 'true'}"]
     lines += [] if cofre else [f"    Profession: {prof}", "    VillagerType: PLAINS"]
     lines += ["  Skills:", "  - cancelevent @self ~onInteract"]
     if cofre:
@@ -393,6 +402,14 @@ def mob_block(mid, d, model=None, elite=None):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn']
     if mid in ("astral_mapache", "astral_pinguino"):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn']
+    if d["kind"] == "montura" or mid in ("astral_mapache", "astral_pinguino"):
+        # 25/11: el lobby tiene mob-spawning allow (vendedores), asi que los huevos de la gacha
+        # funcionaban ahi y la montura no se podia usar (WorldGuard no deja montar). Se borra al
+        # aparecer y el huevo vuelve al jugador mas cercano (el que lo uso).
+        sk += [f'- command{{c="mm egg give <target.name> {mid} 1"}} @NearestPlayer{{r=10}} ~onSpawn ?world{{w=lobby}}',
+               "- message{m=\"&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo.\"} "
+               "@NearestPlayer{r=10} ~onSpawn ?world{w=lobby}",
+               '- remove @self ~onSpawn ?world{w=lobby}']
     if d["kind"] == "montura" and not d.get("fly"):
         # Caballo real: evita que un pasajero de BetterModel quede sentado sin conducir.
         sk += [f'- command{{c="execute as <caster.uuid> run tag @s add {mid}"}} @self ~onSpawn',
@@ -540,6 +557,9 @@ def metaskills():
                 f"  - model{{m={mid};s=2.0}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
                 f"AST_ANCESTRAL_SEVA_{mid}:", "  Skills:",
                 f"  - 'message{{m=\"&7{name} &7se desvanecio... nadie pudo con el.\"}} @PlayersOnServer'",
+                "  - remove @self",
+                f"AST_ANCESTRAL_FUERA_{mid}:", "  Skills:",
+                f"  - 'message{{m=\"&7{name} &7se desvanecio: el elegido se alejo.\"}} @PlayersOnServer'",
                 "  - remove @self"]
     for mid, (color, _) in ELITES.items():
         out += [f"AST_MODEL_{mid}_elite:", "  Skills:", "  - addtag{tag=astral.seen} @self",
