@@ -50,6 +50,9 @@ class VM:
         if m:
             yes=self.match(self.score(m[2],m[3]),m[4])
             return self.line(m[5]) if yes==(m[1]=='if') else False
+        # Condiciones encadenadas: `execute <cond1> <cond2> run X` = `execute <cond1> run execute <cond2> run X`.
+        m=re.fullmatch(r'execute ((?:if|unless) score \S+ \S+ (?:<|>|<=|>=|=) \S+ \S+) ((?:if|unless) .+)',line)
+        if m: return self.line(f'execute {m[1]} run execute {m[2]}')
         m=re.fullmatch(r'execute (if|unless) score (\S+) (\S+) (<|>|<=|>=|=) (\S+) (\S+) run (.+)',line)
         if m:
             a,b=self.score(m[2],m[3]),self.score(m[5],m[6])

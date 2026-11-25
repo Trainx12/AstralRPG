@@ -130,6 +130,7 @@ def transform(text,d,kind):
     data=yaml.safe_load(text); key=d['key']; prefix=key.upper()
     for room in d['rooms']:
         p=path(d,room); S=f'{prefix}_{room["id"].upper()}'; busy=f'{key}.{room["id"]}.busy'
+        pedida=f'{key}.{room["id"]}.pedida'
         if kind=='mobs':
             control=data[f'astral_{key}_control_{room["id"]}']
             sk=control['Skills']
@@ -145,6 +146,10 @@ def transform(text,d,kind):
                     # Nunca reiniciar con el jugador adentro del borde (esquinas y piso incluidos).
                     line=re.sub(r'playerwithin\{d=(\d+)\}',lambda m:f'playerwithin{{d={max(int(m.group(1)),reach)}}}',line)
                 line=re.sub(r'\?mobsinradius\{[^}]+\}',f'?!hastag{{tag={busy}}}',line)
+                # Oleada pedida y todavia sin armar (bug 24/11: la 1 salia junto con la 2 y la sala
+                # se daba por limpia en el mismo instante en que arrancaba la 3).
+                if not room.get('boss_room') and ('_LIMPIA}' in line or re.search(r'_OLA\d+\}',line)):
+                    if f'?!hastag{{tag={pedida}}}' not in line: line+=f' ?!hastag{{tag={pedida}}}'
                 if '_INICIO}' in line:
                     line += f' ?hastag{{tag={key}.ready}}'
                 if key=='cumbre' and room.get('boss_room') and '_INICIO}' in line:
@@ -185,6 +190,10 @@ def transform(text,d,kind):
                         # Primero las plantas fijas: sus tags .wave ocupan plazas
                         # del mismo tope que usa la cola vanilla.
                         skill += [f'skill{{s=AST_PLANTAS_OLA{n}}} @self']
+                    # La espera y la marca de pedida se ponen ACA (en el mismo momento): el tick del
+                    # datapack no puede soltar la espera hasta que wave{n} cargue la cola nueva.
+                    lock=[f'addtag{{tag={key}.espera}} @self',f'addtag{{tag={pedida}}} @self']
+                    skill[:0]=[s for s in lock if s not in skill]
                     skill += [cmd(p+f'/wave{n}')]
             reset=data[S+'_RESET']['Skills']
             reset.insert(0,cmd(p+'/reset'))
@@ -260,7 +269,7 @@ def generate(files):
         for x in range(-3,4) for z in range(-3,4) if x*x+z*z <= 9])
     # Objetivos propios: no dependen de ejecutar comandos de instalacion manuales.
     load='data/astral/function/load.mcfunction'
-    files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive','ad.q','ad.qm','ad.w'))+'\n'
+    files[load]+='\n'+ '\n'.join('scoreboard objectives add '+o+' dummy' for o in ('ad.party','ad.n','ad.i','ad.clock','ad.alive','ad.q','ad.qm','ad.w','ad.ped'))+'\n'
     maintenance=[]
     for d in ds:
         key=d['key']
@@ -268,6 +277,7 @@ def generate(files):
         for room in d['rooms']:
             ctrl=f'@e[type=armor_stand,name={json.dumps("Control "+room["name"],ensure_ascii=False)},distance=0..]'
             fresh += [f'execute as {ctrl} at @s run function astral:{path(d,room)}/reset']
+            fresh += [f'tag {ctrl} remove {key}.{room["id"]}.pedida']
             fresh += [f'tag {ctrl} remove {key}.{tagname}' for tagname in
                       ('on','fin','espera','jefe.derrotado','unlocked','ready',
                        *[f'ola{i}' for i in range(1,len(room['oleadas'])+1)])]
@@ -275,21 +285,24 @@ def generate(files):
         fresh += [f'tag @e[type=armor_stand,name={json.dumps("Control "+first["name"],ensure_ascii=False)},distance=0..] add {key}.ready']
         fn(f'tanda2/{key}/fresh',fresh)
         for r in d['rooms']:
-            p=path(d,r); t=tag(d,r); store='astral:'+p; busy=f'{key}.{r["id"]}.busy'
+            p=path(d,r); t=tag(d,r); store='astral:'+p; busy=f'{key}.{r["id"]}.busy'; pedida=f'{key}.{r["id"]}.pedida'
             # El nombre ya identifica los controles persistentes (tambien en la UI).
             # No necesita recrearlos ni cargar chunks de salas vacias.
             control=f'@e[type=armor_stand,name={json.dumps("Control "+r["name"],ensure_ascii=False)},tag={key}.on]'
-            # Una linea por copia de la mazmorra (instancias.py): cada controlador avanza su propia sala.
+            # Antes habia una linea `execute in <copia> as @e[...]` por copia, pero un @e sin distance
+            # recorre TODOS los mundos: cada linea encontraba los controles de las 6 copias (84 recorridas
+            # completas por segundo) y cada sala corria su tick una vez por linea. Optimizado 24/11:
+            # una sola busqueda por sala y el mismo numero de ticks por controlador (comportamiento igual).
             from instancias import copias
-            for world in copias(d['world']):
-                maintenance.append(f'execute in minecraft:{world} as {control} at @s run function astral:{p}/tick')
+            maintenance.append(f'execute as {control} at @s run function astral:{p}/tick_copias')
+            fn(p+'/tick_copias',[f'function astral:{p}/tick']*len(copias(d['world'])))
             cap=OLEADA_TOPE_FORJA if key=='forja' else OLEADA_TOPE
             # distance=0.. limita al mundo del controlador: las 6 copias no se pisan.
             sel=f'@e[tag={t},distance=0..,nbt=!{{Health:0.0f}}]'
             wave_sel=f'@e[tag={t}.wave,distance=0..,nbt=!{{Health:0.0f}}]'
             fn(p+'/reset',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0',
                            'scoreboard players set @s ad.w 0','scoreboard players set @s ad.alive 0',
-                           f'tag @s remove {busy}',f'scoreboard players set @s ad.clock 0'])
+                           f'tag @s remove {busy}',f'tag @s remove {pedida}',f'scoreboard players set @s ad.clock 0'])
             fn(p+'/cleanup',[f'kill @e[tag={t},distance=0..]','scoreboard players set @s ad.q 0','scoreboard players set @s ad.qm 0'])
             def spawn(m,pt,suffix):
                 x,y,z=pt; tags=[t,t+'.'+suffix,'ad.vanilla']
@@ -373,6 +386,8 @@ def generate(files):
                        'scoreboard players set @s ad.clock 0']
                 if n==1: lines += [f'function astral:{p}/arrival']
                 lines += [f'function astral:{p}/pop']*cap
+                # Cola nueva cargada: recien ahora el tick puede soltar la espera.
+                lines += [f'tag @s remove {pedida}']
                 fn(p+f'/wave{n}',lines)
             fn(p+'/pop',['execute unless score @s ad.q < @s ad.qm run return 0',
                          f'execute store result score @s ad.alive run execute if entity {wave_sel}',
@@ -383,14 +398,28 @@ def generate(files):
             # obsidiana...) vuelve a un punto de aparicion validado de la sala.
             sx,sy,sz=r['spawn_points'][0]
             rescue=f'execute as @e[tag={t},distance=0..] at @s if block ~ ~0.9 ~ #astral:enterrado run tp @s {sx} {sy} {sz}'
-            fn(p+'/tick',[f'execute unless entity @s[tag={key}.on] run return 0', rescue,
+            # Marca pedida pegada (bug 24/11 noche, Matute en el Bosque): MythicMobs aplica el addtag
+            # de la marca DESPUES de que wave{n} ya la saco, y la sala queda trabada para siempre.
+            # Si la oleada pedida ya esta cargada (ad.w = ultima ola{n}) durante ~3 s, se suelta.
+            stale=[]
+            if not r.get('boss_room'):
+                n_olas=len(r['oleadas']); umbral=3*len(copias(d['world']))
+                stale=['scoreboard players set #st ad.i 0',
+                       *[f'execute if entity @s[tag={pedida},tag={key}.ola{n}'+(f',tag=!{key}.ola{n+1}' if n<n_olas else '')+
+                         f'] if score @s ad.w matches {n} run scoreboard players set #st ad.i 1' for n in range(1,n_olas+1)],
+                       'execute if score #st ad.i matches 1 run scoreboard players add @s ad.ped 1',
+                       'execute if score #st ad.i matches 0 run scoreboard players set @s ad.ped 0',
+                       f'execute if score @s ad.ped matches {umbral}.. run tag @s remove {pedida}',
+                       f'execute if score @s ad.ped matches {umbral}.. run scoreboard players set @s ad.ped 0']
+            fn(p+'/tick',[f'execute unless entity @s[tag={key}.on] run return 0', rescue, *stale,
                           'scoreboard players add @s ad.clock 20',
                           *[f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run function astral:{p}/pop']*OLEADA_TANDA,
                           f'execute if score @s ad.clock matches {OLEADA_INTERVALO}.. run scoreboard players set @s ad.clock 0',
                           f'execute if score @s ad.q < @s ad.qm run tag @s add {key}.espera',
-                          f'execute unless score @s ad.q < @s ad.qm run tag @s remove {key}.espera',
+                          f'execute unless score @s ad.q < @s ad.qm unless entity @s[tag={pedida}] run tag @s remove {key}.espera',
                           f'tag @s remove {busy}',f'execute if entity {sel} run tag @s add {busy}',
-                          f'execute if score @s ad.q < @s ad.qm run tag @s add {busy}'])
+                          f'execute if score @s ad.q < @s ad.qm run tag @s add {busy}',
+                          f'execute if entity @s[tag={pedida}] run tag @s add {busy}'])
 
     fn('tanda2/tick',maintenance)
     files['data/astral/tags/block/spawn_air.json']=json.dumps({'values':['minecraft:air','minecraft:cave_air','minecraft:void_air']})+'\n'
