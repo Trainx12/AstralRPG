@@ -401,6 +401,9 @@ def mob_block(mid, d, model=None, elite=None):
     sk = [f"- skill{{s={model_skill}}} @self ~onSpawn", f"- skill{{s={model_skill}}} @self ~onLoad"]
     if d['kind'] == 'jefe' and not d.get('suppress_quest'):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn']
+        # 25/11: la plata leia astral.mtN y los jefes de mundo no la tienen (pagaban siempre tier 1).
+        sk += [f'- command{{c="execute as <caster.uuid> if score @s astral.mt matches {t} run tag @s add astral.pt{t}"}} @self ~onSpawn'
+               for t in range(1, 11)]
         if d.get("ancestral"):
             # 25/11: jefe_mundo le ponia la misma vida que al jefe normal (murio de 2 golpes). x ANCESTRAL_VIDA.
             sk += [f'- command{{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral {ANCESTRAL_VIDA - 1} add_multiplied_total"}} @self ~onSpawn',
@@ -505,7 +508,11 @@ def plata_metaskills():
         out += [f"AST_PLATA_{cat.upper()}:", "  Skills:"]
         for t in range(1, 11):
             out.append(f"  - command{{c=\"astralplatamob <trigger.name> {cat} {t}\"}} @self ?hastag{{tag=astral.mt{t}}}")
-        sin = " ".join(f"?!hastag{{tag=astral.mt{t}}}" for t in range(1, 11))
+        # Jefes de mundo: jefe_mundo guarda el tier en el puntaje astral.mt sin la etiqueta astral.mtN
+        # (esa etiqueta cambiaria su dano). PLATA_TIER_JEFE les pone astral.ptN solo para la plata.
+        for t in range(1, 11):
+            out.append(f"  - command{{c=\"astralplatamob <trigger.name> {cat} {t}\"}} @self ?hastag{{tag=astral.pt{t}}}")
+        sin = " ".join(f"?!hastag{{tag=astral.mt{t}}} ?!hastag{{tag=astral.pt{t}}}" for t in range(1, 11))
         out += [f"  - command{{c=\"astralplatamob <trigger.name> {cat} 1\"}} @self {sin}", ""]
     return out
 
