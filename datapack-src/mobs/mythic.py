@@ -149,6 +149,7 @@ ANCESTRALES = {
     "astral_chaman": ("7CFF6A", "&2&lGran Chaman Ancestral"),
 }
 ANCESTRAL_MINUTOS = 10
+ANCESTRAL_VIDA = 5      # veces la vida de un jefe normal del mismo tier
 
 
 def ancestral_def(mid):
@@ -400,6 +401,10 @@ def mob_block(mid, d, model=None, elite=None):
     sk = [f"- skill{{s={model_skill}}} @self ~onSpawn", f"- skill{{s={model_skill}}} @self ~onLoad"]
     if d['kind'] == 'jefe' and not d.get('suppress_quest'):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn']
+        if d.get("ancestral"):
+            # 25/11: jefe_mundo le ponia la misma vida que al jefe normal (murio de 2 golpes). x ANCESTRAL_VIDA.
+            sk += [f'- command{{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral {ANCESTRAL_VIDA - 1} add_multiplied_total"}} @self ~onSpawn',
+                   '- command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn']
     if mid in ("astral_mapache", "astral_pinguino"):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn']
     if d["kind"] == "montura" or mid in ("astral_mapache", "astral_pinguino"):

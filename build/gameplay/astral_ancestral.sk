@@ -19,22 +19,39 @@ function astral_anc_afuera(p: player) :: boolean:
         return false
     return true
 
+# Lugar despejado para un jefe grande: 5x5 y 6 de alto sin nada solido (ni hojas ni troncos).
+function astral_anc_libre(b: block) :: boolean:
+    loop 150 times:
+        set {_i} to loop-number - 1
+        set {_dx} to mod({_i}, 5) - 2
+        set {_dz} to mod(floor({_i} / 5), 5) - 2
+        set {_dy} to floor({_i} / 25) + 1
+        block at ({_b} offset by vector({_dx}, {_dy}, {_dz})) is solid
+        return false
+    return true
+
 # Lugar al aire libre a 28 bloques del jugador (sin agua ni lava, a una altura parecida).
 function astral_anc_sitio(p: player) :: location:
     set {_c} to location of {_p}
-    loop 12 times:
+    loop 20 times:
         set {_a} to random number between 0 and 360
         set {_t} to {_c} offset by vector(cos({_a}) * 28, 0, sin({_a}) * 28)
         set {_b} to highest solid block at {_t}
         set {_arriba} to block above {_b}
         set {_tipo} to "%type of {_arriba}% %type of {_b}%"
-        if {_tipo} does not contain "water":
-            if {_tipo} does not contain "lava":
-                if {_tipo} does not contain "agua":
-                    set {_dy} to y-coordinate of {_b} - y-coordinate of {_c}
-                    if {_dy} < 15:
-                        if {_dy} > -15:
-                            return location of {_arriba}
+        set {_ok} to true
+        loop "water", "lava", "agua", "leaves", "log", "wood", "hoja", "tronco" and "madera":
+            {_tipo} contains loop-value-2
+            set {_ok} to false
+        set {_dy} to y-coordinate of {_b} - y-coordinate of {_c}
+        if {_dy} >= 15:
+            set {_ok} to false
+        if {_dy} <= -15:
+            set {_ok} to false
+        if {_ok} is true:
+            set {_ok} to astral_anc_libre({_b})
+        if {_ok} is true:
+            return location of {_arriba}
 
 # Jugador elegido al azar entre los que estan al aire libre en el Survival.
 function astral_anc_elegido() :: player:
