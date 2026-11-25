@@ -1581,12 +1581,12 @@ every 1 second:
             am_score(loop-player, "am_here", {_i})
         if y-coordinate of loop-player < 66:
             teleport loop-player to am_spawn({_i})
-        if y-coordinate of loop-player < 85:
+        if y-coordinate of loop-player < 73 + 3:
             if am_in_pit(location of loop-player, {_i}) is true:
                 if am_subir_enabled(loop-player) is true:
                     set {_avisar} to true
                     if {-am.subir.aviso::%{_id}%} is set:
-                        if difference between now and {-am.subir.aviso::%{_id}%} < 60 seconds:
+                        if difference between now and {-am.subir.aviso::%{_id}%} < 5 minutes:
                             set {_avisar} to false
                     if {_avisar} is true:
                         set {-am.subir.aviso::%{_id}%} to now

@@ -128,8 +128,9 @@ Entrega y pruebas: `build/deploy/renacer-minas.md`. Despliegue pendiente.
 ## Salir del pozo (25/11/2026, privado)
 
 Mejora preparada; despliegue y prueba del dueno pendientes. `/subir` vuelve a la
-plataforma desde el pozo de una mina abierta, con 3 segundos entre usos. Bajo
-Y 85 aparece un aviso como maximo cada 60 segundos. Por defecto solo ByTrainx
+plataforma desde el pozo de una mina abierta, con 3 segundos entre usos. A menos de 3 bloques del fondo
+(`PIT.y1 + 3`, hoy Y < 76), aparece un aviso en la barra de accion
+como maximo cada 5 minutos por jugador. Por defecto solo ByTrainx
 tiene comando y aviso (`{am.subir}` privado).
 
 Solo tras el OK del dueno, `/minassubir publico` habilita comando y avisos para

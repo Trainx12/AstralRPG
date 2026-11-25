@@ -14,8 +14,20 @@ class SalirDelPozo(unittest.TestCase):
             self.assertEqual(text.count(command), 1)
         self.assertIn('set {am.subir} to "privado"', text)
         self.assertIn('difference between now and {-am.subir.uso::%{_id}%} < 3 seconds', text)
-        self.assertIn('difference between now and {-am.subir.aviso::%{_id}%} < 60 seconds', text)
+        self.assertIn('difference between now and {-am.subir.aviso::%{_id}%} < 5 minutes', text)
         self.assertIn('send action bar "&e⬆ Usa &f/subir &epara volver arriba" to loop-player', text)
+
+    def test_aviso_solo_cerca_del_fondo(self):
+        template = Path(minas.__file__).with_suffix('.sk').read_text(encoding='utf8')
+        self.assertIn('if y-coordinate of loop-player < @PIT_Y1@ + 3:', template)
+        text = minas.script()
+        threshold = f"if y-coordinate of loop-player < {minas.PIT['y1']} + 3:"
+        notice = text.split(threshold, 1)[1].split('# Minutos de mineria activa', 1)[0]
+        self.assertIn('if am_in_pit(location of loop-player, {_i}) is true:', notice)
+        self.assertIn('if am_subir_enabled(loop-player) is true:', notice)
+        self.assertIn('difference between now and {-am.subir.aviso::%{_id}%} < 5 minutes:', notice)
+        self.assertIn('set {-am.subir.aviso::%{_id}%} to now', notice)
+        self.assertIn('send action bar ', notice)
 
     def test_panel_y_aviso_privados(self):
         import yaml

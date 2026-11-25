@@ -45,8 +45,11 @@ cambiar `/minassubir publico|privado`; fuera de Minas vale 0.
    suave y barra de accion.
 3. Repetir dentro de 3 segundos: debe impedir el segundo uso. Fuera del pozo,
    en una mina cerrada o en otro mundo, no debe trasladar al jugador.
-4. Bajo Y 85, comprobar el aviso `&e⬆ Usa &f/subir &epara volver arriba`
-   y que no se repita antes de 60 s.
+4. A menos de 3 bloques del fondo (`PIT.y1 + 3`, hoy Y < 76), comprobar
+   el aviso `&e⬆ Usa &f/subir &epara volver arriba`. En Y 76 o mas no debe
+   aparecer; en Y 75 si. No debe repetirse antes de 5 minutos por jugador,
+   aunque salga y vuelva al fondo dentro de ese intervalo. Cumplidos los
+   5 minutos, debe volver a aparecer si sigue dentro de la zona.
    En privado, un jugador comun no debe recibir avisos ni usar `/subir`.
 5. Probar pico, taladro y Minero de Vetas: deben conservar la proteccion del mapa.
 6. Regenerar esa mina con `/minasreset N` y comprobar que `/subir` sigue
@@ -70,13 +73,29 @@ avisos. `/minassubir privado` vuelve a limitarlos a ByTrainx. El interruptor no
 modifica bloques ni regenera las minas.
 Nunca sustituir mundos ni usar Worlds > Upload en la fila world.
 
+## Ajuste del aviso de barra de accion (25/11/2026)
+
+Esta revision solo cambia el limite de altura y el intervalo individual del
+aviso: `y < PIT.y1 + 3` (hoy Y < 76) y 5 minutos. El mensaje de chat cada
+10 minutos, TAB y `/subir` conservan su comportamiento.
+Si la mejora de salida ya esta instalada, actualizar unicamente
+`build/minas/Skript/scripts/astral_minas.sk` en
+`plugins/Skript/scripts/astral_minas.sk` y ejecutar `skript reload astral_minas`.
+Conservar el estado actual de `minassubir`; no hace falta tocar TAB ni sus
+interruptores para este ajuste. No requiere apagar ni reiniciar.
+
 ## Verificacion local de esta revision
 
-- Regenerado con `python minas.py`; TAB queda sin cambios.
-- 4 pruebas de `test_minas_subir` y 17 de `test_economia` aprobadas.
-- Skript local y Skript aislado para Git: carga y recarga correctas en Paper
-  26.1.2 / Java 25, sin errores de Skript. ExcellentEnchants avisa que falta un
-  proveedor de tooltips (PacketEvents o ProtocolLib) en el entorno de prueba.
-- Salida publicada comprobada contra el generador aislado. Los cambios previos
-  de Renacer y de economia en la documentacion quedan locales, fuera del commit.
-- Sin instalacion ni comandos en el servidor remoto; prueba del dueno pendiente.
+- Regenerado con `python minas.py`; TAB y los demas archivos generados no cambian.
+- 22 pruebas aprobadas: 5 de `test_minas_subir` y 17 de `test_economia`.
+- Skript aislado para Git: carga y recarga correctas en Paper 26.1.2 / Java 25,
+  sin errores de Skript. ExcellentEnchants informa la falta del proveedor de
+  tooltips (PacketEvents o ProtocolLib) en el entorno local.
+- Salida aislada comparada con el generador, usando la economia local previa.
+  Limitacion anterior a esta tarea: el `minas.py` de HEAD importa constantes
+  `MINAS_SUBA`, `MINAS_FORTUNA` y `MINAS_COSTO_FACTOR` todavia ausentes en la
+  economia publicada. Una regeneracion desde un clon limpio queda pendiente
+  de publicar esa tarea por separado. La prueba aislada del panel requiere
+  tambien las regiones locales privadas; no se publican.
+- Cambios previos de Renacer y economia conservados y excluidos del commit.
+- Sin instalacion ni comandos remotos. Prueba del dueno y despliegue pendientes.
