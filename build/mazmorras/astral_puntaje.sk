@@ -1938,7 +1938,36 @@ function pz_muerte(p: player):
         stop
     set {-pz.ult::%{_u}%} to {_ahora}
     add 1 to {-pz.muertes::%{_w}%}
+    maz_aviso_caida({_p}, {_w})
     log "%now% %name of {_p}% %{_w}% muertes=%{-pz.muertes::%{_w}%}%" to "astral-puntaje"
+
+# Aviso corto a los companeros vivos de la copia (25/11/2026). Regla del dueno: solo ByTrainx
+# hasta `/avisocaida publico`; `/avisocaida privado` lo vuelve a cerrar.
+function maz_aviso_caida(p: player, w: text):
+    loop all players:
+        loop-player is not {_p}
+        name of world of loop-player is {_w}
+        gamemode of loop-player is not spectator
+        set {_ok} to false
+        if {astral.avisocaida.publico} is true:
+            set {_ok} to true
+        else if name of loop-player is "ByTrainx":
+            set {_ok} to true
+        if {_ok} is true:
+            send title "" with subtitle "&c☠ &f%name of {_p}% &7cayo" to loop-player for 2 seconds
+            play sound "entity.player.hurt" with volume 0.5 and pitch 0.8 to loop-player
+
+command /avisocaida [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {astral.avisocaida.publico} to true
+            send "&aAviso de caida en mazmorras: ABIERTO a todos." to sender
+        else if arg-1 is "privado":
+            delete {astral.avisocaida.publico}
+            send "&eAviso de caida en mazmorras: solo ByTrainx." to sender
+        else:
+            send "&7/avisocaida publico | privado" to sender
 
 on death of player:
     pz_muerte(victim)
