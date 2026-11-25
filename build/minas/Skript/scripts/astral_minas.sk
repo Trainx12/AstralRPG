@@ -1,5 +1,5 @@
 # AstralRPG / Minas Astrales. Generado por datapack-src/minas.py: no editar a mano.
-# Solo Skript + Vault (EssentialsX). No usa skript-reflect.
+# Skript + Vault (EssentialsX) + AstralMinasLimite. No usa skript-reflect.
 #
 # Variables guardadas: {am.rank::uuid} (mina mas alta abierta), {am.blocks::uuid} (bloques picados
 # en esa mina para abrir la siguiente) y {am.enabled}. El contador vive en memoria ({-am.b::uuid})
@@ -19,7 +19,10 @@ on load:
     set {-am.chance::1} to 22
     set {-am.goal::1} to 0
     set {-am.cost::1} to 0
+    set {-am.costv::1} to 0
     set {-am.value::1} to 21.0
+    set {-am.mult::1} to 1
+    set {-am.valuev::1} to 21.0
     set {-am.slot::2} to 11
     set {-am.dest::11} to 2
     set {-am.name::2} to "I · Cobre"
@@ -31,7 +34,10 @@ on load:
     set {-am.chance::2} to 22
     set {-am.goal::2} to 400
     set {-am.cost::2} to 8000
+    set {-am.costv::2} to 8000
     set {-am.value::2} to 27.05
+    set {-am.mult::2} to 1
+    set {-am.valuev::2} to 27.05
     set {-am.slot::3} to 12
     set {-am.dest::12} to 3
     set {-am.name::3} to "I · Hierro"
@@ -43,7 +49,10 @@ on load:
     set {-am.chance::3} to 22
     set {-am.goal::3} to 600
     set {-am.cost::3} to 15000
+    set {-am.costv::3} to 15000
     set {-am.value::3} to 40.8
+    set {-am.mult::3} to 1
+    set {-am.valuev::3} to 40.8
     set {-am.slot::4} to 13
     set {-am.dest::13} to 4
     set {-am.name::4} to "I · Oro"
@@ -55,7 +64,10 @@ on load:
     set {-am.chance::4} to 22
     set {-am.goal::4} to 800
     set {-am.cost::4} to 30000
+    set {-am.costv::4} to 30000
     set {-am.value::4} to 62.8
+    set {-am.mult::4} to 1
+    set {-am.valuev::4} to 62.8
     set {-am.slot::5} to 14
     set {-am.dest::14} to 5
     set {-am.name::5} to "I · Esmeralda"
@@ -67,7 +79,10 @@ on load:
     set {-am.chance::5} to 22
     set {-am.goal::5} to 1000
     set {-am.cost::5} to 55000
+    set {-am.costv::5} to 55000
     set {-am.value::5} to 117.8
+    set {-am.mult::5} to 1
+    set {-am.valuev::5} to 117.8
     set {-am.slot::6} to 15
     set {-am.dest::15} to 6
     set {-am.name::6} to "I · Diamante"
@@ -79,7 +94,10 @@ on load:
     set {-am.chance::6} to 22
     set {-am.goal::6} to 1300
     set {-am.cost::6} to 130000
+    set {-am.costv::6} to 130000
     set {-am.value::6} to 183.8
+    set {-am.mult::6} to 1
+    set {-am.valuev::6} to 183.8
     set {-am.slot::7} to 19
     set {-am.dest::19} to 7
     set {-am.name::7} to "II · Carbón"
@@ -90,8 +108,11 @@ on load:
     set {-am.baseid::7} to "minecraft:coal_ore"
     set {-am.chance::7} to 30
     set {-am.goal::7} to 1700
-    set {-am.cost::7} to 250000
-    set {-am.value::7} to 222.0
+    set {-am.cost::7} to 270000
+    set {-am.costv::7} to 250000
+    set {-am.value::7} to 942.0
+    set {-am.mult::7} to 0.4182
+    set {-am.valuev::7} to 222.0
     set {-am.slot::8} to 20
     set {-am.dest::20} to 8
     set {-am.name::8} to "II · Cobre"
@@ -102,8 +123,11 @@ on load:
     set {-am.baseid::8} to "minecraft:copper_ore"
     set {-am.chance::8} to 30
     set {-am.goal::8} to 2200
-    set {-am.cost::8} to 400000
-    set {-am.value::8} to 331.25
+    set {-am.cost::8} to 740000
+    set {-am.costv::8} to 400000
+    set {-am.value::8} to 1006.25
+    set {-am.mult::8} to 0.4038
+    set {-am.valuev::8} to 331.25
     set {-am.slot::9} to 21
     set {-am.dest::21} to 9
     set {-am.name::9} to "II · Hierro"
@@ -114,8 +138,11 @@ on load:
     set {-am.baseid::9} to "minecraft:iron_ore"
     set {-am.chance::9} to 30
     set {-am.goal::9} to 2700
-    set {-am.cost::9} to 700000
-    set {-am.value::9} to 525.0
+    set {-am.cost::9} to 930000
+    set {-am.costv::9} to 700000
+    set {-am.value::9} to 1095.0
+    set {-am.mult::9} to 0.3751
+    set {-am.valuev::9} to 525.0
     set {-am.slot::10} to 22
     set {-am.dest::22} to 10
     set {-am.name::10} to "II · Oro"
@@ -126,8 +153,11 @@ on load:
     set {-am.baseid::10} to "minecraft:gold_ore"
     set {-am.chance::10} to 30
     set {-am.goal::10} to 3200
-    set {-am.cost::10} to 1300000
-    set {-am.value::10} to 835.0
+    set {-am.cost::10} to 1100000
+    set {-am.costv::10} to 1300000
+    set {-am.value::10} to 1210.0
+    set {-am.mult::10} to 0.3394
+    set {-am.valuev::10} to 835.0
     set {-am.slot::11} to 23
     set {-am.dest::23} to 11
     set {-am.name::11} to "II · Esmeralda"
@@ -138,8 +168,11 @@ on load:
     set {-am.baseid::11} to "minecraft:emerald_ore"
     set {-am.chance::11} to 30
     set {-am.goal::11} to 3700
-    set {-am.cost::11} to 2500000
-    set {-am.value::11} to 1700.0
+    set {-am.cost::11} to 1300000
+    set {-am.costv::11} to 2500000
+    set {-am.value::11} to 1430.0
+    set {-am.mult::11} to 0.2735
+    set {-am.valuev::11} to 1700.0
     set {-am.slot::12} to 24
     set {-am.dest::24} to 12
     set {-am.name::12} to "II · Diamante"
@@ -150,8 +183,11 @@ on load:
     set {-am.baseid::12} to "minecraft:diamond_ore"
     set {-am.chance::12} to 30
     set {-am.goal::12} to 4500
-    set {-am.cost::12} to 6000000
-    set {-am.value::12} to 2720.0
+    set {-am.cost::12} to 1500000
+    set {-am.costv::12} to 6000000
+    set {-am.value::12} to 1700.0
+    set {-am.mult::12} to 0.2243
+    set {-am.valuev::12} to 2720.0
     set {-am.slot::13} to 25
     set {-am.dest::25} to 13
     set {-am.name::13} to "II · Restos ancestrales"
@@ -162,8 +198,11 @@ on load:
     set {-am.baseid::13} to "minecraft:netherrack"
     set {-am.chance::13} to 8
     set {-am.goal::13} to 5500
-    set {-am.cost::13} to 12000000
-    set {-am.value::13} to 4818.4
+    set {-am.cost::13} to 1800000
+    set {-am.costv::13} to 12000000
+    set {-am.value::13} to 2498.4
+    set {-am.mult::13} to 0.2237
+    set {-am.valuev::13} to 4818.4
     set {-am.slot::14} to 28
     set {-am.dest::28} to 14
     set {-am.name::14} to "III · Carbón"
@@ -174,8 +213,11 @@ on load:
     set {-am.baseid::14} to "minecraft:coal_block"
     set {-am.chance::14} to 0
     set {-am.goal::14} to 7000
-    set {-am.cost::14} to 25000000
-    set {-am.value::14} to 600.0
+    set {-am.cost::14} to 3300000
+    set {-am.costv::14} to 25000000
+    set {-am.value::14} to 3000.0
+    set {-am.mult::14} to 0.1957
+    set {-am.valuev::14} to 600.0
     set {-am.slot::15} to 29
     set {-am.dest::29} to 15
     set {-am.name::15} to "III · Cobre"
@@ -187,7 +229,10 @@ on load:
     set {-am.chance::15} to 0
     set {-am.goal::15} to 8000
     set {-am.cost::15} to 4000000
-    set {-am.value::15} to 900.0
+    set {-am.costv::15} to 4000000
+    set {-am.value::15} to 3150.0
+    set {-am.mult::15} to 0.1959
+    set {-am.valuev::15} to 900.0
     set {-am.slot::16} to 30
     set {-am.dest::30} to 16
     set {-am.name::16} to "III · Hierro"
@@ -198,8 +243,11 @@ on load:
     set {-am.baseid::16} to "minecraft:iron_block"
     set {-am.chance::16} to 0
     set {-am.goal::16} to 9500
-    set {-am.cost::16} to 7000000
-    set {-am.value::16} to 1400.0
+    set {-am.cost::16} to 5000000
+    set {-am.costv::16} to 7000000
+    set {-am.value::16} to 3300.0
+    set {-am.mult::16} to 0.1964
+    set {-am.valuev::16} to 1400.0
     set {-am.slot::17} to 31
     set {-am.dest::31} to 17
     set {-am.name::17} to "III · Oro"
@@ -210,8 +258,11 @@ on load:
     set {-am.baseid::17} to "minecraft:gold_block"
     set {-am.chance::17} to 0
     set {-am.goal::17} to 12000
-    set {-am.cost::17} to 13500000
-    set {-am.value::17} to 2200.0
+    set {-am.cost::17} to 6600000
+    set {-am.costv::17} to 13500000
+    set {-am.value::17} to 3450.0
+    set {-am.mult::17} to 0.1974
+    set {-am.valuev::17} to 2200.0
     set {-am.slot::18} to 32
     set {-am.dest::32} to 18
     set {-am.name::18} to "III · Esmeralda"
@@ -222,8 +273,11 @@ on load:
     set {-am.baseid::18} to "minecraft:emerald_block"
     set {-am.chance::18} to 0
     set {-am.goal::18} to 15000
-    set {-am.cost::18} to 26000000
-    set {-am.value::18} to 4500.0
+    set {-am.cost::18} to 8700000
+    set {-am.costv::18} to 26000000
+    set {-am.value::18} to 3600.0
+    set {-am.mult::18} to 0.1989
+    set {-am.valuev::18} to 4500.0
     set {-am.slot::19} to 33
     set {-am.dest::33} to 19
     set {-am.name::19} to "III · Diamante"
@@ -234,8 +288,11 @@ on load:
     set {-am.baseid::19} to "minecraft:diamond_block"
     set {-am.chance::19} to 0
     set {-am.goal::19} to 20000
-    set {-am.cost::19} to 70000000
-    set {-am.value::19} to 7200.0
+    set {-am.cost::19} to 12000000
+    set {-am.costv::19} to 70000000
+    set {-am.value::19} to 3800.0
+    set {-am.mult::19} to 0.1979
+    set {-am.valuev::19} to 7200.0
     set {-am.slot::20} to 34
     set {-am.dest::34} to 20
     set {-am.name::20} to "III · Netherita"
@@ -246,89 +303,133 @@ on load:
     set {-am.baseid::20} to "minecraft:netherite_block"
     set {-am.chance::20} to 0
     set {-am.goal::20} to 500000
-    set {-am.cost::20} to 2500000000
-    set {-am.value::20} to 15000.0
+    set {-am.cost::20} to 250000000
+    set {-am.costv::20} to 2500000000
+    set {-am.value::20} to 4500.0
+    set {-am.mult::20} to 0.1756
+    set {-am.valuev::20} to 15000.0
     delete {-am.price::*}
+    delete {-am.pricev::*}
     set {_t} to "minecraft:stone" parsed as item type
     set {-am.price::%{_t}%} to 10
+    set {-am.pricev::%{_t}%} to 10
     set {_t} to "minecraft:cobblestone" parsed as item type
     set {-am.price::%{_t}%} to 10
+    set {-am.pricev::%{_t}%} to 10
     set {_t} to "minecraft:netherrack" parsed as item type
     set {-am.price::%{_t}%} to 20
+    set {-am.pricev::%{_t}%} to 20
     set {_t} to "minecraft:coal" parsed as item type
     set {-am.price::%{_t}%} to 60
+    set {-am.pricev::%{_t}%} to 60
     set {_t} to "minecraft:coal_ore" parsed as item type
     set {-am.price::%{_t}%} to 60
+    set {-am.pricev::%{_t}%} to 60
     set {_t} to "minecraft:deepslate_coal_ore" parsed as item type
     set {-am.price::%{_t}%} to 60
+    set {-am.pricev::%{_t}%} to 60
     set {_t} to "minecraft:coal_block" parsed as item type
-    set {-am.price::%{_t}%} to 600
+    set {-am.price::%{_t}%} to 3000
+    set {-am.pricev::%{_t}%} to 600
     set {_t} to "minecraft:raw_copper" parsed as item type
     set {-am.price::%{_t}%} to 25
+    set {-am.pricev::%{_t}%} to 25
     set {_t} to "minecraft:copper_ingot" parsed as item type
     set {-am.price::%{_t}%} to 25
+    set {-am.pricev::%{_t}%} to 25
     set {_t} to "minecraft:copper_ore" parsed as item type
     set {-am.price::%{_t}%} to 90
+    set {-am.pricev::%{_t}%} to 90
     set {_t} to "minecraft:deepslate_copper_ore" parsed as item type
     set {-am.price::%{_t}%} to 90
+    set {-am.pricev::%{_t}%} to 90
     set {_t} to "minecraft:copper_block" parsed as item type
-    set {-am.price::%{_t}%} to 900
+    set {-am.price::%{_t}%} to 3150
+    set {-am.pricev::%{_t}%} to 900
     set {_t} to "minecraft:raw_copper_block" parsed as item type
     set {-am.price::%{_t}%} to 225
+    set {-am.pricev::%{_t}%} to 225
     set {_t} to "minecraft:raw_iron" parsed as item type
     set {-am.price::%{_t}%} to 150
+    set {-am.pricev::%{_t}%} to 150
     set {_t} to "minecraft:iron_ingot" parsed as item type
     set {-am.price::%{_t}%} to 150
+    set {-am.pricev::%{_t}%} to 150
     set {_t} to "minecraft:iron_ore" parsed as item type
     set {-am.price::%{_t}%} to 150
+    set {-am.pricev::%{_t}%} to 150
     set {_t} to "minecraft:deepslate_iron_ore" parsed as item type
     set {-am.price::%{_t}%} to 150
+    set {-am.pricev::%{_t}%} to 150
     set {_t} to "minecraft:iron_block" parsed as item type
-    set {-am.price::%{_t}%} to 1400
+    set {-am.price::%{_t}%} to 3300
+    set {-am.pricev::%{_t}%} to 1400
     set {_t} to "minecraft:raw_iron_block" parsed as item type
     set {-am.price::%{_t}%} to 1350
+    set {-am.pricev::%{_t}%} to 1350
     set {_t} to "minecraft:raw_gold" parsed as item type
     set {-am.price::%{_t}%} to 250
+    set {-am.pricev::%{_t}%} to 250
     set {_t} to "minecraft:gold_ingot" parsed as item type
     set {-am.price::%{_t}%} to 250
+    set {-am.pricev::%{_t}%} to 250
     set {_t} to "minecraft:gold_ore" parsed as item type
     set {-am.price::%{_t}%} to 250
+    set {-am.pricev::%{_t}%} to 250
     set {_t} to "minecraft:deepslate_gold_ore" parsed as item type
     set {-am.price::%{_t}%} to 250
+    set {-am.pricev::%{_t}%} to 250
     set {_t} to "minecraft:gold_block" parsed as item type
-    set {-am.price::%{_t}%} to 2200
+    set {-am.price::%{_t}%} to 3450
+    set {-am.pricev::%{_t}%} to 2200
     set {_t} to "minecraft:raw_gold_block" parsed as item type
     set {-am.price::%{_t}%} to 2250
+    set {-am.pricev::%{_t}%} to 2250
     set {_t} to "minecraft:emerald" parsed as item type
     set {-am.price::%{_t}%} to 500
+    set {-am.pricev::%{_t}%} to 500
     set {_t} to "minecraft:emerald_ore" parsed as item type
     set {-am.price::%{_t}%} to 500
+    set {-am.pricev::%{_t}%} to 500
     set {_t} to "minecraft:deepslate_emerald_ore" parsed as item type
     set {-am.price::%{_t}%} to 500
+    set {-am.pricev::%{_t}%} to 500
     set {_t} to "minecraft:emerald_block" parsed as item type
-    set {-am.price::%{_t}%} to 4500
+    set {-am.price::%{_t}%} to 3600
+    set {-am.pricev::%{_t}%} to 4500
     set {_t} to "minecraft:diamond" parsed as item type
     set {-am.price::%{_t}%} to 800
+    set {-am.pricev::%{_t}%} to 800
     set {_t} to "minecraft:diamond_ore" parsed as item type
     set {-am.price::%{_t}%} to 800
+    set {-am.pricev::%{_t}%} to 800
     set {_t} to "minecraft:deepslate_diamond_ore" parsed as item type
     set {-am.price::%{_t}%} to 800
+    set {-am.pricev::%{_t}%} to 800
     set {_t} to "minecraft:diamond_block" parsed as item type
-    set {-am.price::%{_t}%} to 7200
+    set {-am.price::%{_t}%} to 3800
+    set {-am.pricev::%{_t}%} to 7200
     set {_t} to "minecraft:ancient_debris" parsed as item type
-    set {-am.price::%{_t}%} to 60000
+    set {-am.price::%{_t}%} to 31000
+    set {-am.pricev::%{_t}%} to 60000
     set {_t} to "minecraft:netherite_scrap" parsed as item type
-    set {-am.price::%{_t}%} to 60000
+    set {-am.price::%{_t}%} to 31000
+    set {-am.pricev::%{_t}%} to 60000
     set {_t} to "minecraft:netherite_block" parsed as item type
-    set {-am.price::%{_t}%} to 15000
+    set {-am.price::%{_t}%} to 4500
+    set {-am.pricev::%{_t}%} to 15000
     set {_t} to "minecraft:redstone" parsed as item type
     set {-am.price::%{_t}%} to 30
+    set {-am.pricev::%{_t}%} to 30
     set {_t} to "minecraft:lapis_lazuli" parsed as item type
     set {-am.price::%{_t}%} to 30
+    set {-am.pricev::%{_t}%} to 30
     set {_t} to "minecraft:quartz" parsed as item type
     set {-am.price::%{_t}%} to 40
+    set {-am.pricev::%{_t}%} to 40
     set {_t} to "minecraft:nether_quartz_ore" parsed as item type
     set {-am.price::%{_t}%} to 40
+    set {-am.pricev::%{_t}%} to 40
     delete {-am.off::*}
     set {-am.off::2::vn::1} to vector(0, 0, -1)
     set {-am.off::2::n0::1} to vector(0, -1, 0)
@@ -677,6 +778,87 @@ function am_id(loc: location) :: number:
 function am_rank(p: player) :: number:
     return {am.rank::%uuid of {_p}%} ? 1
 
+# Recorte de plata del 25/11 (economia.py / minas.py): {am.recorte} "publico" = para todos; si no, solo ByTrainx
+# (regla del dueno: lo prueba primero). Los demas siguen con precios, valores y costos viejos ({-am.pricev/valuev/costv}).
+function am_recorte(p: player) :: boolean:
+    if {am.recorte} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+function am_renacer_enabled(p: player) :: boolean:
+    if {am.renacer} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+function am_renac(p: player) :: number:
+    return min(10, max(0, {am.renac::%uuid of {_p}%} ? 0))
+
+function am_renacer_ready(p: player) :: boolean:
+    if am_renacer_enabled({_p}) is false:
+        return false
+    if am_rank({_p}) is not {-am.count}:
+        return false
+    if am_renac({_p}) >= 10:
+        return false
+    return true
+
+function am_renacer_confirm(p: player):
+    if am_renacer_ready({_p}) is false:
+        send "&cNecesitas la ultima mina y menos de 10 renacimientos." to {_p}
+        stop
+    set {_inv} to chest inventory with 3 rows named "&6Renacer en las Minas"
+    set slot 11 of {_inv} to lime wool named "&aSi, renacer" with lore "&7Volves a Carbon I. Bloques y minutos a 0." and "&7Bonus permanente: +10%% por renacimiento." and "&7Conservas inventario, oro y habilidades."
+    set slot 15 of {_inv} to red wool named "&cCancelar"
+    open {_inv} to {_p}
+    set {-am.gui::%uuid of {_p}%} to "renacer"
+
+function am_renacer_do(p: player):
+    if am_renacer_ready({_p}) is false:
+        stop
+    set {_id} to uuid of {_p}
+    set {am.rank::%{_id}%} to 1
+    set {am.blocks::%{_id}%} to 0
+    set {-am.b::%{_id}%} to 0
+    set {am.minutes::%{_id}%} to 0
+    set {am.renac::%{_id}%} to am_renac({_p}) + 1
+    if am_id(location of {_p}) > 1:
+        teleport {_p} to am_spawn(1)
+    am_sidebar({_p})
+    am_sync({_p})
+    if {am.renac::%{_id}%} is 1:
+        execute console command "lp user %name of {_p}% permission set astral.cosmetico.titulo.minero_renacido true"
+    execute console command "minecraft:tellraw @a {""text"":""%name of {_p}% renacio en las Minas Astrales (x %{am.renac::%{_id}%}%)"",""color"":""gold""}"
+    play sound "entity.player.levelup" to {_p}
+
+command /minasrenacer [<text>]:
+    trigger:
+        if arg-1 is set:
+            if sender does not have permission "astral.minas.admin":
+                send "&cSin permiso." to sender
+                stop
+            if arg-1 is "publico" or "privado":
+                set {am.renacer} to arg-1
+                send "&aRenacer de Minas: %arg-1%." to sender
+            else:
+                send "&eUsa /minasrenacer publico|privado" to sender
+            stop
+        if sender is a player:
+            am_renacer_confirm(player)
+
+function am_mult(p: player) :: number:
+    if am_recorte({_p}) is true:
+        return {-am.mult::%am_rank({_p})%} ? 1
+    return 1
+
+function am_cost(p: player, i: number) :: number:
+    if am_recorte({_p}) is true:
+        return {-am.cost::%{_i}%} ? 0
+    return {-am.costv::%{_i}%} ? 0
+
 function am_spawn(i: number) :: location:
     return location(({_i} - 1) * 512 + 89.5, 93, 70.5, am_world(), 0, 0)
 
@@ -722,7 +904,7 @@ function am_sidebar(p: player):
     set {_next} to am_rank({_p}) + 1
     am_score({_p}, "am_rank", am_rank({_p}))
     am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
-    am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
+    am_score({_p}, "am_cost", am_cost({_p}, {_next}))
     am_sidebar_blocks({_p})
     am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
 
@@ -770,11 +952,15 @@ function am_menu(p: player):
         set {_state} to "locked"
         if {_i} <= {_rank}:
             set {_state} to "open"
-            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{-am.value::%{_i}%}% oro &7por bloque" and "" and "&aClic para viajar."
+            # 25/11: lo que paga depende de la mina mas alta abierta ({-am.mult}), no de donde se pica.
+            set {_v} to round({-am.value::%{_i}%} * am_mult({_p}))
+            if am_recorte({_p}) is false:
+                set {_v} to {-am.valuev::%{_i}%}
+            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{_v}% oro &7por bloque" and "" and "&aClic para viajar."
         else if {_i} is {_next}:
             set {_state} to "next"
             set {_goal} to {-am.goal::%{_i}%}
-            set {_cost} to {-am.cost::%{_i}%}
+            set {_cost} to am_cost({_p}, {_i})
             set {_okb} to "&c✘"
             if {_blocks} >= {_goal}:
                 set {_okb} to "&a✔"
@@ -790,8 +976,16 @@ function am_menu(p: player):
                 add "%{_okt}% &7Minería activa: &f%{_min}%&7/&f%{-am.finalMinutes}% min" to lore of slot {_slot} of {_inv}
         else:
             set slot {_slot} of {_inv} to barrier named "&f%{_name}% &7(bloqueada)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
-        add "&7%{-am.goal::%{_i}%}% bloques ? %{-am.cost::%{_i}%}% de oro" to lore of slot {_slot} of {_inv}
+        add "&7%{-am.goal::%{_i}%}% bloques ? %am_cost({_p}, {_i})% de oro" to lore of slot {_slot} of {_inv}
         set item model of slot {_slot} of {_inv} to "astral:viajes/mine_%{_i}%_%{_state}%"
+    if am_renacer_enabled({_p}) is true:
+        set {_n} to am_renac({_p})
+        set {_bonus} to round(100 * 0.1 * {_n})
+        if am_renacer_ready({_p}) is true:
+            set {_after} to {_bonus} + 100 * 0.1
+            set slot 47 of {_inv} to nether star named "&6Renacer en las Minas" with lore "&7Volves a Carbon I; bloques y minutos a 0." and "&7Plata: +%{_bonus}% -> +%{_after}% por ciento." and "&7+10 por ciento permanente por renacimiento." and "&7Primer renacer: titulo Minero Renacido." and "&7Renacimientos: %{_n}%/10" and "&eClic para confirmar."
+        else if {_n} > 0:
+            set slot 47 of {_inv} to nether star named "&6Minero Renacido" with lore "&7Bonus actual: +%{_bonus}% por ciento." and "&7Renacimientos: %{_n}%/10"
     set slot 49 of {_inv} to barrier named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
     set item model of slot 49 of {_inv} to "astral:menu/icon_spawn"
     set slot 45 of {_inv} to iron pickaxe named "&eTu progreso: &f%{-am.name::%{_rank}%}%" with lore "&7Verde: mina abierta, clic para viajar." and "&eAmarillo: próxima mina, revisá el costo." and "&cRojo: abrí las anteriores primero."
@@ -824,7 +1018,7 @@ function am_travel(p: player, i: number):
         stop
     if {_i} is {_rank} + 1:
         set {_goal} to {-am.goal::%{_i}%}
-        set {_cost} to {-am.cost::%{_i}%}
+        set {_cost} to am_cost({_p}, {_i})
         set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
         if {_blocks} < {_goal}:
             send "&cTe faltan &f%{_goal} - {_blocks}% &cbloques en %{-am.name::%{_rank}%}%." to {_p}
@@ -851,6 +1045,7 @@ function am_travel(p: player, i: number):
 
 function am_sell_value(p: player, sell: boolean) :: number:
     set {_total} to 0
+    set {_rc} to am_recorte({_p})
     loop 36 times:
         set {_slot} to loop-number - 1
         set {_it} to slot {_slot} of {_p}'s inventory
@@ -859,12 +1054,19 @@ function am_sell_value(p: player, sell: boolean) :: number:
             if name of {_it} is not set:
                 if lore of {_it} is not set:
                     set {_price} to {-am.price::%type of {_it}%}
+                    if {_rc} is false:
+                        set {_price} to {-am.pricev::%type of {_it}%}
                     if name of world of {_p} is "astral_bosque":
                         set {_price} to {-ab.price::%type of {_it}%}
                     if {_price} is set:
                         add item amount of {_it} * {_price} to {_total}
                         if {_sell} is true:
                             set slot {_slot} of {_p}'s inventory to air
+    # 25/11 (dueno): en las minas el pago se ajusta a la mina mas alta abierta (economia.MINAS_VALOR).
+    if name of world of {_p} is "astral_minas":
+        set {_total} to {_total} * am_mult({_p})
+        if am_renacer_enabled({_p}) is true:
+            set {_total} to {_total} * (1 + 0.1 * am_renac({_p}))
     return round({_total} * 100) / 100
 
 function am_sale_menu(p: player):
@@ -933,7 +1135,17 @@ on inventory click:
     if clicked inventory is player's inventory:
         stop
     set {_slot} to index of event-slot
+    if {_gui} is "renacer":
+        close inventory of player
+        if {_slot} is 11:
+            am_renacer_do(player)
+        else:
+            am_menu(player)
+        stop
     if {_gui} is "menu":
+        if {_slot} is 47:
+            am_renacer_confirm(player)
+            stop
         if {_slot} is 53:
             close inventory of player
             stop
@@ -1036,24 +1248,90 @@ function am_drill_area(p: player) :: number:
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
 function am_give(p: player, items: items):
     loop {_items::*}:
-        if {_p}'s inventory has enough space for loop-value:
-            give loop-value to {_p}
-        else:
-            drop loop-value at {_p}
+        # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
+        astral mine give loop-value to {_p}
 
-function am_drill(p: player, origin: location, area: number, dir: text):
+# 25/11 (dueno): los bloques extra del taladro y del Minero de Vetas se borran a mano y AuraSkills
+# no los ve. Se les da la misma XP de Mineria que en plugins/AuraSkills/sources/mining.yml.
+function am_xp(t: itemtype) :: number:
+    if {_t} is stone:
+        return 0.2
+    if {_t} is netherrack:
+        return 0.1
+    if {_t} is coal ore:
+        return 1
+    if {_t} is copper ore:
+        return 3.5
+    if {_t} is iron ore:
+        return 1.8
+    if {_t} is gold ore:
+        return 17.8
+    if {_t} is emerald ore:
+        return 100
+    if {_t} is diamond ore:
+        return 47.3
+    if {_t} is ancient debris:
+        return 500
+    if {_t} is coal block:
+        return 1.5
+    if {_t} is copper block:
+        return 5.3
+    if {_t} is iron block:
+        return 2.7
+    if {_t} is gold block:
+        return 26.7
+    if {_t} is emerald block:
+        return 150
+    if {_t} is diamond block:
+        return 71
+    if {_t} is netherite block:
+        return 600
+    return 0
+
+function am_xp_give(p: player, x: number):
+    if {_x} <= 0:
+        stop
+    set {_x} to round({_x} * 10) / 10
+    execute console command "skills xp add %{_p}% mining %{_x}% true"
+
+function am_drill(p: player, origin: location, area: number, dir: text) :: number:
     set {_i} to am_id({_origin})
     set {_n} to 0
     loop {-am.off::%{_area}%::%{_dir}%::*}:
         set {_b} to block at ({_origin} ~ loop-value)
         if am_can_break({_b}, {_p}) is true:
             set {_d::*} to drops of {_b} using {_p}'s tool
+            add am_xp(type of {_b}) to {_x}
             set block at {_b} to air
             am_give({_p}, {_d::*})
             delete {_d::*}
             add 1 to {_n}
     if {_n} > 0:
         am_count({_p}, {_i}, {_n})
+        am_xp_give({_p}, {_x} ? 0)
+    return {_n}
+
+# Minero de Vetas (25/11, dueno): en este mundo el de ExcellentEnchants esta apagado (rompia hasta 16).
+# Aca rompe 1 bloque mas por nivel del mismo mineral/mena que se pico, cerca (ademas del area del taladro).
+function am_vein(p: player, origin: location, max: number, t: itemtype):
+    set {_i} to am_id({_origin})
+    if {_i} is 0:
+        stop
+    set {_n} to 0
+    loop blocks in radius 3.5 around {_origin}:
+        if type of loop-block is {_t}:
+            if am_can_break(loop-block, {_p}) is true:
+                set {_d::*} to drops of loop-block using {_p}'s tool
+                add am_xp(type of loop-block) to {_x}
+                set block at loop-block to air
+                am_give({_p}, {_d::*})
+                delete {_d::*}
+                add 1 to {_n}
+                if {_n} >= {_max}:
+                    exit loop
+    if {_n} > 0:
+        am_count({_p}, {_i}, {_n})
+        am_xp_give({_p}, {_x} ? 0)
 
 on break with priority highest:
     if name of world of event-block is not "astral_minas":
@@ -1081,8 +1359,23 @@ on uncancelled break with priority monitor:
     am_give(player, {_d::*})
     if player is sneaking:
         stop
+    set {_vein} to false
+    if player's tool is enchanted with excellentenchants:veinminer:
+        # Mineral raro de la mina o una mena (en Esmeralda/Diamante la mena es la roca de la mina).
+        set {_vt} to type of event-block
+        if {_vt} is {-am.ore::%{_i}%}:
+            set {_vein} to true
+        else if "%{_vt}%" contains " ore":
+            set {_vein} to true
+        if {_vein} is true:
+            set {_vmax} to level of excellentenchants:veinminer of player's tool
     set {_area} to am_drill_area(player)
     if {_area} < 2:
+        if {_vein} is true:
+            set {_origin} to location of event-block
+            wait 1 tick
+            if player is online:
+                am_vein(player, {_origin}, {_vmax}, {_vt})
         stop
     set {_yaw} to mod(yaw of player + 360, 360)
     if {_yaw} is between 45 and 135:
@@ -1109,7 +1402,15 @@ on uncancelled break with priority monitor:
     set {_origin} to location of event-block
     wait 1 tick
     if player is online:
-        am_drill(player, {_origin}, {_area}, {_dir})
+        set {_k} to am_drill(player, {_origin}, {_area}, {_dir})
+        # 24/11 (dueno): 2x1 con el bloque de abajo/arriba ya vacio (zanja, escalon): rompe el del otro lado.
+        if {_k} = 0:
+            if {_area} = 2:
+                if {_up} is set:
+                    set {_o} to 1 - {_up}
+                    am_drill(player, {_origin}, {_area}, "%{_face}%%{_o}%")
+        if {_vein} is true:
+            am_vein(player, {_origin}, {_vmax}, {_vt})
 
 on place:
     if name of world of event-block is "astral_minas":
@@ -1311,6 +1612,14 @@ command /minasreset <integer>:
         if arg-1 is between 1 and {-am.count}:
             am_reset(arg-1)
             send "&aRegenerada %{-am.name::%arg-1%}%." to sender
+
+command /minasrecorte [<text>]:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "publico" or "privado":
+            set {am.recorte} to arg-1
+        set {_m} to {am.recorte} ? "privado"
+        send "&eRecorte de plata de las minas: &f%{_m}% &7(privado = solo ByTrainx; /minasrecorte publico|privado)" to sender
 
 command /minasrango <player> <integer>:
     permission: astral.minas.admin

@@ -110,3 +110,17 @@ ancestrales y bloque de netherita). Las minas de Carbon no se tocan. En los tier
 minerales mezclados detras del aldeano de venta rapida (mascara `//gmask`). Aplicado en el server el 20/11; respaldo
 de las regiones previas en `.local/minas/respaldo-decor-20-11`. Si algun dia se vuelve a copiar la decoracion de
 las minas de Carbon, hay que correr de nuevo estos comandos.
+
+## Renacer de minas (25/11/2026, privado)
+
+Solo ByTrainx hasta `/minasrenacer publico` (permiso `astral.minas.admin`);
+`/minasrenacer privado` vuelve a ocultarlo y desactiva el bonus para los demas.
+Con la ultima mina abierta, `/minas` (casilla 47) o `/minasrenacer` abre una
+confirmacion. Solo el boton verde ejecuta y vuelve a comprobar rango y limite.
+Vuelve a Carbon I, reinicia bloques persistentes/en memoria y minutos; si esta
+en otra mina lo lleva a Carbon I. Conserva oro, inventario, habilidades y ranking.
+Cada renacimiento suma 10% de plata permanente en Venta rapida de Minas, hasta
+10 (+100%). No afecta al Bosque. El renacer general conserva `am.renac`.
+El primero otorga `astral.cosmetico.titulo.minero_renacido`; se equipa en `/titulos`.
+Numeros en `minas.py`: RENACER_BONUS y RENACER_MAX. La insignia usa FINAL privado.
+Entrega y pruebas: `build/deploy/renacer-minas.md`. Despliegue pendiente.

@@ -860,6 +860,90 @@
         "[sound] ENTITY_VILLAGER_NO"
       ]
     },
+    "cazador_de_bugs": {
+      "slot": 0,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/cazador_de_bugs",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&e&lCazador de Bugs",
+      "lore": [
+        "&7Rareza: &fEspecial",
+        "",
+        "&aInsignia especial: no sale en la gacha.",
+        "&7Premio por encontrar y avisar un bug.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.cazador_de_bugs"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo cazador_de_bugs"
+      ]
+    },
+    "dueno": {
+      "slot": 1,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/dueno",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&c&lDueño",
+      "lore": [
+        "&7Rareza: &fEspecial",
+        "",
+        "&aInsignia especial: no sale en la gacha.",
+        "&7Titulo del dueno del servidor.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.dueno"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo dueno"
+      ]
+    },
+    "minero_renacido": {
+      "slot": 2,
+      "material": "PAPER",
+      "item_model": "astral:cosmeticos/minero_renacido",
+      "item_flags": [
+        "HIDE_ATTRIBUTES"
+      ],
+      "display_name": "&6&lMinero Renacido",
+      "lore": [
+        "&7Rareza: &fEspecial",
+        "",
+        "&aInsignia especial: no sale en la gacha.",
+        "&7Renacio en las Minas Astrales.",
+        "&eClic para equipar. Tus otros titulos se conservan."
+      ],
+      "view_requirement": {
+        "requirements": {
+          "obtenido": {
+            "type": "has permission",
+            "permission": "astral.cosmetico.titulo.minero_renacido"
+          }
+        }
+      },
+      "click_commands": [
+        "[close]",
+        "[player] titulo minero_renacido"
+      ]
+    },
     "none": {
       "slot": 47,
       "material": "PAPER",
@@ -973,7 +1057,7 @@
         "&7Consulta sus precios y premios antes de tirar."
       ],
       "click_commands": [
-        "[openguimenu] gacha_cosmeticos"
+        "[openguimenu] gacha_cosmeticos_cos"
       ]
     },
     "back": {

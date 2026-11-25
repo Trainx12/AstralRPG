@@ -106,4 +106,25 @@ command /titulo [<text>]:
             execute console command "lp user %name of player% meta setprefix 100 ""&b&l«ASTRAL»"""
             send "&aTitulo equipado: ASTRAL. Tus otros titulos siguen guardados." to player
             stop
+        if arg-1 is "cazador_de_bugs":
+            if player does not have permission "astral.cosmetico.titulo.cazador_de_bugs":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&e&l«Cazador de Bugs»"""
+            send "&aTitulo equipado: Cazador de Bugs. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "dueno":
+            if player does not have permission "astral.cosmetico.titulo.dueno":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&c&l«Dueño»"""
+            send "&aTitulo equipado: Dueño. Tus otros titulos siguen guardados." to player
+            stop
+        if arg-1 is "minero_renacido":
+            if player does not have permission "astral.cosmetico.titulo.minero_renacido":
+                send "&cTodavia no obtuviste este titulo." to player
+                stop
+            execute console command "lp user %name of player% meta setprefix 100 ""&6&l«Minero Renacido»"""
+            send "&aTitulo equipado: Minero Renacido. Tus otros titulos siguen guardados." to player
+            stop
         send "&eUsa /cosmeticos para elegir un titulo." to player

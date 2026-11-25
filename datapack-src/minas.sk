@@ -1,5 +1,5 @@
 # AstralRPG / Minas Astrales. Generado por datapack-src/minas.py: no editar a mano.
-# Solo Skript + Vault (EssentialsX). No usa skript-reflect.
+# Skript + Vault (EssentialsX) + AstralMinasLimite. No usa skript-reflect.
 #
 # Variables guardadas: {am.rank::uuid} (mina mas alta abierta), {am.blocks::uuid} (bloques picados
 # en esa mina para abrir la siguiente) y {am.enabled}. El contador vive en memoria ({-am.b::uuid})
@@ -29,6 +29,87 @@ function am_id(loc: location) :: number:
 
 function am_rank(p: player) :: number:
     return {am.rank::%uuid of {_p}%} ? 1
+
+# Recorte de plata del 25/11 (economia.py / minas.py): {am.recorte} "publico" = para todos; si no, solo ByTrainx
+# (regla del dueno: lo prueba primero). Los demas siguen con precios, valores y costos viejos ({-am.pricev/valuev/costv}).
+function am_recorte(p: player) :: boolean:
+    if {am.recorte} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+function am_renacer_enabled(p: player) :: boolean:
+    if {am.renacer} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+function am_renac(p: player) :: number:
+    return min(@RENACER_MAX@, max(0, {am.renac::%uuid of {_p}%} ? 0))
+
+function am_renacer_ready(p: player) :: boolean:
+    if am_renacer_enabled({_p}) is false:
+        return false
+    if am_rank({_p}) is not {-am.count}:
+        return false
+    if am_renac({_p}) >= @RENACER_MAX@:
+        return false
+    return true
+
+function am_renacer_confirm(p: player):
+    if am_renacer_ready({_p}) is false:
+        send "&cNecesitas la ultima mina y menos de @RENACER_MAX@ renacimientos." to {_p}
+        stop
+    set {_inv} to chest inventory with 3 rows named "&6Renacer en las Minas"
+    set slot 11 of {_inv} to lime wool named "&aSi, renacer" with lore "&7Volves a Carbon I. Bloques y minutos a 0." and "&7Bonus permanente: +10%% por renacimiento." and "&7Conservas inventario, oro y habilidades."
+    set slot 15 of {_inv} to red wool named "&cCancelar"
+    open {_inv} to {_p}
+    set {-am.gui::%uuid of {_p}%} to "renacer"
+
+function am_renacer_do(p: player):
+    if am_renacer_ready({_p}) is false:
+        stop
+    set {_id} to uuid of {_p}
+    set {am.rank::%{_id}%} to 1
+    set {am.blocks::%{_id}%} to 0
+    set {-am.b::%{_id}%} to 0
+    set {am.minutes::%{_id}%} to 0
+    set {am.renac::%{_id}%} to am_renac({_p}) + 1
+    if am_id(location of {_p}) > 1:
+        teleport {_p} to am_spawn(1)
+    am_sidebar({_p})
+    am_sync({_p})
+    if {am.renac::%{_id}%} is 1:
+        execute console command "lp user %name of {_p}% permission set astral.cosmetico.titulo.minero_renacido true"
+    execute console command "minecraft:tellraw @a {""text"":""%name of {_p}% renacio en las Minas Astrales (x %{am.renac::%{_id}%}%)"",""color"":""gold""}"
+    play sound "entity.player.levelup" to {_p}
+
+command /minasrenacer [<text>]:
+    trigger:
+        if arg-1 is set:
+            if sender does not have permission "astral.minas.admin":
+                send "&cSin permiso." to sender
+                stop
+            if arg-1 is "publico" or "privado":
+                set {am.renacer} to arg-1
+                send "&aRenacer de Minas: %arg-1%." to sender
+            else:
+                send "&eUsa /minasrenacer publico|privado" to sender
+            stop
+        if sender is a player:
+            am_renacer_confirm(player)
+
+function am_mult(p: player) :: number:
+    if am_recorte({_p}) is true:
+        return {-am.mult::%am_rank({_p})%} ? 1
+    return 1
+
+function am_cost(p: player, i: number) :: number:
+    if am_recorte({_p}) is true:
+        return {-am.cost::%{_i}%} ? 0
+    return {-am.costv::%{_i}%} ? 0
 
 function am_spawn(i: number) :: location:
     return location(({_i} - 1) * @SPACING@ + @SPAWN_X@, @SPAWN_Y@, @SPAWN_Z@, am_world(), 0, 0)
@@ -75,7 +156,7 @@ function am_sidebar(p: player):
     set {_next} to am_rank({_p}) + 1
     am_score({_p}, "am_rank", am_rank({_p}))
     am_score({_p}, "am_goal", {-am.goal::%{_next}%} ? 0)
-    am_score({_p}, "am_cost", {-am.cost::%{_next}%} ? 0)
+    am_score({_p}, "am_cost", am_cost({_p}, {_next}))
     am_sidebar_blocks({_p})
     am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
 
@@ -123,11 +204,15 @@ function am_menu(p: player):
         set {_state} to "locked"
         if {_i} <= {_rank}:
             set {_state} to "open"
-            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{-am.value::%{_i}%}% oro &7por bloque" and "" and "&aClic para viajar."
+            # 25/11: lo que paga depende de la mina mas alta abierta ({-am.mult}), no de donde se pica.
+            set {_v} to round({-am.value::%{_i}%} * am_mult({_p}))
+            if am_recorte({_p}) is false:
+                set {_v} to {-am.valuev::%{_i}%}
+            set slot {_slot} of {_inv} to {_icon} named "&f%{_name}%" with lore "&7%{-am.desc::%{_i}%}%" and "&7Valor aprox.: &6%{_v}% oro &7por bloque" and "" and "&aClic para viajar."
         else if {_i} is {_next}:
             set {_state} to "next"
             set {_goal} to {-am.goal::%{_i}%}
-            set {_cost} to {-am.cost::%{_i}%}
+            set {_cost} to am_cost({_p}, {_i})
             set {_okb} to "&c✘"
             if {_blocks} >= {_goal}:
                 set {_okb} to "&a✔"
@@ -143,8 +228,16 @@ function am_menu(p: player):
                 add "%{_okt}% &7Minería activa: &f%{_min}%&7/&f%{-am.finalMinutes}% min" to lore of slot {_slot} of {_inv}
         else:
             set slot {_slot} of {_inv} to barrier named "&f%{_name}% &7(bloqueada)" with lore "&7%{-am.desc::%{_i}%}%" and "" and "&7Abrí primero las minas anteriores."
-        add "&7%{-am.goal::%{_i}%}% bloques ? %{-am.cost::%{_i}%}% de oro" to lore of slot {_slot} of {_inv}
+        add "&7%{-am.goal::%{_i}%}% bloques ? %am_cost({_p}, {_i})% de oro" to lore of slot {_slot} of {_inv}
         set item model of slot {_slot} of {_inv} to "astral:viajes/mine_%{_i}%_%{_state}%"
+    if am_renacer_enabled({_p}) is true:
+        set {_n} to am_renac({_p})
+        set {_bonus} to round(100 * @RENACER_BONUS@ * {_n})
+        if am_renacer_ready({_p}) is true:
+            set {_after} to {_bonus} + 100 * @RENACER_BONUS@
+            set slot 47 of {_inv} to nether star named "&6Renacer en las Minas" with lore "&7Volves a Carbon I; bloques y minutos a 0." and "&7Plata: +%{_bonus}% -> +%{_after}% por ciento." and "&7+10 por ciento permanente por renacimiento." and "&7Primer renacer: titulo Minero Renacido." and "&7Renacimientos: %{_n}%/@RENACER_MAX@" and "&eClic para confirmar."
+        else if {_n} > 0:
+            set slot 47 of {_inv} to nether star named "&6Minero Renacido" with lore "&7Bonus actual: +%{_bonus}% por ciento." and "&7Renacimientos: %{_n}%/@RENACER_MAX@"
     set slot 49 of {_inv} to barrier named "&bVolver al lobby" with lore "&7Te lleva al spawn del lobby."
     set item model of slot 49 of {_inv} to "astral:menu/icon_spawn"
     set slot 45 of {_inv} to iron pickaxe named "&eTu progreso: &f%{-am.name::%{_rank}%}%" with lore "&7Verde: mina abierta, clic para viajar." and "&eAmarillo: próxima mina, revisá el costo." and "&cRojo: abrí las anteriores primero."
@@ -177,7 +270,7 @@ function am_travel(p: player, i: number):
         stop
     if {_i} is {_rank} + 1:
         set {_goal} to {-am.goal::%{_i}%}
-        set {_cost} to {-am.cost::%{_i}%}
+        set {_cost} to am_cost({_p}, {_i})
         set {_blocks} to {-am.b::%uuid of {_p}%} ? 0
         if {_blocks} < {_goal}:
             send "&cTe faltan &f%{_goal} - {_blocks}% &cbloques en %{-am.name::%{_rank}%}%." to {_p}
@@ -204,6 +297,7 @@ function am_travel(p: player, i: number):
 
 function am_sell_value(p: player, sell: boolean) :: number:
     set {_total} to 0
+    set {_rc} to am_recorte({_p})
     loop 36 times:
         set {_slot} to loop-number - 1
         set {_it} to slot {_slot} of {_p}'s inventory
@@ -212,12 +306,19 @@ function am_sell_value(p: player, sell: boolean) :: number:
             if name of {_it} is not set:
                 if lore of {_it} is not set:
                     set {_price} to {-am.price::%type of {_it}%}
+                    if {_rc} is false:
+                        set {_price} to {-am.pricev::%type of {_it}%}
                     if name of world of {_p} is "astral_bosque":
                         set {_price} to {-ab.price::%type of {_it}%}
                     if {_price} is set:
                         add item amount of {_it} * {_price} to {_total}
                         if {_sell} is true:
                             set slot {_slot} of {_p}'s inventory to air
+    # 25/11 (dueno): en las minas el pago se ajusta a la mina mas alta abierta (economia.MINAS_VALOR).
+    if name of world of {_p} is "@WORLD@":
+        set {_total} to {_total} * am_mult({_p})
+        if am_renacer_enabled({_p}) is true:
+            set {_total} to {_total} * (1 + @RENACER_BONUS@ * am_renac({_p}))
     return round({_total} * 100) / 100
 
 function am_sale_menu(p: player):
@@ -286,7 +387,17 @@ on inventory click:
     if clicked inventory is player's inventory:
         stop
     set {_slot} to index of event-slot
+    if {_gui} is "renacer":
+        close inventory of player
+        if {_slot} is 11:
+            am_renacer_do(player)
+        else:
+            am_menu(player)
+        stop
     if {_gui} is "menu":
+        if {_slot} is 47:
+            am_renacer_confirm(player)
+            stop
         if {_slot} is 53:
             close inventory of player
             stop
@@ -389,24 +500,90 @@ function am_drill_area(p: player) :: number:
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
 function am_give(p: player, items: items):
     loop {_items::*}:
-        if {_p}'s inventory has enough space for loop-value:
-            give loop-value to {_p}
-        else:
-            drop loop-value at {_p}
+        # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
+        astral mine give loop-value to {_p}
 
-function am_drill(p: player, origin: location, area: number, dir: text):
+# 25/11 (dueno): los bloques extra del taladro y del Minero de Vetas se borran a mano y AuraSkills
+# no los ve. Se les da la misma XP de Mineria que en plugins/AuraSkills/sources/mining.yml.
+function am_xp(t: itemtype) :: number:
+    if {_t} is stone:
+        return 0.2
+    if {_t} is netherrack:
+        return 0.1
+    if {_t} is coal ore:
+        return 1
+    if {_t} is copper ore:
+        return 3.5
+    if {_t} is iron ore:
+        return 1.8
+    if {_t} is gold ore:
+        return 17.8
+    if {_t} is emerald ore:
+        return 100
+    if {_t} is diamond ore:
+        return 47.3
+    if {_t} is ancient debris:
+        return 500
+    if {_t} is coal block:
+        return 1.5
+    if {_t} is copper block:
+        return 5.3
+    if {_t} is iron block:
+        return 2.7
+    if {_t} is gold block:
+        return 26.7
+    if {_t} is emerald block:
+        return 150
+    if {_t} is diamond block:
+        return 71
+    if {_t} is netherite block:
+        return 600
+    return 0
+
+function am_xp_give(p: player, x: number):
+    if {_x} <= 0:
+        stop
+    set {_x} to round({_x} * 10) / 10
+    execute console command "skills xp add %{_p}% mining %{_x}% true"
+
+function am_drill(p: player, origin: location, area: number, dir: text) :: number:
     set {_i} to am_id({_origin})
     set {_n} to 0
     loop {-am.off::%{_area}%::%{_dir}%::*}:
         set {_b} to block at ({_origin} ~ loop-value)
         if am_can_break({_b}, {_p}) is true:
             set {_d::*} to drops of {_b} using {_p}'s tool
+            add am_xp(type of {_b}) to {_x}
             set block at {_b} to air
             am_give({_p}, {_d::*})
             delete {_d::*}
             add 1 to {_n}
     if {_n} > 0:
         am_count({_p}, {_i}, {_n})
+        am_xp_give({_p}, {_x} ? 0)
+    return {_n}
+
+# Minero de Vetas (25/11, dueno): en este mundo el de ExcellentEnchants esta apagado (rompia hasta 16).
+# Aca rompe 1 bloque mas por nivel del mismo mineral/mena que se pico, cerca (ademas del area del taladro).
+function am_vein(p: player, origin: location, max: number, t: itemtype):
+    set {_i} to am_id({_origin})
+    if {_i} is 0:
+        stop
+    set {_n} to 0
+    loop blocks in radius 3.5 around {_origin}:
+        if type of loop-block is {_t}:
+            if am_can_break(loop-block, {_p}) is true:
+                set {_d::*} to drops of loop-block using {_p}'s tool
+                add am_xp(type of loop-block) to {_x}
+                set block at loop-block to air
+                am_give({_p}, {_d::*})
+                delete {_d::*}
+                add 1 to {_n}
+                if {_n} >= {_max}:
+                    exit loop
+    if {_n} > 0:
+        am_count({_p}, {_i}, {_n})
+        am_xp_give({_p}, {_x} ? 0)
 
 on break with priority highest:
     if name of world of event-block is not "@WORLD@":
@@ -434,8 +611,23 @@ on uncancelled break with priority monitor:
     am_give(player, {_d::*})
     if player is sneaking:
         stop
+    set {_vein} to false
+    if player's tool is enchanted with excellentenchants:veinminer:
+        # Mineral raro de la mina o una mena (en Esmeralda/Diamante la mena es la roca de la mina).
+        set {_vt} to type of event-block
+        if {_vt} is {-am.ore::%{_i}%}:
+            set {_vein} to true
+        else if "%{_vt}%" contains " ore":
+            set {_vein} to true
+        if {_vein} is true:
+            set {_vmax} to level of excellentenchants:veinminer of player's tool
     set {_area} to am_drill_area(player)
     if {_area} < 2:
+        if {_vein} is true:
+            set {_origin} to location of event-block
+            wait 1 tick
+            if player is online:
+                am_vein(player, {_origin}, {_vmax}, {_vt})
         stop
     set {_yaw} to mod(yaw of player + 360, 360)
     if {_yaw} is between 45 and 135:
@@ -462,7 +654,15 @@ on uncancelled break with priority monitor:
     set {_origin} to location of event-block
     wait 1 tick
     if player is online:
-        am_drill(player, {_origin}, {_area}, {_dir})
+        set {_k} to am_drill(player, {_origin}, {_area}, {_dir})
+        # 24/11 (dueno): 2x1 con el bloque de abajo/arriba ya vacio (zanja, escalon): rompe el del otro lado.
+        if {_k} = 0:
+            if {_area} = 2:
+                if {_up} is set:
+                    set {_o} to 1 - {_up}
+                    am_drill(player, {_origin}, {_area}, "%{_face}%%{_o}%")
+        if {_vein} is true:
+            am_vein(player, {_origin}, {_vmax}, {_vt})
 
 on place:
     if name of world of event-block is "@WORLD@":
@@ -664,6 +864,14 @@ command /minasreset <integer>:
         if arg-1 is between 1 and {-am.count}:
             am_reset(arg-1)
             send "&aRegenerada %{-am.name::%arg-1%}%." to sender
+
+command /minasrecorte [<text>]:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "publico" or "privado":
+            set {am.recorte} to arg-1
+        set {_m} to {am.recorte} ? "privado"
+        send "&eRecorte de plata de las minas: &f%{_m}% &7(privado = solo ByTrainx; /minasrecorte publico|privado)" to sender
 
 command /minasrango <player> <integer>:
     permission: astral.minas.admin

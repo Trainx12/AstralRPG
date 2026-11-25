@@ -54,8 +54,10 @@ COSTS = [0, 80, 150, 300, 550, 1300, 2500, 4000, 7000, 13000, 25000, 60000, 1200
          250000, 40000, 70000, 135000, 260000, 700000, 25000000]
 FINAL_MINUTES = 25 * 60
 from economia import plata as _x, NETHERITA_APERTURA, NETHERITA_BLOQUE  # noqa: E402
+from economia import MINAS_SUBA, MINAS_FORTUNA, MINAS_COSTO_FACTOR  # noqa: E402
 COSTS = [_x(c) for c in COSTS[:-1]] + [NETHERITA_APERTURA]   # economia x100; Netherita III aparte
-MINES = [(*mix, goal, cost) for mix, goal, cost in zip(MIXES, GOALS, COSTS, strict=True)]
+# Costos de antes del recorte del 25/11: los siguen pagando los que no tienen el recorte ({am.recorte} privado).
+COSTS_VIEJOS = COSTS[:-1] + [2_500_000_000]
 
 # Precio de venta por unidad (oro). Incluye lo que suelta cada bloque (la piedra suelta roca, las
 # menas sueltan el mineral) y los bloques en si, por si se pican con Toque de seda.
@@ -74,19 +76,64 @@ PRICES = {
     "redstone": 0.3, "lapis_lazuli": 0.3, "quartz": 0.4, "nether_quartz_ore": 0.4,
 }
 PRICES = {k: _x(v) for k, v in PRICES.items()}
-PRICES["netherite_block"] = NETHERITA_BLOQUE
+# Precios de antes del recorte del 25/11: los siguen cobrando los que no tienen el recorte ({-am.pricev}).
+PRICES_VIEJOS = dict(PRICES, netherite_block=NETHERITA_BLOQUE)
+# 25/11: los bloques compactos, los restos y la netherita pasan a ser un "peso" interno que crece de mina en mina
+# (antes Restos II pagaba 8 veces mas que III Carbon). Lo que se cobra de verdad es este valor x {-am.mult} del
+# rango del jugador (mult()), asi la mina mas alta abierta siempre es la que mas paga, incluso con Fortuna III.
+PRICES.update({"coal_block": 3000, "copper_block": 3150, "iron_block": 3300, "gold_block": 3450,
+               "emerald_block": 3600, "diamond_block": 3800, "ancient_debris": 31000, "netherite_scrap": 31000,
+               "netherite_block": 4500})
 DROPS = {"stone": ("cobblestone", 1), "coal_ore": ("coal", 1), "copper_ore": ("raw_copper", 3.5),
          "iron_ore": ("raw_iron", 1), "gold_ore": ("raw_gold", 1), "emerald_ore": ("emerald", 1),
          "diamond_ore": ("diamond", 1)}
 
 
-def value(material):
+def value(material, fortuna=1):
     drop, amount = DROPS.get(material, (material, 1))
+    if material in DROPS and material != "stone":
+        amount *= fortuna   # Fortuna solo multiplica lo que suelta una mena
     return PRICES[drop] * amount
 
 
-def mine_value(base, ore, chance):
-    return round(value(base) * (100 - chance) / 100 + value(ore) * chance / 100, 2)
+def mine_value(base, ore, chance, fortuna=1):
+    return round(value(base, fortuna) * (100 - chance) / 100 + value(ore, fortuna) * chance / 100, 2)
+
+
+def _redondo(n):
+    """265.880 -> 270.000 (dos cifras)."""
+    r = 10 ** max(0, len(str(int(n))) - 2)
+    return int(round(n / r) * r)
+
+
+# 25/11: valor por bloque de cada mina sin multiplicador, con y sin Fortuna III. Los dos tienen que crecer de mina
+# en mina: si no, con el multiplicador del rango convendria picar en una mina vieja.
+_V = [mine_value(m[1], m[2], m[3]) for m in MIXES]
+_VF = [mine_value(m[1], m[2], m[3], MINAS_FORTUNA) for m in MIXES]
+for _l in (_V, _VF):
+    assert all(a < b for a, b in zip(_l, _l[1:])), _l
+# Lo que se paga de verdad por bloque con Fortuna III segun la mina mas alta abierta (economia.py lo explica).
+MINAS_VALOR = _VF[:6] + [round(_VF[5] * MINAS_SUBA ** ((n - 6) / (len(MIXES) - 6))) for n in range(7, len(MIXES) + 1)]
+
+
+def mult(rank):
+    """Multiplicador de la venta rapida segun la mina mas alta abierta ({-am.mult::rango})."""
+    if rank <= 6:   # Tier I: pagan igual que antes (Esmeralda I es la referencia)
+        return 1
+    return round(MINAS_VALOR[rank - 1] / _VF[rank - 1], 4)
+
+
+# Costos de la mina 7 en adelante: el 85 % de lo que se gana (sin Fortuna) picando lo que pide en la anterior.
+for _n in range(7, len(MIXES)):
+    COSTS[_n - 1] = _redondo(MINAS_COSTO_FACTOR * GOALS[_n - 1] * _V[_n - 2] * mult(_n - 1))
+MINES = [(*mix, goal, cost) for mix, goal, cost in zip(MIXES, GOALS, COSTS, strict=True)]
+
+
+def _valor_viejo(base, ore, chance):
+    def v(material):
+        drop, amount = DROPS.get(material, (material, 1))
+        return PRICES_VIEJOS[drop] * amount
+    return round(v(base) * (100 - chance) / 100 + v(ore) * chance / 100, 2)
 
 
 def slot(i):
@@ -107,12 +154,16 @@ def config():
                   f'    set {{-am.icon::{i}}} to "minecraft:{ore}" parsed as item type',
                   f'    set {{-am.baseid::{i}}} to "minecraft:{base}"',
                   f"    set {{-am.chance::{i}}} to {chance}", f"    set {{-am.goal::{i}}} to {goal}",
-                  f"    set {{-am.cost::{i}}} to {cost}",
-                  f"    set {{-am.value::{i}}} to {mine_value(base, ore, chance)}"]
+                  f"    set {{-am.cost::{i}}} to {cost}", f"    set {{-am.costv::{i}}} to {COSTS_VIEJOS[i - 1]}",
+                  f"    set {{-am.value::{i}}} to {mine_value(base, ore, chance)}",
+                  f"    set {{-am.mult::{i}}} to {mult(i)}",
+                  f"    set {{-am.valuev::{i}}} to {_valor_viejo(base, ore, chance)}"]
     lines.append("    delete {-am.price::*}")
+    lines.append("    delete {-am.pricev::*}")
     for material, price in PRICES.items():
         lines.append(f'    set {{_t}} to "minecraft:{material}" parsed as item type')
         lines.append(f"    set {{-am.price::%{{_t}}%}} to {price}")
+        lines.append(f"    set {{-am.pricev::%{{_t}}%}} to {PRICES_VIEJOS[material]}")
     # El script reconoce el area por la descripcion "Rompe en area NxM" (ver AREA_NAMES).
     assert AREA_NAMES == {1: "1x1", 2: "2x1", 3: "2x2", 4: "3x3", 5: "4x4"}, "actualizar am_tool_area en minas.sk"
     lines.append("    delete {-am.off::*}")
@@ -138,10 +189,13 @@ def _lista(nums, union):
     return ", ".join(nums[:-1]) + f" {union} " + nums[-1]
 
 
+RENACER_BONUS = 0.10
+RENACER_MAX = 10
+
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
     from travel_ui import title, PAGE2_SLOTS
-    values = {"MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
+    values = {"RENACER_BONUS": RENACER_BONUS, "RENACER_MAX": RENACER_MAX, "MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
               "BOSQUE_SLOTS": _lista(PAGE2_SLOTS["minas2"]["bosque"], "and"),
               "BOSQUE_OR": _lista(PAGE2_SLOTS["minas2"]["bosque"], "or"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,

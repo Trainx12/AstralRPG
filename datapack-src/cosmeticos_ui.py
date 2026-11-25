@@ -20,6 +20,12 @@ HUB_CARDS={'titulos':tuple(r*9+c for r in range(5) for c in range(0,4)),
 HUB_START,HUB_END='',''
 HUB_GLYPHS=tuple(chr(0xed40+i) for i in range(4))
 CLEAR_SLOTS=tuple(range(47,52))
+# Titulos especiales (24/11/2026): no salen en la gacha; se dan a mano (lp permission) como premio.
+# Solo los ve quien los tiene (sin version con candado). (nombre, color, casilla libre del menu)
+SPECIAL_TITLES=(('Cazador de Bugs','&e&l',0),('Dueño','&c&l',1),('Minero Renacido','&6&l',2))
+# Texto del lore de cada especial (24/11: Dueño solo para ByTrainx).
+SPECIAL_LORE={'Minero Renacido':'Renacio en las Minas Astrales.','Cazador de Bugs':'Premio por encontrar y avisar un bug.','Dueño':'Titulo del dueno del servidor.'}
+SPECIAL_RARITY=('Especial','#f0d060')
 
 
 def title():
@@ -61,7 +67,7 @@ def hub_panel():
 
 
 def key_for(name):
-    return name.lower().replace(' ','_')
+    return name.lower().replace(' ','_').replace('ñ','n')
 
 
 def icon(index,color):
@@ -134,6 +140,48 @@ def medal(index,locked=False):
         d.rectangle((11,10,16,16),fill='#17242c',outline='#a3adb2')
         d.arc((12,6,15,13),180,360,fill='#ccd4ce')
         d.point((14,13),fill='#d4c79e')
+    return im
+
+
+def owner_medal():
+    """Dueño: corona dorada con rubies sobre fondo rojo, mismo marco octogonal."""
+    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+    octo=((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4))
+    d.polygon(octo,fill='#5a0f14',outline=EDGE)
+    gold,dark='#f0c850','#8a5a14'
+    d.polygon(((3,12),(3,6),(6,9),(9,4),(12,9),(15,6),(15,12)),fill=gold,outline=dark)
+    d.rectangle((3,12,15,14),fill=gold,outline=dark)
+    for x in (3,9,15):d.point((x,4 if x==9 else 6),fill='#fff3cf')
+    for x in (5,9,13):d.point((x,13),fill='#e0262e')
+    d.point((9,8),fill='#e0262e');d.line((5,11,13,11),fill='#fff3cf')
+    for p in ((2,2),(15,2),(2,15),(15,15)):d.point(p,fill='#e0262e')
+    d.polygon(octo,outline='#f2d27f');d.line((4,2,8,2),fill='#fff3cf')
+    return im
+
+
+def special_medal(name='Cazador de Bugs'):
+    """Cazador de Bugs: lupa dorada sobre un bichito, en el mismo marco octogonal de las insignias."""
+    if name=='Minero Renacido':
+        im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+        d.polygon(((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4)),fill='#3a2f12',outline=EDGE)
+        d.line((5,13,12,5),fill='#b88851',width=2)
+        d.line((5,5,10,3,14,7),fill='#f2d27f',width=2)
+        d.polygon(((5,8),(7,10),(5,12),(3,10)),fill='#8bdce2')
+        return im
+    if name=='Dueño':return owner_medal()
+    color=SPECIAL_RARITY[1]
+    im=Image.new('RGBA',(18,18),FILL);d=ImageDraw.Draw(im)
+    octo=((4,1),(13,1),(16,4),(16,13),(13,16),(4,16),(1,13),(1,4))
+    d.polygon(octo,fill='#3a2f12',outline=EDGE)
+    # bichito verde con patas y antenas (arriba a la izquierda)
+    for y in (6,8,10):d.line((2,y,10,y),fill='#c9e6a0')
+    d.ellipse((3,4,9,12),fill='#7be05a',outline='#24481c');d.line((6,5,6,11),fill='#24481c')
+    d.rectangle((5,2,7,3),fill='#24481c');d.point((4,1),fill='#c9e6a0');d.point((8,1),fill='#c9e6a0')
+    # lupa dorada (abajo a la derecha) con mango
+    d.ellipse((8,7,14,13),outline=color);d.point((10,9),fill='#fff3cf')
+    d.line((13,13,15,15),fill='#c3a579',width=2)
+    for p in ((2,2),(15,2),(2,15),(15,15)):d.point(p,fill=color)
+    d.polygon(octo,outline='#f2d27f');d.line((4,2,8,2),fill='#fff3cf')
     return im
 
 
@@ -210,6 +258,7 @@ def assets():
             'model':{'type':'minecraft:model','model':f'astral:cosmeticos/{name}'}}).encode()
     for index,(_,name,_) in enumerate(TITLES):
         for locked in (False,True):model(key_for(name)+('_locked' if locked else ''),medal(index,locked))
+    for name,_,_ in SPECIAL_TITLES:model(key_for(name),special_medal(name))
     for kind in ('info','gacha','back','close'):model('nav_'+kind,nav_icon(kind))
     button=clear_button()
     for i in range(5):model(f'clear_{i}',button.crop((i*18,0,i*18+18,18)))
