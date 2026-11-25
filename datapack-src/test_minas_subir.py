@@ -1,4 +1,4 @@
-"""Salida del pozo: generacion, geometria y protecciones de minas."""
+"""Salida del pozo: generacion, avisos y protecciones de minas."""
 import re
 import unittest
 from pathlib import Path
@@ -12,15 +12,10 @@ class SalirDelPozo(unittest.TestCase):
         self.assertEqual(text, (minas.OUT / 'Skript/scripts/astral_minas.sk').read_text(encoding='utf8'))
         for command in ('command /subir:', 'command /minassubir [<text>]:'):
             self.assertEqual(text.count(command), 1)
-        reset = text.split('function am_reset(', 1)[1].split('\nevery ', 1)[0]
-        self.assertLess(reset.index('run clone'), reset.index('am_escaleras({_i})'))
-        self.assertEqual(reset.count('am_escaleras({_i})'), 1)
-        self.assertIn('if {am.subir} is "publico":\n        am_escaleras({_i})', reset)
         self.assertIn('set {am.subir} to "privado"', text)
         self.assertIn('difference between now and {-am.subir.uso::%{_id}%} < 3 seconds', text)
         self.assertIn('difference between now and {-am.subir.aviso::%{_id}%} < 60 seconds', text)
-        fills = re.findall(r'run fill .*ladder\[facing=\w+\] replace', text)
-        self.assertEqual(len(fills), len(minas.ESCALERAS))
+        self.assertIn('send action bar "&e⬆ Usa &f/subir &epara volver arriba" to loop-player', text)
 
     def test_panel_y_aviso_privados(self):
         import yaml
@@ -41,7 +36,7 @@ class SalirDelPozo(unittest.TestCase):
         self.assertIn('am_subir_score({_p})', sync)
         toggle = text.split('command /minassubir', 1)[1].split('\n# Dentro', 1)[0]
         self.assertIn('loop all players:\n                am_subir_score(loop-player)', toggle)
-        visibility = text.split('function am_subir_score(', 1)[1].split('\n# Solo', 1)[0]
+        visibility = text.split('function am_subir_score(', 1)[1].split('\ncommand ', 1)[0]
         self.assertIn('if name of world of {_p} is "astral_minas":', visibility)
         self.assertIn('if am_subir_enabled({_p}) is true:', visibility)
         enabled = text.split('function am_subir_enabled(', 1)[1].split('\n# TAB', 1)[0]
@@ -55,15 +50,16 @@ class SalirDelPozo(unittest.TestCase):
         self.assertEqual(len(re.findall(r'^command /', text, re.M)), len(set(re.findall(r'^command /[^ :]+', text, re.M))))
         self.assertEqual(len(re.findall(r'^function ', text, re.M)), len(set(re.findall(r'^function [^(]+', text, re.M))))
 
-    def test_escaleras_en_borde(self):
-        p = minas.PIT
-        self.assertEqual(len(set(minas.ESCALERAS)), 6)
-        for x, z, facing in minas.ESCALERAS:
-            self.assertTrue(p['x1'] <= x <= p['x2'] and p['z1'] <= z <= p['z2'])
-            self.assertTrue((z == p['z1'] and facing == 'south') or
-                            (z == p['z2'] and facing == 'north') or
-                            (x == p['x1'] and facing == 'east') or
-                            (x == p['x2'] and facing == 'west'))
+    def test_sin_bloques_de_salida(self):
+        text = minas.script()
+        self.assertNotIn('ladder', text)
+        self.assertNotIn('am_escaleras', text)
+        toggle = text.split('command /minassubir', 1)[1].split('\n# Dentro', 1)[0]
+        self.assertNotIn('probar', toggle)
+        self.assertIn('/minassubir publico|privado)', toggle)
+        reset = text.split('function am_reset(', 1)[1].split('\nevery ', 1)[0]
+        self.assertIn('run clone', reset)
+        self.assertNotIn('run fill', reset)
 
     def test_taladros_y_vetas_respetan_proteccion(self):
         text = minas.script()

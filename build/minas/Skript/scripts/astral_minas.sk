@@ -896,20 +896,6 @@ function am_subir_score(p: player):
             set {_visible} to 1
     am_score({_p}, "am_subir", {_visible})
 
-# Solo coloca escaleras en el pozo; jamas en los moldes ni en otros mundos.
-function am_escaleras(i: number):
-    if am_world() is not set:
-        stop
-    if {_i} is not between 1 and {-am.count}:
-        stop
-    set {_x} to ({_i} - 1) * 512
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 88% 73 78 %{_x} + 88% 92 78 minecraft:ladder[facing=south] replace"
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 89% 73 78 %{_x} + 89% 92 78 minecraft:ladder[facing=south] replace"
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 90% 73 78 %{_x} + 90% 92 78 minecraft:ladder[facing=south] replace"
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 82% 73 93 %{_x} + 82% 92 93 minecraft:ladder[facing=east] replace"
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 112% 73 93 %{_x} + 112% 92 93 minecraft:ladder[facing=west] replace"
-    execute console command "minecraft:execute in minecraft:astral_minas run fill %{_x} + 97% 73 108 %{_x} + 97% 92 108 minecraft:ladder[facing=north] replace"
-
 command /subir:
     executable by: players
     trigger:
@@ -942,19 +928,8 @@ command /minassubir [<text>]:
             set {am.subir} to arg-1
             loop all players:
                 am_subir_score(loop-player)
-        else if arg-1 is "probar":
-            if sender is not a player:
-                send "&7Usa este comando como jugador dentro de una mina." to sender
-                stop
-            set {_i} to am_id(location of player)
-            if {_i} is 0:
-                send "&7Usa este comando dentro del mundo de minas." to sender
-                stop
-            am_escaleras({_i})
-            send "&aEscaleras de prueba colocadas. En privado se borran al regenerar." to sender
-            stop
         set {_m} to {am.subir} ? "privado"
-        send "&eSalida del pozo: &f%{_m}% &7(/minassubir publico|privado|probar)" to sender
+        send "&eSalida del pozo: &f%{_m}% &7(/minassubir publico|privado)" to sender
 
 # Dentro del pozo (coordenadas locales iguales en todos los mapas).
 function am_in_pit(loc: location, i: number) :: boolean:
@@ -1615,7 +1590,7 @@ every 1 second:
                             set {_avisar} to false
                     if {_avisar} is true:
                         set {-am.subir.aviso::%{_id}%} to now
-                        send action bar "&e⬆ Escaleras en las paredes o &f/subir" to loop-player
+                        send action bar "&e⬆ Usa &f/subir &epara volver arriba" to loop-player
         # Minutos de mineria activa (picó en los ultimos 10 s) para abrir la ultima mina.
         if {-am.active::%{_id}%} is set:
             if {_i} is {-am.count} - 1:
@@ -1651,8 +1626,6 @@ function am_reset(i: number):
     set {-am.mold::%{_i}%} to mod(({-am.mold::%{_i}%} ? 0) + 1, 2)
     set {_y} to -20 - {-am.mold::%{_i}%} * 25
     execute console command "minecraft:execute in minecraft:astral_minas run clone %{_x} + 82% %{_y}% 78 %{_x} + 112% %{_y} + 20 - 1% 108 %{_x} + 82% 73 78 replace"
-    if {am.subir} is "publico":
-        am_escaleras({_i})
     set {_t} to now
     add 9 minutes to {_t}
     set {-am.next::%{_i}%} to {_t}

@@ -40,18 +40,17 @@ cambiar `/minassubir publico|privado`; fuera de Minas vale 0.
 
 ## Prueba privada
 
-1. Con ByTrainx en una mina, ejecutar `/minassubir probar`. Coloca seis columnas
-   de escaleras entre Y 73 y 92 solo en esa mina.
-2. Bajar al pozo, comprobar que se puede subir por las seis columnas y ejecutar
-   `/subir`: debe volver a la plataforma con sonido suave y barra de accion.
+1. Ejecutar `minassubir privado` desde consola y entrar con ByTrainx a una mina.
+2. Bajar al pozo y ejecutar `/subir`: debe volver a la plataforma con sonido
+   suave y barra de accion.
 3. Repetir dentro de 3 segundos: debe impedir el segundo uso. Fuera del pozo,
    en una mina cerrada o en otro mundo, no debe trasladar al jugador.
-4. Bajo Y 85, comprobar el aviso al entrar y que no se repita antes de 60 s.
+4. Bajo Y 85, comprobar el aviso `&e⬆ Usa &f/subir &epara volver arriba`
+   y que no se repita antes de 60 s.
    En privado, un jugador comun no debe recibir avisos ni usar `/subir`.
-5. Probar pico, taladro y Minero de Vetas junto a las escaleras: deben conservarlas
-   (usar supervivencia; creativo con permiso de administrador permite editar).
-6. Regenerar esa mina con `/minasreset N`: en privado las escaleras de prueba
-   desaparecen. No ejecutar `/minasmoldes` para instalar esta mejora.
+5. Probar pico, taladro y Minero de Vetas: deben conservar la proteccion del mapa.
+6. Regenerar esa mina con `/minasreset N` y comprobar que `/subir` sigue
+   funcionando. No ejecutar `/minasmoldes` para instalar esta mejora.
 7. ByTrainx debe ver `⬆ Salir del pozo /subir` despues de Regeneracion; un
    jugador comun no la ve en privado. Verificar tambien cambio de mundo y
    reconexion. Al alternar el interruptor, el panel debe actualizarse.
@@ -60,17 +59,24 @@ cambiar `/minassubir publico|privado`; fuera de Minas vale 0.
    plataforma de tu mina.` En privado solo ByTrainx; en publico todos los
    de Minas. No es un temporizador individual desde la entrada.
 
-Las escaleras de prueba son bloques compartidos: otros jugadores presentes en
-esa mina podrian verlas y usarlas hasta la proxima regeneracion. Probar en una
-mina sin jugadores comunes.
-
 Solo despues del OK del dueno:
 
 ```text
 minassubir publico
 ```
 
-Desde entonces cada regeneracion coloca escaleras y todos pueden usar `/subir`.
-El cambio no regenera las minas inmediatamente. `/minassubir privado` vuelve a
-ocultar comando/avisos; las escaleras ya colocadas desaparecen al regenerar.
+Desde entonces todos los jugadores de Minas pueden usar `/subir` y recibir sus
+avisos. `/minassubir privado` vuelve a limitarlos a ByTrainx. El interruptor no
+modifica bloques ni regenera las minas.
 Nunca sustituir mundos ni usar Worlds > Upload en la fila world.
+
+## Verificacion local de esta revision
+
+- Regenerado con `python minas.py`; TAB queda sin cambios.
+- 4 pruebas de `test_minas_subir` y 17 de `test_economia` aprobadas.
+- Skript local y Skript aislado para Git: carga y recarga correctas en Paper
+  26.1.2 / Java 25, sin errores de Skript. ExcellentEnchants avisa que falta un
+  proveedor de tooltips (PacketEvents o ProtocolLib) en el entorno de prueba.
+- Salida publicada comprobada contra el generador aislado. Los cambios previos
+  de Renacer y de economia en la documentacion quedan locales, fuera del commit.
+- Sin instalacion ni comandos en el servidor remoto; prueba del dueno pendiente.

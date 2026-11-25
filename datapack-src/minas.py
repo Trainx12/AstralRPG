@@ -22,10 +22,6 @@ SPACING = 512                     # cada mina esta 512 bloques en X despues de l
 MAP = "astral-mina-hierro.schem"
 PASTE_X, PASTE_Z = 7, 2
 PIT = dict(x1=82, x2=112, y1=73, y2=92, z1=78, z2=108)  # Hierro I: X 1106..1136
-# (X local, Z local, orientacion). Apoyo de bedrock verificado en Y 73..92
-# en la copia local del mapa instalado (20/11); no modificar los moldes.
-ESCALERAS = [(88, 78, "south"), (89, 78, "south"), (90, 78, "south"),
-             (82, 93, "east"), (112, 93, "west"), (97, 108, "north")]
 SPAWN = (89.5, 93, 70.5)          # plataforma junto al pozo
 VENDOR = (94.5, 93, 70.5, 0)      # aldeano de venta rapida, mirando al pozo
 TRAVEL = (84.5, 93, 70.5, 0)      # aldeano de viajes (lobby u otra mina), del otro lado de la plataforma
@@ -207,11 +203,7 @@ RENACER_MAX = 10
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
     from travel_ui import title, PAGE2_SLOTS
-    escaleras = "\n".join(
-        f'    execute console command "minecraft:execute in {dim} run fill %{{_x}} + {x}% {PIT["y1"]} {z} '
-        f'%{{_x}} + {x}% {PIT["y2"]} {z} minecraft:ladder[facing={facing}] replace"'
-        for x, z, facing in ESCALERAS)
-    values = {"ESCALERAS": escaleras, "RENACER_BONUS": RENACER_BONUS, "RENACER_MAX": RENACER_MAX, "MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
+    values = {"RENACER_BONUS": RENACER_BONUS, "RENACER_MAX": RENACER_MAX, "MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
               "BOSQUE_SLOTS": _lista(PAGE2_SLOTS["minas2"]["bosque"], "and"),
               "BOSQUE_OR": _lista(PAGE2_SLOTS["minas2"]["bosque"], "or"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,

@@ -132,18 +132,8 @@ plataforma desde el pozo de una mina abierta, con 3 segundos entre usos. Bajo
 Y 85 aparece un aviso como maximo cada 60 segundos. Por defecto solo ByTrainx
 tiene comando y aviso (`{am.subir}` privado).
 
-`/minassubir probar` (permiso `astral.minas.admin`, dentro del mundo de minas)
-coloca seis columnas de escaleras solo en esa mina. Apoyo solido comprobado en
-la copia local del mapa instalado: norte X 88/89/90, Z 78; oeste X 82, Z 93;
-este X 112, Z 93; sur X 97, Z 108. Todas entre Y 73 y 92, con desplazamiento
-X de 512 por mina. No cambia los moldes ni la ventana de `/minas`.
-
-Solo tras el OK del dueno, `/minassubir publico` habilita comando y aviso para
-todos y coloca las escaleras despues de cada clone de regeneracion.
-`/minassubir privado` vuelve a ocultarlo; las escaleras existentes desaparecen
-al regenerar. Las escaleras de prueba son visibles para cualquiera presente
-en esa mina: probar sin jugadores comunes. Pico, taladro y Minero de Vetas
-respetan la proteccion; creativo con permiso de admin sigue pudiendo editar.
+Solo tras el OK del dueno, `/minassubir publico` habilita comando y avisos para
+todos. `/minassubir privado` vuelve a limitarlos a ByTrainx.
 Entrega: [minas-subir.md](../build/deploy/minas-subir.md).
 
 El panel lateral agrega `⬆ Salir del pozo /subir` despues de Regeneracion,
