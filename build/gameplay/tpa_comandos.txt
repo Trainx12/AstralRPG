@@ -1,0 +1,6 @@
+# Consola del panel, sin /. Dar el /tpa a todos (el script lo limita al Survival):
+lp group default permission set essentials.tpa true
+lp group default permission set essentials.tpahere true
+lp group default permission set essentials.tpaccept true
+lp group default permission set essentials.tpdeny true
+lp group default permission set essentials.tpacancel true

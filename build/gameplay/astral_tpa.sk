@@ -1,0 +1,72 @@
+# Generado por datapack-src/tpa_survival.py: no editar a mano.
+# /tpa solo dentro del Survival (no al lobby, minas, mazmorras ni otros mundos). Nether Hub excluido.
+
+function astral_tpa_ok(l: location) :: boolean:
+    if name of world of {_l} is "world" or "world_nether" or "world_the_end":
+        set {_s} to true
+    if {_s} is not set:
+        return false
+    if name of world of {_l} is "world_nether":
+        if x-coordinate of {_l} is between -319 and -234:
+            if y-coordinate of {_l} is between 106 and 174:
+                if z-coordinate of {_l} is between -15 and 59:
+                    return false
+    return true
+
+on command:
+    sender is a player
+    set {_c} to command
+    set {_pide} to false
+    loop "tpa", "call", "tpask", "etpa", "ecall", "etpask", "tpahere", "etpahere", "essentials:tpa", "essentials:call", "essentials:tpask", "essentials:etpa", "essentials:ecall", "essentials:etpask", "essentials:tpahere" and "essentials:etpahere":
+        if {_c} is loop-value:
+            set {_pide} to true
+    set {_acepta} to false
+    loop "tpaccept", "tpyes", "etpaccept", "etpyes", "essentials:tpaccept", "essentials:tpyes", "essentials:etpaccept" and "essentials:etpyes":
+        if {_c} is loop-value:
+            set {_acepta} to true
+    if {_pide} is true:
+        if astral_tpa_ok(location of player) is false:
+            cancel event
+            send "&cEl /tpa solo funciona dentro del Survival." to player
+            stop
+        set {_n::*} to full command split at " "
+        {_n::2} is set
+        set {_t} to {_n::2} parsed as player
+        {_t} is online
+        if astral_tpa_ok(location of {_t}) is false:
+            cancel event
+            send "&cEl /tpa solo funciona dentro del Survival. &7(%{_n::2}% no esta en el Survival)" to player
+    else if {_acepta} is true:
+        if astral_tpa_ok(location of player) is false:
+            cancel event
+            send "&cEl /tpa solo funciona dentro del Survival." to player
+            stop
+        set {-astral.tpa.acepta::%uuid of player%} to now
+
+on teleport:
+    set {_ok} to true
+    if {-astral.tpa.acepta::%uuid of player%} is set:
+        # tpahere: quien acepta viaja hacia quien pidio.
+        if difference between {-astral.tpa.acepta::%uuid of player%} and now is less than 2 seconds:
+            set {_tpa} to true
+    if {_tpa} is not set:
+        # tpa: quien pidio viaja hacia quien acepta.
+        loop all players:
+            {-astral.tpa.acepta::%uuid of loop-player%} is set
+            difference between {-astral.tpa.acepta::%uuid of loop-player%} and now is less than 2 seconds
+            loop-player is not player
+            world of loop-player is world of event-location
+            distance between loop-player and event-location is less than 2
+            set {_tpa} to true
+            stop loop
+    {_tpa} is set
+    if astral_tpa_ok(location of player) is false:
+        set {_ok} to false
+    if astral_tpa_ok(event-location) is false:
+        set {_ok} to false
+    {_ok} is false
+    cancel event
+    send "&cEl /tpa solo funciona dentro del Survival." to player
+
+on quit:
+    delete {-astral.tpa.acepta::%uuid of player%}
