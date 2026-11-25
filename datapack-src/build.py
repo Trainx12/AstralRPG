@@ -1592,6 +1592,8 @@ put(f"data/{NS}/tags/entity_type/escalable.json",
 from minijuegos import parkour_worlds as _minijuegos
 mob_roll = [
     "tag @s add astral.seen",
+    # Espiritus de Incendium: vex invisibles de 1 vida que son solo particulas; sin nombre ni tier.
+    "execute if entity @s[type=minecraft:vex,tag=in.spirit] run return 0",
     "# mini juegos: sus criaturas son del mapa (oleadas, niveles): sin tier ni elite",
     *[f"execute if dimension minecraft:{w} run return 0" for w in _minijuegos()],
     "# mascotas, vendedores y cofres son invulnerables: no se tocan",
