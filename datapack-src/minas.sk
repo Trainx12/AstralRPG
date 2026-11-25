@@ -7,7 +7,9 @@
 
 on load:
     # CATALOGO
-    loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost", "am_minutes", "am_regen_m", "am_regen_s", "am_segments" and "am_left":
+    if {am.subir} is not set:
+        set {am.subir} to "privado"
+    loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost", "am_minutes", "am_regen_m", "am_regen_s", "am_segments", "am_subir" and "am_left":
         execute console command "minecraft:scoreboard objectives add %loop-value% dummy"
     loop all players:
         am_load(loop-player)
@@ -114,6 +116,76 @@ function am_cost(p: player, i: number) :: number:
 function am_spawn(i: number) :: location:
     return location(({_i} - 1) * @SPACING@ + @SPAWN_X@, @SPAWN_Y@, @SPAWN_Z@, am_world(), 0, 0)
 
+function am_subir_enabled(p: player) :: boolean:
+    if {am.subir} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+# TAB usa el mismo interruptor que el comando y los avisos.
+function am_subir_score(p: player):
+    set {_visible} to 0
+    if name of world of {_p} is "@WORLD@":
+        if am_subir_enabled({_p}) is true:
+            set {_visible} to 1
+    am_score({_p}, "am_subir", {_visible})
+
+# Solo coloca escaleras en el pozo; jamas en los moldes ni en otros mundos.
+function am_escaleras(i: number):
+    if am_world() is not set:
+        stop
+    if {_i} is not between 1 and {-am.count}:
+        stop
+    set {_x} to ({_i} - 1) * @SPACING@
+@ESCALERAS@
+
+command /subir:
+    executable by: players
+    trigger:
+        if am_subir_enabled(player) is false:
+            stop
+        set {_i} to am_id(location of player)
+        if {_i} is 0:
+            send "&7Solo funciona dentro del pozo de una mina."
+            stop
+        if {_i} > am_rank(player):
+            send "&7Solo funciona dentro del pozo de una mina."
+            stop
+        if am_in_pit(location of player, {_i}) is false:
+            send "&7Solo funciona dentro del pozo de una mina."
+            stop
+        set {_id} to uuid of player
+        if {-am.subir.uso::%{_id}%} is set:
+            if difference between now and {-am.subir.uso::%{_id}%} < 3 seconds:
+                send "&7Espera 3 segundos entre usos."
+                stop
+        set {-am.subir.uso::%{_id}%} to now
+        teleport player to am_spawn({_i})
+        play sound "block.amethyst_block.chime" with volume 0.4 and pitch 1 to player
+        send action bar "&a⬆ Volviste a la plataforma" to player
+
+command /minassubir [<text>]:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "publico" or "privado":
+            set {am.subir} to arg-1
+            loop all players:
+                am_subir_score(loop-player)
+        else if arg-1 is "probar":
+            if sender is not a player:
+                send "&7Usa este comando como jugador dentro de una mina." to sender
+                stop
+            set {_i} to am_id(location of player)
+            if {_i} is 0:
+                send "&7Usa este comando dentro del mundo de minas." to sender
+                stop
+            am_escaleras({_i})
+            send "&aEscaleras de prueba colocadas. En privado se borran al regenerar." to sender
+            stop
+        set {_m} to {am.subir} ? "privado"
+        send "&eSalida del pozo: &f%{_m}% &7(/minassubir publico|privado|probar)" to sender
+
 # Dentro del pozo (coordenadas locales iguales en todos los mapas).
 function am_in_pit(loc: location, i: number) :: boolean:
     set {_x} to x-coordinate of {_loc} - ({_i} - 1) * @SPACING@
@@ -161,6 +233,7 @@ function am_sidebar(p: player):
     am_score({_p}, "am_minutes", {am.minutes::%uuid of {_p}%} ? 0)
 
 function am_sync(p: player):
+    am_subir_score({_p})
     if name of world of {_p} is "@WORLD@":
         add "astral.mines" to scoreboard tags of {_p}
         am_sidebar({_p})
@@ -734,6 +807,12 @@ on teleport:
         cancel event
         send "&cTodavía no abriste esa mina." to player
 
+# Un aviso por intervalo, exclusivamente a quienes pueden usar /subir en Minas.
+every 10 minutes:
+    loop all players in am_world():
+        if am_subir_enabled(loop-player) is true:
+            send "&e⬆ &fCon &e/subir &fapareces arriba, en la plataforma de tu mina." to loop-player
+
 every 30 seconds:
     loop all players:
         am_save(loop-player)
@@ -757,6 +836,16 @@ every 1 second:
             am_score(loop-player, "am_here", {_i})
         if y-coordinate of loop-player < @FALL_Y@:
             teleport loop-player to am_spawn({_i})
+        if y-coordinate of loop-player < 85:
+            if am_in_pit(location of loop-player, {_i}) is true:
+                if am_subir_enabled(loop-player) is true:
+                    set {_avisar} to true
+                    if {-am.subir.aviso::%{_id}%} is set:
+                        if difference between now and {-am.subir.aviso::%{_id}%} < 60 seconds:
+                            set {_avisar} to false
+                    if {_avisar} is true:
+                        set {-am.subir.aviso::%{_id}%} to now
+                        send action bar "&e⬆ Escaleras en las paredes o &f/subir" to loop-player
         # Minutos de mineria activa (picó en los ultimos 10 s) para abrir la ultima mina.
         if {-am.active::%{_id}%} is set:
             if {_i} is {-am.count} - 1:
@@ -792,6 +881,8 @@ function am_reset(i: number):
     set {-am.mold::%{_i}%} to mod(({-am.mold::%{_i}%} ? 0) + 1, 2)
     set {_y} to @MOLD_Y@ - {-am.mold::%{_i}%} * @MOLD_STEP@
     execute console command "minecraft:execute in @DIM@ run clone %{_x} + @PIT_X1@% %{_y}% @PIT_Z1@ %{_x} + @PIT_X2@% %{_y} + @PIT_H@ - 1% @PIT_Z2@ %{_x} + @PIT_X1@% @PIT_Y1@ @PIT_Z1@ replace"
+    if {am.subir} is "publico":
+        am_escaleras({_i})
     set {_t} to now
     add @RESET_MIN@ minutes to {_t}
     set {-am.next::%{_i}%} to {_t}

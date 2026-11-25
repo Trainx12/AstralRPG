@@ -144,8 +144,8 @@ scoreboard:
         - "<gradient:#5268C7:#D17AFF><bold>♟ Jugador</bold></gradient> <#F0E6FF>%player%"
         - "<gradient:#5268C7:#D17AFF><bold>✦ Stats</bold></gradient> <#D6B4FF>❤ <#F0E6FF>%player_health_rounded%/%player_max_health_rounded%"
         - "<#D6B4FF>⛃ <#AA96C5>Oro <#F0E6FF>%vault_eco_balance_formatted%  <#D6B4FF>⚡ <#AA96C5>Poder <#F0E6FF>%auraskills_power%"
-        - "<gradient:#5268C7:#D17AFF><bold>⛏ Minas</bold></gradient>"
         - "<#D6B4FF>◷ <#AA96C5>Regeneración <#F0E6FF>%objective_score_{am_regen_m}%m %objective_score_{am_regen_s}%s"
+        - "%condition:am_subir_row%"
         - "%condition:am_next_row%"
         - "%condition:am_source_row%"
         - "%condition:am_need%"
@@ -403,6 +403,11 @@ conditions:
       - "%objective_score_{am_here}%>0"
     true: "%condition:am_here%"
     false: "           <#F0E6FF>Minas Astrales"
+  am_subir_row:
+    conditions:
+      - "%objective_score_{am_subir}%=1"
+    true: "<#D6B4FF>⬆ <#AA96C5>Salir del pozo <#F0E6FF>/subir"
+    false: ""
   am_next_row:
     conditions:
       - "%objective_score_{am_rank}%<20"
