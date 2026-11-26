@@ -29,6 +29,10 @@ public final class BazarStore implements AutoCloseable {
         sql("CREATE INDEX IF NOT EXISTS owners ON orders(owner,remaining)");
         sql("CREATE TABLE IF NOT EXISTS claims(id INTEGER PRIMARY KEY AUTOINCREMENT,owner TEXT NOT NULL,product TEXT NOT NULL,qty INTEGER NOT NULL CHECK(qty>=0),item BLOB,basket TEXT NOT NULL DEFAULT '')");
         sql("CREATE INDEX IF NOT EXISTS claims_owner ON claims(owner,basket,product)");
+        boolean hasOrder=false;
+        try(var q=db.createStatement();var r=q.executeQuery("PRAGMA table_info(claims)")){while(r.next())if(r.getString("name").equals("order_id"))hasOrder=true;}
+        if(!hasOrder)sql("ALTER TABLE claims ADD COLUMN order_id INTEGER NOT NULL DEFAULT 0");
+        sql("CREATE TABLE IF NOT EXISTS order_credit(order_id INTEGER PRIMARY KEY,owner TEXT NOT NULL,cents INTEGER NOT NULL CHECK(cents>=0))");
         sql("CREATE TABLE IF NOT EXISTS trades(id INTEGER PRIMARY KEY AUTOINCREMENT,product TEXT,buyer TEXT,seller TEXT,qty INTEGER,price INTEGER,tax INTEGER,at INTEGER)");
         sql("CREATE INDEX IF NOT EXISTS history ON trades(product,at)");
         sql("CREATE TABLE IF NOT EXISTS journal(id INTEGER PRIMARY KEY AUTOINCREMENT,owner TEXT,kind TEXT,cents INTEGER,before_balance REAL,claim_id INTEGER,product TEXT,qty INTEGER,item BLOB,basket TEXT,state TEXT NOT NULL DEFAULT 'pending')");
@@ -60,8 +64,29 @@ public final class BazarStore implements AutoCloseable {
         sql("INSERT INTO wallet(owner,cents) VALUES(?,?) ON CONFLICT(owner) DO UPDATE SET cents=cents+excluded.cents",owner,n);
     }
     void debit(String owner,long n) throws Exception {
+        debit(owner,n,0);
+    }
+    void debit(String owner,long n,long preferred) throws Exception {
         if(n<0||wallet(owner)<n)throw new IllegalArgumentException("Plata insuficiente en el Bazar.");
         sql("UPDATE wallet SET cents=cents-? WHERE owner=?",n,owner);
+        var credits=new ArrayList<long[]>();
+        try(var q=db.prepareStatement("SELECT order_id,cents FROM order_credit WHERE owner=? AND cents>0 ORDER BY (order_id=?) DESC,order_id")){
+            bind(q,owner,preferred);try(var r=q.executeQuery()){while(r.next())credits.add(new long[]{r.getLong(1),r.getLong(2)});}
+        }
+        long left=n;for(var c:credits){long take=Math.min(left,c[1]);sql("UPDATE order_credit SET cents=cents-? WHERE order_id=?",take,c[0]);left-=take;if(left==0)break;}
+    }
+    void creditOrder(String owner,long n,long order)throws SQLException {
+        credit(owner,n);sql("INSERT INTO order_credit(order_id,owner,cents) VALUES(?,?,?) ON CONFLICT(order_id) DO UPDATE SET cents=cents+excluded.cents",order,owner,n);
+    }
+    public synchronized long orderMoney(String owner,long order)throws SQLException{return scalar("SELECT cents FROM order_credit WHERE owner=? AND order_id=?",owner,order);}
+    public synchronized long claimOrder(long claim)throws SQLException{return scalar("SELECT order_id FROM claims WHERE id=?",claim);}
+    public synchronized Set<Long> claimableOrders(String owner)throws SQLException {
+        Set<Long> out=new HashSet<>();try(var q=db.prepareStatement("SELECT DISTINCT order_id FROM claims WHERE owner=? AND qty>0 AND basket='' UNION SELECT order_id FROM order_credit WHERE owner=? AND cents>0")){
+            bind(q,owner,owner);try(var r=q.executeQuery()){while(r.next())out.add(r.getLong(1));}
+        }return out;
+    }
+    long claimOrder(String owner,String product,int qty,long order)throws SQLException {
+        long id=claim(owner,product,qty,null,"");if(id>0)sql("UPDATE claims SET order_id=? WHERE id=?",order,id);return id;
     }
     public synchronized List<Order> orders(String owner) throws SQLException {
         var out=new ArrayList<Order>();
@@ -100,7 +125,9 @@ public final class BazarStore implements AutoCloseable {
             Product p=products.get(id);
             if(p==null)throw new IllegalArgumentException("Producto no habilitado; solo materiales Astrales.");
             if(qty<1||qty>71680)throw new IllegalArgumentException("Cantidad: 1 a 71.680.");
-            if(price<p.min||price>p.max)throw new IllegalArgumentException("Precio fuera de rango.");
+            // Old makers remain executable when reference limits change.
+            // Bounds apply to new resting orders; instant prices come from the book.
+            if(price<1||(!instant&&(price<p.min||price>p.max)))throw new IllegalArgumentException("Precio fuera de rango.");
             if(!instant&&scalar("SELECT COUNT(*) FROM orders WHERE owner=? AND remaining>0",owner)>=14)throw new IllegalArgumentException("Tope de 14 órdenes abiertas.");
             if(buy)debit(owner,Math.multiplyExact(price,qty));else consume(owner,id,qty);
             long oid=insert("INSERT INTO orders(owner,product,buy,quantity,remaining,price) VALUES(?,?,?,?,?,?)",owner,id,buy,qty,qty,price);
@@ -127,8 +154,8 @@ public final class BazarStore implements AutoCloseable {
             Order seller=taker.buy?maker:find(taker.id);String buyer=taker.buy?taker.owner:maker.owner;
             // Cumulative rounding per sell order prevents splitting fills to evade tax.
             long fee=tax(seller.gross+gross)-seller.tax;
-            credit(seller.owner,gross-fee);claim(buyer,taker.product,n,null,"");
-            if(taker.buy)credit(buyer,Math.multiplyExact(taker.price-maker.price,n));
+            creditOrder(seller.owner,gross-fee,seller.id);claimOrder(buyer,taker.product,n,taker.buy?taker.id:maker.id);
+            if(taker.buy)creditOrder(buyer,Math.multiplyExact(taker.price-maker.price,n),taker.id);
             sql("UPDATE orders SET remaining=remaining-?,filled=filled+? WHERE id IN (?,?)",n,n,id,maker.id);
             sql("UPDATE orders SET gross=gross+?,tax=tax+? WHERE id=?",gross,fee,seller.id);
             sql("INSERT INTO trades(product,buyer,seller,qty,price,tax,at) VALUES(?,?,?,?,?,?,?)",taker.product,buyer,seller.owner,n,maker.price,fee,System.currentTimeMillis());
@@ -143,7 +170,7 @@ public final class BazarStore implements AutoCloseable {
     public synchronized void cancel(String owner,long id)throws Exception {tx(()->{cancelInternal(owner,id);audit(owner,"cancel",Long.toString(id));return null;});}
     void cancelInternal(String owner,long id)throws Exception {
         Order o=find(id);if(!o.owner.equals(owner))throw new IllegalArgumentException("Esa orden no es tuya.");
-        if(o.remaining>0){if(o.buy)credit(owner,Math.multiplyExact(o.remaining,o.price));else claim(owner,o.product,o.remaining,null,"");sql("UPDATE orders SET remaining=0,cancelled=1 WHERE id=?",id);}
+        if(o.remaining>0){if(o.buy)creditOrder(owner,Math.multiplyExact(o.remaining,o.price),id);else claimOrder(owner,o.product,o.remaining,id);sql("UPDATE orders SET remaining=0,cancelled=1 WHERE id=?",id);}
     }
     public synchronized void releaseBasket(String owner,String basket)throws Exception {
         tx(()->{sql("UPDATE claims SET basket='' WHERE owner=? AND basket=?",owner,basket);return null;});
@@ -176,7 +203,7 @@ public final class BazarStore implements AutoCloseable {
             Transfer t=pending().stream().filter(x->x.id==id).findFirst().orElse(null);if(t==null)return null;
             if(applied)switch(t.kind){
                 case "money_in"->credit(t.owner,t.cents);
-                case "money_out"->debit(t.owner,t.cents);
+                case "money_out"->debit(t.owner,t.cents,t.basket.startsWith("order:")?Long.parseLong(t.basket.substring(6)):0);
                 case "item_in"->claim(t.owner,t.product,t.qty,t.item,t.basket);
                 case "item_out"->sql("UPDATE claims SET qty=qty-? WHERE id=?",t.qty,t.claim);
                 default->throw new IllegalStateException("Transferencia desconocida");

@@ -6,6 +6,8 @@ Conserva cada ensayo en .local/bazar-probe-<fecha>; no borra ensayos anteriores.
 import argparse
 import datetime
 import os
+import json
+import re
 from pathlib import Path
 import shutil
 import socket
@@ -17,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def run(java, base):
+    with zipfile.ZipFile(ROOT / 'build/bazar/AstralBazar.jar') as jar:
+        if 'version: 1.2.0' not in jar.read('plugin.yml').decode():
+            raise SystemExit('Generar AstralBazar 1.2.0 antes de probar.')
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
@@ -99,6 +104,11 @@ def run(java, base):
     results = [line for line in text.splitlines() if 'BAZ RESULT' in line]
     if not results or 'failures=0' not in results[-1]:
         raise SystemExit('Ensayo fallido: '+str(log))
+    if 'BAZ CRASH READY' not in text:
+        raise SystemExit('Falta la prueba de caída y reapertura de JVM.')
+    count = int(re.search(r'checks=(\d+)', results[-1])[1])
+    (work / 'resultado.json').write_text(json.dumps({'version': '1.2.0', 'checks': count,
+        'failures': 0, 'crash_reopen': True, 'players': 2}, indent=2)+'\n', encoding='utf8')
 
 
 if __name__ == '__main__':

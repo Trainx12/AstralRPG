@@ -29,8 +29,37 @@ public final class BazarProbe {
     public void start(){Bukkit.getScheduler().runTaskTimer(plugin,()->{
         if(a!=null)return;var p=Bukkit.getPlayerExact("BazarUno");var q=Bukkit.getPlayerExact("BazarDos");if(p==null||q==null)return;a=p;z=q;b=(AstralBazar)Bukkit.getPluginManager().getPlugin("AstralBazar");
         try{run();}catch(Throwable e){failures++;getLogger().log(java.util.logging.Level.SEVERE,"BAZ EXCEPTION",e);}
-        getLogger().info("BAZ RESULT checks="+checks+" failures="+failures);Bukkit.shutdown();
+        if(Files.exists(getDataFolder().toPath().resolve("crash.properties"))){asyncInputs();return;}
+        finish();
     },40,20);}
+    void finish(){getLogger().info("BAZ RESULT checks="+checks+" failures="+failures);Bukkit.shutdown();}
+    void asyncInputs(){
+        a.addAttachment(b,"astral.bazar.usar",true);String[] received={""};
+        b.ask(a,"Chat real",text->received[0]=text);
+        var event=new io.papermc.paper.event.player.AsyncChatEvent(false,a,new HashSet<>(),io.papermc.paper.chat.ChatRenderer.defaultRenderer(),net.kyori.adventure.text.Component.text("123,45"),net.kyori.adventure.text.Component.text("123,45"),null);
+        Bukkit.getPluginManager().callEvent(event);ok(event.isCancelled(),"evento de chat no llega a espectadores");
+        Bukkit.getScheduler().runTaskLater(plugin,()->{
+            ok(received[0].equals("123,45")&&!b.inputs.containsKey(a.getUniqueId()),"chat ejecuta entrada una vez en hilo principal");
+            b.ask(a,"Vencimiento real",text->received[0]="error");
+            Bukkit.getScheduler().runTaskLater(plugin,()->{ok(!b.inputs.containsKey(a.getUniqueId())&&!b.inputDeadlines.containsKey(a.getUniqueId())&&received[0].equals("123,45"),"entrada vence realmente a los 30 segundos");finish();},610);
+        },2);
+    }
+    void priceFlows()throws Exception {
+        var x=b.products.get("corazon_shulker");var s=b.store;String u=b.owner(a),v=b.owner(z);long bid=x.min()+1000,ask=bid+2000;
+        s.credit(v,1000000000000L);s.claim(v,x.id(),512,null,"");
+        s.create(v,x.id(),true,512,bid,false);s.create(v,x.id(),false,512,ask,false);
+        a.getInventory().clear();for(int i=0;i<4;i++){var stack=x.item().clone();stack.setAmount(64);a.getInventory().setItem(i,stack);}
+        for(boolean buy:List.of(true,false))for(int option=0;option<4;option++){
+            long expected=switch(option){case 0->b.best(x,buy);case 1->b.best(x,buy)+(buy?10:-10);case 2->b.marginPrice(x,buy);default->buy?bid+500:ask-500;};
+            b.choosePrice(a,x,buy,false,64);var screen=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+            screen.actions.get(new int[]{10,12,14,16}[option]).run();
+            if(option==3)b.onCommand(a,b.getCommand("bazar"),"bazar",new String[]{"entrada",Long.toString(expected/100)+"."+String.format("%02d",expected%100)});
+            var confirm=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();confirm.actions.get(36).run();
+            var order=s.orders(u).stream().filter(o->o.product().equals(x.id())).findFirst().orElseThrow();
+            ok(order.buy()==buy&&order.quantity()==64&&order.price()==expected,"crear "+(buy?"compra":"venta")+" opción precio "+option);
+            s.cancel(u,order.id());b.collectOrder(a,order.id());
+        }
+    }
     void run()throws Exception {
         String u=a.getUniqueId().toString(),v=z.getUniqueId().toString();
         Path crash=getDataFolder().toPath().resolve("crash.properties");
@@ -93,7 +122,7 @@ public final class BazarProbe {
         ok(s.find(same).remaining()==1&&s.find(own).remaining()==1,"sin auto negociación");s.cancel(u,same);s.cancel(u,own);
         // One maker, two buyers submitted on the primary thread; second never receives first's units.
         s.claim("seller",x.id(),3,null,"");long race=s.create("seller",x.id(),false,3,px,false);
-        s.credit("r1",1000000);s.credit("r2",1000000);s.create("r1",x.id(),true,2,px,true);s.create("r2",x.id(),true,2,px,true);
+        s.credit("r1",100000000000L);s.credit("r2",100000000000L);s.create("r1",x.id(),true,2,px,true);s.create("r2",x.id(),true,2,px,true);
         ok(s.available("r1",x.id())+s.available("r2",x.id())==3,"dos compradores misma orden sin dupe");
         ok(s.find(race).remaining()==0,"orden concurrente agotada");
         var liquid=b.products.get("coral_astral");s.claim("depth",liquid.id(),100,null,"");
@@ -139,7 +168,100 @@ public final class BazarProbe {
         ok(Arrays.stream(a.getInventory().getStorageContents()).filter(Objects::nonNull).anyMatch(it->it.isSimilar(armor)),"cerrar sin confirmar devuelve equipo");
         a.getInventory().clear();a.getInventory().setItem(0,armor);b.equipmentScreen(a,"full-test");b.deposit(a,0,1,"equipo","full-test");for(int i=0;i<36;i++)a.getInventory().setItem(i,new ItemStack(Material.STONE,64));a.closeInventory();
         ok(s.claims(u).stream().anyMatch(c->c.product().equals("equipo")&&c.basket().isEmpty()),"cerrar lleno guarda equipo para retirar");
-        ok(a.getWorld().getEntitiesByClass(org.bukkit.entity.Item.class).isEmpty(),"sin tirar equipo al piso");
+        ok(a.getWorld().getEntitiesByClass(org.bukkit.entity.Item.class).stream().noneMatch(i->i.getItemStack().isSimilar(armor)),"sin tirar equipo al piso");
+        // 1.2.0: navegación y operaciones usando las acciones reales de cada ventana.
+        a.getInventory().clear();z.addAttachment(b,"astral.bazar.usar",true);
+        var y=b.products.get("nucleo_furia");long yp=y.min()+1000;
+        s.credit(v,100000000000L);s.credit(u,100000000000L);
+        b.home(a);var home=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        ok(a.getOpenInventory().getTitle().equals("Bazar - Inicio")&&!home.artwork,"inicio simple sin glifo");
+        for(int i=0;i<5;i++)ok(home.actions.containsKey(i*9),"categoría columna "+i);
+        ok(Arrays.stream(AstralBazar.PRODUCT_SLOTS).anyMatch(i->home.inv.getItem(i)!=null),"inicio ya muestra productos");
+        for(int slot:new int[]{45,46,47,48,53})ok(home.actions.containsKey(slot),"inicio acción "+slot);
+        b.listing(a,"Combate","",0);var listing=a.getOpenInventory().getTopInventory();
+        var icon=listing.getItem(AstralBazar.PRODUCT_SLOTS[0]);
+        ok(icon.getItemMeta().getLore().stream().noneMatch(l->l.contains("Rango")),"producto sin rango");
+        ok(icon.getItemMeta().getLore().getFirst().contains("Comprar al instante"),"producto precio instantáneo");
+        b.detail(a,y);var detail=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        ok(!detail.artwork&&detail.inv.getItem(4)==null&&detail.inv.getItem(16)==null,"producto sin lista de papeles");
+        for(int slot:new int[]{10,14,28,32,45,49})ok(detail.actions.containsKey(slot),"producto cuatro acciones y navegación "+slot);
+        b.amount(a,y,true,true);var amountUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        for(int slot:new int[]{10,12,15,16})ok(amountUI.actions.containsKey(slot),"cantidad instantánea "+slot);
+        b.amount(a,y,true,false);amountUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        ok(amountUI.inv.getItem(10).getItemMeta().getDisplayName().contains("64")&&amountUI.inv.getItem(12).getItemMeta().getDisplayName().contains("160")&&amountUI.inv.getItem(14).getItemMeta().getDisplayName().contains("1024"),"cantidades de órdenes 64/160/1024");
+        ok(b.marginPrice(y,true)==0,"margen deshabilitado sin puntas");
+        long bid=s.create(v,y.id(),true,100,yp,false);s.claim(v,y.id(),200,null,"");long ask=s.create(v,y.id(),false,100,yp+2000,false);
+        ok(b.marginPrice(y,true)==yp+100&&b.marginPrice(y,false)==yp+1900,"5% desde ambos extremos del margen");
+        b.choosePrice(a,y,true,false,64);var priceUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        for(int slot:new int[]{10,12,14,16})ok(priceUI.actions.containsKey(slot),"cuatro opciones precio "+slot);
+        // Comprar: entrega inmediata; la contraparte conserva cobro por orden.
+        a.getInventory().clear();double oldBalance=b.economy.getBalance(a);long oldWallet=s.wallet(u);
+        b.confirm(a,y,true,true,3,y.max());var confirm=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();confirm.actions.get(36).run();
+        ok(b.count(a,y)==3,"compra instantánea directo al inventario");
+        ok(s.wallet(u)==0&&Math.abs(b.economy.getBalance(a)-(oldBalance+(oldWallet-3*(yp+2000))/100.0))<.01,"compra cobra precio real y devuelve diferencia al saldo");
+        ok(s.orderMoney(v,ask)==3*(yp+2000)-BazarStore.tax(3*(yp+2000)),"venta contraparte cobra desde su orden");
+        // Inventario lleno: no cae nada; Mis órdenes conserva y entrega después.
+        for(int i=0;i<36;i++)a.getInventory().setItem(i,new ItemStack(Material.STONE,64));
+        b.confirm(a,y,true,true,2,y.max());confirm=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();confirm.actions.get(36).run();
+        ok(s.available(u,y.id())==2,"compra con inventario lleno queda para cobrar");
+        a.getInventory().clear();b.collectAll(a);ok(b.count(a,y)==2&&s.available(u,y.id())==0,"cobrar todo recupera exceso");
+        // Vender al instante todo; sobrante vuelve y el neto llega a Vault.
+        a.getInventory().clear();var ys=y.item().clone();ys.setAmount(5);a.getInventory().setItem(0,ys);
+        double tradeCash=b.economy.getBalance(a);b.detail(a,y);detail=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();detail.actions.get(14).run();
+        confirm=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();confirm.actions.get(36).run();
+        ok(b.count(a,y)==0&&Math.abs(b.economy.getBalance(a)-tradeCash-(5*yp-BazarStore.tax(5*yp))/100.0)<.01,"vender todo al instante paga al saldo");
+        s.cancel(v,bid);bid=s.create(v,y.id(),true,2,yp,false);ys.setAmount(5);a.getInventory().setItem(0,ys);
+        b.confirm(a,y,false,true,5,y.min());confirm=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();confirm.actions.get(36).run();
+        ok(b.count(a,y)==3,"venta parcial devuelve sobrante al inventario");
+        // Venta de inventario no toca equipo ni ítems vanilla.
+        bid=s.create(v,y.id(),true,2,yp,false);a.getInventory().setItem(1,weapon);a.getInventory().setItem(2,new ItemStack(Material.PAPER,4));
+        b.sellInventory(a);var invUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        ok(invUI.inv.getItem(0)!=null&&invUI.inv.getItem(49).getItemMeta().getDisplayName().contains("Confirmar"),"vender inventario resumen y total");
+        tradeCash=b.economy.getBalance(a);invUI.actions.get(49).run();
+        ok(b.count(a,y)==1&&a.getInventory().getItem(1).isSimilar(weapon)&&a.getInventory().getItem(2).getAmount()==4,"venta inventario conserva equipo vanilla y sobrante");
+        ok(b.economy.getBalance(a)>tradeCash,"venta inventario paga directo");
+        // Cobro por orden y cancelar sin repetir; productos de dos dueños.
+        long buyerOrder=s.create(v,y.id(),true,2,yp,false);ys.setAmount(1);a.getInventory().setItem(0,ys);b.depositProduct(a,y,1);
+        long sellerOrder=s.create(u,y.id(),false,1,yp,false);tradeCash=b.economy.getBalance(a);b.collectOrder(a,sellerOrder);
+        ok(Math.abs(b.economy.getBalance(a)-tradeCash-(yp-BazarStore.tax(yp))/100.0)<.01,"cobrar dinero desde orden");
+        tradeCash=b.economy.getBalance(a);b.collectOrder(a,sellerOrder);ok(b.economy.getBalance(a)==tradeCash,"orden no cobra dos veces");
+        z.getInventory().clear();b.collectOrder(z,buyerOrder);ok(b.count(z,y)==1,"comprador cobra producto desde orden");
+        rejects(()->b.collectOrder(a,buyerOrder),"cobro ajeno rechazado");
+        b.orders(z,0);var ordersUI=(AstralBazar.Screen)z.getOpenInventory().getTopInventory().getHolder();
+        int cancelSlot=-1;for(int i:ordersUI.rightActions.keySet())if(ordersUI.inv.getItem(i).getItemMeta().getDisplayName().contains("#"+buyerOrder+" "))cancelSlot=i;
+        ok(cancelSlot>=0&&ordersUI.inv.getItem(45).getItemMeta().getDisplayName().contains("Cobrar todo"),"órdenes ventana única con cobrar todo y clic derecho");
+        ordersUI.rightActions.get(cancelSlot).run();ok(s.find(buyerOrder).remaining()==0,"clic derecho cancela restante");
+        // Entradas: comando conservado, cancelación, vencimiento y captura del chat.
+        String[] inputValue={""};b.ask(a,"Prueba",text->inputValue[0]=text);b.onCommand(a,b.getCommand("bazar"),"bazar",new String[]{"entrada","12,34"});ok(inputValue[0].equals("12,34"),"entrada por comando compatible");
+        b.ask(a,"Prueba",text->inputValue[0]="no");b.acceptInput(a,"cancelar");ok(inputValue[0].equals("12,34")&&!b.inputs.containsKey(a.getUniqueId()),"cancelar entrada sin callback");
+        b.ask(a,"Prueba",text->inputValue[0]="no");b.inputDeadlines.put(a.getUniqueId(),System.currentTimeMillis()-1);b.acceptInput(a,"99");ok(inputValue[0].equals("12,34"),"entrada vencida rechazada");
+        b.ask(a,"Prueba chat",text->{});
+        var chat=new io.papermc.paper.event.player.AsyncChatEvent(false,a,new HashSet<>(),io.papermc.paper.chat.ChatRenderer.defaultRenderer(),net.kyori.adventure.text.Component.text("secreto"),net.kyori.adventure.text.Component.text("secreto"),null);
+        b.chat(chat);ok(chat.isCancelled(),"chat capturado sin publicación");b.inputs.remove(a.getUniqueId());b.inputDeadlines.remove(a.getUniqueId());
+        ok(a.getWorld().getEntitiesByClass(org.bukkit.entity.Item.class).stream().noneMatch(i->b.product(i.getItemStack())!=null),"ninguna operación tira productos al piso");
+        // Abrir una copia exacta del esquema 1.1.0 con custodia, saldo y órdenes.
+        Path oldDb=b.getDataFolder().toPath().resolve("legacy-110.sqlite");
+        try(var legacy=java.sql.DriverManager.getConnection("jdbc:sqlite:"+oldDb);var q=legacy.createStatement()){
+            q.execute("CREATE TABLE wallet(owner TEXT PRIMARY KEY,cents INTEGER NOT NULL)");q.execute("INSERT INTO wallet VALUES('legacy',12345)");
+            q.execute("CREATE TABLE claims(id INTEGER PRIMARY KEY AUTOINCREMENT,owner TEXT,product TEXT,qty INTEGER,item BLOB,basket TEXT NOT NULL DEFAULT '')");q.execute("INSERT INTO claims(owner,product,qty) VALUES('legacy','"+y.id()+"',7)");
+            q.execute("CREATE TABLE orders(id INTEGER PRIMARY KEY AUTOINCREMENT,owner TEXT,product TEXT,buy INTEGER,quantity INTEGER,remaining INTEGER,price INTEGER,gross INTEGER DEFAULT 0,tax INTEGER DEFAULT 0,filled INTEGER DEFAULT 0,cancelled INTEGER DEFAULT 0)");
+            q.execute("INSERT INTO orders(owner,product,buy,quantity,remaining,price) VALUES('legacy','"+y.id()+"',0,3,3,"+yp+")");
+        }
+        try(var legacy=new BazarStore(oldDb,s.products)){
+            ok(legacy.wallet("legacy")==12345&&legacy.available("legacy",y.id())==7&&legacy.orders("legacy").size()==1,"migración 1.1.0 conserva saldo custodia y orden");
+            legacy.cancel("legacy",1);ok(legacy.available("legacy",y.id())==10,"migración 1.1.0 puede cancelar y cobrar devolución");
+            legacy.sql("UPDATE wallet SET owner=? WHERE owner='legacy'",u);legacy.sql("UPDATE claims SET owner=? WHERE owner='legacy'",u);legacy.sql("UPDATE orders SET owner=? WHERE owner='legacy'",u);
+            a.getInventory().clear();double balance110=b.economy.getBalance(a);b.store=legacy;
+            try{
+                b.collectAll(a);ok(b.count(a,y)==10&&Math.abs(b.economy.getBalance(a)-balance110-123.45)<.01&&legacy.wallet(u)==0&&legacy.available(u,y.id())==0,"base 1.1.0 cobra inventario y saldo por UI nueva");
+                long oldPrice=y.min()-1;
+                legacy.sql("INSERT INTO orders(owner,product,buy,quantity,remaining,price) VALUES('oldSeller',?,0,2,2,?)",y.id(),oldPrice);
+                b.fund(a,2*oldPrice);b.instantBuy(a,y,2);b.collectAll(a);
+                ok(b.count(a,y)==12&&legacy.find(2).remaining()==0,"oferta 1.1.0 bajo mínimo nuevo sigue ejecutable");
+            }
+            finally{b.store=s;}
+        }
+        priceFlows();
         b.paused=true;rejects(()->b.check(a),"pausa bloquea operaciones");b.paused=false;
         b.home(a);var screen=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
         for(ClickType type:List.of(ClickType.SHIFT_LEFT,ClickType.NUMBER_KEY,ClickType.DROP,ClickType.DOUBLE_CLICK,ClickType.SWAP_OFFHAND)){

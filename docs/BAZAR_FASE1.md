@@ -1,4 +1,41 @@
-# Bazar Astral — implementación privada del 25/11/2026
+# Bazar Astral — 1.2.0 privada, 26/11/2026
+
+La especificación vigente es [bazar-hypixel.md](../build/deploy/bazar-hypixel.md): archivos y destinos,
+tabla completa de referencias con cálculos/supuestos, fichas para Gemini y resultado del ensayo.
+La entrega histórica de fase 1, citada abajo, describe el flujo anterior.
+
+Inicio reúne categorías en columna y productos paginados. Producto ofrece cuatro acciones:
+comprar/vender al instante y crear orden de compra/oferta de venta. La compra entrega al inventario;
+la venta paga al saldo de Essentials. Exceso o devolución que no entra queda guardado, nunca al piso.
+Vender inventario confirma productos y total, vende solo materiales canónicos con demanda y conserva equipo.
+Mis órdenes cobra con clic, cancela/devuelve con clic derecho y tiene Cobrar todo. No hay ventanas separadas
+de Retiros ni Retirar plata. Los cobros de 1.1.0 se recuperan con Cobrar todo.
+
+Cantidad instantánea: 1, un stack, llenar inventario, manual. Órdenes: 64, 160, 1024, manual;
+en venta también Todo lo que tengo. Precio: igual a la mejor, mejorar $0,10, 5% del margen o manual.
+Sin ambas puntas/margen positivo se deshabilita 5%. A mano y Buscar capturan el chat sin publicarlo,
+vencen a los 30 segundos y aceptan cancelar. `/bazar entrada <valor>` sigue funcionando.
+
+Referencias: `precios_referencia()` lee drops, recetas y Tienda en memoria. Cada receta suma sus
+ingredientes y divide por la producción; vanilla sin precio suma cero. Mínimo ref/10 o piso NPC;
+máximo ref×20. El tier adaptable exige supuestos explícitos en la tabla; seis referencias de
+Colmillo Carnívoro/monedas Asura siguen pendientes por falta de fuente monetizable.
+
+Migración automática e incremental de SQLite: agrega `claims.order_id` y `order_credit`.
+Conserva órdenes, custodia, wallet y journal; las órdenes anteriores siguen ejecutándose aunque
+queden fuera de los límites nuevos. No eliminar ni reemplazar la base al instalar.
+Conservar juntos SQLite/WAL/SHM, Essentials y archivos de jugador para recuperación.
+
+Inicio, Producto, Cantidad, Precio, Mis órdenes y Vender inventario usan ventanas simples.
+Confirmar orden y equipo conservan el diseño previo. Sin cambios al resource pack.
+F3+H muestra información avanzada del cliente que Paper no permite ocultar selectivamente.
+
+Sigue oculto: `publico: false`, permiso por defecto false y solo ByTrainx autorizado.
+Requiere reinicio completo del plugin; despliegue y prueba visual del dueño pendientes.
+
+---
+
+## Referencia histórica de fase 1 (flujo sustituido por 1.2.0)
 
 Esta especificación ajusta el plan histórico de `BAZAR.md` con las reglas nuevas del dueño.
 Entrega regenerable, catálogo completo, precios, archivos, hashes y ventanas:

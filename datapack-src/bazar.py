@@ -63,8 +63,85 @@ def fuentes():
     return ns
 
 
+def precios_referencia(ns):
+    """Costo de reposición; supuestos de recolección explícitos, sin escribir otras salidas."""
+    from items import MOB_DROPS, ELITE_DROPS
+    from items_t6_10 import MATERIAL_TIER, DROP_MATERIAL
+    import cavernas
+    refs, notes = {}, {}
+    vanilla = {}
+    for data in E.tienda().values():
+        for _, it in E._items_tienda(data):
+            # Usar venta NPC cuando existe; compra de Tienda como alternativa.
+            value = it.get('sell', -1)
+            if value is None or value < 0:
+                value = it.get('buy', 0)
+            if value and value > 0:
+                key = 'minecraft:' + str(it['material']).lower()
+                vanilla[key] = max(vanilla.get(key, 0), value / (it.get('stack-size') or 1))
+    def setref(iid, value, note):
+        refs[iid] = round(max(value, PISOS.get(iid, 0), .1), 2)
+        notes[iid] = note
+    # El tier del survival se adapta al jugador; no hay tier fijo por especie.
+    # Convención de balance revisable: Nether/End T5, vindicator Overworld T3.
+    for group, (_, drops) in MOB_DROPS.items():
+        tier = 3 if group == 'vindicator' else 5
+        for iid, chance, condition in drops:
+            value = E.PLATA_MOB_TIER[tier] / chance
+            if iid not in refs or value < refs[iid]:
+                setref(iid, value, f'items.MOB_DROPS/{group}: PLATA_MOB_TIER[{tier}] / {chance}; tier supuesto (survival adaptable)')
+    for tier, drops in enumerate(ELITE_DROPS, 1):
+        for iid, chance, qty in drops:
+            if iid not in refs:
+                setref(iid, E.PLATA_MOB_TIER[tier] / (chance * qty), f'items.ELITE_DROPS T{tier}: PLATA_MOB_TIER / ({chance} × {qty})')
+    for tier, iid in MATERIAL_TIER.items():
+        setref(iid, E.PLATA_MOB_TIER[tier] / DROP_MATERIAL['comun'], f'items_t6_10: T{tier} / probabilidad común {DROP_MATERIAL["comun"]}')
+    for tier in manzanas.TIERS:
+        setref(manzanas.iid(tier), E.PLATA_MOB_TIER[tier] / manzanas.PROB['comun'], f'manzanas.PROB común: T{tier} / {manzanas.PROB["comun"]}')
+    setref('netherita_fundida', vanilla.get('minecraft:netherite_ingot', 0), 'Horno: 1 lingote netherita; precio venta NPC/Tienda (combustible sin precio = 0)')
+    # Bloques/cofres no tienen pago de mob: unidad de esfuerzo explícita T5.
+    for iid, chance, label in [('madera_estelar', .35, 'chorus End'), ('fragmento_cristal', .04, 'end stone'), ('gema_luminica', .25, 'cofre Overworld')]:
+        setref(iid, E.PLATA_MOB_TIER[5] / chance, f'build.py {label}, probabilidad {chance}; supuesto unidad de esfuerzo T5 por bloque/cofre')
+    for iid in ('perla_abisal', 'coral_astral'):
+        setref(iid, E.PLATA_MOB_TIER[2], 'Veta Océano (escala.TIER_FIJO=2), 1 unidad; supuesto esfuerzo de un mob T2 por veta')
+    for iid, value in PISOS.items():
+        if iid in PRODUCTOS:
+            setref(iid, value, 'Precio de venta NPC en economia.CAVERNAS_PRECIO/VACIO_PRECIO (piso y referencia)')
+    setref('polvo_cristal', E.PLATA_MOB_TIER[cavernas.TIER] / .02, 'cavernas.py mob exterior T4 / drop 0.02')
+    for tipo in gemas.TIPOS:
+        for q in gemas.CALIDADES:
+            weights = cavernas.CALIDAD['honda']
+            prob = weights[q-1] / sum(weights)
+            setref(f'gema_{tipo}_{q}', E.PLATA_MOB_TIER[cavernas.TIER] / prob,
+                   f'Veta honda de {tipo}: CALIDAD {weights[q-1]}/{sum(weights)}; supuesto esfuerzo de un mob T4 por veta, sin polvo')
+    # No existe una tabla de drops publicada para estas seis monedas/materiales.
+    # Conservar referencia previa identificada, nunca presentarla como precio medido.
+    for iid in ['colmillo_carnivoro', *['asura_moneda_' + c for c in COINS]]:
+        setref(iid, PRODUCTOS[iid][1], 'PENDIENTE: referencia previa conservada; sin drop/receta monetizable en generadores')
+    recipes = {out: (n, ings) for out, n, ings, _ in ns['RECIPES'] if out in PRODUCTOS}
+    visiting = set()
+    def cost(iid):
+        if iid not in recipes:
+            if iid not in refs:
+                raise ValueError(f'Sin fuente de precio: {iid}')
+            return refs[iid]
+        if iid in visiting:
+            raise ValueError(f'Ciclo de recetas: {iid}')
+        visiting.add(iid)
+        n, ingredients = recipes[iid]
+        value = sum((cost(item) if kind == 'c' else vanilla.get(item, 0)) * qty for kind, item, qty in ingredients) / n
+        visiting.remove(iid)
+        desc = ' + '.join(f'{qty} × {item}' + (f' (${vanilla.get(item, 0):g} NPC/Tienda)' if kind == 'v' else '') for kind, item, qty in ingredients)
+        setref(iid, value, f'Receta: ({desc}) / {n}; vanilla sin precio = 0')
+        return refs[iid]
+    for iid in PRODUCTOS:
+        cost(iid)
+    return refs, notes
+
+
 def generate():
     ns = fuentes()
+    referencias, calculos = precios_referencia(ns)
     items = ns['ITEMS']
     snbt = ns['snbt']
     catalogo, equipo, identities = {}, {}, {}
@@ -79,11 +156,12 @@ def generate():
         arg = it['base'] + '[' + ','.join(k + '=' + (v if k == 'minecraft:custom_data' else snbt(v))
                                         for k, v in it['components'].items()) + ']'
         if iid in PRODUCTOS:
-            cat, ref = PRODUCTOS[iid]
+            cat, _ = PRODUCTOS[iid]
+            ref = referencias[iid]
             if not re.search(r'type:"(?:material|gem|gema|cavernas|vacio|consumable)"', raw):
                 raise ValueError(f'Producto no fungible: {iid}: {raw}')
             catalogo[iid] = dict(nombre=it['name'], categoria=cat, referencia=ref,
-                                 minimo=max(ref / 10, PISOS.get(iid, 0)), maximo=ref * 10,
+                                 calculo=calculos[iid], minimo=max(round(ref / 10, 2), PISOS.get(iid, 0), .01), maximo=round(ref * 20, 2),
                                  piso_server=PISOS.get(iid, 0), material=it['base'], item=arg)
         # Lista positiva de equipo; historia, oficios, taladros y cosméticos jamás entran.
         tier = re.search(r'\btier:(\d+)', raw)
@@ -105,7 +183,7 @@ def generate():
 
 
 PLUGIN = """name: AstralBazar
-version: 1.0.0
+version: 1.2.0
 main: astral.AstralBazar
 api-version: '26.1.2'
 depend: [Vault]
@@ -121,7 +199,15 @@ permissions:
 """
 
 
+def ventanas_yml():
+    """Titulos-dibujo de las 11 ventanas (ventanas_bazar.py) -> build/bazar/ventanas.yml (va dentro del jar)."""
+    import ventanas_bazar
+    data = {k: ventanas_bazar.titulo_ventana(k) for k in ventanas_bazar.ORDEN}
+    (OUT / 'ventanas.yml').write_text(json.dumps(data, ensure_ascii=True, indent=2) + '\n', encoding='utf8')
+
+
 def build(jdk, server):
+    ventanas_yml()
     classes = ROOT / '.local/bazar-classes'
     classes.mkdir(parents=True, exist_ok=True)
     jars = list(Path(server).joinpath('libraries').rglob('*.jar')) + [Path(server) / 'plugins/Vault.jar']
@@ -156,44 +242,42 @@ VENTANAS = [
 
 def entrega(data, resultado):
     import hashlib
-    lines = ['# Bazar fase 1 — privado, sin desplegar', '',
-        'No se instaló nada en el servidor. El principal documentado es Empower; Aternos es copia.', '',
-        '## Archivos y destinos', '', '| Local | Destino | SHA-256 |', '|---|---|---|']
+    lines = ['# AstralBazar 1.2.0 — flujo tipo Hypixel (privado)', '',
+             'Entrega local. No se desplegó en Empower ni Aternos. No cambia el resource pack.', '',
+             '## Archivos y destinos', '', '| Local | Destino | SHA-256 |', '|---|---|---|']
     for name in ('AstralBazar.jar', 'config.yml', 'productos.yml'):
         p = OUT / name
-        if p.exists():
-            dest = 'plugins/'+name if name.endswith('.jar') else 'plugins/AstralBazar/'+name
-            lines.append(f'| `build/bazar/{name}` | `{dest}` | `{hashlib.sha256(p.read_bytes()).hexdigest()}` |')
-    lines += ['', 'Apagar, respaldar los archivos actuales de AstralBazar si existen, subir los tres archivos y arrancar con Java 25 / Paper 26.1.2, Vault y EssentialsX. El JAR necesita REINICIO completo; no usar reload de JAR ni PlugMan.',
-        'Conservar siempre `plugins/AstralBazar/bazar.sqlite`, sus archivos WAL/SHM, `backups/` y datos de Essentials/jugadores. Nunca reemplazar mundos ni usar Worlds > Upload en world.',
-        'Si Aternos no permite instalar este JAR propio, queda bloqueado en esa plataforma; usar el panel autorizado de Empower. No usar APIs privadas.', '',
-        'Mantener `publico: false`. Solo para el dueño: `lp user ByTrainx permission set astral.bazar.usar true`.',
-        'Verificar consola: `Bazar privado listo`, sin errores del plugin. ByTrainx prueba `/bazar` en `/modo admin` y `/sala`. Otro jugador debe recibir Próximamente. Aldeano y DeluxeMenus siguen iguales.',
-        'Después, `/bazar admin pausar`, `/bazar admin reanudar`. Cambios operativos de config: `/bazar admin recargar`; cambios del catálogo requieren reinicio y mantener los IDs de órdenes existentes.', '',
+        dest = 'plugins/' + name if name.endswith('.jar') else 'plugins/AstralBazar/' + name
+        lines.append(f'| `build/bazar/{name}` | `{dest}` | `{hashlib.sha256(p.read_bytes()).hexdigest()}` |')
+    lines += ['', '`ventanas.yml` va embebido en el JAR; no subir al pack ni reemplazar el existente.', '',
+        '1. `/bazar admin pausar`. Respaldar juntos SQLite/WAL/SHM, carpeta AstralBazar, Essentials y jugadores.',
+        '2. Subir el JAR a `plugins/update/AstralBazar.jar` (si el panel admite update), y productos.yml a su destino. Conservar la config operativa actual: `publico: false`; el config.yml generado es plantilla privada, no sobreescribir permisos/pausa del servidor.',
+        '3. Requiere un reinicio completo; no PlugMan ni reload de JAR. En Empower, cuando todo esté subido: `reiniciopendiente Bazar 1.2.0`. Alternativa: apagar, reemplazar `plugins/AstralBazar.jar` y arrancar con Java 25.',
+        '4. Consola: `Bazar privado listo: 88 productos. publico=false`, versión 1.2.0 sin errores. `/bazar admin reanudar`; probar con ByTrainx en `/modo admin` y `/sala`. Otro jugador sin permiso debe ver Próximamente.',
+        '5. Config operativa: `/bazar admin recargar`. Catálogo/JAR requieren reinicio. No borrar IDs existentes ni reemplazar bazar.sqlite; la migración agrega `claims.order_id` y `order_credit` sin eliminar tablas/órdenes.',
+        'Aternos puede impedir instalar JAR propios: no eludir restricciones ni usar APIs privadas. No subir mundos ni usar Worlds > Upload en world.', '',
         '## Verificación', '', resultado, '',
-        'El ensayo es aislado con Paper real, Essentials, Vault y los registros reales de encantamientos del datapack; no ejecuta funciones/ticks de otras tareas locales. La prueba de caída usa Runtime.halt y vuelve a abrir el mismo servidor.',
-        'El catálogo se generó sobre las fuentes locales vigentes. Clases, Vacio, manzanas e historia y los ajustes recientes de economia/build son trabajo previo que no se publica en esta tarea. Hasta que se publique por separado, un checkout limpio puede recompilar este JAR y catálogo versionado con `python bazar.py --solo-compilar --jdk <bin Java 25>`; regenerar el catálogo desde todos los generadores requiere esas fuentes locales.',
-        'La prueba del dueño, el conjunto completo de plugins remotos y su consola siguen pendientes. No se certifica despliegue.', '',
-        '## Catálogo final', '', 'Todos usan custom_data Astral, material y componentes canónicos completos. Versiones antiguas deben pasar por la migración del datapack. Nombre cambiado, encantamientos, daño o componentes adicionales se rechazan como producto.', '',
-        '| Categoría | ID | Nombre | Referencia | Mínimo | Máximo | Piso servidor |', '|---|---|---|---:|---:|---:|---:|']
-    for iid, p in sorted(data['productos'].items(), key=lambda kv:(kv[1]['categoria'],kv[0])):
-        lines.append(f"| {p['categoria']} | `{iid}` | {p['nombre']} | {p['referencia']:g} | {p['minimo']:g} | {p['maximo']:g} | {p['piso_server']:g} |")
-    lines += ['', 'Minas vende minerales vanilla: quedan fuera del catálogo. Los cuatro pisos propios vienen de `economia.CAVERNAS_PRECIO` y `VACIO_PRECIO`. Comprar en el Bazar cuesta al menos el precio de venta al servidor, sin ganancia de arbitraje. No existen pescados Astrales fungibles registrados actualmente: no se inventan IDs. Las monedas Asura sí son materiales registrados.', '',
-        'Referencias de materiales sin venta NPC: valores iniciales editables, requieren revisión de balance del dueño. No se compra ni vende equipo entre jugadores en este bazar.', '',
-        '## Equipo al servidor', '', '| Tier | Pago por pieza |', '|---|---:|']
-    lines += [f'| {t} | ${n:,} |' for t,n in EQUIPO_POR_TIER.items()]
-    lines += ['', 'Fórmula: `economia.PLATA_MOB_TIER[tier] * 2`. Sin impuesto para esta liquidación al servidor. Mismo valor con mejoras. Toda venta pide confirmación y la mejorada advierte que en Subastas vale más. El pago queda en saldo para retirar a Vault.',
-        'Lista positiva de armas/armaduras; incluye bastones, guadañas, lanzas, cuchillos, ballestas, guantes y libros de clase. Excluye historia, mochilas, mascotas, cosméticos, taladros, motosierras y oficios.', '',
-        '## Persistencia y operación', '',
-        'SQLite FULL/WAL guarda órdenes, custodia, saldo, trades y audit en transacciones. El registro de movimientos es la tabla `audit` (y `trades`), dentro del archivo SQLite, no un log público. Impuesto 125 puntos base, acumulado por oferta y redondeado al centavo; no se evita fraccionando ventas.',
-        'Cada cruce procesa hasta 256 contrapartes; la cola restante continúa una vez por segundo, también para desconectados. Ninguna tarea corre cada tick. Acceso a inventarios y Vault solo en hilo principal; respaldo diario a las 04:45 Argentina mediante SQLite VACUUM INTO en tarea asíncrona.',
-        'Vault y el archivo del jugador no comparten transacción con SQLite. El journal escribe intención antes de tocar recursos. Inventario y recibo se guardan juntos con saveData; al entrar se concilia una vez. Vault se concilia por saldo previo/esperado. Si no coincide, pausa persistente y revisión manual con Essentials; no se repite el pago a ciegas. No editar/borrar journal ni restaurar solo una de las bases durante conciliación.',
-        'No se promete atomicidad distribuida absoluta: cambios externos coincidentes de saldo o fallos de disco requieren conciliación. Para producción pública hace falta la prueba del dueño y revisión de recuperación con los respaldos operativos.', '',
-        '## Ventanas para diseño (fase 3)', '', 'Slots desde 0. Títulos fijos; sin glifos ni arte en esta fase. Slots no listados vacíos. Entradas manuales por `/bazar entrada <valor>`: no hay una ventana adicional de chat/yunque.', '',
-        '| Título exacto | Filas | Casilleros y botones |', '|---|---:|---|']
-    lines += [f'| {title} | {rows} | {layout} |' for title,rows,layout in VENTANAS]
-    dest = ROOT / 'build/deploy/bazar-fase1.md'
-    dest.write_text('\n'.join(lines)+'\n', encoding='utf8')
+        'SQLite/Vault/inventarios conservan el journal y los recibos durables. Los nuevos cobros tienen relación con su orden. Los cobros 1.1.0 no tienen esa relación: se recuperan con Cobrar todo (también devuelve equipo antiguo). Nunca al piso.', '',
+        '## Referencias de precio', '',
+        'No son cotizaciones del mercado: son referencias de reposición para límites. Mínimo=max(ref/10, piso NPC, $0,01); máximo=ref×20. Recetas se calculan recursivamente y se dividen por la cantidad producida. Ingredientes vanilla sin precio=0.',
+        'El survival adapta su tier al jugador: se asume T5 para Nether/End y T3 para vindicator. Para bloques/cofres sin pago se usa una unidad de esfuerzo explícita, no una medición de tiempo real. Las seis referencias sin fuente monetizable quedan marcadas PENDIENTE; requieren revisión del dueño.', '',
+        '| ID | Nombre | Cálculo | Referencia | Mínimo | Máximo |', '|---|---|---|---:|---:|---:|']
+    def fmt(n):
+        return f'{n:,.2f}'.replace(',', '_').replace('.', ',').replace('_', '.')
+    for iid, p in data['productos'].items():
+        lines.append(f"| `{iid}` | {p['nombre']} | {p['calculo']} | {fmt(p['referencia'])} | {fmt(p['minimo'])} | {fmt(p['maximo'])} |")
+    lines += ['', '## Fichas para Gemini', '', 'Casilleros desde 0, izquierda a derecha. No dibujar nombres/precios/cantidades variables; van en el tooltip. Los espacios no listados quedan libres. Inicio, Producto, Cantidad, Precio, Mis órdenes y Vender inventario usan título simple hasta aprobar arte nuevo.', '',
+        '| Ventana | Filas | Casilleros / texto |', '|---|---:|---|',
+        '| Inicio | 6 | Columna categorías 0 Minería, 9 Combate, 18 Bosque y pesca, 27 Consumibles, 36 Especiales. Productos: columnas 2–8 de filas 0–4 (35 por página). 45 Buscar, 46 Mis órdenes, 47 Vender inventario, 48 Vender equipo al server, 49 Anterior, 50 Siguiente, 51 Página, 53 Cerrar. |',
+        '| Producto | 6 | Comprar al instante 10/11/19/20; Vender al instante 14/15/23/24; Crear orden de compra 28/29/37/38; Crear oferta de venta 32/33/41/42; 45 Volver; 49 Mis órdenes. Lore: mejor precio, hasta siete puntas, inventario y clic. |',
+        '| Cantidad | 5 | Instantánea: 10 Una unidad, 12 Un stack, 15 Llenar inventario. Órdenes: 10 64, 12 160, 14 1024; venta: 15 Todo lo que tengo. Siempre: 16 A mano, 36 Volver, 44 Cerrar. |',
+        '| Precio | 5 | 10 Igual a la mejor, 12 Mejor +/-$0,10, 14 5% del margen, 16 A mano. 36 Volver, 44 Cerrar. Sin margen positivo el botón 14 queda deshabilitado y lo explica. |',
+        '| Mis órdenes | 6 | 0–44 órdenes; clic cobra, derecho cancela/devuelve. 45 Cobrar todo, 48 Anterior, 49 Página, 50 Siguiente, 51 Volver, 53 Cerrar. No Retiros ni Retirar plata. |',
+        '| Vender inventario | 6 | 0–44 productos/cantidad/estimado neto; 45 Volver, 49 Confirmar con total neto, 53 Cerrar. Lo que exceda las 45 tarjetas sigue incluido en el total. No equipo. |', '',
+        'Confirmar orden y las dos ventanas de equipo mantienen sus botones del diseño 1.1.0. Orden/Retiros ya no se abren. Si `diseno: false`, todas son simples.', '',
+        'El tooltip oculta atributos/encantamientos en las copias de UI, sin modificar los ítems comerciables. Las líneas avanzadas del cliente (`minecraft:paper`, número de componentes, F3+H) no pueden ocultarse selectivamente desde Paper sin esconder también nombre/lore; desactivar F3+H en el cliente.', '',
+        'El catálogo depende de generadores locales previos no publicados (economía, Clases, Vacío, historia, manzanas); la tarea no autoriza publicar esas fuentes. Recompilar el catálogo versionado con `--solo-compilar` evita ejecutarlas. Arte previo del Bazar también existe sin publicar y debe separarse antes de publicar esta tarea.']
+    (ROOT / 'build/deploy/bazar-hypixel.md').write_text('\n'.join(lines)+'\n', encoding='utf8')
 
 
 if __name__ == '__main__':
