@@ -190,6 +190,17 @@ public final class AstralMesaMagia implements Listener {
         SkillsUser u=AuraSkillsApi.get().getUser(p.getUniqueId());
         if (u != null) u.setMana(Math.max(0,u.getMana()-cost));
     }
+    // Estadisticas de mazmorra (AstralEstadisticas, 26/11): quien curo mas. Metodo cacheado, sin costo si no esta.
+    java.lang.reflect.Method statsCura; Object statsPlugin;
+    void stats(UUID source, Player target, double amount) {
+        if (amount<=0) return;
+        var other=Bukkit.getPluginManager().getPlugin("AstralEstadisticas");
+        if (other==null || !other.isEnabled()) return;
+        try {
+            if (statsPlugin!=other) { statsCura=other.getClass().getMethod("curacion",UUID.class,Player.class,double.class); statsPlugin=other; }
+            statsCura.invoke(other,source,target,amount);
+        } catch (ReflectiveOperationException ex) { statsPlugin=null; }
+    }
     @SuppressWarnings("unchecked") List<Player> party(Player p) {
         var other=Bukkit.getPluginManager().getPlugin("AstralParty");
         if (other == null) return List.of(p);
@@ -218,7 +229,11 @@ public final class AstralMesaMagia implements Listener {
             double max=target.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).getValue();
             var event=new EntityRegainHealthEvent(target,max*h.pct/100*bonus,EntityRegainHealthEvent.RegainReason.CUSTOM); // CUSTOM: astral_gameplay.sk multiplica las MAGIC por vida/10 (curaba todo, 26/11)
             Bukkit.getPluginManager().callEvent(event);
-            if (!event.isCancelled()) target.setHealth(Math.min(max,target.getHealth()+event.getAmount()));
+            if (!event.isCancelled()) {
+                double antes=target.getHealth();
+                target.setHealth(Math.min(max,antes+event.getAmount()));
+                stats(h.source,target,target.getHealth()-antes);
+            }
             target.getWorld().spawnParticle(Particle.HEART,target.getLocation().add(0,2.1,0),2,.3,.2,.3,0);
             return tick>=h.until;
         });

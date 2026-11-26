@@ -184,6 +184,7 @@ def script():
           '    set {-pz.ini::%{_w}%} to unix timestamp of now',
           '    set {-pz.muertes::%{_w}%} to 0',
           '    delete {-pz.hecho::%{_w}%}',
+          '    execute console command "astralstats inicio %{_w}%"',   # estadisticas_mazmorra.py (26/11)
           '',
           'function pz_muerte(p: player):',
           '    set {_w} to name of world of {_p}',
@@ -196,6 +197,7 @@ def script():
           '    set {-pz.ult::%{_u}%} to {_ahora}',
           '    add 1 to {-pz.muertes::%{_w}%}',
           '    maz_aviso_caida({_p}, {_w})',
+          '    execute console command "astralstats muerte %name of {_p}%"',
           '    log "%now% %name of {_p}% %{_w}% muertes=%{-pz.muertes::%{_w}%}%" to "astral-puntaje"',
           '',
           '# Aviso corto a los companeros vivos de la copia (25/11/2026). Regla del dueno: solo ByTrainx',
@@ -239,6 +241,7 @@ def script():
           '    {_key} is set',
           '    {-pz.hecho::%{_w}%} is not set',
           '    set {-pz.hecho::%{_w}%} to true',
+          '    execute console command "astralstats fin %{_w}%"',
           '    set {_m} to {-pz.muertes::%{_w}%} ? 0',
           '    set {_obj} to {-pz.obj::%{_w}%}',
           '    set {_seg} to {_obj} * 60',

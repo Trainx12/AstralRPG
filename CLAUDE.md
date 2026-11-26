@@ -59,6 +59,7 @@ python tpa_survival.py            # /tpa solo dentro del Survival (sin Nether Hu
 python reinicio_vacio.py           # reinicio cuando el server queda vacio 5 min con cambios pendientes (reiniciopendiente) -> build/gameplay/astral_reinicio_vacio.sk; arranque: tools/arranque_automatico.py
 python regen_fuera_pelea.py        # curacion fuera de pelea (20 s sin dano, 4%/s, sin comida; solo ByTrainx hasta /regenfuera publico) -> build/gameplay/astral_regen.sk
 python jefes_inmunes.py --jdk <java25>  # jefes sin veneno/fuego/congelamiento/efectos malos: AstralJefesInmunes (abierto a todos; tambien saca hielo y el veneno del Asesino (etiqueta astral.sinestados))
+python estadisticas_mazmorra.py --jdk <java25>  # resumen al ganar mazmorra (dano al jefe, mobs, caidas, curacion): AstralEstadisticas; oculto (solo ByTrainx) hasta /mazstats publico si; prueba: tools/probar_estadisticas_paper.py
 python mesa_encantamientos.py --jdk <java25>  # mesa de encantamientos AstralMesa (reemplaza LynExp): todos los encantamientos menos las mejoras del Herrero
 python bosque_talar.py             # Bosque Astral 300x300: script (443 arboles de bosque_arboles.json); mapa con tools/bosque_mapa.py, bosque_armar.py, bosque_arboles.py
 python minas_decor.py              # decoracion de cada Mina Astral con su mineral (comandos WorldEdit de consola, ver docs/MINAS.md)

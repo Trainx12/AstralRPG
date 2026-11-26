@@ -305,8 +305,9 @@ def precio_subasta():
         # x (1 + 4% por nivel de encantamiento + 10% por nivel de Mejora del Herrero) + gemas al costo de engarzar.
         # 26/11 (dueno): antes x20/x12 (arco T5 = 500k) era muy barato: Diamante III da ~2,5M en 15 min.
         # Ahora arma T5 ~10M (~1 h de minas altas), pieza de armadura T5 ~6M.
-        'base-arma': {t: v * 400 for t, v in mob.items()},
-        'base-armadura': {t: v * 240 for t, v in mob.items()},
+        # 26/11 tarde (dueno): arco T5 a 10M seguia barato -> x2: arma T5 20M, pieza de armadura T5 12M.
+        'base-arma': {t: v * 800 for t, v in mob.items()},
+        'base-armadura': {t: v * 480 for t, v in mob.items()},
         'por-nivel-encantamiento': 0.04,
         'por-nivel-herrero': 0.10,
         'gema-tier': dict(economia.GEMA_PONER_TIER),
@@ -357,7 +358,7 @@ def dano_real():
 
 
 PLUGIN_YML = """name: AstralMesa
-version: 1.5.1
+version: 1.5.2
 main: astral.AstralMesa
 api-version: '26.1.2'
 description: Mesa de encantamientos con todos los encantamientos (vanilla y de plugins) salvo las mejoras del Herrero
