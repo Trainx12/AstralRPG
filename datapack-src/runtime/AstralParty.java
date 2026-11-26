@@ -159,6 +159,46 @@ public final class AstralParty extends JavaPlugin implements Listener {
         border.setDamageAmount(0);border.setDamageBuffer(0);border.setWarningDistance(3);border.setWarningTime(0);
         return border;
     }
+    // 26/11: el "lugar seguro" solo se guarda pisando algo firme. Antes se guardaba en el aire al caer por
+    // un costado: lo devolvia ahi, se volvia a caer y quedaba trabado sin poder moverse.
+    static boolean grounded(Entity e,Location l) {
+        if(e instanceof Player p&&(p.isFlying()||p.isClimbing()||p.isGliding()))return true;
+        if(e instanceof Flying||e instanceof Vex||e instanceof Bee||e instanceof Blaze||e instanceof Allay)return true;
+        if(!e.hasGravity()||e.isInWater()||e.isInLava())return true;
+        for(double dx:new double[]{-.3,0,.3})for(double dz:new double[]{-.3,0,.3}) {
+            var b=l.clone().add(dx,-.2,dz).getBlock();
+            if(b.isSolid()||b.isLiquid())return true;
+        }
+        return false;
+    }
+    static Location back(Location safe,Location look) {
+        var l=safe.clone();if(look!=null){l.setYaw(look.getYaw());l.setPitch(look.getPitch());}return l;
+    }
+    Location fallback(FightRoom r) { var w=Bukkit.getWorld(r.world);return w==null?null:new Location(w,r.x,r.y,r.z); }
+    void remember(Map<UUID,Location> map,Entity e,FightRoom r,Location l) {
+        if(r.contains(l)&&grounded(e,l))map.put(e.getUniqueId(),l.clone());
+    }
+    // 26/11: los mobs tambien quedan adentro del borde (antes lo cruzaban). Cada 2 ticks.
+    final Map<UUID,Location> mobSafe = new HashMap<>();
+    void keepMobs() {
+        for(var r:activeRooms) {
+            var w=Bukkit.getWorld(r.world);if(w==null)continue;
+            var box=new org.bukkit.util.BoundingBox(r.x1-24,w.getMinHeight(),r.z1-24,r.x2+24,w.getMaxHeight(),r.z2+24);
+            for(var e:w.getNearbyEntities(box,x->x instanceof Mob&&!x.isDead())) {
+                var l=e.getLocation();
+                if(r.contains(l)){remember(mobSafe,e,r,l);continue;}
+                var safe=mobSafe.get(e.getUniqueId());
+                if(safe==null||!r.contains(safe)) {
+                    // Mob de la sala que nunca piso adentro (aparecio afuera): a la llegada de la sala.
+                    if(e.getScoreboardTags().stream().noneMatch(t->t.startsWith("ad."+r.key+".")))continue;
+                    safe=fallback(r);if(safe==null)continue;
+                }
+                e.setVelocity(new org.bukkit.util.Vector());e.setFallDistance(0);
+                e.teleport(back(safe,l),io.papermc.paper.entity.TeleportFlag.EntityState.RETAIN_PASSENGERS);
+            }
+        }
+        if(clock%200==0)mobSafe.keySet().removeIf(id->{var e=Bukkit.getEntity(id);return e==null||e.isDead();});
+    }
     void updateBorder(Player p) {
         var id=p.getUniqueId();var r=borders.get(id);
         // Creativo tambien ve el borde: el dueno prueba las salas asi. Espectador libre queda afuera.
@@ -174,7 +214,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
                 .min(Comparator.comparingDouble(room->Math.pow(room.x-p.getX(),2)+Math.pow(room.z-p.getZ(),2))).orElse(null);
             if(r==null)return;
             p.setWorldBorder(newBorder(r,p));borders.put(id,r);borderDebug(p,"PONE sala="+r.controller+" lado="+r.side());
-            if(r.contains(p.getLocation()))borderSafe.put(id,p.getLocation());
+            remember(borderSafe,p,r,p.getLocation());
         }
         // Al llegar desde otro mundo, Minecraft le manda al cliente el borde del mundo despues del nuestro
         // y lo tapa (Bosque y Mina, primera sala). Reenviarlo cada 2 s lo mantiene visible.
@@ -187,8 +227,9 @@ public final class AstralParty extends JavaPlugin implements Listener {
         }
         if(!r.contains(p.getLocation())) {
             var safe=borderSafe.get(id);
-            if(safe!=null&&r.contains(safe)) {p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());p.teleport(safe);}
-        } else borderSafe.put(id,p.getLocation());
+            if(safe==null||!r.contains(safe))safe=fallback(r);
+            if(safe!=null) {p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());p.teleport(back(safe,p.getLocation()));}
+        } else remember(borderSafe,p,r,p.getLocation());
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderMove(PlayerMoveEvent e) {
         var p=e.getPlayer();var r=borders.get(p.getUniqueId());if(r==null||e.getTo()==null)return;
@@ -198,9 +239,12 @@ public final class AstralParty extends JavaPlugin implements Listener {
             if(!r.contains(e.getTo()))clearBorder(p,"teleport afuera "+t.getCause());return;
         }
         if(!r.contains(e.getTo())) {
+            // Antes: sin lugar seguro volvia a "from", que podia estar afuera -> trabado para siempre.
             var safe=borderSafe.get(p.getUniqueId());
-            e.setTo(safe==null?e.getFrom():safe);p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());
-        } else borderSafe.put(p.getUniqueId(),e.getTo().clone());
+            if(safe==null||!r.contains(safe))safe=r.contains(e.getFrom())?e.getFrom():fallback(r);
+            if(safe==null)return;
+            e.setTo(back(safe,e.getTo()));p.setFallDistance(0);p.setVelocity(new org.bukkit.util.Vector());
+        } else remember(borderSafe,p,r,e.getTo());
     }
     @EventHandler public void borderWorld(PlayerChangedWorldEvent e) {clearBorder(e.getPlayer(),"cambio de mundo");}
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void borderTeleport(PlayerTeleportEvent e) {borderMove(e);}
@@ -539,6 +583,7 @@ public final class AstralParty extends JavaPlugin implements Listener {
     public void tick() {
         clock++;
         if(clock%5==0)refreshFightRooms();
+        if(clock%2==0)keepMobs();
         // Primero vivos para que los espectadores puedan heredar el borde en este tick.
         for(var p:Bukkit.getOnlinePlayers())if(!busy(p))updateBorder(p);
         for(var p:Bukkit.getOnlinePlayers())if(busy(p))updateBorder(p);

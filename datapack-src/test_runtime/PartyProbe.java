@@ -153,6 +153,15 @@ public final class PartyProbe extends JavaPlugin {
             // Simular desincronizacion sin lanzar un evento de teletransporte.
             ((org.bukkit.craftbukkit.entity.CraftPlayer)p("A")).getHandle().setPos(out.getX(),out.getY(),out.getZ());
             updateBorder(p("A"));check(inside(a,p("A").getLocation()),"tick recupera posicion exterior");
+            // 26/11: mobs adentro del borde y lugar seguro solo pisando firme.
+            var p1=new Location(w,a.x()+2,a.y(),a.z()+2);
+            var zom=w.spawn(p1,Zombie.class,z->{z.setAI(false);z.setGravity(false);});
+            invoke("keepMobs",new Class<?>[]{});
+            zom.setGravity(true);zom.teleport(p1.clone().add(0,20,0));invoke("keepMobs",new Class<?>[]{});
+            zom.teleport(new Location(w,a.x2()+1.5,p1.getY(),p1.getZ()));invoke("keepMobs",new Class<?>[]{});
+            check(inside(a,zom.getLocation()),"mob no cruza borde");
+            check(Math.abs(zom.getLocation().getY()-p1.getY())<.01,"mob vuelve al ultimo lugar firme, no al aire");
+            zom.remove();
             p("B").teleport(new Location(w,a.x()+1,a.y(),a.z()));updateBorder(p("B"));
             invoke("fall",new Class<?>[]{Player.class},p("A"));updateBorder(p("A"));
             check(p("A").getWorldBorder()!=null&&party.busy(p("A")),"caido conserva borde de companero");
