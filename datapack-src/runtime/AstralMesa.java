@@ -47,6 +47,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         @Override public Inventory getInventory() { return inv; }
     }
 
+    public AstralMesaMagia magia;
     int nivelesMax = 30, botellaCosto = 5;
     boolean particulas = true;
     Set<String> excluirNs = Set.of("astral");
@@ -67,6 +68,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         ICONO = new NamespacedKey(this, "icono");
         saveDefaultConfig();
         cargar();
+        magia = new AstralMesaMagia(this);
         getServer().getPluginManager().registerEvents(this, this);
         if (tooltipActivo && getServer().getPluginManager().getPlugin("packetevents") != null) {
             try { paquetes = AstralMesaPaquetes.registrar(this); getLogger().info("Lista de encantamientos estilo Hypixel activa."); }
@@ -75,6 +77,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
     }
 
     @Override public void onDisable() {
+        for (Player p : Bukkit.getOnlinePlayers()) p.removeScoreboardTag("astral.encmagia");
         if (paquetes != null) try { AstralMesaPaquetes.quitar(paquetes); } catch (Throwable ignored) {}
         for (Player p : Bukkit.getOnlinePlayers())
             if (p.getOpenInventory().getTopInventory().getHolder() instanceof Mesa m) { devolver(p, m); p.closeInventory(); }
@@ -157,14 +160,19 @@ public final class AstralMesa extends JavaPlugin implements Listener {
     // ---------- Opciones ----------
     public static String clave(Enchantment e) { return e.getKey().toString(); }
 
-    public List<Opcion> opciones(ItemStack it) {
+    public List<Opcion> opciones(ItemStack it) { return opciones(null, it); }
+
+    public List<Opcion> opciones(Player p, ItemStack it) {
         if (it == null || it.getType().isAir() || it.getType() == Material.ENCHANTED_BOOK) return List.of();
         var lista = new ArrayList<Opcion>();
         var tiene = it.getEnchantments();
         boolean baston = esBaston(it);
         for (Enchantment e : Registry.ENCHANTMENT) {
-            if (excluida(e)) continue;
-            if (!e.canEnchantItem(it) && !(baston && bastones.contains(clave(e)))) continue;
+            boolean magico = e.getKey().getNamespace().equals("astral") && AstralMesaMagia.IDS.contains(e.getKey().getKey());
+            if (magico) {
+                if (magia == null || !magia.enabled(p) || !AstralMesaMagia.accepts(e.getKey().getKey(), it)) continue;
+            } else if (excluida(e)) continue;
+            if (!magico && !e.canEnchantItem(it) && !(baston && bastones.contains(clave(e)))) continue;
             int actual = tiene.getOrDefault(e, 0), max = e.getMaxLevel();
             if (actual >= max) continue;
             boolean choca = false;
@@ -215,6 +223,8 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         Component c;
         if (n != null && !n.isBlank()) c = Component.text(e.getMaxLevel() > 1 || lvl > 1 ? n + " " + romano(lvl) : n);
         else c = e.displayName(lvl);
+        if (e.getKey().getNamespace().equals("astral") && AstralMesaMagia.IDS.contains(e.getKey().getKey()))
+            c = c.color(Set.of("sabio_arcano", "eco_arcano", "escudo_mana").contains(e.getKey().getKey()) ? NamedTextColor.GOLD : NamedTextColor.AQUA);
         if (!e.getKey().getNamespace().equals("astral"))
             c = Component.text().append(c).color(e.isCursed() ? NamedTextColor.RED : NamedTextColor.BLUE).build();
         return c.decoration(TextDecoration.ITALIC, false);
@@ -319,7 +329,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         boolean oculto = meta.hasItemFlag(flag);
         var visibles = new LinkedHashMap<Enchantment, Integer>();
         // Si el objeto ya ocultaba sus encantamientos (efectos Astral, gancho), solo se muestran los agregados.
-        ench.forEach((e, l) -> { if (!(oculto && e.getKey().getNamespace().equals("astral"))) visibles.put(e, l); });
+        ench.forEach((e, l) -> { if (!(oculto && e.getKey().getNamespace().equals("astral") && !AstralMesaMagia.IDS.contains(e.getKey().getKey()))) visibles.put(e, l); });
         var lineas = bloque(visibles);
         if (lineas.isEmpty()) return null;
         var lore = new ArrayList<Component>(lineas);
@@ -389,7 +399,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
     void dibujar(Player p, Mesa mesa) {
         var inv = mesa.inv;
         inv.clear();
-        mesa.opciones = opciones(mesa.objeto);
+        mesa.opciones = opciones(p, mesa.objeto);
         int paginas = Math.max(1, (mesa.opciones.size() + POR_PAGINA - 1) / POR_PAGINA);
         mesa.pagina = Math.min(mesa.pagina, paginas - 1);
         int tengo = xpTotal(p);
@@ -465,6 +475,8 @@ public final class AstralMesa extends JavaPlugin implements Listener {
 
     /** Aplica una opcion: cobra la XP y encanta. Devuelve un mensaje de error o null si salio bien. */
     public String encantar(Player p, ItemStack objeto, Opcion o) {
+        if (o.ench().getKey().getNamespace().equals("astral") && AstralMesaMagia.IDS.contains(o.ench().getKey().getKey()) && !opciones(p, objeto).contains(o))
+            return "Ese encantamiento no está disponible para vos o para ese objeto.";
         int tengo = xpTotal(p);
         if (tengo < o.puntos()) return "No te alcanza la XP: necesitás " + o.puntos() + " puntos y tenés " + tengo + ".";
         ponerXp(p, tengo - o.puntos());
@@ -516,7 +528,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             ItemStack it = clic.getItem(e.getSlot());
             if (it == null || it.getType().isAir()) return;
             var uno = it.clone(); uno.setAmount(1);
-            if (opciones(uno).isEmpty() && uno.getEnchantments().isEmpty()) {
+            if (opciones(p, uno).isEmpty() && uno.getEnchantments().isEmpty()) {
                 p.sendMessage(Component.text("Ese objeto no se puede encantar acá.", NamedTextColor.RED));
                 return;
             }
@@ -537,6 +549,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             int idx = mesa.pagina * POR_PAGINA + s;
             if (idx >= mesa.opciones.size()) return;
             Opcion o = mesa.opciones.get(idx);
+            if (!opciones(p, mesa.objeto).contains(o)) { dibujar(p, mesa); return; }
             String error = encantar(p, mesa.objeto, o);
             if (error != null) {
                 p.sendMessage(Component.text(error, NamedTextColor.RED));

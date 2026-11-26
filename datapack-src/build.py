@@ -2816,6 +2816,8 @@ from correcciones_goblin import datapack
 datapack(files)
 from spell_perfora import generate as generate_spell_perfora
 generate_spell_perfora(files)
+from encmagia import generate as generate_encmagia
+generate_encmagia(files)
 
 from guia_atlas import generate as generate_guia_atlas
 generate_guia_atlas(files, ITEMS, RID, item_stack, ing_pred, ing_name)

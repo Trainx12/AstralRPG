@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import subprocess
 import zipfile
+from encmagia import MAGIA, DEFINITIVOS
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
@@ -282,6 +283,7 @@ def costos():
         if 'curse' in k:
             c[full] = MALDICION
     c['nova_structures:conductivity_curse'] = MALDICION
+    c.update({"astral:" + k: MUY_BUENO for k in DEFINITIVOS})
     return c
 
 
@@ -289,11 +291,13 @@ def descripciones():
     d = {f'minecraft:{k}': v for k, v in VANILLA.items()}
     d.update({f'excellentenchants:{k}': v for k, v in ESPECIALES.items()})
     d.update(DATAPACKS)
+    d.update({"astral:" + k: v[3] for k, v in MAGIA.items()})
     return d
 
 
 def config():
     return {
+        'encmagia': {'publico': False},
         'niveles-maximo': 30,
         'particulas': True,
         # astral = mejoras del Herrero (Mejora +N): nunca en la mesa.
@@ -305,7 +309,7 @@ def config():
         # Lista de encantamientos en el objeto, estilo Hypixel (la arma AstralMesa por paquetes).
         # Con pocos: cada uno con su descripcion. Con muchos: varios por linea, en azul.
         'tooltip': {'activo': True, 'con-descripcion-hasta': 4, 'por-linea': 3},
-        'nombres': NOMBRES,
+        'nombres': {**NOMBRES, **{'astral:' + k: v[0] for k, v in MAGIA.items()}},
         'botella': {'costo-xp': 5},
         'conducto': CONDUCTO,
         # Bastones de mago (carrot_on_a_stick): el juego solo les deja Irrompibilidad y Reparacion.
@@ -317,12 +321,19 @@ def config():
 
 
 PLUGIN_YML = """name: AstralMesa
-version: 1.3.1
+version: 1.5.0
 main: astral.AstralMesa
 api-version: '26.1.2'
 description: Mesa de encantamientos con todos los encantamientos (vanilla y de plugins) salvo las mejoras del Herrero
-softdepend: [ExcellentEnchants, packetevents]
+depend: [AuraSkills]
+softdepend: [ExcellentEnchants, packetevents, AstralParty]
 commands:
+  encmagia:
+    description: Abre o cierra los encantamientos mágicos
+    permission: astral.mesa.admin
+  encmagia_interno:
+    description: Puente interno de consola
+    permission: astral.mesa.admin
   astralmesa:
     description: Recarga la config de la mesa
     usage: /astralmesa reload
@@ -338,10 +349,10 @@ def build_plugin(jdk, server, packetevents):
     jdk, server = Path(jdk), Path(server)
     classes = ROOT / '.local' / 'mesa-classes'
     classes.mkdir(parents=True, exist_ok=True)
-    deps = [*server.joinpath('libraries').rglob('*.jar'), *server.joinpath('versions').rglob('*.jar'), Path(packetevents)]
+    deps = [*server.joinpath('libraries').rglob('*.jar'), *server.joinpath('versions').rglob('*.jar'), Path(packetevents), server / 'plugins/auraskills.jar']
     javac = [str(jdk / ('java.exe' if os.name == 'nt' else 'java')), '-m', 'jdk.compiler/com.sun.tools.javac.Main']
     subprocess.run([*javac, '-encoding', 'UTF-8', '-source', '25', '-target', '25', '-nowarn', '-classpath',
-                    os.pathsep.join(map(str, deps)), '-d', str(classes), str(HERE / 'runtime' / 'AstralMesa.java')], check=True)
+                    os.pathsep.join(map(str, deps)), '-d', str(classes), str(HERE / 'runtime' / 'AstralMesa.java'), str(HERE / 'runtime' / 'AstralMesaMagia.java')], check=True)
     OUT.mkdir(parents=True, exist_ok=True)
     dest = OUT / 'AstralMesa.jar'
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
