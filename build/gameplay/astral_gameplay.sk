@@ -743,6 +743,26 @@ on damage of player with priority highest:
 # - Mob sin tier dentro de una mazmorra (jefes de MythicMobs): x DANO_MOB del tier de la mazmorra.
 # - Todo lo demas (caidas, lava, ahogo, mobs sin tier, PvP): x (vida maxima / 20), como en vanilla.
 function astral_dano_tier(e: entity) :: number:
+    if scoreboard tags of {_e} contains "astral.jm10":
+        return 12500.0
+    if scoreboard tags of {_e} contains "astral.jm9":
+        return 6855.469
+    if scoreboard tags of {_e} contains "astral.jm8":
+        return 3437.5
+    if scoreboard tags of {_e} contains "astral.jm7":
+        return 1757.812
+    if scoreboard tags of {_e} contains "astral.jm6":
+        return 878.906
+    if scoreboard tags of {_e} contains "astral.jm5":
+        return 375.0
+    if scoreboard tags of {_e} contains "astral.jm4":
+        return 105.469
+    if scoreboard tags of {_e} contains "astral.jm3":
+        return 23.438
+    if scoreboard tags of {_e} contains "astral.jm2":
+        return 8.594
+    if scoreboard tags of {_e} contains "astral.jm1":
+        return 3.516
     if scoreboard tags of {_e} contains "astral.mt10":
         return 53200.0
     if scoreboard tags of {_e} contains "astral.mt9":

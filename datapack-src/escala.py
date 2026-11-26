@@ -111,6 +111,13 @@ GOLPE_VANILLA = 2.5
 # Multiplicador del dano de los mobs con tier (lo aplica astral_gameplay.sk a golpes, flechas y explosiones).
 DANO_MOB = {0: 1.0, **{t: round(DANO_GOLPE[t] / GOLPE_VANILLA, 3) for t in DANO_GOLPE}}
 DANO_JEFE = {0: 1.0, **{t: round(DANO_GOLPE_JEFE[t] / GOLPE_VANILLA, 3) for t in DANO_GOLPE_JEFE}}
+# Jefes del Survival (normales y ancestrales, etiqueta astral.jmN de mob/jefe_mundo), 26/11 dueno: el dano
+# depende del tier. Un jefe de Damage JEFE_MUNDO_REF mata a un jugador de su tier con el set completo en
+# JEFE_MUNDO_GOLPES golpes (el Coloso Ancestral, Damage 25,6, en ~5). Antes pegaban un % fijo de tu vida.
+JEFE_MUNDO_REF = 16
+JEFE_MUNDO_GOLPES = 8
+DANO_JEFE_MUNDO = {t: round(VIDA_SET[t] * (DEFENSA_SET[t] + 100) / 100 / JEFE_MUNDO_GOLPES / JEFE_MUNDO_REF, 3)
+                   for t in VIDA_SET}
 # Caidas, lava, ahogo, mobs sin tier y PvP: se multiplican por (vida maxima / 20), asi pegan lo mismo
 # en proporcion que en Minecraft normal. La regeneracion natural y las pociones tambien.
 # Los numeros ya son reales: lo que se ve es lo real.

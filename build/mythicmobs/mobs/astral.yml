@@ -407,7 +407,7 @@ astral_momia:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -452,6 +452,8 @@ astral_momia:
   - summon{type=HUSK;amount=2;radius=3} @self ~onTimer:300
   - potion{type=SLOW;duration=80;level=1} @target ~onAttack 0.4
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -476,7 +478,7 @@ astral_yeti:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -522,6 +524,8 @@ astral_yeti:
   - potion{type=SLOW;duration=100;level=2} @PlayersInRadius{r=6} ~onTimer:200
   - leap{velocity=150;noise=0} @target ~onTimer:160 0.5
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -546,7 +550,7 @@ astral_golem_forja:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -593,6 +597,8 @@ astral_golem_forja:
   - ignite{ticks=80} @PlayersInRadius{r=4} ~onTimer:100
   - particles{p=flame;amount=40;hS=1;vS=1.5;speed=0.05} @self ~onTimer:40
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -617,7 +623,7 @@ astral_cangrejo:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -659,6 +665,8 @@ astral_cangrejo:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/esencia_elite"} @self ~onDeath 1.0
   - throw{velocity=8;velocityY=4} @target ~onAttack 0.35
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -684,7 +692,7 @@ astral_chaman:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -731,6 +739,8 @@ astral_chaman:
   - potion{type=POISON;duration=80;level=1} @PlayersInRadius{r=8} ~onTimer:220
   - summon{type=WITCH;amount=1;radius=3} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -1041,7 +1051,7 @@ astral_momia_ancestral:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -1065,8 +1075,8 @@ astral_momia_ancestral:
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onLoad
+  - skill{s=AST_MODEL_astral_momia_ancestral_mundo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_momia_ancestral_mundo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
@@ -1115,6 +1125,8 @@ astral_momia_ancestral:
   - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -1150,7 +1162,7 @@ astral_yeti_ancestral:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -1174,8 +1186,8 @@ astral_yeti_ancestral:
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onLoad
+  - skill{s=AST_MODEL_astral_yeti_ancestral_mundo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_yeti_ancestral_mundo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
@@ -1225,6 +1237,8 @@ astral_yeti_ancestral:
   - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -1260,7 +1274,7 @@ astral_golem_forja_ancestral:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -1285,8 +1299,8 @@ astral_golem_forja_ancestral:
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onLoad
+  - skill{s=AST_MODEL_astral_golem_forja_ancestral_mundo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_golem_forja_ancestral_mundo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
@@ -1336,6 +1350,8 @@ astral_golem_forja_ancestral:
   - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -1371,7 +1387,7 @@ astral_cangrejo_ancestral:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -1395,8 +1411,8 @@ astral_cangrejo_ancestral:
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onLoad
+  - skill{s=AST_MODEL_astral_cangrejo_ancestral_mundo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_cangrejo_ancestral_mundo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
@@ -1441,6 +1457,8 @@ astral_cangrejo_ancestral:
   - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_cangrejo} @PlayersInRing{min=4;max=48} ~onTimer:40
@@ -1477,7 +1495,7 @@ astral_chaman_ancestral:
     Despawn: false
     MovementSpeed: 0.33
     KnockbackResistance: 0.8
-    FollowRange: 40
+    FollowRange: 64
     PreventRandomEquipment: true
   AIGoalSelectors:
   - clear
@@ -1502,8 +1520,8 @@ astral_chaman_ancestral:
   - exp 30
   - diamond 1 0.15
   Skills:
-  - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onSpawn
-  - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onLoad
+  - skill{s=AST_MODEL_astral_chaman_ancestral_mundo} @self ~onSpawn
+  - skill{s=AST_MODEL_astral_chaman_ancestral_mundo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
   - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
@@ -1553,6 +1571,8 @@ astral_chaman_ancestral:
   - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
+  - leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}
+  - teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40

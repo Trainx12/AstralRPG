@@ -1839,15 +1839,17 @@ fn('mob/tier_mazmorra', [
 fn('mob/jefe_mundo', [
     'execute if entity @s[tag=ad.boss.scaled] run return 0',
     # Santuario conserva su balance: no adaptar Ancestrales de esa prueba.
-    'execute if dimension minecraft:santuario run return 0',
-    'execute if dimension minecraft:santuario_interstellar run return 0',
-    *[f'execute if dimension minecraft:{w} run return 0' for w in __import__('instancias').copias('santuario_azeroth')],
+    # 26/11: con `if dimension` la funcion entera fallaba si algun mundo del Santuario no estaba cargado y los
+    # jefes del Survival quedaban con la vida de MythicMobs (Coloso Ancestral 5.000). El predicado no lo exige.
+    f'execute if predicate {NS}:in_sanctuary run return 0',
     'scoreboard players set #mt astral.tmp 1',
     f'execute if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo',
     'execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1',
     *[f'execute if score #mt astral.tmp matches {t} run attribute @s minecraft:max_health base set {25*VIDA_REF[t]}' for t in range(1, TIER_MAX + 1)],
     'data modify entity @s Health set value 1.0E30f',
     'scoreboard players operation @s astral.mt = #mt astral.tmp',
+    # 26/11: dano del jefe segun el tier (escala.DANO_JEFE_MUNDO en astral_gameplay.sk); antes era % de tu vida.
+    *[f'execute if score #mt astral.tmp matches {t} run tag @s add astral.jm{t}' for t in range(1, TIER_MAX + 1)],
     'tag @s add ad.boss.scaled',
 ])
 for t in range(1, TIER_MAX + 1):

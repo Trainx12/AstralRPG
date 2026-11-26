@@ -149,7 +149,25 @@ ANCESTRALES = {
     "astral_chaman": ("7CFF6A", "&2&lGran Chaman Ancestral"),
 }
 ANCESTRAL_MINUTOS = 10
+# 26/11 (dueno): los jefes del Survival se trababan. Miden como mucho ALTO_JEFE_MUNDO bloques (los de
+# mazmorra y Santuario tienen sus propias skills de modelo y no cambian) y persiguen saltando si quedan lejos.
+ALTO_JEFE_MUNDO = 6.0
 ANCESTRAL_VIDA = 5      # veces la vida de un jefe normal del mismo tier
+
+
+def escala_mundo(mid, s=2.0):
+    """Escala del modelo para el jefe del Survival: la de siempre, pero sin pasar de ALTO_JEFE_MUNDO de alto."""
+    from mobs.tamanos import dimensions
+    alto = dimensions(mid, s)[1]
+    return s if alto <= ALTO_JEFE_MUNDO else round(s * ALTO_JEFE_MUNDO / alto, 3)
+
+
+# Persecucion de los jefes del Survival: si el objetivo queda a mas de 6 bloques salta hacia el; si se
+# trabo detras de arboles o paredes y queda a mas de 18, aparece al lado (solo si el objetivo esta a < 48).
+PERSECUCION_MUNDO = [
+    "- leap{velocity=110;noise=0} @target ~onTimer:60 ?!playerwithin{d=6} ?targetwithin{d=24}",
+    "- teleport{spreadh=3;spreadv=0} @target ~onTimer:200 ?!playerwithin{d=18} ?targetwithin{d=48}",
+]
 
 
 def ancestral_def(mid):
@@ -376,7 +394,7 @@ def mob_block(mid, d, model=None, elite=None):
         opts.append(f"    MovementSpeed: {d['speed']}")
     if d["kind"] == "jefe" or elite:
         opts.append("    KnockbackResistance: 0.8")
-        opts.append("    FollowRange: 40")
+        opts.append(f"    FollowRange: {64 if d.get('mundo') else 40}")
     opts.append("    PreventRandomEquipment: true")   # el vex no saca su espada encima del modelo
     lines.append("  Options:")
     lines += opts
@@ -456,6 +474,8 @@ def mob_block(mid, d, model=None, elite=None):
     if elite:
         sk += astral_drop("esencia_elite", 1.0, 2) + astral_drop("alma_corrupta", 0.3)
     sk += d.get("skills", [])
+    if d.get("mundo"):
+        sk += PERSECUCION_MUNDO
     if d['kind'] in ('hostil','jefe','fauna') and not d.get('native_death_only'):
         sk.append('- skill{s=AST_MUERTE} @self ~onDeath')
     real = f"{mid}" if not elite else mid          # id del mob que se esta generando
@@ -522,7 +542,9 @@ def metaskills():
     out = plata_metaskills() + ['AST_MUERTE:', '  Skills:', '  - tint{c=FF5555} @self',
            '  - delay 16', '  - particles{p=poof;amount=14;hS=0.5;vS=0.5} @self', '']
     for mid, d in MOBS.items():
-        scale = ';s=2.0' if d['kind'] == 'jefe' else ''
+        # Los jefes normales del Survival (Yeti y Golem pasaban los 6 bloques); la Momia de la Tumba usa
+        # esta misma skill pero mide 4,1 y no cambia. Cumbre, Forja y Bosque tienen skill propia.
+        scale = f';s={escala_mundo(mid)}' if d['kind'] == 'jefe' else ''
         out += [f"AST_MODEL_{mid}:", "  Skills:", "  - addtag{tag=astral.seen} @self", f"  - model{{m={mid}{scale}}} @self"]
         if mid == "astral_goblin":
             out[-1] = "  - delay 1"
@@ -568,6 +590,9 @@ def metaskills():
     for mid, (color, name) in ANCESTRALES.items():
         out += [f"AST_MODEL_{mid}_ancestral:", "  Skills:", "  - addtag{tag=astral.seen} @self",
                 f"  - model{{m={mid};s=2.0}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
+                # El del Survival (evento cada 3 h): mismo modelo, hasta ALTO_JEFE_MUNDO de alto.
+                f"AST_MODEL_{mid}_ancestral_mundo:", "  Skills:", "  - addtag{tag=astral.seen} @self",
+                f"  - model{{m={mid};s={escala_mundo(mid)}}} @self", "  - delay 2", f"  - tint{{c={color}}} @self",
                 f"AST_ANCESTRAL_SEVA_{mid}:", "  Skills:",
                 f"  - 'message{{m=\"&7{name} &7se desvanecio... nadie pudo con el.\"}} @PlayersOnServer'",
                 "  - remove @self",
@@ -638,9 +663,10 @@ def spawn_entry(key, mob, s, chance):
 def main():
     for sub in ("mobs", "skills", "randomspawns"):
         os.makedirs(os.path.join(OUT, sub), exist_ok=True)
-    mobs = [mob_block(mid, d) for mid, d in MOBS.items()]
+    mobs = [mob_block(mid, dict(d, mundo=True) if d["kind"] == "jefe" else d) for mid, d in MOBS.items()]
     mobs += [mob_block(f"{mid}_elite", MOBS[mid], model=mid, elite=e) for mid, e in ELITES.items()]
-    mobs += [mob_block(f"{mid}_ancestral", ancestral_def(mid), model=mid, elite=e) for mid, e in ANCESTRALES.items()]
+    mobs += [mob_block(f"{mid}_ancestral", dict(ancestral_def(mid), mundo=True, model_skill=f"AST_MODEL_{mid}_ancestral_mundo"),
+                       model=mid, elite=e) for mid, e in ANCESTRALES.items()]
     mobs += [npc_block(mid, *v) for mid, v in NPCS.items()]
     with open(os.path.join(OUT, "mobs", "astral.yml"), "w", encoding="utf-8") as f:
         f.write("# Criaturas de AstralRPG (generado por datapack-src/mobs/mythic.py)\n\n" + "\n".join(mobs))

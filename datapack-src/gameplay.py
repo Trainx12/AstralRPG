@@ -205,8 +205,10 @@ REGEN_COMIDA = 0.2   # fraccion de la regeneracion natural por comida (1 = como 
 
 def vida():
     """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
-    from escala import DANO_MOB, DANO_JEFE, TIER_MAZMORRA
-    tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
+    from escala import DANO_MOB, DANO_JEFE, DANO_JEFE_MUNDO, TIER_MAZMORRA
+    # Jefes del Survival (astral.jmN, 26/11): su propia escala por tier, antes que la de los mobs con tier.
+    tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.jm{t}":\n        return {DANO_JEFE_MUNDO[t]}'
+                      for t in range(10, 0, -1)) + '\n' + '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
                       for t in range(10, 0, -1))
     # Las dimensiones del datapack se llaman world_minecraft_<dim> en Bukkit (el Santuario y sus copias).
     # Jefes de mazmorra (sin tier): escala propia DANO_JEFE (23/11); los mobs con tier usan DANO_MOB.
