@@ -29,9 +29,16 @@ VIDA_REF = {t: round(DANO[t] * GOLPES[t]) for t in DANO}
 
 # AuraSkills legacy: el nivel destino es el argumento de xp_requirements.yml.
 # 25 -> 26: 100*(26-2)^2+100 = 57.700; 250 bajas/h = 230,8 XP/baja T5.
-XP_MOB = {0: 0, 1: 20, 2: 40, 3: 80, 4: 140, 5: 230.8, 6: 360, 7: 540, 8: 800, 9: 1150, 10: 1600}
+# 23/11 (pedido del dueno): curva creciente. T1 ~2 h, T2 3 h, T3 4 h (+1 h) y despues +2 h por tier hasta T10 ~18 h (250 bajas/h).
+XP_MOB = {0: 0, 1: 84.5, 2: 110, 3: 148, 4: 170, 5: 193, 6: 217, 7: 241, 8: 265, 9: 289, 10: 313}
 XP_ELITE = 1.5
 XP_JEFE = 8
+# 24/11 (dueno): mob de mas tier que el jugador (por nivel de skill) paga la XP del tier del jugador x5 por
+# tier de diferencia (lo que sube su vida), tope +2. Permiso astral.xp.tierbonus.
+XP_TIER_ARRIBA = 5
+XP_TIER_ARRIBA_TOPE = 2
+# 26/11 (dueno): para todos, x0,15 a un tier abajo; x0,03 a dos o mas tiers abajo.
+XP_TIER_ABAJO = {1: 0.15, 2: 0.03}
 
 
 def xp_skill_mob(tier, elite=False, jefe=False):
@@ -60,6 +67,30 @@ VIDA_PIEZA = {t: (VIDA_SET[t] - VIDA_JUGADOR_BASE) / 4 for t in VIDA_SET}
 # armadura vanilla: da DEFENSA (set completo por tier), repartida como la armadura vanilla.
 DEFENSA_SET = {1: 50, 2: 100, 3: 200, 4: 350, 5: 500, 6: 650, 7: 800, 8: 1000, 9: 1250, 10: 1500}
 DEF_REPARTO = {"helmet": 0.15, "chestplate": 0.40, "leggings": 0.30, "boots": 0.15}
+# Proteccion como Defensa (25/11/2026): cada nivel suma este % de la Defensa de ESA pieza (crece con el tier).
+# Proteccion +8%/nivel; Fuego, Explosiones y Proyectiles +4%/nivel contra todo. Quien tiene la etiqueta
+# astral.protdef pierde el 4%/8% fijo de Minecraft (no se cuenta dos veces). Solo ByTrainx hasta abrirlo.
+# Filo en porcentaje (26/11/2026, dueno): +3% de dano por nivel (Filo V = +15%) en vez de +0,5..+3 fijo de Minecraft,
+# que no se notaba con el dano por tier. Interruptor #pub astral.filo (como protdef): 0 = solo ByTrainx, 1 = todos,
+# -1 = Filo de Minecraft. AstralMesa lo suma en la linea "Dano:" (filo-porcentaje en su config).
+FILO_PCT = 3
+PROT_DEF_PCT = {"protection": 8, "fire_protection": 4, "blast_protection": 4, "projectile_protection": 4}
+# Armadura vanilla como Defensa (25/11/2026, dueno: "la defensa de las vanilla es mejor que la de las clases").
+# Antes la armadura de Minecraft usaba su propia reduccion (hasta 40-44% contra mobs sin tier) y la barra la
+# mostraba x5 (diamante = 100). Ahora cada punto vale 1,5 de Defensa Astral (+1 por pieza de netherita) y la
+# reduccion de Minecraft se anula: set de netherita 35, diamante 31, hierro 23 < set de clase T1 (45-55).
+# Interruptor #pub astral.vandef (como protdef): 0 = solo ByTrainx, 1 = todos, -1 = apagado.
+_VAN_PUNTOS = {
+    "leather": (1, 3, 2, 1), "chainmail": (2, 5, 4, 1), "golden": (2, 5, 3, 1), "copper": (2, 4, 3, 1),
+    "iron": (2, 6, 5, 2), "diamond": (3, 8, 6, 3), "netherite": (3, 8, 6, 3)}
+DEF_VANILLA_PUNTO = 1.5
+DEF_VANILLA_EXTRA = {"netherite": 1}
+VANILLA_PIEZAS = {}  # slot -> [(item, puntos de armadura, Defensa)]
+for _mat, _pts in _VAN_PUNTOS.items():
+    for _slot, _piece, _p in zip(("head", "chest", "legs", "feet"), ("helmet", "chestplate", "leggings", "boots"), _pts):
+        VANILLA_PIEZAS.setdefault(_slot, []).append(
+            (f"minecraft:{_mat}_{_piece}", _p, int(_p * DEF_VANILLA_PUNTO + 0.5) + DEF_VANILLA_EXTRA.get(_mat, 0)))
+VANILLA_PIEZAS["head"].append(("minecraft:turtle_helmet", 2, 3))
 
 
 def defensa_pieza(tier, piece, def_pct=0, extra=0):
@@ -96,7 +127,7 @@ TIER_MAZMORRA = _copias({"bosque": 1, "mina": 2, "tumba": 3, "cumbre": 4, "forja
                  "cumbre_hielo": 4, "forja_volcano": 5, "santuario_interstellar": 5, "santuario_azeroth": 5})
 # Mundos con tier fijo que no son mazmorras (sin vida extra ni elites de mazmorra).
 TIER_FIJO = {"oceano": 2, "fosa": 3, "fosa_2": 3, "fosa_3": 3,  # oceano abierto y Fosa del Crustaceo
-             "cavernas_cristal": 4}  # Cavernas de Cristal (cavernas.py); el Corazon es tier 5 (build.py mob/roll)
+             "cavernas_cristal": 4, "vacio_estelar": 6}  # Cavernas de Cristal (cavernas.py); el Corazon es tier 5 (build.py mob/roll)
 EXTRA_VIDA_MAZMORRA = _copias({"santuario": 1.5, "santuario_interstellar": 1.5, "santuario_azeroth": 1.5})
 # Nave del Vacio (nave.py, evento del End): 3 copias, tier 5 con vida x1,5 como el Santuario.
 from nave import WORLDS as _NAVE, TIER as _NAVE_TIER, EXTRA_VIDA as _NAVE_VIDA

@@ -11,14 +11,15 @@ import re
 import subprocess
 import zipfile
 import yaml
-from escala import XP_MOB, XP_ELITE, XP_JEFE, xp_skill_level, TIER_MAZMORRA
+from escala import XP_MOB, XP_ELITE, XP_JEFE, XP_TIER_ARRIBA, XP_TIER_ARRIBA_TOPE, XP_TIER_ABAJO, xp_skill_level, TIER_MAZMORRA
 from items_t6_10 import MATERIALES as MATERIALES_ALTOS
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT/'build/tanda5a'
 PROBABILIDADES = {1: .15, 2: .03, 3: .005, 4: .0004, 5: .000003}
 from economia import plata as _x
-PAQUETES = [(b, _x(p)) for b, p in [(25, 15000), (100, 50000), (1225, 500000), (2500, 950000), (10000, 3500000)]]
+# 25/11 (dueno): a 1/5 con el recorte de las Minas (antes 1,5M / 5M / 50M / 95M / 350M).
+PAQUETES = [(b, _x(p)) for b, p in [(25, 3000), (100, 10000), (1225, 100000), (2500, 190000), (10000, 700000)]]
 # ExpendableBackpacks 1.2.0 (unico plugin de mochilas): nivel, nombre, espacios, precio.
 # La mochila es un item; tambien se fabrica/mejora con su receta. Netherite solo en herreria.
 MOCHILAS = [('leather', 'Cuero', 9, 5000), ('copper', 'Cobre', 18, 20000), ('iron', 'Hierro', 27, 50000),
@@ -101,9 +102,23 @@ def mythic_catalog():
     return result
 
 
+# Mazmorras de party: copias de mazmorras (incluye Nave), Infinita y Fosa del Crustaceo.
+def _party_split_worlds():
+    from instancias import bukkit   # nombre real en Bukkit (el Santuario lleva prefijo)
+    from infinita import WORLDS
+    return [bukkit(w) for w in TIER_MAZMORRA] + WORLDS + ['fosa', 'fosa_2', 'fosa_3']
+
+
+PARTY_SPLIT_WORLDS = _party_split_worlds()
+
+
 def generate():
     config = {'survival-world': 'world', 'xp': {str(t): v for t, v in XP_MOB.items()},
-              'elite-bonus': XP_ELITE, 'boss-bonus': XP_JEFE,
+              'elite-bonus': XP_ELITE, 'boss-bonus': XP_JEFE, 'tier-bonus': XP_TIER_ARRIBA, 'tier-bonus-max': XP_TIER_ARRIBA_TOPE,
+              'tier-bonus-permission': 'astral.xp.tierbonus',
+              'tier-penalty-enabled': True, 'tier-penalty': {str(t): v for t, v in XP_TIER_ABAJO.items()},
+              # 24/11: XP de mobs repartida en partes iguales con la party del mismo mundo (solo estos mundos).
+              'party-split-permission': 'astral.xp.partysplit', 'party-split-worlds': PARTY_SPLIT_WORLDS,
               'dungeon-tiers': TIER_MAZMORRA, 'mythic': mythic_catalog(),
               'structure-namespaces': STRUCTURE_NAMESPACES,
               'loot': catalog(), 'claim-packages': [{'blocks': b, 'price': p} for b, p in PAQUETES],
@@ -176,6 +191,10 @@ def generate():
 
 def write_delivery(config):
     lines = ['# Tanda 5a — preparada, NO desplegada', '',
+             '## Actualizacion puntual 26/11: AstralProgression 1.4.0 (pendiente de Claude)', '',
+             'Para esta correccion subir solo `build/runtime/AstralProgression.jar` a `plugins/AstralProgression.jar` con el servidor apagado; iniciar en el reinicio autorizado (no activar reinicio por vacio).',
+             'Conservar la config remota: las claves ausentes usan los defaults del codigo. Referencia: `build/tanda5a/AstralProgression/config.yml` -> `plugins/AstralProgression/config.yml`; combinar solo `tier-penalty-enabled: true` y `tier-penalty: {\'1\': 0.15, \'2\': 0.03}` si se quieren explicitar.',
+             'No requiere recargas ni otros archivos de la entrega historica inferior. No usar PlugMan ni /reload. Revisar consola: AstralProgression 1.4.0 habilitado sin errores; comprobar bajas de distinto tier y party. No reemplazar mundos.', '',
              'Generar: `python build.py`, despues `python tanda5a.py --java <java25> --server <Paper-local>` desde datapack-src.',
              'Conserva cosmeticos/skins y el pack FINAL privado: esta tanda no modifica texturas.', '',
              '## Instalacion (Empower; si se usa Aternos, solo mediante funciones publicas permitidas)', '',
@@ -210,6 +229,7 @@ def write_delivery(config):
               'Ejecutar `build/tanda5a/permisos.txt`; despues `sreload` y `skills reload`. Un reinicio carga el JAR y los datapacks; no usar PlugMan ni /reload general.',
               'Verificar consola: AstralProgression habilitado, GriefPrevention y ExpendableBackpacks cargados, sin errores de datapacks.', '',
               '## XP y ritmo', '',
+              '26/11 (dueno): penalizacion abierta a todos: mob un tier debajo de la skill acreditada x0,15; dos o mas debajo x0,03, tambien elites/jefes. En party cada miembro usa su propio tier. Interruptor tier-penalty-enabled (default true); mismo tier y bonus superior sin cambios.', '',
               'Copia local de AuraSkills: `.local/asw-native/server/plugins/AuraSkills/xp_requirements.yml`; corroborada con fichas-paper y testsrv.',
               'Preset legacy no reemplaza xp_requirements. Formula: `100*(nivel_destino-2)^2+100`. No se pudo leer la configuracion remota en esta tarea: comparar antes de instalar.',
               '25→26: 57.700 / 250 = 230,8 XP T5. A 200–300 mobs/h: 75–50 minutos. Estimacion sin bonus ni multiplicadores de permisos.',
@@ -279,7 +299,7 @@ def build(java, server):
         for p in sorted((target/'astral').glob('AstralProgression*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), (2026,11,11,0,0,0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026,11,11,0,0,0)),
-                   "name: AstralProgression\nversion: 1.1.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves]\n")
+                   "name: AstralProgression\nversion: 1.4.0\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves, AstralParty]\npermissions:\n  astral.xp.tierbonus:\n    default: false\n  astral.xp.partysplit:\n    default: false\n")
         z.writestr(zipfile.ZipInfo('config.yml', (2026,11,11,0,0,0)), yaml.safe_dump(config, sort_keys=False))
     print(dest)
 

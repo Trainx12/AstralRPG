@@ -15,6 +15,8 @@ import org.bukkit.loot.LootContext;
 import org.bukkit.persistence.*;
 import org.bukkit.plugin.java.JavaPlugin;
 import dev.aurelium.auraskills.api.event.skill.*;
+import dev.aurelium.auraskills.api.AuraSkillsApi;
+import dev.aurelium.auraskills.api.skill.Skills;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import me.ryanhamshire.GriefPrevention.GriefPrevention;
 import me.ryanhamshire.GriefPrevention.ClaimsMode;
@@ -137,6 +139,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             if(p.getScoreboardTags().contains("astral.caster")) skill="sorcery";
             if(skill.isEmpty()) skill="fighting";
         }
+        lastSkill.put(p.getUniqueId(),skill);
         var data=mob.getPersistentDataContainer();
         String mm=mythic(mob);
         if(!mm.isEmpty()) data.set(mythicKey,PersistentDataType.STRING,mm);
@@ -182,6 +185,33 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             mob.getScoreboardTags().stream().anyMatch(t->t.startsWith("astral.elite"));
         return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1);
     }
+    // 24/11 (dueno): un mob de mas tier que el jugador paga como su vida: x5 por tier de diferencia, tope +2.
+    // Tier del jugador = nivel de la skill acreditada (mismos cortes que las armas).
+    private static final int[] TIER_LEVELS = {3, 10, 14, 18, 22, 26, 30, 34, 38, 42};
+    public int playerTier(Player p, String skill) {
+        int level;
+        try {level=AuraSkillsApi.get().getUser(p.getUniqueId()).getSkillLevel(Skills.valueOf(skill.toUpperCase(Locale.ROOT)));}
+        catch(RuntimeException ex) {return 0;}
+        int tier=1;
+        for(int t=TIER_LEVELS.length;t>=1;t--) if(level>=TIER_LEVELS[t-1]) {tier=t;break;}
+        return tier;
+    }
+    public double tierXpFactor(Player p, String skill, int mobTier) {
+        int own=playerTier(p,skill);
+        if(own<=0 || mobTier<=0) return 1;
+        // 26/11 (dueno): penalizacion publica, incluso sin las claves nuevas en el config del servidor.
+        if(mobTier<own) {
+            if(!getConfig().getBoolean("tier-penalty-enabled",true)) return 1;
+            int below=Math.min(own-mobTier,2);
+            return getConfig().getDouble("tier-penalty."+below,below==1?0.15:0.03);
+        }
+        if(mobTier==own || !p.hasPermission(getConfig().getString("tier-bonus-permission","astral.xp.tierbonus"))) return 1;
+        int diff=Math.min(mobTier-own, getConfig().getInt("tier-bonus-max",2));
+        double base=getConfig().getDouble("xp."+own), mob=getConfig().getDouble("xp."+mobTier);
+        if(base<=0 || mob<=0) return 1;
+        // Se paga como la XP del tier del jugador x5^dif (nunca menos que lo normal del mob).
+        return Math.max(1, base*Math.pow(getConfig().getDouble("tier-bonus",5),diff)/mob);
+    }
     @EventHandler(priority=EventPriority.MONITOR) public void death(EntityDeathEvent e) {
         LivingEntity mob=e.getEntity(); Player p=mob.getKiller();
         if(friendly(mob)) {
@@ -195,8 +225,35 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(p==null || p.getWorld().getName().equals("lobby") || p.getGameMode()!=GameMode.SURVIVAL) return;
         String skill=creditedSkill(mob,p); double xp=reward(mob);
         if(skill.isEmpty() || xp<=0) return;
+        int mobTier=tier(mob);
+        // 24/11 (dueno): en mazmorras de party la XP se reparte en partes iguales entre los companeros
+        // del mismo mundo; cada uno la recibe en su skill de combate y con su propio factor de tier.
+        List<Player> share=partyShare(p);
+        double each=xp/share.size();
+        for(Player m:share) {
+            String s=m.equals(p)?skill:lastSkill.getOrDefault(m.getUniqueId(),skill);
+            giveXp(m,s,each*tierXpFactor(m,s,mobTier));
+        }
+    }
+    private final Map<UUID,String> lastSkill = new HashMap<>();
+    private void giveXp(Player p,String skill,double xp) {
         // Command XP no genera EntityXpGainEvent: el filtro anterior no cancela nuestro premio.
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"skills xp add "+p.getName()+" "+skill+" "+String.format(Locale.ROOT,"%.2f",xp));
+    }
+    @SuppressWarnings("unchecked")
+    public List<Player> partyShare(Player p) {
+        if(!p.hasPermission(getConfig().getString("party-split-permission","astral.xp.partysplit")) ||
+            !getConfig().getStringList("party-split-worlds").contains(p.getWorld().getName())) return List.of(p);
+        var party=Bukkit.getPluginManager().getPlugin("AstralParty");
+        if(party==null || !party.isEnabled()) return List.of(p);
+        List<Player> members;
+        try {members=(List<Player>)party.getClass().getMethod("members",Player.class).invoke(party,p);}
+        catch(ReflectiveOperationException|ClassCastException ex) {return List.of(p);}
+        List<Player> share=new ArrayList<>();
+        share.add(p);
+        for(Player m:members) if(!m.equals(p) && m.isOnline() && m.getWorld().equals(p.getWorld()) &&
+            m.getGameMode()==GameMode.SURVIVAL && !m.isDead()) share.add(m);
+        return share;
     }
     private void suppressKill(Player player,LivingEntity mob) {
         // Las estadisticas se adjudican ANTES de EntityDeathEvent en vanilla.

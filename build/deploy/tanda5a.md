@@ -1,5 +1,11 @@
 # Tanda 5a — preparada, NO desplegada
 
+## Actualizacion puntual 26/11: AstralProgression 1.4.0 (pendiente de Claude)
+
+Para esta correccion subir solo `build/runtime/AstralProgression.jar` a `plugins/AstralProgression.jar` con el servidor apagado; iniciar en el reinicio autorizado (no activar reinicio por vacio).
+Conservar la config remota: las claves ausentes usan los defaults del codigo. Referencia: `build/tanda5a/AstralProgression/config.yml` -> `plugins/AstralProgression/config.yml`; combinar solo `tier-penalty-enabled: true` y `tier-penalty: {'1': 0.15, '2': 0.03}` si se quieren explicitar.
+No requiere recargas ni otros archivos de la entrega historica inferior. No usar PlugMan ni /reload. Revisar consola: AstralProgression 1.4.0 habilitado sin errores; comprobar bajas de distinto tier y party. No reemplazar mundos.
+
 Generar: `python build.py`, despues `python tanda5a.py --java <java25> --server <Paper-local>` desde datapack-src.
 Conserva cosmeticos/skins y el pack FINAL privado: esta tanda no modifica texturas.
 
@@ -47,6 +53,8 @@ Verificar consola: AstralProgression habilitado, GriefPrevention y ExpendableBac
 
 ## XP y ritmo
 
+26/11 (dueno): penalizacion abierta a todos: mob un tier debajo de la skill acreditada x0,15; dos o mas debajo x0,03, tambien elites/jefes. En party cada miembro usa su propio tier. Interruptor tier-penalty-enabled (default true); mismo tier y bonus superior sin cambios.
+
 Copia local de AuraSkills: `.local/asw-native/server/plugins/AuraSkills/xp_requirements.yml`; corroborada con fichas-paper y testsrv.
 Preset legacy no reemplaza xp_requirements. Formula: `100*(nivel_destino-2)^2+100`. No se pudo leer la configuracion remota en esta tarea: comparar antes de instalar.
 25→26: 57.700 / 250 = 230,8 XP T5. A 200–300 mobs/h: 75–50 minutos. Estimacion sin bonus ni multiplicadores de permisos.
@@ -54,17 +62,17 @@ AuraSkills conserva los bonus Fighter/Archer: al nivel 25, el ensayo midio +50%.
 
 | Tier | Normal | Elite x1,5 | Jefe x8 |
 |---|---:|---:|---:|
-| 1 | 20 | 30.0 | 160 |
-| 2 | 40 | 60.0 | 320 |
-| 3 | 80 | 120.0 | 640 |
-| 4 | 140 | 210.0 | 1120 |
-| 5 | 230.8 | 346.2 | 1846.4 |
+| 1 | 84.5 | 126.75 | 676.0 |
+| 2 | 110 | 165.0 | 880 |
+| 3 | 148 | 222.0 | 1184 |
+| 4 | 170 | 255.0 | 1360 |
+| 5 | 193 | 289.5 | 1544 |
 
 | Progreso | Tier supuesto | XP total | Minutos a 250 mobs/h |
 |---|---:|---:|---:|
-| 1→5 | 1 | 1800 | 21.6 |
-| 10→11 | 2 | 8200 | 49.2 |
-| 25→26 | 5 | 57700 | 60.0 |
+| 1→5 | 1 | 1800 | 5.1 |
+| 10→11 | 2 | 8200 | 17.9 |
+| 25→26 | 5 | 57700 | 71.8 |
 
 Listener unico: mob tier por etiqueta astral.mt#, luego definicion Mythic generada, luego mundo de mazmorra.
 Fighting/archery/sorcery se leen del PDC de requisitos del arma Astral. Flechas guardan skill al disparar; magia atribuida por /damage by jugador.
@@ -78,7 +86,7 @@ Pala de oro: clic derecho en dos esquinas. Minimo 6x6, area 36. Todo de fondo a 
 Inicio 36, sin bloques por tiempo. Comprar SUMA: 36+25=61, no 11x11. Se reparte entre varias zonas (cada una minimo 36).
 `/trust jugador`, `/untrust jugador`, `/abandonclaim`; Bolt sigue controlando cofres y WorldGuard sigue controlando regiones.
 `/buyclaimblocks` y venta de bloques desactivados. Precio unico en tanda5a.py; compra desde EconomyShopGUI abre menu propio y ejecuta `adjustbonusclaimblocks jugador cantidad` desde consola.
-Paquetes: 25 bloques = $1,500,000, 100 bloques = $5,000,000, 1225 bloques = $50,000,000, 2500 bloques = $95,000,000, 10000 bloques = $350,000,000. Caros frente a minas: $80 → $700.000 → $25M.
+Paquetes: 25 bloques = $300,000, 100 bloques = $1,000,000, 1225 bloques = $10,000,000, 2500 bloques = $19,000,000, 10000 bloques = $70,000,000. Caros frente a minas: $80 → $700.000 → $25M.
 Mochilas (ExpendableBackpacks): Cuero 9 espacios $500,000, Cobre 18 espacios $2,000,000, Hierro 27 espacios $5,000,000, Oro 36 espacios $10,000,000, Diamante 45 espacios $17,500,000.
 La tienda ejecuta `backpack give jugador nivel` desde consola: la mochila es un item (clic derecho abre). Pide un espacio libre antes de cobrar.
 Tambien se fabrican (cuero+hilo+cofre) y se mejoran rodeandolas con 8 lingotes; Netherite en herreria. `allow-backpack-inception: false`.
@@ -94,7 +102,7 @@ Al morir la mochila cae como item (AxGraves la guarda en la tumba); el contenido
 | Epica | 0.0004 | 0.04% |
 | Legendaria | 3e-06 | 0.0003% |
 
-Catalogo: 162 items; una tirada independiente por item elegible, sin limite que cambie su probabilidad.
+Catalogo: 206 items; una tirada independiente por item elegible, sin limite que cambie su probabilidad.
 Rareza del equipo: ficha.py (T1..T5). Materiales sin rareza reciben tier explicito en MATERIAL_TIERS (tanda5a.py); nucleos/perfectas endgame son T5. Talismanes: tier existente.
 La probabilidad es por item, tambien para equipo comun: puede haber varias piezas comunes en un cofre; no hay tirada global ni multiplicador oculto por categoria.
 LootGenerateEvent conserva la lista original y agrega items desde astral:item/*. Solo contenedores naturales sin marca de colocacion, primera generacion, survival.

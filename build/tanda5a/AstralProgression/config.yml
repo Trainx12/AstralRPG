@@ -1,18 +1,79 @@
 survival-world: world
 xp:
   '0': 0
-  '1': 20
-  '2': 40
-  '3': 80
-  '4': 140
-  '5': 230.8
-  '6': 360
-  '7': 540
-  '8': 800
-  '9': 1150
-  '10': 1600
+  '1': 84.5
+  '2': 110
+  '3': 148
+  '4': 170
+  '5': 193
+  '6': 217
+  '7': 241
+  '8': 265
+  '9': 289
+  '10': 313
 elite-bonus: 1.5
 boss-bonus: 8
+tier-bonus: 5
+tier-bonus-max: 2
+tier-bonus-permission: astral.xp.tierbonus
+tier-penalty-enabled: true
+tier-penalty:
+  '1': 0.15
+  '2': 0.03
+party-split-permission: astral.xp.partysplit
+party-split-worlds:
+- bosque
+- bosque_2
+- bosque_3
+- bosque_4
+- bosque_5
+- bosque_6
+- mina
+- mina_2
+- mina_3
+- mina_4
+- mina_5
+- mina_6
+- tumba
+- tumba_2
+- tumba_3
+- tumba_4
+- tumba_5
+- tumba_6
+- cumbre
+- forja
+- santuario
+- cumbre_hielo
+- cumbre_hielo_2
+- cumbre_hielo_3
+- cumbre_hielo_4
+- cumbre_hielo_5
+- cumbre_hielo_6
+- forja_volcano
+- forja_volcano_2
+- forja_volcano_3
+- forja_volcano_4
+- forja_volcano_5
+- forja_volcano_6
+- santuario_interstellar
+- world_minecraft_santuario_azeroth
+- world_minecraft_santuario_azeroth_2
+- world_minecraft_santuario_azeroth_3
+- world_minecraft_santuario_azeroth_4
+- world_minecraft_santuario_azeroth_5
+- world_minecraft_santuario_azeroth_6
+- nave
+- nave_2
+- nave_3
+- infinita
+- infinita_2
+- infinita_3
+- infinita_4
+- infinita_5
+- infinita_6
+- fosa
+- fosa_2
+- fosa_3
 dungeon-tiers:
   bosque: 1
   bosque_2: 1
@@ -54,6 +115,9 @@ dungeon-tiers:
   santuario_azeroth_4: 5
   santuario_azeroth_5: 5
   santuario_azeroth_6: 5
+  nave: 5
+  nave_2: 5
+  nave_3: 5
 mythic:
   astral_mapache:
     tier: 1
@@ -147,6 +211,50 @@ mythic:
     tier: 1
     boss: true
     elite: false
+  astral_cav_golem_amatista:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_golem_jade:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_golem_rubi:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_golem_zafiro:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_golem_onix:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_arana:
+    tier: 1
+    boss: false
+    elite: false
+  astral_cav_jefe_amatista:
+    tier: 1
+    boss: true
+    elite: false
+  astral_cav_jefe_jade:
+    tier: 1
+    boss: true
+    elite: false
+  astral_cav_jefe_rubi:
+    tier: 1
+    boss: true
+    elite: false
+  astral_cav_jefe_zafiro:
+    tier: 1
+    boss: true
+    elite: false
+  astral_cav_jefe_corazon:
+    tier: 1
+    boss: true
+    elite: false
   astral_golem_bosque:
     tier: 1
     boss: false
@@ -209,6 +317,18 @@ mythic:
     elite: false
   astral_mina_guardian:
     tier: 2
+    boss: true
+    elite: false
+  astral_nave_capitan:
+    tier: 5
+    boss: true
+    elite: false
+  astral_nave_cria:
+    tier: 5
+    boss: false
+    elite: false
+  astral_nave_timonel:
+    tier: 5
     boss: true
     elite: false
   astral_santuario_coloso_musgoso_eco:
@@ -439,6 +559,22 @@ mythic:
     tier: 3
     boss: true
     elite: false
+  astral_vac_golem:
+    tier: 1
+    boss: false
+    elite: false
+  astral_vac_acechador:
+    tier: 1
+    boss: false
+    elite: false
+  astral_vac_ojo:
+    tier: 1
+    boss: false
+    elite: false
+  astral_vac_coloso:
+    tier: 1
+    boss: true
+    elite: false
 structure-namespaces:
 - nova_structures
 - explorify
@@ -522,6 +658,66 @@ loot:
     tier: 5
     chance: 3.0e-06
   arquero_5_leggings:
+    tier: 5
+    chance: 3.0e-06
+  asesino_1_boots:
+    tier: 1
+    chance: 0.15
+  asesino_1_chestplate:
+    tier: 1
+    chance: 0.15
+  asesino_1_helmet:
+    tier: 1
+    chance: 0.15
+  asesino_1_leggings:
+    tier: 1
+    chance: 0.15
+  asesino_2_boots:
+    tier: 2
+    chance: 0.03
+  asesino_2_chestplate:
+    tier: 2
+    chance: 0.03
+  asesino_2_helmet:
+    tier: 2
+    chance: 0.03
+  asesino_2_leggings:
+    tier: 2
+    chance: 0.03
+  asesino_3_boots:
+    tier: 3
+    chance: 0.005
+  asesino_3_chestplate:
+    tier: 3
+    chance: 0.005
+  asesino_3_helmet:
+    tier: 3
+    chance: 0.005
+  asesino_3_leggings:
+    tier: 3
+    chance: 0.005
+  asesino_4_boots:
+    tier: 4
+    chance: 0.0004
+  asesino_4_chestplate:
+    tier: 4
+    chance: 0.0004
+  asesino_4_helmet:
+    tier: 4
+    chance: 0.0004
+  asesino_4_leggings:
+    tier: 4
+    chance: 0.0004
+  asesino_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  asesino_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  asesino_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  asesino_5_leggings:
     tier: 5
     chance: 3.0e-06
   asura_espada:
@@ -785,6 +981,42 @@ loot:
   hacha_terremoto:
     tier: 3
     chance: 0.005
+  invocador_1_boots:
+    tier: 1
+    chance: 0.15
+  invocador_1_chestplate:
+    tier: 1
+    chance: 0.15
+  invocador_1_helmet:
+    tier: 1
+    chance: 0.15
+  invocador_1_leggings:
+    tier: 1
+    chance: 0.15
+  invocador_3_boots:
+    tier: 3
+    chance: 0.005
+  invocador_3_chestplate:
+    tier: 3
+    chance: 0.005
+  invocador_3_helmet:
+    tier: 3
+    chance: 0.005
+  invocador_3_leggings:
+    tier: 3
+    chance: 0.005
+  invocador_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  invocador_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  invocador_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  invocador_5_leggings:
+    tier: 5
+    chance: 3.0e-06
   lanza_1:
     tier: 1
     chance: 0.15
@@ -887,6 +1119,42 @@ loot:
   polvo_astral:
     tier: 2
     chance: 0.03
+  segador_1_boots:
+    tier: 1
+    chance: 0.15
+  segador_1_chestplate:
+    tier: 1
+    chance: 0.15
+  segador_1_helmet:
+    tier: 1
+    chance: 0.15
+  segador_1_leggings:
+    tier: 1
+    chance: 0.15
+  segador_3_boots:
+    tier: 3
+    chance: 0.005
+  segador_3_chestplate:
+    tier: 3
+    chance: 0.005
+  segador_3_helmet:
+    tier: 3
+    chance: 0.005
+  segador_3_leggings:
+    tier: 3
+    chance: 0.005
+  segador_5_boots:
+    tier: 5
+    chance: 3.0e-06
+  segador_5_chestplate:
+    tier: 5
+    chance: 3.0e-06
+  segador_5_helmet:
+    tier: 5
+    chance: 3.0e-06
+  segador_5_leggings:
+    tier: 5
+    chance: 3.0e-06
   shadowsteel:
     tier: 2
     chance: 0.03
@@ -934,15 +1202,15 @@ loot:
     chance: 0.0004
 claim-packages:
 - blocks: 25
-  price: 1500000
+  price: 300000
 - blocks: 100
-  price: 5000000
+  price: 1000000
 - blocks: 1225
-  price: 50000000
+  price: 10000000
 - blocks: 2500
-  price: 95000000
+  price: 19000000
 - blocks: 10000
-  price: 350000000
+  price: 70000000
 backpack-packages:
 - tier: leather
   name: Cuero
