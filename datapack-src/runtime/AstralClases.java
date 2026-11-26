@@ -244,6 +244,7 @@ public final class AstralClases extends JavaPlugin implements Listener {
         long ahora = System.currentTimeMillis();
         for (Player p : Bukkit.getOnlinePlayers()) {
             equipos.put(p.getUniqueId(), calcularEquipo(p));
+            corregirLoreLibro(p);
         }
         // Veneno del Asesino
         // 23/11: sobre una copia. El veneno puede matar al mob y alMorir lo saca del mapa (antes: ConcurrentModification).
@@ -464,6 +465,7 @@ public final class AstralClases extends JavaPlugin implements Listener {
             e.getPersistentDataContainer().set(kDueno, PersistentDataType.STRING, p.getUniqueId().toString());
             e.getPersistentDataContainer().set(kInvTier, PersistentDataType.STRING, String.valueOf(t));
             e.setPersistent(false);
+            e.setInvulnerable(false);   // 26/11: AstralProgression la tomaba por mascota y la hacia invulnerable
             e.setRemoveWhenFarAway(false);
             e.setCanPickupItems(false);
             var mh = e.getAttribute(Attribute.MAX_HEALTH);
@@ -484,6 +486,36 @@ public final class AstralClases extends JavaPlugin implements Listener {
         invCdTotal.put(p.getUniqueId(), recarga);
         p.getWorld().playSound(p.getLocation(), Sound.ENTITY_EVOKER_PREPARE_SUMMON, 1f, 1f);
         efecto(p, "invocar", p.getLocation());
+    }
+
+    /** 26/11: los libros ya entregados decian 75 de vida / 20 s. Se corrigen las dos lineas con numeros del libro
+     *  que tiene en la mano (mismo texto que clases.lore_libro; el resto del lore queda igual). */
+    private void corregirLoreLibro(Player p) {
+        ItemStack it = p.getInventory().getItemInMainHand();
+        if (!"libro".equals(arma(it)) || !inv.has("lore")) return;
+        JsonObject lo = inv.getAsJsonObject("lore");
+        String t = String.valueOf(tierArma(it));
+        if (!lo.has(t)) return;
+        var meta = it.getItemMeta();
+        List<net.kyori.adventure.text.Component> lore = meta.lore();
+        if (lore == null) return;
+        var plano = net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer.plainText();
+        String[] nuevo = {lo.getAsJsonArray(t).get(0).getAsString(), lo.getAsJsonArray(t).get(1).getAsString()};
+        String[] inicio = {"Clic derecho: invoca", "Cada uno:"};
+        boolean cambio = false;
+        lore = new ArrayList<>(lore);
+        for (int i = 0; i < lore.size(); i++) {
+            String s = plano.serialize(lore.get(i));
+            for (int k = 0; k < 2; k++)
+                if (s.startsWith(inicio[k]) && !s.equals(nuevo[k])) {
+                    lore.set(i, net.kyori.adventure.text.Component.text(nuevo[k], net.kyori.adventure.text.format.NamedTextColor.GRAY)
+                            .decoration(net.kyori.adventure.text.format.TextDecoration.ITALIC, false));
+                    cambio = true;
+                }
+        }
+        if (!cambio) return;
+        meta.lore(lore);
+        it.setItemMeta(meta);
     }
 
     // ------------------------------------------------------------------------------------------ Efectos (22/11)
@@ -551,6 +583,7 @@ public final class AstralClases extends JavaPlugin implements Listener {
     /** La invocacion pega sola al enemigo que tiene cerca (no depende de la IA del mob, que con el modelo no
      *  siempre ataca). El golpe pasa por alPegar: credito del dueno y la mitad a jefes. */
     private final Map<UUID, Long> ultimoGolpe = new HashMap<>();
+    private boolean golpePropio = false;
     private void golpear(Player p, Mob m) {
         LivingEntity t = m.getTarget();
         if (t == null || !enemigo(t) || !t.getWorld().equals(m.getWorld())) return;
@@ -560,7 +593,8 @@ public final class AstralClases extends JavaPlugin implements Listener {
         ultimoGolpe.put(m.getUniqueId(), ahora);
         var ad = m.getAttribute(Attribute.ATTACK_DAMAGE);
         m.swingMainHand();
-        t.damage(ad == null ? 1 : ad.getValue(), m);
+        golpePropio = true;
+        try { t.damage(ad == null ? 1 : ad.getValue(), m); } finally { golpePropio = false; }
         // El mob golpeado se da vuelta contra la invocacion (los jefes no): asi tambien la lastiman.
         if (t instanceof Mob tm && !esJefe(tm)) tm.setTarget(m);
     }
@@ -614,7 +648,9 @@ public final class AstralClases extends JavaPlugin implements Listener {
         return s == null ? null : Bukkit.getPlayer(UUID.fromString(s));
     }
 
-    /** Atacar al enemigo mas cercano del dueno; si no hay, seguirlo. Muy lejos: vuelve a su lado. */
+    /** Atacar siempre al enemigo MAS CERCANO a la invocacion (26/11, dueno: antes se iba corriendo atras de uno
+     *  aunque tuviera otro al lado). Solo cambia si el otro esta claramente mas cerca, para no temblar entre dos.
+     *  Sin enemigos: sigue al dueno. Muy lejos: vuelve a su lado. */
     private void guiar(Player p, Mob m) {
         if (!m.getWorld().equals(p.getWorld()) || m.getLocation().distance(p.getLocation()) > d(inv, "distancia_max")) {
             m.teleport(p.getLocation());
@@ -622,17 +658,21 @@ public final class AstralClases extends JavaPlugin implements Listener {
             return;
         }
         LivingEntity t = m.getTarget();
-        if (t != null && (!enemigo(t) || t.getLocation().distance(p.getLocation()) > 16)) { m.setTarget(null); t = null; }
-        if (t == null) {
-            LivingEntity mejor = null; double dist = 144;
-            for (Entity e : p.getNearbyEntities(12, 6, 12)) {
-                if (!enemigo(e)) continue;
-                double d2 = e.getLocation().distanceSquared(m.getLocation());
-                if (d2 < dist) { dist = d2; mejor = (LivingEntity) e; }
-            }
-            if (mejor != null) m.setTarget(mejor);
-            else if (m.getLocation().distance(p.getLocation()) > 4) m.getPathfinder().moveTo(p.getLocation(), 1.2);
+        if (t != null && (!enemigo(t) || !t.getWorld().equals(m.getWorld()) || t.getLocation().distance(p.getLocation()) > 16)) {
+            m.setTarget(null); t = null;
         }
+        LivingEntity mejor = null; double dist = Double.MAX_VALUE;
+        for (Entity e : m.getNearbyEntities(12, 6, 12)) {
+            if (!enemigo(e) || e.getLocation().distanceSquared(p.getLocation()) > 16 * 16) continue;
+            double d2 = e.getLocation().distanceSquared(m.getLocation());
+            if (d2 < dist && m.hasLineOfSight(e)) { dist = d2; mejor = (LivingEntity) e; }
+        }
+        if (mejor != null && mejor != t) {
+            double margen = inv.has("cambia_objetivo") ? d(inv, "cambia_objetivo") : 1.5;
+            double actual = t == null ? Double.MAX_VALUE : t.getLocation().distance(m.getLocation());
+            if (actual - Math.sqrt(dist) >= margen) { m.setTarget(mejor); t = mejor; }
+        }
+        if (t == null && m.getLocation().distance(p.getLocation()) > 4) m.getPathfinder().moveTo(p.getLocation(), 1.2);
     }
 
     /** Mini tanques: los mobs comunes que persiguen al dueno cerca de una invocacion pasan a atacarla. */
@@ -683,6 +723,12 @@ public final class AstralClases extends JavaPlugin implements Listener {
         Entity atacante = e.getDamager();
         // Invocacion pegando: credito del dueno (botin, XP y almas) y la mitad a jefes.
         if (esInvocacion(atacante) && e.getEntity() instanceof LivingEntity v) {
+            // 26/11: el golpe de la IA vanilla y el de golpear() comparten la espera (si no, pegaba doble).
+            if (!golpePropio) {
+                long ahora = System.currentTimeMillis();
+                if (ahora - ultimoGolpe.getOrDefault(atacante.getUniqueId(), 0L) < 900) { e.setCancelled(true); return; }
+                ultimoGolpe.put(atacante.getUniqueId(), ahora);
+            }
             if (esJefe(v)) e.setDamage(e.getDamage() * d(inv, "jefe_dano"));
             Player dueno = duenoDe(atacante);
             if (dueno != null) v.setKiller(dueno);
@@ -704,7 +750,15 @@ public final class AstralClases extends JavaPlugin implements Listener {
             JsonObject sts = inv.getAsJsonObject("stats");
             String tierInv = e.getEntity().getPersistentDataContainer().getOrDefault(kInvTier, PersistentDataType.STRING, "");
             if (sts.has(tierInv)) def = sts.getAsJsonObject(tierInv).get("defensa").getAsDouble();
-            e.setDamage(e.getDamage() * k * 100 / (def + 100));
+            double dano = e.getDamage() * k * 100 / (def + 100);
+            // 26/11 (dueno): aguanta al menos 3 golpes de un mob de su tier o menos (los jefes y los de mas tier no).
+            int ti = 0;
+            try { ti = Integer.parseInt(tierInv); } catch (NumberFormatException ignored) { }
+            if (t > 0 && t <= ti && inv.has("aguanta_golpes") && e.getEntity() instanceof LivingEntity yo) {
+                var mh = yo.getAttribute(Attribute.MAX_HEALTH);
+                if (mh != null) dano = Math.min(dano, mh.getValue() / (d(inv, "aguanta_golpes") + .5));
+            }
+            e.setDamage(dano);
             return;
         }
         if (!(atacante instanceof Player p) || !(e.getEntity() instanceof LivingEntity v)) return;

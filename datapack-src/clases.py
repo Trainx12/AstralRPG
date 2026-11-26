@@ -20,7 +20,7 @@ import os
 import zipfile
 from pathlib import Path
 
-from escala import (DANO, VIDA_SET, DEFENSA_SET, DANO_MOB, MANA_SET_MAGO, MANA_BASTON, REGEN_POR_MANA,
+from escala import (DANO, VIDA_SET, VIDA_REF, DEFENSA_SET, DANO_MOB, MANA_SET_MAGO, MANA_BASTON, REGEN_POR_MANA,
                     TIER_MAZMORRA, fmt)
 
 HERE = Path(__file__).resolve().parent
@@ -144,12 +144,15 @@ LIBROS = {1: 'Libro Podrido', 3: 'Libro del Muneco Maldito', 5: 'Libro del Evoca
           9: 'Necronomicon', 10: 'Libro de Oro'}
 INVOCADOR = {
     'cantidad': {1: 1, 3: 2, 5: 2, 7: 3, 9: 3, 10: 4},
-    'duracion': 20,          # segundos
+    'duracion': 30,          # segundos (26/11, dueno: duraban muy poco; antes 20)
     'recarga': 30,           # segundos (menos el % de enfriamiento de la armadura)
     # Mana: ~40% del mana maximo del Invocador de ese tier (base 100 + libro + set)
     'mana': {1: 80, 3: 180, 5: 400, 7: 650, 9: 1100, 10: 1400},
-    'vida_pct': 25,          # % de la vida de un set completo del tier
-    'dano_pct': 30,          # % del golpe de la espada del tier
+    # 26/11 (dueno): antes 25% de la vida del set (75 en T1: un golpe y moria) y 30% del golpe de la espada.
+    'vida_golpes': 5,        # vida = 5 golpes de un zombi de su tier (despues de su defensa)
+    'aguanta_golpes': 3,     # un mob de su tier (o menos) nunca le saca mas de 1/3,5 de la vida por golpe
+    'dano_vida_mob': 1 / 3,  # golpe = 1/3 de la vida de un esqueleto de su tier
+    'cambia_objetivo': 1.5,  # cambia a otro enemigo si esta al menos tantos bloques mas cerca
     'jefe_recibe': 3.0,      # los jefes les pegan x3
     'jefe_dano': 0.5,        # y ellas les pegan la mitad a los jefes
     'provoca_radio': 8,      # mobs que persiguen al dueno a esta distancia de una invocacion la atacan a ella
@@ -160,11 +163,21 @@ INVOCADOR = {
 MANA_LIBRO = {t: round(MANA_BASTON[t] * 0.6) for t in LIBRO_TIERS}
 
 
+def lore_libro(t):
+    """Las dos lineas del libro con numeros. AstralClases las corrige en los libros viejos (mismo texto)."""
+    inv, n = invocacion(t), INVOCADOR['cantidad'][t]
+    return (f'Clic derecho: invoca {n} esqueleto{"s" if n > 1 else ""} por {INVOCADOR["duracion"]} s',
+            f"Cada uno: {fmt(inv['vida'])} de vida, {fmt(inv['dano'])} de dano por golpe")
+
+
 def invocacion(t):
-    """Vida, defensa y dano de una invocacion de tier t (sin los bonus de armadura)."""
-    return {'vida': round(VIDA_SET[t] * INVOCADOR['vida_pct'] / 100),
+    """Vida, defensa y dano de una invocacion de tier t (sin los bonus de armadura).
+    El golpe de un mob a la invocacion = su ataque vanilla (zombi 3, a mobs no se aplica la dificultad)
+    x DANO_MOB[t] x 100 / (defensa + 100), lo mismo que calcula AstralClases.alPegar."""
+    golpe_zombi = 3 * DANO_MOB[t] * 100 / (DEFENSA_SET[t] + 100)
+    return {'vida': round(golpe_zombi * INVOCADOR['vida_golpes']),
             'defensa': DEFENSA_SET[t],
-            'dano': round(DANO[t] * INVOCADOR['dano_pct'] / 100)}
+            'dano': round(VIDA_REF[t] * INVOCADOR['dano_vida_mob'])}
 
 
 # ---------------------------------------------------------------------------------------------- items
@@ -252,9 +265,10 @@ def register(add_item, recipes, txt, armor_attrs, aura_pdc, defensa_pieza, req_l
         inv = invocacion(t)
         n = INVOCADOR['cantidad'][t]
         lvl = staffs[t - 1]['lvl']
+        l1, l2 = lore_libro(t)
         lore = [txt(f'Invocador {roman(t)}', SETS['invocador']['color']),
-                txt(f'Clic derecho: invoca {n} esqueleto{"s" if n > 1 else ""} por {INVOCADOR["duracion"]} s'),
-                txt(f"Cada uno: {fmt(inv['vida'])} de vida, {fmt(inv['dano'])} de dano por golpe", 'gray'),
+                txt(l1),
+                txt(l2, 'gray'),
                 txt('Atraen a los mobs: te cubren de los golpes', 'gray'),
                 txt(f"Costo: {INVOCADOR['mana'][t]} de mana", 'aqua'),
                 txt(f"Recarga: {INVOCADOR['recarga']} s", 'green'),
@@ -299,7 +313,8 @@ def runtime_data():
         'segador': SEGADOR, 'asesino': ASESINO,
         'invocador': dict(INVOCADOR, cantidad={str(k): v for k, v in INVOCADOR['cantidad'].items()},
                           mana={str(k): v for k, v in INVOCADOR['mana'].items()},
-                          stats={str(t): invocacion(t) for t in LIBRO_TIERS}),
+                          stats={str(t): invocacion(t) for t in LIBRO_TIERS},
+                          lore={str(t): list(lore_libro(t)) for t in LIBRO_TIERS}),
         'dano_mob': {str(k): v for k, v in DM.items()},
         'dano_jefe': {str(k): v for k, v in DJ.items()},   # 23/11: jefes de mazmorra con su escala propia
         'mazmorras': {w: t for w, t in TIER_MAZMORRA.items()},
@@ -319,7 +334,7 @@ def _staff_lvl(t):
 
 
 PLUGIN_YML = """name: AstralClases
-version: 1.1.0
+version: 1.2.0
 main: astral.AstralClases
 api-version: '26.1.2'
 depend: [AuraSkills]

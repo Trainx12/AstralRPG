@@ -44,6 +44,9 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         getLogger().info("XP por tier, proteccion 2D y loot aditivo activos; survival="+survival);
     }
     public boolean pet(LivingEntity mob) {
+        // 26/11: las invocaciones del Invocador (AstralClases) llevan astral.pet para que hechizos y datapack no las
+        // toquen, pero tienen que poder recibir golpes de los mobs: no son mascotas invulnerables.
+        if(mob.getScoreboardTags().contains("astral.invocacion")) return false;
         return mob.getScoreboardTags().stream().anyMatch(t -> t.equals("astral.pet") || t.startsWith("astral.pet."))
             || mythic(mob).startsWith("astral_pet_");
     }

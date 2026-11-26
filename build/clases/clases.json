@@ -103,6 +103,8 @@
   "9": 29200.0
  },
  "invocador": {
+  "aguanta_golpes": 3,
+  "cambia_objetivo": 1.5,
   "cantidad": {
    "1": 1,
    "10": 4,
@@ -111,11 +113,37 @@
    "7": 3,
    "9": 3
   },
-  "dano_pct": 30,
+  "dano_vida_mob": 0.3333333333333333,
   "distancia_max": 24,
-  "duracion": 20,
+  "duracion": 30,
   "jefe_dano": 0.5,
   "jefe_recibe": 3.0,
+  "lore": {
+   "1": [
+    "Clic derecho: invoca 1 esqueleto por 30 s",
+    "Cada uno: 220 de vida, 167 de dano por golpe"
+   ],
+   "10": [
+    "Clic derecho: invoca 4 esqueletos por 30 s",
+    "Cada uno: 49.875 de vida, 208.333.333 de dano por golpe"
+   ],
+   "3": [
+    "Clic derecho: invoca 2 esqueletos por 30 s",
+    "Cada uno: 600 de vida, 3.833 de dano por golpe"
+   ],
+   "5": [
+    "Clic derecho: invoca 2 esqueletos por 30 s",
+    "Cada uno: 4.000 de vida, 87.500 de dano por golpe"
+   ],
+   "7": [
+    "Clic derecho: invoca 3 esqueletos por 30 s",
+    "Cada uno: 12.500 de vida, 1.979.167 de dano por golpe"
+   ],
+   "9": [
+    "Clic derecho: invoca 3 esqueletos por 30 s",
+    "Cada uno: 32.444 de vida, 44.270.833 de dano por golpe"
+   ]
+  },
   "mana": {
    "1": 80,
    "10": 1400,
@@ -130,40 +158,40 @@
   "set_menos_dano": 10,
   "stats": {
    "1": {
-    "dano": 30,
+    "dano": 167,
     "defensa": 50,
-    "vida": 75
+    "vida": 220
    },
    "10": {
-    "dano": 58593750,
+    "dano": 208333333,
     "defensa": 1500,
-    "vida": 25000
+    "vida": 49875
    },
    "3": {
-    "dano": 750,
+    "dano": 3833,
     "defensa": 200,
-    "vida": 250
+    "vida": 600
    },
    "5": {
-    "dano": 18750,
+    "dano": 87500,
     "defensa": 500,
-    "vida": 2000
+    "vida": 4000
    },
    "7": {
-    "dano": 468750,
+    "dano": 1979167,
     "defensa": 800,
-    "vida": 6250
+    "vida": 12500
    },
    "9": {
-    "dano": 11718750,
+    "dano": 44270833,
     "defensa": 1250,
-    "vida": 16250
+    "vida": 32444
    }
   },
-  "vida_pct": 25
+  "vida_golpes": 5
  },
  "libro_nivel": {
-  "1": 8,
+  "1": 0,
   "10": 57,
   "3": 20,
   "5": 32,
