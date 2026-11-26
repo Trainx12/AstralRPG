@@ -904,7 +904,7 @@ def recipe_menu(name, caption, recipe, nav, cards):
 # 23/11 pedido del dueno: mochilas (ExpendableBackpacks 1.2.0) en la Guia, con su receta real.
 # Recetas sacadas del plugin (BackpackRecipes): cuero = LSL/LCL/LLL; cada mejora = 8 del material
 # alrededor de la mochila anterior; Netherite en la Mesa de Herreria. Se entra desde "Terrenos y mochilas".
-ENDER_PUBLICO = False
+ENDER_PUBLICO = True
 MOCHILAS_MENU = 'g_mochilas'
 MOCHILAS = [('leather', 'Cuero', 9, '&6'), ('copper', 'Cobre', 18, '&#e0804a'), ('iron', 'Hierro', 27, '&f'),
             ('gold', 'Oro', 36, '&e'), ('diamond', 'Diamante', 45, '&b'), ('netherite', 'Netherite', 54, '&8'), ('ender', 'Ender', 27, '&3')]

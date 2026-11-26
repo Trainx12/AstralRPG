@@ -116,6 +116,8 @@ items:
     - '&7Ender comparten lo que tiene adentro.'
     - '&7Copia sin forma: Mochila de Ender + perla'
     - '&7de ender.'
+    - '&7Puede guardar mochilas normales, nunca'
+    - '&7otra de Ender.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

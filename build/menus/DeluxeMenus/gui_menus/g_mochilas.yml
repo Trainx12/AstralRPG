@@ -14,8 +14,8 @@ items:
     - '&7Crafteo y se mejora nivel por nivel.'
     - '&7Tambien se compran en /shop -> Mochilas.'
     - '&7Si moris, cae a tu tumba con todo lo que'
-    - '&7tiene adentro. No se puede meter una'
-    - '&7mochila dentro de otra.'
+    - '&7tiene adentro. Solo la Mochila de Ender'
+    - '&7puede guardar otras mochilas.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
