@@ -59,8 +59,14 @@ def run(java,base,runtime):
                 if p.poll() is not None:raise RuntimeError('Paper termino: '+str(log))
                 time.sleep(1)
             else:raise TimeoutError('Paper no arranco')
-            for step in ('mounts','clicks','legacy','flying','eggs','lobby','saddle','hostiles','swim','ice','statues','result'):
-                cmd('mountprobe '+step);time.sleep(5)
+            for step in ('mounts','clicks','legacy','flying','eggs','lobby','saddle','hostiles','swim','ice','statues','modes','follow','followall','persist','result'):
+                cmd('mountprobe '+step)
+                marker='MOUNT RESULT failures=' if step=='result' else f'MOUNT STEP {step} DONE'
+                for _ in range(120):
+                    if marker in log.read_text('utf8',errors='replace'):break
+                    if p.poll() is not None:raise RuntimeError('Paper termino: '+str(log))
+                    time.sleep(.5)
+                else:raise TimeoutError('No termino la fase '+step)
         finally:
             if p.poll() is None:cmd('stop');p.wait(timeout=60)
     content=log.read_text('utf8',errors='replace')

@@ -441,7 +441,7 @@ def mob_block(mid, d, model=None, elite=None):
                "- cancelevent @self ~onInteract",
                '- command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract',
                "- setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger",
-               "- setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger",
+               "- setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger ?!hastag{tag=astral.mount_mode}",
                "- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}"]
     elif d["kind"] in ("hostil", "jefe") or elite:
         if d.get('attack_animation', 'attack'):

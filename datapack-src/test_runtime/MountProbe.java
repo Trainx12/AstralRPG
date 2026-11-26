@@ -19,10 +19,11 @@ public final class MountProbe extends JavaPlugin implements Listener {
     Player player; World expectedWorld; Location origin; int failures; boolean cancel; int charges,refunds;
     final List<Packet<?>> packets=new ArrayList<>();
     void check(boolean ok,String msg){if(!ok)failures++;getLogger().info("MOUNT "+(ok?"PASS ":"FAIL ")+msg);}
-    Player fake(World w) throws Exception {
+    Player fake(World w) throws Exception {return fake(w,"Mount"+UUID.randomUUID().toString().substring(0,8));}
+    Player fake(World w,String name) throws Exception {
         var server=((CraftServer)Bukkit.getServer()).getServer();
         var world=((CraftWorld)w).getHandle();
-        var profile=new GameProfile(UUID.randomUUID(),"Mount"+UUID.randomUUID().toString().substring(0,8));
+        var profile=new GameProfile(UUID.randomUUID(),name);
         var fake=new ServerPlayer(server,world,profile,ClientInformation.createDefault());
         var connection=new Connection(PacketFlow.SERVERBOUND);
         connection.channel=new io.netty.channel.embedded.EmbeddedChannel();
@@ -288,8 +289,111 @@ public final class MountProbe extends JavaPlugin implements Listener {
             for(var e:statues)check(e.isValid() && !e.isDead() && !((org.bukkit.entity.Mob)e).hasAI() && e.isInvulnerable() && !e.hasGravity(),"estatua persiste en pacifico sin IA/gravedad: "+e.getUniqueId());
             statues.forEach(org.bukkit.entity.Entity::remove);w.setDifficulty(Difficulty.NORMAL);
           });
+        } else if(args[0].equals("modes")) {
+          World room=Bukkit.getWorld("sala_dueno");if(room==null)room=Bukkit.createWorld(new WorldCreator("sala_dueno").type(WorldType.FLAT).generateStructures(false));
+          player=fake(room,"ByTrainx");player.setGameMode(GameMode.SURVIVAL);
+          World w=player.getWorld();
+          for(int x=-12;x<=38;x++)for(int z=-12;z<=12;z++)w.getBlockAt(x,99,z).setType(Material.STONE);
+          player.teleport(new Location(w,0,100,0));player.setSneaking(false);
+          int index=0;
+          for(String id:List.of("astral_grillo","astral_chocobo","astral_escarabajo","astral_lagarto","astral_ave","astral_pterodactilo")) {
+            later(1+index++*30,()->{
+              var e=spawn(id,player.getLocation().clone().add(1,0,0));e.setGravity(false);
+              later(5,()->{
+                var tag=new org.bukkit.inventory.ItemStack(Material.NAME_TAG,2);var meta=tag.getItemMeta();meta.setDisplayName("Amiga "+id);tag.setItemMeta(meta);
+                player.getInventory().setItemInMainHand(tag);modelClick(e);
+                var key=new NamespacedKey("astral","mount_name");var mode=new NamespacedKey("astral","mount_follow");
+                check(player.getInventory().getItemInMainHand().getAmount()==1 && ("Amiga "+id).equals(e.getPersistentDataContainer().get(key,org.bukkit.persistence.PersistentDataType.STRING)),id+" etiqueta gasta una y guarda nombre");
+                check(e.getPersistentDataContainer().get(mode,org.bukkit.persistence.PersistentDataType.BYTE)==1,id+" modo inicial seguir");
+                check(w.getEntitiesByClass(org.bukkit.entity.TextDisplay.class).stream().anyMatch(t->("Amiga "+id).equals(t.getText())),id+" texto independiente del modelo");
+                try {
+                  Player other=fake(w);other.teleport(player.getLocation());other.setSneaking(true);other.getInventory().setItemInMainHand(tag.clone());
+                  Bukkit.getPluginManager().callEvent(new PlayerInteractEntityEvent(other,e,org.bukkit.inventory.EquipmentSlot.HAND));
+                  check(e.getPersistentDataContainer().get(mode,org.bukkit.persistence.PersistentDataType.BYTE)==1 && other.getInventory().getItemInMainHand().getAmount()==2,id+" tercero no nombra ni cambia modo");
+                  ((org.bukkit.craftbukkit.entity.CraftPlayer)other).getHandle().connection.disconnect(net.minecraft.network.chat.Component.literal("fin"));
+                }catch(Exception ex){throw new RuntimeException(ex);}
+                later(1,()->{
+                  player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.AIR));player.setSneaking(true);interact(e);player.setSneaking(false);
+                  check(e.getPersistentDataContainer().get(mode,org.bukkit.persistence.PersistentDataType.BYTE)==0,id+" Shift cambia a quieta");
+                  Location before=e.getLocation();
+                  later(201,()->{
+                    check(e.getLocation().distanceSquared(before)<.0001,id+" quieta 200 ticks");
+                    var bytes=Bukkit.getUnsafe().serializeEntity(e);e.remove();
+                    var restored=Bukkit.getUnsafe().deserializeEntity(bytes,w,true);
+                    Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.EntitiesLoadEvent(restored.getChunk(),List.of(restored)));
+                    check(restored.getPersistentDataContainer().get(mode,org.bukkit.persistence.PersistentDataType.BYTE)==0 && ("Amiga "+id).equals(restored.getPersistentDataContainer().get(key,org.bukkit.persistence.PersistentDataType.STRING)),id+" nombre/modo conservados en NBT al restaurar");
+                    restored.remove();
+                  });
+                });
+              });
+            });
+          }
+          later(380,()->{
+            packets.stream().filter(p->p instanceof ClientboundSystemChatPacket).map(p->((ClientboundSystemChatPacket)p).content().getString()).filter(t->t.contains("se queda quieta.")).findAny().ifPresentOrElse(t->check(true,"aviso chat quieta"),()->check(false,"aviso chat quieta"));
+          });
+        } else if(args[0].equals("follow")) {
+          player.teleport(new Location(player.getWorld(),0,100,0));player.setSneaking(false);
+          var e=spawn("astral_chocobo",player.getLocation().clone().add(1,0,0));
+          later(5,()->{
+            player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE));interact(e);
+            later(1,()->{
+              e.teleport(new Location(player.getWorld(),10,100,0));double before=e.getLocation().distanceSquared(player.getLocation());
+              later(80,()->{
+                check(e.getLocation().distanceSquared(player.getLocation())<before,"seguir reduce distancia caminando");
+                e.teleport(new Location(player.getWorld(),30,100,0));
+                later(15,()->{
+                  check(e.getLocation().distanceSquared(player.getLocation())<36,"seguir tp seguro a mas de 20 bloques");
+                  player.setSneaking(true);player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.AIR));interact(e);
+                  later(1,()->{
+                    interact(e);player.setSneaking(false);
+                    check(e.getPersistentDataContainer().get(new NamespacedKey("astral","mount_follow"),org.bukkit.persistence.PersistentDataType.BYTE)==1,"Shift vuelve a seguir");
+                    packets.stream().filter(p->p instanceof ClientboundSystemChatPacket).map(p->((ClientboundSystemChatPacket)p).content().getString()).filter(t->t.contains("ahora te sigue.")).findAny().ifPresentOrElse(t->check(true,"aviso chat seguir"),()->check(false,"aviso chat seguir"));
+                    later(1,()->{interact(e);check(player.getVehicle()==e,"clic normal aun monta en modo seguir");player.leaveVehicle();e.remove();});
+                  });
+                });
+              });
+            });
+          });
+        } else if(args[0].equals("followall")) {
+          player.teleport(new Location(player.getWorld(),0,100,0));int index=0;
+          for(String id:List.of("astral_grillo","astral_chocobo","astral_escarabajo","astral_lagarto","astral_ave","astral_pterodactilo")) {
+            later(1+index++*35,()->{
+              var e=spawn(id,player.getLocation().clone().add(1,0,0));
+              later(5,()->{
+                player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE));interact(e);
+                e.teleport(player.getLocation().clone().add(9,0,0));
+                later(25,()->{
+                  check(e.getLocation().distanceSquared(player.getLocation())<81,id+" se acerca al dueno");
+                  e.teleport(player.getLocation().clone().add(30,0,0));
+                  later(12,()->{check(e.getLocation().distanceSquared(player.getLocation())<36,id+" tp seguro sin cruzar mundo");e.remove();});
+                });
+              });
+            });
+          }
+        } else if(args[0].equals("persist")) {
+          World w=player.getWorld();Location at=new Location(w,328,100,328);w.getChunkAt(at);
+          w.getBlockAt(328,99,328).setType(Material.STONE);
+          var e=spawn("astral_grillo",at);UUID uuid=e.getUniqueId();
+          var mode=new NamespacedKey("astral","mount_follow");var name=new NamespacedKey("astral","mount_name");
+          later(5,()->{
+            e.getPersistentDataContainer().set(mode,org.bukkit.persistence.PersistentDataType.BYTE,(byte)0);
+            e.getPersistentDataContainer().set(name,org.bukkit.persistence.PersistentDataType.STRING,"Persistente");
+            e.getPersistentDataContainer().set(new NamespacedKey("astral","mount_owner"),org.bukkit.persistence.PersistentDataType.STRING,player.getUniqueId().toString());
+            w.save();w.unloadChunk(20,20,true);
+            later(30,()->{
+              check(!w.isChunkLoaded(20,20),"chunk realmente descargado");w.getChunkAt(20,20).setForceLoaded(true);
+              later(20,()->{
+                var restored=Bukkit.getEntity(uuid);check(restored!=null,"montura recuperada del chunk");
+                if(restored!=null){check(restored.getPersistentDataContainer().get(mode,org.bukkit.persistence.PersistentDataType.BYTE)==0 && "Persistente".equals(restored.getPersistentDataContainer().get(name,org.bukkit.persistence.PersistentDataType.STRING)),"nombre/modo sobreviven descarga real");restored.remove();}w.getChunkAt(20,20).setForceLoaded(false);
+              });
+            });
+          });
         } else if(args[0].equals("result"))getLogger().info("MOUNT RESULT failures="+failures);
       }catch(Throwable ex){failures++;getLogger().log(java.util.logging.Level.SEVERE,"MOUNT FAIL",ex);}
+      if(!args[0].equals("result")) {
+        String step=args[0];int ticks=switch(step){case "modes"->400;case "follow"->140;case "followall"->240;case "persist"->80;default->100;};
+        later(ticks,()->getLogger().info("MOUNT STEP "+step+" DONE"));
+      }
       return true;
     }
 }

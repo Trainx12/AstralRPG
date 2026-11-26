@@ -362,7 +362,7 @@ astral_ave:
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger ?!hastag{tag=astral.mount_mode}
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_pterodactilo:
@@ -392,7 +392,7 @@ astral_pterodactilo:
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
-  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
+  - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger ?!hastag{tag=astral.mount_mode}
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
 
 astral_momia:

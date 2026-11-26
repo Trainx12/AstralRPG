@@ -26,6 +26,89 @@ final class AstralMounts implements Listener {
     private static final Set<String> FLYING=Set.of("astral_ave","astral_pterodactilo");
     private final Set<UUID> horses=new HashSet<>();
     private final NamespacedKey ownerKey=new NamespacedKey("astral","mount_owner");
+    private final NamespacedKey modeKey=new NamespacedKey("astral","mount_follow");
+    private final NamespacedKey nameKey=new NamespacedKey("astral","mount_name");
+    private final Set<UUID> mounts=new HashSet<>();
+    private final Map<UUID,TextDisplay> labels=new HashMap<>();
+    private final Set<UUID> controlledFlying=new HashSet<>();
+    // Circuito privado: no se concede a otros OP ni a grupos con wildcard.
+    private boolean enabled(Player p) {return p!=null && p.getName().equalsIgnoreCase("ByTrainx");}
+    private Player owner(Entity e) {
+        String value=e.getPersistentDataContainer().get(ownerKey,PersistentDataType.STRING);
+        if(value==null && e instanceof Tameable t && t.getOwner()!=null)return Bukkit.getPlayer(t.getOwner().getUniqueId());
+        try{return value==null?null:Bukkit.getPlayer(UUID.fromString(value));}catch(IllegalArgumentException ex){return null;}
+    }
+    private boolean following(Entity e) {return e.getPersistentDataContainer().getOrDefault(modeKey,PersistentDataType.BYTE,(byte)1)==1;}
+    private boolean riding(Entity e) {
+        if(!e.getPassengers().isEmpty())return true;
+        var r=BetterModel.registryOrNull(e.getUniqueId());return r!=null && r.hasPassenger();
+    }
+    private boolean allowed(World w) {
+        // Lista positiva: nunca lobby, minas, mazmorras, arenas ni otros mundos.
+        return Set.of("world","world_nether","world_the_end","sala_dueno").contains(w.getName());
+    }
+    private void stop(Mob m) {m.getPathfinder().stopPathfinding();m.setAI(false);m.setVelocity(new Vector());}
+    private Location safeNear(Player p) {
+        Location at=p.getLocation();World w=p.getWorld();
+        for(int radius=2;radius<=4;radius++)for(int dx=-radius;dx<=radius;dx++)for(int dz=-radius;dz<=radius;dz++) {
+            if(Math.max(Math.abs(dx),Math.abs(dz))!=radius)continue;
+            int x=at.getBlockX()+dx,z=at.getBlockZ()+dz;
+            if(!w.isChunkLoaded(x>>4,z>>4))continue;
+            for(int dy=1;dy>=-2;dy--) {
+                Location target=new Location(w,x+.5,at.getBlockY()+dy,z+.5);
+                if(!w.getWorldBorder().isInside(target))continue;
+                boolean clear=true;
+                for(int ox=-1;ox<=1;ox++)for(int oz=-1;oz<=1;oz++) {
+                    var floor=w.getBlockAt(x+ox,target.getBlockY()-1,z+oz);
+                    if(!floor.getType().isSolid() || Set.of(Material.MAGMA_BLOCK,Material.CACTUS,Material.CAMPFIRE,Material.SOUL_CAMPFIRE).contains(floor.getType()))clear=false;
+                    for(int y=0;y<4;y++) {var b=w.getBlockAt(x+ox,target.getBlockY()+y,z+oz);if(!b.isPassable() || b.isLiquid() || b.getType()==Material.FIRE)clear=false;}
+                }
+                if(clear)return target;
+            }
+        }
+        return null;
+    }
+    private void follow() {
+        mounts.removeIf(id->{
+            Entity e=Bukkit.getEntity(id);
+            if(e==null || !e.isValid()) {controlledFlying.remove(id);TextDisplay text=labels.remove(id);if(text!=null)text.remove();return true;}
+            Player p=owner(e);
+            if(!(e instanceof Mob m) || riding(e))return false;
+            if(!enabled(p) && !e.getPersistentDataContainer().has(modeKey))return false;
+            if(e.getScoreboardTags().stream().anyMatch(FLYING::contains)) {
+                e.setGravity(false);
+                if(controlledFlying.add(id)) {Bukkit.getMobGoals().removeAllGoals(m);m.setTarget(null);}
+            }
+            if(!enabled(p) || !following(e) || !allowed(e.getWorld()) || p.getWorld()!=e.getWorld() || p.isDead() || p.getGameMode()==GameMode.SPECTATOR) {stop(m);return false;}
+            double distance=e.getLocation().distanceSquared(p.getLocation());
+            if(distance>400) {stop(m);Location target=safeNear(p);if(target!=null)e.teleport(target);}
+            else if(distance>16) {
+                m.setAI(true);
+                if(e.getScoreboardTags().stream().anyMatch(FLYING::contains)) {
+                    Vector direction=p.getLocation().add(0,1,0).toVector().subtract(e.getLocation().toVector());
+                    e.setVelocity(direction.normalize().multiply(.25));
+                } else m.getPathfinder().moveTo(p.getLocation(),1.1);
+            } else stop(m);
+            return false;
+        });
+    }
+    private void label(Entity e) {
+        String name=e.getPersistentDataContainer().get(nameKey,PersistentDataType.STRING);if(name==null)return;
+        // Separado del nombre que MythicMobs/BetterModel reemplaza u oculta.
+        TextDisplay text=labels.get(e.getUniqueId());
+        Location at=e.getLocation().add(0,Math.max(3.5,e.getHeight()+1),0);
+        if(text==null || !text.isValid()) {
+            text=e.getWorld().spawn(at,TextDisplay.class,d->{d.setPersistent(false);d.setGravity(false);d.setBillboard(Display.Billboard.CENTER);d.setSeeThrough(true);d.setShadowed(true);d.setViewRange(1);});
+            labels.put(e.getUniqueId(),text);
+        }
+        text.setText(name);text.teleport(at);
+    }
+    @EventHandler public void unload(org.bukkit.event.world.EntitiesUnloadEvent event) {
+        for(Entity e:event.getEntities()) {mounts.remove(e.getUniqueId());controlledFlying.remove(e.getUniqueId());TextDisplay text=labels.remove(e.getUniqueId());if(text!=null)text.remove();}
+    }
+    @EventHandler public void disable(org.bukkit.event.server.PluginDisableEvent event) {
+        if(event.getPlugin()==plugin) {labels.values().forEach(Entity::remove);labels.clear();}
+    }
     private UUID eggUser;
     private record EggUse(UUID owner,boolean refund) {}
     private final Map<Item,EggUse> thrownEggs=new HashMap<>();
@@ -85,6 +168,11 @@ final class AstralMounts implements Listener {
     }
     private void prepare(Entity e) {
         if(!isMount(e) || !e.isValid())return;
+        mounts.add(e.getUniqueId());
+        Player p=owner(e);
+        if(enabled(p) && !e.getPersistentDataContainer().has(modeKey))e.getPersistentDataContainer().set(modeKey,PersistentDataType.BYTE,(byte)1);
+        if(e.getPersistentDataContainer().has(modeKey))e.addScoreboardTag("astral.mount_mode");
+        label(e);
         if(e instanceof AbstractHorse horse) {
             horse.setTamed(true);horse.setAI(!horse.getPassengers().isEmpty());horses.add(horse.getUniqueId());
         }
@@ -96,7 +184,10 @@ final class AstralMounts implements Listener {
         for(World w:Bukkit.getWorlds())for(Entity e:w.getEntities())prepare(e);
         Bukkit.getScheduler().runTaskTimer(plugin,this::tick,1,1);
     }
-    @EventHandler public void loaded(org.bukkit.event.world.EntitiesLoadEvent e) {e.getEntities().forEach(this::prepare);}
+    @EventHandler public void loaded(org.bukkit.event.world.EntitiesLoadEvent e) {
+        e.getEntities().forEach(this::prepare);
+        Bukkit.getScheduler().runTask(plugin,()->e.getEntities().forEach(this::prepare));
+    }
     static boolean isMount(Entity e) {
         return e!=null && e.getScoreboardTags().stream().anyMatch(t->GROUND.contains(t)||FLYING.contains(t));
     }
@@ -136,6 +227,28 @@ final class AstralMounts implements Listener {
         if(owner==null && entity instanceof Tameable tame && tame.getOwner()!=null)owner=tame.getOwner().getUniqueId().toString();
         if(owner!=null && !owner.equals(playerId.toString())) {p.sendMessage("§eEsta montura tiene otro dueno.");return;}
         entity.getPersistentDataContainer().set(ownerKey,PersistentDataType.STRING,playerId.toString());
+        ItemStack hand=p.getInventory().getItemInMainHand();
+        if(enabled(p)) {
+            entity.addScoreboardTag("astral.mount_mode");
+            if(!entity.getPersistentDataContainer().has(modeKey))entity.getPersistentDataContainer().set(modeKey,PersistentDataType.BYTE,(byte)1);
+            if(hand.getType()==Material.NAME_TAG) {
+                if(hand.hasItemMeta() && hand.getItemMeta().hasDisplayName()) {
+                    String name=hand.getItemMeta().getDisplayName();
+                    entity.getPersistentDataContainer().set(nameKey,PersistentDataType.STRING,name);
+                    entity.setCustomName(name);entity.setCustomNameVisible(false);label(entity);
+                    if(p.getGameMode()!=GameMode.CREATIVE)hand.setAmount(hand.getAmount()-1);
+                }
+                return;
+            }
+            if(p.isSneaking() && hand.getType()!=Material.SADDLE) {
+                boolean next=!following(entity);entity.getPersistentDataContainer().set(modeKey,PersistentDataType.BYTE,(byte)(next?1:0));
+                String name=entity.getPersistentDataContainer().get(nameKey,PersistentDataType.STRING);
+                if(name==null)name=entity.getName();
+                p.sendMessage((next?"§a":"§e")+name+(next?" ahora te sigue.":" se queda quieta."));
+                if(!next && entity instanceof Mob m && !riding(entity))stop(m);
+                return;
+            }
+        }
         if(!(entity instanceof AbstractHorse)) {flyInteract(entity,p);return;}
         AbstractHorse horse=(AbstractHorse)entity;
         horse.setTamed(true);horse.setAI(true);horses.add(horse.getUniqueId());
@@ -201,9 +314,14 @@ final class AstralMounts implements Listener {
     }
     private void tick() {
         int now=Bukkit.getCurrentTick();
+        if(now%10==0)follow();
+        for(UUID id:List.copyOf(labels.keySet())) {Entity e=Bukkit.getEntity(id);if(e!=null && e.isValid())label(e);else {TextDisplay text=labels.remove(id);if(text!=null)text.remove();}}
         horses.removeIf(id->{
             Entity e=Bukkit.getEntity(id);if(!(e instanceof AbstractHorse h) || !h.isValid())return true;
-            h.setTamed(true);h.setAI(!h.getPassengers().isEmpty());return false;
+            h.setTamed(true);
+            if(!enabled(owner(h)) && !h.getPersistentDataContainer().has(modeKey))h.setAI(!h.getPassengers().isEmpty());
+            else if(!h.getPassengers().isEmpty())h.setAI(true);
+            return false;
         });
         chillUntil.entrySet().removeIf(e->{
             if(e.getValue()>now)return false;
