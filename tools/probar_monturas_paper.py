@@ -10,7 +10,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def run(java,base):
+def run(java,base,runtime):
     import sys
     sys.path.insert(0,str(ROOT/'datapack-src'))
     from terceros import privado
@@ -30,7 +30,7 @@ def run(java,base):
     for name in ('bettermodel','mythicmobs','nightcore','excellentenchants','packetevents'):
         shutil.copy2(base/'plugins'/f'{name}.jar',plugins/f'{name}.jar')
     shutil.copy2(ROOT/'.local/balance-probe/paper/plugins/skript.jar',plugins/'skript.jar')
-    shutil.copy2(ROOT/'build/runtime/AstralDecor.jar',plugins/'AstralDecor.jar')
+    shutil.copy2(runtime,plugins/'AstralDecor.jar')
     scripts=plugins/'Skript/scripts';scripts.mkdir(parents=True,exist_ok=True)
     shutil.copy2(ROOT/'build/gameplay/astral_gameplay.sk',scripts/'astral_gameplay.sk')
     for sub in ('mobs','skills'):
@@ -42,7 +42,7 @@ def run(java,base):
     shutil.copy2(ROOT/'datapack-src/mobs/bettermodel_config.yml',plugins/'BetterModel/config.yml')
     packs=server/'probe/datapacks';packs.mkdir(parents=True,exist_ok=True)
     shutil.copy2(ROOT/'build/AstralRPG-Items.zip',packs/'AstralRPG-Items.zip')
-    deps=[*server.joinpath('libraries').rglob('*.jar'),*server.joinpath('versions').rglob('*.jar'),plugins/'mythicmobs.jar']
+    deps=[*server.joinpath('libraries').rglob('*.jar'),*server.joinpath('versions').rglob('*.jar'),plugins/'mythicmobs.jar',plugins/'bettermodel.jar']
     subprocess.run([str(java),'-m','jdk.compiler/com.sun.tools.javac.Main','-encoding','UTF-8','-classpath',os.pathsep.join(map(str,deps)),
                     '-d',str(work),str(ROOT/'datapack-src/test_runtime/MountProbe.java')],check=True)
     with zipfile.ZipFile(plugins/'MountProbe.jar','w') as z:
@@ -59,7 +59,7 @@ def run(java,base):
                 if p.poll() is not None:raise RuntimeError('Paper termino: '+str(log))
                 time.sleep(1)
             else:raise TimeoutError('Paper no arranco')
-            for step in ('mounts','eggs','saddle','hostiles','swim','ice','statues','result'):
+            for step in ('mounts','clicks','legacy','flying','eggs','lobby','saddle','hostiles','swim','ice','statues','result'):
                 cmd('mountprobe '+step);time.sleep(5)
         finally:
             if p.poll() is None:cmd('stop');p.wait(timeout=60)
@@ -72,4 +72,5 @@ def run(java,base):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--java',required=True,type=Path);p.add_argument('--base',required=True,type=Path)
-    a=p.parse_args();run(a.java.resolve(),a.base.resolve())
+    p.add_argument('--runtime',type=Path,default=ROOT/'build/monturas/AstralDecor.jar')
+    a=p.parse_args();run(a.java.resolve(),a.base.resolve(),a.runtime.resolve())

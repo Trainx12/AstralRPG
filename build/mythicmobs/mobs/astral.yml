@@ -241,14 +241,12 @@ astral_grillo:
   Skills:
   - skill{s=AST_MODEL_astral_grillo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_grillo} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_grillo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_grillo} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_grillo} @self ~onLoad
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - skill{s=AST_SILLA_VER} @self ~onLoad
@@ -271,14 +269,12 @@ astral_chocobo:
   Skills:
   - skill{s=AST_MODEL_astral_chocobo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chocobo} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_chocobo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_chocobo} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_chocobo} @self ~onLoad
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - skill{s=AST_SILLA_VER} @self ~onLoad
@@ -302,14 +298,12 @@ astral_escarabajo:
   Skills:
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_escarabajo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_escarabajo} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_escarabajo} @self ~onLoad
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - skill{s=AST_SILLA_VER} @self ~onLoad
@@ -332,14 +326,12 @@ astral_lagarto:
   Skills:
   - skill{s=AST_MODEL_astral_lagarto} @self ~onSpawn
   - skill{s=AST_MODEL_astral_lagarto} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_lagarto 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_lagarto} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_lagarto} @self ~onLoad
   - cancelevent @self ~onInteract
   - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - skill{s=AST_SILLA_VER} @self ~onLoad
@@ -362,14 +354,13 @@ astral_ave:
   Skills:
   - skill{s=AST_MODEL_astral_ave} @self ~onSpawn
   - skill{s=AST_MODEL_astral_ave} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_ave 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
+  - command{c="execute as <caster.uuid> run tag @s add astral_ave"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_ave"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_ave} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_ave} @self ~onLoad
   - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=flying} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
   - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}
@@ -393,14 +384,13 @@ astral_pterodactilo:
   Skills:
   - skill{s=AST_MODEL_astral_pterodactilo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_pterodactilo} @self ~onLoad
-  - command{c="mm egg give <target.name> astral_pterodactilo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
-  - remove @self ~onSpawn ?world{w=lobby}
+  - command{c="execute as <caster.uuid> run tag @s add astral_pterodactilo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> run tag @s add astral_pterodactilo"} @self ~onLoad
   - skill{s=AST_MOUNT_astral_pterodactilo} @self ~onSpawn
+  - skill{s=AST_MOUNT_astral_pterodactilo} @self ~onLoad
   - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
-  - skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}
-  - mountmodel{driver=true;mode=flying} @trigger ~onInteract ?hastag{tag=astral.ensillado} ?~!holding{m=SADDLE}
+  - command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract
   - setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger
   - setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger
   - dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}

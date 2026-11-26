@@ -22,7 +22,7 @@ public final class MountProbe extends JavaPlugin implements Listener {
     Player fake(World w) throws Exception {
         var server=((CraftServer)Bukkit.getServer()).getServer();
         var world=((CraftWorld)w).getHandle();
-        var profile=new GameProfile(UUID.randomUUID(),"MountProbe");
+        var profile=new GameProfile(UUID.randomUUID(),"Mount"+UUID.randomUUID().toString().substring(0,8));
         var fake=new ServerPlayer(server,world,profile,ClientInformation.createDefault());
         var connection=new Connection(PacketFlow.SERVERBOUND);
         connection.channel=new io.netty.channel.embedded.EmbeddedChannel();
@@ -47,7 +47,17 @@ public final class MountProbe extends JavaPlugin implements Listener {
         catch(Exception ex){throw new RuntimeException(ex);}
     }
     void later(long ticks,Runnable r){Bukkit.getScheduler().runTaskLater(this,()->{try{r.run();}catch(Throwable ex){failures++;getLogger().log(java.util.logging.Level.SEVERE,"MOUNT FAIL",ex);}},ticks);}
-    void interact(org.bukkit.entity.Entity e){cmd("astralmount "+e.getUniqueId()+" "+player.getUniqueId());}
+    void interact(org.bukkit.entity.Entity e){
+        Bukkit.getPluginManager().callEvent(new PlayerInteractEntityEvent(player,e,org.bukkit.inventory.EquipmentSlot.HAND));
+    }
+    void modelClick(org.bukkit.entity.Entity e) {
+        var registry=kr.toxicity.model.api.BetterModel.registryOrNull(e.getUniqueId());
+        check(registry!=null && !registry.hitBoxes().isEmpty(),"modelo tiene hitbox real: "+e.getScoreboardTags());
+        var box=registry.hitBoxes().iterator().next();
+        new kr.toxicity.model.api.event.hitbox.HitBoxInteractAtEvent(
+            kr.toxicity.model.api.BetterModel.platform().adapter().player(player.getUniqueId()),box,
+            kr.toxicity.model.api.nms.ModelInteractionHand.RIGHT,new org.joml.Vector3f()).call();
+    }
     public boolean onCommand(org.bukkit.command.CommandSender sender,org.bukkit.command.Command command,String label,String[] args) {
       try {
         if(player==null){player=fake(Bukkit.getWorlds().getFirst());player.setGameMode(GameMode.SURVIVAL);}
@@ -72,6 +82,92 @@ public final class MountProbe extends JavaPlugin implements Listener {
               });
             });
           }
+        } else if(args[0].equals("clicks")) {
+          int index=0;
+          for(String id:List.of("astral_grillo","astral_chocobo","astral_escarabajo","astral_lagarto")) {
+            later(1+index++*18,()->{
+              var h=(org.bukkit.entity.AbstractHorse)spawn(id,player.getLocation().clone().add(1,0,0));
+              later(5,()->{
+                player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE,2));
+                // Incluso si Mythic/otra proteccion cancelo previamente el evento.
+                var event=new PlayerInteractAtEntityEvent(player,h,new org.bukkit.util.Vector(),org.bukkit.inventory.EquipmentSlot.HAND);
+                event.setCancelled(true);Bukkit.getPluginManager().callEvent(event);
+                modelClick(h);
+                check(player.getInventory().getItemInMainHand().getAmount()==1,id+" clic duplicado consume una sola silla");
+                check(h.isTamed() && h.getOwner().equals(player),id+" clic AtEntity reclama/domestica");
+                double speed=h.getAttribute(org.bukkit.attribute.Attribute.MOVEMENT_SPEED).getBaseValue();
+                double jump=h.getAttribute(org.bukkit.attribute.Attribute.JUMP_STRENGTH).getBaseValue();
+                double expectedSpeed=switch(id){case "astral_grillo"->.24;case "astral_chocobo"->.38;case "astral_escarabajo"->.14;default->.22;};
+                double expectedJump=switch(id){case "astral_grillo"->1.25;case "astral_chocobo"->.7;case "astral_escarabajo"->.45;default->.6;};
+                check(Math.abs(speed-expectedSpeed)<.001 && Math.abs(jump-expectedJump)<.001,id+" velocidad/salto segun MOBS");
+                later(1,()->{
+                  player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.AIR));modelClick(h);
+                  check(player.getVehicle()==h,id+" clic hitbox monta caballo nativo");
+                  check(((org.bukkit.craftbukkit.entity.CraftAbstractHorse)h).getHandle().getControllingPassenger()==((org.bukkit.craftbukkit.entity.CraftPlayer)player).getHandle(),id+" control nativo desde modelo");
+                  player.leaveVehicle();
+                  later(2,()->{check(!h.hasAI(),id+" quieta sin jinete");h.remove();});
+                });
+              });
+            });
+          }
+        } else if(args[0].equals("legacy")) {
+          var h=(org.bukkit.entity.AbstractHorse)spawn("astral_grillo",player.getLocation().clone().add(1,0,0));
+          later(5,()->{
+            h.setOwner(player);h.setTamed(false);h.addScoreboardTag("astral.ensillado");
+            Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.EntitiesLoadEvent(h.getChunk(),List.of(h)));
+            check(h.isTamed() && h.getOwner().equals(player),"carga de entidad vieja restaura doma sin cambiar dueno");
+            player.setGameMode(GameMode.CREATIVE);player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.AIR));
+            interact(h);check(player.getVehicle()==h,"silla virtual vieja migra y permite montar en creativo");
+            player.leaveVehicle();h.remove();
+            later(1,()->{
+              var fresh=(org.bukkit.entity.AbstractHorse)spawn("astral_grillo",player.getLocation().clone().add(1,0,0));
+              later(5,()->{
+                player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE));
+                Bukkit.getPluginManager().callEvent(new PlayerInteractEntityEvent(player,fresh,org.bukkit.inventory.EquipmentSlot.OFF_HAND));
+                check(fresh.getInventory().getSaddle()==null,"mano secundaria no ensilla");
+                interact(fresh);check(player.getInventory().getItemInMainHand().getType()==Material.SADDLE,"creativo conserva silla al ensillar");
+                fresh.remove();player.setGameMode(GameMode.SURVIVAL);
+              });
+            });
+          });
+        } else if(args[0].equals("flying")) {
+          int index=0;
+          for(String id:List.of("astral_ave","astral_pterodactilo")) {
+            later(1+index++*30,()->{
+              var e=spawn(id,player.getLocation().clone().add(1,0,0));
+              later(6,()->{
+                player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE,2));modelClick(e);
+                check(e.getScoreboardTags().contains("astral.ensillado"),id+" ensilla por modelo");
+                later(1,()->{
+                  player.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.AIR));modelClick(e);
+                  later(2,()->{
+                    var r=kr.toxicity.model.api.BetterModel.registryOrNull(e.getUniqueId());
+                    check(player.isInsideVehicle() && r.hasControllingPassenger(),id+" asiento volador con conductor");
+                    check(r.hitBoxes().stream().anyMatch(b->b.hasMountDriver() && b.mountController()==kr.toxicity.model.api.mount.MountControllers.FLY),id+" conserva controlador FLY");
+                    player.leaveVehicle();e.remove();
+                  });
+                });
+              });
+            });
+          }
+        } else if(args[0].equals("lobby")) {
+          World original=player.getWorld();Location before=player.getLocation();
+          World lobby=Bukkit.getWorld("lobby");if(lobby==null)lobby=Bukkit.createWorld(new WorldCreator("lobby").generateStructures(false));
+          player.teleport(new Location(lobby,0,100,0));player.setGameMode(GameMode.SURVIVAL);
+          player.getInventory().clear();cmd("mm egg give "+player.getName()+" astral_grillo 2");
+          later(2,()->{
+            var item=player.getInventory().getItemInMainHand();int amount=item.getAmount();
+            var block=player.getLocation().clone().add(0,-1,0).getBlock();block.setType(Material.STONE);
+            Bukkit.getPluginManager().callEvent(new PlayerInteractEvent(player,org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK,item,block,org.bukkit.block.BlockFace.UP,org.bukkit.inventory.EquipmentSlot.HAND));
+            check(item.getAmount()==amount,"lobby conserva huevo sin consumirlo");
+            check(player.getWorld().getEntitiesByClass(org.bukkit.entity.AbstractHorse.class).isEmpty(),"lobby no deja montura");
+            Bukkit.getPluginManager().callEvent(new PlayerInteractEvent(player,org.bukkit.event.block.Action.RIGHT_CLICK_AIR,item,null,null,org.bukkit.inventory.EquipmentSlot.HAND));
+            later(36,()->{
+              int count=Arrays.stream(player.getInventory().getContents()).filter(it->it!=null && it.getType()==Material.PIG_SPAWN_EGG).mapToInt(org.bukkit.inventory.ItemStack::getAmount).sum();
+              check(count==amount,"lobby devuelve un unico huevo lanzado al usuario exacto");
+              player.teleport(before);
+            });
+          });
         } else if(args[0].equals("eggs")) {
           player.setGameMode(GameMode.CREATIVE);
           player.getInventory().clear();cmd("mm egg give "+player.getName()+" astral_grillo 2");
@@ -82,8 +178,16 @@ public final class MountProbe extends JavaPlugin implements Listener {
             Bukkit.getPluginManager().callEvent(new PlayerInteractEvent(player,org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK,item,block,org.bukkit.block.BlockFace.UP,org.bukkit.inventory.EquipmentSlot.HAND));
             later(5,()->{
               var horses=player.getWorld().getEntitiesByClass(org.bukkit.entity.AbstractHorse.class).stream().filter(h->h.getScoreboardTags().contains("astral_grillo")).toList();
-              check(horses.size()==1 && player.equals(horses.getFirst().getOwner()),"huevo en creativo asigna UUID exacto sin buscar jugador cercano");
+              check(horses.size()==1 && player.equals(horses.getFirst().getOwner()) && horses.getFirst().isTamed(),"huevo en creativo asigna UUID exacto sin buscar jugador cercano");
+              try {
+                Player other=fake(player.getWorld());other.teleport(player.getLocation());
+                other.getInventory().setItemInMainHand(new org.bukkit.inventory.ItemStack(Material.SADDLE));
+                Bukkit.getPluginManager().callEvent(new PlayerInteractEntityEvent(other,horses.getFirst(),org.bukkit.inventory.EquipmentSlot.HAND));
+                check(horses.getFirst().getOwner().equals(player) && other.getInventory().getItemInMainHand().getType()==Material.SADDLE,"otro jugador no roba ni ensilla");
+                ((org.bukkit.craftbukkit.entity.CraftPlayer)other).getHandle().connection.disconnect(net.minecraft.network.chat.Component.literal("fin"));
+              } catch(Exception ex){throw new RuntimeException(ex);}
               horses.forEach(org.bukkit.entity.Entity::remove);
+              player.setGameMode(GameMode.SURVIVAL);
               Bukkit.getPluginManager().callEvent(new PlayerInteractEvent(player,org.bukkit.event.block.Action.RIGHT_CLICK_AIR,item,null,null,org.bukkit.inventory.EquipmentSlot.HAND));
               later(32,()->{
                 var air=player.getWorld().getEntitiesByClass(org.bukkit.entity.AbstractHorse.class).stream().filter(h->h.getScoreboardTags().contains("astral_grillo")).toList();
@@ -94,6 +198,8 @@ public final class MountProbe extends JavaPlugin implements Listener {
           });
         } else if(args[0].equals("saddle")) {
           Location at=player.getLocation().clone().add(3,0,0);
+          // El mundo de ensayo puede tener drops de una ejecucion anterior.
+          at.getWorld().getNearbyEntities(at,5,5,5).stream().filter(e->e instanceof org.bukkit.entity.Item).forEach(org.bukkit.entity.Entity::remove);
           var horse=(org.bukkit.entity.AbstractHorse)spawn("astral_grillo",at);
           horse.setGravity(false);
           later(4,()->{

@@ -410,7 +410,7 @@ def mob_block(mid, d, model=None, elite=None):
                    '- command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn']
     if mid in ("astral_mapache", "astral_pinguino"):
         sk += ['- command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn']
-    if d["kind"] == "montura" or mid in ("astral_mapache", "astral_pinguino"):
+    if mid in ("astral_mapache", "astral_pinguino"):
         # 25/11: el lobby tiene mob-spawning allow (vendedores), asi que los huevos de la gacha
         # funcionaban ahi y la montura no se podia usar (WorldGuard no deja montar). Se borra al
         # aparecer y el huevo vuelve al jugador mas cercano (el que lo uso).
@@ -425,20 +425,21 @@ def mob_block(mid, d, model=None, elite=None):
                '- command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn',
                '- command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onLoad',
                f'- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn',
+               f'- skill{{s=AST_MOUNT_{mid}}} @self ~onLoad',
                '- cancelevent @self ~onInteract',
                '- command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract',
                '- skill{s=AST_SILLA_VER} @self ~onLoad',
                # PreventOtherDrops suprime tambien la silla nativa (ver ensayo Paper).
                '- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}']
     elif d["kind"] == "montura":
-        mode = "flying" if d.get("fly") else "walking"
-        sk += [f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
+        # El runtime comparte propietario y antirrobo con los caballos; conserva asiento volador BetterModel.
+        sk += [f'- command{{c="execute as <caster.uuid> run tag @s add {mid}"}} @self ~onSpawn',
+               f'- command{{c="execute as <caster.uuid> run tag @s add {mid}"}} @self ~onLoad',
+               f"- skill{{s=AST_MOUNT_{mid}}} @self ~onSpawn",
+               f"- skill{{s=AST_MOUNT_{mid}}} @self ~onLoad",
                "- skill{s=AST_SILLA_VER} @self ~onLoad",
-               # nada de comportamiento vanilla al hacer clic (domar, subirse al caballo invisible, semillas al loro)
                "- cancelevent @self ~onInteract",
-               "- skill{s=AST_ENSILLAR} @self ~onInteract ?~holding{m=SADDLE} ?!hastag{tag=astral.ensillado}",
-               # subirse con el asiento de BetterModel: el jugador la maneja con WASD (salto/volar con espacio, bajarse con shift)
-               f"- mountmodel{{driver=true;mode={mode}}} @trigger ~onInteract ?hastag{{tag=astral.ensillado}} ?~!holding{{m=SADDLE}}",
+               '- command{c="astralmount <caster.uuid> <trigger.uuid>"} @self ~onInteract',
                "- setAI{ai=false} @self ~onTimer:10 ?modelhaspassenger",
                "- setAI{ai=true} @self ~onTimer:10 ?!modelhaspassenger",
                "- dropitem{items=saddle} @self ~onDeath ?hastag{tag=astral.ensillado}"]

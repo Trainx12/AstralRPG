@@ -49,7 +49,7 @@ class MountTests(unittest.TestCase):
             block=mob_block(mid,MOBS[mid]);self.assertIn('astralmount',block)
             self.assertNotIn('mountmodel',block);self.assertIn('Tame:1b',block)
         for mid in ('astral_ave','astral_pterodactilo'):
-            self.assertIn('mode=flying',mob_block(mid,MOBS[mid]))
+            self.assertIn('astralmount',mob_block(mid,MOBS[mid]));self.assertTrue(MOBS[mid]['fly'])
         self.assertEqual(MOBS['astral_lagarto']['kind'],'montura')
         self.assertEqual(MOBS['astral_lagarto']['type'],'SKELETON_HORSE')
 
