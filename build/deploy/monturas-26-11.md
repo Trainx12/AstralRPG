@@ -14,12 +14,12 @@ y revisar su delta antes de preparar otro parche. Esta copia local no verifica e
 
 | Archivo local | Destino remoto | SHA-1 |
 |---|---|---|
-| `build/monturas/AstralDecor.jar` | `/plugins/update/AstralDecor.jar` | `b01dc21f3febbcdd696206720c93910b30888ac7` |
-| `.local/terceros/AstralRPG-privado/build/entregas/monturas-26-11/mobs/astral.yml` | `/plugins/MythicMobs/mobs/astral.yml` | `0df759f46ae6a635b085f5f24cdd7e58100c2052` |
+| `build/monturas/AstralDecor.jar` | `/plugins/update/AstralDecor.jar` | `0ea575f26a8740a946574ecd58c265b88f0de177` |
+| `.local/terceros/AstralRPG-privado/build/entregas/monturas-26-11/mobs/astral.yml` | `/plugins/MythicMobs/mobs/astral.yml` | `8ab9cd85d80405900722c3559ede5cd18c56e7a5` |
 
 El YAML privado conserva todos los bloques de su base y sustituye solo las seis monturas.
-Base de YAML local: `.local/terceros/AstralRPG-privado/build/mythicmobs/mobs/astral.yml`.
-SHA-256 base YAML: `3ba78f45751479bdb8dd6d8e725c1f73721a8c84f06e80a8ab9cb17e79748ab2`.
+Base de YAML local: `.local/deploy-26-11-monturas/remoto-mobs-1795717581.yml`.
+SHA-256 base YAML: `ce56fc92fb0b74fa886c250ba02cc2d1bd38cc52d5f0634359a264725486d1e0`.
 Tambien se acepta como base remota el YAML de ba8f51d (SHA-1
 `62ebc03914d00fedaf7fd99c505d2f7039ef1509`), sobre el que solo cambia la
 condicion del temporizador de IA de las dos voladoras.

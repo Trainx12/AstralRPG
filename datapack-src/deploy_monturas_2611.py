@@ -13,6 +13,8 @@ from mobs.mythic import MOBS, mob_block, metaskills
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_SHA256 = 'a735f465310892a53d13d85003fcc503d866ac1e778b3dc98fc269c8122d245d'
+# 26/11: el instalado en el server (1.24.5) solo difiere en balance/mercader/mesa.json (datos en vivo)
+BASES_OK = {BASE_SHA256, 'e33eec7d50ade429eeb9fd4fd0f4470f44204117a840e860dd6d07b9626acf65'}
 MOUNTS = [mid for mid, d in MOBS.items() if d['kind'] == 'montura']
 
 
@@ -25,7 +27,7 @@ def replace_block(text, name, block):
 
 
 def build(java, server, base, mobs_base=None):
-    if hashlib.sha256(base.read_bytes()).hexdigest() != BASE_SHA256:
+    if hashlib.sha256(base.read_bytes()).hexdigest() not in BASES_OK:
         raise ValueError('La base no es la copia verificada 1.24.5 del 24/11; revisar antes de sustituirla')
     classes = Path(tempfile.mkdtemp(prefix='mount-fix-', dir=ROOT/'.local'))
     deps = [*server.joinpath('libraries').rglob('*.jar'), server/'plugins/mythicmobs.jar', server/'plugins/bettermodel.jar']
